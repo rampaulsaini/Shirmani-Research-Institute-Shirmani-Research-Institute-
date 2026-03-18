@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curriculum - IHDM</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header>
+  <div class="logo">IHDM</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="manifesto.html">Manifesto</a>
+    <a href="principles.html">Principles</a>
+    <a href="curriculum.html">Curriculum</a>
+    <a href="research.html">Research</a>
+    <a href="media.html">Media</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section>
+  <h1>IHDM Structured Curriculum</h1>
+
+  <h2>Level 1: Personal Clarity (4 Weeks)</h2>
+  <ul>
+    <li>Thought observation</li>
+    <li>Emotional pause practice</li>
+    <li>Reaction vs Response training</li>
+    <li>Basic ego awareness</li>
+  </ul>
+
+  <h2>Level 2: Identity & Awareness (8 Weeks)</h2>
+  <ul>
+    <li>Identity mapping</li>
+    <li>Belief examination</li>
+    <li>Time perception awareness</li>
+    <li>Self-reflection journaling</li>
+  </ul>
+
+  <h2>Level 3: Integrated Regulation (12 Weeks)</h2>
+  <ul>
+    <li>Emotional-cognitive synchronization</li>
+    <li>Conflict analysis</li>
+    <li>Social empathy exercises</li>
+  </ul>
+
+  <h2>Level 4: Collective Development (Advanced)</h2>
+  <ul>
+    <li>Ethical leadership</li>
+    <li>Dialogue facilitation</li>
+    <li>Community modeling</li>
+  </ul>
+</section>
+
+<footer>
+  <p>© 2026 IHDM | Initiator: Shirmani RamPal Saini</p>
+</footer>
+<script src="assets/js/script.js"></script>
+</body>
+</html>
