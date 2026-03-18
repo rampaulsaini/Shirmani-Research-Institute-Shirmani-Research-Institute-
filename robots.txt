@@ -1,1 +1,3 @@
-
+User-agent: *
+Allow: /
+Sitemap: https://rampaulsaini.github.io/Shirmani-Research-Paper/sitemap.xml
