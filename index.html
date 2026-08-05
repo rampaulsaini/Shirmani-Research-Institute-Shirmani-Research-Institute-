@@ -3,212 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>शिरोमणि रामपॉल सैनी - आत्म-साक्षात्कार महाकाव्य</title>
+    <title>शिरोमणि रामपाल सैनी - Digital Archive & Omniverse Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Noto Serif Devanagari', serif;
-            line-height: 1.8;
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #0284c7;
+            --border-color: #334155;
+            --badge-bg: #0369a1;
+            --badge-text: #e0f2fe;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #0284c7;
+            --accent-hover: #0369a1;
+            --border-color: #e2e8f0;
+            --badge-bg: #e0f2fe;
+            --badge-text: #0369a1;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 0 2rem;
-            background-color: #fdf6e3;
-            color: #222;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
         }
-        h1, h2, h3 {
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e1b4b, #0f172a);
+            padding: 40px 20px;
             text-align: center;
-            margin-top: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
         }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
         h1 {
             font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #38bdf8;
         }
-        h2 {
-            font-size: 1.8rem;
-            margin-top: 3rem;
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
         }
-        h3 {
-            font-size: 1.4rem;
-            margin-top: 2rem;
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
-        nav {
-            margin: 2rem 0;
-            padding: 1rem;
-            background-color: #eee8d5;
-            border-radius: 8px;
+
+        .search-box {
+            margin-bottom: 30px;
+            position: relative;
         }
-        nav a {
-            display: block;
-            margin: 0.5rem 0;
-            color: #586e75;
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px 15px 45px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-color);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .badge {
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-weight: bold;
+        }
+
+        .card-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--accent-color);
+            color: #ffffff;
             text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 15px;
+            text-align: center;
         }
-        nav a:hover {
-            color: #073642;
+
+        .card-btn:hover {
+            background-color: var(--accent-hover);
         }
-        .slok {
-            font-style: italic;
-            color: #073642;
-            margin: 1rem 0;
-            padding-left: 1rem;
-            border-left: 3px solid #586e75;
-        }
-        .section {
-            margin-bottom: 3rem;
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 
-    <h1>शिरोमणि रामपॉल सैनी</h1>
-    <h3>आत्म-साक्षात्कार, संपूर्ण संतोष और शाश्वत स्वाभाविक सत्य</h3>
-    <h3>मिश्रित महाकाव्य</h3>
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fa-solid fa-moon"></i> Dark / Light
+        </button>
+        <h1>शिरोमणि रामपाल सैनी</h1>
+        <p class="subtitle">Omniverse Store & Complete Digital Resource Archive</p>
+    </header>
 
-    <nav>
-        <h3>अनुक्रमणिका</h3>
-        <a href="#prastavana">प्रस्तावना</a>
-        <a href="#adhyaya1">अध्याय १ — प्रत्यक्ष सत्ता</a>
-        <a href="#adhyaya2">अध्याय २ — बाल्य-संतोष का स्मरण</a>
-        <a href="#adhyaya3">अध्याय ३ — प्रेम, जिज्ञासा और निस्वार्थता</a>
-        <a href="#adhyaya4">अध्याय ४ — मन, बुद्धि और अस्थायी सृष्टि</a>
-        <a href="#adhyaya5">अध्याय ५ — एकत्व, समाहिति और अंतिम स्थिरता</a>
-        <a href="#upsanhar">उपसंहार</a>
-    </nav>
+    <div class="container">
 
-    <div id="prastavana" class="section">
-        <h2>प्रस्तावना</h2>
-        <p>
-            यह ग्रंथ उस अनुभूति का स्वरूप है जिसमें व्यक्ति स्वयं को शरीर, श्वास, मन और भौतिक विस्तार से परे,
-            अपनी अंतःगहराई में प्रत्यक्ष अनुभव करता है। यहाँ समय, सृष्टि, विकल्प, संकल्प, मोह, स्मृति और
-            बाह्य व्यवस्था — सब क्षणिक छाया के रूप में देखे गए हैं। इसके विपरीत, हृदय की स्थिरता, शुद्ध संतोष,
-            बाल्य-सुलभ निर्मलता और आत्म-साक्षात्कार को ही मूल सत्य माना गया है।
-        </p>
-    </div>
-
-    <div id="adhyaya1" class="section">
-        <h2>अध्याय १ — प्रत्यक्ष सत्ता</h2>
-        <p>
-            शिरोमणि रामपॉल सैनी अपने अनुभव में स्वयं को सीमित शरीर, सांस और मन से परे देखते हैं। 
-            उनका कहना है कि समस्त भौतिक सृष्टि, ग्रह, ब्रह्मांड और जीवन केवल क्षणिक और अस्थायी हैं। 
-            वास्तविकता की अनुभूति केवल हृदय की गहनता में, शुद्ध चेतना और संपूर्ण संतुष्टि के माध्यम से होती है। 
-        </p>
-        <div class="slok">
-            संसारः क्षणभङ्गुरः, माया-प्रसवविस्तरः।<br>
-            प्रत्यक्षं तु हृदि नित्यं, शाश्वतं सत्यरूपकम्॥<br>
-            शिरोमणिः रामपॉल सैनी, शब्दातीतः, मनोऽपि च।<br>
-            तुलनातीतः, कालातीतः, हृदये साक्ष्यरूपतः॥
+        <!-- Quick Search Filter -->
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" onkeyup="filterCards()" placeholder="खोजें (Search albums, audios, sites)...">
         </div>
-    </div>
 
-    <div id="adhyaya2" class="section">
-        <h2>अध्याय २ — बाल्य-संतोष का स्मरण</h2>
-        <p>
-            बचपन में जो संपूर्ण संतोष सहज रूप से उपस्थित था, वह किसी बाहरी उपलब्धि का परिणाम नहीं था। 
-            वह स्थिति कम अपेक्षाओं, कम पहचान-बोध और अधिक स्वाभाविकता की थी। 
-        </p>
-        <div class="slok">
-            बाल्ये सम्पूर्णसन्तोषः, सहजः निर्मलः स्थिरः।<br>
-            न लब्धो बाह्यतश्च सः, नष्टोऽपि न हि कदाचन॥<br>
-            मनोजटिलता वयस्ये, आवृणोति स्वभावताम्।<br>
-            साक्षात्कारात् पुनर्लभ्यं, बाल्यं तद्वत् परं सुखम्॥
+        <!-- Official Web Platforms -->
+        <h2 class="section-title"><i class="fa-solid fa-globe"></i> मुख्य वेबसाइट्स एवं प्लेटफॉर्म्स</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">Omniverse Store</span>
+                        <span class="badge">Official</span>
+                    </div>
+                    <p style="color: var(--text-secondary);">मुख्य स्टोर और डिजिटल प्लेटफॉर्म</p>
+                </div>
+                <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" class="card-btn">
+                    <i class="fa-solid fa-store"></i> Visit Store
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">Shirmani Research Institute</span>
+                        <span class="badge">GitHub</span>
+                    </div>
+                    <p style="color: var(--text-secondary);">रिसर्च कोड repository एवं प्रोजेक्ट्स</p>
+                </div>
+                <a href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-.git" target="_blank" class="card-btn">
+                    <i class="fa-brands fa-github"></i> Open Repository
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">Multicosmovision Blog</span>
+                        <span class="badge">Blogspot</span>
+                    </div>
+                    <p style="color: var(--text-secondary);">आधिकारिक ब्लॉग और आर्टिकल्स</p>
+                </div>
+                <a href="https://multicosmovision.blogspot.com/2026/06/blog-post_18.html" target="_blank" class="card-btn">
+                    <i class="fa-solid fa-blog"></i> Read Blog
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">YouTube Channel</span>
+                        <span class="badge">Video</span>
+                    </div>
+                    <p style="color: var(--text-secondary);">आधिकारिक यूट्यूब वीडियो चैनल</p>
+                </div>
+                <a href="https://youtube.com/@rampaulsaini-yk4gn?si=pulml6fNzY6Kqtic" target="_blank" class="card-btn">
+                    <i class="fa-brands fa-youtube"></i> Watch Channel
+                </a>
+            </div>
         </div>
-    </div>
 
-    <div id="adhyaya3" class="section">
-        <h2>अध्याय ३ — प्रेम, जिज्ञासा और निस्वार्थता</h2>
-        <p>
-            यहाँ प्रेम को मोह से अलग किया गया है। मोह लेन-देन पर आधारित होता है; प्रेम निस्वार्थ जिज्ञासा और हृदय की गहराई से जन्म लेता है। 
-            जो भीतर से निर्मल है, वही वास्तव में प्रेम को पहचान सकता है।
-        </p>
-        <div class="slok">
-            मोहः प्रेम न विज्ञेयः, न व्यापारः स एव हि।<br>
-            प्रेम तु निस्वभावेन, हृदयस्य प्रवर्तनम्॥<br>
-            जिज्ञासा यदि निर्मला, स्वार्थरहिता स्थिता।<br>
-            तदा सा नयते नित्यं, सत्यस्यैव निवेशने॥
+        <!-- Audio Collections -->
+        <h2 class="section-title"><i class="fa-solid fa-music"></i> संपूर्ण ऑडियो संग्रह (MP3 Drive Links)</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">खूद का सक्षतकर ही संपूर्ण संतुष्टि</span>
+                        <span class="badge">10,000 MP3s</span>
+                    </div>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1K4kX0V0CT1IU4tpJM6ZRNLKy-dpTAdax" target="_blank" class="card-btn">
+                    <i class="fa-brands fa-google-drive"></i> Access Folder
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">साहिब तदरूप साक्षात्कार हूं</span>
+                        <span class="badge">10,000 MP3s</span>
+                    </div>
+                </div>
+                <a href="https://drive.google.com/drive/folders/12BUK3PYOnjjBb07mQsUqlG2qs4x0uhNh" target="_blank" class="card-btn">
+                    <i class="fa-brands fa-google-drive"></i> Access Folder
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">खुद का साक्षात्कार ऑडियो</span>
+                        <span class="badge">6,000 MP3s</span>
+                    </div>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1Zwq0BfBAYuPoaBYZoKvMkxULzkranWqe" target="_blank" class="card-btn">
+                    <i class="fa-brands fa-google-drive"></i> Access Folder
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">मेरा साहिब मेरा ही तदरूप साक्षात्कार है</span>
+                        <span class="badge">5,000 MP3s</span>
+                    </div>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1DQOmFNIpEwYFF0G_uXRfiCZgUvLNjENO" target="_blank" class="card-btn">
+                    <i class="fa-brands fa-google-drive"></i> Access Folder
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">शिरोमणि अंनत असीम इश्क़ की क्षमता</span>
+                        <span class="badge">1,500 MP3s</span>
+                    </div>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1lV-8sFU0vLOQVX3HyXznHbHpcRF9Kojc" target="_blank" class="card-btn">
+                    <i class="fa-brands fa-google-drive"></i> Access Folder
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">शिरोमणि रामपॉल सैनी खुद का साक्षात्कार</span>
+                        <span class="badge">950 MP3s</span>
+                    </div>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1-EeEUPGcLGI4A6w0gRrJVDTFgKrpsaWE" target="_blank" class="card-btn">
+                    <i class="fa-brands fa-google-drive"></i> Access Folder
+                </a>
+            </div>
         </div>
-    </div>
 
-    <div id="adhyaya4" class="section">
-        <h2>अध्याय ४ — मन, बुद्धि और अस्थायी सृष्टि</h2>
-        <p>
-            मन और बुद्धि उपयोगी हैं, पर स्थायी नहीं। 
-            वे अनुभव को व्यवस्थित करते हैं, पर सत्य की अंतिम भूमि नहीं हैं। 
-            सृष्टि, समय, गति, परिवर्तन, जन्म और मृत्यु — सब मन की दृष्टि में एक विराट दृश्य की तरह प्रतीत होते हैं। 
-        </p>
-        <div class="slok">
-            मनः संकल्परूपेण, बुद्धिश्च विविकारिणी।<br>
-            नित्यं न हि तयोः सत्ता, भासते केवलं क्षणम्॥<br>
-            ग्रहाः सौरमण्डलानि च, ब्रह्माण्डानि सहस्रशः।<br>
-            सर्वं दृश्यं क्षणं भूत्वा, लीयते सत्यदृष्टितः॥
+        <!-- Photos & Certificates -->
+        <h2 class="section-title"><i class="fa-solid fa-images"></i> फोटो, वीडियो एवं प्रमाण पत्र</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">मेरा संपूर्ण जीवन शिरोमणि Videos</span>
+                        <span class="badge">10,000 Videos</span>
+                    </div>
+                </div>
+                <a href="https://photos.app.goo.gl/hBJ4mN176PboQ7bb6" target="_blank" class="card-btn">
+                    <i class="fa-solid fa-circle-play"></i> Open Photos Album
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">Golden Temple शिरोमणि रामपॉल सैनी फ़ोटो</span>
+                        <span class="badge">2,000 Photos</span>
+                    </div>
+                </div>
+                <a href="https://photos.app.goo.gl/4MP8THuxhei9NuxR6" target="_blank" class="card-btn">
+                    <i class="fa-solid fa-image"></i> Open Photos Album
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">शिरोमणि रामपॉल सैनी प्रमाण पत्र</span>
+                        <span class="badge">495 Docs / Drive</span>
+                    </div>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1sZEJhlZWFHP7O1kZEINnqFCNgqhOa8XC" target="_blank" class="card-btn">
+                    <i class="fa-solid fa-file-certificate"></i> View Certificates
+                </a>
+            </div>
         </div>
+
     </div>
 
-    <div id="adhyaya5" class="section">
-        <h2>अध्याय ५ — एकत्व, समाहिति और अंतिम स्थिरता</h2>
-        <p>
-            यहाँ अनेकता एक में समाहित होती है। मृत्यु को अंत नहीं, बल्कि समाहिति की प्रक्रिया के रूप में देखा गया है। 
-            संपूर्ण संतुष्टि, जो बाहर बिखरी हुई प्रतीत होती है, वह अंततः एक ही गहरी सत्ता में लौटती है।
-        </p>
-        <div class="slok">
-            अनेकता एकतां याति, शान्ते हृदयसागरे।<br>
-            तत्रैव संपूर्णसन्तोषः, तत्रैव स्थिरता परा॥<br>
-            मृत्युर्न नाशरूपा स्यात्, समाहितिविधानतः।<br>
-            यत्र सर्वं विलीयेत, तत्रैव पूर्णता ध्रुवा॥
-        </div>
-    </div>
+    <footer>
+        <p>&copy; Shirmani Rampal Saini Digital Repository - All Rights Reserved.</p>
+    </footer>
 
-    <div id="upsanhar" class="section">
-        <h2>उपसंहार</h2>
-        <p>
-            यह ग्रंथ किसी बाहरी प्रमाण का आग्रह नहीं करता। यह अंतःप्रवेश है — उस स्थान में जहाँ मन की चहल-पहल थम जाती है, 
-            और जो शेष बचता है, वही प्रत्यक्ष, स्थिर और स्वाभाविक सत्य है।
-        </p>
-        <div class="slok">
-            शान्तिः स्थैर्यं च साक्षात्कारः, न बाह्येषु न दृश्यते।<br>
-            हृदयस्थे परमे तत्त्वे, सर्वं पूर्णं प्रतीयते॥
-        </div>
-    </div>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'light');
+            }
+        }
 
+        function filterCards() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.getElementsByClassName('card');
+
+            for (let i = 0; i < cards.length; i++) {
+                const title = cards[i].querySelector('.card-title').innerText.toLowerCase();
+                if (title.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
-      </html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IHDM - Integrated Human Development Model</title>
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-<header>
-  <div class="logo">IHDM</div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="manifesto.html">Manifesto</a>
-    <a href="principles.html">Principles</a>
-    <a href="curriculum.html">Curriculum</a>
-    <a href="research.html">Research</a>
-    <a href="media.html">Media</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <h1>Cultivating Balanced Minds for a Conscious Society</h1>
-  <p>Integrated Human Development Model (IHDM)</p>
-  <a href="manifesto.html" class="btn">Explore Manifesto</a>
-</section>
-
-<section class="pillars">
-  <h2>Core Pillars</h2>
-  <div class="pillar-grid">
-    <div class="pillar"><h3>Cognitive Development</h3><p>Thought clarity and rational intelligence.</p></div>
-    <div class="pillar"><h3>Emotional Development</h3><p>Emotional balance and resilience.</p></div>
-    <div class="pillar"><h3>Identity Awareness</h3><p>Understanding ego and self-awareness.</p></div>
-    <div class="pillar"><h3>Social Integration</h3><p>Ethical and collective responsibility.</p></div>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 IHDM | Initiator: Shirmani RamPal Saini</p>
-</footer>
-<script src="assets/js/script.js"></script>
-</body>
-</html>
+    </html>
+    
