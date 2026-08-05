@@ -3,412 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>शिरोमणि रामपाल सैनी - Digital Archive & Omniverse Hub</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>शिरोमणि रामपाल सैनी - Omniverse Hub</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Rozha+One&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-color: #38bdf8;
-            --accent-hover: #0284c7;
-            --border-color: #334155;
-            --badge-bg: #0369a1;
-            --badge-text: #e0f2fe;
-        }
-
-        [data-theme="light"] {
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-color: #0f172a;
-            --text-secondary: #475569;
-            --accent-color: #0284c7;
-            --accent-hover: #0369a1;
-            --border-color: #e2e8f0;
-            --badge-bg: #e0f2fe;
-            --badge-text: #0369a1;
+            --primary-gold: #d4af37;
+            --secondary-gold: #f3e5ab;
+            --bg-dark: #0f1016;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-light: #f8f9fa;
+            --text-dim: #b3b3b3;
+            --accent-blue: #00d2ff;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s, color 0.3s;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
-            padding-bottom: 60px;
+            overflow-x: hidden;
         }
 
+        /* Background Glow Effect */
+        .glow-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.15), transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Header / Banner */
         header {
-            background: linear-gradient(135deg, #1e1b4b, #0f172a);
-            padding: 40px 20px;
             text-align: center;
-            border-bottom: 1px solid var(--border-color);
-            position: relative;
+            padding: 60px 20px 40px;
+            background: rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
         }
 
-        .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
+        header img.profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-gold);
+            object-fit: cover;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+            margin-bottom: 15px;
         }
 
-        h1 {
-            font-size: 2.2rem;
+        header h1 {
+            font-family: 'Rozha One', serif;
+            font-size: 2.8rem;
+            color: var(--primary-gold);
+            letter-spacing: 1px;
             margin-bottom: 10px;
-            color: #38bdf8;
         }
 
-        .subtitle {
-            color: var(--text-secondary);
+        header p {
             font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
+        /* Container & Navigation Tabs */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 30px auto;
             padding: 0 20px;
         }
 
-        .search-box {
-            margin-bottom: 30px;
-            position: relative;
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            margin: 40px 0 20px;
+            border-left: 4px solid var(--primary-gold);
+            padding-left: 15px;
+            font-family: 'Rozha One', serif;
         }
 
-        .search-box input {
-            width: 100%;
-            padding: 15px 20px 15px 45px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            margin: 30px 0 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--accent-color);
-        }
-
+        /* Grid System */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
         }
 
+        /* Cards */
         .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             padding: 20px;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
         }
 
         .card:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2);
+            background: rgba(255, 255, 255, 0.08);
         }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
+        .card-icon {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
         }
 
-        .card-title {
-            font-size: 1.1rem;
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .card p.badge {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
             font-weight: 600;
+            margin-bottom: 15px;
         }
 
-        .badge {
-            background-color: var(--badge-bg);
-            color: var(--badge-text);
-            font-size: 0.8rem;
-            padding: 4px 10px;
-            border-radius: 20px;
-            white-space: nowrap;
-            font-weight: bold;
-        }
-
-        .card-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background-color: var(--accent-color);
-            color: #ffffff;
-            text-decoration: none;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            margin-top: 15px;
+        .card a.btn {
+            display: inline-block;
             text-align: center;
+            background: transparent;
+            color: var(--primary-gold);
+            border: 1px solid var(--primary-gold);
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
-        .card-btn:hover {
-            background-color: var(--accent-hover);
+        .card a.btn:hover {
+            background: var(--primary-gold);
+            color: #000;
         }
 
+        /* Footer */
         footer {
             text-align: center;
-            padding: 30px;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
-            margin-top: 50px;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary-gold);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <div class="glow-bg"></div>
+
+    <!-- Header / Banner Section -->
     <header>
-        <button class="theme-toggle" onclick="toggleTheme()">
-            <i class="fa-solid fa-moon"></i> Dark / Light
-        </button>
+        <img src="https://i.ibb.co/xqf3kTPS/enhanced-image.webp" alt="शिरोमणि रामपाल सैनी" class="profile-img">
         <h1>शिरोमणि रामपाल सैनी</h1>
-        <p class="subtitle">Omniverse Store & Complete Digital Resource Archive</p>
+        <p>Omniverse डिजिटल आर्काइव, तदरूप साक्षात्कार, ऑडियो, वीडियो एवं ऑफिशियल डिजिटल प्लेटफॉर्म्स का मुख्य केंद्र</p>
     </header>
 
     <div class="container">
 
-        <!-- Quick Search Filter -->
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" onkeyup="filterCards()" placeholder="खोजें (Search albums, audios, sites)...">
-        </div>
-
-        <!-- Official Web Platforms -->
-        <h2 class="section-title"><i class="fa-solid fa-globe"></i> मुख्य वेबसाइट्स एवं प्लेटफॉर्म्स</h2>
+        <!-- Section 1: Core Platforms & Apps -->
+        <h2 class="category-title"><i class="fa-solid fa-globe"></i> मुख्य डिजिटल प्लेटफॉर्म्स (Omniverse Apps)</h2>
         <div class="grid">
             <div class="card">
                 <div>
-                    <div class="card-header">
-                        <span class="card-title">Omniverse Store</span>
-                        <span class="badge">Official</span>
-                    </div>
-                    <p style="color: var(--text-secondary);">मुख्य स्टोर और डिजिटल प्लेटफॉर्म</p>
+                    <i class="fa-solid fa-store card-icon"></i>
+                    <h3>Omniverse Store</h3>
+                    <p class="badge">Official Store</p>
                 </div>
-                <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" class="card-btn">
-                    <i class="fa-solid fa-store"></i> Visit Store
-                </a>
+                <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
 
             <div class="card">
                 <div>
-                    <div class="card-header">
-                        <span class="card-title">Shirmani Research Institute</span>
-                        <span class="badge">GitHub</span>
-                    </div>
-                    <p style="color: var(--text-secondary);">रिसर्च कोड repository एवं प्रोजेक्ट्स</p>
+                    <i class="fa-solid fa-microchip card-icon"></i>
+                    <h3>Omniverse AI Core</h3>
+                    <p class="badge">AI Application</p>
                 </div>
-                <a href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-.git" target="_blank" class="card-btn">
-                    <i class="fa-brands fa-github"></i> Open Repository
-                </a>
+                <a href="https://rampaulsaini.github.io/Omniverse-AI/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
 
             <div class="card">
                 <div>
-                    <div class="card-header">
-                        <span class="card-title">Multicosmovision Blog</span>
-                        <span class="badge">Blogspot</span>
-                    </div>
-                    <p style="color: var(--text-secondary);">आधिकारिक ब्लॉग और आर्टिकल्स</p>
+                    <i class="fa-solid fa-chart-line card-icon"></i>
+                    <h3>Omniverse Dashboard</h3>
+                    <p class="badge">Control Center</p>
                 </div>
-                <a href="https://multicosmovision.blogspot.com/2026/06/blog-post_18.html" target="_blank" class="card-btn">
-                    <i class="fa-solid fa-blog"></i> Read Blog
-                </a>
+                <a href="https://rampaulsaini.github.io/omniverse-dashboard/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
 
             <div class="card">
                 <div>
-                    <div class="card-header">
-                        <span class="card-title">YouTube Channel</span>
-                        <span class="badge">Video</span>
-                    </div>
-                    <p style="color: var(--text-secondary);">आधिकारिक यूट्यूब वीडियो चैनल</p>
+                    <i class="fa-solid fa-cart-shopping card-icon"></i>
+                    <h3>Omniverse Marketplace</h3>
+                    <p class="badge">Digital Hub</p>
                 </div>
-                <a href="https://youtube.com/@rampaulsaini-yk4gn?si=pulml6fNzY6Kqtic" target="_blank" class="card-btn">
-                    <i class="fa-brands fa-youtube"></i> Watch Channel
-                </a>
-            </div>
-        </div>
-
-        <!-- Audio Collections -->
-        <h2 class="section-title"><i class="fa-solid fa-music"></i> संपूर्ण ऑडियो संग्रह (MP3 Drive Links)</h2>
-        <div class="grid">
-            <div class="card">
-                <div>
-                    <div class="card-header">
-                        <span class="card-title">खूद का सक्षतकर ही संपूर्ण संतुष्टि</span>
-                        <span class="badge">10,000 MP3s</span>
-                    </div>
-                </div>
-                <a href="https://drive.google.com/drive/folders/1K4kX0V0CT1IU4tpJM6ZRNLKy-dpTAdax" target="_blank" class="card-btn">
-                    <i class="fa-brands fa-google-drive"></i> Access Folder
-                </a>
+                <a href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
 
             <div class="card">
                 <div>
-                    <div class="card-header">
-                        <span class="card-title">साहिब तदरूप साक्षात्कार हूं</span>
-                        <span class="badge">10,000 MP3s</span>
-                    </div>
+                    <i class="fa-solid fa-crown card-icon"></i>
+                    <h3>Omniverse Supreme Core</h3>
+                    <p class="badge">Supreme Platform</p>
                 </div>
-                <a href="https://drive.google.com/drive/folders/12BUK3PYOnjjBb07mQsUqlG2qs4x0uhNh" target="_blank" class="card-btn">
-                    <i class="fa-brands fa-google-drive"></i> Access Folder
-                </a>
+                <a href="https://rampaulsaini.github.io/Omniverse-Supreme-Core-/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
 
             <div class="card">
                 <div>
-                    <div class="card-header">
-                        <span class="card-title">खुद का साक्षात्कार ऑडियो</span>
-                        <span class="badge">6,000 MP3s</span>
-                    </div>
+                    <i class="fa-solid fa-file-contract card-icon"></i>
+                    <h3>Koyab Omniversal Manifesto</h3>
+                    <p class="badge">Declaration Document</p>
                 </div>
-                <a href="https://drive.google.com/drive/folders/1Zwq0BfBAYuPoaBYZoKvMkxULzkranWqe" target="_blank" class="card-btn">
-                    <i class="fa-brands fa-google-drive"></i> Access Folder
-                </a>
-            </div>
-
-            <div class="card">
-                <div>
-                    <div class="card-header">
-                        <span class="card-title">मेरा साहिब मेरा ही तदरूप साक्षात्कार है</span>
-                        <span class="badge">5,000 MP3s</span>
-                    </div>
-                </div>
-                <a href="https://drive.google.com/drive/folders/1DQOmFNIpEwYFF0G_uXRfiCZgUvLNjENO" target="_blank" class="card-btn">
-                    <i class="fa-brands fa-google-drive"></i> Access Folder
-                </a>
-            </div>
-
-            <div class="card">
-                <div>
-                    <div class="card-header">
-                        <span class="card-title">शिरोमणि अंनत असीम इश्क़ की क्षमता</span>
-                        <span class="badge">1,500 MP3s</span>
-                    </div>
-                </div>
-                <a href="https://drive.google.com/drive/folders/1lV-8sFU0vLOQVX3HyXznHbHpcRF9Kojc" target="_blank" class="card-btn">
-                    <i class="fa-brands fa-google-drive"></i> Access Folder
-                </a>
-            </div>
-
-            <div class="card">
-                <div>
-                    <div class="card-header">
-                        <span class="card-title">शिरोमणि रामपॉल सैनी खुद का साक्षात्कार</span>
-                        <span class="badge">950 MP3s</span>
-                    </div>
-                </div>
-                <a href="https://drive.google.com/drive/folders/1-EeEUPGcLGI4A6w0gRrJVDTFgKrpsaWE" target="_blank" class="card-btn">
-                    <i class="fa-brands fa-google-drive"></i> Access Folder
-                </a>
+                <a href="https://rampaulsaini.github.io/Koyab-Founding-Declaration-Omniversal-Manifesto/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
         </div>
 
-        <!-- Photos & Certificates -->
-        <h2 class="section-title"><i class="fa-solid fa-images"></i> फोटो, वीडियो एवं प्रमाण पत्र</h2>
+        <!-- Section 2: MP3 Audio Archives -->
+        <h2 class="category-title"><i class="fa-solid fa-music"></i> MP3 ऑडियो संग्रह (Google Drive Archives)</h2>
         <div class="grid">
             <div class="card">
                 <div>
-                    <div class="card-header">
-                        <span class="card-title">मेरा संपूर्ण जीवन शिरोमणि Videos</span>
-                        <span class="badge">10,000 Videos</span>
-                    </div>
+                    <i class="fa-solid fa-headphones card-icon"></i>
+                    <h3>साहिब तदरूप साक्षात्कार</h3>
+                    <p class="badge">10,000+ MP3 Audios</p>
                 </div>
-                <a href="https://photos.app.goo.gl/hBJ4mN176PboQ7bb6" target="_blank" class="card-btn">
-                    <i class="fa-solid fa-circle-play"></i> Open Photos Album
-                </a>
+                <a href="Https://drive.google.com/drive/folders/12BUK3PYOnjjBb07mQsUqlG2qs4x0uhNh" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
             </div>
 
             <div class="card">
                 <div>
-                    <div class="card-header">
-                        <span class="card-title">Golden Temple शिरोमणि रामपॉल सैनी फ़ोटो</span>
-                        <span class="badge">2,000 Photos</span>
-                    </div>
+                    <i class="fa-solid fa-bullhorn card-icon"></i>
+                    <h3>खुद का साक्षात्कार ही संपूर्ण संतुष्टि</h3>
+                    <p class="badge">10,000+ MP3 Audios</p>
                 </div>
-                <a href="https://photos.app.goo.gl/4MP8THuxhei9NuxR6" target="_blank" class="card-btn">
-                    <i class="fa-solid fa-image"></i> Open Photos Album
-                </a>
+                <a href="https://drive.google.com/drive/folders/1K4kX0V0CT1IU4tpJM6ZRNLKy-dpTAdax" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
             </div>
 
             <div class="card">
                 <div>
-                    <div class="card-header">
-                        <span class="card-title">शिरोमणि रामपॉल सैनी प्रमाण पत्र</span>
-                        <span class="badge">495 Docs / Drive</span>
-                    </div>
+                    <i class="fa-solid fa-heart card-icon"></i>
+                    <h3>अनंत असीम इश्क़ की क्षमता</h3>
+                    <p class="badge">1,500 MP3 Audios</p>
                 </div>
-                <a href="https://drive.google.com/drive/folders/1sZEJhlZWFHP7O1kZEINnqFCNgqhOa8XC" target="_blank" class="card-btn">
-                    <i class="fa-solid fa-file-certificate"></i> View Certificates
-                </a>
+                <a href="https://drive.google.com/drive/folders/1lV-8sFU0vLOQVX3HyXznHbHpcRF9Kojc" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-radio card-icon"></i>
+                    <h3>मेरा साहिब मेरा ही तदरूप साक्षात्कार</h3>
+                    <p class="badge">5,000 MP3 Audios</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1DQOmFNIpEwYFF0G_uXRfiCZgUvLNjENO" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-compact-disc card-icon"></i>
+                    <h3>खुद का साक्षात्कार ऑडियो</h3>
+                    <p class="badge">6,000 MP3 Audios</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1Zwq0BfBAYuPoaBYZoKvMkxULzkranWqe" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-bolt card-icon"></i>
+                    <h3>Short Audios Collection</h3>
+                    <p class="badge">89 Short Clips</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/18iPsn9Rjc7E0jNwvIx_h5MwQrhqyYt1Y" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
+            </div>
+        </div>
+
+        <!-- Section 3: Photo Albums & Certificates -->
+        <h2 class="category-title"><i class="fa-solid fa-images"></i> फोटो एल्बम एवं प्रमाण पत्र</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-vihara card-icon"></i>
+                    <h3>Golden Temple स्पेशल फोटो एल्बम</h3>
+                    <p class="badge">2,000+ Photos</p>
+                </div>
+                <a href="https://photos.app.goo.gl/4MP8THuxhei9NuxR6" target="_blank" class="btn">एल्बम देखें <i class="fa-solid fa-image"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-certificate card-icon"></i>
+                    <h3>शिरोमणि प्रमाण पत्र फोटो एल्बम</h3>
+                    <p class="badge">4,000+ High-Res Photos</p>
+                </div>
+                <a href="https://photos.app.goo.gl/bMoqL2Cx7kKpkmMy6" target="_blank" class="btn">प्रमाण पत्र देखें <i class="fa-solid fa-image"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-video card-icon"></i>
+                    <h3>मेरा संपूर्ण जीवन शिरोमणि वीडियोज़</h3>
+                    <p class="badge">10,000+ Videos</p>
+                </div>
+                <a href="https://photos.app.goo.gl/hBJ4mN176PboQ7bb6" target="_blank" class="btn">वीडियोज़ देखें <i class="fa-solid fa-video"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-folder-open card-icon"></i>
+                    <h3>Omniverse Drive Gallery</h3>
+                    <p class="badge">Drive Media Collection</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1QRgYwrPteyQfrRbTyDMp4LbBnLv90K66" target="_blank" class="btn">गैलरी खोलें <i class="fa-solid fa-folder"></i></a>
+            </div>
+        </div>
+
+        <!-- Section 4: Social Media & Blogs -->
+        <h2 class="category-title"><i class="fa-solid fa-share-nodes"></i> सोशल मीडिया एवं ब्लॉग</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <i class="fa-brands fa-youtube card-icon"></i>
+                    <h3>YouTube चैनल</h3>
+                    <p class="badge">Official YouTube</p>
+                </div>
+                <a href="https://youtube.com/@rampaulsaini-yk4gn?si=pulml6fNzY6Kqtic" target="_blank" class="btn">सब्सक्राइब करें <i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-brands fa-facebook card-icon"></i>
+                    <h3>Facebook Video</h3>
+                    <p class="badge">Social Media Share</p>
+                </div>
+                <a href="https://www.facebook.com/share/v/1DoEnaoEYT/" target="_blank" class="btn">वीडियो देखें <i class="fa-brands fa-facebook"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-blog card-icon"></i>
+                    <h3>Multicosmovision Blog</h3>
+                    <p class="badge">Official Blogspot</p>
+                </div>
+                <a href="https://multicosmovision.blogspot.com/2026/06/blog-post_18.html" target="_blank" class="btn">ब्लॉग पढ़ें <i class="fa-solid fa-newspaper"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-brands fa-github card-icon"></i>
+                    <h3>Shirmani Research Institute</h3>
+                    <p class="badge">GitHub Repository</p>
+                </div>
+                <a href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-.git" target="_blank" class="btn">कोड/प्रोजेक्ट देखें <i class="fa-brands fa-github"></i></a>
             </div>
         </div>
 
     </div>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; Shirmani Rampal Saini Digital Repository - All Rights Reserved.</p>
+        <p>© 2026 शिरोमणि रामपाल सैनी - सर्वाधिकार सुरक्षित। Omniverse Platform.</p>
     </footer>
 
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const currentTheme = body.getAttribute('data-theme');
-            if (currentTheme === 'light') {
-                body.removeAttribute('data-theme');
-            } else {
-                body.setAttribute('data-theme', 'light');
-            }
-        }
-
-        function filterCards() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.getElementsByClassName('card');
-
-            for (let i = 0; i < cards.length; i++) {
-                const title = cards[i].querySelector('.card-title').innerText.toLowerCase();
-                if (title.includes(input)) {
-                    cards[i].style.display = "";
-                } else {
-                    cards[i].style.display = "none";
-                }
-            }
-        }
-    </script>
 </body>
     </html>
-    
+            
