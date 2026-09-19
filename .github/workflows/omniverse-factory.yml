@@ -37,6 +37,12 @@ jobs:
       - name: Verification agent
         if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/agents/verification_agent.py
+      - name: Provenance ledger
+        if: steps.source_changes.outputs.process_required == 'true'
+        run: python3 factory/run_stage.py factory/agents/provenance_agent.py
+      - name: Source-grounded generation
+        if: steps.source_changes.outputs.process_required == 'true'
+        run: python3 factory/run_stage.py factory/generate_products.py
       - name: Research agent
         if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/agents/research_agent.py
@@ -79,6 +85,8 @@ jobs:
             generated/verification-report.json
             generated/cloud-sync-manifest.json
             generated/concept-map.json
+            generated/provenance-ledger.jsonl
+            generated/ai-output.jsonl
             generated/source-registry.json
             generated/source-change-report.json
             generated/recovery-plan.json
