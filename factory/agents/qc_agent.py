@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import json
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[2]; G=ROOT/"generated"
+ROOT=Path(__file__).resolve().parents[2]; G=ROOT/"generated"; G.mkdir(parents=True,exist_ok=True)
+out=G/"qc-report.json"
 checks={
 "canonical_corpus_exists":(G/"canonical-corpus.jsonl").exists(),
 "evidence_index_exists":(G/"evidence-index.jsonl").exists(),
