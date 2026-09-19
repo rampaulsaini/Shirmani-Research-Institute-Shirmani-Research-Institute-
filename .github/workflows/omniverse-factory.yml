@@ -4,9 +4,12 @@ on:
   push:
     paths: ['factory/**','.github/workflows/omniverse-factory.yml']
   schedule:
-    - cron: '17 2 * * 0'
+    - cron: '17 2 * * *'
 permissions:
   contents: write
+concurrency:
+  group: omniverse-research-factory
+  cancel-in-progress: false
 jobs:
   factory:
     runs-on: ubuntu-latest
@@ -16,12 +19,28 @@ jobs:
         run: python3 factory/source-registry.py
       - name: Run source factory
         run: python3 factory/build_factory.py
-      - name: Run agent stages
-        run: python3 factory/agent_runner.py
-      - name: Register agent supervisor
+      - name: Source librarian
+        run: python3 factory/agents/source_librarian.py
+      - name: Dedup indexer
+        run: python3 factory/agents/dedup_indexer.py
+      - name: Concept mapper
+        run: python3 factory/agents/concept_mapper.py
+      - name: Evidence agent
+        run: python3 factory/agents/evidence_agent.py
+      - name: Verification agent
+        run: python3 factory/agents/verification_agent.py
+      - name: Research agent
+        run: python3 factory/agents/research_agent.py
+      - name: Product agent
+        run: python3 factory/agents/product_agent.py
+      - name: QC agent
+        run: python3 factory/agents/qc_agent.py
+      - name: Agent supervisor
         run: python3 factory/agent_supervisor.py
       - name: Build cloud backup manifest
         run: python3 factory/cloud_sync.py
+      - name: Build run report
+        run: python3 factory/run_report.py
       - name: Commit generated outputs
         run: |
           git config user.name 'omniverse-factory[bot]'
