@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "repository": "rampaulsaini/Shirmani-Research-Paper",
+      "capabilities": ["research-archive","philosophy","cognitive-models","paper-publishing"],
+      "priority": "high"
+    },
+    {
+      "repository": "NVIDIA-Omniverse/kit-app-template",
+      "capabilities": ["OpenUSD","GPU-accelerated-3D","Python","C++","application-templates","extensions","services","streaming"],
+      "priority": "high",
+      "external_upstream": true
+    }
+  ],
+  "routing": {
+    "research": ["research-archive","philosophy","cognitive-models"],
+    "technical": ["OpenUSD","GPU-accelerated-3D","Python","C++","application-templates","extensions","services"],
+    "publishing": ["paper-publishing","application-templates"]
+  }
+}
