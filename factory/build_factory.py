@@ -35,9 +35,32 @@ def units(items):
             if 20<=len(x)<=500: u.append((src,x))
     return u or [("seed","निष्पक्ष समझ, आत्म-अवलोकन, प्रकृति, संतुलन और मानवीय उत्तरदायित्व पर स्वतंत्र विचार।")]
 def main():
-    stamp=datetime.now(timezone.utc).isoformat()
-    # Source collection is incremental; product workers can resume from stable IDs.\n    # This builder remains the bootstrap/source-index stage.\n    stamp=datetime.now(timezone.utc).isoformat()\n    sources=clone_sources()\n    u=units(collect())\n    t=CFG["product_targets"]
-    (OUT/"manifest.json").write_text(json.dumps({"generated_at":stamp,"sources":sources,"targets":t,"units":len(u)},ensure_ascii=False,indent=2),encoding="utf-8")
+    stamp = datetime.now(timezone.utc).isoformat()
+    sources = clone_sources()
+    u = units(collect())
+    t = CFG["product_targets"]
+    manifest = {
+        "generated_at": stamp,
+        "sources": sources,
+        "targets": t,
+        "units": len(u),
+        "input_policy": "source-units.jsonl is the canonical input; generated products must not become source inputs"
+    }
+    (OUT/"manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+    with (OUT/"source-units.jsonl").open("w", encoding="utf-8") as f:
+        for i, (src, text) in enumerate(u, 1):
+            record = {
+                "id": i,
+                "source": src,
+                "text": text,
+                "hash": hashlib.sha256(text.encode("utf-8")).hexdigest()
+            }
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+    if "--bootstrap-only" in sys.argv:
+        return
     verses=int(t["verses"]); books=int(t["digital_books"]); papers=int(t["research_papers"])
     with (OUT/"verse-corpus.jsonl").open("w",encoding="utf-8") as f:
         for i in range(1,verses+1):
