@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-09-19T17:25:58.102795+00:00",
+  "languages": {
+    "hi": {
+      "name": "Hindi",
+      "status": "READY",
+      "mode": "source-grounded template"
+    },
+    "pa": {
+      "name": "Punjabi",
+      "status": "READY",
+      "mode": "source-grounded template"
+    },
+    "en": {
+      "name": "English",
+      "status": "READY",
+      "mode": "source-grounded template"
+    }
+  },
+  "policy": "Translation/generation must preserve source attribution and draft status; no language version is scientific validation."
+}

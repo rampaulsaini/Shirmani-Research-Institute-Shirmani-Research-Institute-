@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-19T17:24:56.196843+00:00",
-  "status": "FAIL",
+  "generated_at": "2026-09-19T17:25:58.582080+00:00",
+  "status": "PASS",
   "checks": [
     {
       "name": "source_units",
@@ -41,15 +41,15 @@
     {
       "name": "qc_report",
       "path": "qc-report.json",
-      "ok": false,
-      "bytes": 0
+      "ok": true,
+      "bytes": 410
     },
     {
       "name": "cloud_manifest",
       "path": "cloud-sync-manifest.json",
       "ok": true,
-      "bytes": 241929
+      "bytes": 242599
     }
   ],
-  "commit": "3632f4200b7add01031f96c9953e85205b5ed6c0"
+  "commit": "0c3532b8444bb32e887233265192b895c2bfc59d"
 }

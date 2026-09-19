@@ -1,0 +1,17 @@
+{
+  "status": "BLOCKED",
+  "checks": {
+    "canonical_corpus_exists": true,
+    "evidence_index_exists": true,
+    "verification_report_exists": true,
+    "research_queue_exists": true,
+    "product_queue_exists": true,
+    "provenance_ledger_exists": false,
+    "ai_output_exists": true
+  },
+  "policy": {
+    "draft_only": true,
+    "scientific_validation": false,
+    "generated_is_noncanonical": true
+  }
+}
