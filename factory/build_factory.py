@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json,re,subprocess,hashlib,os
+import json,re,subprocess,hashlib,os,sys
 from pathlib import Path
 from datetime import datetime,timezone
 ROOT=Path(__file__).resolve().parents[1]
