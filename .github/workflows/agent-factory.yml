@@ -10,6 +10,9 @@ on:
       - 'factory/batch_worker.py'
       - 'factory/build_factory.py'
       - 'factory/validate_factory.py'
+      - 'factory/run_nvidia_batch.py'
+      - 'agents/nvidia_agent.py'
+      - 'factory/nvidia.json'
       - 'schemas/**'
       - '.github/workflows/agent-factory.yml'
 permissions:
@@ -36,6 +39,12 @@ jobs:
         run: python3 factory/build_factory.py --bootstrap-only
       - name: Run resumable product batch
         run: python3 factory/batch_worker.py --batch-size 5000
+      - name: Optional NVIDIA research enrichment
+        if: ${{ secrets.NVIDIA_API_KEY != '' }}
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          NVIDIA_MODEL: nvidia/nemotron-3-super-120b-a12b
+        run: python3 factory/run_nvidia_batch.py --batch-size 25
       - name: Run multi-agent verification batch
         run: python3 -c "from agents.orchestrator import run; print(run('generated/verse-corpus.jsonl','generated/agent-run',batch_size=1000))"
       - name: Commit factory state
