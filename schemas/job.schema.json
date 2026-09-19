@@ -1,0 +1,9 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "type":"object",
+  "required":["job_id","kind","number","topic","status"],
+  "properties":{
+    "job_id":{"type":"string"},"kind":{"type":"string"},"number":{"type":"integer","minimum":1},
+    "topic":{"type":"string"},"status":{"enum":["pending","running","done","failed"]}
+  }
+}
