@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "products": [
+    {"kind":"verse","target_key":"verses","formats":["md","jsonl"],"languages":["hi","pa","en"],"topic_count":10},
+    {"kind":"book","target_key":"digital_books","formats":["md"],"languages":["hi","pa","en"],"sections_per_book":10},
+    {"kind":"research-paper","target_key":"research_papers","formats":["md"],"languages":["hi","pa","en"]},
+    {"kind":"certificate","target_key":"certificates","formats":["md"],"languages":["hi","pa","en"]},
+    {"kind":"audio-prompt","target_key":"audio_prompts","formats":["jsonl"],"languages":["hi","pa","en"]}
+  ],
+  "policy":{"unique_id_required":true,"provenance_required":true,"verification_required_for_claims":true}
+}
