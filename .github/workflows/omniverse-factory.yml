@@ -18,7 +18,9 @@ jobs:
       - name: Build source registry
         run: python3 factory/source-registry.py
       - name: Run source factory
-        run: python3 factory/build_factory.py
+        run: python3 factory/run_stage.py factory/build_factory.py
+      - name: Detect source changes
+        run: python3 factory/change_detector.py
       - name: Source librarian
         run: python3 factory/agents/source_librarian.py
       - name: Dedup indexer
@@ -35,6 +37,8 @@ jobs:
         run: python3 factory/agents/product_agent.py
       - name: QC agent
         run: python3 factory/agents/qc_agent.py
+      - name: Publisher index
+        run: python3 factory/run_stage.py factory/publisher.py
       - name: Agent supervisor
         run: python3 factory/agent_supervisor.py
       - name: Build cloud backup manifest
