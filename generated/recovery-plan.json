@@ -1,11 +1,9 @@
 {
-  "generated_at": "2026-09-19T17:25:58.343264+00:00",
-  "status": "REVIEW_REQUIRED",
-  "failed_reports": [
-    "run-report.json"
-  ],
+  "generated_at": "2026-09-19T17:39:30.088289+00:00",
+  "status": "RECOVERED",
+  "failed_reports": [],
   "last_stage": {
-    "generated_at": "2026-09-19T17:25:58.274699+00:00",
+    "generated_at": "2026-09-19T17:39:30.036330+00:00",
     "script": "factory/publish_index.py",
     "attempts": 1,
     "success": true,
