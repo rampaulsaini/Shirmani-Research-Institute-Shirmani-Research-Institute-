@@ -12,9 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Build source registry
+        run: python3 factory/source-registry.py
       - name: Run source factory
         run: python3 factory/build_factory.py
-      - name: Register agent pipeline
+      - name: Run agent stages
+        run: python3 factory/agent_runner.py
+      - name: Register agent supervisor
         run: python3 factory/agent_supervisor.py
       - name: Commit generated outputs
         run: |
