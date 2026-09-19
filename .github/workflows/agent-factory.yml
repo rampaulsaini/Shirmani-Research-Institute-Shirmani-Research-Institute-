@@ -11,6 +11,9 @@ on:
       - '.github/workflows/agent-factory.yml'
 permissions:
   contents: write
+concurrency:
+  group: omniverse-research-factory
+  cancel-in-progress: false
 jobs:
   agents:
     runs-on: ubuntu-latest
@@ -20,9 +23,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - run: python -m compileall agents
-      - run: python3 factory/build_factory.py
-      - run: python3 -c "from agents.orchestrator import run; print(run('generated/verse-corpus.jsonl','generated/agent-run'))"
+      - name: Validate Python agents and factory
+        run: python -m compileall agents factory
+      - name: Validate JSON configuration
+        run: python3 -c "import json, pathlib; [json.loads(p.read_text(encoding='utf-8')) for p in pathlib.Path('factory').glob('*.json')]; [json.loads(p.read_text(encoding='utf-8')) for p in pathlib.Path('schemas').glob('*.json')]; print('JSON configuration OK')"
+      - name: Build source corpus and products
+        run: python3 factory/build_factory.py
+      - name: Run multi-agent orchestration
+        run: python3 -c "from agents.orchestrator import run; print(run('generated/verse-corpus.jsonl','generated/agent-run'))"
       - name: Commit factory state
         run: |
           git config user.name 'omniverse-factory[bot]'
