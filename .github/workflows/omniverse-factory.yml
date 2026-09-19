@@ -20,22 +20,31 @@ jobs:
       - name: Run source factory
         run: python3 factory/run_stage.py factory/build_factory.py
       - name: Detect source changes
+        id: source_changes
         run: python3 factory/change_detector.py
       - name: Source librarian
+        if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/agents/source_librarian.py
       - name: Dedup indexer
+        if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/agents/dedup_indexer.py
       - name: Concept mapper
+        if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/agents/concept_mapper.py
       - name: Evidence agent
+        if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/agents/evidence_agent.py
       - name: Verification agent
+        if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/agents/verification_agent.py
       - name: Research agent
+        if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/agents/research_agent.py
       - name: Product agent
+        if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/agents/product_agent.py
       - name: QC agent
+        if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/agents/qc_agent.py
       - name: Publisher index
         run: python3 factory/run_stage.py factory/publisher.py
