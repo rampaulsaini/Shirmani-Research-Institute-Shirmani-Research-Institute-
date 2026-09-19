@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "policy": "AI company names are internal production divisions, not claims of separate legal entities.",
+  "companies": {
+    "deep-research-lab": {"queue": "research.deep", "outputs": ["research"], "verification": true},
+    "reasoning-lab": {"queue": "reasoning", "outputs": ["analysis"], "verification": true},
+    "mahagranth-company": {"queue": "book", "outputs": ["books"], "verification": true},
+    "shlok-company": {"queue": "verse", "outputs": ["verses"], "verification": true},
+    "translation-company": {"queue": "translation", "outputs": ["translations"], "languages": ["hi", "pa", "en"], "verification": true},
+    "music-ai-company": {"queue": "music", "outputs": ["audio-prompts"], "verification": true},
+    "verification-company": {"queue": "verification", "outputs": ["qa"], "verification": true},
+    "ai-qc-company": {"queue": "qc.semantic", "outputs": ["qa"], "verification": true},
+    "publishing-company": {"queue": "publishing", "outputs": ["web", "indexes"], "verification": true},
+    "archive-company": {"queue": "archive", "outputs": ["archive"], "verification": true},
+    "automation-company": {"queue": "automation", "outputs": ["jobs", "status"], "verification": true},
+    "deep-learning-lab": {"queue": "deep_learning", "outputs": ["experiments", "models"], "verification": true}
+  }
+}
