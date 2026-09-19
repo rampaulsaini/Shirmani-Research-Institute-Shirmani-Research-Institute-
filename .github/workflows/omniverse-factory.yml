@@ -1,0 +1,27 @@
+name: Omniverse Research Factory
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * 0"
+  push:
+    paths:
+      - "factory/**"
+      - ".github/workflows/omniverse-factory.yml"
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build free deterministic archive
+        run: python3 factory/build_factory.py
+      - name: Publish generated catalog
+        run: |
+          git config user.name "omniverse-factory[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated factory
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(factory): refresh research products"
+          git push
