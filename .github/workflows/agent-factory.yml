@@ -6,7 +6,9 @@ on:
   push:
     paths:
       - 'agents/**'
-      - 'factory/**'
+      - 'factory/agent_config.json'
+      - 'factory/batch_worker.py'
+      - 'factory/build_factory.py'
       - 'schemas/**'
       - '.github/workflows/agent-factory.yml'
 permissions:
