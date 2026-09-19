@@ -25,7 +25,7 @@ for repo,cur in current.items():
     elif prev is None: new.append(repo)
     elif prev.get("head_sha")!=cur.get("head_sha") or prev.get("content_fingerprint")!=cur.get("content_fingerprint"): changed.append(repo)
     else: unchanged.append(repo)
-report={"generated_at":datetime.now(timezone.utc).isoformat(),"new":new,"changed":changed,"unchanged":unchanged,"unavailable":unavailable,"process_required":bool(new or changed) or os.environ.get("GITHUB_EVENT_NAME")=="push","previous_state_exists":state_path.exists(),"policy":"Only new or changed sources are marked changed; unavailable sources are never fabricated."}
+report={"generated_at":datetime.now(timezone.utc).isoformat(),"new":new,"changed":changed,"unchanged":unchanged,"unavailable":unavailable,"process_required":bool(new or changed) or os.environ.get("GITHUB_EVENT_NAME")=="push" or any(not (OUT / req).exists() for req in ["provenance-ledger.jsonl","canonical-corpus.jsonl","evidence-index.jsonl","verification-report.json","research-queue.jsonl","product-queue.jsonl","ai-output.jsonl"]),"previous_state_exists":state_path.exists(),"policy":"Only new or changed sources are marked changed; unavailable sources are never fabricated."}
 (OUT/"source-change-report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
 state_path.write_text(json.dumps({"generated_at":report["generated_at"],"sources":current},ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps(report,ensure_ascii=False))
