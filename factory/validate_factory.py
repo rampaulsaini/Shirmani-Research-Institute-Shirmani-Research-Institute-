@@ -35,7 +35,9 @@ def main():
         assert status["processed_batch"] == 1
         assert (out / "claims-index.json").exists()
         assert (out / "provenance-index.jsonl").exists()
-        assert (out / "factory-status.json").exists()\n        assert (out / "artifact-manifest.jsonl").exists()\n        assert (out / "queues").exists()
+        assert (out / "factory-status.json").exists()
+        assert (out / "artifact-manifest.jsonl").exists()
+        assert (out / "queues").exists()
 
     print("Factory smoke test OK")
 
