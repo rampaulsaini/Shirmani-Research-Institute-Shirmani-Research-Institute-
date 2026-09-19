@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T17:17:09.902964+00:00",
+  "generated_at": "2026-09-19T17:17:31.672218+00:00",
   "mode": "incremental-cloud-backup-manifest",
   "primary": "google-drive",
   "secondary": "dropbox",
@@ -39,7 +39,7 @@
     {
       "path": "agent-status.json",
       "bytes": 2937,
-      "sha256": "0ed8e08b3ad606e7fc645198ad5232c02bdf0128a7c23a7ff70664f52c1dc452"
+      "sha256": "5a1633742492863f978d68d6519e80cbd124ce0e3a8d6085d0d73ebf54874202"
     },
     {
       "path": "audio-prompts.jsonl",
@@ -5549,7 +5549,7 @@
     {
       "path": "federation-status.json",
       "bytes": 4923,
-      "sha256": "5f38b97d22cf04a50da47e6de1fe5c4bb4dfd1ebe40035cbaaef39c15faaf59b"
+      "sha256": "edaa1d285222f658163ab41c363e20b1fbadb4962c261d8a7508ec544abd716c"
     },
     {
       "path": "manifest.json",
@@ -5559,12 +5559,12 @@
     {
       "path": "recovery-plan.json",
       "bytes": 550,
-      "sha256": "2568d44cf8e8d53f7edef26cf79052a16ee1a952138d57c4e1665cff0aca41e8"
+      "sha256": "800517300cb888dc8c804f06393e21dbeb0be86d1ba9153c4c394f673bf878b7"
     },
     {
       "path": "recovery-state.json",
       "bytes": 196,
-      "sha256": "215068430fc9f544675a7cc743101b4ce3875a4f0c758a4e76e9e8aa26846947"
+      "sha256": "805cab6ecadd7a695d1e15c480e9872dc8ab75cef81724dda3dede6d2d571bae"
     },
     {
       "path": "research-paper-draft-001.md",
@@ -6069,12 +6069,12 @@
     {
       "path": "run-report.json",
       "bytes": 1106,
-      "sha256": "0e3a260e078fac4f0d129d67f9cd969f09789d308ab6902370b67afffaf1a199"
+      "sha256": "970cbe9c7bae4cfac423efa18022c01ec7f08905b8e2222715b33b5eda250974"
     },
     {
       "path": "source-registry.json",
       "bytes": 10648,
-      "sha256": "90a4ebc926eafe974a142fae7fc0937a07572d1c760174512fcb25d6591c8213"
+      "sha256": "00bef6a430d22db5bc21fe9ecc3b5f7899373ebc092115e6312844a0c71c03dd"
     },
     {
       "path": "source-units.jsonl",
@@ -6083,8 +6083,8 @@
     },
     {
       "path": "stage-retry-log.jsonl",
-      "bytes": 5979,
-      "sha256": "b685897b87de655ac83686cc80e7b385adf45a9c545a4b5e56d12dd1a2cbe3dc"
+      "bytes": 9312,
+      "sha256": "1b02f585212b6c649c995e8d23af785485403eb29efb1c3fc122e709196cb14d"
     },
     {
       "path": "verse-corpus.jsonl",
