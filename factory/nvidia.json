@@ -1,0 +1,9 @@
+{
+  "enabled_by_secret": "NVIDIA_API_KEY",
+  "base_url": "https://integrate.api.nvidia.com/v1",
+  "default_model": "nvidia/nemotron-3-super-120b-a12b",
+  "mode": "optional-hosted-inference",
+  "batch_size": 25,
+  "truth_policy": "NVIDIA output is model-generated draft material and requires provenance and independent verification before factual publication.",
+  "free_policy": "Use only NVIDIA endpoints/quotas actually available to the account; do not assume unlimited free inference."
+}
