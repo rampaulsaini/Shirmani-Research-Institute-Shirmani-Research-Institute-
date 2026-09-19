@@ -10,6 +10,9 @@ def run(c,cwd=None): return subprocess.run(c,cwd=cwd,text=True,stdout=subprocess
 def clone_sources():
     result=[]
     for full in CFG["repositories"]:
+        if full == CFG.get("hub_repository"):
+            result.append({"repository":full,"available":True,"skipped":"hub repository"})
+            continue
         owner,name=full.split("/",1); dest=WORK/name
         if dest.exists(): run(["git","-C",str(dest),"pull","--depth","1"])
         else: run(["git","clone","--depth","1",f"https://github.com/{full}.git",str(dest)])
