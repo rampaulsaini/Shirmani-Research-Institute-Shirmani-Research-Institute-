@@ -75,7 +75,8 @@ def main():
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
     if "--bootstrap-only" in sys.argv:
         return
-    verses=int(t["verses"]); books=int(t["digital_books"]); papers=int(t["research_papers"])\n    if not u:\n        raise RuntimeError("No usable source units found; refusing to generate fabricated products.")
+    verses=int(t["verses"]); books=int(t["digital_books"]); papers=int(t["research_papers"])
+    if not u:\n        raise RuntimeError("No usable source units found; refusing to generate fabricated products.")
     with (OUT/"verse-corpus.jsonl").open("w",encoding="utf-8") as f:
         for i in range(1,verses+1):
             src,base=u[(i-1)%len(u)]; h=hashlib.sha256(f"{i}|{src}|{base}".encode()).hexdigest()[:12]
