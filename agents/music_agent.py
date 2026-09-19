@@ -1,0 +1,1 @@
+"""Audio Agent: creates reusable prompt metadata; it does not fabricate audio files."""\ndef prompt(index, lyric, language='hi'):\n    return {'id':index,'language':language,'lyric':lyric,'status':'prompt-only','audio_file':None}\n
