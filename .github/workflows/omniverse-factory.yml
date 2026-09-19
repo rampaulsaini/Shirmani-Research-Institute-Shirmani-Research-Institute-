@@ -1,0 +1,25 @@
+name: Omniverse Research Factory
+on:
+  workflow_dispatch:
+  push:
+    paths: ['factory/**','.github/workflows/omniverse-factory.yml']
+  schedule:
+    - cron: '17 2 * * 0'
+permissions:
+  contents: write
+jobs:
+  factory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run source factory
+        run: python3 factory/build_factory.py
+      - name: Register agent pipeline
+        run: python3 factory/agent_supervisor.py
+      - name: Commit generated outputs
+        run: |
+          git config user.name 'omniverse-factory[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add generated factory/agent-status.json
+          git diff --cached --quiet || git commit -m 'chore: run omniverse research factory'
+          git push
