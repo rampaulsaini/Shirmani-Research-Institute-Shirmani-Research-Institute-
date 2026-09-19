@@ -1,93 +1,159 @@
 {
-  "generated_at": "2026-09-19T14:39:50.010067+00:00",
+  "generated_at": "2026-09-19T17:14:39.534249+00:00",
   "sources": [
     {
       "repository": "rampaulsaini/rampaulsaini",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Omniverse-Platform",
-      "available": false
+      "available": false,
+      "head_sha": null,
+      "git_returncode": 128,
+      "diagnostic": "Cloning into '/home/runner/work/Shirmani-Research-Institute-Shirmani-Research-Institute-/Shirmani-Research-Institute-Shirmani-Research-Institute-/factory/_sources/Omniverse-Platform'...\nfatal: could not read Username for 'https://github.com': No such device or address\n"
     },
     {
       "repository": "rampaulsaini/Omniverse-",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Omniverse",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Omnivers",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Omniver",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Karbon-",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Omniverse-Platform-supreme-",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Omniverse-AI",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/C-Labs",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/kit-app-template",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/omniverse--ai-scripts-",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/supreme-omniverse-test",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/my-omniverse-store",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/omniverse-dashboard",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/omniverse-marketplace-",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/omniverse-marketplace",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Omniverse-Supreme-Core-",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/shiromani-rampal-saini",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Shirmani-Research-Paper",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     },
     {
       "repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
@@ -96,7 +162,17 @@
     },
     {
       "repository": "rampaulsaini/yatharth-music-ai",
-      "available": true
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
+    },
+    {
+      "repository": "NVIDIA-Omniverse/kit-app-template",
+      "available": true,
+      "head_sha": "c4b04f841029398e47711eaeb758826906326265",
+      "git_returncode": 0,
+      "diagnostic": ""
     }
   ],
   "targets": {
@@ -106,6 +182,6 @@
     "certificates": 1000,
     "audio_prompts": 10000
   },
-  "units": 1,
+  "units": 0,
   "input_policy": "source-units.jsonl is the canonical input; generated products must not become source inputs"
 }

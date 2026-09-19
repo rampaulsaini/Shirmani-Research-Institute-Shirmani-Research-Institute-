@@ -1,0 +1,7 @@
+{
+  "generated_at": "2026-09-19T17:14:48.842548+00:00",
+  "script": "factory/build_factory.py",
+  "attempts": 3,
+  "success": false,
+  "retry_policy": "up to 3 attempts with exponential backoff"
+}

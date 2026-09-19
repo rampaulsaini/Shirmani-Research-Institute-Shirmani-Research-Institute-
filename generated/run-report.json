@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-19T16:38:24.024642+00:00",
+  "generated_at": "2026-09-19T17:14:49.251917+00:00",
   "status": "FAIL",
   "checks": [
     {
       "name": "source_units",
       "path": "source-units.jsonl",
-      "ok": true,
-      "bytes": 340
+      "ok": false,
+      "bytes": 0
     },
     {
       "name": "canonical_corpus",
@@ -48,8 +48,8 @@
       "name": "cloud_manifest",
       "path": "cloud-sync-manifest.json",
       "ok": true,
-      "bytes": 245225
+      "bytes": 200152
     }
   ],
-  "commit": "8effc1f3540f0431a71982c2e2829a6cfc7bc650"
+  "commit": "c4b04f841029398e47711eaeb758826906326265"
 }
