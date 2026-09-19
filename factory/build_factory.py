@@ -41,6 +41,11 @@ def clone_sources():
             code,log=run(["git","-C",str(dest),"fetch","--depth","1","origin"])
             if code==0:
                 code,log=run(["git","-C",str(dest),"reset","--hard","origin/HEAD"])
+            elif token:
+                # A previous failed authenticated clone can leave a broken .git directory.
+                # Remove it and retry anonymously for public repositories.
+                shutil.rmtree(dest,ignore_errors=True)
+                code,log=run(["git","clone","--depth","1",f"https://github.com/{full}.git",str(dest)])
         available=False; head=None; remote=""
         if dest.exists():
             probe_code,probe=run(["git","-C",str(dest),"rev-parse","--is-inside-work-tree"])
