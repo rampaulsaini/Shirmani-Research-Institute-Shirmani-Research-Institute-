@@ -36,9 +36,9 @@ def clone_sources():
             # Retry anonymously before marking the source unavailable.
             if code != 0 and token:
                 shutil.rmtree(dest,ignore_errors=True)
-                code,log=run(["git","clone","--depth","1",f"https://github.com/{full}.git",str(dest)])
+                code,log=run(["git","-c","credential.helper=","clone","--depth","1",f"https://github.com/{full}.git",str(dest)])
         else:
-            code,log=run(["git","-C",str(dest),"fetch","--depth","1","origin"])
+            code,log=run(["git","-c","credential.helper=","-C",str(dest),"fetch","--depth","1","origin"])
             if code==0:
                 code,log=run(["git","-C",str(dest),"reset","--hard","origin/HEAD"])
             elif token:
