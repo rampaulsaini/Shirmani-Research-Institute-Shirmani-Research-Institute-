@@ -1,0 +1,33 @@
+name: Multi-Agent Research Factory
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 3 * * 1'
+  push:
+    paths:
+      - 'agents/**'
+      - 'factory/agent_config.json'
+      - 'schemas/**'
+      - '.github/workflows/agent-factory.yml'
+permissions:
+  contents: write
+jobs:
+  agents:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: python -m compileall agents
+      - run: python3 factory/build_factory.py
+      - run: python3 -c "from agents.orchestrator import run; print(run('generated/verse-corpus.jsonl','generated/agent-run'))"
+      - name: Commit factory state
+        run: |
+          git config user.name 'omniverse-factory[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add agents factory/agent_config.json schemas docs generated
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore(factory): run multi-agent pipeline'
+          git push
