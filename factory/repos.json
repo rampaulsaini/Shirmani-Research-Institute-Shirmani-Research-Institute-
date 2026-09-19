@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "hub_repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+  "repositories": [
+    "rampaulsaini/rampaulsaini",
+    "rampaulsaini/Omniverse-Platform",
+    "rampaulsaini/Omniverse-",
+    "rampaulsaini/Omniverse",
+    "rampaulsaini/Omnivers",
+    "rampaulsaini/Omniver",
+    "rampaulsaini/Karbon-",
+    "rampaulsaini/Omniverse-Platform-supreme-",
+    "rampaulsaini/Omniverse-AI",
+    "rampaulsaini/C-Labs",
+    "rampaulsaini/kit-app-template",
+    "rampaulsaini/omniverse--ai-scripts-",
+    "rampaulsaini/supreme-omniverse-test",
+    "rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto",
+    "rampaulsaini/my-omniverse-store",
+    "rampaulsaini/omniverse-dashboard",
+    "rampaulsaini/omniverse-marketplace-",
+    "rampaulsaini/omniverse-marketplace",
+    "rampaulsaini/Omniverse-Supreme-Core-",
+    "rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth",
+    "rampaulsaini/shiromani-rampal-saini",
+    "rampaulsaini/Shirmani-Research-Paper",
+    "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+    "rampaulsaini/yatharth-music-ai"
+  ],
+  "product_targets": {
+    "digital_books": 100,
+    "verses": 100000,
+    "research_papers": 100,
+    "certificates": 1000,
+    "audio_prompts": 10000
+  },
+  "policy": {
+    "free_first": true,
+    "no_paid_api_required": true,
+    "draft_label_required_for_generated_research": true,
+    "no_claim_of_scientific_validation": true
+  }
+}
