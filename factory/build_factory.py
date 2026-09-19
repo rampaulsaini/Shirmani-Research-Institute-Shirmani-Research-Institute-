@@ -6,7 +6,9 @@ ROOT=Path(__file__).resolve().parents[1]
 CFG=json.loads((ROOT/"factory/repos.json").read_text(encoding="utf-8"))
 WORK=ROOT/"factory/_sources"; OUT=ROOT/"generated"; STATE=ROOT/"factory/state.json"
 WORK.mkdir(parents=True,exist_ok=True); OUT.mkdir(parents=True,exist_ok=True)
-def run(c,cwd=None): return subprocess.run(c,cwd=cwd,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,check=False).stdout
+def run(c,cwd=None):
+    p=subprocess.run(c,cwd=cwd,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,check=False)
+    return p.returncode,p.stdout
 def clone_sources():
     result=[]
     for full in CFG["repositories"]:
@@ -14,9 +16,20 @@ def clone_sources():
             result.append({"repository":full,"available":True,"skipped":"hub repository"})
             continue
         owner,name=full.split("/",1); dest=WORK/name
-        if dest.exists(): run(["git","-C",str(dest),"fetch","--depth","1","origin"])
-        else: run(["git","clone","--depth","1",f"https://github.com/{full}.git",str(dest)])
-        result.append({"repository":full,"available":dest.exists()})
+        if dest.exists():
+            code,log=run(["git","-C",str(dest),"fetch","--depth","1","origin"])
+            probe,_=run(["git","-C",str(dest),"rev-parse","--is-inside-work-tree"])
+            available=(code==0 and probe==0)
+        else:
+            code,log=run(["git","clone","--depth","1",f"https://github.com/{full}.git",str(dest)])
+            probe,_=run(["git","-C",str(dest),"rev-parse","--is-inside-work-tree"]) if dest.exists() else (1,"")
+            available=(code==0 and probe==0)
+        result.append({
+            "repository":full,
+            "available":available,
+            "git_returncode":code,
+            "diagnostic":log[-500:] if code != 0 else ""
+        })
     return result
 def collect():
     out=[]
