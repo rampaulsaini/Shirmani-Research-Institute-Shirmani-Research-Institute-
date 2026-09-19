@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-09-19T16:38:24.024642+00:00",
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "source_units",
+      "path": "source-units.jsonl",
+      "ok": true,
+      "bytes": 340
+    },
+    {
+      "name": "canonical_corpus",
+      "path": "canonical-corpus.jsonl",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "name": "evidence_index",
+      "path": "evidence-index.jsonl",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "name": "verification_report",
+      "path": "verification-report.json",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "name": "research_queue",
+      "path": "research-queue.jsonl",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "name": "product_queue",
+      "path": "product-queue.jsonl",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "name": "qc_report",
+      "path": "qc-report.json",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "name": "cloud_manifest",
+      "path": "cloud-sync-manifest.json",
+      "ok": true,
+      "bytes": 245225
+    }
+  ],
+  "commit": "8effc1f3540f0431a71982c2e2829a6cfc7bc650"
+}

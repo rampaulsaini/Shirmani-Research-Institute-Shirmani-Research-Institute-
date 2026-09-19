@@ -1,0 +1,179 @@
+{
+  "generated_at": "2026-09-19T16:38:23.665181+00:00",
+  "hub": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+  "managed_agent_count": 23,
+  "ready_agent_count": 0,
+  "partial_agent_count": 23,
+  "external_source_count": 1,
+  "automation_mode": "event-and-schedule driven; not a continuously running external AI service",
+  "managed_agents": [
+    {
+      "repository": "rampaulsaini/rampaulsaini",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Platform",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Omniverse",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Omnivers",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Omniver",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Karbon-",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Platform-supreme-",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-AI",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/C-Labs",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/kit-app-template",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/omniverse--ai-scripts-",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/supreme-omniverse-test",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/my-omniverse-store",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/omniverse-dashboard",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/omniverse-marketplace-",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/omniverse-marketplace",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Supreme-Core-",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/shiromani-rampal-saini",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/Shirmani-Research-Paper",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    },
+    {
+      "repository": "rampaulsaini/yatharth-music-ai",
+      "kind": "managed-agent",
+      "status": "PARTIAL",
+      "agent_manifest": false,
+      "output_manifest": false
+    }
+  ],
+  "external_sources": [
+    {
+      "repository": "NVIDIA-Omniverse/kit-app-template",
+      "kind": "external-source",
+      "status": "SOURCE_ONLY"
+    }
+  ]
+}

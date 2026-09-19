@@ -1,0 +1,104 @@
+{
+  "generated_at": "2026-09-19T16:38:23.746147+00:00",
+  "mode": "free-first-orchestration",
+  "agents": [
+    {
+      "id": "source-librarian",
+      "role": "हर repo के source/commit/path को index करना",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "dedup-indexer",
+      "role": "duplicate सामग्री हटाना और canonical corpus बनाना",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "concept-mapper",
+      "role": "विषय, concepts और relationships map करना",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "research",
+      "role": "source-based research drafts बनाना",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "mahagranth",
+      "role": "digital महाग्रंथ संरचना बनाना",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "verse",
+      "role": "गीत/श्लोक/सूत्र generation",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "evidence",
+      "role": "claims को evidence/citations से जोड़ना",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "verification",
+      "role": "QC और independent-verification flags",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "hindi",
+      "role": "हिंदी publication layer",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "punjabi",
+      "role": "पंजाबी publication layer",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "english",
+      "role": "English publication layer",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "audio",
+      "role": "audio/podcast scripts",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "certificate",
+      "role": "archival certificates",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "publisher",
+      "role": "GitHub Pages/catalog publishing",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "seo",
+      "role": "metadata/discoverability",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    },
+    {
+      "id": "archive",
+      "role": "provenance, hashes और version archive",
+      "status": "REGISTERED",
+      "execution": "pipeline-stage"
+    }
+  ],
+  "supervisor": "factory-supervisor",
+  "note": "REGISTERED means the stage is wired into the factory pipeline; it does not claim a continuously running external AI model."
+}

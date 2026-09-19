@@ -1,0 +1,381 @@
+{
+  "generated_at": "2026-09-19T16:38:23.420301+00:00",
+  "repository_count": 25,
+  "repositories": [
+    {
+      "repository": "rampaulsaini/rampaulsaini",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/rampaulsaini",
+      "clone_url": "https://github.com/rampaulsaini/rampaulsaini.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Platform",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Omniverse-Platform",
+      "clone_url": "https://github.com/rampaulsaini/Omniverse-Platform.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Omniverse-",
+      "clone_url": "https://github.com/rampaulsaini/Omniverse-.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Omniverse",
+      "clone_url": "https://github.com/rampaulsaini/Omniverse.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Omnivers",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Omnivers",
+      "clone_url": "https://github.com/rampaulsaini/Omnivers.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Omniver",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Omniver",
+      "clone_url": "https://github.com/rampaulsaini/Omniver.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Karbon-",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Karbon-",
+      "clone_url": "https://github.com/rampaulsaini/Karbon-.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Platform-supreme-",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Omniverse-Platform-supreme-",
+      "clone_url": "https://github.com/rampaulsaini/Omniverse-Platform-supreme-.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-AI",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Omniverse-AI",
+      "clone_url": "https://github.com/rampaulsaini/Omniverse-AI.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/C-Labs",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/C-Labs",
+      "clone_url": "https://github.com/rampaulsaini/C-Labs.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/kit-app-template",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/kit-app-template",
+      "clone_url": "https://github.com/rampaulsaini/kit-app-template.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/omniverse--ai-scripts-",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/omniverse--ai-scripts-",
+      "clone_url": "https://github.com/rampaulsaini/omniverse--ai-scripts-.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/supreme-omniverse-test",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/supreme-omniverse-test",
+      "clone_url": "https://github.com/rampaulsaini/supreme-omniverse-test.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto",
+      "clone_url": "https://github.com/rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/my-omniverse-store",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/my-omniverse-store",
+      "clone_url": "https://github.com/rampaulsaini/my-omniverse-store.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/omniverse-dashboard",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/omniverse-dashboard",
+      "clone_url": "https://github.com/rampaulsaini/omniverse-dashboard.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/omniverse-marketplace-",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/omniverse-marketplace-",
+      "clone_url": "https://github.com/rampaulsaini/omniverse-marketplace-.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/omniverse-marketplace",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/omniverse-marketplace",
+      "clone_url": "https://github.com/rampaulsaini/omniverse-marketplace.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Supreme-Core-",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Omniverse-Supreme-Core-",
+      "clone_url": "https://github.com/rampaulsaini/Omniverse-Supreme-Core-.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth",
+      "clone_url": "https://github.com/rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/shiromani-rampal-saini",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/shiromani-rampal-saini",
+      "clone_url": "https://github.com/rampaulsaini/shiromani-rampal-saini.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Shirmani-Research-Paper",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/Shirmani-Research-Paper",
+      "clone_url": "https://github.com/rampaulsaini/Shirmani-Research-Paper.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+      "role": "hub",
+      "github": "https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+      "clone_url": "https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "skip-generated-output"
+    },
+    {
+      "repository": "rampaulsaini/yatharth-music-ai",
+      "role": "source",
+      "github": "https://github.com/rampaulsaini/yatharth-music-ai",
+      "clone_url": "https://github.com/rampaulsaini/yatharth-music-ai.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    },
+    {
+      "repository": "NVIDIA-Omniverse/kit-app-template",
+      "role": "source",
+      "github": "https://github.com/NVIDIA-Omniverse/kit-app-template",
+      "clone_url": "https://github.com/NVIDIA-Omniverse/kit-app-template.git",
+      "expected_inputs": [
+        "README.md",
+        "docs",
+        "research",
+        "src",
+        "assets",
+        "scripts"
+      ],
+      "ingestion": "source-scan"
+    }
+  ]
+}

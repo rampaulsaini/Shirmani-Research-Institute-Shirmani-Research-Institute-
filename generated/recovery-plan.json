@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-09-19T16:38:23.706130+00:00",
+  "status": "READY",
+  "failed_reports": [],
+  "last_stage": {},
+  "rules": [
+    "retry transient failures",
+    "never fabricate unavailable sources",
+    "require QC before publication",
+    "research remains draft until independently verified"
+  ]
+}
