@@ -14,13 +14,14 @@ def clone_sources():
             result.append({"repository":full,"available":True,"skipped":"hub repository"})
             continue
         owner,name=full.split("/",1); dest=WORK/name
-        if dest.exists(): run(["git","-C",str(dest),"pull","--depth","1"])
+        if dest.exists(): run(["git","-C",str(dest),"fetch","--depth","1","origin"])
         else: run(["git","clone","--depth","1",f"https://github.com/{full}.git",str(dest)])
         result.append({"repository":full,"available":dest.exists()})
     return result
 def collect():
     out=[]
     for p in WORK.rglob("*"):
+        if ".git" in p.parts: continue
         if p.is_file() and p.suffix.lower() in {".md",".txt",".html",".htm",".json",".yml",".yaml"}:
             s=p.read_text(encoding="utf-8",errors="ignore")
             s=re.sub(r"<script[\s\S]*?</script>"," ",s,flags=re.I); s=re.sub(r"<style[\s\S]*?</style>"," ",s,flags=re.I)
@@ -33,7 +34,7 @@ def units(items):
         for x in re.split(r"(?<=[.!?।॥])\s+",s):
             x=x.strip(" -•#*_")
             if 20<=len(x)<=500: u.append((src,x))
-    return u or [("seed","निष्पक्ष समझ, आत्म-अवलोकन, प्रकृति, संतुलन और मानवीय उत्तरदायित्व पर स्वतंत्र विचार।")]
+    return u
 def main():
     stamp = datetime.now(timezone.utc).isoformat()
     sources = clone_sources()
