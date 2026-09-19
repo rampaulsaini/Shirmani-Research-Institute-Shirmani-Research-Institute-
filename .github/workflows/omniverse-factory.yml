@@ -22,30 +22,37 @@ jobs:
       - name: Detect source changes
         run: python3 factory/change_detector.py
       - name: Source librarian
-        run: python3 factory/agents/source_librarian.py
+        run: python3 factory/run_stage.py factory/agents/source_librarian.py
       - name: Dedup indexer
-        run: python3 factory/agents/dedup_indexer.py
+        run: python3 factory/run_stage.py factory/agents/dedup_indexer.py
       - name: Concept mapper
-        run: python3 factory/agents/concept_mapper.py
+        run: python3 factory/run_stage.py factory/agents/concept_mapper.py
       - name: Evidence agent
-        run: python3 factory/agents/evidence_agent.py
+        run: python3 factory/run_stage.py factory/agents/evidence_agent.py
       - name: Verification agent
-        run: python3 factory/agents/verification_agent.py
+        run: python3 factory/run_stage.py factory/agents/verification_agent.py
       - name: Research agent
-        run: python3 factory/agents/research_agent.py
+        run: python3 factory/run_stage.py factory/agents/research_agent.py
       - name: Product agent
-        run: python3 factory/agents/product_agent.py
+        run: python3 factory/run_stage.py factory/agents/product_agent.py
       - name: QC agent
-        run: python3 factory/agents/qc_agent.py
+        run: python3 factory/run_stage.py factory/agents/qc_agent.py
       - name: Publisher index
         run: python3 factory/run_stage.py factory/publisher.py
+      - name: Recovery planner
+        if: always()
+        run: python3 factory/recovery.py
       - name: Agent supervisor
+        if: always()
         run: python3 factory/agent_supervisor.py
       - name: Build cloud backup manifest
+        if: always()
         run: python3 factory/cloud_sync.py
       - name: Build run report
+        if: always()
         run: python3 factory/run_report.py
       - name: Upload QC and provenance artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: omniverse-factory-qc-${{ github.run_number }}
@@ -56,9 +63,14 @@ jobs:
             generated/cloud-sync-manifest.json
             generated/concept-map.json
             generated/source-registry.json
+            generated/source-change-report.json
+            generated/recovery-plan.json
+            generated/publication-index.json
+            generated/stage-retry-log.jsonl
           if-no-files-found: error
           retention-days: 14
       - name: Commit generated outputs
+        if: always()
         run: |
           git config user.name 'omniverse-factory[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
