@@ -6,8 +6,13 @@ It never claims that generated philosophy is independently verified science.
 """
 import argparse
 import json
+import sys
 from pathlib import Path
 from datetime import datetime, timezone
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from agents.provenance_agent import record, validate
 from agents.verification_agent import classify
@@ -15,7 +20,6 @@ from agents.topic_agent import enrich
 from agents.research_agent import question
 from factory.state import load, save
 
-ROOT = Path(__file__).resolve().parents[1]
 CFG = json.loads((ROOT / "factory" / "agent_config.json").read_text(encoding="utf-8"))
 STATE = ROOT / "factory" / "state.json"
 OUT = ROOT / "generated"
