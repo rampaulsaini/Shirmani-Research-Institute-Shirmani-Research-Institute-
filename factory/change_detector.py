@@ -29,3 +29,6 @@ report={"generated_at":datetime.now(timezone.utc).isoformat(),"new":new,"changed
 (OUT/"source-change-report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
 state_path.write_text(json.dumps({"generated_at":report["generated_at"],"sources":current},ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps(report,ensure_ascii=False))
+if __import__("os").environ.get("GITHUB_OUTPUT"):
+    with open(__import__("os").environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as f:
+        f.write(f"process_required={str(report['process_required']).lower()}\n")
