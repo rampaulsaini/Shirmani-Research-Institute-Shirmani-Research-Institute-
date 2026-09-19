@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "hub": "NVIDIA AI Hub",
+  "mode": "optional-hosted-inference",
+  "default_model": "nvidia/nemotron-3-super-120b-a12b",
+  "routes": {
+    "research.deep": {"agent":"nvidia","fallback":"research"},
+    "reasoning": {"agent":"nvidia","fallback":"research"},
+    "writing.hi": {"agent":"nvidia","fallback":"writing"},
+    "writing.pa": {"agent":"nvidia","fallback":"writing"},
+    "writing.en": {"agent":"nvidia","fallback":"writing"},
+    "translation": {"agent":"nvidia","fallback":"writing"},
+    "summarization": {"agent":"nvidia","fallback":"corpus"},
+    "classification": {"agent":"nvidia","fallback":"topic"},
+    "qc.semantic": {"agent":"nvidia","fallback":"qc"}
+  },
+  "policy": "Hosted model output is draft material. It must retain provenance and cannot be marked independently verified merely because a model generated it."
+}
