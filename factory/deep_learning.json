@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "lab": "Deep Learning Lab",
+  "mode": "free-first",
+  "stages": ["dataset","preprocess","train","evaluate","register","inference"],
+  "experiments": {
+    "embedding-representation": {"status":"planned","skills":["embeddings","semantic-search"]},
+    "text-classification": {"status":"planned","skills":["classification","evaluation"]},
+    "multilingual-representation": {"status":"planned","skills":["hi","pa","en","translation"]},
+    "research-ranking": {"status":"planned","skills":["retrieval","ranking","evaluation"]}
+  },
+  "policy": "Training and hosted inference may require compute. The repository must remain usable with deterministic/local/free fallbacks and must not assume unlimited free GPU time."
+}
