@@ -20,6 +20,9 @@ jobs:
       - name: Build source registry
         run: python3 factory/source-registry.py
       - name: Run source factory
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FACTORY_GH_TOKEN: ${{ secrets.FACTORY_GH_TOKEN }}
         run: python3 factory/run_stage.py factory/build_factory.py
       - name: Detect source changes
         id: source_changes
