@@ -4,6 +4,7 @@ import importlib
 import json
 from pathlib import Path
 import tempfile
+import sys
 
 AGENTS = [
     "contracts", "source_agent", "corpus_agent", "research_agent",
@@ -13,6 +14,7 @@ AGENTS = [
 ]
 
 def main():
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
     for name in AGENTS:
         importlib.import_module("agents." + name)
 
