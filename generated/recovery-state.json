@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-19T17:22:47.953663+00:00",
-  "script": "factory/publish_index.py",
-  "attempts": 1,
-  "success": true,
+  "generated_at": "2026-09-19T17:24:55.862208+00:00",
+  "script": "factory/agents/qc_agent.py",
+  "attempts": 3,
+  "success": false,
   "retry_policy": "up to 3 attempts with exponential backoff"
 }

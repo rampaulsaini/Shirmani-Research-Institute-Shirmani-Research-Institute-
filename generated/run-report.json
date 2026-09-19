@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T17:22:48.367718+00:00",
+  "generated_at": "2026-09-19T17:24:56.196843+00:00",
   "status": "FAIL",
   "checks": [
     {
@@ -29,14 +29,14 @@
     {
       "name": "research_queue",
       "path": "research-queue.jsonl",
-      "ok": false,
-      "bytes": 0
+      "ok": true,
+      "bytes": 1035087
     },
     {
       "name": "product_queue",
       "path": "product-queue.jsonl",
-      "ok": false,
-      "bytes": 0
+      "ok": true,
+      "bytes": 615978
     },
     {
       "name": "qc_report",
@@ -48,8 +48,8 @@
       "name": "cloud_manifest",
       "path": "cloud-sync-manifest.json",
       "ok": true,
-      "bytes": 241408
+      "bytes": 241929
     }
   ],
-  "commit": "c9670fae8c007b4a187a65325be999a389b8c3c9"
+  "commit": "3632f4200b7add01031f96c9953e85205b5ed6c0"
 }

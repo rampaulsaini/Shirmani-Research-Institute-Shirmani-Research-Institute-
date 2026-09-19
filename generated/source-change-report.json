@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T17:22:47.851051+00:00",
+  "generated_at": "2026-09-19T17:24:48.516628+00:00",
   "new": [],
   "changed": [],
   "unchanged": [
@@ -31,7 +31,7 @@
   "unavailable": [
     "rampaulsaini/Omniverse-Platform"
   ],
-  "process_required": false,
+  "process_required": true,
   "previous_state_exists": true,
   "policy": "Only new or changed sources are marked changed; unavailable sources are never fabricated."
 }
