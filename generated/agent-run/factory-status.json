@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-09-19T14:07:17.507114+00:00",
+  "agents": [
+    "source",
+    "corpus",
+    "topic",
+    "research",
+    "verification",
+    "provenance",
+    "writing",
+    "book",
+    "certificate",
+    "music",
+    "qc",
+    "publishing"
+  ],
+  "records": 100000,
+  "processed_batch": 1000,
+  "qc": {
+    "ok": true,
+    "errors": []
+  }
+}
