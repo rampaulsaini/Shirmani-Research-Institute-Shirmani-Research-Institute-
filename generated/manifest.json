@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T14:09:30.892637+00:00",
+  "generated_at": "2026-09-19T14:22:08.162469+00:00",
   "sources": [
     {
       "repository": "rampaulsaini/rampaulsaini",
@@ -106,5 +106,6 @@
     "certificates": 1000,
     "audio_prompts": 10000
   },
-  "units": 3199
+  "units": 3199,
+  "input_policy": "source-units.jsonl is the canonical input; generated products must not become source inputs"
 }
