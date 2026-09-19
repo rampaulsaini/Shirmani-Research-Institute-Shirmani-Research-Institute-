@@ -32,6 +32,11 @@ def clone_sources():
         code=1; log=""
         if not dest.exists():
             code,log=run(["git","clone","--depth","1",auth_url,str(dest)])
+            # Some public repositories reject the hub token even though anonymous cloning works.
+            # Retry anonymously before marking the source unavailable.
+            if code != 0 and token:
+                shutil.rmtree(dest,ignore_errors=True)
+                code,log=run(["git","clone","--depth","1",f"https://github.com/{full}.git",str(dest)])
         else:
             code,log=run(["git","-C",str(dest),"fetch","--depth","1","origin"])
             if code==0:
