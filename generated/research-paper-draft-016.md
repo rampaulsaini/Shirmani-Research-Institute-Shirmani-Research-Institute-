@@ -1,10 +1,10 @@
 # Research Paper Draft 016
 
 ## Abstract
-यह स्वचालित प्रारूप निष्पक्ष समझ, शमीकरण यथार्थ सिद्धांत, हृदय-दृष्टिकोण, मस्तक-दृष्टिकोण, प्रकृति और आत्म-अवलोकन से संबंधित उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
+यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-When a buyer pays externally, provide them a one-time unlock key (set in Owner → Set Premium Key).
+Open `https:// .github.io/omniverse-marketplace/`.
 
 ## Method
 सार्वजनिक repository सामग्री का संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।

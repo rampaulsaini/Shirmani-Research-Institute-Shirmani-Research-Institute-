@@ -1,10 +1,10 @@
 # Research Paper Draft 012
 
 ## Abstract
-यह स्वचालित प्रारूप निष्पक्ष समझ, शमीकरण यथार्थ सिद्धांत, हृदय-दृष्टिकोण, मस्तक-दृष्टिकोण, प्रकृति और आत्म-अवलोकन से संबंधित उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
+यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Put files into a repository (branch `main`).
+{ "schema_version": 1, "repo": "rampaulsaini/Omniverse-Platform-supreme-", "role": "platform-supreme", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
 
 ## Method
 सार्वजनिक repository सामग्री का संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Put files into a repository (branch `main`).
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-omniverse-marketplace-/README.md
+Omniverse-Platform-supreme-/factory-agent.json

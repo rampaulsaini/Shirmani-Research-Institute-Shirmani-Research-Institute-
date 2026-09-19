@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T17:17:31.380539+00:00",
+  "generated_at": "2026-09-19T17:21:36.074067+00:00",
   "hub": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
   "managed_agent_count": 23,
   "ready_agent_count": 0,
@@ -27,57 +27,73 @@
       "repository": "rampaulsaini/Omniverse-",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "omniverse-core"
     },
     {
       "repository": "rampaulsaini/Omniverse",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "omniverse-core"
     },
     {
       "repository": "rampaulsaini/Omnivers",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "omniverse-core"
     },
     {
       "repository": "rampaulsaini/Omniver",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "omniverse-core"
     },
     {
       "repository": "rampaulsaini/Karbon-",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "data-carbon"
     },
     {
       "repository": "rampaulsaini/Omniverse-Platform-supreme-",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "platform-supreme"
     },
     {
       "repository": "rampaulsaini/Omniverse-AI",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "ai-platform"
     },
     {
       "repository": "rampaulsaini/C-Labs",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "c-labs"
     },
     {
       "repository": "rampaulsaini/kit-app-template",
@@ -90,85 +106,109 @@
       "repository": "rampaulsaini/omniverse--ai-scripts-",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "automation-scripts"
     },
     {
       "repository": "rampaulsaini/supreme-omniverse-test",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "integration-test"
     },
     {
       "repository": "rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "manifesto-archive"
     },
     {
       "repository": "rampaulsaini/my-omniverse-store",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "digital-products-store"
     },
     {
       "repository": "rampaulsaini/omniverse-dashboard",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "monitoring-dashboard"
     },
     {
       "repository": "rampaulsaini/omniverse-marketplace-",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "marketplace"
     },
     {
       "repository": "rampaulsaini/omniverse-marketplace",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "marketplace"
     },
     {
       "repository": "rampaulsaini/Omniverse-Supreme-Core-",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "supreme-core"
     },
     {
       "repository": "rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "knowledge-truth"
     },
     {
       "repository": "rampaulsaini/shiromani-rampal-saini",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "public-content"
     },
     {
       "repository": "rampaulsaini/Shirmani-Research-Paper",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "research-publishing"
     },
     {
       "repository": "rampaulsaini/yatharth-music-ai",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "music-ai"
     }
   ],
   "external_sources": [

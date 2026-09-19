@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-19T17:17:31.324846+00:00",
-  "script": "factory/build_factory.py",
+  "generated_at": "2026-09-19T17:21:36.022161+00:00",
+  "script": "factory/agents/provenance_agent.py",
   "attempts": 3,
   "success": false,
   "retry_policy": "up to 3 attempts with exponential backoff"

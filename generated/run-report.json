@@ -1,30 +1,30 @@
 {
-  "generated_at": "2026-09-19T17:17:31.721284+00:00",
+  "generated_at": "2026-09-19T17:21:36.415560+00:00",
   "status": "FAIL",
   "checks": [
     {
       "name": "source_units",
       "path": "source-units.jsonl",
-      "ok": false,
-      "bytes": 0
+      "ok": true,
+      "bytes": 1238657
     },
     {
       "name": "canonical_corpus",
       "path": "canonical-corpus.jsonl",
-      "ok": false,
-      "bytes": 0
+      "ok": true,
+      "bytes": 1417747
     },
     {
       "name": "evidence_index",
       "path": "evidence-index.jsonl",
-      "ok": false,
-      "bytes": 0
+      "ok": true,
+      "bytes": 766359
     },
     {
       "name": "verification_report",
       "path": "verification-report.json",
-      "ok": false,
-      "bytes": 0
+      "ok": true,
+      "bytes": 163
     },
     {
       "name": "research_queue",
@@ -48,8 +48,8 @@
       "name": "cloud_manifest",
       "path": "cloud-sync-manifest.json",
       "ok": true,
-      "bytes": 200105
+      "bytes": 246828
     }
   ],
-  "commit": "0d0d206e840c7fced11d6dd6705381a9a30ffcc4"
+  "commit": "571558ed6c079e11dd11751541920d64df8f405f"
 }

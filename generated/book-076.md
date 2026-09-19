@@ -3,4001 +3,4001 @@
 स्वचालित स्रोत-संग्रहण से बना शोध-प्रारूप; इसे वैज्ञानिक/ऐतिहासिक प्रमाणित निष्कर्ष न माना जाए।
 
 ## 075001
-omniverse-supreme/ ├── assets/ (commit 1) ├── scripts/ (commit 2 + 3) ├── index.html (commit 4) └── README.md (commit 5) index.html
-स्रोत: Omniverse-AI/omniverse -supreme/index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075002
-omniverse-supreme/ ├── assets/ (commit 1) ├── scripts/ (commit 2 + 3) ├── index.html (commit 4) └── README.md (commit 5) README.md
-स्रोत: Omniverse-AI/omniverse -supreme/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075003
-{ "labels": ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], "data": [12,19,7,15,10,22,18] }
-स्रोत: Omniverse-AI/analytics/traffic.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075004
-Simple workflow for deploying static content to GitHub Pages name: Deploy static content to Pages on: # Runs on pushes targeting the default branch push: branches: ["main"] # Allows you to run this workflow manually from the Actions tab workflow_dispatch: # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages permissions: contents: read pages: write id-token: write # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-स्रोत: Omniverse-AI/.github/workflows/static.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075005
-However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-स्रोत: Omniverse-AI/.github/workflows/static.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075006
-concurrency: group: "pages" cancel-in-progress: false jobs: # Single deploy job since we're just deploying deploy: environment: name: github-pages url: ${{ steps.deployment.outputs.page_url }} runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v4 - name: Setup Pages uses: actions/configure-pages@v5 - name: Upload artifact uses: actions/upload-pages-artifact@v3 with: # Upload entire repository path: '.' - name: Deploy to GitHub Pages id: deployment uses: actions/deploy-pages@v4
-स्रोत: Omniverse-AI/.github/workflows/static.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075007
-Placeholder monitor workflow name: Monitor & Auto-Recover on: [schedule, workflow_dispatch] jobs: placeholder: runs-on: ubuntu-latest steps: - run: echo "Monitor workflow placeholder"
-स्रोत: Omniverse-AI/.github/workflows/monitor.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075008
-Placeholder rollback workflow name: Rollback on: [workflow_dispatch] jobs: placeholder: runs-on: ubuntu-latest steps: - run: echo "Rollback workflow placeholder"
-स्रोत: Omniverse-AI/.github/workflows/rollback.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075009
-Placeholder deploy workflow for Omniverse-AI name: CI Deploy on: [push, workflow_dispatch] jobs: placeholder: runs-on: ubuntu-latest steps: - run: echo "Deploy workflow placeholder"
-स्रोत: Omniverse-AI/.github/workflows/deploy.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075010
-[ {"text": "Welcome to the Supreme Omniverse AI Portal", "lang": "en"}, {"text": "संपूर्ण सृष्टि में निष्पक्ष समझ ही सर्वोच्च है", "lang": "hi"}, {"text": "Bienvenue dans le portail Suprême Omniverse AI", "lang": "fr"}, {"text": "Bienvenido al Portal Supremo Omniverse AI", "lang": "es"} ]
-स्रोत: Omniverse-AI/analytics/scripts/guidance -massages.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075011
-{ // Use IntelliSense to learn about possible attributes.
-स्रोत: kit-app-template/.vscode/launch.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075012
-// Hover to view descriptions of existing attributes.
-स्रोत: kit-app-template/.vscode/launch.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075013
-// For more information, visit: "version": "0.2.0", "configurations": [ { "name": "Python: Remote Attach", "type": "debugpy", "request": "attach", "connect": { "host": "localhost", "port": 3000 }, "pathMappings": [ { "localRoot": "${workspaceFolder}", "remoteRoot": "${workspaceFolder}" } ], "justMyCode": true, "subProcess": true, "runtimeArgs" : [ "--preserve-symlinks", "--preserve-symlinks-main" ] } ] }
-स्रोत: kit-app-template/.vscode/launch.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075014
-SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075015
-All rights reserved.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075016
-SPDX-License-Identifier: LicenseRef-NvidiaProprietary # # NVIDIA CORPORATION, its affiliates and licensors retain all intellectual # property and proprietary rights in and to this material, related # documentation and any modifications thereto.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075017
-Any use, reproduction, # disclosure or distribution of this material and related documentation # without an express license agreement from NVIDIA CORPORATION or # its affiliates is strictly prohibited.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075018
-name: Question description: Ask a question title: "[QUESTION]: " labels: ["question"] body: - type: markdown attributes: value: | Thanks for taking the time to ask us a question!
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075019
-type: textarea id: text_of_question attributes: label: Question description: Ask your question.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075020
-placeholder: "Question text" validations: required: true - type: textarea id: additional_context attributes: label: Additional Context description: Provide any related code, issues, or projects.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075021
-placeholder: "Any related code, issues, or projects."
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075022
-SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075023
-All rights reserved.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075024
-SPDX-License-Identifier: LicenseRef-NvidiaProprietary # # NVIDIA CORPORATION, its affiliates and licensors retain all intellectual # property and proprietary rights in and to this material, related # documentation and any modifications thereto.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075025
-Any use, reproduction, # disclosure or distribution of this material and related documentation # without an express license agreement from NVIDIA CORPORATION or # its affiliates is strictly prohibited.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075026
-name: Feature Request description: Suggest an idea for this project title: "[FEATURE]: " labels: ["feature request"] body: - type: markdown attributes: value: | Thanks for taking the time to help Kit App Template and fill out this feature request!
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075027
-type: textarea id: description attributes: label: Description description: | Describe the proposed feature placeholder: | Feature description and problem or pain point being addressed validations: required: true - type: textarea id: use_case attributes: label: Use Case or Scenarios description: Describe how this feature would be used placeholder: e.g., User performing action A, would accomplish B, with benefit C.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075028
-type: textarea id: implementation_ideas attributes: label: Possible Implementation Ideas description: If you have any suggestions on how this feature might be implemented, please share them here.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075029
-placeholder: Implementation ideas - type: textarea id: additional_context attributes: label: Additional Context or Recommendations description: Provide any other context or recommendations here.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075030
-placeholder: Any other relevant information.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075031
-SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075032
-All rights reserved.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075033
-SPDX-License-Identifier: LicenseRef-NvidiaProprietary # # NVIDIA CORPORATION, its affiliates and licensors retain all intellectual # property and proprietary rights in and to this material, related # documentation and any modifications thereto.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075034
-Any use, reproduction, # disclosure or distribution of this material and related documentation # without an express license agreement from NVIDIA CORPORATION or # its affiliates is strictly prohibited.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075035
-name: Bug Report description: File a bug report for the repository title: "[BUG]: " labels: ["bug"] body: - type: markdown attributes: value: | Thanks for taking the time to help Kit App Template and fill out this bug report!
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075036
-type: textarea id: description attributes: label: Description description: | Describe the bug in detail placeholder: | Expected Behavior vs.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075037
-Actual Behavior: validations: required: true - type: textarea id: component attributes: label: Component description: Which component (Tool/Template/Extension) is showing the bug?
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075038
-placeholder: "e.g., Kit Base Editor Template / repo launch tool / Kit SDK" - type: textarea id: system-details attributes: label: System Details description: | Provide details about your system placeholder: | OS / CPU / GPU / GPU Driver Version validations: required: true - type: textarea id: reproduction-steps attributes: label: Reproduction Steps description: What are the steps to reproduce the bug?
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075039
-validations: required: true - type: textarea id: logs attributes: label: Logs description: | Include the relevant log files: - **repo.log:** Found in `_repo/repo.log` if the issue is with tooling.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075040
-kit.log:** Found in `_build/{OS}/release/logs/.../kit_{...}log` if the issue is with App, Extension, or Kit SDK.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075041
-placeholder: Paste the log content here or attach the log files.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075042
-type: textarea id: additional-context attributes: label: Additional Context description: Provide any other context or information here.
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075043
-placeholder: Any other information that might be helpful
-स्रोत: kit-app-template/.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075044
-Developer Bundle Extensions ## Overview The Developer Bundle Extension (`omni.kit.developer.bundle`) provides a set of developer focused tools designed to enhance the development and debugging process within Omniverse Kit applications.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075045
-Each of the extensions within the bundle aims streamline a specific aspects of Omniverse application and extension development.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075046
-Enabling the Developer Bundle Application templates within the Kit App Template repository have `omni.kit.developer.bundle` configured within the `.kit` file by default.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075047
-For applications that do not, the Developer Bundle can be added temporarily at launch time using the `--dev-bundle` or `-d` flag.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075048
-Linux** ```bash ./repo.sh launch --dev-bundle ``` **Windows** ```powershell .\repo.bat launch --dev-bundle ``` The `launch` tool will prompt for a selection of a `.kit` file to launch.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075049
-Select the desired UI based application.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075050
-The developer bundle is not currently suitable for headless services.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075051
-Developer Bundle Extensions Developer Utilities are designed to assist developers in various aspects of application development, from debugging to extension management.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075052
-These utilities offer insight into the internal workings of an application and its extensions.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075053
-[Developer > Extensions] omni.kit.window.extensions**: The most popular utility, this tool manages available extensions.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075054
-It provides quick access to the extension registry and local extensions, simplifying the process of adding dependencies for developer extensions and applications.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075055
-[Developer > Commands] omni.kit.window.commands**: Captures the command history within a running application.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075056
-It is particularly useful for developers who interact with the UI, allowing them to capture the commands used to execute specific functionalities.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075057
-[Developer > Script Editor] omni.kit.window.script_editor**: A simplified script editor for running short code snippets directly within the application.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075058
-It's a helpful tool for testing small pieces of code before integrating them into a project.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075059
-Additionally, it offers useful sample scripts that can be executed live.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075060
-[Developer > VS Code Link] omni.kit.debug.vscode**: VSCode python debugger support window.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075061
-This utility allows developers to step through their python code in VSCode while running the application.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075062
-[Developer > Debug Settings] omni.kit.debug.settings**: This utility provides a detailed view of the configurable settings for extensions within an application, making it easier to tweak and optimize extension behavior.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075063
-:warning: The Developer Bundle extensions require a UI based application with a menu bar to run properly.
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075064
-They will not work as expected for headless services or in applications that do not display a menu bar
-स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075065
-Kit Application Streaming ## Overview Kit SDK templates and tooling enable the creation streaming-ready Omniverse Kit applications and aid in the packaging/containerization in preparation for deployment.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075066
-This document outlines how to set up, configure, and package Kit applications for a streaming deployment.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075067
-:warning: **Important :** Creation of containerized streaming applications must be done from a Linux environment.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075068
-Create and Configure an Application Choose a template from the options below, then follow the instructions in the template README.md to create your application using the `template new` command: - **[Kit Base Editor](../../templates/apps/kit_base_editor/)**: A minimal application for loading, manipulating, and rendering OpenUSD content through a graphical interface.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075069
-[USD Composer](../../templates/apps/usd_composer)**: A template for authoring complex OpenUSD scenes (e.g., configurators).
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075070
-[USD Explorer](../../templates/apps/usd_explorer)**: A template for exploring and collaborating on large OpenUSD scenes.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075071
-[USD Viewer](../../templates/apps/usd_viewer)**: A streamlined, viewport-only application well-suited for remote streaming to web pages.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075072
-What Are Application Layers?
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075073
-An **application layer** is a separate `.kit` configuration file that extends your base application for a specific deployment scenario.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075074
-Instead of modifying your main application, layers let you create variants optimized for different use cases: - **Base application** (`my_app.kit`): Your core application with all features and UI - **Streaming layer** (`my_app_streaming.kit`): Inherits from base, adds streaming extensions and settings This approach keeps your base application clean while enabling different deployment modes (local desktop, cloud streaming, etc.) from the same codebase.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075075
-Adding a Streaming Layer During the templating process, you will be prompted: ```bash Do you want to add application layers?
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075076
-``` Answer `yes` to enable streaming for your application.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075077
-You can then pick from the following streaming layers: ```bash ?
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075078
-Do you want to add application layers?
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075079
-Browse layers with arrow keys ↑↓: [SPACE to toggle selection, ENTER to confirm selection(s)] ❯ [ ] [omni_default_streaming]: Omniverse Kit App Streaming (Default) [ ] [nvcf_streaming]: NVCF Streaming [ ] [omni_gdn_streaming]: GDN Streaming ``` - **Omniverse Kit App Streaming (Default):** Ideal for self-managed streaming deployments or local streaming during development.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075080
-Uses [`omni.kit.livestream.webrtc`]( for WebRTC-based streaming.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075081
-Choose this for local testing, Kubernetes deployments, or custom infrastructure.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075082
-NVCF Streaming:** Required for applications deployed on NVIDIA DGX Cloud via NVIDIA Cloud Functions.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075083
-Adds [`omni.services.livestream.session`]( which implements NVCF-specific health endpoints and session management.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075084
-See the [DGXC Deployment Guide](dgxc_nvcf_deployment.md) for configuration details.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075085
-GDN Streaming:** Streams applications through NVIDIA Graphics Delivery Network; especially useful for configurator workflows.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075086
-Refer to the [End-to-End Configurator Example Guide]( for deployment instructions.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075087
-After creating your application, you'll find two `.kit` files in the `/source/apps/` directory: - `{app_name}.kit`: The main application configuration file.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075088
-`{app_name}_{streaming_config}.kit`: The streaming configuration file.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075089
-Adding Layers to an Existing Application If you didn't add streaming layers during initial setup, or want to add additional layers later, use the `modify` command: **Linux:** ```bash ./repo.sh template modify ``` **Windows:** ```powershell .\repo.bat template modify ``` When prompted, select the application `.kit` file to update, then choose the layer(s) to add.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075090
-After the operation completes, rebuild the project with `./repo.sh build` or `.\repo.bat build`.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075091
-For more details on the `modify` command, see the [Tooling Guide](kit_app_template_tooling_guide.md#modify).
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075092
-> **Note:** The `modify` command works with applications created using Kit App Template 107.3 or newer.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075093
-GDN Streaming** Refer to the [End-to-End Configurator Example Guide]( for instructions on packaging and deploying to NVIDIA GDN.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075094
-Testing Locally If you added the **Omniverse Kit App Streaming** layer, you can test your application locally.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075095
-Usage and Troubleshooting This section provides high-level information and guidance related to using the Kit App Template repository, along with troubleshooting tips for common issues.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075096
-Usage Information ### A Project per Repository The `build` and `package` tooling provided in this repository is designed to capture all code and assets contained within the `/source` directory.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075097
-Each time the `template new` command is executed, a new application or extension is created within `/source`.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075098
-For purposes of experimentation and initial development, housing all working assets within the `/source` directory is reasonable.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075099
-However, as the project matures or requires deployment, it is recommended to segregate projects (typically a single `.kit` file and any required custom extensions) to minimize build times and reduce the size of the resultant package.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075100
-Applications and Extensions From the perspective of the Omniverse Kit SDK, everything is considered an extension.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075101
-The `.kit` files that define applications are simply a convenient method to assemble and configure a set of extensions for specific functionalities, while extensions (and combinations thereof) can act as modular components fulfilling particular tasks.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075102
-For additional information on the Kit SDK and how to create applications and extensions, refer to the [Kit SDK Companion Tutorial]( ### Extendable Templates and Tools The templates and tools provided in this repository are designed to be extendable.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075103
-Templates Templates consist of a directory structure and boilerplate code containing variables configurable at the time the templates are applied.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075104
-The `templates.toml` file, located in `templates/templates.toml`, specifies which templates the tooling recognizes.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075105
-Tooling Most tooling is not stored directly within the repository; it is instead downloaded from a remote registry upon the initial use of the tooling.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075106
-This design allows the tooling to be updated independently of the repository.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075107
-The framework used for the tooling also supports the definition of custom tools.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075108
-To see this extensibility in action, explore the local tooling defined within `tools/repoman`, specifically the `launch` tool.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075109
-Configuration for this tool within the repo is delineated in the `repo_tools.toml` file at the root of the repository.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075110
-Troubleshooting This section outlines potential issues that may arise when using the Kit App Template repository.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075111
-Setup & Configuration Issues #### Windows Long Path Due to path length limitations on Windows it is recommended to place repository artifacts in a location closer to the root of the drive.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075112
-This will help avoid issues with the path lengths when building and packaging applications.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075113
-exFAT Drive Compatibility Limitations The Kit App Template repository and associated tooling are designed to work with drive formats that support junctions/symlinks.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075114
-If you are using an exFAT-formatted drive, you may encounter errors during the build process.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075115
-To resolve this issue, consider using a different drive format such as NTFS.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075116
-Extension Naming Guidelines When creating custom extensions, avoid using a top-level namespace that is the same as any built-in Python module (e.g., “random”, “sys”, “xml”).
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075117
-Doing so can cause import conflicts if Omniverse Kit attempts to load extensions from these Python modules.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075118
-For example, instead of “random.extension.name”, use a unique namespace such as “my_company.my_app.my_extension”.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075119
-Rendering & Performance #### Initial Rendering Startup Times When launching an application that requires the RTX renderer, the first launch may take considerably longer than subsequent launches due to shader compilation.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075120
-The initial launch can take between 5 to 8 minutes.** Subsequent launches of RTX-enabled applications will be faster as the renderer caches the compiled shaders.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075121
-Build & Packaging #### Build Issues The `template new` tooling ensures that any created application is properly configured to build.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075122
-However, extensive manual changes can occasionally cause the configuration and `/source` directory contents to become unsynchronized.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075123
-The specifics of any given build are determined by three main factors: 1) The state of the top-level `repo.toml` file, especially the `.kit` files listed in the `apps` array within the `[[repo_precache_exts]]` section.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075124
-2) The state of the `premake5.lua` file, particularly which `.kit` files are set to build via `define_app()` (e.g., `define_app("my_company.my_service.kit")`).
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075125
-3) The state of the `source` directory, specifically which `.kit` files are present within `source/apps`.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075126
-To ensure a build proceeds as intended, verify that the same `.kit` files are listed or defined in all three locations.** For a clean build, use the command `./repo.sh build -c` or `.\repo.bat build -c` to clean the build directory before building.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075127
-Caching and Persistent Data The Omniverse Kit SDK caches data and required dependencies to improve build and runtime performance.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075128
-If you encounter issues with stale, incorrect, or missing dependencies/data, consider clearing application specific and/or global cache locations: - **Application Specific Caches**: Clearing application specific caches and settings can be done by adding arguments at launch time.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075129
-Linux: ```bash ./repo.sh launch -- --clear-cache --clear-data --reset-user ``` Windows: ```powershell .\repo.bat launch -- --clear-cache --clear-data --reset-user ``` Upon selecting a `.kit` file to launch, the application will clear the cache and data directories before starting.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075130
-Global Cache Locations (:warning:Use with Caution:warning:)**: **IMPORTANT NOTE -** Clearing any of the following cache locations will require a full rebuild of any existing applications.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075131
-Deleting the directories responsible for caching ensures a fresh build of the relevant caches during the next build.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075132
-Extension AND Application Data Cache Locations**: `$HOME/.local/share/ov` on Linux, `%LOCALAPPDATA%\ov` on Windows.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075133
-Tooling AND Dependency Cache Location**: - **Packman :** `$PM_PACKAGES_ROOT` on Linux, `%PM_PACKAGES_ROOT%` on Windows.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075134
-If `PM_PACKAGES_ROOT` is not set on your system, the default location will revert to `$HOME/.cache/packman` on Linux, `{drive where packman is launched from}\packman-repo` on Windows.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075135
-uv :** `$HOME/.cache/uv` on Linux, `%LOCALAPPDATA%\uv\cache` on Windows.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075136
-Space Constraints Due to Docker Artifacts When performing extensive local testing of container images created via `repo package_container`, Docker artifacts can accumulate over time, consuming significant disk space.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075137
-`docker system df` can be used to determine disk space utilized by Docker objects.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075138
-To reclaim space, consider the following options: 1.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075139
-Regular Safe Cleanup**: - **Command**: `docker container prune` - **Description**: This command removes all stopped containers, which is typically safe and helps manage disk space without affecting images, networks, or volumes.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075140
-Use**: Recommended for regular maintenance.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075141
-Extensive Cleanup (:warning:Use with Caution:warning:)**: - **Command**: `docker system prune` - **Description**: This command removes all unused containers, networks, images, and optionally volumes.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075142
-It is akin to running a `rm -rf` for Docker resources.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075143
-Warning**: Use this command carefully, as it will remove many resources indiscriminately.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075144
-Ensure you review and understand what will be deleted.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075145
-For image-specific cleanup, use `docker images` to list all images and `docker rmi ` to manually remove those that are no longer needed.
-स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075146
-Windows C++ Developer Configuration ## Introduction This document guides you through setting up this repository for C++ development on Windows using Microsoft Visual Studio and the Windows SDK.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075147
-For New Users:** If you are new to Windows C++ development, this guide provides a step-by-step installation of Visual Studio 2022 Community and the Windows SDK, ensuring you have all the components required for standard development tasks.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075148
-For Advanced Configurations:** If you already have Visual Studio and the Windows SDK installed but wish to specify exact versions, this guide will help you configure your environment using the `[repo_build.msbuild]` configuration within `repo.toml` at the project root.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075149
-Configuration To enable the Windows C++ build process: - Set the `"platform:windows-x86_64".enabled` flag to `true` in your `repo.toml` file: ```toml [repo_build.build] "platform:windows-x86_64".enabled = true ``` - Set the `link_host_toolchain` flag to `true` in your `repo.toml` file: ```toml [repo_build.msbuild] link_host_toolchain = true ``` **Note:** If you already have Visual Studio and the Windows SDK installed, this might be the only change needed.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075150
-The tooling will auto-detect installed components.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075151
-Microsoft Visual Studio and Windows SDK Setup ### Basic Installation #### Installing Visual Studio 2022 Community 1.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075152
-Download Visual Studio Installer** ![VS Download](../vs_download.png) - Visit the [Visual Studio Downloads]( - Click "Free download" under "Community".
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075153
-Run the Installer** - Open the downloaded installer.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075154
-Select "Community" edition and click "Install".
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075155
-Select Workloads** ![VS Workloads](../vs_workloads.png) - Check "Desktop development with C++".
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075156
-This includes tools like the MSVC compiler and C++ libraries.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075157
-Additional Components** ![VS Additional](../vs_additional.png) - If you need specific components, go to "Individual components".
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075158
-Select additional tools as needed.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075159
-Complete the Installation** - Proceed with the installation to download and set up all files.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075160
-Installing Windows SDK (as needed) Usually, the Windows SDK is included with the "Desktop development with C++" workload.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075161
-To verify or install it separately: 1.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075162
-Launch Visual Studio Installer** - Open the installer if it's not already running.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075163
-Modify Installation** ![VS Modify](../vs_modify.png) - Click "Modify" on your Visual Studio installation.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075164
-Verify Windows SDK** ![VS WinSDK Verify](../vs_winsdk_verify.png) - Ensure "Windows SDK" is selected under "Optional" sections or "Individual components".
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075165
-Apply Changes** - Click "Modify" to install or update the SDK.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075166
-Configuring an Existing Installation #### Default Installation Paths If Visual Studio and the Windows SDK are installed in default locations, the build tooling will auto-detect them without additional configuration.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075167
-Note:** If the path entered is incorrect or invalid, the build system will fall back to auto-detection.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075168
-Multiple Installations For multiple Visual Studio or Windows SDK installations, the latest version is used by default.
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075169
-If unspecified, default edition preference is "Enterprise", "Professional", "Community".
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075170
-Additional Resources - [Repo Build Documentation](
-स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075171
-Data Collection & Use ## Overview NVIDIA Omniverse Kit Application Template collects anonymous usage data to help improve software performance and aid in diagnostic purposes.
-स्रोत: kit-app-template/readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075172
-Rest assured, no personal information such as user email, name or any other PII field is collected.
-स्रोत: kit-app-template/readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075173
-Purpose Omniverse Kit Application Template starts collecting data when you begin interaction with our provided software.
-स्रोत: kit-app-template/readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075174
-After creating an application with the `template new` tooling, go to the `source/apps` directory 2.
-स्रोत: kit-app-template/readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075175
-Locate the `.kit` file for the application you want to disable telemetry for.
-स्रोत: kit-app-template/readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075176
-Find the following section in the `.kit` file: ```toml [settings.telemetry] # Anonymous Kit application usage telemetry enableAnonymousData = true ``` 4.
-स्रोत: kit-app-template/readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075177
-Change `enableAnonymousData` to `false`: ```toml [settings.telemetry] # Anonymous Kit application usage telemetry enableAnonymousData = false ``` Disabling telemetry stops data collection from your application.
-स्रोत: kit-app-template/readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075178
-Kit SDK Tooling Guide This document provides an overview of the practical aspects of using the tooling provided in the `kit-app-template`.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075179
-Intended for users with a basic familiarity with command-line operations, this guide offers typical usage patterns and recommendations for effective tool use.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075180
-For a complete list of options for a given tool, use the help command: `./repo.sh [tool] -h` or `.\repo.bat [tool] -h`.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075181
-Overview of Tools The `kit-app-template` repository includes several tools designed to streamline the development of applications and extensions within the Omniverse Kit SDK.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075182
-Available Tools - `template` - `build` - `launch` - `test` - `package` Each tool plays a specific role in the development workflow: ## Template Tool **Command:** `./repo.sh template` or `.\repo.bat template` ### Purpose The template tool facilitates the initiation of new projects by generating scaffolds for applications or extensions based on predefined templates located in `/templates/templates.toml`.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075183
-Usage The template tool has three main commands: `list`, `new`, `replay`, `modify`.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075184
-`list` Lists available templates without initiating the configuration wizard.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075185
-Linux:** ```bash ./repo.sh template list ``` **Windows:** ```powershell .\repo.bat template list ``` #### `new` Creates new applications or extensions from templates with interactive prompts guiding you through various configuration choices.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075186
-Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` #### `replay` In cases where automation is required for CI pipelines or other scripted workflows, it is possible to record and replay the `template new` configuration.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075187
-Linux:** ```bash ./repo.sh template modify ``` **Windows:** ```powershell .\repo.bat template modify ``` When prompted, select the Application `.kit` file you want to update.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075188
-Next, select (using Space) the Template Layer(s) to add.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075189
-After the operation completes, rebuild (`./repo.sh build` or `.\repo.bat build`) the project to pull in the new extensions.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075190
-What `template new` Modifies When creating applications, the template tool automatically updates build configuration files: 1.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075191
-`premake5.lua`** - Adds `define_app("appname.kit")` so the build system discovers your application 2.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075192
-`repo.toml`** - Adds the app path to `repo_precache_exts.apps` so dependent extensions are pre-cached at build time 3.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075193
-`source/rendered_template_metadata.json`** - Records which templates were rendered (enables `template modify` and `template list`) 4.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075194
-Setup extension** (some templates) - Creates an extension in `source/extensions/` for application-specific initialization **Extensions** are automatically discovered by the Kit build system based on directory structure, so no build file modifications are needed.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075195
-Creating Applications Without Templates If you create a `.kit` file manually (without using `repo template new`), you must update the build files yourself: 1.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075196
-Add to `premake5.lua`:** ```lua define_app("my_company.my_app.kit") ``` 2.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075197
-Add to `repo.toml`:** ```toml [repo_precache_exts] apps = ["${root}/source/apps/my_company.my_app.kit"] ``` If apps already exist, append to the existing list.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075198
-> **Note:** Manually created applications won't be tracked in `rendered_template_metadata.json`, so `template modify` cannot add layers to them.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075199
-Build Tool **Command:** `./repo.sh build` or `.\repo.bat build` ### Purpose The build tool compiles all necessary files in your project, ensuring they are ready for execution, testing, or packaging.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075200
-It includes all resources located in the `source/` directory.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075201
-Usage Run the build command before testing or packaging your application to ensure all components are up to date: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` Other common build options: - **`-c` or `--clean`:** Cleans the build directory before building.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075202
-`x` or `--rebuild`:** Rebuilds the project from scratch.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075203
-Launch Tool **Command:** `./repo.sh launch` or `.\repo.bat launch` ### Purpose The launch tool is used to start your application after it has been successfully built, allowing you to test it live.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075204
-Usage Select and run a built .kit file from the `source/apps` directory: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` Additional launch options: - **`-d` or `--dev-bundle`:** By default, the templates in the Kit App Template repository include `omni.kit.developer.bundle` in their `.kit` file definitions.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075205
-If you want to exclude it from your application definition, you can still enable it at launch by using the `-d` or `--dev-bundle` flags.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075206
-This approach prevents the developer bundle extensions from being packaged and sent to customers, while allowing you to use them during development.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075207
-`-p` or `--package`:** Launches a packaged application from a specified path.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075208
-Linux:** ```bash ./repo.sh launch -p ``` **Windows:** ```powershell .\repo.bat launch -p ``` - **`--container`:** Launches a containerized application (Linux only).
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075209
-Linux:** ```bash ./repo.sh launch --container ``` **Windows:** ```powershell .\repo.bat launch --container ``` - **Passing args to launched Kit executable:** You can pass through arguments to your targeted Kit executable by appending `--` to your launch command.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075210
-Any flags added after `--` will be passed through to Kit directly.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075211
-The following examples will pass the `--clear-cache` flag to Kit.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075212
-Linux:** ```bash ./repo.sh launch -- --clear-cache ``` **Windows:** ```powershell .\repo.bat launch -- --clear-cache ``` :warning: **Important Notes When Launching Applications:** - **Launching an application with path specific arguments:** When launching application with path specific args (for example `--/app/auto_load_usd` using the USD Viewer Template), the path provided should either be absolute (full path from root) or if the asset is within an extension use a tokenized path (e.g.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075213
-`./repo.sh launch -- --/app/auto_load_usd='${omni.usd_viewer.samples}/samples_data/stage01.usd'` ) - **Launching directly from an uncompressed package:** The `launch` utility is accessible from the project repository and can be used to launch packages from the project repository.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075214
-However**, if launching an application from within a uncompressed packaged the `launch` utility is not available and any arguments passed should be passed to the `.bat` or `.sh` script directly (e.g.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075215
-`my.app.kit.sh --/app/auto_load_usd=path/to/asset.usd`).
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075216
-Test Tool **Command:** `./repo.sh test` or `.\repo.bat test` ### Purpose The test tooling facilitates the execution of automated tests on your applications and extensions to help ensure their functionality and stability.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075217
-Applications configurations (`.kit` files) are tested to ensure they can startup and shutdown without issue.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075218
-However, the tests written within the extensions will dictate a majority of application functionality testing.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075219
-Extension templates provided by the Kit App Template repository include sample tests which can be expanded upon to increase test coverage as needed.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075220
-Usage Always run a build before testing: **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ## Package Tool **Command:** `./repo.sh package` or `.\repo.bat package` ### Purpose This tool prepares your application for distribution or deployment by packaging it into a distributable format.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075221
-Usage Always run a build before packaging to ensure the application is up-to-date: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` Additional launch options: - **`-n` or `--name`:** Specifies the package (or container image) name.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075222
-Linux:** ```bash ./repo.sh package -n ``` **Windows:** ```powershell .\repo.bat package -n ``` - **`--thin`:** Creates a thin package that includes only custom extensions and configurations for required registry extensions.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075223
-Linux:** ```bash ./repo.sh package --thin ``` **Windows:** ```powershell .\repo.bat package --thin ``` :warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075224
-The version is set within the `tools/VERSION.md` file.** ## Containerization Tool **Command:** `./repo.sh package_container` or `.\repo.bat package_container` ### Purpose The containerization tool provided by `repo_kit_tools` supports containerization of applications.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075225
-This is especially useful for deploying headless services and streaming applications in a containerized environment.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075226
-How It Works The tool performs these steps: 1.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075227
-Creates a fat package** - Stages all dependencies into a temp directory 2.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075228
-Trims unused extensions** - Removes disabled extensions to minimize image size 3.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075229
-Splits into Docker layers** - Base layer (kit kernel + extscache) and app layer for faster rebuilds 4.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075230
-Builds the container** - Uses a configurable base image (default: `nvcr.io/nvidia/omniverse/ov-base-ubuntu-22`) The container entrypoint supports runtime configuration via environment variables (`NVDA_KIT_ARGS`, `NVDA_KIT_NUCLEUS`).
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075231
-Usage Always run a build before packaging to ensure the application is up-to-date: - **`package_container`:** Packages the application as a container image (Linux only).
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075232
-When using the `package_container`, the user will be asked to select a `.kit` file to use within the entry point script for the container.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075233
-This can also be specified without user interaction by passing it appropriate `.kit` file name via the `--app ${path_to_kit_file}` flag.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075234
-Linux:** ```bash ./repo.sh package_container ``` **Windows:** ```powershell .\repo.bat package_container ``` Additional command options: - **`--app`:** Specify the Kit app to containerize.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075235
-One of defined in the config.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075236
-Linux:** ```bash ./repo.sh package_container --app ${path_to_kit_file} ``` **Windows:** ```powershell .\repo.bat package_container --app ${path_to_kit_file} ``` - **`--image-tag`:** Optional image tag override to use for docker image.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075237
-If includes ':', it will be used as is, e.g.: name:tag.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075238
-Linux:** ```bash ./repo.sh package_container --image-tag [container_image_name:container_image_tag] ``` **Windows:** ```powershell .\repo.bat package_container --image-tag [container_image_name:container_image_tag] ``` - **`-p` or `--from-package`:** Use package from 'kit-app-template/_build/packages/kit-app-template*.${config}.*' instead of a root folder.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075239
-Linux:** ```bash ./repo.sh package_container -p ``` **Windows:** ```powershell .\repo.bat package_container -p ``` - **`-g` or `--generate`:** Generate default container template files into the destination folder.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075240
-Passed argument is the destination folder.
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075241
-Linux:** ```bash ./repo.sh package_container -g ``` **Windows:** ```powershell .\repo.bat package_container -g ``` ## Additional Resources - [Kit SDK Companion Tutorial](
-स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075242
-Configuring Kit App Template for DGXC Deployment This document covers Kit App Template specific configuration for deploying to NVIDIA DGX Cloud.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075243
-For complete deployment instructions, see the [public DGXC documentation]( ## Streaming Layer Selection When creating your application with `./repo.sh template new`, select the appropriate streaming layer for DGXC: | Kit Version | Layer to Select | Generated File | |-------------|-----------------|----------------| | 108.x+ | `nvcf_streaming` | `{app_name}_nvcf.kit` | | 107.x | `ovc_streaming` | `{app_name}_ovc.kit` | | 106.x | `ovc_streaming` | `{app_name}_ovc.kit` | ### Selection Process 1.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075244
-Run `./repo.sh template new` 2.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075245
-Select **Application** and your desired template 3.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075246
-When prompted "Do you want to add application layers?", select **Yes** 4.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075247
-`omni.cloud.open_stage`**: Provides Nucleus server connectivity for cloud deployments.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075248
-[settings.exts."omni.kit.window.content_browser"] show_only_collections.6 = "" # Hides the "My Computer" connection from the content browser.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075249
-``` ## Containerization After building (`./repo.sh build`), create a container: ```bash ./repo.sh package_container --image-tag myapp:v1.0 ``` When prompted, select the streaming `.kit` file (`*_ovc.kit` or `*_nvcf.kit`).
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075250
-Next Steps For deployment to DGXC (container upload, NVCF function creation, portal registration), see: - [Containerization Guide]( - Building and packaging - [Deploying Kit Apps]( - NGC upload and NVCF deployment - [Troubleshooting]( - Common issues and FAQs ## Version-Specific Notes ### Kit 108.x+ (`main` branch) Select `nvcf_streaming` during template creation.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075251
-Streaming dependencies are automatically configured.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075252
-Kit 107.x (`production/107.3` branch) Select `ovc_streaming` during template creation.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075253
-No manual edits required.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075254
-Kit 106.x (`production/106.5` branch) The streaming layer may require manual edits.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075255
-See the [public containerization guide]( for the "Replace Streaming Extension" section.
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075256
-Troubleshooting For deployment issues, log analysis, and common errors, see the [DGXC FAQs and Troubleshooting](
-स्रोत: kit-app-template/readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075257
-USD Explorer App Template ![USD Explorer Hero Image](../../../readme-assets/usd_explorer.jpg) ## Overview The USD Explorer App Template is designed to provide a robust starting point for developers looking to visualize and interact with large-scale environments such as factories, warehouses, and other expansive scenes using Open Universal Scene Description (OpenUSD).
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075258
-This template showcases high-performance rendering, scene optimization, live collaboration, and more.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075259
-It is a great fit for interacting with large or complex 3D scenes.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075260
-By integrating advanced features such as instancing, optimization techniques, and new extension examples for planning, commenting, and reviewing, the USD Explorer Template simplifies the process of aggregating and examining large scenes.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075261
-It offers a dual-mode UI, catering both to novices seeking ease of use and to advanced users requiring detailed scene manipulation capabilities.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075262
-Use Cases The USD Explorer Template is perfectly suited for: - Visualizing complex industrial environments for planning and review.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075263
-Collaborating on large-scale design projects in real-time.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075264
-Building digital twins for industries to simulate and analyze real-world performance.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075265
-This template stands out by providing specialized tools for handling large scenes, making it an ideal choice for applications requiring detailed spatial analysis and collaborative review functionalities.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075266
-Key Features - **OpenUSD File Aggregation**: Seamlessly combine and manage multiple USD files in a unified scene.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075267
-Simple User Interface**: Intuitive interface designed for ease of use by non-specialized personnel.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075268
-Dual Mode Interface**: Toggle between simplified and advanced user interfaces based on user proficiency.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075269
-Easy Navigation**: Tools for smoothly navigating through large-scale scenes.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075270
-Annotation Tools**: Integrated tools for annotating and commenting within the scene for collaborative reviewing.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075271
-CAD Converter Import**: Directly import and convert CAD files into the OpenUSD format.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075272
-Live Collaboration**: Real-time collaboration tools allowing multiple users to view and edit scenes concurrently.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075273
-Content Library - Materials & Assets**: Extensive library of materials and assets for scene enhancement and realism.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075274
-Usage ### Getting Started To get started with the USD Explorer Template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075275
-> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075276
-Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for USD Explorer** : Some applications require setup extensions to function as intended.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075277
-In the case of USD Explorer, the setup extension controls the configuration of the extensions within the application, their layout, and other settings.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075278
-During Application configuration, you will be prompted for information about this extension.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075279
-> **NOTE:** Feel free to use default values for testing purposes.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075280
-Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075281
-Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075282
-Select what you want to create with arrow keys ↑↓:** Application - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075283
-Select desired template with arrow keys ↑↓:** USD Explorer - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075284
-Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075285
-Enter application_display_name:** [set application display name] - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075286
-Enter version:** [set application version] *The application template you have selected requires a setup extension.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075287
-Setup Extension -> omni_usd_explorer_setup* - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075288
-Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075289
-Enter extension_display_name:** [set extension display name] - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075290
-Enter version:** [set extension version] ### Build and Launch Note that the build step will build all applications contained in the `source` directory.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075291
-Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075292
-Build your application using the provided build scripts: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075293
-Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075294
-Select with arrow keys which App would you like to launch:** [Select the desired explorer application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075295
-After initial shader compilation, startup time will reduce dramatically.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075296
-![Launched USD Explorer](../../../readme-assets/usd_explorer_default_launch.png) ### Where to Go From Here For more guidance on modifying the USD Explorer Template, visit the [Kit SDK Companion Tutorial - Extending Reference Applications]( This tutorial offers a step-by-step guide to help you understand the template's structure and customize it to suit your needs.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075297
-Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075298
-Each application template includes an initial test suite that can be run to verify the application's functionality.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075299
-> **NOTE:** Testing will only be run on applications and extensions within the build directory.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075300
-A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization #### Enable Extension - From the running application select `Developer` > `Extensions` - Browse and enable extensions of interest from the Extension Manager.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075301
-Enabling the extensions within the Extension Manager UI will allow you to try out the features of the extension in the currently running application.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075302
-To permanently add the extension to the application, you will need to add the extension to the `.kit` file.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075303
-For example, adding the Layer View extension would require adding `omni.kit.widget.layers` to the dependencies section of the `.kit` file.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075304
-For additional information on the Developer Bundle Extensions, refer to the [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) documentation.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075305
-Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075306
-Select what you want to create with arrow keys ↑↓:** Extension - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075307
-Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075308
-Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075309
-Enter extension_display_name:**: [set extension display name] - **?
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075310
-Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075311
-```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075312
-Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the repo.toml file at the root of the repository.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075313
-By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075314
-Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075315
-:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075316
-The version is set within the `tools/VERSION.md` file.** #### Launching a Package Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075317
-Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075318
-This is especially useful for deploying headless services and streaming applications in a containerized environment.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075319
-To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075320
-This will dictate the behavior of your containerized application.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075321
-For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075322
-> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075323
-Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075324
-If multiple container images exist, you will be prompted to select the desired container image to launch.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075325
-Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075326
-Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075327
-This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075328
-To try local streaming, you need a web client to connect to the streaming server.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075329
-Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075330
-Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075331
-Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containerized application, ensure that the containerized application was configured during packaging to launch a streaming application (e.g., `{your_app_name}_streaming.kit`).
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075332
-Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists
-स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075333
-Streaming Configuration Layers These `.kit` files, known as `ApplicationLayerTemplates`, are used to define additional functionality added to the base application.
-स्रोत: kit-app-template/templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075334
-For streaming configuration layers, these templates define and configure the required streaming extensions.
-स्रोत: kit-app-template/templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075335
-:warning: **Important**: These layers are not standalone application templates.
-स्रोत: kit-app-template/templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075336
-They must be used in conjunction with a base application template.
-स्रोत: kit-app-template/templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075337
-USD Composer App Template ![USD Composer Hero Image](../../../readme-assets/usd_composer.jpg) ## Overview The USD Composer App Template provides a streamlined starting point for developers aiming to create complex OpenUSD scenes.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075338
-This template is tailored for configurator applications, featuring enhanced performance through the Fabric Scene Delegate, improved support for AXF sourced MDLs, and robust Variant Tools.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075339
-To better serve complex scene editing use cases, USD Composer has been optimized to include a refined set of extensions, focusing on the most essential components.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075340
-This template simplifies the creation and manipulation of detailed 3D scenes, making it easier to customize and extend functionalities to meet your team's and customer's needs.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075341
-Use Cases The USD Composer Template is perfectly suited for: - **Configurators** - USD Composer is targeted at authoring for Configurators.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075342
-Developers can leverage, asset layout, materials, lighting, rendering, and variant tools to bring their configurator projects to final quality.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075343
-The resulting USD asset can then be packaged and deployed to end users using the USD Viewer kit-app-template - **Design Review** - The exact same asset that is authored for configurators can also be used for Design Review.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075344
-Stakeholders can walk through the options of a product that the design team has authored and decide what works best for their final product offering ### Key Features - **OpenUSD File Aggregation:** Seamlessly combine and manage multiple USD files in a unified scene.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075345
-Variant Tools:** View, edit, and interact with USD Variants throughout USD Composer.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075346
-Scene Optimizer and Validation:** Validate and modify your USD based on your custom pipeline.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075347
-Asset Packaging:** Collect and prepare your final content for deployment to your end user experiences.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075348
-Built in Importers:** Directly import and convert files into the OpenUSD format.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075349
-Material Library:** library of materials to seed your imagination and use on your assets.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075350
-Live Collaboration:** Real-time collaboration tools allowing multiple users to view and edit scenes concurrently ## Usage ### Getting Started To get started with the USD Composer template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075351
-> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075352
-Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for USD Composer** : Some applications require setup extensions to function as intended.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075353
-In the case of USD Composer, the setup extension controls the configuration of the extensions within the application, their layout, and other settings.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075354
-During Application configuration, you will be prompted for information about this extension.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075355
-> **NOTE:** Feel free to use default values for testing purposes.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075356
-Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075357
-Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075358
-Select what you want to create with arrow keys ↑↓:** Application - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075359
-Select desired template with arrow keys ↑↓:** USD Composer - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075360
-Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075361
-Enter application_display_name:** [set application display name] - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075362
-Enter version:** [set application version] *The application template you have selected requires a setup extension.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075363
-Setup Extension -> omni_usd_composer_setup* - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075364
-Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075365
-Enter extension_display_name:** [set extension display name] - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075366
-Enter version:** [set extension version] ### Build and Launch Note that the build step will build all applications contained in the `source` directory.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075367
-Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075368
-Build your application using the provided build scripts: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075369
-Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075370
-Select with arrow keys which App would you like to launch:** [Select the desired composer application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075371
-After initial shader compilation, startup time will reduce dramatically.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075372
-Select **Window > Browsers > Configurator Samples** - to open configuration sample browser ![Launched USD Composer](../../../readme-assets/usd_composer_default_launch.png) ### Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075373
-Each application template includes an initial test suite that can be run to verify the application's functionality.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075374
-> **NOTE:** Testing will only be run on applications and extensions within the build directory.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075375
-A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization #### Enable Extension - From the running application select `Developer` > `Extensions` - Browse and enable extensions of interest from the Extension Manager.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075376
-Enabling the extensions within the Extension Manager UI will allow you to try out the features of the extension in the currently running application.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075377
-To permanently add the extension to the application, you will need to add the extension to the `.kit` file.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075378
-For example, adding the Layer View extension would require adding `omni.kit.widget.layers` to the dependencies section of the `.kit` file.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075379
-For additional information on the Developer Bundle Extensions, refer to the [Developer Bundle Extensions](../../readme-assets/additional-docs/developer_bundle_extensions.md) documentation.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075380
-Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075381
-Select what you want to create with arrow keys ↑↓:** Extension - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075382
-Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075383
-Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075384
-Enter extension_display_name:**: [set extension display name] - **?
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075385
-Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075386
-```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075387
-Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075388
-By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075389
-Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075390
-:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075391
-The version is set within the `tools/VERSION.md` file.** #### Launching a Package Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075392
-Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075393
-This is especially useful for deploying headless services and streaming applications in a containerized environment.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075394
-To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075395
-This will dictate the behavior of your containerized application.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075396
-For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075397
-> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075398
-Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075399
-If multiple container images exist, you will be prompted to select the desired container image to launch.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075400
-Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075401
-Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075402
-This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075403
-To try local streaming, you need a web client to connect to the streaming server.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075404
-Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075405
-Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075406
-Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containerized application, ensure that the containerized application was configured during packaging to launch a streaming application (e.g., `{your_app_name}_streaming.kit`).
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075407
-Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075408
-If multiple container images exist, you will be prompted to select the desired container image to launch.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075409
-> **NOTE:** The `--no-window` flag is not required for containerized applications as it is the default launch behavior.
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075410
-Start the Streaming Client Follow the [Quick Start instructions in the we
-स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075411
-Kit Service App Template ![Kit Service Image](../../../readme-assets/kit_service.png) ## Overview The Kit Service App Template offers a starting point for creating headless services within the NVIDIA Omniverse ecosystem.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075412
-Designed to leverage the capabilities of the Omniverse Kit SDK, this template enables developers to build solutions that operate without a graphical user interface, ideal for background processes or server-side applications.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075413
-Use Cases The Kit Service Template is particularly well-suited for: - Automation services that perform tasks in the background.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075414
-Headless batch processing of 3D content for optimization, conversion, or analysis.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075415
-Integrations with other software ecosystems that require 3D data processing without direct user interaction.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075416
-Key Features - **Headless Operation**: Runs without a graphical user interface for efficient background processing.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075417
-Fully Extensible**: Leverage and extend the existing functionalities of Omniverse Kit SDK.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075418
-Usage This section provides comprehensive instructions to leverage the Kit Service App Template effectively.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075419
-Getting Started To get started with the Kit Service Template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075420
-> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075421
-Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for Kit Service Template** : Some applications require a setup extension to function as intended.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075422
-During Application configuration, you will be prompted for information about this extension.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075423
-This extension will be created alongside the application and automatically added to your .kit file.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075424
-Subsequent extensions can be added to the .kit file manually.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075425
-Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075426
-Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075427
-Select what you want to create with arrow keys ↑↓:** Application - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075428
-Select desired template with arrow keys ↑↓:** Kit Service - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075429
-Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075430
-Enter application_display_name:** [set application display name] - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075431
-Enter version:** [set application version] *The application template you have selected requires a setup extension.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075432
-Setup Extension -> kit_service_setup* - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075433
-Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075434
-Enter extension_display_name:** [set extension display name] - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075435
-Enter version:** [set extension version] ### Build and Launch #### Build your application using the provided build scripts: Note that the build step will build all applications contained in the `source` directory.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075436
-Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075437
-Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075438
-Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075439
-Select with arrow keys which App would you like to launch:** [Select the desired service application] #### View your running Service: - Visit ` in your web browser to view the interactive documentation for the running service.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075440
-By default the service will have a POST endpoint which will prompt you for input to generate a simple USD scene.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075441
-![Launched Service](../../../readme-assets/kit_service.png) ### Where to Go From Here For more guidance on extending the Kit Service Template, visit the [Kit SDK Companion Tutorial - Extending Services]( This tutorial offers a step-by-step guide to help you understand the template's structure and customize it to suit your needs.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075442
-Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075443
-Each application template includes an initial test suite that can be run to verify the application's functionality.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075444
-> **NOTE:** Testing will only be run on applications and extensions within the build directory.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075445
-A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization You can customize your Service Setup extension by adding new endpoints to, modifying existing ones, or adding new functionality to `service.py` or `extension.py`.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075446
-If you would like to create a reusable component that might be used in other Omniverse services or applications, it is recommended that you create a new extension.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075447
-Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075448
-Select what you want to create with arrow keys ↑↓:** Extension - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075449
-Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075450
-Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075451
-Enter extension_display_name:**: [set extension display name] - **?
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075452
-Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension (beyond the initial setup extension) to become a persistent part of an application, the extension will need to be added to the application `.kit` file.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075453
-```toml [dependencies] "my_company.my_extension" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075454
-Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075455
-By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075456
-Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075457
-:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075458
-The version is set within the `tools/VERSION.md` file.** #### Launching a Package Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075459
-Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075460
-This is especially useful for deploying headless services and streaming applications in a containerized environment.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075461
-To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075462
-This will dictate the behavior of your containerized application.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075463
-For example, if you are containerizing a headless Kit Service, select the `{your-service-name}.kit` file to ensure the correct application configuration is launched within the container.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075464
-> **NOTE:** Default Kit Services do not enable UI based interaction.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075465
-As such, containerization of these services do not require a streaming Application Layer.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075466
-The base application `.kit` file should be used for containerization.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075467
-Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075468
-If multiple container images exist, you will be prompted to select the desired container image to launch.
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075469
-Additional Learning - [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) - [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) - [Kit SDK Companion Tutorial](
-स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075470
-Kit Base Editor App Template ![Kit Base Editor Image](../../../readme-assets/kit_base_editor.png) ## Overview The Kit Base Editor App Template provides a minimal starting point for developers aiming to create interactive 3D applications within the NVIDIA Omniverse ecosystem.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075471
-This template simplifies the process of crafting applications capable of loading, manipulating, and rendering Open Universal Scene Description (OpenUSD) content via a graphical user interface.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075472
-Use Cases Kit Base Editor Template is ideal for developers looking to build: - High fidelity OpenUSD editing applications and tools from a functional, minimal starting point.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075473
-Key Features - Scene loading - RTX Renderer - Basic UI for manipulating and exploring 3D scenes.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075474
-Usage This section provides instructions for the setup and use of the Kit Base Editor Application Template.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075475
-Getting Started To get started with the Kit Base Editor template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075476
-> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075477
-Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075478
-Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075479
-Select what you want to create with arrow keys ↑↓:** Application - **?
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075480
-Select desired template with arrow keys ↑↓:** Kit Base Editor - **?
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075481
-Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075482
-Enter application_display_name:** [set application display name] - **?
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075483
-Enter version:** [set application version] ### Build and Launch #### Build your application using the provided build scripts: Note that the build step will build all applications contained in the `source` directory.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075484
-Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075485
-Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075486
-Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075487
-Select with arrow keys which App would you like to launch:** [Select the desired editor application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075488
-After initial shader compilation, startup time will reduce dramatically.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075489
-![Launched Kit Base Editor](../../../readme-assets/kit_base_editor.png) ### Where to Go From Here For more guidance on extending the Kit Base Editor Template, visit the [Kit SDK Companion Tutorial - Extending Editor Applications]( This tutorial offers a step-by-step guide to help you understand the template's structure and customize it to suit your needs.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075490
-Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075491
-Each application template includes an initial test suite that can be run to verify the application's functionality.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075492
-> **NOTE:** Testing will only be run on applications and extensions within the build directory.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075493
-A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization #### Enable Extension - From the running application select `Developer` > `Extensions` - Browse and enable extensions of interest from the Extension Manager.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075494
-Enabling the extensions within the Extension Manager UI will allow you to try out the features of the extension in the currently running application.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075495
-To permanently add the extension to the application, you will need to add the extension to the `.kit` file.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075496
-For example, adding the Layer View extension would require adding `omni.kit.widget.layers` to the dependencies section of the `.kit` file.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075497
-For additional information on the Developer Bundle Extensions, refer to the [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) documentation.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075498
-Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075499
-Select what you want to create with arrow keys ↑↓:** Extension - **?
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075500
-Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075501
-Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075502
-Enter extension_display_name:**: [set extension display name] - **?
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075503
-Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075504
-```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075505
-Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075506
-By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075507
-Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075508
-:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075509
-The version is set within the `tools/VERSION.md` file.** #### Launching a Package Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075510
-Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075511
-This is especially useful for deploying headless services and streaming applications in a containerized environment.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075512
-To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075513
-This will dictate the behavior of your containerized application.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075514
-For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075515
-> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075516
-Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075517
-If multiple container images exist, you will be prompted to select the desired container image to launch.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075518
-Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075519
-Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075520
-This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075521
-To try local streaming, you need a web client to connect to the streaming server.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075522
-Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075523
-Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075524
-Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containerized application, ensure that the containerized application was configured during packaging to launch a streaming application (e.g., `{your_app_name}_streaming.kit`).
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075525
-Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075526
-If multiple container images exist, you will be prompted to select the desired container image to launch.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075527
-> **NOTE:** The `--no-window` flag is not required for containerized applications as it is the default launch behavior.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075528
-Start the Streaming Client Follow the [Quick Start instructions in the web-viewer-sample README]( to start the streaming client (**stream only no UI overlay**) and connect via a Chromium-based browser.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075529
-You should see the streaming client connect to the running Kit application.
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075530
-![Streaming Base Editor Image](../../../readme-assets/streaming_base_editor.png) ## Additional Learning - [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) - [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) - [Kit SDK Companion Tutorial](
-स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075531
-USD Viewer App Template ![USD Viewer Hero Image](../../../readme-assets/usd_viewer.jpg) ## Overview The USD Viewer App Template is designed to provide a robust starting point for developers looking to create streaming Omniverse Applications.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075532
-This template showcases an RTX viewport, app streaming, and messaging support.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075533
-Use Cases The USD Viewer Template is perfectly suited for streaming into a front end client.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075534
-Usage ### Getting Started To get started with the USD Viewer template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075535
-> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075536
-:warning: **Important:** Before proceeding with the cloning step, ensure that Git Large File Storage (Git LFS) is installed on your system.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075537
-To verify this, run the following command in your terminal: ```bash git lfs --version ``` If the command returns a version number, Git LFS is installed correctly.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075538
-If not, you will need to install Git LFS.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075539
-You can download and install it from the official website [here]( #### Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for USD Viewer** : This application requires `extra` and `setup` extensions to function as intended.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075540
-These extensions handle the configuration within application, communication, layout, and other settings.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075541
-During Application configuration, you will be prompted for information about these extensions.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075542
-> **NOTE:** Feel free to use default values for testing purposes.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075543
-Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075544
-Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075545
-Select what you want to create with arrow keys ↑↓:** Application - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075546
-Select desired template with arrow keys ↑↓:** USD Viewer - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075547
-Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075548
-Enter application_display_name:** [set application display name] - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075549
-Enter version:** [set application version] *For each required extension you will be prompted [display name] -> [extension name]:* - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075550
-Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075551
-Enter extension_display_name:** [set extension display name] - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075552
-Enter version:** [set extension version] > **NOTE:** You will need to repeat above steps for each extension.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075553
-Build and Launch Note that the build step will build all applications contained in the `source` directory.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075554
-Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075555
-Build your application using the provided build scripts: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075556
-Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075557
-Select with arrow keys which App would you like to launch:** [Select the desired viewer application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075558
-After initial shader compilation, startup time will reduce dramatically.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075559
-Default Launch State By default, the USD Viewer template application opens with an empty viewport.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075560
-![USD Viewer Default Launch](../../../readme-assets/usd_viewer_default_launch.png) This is the intended behavior.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075561
-The USD Viewer template application is designed as a base for displaying content either locally or over a streaming connection (See the [Local Streaming](#local-streaming) section below).
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075562
-To display content in the desktop application, you can pass an argument to the `repo launch` command to load content on startup.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075563
-The USD Viewer template includes sample assets for this purpose.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075564
-Let's load the `stage01.usd` sample asset by providing the full path to the `/app/auto_load_usd` argument.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075565
-Linux:** ```bash ./repo.sh launch -- --/app/auto_load_usd='${omni.usd_viewer.samples}/samples_data/stage01.usd' ``` **Windows:** ```powershell .\repo.bat launch -- --/app/auto_load_usd='${omni.usd_viewer.samples}/samples_data/stage01.usd' ``` ![USD Viewer Asset Launch](../../../readme-assets/usd_viewer_load_asset_desktop.png) ### Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075566
-Each application template includes an initial test suite that can be run to verify the application's functionality.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075567
-> **NOTE:** Testing will only be run on applications and extensions within the build directory.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075568
-A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` #### Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075569
-Select what you want to create with arrow keys ↑↓:** Extension - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075570
-Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075571
-Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075572
-Enter extension_display_name:**: [set extension display name] - **?
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075573
-Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075574
-```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075575
-Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075576
-By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075577
-Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075578
-:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075579
-The version is set within the `tools/VERSION.md` file.** #### Launching a Package Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075580
-Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075581
-This is especially useful for deploying headless services and streaming applications in a containerized environment.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075582
-To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075583
-This will dictate the behavior of your containerized application.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075584
-For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075585
-> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075586
-Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075587
-If multiple container images exist, you will be prompted to select the desired container image to launch.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075588
-Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075589
-Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075590
-This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075591
-To try local streaming, you need a web client to connect to the streaming server.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075592
-Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075593
-Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075594
-Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containerized application, ensure that the containerized application was configured during packaging to launch a streaming application (e.g., `{your_app_name}_streaming.kit`).
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075595
-Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075596
-If multiple container images exist, you will be prompted to select the desired container image to launch.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075597
-> **NOTE:** The `--no-window` flag is not required for containerized applications as it is the default launch behavior.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075598
-Start the Streaming Client Follow the [Quick Start instructions in the web-viewer-sample README]( to start the streaming client (**with Web UI overlay for messaging**) and connect via a Chromium-based browser.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075599
-You should see the streaming client connect to the running Kit application.
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075600
-![Streaming Viewer Image](../../../readme-assets/streaming_viewer.png) ## Additional Learning - [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) - [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) - [Omniverse Kit SDK Manual](
-स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075601
-Service Setup Extension Template ![Kit Service Image](../../../readme-assets/kit_service.png) ## Overview The Service Setup Extension Template is designed to facilitate the configuration and setup of a headless service that leverages the Omniverse Kit SDK.
-स्रोत: kit-app-template/templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075602
-Though it is possible in this case, setup extensions are not typically intended to be used as a generic extension but as a specific component of a particular application.
-स्रोत: kit-app-template/templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075603
-Use Cases This setup extension is well suited for: - Developers building headless services that require Kit SDK functionalities.
-स्रोत: kit-app-template/templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075604
-Key Features - Sample ServiceAPIRouter setup.
-स्रोत: kit-app-template/templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075605
-Sample endpoint to demonstrate interaction patterns within service Kit SDK and OpenUSD.
-स्रोत: kit-app-template/templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075606
-Usage This extension is automatically created and configured when you generate a new service application using the [Service Application Template](../../apps/kit_service/README.md).
-स्रोत: kit-app-template/templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075607
-Additional Learning - [Omniverse Kit Service Documentation]( - [Kit SDK Companion Tutorial](
-स्रोत: kit-app-template/templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075608
-Python UI Extension Template ## Overview The Python UI Extension Template offers a simple starting point for developers looking to build Python-based extensions with performant User Interfaces.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075609
-This template offers a best practices foundation and structure to easily integrate with the broader capabilities of the Omniverse Kit SDK.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075610
-Use Cases This template is ideal for developers looking to build: - UI based extensions that can be easily integrated with Omniverse Kit SDK applications.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075611
-Key Features - A simple starter UI demonstrating how to build using the Omni UI framework.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075612
-Structure well suited for the build, test and packaging tooling within this repository.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075613
-All required setup code for use with the Omniverse Kit SDK.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075614
-Usage This section provides instructions for the setup and use of the Python UI Extension Template.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075615
-Getting Started To get started with the Python UI Extension, ensure your development environment meets the prerequisites outlined in the [top-level README](../../../README.md#prerequisites-and-environment-setup).
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075616
-Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075617
-Select what you want to create with arrow keys ↑↓:** Extension - **?
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075618
-Select desired template with arrow keys ↑↓:**: Python UI Extension - **?
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075619
-Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075620
-Enter extension_display_name:**: [set extension display name] - **?
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075621
-Enter version:** [set extension version] #### Build and Launch While Python extensions typically do not require a build step in isolation, this template is structured to properly interact with the Omniverse Kit SDK application build and packaging tooling.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075622
-Launching the extension typically requires that they be a part of an Omniverse [Service](../../apps/kit_service/README.md) or [Editor](../../apps/kit_base_editor/README.md) application.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075623
-Adding an Extension to an Application** To add your extension to an application, declare it in the dependencies section of the application's `.kit` file: ```toml [dependencies] "my_company.my_extension" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075624
-Customization Customization of a Python Extension might involve writing new Python modules, or integrating existing libraries.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075625
-As is the case with Applications, extensions can also depend on and be depended on by other extensions.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075626
-These can be custom developed extensions or those provided by the NVIDIA managed extension registry.
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075627
-A view of available registry extensions can be found within the Extension Manager accessible via the developer bundle (select `Developer` > `Utilities` > `Extensions`) ## Additional Learning - [Kit Manual Extension Docs]( - [Omni UI Documentation]( - [Kit SDK Companion Tutorial](
-स्रोत: kit-app-template/templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075628
-USD Explorer Setup Extension Template ![USD Explorer Hero Image](../../../readme-assets/usd_explorer.jpg) ## Overview The USD Explorer Setup Extension Template is specifically designed to configure the USD Explorer Template application.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075629
-This setup extension ensures the proper integration and configuration of specific components and extensions required for the USD Explorer Template application to function as intended.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075630
-Use Cases This setup extension is particularly useful for: - Customizing the setup and configuration of the USD Explorer Application Template.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075631
-Learning more (by example) about advanced usage of the Kit SDK and Omniverse Extensions.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075632
-Key Features - Custom configurations tailored to the USD Explorer Template Application.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075633
-Usage This extension is automatically created and configured when you generate a new application based on the [USD Explorer Template Application](../../apps/usd_explorer/README.md).
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075634
-This extension does provide a learning opportunity for developers to understand how applications can be extensively customized and configured using a setup extension.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075635
-Additional Learning - [Kit Manual - Advanced Extensions]( - [Kit SDK Companion Tutorial](
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075636
-Basic C++ Extension Template ## Overview The Basic C++ Extension Template is a starting point for developers looking to build C++ based extensions within the NVIDIA Omniverse ecosystem.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075637
-This template offers a best practices foundation and structure to easily integrate with the broader capabilities of the Omniverse Kit SDK.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075638
-Note for Windows C++ Developers** : This template requires that Visual Studio is installed on the host.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075639
-Additionally, `"platform:windows-x86_64".enabled` and `link_host_toolchain` within the `repo.toml` file be set to `true`.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075640
-For additional C++ configuration information [see here](../../../readme-assets/additional-docs/windows_developer_configuration.md).
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075641
-Use Cases This template is ideal for developers looking to build: - A reusable C++ extension that can be easily integrated with Omniverse Kit SDK applications.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075642
-Performance sensitive extensions that require the performance benefits of C++.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075643
-Extensions that require direct access to the Omniverse Kit or Carbonite SDK C++ API.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075644
-Integrating with existing C++ libraries or codebases.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075645
-Key Features - Structure well suited for the build, test and packaging tooling within this repository.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075646
-All required setup code for use with the Omniverse Kit SDK.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075647
-Usage This section provides instructions for the setup and use of the Basic C++ Extension Template.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075648
-Getting Started To get started with the Basic C++ Extension, ensure your development environment meets the prerequisites outlined in the [top-level README](../../../README.md#prerequisites-and-environment-setup).
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075649
-Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075650
-Select what you want to create with arrow keys ↑↓:** Extension - **?
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075651
-Select desired template with arrow keys ↑↓:** Basic C++ Extension - **?
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075652
-Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075653
-Enter extension_display_name:** [set extension display name] - **?
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075654
-Enter version:** [set extension version] #### Build and Launch While C++ extensions do require compilation this is typically not done in isolation, this template is structured to properly interact with the Omniverse Kit SDK application build and packaging tooling.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075655
-Launching the extension typically requires that they be a part of an Omniverse [Service](../../apps/kit_service/README.md) or [Editor](../../apps/kit_base_editor/README.md) application.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075656
-Adding an Extension to an Application** To add your extension to an application, declare it in the dependencies section of the application's `.kit` file: ```toml [dependencies] "my_company.my_extension" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075657
-Customization Customization of a C++ Extension might involve writing new C++ classes or functions, or integrating existing libraries.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075658
-As is the case with Applications, extensions can also depend on and be depended on by other extensions.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075659
-These can be custom developed extensions or those provided by the NVIDIA managed extension registry.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075660
-It should be noted that a limited number of registry extensions expose a C++ API**.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075661
-A view of available registry extensions can be found within the Extension Manager accessible via the developer bundle (select `Developer` > `Utilities` > `Extensions`).
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075662
-Additional Learning - [Kit Manual Extension Docs]( - [C++ Extension Examples]( - [Kit SDK Companion Tutorial](
-स्रोत: kit-app-template/templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075663
-USD Viewer Setup Extension Template ![USD Viewer Hero Image](../../../readme-assets/usd_viewer.jpg) ## Overview The USD Viewer Setup Extension Template is specifically designed to configure the USD Viewer Template application.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075664
-This setup extension ensures the proper integration and configuration of specific components and extensions required for the USD Viewer Template application to function as intended.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075665
-Use Cases This setup extension is particularly useful for: - Customizing the setup and configuration of the USD Viewer Application Template.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075666
-Learning more (by example) about advanced usage of the Kit SDK and Omniverse Extensions.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075667
-Key Features - Custom configurations tailored to the USD Viewer Template Application.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075668
-Usage This extension is automatically created and configured when you generate a new application based on the [USD Viewer Template Application](../../apps/usd_viewer/README.md).
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075669
-This extension does provide a learning opportunity for developers to understand how applications can be extensively customized and configured using a setup extension.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075670
-Additional Learning - [Kit Manual - Advanced Extensions](
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075671
-Basic Python Extension Template ## Overview The Basic Python Extension Template is a starting point for developers looking to build Python-based extensions within the NVIDIA Omniverse ecosystem.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075672
-This template offers a best practices foundation and structure to easily integrate with the broader capabilities of the Omniverse Kit SDK.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075673
-Use Cases This template is ideal for developers looking to build: - A reusable Python extension that can be easily integrated with Omniverse Kit SDK applications.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075674
-Key Features - Structure well suited for the build, test and packaging tooling within this repository.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075675
-All required setup code for use with the Omniverse Kit SDK.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075676
-Usage This section provides instructions for the setup and use of the Basic Python Extension Template.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075677
-Getting Started To get started with the Basic Python Extension, ensure your development environment meets the prerequisites outlined in the [top-level README](../../../README.md#prerequisites-and-environment-setup).
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075678
-Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075679
-Select what you want to create with arrow keys ↑↓:** Extension - **?
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075680
-Select desired template with arrow keys ↑↓:**: Basic Python Extension - **?
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075681
-Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075682
-Enter extension_display_name:**: [set extension display name] - **?
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075683
-Enter version:** [set extension version] #### Build and Launch While Python extensions typically do not require a build step in isolation, this template is structured to properly interact with the Omniverse Kit SDK application build and packaging tooling.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075684
-Launching the extension typically requires that they be a part of an Omniverse [Service](../../apps/kit_service/README.md) or [Editor](../../apps/kit_base_editor/README.md) application.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075685
-Adding an Extension to an Application** To add your extension to an application, declare it in the dependencies section of the application's `.kit` file: ```toml [dependencies] "my_company.my_extension" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075686
-Customization Customization of a Python Extension might involve writing new Python modules, or integrating existing libraries.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075687
-As is the case with Applications, extensions can also depend on and be depended on by other extensions.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075688
-These can be custom developed extensions or those provided by the NVIDIA managed extension registry.
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075689
-A view of available registry extensions can be found within the Extension Manager accessible via the developer bundle (select `Developer` > `Utilities` > `Extensions`) ## Additional Learning - [Kit Manual Extension Docs]( - [Kit SDK Companion Tutorial](
-स्रोत: kit-app-template/templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075690
-C++ with Python Bindings Extension Template ## Overview The C++ with Python Bindings Extension Template is a starting point for developers who need the performance benefits of C++ while offering a Python-friendly interface through Pybind11.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075691
-Designed for the NVIDIA Omniverse ecosystem, this template provides a best-practices structure to seamlessly integrate with the Omniverse Kit SDK and enable easy consumption of extension features from Python.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075692
-Note for Windows C++ Developers**: This template requires that Visual Studio be installed on the host.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075693
-Additionally, `"platform:windows-x86_64".enabled` and `link_host_toolchain` within the `repo.toml` file must be set to `true`.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075694
-For more details, see the [Windows Developer Configuration guide](../../../readme-assets/additional-docs/windows_developer_configuration.md).
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075695
-Use Cases This template is ideal for developers looking to build: - A reusable C++ extension that can be easily integrated with Omniverse Kit SDK applications.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075696
-Performance-sensitive extensions that leverage C++ while still exposing a Python interface.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075697
-Extensions that require direct access to the Omniverse Kit or Carbonite SDK C++ API, with the added ability for Python scripting.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075698
-Integrations with existing C++ libraries or codebases while offering Python-friendly APIs for broader adoption.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075699
-Key Features - Structure well suited for the build, test, and packaging tooling within this repository.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075700
-All required setup code for bridging C++ logic with Python using Pybind11.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075701
-Best practices for organizing C++ source and Python binding code into a single extension.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075702
-Smooth integration with the Omniverse Kit SDK for application deployment.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075703
-Usage This section details how to set up and use the C++ with Python Bindings Extension Template.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075704
-Getting Started Before you begin, ensure your development environment meets the prerequisites outlined in the [top-level README](../../../README.md#prerequisites-and-environment-setup).
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075705
-Cloning the Repository Use the following steps to clone the repository locally: ```bash git clone cd kit-app-template ``` #### Create New Extension Use the provided script (either shell or PowerShell) to start a new extension from the template.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075706
-Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompts in your terminal: - **?
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075707
-Select what you want to create with arrow keys ↑↓:** Extension - **?
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075708
-Select desired template with arrow keys ↑↓:** Basic C++ w/ Python Binding Extension - **?
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075709
-Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075710
-Enter extension_display_name:** [set extension display name] - **?
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075711
-Enter version:** [set extension version] #### Build and Launch While C++ extensions require a build step, this template is structured so that the build, test, and packaging processes are conveniently handled through the Omniverse Kit SDK’s application tooling.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075712
-Python developers can then import the resulting module for a seamless C++-backed Python experience.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075713
-Launching an extension typically requires that it be part of an Omniverse [Service](../../apps/kit_service/README.md) or [Editor](../../apps/kit_base_editor/README.md) application.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075714
-Adding an Extension to an Application** To add your extension to an application, declare it in the dependencies section of the application's `.kit` file: ```toml [dependencies] "my_company.my_extension" = {} ``` #### Build with New Extensions After adding your new extension, re-run the build process for the application.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075715
-This ensures your compiled C++ code and Python bindings are included in the final build artifacts.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075716
-Customization Customization of this C++/Python Binding Extension may involve: - Extending or altering the C++ source files to incorporate new functionalities.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075717
-Adjusting the Pybind11 binding code to expose additional methods, classes, or data structures to Python.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075718
-Integrating other C++ or Python libraries as needed.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075719
-As with any extension, dependencies can be declared on other custom or registry-based extensions.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075720
-Whether you need more specialized C++ libraries or Python packages, you can add them to your extension as desired.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075721
-Note that only a limited number of registry extensions expose a C++ API, so validate your dependencies accordingly.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075722
-Additional Learning - [Kit Manual Extension Docs]( - [C++ Extension Examples]( - [Kit SDK Companion Tutorial]( - [Pybind11 Documentation](
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075723
-USD Viewer Messaging Extension Template ![USD Viewer Hero Image](../../../readme-assets/usd_viewer.jpg) ## Overview The USD Viewer Messaging Extension Template is specifically designed for the USD Viewer Application, a Viewport-only application that cleanly displays USD content with in-scene functionality.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075724
-This messaging extension allows remote communication with the underlying Kit application to perform actions typically driven by in-app UI and menus found in other applications.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075725
-:warning: Important:** While this extension exists alongside general extension templates, it is specifically tailored for the USD Viewer Application.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075726
-Use Cases This messaging extension is particularly useful for: - Remotely loading scenes in the USD Viewer Application.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075727
-Managing the state for selecting objects within the scene.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075728
-Performing actions without traditional in-app UI and menus.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075729
-Key Features - Remote communication with the Kit application.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075730
-Scene loading capabilities.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075731
-State management for object selection within the USD Viewer.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075732
-Usage This extension is automatically created and configured when you generate a new application based on the [USD Viewer Template Application](../../apps/usd_viewer/README.md).
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075733
-This extension serves as an example for developers to understand how remote communication and scene management can be implemented in applications using the Kit SDK.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075734
-Additional Learning - [Kit Manual - Advanced Extensions](
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075735
-USD Composer Setup Extension Template ![USD Composer Hero Image](../../../readme-assets/usd_composer.jpg) ## Overview The USD Composer Setup Extension Template is specifically designed to configure the USD Composer Template application.
-स्रोत: kit-app-template/templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075736
-This setup extension ensures the proper integration and configuration of specific components and extensions required for the USD Composer Template application to function as intended.
-स्रोत: kit-app-template/templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075737
-Use Cases This setup extension is particularly useful for: - Customizing the setup and configuration of the USD Composer Application Template.
-स्रोत: kit-app-template/templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075738
-Learning more (by example) about advanced usage of the Kit SDK and Omniverse Extensions.
-स्रोत: kit-app-template/templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075739
-Key Features - Custom configurations tailored to the USD Composer Template Application.
-स्रोत: kit-app-template/templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075740
-Usage This extension is automatically created and configured when you generate a new application based on the [USD Composer Template Application](../../apps/usd_composer/README.md).
-स्रोत: kit-app-template/templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075741
-This extension provides a learning opportunity for developers to understand how applications can be extensively customized and configured using a setup extension.
-स्रोत: kit-app-template/templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075742
-Additional Learning - [Kit Manual - Advanced Extensions]( - [Kit SDK Companion Tutorial](
-स्रोत: kit-app-template/templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075743
-Changelog The format is based on [Keep a Changelog]( ## [0.1.1] - 2025-02-13 ### Removed - Redundant openedStageResult event dispatch ## [0.1.0] - 2024-04-26 - Initial version of basic python extension template
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075744
-USD Viewer Messaging Extension [omni.usd_viewer.messaging] This is an example of pure python Kit extension.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075745
-It is intended to be copied and to serve as a template to create new ones.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075746
-Overview An example C++ extension that can be used as a reference/template for creating new extensions.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075747
-Demonstrates how to reflect C++ code using pybind11 so that it can be called from Python code.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075748
-The {{ interface_name }} located in `include/{{ python_module_path }}/{{ interface_name }}.h` is: - Implemented in `plugins/{{ extension_name }}/ExamplePybindExtension.cpp`.
-स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 075749
 Reflected in `bindings/python/{{ extension_name }}/ExamplePybindBindings.cpp`.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075750
+## 075002
 Accessed from Python in `python/tests/test_pybind_example.py` via `python/impl/example_pybind_extension.py`.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075751
+## 075003
 C++ Usage Examples ## Defining Pybind Module ``` PYBIND11_MODULE({{ library_name }}, m) { using namespace {{ extension_namespace }} ; m.doc() = "pybind11 {{ extension_name }} bindings"; carb::defineInterfaceClass ( m, "{{ interface_name }}", "acquire_bound_interface", "release_bound_interface") .def("register_bound_object", &{{ interface_name }}::register{{object_name}}, R"( Register a bound object.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075752
+## 075004
 Args: object: The bound object to register.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075753
+## 075005
 )", py::arg("object")) .def("deregister_bound_object", &{{ interface_name }}::deregister{{object_name}}, R"( Deregister a bound object.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075754
+## 075006
 Args: object: The bound object to deregister.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075755
+## 075007
 )", py::arg("object")) .def("find_bound_object", &{{ interface_name }}::find{{object_name}}, py::return_value_policy::reference, R"( Find a bound object.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075756
+## 075008
 Args: id: Id of the bound object.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075757
+## 075009
 Return: The bound object if it exists, an empty object otherwise.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075758
+## 075010
 )", py::arg("id")) /**/; py::class_ >(m, "{{ object_interface_name }}") .def_property_readonly("id", &{{ object_interface_name }}::getId, py::return_value_policy::reference, R"( Get the id of this bound object.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075759
+## 075011
 Return: The id of this bound object.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075760
+## 075012
 )") /**/; py::class_ >(m, "{{object_name}}") .def(py::init([](const char* id) { return Python{{object_name}}::create(id); }), R"( Create a bound object.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075761
+## 075013
 Args: id: Id of the bound object.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075762
+## 075014
 Return: The bound object that was created.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075763
+## 075015
 )", py::arg("id")) .def_readwrite("property_int", &Python{{object_name}}::m_memberInt, R"( Int property bound directly.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075764
+## 075016
 )") .def_readwrite("property_bool", &Python{{object_name}}::m_memberBool, R"( Bool property bound directly.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075765
+## 075017
 )") .def_property("property_string", &Python{{object_name}}::getMemberString, &Python{{object_name}}::setMemberString, py::return_value_policy::reference, R"( String property bound using accessors.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075766
+## 075018
 )") .def("multiply_int_property", &Python{{object_name}}::multiplyIntProperty, R"( Bound fuction that accepts an argument.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075767
+## 075019
 Args: value_to_multiply: The value to multiply by.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075768
+## 075020
 )", py::arg("value_to_multiply")) .def("toggle_bool_property", &Python{{object_name}}::toggleBoolProperty, R"( Bound fuction that returns a value.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075769
+## 075021
 Return: The toggled bool value.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075770
+## 075022
 )") .def("append_string_property", &Python{{object_name}}::appendStringProperty, py::return_value_policy::reference, R"( Bound fuction that accepts an argument and returns a value.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075771
+## 075023
 Args: value_to_append: The value to append.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075772
+## 075024
 Return: The new string value.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075773
+## 075025
 )", py::arg("value_to_append")) /**/; } ```
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
 
-## 075774
+## 075026
 Changelog ## [1.0.1] - 2023-04-27 ### Updated - Build against Kit 105.0 ## [1.0.0] - 2022-06-30 ### Added - Initial implementation.
 स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
+## 075027
+Overview The C++ with Python Bindings Extension Template is a starting point for developers who need the performance benefits of C++ while offering a Python-friendly interface through Pybind11.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075028
+Designed for the NVIDIA Omniverse ecosystem, this template provides a best-practices structure to seamlessly integrate with the Omniverse Kit SDK and enable easy consumption of extension features from Python.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075029
+Note for Windows C++ Developers**: This template requires that Visual Studio be installed on the host.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075030
+Additionally, `"platform:windows-x86_64".enabled` and `link_host_toolchain` within the `repo.toml` file must be set to `true`.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075031
+Use Cases This template is ideal for developers looking to build: - A reusable C++ extension that can be easily integrated with Omniverse Kit SDK applications.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075032
+Performance-sensitive extensions that leverage C++ while still exposing a Python interface.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075033
+Extensions that require direct access to the Omniverse Kit or Carbonite SDK C++ API, with the added ability for Python scripting.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075034
+Integrations with existing C++ libraries or codebases while offering Python-friendly APIs for broader adoption.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075035
+Key Features - Structure well suited for the build, test, and packaging tooling within this repository.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075036
+All required setup code for bridging C++ logic with Python using Pybind11.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075037
+Best practices for organizing C++ source and Python binding code into a single extension.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075038
+Smooth integration with the Omniverse Kit SDK for application deployment.
+स्रोत: kit-app-template/templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075039
+Changelog The format is based on [Keep a Changelog]( ## [0.1.2] - 2026-05-11 ### Fixed - `makePrimsPickable` handler raised `UnboundLocalError` when the WebSocket payload was empty or missing the `paths` key, and the broad `except` then leaked the raw Python exception message (including internal variable names) to the streaming client.
+स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075040
+The handler now initializes `paths` to an empty list before the conditional so an empty payload is a clean no-op, and unexpected exceptions are logged server-side via `carb.log_error` while only a generic error string is returned to the client (OMPE-90584, NVBug 6100326).
+स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075041
+Added - Regression test `test_make_prims_pickable_empty_payload` covering empty payload, missing-`paths` key, and explicit-empty-list cases.
+स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075042
+[0.1.1] - 2025-02-13 ### Removed - Redundant openedStageResult event dispatch ## [0.1.0] - 2024-04-26 - Initial version of basic python extension template
+स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075043
+USD Viewer Messaging Extension [omni.usd_viewer.messaging] This is an example of pure python Kit extension.
+स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075044
+It is intended to be copied and to serve as a template to create new ones.
+स्रोत: kit-app-template/templates/extensions/usd_viewer.messaging/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075045
+USD Explorer App Template ![USD Explorer Hero Image](../../../readme-assets/usd_explorer.jpg) ## Overview The USD Explorer App Template is designed to provide a robust starting point for developers looking to visualize and interact with large-scale environments such as factories, warehouses, and other expansive scenes using Open Universal Scene Description (OpenUSD).
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075046
+This template showcases high-performance rendering, scene optimization, live collaboration, and more.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075047
+It is a great fit for interacting with large or complex 3D scenes.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075048
+By integrating advanced features such as instancing, optimization techniques, and new extension examples for planning, commenting, and reviewing, the USD Explorer Template simplifies the process of aggregating and examining large scenes.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075049
+It offers a dual-mode UI, catering both to novices seeking ease of use and to advanced users requiring detailed scene manipulation capabilities.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075050
+Use Cases The USD Explorer Template is perfectly suited for: - Visualizing complex industrial environments for planning and review.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075051
+Collaborating on large-scale design projects in real-time.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075052
+Building digital twins for industries to simulate and analyze real-world performance.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075053
+This template stands out by providing specialized tools for handling large scenes, making it an ideal choice for applications requiring detailed spatial analysis and collaborative review functionalities.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075054
+Key Features - **OpenUSD File Aggregation**: Seamlessly combine and manage multiple USD files in a unified scene.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075055
+Simple User Interface**: Intuitive interface designed for ease of use by non-specialized personnel.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075056
+Dual Mode Interface**: Toggle between simplified and advanced user interfaces based on user proficiency.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075057
+Easy Navigation**: Tools for smoothly navigating through large-scale scenes.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075058
+Annotation Tools**: Integrated tools for annotating and commenting within the scene for collaborative reviewing.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075059
+CAD Converter Import**: Directly import and convert CAD files into the OpenUSD format.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075060
+Live Collaboration**: Real-time collaboration tools allowing multiple users to view and edit scenes concurrently.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075061
+Content Library - Materials & Assets**: Extensive library of materials and assets for scene enhancement and realism.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075062
+Usage ### Getting Started To get started with the USD Explorer Template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075063
+> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075064
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for USD Explorer** : Some applications require setup extensions to function as intended.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075065
+In the case of USD Explorer, the setup extension controls the configuration of the extensions within the application, their layout, and other settings.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075066
+During Application configuration, you will be prompted for information about this extension.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075067
+> **NOTE:** Feel free to use default values for testing purposes.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075068
+Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075069
+Follow the prompt instructions: - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075070
+Select what you want to create with arrow keys ↑↓:** Application - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075071
+Select desired template with arrow keys ↑↓:** USD Explorer - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075072
+Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075073
+Enter application_display_name:** [set application display name] - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075074
+Enter version:** [set application version] *The application template you have selected requires a setup extension.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075075
+Setup Extension -> omni_usd_explorer_setup* - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075076
+Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075077
+Enter extension_display_name:** [set extension display name] - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075078
+Enter version:** [set extension version] ### Build and Launch Note that the build step will build all applications contained in the `source` directory.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075079
+Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075080
+Build your application using the provided build scripts: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075081
+Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075082
+Select with arrow keys which App would you like to launch:** [Select the desired explorer application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075083
+After initial shader compilation, startup time will reduce dramatically.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075084
+![Launched USD Explorer](../../../readme-assets/usd_explorer_default_launch.png) ### Where to Go From Here For more guidance on modifying the USD Explorer Template, visit the [Kit SDK Companion Tutorial - Extending Reference Applications]( This tutorial offers a step-by-step guide to help you understand the template's structure and customize it to suit your needs.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075085
+Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075086
+Each application template includes an initial test suite that can be run to verify the application's functionality.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075087
+> **NOTE:** Testing will only be run on applications and extensions within the build directory.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075088
+A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization #### Enable Extension - From the running application select `Developer` > `Extensions` - Browse and enable extensions of interest from the Extension Manager.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075089
+Enabling the extensions within the Extension Manager UI will allow you to try out the features of the extension in the currently running application.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075090
+To permanently add the extension to the application, you will need to add the extension to the `.kit` file.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075091
+For example, adding the Layer View extension would require adding `omni.kit.widget.layers` to the dependencies section of the `.kit` file.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075092
+For additional information on the Developer Bundle Extensions, refer to the [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) documentation.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075093
+Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075094
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075095
+Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075096
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075097
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075098
+Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075099
+```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075100
+Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the repo.toml file at the root of the repository.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075101
+By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075102
+Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075103
+:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075104
+The version is set within the `tools/VERSION.md` file.** #### Launching a Package > :warning: **Deprecated:** `launch --package` is deprecated and will be removed in a future release.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075105
+To run a packaged application, decompress the archive and launch the extracted application directly.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075106
+See [Packaging An Application]( for details.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075107
+Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075108
+Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075109
+This is especially useful for deploying headless services and streaming applications in a containerized environment.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075110
+To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075111
+This will dictate the behavior of your containerized application.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075112
+For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075113
+> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075114
+Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075115
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075116
+Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075117
+Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075118
+This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075119
+To try local streaming, you need a web client to connect to the streaming server.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075120
+Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075121
+Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075122
+Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containeri
+स्रोत: kit-app-template/templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075123
+Streaming Configuration Layers These `.kit` files, known as `ApplicationLayerTemplates`, are used to define additional functionality added to the base application.
+स्रोत: kit-app-template/templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075124
+For streaming configuration layers, these templates define and configure the required streaming extensions.
+स्रोत: kit-app-template/templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075125
+:warning: **Important**: These layers are not standalone application templates.
+स्रोत: kit-app-template/templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075126
+They must be used in conjunction with a base application template.
+स्रोत: kit-app-template/templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075127
+USD Composer App Template ![USD Composer Hero Image](../../../readme-assets/usd_composer.jpg) ## Overview The USD Composer App Template provides a streamlined starting point for developers aiming to create complex OpenUSD scenes.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075128
+This template is tailored for configurator applications, featuring enhanced performance through the Fabric Scene Delegate, improved support for AXF sourced MDLs, and robust Variant Tools.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075129
+To better serve complex scene editing use cases, USD Composer has been optimized to include a refined set of extensions, focusing on the most essential components.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075130
+This template simplifies the creation and manipulation of detailed 3D scenes, making it easier to customize and extend functionalities to meet your team's and customer's needs.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075131
+Use Cases The USD Composer Template is perfectly suited for: - **Configurators** - USD Composer is targeted at authoring for Configurators.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075132
+Developers can leverage, asset layout, materials, lighting, rendering, and variant tools to bring their configurator projects to final quality.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075133
+The resulting USD asset can then be packaged and deployed to end users using the USD Viewer kit-app-template - **Design Review** - The exact same asset that is authored for configurators can also be used for Design Review.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075134
+Stakeholders can walk through the options of a product that the design team has authored and decide what works best for their final product offering ### Key Features - **OpenUSD File Aggregation:** Seamlessly combine and manage multiple USD files in a unified scene.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075135
+Variant Tools:** View, edit, and interact with USD Variants throughout USD Composer.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075136
+Scene Optimizer and Validation:** Validate and modify your USD based on your custom pipeline.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075137
+Asset Packaging:** Collect and prepare your final content for deployment to your end user experiences.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075138
+Built in Importers:** Directly import and convert files into the OpenUSD format.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075139
+Material Library:** library of materials to seed your imagination and use on your assets.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075140
+Live Collaboration:** Real-time collaboration tools allowing multiple users to view and edit scenes concurrently ## Usage ### Getting Started To get started with the USD Composer template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075141
+> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075142
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for USD Composer** : Some applications require setup extensions to function as intended.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075143
+In the case of USD Composer, the setup extension controls the configuration of the extensions within the application, their layout, and other settings.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075144
+During Application configuration, you will be prompted for information about this extension.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075145
+> **NOTE:** Feel free to use default values for testing purposes.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075146
+Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075147
+Follow the prompt instructions: - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075148
+Select what you want to create with arrow keys ↑↓:** Application - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075149
+Select desired template with arrow keys ↑↓:** USD Composer - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075150
+Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075151
+Enter application_display_name:** [set application display name] - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075152
+Enter version:** [set application version] *The application template you have selected requires a setup extension.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075153
+Setup Extension -> omni_usd_composer_setup* - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075154
+Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075155
+Enter extension_display_name:** [set extension display name] - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075156
+Enter version:** [set extension version] ### Build and Launch Note that the build step will build all applications contained in the `source` directory.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075157
+Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075158
+Build your application using the provided build scripts: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075159
+Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075160
+Select with arrow keys which App would you like to launch:** [Select the desired composer application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075161
+After initial shader compilation, startup time will reduce dramatically.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075162
+Select **Window > Browsers > Configurator Samples** - to open configuration sample browser ![Launched USD Composer](../../../readme-assets/usd_composer_default_launch.png) ### Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075163
+Each application template includes an initial test suite that can be run to verify the application's functionality.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075164
+> **NOTE:** Testing will only be run on applications and extensions within the build directory.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075165
+A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization #### Enable Extension - From the running application select `Developer` > `Extensions` - Browse and enable extensions of interest from the Extension Manager.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075166
+Enabling the extensions within the Extension Manager UI will allow you to try out the features of the extension in the currently running application.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075167
+To permanently add the extension to the application, you will need to add the extension to the `.kit` file.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075168
+For example, adding the Layer View extension would require adding `omni.kit.widget.layers` to the dependencies section of the `.kit` file.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075169
+For additional information on the Developer Bundle Extensions, refer to the [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) documentation.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075170
+Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075171
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075172
+Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075173
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075174
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075175
+Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075176
+```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075177
+Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075178
+By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075179
+Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075180
+:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075181
+The version is set within the `tools/VERSION.md` file.** #### Launching a Package > :warning: **Deprecated:** `launch --package` is deprecated and will be removed in a future release.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075182
+To run a packaged application, decompress the archive and launch the extracted application directly.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075183
+See [Packaging An Application]( for details.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075184
+Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075185
+Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075186
+This is especially useful for deploying headless services and streaming applications in a containerized environment.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075187
+To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075188
+This will dictate the behavior of your containerized application.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075189
+For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075190
+> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075191
+Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075192
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075193
+Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075194
+Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075195
+This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075196
+To try local streaming, you need a web client to connect to the streaming server.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075197
+Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075198
+Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075199
+Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containerized application, ensure that the containerized application was configured during packaging to launch a streaming application (e.g., `{your_app_name}_streaming.kit`).
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075200
+Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075201
+If multiple container images exist, you will be
+स्रोत: kit-app-template/templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075202
+Kit Service App Template ![Kit Service Image](../../../readme-assets/kit_service.png) ## Overview The Kit Service App Template offers a starting point for creating headless services within the NVIDIA Omniverse ecosystem.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075203
+Designed to leverage the capabilities of the Omniverse Kit SDK, this template enables developers to build solutions that operate without a graphical user interface, ideal for background processes or server-side applications.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075204
+Use Cases The Kit Service Template is particularly well-suited for: - Automation services that perform tasks in the background.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075205
+Headless batch processing of 3D content for optimization, conversion, or analysis.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075206
+Integrations with other software ecosystems that require 3D data processing without direct user interaction.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075207
+Key Features - **Headless Operation**: Runs without a graphical user interface for efficient background processing.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075208
+Fully Extensible**: Leverage and extend the existing functionalities of Omniverse Kit SDK.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075209
+Usage This section provides comprehensive instructions to leverage the Kit Service App Template effectively.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075210
+Getting Started To get started with the Kit Service Template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075211
+> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075212
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for Kit Service Template** : Some applications require a setup extension to function as intended.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075213
+During Application configuration, you will be prompted for information about this extension.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075214
+This extension will be created alongside the application and automatically added to your .kit file.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075215
+Subsequent extensions can be added to the .kit file manually.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075216
+Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075217
+Follow the prompt instructions: - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075218
+Select what you want to create with arrow keys ↑↓:** Application - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075219
+Select desired template with arrow keys ↑↓:** Kit Service - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075220
+Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075221
+Enter application_display_name:** [set application display name] - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075222
+Enter version:** [set application version] *The application template you have selected requires a setup extension.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075223
+Setup Extension -> kit_service_setup* - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075224
+Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075225
+Enter extension_display_name:** [set extension display name] - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075226
+Enter version:** [set extension version] ### Build and Launch #### Build your application using the provided build scripts: Note that the build step will build all applications contained in the `source` directory.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075227
+Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075228
+Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075229
+Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075230
+Select with arrow keys which App would you like to launch:** [Select the desired service application] #### View your running Service: - Visit ` in your web browser to view the interactive documentation for the running service.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075231
+By default the service will have a POST endpoint which will prompt you for input to generate a simple USD scene.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075232
+![Launched Service](../../../readme-assets/kit_service.png) ### Where to Go From Here For more guidance on extending the Kit Service Template, visit the [Kit SDK Companion Tutorial - Extending Services]( This tutorial offers a step-by-step guide to help you understand the template's structure and customize it to suit your needs.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075233
+Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075234
+Each application template includes an initial test suite that can be run to verify the application's functionality.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075235
+> **NOTE:** Testing will only be run on applications and extensions within the build directory.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075236
+A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization You can customize your Service Setup extension by adding new endpoints to, modifying existing ones, or adding new functionality to `service.py` or `extension.py`.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075237
+If you would like to create a reusable component that might be used in other Omniverse services or applications, it is recommended that you create a new extension.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075238
+When adapting an existing extension for a headless service, keep the service execution path limited to the dependencies it requires.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075239
+Prefer separating reusable headless logic from UI, viewport, rendering, and other application-specific functionality.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075240
+If separation is impractical, dependencies that the service can operate without may be declared optional, provided their imports and initialization are also guarded.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075241
+See [Adapting Existing Extensions for Headless Services]( for guidance and examples.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075242
+Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075243
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075244
+Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075245
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075246
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075247
+Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension (beyond the initial setup extension) to become a persistent part of an application, the extension will need to be added to the application `.kit` file.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075248
+```toml [dependencies] "my_company.my_extension" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075249
+Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075250
+By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075251
+Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075252
+:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075253
+The version is set within the `tools/VERSION.md` file.** #### Launching a Package > :warning: **Deprecated:** `launch --package` is deprecated and will be removed in a future release.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075254
+To run a packaged application, decompress the archive and launch the extracted application directly.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075255
+See [Packaging An Application]( for details.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075256
+Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075257
+Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075258
+This is especially useful for deploying headless services and streaming applications in a containerized environment.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075259
+To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075260
+This will dictate the behavior of your containerized application.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075261
+For example, if you are containerizing a headless Kit Service, select the `{your-service-name}.kit` file to ensure the correct application configuration is launched within the container.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075262
+> **NOTE:** Default Kit Services do not enable UI based interaction.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075263
+As such, containerization of these services do not require a streaming Application Layer.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075264
+The base application `.kit` file should be used for containerization.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075265
+Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075266
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075267
+Additional Learning - [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) - [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) - [Kit SDK Companion Tutorial](
+स्रोत: kit-app-template/templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075268
+Kit Base Editor App Template ![Kit Base Editor Image](../../../readme-assets/kit_base_editor.png) ## Overview The Kit Base Editor App Template provides a minimal starting point for developers aiming to create interactive 3D applications within the NVIDIA Omniverse ecosystem.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075269
+This template simplifies the process of crafting applications capable of loading, manipulating, and rendering Open Universal Scene Description (OpenUSD) content via a graphical user interface.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075270
+Use Cases Kit Base Editor Template is ideal for developers looking to build: - High fidelity OpenUSD editing applications and tools from a functional, minimal starting point.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075271
+Key Features - Scene loading - RTX Renderer - Basic UI for manipulating and exploring 3D scenes.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075272
+Usage This section provides instructions for the setup and use of the Kit Base Editor Application Template.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075273
+Getting Started To get started with the Kit Base Editor template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075274
+> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075275
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075276
+Follow the prompt instructions: - **?
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075277
+Select what you want to create with arrow keys ↑↓:** Application - **?
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075278
+Select desired template with arrow keys ↑↓:** Kit Base Editor - **?
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075279
+Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075280
+Enter application_display_name:** [set application display name] - **?
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075281
+Enter version:** [set application version] ### Build and Launch #### Build your application using the provided build scripts: Note that the build step will build all applications contained in the `source` directory.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075282
+Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075283
+Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075284
+Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075285
+Select with arrow keys which App would you like to launch:** [Select the desired editor application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075286
+After initial shader compilation, startup time will reduce dramatically.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075287
+![Launched Kit Base Editor](../../../readme-assets/kit_base_editor.png) ### Where to Go From Here For more guidance on extending the Kit Base Editor Template, visit the [Kit SDK Companion Tutorial - Extending Editor Applications]( This tutorial offers a step-by-step guide to help you understand the template's structure and customize it to suit your needs.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075288
+Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075289
+Each application template includes an initial test suite that can be run to verify the application's functionality.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075290
+> **NOTE:** Testing will only be run on applications and extensions within the build directory.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075291
+A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization #### Enable Extension - From the running application select `Developer` > `Extensions` - Browse and enable extensions of interest from the Extension Manager.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075292
+Enabling the extensions within the Extension Manager UI will allow you to try out the features of the extension in the currently running application.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075293
+To permanently add the extension to the application, you will need to add the extension to the `.kit` file.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075294
+For example, adding the Layer View extension would require adding `omni.kit.widget.layers` to the dependencies section of the `.kit` file.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075295
+For additional information on the Developer Bundle Extensions, refer to the [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) documentation.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075296
+Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075297
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075298
+Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075299
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075300
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075301
+Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075302
+```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075303
+Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075304
+By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075305
+Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075306
+:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075307
+The version is set within the `tools/VERSION.md` file.** #### Launching a Package > :warning: **Deprecated:** `launch --package` is deprecated and will be removed in a future release.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075308
+To run a packaged application, decompress the archive and launch the extracted application directly.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075309
+See [Packaging An Application]( for details.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075310
+Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075311
+Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075312
+This is especially useful for deploying headless services and streaming applications in a containerized environment.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075313
+To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075314
+This will dictate the behavior of your containerized application.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075315
+For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075316
+> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075317
+Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075318
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075319
+Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075320
+Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075321
+This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075322
+To try local streaming, you need a web client to connect to the streaming server.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075323
+Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075324
+Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075325
+Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containerized application, ensure that the containerized application was configured during packaging to launch a streaming application (e.g., `{your_app_name}_streaming.kit`).
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075326
+Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075327
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075328
+> **NOTE:** The `--no-window` flag is not required for containerized applications as it is the default launch behavior.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075329
+Start the Streaming Client Follow the [Quick Start instructions in the web-viewer-sample README]( to start the streaming client (**stream only no UI overlay**) and connect via a Chromium-based browser.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075330
+You should see the streaming client connect to the running Kit application.
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075331
+![Streaming Base Editor Image](../../../readme-assets/streaming_base_editor.png) ## Additional Learning - [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) - [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) - [Kit SDK Companion Tutorial](
+स्रोत: kit-app-template/templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075332
+USD Viewer App Template ![USD Viewer Hero Image](../../../readme-assets/usd_viewer.jpg) ## Overview The USD Viewer App Template is designed to provide a robust starting point for developers looking to create streaming Omniverse Applications.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075333
+This template showcases an RTX viewport, app streaming, and messaging support.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075334
+Use Cases The USD Viewer Template is perfectly suited for streaming into a front end client.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075335
+Usage ### Getting Started To get started with the USD Viewer template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075336
+> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075337
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for USD Viewer** : This application requires `extra` and `setup` extensions to function as intended.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075338
+These extensions handle the configuration within application, communication, layout, and other settings.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075339
+During Application configuration, you will be prompted for information about these extensions.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075340
+> **NOTE:** Feel free to use default values for testing purposes.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075341
+Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075342
+Follow the prompt instructions: - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075343
+Select what you want to create with arrow keys ↑↓:** Application - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075344
+Select desired template with arrow keys ↑↓:** USD Viewer - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075345
+Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075346
+Enter application_display_name:** [set application display name] - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075347
+Enter version:** [set application version] *For each required extension you will be prompted [display name] -> [extension name]:* - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075348
+Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075349
+Enter extension_display_name:** [set extension display name] - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075350
+Enter version:** [set extension version] > **NOTE:** You will need to repeat above steps for each extension.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075351
+Build and Launch Note that the build step will build all applications contained in the `source` directory.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075352
+Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075353
+Build your application using the provided build scripts: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075354
+Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075355
+Select with arrow keys which App would you like to launch:** [Select the desired viewer application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075356
+After initial shader compilation, startup time will reduce dramatically.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075357
+Default Launch State By default, the USD Viewer template application opens with an empty viewport.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075358
+![USD Viewer Default Launch](../../../readme-assets/usd_viewer_default_launch.png) This is the intended behavior.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075359
+The USD Viewer template application is designed as a base for displaying content either locally or over a streaming connection (See the [Local Streaming](#local-streaming) section below).
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075360
+To display content in the desktop application, you can pass an argument to the `repo launch` command to load content on startup.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075361
+The USD Viewer template includes sample assets for this purpose.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075362
+Let's load the `stage01.usd` sample asset by providing the full path to the `/app/auto_load_usd` argument.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075363
+Linux:** ```bash ./repo.sh launch -- --/app/auto_load_usd='${omni.usd_viewer.samples}/samples_data/stage01.usd' ``` **Windows:** ```powershell .\repo.bat launch -- --/app/auto_load_usd='${omni.usd_viewer.samples}/samples_data/stage01.usd' ``` ![USD Viewer Asset Launch](../../../readme-assets/usd_viewer_load_asset_desktop.png) ### Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075364
+Each application template includes an initial test suite that can be run to verify the application's functionality.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075365
+> **NOTE:** Testing will only be run on applications and extensions within the build directory.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075366
+A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` #### Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075367
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075368
+Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075369
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075370
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075371
+Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075372
+```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075373
+Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075374
+By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075375
+Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075376
+:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075377
+The version is set within the `tools/VERSION.md` file.** #### Launching a Package > :warning: **Deprecated:** `launch --package` is deprecated and will be removed in a future release.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075378
+To run a packaged application, decompress the archive and launch the extracted application directly.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075379
+See [Packaging An Application]( for details.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075380
+Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075381
+Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075382
+This is especially useful for deploying headless services and streaming applications in a containerized environment.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075383
+To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075384
+This will dictate the behavior of your containerized application.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075385
+For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075386
+> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075387
+Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075388
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075389
+Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075390
+Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075391
+This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075392
+To try local streaming, you need a web client to connect to the streaming server.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075393
+Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075394
+Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075395
+Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containerized application, ensure that the containerized application was configured during packaging to launch a streaming application (e.g., `{your_app_name}_streaming.kit`).
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075396
+Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075397
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075398
+> **NOTE:** The `--no-window` flag is not required for containerized applications as it is the default launch behavior.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075399
+Start the Streaming Client Follow the [Quick Start instructions in the web-viewer-sample README]( to start the streaming client (**with Web UI overlay for messaging**) and connect via a Chromium-based browser.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075400
+You should see the streaming client connect to the running Kit application.
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075401
+![Streaming Viewer Image](../../../readme-assets/streaming_viewer.png) ## Additional Learning - [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) - [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) - [Omniverse Kit SDK Manual](
+स्रोत: kit-app-template/templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075402
+name: kit-upgrade description: "Scan and upgrade Omniverse Kit SDK projects between versions.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075403
+Analyzes project files, identifies breaking changes, deprecated APIs, and removed extensions specific to the customer's code.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075404
+Provides a personalized upgrade plan with file:line references and auto-fix suggestions.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075405
+Covers Kit 106→107→108→109→110." --- # Kit SDK Upgrade Skill Guide a developer through upgrading their Omniverse Kit project from one version to another.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075406
+This skill is a lean workflow router.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075407
+Steps 1 and 2 (detect the project, decide the migration path) are inline below** — they are always needed.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075408
+The detail for the remaining steps (2.5–6) lives in `procedures/`, and the structured change data in `references/`.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075409
+Read each procedure file when the workflow sends you to it** — do not try to hold them all in context at once.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075410
+When to Use - User asks to upgrade their Kit project/app/extension - User asks about Kit breaking changes or migration - User is hitting errors after changing their Kit SDK version - User has a broken build or runtime failure after a version bump --- ## Quick Orientation Pick the entry point that matches the request: 1.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075411
+First-time upgrade scan** → start at Step 1 below and follow the workflow in order.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075412
+Already upgraded, now has a build/runtime error** → go straight to `procedures/failure-modes.md`, diagnose, then apply the relevant Stage's fixes from `procedures/stage-notes.md`.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075413
+Just wants a list of breaking changes** → do Step 1, then run the scans in `procedures/scan.md` for their migration path and present the report from `procedures/report.md`.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075414
+The `# Kit SDK Version:` comment in `.kit` files reflects the last lock-file regeneration and may differ from the pin during an in-progress upgrade.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075415
+Version string format: `110.1.0+feature.${platform_target_abi}.${config}` - First number (110) = major Kit version **If no version pin is found:** Check git history (`git log --oneline -20 -- tools/deps/ deps/`) or ask the user what Kit version they are currently running.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075416
+(Layout detection below has not run yet, so scope the log to both candidate deps locations.) ### Detect project layout and build system Kit projects do **not** all use the SDK template layout, and the layout can differ between releases and project types — for example, `deps/` may sit at the project **root** in one release and under **`tools/`** in another (even between two point releases of the same major line).
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075417
+Projects also frequently **wrap or integrate the Kit build system into their own tooling**.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075418
+Detect the layout and build entrypoint **once**, then reuse them everywhere below — **never assume `tools/deps/` or `./repo.sh`**.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075419
+deps directory (holds kit-sdk.packman.xml + repo-deps.packman.xml) if [ -f tools/deps/kit-sdk.packman.xml ]; then DEPS_DIR=tools/deps elif [ -f deps/kit-sdk.packman.xml ]; then DEPS_DIR=deps else f=$(find .
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075420
+name kit-sdk.packman.xml -not -path './_*' | head -1); DEPS_DIR=${f:+$(dirname "$f")}; fi echo "DEPS_DIR=${DEPS_DIR:- }" # 2.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075421
+build entrypoint — the standard repo wrapper, if present if [ -f ./repo.sh ]; then BUILD='./repo.sh' elif [ -f ./repo.bat ]; then BUILD='repo.bat' else BUILD=''; fi # empty => custom / integrated build (see below) echo "BUILD=${BUILD:- }" ``` **If `BUILD` is empty, the project uses a custom or integrated build system** (common — many customers embed the Kit build inside their own).
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075422
+Do **not** fabricate `./repo.sh` calls.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075423
+Find the real build command (check `repo.toml`, `Makefile`/`CMakeLists.txt`, `package.json` scripts, CI config, or the project README) or ask the user how they build.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075424
+The upgrade work below (kernel pin bump, **toolchain update**, lock regeneration) still applies — you just invoke it through the project's own entrypoint.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075425
+Record it as `$BUILD`.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075426
+> **From here on (and in every procedure file), use `$DEPS_DIR` and `$BUILD` in every command.** Where a document still shows a literal `tools/deps/` or `./repo.sh`, substitute the detected values.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075427
+> > **These are not guaranteed to persist across shells.** If you run each fenced block in a fresh subshell, `$DEPS_DIR`/`$BUILD` will be unset.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075428
+So do **one** of: (a) textually replace `$DEPS_DIR` and `$BUILD` with the literal detected paths (e.g.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075429
+`tools/deps`, `./repo.sh`) in every command you run, or (b) re-run the two detection blocks above at the top of each new shell session.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075430
+Do **not** run a later block assuming the variables are still set.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075431
+Step 2: Determine Migration Path Kit versions must be upgraded **in sequence**.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075432
+Kit 108 was never publicly released** — its changes are folded into the 107→109 path.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075433
+When upgrading 107→109 you must still address Stage 2 (107→108) changes.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075434
+A **within-major** bump (e.g.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075435
+`110.0 → 110.1`, `110.1.0 → 110.1.2`) or a **feature → production** branch transition is a *different, lighter* job — and it is the most common upgrade performed in practice.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075436
+These rarely need the Stage code/API changes.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075437
+The real work is almost entirely **tooling and layout**: 1.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075438
+Update the build toolchain** (repo tools, packman, repo scripts) — see Step 2.5 (`procedures/toolchain.md`).
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075439
+This is usually the substantive part.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075440
+Re-detect the deps directory** — its location can differ between releases, even within the same major line (Step 1 already sets `$DEPS_DIR`).
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075441
+Bump the kit-kernel pin** in `$DEPS_DIR/kit-sdk.packman.xml` (Step 5, item 2 — `procedures/apply-fixes.md`).
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075442
+For a feature ↔ production transition only:** check the extension **registry URL** in the `.kit` files — the feature and production lines use different registries, so a feature→production move may need a registry swap (Step 5, item 3).
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075443
+A plain within-major bump on the same line usually does **not**.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075444
+Regenerate the extension version-lock** and do a **clean rebuild** (Step 5 items 1 & 8, then Step 6).
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075445
+> **⚠️ Do NOT run the whole of Step 5 for a within-major bump.** Step 5 (`procedures/apply-fixes.md`) is written for **major-boundary** crossings.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075446
+Running them on a 110.1.0→110.1.2 bump would wrongly strip extensions or rewrite APIs that are perfectly valid on 110.1.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075447
+Only run the Step 3 code scans if the upgrade crosses a major boundary.** For a pure within-major or feature→production move, skip Step 3's per-stage API scans and go straight to Step 2.5 → Step 5 (items 1–3 & 8 only, as above) → Step 6.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075448
+If you cross one or more major boundaries on the way, run Step 3 for each major boundary passed and the full Step 5.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075449
+Steps 2.5–6: Execute the Upgrade Once the path is known, work through these in order.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075450
+Read the linked procedure file and follow it**; each assumes Step 1 detection has run.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075451
+Step 2.5 — Update the build toolchain** → `procedures/toolchain.md`.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075452
+Highest-impact step; run it **first**, before touching source.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075453
+For a within-major bump this is usually the only substantive work.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075454
+Step 3 — Scan the project** → `procedures/scan.md`.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075455
+Run only the stage scans for the major boundaries you cross.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075456
+Skip entirely for a pure within-major bump.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075457
+Step 4 — Generate the upgrade report** → `procedures/report.md`.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075458
+Present findings by severity with exact `file:line` references.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075459
+Step 5 — Apply fixes** → `procedures/apply-fixes.md`.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075460
+Get user approval before modifying files.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075461
+(Within-major: items 1, 2, 8 only — see Step 2 above.) - **Step 6 — Validate** → `procedures/validate.md`.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075462
+Clean rebuild, regenerate the version lock, run tests.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075463
+Already upgraded and hitting a specific error?** Go to `procedures/failure-modes.md` — it maps common symptoms (exit-55, ABI undefined symbols, render diffs, build loops, custom-build/layout issues) to fixes.
+स्रोत: kit-app-template/.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075464
+Kit SDK Upgrade Skill ## What This Is This repository contains an AI agent skill for upgrading Omniverse Kit SDK projects between versions.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075465
+The skill encodes the complete breaking-change catalog for the Kit 106→107→108→109→110 migration path — including removed extensions, deprecated APIs, C++ ABI breaks, Python runtime changes, and configuration updates — into a structured set of instructions and reference data that an AI agent can execute against a live project.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075466
+The agent scans the project, produces a categorized report with exact `file:line` references, and suggests targeted fixes, including auto-fixable regex replacements where safe.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075467
+Who It's For Kit extension and application developers who need to upgrade a project from one Kit SDK version to another.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075468
+This includes developers working on kit-app-template-based applications, standalone extensions, and Isaac Sim integrations.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075469
+The skill is particularly useful when upgrading across multiple versions at once (e.g., 107→110), where the number of breaking changes makes manual triage error-prone.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075470
+What It Contains | File | Description | |------|-------------| | `SKILL.md` | Lean workflow router — loaded by the AI agent.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075471
+Holds version/layout/build detection (Step 1) and the migration-path decision (Step 2), and points to the procedure files for everything else.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075472
+| | `procedures/toolchain.md` | Step 2.5 — update the `repo_*` build toolchain (the highest-impact part of most upgrades).
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075473
+| | `procedures/scan.md` | Step 3 — the full per-stage `grep` scan catalog for breaking changes, removed extensions, and config.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075474
+| | `procedures/report.md` | Step 4 — the upgrade-report template.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075475
+| | `procedures/apply-fixes.md` | Step 5 — ordered fix list, auto-fixable regex patterns, and manual-only changes.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075476
+| | `procedures/validate.md` | Step 6 — clean-rebuild and validation commands.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075477
+| | `procedures/failure-modes.md` | Symptom→fix diagnosis for projects that already upgraded and are erroring.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075478
+| | `procedures/stage-notes.md` | Per-stage (106→107→…→110) breaking-change reference.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075479
+| | `references/breaking_changes.json` | 80+ breaking changes with search patterns, affected versions, and recommended fixes.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075480
+| | `references/removed_extensions.json` | Extensions removed or deprecated by Kit version, with replacement guidance and search targets.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075481
+| | `references/api_replacements.json` | 1:1 API replacements that are safe to apply with regex find/replace.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075482
+| | `references/config_changes.json` | Settings keys, registry URLs, and build config changes between versions.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075483
+| | `references/toolchain.json` | The build-toolchain file/package set (`repo_*` tools, packman, repo scripts) and how to find the correct target versions for a given Kit line.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075484
+| | `install.sh` / `install.bat` | Copies the skill (SKILL.md + `procedures/` + `references/`) into an existing Kit project so it travels with the repo.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075485
+| The skill uses **progressive disclosure**: `SKILL.md` stays small (a router the agent always loads) and each step's detail lives in a `procedures/*.md` file the agent reads only when the workflow sends it there.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075486
+This keeps the entry file well under length limits and keeps irrelevant detail out of context.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075487
+How to Use **Install into an existing project** (so the skill travels with the repo): ```bash ./install.sh /path/to/your-kit-project # copies into /.skills/kit-upgrade/ ./install.sh /path/to/your-kit-project .claude/skills # or the Claude Code skills layout ``` On Windows: `install.bat C:\path\to\your-kit-project`.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075488
+Then load the skill into any AI coding assistant that can read files and run shell commands, and point it at the project you want to upgrade.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075489
+Claude Code:** ``` Read the skill at /path/to/kit-upgrade-skill/SKILL.md and the reference files in references/.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075490
+Then scan /path/to/my-kit-project and generate an upgrade report for Kit 109 → 110.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075491
+``` **Cursor / VS Code Copilot / other MCP clients:** Add `kit-upgrade-skill/` as a context directory or attach `SKILL.md` as a system prompt, then ask the agent to scan your project.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075492
+Detect the current Kit SDK version, the deps-directory location (`tools/deps/` vs root `deps/`), and the build entrypoint (`./repo.sh` / `repo.bat` or a custom/integrated build) — never assuming the SDK template layout 2.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075493
+Determine the migration path — including within-major (minor/patch) and feature↔production transitions, not just major-version stages 3.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075494
+Update the build toolchain (`repo_*` tools, packman, repo scripts) to match the target Kit line — often the substantive part of an upgrade 4.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075495
+Run targeted `grep` scans across the full project root (including `templates/`, launcher configs, and ETM lock files) for any major boundaries crossed 5.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075496
+Generate a categorized report: breaking changes, behavioral changes, deprecated usage, and a "not affected" checklist 6.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075497
+Suggest fixes — both auto-applicable regex replacements and manual changes requiring human judgment 7.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075498
+Its changes are folded into the 107→109 path — Stage 2 must still be addressed when upgrading 107→109.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075499
+Multi-version upgrades (e.g., 107→110) apply all intervening stages in sequence.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075500
+How to Contribute **Add a new breaking change:** Add an entry to `references/breaking_changes.json`.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075501
+Each entry needs an `id`, `title`, `stage`, `search_pattern` (grep-compatible regex), `affected_files` (glob patterns), and `fix` description.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075502
+If the fix is a safe 1:1 substitution, also add it to `references/api_replacements.json`.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075503
+Add a removed or deprecated extension:** Add an entry to `references/removed_extensions.json` with `extension`, `status` (`removed` or `deprecated`), `version`, `replacement` (or `null`), `search_in` (list of file extensions to scan), and `notes`.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075504
+Include any known failure mode (e.g., exit-55) and whether the extension appears in non-obvious locations like `templates/` or ETM lock files.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075505
+Add a new Kit version (release):** edit the files that own each piece — the skill is split by concern: - `SKILL.md` — add the new row/stage to the **Step 2 migration-path table and Stage summary** (these stay in the router).
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075506
+`procedures/scan.md` — add the new `# === Stage N ===` scan blocks.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075507
+`procedures/stage-notes.md` — add the new per-stage breaking-change section.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075508
+`procedures/apply-fixes.md` — add any new auto-fix regex patterns or fix-list items.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075509
+`references/*.json` — add the corresponding structured entries.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075510
+Follow the existing section structure in each file for consistency.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075511
+Keep `SKILL.md` lean — detailed scan commands and stage notes belong in `procedures/`, not the router.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075512
+Test your additions:** Apply the skill to a real project that exercises the new patterns.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075513
+If the scan misses something or the fix guidance is wrong, document it and open a PR with both the issue description and the corresponding fix in the relevant `procedures/` or `references/` file.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075514
+This skill was developed and validated against [kit-extension-explorer]( a Kit 110 application based on kit-app-template.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075515
+See `test-report.md` for the full upgrade report from that validation run.
+स्रोत: kit-app-template/.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075516
+{ "description": "The build toolchain a Kit project must keep in sync with its kit-kernel pin.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075517
+SKILL.md Step 2.5 makes updating it a first-class step.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075518
+Do NOT hardcode versions here — they move per branch; read the target branch's actual pins at upgrade time.", "toolchain_files": [ {"file": " /kit-sdk.packman.xml", "holds": "kit-kernel pin (the Kit SDK itself)", "notes": "DEPS_DIR is tools/deps/ or root deps/ — detect it (SKILL.md Step 1)."}, {"file": " /repo-deps.packman.xml", "holds": "the repo_* build tools + template-content packages", "notes": "The main toolchain file.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075519
+Add or remove packages that appear/disappear between lines (e.g.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075520
+repo_nspect is present on feature/main but not on production/110.1 or feature/110.3).", "reference_source": "omniverse/kit-apps/kit-sdk-public (and/or omniverse/kit-github/kit-app-template) on the matching branch.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075521
+Prefer production/ over feature/ for a stable upgrade.", "critical_note": "Toolchain versions track the BRANCH's maintenance cadence, NOT the kernel line number.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075522
+A newer kernel line can carry an OLDER toolchain.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075523
+Never infer tool versions from the Kit version — read the actual target-branch pins.", "example_only_do_not_copy": { "note": "Illustrative snapshot read from kit-sdk-public in 2026 — WILL go stale.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075524
+Always re-read the target branch at upgrade time.", "feature/main": {"kit-kernel": "110.4.0+feature", "repo_man": "2.6.4", "repo_build": "1.30.0", "repo_kit_tools": "1.20.3"}, "production/110.1": {"kit-kernel": "110.1.3+production", "repo_man": "2.9.3", "repo_build": "1.34.3", "repo_kit_tools": "1.21.2"} } } }
+स्रोत: kit-app-template/.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075525
+[ {"setting":"packman XML ABI token","versions":{"from":"106","to":"107"},"old_value":"${platform_target}","new_value":"${platform_target_abi}","file":"*.packman.xml","path":"package name attributes","notes":"Native packages now use ABI-variant package names.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/config_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075526
+The deps directory location varies by release and project type (e.g.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/config_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075527
+deps/ at the project root in one release, under tools/ in another, even between point releases of the same major line).
+स्रोत: kit-app-template/.skills/kit-upgrade/references/config_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075528
+Do NOT assume tools/deps/ and do NOT rewrite paths from old_value to new_value -- detect the actual location (SKILL.md Step 1, $DEPS_DIR)."} ]
+स्रोत: kit-app-template/.skills/kit-upgrade/references/config_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075529
+[ { "extension": "omni.kvdb", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Silently removed.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075530
+Causes exit code 55 dependency solver failure.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075531
+Search the entire project root including templates/ and launcher-configs/ directories." }, { "extension": "omni.localcache", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Silently removed.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075532
+Same failure class as omni.kvdb.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075533
+Search the entire project root including templates/ and launcher-configs/ directories." }, { "extension": "omni.genproc.core", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit", ".py" ], "notes": "Deprecated.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075534
+Migrate procedural generation workflows.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075535
+Search the entire project root including templates/ and launcher-configs/ directories." }, { "extension": "omni.kit.extpath.git", "status": "removed", "version": "108", "replacement": null, "search_in": [ "extension.toml" ], "notes": "Git URL extension search path.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075536
+Was deprecated in 107." }, { "extension": "omni.hydra.iray.shadercache.d3d12", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Silently removed alongside Iray deprecation.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075537
+No explicit removal notice." }, { "extension": "omni.hydra.iray.shadercache.vulkan", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Silently removed alongside Iray deprecation.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075538
+No explicit removal notice." }, { "extension": "omni.kit.viewport.iray", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Was Sample in Kit 107.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075539
+No version recorded in official docs." }, { "extension": "omni.hydra.scene_api", "status": "deprecated", "version": "108", "replacement": null, "search_in": [ "extension.toml", ".kit", ".py" ], "notes": "Deprecated since Kit 108.0.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075540
+Removal pending." }, { "extension": "omni.surface_instancer", "status": "deprecated", "version": "pre-106", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Confirmed deprecated.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075541
+Active customer confusion." }, { "extension": "omni.renderer_capture", "status": "deprecated", "version": "110", "replacement": "omni.kit.capture", "search_in": [ "extension.toml", ".kit", ".py" ], "notes": "Deprecated in Kit 110." }, { "extension": "omni.kit.widget.nucleus_connector", "status": "deprecated", "version": "110", "replacement": "omni.kit.widget.connection_manager", "search_in": [ "extension.toml", ".kit" ], "notes": "Compatibility shim.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075542
+Will be removed." }, { "extension": "omni.kit.viewport.legacy_gizmos", "status": "deprecated", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Deprecated in Kit 110.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075543
+Still operational but emits deprecation warnings.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075544
+Commonly appears in both source/apps/ and templates/ .kit files — scan the full project root.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075545
+No direct replacement announced; plan migration away from legacy gizmos rendering path." }, { "extension": "omni.kit.livestream", "status": "removed", "version": "108", "replacement": "omni.kit.livestream.app + omni.kit.livestream.aov + omni.kit.livestream.core", "search_in": [ "extension.toml", ".kit" ], "notes": "Monolithic livestream extension split into focused modules in Kit 108.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075546
+Replace with the three new extensions.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075547
+Settings paths also changed \u2014 see config_changes.json." }, { "extension": "omni.services.livestream.nvcf", "status": "removed", "version": "108", "replacement": "omni.services.livestream.session", "search_in": [ "extension.toml", ".kit" ], "notes": "Session management extension renamed in Kit 108.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075548
+Replace dependency declaration and update any code referencing the old extension name." } ]
+स्रोत: kit-app-template/.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075549
+[ {"id":"py-omniclient","versions":{"from":"106","to":"107"},"category":"Python API","severity":"breaking","title":"omni.client._omniclient removed","description":"Private internal API removed.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075550
+Use public omni.client API.","search_patterns":["omni\\.client\\._omniclient"],"file_types":[".py"],"fix":{"type":"regex_replace","description":"Replace import","from_pattern":"import omni\\.client\\._omniclient","to_pattern":"import omni.client"}}, {"id":"py-311","versions":{"from":"106","to":"107"},"category":"Build","severity":"breaking","title":"Python 3.10 → 3.11","description":"Python upgraded.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075551
+Audit f-strings, typing module usage, and third-party packages for 3.11 compatibility.","search_patterns":["python3\\.10","python310"],"file_types":[".toml",".py",".sh",".bat",".lua"],"fix":{"type":"manual","description":"Update Python references to 3.11"}}, {"id":"cpp-abi-cxx11","versions":{"from":"106","to":"107"},"category":"C++ ABI","severity":"breaking","title":"Linux: _GLIBCXX_USE_CXX11_ABI=1","description":"Native packages now use new C++ ABI.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075552
+Rebuild all .so plugins.","search_patterns":["_GLIBCXX_USE_CXX11_ABI"],"file_types":[".cpp",".cmake",".toml"],"fix":{"type":"manual","description":"Rebuild all native plugins against new ABI"}}, {"id":"packman-abi-token","versions":{"from":"106","to":"107"},"category":"Build","severity":"breaking","title":"packman XML: ${platform_target} → ${platform_target_abi}","description":"Native packages now use ABI-variant tokens.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075553
+Python payload access changed from e.payload['key'] to e['key'].
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075554
+Subscribe via carb.eventdispatcher.get_eventdispatcher().observe_event().
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075555
+C++: update to carb::eventdispatcher.","search_patterns":["e\\.payload\\[","carb\\.events\\.acquire_event_queue","create_subscription_to_pop"],"file_types":[".py",".cpp",".h"],"fix":{"type":"manual","description":"Update event subscriptions and payload access to Events 2.0 pattern.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075556
+Remove explicit event pump calls."}}, {"id":"fabric-pathc-tokenc-intro","versions":{"from":"106","to":"107"},"category":"C++ ABI","severity":"breaking","title":"Fabric PathC/TokenC introduced (removed in 109)","description":"Kit 107 introduced PathC/TokenC.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075557
+Kit 109 removes them.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075558
+Update Premake configs, CI, and build scripts.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075559
+Audit all third-party packages for 3.12 compatibility.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075560
+Use getCachedInterface.","search_patterns":["acquireInterface"],"file_types":[".cpp",".h"],"fix":{"type":"regex_replace","from_pattern":"carb::Framework::acquireInterface","to_pattern":"carb::getCachedInterface"}}, {"id":"omnigraph-3.0","versions":{"from":"107","to":"108"},"category":"C++ ABI","severity":"breaking","title":"omni.graph.core 3.0.0 ABI break","description":"Binary incompatible with 2.x.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075561
+Recompile all OmniGraph nodes.","search_patterns":["omni\\.graph\\.core","omni\\.graph\\.nodes"],"file_types":[".toml"],"fix":{"type":"manual","description":"Recompile against omni.graph.core 3.0.0.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075562
+Align omni.graph.nodes version."}}, {"id":"parallel-node-reg","versions":{"from":"107","to":"108"},"category":"Extension","severity":"breaking","title":"Parallel OmniGraph node registration removed","description":"Extension manager is not thread-safe.
+स्रोत: kit-app-template/.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075563
+Step 6: Validate > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075564
+Assumes Step 1 detection has run (`$BUILD` is set).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075565
+```bash # After a kit-kernel pin bump, do a CLEAN rebuild so the kernel symlinks refresh, # then regenerate the version lock against the new kernel.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075566
+$BUILD is the entrypoint detected in Step 1 (./repo.sh, repo.bat, or the project's own build wrapper).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075567
+`No versions of > omni.anim.curve.core … = `).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075568
+Use **`$BUILD build --clean`** (removes the build-time `_*` > folders so the next `build -r` refreshes the symlinks) or **`$BUILD build --rebuild -r`** (clean + > release build in one command), then regenerate the lock with `build -u`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075569
+The generated `[settings.app.exts] > enabled = [...]` block in each `.kit` is what must be regenerated — it carries exact old-version pins that > `extscache` clearing does not touch.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075570
+Failure Mode Diagnosis > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075571
+Use this when the user has **already** upgraded and has a specific error.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075572
+`$DEPS_DIR` / `$BUILD` refer to the values detected in Step 1 (in `../SKILL.md`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075573
+Exit Code 55 (Dependency Solver Failure) **Cause:** Removed extension still declared as a dependency, or stale extscache.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075574
+Clear extscache: `rm -rf _build/*/release/extscache/` 2.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075575
+Search for removed extension names in `.kit` and `extension.toml` files (see `../references/removed_extensions.json`) 3.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075576
+For Kit 110: check for `omni.kvdb`, `omni.localcache`, `omni.genproc.core`, `omni.hydra.iray.shadercache.*`, `omni.kit.viewport.iray` 4.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075577
+Re-run `precache_exts` ### Build Fails with Undefined Symbol / Missing Method **Cause:** ABI break — extension was compiled against an older version.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075578
+Fix:** Recompile the extension against the current Kit SDK.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075579
+Every stage has at least one ABI break.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075580
+Runtime Crash on DLL Load (Windows) **Cause after Stage 3:** mimalloc cross-DLL heap mismatch.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075581
+Memory allocated on one side of a DLL boundary freed on the other.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075582
+Fix:** Audit allocation ownership.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075583
+Use `kit-sysalloc.exe` for compatibility testing.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075584
+Python TypeError: unexpected keyword argument 'menu_compatibility' **Cause (Stage 4):** `menu_compatibility` parameter removed from `ui.Menu` and `ui.Separator`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075585
+Fix:** Remove the `menu_compatibility=` argument from all call sites.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075586
+Extension Loads But APIs Return None / AttributeError **Cause:** Transitive loading of `omni.kit.ui`, `omni.resourcemonitor`, or `omni.kit.manipulator.prim.fabric` was removed.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075587
+Fix:** Add explicit dependency in `extension.toml`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075588
+Render Output Differs (No Code Changes) **Cause after Stage 3:** DomeLight orientation changed (USD 25.05), FSD enabled by default, or `mergeMaterials` default changed.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075589
+Diagnosis:** - Check for DomeLights in the scene: `grep -rn "DomeLight" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075590
+include="*.usd" --include="*.usda"` - Check FSD setting: `grep -rn "FabricSceneDelegate\|fsd" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075591
+include="*.kit" --include="*.toml"` - Check `mergeMaterials`: `grep -rn "mergeMaterials" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075592
+include="*.kit" --include="*.toml"` ### if (optional_bool) No Longer Works (C++) **Cause (Stage 4):** `optional ` / `expected ` now tests for *presence* in an if-condition, not the stored value.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075593
+Fix:** Replace `if (b)` with `if (b.has_value() && b.value())` ### Build Fails in a Loop / the Same Error Repeats **Cause:** Almost always a **stale toolchain** (Step 2.5 not applied — see `toolchain.md`) or a wrong assumption about the project's layout/build system — *not* the source code.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075594
+Rule — do not keep editing source and rebuilding.** If the same build error recurs after **2 attempts**, STOP and re-check the fundamentals before changing any more code: 1.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075595
+Is the **toolchain** aligned to the target Kit line?
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075596
+(Step 2.5, `toolchain.md` — the #1 cause of build loops.) 2.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075597
+Is `$DEPS_DIR` the **actual** deps location and `$BUILD` the project's **actual** build entrypoint?
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075598
+(Step 1 in `../SKILL.md`.) 3.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075599
+Did you do a **clean** rebuild (`$BUILD build --rebuild -r`), not just clear extscache?
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075600
+(Step 6, `validate.md`.) Surface the exact error and these three checks to the user rather than looping — repeated speculative edits burn tokens and rarely fix a toolchain/layout problem.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075601
+Project Uses a Custom / Integrated Build System **Cause:** The project wraps or embeds the Kit build system in its own tooling, so `./repo.sh` / `repo.bat` don't exist or aren't the real entrypoint (common for customer integrations).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075602
+Fix:** Do **not** fabricate `./repo.sh` commands.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075603
+Use the `$BUILD` detected in Step 1 (check `repo.toml`, `Makefile`/`CMakeLists.txt`, `package.json` scripts, CI config, or ask the user).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075604
+The upgrade steps (kernel pin, **toolchain update**, lock regen) still apply — invoke them through `$BUILD`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075605
+deps Directory Not Where Expected **Cause:** The project layout differs from the SDK template, or the deps directory moved between releases (e.g.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075606
+`deps/` at the project root vs under `tools/`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075607
+Fix:** Re-run the Step 1 detection (in `../SKILL.md`) to set `$DEPS_DIR`, then use it everywhere.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075608
+Never hardcode `tools/deps/`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075609
+Step 3: Scan the Project > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075610
+Assumes Step 1 detection has run (`$DEPS_DIR`, `$BUILD` are set).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075611
+Only run this step for major-version boundaries you cross** — a pure within-major / feature→production bump skips it.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075612
+Run these commands from the project root.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075613
+Only run scans for the stages that apply to this upgrade.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075614
+Collect all matches before generating the report.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075615
+> **⚠️ Scan scope:** Use `.` (project root) as the search root, not just `source/`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075616
+Many projects have `templates/`, `launcher-configs/`, or other directories containing `.kit` files and `extension.toml` files with real dependency declarations.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075617
+Scanning only `source/` will miss these.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075618
+> > **Windows note:** Commands below use bash syntax.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075619
+On Windows, replace `for` loops with individual `findstr` or PowerShell `Select-String` commands, or run inside WSL/Git Bash.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075620
+Python / Extension Dependencies ```bash # === Stage 1 (106→107) === # Python 3.10 references (now 3.11) grep -rn "python3\.10\|python310\|boost_python310" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075621
+premake5.lua --include="*.lua" --include="*.sh" --include="*.bat" --include="*.toml" # Private omni.client API grep -rn "omni\.client\._omniclient" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075622
+include="*.py" # carb.imgui (removed — use omni.kit.imgui) grep -rn "carb\.imgui" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075623
+include="*.py" # Events 1.0 patterns (payload access, subscription style) grep -rn "e\.payload\[" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075624
+include="*.py" grep -rn "create_subscription_to_pop" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075625
+include="*.py" # nv_usd references in build files grep -rn "nv_usd" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075626
+premake5.lua repo.toml --include="*.lua" --include="*.toml" # packman XML using a pre-ABI token (should be ${platform_target_abi}).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075627
+NOTE: match BOTH the old ${platform} form (Kit 106) and the intermediate ${platform_target} form — # the narrower 'platform_target[^_]' pattern misses ${platform}, which is what 106.5 actually uses and # is a build-verified hard failure on 106->107 (kit-kernel pull: "Package not found ...gl.linux-x86_64").
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075628
+grep -rnE '\$\{platform(_target)?\}' "$DEPS_DIR" --include="*.xml" # Toolbar deprecated APIs grep -rn "omni\.kit\.widget\.toolbar\|omni\.kit\.window\.toolbar" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075629
+include="*.py" --include="*.toml" # === Stage 2 (107→108) === # Python 3.11 references (now 3.12) grep -rn "python3\.11\|python311\|boost_python311" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075630
+premake5.lua --include="*.lua" --include="*.sh" --include="*.bat" # get_custom_glyph_code (moved to omni.ui) grep -rn "omni\.kit\.ui.*get_custom_glyph_code" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075631
+include="*.py" # WindowHandle deprecated usage grep -rn "WindowHandle" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075632
+include="*.py" # menu_compatibility (deprecated in 108, removed in 110) grep -rn "menu_compatibility" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075633
+include="*.py" # Layer events (Events 1.0 style) grep -rn "get_event_stream\|create_subscription_to_pop\|carb\.events" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075634
+include="*.py" # Livestream extension (monolithic — should be split) grep -rn '"omni\.kit\.livestream"' .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075635
+include="*.kit" --include="*.toml" grep -rn "omni\.services\.livestream\.nvcf" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075636
+include="*.kit" --include="*.toml" # Livestream settings (old path) grep -rn "app/livestream\|app\.livestream" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075637
+include="*.kit" --include="*.toml" # Old omni.kit.ui transitive usage (no longer loaded transitively) grep -rn "omni\.kit\.ui[^.]" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075638
+include="*.py" # === Stage 3 (108→109) === # NumPy 1.x type aliases (removed in 2.0) grep -rn "np\.bool[^_]\|np\.int[^0-9_]\|np\.float[^0-9_]\|np\.complex[^0-9_]\|np\.object[^_]\|np\.str[^_]" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075639
+include="*.py" # === Stage 4 (109→110) === # menu_compatibility (now raises TypeError — must remove entirely) grep -rn "menu_compatibility=" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075640
+include="*.py" # omni.usd layers deprecated API grep -rn "get_context()\.get_layers()\|context\.get_layers()" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075641
+include="*.py" # omni.renderer_capture (deprecated → omni.kit.capture) grep -rn "omni\.renderer_capture" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075642
+include="*.py" # USD displayName/displayGroup/hidden deprecated metadata grep -rn "GetMetadata.*displayName\|SetMetadata.*displayName\|GetMetadata.*hidden\|SetMetadata.*hidden\|GetMetadata.*displayGroup\|SetMetadata.*displayGroup" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075643
+include="*.py" ``` ### C++ / Native Code ```bash # === Stage 1 (106→107) === # C++ ABI — check for _GLIBCXX_USE_CXX11_ABI overrides (must be =1) grep -rn "_GLIBCXX_USE_CXX11_ABI" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075644
+include="*.cpp" --include="*.h" --include="*.cmake" # === Stage 2 (107→108) === # ITokens::setValue (renamed to setValueS) grep -rn "->setValue(" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075645
+include="*.cpp" --include="*.h" # carb::detail::defineTupleCommon grep -rn "carb::detail::defineTupleCommon" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075646
+include="*.cpp" --include="*.h" # PyObjectVTable::get()->typeName grep -rn "PyObjectVTable" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075647
+include="*.cpp" --include="*.h" # acquireInterface (prefer getCachedInterface) grep -rn "acquireInterface" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075648
+include="*.cpp" --include="*.h" # carb::extras::Path implicit conversion grep -rn "carb::extras::Path\|carb::fs::Path" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075649
+include="*.cpp" --include="*.h" # Assert macros (may need explicit carb/Assert.h now) grep -rn "CARB_ASSERT\|CARB_FATAL_UNLESS" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075650
+include="*.cpp" --include="*.h" # Library.h removed functions grep -rn "getDefaultLibraryPrefix\|getDefaultLibraryExtension" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075651
+include="*.cpp" --include="*.h" # GfMatrix usage (imprecise overloads removed) grep -rn "GfMatrix" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075652
+include="*.cpp" --include="*.h" # ILayers.h inclusion (ABI 1.0 → 1.1 recompile required) grep -rn "ILayers\.h\|omni/kit/usd/layers" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075653
+include="*.cpp" --include="*.h" # carb.events const char* usage (deprecated — prefer string_view) grep -rn "carb::events::\|IEventQueue\|IEvents" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075654
+include="*.cpp" --include="*.h" # Scalar xform ops — code that iterates over xform ops assuming vector types grep -rn "GetOrderedXformOps\|xformOp:translate\|xformOp:scale\|xformOp:rotate" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075655
+include="*.cpp" --include="*.h" --include="*.py" # === Stage 3 (108→109) === # Fabric TokenC/PathC (removed; also kUninitializedToken/Path) grep -rn "TokenC\|PathC\|TokenId\|PathId\|kUninitializedToken\|kUninitializedPath" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075656
+include="*.cpp" --include="*.h" # carb::cpp17 / carb::cpp20 (merged to carb::cpp) grep -rn "carb::cpp17\|carb::cpp20" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075657
+include="*.cpp" --include="*.h" # carb::thread::shared_lock (removed) grep -rn "carb::thread::shared_lock" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075658
+include="*.cpp" --include="*.h" # IDictionary::MakeAtPathS (renamed to MakeAtPath) grep -rn "MakeAtPathS" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075659
+include="*.cpp" --include="*.h" # compareStringsNoCase (renamed) grep -rn "compareStringsNoCase" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075660
+include="*.cpp" --include="*.h" # Logger (superseded by Logger2) grep -rn "carb::logging::Logger[^2]" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075661
+include="*.cpp" --include="*.h" # MDL/Neuray usage (ABI 56 → 57 recompile required) grep -rn "omni\.mdl\|Neuray\|MDL.*SDK" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075662
+include="*.cpp" --include="*.h" --include="*.toml" # CloudXR / XRCloudXRBindings grep -rn "CloudXR\|XRCloudXRBindings\|IOpenXRRuntime" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075663
+include="*.cpp" --include="*.h" # === Stage 4 (109→110) === # CARB_CHECK (replaced by CARB_RELEASE_ASSERT) grep -rn "CARB_CHECK" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075664
+include="*.cpp" --include="*.h" # carb/Defines.h (split into sub-headers) grep -rn '#include.*carb/Defines\.h' .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075665
+include="*.cpp" --include="*.h" # IFileSystem raw char* methods grep -rn "IFileSystem" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075666
+include="*.cpp" --include="*.h" # ITokens (unsafe methods removed; ITokens 2.0 available) grep -rn "ITokens\|->resolveString\|->setValue" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075667
+include="*.cpp" --include="*.h" # optional / expected — semantics changed (if(b) now tests presence) grep -rn "optional \|expected **Important:** Also scan `templates/`, `launcher-configs/`, and any ETM lock files (e.g.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075668
+`omni.all.template.extensions.kit`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075669
+These contain real dependency declarations and will cause test or runtime failures if they reference removed extensions.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075670
+```bash # === All stages — removed/deprecated extensions === # Kit 108 removals grep -rn "omni\.kit\.extpath\.git" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075671
+include="*.toml" --include="*.kit" # Kit 108 — monolithic livestream (split into modules) grep -rn '"omni\.kit\.livestream"' .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075672
+include="*.toml" --include="*.kit" grep -rn "omni\.services\.livestream\.nvcf" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075673
+include="*.toml" --include="*.kit" # Kit 110 removals (cause cryptic exit-55 dependency solver failures) for ext in omni.kvdb omni.localcache omni.genproc.core; do echo "=== $ext ==="; grep -rn "$ext" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075674
+include="*.kit" --include="*.toml" done # Kit 110 silently removed (no deprecation notice) for ext in "omni.hydra.iray.shadercache.d3d12" "omni.hydra.iray.shadercache.vulkan" "omni.kit.viewport.iray"; do echo "=== $ext ==="; grep -rn "$ext" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075675
+include="*.kit" --include="*.toml" done # Deprecated (not yet removed — still operational but plan migration) for ext in "omni.command.usd" "omni.debugdraw" "omni.hydra.iray" "omni.iray.settings.core" \ "omni.kit.autocapture" "omni.kit.manipulator.viewport" "omni.hydra.scene_api" \ "omni.renderer_capture" "omni.surface_instancer" "omni.kit.viewport.legacy_gizmos" \ "omni.kit.widget.nucleus_connector"; do echo "=== $ext ==="; grep -rn "$ext" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075676
+include="*.kit" --include="*.toml" done # Extensions that need explicit declaration (no longer loaded transitively) grep -rn "omni\.kit\.manipulator\.prim\.fabric\|omni\.resourcemonitor\|omni\.kit\.ui" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075677
+\ --include="*.py" --include="*.toml" ``` ### Config Files ```bash # Extension registry URLs (must update for Kit 110) grep -rn "kit-extensions\.ov\.nvidia\.com\|omniverse://" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075678
+include="*.kit" # Build system (VS version) — also check CI-scoped token overrides # (e.g.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075679
+"token:in_ci==true".vs_version may override the default even when the top-level is correct) grep -rn "vs_version\|vs2019\|vs2017\|v142" repo.toml # Livestream settings (old path style) grep -rn "app/livestream" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075680
+include="*.kit" --include="*.toml" # Kit SDK version pin (use the $DEPS_DIR detected in Step 1) cat "$DEPS_DIR/kit-sdk.packman.xml" # mergeMaterials (behavioral default change in 109) grep -rn "mergeMaterials" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075681
+include="*.kit" --include="*.toml" # FSD / Fabric Scene Delegate settings grep -rn "FabricSceneDelegate\|fsd\b" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075682
+include="*.kit" --include="*.toml" ``` ### OmniGraph ```bash # === Stage 2 (107→108) — OmniGraph 3.0 ABI === grep -rn "omni\.graph\.core\|omni\.graph\.nodes" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075683
+include="*.toml" # === Stage 4 (109→110) — deprecated/removed OmniGraph nodes === # DeformedPointsToHydra — removed (was part of OmniHydra) grep -rn "DeformedPointsToHydra" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075684
+include="*.py" --include="*.usd" --include="*.usda" # OnCustomEvent bundle attributes deprecated grep -rn "OnCustomEvent" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075685
+include="*.py" --include="*.usd" --include="*.usda" # Bundle/attribute manipulation nodes deprecated grep -rn "ArrayGetSize\|AttributeType\|BundleConstructor\|CopyAttribute\|ExtractPrim\|GetAttributeNames\|HasAttribute\|InsertAttribute\|RemoveAttribute\|RenameAttribute" \ .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075686
+include="*.py" --include="*.usd" --include="*.usda" # Event/render pipeline nodes deprecated grep -rn "UpdateTickEvent\|GpuInteropCudaEntry\|RenderPreprocessEntry\|RpResourceExample" \ .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075687
+include="*.py" --include="*.usd" --include="*.usda" ``` ### Isaac Sim Projects If the project uses Isaac Sim extensions, scan for the `omni.isaac.*` namespace migration (applies Kit 107+): ```bash # omni.isaac.* imports (deprecated → isaacsim.*) grep -rn "omni\.isaac\." .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075688
+include="*.py" --include="*.toml" --include="*.kit" # omni.replicator.isaac (→ isaacsim.replicator.*) grep -rn "omni\.replicator\.isaac" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075689
+include="*.py" --include="*.toml" # Dynamic Control Toolbox (removed as compile-time dep) grep -rn "dynamic_control\|DynamicControl" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075690
+include="*.py" --include="*.cpp" --include="*.h" # SemanticsAPI (→ UsdSemantics.LabelsAPI) grep -rn "add_update_semantics\|SemanticsAPI" .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075691
+Step 5: Apply Fixes > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075692
+Assumes Step 1 detection has run (`$DEPS_DIR`, `$BUILD` are set).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075693
+> **Within-major / feature→production upgrade?** Run **only items 1, 2, 8** below (plus item 3 *if* a feature↔production registry swap is needed), then Step 6 (`validate.md`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075694
+Skip items 4–7** — they apply only when a major boundary is crossed.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075695
+See "Within-major upgrades" under Step 2 in `../SKILL.md`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075696
+Get user approval before modifying files.** Then apply in this order (a full major-boundary upgrade runs all eight): 1.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075697
+Clear extscache** first: `rm -rf _build/*/release/extscache/` 2.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075698
+Update version pin** in `$DEPS_DIR/kit-sdk.packman.xml` 3.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075699
+Update registry URLs** in `.kit` files (see `../references/config_changes.json`) 4.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075700
+Replace deprecated APIs** using patterns in `../references/api_replacements.json` — these are safe regex replacements 5.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075701
+Remove deprecated extension deps** from `extension.toml` and `.kit` files (see `../references/removed_extensions.json`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075702
+For 109→110 specifically:** the following six extensions are removed with **no deprecation notice**, and any lingering reference causes a cryptic `exit code 55` dependency-solver failure.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075703
+They MUST be removed from every `.kit` (and `extension.toml`) file: - `omni.kvdb` - `omni.localcache` - `omni.genproc.core` - `omni.hydra.iray.shadercache.d3d12` - `omni.hydra.iray.shadercache.vulkan` - `omni.kit.viewport.iray` ⚠️ **Check the generated version-lock block, not just `[dependencies]`.** In application `.kit` files these names almost always appear in the auto-generated `[settings.app.exts] enabled = [...]` lock (pinned at the old version, e.g.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075704
+`omni.kvdb-109.0.10`), **not** the hand-authored dependency list.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075705
+Clearing extscache (step 1) does NOT remove them** — you must regenerate the lock: delete the `# BEGIN GENERATED PART` … `# END GENERATED PART` block (the `.kit` says "Remove from 'BEGIN' to 'END' to regenerate") and run `$BUILD precache_exts -c release` so it is rebuilt without the removed extensions.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075706
+Then confirm a clean rebuild (the version stamp should advance to 110 and the six names should be gone).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075707
+(If you are working in an internal `kit-app-template` checkout, the ETM lock file `templates/omni.all.template.extensions.kit` and any internal-registry entries are KAT-internal — wrapped in `# AUTOREMOVE` and stripped from external releases by `repo stage_for_github` — so external customer projects will not contain them.) 6.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075708
+Add explicit deps** where transitive loading was removed: `omni.kit.ui`, `omni.resourcemonitor`, `omni.kit.manipulator.prim.fabric` 7.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075709
+Update build config** in `repo.toml` (VS version, MSVC version, Windows SDK — see `../references/config_changes.json`) 8.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075710
+Step 2.5: Update the Build Toolchain (highest-impact — often the real work) > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075711
+Assumes Step 1 detection has run (`$DEPS_DIR`, `$BUILD` are set).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075712
+Run this **before** touching source code — for a within-major / feature→production bump it is usually the *only* substantive work.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075713
+> **Key principle:** the most valuable part of an upgrade is usually **not** the code changes — it is making sure the project's **tooling** is correctly updated (repo scripts, `repo_man`/repoman, dependency versions).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075714
+This step is therefore **first-class for every upgrade**, and the *primary* step for within-major / branch-transition bumps.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075715
+Run it **before** touching source code.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075716
+Why it matters:** the Kit kernel pin and the repo toolchain are coupled.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075717
+Bumping `kit-sdk.packman.xml` alone frequently fails because packman tokens (e.g.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075718
+`${platform_target_abi}`) only resolve under the matching `repo_man`, and newer kernels expect newer `repo_build` / `repo_kit_tools`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075719
+A pin bump *without* a toolchain bump produces cryptic pull/resolve failures — e.g.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075720
+`Package not found ...gl.linux-x86_64` or `No versions of … = `.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075721
+The toolchain = these files** (see `../references/toolchain.json`): - `$DEPS_DIR/repo-deps.packman.xml` — the `repo_*` tools: `repo_man`, `repo_build`, `repo_kit_tools`, `repo_kit_tools_internal`, `repo_kit_template`, `repo_usd`, `repo_format`, `repo_test`, `repo_package`, `repo_ci`, etc.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075722
+`$DEPS_DIR/kit-sdk.packman.xml` — the kit-kernel pin (updated in Step 5, item 2 — see `apply-fixes.md`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075723
+`tools/packman/` — the packman bootstrap (`packman`, `packman.cmd`, `bootstrap/`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075724
+`repo.sh` / `repo.bat` — the repo wrappers (may need regenerating under a newer `repo_man`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075725
+`repo.toml` — build config (VS/MSVC/WinSDK for Stage 4; see `../references/config_changes.json`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075726
+How to find the correct target versions — do NOT guess:** 1.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075727
+Get a **reference project already on the target Kit version** — the matching `kit-app-template` or `kit-sdk-public` branch for that Kit line, or the target Kit SDK release.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075728
+Read its `repo-deps.packman.xml`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075729
+Prefer the `production/ ` branch** — it carries the vetted, most-current toolchain for that release.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075730
+⚠️ **Toolchain versions track the branch's maintenance cadence, not the kernel number** — a newer kernel line can ship an *older* toolchain (in kit-sdk-public, `feature/main` pins kernel 110.4 with `repo_man` 2.6.4, while the maintained `production/110.1` pins kernel 110.1.3 with a *newer* `repo_man` 2.9.3).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075731
+Always read the target branch's **actual** pins; never assume "newer Kit = newer tools".
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075732
+(Those version numbers are an illustrative snapshot read in 2026 — they **will** go stale; verify against the live branch, do not copy them.)* 2.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075733
+Diff** the project's `$DEPS_DIR/repo-deps.packman.xml` against the reference and align each `repo_*` tool `version=` to the reference.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075734
+Do the same for `tools/packman/` if it differs.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075735
+Apply the versions, then do a **clean rebuild** (Step 6 — see `validate.md`) — the toolchain bump must land before the kernel pin resolves cleanly.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075736
+> This step is safe to run and validate (Step 6) **on its own, first**.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075737
+Many "the upgrade won't build" error loops are nothing more than a stale toolchain — fixing it up front avoids chasing phantom code errors.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075738
+Step 4: Generate Upgrade Report > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075739
+Run after the Step 3 scans (`scan.md`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075740
+Present findings organized by severity.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075741
+Use exact `file:line` references from scan output.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075742
+``` ## Upgrade Report: Kit [FROM] → [TO] Project: [path] Migration stages applied: [e.g., Stage 2 + 3 + 4] ### ❌ Breaking Changes (must fix — build or load will fail) 1.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075743
+[file:line] — [description] → [exact fix] ### ⚠️ Behavioral Changes (no error, but may affect output or performance) 1.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075744
+[file:line] — [description] → [fix or test required] ### 🔔 Deprecated Usage (should fix — will break in next version) 1.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075745
+[file:line] — [description] → [fix] ### ✅ Not Affected - [List the `id` or `title` from `breaking_changes.json` for each pattern that was scanned and returned no matches.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075746
+This serves as a record that the check was performed, not just skipped.] ### 📋 Required Steps Regardless of Code Changes 1.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075747
+Clear extscache: `rm -rf _build/*/release/extscache/` 2.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075748
+Update `kit-sdk.packman.xml`: change version pin to `[TO].x.y+feature.${platform_target_abi}.${config}` 3.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075749
+Update extension registry URLs in `.kit` files (see `../references/config_changes.json`) 4.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075750
+Rebuild all C++ extensions (ABI break at every stage — required even with no source changes) 5.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075751
+Regenerate version lock blocks in `.kit` files: `$BUILD precache_exts -c release` (substitute the build entrypoint detected in Step 1 — `./repo.sh` may not exist on a custom/integrated build) 6.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075752
+If project has an ETM lock file (e.g.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075753
+`omni.all.template.extensions.kit`), regenerate it or manually remove entries for removed extensions 7.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075754
+[stage-specific items, e.g., VS2022 for Stage 4] ### 🧪 Behavioral Tests Required 1.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075755
+[scenes with DomeLights — orientation regression (Stage 3, but inherited in all later stages)] 2.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075756
+[load performance with mergeMaterials setting (Stage 3)] 3.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075757
+[render output with FSD enabled (Stage 3)] 4.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075758
+[MaterialX materials (Stage 4)] 5.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075759
+[transform-heavy workflows after scalar xform ops change (Stage 2)] ``` **Prioritize for the user:** Extension removal errors and ABI rebuild requirements are the most common causes of project failures after a version bump.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075760
+Important Notes by Stage > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075761
+Per-stage reference for the breaking changes summarized in the Step 2 migration table.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075762
+Read the stages that apply to the boundaries you cross.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075763
+Stage 1: 106 → 107 - **Rebuild required** — Linux ABI changed (`_GLIBCXX_USE_CXX11_ABI=0` → `=1`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075764
+All prebuilt `.so` files will fail to load.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075765
+packman XML token**: Update the kit-kernel pin token to `${platform_target_abi}` in all `.packman.xml` files.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075766
+Kit 106 uses the **`${platform}`** form (not `${platform_target}`); both must become `${platform_target_abi}`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075767
+Build-verified:* leaving the old token makes the kit-kernel pull fail immediately with `Package not found on specified remote servers (…gl.linux-x86_64.release)`, because Kit 107's kernel is published only under the ABI string (`manylinux_2_35_x86_64`), not `linux-x86_64`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075768
+Bump the repo toolchain too (required, easy to miss)** — see **Step 2.5** (`toolchain.md`): the token fix alone is **insufficient** — `${platform_target_abi}` only resolves to the ABI string under the newer `repo_man`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075769
+Update `$DEPS_DIR/repo-deps.packman.xml` to the 107-era tooling (`repo_man`, `repo_build`, `repo_kit_tools`, `repo_kit_template`, `repo_usd`) and the packman bootstrap.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075770
+Build-verified:* under 106.5's `repo_man` 1.86.0 the token still resolves to `linux-x86_64`; after the toolchain bump it resolves to `manylinux_2_35_x86_64` and the pull succeeds.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075771
+Carbonite Events 2.0**: The event system changed from push/pump to dispatch.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075772
+No explicit pump calls needed.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075773
+Python payload access changed from `e.payload['key']` to `e['key']`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 075774
+C++17 is now available** explicitly in Premake via `cppdialect = "C++17"`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+
 ## 075775
-Changelog The format is based on [Keep a Changelog]( ## [{{ version }}] - {{current_date}} - Initial version of basic python extension template
-स्रोत: kit-app-template/templates/extensions/basic_python/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+Stage 2: 107 → 108 - **Kit 108 was never publicly released.** These changes still apply when upgrading 107→109.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075776
-{{ extension_display_name }} [{{ extension_name }}] This is an example of pure python Kit extension.
-स्रोत: kit-app-template/templates/extensions/basic_python/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Python 3.12** replaces 3.11.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075777
-It is intended to be copied and to serve as a template to create new ones.
-स्रोत: kit-app-template/templates/extensions/basic_python/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Update all Premake configs, CI configs, and boost_python links.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075778
-[ { "children": [ { "children": [ { "children": [ { "children": [ { "dock_id": 5, "dock_tab_bar_enabled": false, "dock_tab_bar_visible": false, "height": 500.0, "position_x": 0.0, "position_y": 26.0, "selected_in_dock": true, "title": "Viewport", "visible": true, "width": 727.0 } ], "dock_id": 5, "position": "LEFT" } ], "dock_id": 3, "position": "TOP" } ], "dock_id": 1, "position": "LEFT" } ], "dock_id": 3358485147 } ]
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/template/layouts/default.json · स्वतंत्र परीक्षण अपेक्षित।
+OpenUSD 25.02**: All C++ extensions linking OpenUSD must rebuild.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075779
-Changelog The format is based on [Keep a Changelog]( ## [1.0.4] - 2024-04-15 - Rename USD Player -> USD Viewer ## [1.0.3] - 2023-12-08 - Fixed deprecation warnings ## [1.0.2] - 2023-12-07 - Renamed to omni.app.usd_player.setup ## [1.0.1] - 2023-12-04 - Updated runtime profiling setings and precache of required extensions.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+GfMatrix imprecise overloads removed.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075780
-Added proper handling of no stage loading mode in splash creen stage state monitoring.
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+Livestream modularization**: `omni.kit.livestream` (monolithic) → `omni.kit.livestream.app` + `.aov` + `.core`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075781
-[1.0.0] - 2021-04-26 - Initial version of extension UI template with a window
-स्रोत: kit-app-template/templates/extensions/usd_viewer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+`omni.services.livestream.nvcf` → `omni.services.livestream.session`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075782
-Changelog The format is based on [Keep a Changelog]( ## [{{ version }}] - {{ current_date }} - Initial version of basic C++ extension template
-स्रोत: kit-app-template/templates/extensions/basic_cpp/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+Settings paths changed — see `../references/config_changes.json`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075783
-{{ extension_display_name }} [{{ extension_name }}] Simple example of an extension that loads a C++ plugin.
-स्रोत: kit-app-template/templates/extensions/basic_cpp/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Transitive deps removed**: `omni.kit.ui`, `omni.resourcemonitor`, `omni.kit.manipulator.prim.fabric` must now be declared explicitly.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075784
-Changelog The format is based on [Keep a Changelog]( ## [1.0.32] - 2023-11-02 ### Changed - OMFP-3224: Added regression test - Added unit tests for state manager ## [1.0.31] - 2023-10-25 ### Changed - OMFP-3094: Restored Window/Viewport menu ## [1.0.30] - 2023-10-26 ### Changed - OMFP-2904: Show "Examples" by default in Layout mode ## [1.0.29] - 2023-10-25 ### Changed - OMFP-3224: Fix stage template light directions.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+ILayers ABI 1.0 → 1.1**: Recompile all extensions including `ILayers.h`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075785
-[1.0.28] - 2023-10-23 ### Changed - OMFP-2654: Upgraded carb.imgui with omni.kit.imgui ## [1.0.27] - 2023-10-20 ### Changed - OMFP-2649: Missed the Layout item, it is now hidden as requested.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+USD scalar xform ops**: OpenUSD now supports scalar ops (e.g., `xformOp:translateX`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075786
-[1.0.26] - 2023-10-20 ### Changed - Update embedded light rigs and textures ## [1.0.25] - 2023-10-19 ### Changed - Added regression test for OMFP-2304 ## [1.0.24] - 2023-10-19 ### Changed - OMFP-1981: always load the default layout when startup the app ## [1.0.23] - 2023-10-18 ### Changed - OMFP-2649: Hiding menu entries.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+Code iterating over xform ops that assumes all are vector types may behave incorrectly.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075787
-[1.0.22] - 2023-10-18 ### Changed - Updated About dialog PNG to match the new application icon.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+Stage 3: 108 → 109 - **CUDA 12.4.1 driver requirement**: Linux minimum 550.54.15, Windows minimum 551.78.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075788
-[1.0.21] - 2023-10-18 ### Changed - OMFP-2737: Do no rebuild menu (change menu layout) if layout is same ## [1.0.20] - 2023-10-18 ### Changed - make windows invisible which are not desired to be in Review mode, OMFP-2252 activity progress window and OMFP-1981 scene optimizer window.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+Apps fail to start with older drivers.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075789
-OMFP-1981: when user switch between modes, make sure the user defined layout in Layout mode is kept.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+NumPy 2.x**: Many breaking changes.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075790
-[1.0.13] - 2023-10-11 ### Changed - OMFP-2328: Fix "Sunnysky" oriented incorrectly ## [1.0.12] - 2023-10-10 ### Changed - OMFP-2226 - Remove second Viewport menu item from layouts.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+On Windows, the default integer type changed from `int32` to `int64` — can cause silent correctness issues.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075791
-[1.0.11] - 2023-10-11 ### Changed - Added UI state manager.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+Fabric ABI break**: Even if no source changes needed (no TokenC/PathC usage), all extensions including Fabric headers must recompile — `Token`/`Path` became trivially copyable, which is a binary ABI change.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075792
-[1.0.10] - 2023-10-10 ### Changed - Deactivate tools when app mode is changed.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+Use `token.isNull()` instead of `kUninitializedToken`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075793
-[1.0.9] - 2023-10-09 ### Changed - OMFP-2200 - Disabling the viewport expansion, this should keep us locked to a 16:9 aspect ratio.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+mimalloc (Windows)**: Cross-DLL allocation/free pairs that cross a DLL boundary may now crash.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075794
-[1.0.8] - 2023-10-06 ### Changed - Added a new stage template and made it default ## [1.0.7] - 2023-10-06 ### Changed - Enable UI aware "expand_viewport" mode rather than lower-level fill_viewport mode ## [1.0.6] - 2023-10-05 ### Changed - Used allowlists for building main menu entries to guard against unexpected menus.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+Use `kit-sysalloc.exe` for compatibility testing.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075795
-[1.0.5] - 2023-10-05 ### Fixed - Regression in hiding viewport toolbar.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+mergeMaterials**: Default changed — can cause significant load time regression with no code error.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075796
-[1.0.4] - 2023-10-04 ### Changed - Modify mode now shows selected menus on main menubar.
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+FSD default on**: If previously disabled FSD, test render output carefully.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075797
-[1.0.3] - 2023-10-04 - Hide Viewport top toolbar in Comment Mode ## [1.0.2] - 2023-10-03 - Navigation Toolbar hidden by default in Modify Mode ## [1.0.1] - 2023-09-27 - Renamed to omni.usd_explorer.setup ## [1.0.0] - 2021-04-26 - Initial version of extension UI template with a window
-स्रोत: kit-app-template/templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+DomeLight orientation**: USD 25.05 changed the default orientation.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075798
-Changelog The format is based on [Keep a Changelog]( ## [{{ version }}] - {{current_date}} - Initial version of extension UI template with a window
-स्रोत: kit-app-template/templates/extensions/python_ui/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+Visual change only — no code error.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075799
-{{ extension_display_name }} [{{ extension_name }}] A simple python UI extension example.
-स्रोत: kit-app-template/templates/extensions/python_ui/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Use `UpgradeUsdLuxLightsCommand` for assisted migration.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075800
-Use it as a starting point for your extensions.
-स्रोत: kit-app-template/templates/extensions/python_ui/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Stage 4: 109 → 110 - **Clear extscache first** — stale Kit 109 entries cause exit-55 dependency solver failure.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075801
-Changelog The format is based on [Keep a Changelog]( ## [{{ version }}] - 2024-03-13 - Initial version based on kit service extension template
-स्रोत: kit-app-template/templates/extensions/service.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+Silent extension removals**: `omni.kvdb`, `omni.localcache`, `omni.genproc.core`, `omni.hydra.iray.shadercache.d3d12`, `omni.hydra.iray.shadercache.vulkan`, `omni.kit.viewport.iray` — all removed with no deprecation notice.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075802
-{{ extension_display_name }} [{{ extension_name }}] This is an example of a simple Kit Service extension.
-स्रोत: kit-app-template/templates/extensions/service.setup/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+First symptom is a cryptic exit-55 dependency solver failure.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075803
-It is intended to be copied and to serve as a template to create new ones.
-स्रोत: kit-app-template/templates/extensions/service.setup/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Remove every reference from `.kit`/`extension.toml` files — including the auto-generated `[settings.app.exts] enabled = [...]` version-lock block, where they usually hide pinned at the old version (clearing extscache alone won't drop them; regenerate the lock with `precache_exts` — see Step 5, item 5 in `apply-fixes.md`).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075804
-Version Bump Skill Automates kit-sdk version bumps by updating version files, creating a branch, committing, and optionally pushing a merge request.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Also scan `templates/` and ETM lock files** — these are easily missed by `source/`-only scans.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075805
-Read Current State Read these files to determine the current version: - `tools/VERSION.md` — contains the current version string (e.g.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+DomeLight orientation (inherited from Stage 3)**: If the project contains DomeLights and was not verified during a previous Stage 3 upgrade, the USD 25.05 orientation change is a permanent behavioral difference.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075806
-`110.0.0-stage.17`) - `tools/deps/kit-sdk.packman.xml` — contains the current kit-kernel packman version in the `version="..."` attribute Display the current version and kit-kernel version to the user.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Search with `grep -rn 'DomeLight' .
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075807
-Ask Build Type Use `AskUserQuestion` to ask: **"Is this a stage or rc build?"** with two options: `stage` and `rc`.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+include='*.py' --include='*.usd'` and use `UpgradeUsdLuxLightsCommand` if scenes were not migrated.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075808
-Show the current version from `tools/VERSION.md` for context.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+`optional ` semantics**: `if(b)` now tests *presence*, not *value*.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075809
-Compute New Version Parse the current version from `tools/VERSION.md` which follows the format `X.Y.Z- .
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Code that previously worked may now be wrong silently.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075810
-`110.0.0-stage.17`).
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+`g_carbClientName`**: Type changed to `zstring_view`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075811
-Apply these transition rules: | Current Version | User picks | New Version | |---|---|---| | `X.Y.Z-stage.N` | stage | `X.Y.Z-stage.(N+1)` | | `X.Y.Z-stage.N` | rc | `X.Y.Z-rc.1` | | `X.Y.Z-rc.N` | rc | `X.Y.Z-rc.(N+1)` | | `X.Y.Z-rc.N` | stage | `X.Y.(Z+1)-stage.1` | Display the computed new version to the user.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Any direct string assignment or comparison breaks.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075812
-Auto-Detect Latest kit-kernel Version Query the omnipackages API to find available kit-kernel versions: ```bash curl -s " %2B&remote=cloudfront" ``` Where ` ` is extracted from the current version (e.g.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Hydra 2 removed**: No migration path.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075813
-Parse the JSON response: - Extract the `name` field from each item in the `items` array - Strip the platform/config suffix using this regex to get the base version: `^([\d.]+\+\w+\.\d+\.[a-f0-9]+\.gl)\.` - Deduplicate the base versions (multiple platform variants share the same base) - They are already sorted by `modificationTime` (newest first) Read the current kit-kernel version from `tools/deps/kit-sdk.packman.xml` to identify which ones are newer.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Hydra 1 (Storm) and RTX remain.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075814
-If the newest available version matches the current kit-kernel version (i.e.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+OmniGraph bundle nodes**: Large set of bundle/attribute manipulation nodes deprecated.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075815
-there are no newer versions), notify the user that the kit-kernel is already up to date and exit without making any file changes.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Deprecation warnings visible in editor from Kit 110.1+.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075816
-Otherwise, present the top available versions newer than the current one (up to 4) to the user via `AskUserQuestion`, with the newest version marked as "(Recommended)".
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+`AttributeType` → `GetAttributeType`, `ArrayGetSize` → `ArrayLength`, `ExtractPrim` → `ReadPrim`, `GetAttributeNames` → `ReadPrimAttributes`, `InsertAttribute` → `WritePrimAttribute`.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075817
-The "Other" option is automatically available for the user to paste a custom version.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+`BundleConstructor`, `RemoveAttribute`, `RenameAttribute` have no direct replacement — redesign graphs.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075818
-Show the current kit-kernel version for reference in the question text.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+OpenUSD 25.11**: All C++ extensions linking OpenUSD must rebuild.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075819
-Edit 3 Files Using the new version string from step 3 and the kit-kernel version from step 4: 1.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Ndr/Sdr libraries consolidated — update include paths.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075820
-`tools/VERSION.md`**: Replace the entire file content with the new version string (e.g.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+VS2022 required** on Windows (was VS2019).
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075821
-`110.0.0-stage.18`).
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+New extensions in Kit 110**: `omni.grpc.lib`, `omni.protobuf.lib`, `omni.sensors.nv.*` (camera/lidar/radar/ultrasonic/ids/wpm), `omni.kit.xr.core` — available for use in Kit 110 apps.
+स्रोत: kit-app-template/.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075822
-Do NOT include a trailing newline.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Developer Bundle Extensions ## Overview The Developer Bundle Extension (`omni.kit.developer.bundle`) provides a set of developer focused tools designed to enhance the development and debugging process within Omniverse Kit applications.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075823
-`tools/deps/kit-sdk.packman.xml`**: Replace the `version="..."` attribute value on the ` ` line.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Each of the extensions within the bundle aims streamline a specific aspects of Omniverse application and extension development.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075824
-The new value should be the selected kit-kernel base version + `.${platform_target_abi}.${config}`.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Enabling the Developer Bundle Application templates within the Kit App Template repository have `omni.kit.developer.bundle` configured within the `.kit` file by default.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075825
-For example: ``` version="110.0.0+feature.275000.abcd1234.gl.${platform_target_abi}.${config}" ``` 3.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+For applications that do not, the Developer Bundle can be added temporarily at launch time using the `--dev-bundle` or `-d` flag.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075826
-`templates/omni.all.template.extensions.kit`**: Replace the `# Kit SDK Version:` comment line.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux** ```bash ./repo.sh launch --dev-bundle ``` **Windows** ```powershell .\repo.bat launch --dev-bundle ``` The `launch` tool will prompt for a selection of a `.kit` file to launch.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075827
-The new value should use just the base version (without platform suffix).
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Select the desired UI based application.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075828
-For example: ``` # Kit SDK Version: 110.0.0+feature.275000.abcd1234.gl ``` ### 6.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+The developer bundle is not currently suitable for headless services.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075829
-Confirm and Push Use `AskUserQuestion` with yes/no options to confirm.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+Developer Bundle Extensions Developer Utilities are designed to assist developers in various aspects of application development, from debugging to extension management.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075830
-The question should summarize the changes: - Previous version → new version (e.g.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+These utilities offer insight into the internal workings of an application and its extensions.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075831
-`110.0.0-stage.17` → `110.0.0-stage.18`) - Previous kit-kernel → new kit-kernel version - Ask: **"Create branch, commit, and push merge request?"** If the user declines, revert the 3 files back to their original content (restore the values read in step 1) and stop.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+[Developer > Extensions] omni.kit.window.extensions**: The most popular utility, this tool manages available extensions.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075832
-If the user accepts, perform these substeps: **6a.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+It provides quick access to the extension registry and local extensions, simplifying the process of adding dependencies for developer extensions and applications.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075833
-Create Branch** Before creating the new branch, capture the current branch name to use as the MR target: ```bash git rev-parse --abbrev-ref HEAD ``` Derive the git username by running `git config user.email` and extracting the part before `@`.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+[Developer > Commands] omni.kit.window.commands**: Captures the command history within a running application.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075834
-Create and switch to a new branch: ```bash git checkout -b / ``` For example: `gamato/110.0.0-stage.18` **6b.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+It is particularly useful for developers who interact with the UI, allowing them to capture the commands used to execute specific functionalities.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075835
-Commit** Stage and commit exactly the 3 modified files: ```bash git add tools/VERSION.md tools/deps/kit-sdk.packman.xml templates/omni.all.template.extensions.kit git commit -m " " ``` The commit message is just the version string (e.g.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+[Developer > Script Editor] omni.kit.window.script_editor**: A simplified script editor for running short code snippets directly within the application.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075836
-`110.0.0-stage.18`), matching the existing convention.
-स्रोत: kit-app-template/.claude/skills/version_bump/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
+It's a helpful tool for testing small pieces of code before integrating them into a project.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075837
-Runs a set of commands using the runners shell - name: Run a multi-line script run: | echo Add other actions to build, echo test, and deploy your project.
-स्रोत: omniverse-marketplace/.github/workflows/blank.yml · स्वतंत्र परीक्षण अपेक्षित।
+Additionally, it offers useful sample scripts that can be executed live.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075838
-name: Deploy GitHub Pages on: push: branches: - main jobs: deploy: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Deploy to GitHub Pages uses: peaceiris/actions-gh-pages@v3 with: github_token: ${{ secrets.GITHUB_TOKEN }} publish_dir: ./
-स्रोत: omniverse-marketplace/.github/workflows/pages.yml · स्वतंत्र परीक्षण अपेक्षित।
+[Developer > VS Code Link] omni.kit.debug.vscode**: VSCode python debugger support window.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075839
-शिरोमणि रामपाल सैनी — Omniverse Digital Portal शिरोमणि रामपाल सैनी ऑडियो संग्रह फोटो एल्बम प्रोजेक्ट्स सोशल मीडिया शिरोमणि रामपाल सैनी डिजिटल आर्काइव Omniverse डिजिटल प्लेटफ़ॉर्म, ऑडियो संग्रह, अनुसंधान एवं फोटो एल्बम का संपूर्ण संग्रह।
-स्रोत: shiromani-rampal-saini/public/index.html · स्वतंत्र परीक्षण अपेक्षित।
+This utility allows developers to step through their python code in VSCode while running the application.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075840
-Sacred Audio शिरोमणि अंनत असीम इश्क़ की क्षमता यह ध्वनि केवल श्रवण नहीं, चेतना की अनुभूति है।
-स्रोत: shiromani-rampal-saini/public/index.html · स्वतंत्र परीक्षण अपेक्षित।
+[Developer > Debug Settings] omni.kit.debug.settings**: This utility provides a detailed view of the configurable settings for extensions within an application, making it easier to tweak and optimize extension behavior.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075841
-▶ अंनत असीम इश्क़ – दिव्य ध्वनि Track 1 Track 2 Track 3
-स्रोत: shiromani-rampal-saini/public/index.html · स्वतंत्र परीक्षण अपेक्षित।
+:warning: The Developer Bundle extensions require a UI based application with a menu bar to run properly.
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075842
-Runs a set of commands using the runners shell - name: Run a multi-line script run: | echo Add other actions to build, echo test, and deploy your project.
-स्रोत: Omniverse-/.github/workflows/blank.yml · स्वतंत्र परीक्षण अपेक्षित।
+They will not work as expected for headless services or in applications that do not display a menu bar
+स्रोत: kit-app-template/readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075843
-🔗 Shirmani Research Repositories — Central Integration यह फ़ाइल दो मौजूदा repositories को **Nishpaksh Samaj Omniverse Truth** के केंद्रीय ज्ञान-संग्रह से जोड़ती है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Kit Application Streaming ## Overview Kit SDK templates and tooling enable the creation streaming-ready Omniverse Kit applications and aid in the packaging/containerization in preparation for deployment.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075844
-Shirmani Research Paper Repository: मुख्य विषय: - Time Deconstruction Theory - Neurobiology of Self - Ego Dissolution Framework - Heart-Mind Balance Model - research presentation / publication material केंद्रीय परियोजना में इसकी भूमिका: **Research Papers / Research Archive** ## 2.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+This document outlines how to set up, configure, and package Kit applications for a streaming deployment.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075845
-इससे पुराने Git इतिहास, स्वतंत्र GitHub Pages और मौजूदा सामग्री सुरक्षित रहती है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+:warning: **Important :** Creation of containerized streaming applications must be done from a Linux environment.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075846
-आगे आवश्यकता होने पर चयनित सामग्री को केंद्रीय repository में **स्रोत-संदर्भ और मूल repository attribution के साथ** व्यवस्थित रूप से पुनर्संयोजित किया जा सकता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Create and Configure an Application Choose a template from the options below, then follow the instructions in the template README.md to create your application using the `template new` command: - **[Kit Base Editor](../../templates/apps/kit_base_editor/)**: A minimal application for loading, manipulating, and rendering OpenUSD content through a graphical interface.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075847
-केंद्रीय repository = canonical knowledge hub 2.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+[USD Composer](../../templates/apps/usd_composer)**: A template for authoring complex OpenUSD scenes (e.g., configurators).
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075848
-Research Paper repository = research archive 3.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+[USD Explorer](../../templates/apps/usd_explorer)**: A template for exploring and collaborating on large OpenUSD scenes.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075849
-Research Institute repository = institute/archive/media layer 4.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+[USD Viewer](../../templates/apps/usd_viewer)**: A streamlined, viewport-only application well-suited for remote streaming to web pages.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075850
-सभी repositories में परस्पर स्पष्ट navigation 5.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+What Are Application Layers?
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075851
-duplicate सामग्री को धीरे-धीरे कम करना 6.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+An **application layer** is a separate `.kit` configuration file that extends your base application for a specific deployment scenario.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075852
-प्रत्येक बड़े दावे के लिए स्रोत/स्थिति/अनिश्चितता स्पष्ट रखना --- **Canonical Hub:** *Integration document — continuously maintained.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Instead of modifying your main application, layers let you create variants optimized for different use cases: - **Base application** (`my_app.kit`): Your core application with all features and UI - **Streaming layer** (`my_app_streaming.kit`): Inherits from base, adds streaming extensions and settings This approach keeps your base application clean while enabling different deployment modes (local desktop, cloud streaming, etc.) from the same codebase.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075853
-Research Paper 17 — Practical Self-Observation Framework ## Status Conceptual/methodological proposal.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Adding a Streaming Layer During the templating process, you will be prompted: ```bash Do you want to add application layers?
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075854
-Abstract यह paper “खुद का निरीक्षण” को एक structured reflective practice के रूप में स्पष्ट करने का प्रयास करता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+``` Answer `yes` to enable streaming for your application.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075855
-इसे किसी विशेष मानसिक या चिकित्सीय परिणाम की गारंटी के रूप में प्रस्तुत नहीं किया जाता।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+You can then pick from the following streaming layers: ```bash ?
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075856
-Framework **घटना → तत्काल अनुभव → विचार/व्याख्या → प्रतिक्रिया → परिणाम → पुनरावलोकन** ## Safeguards - अनुभव और तथ्य अलग रखें।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Do you want to add application layers?
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075857
-स्मृति को पूर्ण रिकॉर्ड न मानें।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Browse layers with arrow keys ↑↓: [SPACE to toggle selection, ENTER to confirm selection(s)] ❯ [ ] [omni_default_streaming]: Omniverse Kit App Streaming (Default) [ ] [nvcf_streaming]: NVCF Streaming ``` - **Omniverse Kit App Streaming (Default):** Ideal for self-managed streaming deployments or local streaming during development.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075858
-बाहरी प्रमाण उपलब्ध हो तो जाँचें।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Uses [`omni.kit.livestream.webrtc`]( for WebRTC-based streaming.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075859
-असहमति को त्रुटि का प्रमाण न मानें।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Choose this for local testing, Kubernetes deployments, or custom infrastructure.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075860
-नकारात्मक परिणामों को छिपाएँ नहीं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+NVCF Streaming:** Required for applications deployed on NVIDIA DGX Cloud via NVIDIA Cloud Functions.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075861
-Proposed study एक स्पष्ट दैनिक निरीक्षण प्रोटोकॉल बनाया जा सकता है, जिसकी adherence और self-reported outcomes को पूर्वनिर्धारित तरीके से दर्ज किया जाए।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Adds [`omni.services.livestream.session`]( which implements NVCF-specific health endpoints and session management.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075862
-यदि भविष्य में अध्ययन किया जाए तो protocol, sample, analysis और limitations सार्वजनिक किए जाएँ।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+See the [DGXC Deployment Guide](dgxc_nvcf_deployment.md) for configuration details.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075863
-Conclusion खुद का निरीक्षण तभी अधिक उपयोगी शोध-पद्धति बन सकता है जब वह स्पष्ट, दोहराने योग्य और आत्म-संशोधन के लिए खुला हो।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+After creating your application, you'll find two `.kit` files in the `/source/apps/` directory: - `{app_name}.kit`: The main application configuration file.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075864
-शमीकरण: एक संतुलित परीक्षण-पद्धति **प्रकार:** Theoretical / Methodological Paper **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश “शमीकरण” को अनुभव, विचार, प्रमाण और वैकल्पिक व्याख्याओं के बीच संतुलित परीक्षण की प्रस्तावित पद्धति के रूप में व्यवस्थित किया गया है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+`{app_name}_{streaming_config}.kit`: The streaming configuration file.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075865
-उद्देश्य पूर्वनिर्धारित निष्कर्ष को सिद्ध करना नहीं, बल्कि निष्कर्ष बनने की प्रक्रिया को पारदर्शी बनाना है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+Adding Layers to an Existing Application If you didn't add streaming layers during initial setup, or want to add additional layers later, use the `modify` command: **Linux:** ```bash ./repo.sh template modify ``` **Windows:** ```powershell .\repo.bat template modify ``` When prompted, select the application `.kit` file to update, then choose the layer(s) to add.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075866
-शोध प्रश्न क्या अनुभव → प्रश्न → प्रमाण → वैकल्पिक व्याख्या → संशोधन का चक्र उपयोगी सामान्य पद्धति बन सकता है?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+After the operation completes, rebuild the project with `./repo.sh build` or `.\repo.bat build`.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075867
-पद्धति अवधारणा-विश्लेषण, उदाहरण-निर्माण और भविष्य के empirical परीक्षण के लिए operational definitions।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+For more details on the `modify` command, see the [Tooling Guide](kit_app_template_tooling_guide.md#modify).
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075868
-प्रस्तावित प्रक्रिया **अनुभव → दावा → प्रश्न → प्रमाण → प्रतिवाद → वैकल्पिक व्याख्या → निष्कर्ष → पुनर्परीक्षण** ## सीमाएँ “शमीकरण” इस परियोजना में प्रस्तावित शब्द और मॉडल है; इसकी स्वतंत्र अकादमिक मान्यता या प्रभावशीलता इस पत्र से स्थापित नहीं होती।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+> **Note:** The `modify` command works with applications created using Kit App Template 107.3 or newer.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075869
-निष्कर्ष पद्धति की सबसे महत्वपूर्ण कसौटी उसका स्वयं परीक्षण योग्य होना है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+Testing Locally If you added the **Omniverse Kit App Streaming** layer, you can test your application locally.
+स्रोत: kit-app-template/readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075870
-Research Paper 16 — Nature-Compatible Philosophy ## Status Conceptual/philosophical paper.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Testing Applications and Extensions From the perspective of the Omniverse Kit SDK, everything is an extension — including the `.kit` files that define applications.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075871
-No empirical results are claimed.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+The `test` tool (`repo_test`) reflects this: it validates that your applications start up and shut down cleanly, and it runs the automated tests defined within your extensions.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075872
-Abstract यह paper निष्पक्ष समझ के संदर्भ में मनुष्य-प्रकृति संबंध के लिए एक परीक्षणयोग्य वैचारिक ढाँचा प्रस्तावित करता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Each extension template provided by the `kit-app-template` repository ships with sample tests that you can expand to grow your coverage.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075873
-केंद्रीय प्रश्न है: क्या किसी जीवन-दृष्टि को उसके घोषित मूल्यों के साथ-साथ उसके वास्तविक पर्यावरणीय प्रभावों से भी परखा जाना चाहिए?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+This document covers running tests, understanding what is tested, and adding your own tests.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075874
-Core propositions 1.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Prerequisites: Build Before You Test The test tool runs against the contents of the `_build` directory, so a successful build must precede any test run.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075875
-मूल्य-घोषणा और वास्तविक व्यवहार अलग चीजें हैं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+If you have changed source since your last build, rebuild first.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075876
-प्रकृति-सम्मत दावा प्रभाव के प्रमाण से मजबूत या कमजोर हो सकता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` > **Note:** Tests run against a specific build configuration.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075877
-व्यक्तिगत अनुभव सार्वभौमिक वैज्ञानिक निष्कर्ष के समान नहीं है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+By default the tooling builds and tests the `release` configuration.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075878
-वैकल्पिक व्याख्याएँ हमेशा दर्ज की जानी चाहिए।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+If you build `debug`, pass the matching `--config debug` flag when testing.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075879
-Proposed research questions - कौन-से दैनिक व्यवहार पर्यावरणीय प्रभाव को सबसे अधिक बदलते हैं?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Running Tests ### Run the Default Test Suite Running `test` with no arguments executes the repository's default test suite (`alltests`).
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075880
-क्या आत्म-निरीक्षण आधारित अभ्यास व्यवहार में मापने योग्य परिवर्तन ला सकते हैं?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+The tool discovers every test-enabled extension in the build, launches each within the Kit test harness, and reports the aggregated results.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075881
-किन परिस्थितियों में व्यक्तिगत संतुष्टि और पर्यावरणीय जिम्मेदारी में तनाव पैदा होता है?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` For each test-enabled extension — and each application `.kit` file — the tool starts a dedicated Kit process, loads the extension along with its test dependencies, runs the tests, and verifies a clean shutdown.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075882
-Method proposal पूर्व-पंजीकृत परिकल्पनाएँ, स्पष्ट outcome measures, comparison groups जहाँ उपयुक्त हों, और reproducible analysis।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Listing Tests Without Running Them Use `--list` (`-l`) to enumerate the tests that would run without executing them.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075883
-वास्तविक अध्ययन होने तक कोई परिणाम नहीं माना जाएगा।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+This is useful for confirming that a newly added extension or test is being discovered.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075884
-Conclusion दार्शनिक प्रस्ताव को व्यवहारिक परिणामों से जोड़ने के लिए प्रमाण और आत्म-संशोधन दोनों आवश्यक हैं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh test --list ``` **Windows:** ```powershell .\repo.bat test --list ``` ### Running a Subset of Tests Use `--filter-files` (`-f`) to narrow a run to specific test files, modules, classes, or individual tests.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075885
-निष्पक्ष समझ का वैचारिक मॉडल **प्रकार:** Conceptual / Philosophical Research Paper **लेखक:** शिरोमणि रामपॉल सैनी **स्थिति:** प्रारंभिक वैचारिक मसौदा ## सारांश यह शोध-पत्र “निष्पक्ष समझ” को ऐसी वैचारिक प्रक्रिया के रूप में प्रस्तावित करता है जिसमें व्यक्ति अपने अनुभव, विश्वास और निष्कर्षों पर समान परीक्षण-कसौटी लागू करता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+This shortens the feedback loop while iterating on a single extension.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075886
-यह किसी सार्वभौमिक सत्य की स्थापना का दावा नहीं करता; उद्देश्य एक परीक्षण योग्य दार्शनिक मॉडल प्रस्तुत करना है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh test -f my_company.my_extension ``` **Windows:** ```powershell .\repo.bat test -f my_company.my_extension ``` > **Note:** The accepted `--filter-files` format depends on the underlying test executor.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075887
-मुख्य शब्द:** निष्पक्ष समझ, आत्म-परीक्षण, प्रमाण, तर्क, आत्म-संशोधन ## 1.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+For the Python (`omni.kit.test` / `unittest`) tests used by the extension templates, you may specify modules, classes, or individual tests.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075888
-शोध समस्या व्यक्तिगत विश्वास अनुभव, संस्कृति, प्राधिकार और पूर्व धारणाओं से प्रभावित हो सकते हैं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+Run `./repo.sh test -h` for the full description.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075889
-प्रश्न यह है कि क्या व्यक्ति अपने विचारों पर वही कसौटी लागू करता है जो दूसरों के विचारों पर करता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+Selecting a Build Configuration By default the test tool targets the `release` configuration.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075890
-शोध प्रश्न क्या “समान कसौटी” को स्पष्ट वैचारिक मॉडल में बदला जा सकता है?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+To test a `debug` build, pass `--config` (`-c`).
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075891
-वैकल्पिक व्याख्या देखना 5.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+The configuration must match the one you built.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075892
-नए प्रमाण पर निष्कर्ष संशोधित करना ## 4.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh test --config debug ``` **Windows:** ```powershell .\repo.bat test --config debug ``` ### Other Useful Options | Option | Purpose | |--------|---------| | `-s, --suite` | Select which test suite(s) to run (default: `alltests`).
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075893
-पद्धति यह दार्शनिक अवधारणा-विश्लेषण है; empirical study नहीं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `-f, --filter-files` | Run only tests matching a file/module/class/test pattern.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075894
-भविष्य का परीक्षण प्रतिभागियों से अपने और दूसरे व्यक्ति के समान प्रकार के दावों का मूल्यांकन कराया जा सकता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `-l, --list` | List the discovered tests and exit without running them.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075895
-निष्पक्षता का operational measure पहले से तय करना होगा।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `-c, --config` | Test the `release` (default) or `debug` build configuration.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075896
-सीमाएँ वर्तमान पत्र वास्तविक प्रतिभागियों या सांख्यिकीय परिणामों का दावा नहीं करता।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `-p, --from-package` | Test an application package instead of the local build (see *Testing a Packaged Application* below).
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075897
-निष्कर्ष निष्पक्ष समझ को अंतिम उत्तर के बजाय आत्म-संशोधन की पद्धति के रूप में देखना इसे परीक्षण योग्य बनाता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `-e, --extra-arg` | Pass an additional argument through to the test process.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075898
-Research Paper 18 — Language, Art, Culture and Public Knowledge ## Abstract This conceptual paper examines how language, artistic expression, cultural inheritance, and digital publication interact with philosophical claims.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `--coverage` | Produce a Python code-coverage report after the run (for supported suite types).
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075899
-The paper proposes a distinction between experience, interpretation, hypothesis, and externally verifiable fact.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `--generate-report` | Run the configured report-generation command, if one is set, after all tests complete.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075900
-Status This is a **conceptual and methodological paper**.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+| For the complete, authoritative list of options, run: **Linux:** ```bash ./repo.sh test -h ``` **Windows:** ```powershell .\repo.bat test -h ``` --- ## What Gets Tested ### Application Startup and Shutdown Every application `.kit` file is validated to confirm it can start up and shut down without error.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075901
-It reports no completed experiment, participant sample, statistical result, or causal finding.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+This catches broken dependencies and misconfiguration early — a large portion of application health is covered simply by verifying that the fully assembled set of extensions loads cleanly.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075902
-Core model **Experience → Expression → Interpretation → Claim → Evidence → Public dialogue → Revision** The model is intended to reduce a common category error: treating a personally meaningful experience as if every interpretation derived from it were automatically an externally established fact.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+An application declares how it should be launched during testing through a `[[test]]` table in its `.kit` file.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075903
-Research questions 1.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+For example, the Kit Base Editor template includes: ```toml [[test]] args = [ "--/app/file/ignoreUnsavedOnExit=true" ] ``` The `args` are passed to the Kit process when the application is tested.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075904
-Does clearer separation of experience and factual claims improve reader comprehension?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Extensions opt into testing with a `[[test]]` table in their `extension.toml`, which may declare test-only dependencies and extra arguments: ```toml [[test]] dependencies = [ "omni.kit.ui_test", # UI testing helper, loaded only during tests ] args = [ ] ``` Dependencies listed here are loaded only for the test run — a convenient place to pull in helpers such as `omni.kit.ui_test` without adding them to your extension's runtime dependencies.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075905
-Does plain-language presentation improve accessibility without reducing conceptual precision?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Writing Tests Tests use `omni.kit.test`, Python's standard `unittest` module wrapped to support `async`/`await`.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075906
-Can structured counterargument sections improve readers' ability to distinguish claims from evidence?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Placing a test class derived from `omni.kit.test.AsyncTestCase` at the root of a module within your extension's `tests/` package makes it auto-discoverable — no registration step is required.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075907
-How do poetry, music, and visual art affect reflection without being mistaken for empirical evidence?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Every extension template includes a `tests/` package with a sample test to build on.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075908
-Does version-controlled publication improve correction and traceability of public philosophical material?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+To add coverage, place additional `test_*.py` modules in the extension's `tests/` package and grow the assertions from there.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075909
-Proposed study design A future study could preregister: - participant eligibility, - comprehension measures, - comparison texts, - randomization procedure where appropriate, - primary and secondary outcomes, - exclusion criteria, - analysis plan, - adverse or null-result reporting.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Because tests are standard `unittest` cases, refer to the [Python `unittest` documentation]( for available assertion methods and patterns.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075910
-No outcome should be claimed until data are actually collected and analyzed.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Test Suites and Configuration The behavior of the test tool for this repository is configured under `[repo_test]` in the top-level `repo.toml`.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075911
-Ethical principles - Do not manufacture evidence.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+The most relevant settings are the default suite and any per-suite exclusions: ```toml [repo_test] default_suite = "alltests" [repo_test.suites."alltests"] exclude = [ # Setup extension tests are exercised as part of application testing "tests-omni.usd_explorer.setup${shell_ext}", ] ``` - **`default_suite`** determines which suite runs when you invoke `test` without `--suite`.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075912
-Do not present artistic symbolism as scientific proof.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+.exclude`** removes specific test executables from a suite — useful when a set of tests is already covered elsewhere.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075913
-Do not conceal meaningful counterarguments.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Adjust these settings as your project grows to control exactly what the default `./repo.sh test` run covers.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075914
-Preserve uncertainty where evidence is incomplete.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Testing a Packaged Application In addition to testing the local build, the tool can run the suite against a packaged application archive — useful for validating a package before distribution.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075915
-Correct public errors visibly.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Use `--from-package` (`-p`), which by default looks for an archive in `_build/packages`.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075916
-Respect readers' freedom to disagree.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh test --from-package ``` **Windows:** ```powershell .\repo.bat test --from-package ``` The archive pattern is configurable in `repo.toml`: ```toml [repo_test] # When running from a package, find the archive using this pattern: archive_pattern = "${root}/_build/packages/*.zip" ``` > **Note:** Package testing is intended for the "fat" package type, which already contains the Kit Kernel and all extensions, so no additional download is required to run the tests.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075917
-Practical publication standard Each major public claim should, where feasible, carry one of these labels: **[EXPERIENCE] [PHILOSOPHICAL CLAIM] [HYPOTHESIS] [FACT + SOURCE] [OPEN QUESTION]** This labeling system can be implemented across the digital corpus.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+See [Packaging An Application]( for how to create a package.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075918
-Conclusion A philosophy can remain deep while becoming more testable.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Testing in Continuous Integration `repo test` is the same entry point used by automated pipelines, so tests you run locally behave consistently in CI.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075919
-A poem can remain poetic while clearly being presented as poetry.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Keeping the sample tests passing — and expanding them as you add functionality — helps ensure your applications and extensions remain buildable, launchable, and correct as the project evolves.
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075920
-A personal experience can remain meaningful without being promoted beyond what its evidence supports.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Additional Resources - [Packaging An Application]( - [Kit SDK Tooling Guide](kit_app_template_tooling_guide.md) - [Kit SDK Companion Tutorial]( - [Python `unittest` documentation](
+स्रोत: kit-app-template/readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075921
-The proposed framework therefore treats clarity, openness to criticism, and self-correction as integral parts of public philosophical practice.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/18-LANGUAGE-ART-CULTURE-AND-PUBLIC-KNOWLEDGE.md · स्वतंत्र परीक्षण अपेक्षित।
+Usage and Troubleshooting This section provides high-level information and guidance related to using the Kit App Template repository, along with troubleshooting tips for common issues.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075922
-स्वतंत्र समझ और प्राधिकार **प्रकार:** Conceptual Social Philosophy **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र जाँचता है कि व्यक्ति किसी गुरु, संस्था, शिक्षक या अन्य प्राधिकार की बात को किस प्रकार स्वतंत्र रूप से परख सकता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md · स्वतंत्र परीक्षण अपेक्षित।
+Usage Information ### A Project per Repository The `build` and `package` tooling provided in this repository is designed to capture all code and assets contained within the `/source` directory.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075923
-लक्ष्य प्राधिकार को स्वतः अस्वीकार या स्वीकार करना नहीं, बल्कि प्रमाण और तर्क को स्वतंत्र कसौटी के रूप में रखना है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md · स्वतंत्र परीक्षण अपेक्षित।
+Each time the `template new` command is executed, a new application or extension is created within `/source`.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075924
-शोध प्रश्न क्या प्राधिकार और स्वतंत्र परीक्षण के बीच ऐसा मॉडल बनाया जा सकता है जिसमें दोनों के कार्य स्पष्ट हों?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md · स्वतंत्र परीक्षण अपेक्षित।
+For purposes of experimentation and initial development, housing all working assets within the `/source` directory is reasonable.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075925
-प्रस्ताव प्राधिकार सूचना दे सकता है; स्वतंत्र परीक्षण दावे की जाँच करता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md · स्वतंत्र परीक्षण अपेक्षित।
+However, as the project matures or requires deployment, it is recommended to segregate projects (typically a single `.kit` file and any required custom extensions) to minimize build times and reduce the size of the resultant package.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075926
-सीमा यह पत्र किसी विशिष्ट व्यक्ति या संस्था के बारे में तथ्यात्मक आरोप प्रस्तुत नहीं करता।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md · स्वतंत्र परीक्षण अपेक्षित।
+Applications and Extensions From the perspective of the Omniverse Kit SDK, everything is considered an extension.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075927
-व्यक्तिगत अनुभव और सार्वभौमिक दावे **प्रकार:** Philosophy of Knowledge **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश व्यक्तिगत अनुभव किसी व्यक्ति के लिए वास्तविक अनुभव हो सकता है, लेकिन उससे सार्वभौमिक निष्कर्ष निकालने के लिए अतिरिक्त तर्क और स्वतंत्र प्रमाण आवश्यक होते हैं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/04-EXPERIENCE-AND-UNIVERSAL-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+The `.kit` files that define applications are simply a convenient method to assemble and configure a set of extensions for specific functionalities, while extensions (and combinations thereof) can act as modular components fulfilling particular tasks.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075928
-अनुभव — “मुझे ऐसा महसूस हुआ” 2.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/04-EXPERIENCE-AND-UNIVERSAL-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+For additional information on the Kit SDK and how to create applications and extensions, refer to the [Kit SDK Companion Tutorial]( ### Extendable Templates and Tools The templates and tools provided in this repository are designed to be extendable.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075929
-व्याख्या — “इसका अर्थ यह है” 3.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/04-EXPERIENCE-AND-UNIVERSAL-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+Templates Templates consist of a directory structure and boilerplate code containing variables configurable at the time the templates are applied.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075930
-सार्वभौमिक दावा — “यह सभी के लिए सत्य है” तीसरे स्तर के लिए स्वतंत्र जाँच आवश्यक है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/04-EXPERIENCE-AND-UNIVERSAL-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+The `templates.toml` file, located in `templates/templates.toml`, specifies which templates the tooling recognizes.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075931
-निष्कर्ष अनुभव का सम्मान और उसके दावे की स्वतंत्र जाँच एक-दूसरे के विरोधी नहीं हैं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/04-EXPERIENCE-AND-UNIVERSAL-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+Tooling Most tooling is not stored directly within the repository; it is instead downloaded from a remote registry upon the initial use of the tooling.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075932
-हृदय और मस्तक दृष्टिकोण: एक दार्शनिक मॉडल **प्रकार:** Conceptual Philosophy **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र “हृदय दृष्टिकोण” और “मस्तक दृष्टिकोण” को क्रमशः भावात्मक प्रत्यक्षता तथा विचारात्मक/विश्लेषणात्मक प्रक्रिया के रूपकों के रूप में स्पष्ट करता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+This design allows the tooling to be updated independently of the repository.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075933
-यह जैविक हृदय के बारे में वैज्ञानिक दावा नहीं करता।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+The framework used for the tooling also supports the definition of custom tools.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075934
-मुख्य प्रश्न क्या भावना और तर्क को प्रतिस्पर्धी नहीं बल्कि पूरक प्रक्रियाओं के रूप में मॉडल किया जा सकता है?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+To see this extensibility in action, explore the local tooling defined within `tools/repoman`, specifically the `launch` tool.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075935
-मॉडल हृदय = एहसास और मूल्य-संवेदना का रूपक।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+Configuration for this tool within the repo is delineated in the `repo_tools.toml` file at the root of the repository.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075936
-मस्तक = भाषा, स्मृति, तुलना, योजना और तर्क का रूपक।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+Troubleshooting This section outlines potential issues that may arise when using the Kit App Template repository.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075937
-प्रस्ताव पहले अनुभव को पहचाना जाए, फिर संज्ञानात्मक विश्लेषण से विकल्पों और परिणामों की जाँच की जाए।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+Setup & Configuration Issues #### Windows Long Path Due to path length limitations on Windows it is recommended to place repository artifacts in a location closer to the root of the drive.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075938
-परीक्षण निर्णय-लेने के कार्यों में भावनात्मक जागरूकता और तर्कात्मक जाँच के संयुक्त प्रभाव का अध्ययन किया जा सकता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+This will help avoid issues with the path lengths when building and packaging applications.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075939
-सीमा यह पत्र किसी प्रतिशत-संतुलन को वैज्ञानिक रूप से स्थापित नहीं करता।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+exFAT Drive Compatibility Limitations The Kit App Template repository and associated tooling are designed to work with drive formats that support junctions/symlinks.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075940
-दावा, प्रमाण और आत्म-संशोधन **प्रकार:** Methodological Philosophy **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र शोध-दैनंदिनी मॉडल प्रस्तावित करता है: दावा, प्रमाण, अनिश्चितता, विरोधी प्रमाण और अगला परीक्षण।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/05-CLAIM-EVIDENCE-SELF-CORRECTION.md · स्वतंत्र परीक्षण अपेक्षित।
+If you are using an exFAT-formatted drive, you may encounter errors during the build process.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075941
-उद्देश्य यह देखना है कि कोई विचार नए प्रमाण पर कितनी पारदर्शिता से संशोधित होता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/05-CLAIM-EVIDENCE-SELF-CORRECTION.md · स्वतंत्र परीक्षण अपेक्षित।
+To resolve this issue, consider using a different drive format such as NTFS.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075942
-प्रस्तावित प्रोटोकॉल हर प्रमुख दावे के साथ पाँच फ़ील्ड रखें: दावा, समर्थन, विरोधी प्रमाण, अनिश्चितता, अगला परीक्षण।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/05-CLAIM-EVIDENCE-SELF-CORRECTION.md · स्वतंत्र परीक्षण अपेक्षित।
+Extension Naming Guidelines When creating custom extensions, avoid using a top-level namespace that is the same as any built-in Python module (e.g., “random”, “sys”, “xml”).
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075943
-संभावित डेटा संस्करण इतिहास, शोध-दैनंदिनी और स्वतंत्र समीक्षकों की टिप्पणियाँ।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/05-CLAIM-EVIDENCE-SELF-CORRECTION.md · स्वतंत्र परीक्षण अपेक्षित।
+Doing so can cause import conflicts if Omniverse Kit attempts to load extensions from these Python modules.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075944
-सीमा प्रारंभिक प्रस्ताव में वास्तविक longitudinal dataset नहीं है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/05-CLAIM-EVIDENCE-SELF-CORRECTION.md · स्वतंत्र परीक्षण अपेक्षित।
+For example, instead of “random.extension.name”, use a unique namespace such as “my_company.my_app.my_extension”.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075945
-“संपूर्ण संतुष्टि” की अवधारणा: परिभाषा और परीक्षण **प्रकार:** Conceptual / Measurement Proposal **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश “संपूर्ण संतुष्टि” को इस परियोजना में निरंतर संतुष्टि के व्यक्तिगत अनुभव के रूप में प्रस्तावित किया गया है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/09-COMPLETE-SATISFACTION-CONCEPT.md · स्वतंत्र परीक्षण अपेक्षित।
+Rendering & Performance #### Initial Rendering Startup Times When launching an application that requires the RTX renderer, the first launch may take considerably longer than subsequent launches due to shader compilation.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075946
-यह पत्र अवधारणा को स्पष्ट operational definition में बदलने की आवश्यकता पर केंद्रित है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/09-COMPLETE-SATISFACTION-CONCEPT.md · स्वतंत्र परीक्षण अपेक्षित।
+The initial launch can take between 5 to 8 minutes.** Subsequent launches of RTX-enabled applications will be faster as the renderer caches the compiled shaders.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075947
-शोध प्रश्न क्या “संपूर्ण संतुष्टि” को स्पष्ट, दोहराने योग्य और नैतिक self-report तथा behavioral measures में operationalize किया जा सकता है?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/09-COMPLETE-SATISFACTION-CONCEPT.md · स्वतंत्र परीक्षण अपेक्षित।
+Build & Packaging #### Build Issues The `template new` tooling ensures that any created application is properly configured to build.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075948
-प्रस्तावित आयाम - वर्तमान क्षण में संतुष्टि - आंतरिक संघर्ष की अनुभूति - भविष्य-निर्भरता की अनुभूति - निर्णय के बाद स्थिरता - प्रतिकूल परिस्थिति में संतुलन ## सीमा वर्तमान पत्र में कोई validated instrument या empirical prevalence estimate नहीं दिया गया है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/09-COMPLETE-SATISFACTION-CONCEPT.md · स्वतंत्र परीक्षण अपेक्षित।
+However, extensive manual changes can occasionally cause the configuration and `/source` directory contents to become unsynchronized.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075949
-डिजिटल दार्शनिक ज्ञान-संग्रह का मॉडल **प्रकार:** Digital Humanities / Knowledge Architecture **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र 100 ग्रंथों और दीर्घकालीन 100,000-पृष्ठ corpus को डिजिटल रूप में व्यवस्थित करने का मॉडल प्रस्तुत करता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/07-DIGITAL-KNOWLEDGE-CORPUS.md · स्वतंत्र परीक्षण अपेक्षित।
+The specifics of any given build are determined by three main factors: 1) The state of the top-level `repo.toml` file, especially the `.kit` files listed in the `apps` array within the `[[repo_precache_exts]]` section.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075950
-लक्ष्य सामग्री की मात्रा के साथ खोज, संस्करण नियंत्रण, स्रोत-स्पष्टता और पुनरावृत्ति नियंत्रण बनाए रखना है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/07-DIGITAL-KNOWLEDGE-CORPUS.md · स्वतंत्र परीक्षण अपेक्षित।
+2) The state of the `premake5.lua` file, particularly which `.kit` files are set to build via `define_app()` (e.g., `define_app("my_company.my_service.kit")`).
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075951
-प्रस्तावित वास्तुकला - विषय-आधारित ग्रंथ - अध्याय और उप-अध्याय - शब्दावली - स्रोत-सूची - दावे और प्रमाण - संशोधन इतिहास - स्थायी लिंक - शोध-पत्र संग्रह - multilingual विस्तार ## मूल्यांकन भविष्य में navigation success, search accuracy, broken links और duplicate-content ratio जैसे संकेतकों से प्रणाली का मूल्यांकन किया जा सकता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/07-DIGITAL-KNOWLEDGE-CORPUS.md · स्वतंत्र परीक्षण अपेक्षित।
+3) The state of the `source` directory, specifically which `.kit` files are present within `source/apps`.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075952
-सीमा यह knowledge-architecture proposal है; वर्तमान पत्र usability study के परिणाम का दावा नहीं करता।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/07-DIGITAL-KNOWLEDGE-CORPUS.md · स्वतंत्र परीक्षण अपेक्षित।
+To ensure a build proceeds as intended, verify that the same `.kit` files are listed or defined in all three locations.** For a clean build, use the command `./repo.sh build -c` or `.\repo.bat build -c` to clean the build directory before building.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075953
-प्रकृति, मानव गरिमा और व्यवहारिक दर्शन **प्रकार:** Applied Philosophy **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र प्रस्तावित करता है कि किसी दार्शनिक ढाँचे का व्यवहारिक मूल्य उसके वास्तविक जीवन में प्रकृति, मानव गरिमा और स्वतंत्रता के प्रति प्रभाव से भी जाँचा जा सकता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/08-NATURE-HUMAN-DIGNITY.md · स्वतंत्र परीक्षण अपेक्षित।
+Caching and Persistent Data The Omniverse Kit SDK caches data and required dependencies to improve build and runtime performance.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075954
-शोध प्रश्न क्या ecological responsibility और human dignity को दार्शनिक सिद्धांतों के मूल्यांकन में operational criteria बनाया जा सकता है?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/08-NATURE-HUMAN-DIGNITY.md · स्वतंत्र परीक्षण अपेक्षित।
+If you encounter issues with stale, incorrect, or missing dependencies/data, consider clearing application specific and/or global cache locations: - **Application Specific Caches**: Clearing application specific caches and settings can be done by adding arguments at launch time.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075955
-प्रकृति पर प्रभाव 2.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/08-NATURE-HUMAN-DIGNITY.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux: ```bash ./repo.sh launch -- --clear-cache --clear-data --reset-user ``` Windows: ```powershell .\repo.bat launch -- --clear-cache --clear-data --reset-user ``` Upon selecting a `.kit` file to launch, the application will clear the cache and data directories before starting.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075956
-व्यक्ति की स्वायत्तता 3.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/08-NATURE-HUMAN-DIGNITY.md · स्वतंत्र परीक्षण अपेक्षित।
+Global Cache Locations (:warning:Use with Caution:warning:)**: **IMPORTANT NOTE -** Clearing any of the following cache locations will require a full rebuild of any existing applications.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075957
-संसाधनों और शक्ति में पारदर्शिता ## सीमा इस पत्र में कोई causal effect स्थापित नहीं किया गया है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/08-NATURE-HUMAN-DIGNITY.md · स्वतंत्र परीक्षण अपेक्षित।
+Deleting the directories responsible for caching ensures a fresh build of the relevant caches during the next build.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075958
-आत्म-परीक्षण और मेटाकॉग्निशन **प्रकार:** Conceptual Research Paper **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र “खुद का निरीक्षण” को metacognitive प्रक्रिया के साथ संवाद में रखता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/12-METACOGNITION-AND-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Extension AND Application Data Cache Locations**: `$HOME/.local/share/ov` on Linux, `%LOCALAPPDATA%\ov` on Windows.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075959
-लक्ष्य यह समझना है कि व्यक्ति अपने विचार, विश्वास और निर्णय-प्रक्रिया को कैसे देख सकता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/12-METACOGNITION-AND-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Tooling AND Dependency Cache Location**: - **Packman :** `$PM_PACKAGES_ROOT` on Linux, `%PM_PACKAGES_ROOT%` on Windows.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075960
-मुख्य प्रश्न क्या नियमित self-observation से व्यक्ति अपने निष्कर्षों की अनिश्चितता और पूर्वधारणाओं को अधिक स्पष्ट रूप से पहचान सकता है?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/12-METACOGNITION-AND-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+If `PM_PACKAGES_ROOT` is not set on your system, the default location will revert to `$HOME/.cache/packman` on Linux, `{drive where packman is launched from}\packman-repo` on Windows.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075961
-प्रस्तावित मॉडल अनुभव → विचार की पहचान → पूर्वधारणा → भावनात्मक प्रभाव → प्रमाण → वैकल्पिक विचार → संशोधित निष्कर्ष।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/12-METACOGNITION-AND-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+uv :** `$HOME/.cache/uv` on Linux, `%LOCALAPPDATA%\uv\cache` on Windows.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075962
-संभावित अध्ययन दैनिक reflective journal और निर्णय-कार्य के longitudinal अध्ययन किए जा सकते हैं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/12-METACOGNITION-AND-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Space Constraints Due to Docker Artifacts When performing extensive local testing of container images created via `repo package_container`, Docker artifacts can accumulate over time, consuming significant disk space.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075963
-सीमाएँ यह पत्र किसी विशेष intervention की प्रभावशीलता सिद्ध नहीं करता।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/12-METACOGNITION-AND-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+`docker system df` can be used to determine disk space utilized by Docker objects.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075964
-निष्कर्ष आत्म-परीक्षण को व्यवस्थित रिकॉर्ड में बदलना भविष्य के empirical research का आधार बन सकता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/12-METACOGNITION-AND-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+To reclaim space, consider the following options: 1.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075965
-शोध-पत्र संग्रह यह संग्रह “निष्पक्ष समझ — शमीकरण — यथार्थ सिद्धांत — उपलब्धि यथार्थ युग” से जुड़े शोध-पत्रों की क्रमिक श्रृंखला है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Regular Safe Cleanup**: - **Command**: `docker container prune` - **Description**: This command removes all stopped containers, which is typically safe and helps manage disk space without affecting images, networks, or volumes.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075966
-संपादकीय स्थिति इन प्रारंभिक पत्रों को **दार्शनिक/सैद्धांतिक शोध-पत्र** के रूप में तैयार किया गया है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Use**: Recommended for regular maintenance.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075967
-जहाँ वास्तविक प्रतिभागी, प्रयोग, सांख्यिकीय परिणाम या स्वतंत्र सत्यापन उपलब्ध नहीं है, वहाँ कोई परिणाम गढ़ा नहीं गया है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Extensive Cleanup (:warning:Use with Caution:warning:)**: - **Command**: `docker system prune` - **Description**: This command removes all unused containers, networks, images, and optionally volumes.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075968
-ऐसे स्थानों पर “प्रस्तावित अध्ययन”, “परिकल्पना” या “भविष्य के परीक्षण” स्पष्ट रूप से लिखे गए हैं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+It is akin to running a `rm -rf` for Docker resources.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075969
-शोध-पत्रों में समस्या, शोध-प्रश्न, पद्धति, विश्लेषण, सीमाएँ और संदर्भ रखे गए हैं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Warning**: Use this command carefully, as it will remove many resources indiscriminately.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075970
-वास्तविक जर्नल में भेजते समय उस जर्नल की author guidelines अलग से माननी होंगी।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Ensure you review and understand what will be deleted.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075971
-[निष्पक्ष समझ का वैचारिक मॉडल](./01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md) 2.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+For image-specific cleanup, use `docker images` to list all images and `docker rmi ` to manually remove those that are no longer needed.
+स्रोत: kit-app-template/readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075972
-[शमीकरण: एक संतुलित परीक्षण-पद्धति](./02-SHAMIKARAN-METHOD.md) 3.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Windows C++ Developer Configuration ## Introduction This document guides you through setting up this repository for C++ development on Windows using Microsoft Visual Studio and the Windows SDK.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075973
-[हृदय और मस्तक दृष्टिकोण](./03-HEART-HEAD-MODEL.md) 4.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+For New Users:** If you are new to Windows C++ development, this guide provides a step-by-step installation of Visual Studio 2022 Community and the Windows SDK, ensuring you have all the components required for standard development tasks.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075974
-[व्यक्तिगत अनुभव और सार्वभौमिक दावे](./04-EXPERIENCE-AND-UNIVERSAL-CLAIMS.md) 5.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+For Advanced Configurations:** If you already have Visual Studio and the Windows SDK installed but wish to specify exact versions, this guide will help you configure your environment using the `[repo_build.msbuild]` configuration within `repo.toml` at the project root.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075975
-[दावा, प्रमाण और आत्म-संशोधन](./05-CLAIM-EVIDENCE-SELF-CORRECTION.md) 6.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Configuration To enable the Windows C++ build process: - Set the `"platform:windows-x86_64".enabled` flag to `true` in your `repo.toml` file: ```toml [repo_build.build] "platform:windows-x86_64".enabled = true ``` - Set the `link_host_toolchain` flag to `true` in your `repo.toml` file: ```toml [repo_build.msbuild] link_host_toolchain = true ``` **Note:** If you already have Visual Studio and the Windows SDK installed, this might be the only change needed.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075976
-[स्वतंत्र समझ और प्राधिकार](./06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md) 7.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+The tooling will auto-detect installed components.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075977
-[डिजिटल दार्शनिक ज्ञान-संग्रह](./07-DIGITAL-KNOWLEDGE-CORPUS.md) 8.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Microsoft Visual Studio and Windows SDK Setup ### Basic Installation #### Installing Visual Studio 2022 Community 1.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075978
-[प्रकृति, मानव गरिमा और व्यवहारिक दर्शन](./08-NATURE-HUMAN-DIGNITY.md) 9.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Download Visual Studio Installer** ![VS Download](../vs_download.png) - Visit the [Visual Studio Downloads]( - Click "Free download" under "Community".
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075979
-[संपूर्ण संतुष्टि: परिभाषा और परीक्षण](./09-COMPLETE-SATISFACTION-CONCEPT.md) 10.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Run the Installer** - Open the downloaded installer.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075980
-[यथार्थ युग: उभरती दार्शनिक रूपरेखा](./10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md) ## आगे की शोध दिशा - साहित्य समीक्षा और तुलनात्मक दर्शन - सर्वेक्षण-आधारित परीक्षण - अवधारणाओं के operational definitions - reproducible डेटा संग्रह - आलोचनात्मक समीक्षा - स्वतंत्र शोधकर्ताओं की प्रतिक्रिया ## 🔗 External/Legacy Research Repositories केंद्रीय शोध-संग्रह के साथ जुड़े repositories: 1.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select "Community" edition and click "Install".
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075981
-[Shirmani Research Paper]( 2.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select Workloads** ![VS Workloads](../vs_workloads.png) - Check "Desktop development with C++".
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075982
-[Shirmani Research Institute]( [Integration architecture](../research-integration/SHIRMANI-REPOSITORIES.md)
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+This includes tools like the MSVC compiler and C++ libraries.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075983
-ज्ञानमीमांसीय निष्पक्षता: एक प्रस्तावित मॉडल **प्रकार:** Theoretical Paper **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र ज्ञान-संबंधी निष्पक्षता को इस प्रश्न से जोड़ता है कि क्या समान प्रमाण पर समान मानदंड लागू किए जाते हैं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/11-EPISTEMIC-FAIRNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Additional Components** ![VS Additional](../vs_additional.png) - If you need specific components, go to "Individual components".
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075984
-मॉडल व्यक्तिगत विश्वास, विरोधी विश्वास और तटस्थ दावे—तीनों पर एक समान परीक्षण की वकालत करता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/11-EPISTEMIC-FAIRNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Select additional tools as needed.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075985
-शोध प्रश्न क्या “समान प्रमाण–समान कसौटी” को शोध व्यवहार के operational principle में बदला जा सकता है?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/11-EPISTEMIC-FAIRNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Complete the Installation** - Proceed with the installation to download and set up all files.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075986
-प्रस्ताव दावे को समर्थन, विरोध, अनिश्चितता और संशोधन-सीमा के साथ दर्ज किया जाए।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/11-EPISTEMIC-FAIRNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Installing Windows SDK (as needed) Usually, the Windows SDK is included with the "Desktop development with C++" workload.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075987
-संभावित परीक्षण Blind evaluation में यह जाँचा जा सकता है कि कथन के लेखक की पहचान हटाने पर मूल्यांकन बदलता है या नहीं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/11-EPISTEMIC-FAIRNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+To verify or install it separately: 1.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075988
-सीमाएँ यह प्रस्ताव है; empirical निष्कर्ष प्रस्तुत नहीं किए गए हैं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/11-EPISTEMIC-FAIRNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Launch Visual Studio Installer** - Open the installer if it's not already running.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075989
-निष्कर्ष निष्पक्षता को केवल भावना नहीं, रिकॉर्ड किए जा सकने वाले शोध व्यवहार के रूप में भी अध्ययन किया जा सकता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/11-EPISTEMIC-FAIRNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Modify Installation** ![VS Modify](../vs_modify.png) - Click "Modify" on your Visual Studio installation.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075990
-यथार्थ युग: एक उभरती दार्शनिक रूपरेखा **प्रकार:** Integrative Philosophical Research Paper **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र “यथार्थ युग” को एक उभरती दार्शनिक रूपरेखा के रूप में व्यवस्थित करता है, जिसमें निष्पक्ष समझ, शमीकरण, हृदय–मस्तक संतुलन, स्वतंत्र परीक्षण और व्यवहारिक उत्तरदायित्व प्रमुख तत्व हैं।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md · स्वतंत्र परीक्षण अपेक्षित।
+Verify Windows SDK** ![VS WinSDK Verify](../vs_winsdk_verify.png) - Ensure "Windows SDK" is selected under "Optional" sections or "Individual components".
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075991
-पत्र इसे ऐतिहासिक या वैज्ञानिक रूप से स्थापित युग के रूप में सिद्ध करने का दावा नहीं करता।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md · स्वतंत्र परीक्षण अपेक्षित।
+Apply Changes** - Click "Modify" to install or update the SDK.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075992
-शोध प्रश्न क्या इन अवधारणाओं को एक coherent philosophical framework में व्यवस्थित किया जा सकता है जिसे आलोचनात्मक परीक्षण के लिए प्रस्तुत किया जा सके?
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md · स्वतंत्र परीक्षण अपेक्षित।
+Configuring an Existing Installation #### Default Installation Paths If Visual Studio and the Windows SDK are installed in default locations, the build tooling will auto-detect them without additional configuration.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075993
-पद्धति अवधारणा-मानचित्रण, आंतरिक संगति का विश्लेषण, विरोधी प्रश्नों की पहचान और भविष्य के empirical परीक्षणों का प्रस्ताव।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md · स्वतंत्र परीक्षण अपेक्षित।
+Note:** If the path entered is incorrect or invalid, the build system will fall back to auto-detection.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075994
-प्रमाण-संवेदनशीलता 8.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md · स्वतंत्र परीक्षण अपेक्षित।
+Multiple Installations For multiple Visual Studio or Windows SDK installations, the latest version is used by default.
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075995
-प्रकृति और मानव गरिमा 9.
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md · स्वतंत्र परीक्षण अपेक्षित।
+If unspecified, default edition preference is "Enterprise", "Professional", "Community".
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075996
-डिजिटल ज्ञान-संग्रह ## सीमाएँ यह conceptual framework है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md · स्वतंत्र परीक्षण अपेक्षित।
+Additional Resources - [Repo Build Documentation](
+स्रोत: kit-app-template/readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075997
-इसकी मौलिकता, प्रभावशीलता और व्यापकता के लिए स्वतंत्र साहित्य समीक्षा तथा empirical research आवश्यक है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md · स्वतंत्र परीक्षण अपेक्षित।
+Data Collection & Use ## Overview NVIDIA Omniverse Kit Application Template collects anonymous usage data to help improve software performance and aid in diagnostic purposes.
+स्रोत: kit-app-template/readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075998
-भविष्य का शोध Systematic literature review, स्पष्ट hypotheses, preregistered studies, qualitative interviews, survey instruments और independent replication।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md · स्वतंत्र परीक्षण अपेक्षित।
+Rest assured, no personal information such as user email, name or any other PII field is collected.
+स्रोत: kit-app-template/readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 075999
-निष्कर्ष “यथार्थ युग” को एक खुली शोध-परिकल्पना और दार्शनिक परियोजना के रूप में विकसित करना उसके दावों को परीक्षण और संशोधन के लिए उपलब्ध रखता है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md · स्वतंत्र परीक्षण अपेक्षित।
+Purpose Omniverse Kit Application Template starts collecting data when you begin interaction with our provided software.
+स्रोत: kit-app-template/readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 076000
-खुले डिजिटल ज्ञान और संस्करण नियंत्रण **प्रकार:** Digital Humanities / Knowledge Management **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र खुले डिजिटल ज्ञान-संग्रह में version history, स्रोत-स्पष्टता और संशोधन रिकॉर्ड के महत्व पर केंद्रित है।
-स्रोत: Nishpaksh-Samaj-Omniverse-Truth/research/14-OPEN-KNOWLEDGE-AND-VERSIONING.md · स्वतंत्र परीक्षण अपेक्षित।
+After creating an application with the `template new` tooling, go to the `source/apps` directory 2.
+स्रोत: kit-app-template/readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
