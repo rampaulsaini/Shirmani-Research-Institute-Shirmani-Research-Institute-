@@ -10,7 +10,7 @@ AGENTS = [
     "contracts", "source_agent", "corpus_agent", "research_agent",
     "verification_agent", "writing_agent", "book_agent",
     "music_agent", "certificate_agent", "topic_agent",
-    "provenance_agent", "qc_agent", "publishing_agent", "orchestrator",
+    "provenance_agent", "qc_agent", "publishing_agent", "orchestrator", "language_agents", "artifact_agent", "deep_learning_agent",
 ]
 
 def main():
@@ -35,7 +35,7 @@ def main():
         assert status["processed_batch"] == 1
         assert (out / "claims-index.json").exists()
         assert (out / "provenance-index.jsonl").exists()
-        assert (out / "factory-status.json").exists()
+        assert (out / "factory-status.json").exists()\n        assert (out / "artifact-manifest.jsonl").exists()\n        assert (out / "queues").exists()
 
     print("Factory smoke test OK")
 
