@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "supervisor": "factory-supervisor",
+  "agents": [
+    {
+      "id": "source-librarian",
+      "role": "हर repo के source/commit/path को index करना"
+    },
+    {
+      "id": "dedup-indexer",
+      "role": "duplicate सामग्री हटाना और canonical corpus बनाना"
+    },
+    {
+      "id": "concept-mapper",
+      "role": "विषय, concepts और relationships map करना"
+    },
+    {
+      "id": "research",
+      "role": "source-based research drafts बनाना"
+    },
+    {
+      "id": "mahagranth",
+      "role": "digital महाग्रंथ संरचना बनाना"
+    },
+    {
+      "id": "verse",
+      "role": "गीत/श्लोक/सूत्र generation"
+    },
+    {
+      "id": "evidence",
+      "role": "claims को evidence/citations से जोड़ना"
+    },
+    {
+      "id": "verification",
+      "role": "QC और independent-verification flags"
+    },
+    {
+      "id": "hindi",
+      "role": "हिंदी publication layer"
+    },
+    {
+      "id": "punjabi",
+      "role": "पंजाबी publication layer"
+    },
+    {
+      "id": "english",
+      "role": "English publication layer"
+    },
+    {
+      "id": "audio",
+      "role": "audio/podcast scripts"
+    },
+    {
+      "id": "certificate",
+      "role": "archival certificates"
+    },
+    {
+      "id": "publisher",
+      "role": "GitHub Pages/catalog publishing"
+    },
+    {
+      "id": "seo",
+      "role": "metadata/discoverability"
+    },
+    {
+      "id": "archive",
+      "role": "provenance, hashes और version archive"
+    }
+  ],
+  "policy": {
+    "free_first": true,
+    "paid_api_required": false,
+    "autonomous_scientific_validation": false
+  }
+}
