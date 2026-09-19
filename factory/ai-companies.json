@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "name": "Shirmani Research Institute AI Company Registry",
+  "policy": "Each virtual AI company is a routing and responsibility boundary, not a claim of a legally incorporated company.",
+  "companies": [
+    {"id":"deep-learning-lab","name":"Deep Learning Lab","skills":["deep-learning","neural-networks","embeddings","model-evaluation","experiments"]},
+    {"id":"deep-research-lab","name":"Deep Research Lab","skills":["research","literature-synthesis","question-generation","hypothesis-mapping"]},
+    {"id":"reasoning-lab","name":"Reasoning Lab","skills":["reasoning","planning","decomposition","analysis"]},
+    {"id":"mahagranth-company","name":"Mahagranth Company","skills":["book-synthesis","long-form-writing","chapter-planning"]},
+    {"id":"shlok-company","name":"Shlok Company","skills":["verse-generation","sutra-writing","poetry"]},
+    {"id":"translation-company","name":"Translation Company","skills":["translation","hi","pa","en","multilingual-qc"]},
+    {"id":"music-ai-company","name":"Music AI Company","skills":["music","lyrics","audio-prompts"]},
+    {"id":"vision-ai-company","name":"Vision AI Company","skills":["vision","image-understanding","document-understanding"]},
+    {"id":"data-intelligence-company","name":"Data Intelligence Company","skills":["datasets","semantic-search","statistics","knowledge-graphs"]},
+    {"id":"verification-company","name":"Verification Company","skills":["verification","evidence","provenance","claim-checking"]},
+    {"id":"ai-qc-company","name":"AI QC Company","skills":["quality-control","duplicates","consistency","schema-validation"]},
+    {"id":"model-research-company","name":"Model Research Company","skills":["model-comparison","benchmarking","fine-tuning","evaluation"]},
+    {"id":"automation-company","name":"Automation Company","skills":["github-actions","job-queues","scheduling","batching"]},
+    {"id":"publishing-company","name":"Publishing Company","skills":["web","seo","metadata","catalogs"]},
+    {"id":"archive-company","name":"Archive Company","skills":["archival","hashing","versioning","records"]}
+  ]
+}
