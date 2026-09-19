@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "policy": "free-first",
+  "primary": {
+    "provider": "google-drive",
+    "free_storage_note": "Google Accounts include up to 15 GB shared across Drive, Gmail and Photos.",
+    "status": "external-account-required",
+    "role": ["source-archive","generated-artifacts","media-backup"]
+  },
+  "secondary": {
+    "provider": "dropbox",
+    "free_storage_note": "Free tier availability and limits must be checked in the connected account.",
+    "status": "connector-ready",
+    "role": ["backup","sharing","archive"]
+  },
+  "rules": {
+    "never_delete_github_canonical_source": true,
+    "cloud_is_backup_not_canonical": true,
+    "preserve_hashes": true,
+    "preserve_provenance": true,
+    "upload_generated_only_after_qc": true
+  }
+}
