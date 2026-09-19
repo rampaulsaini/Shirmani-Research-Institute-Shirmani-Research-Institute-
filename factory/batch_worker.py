@@ -20,6 +20,7 @@ CFG = json.loads((ROOT / "factory" / "agent_config.json").read_text(encoding="ut
 STATE = ROOT / "factory" / "state.json"
 OUT = ROOT / "generated"
 CORPUS = OUT / "verse-corpus.jsonl"
+SOURCE_UNITS = OUT / "source-units.jsonl"
 
 def existing_count(kind):
     if kind == "verse":
@@ -46,6 +47,11 @@ def bootstrap_state():
     data["status"] = "running"
     save(STATE, data)
     return data
+
+def source_rows():
+    if not SOURCE_UNITS.exists():
+        return []
+    return [json.loads(x) for x in SOURCE_UNITS.read_text(encoding="utf-8").splitlines() if x.strip()]
 
 def corpus_rows():
     if not CORPUS.exists():
@@ -149,16 +155,16 @@ def main():
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     data = bootstrap_state()
-    rows = corpus_rows()
+    rows = source_rows()
     target = CFG["products"]
     limit = max(1, args.batch_size)
     summary = {}
     summary["verse"] = write_verses(data, rows, next_ids(data, "verse", int(target["verses"]), limit))
-    rows = corpus_rows()
+    verse_rows = corpus_rows()
     summary["research-paper"] = write_papers(data, rows, next_ids(data, "research-paper", int(target["research_papers"]), max(1, limit // 10)))
     summary["certificate"] = write_certificates(data, next_ids(data, "certificate", int(target["certificates"]), max(1, limit // 5)))
     summary["audio-prompt"] = write_audio_prompts(data, rows, next_ids(data, "audio-prompt", int(target["audio_prompts"]), limit))
-    summary["book"] = write_books(data, rows)
+    summary["book"] = write_books(data, verse_rows)
     data["status"] = "complete" if all(
         len(data["completed"].get(k, [])) >= int(target["digital_books" if k == "book" else k.replace("-", "_") + "s"])
         for k in ("verse", "book", "research-paper", "certificate", "audio-prompt")
