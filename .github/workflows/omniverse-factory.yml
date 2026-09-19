@@ -46,8 +46,16 @@ jobs:
       - name: QC agent
         if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/agents/qc_agent.py
+      - name: Chapter architecture
+        if: steps.source_changes.outputs.process_required == 'true'
+        run: python3 factory/run_stage.py factory/chapter-plan.py
+      - name: Multilingual layer
+        if: steps.source_changes.outputs.process_required == 'true'
+        run: python3 factory/run_stage.py factory/multilingual.py
       - name: Publisher index
         run: python3 factory/run_stage.py factory/publisher.py
+      - name: GitHub Pages index
+        run: python3 factory/run_stage.py factory/publish_index.py
       - name: Recovery planner
         if: always()
         run: python3 factory/recovery.py
@@ -75,6 +83,9 @@ jobs:
             generated/source-change-report.json
             generated/recovery-plan.json
             generated/publication-index.json
+            generated/chapter-plan.json
+            generated/multilingual-plan.json
+            generated/pages-index.json
             generated/stage-retry-log.jsonl
           if-no-files-found: error
           retention-days: 14
