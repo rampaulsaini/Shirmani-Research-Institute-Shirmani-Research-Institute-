@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "type":"object",
+  "required":["task_type","agent","hub","verification_required"],
+  "properties":{
+    "task_type":{"type":"string"},
+    "agent":{"type":"string"},
+    "fallback":{"type":["string","null"]},
+    "hub":{"type":"string"},
+    "company":{"type":["string","null"]},
+    "nvidia_enabled":{"type":"boolean"},
+    "verification_required":{"const":true}
+  }
+}
