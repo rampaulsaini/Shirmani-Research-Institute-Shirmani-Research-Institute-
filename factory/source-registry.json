@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "hub": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+  "role_map": {
+    "Omniverse-AI": ["philosophy","vision","publication"],
+    "omniverse--ai-scripts-": ["media-index","audio-index","external-links"],
+    "Omniverse-Supreme-Core-": ["hub-ui","project-index","seo"],
+    "Nishpaksh-Samaj-Omniverse-Truth": ["core-philosophy","manifesto","audio-index","research-context"],
+    "Shirmani-Research-Paper": ["research","paper-archive"],
+    "yatharth-music-ai": ["music-generation","audio-engine","prompt-to-audio"],
+    "my-omniverse-store": ["publication","media","distribution"],
+    "omniverse-marketplace": ["product-catalog","publication"],
+    "omniverse-dashboard": ["dashboard"],
+    "Omniverse-Platform-supreme-": ["platform","integration"],
+    "Omniverse-Supreme-Core-": ["core-ui"]
+  },
+  "source_policy": {
+    "public_repo_content": "source-material",
+    "external_drive_or_social_link": "link-only-until-connected",
+    "user_philosophy": "user-authored",
+    "scientific_claim": "requires-independent-evidence"
+  }
+}
