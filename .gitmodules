@@ -1,0 +1,66 @@
+[submodule "factory/_sources/C-Labs"]
+	path = factory/_sources/C-Labs
+	url = https://github.com/rampaulsaini/C-Labs.git
+[submodule "factory/_sources/Karbon-"]
+	path = factory/_sources/Karbon-
+	url = https://github.com/rampaulsaini/Karbon-.git
+[submodule "factory/_sources/Koyab-Founding-Declaration-Omniversal-Manifesto"]
+	path = factory/_sources/Koyab-Founding-Declaration-Omniversal-Manifesto
+	url = https://github.com/rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto.git
+[submodule "factory/_sources/Nishpaksh-Samaj-Omniverse-Truth"]
+	path = factory/_sources/Nishpaksh-Samaj-Omniverse-Truth
+	url = https://github.com/rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth.git
+[submodule "factory/_sources/Omniver"]
+	path = factory/_sources/Omniver
+	url = https://github.com/rampaulsaini/Omniver.git
+[submodule "factory/_sources/Omnivers"]
+	path = factory/_sources/Omnivers
+	url = https://github.com/rampaulsaini/Omnivers.git
+[submodule "factory/_sources/Omniverse"]
+	path = factory/_sources/Omniverse
+	url = https://github.com/rampaulsaini/Omniverse.git
+[submodule "factory/_sources/Omniverse-"]
+	path = factory/_sources/Omniverse-
+	url = https://github.com/rampaulsaini/Omniverse-.git
+[submodule "factory/_sources/Omniverse-AI"]
+	path = factory/_sources/Omniverse-AI
+	url = https://github.com/rampaulsaini/Omniverse-AI.git
+[submodule "factory/_sources/Omniverse-Platform-supreme-"]
+	path = factory/_sources/Omniverse-Platform-supreme-
+	url = https://github.com/rampaulsaini/Omniverse-Platform-supreme-.git
+[submodule "factory/_sources/Omniverse-Supreme-Core-"]
+	path = factory/_sources/Omniverse-Supreme-Core-
+	url = https://github.com/rampaulsaini/Omniverse-Supreme-Core-.git
+[submodule "factory/_sources/Shirmani-Research-Paper"]
+	path = factory/_sources/Shirmani-Research-Paper
+	url = https://github.com/rampaulsaini/Shirmani-Research-Paper.git
+[submodule "factory/_sources/kit-app-template"]
+	path = factory/_sources/kit-app-template
+	url = https://github.com/rampaulsaini/kit-app-template.git
+[submodule "factory/_sources/my-omniverse-store"]
+	path = factory/_sources/my-omniverse-store
+	url = https://github.com/rampaulsaini/my-omniverse-store.git
+[submodule "factory/_sources/omniverse--ai-scripts-"]
+	path = factory/_sources/omniverse--ai-scripts-
+	url = https://github.com/rampaulsaini/omniverse--ai-scripts-.git
+[submodule "factory/_sources/omniverse-dashboard"]
+	path = factory/_sources/omniverse-dashboard
+	url = https://github.com/rampaulsaini/omniverse-dashboard.git
+[submodule "factory/_sources/omniverse-marketplace"]
+	path = factory/_sources/omniverse-marketplace
+	url = https://github.com/rampaulsaini/omniverse-marketplace.git
+[submodule "factory/_sources/omniverse-marketplace-"]
+	path = factory/_sources/omniverse-marketplace-
+	url = https://github.com/rampaulsaini/omniverse-marketplace-.git
+[submodule "factory/_sources/rampaulsaini"]
+	path = factory/_sources/rampaulsaini
+	url = https://github.com/rampaulsaini/rampaulsaini.git
+[submodule "factory/_sources/shiromani-rampal-saini"]
+	path = factory/_sources/shiromani-rampal-saini
+	url = https://github.com/rampaulsaini/shiromani-rampal-saini.git
+[submodule "factory/_sources/supreme-omniverse-test"]
+	path = factory/_sources/supreme-omniverse-test
+	url = https://github.com/rampaulsaini/supreme-omniverse-test.git
+[submodule "factory/_sources/yatharth-music-ai"]
+	path = factory/_sources/yatharth-music-ai
+	url = https://github.com/rampaulsaini/yatharth-music-ai.git
