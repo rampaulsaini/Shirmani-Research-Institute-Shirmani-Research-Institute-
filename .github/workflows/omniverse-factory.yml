@@ -41,6 +41,19 @@ jobs:
         run: python3 factory/cloud_sync.py
       - name: Build run report
         run: python3 factory/run_report.py
+      - name: Upload QC and provenance artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: omniverse-factory-qc-${{ github.run_number }}
+          path: |
+            generated/run-report.json
+            generated/qc-report.json
+            generated/verification-report.json
+            generated/cloud-sync-manifest.json
+            generated/concept-map.json
+            generated/source-registry.json
+          if-no-files-found: error
+          retention-days: 14
       - name: Commit generated outputs
         run: |
           git config user.name 'omniverse-factory[bot]'
