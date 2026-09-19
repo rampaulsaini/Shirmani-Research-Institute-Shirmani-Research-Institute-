@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "note": "User-authored philosophical themes; topic tags do not establish truth.",
+  "topics": [
+    {"id":"nishpaksh-samaj","hi":"निष्पक्ष समझ","pa":"ਨਿਰਪੱਖ ਸਮਝ","en":"Impartial understanding","keywords":["निष्पक्ष","समझ","impartial","ਨਿਰਪੱਖ"]},
+    {"id":"shamikaran-yatharth","hi":"शमीकरण यथार्थ सिद्धांत","pa":"ਸ਼ਮੀਕਰਨ ਯਥਾਰਥ ਸਿਧਾਂਤ","en":"Shamikaran Yatharth Siddhant","keywords":["शमीकरण","यथार्थ सिद्धांत","ਸ਼ਮੀਕਰਨ","yatharth"]},
+    {"id":"hriday-drishtikon","hi":"हृदय दृष्टिकोण","pa":"ਹਿਰਦਾ ਦ੍ਰਿਸ਼ਟੀਕੋਣ","en":"Heart viewpoint","keywords":["हृदय","एहसास","ज़मीर","ਹਿਰਦਾ","heart"]},
+    {"id":"mastak-drishtikon","hi":"मस्तक दृष्टिकोण","pa":"ਮਸਤਕ ਦ੍ਰਿਸ਼ਟੀਕੋਣ","en":"Head viewpoint","keywords":["मस्तक","बुद्धि","मन","ਮਸਤਕ","mind","intellect"]},
+    {"id":"sampurn-santushti","hi":"संपूर्ण संतुष्टि की निरंतरता","pa":"ਸੰਪੂਰਨ ਸੰਤੁਸ਼ਟੀ ਦੀ ਨਿਰੰਤਰਤਾ","en":"Continuity of complete satisfaction","keywords":["संपूर्ण संतुष्टि","संतुष्टि","ਸੰਤੁਸ਼ਟੀ","satisfaction"]},
+    {"id":"khud-ka-sakshatkar","hi":"खुद का साक्षात्कार","pa":"ਆਪਣਾ ਸਾਕਸ਼ਾਤਕਾਰ","en":"Self-realization / self-observation","keywords":["खुद का साक्षात्कार","साक्षात्कार","self-realization","ਆਪਣਾ"]},
+    {"id":"yatharth-yug","hi":"यथार्थ युग","pa":"ਯਥਾਰਥ ਯੁਗ","en":"Yatharth Yug","keywords":["यथार्थ युग","ਯਥਾਰਥ ਯੁਗ"]},
+    {"id":"ishq","hi":"इश्क़ और प्रेम","pa":"ਇਸ਼ਕ਼ ਅਤੇ ਪਿਆਰ","en":"Love and Ishq","keywords":["इश्क","इश्क़","प्रेम","मुहब्बत","ਇਸ਼ਕ","ਪਿਆਰ","love"]},
+    {"id":"prakriti-manavta","hi":"प्रकृति और मानवता","pa":"ਕੁਦਰਤ ਅਤੇ ਮਨੁੱਖਤਾ","en":"Nature and humanity","keywords":["प्रकृति","मानवता","ਕੁਦਰਤ","ਮਨੁੱਖਤਾ","nature","humanity"]},
+    {"id":"tark-vigyan","hi":"तर्क, तथ्य और स्वतंत्र परीक्षण","pa":"ਤਰਕ, ਤੱਥ ਅਤੇ ਸੁਤੰਤਰ ਪਰਖ","en":"Reason, evidence and independent testing","keywords":["तर्क","तथ्य","विवेक","ज्ञान","विज्ञान","प्रमाण","ਸਬੂਤ","evidence","science"]}
+  ]
+}
