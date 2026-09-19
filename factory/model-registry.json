@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "policy": "Model capabilities are routing metadata, not proof of factual correctness.",
+  "models": [
+    {
+      "id": "nvidia/nemotron-3-super-120b-a12b",
+      "provider": "NVIDIA",
+      "mode": "optional-hosted-inference",
+      "tasks": ["research.deep", "reasoning", "writing.hi", "writing.pa", "writing.en", "translation", "summarization", "classification", "qc.semantic"],
+      "verification_required": true
+    },
+    {
+      "id": "deterministic-local-fallback",
+      "provider": "repository",
+      "mode": "free-local",
+      "tasks": ["research", "writing", "classification", "provenance", "qc"],
+      "verification_required": true
+    }
+  ]
+}
