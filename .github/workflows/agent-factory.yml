@@ -1,8 +1,6 @@
 name: Multi-Agent Research Factory
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '37 3 * * 1'
   push:
     paths:
       - 'agents/**'
@@ -10,46 +8,50 @@ on:
       - 'schemas/**'
       - 'docs/**'
       - '.github/workflows/agent-factory.yml'
+
 permissions:
   contents: write
-env:
-  NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
-concurrency:
-  group: omniverse-research-factory
-  cancel-in-progress: false
+
 jobs:
-  agents:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 1
-      - uses: actions/setup-python@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Validate Python agents and factory
+
+      - name: Validate Python
         run: python -m compileall agents factory
-      - name: Validate JSON configuration
-        run: python3 -c "import json, pathlib; [json.loads(p.read_text(encoding='utf-8')) for p in pathlib.Path('factory').glob('*.json')]; [json.loads(p.read_text(encoding='utf-8')) for p in pathlib.Path('schemas').glob('*.json')]; print('JSON configuration OK')"
-      - name: Validate AI company registry and router
-        run: python3 -c "from factory.job_router import route; r=route('research.deep', nvidia_enabled=False); assert r['agent']=='research' and r['verification_required'] is True; print(r)"
-      - name: Run factory smoke test
-        run: python3 factory/validate_factory.py
-      - name: Refresh source registry and corpus
-        run: python3 factory/build_factory.py --bootstrap-only
-      - name: Assert source corpus is populated
-        run: python3 -c "import json; p='generated/manifest.json'; m=json.load(open(p,encoding='utf-8')); assert m['units']>0, 'SOURCE_INGESTION_EMPTY: check submodules/authentication'; print('source units:',m['units'])"
-      - name: Run resumable product batch
-        run: python3 factory/batch_worker.py --batch-size 5000
-      - name: Optional NVIDIA research enrichment
-        if: ${{ env.NVIDIA_API_KEY != '' }}
-        env:
-          NVIDIA_MODEL: nvidia/nemotron-3-super-120b-a12b
-        run: python3 factory/run_nvidia_batch.py --batch-size 25
-      - name: Run multi-agent verification batch
-        run: python3 -c "from agents.orchestrator import run; print(run('generated/verse-corpus.jsonl','generated/agent-run',batch_size=1000))"
+
+      - name: Validate configuration
+        run: python -c "import json, pathlib; [json.loads(p.read_text(encoding='utf-8')) for p in pathlib.Path('factory').glob('*.json')]; [json.loads(p.read_text(encoding='utf-8')) for p in pathlib.Path('schemas').glob('*.json')]; print('configuration OK')"
+
+      - name: Validate router
+        run: python -c "from factory.job_router import route; r=route('research.deep', nvidia_enabled=False); assert r['agent']=='research'; assert r['verification_required'] is True; print(r)"
+
+      - name: Smoke test
+        run: python factory/validate_factory.py
+
+      - name: Build source corpus
+        run: python factory/build_factory.py --bootstrap-only
+
+      - name: Assert corpus populated
+        run: python -c "import json; m=json.load(open('generated/manifest.json', encoding='utf-8')); assert m['units'] > 0, 'SOURCE_INGESTION_EMPTY'; print('source units:', m['units'])"
+
+      - name: Run product batch
+        run: python factory/batch_worker.py --batch-size 5000
+
+      - name: Run multi-agent verification
+        run: python -c "from agents.orchestrator import run; print(run('generated/verse-corpus.jsonl','generated/agent-run',batch_size=1000))"
+
       - name: Commit factory state
         run: |
           git config user.name 'omniverse-factory[bot]'
