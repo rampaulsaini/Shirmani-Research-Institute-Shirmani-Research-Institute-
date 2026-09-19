@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T14:22:23.129914+00:00",
+  "generated_at": "2026-09-19T14:40:02.008157+00:00",
   "batch_size": 5000,
   "batch": {
     "verse": 0,
@@ -13,7 +13,7 @@
     "book": 100,
     "research-paper": 100,
     "certificate": 1000,
-    "audio-prompt": 5000
+    "audio-prompt": 10000
   },
   "targets": {
     "digital_books": 100,
