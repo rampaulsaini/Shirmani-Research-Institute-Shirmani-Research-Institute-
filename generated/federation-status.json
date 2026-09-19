@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T17:14:48.899405+00:00",
+  "generated_at": "2026-09-19T17:17:09.602779+00:00",
   "hub": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
   "managed_agent_count": 23,
   "ready_agent_count": 0,
@@ -11,8 +11,10 @@
       "repository": "rampaulsaini/rampaulsaini",
       "kind": "managed-agent",
       "status": "PARTIAL",
-      "agent_manifest": false,
-      "output_manifest": false
+      "agent_manifest": true,
+      "output_manifest": false,
+      "agent_id": null,
+      "role": "public-knowledge"
     },
     {
       "repository": "rampaulsaini/Omniverse-Platform",

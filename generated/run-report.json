@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T17:14:49.251917+00:00",
+  "generated_at": "2026-09-19T17:17:09.954458+00:00",
   "status": "FAIL",
   "checks": [
     {
@@ -48,8 +48,8 @@
       "name": "cloud_manifest",
       "path": "cloud-sync-manifest.json",
       "ok": true,
-      "bytes": 200152
+      "bytes": 200105
     }
   ],
-  "commit": "c4b04f841029398e47711eaeb758826906326265"
+  "commit": "ab514a18508e386a7f7927f98ed932f142d7ead2"
 }

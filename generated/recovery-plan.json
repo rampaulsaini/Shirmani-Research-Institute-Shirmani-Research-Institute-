@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-19T17:14:48.941260+00:00",
+  "generated_at": "2026-09-19T17:17:09.644207+00:00",
   "status": "REVIEW_REQUIRED",
   "failed_reports": [
     "run-report.json"
   ],
   "last_stage": {
-    "generated_at": "2026-09-19T17:14:48.842548+00:00",
+    "generated_at": "2026-09-19T17:17:09.546214+00:00",
     "script": "factory/build_factory.py",
     "attempts": 3,
     "success": false,

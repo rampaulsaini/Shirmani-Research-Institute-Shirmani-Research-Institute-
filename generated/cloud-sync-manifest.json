@@ -1,20 +1,18 @@
 {
-  "generated_at": "2026-09-19T17:14:49.201575+00:00",
+  "generated_at": "2026-09-19T17:17:09.902964+00:00",
   "mode": "incremental-cloud-backup-manifest",
   "primary": "google-drive",
   "secondary": "dropbox",
   "total_files": 1216,
-  "changed_files": 9,
-  "unchanged_files": 1207,
+  "changed_files": 7,
+  "unchanged_files": 1209,
   "changed_paths": [
     "agent-status.json",
     "federation-status.json",
-    "manifest.json",
     "recovery-plan.json",
     "recovery-state.json",
     "run-report.json",
     "source-registry.json",
-    "source-units.jsonl",
     "stage-retry-log.jsonl"
   ],
   "files": [
@@ -41,7 +39,7 @@
     {
       "path": "agent-status.json",
       "bytes": 2937,
-      "sha256": "e1c48003219b36d0be0dbbd4a4f21eb028e2e58f462e6f4ef42120d78a20e161"
+      "sha256": "0ed8e08b3ad606e7fc645198ad5232c02bdf0128a7c23a7ff70664f52c1dc452"
     },
     {
       "path": "audio-prompts.jsonl",
@@ -5550,8 +5548,8 @@
     },
     {
       "path": "federation-status.json",
-      "bytes": 4866,
-      "sha256": "9e470d796fc512a5fcaf38ed929b0270c6f92435535a13ba9d644789b0af4aa5"
+      "bytes": 4923,
+      "sha256": "5f38b97d22cf04a50da47e6de1fe5c4bb4dfd1ebe40035cbaaef39c15faaf59b"
     },
     {
       "path": "manifest.json",
@@ -5561,12 +5559,12 @@
     {
       "path": "recovery-plan.json",
       "bytes": 550,
-      "sha256": "9cc2e59950fbf3c5d6927549b0ccdce7184aaad0b0c90bdd1bd808a7823f7e7c"
+      "sha256": "2568d44cf8e8d53f7edef26cf79052a16ee1a952138d57c4e1665cff0aca41e8"
     },
     {
       "path": "recovery-state.json",
       "bytes": 196,
-      "sha256": "b5ee197ebbe36f1a64f98c6041b9beaeb287bc887b5cf2e0580d0b2bfc466a65"
+      "sha256": "215068430fc9f544675a7cc743101b4ce3875a4f0c758a4e76e9e8aa26846947"
     },
     {
       "path": "research-paper-draft-001.md",
@@ -6070,13 +6068,13 @@
     },
     {
       "path": "run-report.json",
-      "bytes": 1107,
-      "sha256": "88102a9fe97d60abc020553c11ce0659c03160c8b1c6b9e735630d6f617f0cb7"
+      "bytes": 1106,
+      "sha256": "0e3a260e078fac4f0d129d67f9cd969f09789d308ab6902370b67afffaf1a199"
     },
     {
       "path": "source-registry.json",
       "bytes": 10648,
-      "sha256": "607c18196ff42f117a1d88201ad9f942e4139dc509f8627a635de817f6278a1e"
+      "sha256": "90a4ebc926eafe974a142fae7fc0937a07572d1c760174512fcb25d6591c8213"
     },
     {
       "path": "source-units.jsonl",
@@ -6085,8 +6083,8 @@
     },
     {
       "path": "stage-retry-log.jsonl",
-      "bytes": 2646,
-      "sha256": "67093b90d93462f1b8ffe9d44ac6d30b808ca2519ab1de1690c070d48d8e186a"
+      "bytes": 5979,
+      "sha256": "b685897b87de655ac83686cc80e7b385adf45a9c545a4b5e56d12dd1a2cbe3dc"
     },
     {
       "path": "verse-corpus.jsonl",
