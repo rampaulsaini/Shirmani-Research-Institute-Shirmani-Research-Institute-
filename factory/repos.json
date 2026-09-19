@@ -25,7 +25,8 @@
     "rampaulsaini/shiromani-rampal-saini",
     "rampaulsaini/Shirmani-Research-Paper",
     "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
-    "rampaulsaini/yatharth-music-ai"
+    "rampaulsaini/yatharth-music-ai",
+    "NVIDIA-Omniverse/kit-app-template"
   ],
   "product_targets": {
     "digital_books": 100,
