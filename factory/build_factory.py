@@ -11,9 +11,6 @@ def run(c,cwd=None):
     p=subprocess.run(c,cwd=cwd,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,check=False)
     return p.returncode,p.stdout
 
-def expected_remote(full):
-    return full.lower()
-
 def clone_sources():
     result=[]
     token=os.environ.get("FACTORY_GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
@@ -22,7 +19,7 @@ def clone_sources():
             result.append({"repository":full,"available":True,"skipped":"hub repository"})
             continue
         owner,name=full.split("/",1); dest=WORK/name
-        expected=expected_remote(full)
+        expected=full.lower()
         contaminated=False
         if dest.exists() and (dest/".git").exists():
             _,remote=run(["git","-C",str(dest),"remote","get-url","origin"])
@@ -41,9 +38,9 @@ def clone_sources():
                 code,log=run(["git","-C",str(dest),"reset","--hard","origin/HEAD"])
         available=False; head=None; remote=""
         if dest.exists():
-            probe,_=run(["git","-C",str(dest),"rev-parse","--is-inside-work-tree"])
+            probe_code,probe=run(["git","-C",str(dest),"rev-parse","--is-inside-work-tree"])
             _,remote=run(["git","-C",str(dest),"remote","get-url","origin"])
-            if code==0 and probe.strip()=="true" and expected in remote.lower():
+            if code==0 and probe_code==0 and probe.strip()=="true" and expected in remote.lower():
                 available=True
                 _,head=run(["git","-C",str(dest),"rev-parse","HEAD"])
                 head=head.strip()
