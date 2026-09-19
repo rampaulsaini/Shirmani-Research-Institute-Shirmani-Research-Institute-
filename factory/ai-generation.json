@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "mode": "free-first",
+  "provider_required": false,
+  "policy": "Deterministic source-grounded generation is the default. Optional model adapters may be added later.",
+  "never": ["invent sources", "present drafts as scientific validation", "use generated products as canonical sources"],
+  "languages": ["hi", "pa", "en"],
+  "products": ["mahagranth", "sutra", "research-paper-draft", "audio-script"]
+}
