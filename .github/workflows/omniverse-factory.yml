@@ -59,9 +59,13 @@ jobs:
         if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/multilingual.py
       - name: Publisher index
+        if: steps.source_changes.outputs.process_required == 'true'
         run: python3 factory/run_stage.py factory/publisher.py
       - name: GitHub Pages index
         run: python3 factory/run_stage.py factory/publish_index.py
+      - name: Agent federation health
+        if: always()
+        run: python3 factory/federation.py
       - name: Recovery planner
         if: always()
         run: python3 factory/recovery.py
@@ -74,34 +78,19 @@ jobs:
       - name: Build run report
         if: always()
         run: python3 factory/run_report.py
-      - name: Upload QC and provenance artifacts
+      - name: Upload factory reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: omniverse-factory-qc-${{ github.run_number }}
-          path: |
-            generated/run-report.json
-            generated/qc-report.json
-            generated/verification-report.json
-            generated/cloud-sync-manifest.json
-            generated/concept-map.json
-            generated/provenance-ledger.jsonl
-            generated/ai-output.jsonl
-            generated/source-registry.json
-            generated/source-change-report.json
-            generated/recovery-plan.json
-            generated/publication-index.json
-            generated/chapter-plan.json
-            generated/multilingual-plan.json
-            generated/pages-index.json
-            generated/stage-retry-log.jsonl
-          if-no-files-found: error
+          path: generated/
+          if-no-files-found: warn
           retention-days: 14
       - name: Commit generated outputs
         if: always()
         run: |
           git config user.name 'omniverse-factory[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add generated factory/agent-status.json
+          git add generated
           git diff --cached --quiet || git commit -m 'chore: run omniverse research factory'
           git push
