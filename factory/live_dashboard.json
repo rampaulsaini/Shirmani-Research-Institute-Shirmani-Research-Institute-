@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "source": "generated/factory-status.json",
+  "fallback": "generated/worker-status.json",
+  "metrics": ["generated_at","records","processed_batch","qc.ok","qc.errors","artifact_records","language_queues"],
+  "refresh_seconds": 60,
+  "policy": "Dashboard reports factory state; it does not certify research truth."
+}
