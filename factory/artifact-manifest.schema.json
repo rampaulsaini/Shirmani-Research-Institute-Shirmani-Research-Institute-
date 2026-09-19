@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "artifact_id",
+    "kind",
+    "language",
+    "status",
+    "sha256",
+    "provenance",
+    "created_at"
+  ],
+  "properties": {
+    "artifact_id": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "language": {
+      "enum": [
+        "hi",
+        "pa",
+        "en",
+        "mul"
+      ]
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "verified",
+        "quarantined",
+        "archived"
+      ]
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "source_ids",
+        "generator",
+        "verification"
+      ]
+    }
+  }
+}
