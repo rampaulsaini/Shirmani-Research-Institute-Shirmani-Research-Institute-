@@ -9,6 +9,7 @@ on:
       - 'factory/agent_config.json'
       - 'factory/batch_worker.py'
       - 'factory/build_factory.py'
+      - 'factory/validate_factory.py'
       - 'schemas/**'
       - '.github/workflows/agent-factory.yml'
 permissions:
