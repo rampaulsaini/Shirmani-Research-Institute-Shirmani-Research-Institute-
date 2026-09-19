@@ -1,42 +1,14 @@
 {
-  "version": 4,
+  "version": 5,
   "mode": "free-deterministic",
-  "agents": [
-    "source",
-    "corpus",
-    "topic",
-    "research",
-    "verification",
-    "writing",
-    "book",
-    "music",
-    "certificate",
-    "provenance",
-    "publishing",
-    "qc",
-    "nvidia"
-  ],
-  "products": {
-    "digital_books": 100,
-    "verses": 100000,
-    "research_papers": 100,
-    "certificates": 1000,
-    "audio_prompts": 10000
-  },
-  "languages": [
-    "hi",
-    "pa",
-    "en"
-  ],
-  "batch_size": 1000,
-  "provenance_required": true,
-  "research_requires_independent_verification": true,
-  "paid_api_required": false,
-  "truth_policy": "User-authored philosophy remains user-authored; source trace is not independent proof; NVIDIA model output is draft material and requires independent verification.",
-  "nvidia": {
-    "enabled_by_secret": "NVIDIA_API_KEY",
-    "default_model": "nvidia/nemotron-3-super-120b-a12b",
-    "optional": true,
-    "batch_size": 25
-  }
+  "agents": ["source","corpus","topic","research","verification","writing","book","music","certificate","provenance","publishing","qc","nvidia","job-router"],
+  "ai_companies_registry": "factory/ai-companies.json",
+  "routing_registry": "factory/nvidia-routing.json",
+  "deep_learning_registry": "factory/deep_learning.json",
+  "products": {"digital_books":100,"verses":100000,"research_papers":100,"certificates":1000,"audio_prompts":10000},
+  "languages": ["hi","pa","en"], "batch_size": 1000,
+  "provenance_required": true, "research_requires_independent_verification": true, "paid_api_required": false,
+  "truth_policy": "User-authored philosophy remains user-authored; source trace is not independent proof; hosted model output is draft material and requires independent verification.",
+  "nvidia": {"enabled_by_secret":"NVIDIA_API_KEY","default_model":"nvidia/nemotron-3-super-120b-a12b","optional":true,"batch_size":25},
+  "deep_learning": {"mode":"free-first","registry":"factory/deep_learning.json","compute_policy":"Do not assume unlimited free GPU time."}
 }
