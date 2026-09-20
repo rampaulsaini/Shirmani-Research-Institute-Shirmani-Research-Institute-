@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "generated_at": "2026-09-20",
+  "purpose": "Repository-level intelligence registry for source-first federation.",
+  "hub_repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+  "source_policy": {
+    "user_owned_repositories": "eligible as source material subject to classification",
+    "external_repositories": "reference/template material only",
+    "generated_outputs": "never canonical source automatically"
+  },
+  "repositories": [
+    {"repository":"rampaulsaini/rampaulsaini","owner_type":"user","source_role":"identity/content","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Omniverse-Platform","owner_type":"user","source_role":"platform/automation","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Omniverse-","owner_type":"user","source_role":"omniverse/content","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Omniverse","owner_type":"user","source_role":"omniverse/content","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Omnivers","owner_type":"user","source_role":"omniverse/content","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Omniver","owner_type":"user","source_role":"omniverse/content","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Karbon-","owner_type":"user","source_role":"platform/content","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Omniverse-Platform-supreme-","owner_type":"user","source_role":"platform/automation","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Omniverse-AI","owner_type":"user","source_role":"ai/automation","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/C-Labs","owner_type":"user","source_role":"labs/code","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/kit-app-template","owner_type":"user","source_role":"template/reference","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/omniverse--ai-scripts-","owner_type":"user","source_role":"ai/scripts","default_branch":"base-branch-main","audit_status":"confirmed-exception"},
+    {"repository":"rampaulsaini/supreme-omniverse-test","owner_type":"user","source_role":"test/experimentation","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto","owner_type":"user","source_role":"manifesto/philosophy","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/my-omniverse-store","owner_type":"user","source_role":"commerce/content","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/omniverse-dashboard","owner_type":"user","source_role":"dashboard/web","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/omniverse-marketplace-","owner_type":"user","source_role":"marketplace/content","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/omniverse-marketplace","owner_type":"user","source_role":"marketplace/content","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Omniverse-Supreme-Core-","owner_type":"user","source_role":"core/automation","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth","owner_type":"user","source_role":"philosophy/content","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/shiromani-rampal-saini","owner_type":"user","source_role":"identity/philosophy","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Shirmani-Research-Paper","owner_type":"user","source_role":"research/content","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-","owner_type":"user","source_role":"hub/orchestration","default_branch":"main","audit_status":"hub-excluded-from-source"},
+    {"repository":"rampaulsaini/yatharth-music-ai","owner_type":"user","source_role":"music/ai","default_branch":"main","audit_status":"inventory-pending"},
+    {"repository":"NVIDIA-Omniverse/kit-app-template","owner_type":"external","source_role":"reference/template","default_branch":"main","audit_status":"external-reference"}
+  ],
+  "inventory_fields": ["default_branch","commit_sha","languages","file_counts","workflow_files","content_files","source_classification","last_audited"],
+  "next_action": "Populate inventory fields from each repository checkout during the next factory bootstrap; do not infer missing fields as facts."
+}
