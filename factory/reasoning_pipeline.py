@@ -60,10 +60,23 @@ def enrich():
                                        source_ids_from_row(row),
                                        {"language": row.get("language", "hi"),
                                         "status": row.get("status", "draft")}))
-    for path, kind in sorted([(p, "book") for p in OUT.glob("book-*.md")] +
+    verse_rows = [json.loads(x) for x in verse.read_text(encoding="utf-8").splitlines() if x.strip()] if verse.exists() else []
+    book_paths = list(OUT.glob("book-*.md"))
+    for path, kind in sorted([(p, "book") for p in book_paths] +
                              [(p, "research-paper") for p in OUT.glob("research-paper-draft-*.md")]):
         text = path.read_text(encoding="utf-8")
-        records.append(make_record(kind, path.stem, text, [],
+        source_ids = []
+        try:
+            n = int(path.stem.rsplit("-", 1)[1])
+            if kind == "research-paper" and n <= len(verse_rows):
+                source_ids = source_ids_from_row(verse_rows[n - 1])
+            elif kind == "book" and verse_rows:
+                per = max(1, len(verse_rows) // max(1, len(book_paths)))
+                start = (n - 1) * per
+                source_ids = sorted({sid for row in verse_rows[start:start + per] for sid in source_ids_from_row(row)})
+        except (ValueError, IndexError):
+            source_ids = []
+        records.append(make_record(kind, path.stem, text, source_ids,
                                    {"path": str(path.relative_to(ROOT)), "status": "draft"}))
     manifest = OUT / "reasoning-manifest.jsonl"
     manifest.write_text("\n".join(json.dumps(r, ensure_ascii=False) for r in records) +
