@@ -113,6 +113,13 @@ def repair_generated_corpus_metadata():
             if not line.strip():
                 continue
             row = json.loads(line)
+            if not row.get("source_ids") and row.get("source"):
+                source_key = str(row.get("source"))
+                for source in source_rows():
+                    key = "{}:{}".format(source.get("repository"), source.get("path"))
+                    if key == source_key and source.get("id") is not None:
+                        row["source_ids"] = [str(source["id"])]
+                        break
             old_methods = row.get("method_trace")
             if old_methods != methods or row.get("framework", {}).get("framework_id") != policy.get("framework_id"):
                 row["framework"] = framework_meta()
