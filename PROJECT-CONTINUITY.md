@@ -145,3 +145,13 @@ The HEART-VIEW preservation work now includes:
 - `scripts/validate_protected_sources.py` — SHA-256 and provenance validation.
 
 This is an architecture and validation milestone. It does not claim that historical conversation material has already been imported. The next preservation step is actual source ingestion into records that satisfy these contracts.
+
+## 18. Executable protected-source ingestion
+
+The preservation layer now has an executable ingestion utility:
+
+- `scripts/ingest_protected_source.py` accepts actual supplied source text and produces a hashed protected-source JSONL record.
+- `scripts/validate_protected_sources.py` checks exact-text SHA-256 integrity, duplicate IDs, required fields, and provenance.
+- `generated/protected-sources/README.md` establishes the protected archive boundary and intentionally starts empty.
+
+No historical text is auto-reconstructed. The archive only becomes populated from actual traceable source material.
