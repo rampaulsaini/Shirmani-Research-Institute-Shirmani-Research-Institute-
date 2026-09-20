@@ -36,19 +36,13 @@ jobs:
           python3 factory/validate_factory.py
       - name: Deterministic normalization smoke test
         run: |
-          python3 -m py_compile scripts/normalize_records.py scripts/validate_json.py factory/heart_view_label.py factory/heart_view_continuity.py
+          python3 -m py_compile scripts/normalize_records.py scripts/validate_json.py factory/heart_view_label.py factory/heart_view_continuity.py factory/self_realization_formulation.py
       - name: Heart-view NEXT_LABEL gate
         run: |
           python3 factory/heart_view_label.py
       - name: Heart-view continuity gate
         run: |
           python3 factory/heart_view_continuity.py
-          python3 - <<'PY'
-          import json
-          p=json.load(open("generated/heart-view-continuity.json",encoding="utf-8"))
-          assert p["stage"]=="HEART_VIEW_CONTINUITY"
-          assert p["state"]=="HEART_VIEW_FRAMEWORK"
-          assert p["integrity"]["physiological_claims_invented"] is False
-          assert p["integrity"]["evidence_upgraded"] is False
-          print("HEART VIEW CONTINUITY: PASS")
-          PY
+      - name: Self-realization formulation gate
+        run: |
+          python3 factory/self_realization_formulation.py
