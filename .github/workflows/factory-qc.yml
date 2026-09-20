@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: shirmani-factory-publish
+  cancel-in-progress: false
+
 jobs:
   qc:
     runs-on: ubuntu-latest
@@ -19,8 +23,21 @@ jobs:
         run: python3 factory/quality_control.py
       - name: Commit QC report
         run: |
+          set -e
           git config user.name "shirmani-factory-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/QC-REPORT.json
-          git diff --cached --quiet || git commit -m "Update factory QC report"
-          git push
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --mixed origin/main
+            git add generated/QC-REPORT.json
+            if git diff --cached --quiet; then
+              exit 0
+            fi
+            git commit -m "Update factory QC report"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git reset --hard origin/main
+          done
+          echo "Could not publish QC report after 3 attempts because main kept changing." >&2
+          exit 1
