@@ -1,101 +1,32 @@
 name: Omniverse Research Factory
 on:
   workflow_dispatch:
-  push:
-    paths: ['factory/**','.github/workflows/omniverse-factory.yml']
   schedule:
-    - cron: '17 2 * * 0'
+    - cron: "17 2 * * 0"
+  push:
+    paths:
+      - "factory/**"
+      - ".github/workflows/omniverse-factory.yml"
 permissions:
   contents: write
-concurrency:
-  group: omniverse-research-factory
-  cancel-in-progress: false
 jobs:
-  factory:
+  build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - name: Preflight Python syntax
-        run: python3 -m compileall -q factory
-      - name: Build source registry
-        run: python3 factory/source-registry.py
-      - name: Run source factory
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FACTORY_GH_TOKEN: ${{ secrets.FACTORY_GH_TOKEN }}
-        run: python3 factory/run_stage.py factory/build_factory.py
-      - name: Detect source changes
-        id: source_changes
-        run: python3 factory/change_detector.py
-      - name: Source librarian
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/agents/source_librarian.py
-      - name: Dedup indexer
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/agents/dedup_indexer.py
-      - name: Concept mapper
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/agents/concept_mapper.py
-      - name: Evidence agent
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/agents/evidence_agent.py
-      - name: Verification agent
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/agents/verification_agent.py
-      - name: Provenance ledger
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/agents/provenance_agent.py
-      - name: Source-grounded generation
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/generate_products.py
-      - name: Research agent
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/agents/research_agent.py
-      - name: Product agent
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/agents/product_agent.py
-      - name: QC agent
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/agents/qc_agent.py
-      - name: Chapter architecture
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/chapter-plan.py
-      - name: Multilingual layer
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/multilingual.py
-      - name: Publisher index
-        if: steps.source_changes.outputs.process_required == 'true'
-        run: python3 factory/run_stage.py factory/publisher.py
-      - name: GitHub Pages index
-        run: python3 factory/run_stage.py factory/publish_index.py
-      - name: Agent federation health
-        if: always()
-        run: python3 factory/federation.py
-      - name: Recovery planner
-        if: always()
-        run: python3 factory/recovery.py
-      - name: Agent supervisor
-        if: always()
-        run: python3 factory/agent_supervisor.py
-      - name: Build cloud backup manifest
-        if: always()
-        run: python3 factory/cloud_sync.py
-      - name: Build run report
-        if: always()
-        run: python3 factory/run_report.py
-      - name: Upload factory reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: omniverse-factory-qc-${{ github.run_number }}
-          path: generated/
-          if-no-files-found: warn
-          retention-days: 14
-      - name: Commit generated outputs
-        if: always()
+      - name: Build free deterministic archive
+        run: python3 factory/build_factory.py
+      - name: Validate generated catalog
         run: |
-          git config user.name 'omniverse-factory[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add generated
-          git diff --cached --quiet || git commit -m 'chore: run omniverse research factory'
+          test -s generated/manifest.json
+          test -s generated/verse-corpus.jsonl
+          test -s generated/CATALOG.md
+      - name: Publish generated catalog
+        run: |
+          git config user.name "omniverse-factory[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated factory
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(factory): refresh research products"
           git push
