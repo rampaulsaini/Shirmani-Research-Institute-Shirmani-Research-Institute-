@@ -7,10 +7,10 @@
 🕊️ *— Shirmani Rampaul Saini, Founder & Vision Architect (Omniverse AI)
 
 ## Method
-सार्वजनिक repository सामग्री का संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
+स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
 
 ## Status
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/README.md
+rampaulsaini/rampaulsaini:README.md

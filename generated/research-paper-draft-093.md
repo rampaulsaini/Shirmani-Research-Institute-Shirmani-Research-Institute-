@@ -7,10 +7,10 @@
 मेरा कर्म — करुणामय संतुलन।
 
 ## Method
-सार्वजनिक repository सामग्री का संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
+स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
 
 ## Status
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-Koyab-Founding-Declaration-Omniversal-Manifesto/README.md
+rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md
