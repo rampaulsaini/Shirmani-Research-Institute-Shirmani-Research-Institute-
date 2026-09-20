@@ -12,7 +12,8 @@ TRACKED = [
     "repository-intelligence.json", "manifest.json", "source-units.jsonl",
     "canonical-knowledge.jsonl", "canonical-knowledge-manifest.json",
     "canonical-index.json", "verse-corpus.jsonl", "reasoning-manifest.jsonl",
-    "claim-evidence.jsonl", "QC-REPORT.json", "worker-status.json",
+    "claim-evidence.jsonl", "provenance-ledger.jsonl", "independent-verification-queue.jsonl",
+    "VERIFICATION-QUEUE.json", "VERIFICATION-QUEUE-QC.json", "QC-REPORT.json", "worker-status.json",
 ]
 
 def sha256(path: Path) -> str:
