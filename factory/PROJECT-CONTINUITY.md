@@ -46,18 +46,31 @@ Source repositories → Repository Intelligence → Source Units → Canonical K
 
 ## Latest completed engineering work
 - Removed the latent research-question dependency from factory/batch_worker.py.
+- Fixed the research-paper worker to call research_question(base["text"]) rather than a nonexistent question helper.
 - Added and registered the deterministic Shirmani reasoning agent at factory/agents/shirmani_reasoning_agent.py.
 - Added factory/reasoning_pipeline.py for reasoning/provenance records without converting philosophy into scientific fact.
-- Latest factory refresh and QC commits are present through 2026-09-20.
+- Extended deterministic QC to validate claim class, method trace, evidence status, provenance and human-review requirements.
+- Integrated reasoning/provenance before QC in .github/workflows/omniverse-factory.yml.
+- Isolated CI Python-source validation from vendored/template material under factory/_sources.
+- Added Python-cache exclusions to .gitignore.
+- Strengthened factory/queue_worker.py with atomic JSONL persistence, idempotent enqueue, retry scheduling, lease expiry recovery, dead-letter handling, and single-writer locking where fcntl is available.
+- Added factory/tests/test_queue_worker.py covering idempotency, lease assignment, lease-token protection, retry/dead-letter lifecycle, and expired-lease recovery.
+- PR #5 was intentionally closed unmerged after generated/cache files contaminated its branch; no contaminated PR content was merged into main.
+
+## Current engineering state
+The clean durable-queue implementation is prepared on branch feat/durable-queue-checkpoints-clean. It is not yet merged into main. CI/status must be verified before merge.
+
+The existing factory/state.py remains the next integration point. It currently provides atomic state save/load and completed-item markers, but does not yet provide a complete v2 checkpoint model for in-flight jobs, retry/lease state, per-kind counters, artifact manifests, and recovery metadata.
 
 ## Current next engineering priorities
-1. Run the reasoning/provenance layer inside the main factory workflow before QC.
-2. Extend deterministic QC to validate claim class, method trace, evidence status, provenance and human-review requirements.
-3. Strengthen durable queue/state/checkpoint handling for all product types.
-4. Expand lawful/open external knowledge ingestion with source/context metadata.
-5. Build independently reviewable research workflows before calling any research result verified.
-6. Keep the dashboard and publication layer synchronized with generated manifests.
-7. Continue incremental expansion toward the defined product targets.
+1. Verify the clean queue implementation and tests in CI.
+2. Merge only the clean queue changes after verification.
+3. Introduce a versioned state/checkpoint schema that records per-kind target/completed/running/retrying/failed counts, checkpoint cursor, artifact hashes/manifests, queue references, and recovery metadata.
+4. Integrate queue claims, lease tokens, completion, and state checkpoints into the actual batch worker for every product type.
+5. Expand lawful/open external knowledge ingestion with source/context metadata.
+6. Build independently reviewable research workflows before calling any research result verified.
+7. Keep the dashboard and publication layer synchronized with generated manifests.
+8. Continue incremental expansion toward the defined product targets.
 
 ## Restart instruction
 When a new chat says “Continue Shirmani Research Institute”, first inspect this file and the referenced current files in GitHub, then continue from the next engineering priority without reconstructing the project from chat memory.
