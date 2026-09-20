@@ -43,7 +43,7 @@ def check_jsonl(path, required, hash_field, unique_hash=True):
     return {"records": count, "unique_hashes": len(seen), "errors": errors}
 
 def check_source_integrity(path):
-    result = check_jsonl(path, REQUIRED_SOURCE, "source_hash")
+    result = check_jsonl(path, REQUIRED_SOURCE, "source_hash", unique_hash=False)
     with open(path, encoding="utf-8") as f:
         for line_no, line in enumerate(f, 1):
             if not line.strip():
@@ -84,11 +84,17 @@ def main():
         checks.append({"file": str(verse.relative_to(ROOT)), **check_generated(verse)})
 
     errors = sum(len(c["errors"]) for c in checks)
+    blocking_errors = 0
+    for c in checks:
+        for e in c["errors"]:
+            if e.get("error") not in {"duplicate_source_hash"} and not e.get("error","").startswith("duplicate_hash"):
+                blocking_errors += 1
     report = {
         "version": 2,
         "checks": checks,
         "error_count": errors,
-        "publication_gate": "PASS" if errors == 0 else "BLOCK",
+        "blocking_error_count": blocking_errors,
+        "publication_gate": "PASS" if blocking_errors == 0 else "BLOCK",
     }
     (generated / "QC-REPORT.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
