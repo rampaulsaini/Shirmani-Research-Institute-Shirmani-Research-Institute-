@@ -1,19 +1,19 @@
 name: Multi-Agent Research Factory
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'agents/**'
-      - 'factory/**'
-      - 'schemas/**'
-      - 'docs/**'
-      - '.github/workflows/agent-factory.yml'
+  schedule:
+    - cron: "47 2 * * 0"
 
 permissions:
   contents: write
 
+concurrency:
+  group: shirmani-agent-factory
+  cancel-in-progress: false
+
 jobs:
   build:
+    if: github.event_name != 'push' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
