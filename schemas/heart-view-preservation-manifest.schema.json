@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/heart-view-preservation-manifest.schema.json",
+  "title":"Shirmani Heart-View Preservation Manifest",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["manifest_version","generated_at","policy","source_records","derivative_records"],
+  "properties":{
+    "manifest_version":{"type":"integer","minimum":1},
+    "generated_at":{"type":"string","format":"date-time"},
+    "policy":{"enum":["PRESERVE_FIRST_REASON_SECOND"]},
+    "source_records":{"type":"integer","minimum":0},
+    "derivative_records":{"type":"integer","minimum":0},
+    "verified_source_records":{"type":"integer","minimum":0},
+    "quarantined_source_records":{"type":"integer","minimum":0},
+    "missing_source_records":{"type":"integer","minimum":0},
+    "notes":{"type":"string"}
+  }
+}
