@@ -13,28 +13,30 @@ FRAMEWORK_PATH = ROOT / "factory" / "shirmani-framework.json"
 def load_framework():
     return json.loads(FRAMEWORK_PATH.read_text(encoding="utf-8"))
 
-def classify(claim):
+def classify(claim, policy):
+    """Classify using framework vocabulary while preserving a safe fallback."""
     c = claim.lower()
-    if any(x in c for x in ("यथार्थ युग", "शिरोमणि", "निष्पक्ष समझ", "हृदय दृष्टिकोण", "संपूर्ण संतुष्टि")):
+    classes = set(policy.get("claim_classes", []))
+    if policy.get("epistemic_safety", {}).get("philosophical_claims_must_be_labeled", True) and any(
+        x in c for x in ("यथार्थ युग", "शिरोमणि", "निष्पक्ष समझ", "हृदय दृष्टिकोण", "संपूर्ण संतुष्टि")
+    ) and "user_philosophy" in classes:
         return "user_philosophy"
-    if any(x in c for x in ("प्रमाण", "सिद्ध", "वैज्ञानिक", "empirical", "science")):
+    if any(x in c for x in ("प्रमाण", "सिद्ध", "वैज्ञानिक", "empirical", "science")) and "unverified_claim" in classes:
         return "unverified_claim"
-    return "creative_expression"
+    if "creative_expression" in classes:
+        return "creative_expression"
+    return next(iter(sorted(classes)), "unverified_claim")
 
 def reason(claim, source_ids=None):
     policy = load_framework()
-    claim_class = classify(claim)
+    claim_class = classify(claim, policy)
     return {
         "id": "reason-" + hashlib.sha256(claim.encode("utf-8")).hexdigest()[:16],
         "claim": claim,
         "claim_class": claim_class,
         "framework_id": policy["framework_id"],
         "source_ids": [str(x) for x in (source_ids or [])],
-        "method_trace": [
-            "source_provenance", "textual_context", "cross-source_comparison",
-            "formalization", "counterexample_search", "independent_verification",
-            "human_review"
-        ],
+        "method_trace": list(policy.get("method_stack", [])),
         "verification_questions": [
             "क्या दावा स्पष्ट रूप से परिभाषित और परीक्षण योग्य है?",
             "क्या प्राथमिक/विश्वसनीय स्रोत उपलब्ध हैं?",
