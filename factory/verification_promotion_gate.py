@@ -22,11 +22,16 @@ def promotable(r):
         and r.get("verification_status") == "VERIFIED"
         and r.get("independent") is True
         and isinstance(r.get("reviewer"), str) and bool(r["reviewer"].strip())
+        and isinstance(r.get("reviewer_role"), str) and bool(r["reviewer_role"].strip())
         and bool(r.get("reviewed_at"))
-        and isinstance(r.get("evidence_references"), list) and bool(r["evidence_references"])
+        and isinstance(r.get("evidence_references"), list) and all(isinstance(x, str) and x.strip() for x in r["evidence_references"]) and bool(r["evidence_references"])
         and (r.get("countercase_review") or {}).get("status") == "REVIEWED"
+        and isinstance((r.get("countercase_review") or {}).get("references"), list)
+        and all(isinstance(x, str) and x.strip() for x in (r.get("countercase_review") or {}).get("references", []))
         and bool((r.get("countercase_review") or {}).get("references"))
         and (r.get("reproduction_or_test") or {}).get("status") in {"PASSED", "SUPPORTED"}
+        and isinstance((r.get("reproduction_or_test") or {}).get("references"), list)
+        and all(isinstance(x, str) and x.strip() for x in (r.get("reproduction_or_test") or {}).get("references", []))
         and bool((r.get("reproduction_or_test") or {}).get("references"))
         and bool((r.get("audit") or {}).get("recorded_at"))
         and bool((r.get("audit") or {}).get("record_hash"))
