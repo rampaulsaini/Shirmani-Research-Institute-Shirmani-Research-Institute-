@@ -44,7 +44,7 @@ Source repositories → Repository Intelligence → Source Units → Canonical K
 9. Large production is incremental, hashed, checkpointed, and resumable.
 10. Protected third-party works are summarized/referenced rather than copied in full.
 
-## Latest completed engineering work
+## Latest completed engineering work\n- Strengthened factory/queue_worker.py with atomic JSONL writes, idempotent enqueue, retry scheduling, lease expiry recovery, and dead-letter handling.\n
 - Removed the latent research-question dependency from factory/batch_worker.py.
 - Added and registered the deterministic Shirmani reasoning agent at factory/agents/shirmani_reasoning_agent.py.
 - Added factory/reasoning_pipeline.py for reasoning/provenance records without converting philosophy into scientific fact.
