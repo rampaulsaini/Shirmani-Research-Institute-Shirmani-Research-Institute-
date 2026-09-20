@@ -96,6 +96,30 @@ def check_generated(path, framework):
                 result["errors"].append({"line": line_no, "error": f"generated_record_error:{exc}"})
     return result
 
+
+
+def check_verse_corpus(path):
+    """Validate the upstream verse corpus without applying reasoning-record rules.
+
+    The corpus is an input to the reasoning layer. Its historical records do not
+    necessarily contain the newer reasoning metadata, so those fields belong in
+    reasoning-manifest.jsonl and must not be retroactively fabricated here.
+    """
+    result = check_jsonl(path, ("id", "source_ids", "content_hash", "status", "text"), "content_hash")
+    with open(path, encoding="utf-8") as f:
+        for line_no, line in enumerate(f, 1):
+            if not line.strip():
+                continue
+            try:
+                r = json.loads(line)
+                if not isinstance(r.get("source_ids"), list) or not r.get("source_ids"):
+                    result["errors"].append({"line": line_no, "error": "missing_source_ids"})
+                if r.get("content_hash") != sha(r.get("text", "")):
+                    result["errors"].append({"line": line_no, "error": "content_hash_mismatch"})
+            except Exception as exc:
+                result["errors"].append({"line": line_no, "error": f"verse_record_error:{exc}"})
+    return result
+
 def build_artifact_index(generated):
     index = {}
     verse = generated / "verse-corpus.jsonl"
@@ -250,7 +274,7 @@ def main():
     if src.exists():
         checks.append({"file": str(src.relative_to(ROOT)), **check_source_integrity(src)})
     if verse.exists():
-        checks.append({"file": str(verse.relative_to(ROOT)), **check_generated(verse, framework)})
+        checks.append({"file": str(verse.relative_to(ROOT)), **check_verse_corpus(verse)})
     if reasoning.exists():
         checks.append({"file": str(reasoning.relative_to(ROOT)), **check_reasoning(reasoning, generated, framework)})
     if claim_evidence.exists():
