@@ -17,9 +17,14 @@ def extract(rows):
         source_type=row.get("source_type")
         if source_type: candidates.append(("SOURCE_TYPE",labelize(source_type)))
         path=row.get("source_path") or row.get("path") or ""
-        for part in Path(path).parts[:-1]:
+        parts=Path(path).parts
+        for part in parts[:-1]:
             label=labelize(part)
             if label and label not in STOP and len(label)>=3: candidates.append(("PATH_SEGMENT",label))
+        if parts:
+            stem=labelize(Path(parts[-1]).stem)
+            if stem and stem not in STOP and len(stem)>=3:
+                candidates.append(("PATH_STEM",stem))
         for derivation,label in candidates:
             key=(row["id"],label)
             if key in seen: continue
