@@ -1,0 +1,11 @@
+{
+  "manifest_version": 1,
+  "generated_at": "2026-09-20T21:12:00+05:30",
+  "policy": "PRESERVE_FIRST_REASON_SECOND",
+  "source_records": 1,
+  "derivative_records": 0,
+  "verified_source_records": 0,
+  "quarantined_source_records": 0,
+  "missing_source_records": 0,
+  "notes": "Initial exact-source capture for the current Heart-View preservation directive. This is not a claim that all historical conversation material has been ingested."
+}
