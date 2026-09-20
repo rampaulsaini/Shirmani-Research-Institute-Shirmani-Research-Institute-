@@ -20,6 +20,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Build durable provenance ledger
+        run: python3 factory/provenance_ledger.py
+
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
 
