@@ -291,7 +291,7 @@ def write_books(data, rows):
     return made
 
 def main():
-    ap = argparse.ArgumentParser()
+    # Normalize legacy derived metadata before generating the next batch.\n    # Canonical/source records are never rewritten by this repair.\n    repair_generated_corpus_metadata()\n    ap = argparse.ArgumentParser()
     ap.add_argument("--batch-size", type=int, default=int(CFG.get("batch_size", 1000)))
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
