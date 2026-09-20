@@ -55,3 +55,14 @@ Source repositories → Repository Intelligence → Source Units → Canonical K
 
 ## Restart instruction
 When a new chat says “Continue Shirmani Research Institute”, first inspect this file and the referenced current files in GitHub, then continue from the next engineering priority without reconstructing the project from chat memory.
+
+## Reasoning + QC integration (current branch)
+- Branch: engineering/reasoning-qc-pipeline
+- Reasoning adapter: factory/reasoning_pipeline.py
+- Unified metadata ledger: generated/reasoning-manifest.jsonl
+- Manifest schema: factory/reasoning-manifest.schema.json
+- Batch worker invokes reasoning enrichment after product generation.
+- Research-paper generation uses the local research_question() function; the latent undefined question() reference is corrected.
+- Factory QC now blocks when the reasoning manifest is missing or lacks claim class, method trace, verification questions, provenance/source IDs, or consistent evidence status.
+- Omniverse workflow runs reasoning enrichment before deterministic QC and requires the reasoning manifest before publication.
+- Book and research-paper metadata is linked back to verse/source IDs where available.
