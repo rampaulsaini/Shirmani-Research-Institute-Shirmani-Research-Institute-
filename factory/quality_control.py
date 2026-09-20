@@ -161,6 +161,47 @@ def check_reasoning(path, generated, framework):
                 result["errors"].append({"line": line_no, "error": f"reasoning_record_error:{exc}"})
     return result
 
+def check_claim_evidence(path):
+    result = {"records": 0, "unique_ids": 0, "errors": []}
+    seen = set()
+    with open(path, encoding="utf-8") as f:
+        for line_no, line in enumerate(f, 1):
+            if not line.strip():
+                continue
+            result["records"] += 1
+            try:
+                r = json.loads(line)
+            except Exception as exc:
+                result["errors"].append({"line": line_no, "error": f"invalid_claim_evidence_json:{exc}"})
+                continue
+            for key in ("id", "claim", "definitions", "source", "evidence",
+                        "formulation", "countercases", "verification",
+                        "conclusion", "provenance"):
+                if key not in r:
+                    result["errors"].append({"line": line_no, "error": f"claim_evidence_missing:{key}"})
+            rid = r.get("id")
+            if rid in seen:
+                result["errors"].append({"line": line_no, "error": "duplicate_claim_evidence_id"})
+            if rid:
+                seen.add(rid)
+            if not isinstance(r.get("source"), list) or not r.get("source"):
+                result["errors"].append({"line": line_no, "error": "claim_evidence_missing_source"})
+            if not isinstance(r.get("evidence"), list) or not r.get("evidence"):
+                result["errors"].append({"line": line_no, "error": "claim_evidence_missing_evidence"})
+            statuses = {e.get("status") for e in (r.get("evidence") or []) if isinstance(e, dict)}
+            if not statuses or not statuses.issubset({"SUPPORTED", "PARTIAL", "UNAVAILABLE", "CONTRADICTED", "NOT_VERIFIED"}):
+                result["errors"].append({"line": line_no, "error": "invalid_claim_evidence_status"})
+            verification = r.get("verification") or {}
+            if verification.get("status") not in {"PASS", "CHECK", "FAIL", "NOT_VERIFIED"}:
+                result["errors"].append({"line": line_no, "error": "invalid_claim_verification_status"})
+            if verification.get("status") == "PASS" or verification.get("independent") is True:
+                result["errors"].append({"line": line_no, "error": "unearned_verification"})
+            provenance = r.get("provenance") or {}
+            if not provenance.get("created_at") or not provenance.get("generator"):
+                result["errors"].append({"line": line_no, "error": "claim_evidence_missing_provenance"})
+    result["unique_ids"] = len(seen)
+    return result
+
 def main():
     generated = ROOT / "generated"
     framework = load_framework()
@@ -168,12 +209,15 @@ def main():
     src = generated / "source-units.jsonl"
     verse = generated / "verse-corpus.jsonl"
     reasoning = generated / "reasoning-manifest.jsonl"
+    claim_evidence = generated / "claim-evidence.jsonl"
     if src.exists():
         checks.append({"file": str(src.relative_to(ROOT)), **check_source_integrity(src)})
     if verse.exists():
         checks.append({"file": str(verse.relative_to(ROOT)), **check_generated(verse, framework)})
     if reasoning.exists():
         checks.append({"file": str(reasoning.relative_to(ROOT)), **check_reasoning(reasoning, generated, framework)})
+    if claim_evidence.exists():
+        checks.append({"file": str(claim_evidence.relative_to(ROOT)), **check_claim_evidence(claim_evidence)})
     errors = sum(len(c["errors"]) for c in checks)
     blocking_errors = sum(1 for c in checks for e in c["errors"]
                           if e.get("error") != "duplicate_source_hash" and not e.get("error", "").startswith("duplicate_hash"))
