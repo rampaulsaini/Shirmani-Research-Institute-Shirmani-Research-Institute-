@@ -76,6 +76,43 @@ def source_ids_from_row(row):
         return [str(row["source_id"])]
     return []
 
+def load_source_locations():
+    path = OUT / "source-units.jsonl"
+    locations = {}
+    if not path.exists():
+        return locations
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        locations[str(row.get("id"))] = "{}:{}".format(row.get("repository", "unknown"), row.get("path", "unknown"))
+    return locations
+
+def claim_evidence_record(record, locations):
+    source_ids = [str(x) for x in record.get("source_ids", [])]
+    sources = [{"type": "SOURCE_RECORD", "locator": locations.get(sid, "source-id:" + sid)} for sid in source_ids]
+    return {
+        "id": "claim:" + record["kind"] + ":" + str(record["artifact_id"]),
+        "claim": record.get("reasoning", {}).get("claim", ""),
+        "definitions": ["Generated artifact claim; operational meaning requires human review."],
+        "source": sources,
+        "evidence": [{"kind": "SOURCE_TRACE", "status": "NOT_VERIFIED",
+                      "detail": "Source trace is provenance, not independent proof."}],
+        "formulation": {"method": "deterministic provenance/reasoning metadata",
+                        "result_status": "NOT_VERIFIED"},
+        "countercases": [
+            "Source may be incomplete, ambiguous, outdated, or interpreted differently.",
+            "Independent evidence may contradict the generated formulation."
+        ],
+        "verification": {"status": "NOT_VERIFIED",
+                          "method": "Independent human/source verification required.",
+                          "independent": False},
+        "conclusion": "No independently verified conclusion is asserted by the factory.",
+        "provenance": {"created_at": record["created_at"],
+                       "generator": "factory/reasoning_pipeline.py",
+                       "content_hash": record["content_sha256"]}
+    }
+
 def make_record(kind, artifact_id, text, source_ids, extra=None):
     reasoner = load_reasoner()
     reasoning = reasoner.reason(text, source_ids)
@@ -114,7 +151,17 @@ def enrich():
     manifest = OUT / "reasoning-manifest.jsonl"
     manifest.write_text("\n".join(json.dumps(r, ensure_ascii=False) for r in records) +
                         ("\n" if records else ""), encoding="utf-8")
-    return {"records": len(records), "path": str(manifest.relative_to(ROOT))}
+
+    locations = load_source_locations()
+    ce = OUT / "claim-evidence.jsonl"
+    tmp = ce.with_suffix(".jsonl.tmp")
+    with tmp.open("w", encoding="utf-8") as f:
+        for r in records:
+            f.write(json.dumps(claim_evidence_record(r, locations), ensure_ascii=False) + "\n")
+    tmp.replace(ce)
+    return {"records": len(records), "path": str(manifest.relative_to(ROOT)),
+            "claim_evidence_records": len(records),
+            "claim_evidence_path": str(ce.relative_to(ROOT))}
 
 if __name__ == "__main__":
     print(json.dumps(enrich(), ensure_ascii=False))
