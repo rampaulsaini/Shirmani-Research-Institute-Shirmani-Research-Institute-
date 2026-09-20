@@ -1,0 +1,2242 @@
+{
+  "checks": [
+    {
+      "file": "generated/source-units.jsonl",
+      "records": 3625,
+      "unique_hashes": 3069,
+      "errors": [
+        {
+          "line": 65,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 87,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 92,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 93,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 94,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 96,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 97,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 98,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 100,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 101,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 104,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 106,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 108,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 109,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 110,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 111,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 113,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 115,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 116,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 117,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 118,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 120,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 121,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 122,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 123,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 124,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 125,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 126,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 128,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 129,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 130,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 131,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 134,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 136,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 143,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 144,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 145,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 146,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 150,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 151,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 153,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 155,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 156,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 157,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 159,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 160,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 161,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 163,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 164,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 165,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 167,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 168,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 170,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 171,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 440,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 461,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 565,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 727,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 866,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 867,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 868,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 869,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 870,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 871,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 872,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 873,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 874,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 875,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 876,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 877,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 878,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 879,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 880,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 881,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 882,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 883,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 884,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 885,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 886,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 899,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 900,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 901,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 902,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 903,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 904,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 905,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 906,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 907,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 908,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 909,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 910,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 911,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 912,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 913,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 914,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 915,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 916,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 917,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 918,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 922,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 952,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 953,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 954,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 955,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 956,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 957,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 958,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 959,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 960,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 961,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 962,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 963,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 964,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 965,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 966,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 967,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 968,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 969,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 970,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 971,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 973,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 974,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 975,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 976,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 977,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 978,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 979,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 980,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 981,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 982,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 983,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 984,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 985,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 986,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1077,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1078,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1080,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1081,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1095,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1096,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1097,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1098,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1100,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1101,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1102,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1103,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1104,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1105,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1107,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1111,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1112,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1113,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1114,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1115,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1117,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1118,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1120,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1123,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1124,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1125,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1126,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1127,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1128,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1129,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1130,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1131,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1132,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1133,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1134,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1135,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1136,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1137,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1138,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1139,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1140,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1141,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1142,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1143,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1144,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1147,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1149,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1150,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1151,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1152,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1153,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1154,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1155,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1156,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1157,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1158,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1159,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1160,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1161,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1162,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1163,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1165,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1225,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1226,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1227,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1340,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1341,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1342,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1343,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1344,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1345,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1346,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1347,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1348,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1349,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1350,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1351,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1352,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1353,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1354,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1355,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1356,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1357,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1358,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1359,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1360,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1361,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1362,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1363,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1368,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1369,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1370,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1375,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1386,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1387,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1388,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1389,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1390,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1391,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1392,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1393,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1394,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1395,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1396,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1397,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1398,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1399,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1400,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1401,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1402,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1403,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1404,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1406,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1407,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1408,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1409,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1410,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1411,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1412,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1413,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1414,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1415,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1416,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1417,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1418,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1419,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1420,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1421,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1422,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1423,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1424,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1425,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1426,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1427,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1428,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1429,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1430,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1449,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1450,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1451,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1452,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1453,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1454,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1456,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1503,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1513,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1530,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1531,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1534,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1542,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1545,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 1546,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2008,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2062,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2312,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2314,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2315,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2316,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2320,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2321,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2322,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2363,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2372,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2375,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2376,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2381,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2382,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2384,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2385,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2392,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2395,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2398,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2400,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2401,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2404,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2405,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2407,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2408,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2409,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2410,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2411,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2412,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2413,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2414,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2421,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2433,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2435,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2436,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2458,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2460,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2464,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2468,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2497,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2513,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2528,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2529,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2530,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2531,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2532,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2533,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2534,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2535,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2536,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2537,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2538,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2544,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2569,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2570,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2572,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2573,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2576,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2577,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2594,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2596,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2597,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2641,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2644,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2645,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2646,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2647,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2648,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2650,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2651,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2652,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2654,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2655,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2656,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2657,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2658,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2659,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2661,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2663,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2664,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2665,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2666,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2667,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2668,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2669,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2670,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2671,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2672,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2673,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2674,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2675,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2676,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2678,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2679,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2680,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2681,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2682,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2683,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2684,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2685,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2686,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2687,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2688,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2689,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2690,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2691,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2692,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2693,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2694,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2695,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2696,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2697,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2698,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2711,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2713,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2716,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2717,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2718,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2720,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2721,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2722,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2724,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2725,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2727,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2729,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2733,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2734,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2735,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2742,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2743,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2744,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2745,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2746,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2749,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2750,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2751,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2752,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2753,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2754,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2755,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2756,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2757,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2758,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2759,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2760,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2765,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2766,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2774,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2776,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2777,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2778,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2779,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2780,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2782,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2783,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2784,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2786,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2788,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2789,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2790,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2791,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2792,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2793,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2794,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2795,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2796,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2797,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2798,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2799,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2800,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2801,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2802,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2803,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2804,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2805,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2806,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2807,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2808,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2809,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2810,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2811,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2812,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2813,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2814,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2815,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2816,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2817,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2818,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2819,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2820,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2821,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2822,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2823,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2824,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2825,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2826,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2827,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2836,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2840,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2841,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2842,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2843,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2845,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2846,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2848,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2849,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2852,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2853,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2854,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2856,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2864,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2865,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2867,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2868,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2869,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2870,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2871,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2872,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2873,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2874,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2875,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2876,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2877,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2878,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2879,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2880,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2881,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2882,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2883,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2884,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2885,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2886,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2887,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2888,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2889,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2890,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2891,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2892,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2893,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2894,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2895,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2896,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2897,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2898,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 2900,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3192,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3211,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3247,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3294,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3535,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3536,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3554,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3594,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3595,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3596,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3597,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3603,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3604,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3605,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3606,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3617,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3618,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3619,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3620,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3621,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3622,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3623,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3624,
+          "error": "duplicate_hash"
+        },
+        {
+          "line": 3625,
+          "error": "duplicate_hash"
+        }
+      ]
+    },
+    {
+      "file": "generated/verse-corpus.jsonl",
+      "records": 100000,
+      "unique_hashes": 100000,
+      "errors": []
+    }
+  ],
+  "publication_gate": "BLOCK"
+}
