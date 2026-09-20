@@ -145,3 +145,5 @@ A missing field is a QC failure, not an invitation to invent a value.
 - `generated/continuity-manifest.json` is generated after QC and before catalog validation.
 - The manifest is an execution trace, not evidence of scientific truth; artifact hashes prove reproducibility of the recorded files, not correctness of their claims.
 - Resume logic remains output-first: durable generated outputs are used to reconstruct progress, while canonical/source records remain protected.
+
+- Follow-up fix: QC no longer applies the reasoning method-stack validator to the upstream verse corpus; strict method-stack validation remains on reasoning-manifest.jsonl. This prevents 100,000 false blocking errors while preserving reasoning QC.
