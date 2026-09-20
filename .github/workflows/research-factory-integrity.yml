@@ -34,15 +34,10 @@ jobs:
       - name: Factory contract smoke test
         run: |
           python3 factory/validate_factory.py
-      - name: Deterministic normalization smoke test
+      - name: Deterministic formulation gates
         run: |
-          python3 -m py_compile scripts/normalize_records.py scripts/validate_json.py factory/heart_view_label.py factory/heart_view_continuity.py factory/self_realization_formulation.py
-      - name: Heart-view NEXT_LABEL gate
-        run: |
+          python3 -m py_compile scripts/normalize_records.py scripts/validate_json.py factory/heart_view_label.py factory/heart_view_continuity.py factory/self_realization_formulation.py factory/universal_viewpoint_engine.py
           python3 factory/heart_view_label.py
-      - name: Heart-view continuity gate
-        run: |
           python3 factory/heart_view_continuity.py
-      - name: Self-realization formulation gate
-        run: |
           python3 factory/self_realization_formulation.py
+          python3 factory/universal_viewpoint_engine.py
