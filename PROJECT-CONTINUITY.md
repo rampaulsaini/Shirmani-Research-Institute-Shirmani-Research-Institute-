@@ -155,3 +155,11 @@ The preservation layer now has an executable ingestion utility:
 - `generated/protected-sources/README.md` establishes the protected archive boundary and intentionally starts empty.
 
 No historical text is auto-reconstructed. The archive only becomes populated from actual traceable source material.
+
+## 19. Protected user-source inventory layer
+- `schemas/protected-user-source.schema.json` defines the immutable-source record contract with stable ID, exact-byte SHA-256, byte length, provenance and explicit verbatim/derivative separation.
+- `factory/protected_source_manifest.py` inventories captured source bytes without rewriting them and emits `generated/protected-user-source-manifest.json`.
+- `protected/user-source/` is the dedicated preservation boundary for explicitly captured original user material.
+- The workflow inventories this boundary before downstream generation and requires the manifest to exist.
+- An empty protected-source inventory is valid infrastructure state, but it does **not** claim that historical conversation material has been recovered. Actual historical source must be imported from an available source before it can receive a preservation ID/hash.
+\n
