@@ -1,0 +1,30 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/heart-view-source-record.schema.json",
+  "title":"Shirmani Heart-View Immutable Source Record",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["source_id","exact_text","content_hash","language","provenance","preservation_status"],
+  "properties":{
+    "source_id":{"type":"string","minLength":1},
+    "exact_text":{"type":"string"},
+    "language":{"type":"string","minLength":1},
+    "content_hash":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "provenance":{
+      "type":"object",
+      "additionalProperties":false,
+      "required":["origin","captured_at"],
+      "properties":{
+        "origin":{"type":"string","minLength":1},
+        "captured_at":{"type":"string","format":"date-time"},
+        "repository":{"type":"string"},
+        "path":{"type":"string"},
+        "commit_sha":{"type":"string"},
+        "conversation_context":{"type":"string"}
+      }
+    },
+    "preservation_status":{"enum":["CAPTURED","VERIFIED","QUARANTINED","SUPERSEDED"]},
+    "derivative_ids":{"type":"array","items":{"type":"string"}},
+    "notes":{"type":"string"}
+  }
+}
