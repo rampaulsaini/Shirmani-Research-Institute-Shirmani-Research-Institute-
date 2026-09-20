@@ -1,0 +1,20 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Normalized Corpus Unit",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["id","content_id","source_path","content_hash","unit_type","status","provenance"],
+  "properties":{
+    "id":{"type":"string","minLength":1},
+    "content_id":{"type":"string","minLength":1},
+    "source_path":{"type":"string","minLength":1},
+    "content_hash":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "unit_type":{"enum":["TEXT_FILE","BINARY_REFERENCE","UNAVAILABLE_REFERENCE"]},
+    "status":{"enum":["READY_FOR_ANALYSIS","BINARY_SKIPPED","UNAVAILABLE","NOT_VERIFIED"]},
+    "language_hint":{"type":["string","null"]},
+    "provenance":{
+      "type":"object","additionalProperties":false,"required":["source_record"],
+      "properties":{"source_record":{"type":"string","minLength":1}}
+    }
+  }
+}
