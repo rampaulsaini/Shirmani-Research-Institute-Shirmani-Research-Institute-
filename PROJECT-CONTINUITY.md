@@ -147,3 +147,5 @@ A missing field is a QC failure, not an invitation to invent a value.
 - Resume logic remains output-first: durable generated outputs are used to reconstruct progress, while canonical/source records remain protected.
 
 - Follow-up fix: QC no longer applies the reasoning method-stack validator to the upstream verse corpus; strict method-stack validation remains on reasoning-manifest.jsonl. This prevents 100,000 false blocking errors while preserving reasoning QC.
+
+- Added a durable-state gate after the resumable batch worker so CI fails immediately if state.json is invalid or loses its version/completed map.
