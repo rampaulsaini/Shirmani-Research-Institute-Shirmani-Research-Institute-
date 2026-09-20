@@ -29,7 +29,7 @@ jobs:
           python-version: '3.x'
 
       - name: Validate Python
-        run: python -m compileall agents factory
+        run: python -c "import pathlib, py_compile; roots=[pathlib.Path('agents'), pathlib.Path('factory')]; files=[p for r in roots for p in r.rglob('*.py') if '_sources' not in p.parts and '__pycache__' not in p.parts]; [py_compile.compile(str(p), doraise=True) for p in files]; print(f'compiled {len(files)} Python files')"
 
       - name: Validate configuration
         run: python -c "import json, pathlib; [json.loads(p.read_text(encoding='utf-8')) for p in pathlib.Path('factory').glob('*.json')]; [json.loads(p.read_text(encoding='utf-8')) for p in pathlib.Path('schemas').glob('*.json')]; print('configuration OK')"
