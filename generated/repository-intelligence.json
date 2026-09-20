@@ -1,0 +1,264 @@
+{
+  "version": 1,
+  "generated_at": "2026-09-20T01:39:58.128048+00:00",
+  "hub_repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+  "repository_count": 25,
+  "repositories": [
+    {
+      "repository": "rampaulsaini/rampaulsaini",
+      "owner": "rampaulsaini",
+      "name": "rampaulsaini",
+      "default_branch": "main",
+      "head_sha": "024b5c892a6c58d36aa8404b6c689ff26573e07e",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Platform",
+      "owner": "rampaulsaini",
+      "name": "Omniverse-Platform",
+      "default_branch": null,
+      "head_sha": null,
+      "available": false,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-",
+      "owner": "rampaulsaini",
+      "name": "Omniverse-",
+      "default_branch": "main",
+      "head_sha": "f718805b58020cd302d1bd438ccee9f3c8fc2016",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse",
+      "owner": "rampaulsaini",
+      "name": "Omniverse",
+      "default_branch": "main",
+      "head_sha": "4befc073d7fc594806050097fe0af82c2f1d5b2a",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Omnivers",
+      "owner": "rampaulsaini",
+      "name": "Omnivers",
+      "default_branch": "main",
+      "head_sha": "10b9d0ede1102e821e634dbf5b9d00f9a4d5c9ce",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Omniver",
+      "owner": "rampaulsaini",
+      "name": "Omniver",
+      "default_branch": "main",
+      "head_sha": "aba7f43e584375526e26a22079954eef5cd91bdb",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Karbon-",
+      "owner": "rampaulsaini",
+      "name": "Karbon-",
+      "default_branch": "main",
+      "head_sha": "f49e6755f988a79a6ad2cb4d071e86f21e0a9e5b",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Platform-supreme-",
+      "owner": "rampaulsaini",
+      "name": "Omniverse-Platform-supreme-",
+      "default_branch": "main",
+      "head_sha": "e06831d0ba1ef1585deb875ba5f5cb0f2fa06695",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-AI",
+      "owner": "rampaulsaini",
+      "name": "Omniverse-AI",
+      "default_branch": "main",
+      "head_sha": "8c61d869719f216a04d9ce1ef80d1b55f319ceb4",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/C-Labs",
+      "owner": "rampaulsaini",
+      "name": "C-Labs",
+      "default_branch": "main",
+      "head_sha": "39a3605e3982c658be3f8a01890298ae40801326",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/kit-app-template",
+      "owner": "rampaulsaini",
+      "name": "kit-app-template",
+      "default_branch": "main",
+      "head_sha": "115493c3ab0380630595344caffbb7a5d85a77e8",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/omniverse--ai-scripts-",
+      "owner": "rampaulsaini",
+      "name": "omniverse--ai-scripts-",
+      "default_branch": "base-branch-main",
+      "head_sha": "2f9aab790b70c4149f667b91e41bd8fddb459aa2",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/supreme-omniverse-test",
+      "owner": "rampaulsaini",
+      "name": "supreme-omniverse-test",
+      "default_branch": "main",
+      "head_sha": "e76ac3c190c2f30cbf460ef7f732e398998ca600",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto",
+      "owner": "rampaulsaini",
+      "name": "Koyab-Founding-Declaration-Omniversal-Manifesto",
+      "default_branch": "main",
+      "head_sha": "e0bb6110b50679fb7164ad063d6905d4d2c2b739",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/my-omniverse-store",
+      "owner": "rampaulsaini",
+      "name": "my-omniverse-store",
+      "default_branch": "main",
+      "head_sha": "87cb1d0981454d18cbd106b97810888222898d67",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/omniverse-dashboard",
+      "owner": "rampaulsaini",
+      "name": "omniverse-dashboard",
+      "default_branch": "main",
+      "head_sha": "452498625fd316bb72c2713d50d8c172f99475ea",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/omniverse-marketplace-",
+      "owner": "rampaulsaini",
+      "name": "omniverse-marketplace-",
+      "default_branch": "main",
+      "head_sha": "fcdb12187e9e2ac95d788f2674431782951c7eac",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/omniverse-marketplace",
+      "owner": "rampaulsaini",
+      "name": "omniverse-marketplace",
+      "default_branch": "main",
+      "head_sha": "8318f71936951fec23c8c6692e7a72bbace72bdb",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Supreme-Core-",
+      "owner": "rampaulsaini",
+      "name": "Omniverse-Supreme-Core-",
+      "default_branch": "main",
+      "head_sha": "e59abe571660248d5aa9782f11b6854366b6b1a8",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth",
+      "owner": "rampaulsaini",
+      "name": "Nishpaksh-Samaj-Omniverse-Truth",
+      "default_branch": "main",
+      "head_sha": "f976279c1c38dcac35bb54a2b8a84865d4d637bc",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/shiromani-rampal-saini",
+      "owner": "rampaulsaini",
+      "name": "shiromani-rampal-saini",
+      "default_branch": "main",
+      "head_sha": "dd356ca9afe9e080efc1f164f0ba97b0191cfac1",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Shirmani-Research-Paper",
+      "owner": "rampaulsaini",
+      "name": "Shirmani-Research-Paper",
+      "default_branch": "main",
+      "head_sha": "5b0e2380742ec0ae0097d49405f4dfd9ed94c0da",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+      "owner": "rampaulsaini",
+      "name": "Shirmani-Research-Institute-Shirmani-Research-Institute-",
+      "default_branch": "main",
+      "head_sha": "d332392d12717feb5505bb3a9b6545c9060976ae",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "rampaulsaini/yatharth-music-ai",
+      "owner": "rampaulsaini",
+      "name": "yatharth-music-ai",
+      "default_branch": "main",
+      "head_sha": "4141beba4c8d2b2d7226864d6827a10348d8b4c1",
+      "available": true,
+      "external_reference": false,
+      "inventory_method": "git-ls-remote"
+    },
+    {
+      "repository": "NVIDIA-Omniverse/kit-app-template",
+      "owner": "NVIDIA-Omniverse",
+      "name": "kit-app-template",
+      "default_branch": "main",
+      "head_sha": "0a1c5e8d9b87decf77c59e5d3c8b79d2b56ec1de",
+      "available": true,
+      "external_reference": true,
+      "inventory_method": "git-ls-remote"
+    }
+  ],
+  "policy": {
+    "free_first": true,
+    "no_paid_api_required": true,
+    "draft_label_required_for_generated_research": true,
+    "no_claim_of_scientific_validation": true
+  }
+}
