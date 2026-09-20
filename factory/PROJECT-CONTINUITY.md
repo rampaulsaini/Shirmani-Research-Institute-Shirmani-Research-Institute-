@@ -44,14 +44,20 @@ Source repositories → Repository Intelligence → Source Units → Canonical K
 9. Large production is incremental, hashed, checkpointed, and resumable.
 10. Protected third-party works are summarized/referenced rather than copied in full.
 
+## Latest completed engineering work
+- Removed the latent research-question dependency from factory/batch_worker.py.
+- Added and registered the deterministic Shirmani reasoning agent at factory/agents/shirmani_reasoning_agent.py.
+- Added factory/reasoning_pipeline.py for reasoning/provenance records without converting philosophy into scientific fact.
+- Latest factory refresh and QC commits are present through 2026-09-20.
+
 ## Current next engineering priorities
-1. Fix the latent research-question reference in factory/batch_worker.py.
-2. Add a dedicated Shirmani reasoning agent.
-3. Extend QC to validate claim_class, method_trace, provenance, framework compliance, and research draft labeling.
-4. Strengthen durable queue/state/checkpoint handling for all product types.
-5. Expand lawful/open external knowledge ingestion with source/context metadata.
-6. Build independently reviewable research workflows before calling any research result verified.
-7. Keep the dashboard and publication layer synchronized with generated manifests.
+1. Run the reasoning/provenance layer inside the main factory workflow before QC.
+2. Extend deterministic QC to validate claim class, method trace, evidence status, provenance and human-review requirements.
+3. Strengthen durable queue/state/checkpoint handling for all product types.
+4. Expand lawful/open external knowledge ingestion with source/context metadata.
+5. Build independently reviewable research workflows before calling any research result verified.
+6. Keep the dashboard and publication layer synchronized with generated manifests.
+7. Continue incremental expansion toward the defined product targets.
 
 ## Restart instruction
 When a new chat says “Continue Shirmani Research Institute”, first inspect this file and the referenced current files in GitHub, then continue from the next engineering priority without reconstructing the project from chat memory.
