@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/user-source-record.schema.json",
+  "title": "Shirmani Protected User Source Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_id",
+    "exact_text",
+    "language",
+    "content_hash",
+    "provenance",
+    "preservation_status"
+  ],
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "pattern": "^USR-[A-Za-z0-9._:-]+$"
+    },
+    "exact_text": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "origin",
+        "captured_at"
+      ],
+      "properties": {
+        "origin": {
+          "type": "string"
+        },
+        "captured_at": {
+          "type": "string"
+        },
+        "parent_context": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      }
+    },
+    "preservation_status": {
+      "type": "string",
+      "enum": [
+        "PRESERVED",
+        "PENDING_CAPTURE",
+        "UNAVAILABLE"
+      ]
+    },
+    "derivative_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}
