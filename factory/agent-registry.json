@@ -1,21 +1,80 @@
 {
-  "version": 1,
+  "version": 2,
   "hub": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
   "agents": [
-    {"id":"research","role":"source-grounded research drafting","input":"canonical source units","output":"research drafts","status":"planned"},
-    {"id":"mahagranth","role":"long-form book composition","input":"verified source units","output":"book drafts","status":"planned"},
-    {"id":"verse","role":"गीत/श्लोक/सूत्र composition","input":"source units","output":"verse records","status":"planned"},
-    {"id":"paper","role":"research-paper drafting","input":"source units + evidence metadata","output":"paper drafts","status":"planned"},
-    {"id":"certificate","role":"archival certificate generation","input":"approved records","output":"certificates","status":"planned"},
-    {"id":"audio","role":"audio-ready script generation","input":"approved text","output":"audio scripts","status":"planned"},
-    {"id":"translation","role":"multilingual transformation","input":"approved text","output":"translations","status":"planned"},
-    {"id":"quality","role":"schema, duplicate and provenance checks","input":"all candidate outputs","output":"QC reports","status":"planned"}
+    {
+      "id": "research",
+      "role": "source-grounded research drafting",
+      "input": "canonical source units",
+      "output": "research drafts",
+      "status": "planned"
+    },
+    {
+      "id": "mahagranth",
+      "role": "long-form book composition",
+      "input": "verified source units",
+      "output": "book drafts",
+      "status": "planned"
+    },
+    {
+      "id": "verse",
+      "role": "गीत/श्लोक/सूत्र composition",
+      "input": "source units",
+      "output": "verse records",
+      "status": "planned"
+    },
+    {
+      "id": "paper",
+      "role": "research-paper drafting",
+      "input": "source units + evidence metadata",
+      "output": "paper drafts",
+      "status": "planned"
+    },
+    {
+      "id": "certificate",
+      "role": "archival certificate generation",
+      "input": "approved records",
+      "output": "certificates",
+      "status": "planned"
+    },
+    {
+      "id": "audio",
+      "role": "audio-ready script generation",
+      "input": "approved text",
+      "output": "audio scripts",
+      "status": "planned"
+    },
+    {
+      "id": "translation",
+      "role": "multilingual transformation",
+      "input": "approved text",
+      "output": "translations",
+      "status": "planned"
+    },
+    {
+      "id": "quality",
+      "role": "schema, duplicate and provenance checks",
+      "input": "all candidate outputs",
+      "output": "QC reports",
+      "status": "planned"
+    },
+    {
+      "id": "shirmani-heart-view",
+      "role": "framework-aligned synthesis across philosophy, science, evidence and human-nature-AI context",
+      "input": "canonical source units + framework policy + evidence",
+      "output": "provenance-aware comparative drafts",
+      "status": "ready",
+      "charter": "factory/agents/shirmani-heart-view-agent.md",
+      "framework": "factory/shirmani-framework.json"
+    }
   ],
   "policy": {
     "source_first": true,
     "generated_output_is_not_source": true,
     "research_requires_independent_verification": true,
     "no_claim_of_scientific_validation": true,
-    "free_first": true
+    "free_first": true,
+    "framework": "factory/shirmani-framework.json",
+    "epistemic_claim_labels": true
   }
 }
