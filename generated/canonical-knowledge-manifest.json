@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "generated_at": "2026-09-20T01:44:54.870865+00:00",
+  "record_count": 3537,
+  "active_record_count": 3537,
+  "inactive_record_count": 0,
+  "new_record_count": 3537,
+  "retained_record_count": 0,
+  "stable_id_basis": "repository|branch|path|source_hash",
+  "source": "generated/source-units.jsonl",
+  "generated_output_is_not_source": true
+}
