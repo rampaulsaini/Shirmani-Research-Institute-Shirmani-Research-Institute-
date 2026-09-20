@@ -19,7 +19,7 @@ jobs:
   build:
     if: github.event_name != 'push' || (github.ref == 'refs/heads/main' && github.actor != 'github-actions[bot]')
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -36,7 +36,7 @@ jobs:
         run: python3 factory/canonical_index.py
 
       - name: Run resumable product batch worker
-        run: python3 factory/batch_worker.py --batch-size 1000
+        run: python3 factory/batch_worker.py --batch-size 250
 
       - name: Build deterministic reasoning, provenance and claim-evidence layer
         run: python3 factory/reasoning_pipeline.py
