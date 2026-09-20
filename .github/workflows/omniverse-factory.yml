@@ -34,7 +34,19 @@ jobs:
         run: python3 factory/canonical_index.py
 
       - name: Run resumable product batch worker
-        run: python3 factory/batch_worker.py --batch-size 1000
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          python3 factory/batch_worker.py --batch-size 1000
+          test -s factory/state.json
+          python3 - <<'PY'
+          import json
+          with open("factory/state.json", encoding="utf-8") as f:
+              state = json.load(f)
+          assert state.get("version") == 2
+          assert isinstance(state.get("completed"), dict)
+          print("durable state OK")
+          PY
 
       - name: Build deterministic reasoning, provenance and claim-evidence layer
         run: python3 factory/reasoning_pipeline.py
