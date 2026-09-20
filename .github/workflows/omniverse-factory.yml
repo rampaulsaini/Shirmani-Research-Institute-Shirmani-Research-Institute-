@@ -63,6 +63,12 @@ jobs:
       - name: Build unified publication safety gate
         run: python3 factory/publication_gate.py
 
+      - name: Build research evidence traceability graph
+        run: python3 factory/research_evidence_graph.py
+
+      - name: Run research evidence graph QC
+        run: python3 factory/research_evidence_graph_qc.py
+
       - name: Build durable continuity manifest
         run: python3 factory/continuity_manifest.py
 
@@ -95,6 +101,9 @@ jobs:
           test -s generated/VERIFICATION-REGISTRY.json
           test -s generated/VERIFICATION-PROMOTION-QC.json
           test -s generated/PUBLICATION-GATE.json
+          test -s generated/research-evidence-graph.json
+          test -s generated/RESEARCH-EVIDENCE-GRAPH.json
+          test -s generated/RESEARCH-EVIDENCE-GRAPH-QC.json
           test -s generated/continuity-manifest.json
           python3 - <<'PY'
           import json
@@ -113,6 +122,9 @@ jobs:
           promotion=json.loads(Path("generated/VERIFICATION-PROMOTION-QC.json").read_text())
           if promotion.get("publication_gate") == "BLOCK":
               raise SystemExit("Verification promotion gate is BLOCK: unearned verification detected")
+          graph=json.loads(Path("generated/RESEARCH-EVIDENCE-GRAPH-QC.json").read_text())
+          if graph.get("publication_gate") != "PASS":
+              raise SystemExit("Research evidence graph QC is not PASS")
           publication=json.loads(Path("generated/PUBLICATION-GATE.json").read_text())
           if publication.get("publication_gate") == "BLOCK":
               raise SystemExit("Unified publication gate is BLOCK")
