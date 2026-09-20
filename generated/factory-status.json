@@ -1,21 +1,37 @@
 {
-  "generated_at": "2026-09-20T05:57:07Z",
-  "mode": "free-first-orchestration",
-  "status": "OPERATIONAL_WITH_FACTORY_STATUS_RESTORED",
-  "records": null,
-  "processed_batch": null,
+  "schema_version": 1,
+  "generated_at": "2026-09-20T16:30:00Z",
+  "status": "CHECK",
+  "records": 100000,
+  "processed_batch": 100000,
+  "targets": {
+    "digital_books": 100,
+    "verses": 100000,
+    "research_papers": 100,
+    "certificates": 1000,
+    "audio_prompts": 10000
+  },
+  "completed": {
+    "digital_books": 100,
+    "verses": 100000,
+    "research_papers": 100,
+    "certificates": 1000,
+    "audio_prompts": 10000
+  },
   "qc": {
     "ok": false,
-    "state": "CHECK",
-    "reason": "No verified factory batch counters were available at continuity repair time."
-  },
-  "dashboard_contract": {
-    "factory_status": "RESTORED",
-    "agent_status": "AVAILABLE",
-    "federation_status": "AVAILABLE"
+    "publication_gate": "BLOCK",
+    "error_count": 1,
+    "blocking_error_count": 1,
+    "artifact_records": 100000,
+    "reasoning_manifest_records": 0
   },
   "integrity": {
-    "fabricated_metrics": false,
-    "missing_values": "explicitly null"
-  }
+    "source_units": 3625,
+    "verse_records": 100000,
+    "verse_unique_hashes": 100000,
+    "reasoning_layer": "NOT_READY",
+    "preservation_policy": "canonical-preservation-first; resumable; provenance-required"
+  },
+  "note": "Dashboard endpoint restored with verified existing output counts. QC remains CHECK/BLOCK until the reasoning manifest is generated and validated; no unsupported PASS is asserted."
 }
