@@ -36,6 +36,12 @@ jobs:
       - name: Build deterministic reasoning and provenance layer
         run: python3 factory/reasoning_pipeline.py
 
+      - name: Build independent review queue
+        run: python3 factory/independent_review_queue.py
+
+      - name: Build resumable audio production manifest
+        run: python3 factory/audio_worker.py
+
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
 
@@ -56,6 +62,8 @@ jobs:
               raise SystemExit("Canonical knowledge layer has no active records")
           PY
           test -s generated/reasoning-manifest.jsonl
+          test -s generated/independent-review-queue.jsonl
+          test -s generated/audio-production-manifest.jsonl
           test -s generated/QC-REPORT.json
           python3 - <<'PY'
           import json
