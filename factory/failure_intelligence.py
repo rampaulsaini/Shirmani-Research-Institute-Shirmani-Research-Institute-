@@ -36,6 +36,19 @@ def api(path):
     with urllib.request.urlopen(req, timeout=30) as response:
         return json.loads(response.read().decode("utf-8"))
 
+def api_text(path):
+    url = API + path if path.startswith("/") else path
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "shirmani-failure-intelligence",
+    }
+    if TOKEN:
+        headers["Authorization"] = "Bearer " + TOKEN
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=30) as response:
+        return response.read().decode("utf-8", errors="replace")
+
 def redact(value):
     text = str(value or "")
     text = re.sub(r"gh[pousr]_[A-Za-z0-9_\-]+", "<TOKEN>", text)
@@ -107,9 +120,9 @@ def collect():
             steps = failed_step_names(job)
             step = steps[0] if steps else (job.get("name") or "unknown-step")
             signal = ""
-            if len([r for r in failures if r.get("id") <= run_id]) <= MAX_LOG_RUNS and job.get("id"):
+            if run_index < MAX_LOG_RUNS and job.get("id"):
                 try:
-                    log = api(f"/repos/{REPO}/actions/jobs/{job['id']}/logs")
+                    log = api_text(f"/repos/{REPO}/actions/jobs/{job['id']}/logs")
                     signal_lines = [
                         redact(line) for line in str(log).splitlines()
                         if re.search(r"##\[error\]|Traceback|SyntaxError|Error:|Exception|failed|FAIL|BLOCK", line, re.I)
