@@ -76,11 +76,16 @@ def check_generated(path, framework):
                     result["errors"].append({"line": line_no, "error": "content_hash_mismatch"})
                 if r.get("claim_class") not in allowed_classes:
                     result["errors"].append({"line": line_no, "error": "invalid_generated_claim_class"})
-                methods = r.get("method_trace")
-                if not isinstance(methods, list) or not methods:
-                    result["errors"].append({"line": line_no, "error": "missing_generated_method_trace"})
-                elif sorted(set(methods) - allowed_methods):
-                    result["errors"].append({"line": line_no, "error": "unknown_generated_method_trace"})
+                # verse-corpus is an upstream artifact corpus, not the reasoning
+                # manifest. Validate method_trace here only when it is explicitly
+                # marked as a reasoning record; the dedicated reasoning manifest
+                # performs the strict framework method-stack validation.
+                if r.get("agent") == "reasoning" or r.get("reasoning") is not None:
+                    methods = r.get("method_trace")
+                    if not isinstance(methods, list) or not methods:
+                        result["errors"].append({"line": line_no, "error": "missing_generated_method_trace"})
+                    elif sorted(set(methods) - allowed_methods):
+                        result["errors"].append({"line": line_no, "error": "unknown_generated_method_trace"})
                 if r.get("evidence_status") not in VALID_EVIDENCE_STATUS:
                     result["errors"].append({"line": line_no, "error": "invalid_generated_evidence_status"})
                 if r.get("human_review_required") is not True:
