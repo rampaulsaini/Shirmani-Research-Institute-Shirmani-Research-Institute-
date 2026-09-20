@@ -1,4 +1,5 @@
 name: Omniverse Research Factory
+
 on:
   workflow_dispatch:
   schedule:
@@ -7,21 +8,41 @@ on:
     paths:
       - "factory/**"
       - ".github/workflows/omniverse-factory.yml"
+
 permissions:
   contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+
+      - name: Build repository intelligence
+        run: python3 factory/repository_intelligence.py
+
       - name: Build free deterministic archive
         run: python3 factory/build_factory.py
+
+      - name: Run deterministic QC
+        run: python3 factory/quality_control.py
+
       - name: Validate generated catalog
         run: |
+          test -s generated/repository-intelligence.json || test -s generated/repository-intelligence.json
           test -s generated/manifest.json
+          test -s generated/source-units.jsonl
           test -s generated/verse-corpus.jsonl
-          test -s generated/CATALOG.md
+          test -s generated/QC-REPORT.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path("generated/QC-REPORT.json").read_text())
+          if report.get("publication_gate") != "PASS":
+              raise SystemExit("QC publication gate is BLOCK")
+          PY
+
       - name: Publish generated catalog
         run: |
           git config user.name "omniverse-factory[bot]"
