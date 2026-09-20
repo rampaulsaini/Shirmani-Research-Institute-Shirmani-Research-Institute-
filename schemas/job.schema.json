@@ -1,9 +1,17 @@
 {
-  "$schema":"https://json-schema.org/draft/2020-12/schema",
-  "type":"object",
-  "required":["job_id","kind","number","topic","status"],
-  "properties":{
-    "job_id":{"type":"string"},"kind":{"type":"string"},"number":{"type":"integer","minimum":1},
-    "topic":{"type":"string"},"status":{"enum":["pending","running","done","failed"]}
-  }
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research Factory Job",
+  "type": "object",
+  "required": ["job_id", "artifact_id", "language", "agent", "status", "attempts", "claim_id", "claim_type"],
+  "properties": {
+    "job_id": {"type": "string"},
+    "artifact_id": {"type": "string"},
+    "language": {"type": "string"},
+    "agent": {"type": "string"},
+    "status": {"enum": ["pending", "running", "completed", "failed", "dead-letter"]},
+    "attempts": {"type": "integer", "minimum": 0, "maximum": 3},
+    "claim_id": {"type": "string"},
+    "claim_type": {"enum": ["empirical", "mathematical", "historical", "textual", "philosophical", "computational"]}
+  },
+  "additionalProperties": true
 }
