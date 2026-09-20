@@ -2,6 +2,8 @@
 
 The factory is source-first.
 
+The long-term protection charter is documented in `factory/HUMAN-CIVILIZATION-SANJEEVANI.md` and applies to the knowledge, AI, research and publication pipeline.
+
 Repository content is collected and normalized into a canonical knowledge layer. Agents consume canonical source units and produce candidate artifacts. Generated artifacts never become canonical sources automatically.
 
 ## Pipeline
