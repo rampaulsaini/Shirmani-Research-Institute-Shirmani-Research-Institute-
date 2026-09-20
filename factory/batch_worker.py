@@ -117,6 +117,7 @@ def repair_generated_corpus_metadata():
             if old_methods != methods or row.get("framework", {}).get("framework_id") != policy.get("framework_id"):
                 row["framework"] = framework_meta()
                 row["method_trace"] = methods
+                row["reasoning_method_trace"] = methods
                 if row.get("claim_class") not in allowed_classes:
                     row["claim_class"] = "unverified_claim"
                 row["evidence_status"] = "requires_independent_verification"
