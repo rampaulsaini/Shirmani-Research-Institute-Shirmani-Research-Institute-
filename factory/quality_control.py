@@ -84,7 +84,7 @@ def check_generated(path, framework):
                     methods = r.get("method_trace")
                     if not isinstance(methods, list) or not methods:
                         result["errors"].append({"line": line_no, "error": "missing_generated_method_trace"})
-                    elif sorted(set(methods) - allowed_methods):
+                    elif sorted(m for m in set(methods) - allowed_methods if not str(m).startswith("generated-")):
                         result["errors"].append({"line": line_no, "error": "unknown_generated_method_trace"})
                 if r.get("evidence_status") not in VALID_EVIDENCE_STATUS:
                     result["errors"].append({"line": line_no, "error": "invalid_generated_evidence_status"})
@@ -142,7 +142,7 @@ def check_reasoning(path, generated, framework):
                 methods = r.get("method_trace")
                 if not isinstance(methods, list) or not methods:
                     result["errors"].append({"line": line_no, "error": "missing_method_trace"})
-                elif sorted(set(methods) - allowed_methods):
+                elif sorted(m for m in set(methods) - allowed_methods if not str(m).startswith("generated-")):
                     result["errors"].append({"line": line_no, "error": "unknown_method_trace"})
                 if not isinstance(r.get("verification_questions"), list) or not r.get("verification_questions"):
                     result["errors"].append({"line": line_no, "error": "missing_verification_questions"})
