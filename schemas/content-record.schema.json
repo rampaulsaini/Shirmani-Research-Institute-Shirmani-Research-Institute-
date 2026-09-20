@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Content Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "source_path", "content_hash", "bytes", "content_status", "provenance"],
+  "properties": {
+    "id": {"type": "string"},
+    "source_path": {"type": "string"},
+    "content_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "bytes": {"type": "integer", "minimum": 0},
+    "language_hint": {"type": ["string", "null"]},
+    "content_status": {"enum": ["AVAILABLE", "PARTIAL", "UNAVAILABLE", "BINARY_SKIPPED"]},
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recorded_at"],
+      "properties": {
+        "recorded_at": {"type": "string"},
+        "repository": {"type": ["string", "null"]},
+        "commit": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
