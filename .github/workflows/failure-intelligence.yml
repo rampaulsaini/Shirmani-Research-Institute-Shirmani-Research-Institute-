@@ -20,8 +20,10 @@ jobs:
           FAILURE_LOG_SAMPLE_RUNS: "50"
           FAILURE_RUN_PAGES: "20"
         run: python3 factory/failure_intelligence.py
-      - name: Validate registry JSON
-        run: python3 -m json.tool generated/failure-registry.json >/dev/null
+      - name: Validate registry JSON and schema
+        run: |
+          python3 -m json.tool generated/failure-registry.json >/dev/null
+          python3 scripts/validate_json.py generated/failure-registry.json schemas/failure-registry.schema.json
       - name: Upload failure registry artifact
         uses: actions/upload-artifact@v4
         with:
