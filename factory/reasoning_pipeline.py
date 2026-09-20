@@ -39,11 +39,13 @@ def load_source_index():
 def source_ids_from_text(text, index):
     found = []
     for line in text.splitlines():
-        if "स्रोत:" not in line:
-            continue
-        ref = line.split("स्रोत:", 1)[1].split("·", 1)[0].strip()
-        if ref in index:
-            found.append(index[ref])
+        candidate = None
+        if "स्रोत:" in line:
+            candidate = line.split("स्रोत:", 1)[1].split("·", 1)[0].strip()
+        elif line.strip().lower().startswith("## source"):
+            candidate = line.split("## source", 1)[1].strip(" :")
+        if candidate and candidate in index:
+            found.append(index[candidate])
     return sorted(set(found))
 
 def source_ids_from_row(row):
