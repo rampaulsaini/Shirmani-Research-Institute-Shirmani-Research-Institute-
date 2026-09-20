@@ -20,7 +20,7 @@ def build(out_dir):
     concepts=_jsonl(contracts/"concept-records.jsonl")
     stamp=datetime.now(timezone.utc).isoformat()
 
-    verified=sum(1 for c in claims if c.get("verification",{}).get("status")=="PASS")
+    verified=sum(1 for c in claims if c.get("status")=="SUPPORTED" and c.get("verification",{}).get("status") in {"INDEPENDENTLY_CHECKED","AUTOMATED_CHECK"})
     research_index={
         "schema_version":"1.1.0",
         "generated_at":stamp,
