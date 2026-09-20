@@ -1,0 +1,7 @@
+{
+  "schema_version":"1.0.0",
+  "status":"READY",
+  "claims":[],
+  "counts":{"total":0,"verified":0,"supported":0,"partial":0,"contradicted":0,"not_verified":0},
+  "integrity":{"fabricated_claims":false,"unsupported_claims_not_promoted":true}
+}
