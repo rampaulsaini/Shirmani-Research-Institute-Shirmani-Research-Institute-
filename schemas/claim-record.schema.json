@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shirmani Research Factory Claim Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "claim",
+    "claim_type",
+    "status",
+    "evidence",
+    "verification",
+    "provenance"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim_type": {
+      "enum": [
+        "FACT",
+        "INTERPRETATION",
+        "HYPOTHESIS",
+        "PHILOSOPHICAL_PROPOSITION",
+        "MATHEMATICAL",
+        "COMPUTATIONAL",
+        "HISTORICAL",
+        "SCIENTIFIC",
+        "COMPARATIVE"
+      ]
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "SUPPORTED",
+        "PARTIALLY_SUPPORTED",
+        "NOT_VERIFIED",
+        "REFUTED",
+        "DEFERRED"
+      ]
+    },
+    "definitions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "description",
+          "source"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "PRIMARY_SOURCE",
+              "SECONDARY_SOURCE",
+              "DATASET",
+              "OBSERVATION",
+              "CALCULATION",
+              "EXPERIMENT",
+              "QUOTATION",
+              "CODE_TEST",
+              "COUNTEREXAMPLE"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "formulation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "method",
+          "result"
+        ],
+        "properties": {
+          "method": {
+            "type": "string"
+          },
+          "result": {
+            "type": "string"
+          },
+          "reproducible": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "method"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "UNVERIFIED",
+            "INDEPENDENTLY_CHECKED",
+            "AUTOMATED_CHECK",
+            "CONFLICTING",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "method": {
+          "type": "string"
+        },
+        "checked_by": {
+          "type": "string"
+        }
+      }
+    },
+    "countercases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recorded_at"
+      ],
+      "properties": {
+        "recorded_at": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "content_hash": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
