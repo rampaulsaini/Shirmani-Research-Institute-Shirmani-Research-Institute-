@@ -30,7 +30,7 @@ jobs:
 
       - name: Validate generated catalog
         run: |
-          test -s generated/repository-intelligence.json || test -s generated/repository-intelligence.json
+          test -s generated/repository-intelligence.json
           test -s generated/manifest.json
           test -s generated/source-units.jsonl
           test -s generated/verse-corpus.jsonl
