@@ -1,0 +1,26 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Universal Viewpoint Engine Contract",
+  "type":"object",
+  "required":["schema_version","stage","framework","viewpoint","principles","processing","epistemic_status","integrity"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "stage":{"const":"UNIVERSAL_VIEWPOINT_ENGINE"},
+    "framework":{"type":"string"},
+    "viewpoint":{"const":"हृदय का शिरोमणि स्वरुप दृष्टिकोण"},
+    "principles":{"type":"array","items":{"type":"string"}},
+    "processing":{"type":"object","required":["human_meaning","external_claims","comparison","verification"],"properties":{
+      "human_meaning":{"type":"string"},
+      "external_claims":{"type":"string"},
+      "comparison":{"type":"string"},
+      "verification":{"type":"string"}
+    }},
+    "epistemic_status":{"enum":["FRAMEWORK_DESCRIPTION","USER_REPORTED_EXPERIENCE","NOT_VERIFIED"]},
+    "integrity":{"type":"object","required":["universal_fact_claimed","scientific_certainty_invented","human_agency_preserved"],"properties":{
+      "universal_fact_claimed":{"const":false},
+      "scientific_certainty_invented":{"const":false},
+      "human_agency_preserved":{"const":true}
+    }}
+  },
+  "additionalProperties":false
+}
