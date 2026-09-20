@@ -114,13 +114,28 @@ def repair_generated_corpus_metadata():
                 continue
             row = json.loads(line)
             old_methods = row.get("method_trace")
-            if old_methods != methods or row.get("framework", {}).get("framework_id") != policy.get("framework_id"):
-                row["framework"] = framework_meta()
-                row["method_trace"] = methods
-                if row.get("claim_class") not in allowed_classes:
-                    row["claim_class"] = "unverified_claim"
-                row["evidence_status"] = "requires_independent_verification"
-                row["human_review_required"] = True
+            old_framework = (row.get("framework") or {}).get("framework_id")
+            old_hash = row.get("content_hash")
+            text = str(row.get("text", ""))
+            # Repair only derived metadata/integrity fields. The source text itself
+            # is never rewritten. Recompute the hash from the preserved text so
+            # legacy rows cannot fail closed merely because their metadata schema
+            # was migrated.
+            row["content_hash"] = content_hash(text)
+            row["framework"] = framework_meta()
+            row["method_trace"] = methods
+            if row.get("claim_class") not in allowed_classes:
+                row["claim_class"] = "unverified_claim"
+            row["evidence_status"] = "requires_independent_verification"
+            row["human_review_required"] = True
+            if (
+                old_methods != methods
+                or old_framework != policy.get("framework_id")
+                or old_hash != row["content_hash"]
+                or row.get("claim_class") not in allowed_classes
+                or row.get("evidence_status") != "requires_independent_verification"
+                or row.get("human_review_required") is not True
+            ):
                 changed += 1
             rows.append(row)
     if changed:
