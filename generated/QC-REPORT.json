@@ -12,9 +12,18 @@
       "records": 100000,
       "unique_hashes": 100000,
       "errors": []
+    },
+    {
+      "file": "generated/reasoning-manifest.jsonl",
+      "records": 0,
+      "errors": [
+        {
+          "error": "missing_reasoning_manifest"
+        }
+      ]
     }
   ],
-  "error_count": 0,
-  "blocking_error_count": 0,
-  "publication_gate": "PASS"
+  "error_count": 1,
+  "blocking_error_count": 1,
+  "publication_gate": "BLOCK"
 }
