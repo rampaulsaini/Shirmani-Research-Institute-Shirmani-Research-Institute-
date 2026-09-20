@@ -4,7 +4,7 @@
 This file is the durable restart point for future chats. The GitHub repository is the canonical project workspace; chat history is not required to reconstruct the architecture.
 
 ## Current architecture
-Source repositories → Repository Intelligence → Source Units → Canonical Knowledge → Canonical Batches → Agent/Company routing → Draft Products → Reasoning/Provenance → Deterministic QC → Human/independent review → Publication.
+Source repositories → Repository Intelligence → Source Units → Canonical Knowledge → Canonical Batches → Agent/Company routing → Draft Products → Reasoning/Provenance → Independent Review Queue → Audio Production Manifest → Deterministic QC → Human/independent review → Publication.
 
 ## Current verified state
 - Hub: rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-
@@ -27,6 +27,8 @@ Source repositories → Repository Intelligence → Source Units → Canonical K
 - AI company registry: factory/ai-companies.json
 - Deep learning registry: factory/deep_learning.json
 - Latest QC hardening merged through PR #22; merge commit: 1fa6b597c550c399e62a1a37bfa0a81a58780b4c.
+- New resumable audio manifest builder: factory/audio_worker.py.
+- New independent review queue builder: factory/independent_review_queue.py.
 
 ## Non-negotiable continuity rules
 1. Preserve user-authored source separately from AI interpretation.
@@ -51,8 +53,8 @@ Source repositories → Repository Intelligence → Source Units → Canonical K
 ## Current next engineering priorities
 1. Run the hardened reasoning/provenance/QC stack end-to-end on the main factory and inspect the resulting QC report before publication claims.
 2. Align the reasoning agent's method trace and claim-class logic dynamically with factory/shirmani-framework.json, preventing vocabulary drift. **Completed in PR #next (dynamic-reasoning-v6 change).**
-3. Strengthen durable queue/state/checkpoint handling for every product type, especially the 10,000-audio target.
-4. Build independently reviewable research workflows before any research result can be marked verified.
+3. Strengthen durable queue/state/checkpoint handling for every product type, especially the 10,000-audio target. The audio stage now has a deterministic resumable manifest; actual rendering remains an explicit opt-in stage.
+4. Build independently reviewable research workflows before any research result can be marked verified. The review queue now records evidence, counterevidence, reproducibility and human decision fields.
 5. Synchronize dashboard/publication metadata with generated manifests and QC state.
 6. Resolve or explicitly record access status for unavailable source repositories.
 7. Expand lawful/open external knowledge ingestion with source/context metadata.
