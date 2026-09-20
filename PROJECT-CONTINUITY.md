@@ -138,3 +138,10 @@ A missing field is a QC failure, not an invitation to invent a value.
 - .github/workflows/omniverse-factory.yml now runs the resumable batch worker before reasoning/QC and requires the claim-evidence artifact.
 - factory/state.json is a valid durable initialization record rather than an empty JSON file.
 - Historical failure records remain preserved; no deletion or rewriting of failure history is part of this patch.
+
+
+## 18. Durable execution continuity manifest
+- `factory/continuity_manifest.py` records the GitHub workflow identity, QC publication gate, error count, and SHA-256 hashes/byte sizes for the principal generated artifacts.
+- `generated/continuity-manifest.json` is generated after QC and before catalog validation.
+- The manifest is an execution trace, not evidence of scientific truth; artifact hashes prove reproducibility of the recorded files, not correctness of their claims.
+- Resume logic remains output-first: durable generated outputs are used to reconstruct progress, while canonical/source records remain protected.
