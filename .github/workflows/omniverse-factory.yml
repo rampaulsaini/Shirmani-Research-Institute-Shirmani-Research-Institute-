@@ -54,6 +54,12 @@ jobs:
       - name: Run verification queue QC
         run: python3 factory/verification_queue_qc.py
 
+      - name: Build independent verification registry
+        run: python3 factory/verification_registry.py
+
+      - name: Run verification promotion gate
+        run: python3 factory/verification_promotion_gate.py
+
       - name: Build durable continuity manifest
         run: python3 factory/continuity_manifest.py
 
@@ -82,6 +88,9 @@ jobs:
           test -s generated/independent-verification-queue.jsonl
           test -s generated/VERIFICATION-QUEUE.json
           test -s generated/VERIFICATION-QUEUE-QC.json
+          test -s generated/independent-verification-registry.jsonl
+          test -s generated/VERIFICATION-REGISTRY.json
+          test -s generated/VERIFICATION-PROMOTION-QC.json
           test -s generated/continuity-manifest.json
           python3 - <<'PY'
           import json
@@ -97,6 +106,9 @@ jobs:
           formulation=json.loads(Path("generated/FORMULATION-QC.json").read_text())
           if formulation.get("publication_gate") != "PASS":
               raise SystemExit("Formulation/test QC gate is not PASS")
+          promotion=json.loads(Path("generated/VERIFICATION-PROMOTION-QC.json").read_text())
+          if promotion.get("publication_gate") == "BLOCK":
+              raise SystemExit("Verification promotion gate is BLOCK: unearned verification detected")
           PY
 
       - name: Publish generated catalog
