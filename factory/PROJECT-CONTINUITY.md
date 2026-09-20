@@ -50,6 +50,8 @@ Source repositories → Repository Intelligence → Source Units → Canonical K
 - Added factory/reasoning_pipeline.py for reasoning/provenance records without converting philosophy into scientific fact.
 - Latest factory refresh and QC commits are present through 2026-09-20.
 
+The repository workflow now guards publication so pull-request validation cannot publish generated artifacts directly to `main`.
+
 ## Current next engineering priorities
 1. Run the reasoning/provenance layer inside the main factory workflow before QC.
 2. Extend deterministic QC to validate claim class, method trace, evidence status, provenance and human-review requirements.
