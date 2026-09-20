@@ -11,6 +11,7 @@ REQUIRED_JSON={
  "generated/research-index.json":["schema_version","status","source_registry","claim_records","coverage","integrity"],
  "generated/claim-graph.json":["schema_version","status","nodes","edges","integrity"],
  "generated/framework-state.json":["schema_version","state","epistemic_status","framework_terms","measurement","integrity"],
+ "generated/heart-viewpoint-manifest.json":["schema_version","stage","name","framework","symbol","experience_language","operational_boundary","integrity"],
 }
 def load_json(rel):
  p=ROOT/rel
@@ -37,6 +38,9 @@ def main():
  if index["claim_records"]!=[]: raise AssertionError("research-index.json: continuity baseline expects zero verified claim records")
  if index["integrity"].get("fabricated_records") is not False: raise AssertionError("research-index.json: fabricated_records must be false")
  if index["integrity"].get("missing_data_preserved") is not True: raise AssertionError("research-index.json: missing_data_preserved must be true")
+ manifest=loaded["generated/heart-viewpoint-manifest.json"]
+ if manifest["stage"]!="NEXT_LABEL" or manifest["symbol"]!="꙰": raise AssertionError("heart-viewpoint-manifest.json: next-label contract mismatch")
+ if manifest["integrity"].get("scientific_certainty_invented") is not False: raise AssertionError("heart-viewpoint-manifest.json: scientific certainty must not be invented")
  state=loaded["generated/framework-state.json"]
  if state["integrity"].get("physiological_inactivity_claimed") is not False: raise AssertionError("framework-state.json: physiological inactivity must not be asserted")
  if state["integrity"].get("empirical_status_not_invented") is not True: raise AssertionError("framework-state.json: empirical status must remain explicit")
