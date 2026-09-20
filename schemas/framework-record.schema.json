@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Shirmani Framework Concept Record",
+  "type":"object",
+  "required":["id","term","category","description","epistemic_status"],
+  "properties":{
+    "id":{"type":"string","minLength":1},
+    "term":{"type":"string","minLength":1},
+    "category":{"enum":["FRAMEWORK_TERM","PHILOSOPHICAL_PROPOSITION","METHODOLOGICAL_PRINCIPLE","SYMBOL"]},
+    "description":{"type":"string","minLength":1},
+    "epistemic_status":{"enum":["FRAMEWORK_DEFINITION","PROPOSITION","EMPIRICALLY_SUPPORTED","NOT_EMPIRICALLY_VERIFIED","NOT_APPLICABLE"]},
+    "related_terms":{"type":"array","items":{"type":"string"}},
+    "evidence_claim_ids":{"type":"array","items":{"type":"string"}},
+    "provenance":{"type":"object","required":["generator","recorded_at"],"properties":{"generator":{"type":"string"},"recorded_at":{"type":"string"},"source_commit":{"type":"string"}}}
+  },
+  "additionalProperties":false
+}
