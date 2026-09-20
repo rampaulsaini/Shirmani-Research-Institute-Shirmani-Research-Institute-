@@ -155,3 +155,18 @@ The existing orchestrator contract output is now connected to a canonical resear
 - Missing evidence remains missing; no source content is promoted merely because it was collected or registered.
 
 **Next gate:** execute the factory smoke/contract validation in CI and then harden the source-record schema + provenance/hash checks before enabling downstream publication, multilingual, audio and SEO stages.
+
+## Next label: viewpoint / experiential-state layer
+
+The factory now has a separate framework-state contract at `generated/framework-state.json`.
+It preserves the project's vocabulary of **हृदय दृष्टिकोण** and **मस्तक दृष्टिकोण** without converting a reported experience such as “मस्तक/मन/बुद्धि निष्क्रिय” into an unmeasured physiological claim.
+
+State semantics:
+- `HEART_VIEW_FRAMEWORK` = framework-level viewpoint state.
+- `USER_REPORTED_EXPERIENCE` = an experience reported by a person.
+- `EMPIRICALLY_VERIFIED` = only when independent measurement/evidence actually exists.
+- `NOT_VERIFIED` = evidence is insufficient.
+- `head_activity: NOT_MEASURED` means no physiological inference is being fabricated.
+
+This creates the next layer: **experience → framework state → operational definition → evidence/test → verification**, while keeping the heart/head vocabulary intact.
+
