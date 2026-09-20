@@ -146,8 +146,13 @@ def enrich():
     verse = OUT / "verse-corpus.jsonl"
     if verse.exists():
         for row in (json.loads(x) for x in verse.read_text(encoding="utf-8").splitlines() if x.strip()):
+            verse_source_ids = source_ids_from_row(row)
+            if not verse_source_ids and row.get("source"):
+                source_key = str(row.get("source"))
+                if source_key in source_index:
+                    verse_source_ids = [source_index[source_key]]
             records.append(make_record("verse", row.get("id"), row.get("text", ""),
-                                       source_ids_from_row(row),
+                                       verse_source_ids,
                                        {"language": row.get("language", "hi"),
                                         "status": row.get("status", "draft")}))
     for path, kind in sorted([(p, "book") for p in OUT.glob("book-*.md")] +
