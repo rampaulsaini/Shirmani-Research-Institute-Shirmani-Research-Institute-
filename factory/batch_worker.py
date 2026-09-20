@@ -5,6 +5,7 @@ The worker uses stable product IDs plus factory/state.json as a compact queue.
 It never claims that generated philosophy is independently verified science.
 """
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -14,14 +15,11 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from agents.provenance_agent import record, validate
-from agents.verification_agent import classify
-from agents.topic_agent import enrich
-from agents.research_agent import question
 from factory.state import load, save
 
 CFG = json.loads((ROOT / "factory" / "agent_config.json").read_text(encoding="utf-8"))
 SHIRMANI_AGENT = ROOT / "factory" / "agents" / "shirmani-heart-view-agent.md"
+FRAMEWORK = ROOT / "factory" / "shirmani-framework.json"
 STATE = ROOT / "factory" / "state.json"
 OUT = ROOT / "generated"
 CORPUS = OUT / "verse-corpus.jsonl"
@@ -56,6 +54,38 @@ def bootstrap_state():
 def shirmani_orientation():
     return SHIRMANI_AGENT.read_text(encoding="utf-8").strip() if SHIRMANI_AGENT.exists() else ""
 
+def framework_policy():
+    return json.loads(FRAMEWORK.read_text(encoding="utf-8")) if FRAMEWORK.exists() else {}
+
+def framework_meta():
+    policy = framework_policy()
+    return {
+        "framework_id": policy.get("framework_id", "unknown"),
+        "framework_version": policy.get("version"),
+        "claim_classes": policy.get("claim_classes", []),
+        "method_stack": policy.get("method_stack", [])
+    }
+
+def claim_record(text, source_id=None):
+    lower = text.lower()
+    if any(x in lower for x in ("सर्वश्रेष्ठ", "यथार्थ युग", "शिरोमणि", "संपूर्ण संतुष्टि", "हृदय दृष्टिकोण")):
+        claim_class = "user_philosophy"
+    elif any(x in lower for x in ("सिद्ध", "प्रमाण", "वैज्ञानिक", "science", "empirical")):
+        claim_class = "unverified_claim"
+    else:
+        claim_class = "creative_expression"
+    return {
+        "framework_id": framework_meta()["framework_id"],
+        "claim_class": claim_class,
+        "method_trace": ["source_provenance", "textual_context", "cross-source_comparison", "independent_verification"],
+        "source_ids": [source_id] if source_id else [],
+        "evidence_status": "requires_independent_verification",
+        "human_review_required": True
+    }
+
+def content_hash(text):
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
 def source_rows():
     if not SOURCE_UNITS.exists():
         return []
@@ -84,9 +114,19 @@ def write_verses(data, rows, ids):
         for i in ids:
             base = rows[(i - 1) % len(rows)]
             text = f"सूत्र {i:06d}: {base['text']} — यह स्रोत-आधारित चिंतन-प्रारूप है; स्वतंत्र सत्यापन आवश्यक है।"
+            meta = claim_record(text, base.get("id"))
             f.write(json.dumps({
-                "id": i, "source": base.get("source", "unknown"),
-                "text": text, "status": "draft"
+                "id": i, "agent": "shirmani-heart-view",
+                "source": base.get("source", "unknown"),
+                "source_ids": meta["source_ids"],
+                "content_hash": content_hash(text),
+                "generated_at": datetime.now(timezone.utc).isoformat(),
+                "text": text, "status": "draft",
+                "framework": framework_meta(),
+                "claim_class": meta["claim_class"],
+                "method_trace": meta["method_trace"],
+                "evidence_status": meta["evidence_status"],
+                "human_review_required": meta["human_review_required"]
             }, ensure_ascii=False) + "\n")
             mark(data, "verse", i)
     return len(ids)
@@ -166,7 +206,10 @@ def main():
     rows = source_rows()
     target = CFG["products"]
     limit = max(1, args.batch_size)
-    summary = {"agent_orientation": "shirmani-heart-view", "orientation_loaded": bool(shirmani_orientation())}
+    summary = {"agent_orientation": "shirmani-heart-view", "orientation_loaded": bool(shirmani_orientation()),
+        "framework_id": framework_meta()["framework_id"],
+        "framework_loaded": bool(framework_policy()),
+        "continuity_policy": "canonical-preservation-first; resumable; provenance-required"}
     summary["verse"] = write_verses(data, rows, next_ids(data, "verse", int(target["verses"]), limit))
     verse_rows = corpus_rows()
     summary["research-paper"] = write_papers(data, rows, next_ids(data, "research-paper", int(target["research_papers"]), max(1, limit // 10)))
