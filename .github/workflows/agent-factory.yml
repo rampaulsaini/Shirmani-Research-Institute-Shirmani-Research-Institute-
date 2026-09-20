@@ -40,7 +40,14 @@ jobs:
       - name: Smoke test
         run: python factory/validate_factory.py
 
+      - name: Refresh federation access and agent status
+        env:
+          FACTORY_GH_TOKEN: ${{ secrets.FACTORY_GH_TOKEN }}
+        run: python factory/federation.py
+
       - name: Build source corpus
+        env:
+          FACTORY_GH_TOKEN: ${{ secrets.FACTORY_GH_TOKEN }}
         run: python factory/build_factory.py --bootstrap-only
 
       - name: Assert corpus populated
