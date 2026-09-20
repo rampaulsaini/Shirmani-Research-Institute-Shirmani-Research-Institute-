@@ -45,11 +45,12 @@ Source repositories → Repository Intelligence → Source Units → Canonical K
 - Added and registered the deterministic Shirmani reasoning agent.
 - Added factory/reasoning_pipeline.py and merged provenance preservation for books/research papers through PR #8.
 - Main factory workflow now runs repository intelligence → archive → canonical knowledge → canonical batches → reasoning/provenance → QC.
+- Reasoning agent now derives allowed method trace and claim-class vocabulary from the framework at runtime, with a safe fallback.
 - QC hardening merged through PR #22 now validates generated content hashes, framework claim classes, method traces, evidence status, human-review flags, framework IDs, artifact hashes and reasoning/source consistency.
 
 ## Current next engineering priorities
 1. Run the hardened reasoning/provenance/QC stack end-to-end on the main factory and inspect the resulting QC report before publication claims.
-2. Align the reasoning agent's method trace and claim-class logic dynamically with factory/shirmani-framework.json, preventing vocabulary drift.
+2. Align the reasoning agent's method trace and claim-class logic dynamically with factory/shirmani-framework.json, preventing vocabulary drift. **Completed in PR #next (dynamic-reasoning-v6 change).**
 3. Strengthen durable queue/state/checkpoint handling for every product type, especially the 10,000-audio target.
 4. Build independently reviewable research workflows before any research result can be marked verified.
 5. Synchronize dashboard/publication metadata with generated manifests and QC state.
