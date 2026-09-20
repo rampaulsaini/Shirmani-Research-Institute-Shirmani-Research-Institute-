@@ -23,6 +23,29 @@ def load_reasoner():
     spec.loader.exec_module(module)
     return module
 
+def load_source_index():
+    path = OUT / "source-units.jsonl"
+    if not path.exists():
+        return {}
+    index = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        key = "{}:{}".format(row.get("repository"), row.get("path"))
+        index[key] = str(row.get("id"))
+    return index
+
+def source_ids_from_text(text, index):
+    found = []
+    for line in text.splitlines():
+        if "स्रोत:" not in line:
+            continue
+        ref = line.split("स्रोत:", 1)[1].split("·", 1)[0].strip()
+        if ref in index:
+            found.append(index[ref])
+    return sorted(set(found))
+
 def source_ids_from_row(row):
     ids = row.get("source_ids") or []
     if ids:
@@ -53,6 +76,7 @@ def make_record(kind, artifact_id, text, source_ids, extra=None):
 def enrich():
     OUT.mkdir(parents=True, exist_ok=True)
     records = []
+    source_index = load_source_index()
     verse = OUT / "verse-corpus.jsonl"
     if verse.exists():
         for row in (json.loads(x) for x in verse.read_text(encoding="utf-8").splitlines() if x.strip()):
@@ -63,7 +87,7 @@ def enrich():
     for path, kind in sorted([(p, "book") for p in OUT.glob("book-*.md")] +
                              [(p, "research-paper") for p in OUT.glob("research-paper-draft-*.md")]):
         text = path.read_text(encoding="utf-8")
-        records.append(make_record(kind, path.stem, text, [],
+        records.append(make_record(kind, path.stem, text, source_ids_from_text(text, source_index),
                                    {"path": str(path.relative_to(ROOT)), "status": "draft"}))
     manifest = OUT / "reasoning-manifest.jsonl"
     manifest.write_text("\n".join(json.dumps(r, ensure_ascii=False) for r in records) +
