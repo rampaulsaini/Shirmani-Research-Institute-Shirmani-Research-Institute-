@@ -35,6 +35,9 @@ jobs:
       - name: Build resumable canonical batches
         run: python3 factory/canonical_index.py
 
+      - name: Attach reasoning, provenance and verification metadata
+        run: python3 factory/reasoning_pipeline.py
+
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
 
@@ -47,6 +50,7 @@ jobs:
           test -s generated/canonical-knowledge-manifest.json
           test -s generated/canonical-index.json
           test -s generated/verse-corpus.jsonl
+          test -s generated/reasoning-manifest.jsonl
           python3 - <<'PY'
           import json
           from pathlib import Path
