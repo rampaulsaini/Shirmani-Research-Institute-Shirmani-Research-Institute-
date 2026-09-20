@@ -17,5 +17,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate JSON and factory contracts
+      - name: Validate existing factory agents
+        run: python3 factory/validate_factory.py
+
+      - name: Validate JSON and canonical research contracts
         run: python3 scripts/validate_factory.py
