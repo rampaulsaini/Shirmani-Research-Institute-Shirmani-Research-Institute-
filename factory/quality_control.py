@@ -2,7 +2,7 @@
 """Deterministic QC for canonical source units and generated records.
 
 The QC layer is intentionally provider-free: it validates JSONL structure,
-provenance, hashes, duplicate content and publication-gate conditions.
+provenance, hashes, duplicate content, reasoning metadata and publication-gate conditions.
 """
 import hashlib
 import json
@@ -12,6 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_SOURCE = ("id", "repository", "branch", "path", "source_hash", "text", "source_type", "collected_at")
 REQUIRED_GENERATED = ("id", "agent", "source_ids", "content_hash", "status", "text")
 VALID_STATUS = {"draft", "review", "verified", "published", "rejected"}
+VALID_CLAIM_CLASSES = {"user_philosophy", "unverified_claim", "creative_expression", "evidence"}
+VALID_EVIDENCE_STATUS = {"requires_independent_verification", "independently_verified", "insufficient_evidence"}
 
 def sha(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
@@ -73,15 +75,49 @@ def check_generated(path):
                 pass
     return result
 
+def check_reasoning(path):
+    result = check_jsonl(path, (
+        "artifact_id", "kind", "content_sha256", "source_ids", "reasoning",
+        "claim_class", "method_trace", "evidence_status",
+        "human_review_required", "verification_questions"
+    ), "content_sha256")
+    with open(path, encoding="utf-8") as f:
+        for line_no, line in enumerate(f, 1):
+            if not line.strip():
+                continue
+            try:
+                r = json.loads(line)
+                if r.get("claim_class") not in VALID_CLAIM_CLASSES:
+                    result["errors"].append({"line": line_no, "error": "invalid_claim_class"})
+                if r.get("evidence_status") not in VALID_EVIDENCE_STATUS:
+                    result["errors"].append({"line": line_no, "error": "invalid_evidence_status"})
+                if not isinstance(r.get("method_trace"), list) or not r.get("method_trace"):
+                    result["errors"].append({"line": line_no, "error": "missing_method_trace"})
+                if not isinstance(r.get("verification_questions"), list) or not r.get("verification_questions"):
+                    result["errors"].append({"line": line_no, "error": "missing_verification_questions"})
+                if r.get("human_review_required") is not True:
+                    result["errors"].append({"line": line_no, "error": "human_review_not_required"})
+                reasoning = r.get("reasoning") or {}
+                if reasoning.get("claim_class") != r.get("claim_class"):
+                    result["errors"].append({"line": line_no, "error": "claim_class_mismatch"})
+                if reasoning.get("evidence_status") != r.get("evidence_status"):
+                    result["errors"].append({"line": line_no, "error": "evidence_status_mismatch"})
+            except Exception:
+                pass
+    return result
+
 def main():
     generated = ROOT / "generated"
     checks = []
     src = generated / "source-units.jsonl"
     verse = generated / "verse-corpus.jsonl"
+    reasoning = generated / "reasoning-manifest.jsonl"
     if src.exists():
         checks.append({"file": str(src.relative_to(ROOT)), **check_source_integrity(src)})
     if verse.exists():
         checks.append({"file": str(verse.relative_to(ROOT)), **check_generated(verse)})
+    if reasoning.exists():
+        checks.append({"file": str(reasoning.relative_to(ROOT)), **check_reasoning(reasoning)})
 
     errors = sum(len(c["errors"]) for c in checks)
     blocking_errors = 0
@@ -90,7 +126,7 @@ def main():
             if e.get("error") not in {"duplicate_source_hash"} and not e.get("error","").startswith("duplicate_hash"):
                 blocking_errors += 1
     report = {
-        "version": 2,
+        "version": 3,
         "checks": checks,
         "error_count": errors,
         "blocking_error_count": blocking_errors,
