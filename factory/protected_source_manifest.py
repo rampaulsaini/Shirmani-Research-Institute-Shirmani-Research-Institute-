@@ -30,7 +30,7 @@ def main():
     SOURCE_ROOT.mkdir(parents=True, exist_ok=True)
     records = []
     for path in sorted(SOURCE_ROOT.rglob("*")):
-        if not path.is_file() or path.name.endswith(".meta.json"):
+        if not path.is_file() or path.name.endswith(".meta.json") or path.name == "README.md":
             continue
         data = path.read_bytes()
         rel = path.relative_to(ROOT).as_posix()
