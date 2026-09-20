@@ -96,6 +96,26 @@ def units(items):
                 row=dict(item); row["text"]=x; row["source_hash"]=hashlib.sha256(x.encode("utf-8")).hexdigest(); u.append(row)
     return u
 
+def framework_policy():
+    path = ROOT / "factory" / "shirmani-framework.json"
+    return json.loads(path.read_text(encoding="utf-8"))
+
+def generated_claim_meta(text, source_id):
+    framework = framework_policy()
+    lower = text.lower()
+    if any(x in lower for x in ("सर्वश्रेष्ठ", "यथार्थ युग", "शिरोमणि", "संपूर्ण संतुष्टि", "हृदय दृष्टिकोण")):
+        claim_class = "user_philosophy"
+    elif any(x in lower for x in ("सिद्ध", "प्रमाण", "वैज्ञानिक", "science", "empirical")):
+        claim_class = "unverified_claim"
+    else:
+        claim_class = "creative_expression"
+    return {"framework_id": framework["framework_id"], "framework_version": framework.get("version"),
+            "claim_classes": framework.get("claim_classes", []), "method_stack": framework.get("method_stack", []),
+            "claim_class": claim_class,
+            "method_trace": ["source_provenance", "textual_context", "cross-source-comparison", "independent_verification"],
+            "source_ids": [str(source_id)], "evidence_status": "requires_independent_verification",
+            "human_review_required": True}
+
 def main():
     stamp=datetime.now(timezone.utc).isoformat(); sources=clone_sources(); u=units(collect(sources)); t=CFG["product_targets"]
     manifest={"generated_at":stamp,"sources":sources,"targets":t,"units":len(u),"architecture":"source-first; generated products never become canonical inputs"}
@@ -109,9 +129,17 @@ def main():
     verses=int(t["verses"]); books=int(t["digital_books"]); papers=int(t["research_papers"])
     with (OUT/"verse-corpus.jsonl").open("w",encoding="utf-8") as f:
         for i in range(1,verses+1):
-            item=u[(i-1)%len(u)]; h=hashlib.sha256(f"verse|{i}|{item['source_hash']}".encode()).hexdigest()[:16]
+            item=u[(i-1)%len(u)]
+            source_id=((i-1)%len(u))+1
             text=f"सूत्र {i:06d}: {item['text']} — यह स्रोत-आधारित चिंतन-प्रारूप है; सत्यापन हेतु स्वतंत्र निरीक्षण आवश्यक है।"
-            f.write(json.dumps({"id":i,"agent":"verse","source_ids":[((i-1)%len(u))+1],"content_hash":h,"status":"draft","text":text},ensure_ascii=False)+"\n")
+            meta=generated_claim_meta(text, source_id)
+            record={"id":i,"agent":"verse","source":item["repository"],"source_ids":meta["source_ids"],
+                    "content_hash":hashlib.sha256(text.encode("utf-8")).hexdigest(),"status":"draft","text":text,
+                    "framework":{"framework_id":meta["framework_id"],"framework_version":meta["framework_version"],
+                                 "claim_classes":meta["claim_classes"],"method_stack":meta["method_stack"]},
+                    "claim_class":meta["claim_class"],"method_trace":meta["method_trace"],
+                    "evidence_status":meta["evidence_status"],"human_review_required":meta["human_review_required"]}
+            f.write(json.dumps(record,ensure_ascii=False)+"\n")
     per=max(1,verses//books)
     for b in range(1,books+1):
         start=(b-1)*per+1; end=min(b*per,verses); lines=[f"# डिजिटल महाग्रंथ {b:03d}","","स्वचालित स्रोत-संग्रहण से बना शोध-प्रारूप; इसे वैज्ञानिक/ऐतिहासिक प्रमाणित निष्कर्ष न माना जाए।",""]
