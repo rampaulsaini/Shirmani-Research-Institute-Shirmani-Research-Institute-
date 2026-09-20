@@ -129,3 +129,16 @@ Before publishing a generated claim, require:
 - explicit uncertainty when verification is incomplete.
 
 A missing field is a QC failure, not an invitation to invent a value.
+
+
+## 17. Continuation checkpoint — contract layer
+
+The continuity repair and contract-hardening layers are now wired and validated on the working branch.
+
+- Dashboard factory-status endpoint: restored.
+- Source registry: 25 registered repository metadata entries; registration is not ingestion.
+- Claim graph: canonical empty baseline until real claim/evidence records are emitted.
+- Deterministic contract bridge: registered sources can be converted into source-record JSONL without inventing contents.
+- Factory CI: latest observed contract-validation runs completed successfully.
+
+**Next implementation target:** connect the existing collector/normalizer output to canonical source-record and claim/evidence records, preserving hashes, provenance, verification state and explicit unavailable states. Only after that gate should downstream writing, multilingual, audio, publication and SEO generators consume the records.
