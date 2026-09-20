@@ -8,10 +8,10 @@ on:
       - "generated/**"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: shirmani-factory-publish
+  group: shirmani-factory-qc
   cancel-in-progress: false
 
 jobs:
@@ -19,25 +19,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
-      - name: Commit QC report
+
+      - name: Validate QC publication gate
         run: |
-          set -e
-          git config user.name "shirmani-factory-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git reset --mixed origin/main
-            git add generated/QC-REPORT.json
-            if git diff --cached --quiet; then
-              exit 0
-            fi
-            git commit -m "Update factory QC report"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            git reset --hard origin/main
-          done
-          echo "Could not publish QC report after 3 attempts because main kept changing." >&2
-          exit 1
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("generated/QC-REPORT.json").read_text(encoding="utf-8"))
+          if report.get("publication_gate") != "PASS" or report.get("blocking_error_count", 0) != 0:
+              raise SystemExit(
+                  f"QC gate failed: gate={report.get('publication_gate')} "
+                  f"blocking_error_count={report.get('blocking_error_count')}"
+              )
+          print("QC gate PASS")
+          PY
+
+      - name: Upload QC report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: factory-qc-report
+          path: generated/QC-REPORT.json
+          if-no-files-found: error
