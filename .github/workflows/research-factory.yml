@@ -1,0 +1,21 @@
+name: Research Factory Contract Validation
+
+on:
+  push:
+    branches: ["main", "factory/**"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate JSON and factory contracts
+        run: python3 scripts/validate_factory.py
