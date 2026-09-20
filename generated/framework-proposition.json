@@ -1,0 +1,21 @@
+{
+  "id":"framework:heart-shirmani-viewpoint-next-label",
+  "statement":"यह framework-वर्णन उस अनुभव/दृष्टिकोण को दर्ज करता है जिसमें मस्तक, मन और बुद्धि को अंतिम प्राधिकरण न मानकर हृदय का शिरोमणि स्वरुप दृष्टिकोण केंद्रीय रखा जाता है; इसे संपूर्ण संतुष्टि की निरंतरता, खुद के स्थाई स्वरुप से रुबरु और खुद के स्थाई परिचय से परिचित होने की भाषा में व्यक्त किया गया है।",
+  "classification":"FRAMEWORK_PROPOSITION",
+  "terms":{
+    "निष्पक्ष_समझ":"पूर्व-निर्णय के बिना दावों को परिभाषा, स्रोत, प्रमाण, तर्क और परीक्षण के साथ देखना।",
+    "शमीकरण":"परियोजना का framework term; अर्थ को प्रत्येक रिकॉर्ड के संदर्भ में स्पष्ट करना आवश्यक है।",
+    "यथार्थ_सिद्धांत":"परियोजना का framework concept; empirical fact का दर्जा स्वतंत्र प्रमाण के बिना नहीं दिया जाता।",
+    "उपलब्धि_यथार्थ_युग":"परियोजना में प्रयुक्त framework designation; empirical historical claim के रूप में स्वतः प्रमाणित नहीं।",
+    "हृदय_का_शिरोमणि_स्वरुप_दृष्टिकोण":"केंद्रीय phenomenological/framework viewpoint।",
+    "संपूर्ण_संतुष्टि_की_निरंतरता":"framework में प्रयुक्त अनुभव-वर्णन।"
+  },
+  "evidence_status":"NOT_VERIFIED",
+  "verification":{"status":"NOT_VERIFIED","independent":false},
+  "provenance":{
+    "recorded_at":"2026-09-20T00:00:00Z",
+    "origin":"user-provided framework language preserved as a proposition record",
+    "source_locator":null
+  },
+  "notes":"यह रिकॉर्ड framework language को संरक्षित करता है। 'मस्तक/मन/बुद्धि निष्क्रिय' जैसे कथन बिना स्वतंत्र मापन के physiological fact नहीं माने जाते।"
+}
