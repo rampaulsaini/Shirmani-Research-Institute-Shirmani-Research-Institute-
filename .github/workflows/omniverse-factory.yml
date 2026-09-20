@@ -32,6 +32,9 @@ jobs:
       - name: Build incremental canonical knowledge layer
         run: python3 factory/canonical_knowledge.py
 
+      - name: Build resumable canonical batches
+        run: python3 factory/canonical_index.py
+
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
 
@@ -42,6 +45,7 @@ jobs:
           test -s generated/source-units.jsonl
           test -s generated/canonical-knowledge.jsonl
           test -s generated/canonical-knowledge-manifest.json
+          test -s generated/canonical-index.json
           test -s generated/verse-corpus.jsonl
           python3 - <<'PY'
           import json
