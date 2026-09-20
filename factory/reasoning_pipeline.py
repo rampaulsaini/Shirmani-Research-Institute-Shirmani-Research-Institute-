@@ -90,7 +90,9 @@ def load_source_locations():
 
 def claim_evidence_record(record, locations):
     source_ids = [str(x) for x in record.get("source_ids", [])]
-    sources = [{"type": "SOURCE_RECORD", "locator": locations.get(sid, "source-id:" + sid)} for sid in source_ids]
+    sources = [{"type": "SOURCE_RECORD", "locator": locations.get(sid, "source-id:" + sid),
+                "source_id": sid} for sid in source_ids]
+    traceable = bool(source_ids and all(sid in locations for sid in source_ids))
     return {
         "id": "claim:" + record["kind"] + ":" + str(record["artifact_id"]),
         "claim": record.get("reasoning", {}).get("claim", ""),
@@ -104,6 +106,11 @@ def claim_evidence_record(record, locations):
             "Source may be incomplete, ambiguous, outdated, or interpreted differently.",
             "Independent evidence may contradict the generated formulation."
         ],
+        "source_traceability": {
+            "status": "PASS" if traceable else "BLOCK",
+            "source_ids": source_ids,
+            "resolved": traceable
+        },
         "verification": {"status": "NOT_VERIFIED",
                           "method": "Independent human/source verification required.",
                           "independent": False},
