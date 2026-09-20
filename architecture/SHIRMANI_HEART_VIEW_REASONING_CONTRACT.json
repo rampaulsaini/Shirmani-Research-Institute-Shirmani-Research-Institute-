@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "layer_id": "SHIRMANI_HEART_VIEW_SUPREME_REASONING_LAYER",
+  "purpose": "Machine-readable contract for a protected, traceable reasoning layer.",
+  "preservation_order": [
+    "EXACT_CAPTURE",
+    "PROVENANCE",
+    "NORMALIZATION",
+    "HEART_VIEW_CONTEXT",
+    "SUPREME_REASONING",
+    "VALIDATION",
+    "OUTPUT"
+  ],
+  "record_separation": {
+    "canonical_source": "immutable_or_versioned_user_source",
+    "derivative": "separate_traceable_artifact",
+    "scientific_fact": "must_require_external_evidence_and_independent_verification"
+  },
+  "required_provenance": [
+    "source_id",
+    "source_location",
+    "content_hash",
+    "created_at",
+    "generator"
+  ],
+  "reasoning_requirements": [
+    "claim_class",
+    "source_ids",
+    "method_trace",
+    "evidence_status",
+    "verification_questions",
+    "human_review_required"
+  ],
+  "verification_states": [
+    "NOT_VERIFIED",
+    "CHECK",
+    "PASS",
+    "FAIL"
+  ],
+  "publication_gate": {
+    "source_traceability_required": true,
+    "fabricated_evidence_forbidden": true,
+    "unearned_verification_forbidden": true,
+    "missing_required_fields": "BLOCK"
+  },
+  "continuity_rule": "Preserve first. Reason second. Transform only as a traceable derivative."
+}
