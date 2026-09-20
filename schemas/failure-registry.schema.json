@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shirmani Failure Intelligence Registry",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "repository", "semantics", "failed_runs_by_workflow", "failure_groups"],
+  "properties": {
+    "schema_version": {"type": "integer"},
+    "generated_at": {"type": "string"},
+    "repository": {"type": "string"},
+    "semantics": {"type": "object"},
+    "failed_runs_by_workflow": {"type": "object", "additionalProperties": {"type": "integer"}},
+    "failure_groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["fingerprint", "count", "category", "workflow_names", "jobs", "failed_steps"],
+        "properties": {
+          "fingerprint": {"type": "string"},
+          "count": {"type": "integer", "minimum": 1},
+          "category": {"type": "string"},
+          "workflow_names": {"type": "array", "items": {"type": "string"}},
+          "jobs": {"type": "array", "items": {"type": "string"}},
+          "failed_steps": {"type": "array", "items": {"type": "string"}},
+          "sample_run_ids": {"type": "array", "items": {"type": "integer"}},
+          "signals": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

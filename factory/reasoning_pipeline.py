@@ -5,7 +5,8 @@ This is a metadata layer, not a claim-proving engine. It preserves the
 distinction between user philosophy, creative expression, hypotheses and
 independently verified evidence.
 """
-import hashlib, json
+import hashlib
+import json
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -37,13 +38,34 @@ def load_source_index():
     return index
 
 def source_ids_from_text(text, index):
+    """Resolve source IDs from inline labels and Markdown source sections.
+
+    A source may be written on the same line as a Source heading or on the
+    following non-empty line. Unresolved sources remain unresolved; IDs are
+    never invented.
+    """
     found = []
-    for line in text.splitlines():
-        if "स्रोत:" not in line:
-            continue
-        ref = line.split("स्रोत:", 1)[1].split("·", 1)[0].strip()
-        if ref in index:
-            found.append(index[ref])
+    lines = text.splitlines()
+    for pos, line in enumerate(lines):
+        stripped = line.strip()
+        candidate = None
+        if "स्रोत:" in stripped:
+            candidate = stripped.split("स्रोत:", 1)[1].split("·", 1)[0].strip()
+        elif stripped.lower().startswith("## source"):
+            remainder = stripped[len("## source"):].strip(" :")
+            if remainder:
+                candidate = remainder
+            else:
+                for next_line in lines[pos + 1:]:
+                    next_stripped = next_line.strip()
+                    if not next_stripped:
+                        continue
+                    if next_stripped.startswith("#"):
+                        break
+                    candidate = next_stripped
+                    break
+        if candidate and candidate in index:
+            found.append(index[candidate])
     return sorted(set(found))
 
 def source_ids_from_row(row):

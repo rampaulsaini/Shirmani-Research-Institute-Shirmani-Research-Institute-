@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-09-20T06:45:40Z",
+  "status": "CURRENT_BASELINE_SUCCESS",
+  "baseline": {
+    "workflow": "Research Factory Integrity",
+    "run_number": 29,
+    "conclusion": "success",
+    "head_sha": "fd3cd99f122bec96de35d11de21f9cd684237c41",
+    "verified_from_github_actions": true
+  },
+  "dashboard_semantics": {
+    "historical_failures_are_not_current_failures": true,
+    "historical_failure_registry": "generated/failure-registry.json",
+    "current_state_is_based_on_verified_recent_runs": true
+  },
+  "integrity": {
+    "fabricated_metrics": false,
+    "historical_run_deletion_attempted": false,
+    "unknown_values": null
+  }
+}

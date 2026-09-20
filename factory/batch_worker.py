@@ -150,7 +150,7 @@ def write_papers(data, rows, ids):
             "## Research question\n" + research_question(base["text"]) + "\n\n"
             "## Method\nस्रोत-संग्रह, पाठ-सफाई, प्रश्न-निर्माण और provenance tracing।\n\n"
             "## Status\nDraft only; independent peer review, empirical testing and source verification are required.\n\n"
-            "## Source\n" + base.get("source", "unknown") + "\n",
+            "## Source\n" + "{}:{}\n".format(base.get("repository", "unknown"), base.get("path", "unknown")),
             encoding="utf-8")
         mark(data, "research-paper", i)
     return len(ids)
@@ -198,7 +198,7 @@ def write_books(data, rows):
         ]
         for n in range(start, end + 1):
             row = rows[n - 1]
-            lines += [f"## {n:06d}", row["text"], f"स्रोत: {row.get('source', 'unknown')} · स्वतंत्र परीक्षण अपेक्षित।", ""]
+            lines += [f"## {n:06d}", row["text"], f"स्रोत: {row.get('repository', 'unknown')}:{row.get('path', 'unknown')} · स्वतंत्र परीक्षण अपेक्षित।", ""]
         (OUT / f"book-{b:03d}.md").write_text("\n".join(lines), encoding="utf-8")
         mark(data, "book", b)
         made += 1

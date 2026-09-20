@@ -1,0 +1,39 @@
+name: Research Factory Integrity
+
+on:
+  push:
+    paths:
+      - "generated/**/*.json"
+      - "schemas/**/*.json"
+      - "scripts/**/*.py"
+      - "PROJECT-CONTINUITY.md"
+      - "agents/**/*.py"
+      - "factory/**/*.py"
+      - "FACTORY.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON syntax
+        run: |
+          python3 scripts/validate_json.py generated/*.json schemas/*.json
+      - name: No committed Python cache files
+        run: |
+          if git ls-files '*.pyc' | grep -q .; then
+            echo 'Committed Python bytecode artifacts detected'; exit 1;
+          fi
+          if git ls-files | grep -E '(^|/)__pycache__/' | grep -q .; then
+            echo 'Committed Python cache directories detected'; exit 1;
+          fi
+      - name: Factory contract smoke test
+        run: |
+          python3 factory/validate_factory.py
+      - name: Deterministic normalization smoke test
+        run: |
+          python3 -m py_compile scripts/normalize_records.py scripts/validate_json.py
