@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "canonical_source_unit": {
+    "id": "stable integer",
+    "repository": "owner/name",
+    "branch": "detected default branch",
+    "path": "repository-relative path",
+    "source_hash": "sha256",
+    "text": "normalized source text",
+    "source_type": "documentation|research|philosophy|code|workflow|media-metadata|other",
+    "collected_at": "ISO-8601 timestamp"
+  },
+  "generated_record": {
+    "id": "stable identifier",
+    "agent": "agent id",
+    "source_ids": ["canonical source ids"],
+    "content_hash": "sha256",
+    "status": "draft|review|verified|published|rejected",
+    "generated_at": "ISO-8601 timestamp"
+  }
+}
