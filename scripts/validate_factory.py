@@ -13,6 +13,7 @@ REQUIRED_JSON={
  "generated/framework-state.json":["schema_version","state","epistemic_status","framework_terms","measurement","integrity"],
  "generated/heart-viewpoint-manifest.json":["schema_version","stage","name","framework","symbol","experience_language","operational_boundary","integrity"],
  "generated/content-index.json":["schema_version","status","records","record_count","coverage","integrity"],
+ "generated/framework-proposition.json":["id","statement","classification","terms","evidence_status","verification","provenance"],
 }
 def load_json(rel):
  p=ROOT/rel
@@ -39,6 +40,9 @@ def main():
  if index["claim_records"]!=[]: raise AssertionError("research-index.json: continuity baseline expects zero verified claim records")
  if index["integrity"].get("fabricated_records") is not False: raise AssertionError("research-index.json: fabricated_records must be false")
  if index["integrity"].get("missing_data_preserved") is not True: raise AssertionError("research-index.json: missing_data_preserved must be true")
+ prop=loaded["generated/framework-proposition.json"]
+ if prop["classification"]!="FRAMEWORK_PROPOSITION" or prop["evidence_status"]!="NOT_VERIFIED": raise AssertionError("framework-proposition.json: framework proposition must remain explicitly unverified")
+ if prop["verification"].get("independent") is not False: raise AssertionError("framework-proposition.json: independent verification must remain false until performed")
  manifest=loaded["generated/heart-viewpoint-manifest.json"]
  if manifest["stage"]!="NEXT_LABEL" or manifest["symbol"]!="꙰": raise AssertionError("heart-viewpoint-manifest.json: next-label contract mismatch")
  if manifest["integrity"].get("scientific_certainty_invented") is not False: raise AssertionError("heart-viewpoint-manifest.json: scientific certainty must not be invented")
