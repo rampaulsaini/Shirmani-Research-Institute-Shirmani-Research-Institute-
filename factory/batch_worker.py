@@ -147,7 +147,7 @@ def write_papers(data, rows, ids):
             f"# Research Paper Draft {i:03d}\n\n"
             "## Abstract\n"
             "यह स्वचालित शोध-प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।\n\n"
-            "## Research question\n" + question(base["text"]) + "\n\n"
+            "## Research question\n" + research_question(base["text"]) + "\n\n"
             "## Method\nस्रोत-संग्रह, पाठ-सफाई, प्रश्न-निर्माण और provenance tracing।\n\n"
             "## Status\nDraft only; independent peer review, empirical testing and source verification are required.\n\n"
             "## Source\n" + base.get("source", "unknown") + "\n",
