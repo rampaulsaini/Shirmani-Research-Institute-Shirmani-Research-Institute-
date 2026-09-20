@@ -54,6 +54,12 @@ jobs:
       - name: Run verification queue QC
         run: python3 factory/verification_queue_qc.py
 
+      - name: Build independent verification registry
+        run: python3 factory/verification_registry.py
+
+      - name: Run verification promotion gate QC
+        run: python3 factory/verification_registry_qc.py
+
       - name: Build durable continuity manifest
         run: python3 factory/continuity_manifest.py
 
@@ -82,12 +88,20 @@ jobs:
           test -s generated/independent-verification-queue.jsonl
           test -s generated/VERIFICATION-QUEUE.json
           test -s generated/VERIFICATION-QUEUE-QC.json
+          test -s generated/independent-verification-registry.jsonl
+          test -s generated/VERIFICATION-REGISTRY.json
+          test -s generated/VERIFICATION-REGISTRY-QC.json
           test -s generated/continuity-manifest.json
           python3 - <<'PY'
           import json
           from pathlib import Path
           report=json.loads(Path("generated/QC-REPORT.json").read_text())
           queue=json.loads(Path("generated/VERIFICATION-QUEUE-QC.json").read_text())
+          registry=json.loads(Path("generated/VERIFICATION-REGISTRY-QC.json").read_text())
+          if registry.get("publication_gate") != "PASS":
+              raise SystemExit("Independent verification registry QC is not PASS")
+          if registry.get("verification_gate") not in {"CHECK", "PASS"}:
+              raise SystemExit("Verification promotion gate is invalid")
           if queue.get("publication_gate") != "PASS":
               raise SystemExit("Independent verification queue QC is not PASS")
           if report.get("publication_gate") == "BLOCK":
