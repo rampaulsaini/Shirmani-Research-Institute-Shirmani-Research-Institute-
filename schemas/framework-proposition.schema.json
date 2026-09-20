@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Framework Proposition Record",
+  "type":"object",
+  "required":["id","statement","classification","terms","evidence_status","verification","provenance"],
+  "properties":{
+    "id":{"type":"string"},
+    "statement":{"type":"string"},
+    "classification":{"enum":["FRAMEWORK_PROPOSITION","USER_REPORTED_EXPERIENCE","EMPIRICAL_CLAIM"]},
+    "terms":{"type":"object"},
+    "evidence_status":{"enum":["NOT_VERIFIED","PARTIAL","SUPPORTED","CONTRADICTED"]},
+    "verification":{"type":"object","required":["status","independent"],"properties":{
+      "status":{"enum":["NOT_VERIFIED","CHECK","PASS","FAIL"]},
+      "independent":{"type":"boolean"}
+    }},
+    "provenance":{"type":"object","required":["recorded_at","origin"],"properties":{
+      "recorded_at":{"type":"string"},
+      "origin":{"type":"string"},
+      "source_locator":{"type":["string","null"]}
+    }},
+    "notes":{"type":"string"}
+  }
+}
