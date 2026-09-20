@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Omniverse Research Factory Status",
+  "type":"object",
+  "required":["generated_at","mode","status","qc","dashboard_contract","integrity"],
+  "properties":{
+    "generated_at":{"type":"string"},
+    "mode":{"type":"string"},
+    "status":{"type":"string"},
+    "records":{"type":["integer","null"],"minimum":0},
+    "processed_batch":{"type":["integer","null"],"minimum":0},
+    "artifacts":{"type":["integer","null"],"minimum":0},
+    "qc":{"type":"object","required":["ok","state"],"properties":{"ok":{"type":"boolean"},"state":{"enum":["PASS","CHECK","FAIL"]},"reason":{"type":"string"}}},
+    "dashboard_contract":{"type":"object","required":["factory_status","agent_status","federation_status"],"properties":{"factory_status":{"type":"string"},"agent_status":{"type":"string"},"federation_status":{"type":"string"}}},
+    "integrity":{"type":"object","required":["fabricated_metrics","missing_values"],"properties":{"fabricated_metrics":{"type":"boolean"},"missing_values":{"type":"string"}}}
+  },
+  "additionalProperties":false
+}
