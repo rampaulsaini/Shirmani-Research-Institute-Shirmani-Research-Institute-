@@ -1,0 +1,20 @@
+name: Research Factory QC
+
+on:
+  push:
+    branches: ["main", "factory/continuity-dashboard-repair"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic-qc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate factory data contract
+        run: python3 scripts/validate_factory.py
