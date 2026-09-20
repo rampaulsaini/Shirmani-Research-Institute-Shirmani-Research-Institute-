@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Claim Index",
+  "type":"object",
+  "required":["schema_version","generated_at","status","claims","coverage","integrity"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "generated_at":{"type":"string"},
+    "status":{"type":"string"},
+    "claims":{"type":"array","items":{"type":"object"}},
+    "coverage":{"type":"object","required":["claim_records","verified_claims","not_verified_claims"],"properties":{
+      "claim_records":{"type":"integer","minimum":0},
+      "verified_claims":{"type":"integer","minimum":0},
+      "not_verified_claims":{"type":"integer","minimum":0},
+      "note":{"type":"string"}
+    }},
+    "integrity":{"type":"object","required":["fabricated_claims","missing_values"],"properties":{
+      "fabricated_claims":{"const":false},
+      "missing_values":{"type":"string"}
+    }}
+  },
+  "additionalProperties":false
+}
