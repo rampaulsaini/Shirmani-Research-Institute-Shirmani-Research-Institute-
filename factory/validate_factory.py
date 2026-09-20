@@ -10,7 +10,8 @@ AGENTS = [
     "contracts", "source_agent", "corpus_agent", "research_agent",
     "verification_agent", "writing_agent", "book_agent",
     "music_agent", "certificate_agent", "topic_agent",
-    "provenance_agent", "qc_agent", "publishing_agent", "orchestrator", "language_agents", "artifact_agent", "deep_learning_agent",
+    "provenance_agent", "qc_agent", "publishing_agent", "orchestrator",
+    "language_agents", "artifact_agent", "deep_learning_agent",
 ]
 
 def main():
@@ -37,7 +38,20 @@ def main():
         assert (out / "provenance-index.jsonl").exists()
         assert (out / "factory-status.json").exists()
         assert (out / "artifact-manifest.jsonl").exists()
-        assert (out / "queues").exists()\n        contracts = out / "contracts"\n        assert (contracts / "source-records.jsonl").exists()\n        assert (contracts / "concept-records.jsonl").exists()\n        assert (contracts / "claim-records.jsonl").exists()\n        assert (contracts / "verification-reports.jsonl").exists()\n        # Contract smoke checks: required identifiers must be deterministic and non-empty.\n        for name in ("source-records.jsonl", "concept-records.jsonl", "claim-records.jsonl", "verification-reports.jsonl"):\n            for line in (contracts / name).read_text(encoding="utf-8").splitlines():\n                if line.strip(): assert json.loads(line).get("id") or json.loads(line).get("record_id")
+        assert (out / "queues").exists()
+
+        contracts = out / "contracts"
+        for name in (
+            "source-records.jsonl",
+            "concept-records.jsonl",
+            "claim-records.jsonl",
+            "verification-reports.jsonl",
+        ):
+            assert (contracts / name).exists()
+            for line in (contracts / name).read_text(encoding="utf-8").splitlines():
+                if line.strip():
+                    row = json.loads(line)
+                    assert row.get("id") or row.get("record_id")
 
     print("Factory smoke test OK")
 
