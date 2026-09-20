@@ -125,6 +125,8 @@ def check_reasoning(path, generated, framework):
                     result["errors"].append({"line": line_no, "error": "content_sha256_mismatch"})
                 if r.get("claim_class") not in allowed_classes:
                     result["errors"].append({"line": line_no, "error": "invalid_claim_class"})
+                if reasoning.get("claim_class") not in allowed_classes:
+                    result["errors"].append({"line": line_no, "error": "reasoning_invalid_claim_class"})
                 if r.get("evidence_status") not in VALID_EVIDENCE_STATUS:
                     result["errors"].append({"line": line_no, "error": "invalid_evidence_status"})
                 methods = r.get("method_trace")
@@ -141,6 +143,8 @@ def check_reasoning(path, generated, framework):
                     result["errors"].append({"line": line_no, "error": "human_review_not_required"})
                 if not isinstance(r.get("source_ids"), list) or not r.get("source_ids"):
                     result["errors"].append({"line": line_no, "error": "missing_reasoning_source_ids"})
+                if reasoning.get("method_trace") != r.get("method_trace"):
+                    result["errors"].append({"line": line_no, "error": "method_trace_mismatch"})
                 if reasoning.get("claim_class") != r.get("claim_class"):
                     result["errors"].append({"line": line_no, "error": "claim_class_mismatch"})
                 if reasoning.get("framework_id") != framework.get("framework_id"):
