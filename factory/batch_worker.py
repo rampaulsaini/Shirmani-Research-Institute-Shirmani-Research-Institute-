@@ -95,6 +95,43 @@ def research_question(text):
 def content_hash(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
+def repair_generated_corpus_metadata():
+    """Migrate legacy generated rows to the current framework metadata contract.
+
+    Canonical/source records are untouched. Only derived verse metadata is
+    repaired so QC can distinguish legacy output from current provenance rules.
+    """
+    if not CORPUS.exists():
+        return 0
+    policy = framework_policy()
+    allowed_classes = set(policy.get("claim_classes", []))
+    methods = list(policy.get("method_stack", []))
+    rows = []
+    changed = 0
+    with CORPUS.open(encoding="utf-8") as f:
+        for line in f:
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            old_methods = row.get("method_trace")
+            if old_methods != methods or row.get("framework", {}).get("framework_id") != policy.get("framework_id"):
+                row["framework"] = framework_meta()
+                row["method_trace"] = methods
+                if row.get("claim_class") not in allowed_classes:
+                    row["claim_class"] = "unverified_claim"
+                row["evidence_status"] = "requires_independent_verification"
+                row["human_review_required"] = True
+                changed += 1
+            rows.append(row)
+    if changed:
+        tmp = CORPUS.with_suffix(".jsonl.repair.tmp")
+        tmp.write_text(
+            "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows),
+            encoding="utf-8",
+        )
+        tmp.replace(CORPUS)
+    return changed
+
 def source_rows():
     if not SOURCE_UNITS.exists():
         return []
@@ -251,10 +288,11 @@ def main():
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     data = bootstrap_state()
+    repaired_metadata = repair_generated_corpus_metadata()
     rows = source_rows()
     target = CFG["products"]
     limit = max(1, args.batch_size)
-    summary = {"agent_orientation": "shirmani-heart-view", "orientation_loaded": bool(shirmani_orientation()),
+    summary = {"legacy_metadata_repaired": repaired_metadata, "agent_orientation": "shirmani-heart-view", "orientation_loaded": bool(shirmani_orientation()),
         "framework_id": framework_meta()["framework_id"],
         "framework_loaded": bool(framework_policy()),
         "continuity_policy": "canonical-preservation-first; resumable; provenance-required"}
