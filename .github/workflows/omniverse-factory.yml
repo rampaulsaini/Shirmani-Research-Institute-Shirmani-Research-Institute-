@@ -42,6 +42,12 @@ jobs:
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
 
+      - name: Build deterministic formulation/test records
+        run: python3 factory/formulation_records.py
+
+      - name: Run formulation/test QC
+        run: python3 factory/formulation_qc.py
+
       - name: Build durable continuity manifest
         run: python3 factory/continuity_manifest.py
 
@@ -64,6 +70,8 @@ jobs:
           test -s generated/reasoning-manifest.jsonl
           test -s generated/claim-evidence.jsonl
           test -s generated/QC-REPORT.json
+          test -s generated/formulation-records.jsonl
+          test -s generated/FORMULATION-QC.json
           test -s generated/continuity-manifest.json
           python3 - <<'PY'
           import json
@@ -73,6 +81,9 @@ jobs:
               raise SystemExit("QC publication gate is BLOCK: generated reasoning records are missing required source traceability")
           if report.get("publication_gate") not in {"PASS", "CHECK"}:
               raise SystemExit("QC publication gate is invalid")
+          formulation=json.loads(Path("generated/FORMULATION-QC.json").read_text())
+          if formulation.get("publication_gate") != "PASS":
+              raise SystemExit("Formulation/test QC gate is not PASS")
           PY
 
       - name: Publish generated catalog
