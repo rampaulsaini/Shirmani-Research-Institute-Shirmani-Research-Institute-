@@ -113,30 +113,56 @@ def mark(data, kind, number):
         data["completed"][kind].append(number)
         data["completed"][kind].sort()
 
+def _atomic_jsonl_merge(path, new_rows, key="id"):
+    """Merge rows by stable ID and replace atomically; safe to retry after interruption."""
+    existing = {}
+    if path.exists():
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            existing[str(row[key])] = row
+    added = 0
+    for row in new_rows:
+        k = str(row[key])
+        if k not in existing:
+            existing[k] = row
+            added += 1
+    ordered = sorted(existing.values(), key=lambda r: int(r[key]))
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(
+        "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in ordered),
+        encoding="utf-8",
+    )
+    tmp.replace(path)
+    return added
+
 def write_verses(data, rows, ids):
-    if not rows:
+    if not rows or not ids:
         return 0
     CORPUS.parent.mkdir(parents=True, exist_ok=True)
-    with CORPUS.open("a", encoding="utf-8") as f:
-        for i in ids:
-            base = rows[(i - 1) % len(rows)]
-            text = f"सूत्र {i:06d}: {base['text']} — यह स्रोत-आधारित चिंतन-प्रारूप है; स्वतंत्र सत्यापन आवश्यक है।"
-            meta = claim_record(text, base.get("id"))
-            f.write(json.dumps({
-                "id": i, "agent": "shirmani-heart-view",
-                "source": base.get("source", "unknown"),
-                "source_ids": meta["source_ids"],
-                "content_hash": content_hash(text),
-                "generated_at": datetime.now(timezone.utc).isoformat(),
-                "text": text, "status": "draft",
-                "framework": framework_meta(),
-                "claim_class": meta["claim_class"],
-                "method_trace": meta["method_trace"],
-                "evidence_status": meta["evidence_status"],
-                "human_review_required": meta["human_review_required"]
-            }, ensure_ascii=False) + "\n")
-            mark(data, "verse", i)
-    return len(ids)
+    generated = []
+    for i in ids:
+        base = rows[(i - 1) % len(rows)]
+        text = f"सूत्र {i:06d}: {base['text']} — यह स्रोत-आधारित चिंतन-प्रारूप है; स्वतंत्र सत्यापन आवश्यक है।"
+        meta = claim_record(text, base.get("id"))
+        generated.append({
+            "id": i, "agent": "shirmani-heart-view",
+            "source": base.get("source", "unknown"),
+            "source_ids": meta["source_ids"],
+            "content_hash": content_hash(text),
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "text": text, "status": "draft",
+            "framework": framework_meta(),
+            "claim_class": meta["claim_class"],
+            "method_trace": meta["method_trace"],
+            "evidence_status": meta["evidence_status"],
+            "human_review_required": meta["human_review_required"]
+        })
+    added = _atomic_jsonl_merge(CORPUS, generated)
+    for i in ids:
+        mark(data, "verse", i)
+    return added
 
 def write_papers(data, rows, ids):
     if not rows:
@@ -168,19 +194,24 @@ def write_certificates(data, ids):
     return len(ids)
 
 def write_audio_prompts(data, rows, ids):
-    if not rows:
+    if not rows or not ids:
         return 0
     p = OUT / "audio-prompts.jsonl"
-    with p.open("a", encoding="utf-8") as f:
-        for i in ids:
-            base = rows[(i - 1) % len(rows)]
-            f.write(json.dumps({
-                "id": i, "language": CFG.get("languages", ["hi"])[(i - 1) % len(CFG.get("languages", ["hi"]))],
-                "lyric_seed": base["text"], "status": "prompt-only",
-                "audio_file": None
-            }, ensure_ascii=False) + "\n")
-            mark(data, "audio-prompt", i)
-    return len(ids)
+    generated = []
+    languages = CFG.get("languages", ["hi"])
+    for i in ids:
+        base = rows[(i - 1) % len(rows)]
+        generated.append({
+            "id": i,
+            "language": languages[(i - 1) % len(languages)],
+            "lyric_seed": base["text"],
+            "status": "prompt-only",
+            "audio_file": None
+        })
+    added = _atomic_jsonl_merge(p, generated)
+    for i in ids:
+        mark(data, "audio-prompt", i)
+    return added
 
 def write_books(data, rows):
     target = int(CFG["products"]["digital_books"])
