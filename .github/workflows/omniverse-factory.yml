@@ -78,6 +78,7 @@ jobs:
         run: |
           test -s generated/repository-intelligence.json
           test -s generated/manifest.json
+          test -s generated/source-integrity-manifest.json
           test -s generated/source-units.jsonl
           test -s generated/canonical-knowledge.jsonl
           test -s generated/canonical-knowledge-manifest.json
