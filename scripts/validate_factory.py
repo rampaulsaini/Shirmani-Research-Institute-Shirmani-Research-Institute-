@@ -13,6 +13,7 @@ REQUIRED_JSON={
  "generated/framework-state.json":["schema_version","state","epistemic_status","framework_terms","measurement","integrity"],
  "generated/heart-viewpoint-manifest.json":["schema_version","stage","name","framework","symbol","experience_language","operational_boundary","integrity"],
  "generated/content-index.json":["schema_version","status","records","record_count","coverage","integrity"],
+ "generated/corpus-index.json":["schema_version","status","records","record_count","coverage","integrity"],
  "generated/framework-proposition.json":["id","statement","classification","terms","evidence_status","verification","provenance"],
 }
 def load_json(rel):
@@ -40,6 +41,9 @@ def main():
  if index["claim_records"]!=[]: raise AssertionError("research-index.json: continuity baseline expects zero verified claim records")
  if index["integrity"].get("fabricated_records") is not False: raise AssertionError("research-index.json: fabricated_records must be false")
  if index["integrity"].get("missing_data_preserved") is not True: raise AssertionError("research-index.json: missing_data_preserved must be true")
+ corpus=loaded["generated/corpus-index.json"]
+ if corpus["records"]!=[] or corpus["record_count"]!=0: raise AssertionError("corpus-index.json: committed continuity baseline expects zero corpus units")
+ if corpus["integrity"].get("fabricated_units") is not False or corpus["integrity"].get("content_meaning_inferred") is not False: raise AssertionError("corpus-index.json: integrity flags must remain false")
  prop=loaded["generated/framework-proposition.json"]
  if prop["classification"]!="FRAMEWORK_PROPOSITION" or prop["evidence_status"]!="NOT_VERIFIED": raise AssertionError("framework-proposition.json: framework proposition must remain explicitly unverified")
  if prop["verification"].get("independent") is not False: raise AssertionError("framework-proposition.json: independent verification must remain false until performed")
@@ -53,6 +57,7 @@ def main():
  if not bridge.is_file(): raise AssertionError("missing factory/contract_bridge.py")
  subprocess.run([sys.executable,str(bridge)],cwd=ROOT,check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
  subprocess.run([sys.executable,str(ROOT/"factory/framework_state.py")],cwd=ROOT,check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+ subprocess.run([sys.executable,str(ROOT/"factory/normalize_corpus_test.py")],cwd=ROOT/"factory",check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
  generated=ROOT/"generated/contract-views/source-records.jsonl"
  rows=[json.loads(x) for x in generated.read_text(encoding="utf-8").splitlines() if x.strip()]
  if len(rows)!=registry["repository_count"]: raise AssertionError("source bridge: record count mismatch")
@@ -63,6 +68,7 @@ def main():
  print(f"Registered repositories: {registry['repository_count']}")
  print(f"Deterministic source records bridged: {len(rows)}")
  print("Content inventory baseline: READY_FOR_INGESTION (zero committed records)")
+ print("Corpus normalization baseline: READY_FOR_ANALYSIS (zero committed units)")
  print("Verified claim records: 0")
  print("Framework state: HEART_VIEW_FRAMEWORK (physiological inactivity not asserted)")
  return 0
