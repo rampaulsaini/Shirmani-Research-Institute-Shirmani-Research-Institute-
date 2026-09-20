@@ -92,7 +92,7 @@ def claim_evidence_record(record, locations):
     source_ids = [str(x) for x in record.get("source_ids", [])]
     sources = [{"type": "SOURCE_RECORD", "locator": locations.get(sid, "source-id:" + sid),
                 "source_id": sid} for sid in source_ids]
-    traceable = bool(source_ids and all(sid in locations for sid in source_ids))
+    resolved = bool(source_ids) and all(sid in locations for sid in source_ids)
     return {
         "id": "claim:" + record["kind"] + ":" + str(record["artifact_id"]),
         "claim": record.get("reasoning", {}).get("claim", ""),
@@ -100,17 +100,17 @@ def claim_evidence_record(record, locations):
         "source": sources,
         "evidence": [{"kind": "SOURCE_TRACE", "status": "NOT_VERIFIED",
                       "detail": "Source trace is provenance, not independent proof."}],
+        "source_traceability": {
+            "status": "PASS" if resolved else "CHECK",
+            "resolved": resolved,
+            "source_ids": source_ids
+        },
         "formulation": {"method": "deterministic provenance/reasoning metadata",
                         "result_status": "NOT_VERIFIED"},
         "countercases": [
             "Source may be incomplete, ambiguous, outdated, or interpreted differently.",
             "Independent evidence may contradict the generated formulation."
         ],
-        "source_traceability": {
-            "status": "PASS" if traceable else "BLOCK",
-            "source_ids": source_ids,
-            "resolved": traceable
-        },
         "verification": {"status": "NOT_VERIFIED",
                           "method": "Independent human/source verification required.",
                           "independent": False},
@@ -118,25 +118,6 @@ def claim_evidence_record(record, locations):
         "provenance": {"created_at": record["created_at"],
                        "generator": "factory/reasoning_pipeline.py",
                        "content_hash": record["content_sha256"]}
-    }
-
-def make_record(kind, artifact_id, text, source_ids, extra=None):
-    reasoner = load_reasoner()
-    reasoning = reasoner.reason(text, source_ids)
-    return {
-        "artifact_id": str(artifact_id),
-        "kind": kind,
-        "content_sha256": sha256(text),
-        "source_ids": source_ids,
-        "reasoning": reasoning,
-        "claim_class": reasoning["claim_class"],
-        "method_trace": reasoning["method_trace"],
-        "evidence_status": reasoning["evidence_status"],
-        "human_review_required": reasoning["human_review_required"],
-        "verification_questions": reasoning["verification_questions"],
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "pipeline_version": "reasoning-qc-v1",
-        **(extra or {}),
     }
 
 def enrich():
