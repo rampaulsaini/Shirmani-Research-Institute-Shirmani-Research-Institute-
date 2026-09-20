@@ -33,14 +33,14 @@ def run(corpus, out, topic_path=None, batch_size=1000):
             "research":question(r["text"]), "verification":verification,
             "language":language, "language_route":language_route(language)
         })
-        cp=claim_record(contract_row, "UNVERIFIED", r.get("source") or r.get("repository") or "unknown")
+        source_ref = r.get("source") or r.get("repository") or "unknown"\n        if r.get("path"):\n            source_ref = f"{source_ref}:{r['path']}"\n        cp=claim_record(contract_row, "UNVERIFIED", source_ref)
         contract_claims.append(cp)
         verification_reports.append(verification_report(cp, "NOT_VERIFIED"))
-        p=record("claim",r.get("source","unknown"),r["text"],str(r["id"]),verification["status"],r.get("topics",[]))
+        source_ref = r.get("source") or r.get("repository") or "unknown"\n        if r.get("path"):\n            source_ref = f"{source_ref}:{r['path']}"\n        p=record("claim",source_ref,r["text"],str(r["id"]),verification["status"],r.get("topics",[]))\n        p["provenance"] = {"source_ids":[str(r["id"])],"source_repository":r.get("repository",source_ref),"source_path":r.get("path",""),"source_sha256":r.get("source_hash") or p["source_sha256"],"source_commit":r.get("commit"),"recorded_at":datetime.now(timezone.utc).isoformat()}
         if validate(p):
             products.append(p)
             append(artifact_path,manifest_record("claim",language,r["text"],[r["id"]],"orchestrator","draft",
-                {"source":r.get("source","unknown"),"verification_status":verification["status"]}))
+                {"source":source_ref,"verification_status":verification["status"],"source_ids":[str(r["id"])],"source_repository":r.get("repository",source_ref),"source_path":r.get("path",""),"source_sha256":r.get("source_hash") or p["source_sha256"],"source_commit":r.get("commit")}))
             q=queue_dir/f"language.{language}.jsonl"
             with q.open("a",encoding="utf-8") as f:
                 f.write(json.dumps({"job_id":f"claim-{r['id']}","artifact_id":p["id"],"language":language,
