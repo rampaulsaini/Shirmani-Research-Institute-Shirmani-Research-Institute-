@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "canonical_source_unit": {
     "id": "stable integer",
     "repository": "owner/name",
@@ -13,9 +13,27 @@
   "generated_record": {
     "id": "stable identifier",
     "agent": "agent id",
-    "source_ids": ["canonical source ids"],
+    "source_ids": [
+      "canonical source ids"
+    ],
     "content_hash": "sha256",
     "status": "draft|review|verified|published|rejected",
-    "generated_at": "ISO-8601 timestamp"
+    "generated_at": "ISO-8601 timestamp",
+    "framework_id": "stable framework identifier",
+    "claim_class": "epistemic claim class",
+    "method_trace": "methods actually used"
+  },
+  "framework_record": {
+    "framework_id": "factory/shirmani-framework.json",
+    "claim_class": "source_fact|empirical_result|mathematical_derivation|logical_inference|comparative_interpretation|user_philosophy|hypothesis|creative_expression|unverified_claim",
+    "method": [
+      "retrieval",
+      "comparison",
+      "formalization",
+      "calculation_or_code",
+      "counterexample_search",
+      "independent_verification",
+      "human_review"
+    ]
   }
 }
