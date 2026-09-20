@@ -73,6 +73,40 @@ def check_generated(path):
                 pass
     return result
 
+def check_reasoning_manifest(path):
+    required = ("artifact_id", "kind", "content_sha256", "source_ids",
+                "reasoning", "claim_class", "method_trace",
+                "evidence_status", "human_review_required", "verification_questions")
+    result = {"records": 0, "errors": []}
+    seen = set()
+    with open(path, encoding="utf-8") as f:
+        for line_no, line in enumerate(f, 1):
+            if not line.strip():
+                continue
+            result["records"] += 1
+            try:
+                r = json.loads(line)
+            except Exception as exc:
+                result["errors"].append({"line": line_no, "error": "invalid_json:" + str(exc)})
+                continue
+            for key in required:
+                if key not in r:
+                    result["errors"].append({"line": line_no, "error": "missing:" + key})
+            aid = r.get("artifact_id")
+            if aid in seen:
+                result["errors"].append({"line": line_no, "error": "duplicate_artifact_id"})
+            seen.add(aid)
+            if not isinstance(r.get("source_ids"), list):
+                result["errors"].append({"line": line_no, "error": "source_ids_not_list"})
+            if not isinstance(r.get("method_trace"), list) or not r.get("method_trace"):
+                result["errors"].append({"line": line_no, "error": "missing_method_trace"})
+            if not isinstance(r.get("verification_questions"), list) or not r.get("verification_questions"):
+                result["errors"].append({"line": line_no, "error": "missing_verification_questions"})
+            if r.get("evidence_status") == "verified":
+                result["errors"].append({"line": line_no, "error": "verified_requires_independent_evidence"})
+    result["unique_artifact_ids"] = len(seen)
+    return result
+
 def main():
     generated = ROOT / "generated"
     checks = []
@@ -82,6 +116,13 @@ def main():
         checks.append({"file": str(src.relative_to(ROOT)), **check_source_integrity(src)})
     if verse.exists():
         checks.append({"file": str(verse.relative_to(ROOT)), **check_generated(verse)})
+    reasoning = generated / "reasoning-manifest.jsonl"
+    if reasoning.exists():
+        checks.append({"file": str(reasoning.relative_to(ROOT)), **check_reasoning_manifest(reasoning)})
+    else:
+        checks.append({"file": str(reasoning.relative_to(ROOT)), "records": 0,
+                       "errors": [{"error": "missing_reasoning_manifest"}]})
+
 
     errors = sum(len(c["errors"]) for c in checks)
     blocking_errors = 0
