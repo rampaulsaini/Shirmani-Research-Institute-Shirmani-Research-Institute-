@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Verification Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["verification_id", "claim_id", "state", "checked_at"],
+  "properties": {
+    "verification_id": {"type": "string"},
+    "claim_id": {"type": "string"},
+    "state": {"enum": ["PASS", "CHECK", "FAIL", "NOT_VERIFIED", "DEFERRED"]},
+    "checked_at": {"type": "string", "format": "date-time"},
+    "method": {"type": "string"},
+    "verifier": {"type": "string"},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}},
+    "countercases": {"type": "array", "items": {"type": "string"}},
+    "uncertainty": {"type": ["string", "null"]},
+    "notes": {"type": ["string", "null"]}
+  }
+}
