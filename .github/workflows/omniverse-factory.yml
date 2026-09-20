@@ -42,6 +42,9 @@ jobs:
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
 
+      - name: Build durable continuity manifest
+        run: python3 factory/continuity_manifest.py
+
       - name: Validate generated catalog
         run: |
           test -s generated/repository-intelligence.json
@@ -61,6 +64,7 @@ jobs:
           test -s generated/reasoning-manifest.jsonl
           test -s generated/claim-evidence.jsonl
           test -s generated/QC-REPORT.json
+          test -s generated/continuity-manifest.json
           python3 - <<'PY'
           import json
           from pathlib import Path
