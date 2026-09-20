@@ -162,7 +162,7 @@ def check_reasoning(path, generated, framework):
     return result
 
 def check_claim_evidence(path):
-    result = {"records": 0, "unique_ids": 0, "errors": []}
+    result = {"records": 0, "unique_ids": 0, "errors": [], "traceable": 0}
     seen = set()
     with open(path, encoding="utf-8") as f:
         for line_no, line in enumerate(f, 1):
@@ -191,6 +191,11 @@ def check_claim_evidence(path):
             statuses = {e.get("status") for e in (r.get("evidence") or []) if isinstance(e, dict)}
             if not statuses or not statuses.issubset({"SUPPORTED", "PARTIAL", "UNAVAILABLE", "CONTRADICTED", "NOT_VERIFIED"}):
                 result["errors"].append({"line": line_no, "error": "invalid_claim_evidence_status"})
+            trace = r.get("source_traceability") or {}
+            if trace.get("status") != "PASS" or trace.get("resolved") is not True:
+                result["errors"].append({"line": line_no, "error": "missing_source_traceability"})
+            else:
+                result["traceable"] += 1
             verification = r.get("verification") or {}
             if verification.get("status") not in {"PASS", "CHECK", "FAIL", "NOT_VERIFIED"}:
                 result["errors"].append({"line": line_no, "error": "invalid_claim_verification_status"})
