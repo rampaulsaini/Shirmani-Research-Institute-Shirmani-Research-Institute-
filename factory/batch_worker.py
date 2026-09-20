@@ -22,6 +22,7 @@ from factory.state import load, save
 
 CFG = json.loads((ROOT / "factory" / "agent_config.json").read_text(encoding="utf-8"))
 SHIRMANI_AGENT = ROOT / "factory" / "agents" / "shirmani-heart-view-agent.md"
+FRAMEWORK = ROOT / "factory" / "shirmani-framework.json"
 STATE = ROOT / "factory" / "state.json"
 OUT = ROOT / "generated"
 CORPUS = OUT / "verse-corpus.jsonl"
@@ -56,6 +57,18 @@ def bootstrap_state():
 def shirmani_orientation():
     return SHIRMANI_AGENT.read_text(encoding="utf-8").strip() if SHIRMANI_AGENT.exists() else ""
 
+def framework_policy():
+    return json.loads(FRAMEWORK.read_text(encoding="utf-8")) if FRAMEWORK.exists() else {}
+
+def framework_meta():
+    policy = framework_policy()
+    return {
+        "framework_id": policy.get("framework_id", "unknown"),
+        "framework_version": policy.get("version"),
+        "claim_classes": policy.get("claim_classes", []),
+        "method_stack": policy.get("method_stack", [])
+    }
+
 def source_rows():
     if not SOURCE_UNITS.exists():
         return []
@@ -86,7 +99,9 @@ def write_verses(data, rows, ids):
             text = f"सूत्र {i:06d}: {base['text']} — यह स्रोत-आधारित चिंतन-प्रारूप है; स्वतंत्र सत्यापन आवश्यक है।"
             f.write(json.dumps({
                 "id": i, "source": base.get("source", "unknown"),
-                "text": text, "status": "draft"
+                "text": text, "status": "draft",
+                "framework": framework_meta(),
+                "claim_class": "user_philosophy"
             }, ensure_ascii=False) + "\n")
             mark(data, "verse", i)
     return len(ids)
@@ -130,7 +145,9 @@ def write_audio_prompts(data, rows, ids):
             f.write(json.dumps({
                 "id": i, "language": CFG.get("languages", ["hi"])[(i - 1) % len(CFG.get("languages", ["hi"]))],
                 "lyric_seed": base["text"], "status": "prompt-only",
-                "audio_file": None
+                "audio_file": None,
+                "framework": framework_meta(),
+                "claim_class": "creative_expression"
             }, ensure_ascii=False) + "\n")
             mark(data, "audio-prompt", i)
     return len(ids)
@@ -166,7 +183,12 @@ def main():
     rows = source_rows()
     target = CFG["products"]
     limit = max(1, args.batch_size)
-    summary = {"agent_orientation": "shirmani-heart-view", "orientation_loaded": bool(shirmani_orientation())}
+    summary = {
+        "agent_orientation": "shirmani-heart-view",
+        "orientation_loaded": bool(shirmani_orientation()),
+        "framework_id": framework_meta()["framework_id"],
+        "framework_loaded": bool(framework_policy())
+    }
     summary["verse"] = write_verses(data, rows, next_ids(data, "verse", int(target["verses"]), limit))
     verse_rows = corpus_rows()
     summary["research-paper"] = write_papers(data, rows, next_ids(data, "research-paper", int(target["research_papers"]), max(1, limit // 10)))
