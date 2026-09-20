@@ -112,7 +112,7 @@ def generated_claim_meta(text, source_id):
     return {"framework_id": framework["framework_id"], "framework_version": framework.get("version"),
             "claim_classes": framework.get("claim_classes", []), "method_stack": framework.get("method_stack", []),
             "claim_class": claim_class,
-            "method_trace": ["source_provenance", "textual_context", "cross-source-comparison", "independent_verification"],
+            "method_trace": ["source_provenance", "textual_context", "cross-source_comparison", "independent_verification"],
             "source_ids": [str(source_id)], "evidence_status": "requires_independent_verification",
             "human_review_required": True}
 
