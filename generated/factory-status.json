@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-09-20T05:57:07Z",
+  "mode": "free-first-orchestration",
+  "status": "OPERATIONAL_WITH_FACTORY_STATUS_RESTORED",
+  "records": null,
+  "processed_batch": null,
+  "qc": {
+    "ok": false,
+    "state": "CHECK",
+    "reason": "No verified factory batch counters were available at continuity repair time."
+  },
+  "dashboard_contract": {
+    "factory_status": "RESTORED",
+    "agent_status": "AVAILABLE",
+    "federation_status": "AVAILABLE"
+  },
+  "integrity": {
+    "fabricated_metrics": false,
+    "missing_values": "explicitly null"
+  }
+}
