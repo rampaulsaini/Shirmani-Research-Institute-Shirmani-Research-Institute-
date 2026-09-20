@@ -163,3 +163,17 @@ No historical text is auto-reconstructed. The archive only becomes populated fro
 - The workflow inventories this boundary before downstream generation and requires the manifest to exist.
 - An empty protected-source inventory is valid infrastructure state, but it does **not** claim that historical conversation material has been recovered. Actual historical source must be imported from an available source before it can receive a preservation ID/hash.
 \n
+
+## 17. Heart-View preservation layer
+
+The protected preservation layer is now defined in:
+
+- `SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md`
+- `schemas/heart-view-source-record.schema.json`
+- `schemas/heart-view-derivative-record.schema.json`
+- `schemas/heart-view-preservation-manifest.schema.json`
+- `schemas/HEART-VIEW-PRESERVATION-README.md`
+
+The source/derivative boundary is explicit: exact user material is preserved separately from translations, summaries, interpretations, research formulations, creative outputs, and code representations. SHA-256 content hashes and provenance fields are required for canonical source records.
+
+The next implementation step is actual source ingestion and deterministic generation of the preservation manifest. Existing missing values must remain missing until verified; no historical user wording is counted as preserved merely because the policy or schema exists.
