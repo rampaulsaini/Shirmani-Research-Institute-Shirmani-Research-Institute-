@@ -1,0 +1,26 @@
+name: Factory QC
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "factory/**"
+      - "generated/**"
+
+permissions:
+  contents: write
+
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic QC
+        run: python3 factory/quality_control.py
+      - name: Commit QC report
+        run: |
+          git config user.name "shirmani-factory-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/QC-REPORT.json
+          git diff --cached --quiet || git commit -m "Update factory QC report"
+          git push
