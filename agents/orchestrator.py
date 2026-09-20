@@ -10,6 +10,7 @@ from .language_agents import detect, route as language_route
 from .artifact_agent import manifest_record, append
 from .qc_agent import run as qc
 from .publishing_agent import publish
+from .evidence_engine import assess
 
 def run(corpus, out, topic_path=None, batch_size=1000):
     rows=[json.loads(x) for x in Path(corpus).read_text(encoding="utf-8").splitlines() if x.strip()]
@@ -23,9 +24,10 @@ def run(corpus, out, topic_path=None, batch_size=1000):
     for r in rows[:batch_size]:
         language=detect(r.get("text",""))
         verification=classify(r["text"],r.get("source"))
+        assessment=assess(r["text"],claim_type=r.get("claim_type","philosophical"),status="unresolved",reason="Initial orchestration pass; independent evidence/formal reproduction required.",provenance=[str(r.get("source","unknown"))])
         claims.append({
             "id":r["id"], "topics":r.get("topics",["general"]),
-            "research":question(r["text"]), "verification":verification,
+            "research":question(r["text"]), "verification":verification, "assessment":assessment,
             "language":language, "language_route":language_route(language)
         })
         p=record("claim",r.get("source","unknown"),r["text"],str(r["id"]),verification["status"],r.get("topics",[]))
@@ -36,7 +38,7 @@ def run(corpus, out, topic_path=None, batch_size=1000):
             q=queue_dir/f"language.{language}.jsonl"
             with q.open("a",encoding="utf-8") as f:
                 f.write(json.dumps({"job_id":f"claim-{r['id']}","artifact_id":p["id"],"language":language,
-                                    "agent":language_route(language)["agent"],"status":"pending","attempts":0},
+                                    "agent":language_route(language)["agent"],"status":"pending","attempts":0,"claim_id":assessment["claim_id"],"claim_type":assessment["claim_type"]},
                                    ensure_ascii=False)+"\n")
     Path(out,"claims-index.json").write_text(json.dumps(claims,ensure_ascii=False,indent=2),encoding="utf-8")
     Path(out,"provenance-index.jsonl").write_text(
