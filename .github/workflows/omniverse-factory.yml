@@ -42,6 +42,12 @@ jobs:
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
 
+      - name: Build independent verification queue
+        run: python3 factory/verification_queue.py
+
+      - name: Run verification queue QC
+        run: python3 factory/verification_queue_qc.py
+
       - name: Build durable continuity manifest
         run: python3 factory/continuity_manifest.py
 
@@ -65,11 +71,17 @@ jobs:
           test -s generated/claim-evidence.jsonl
           test -s generated/provenance-ledger.jsonl
           test -s generated/QC-REPORT.json
+          test -s generated/independent-verification-queue.jsonl
+          test -s generated/VERIFICATION-QUEUE.json
+          test -s generated/VERIFICATION-QUEUE-QC.json
           test -s generated/continuity-manifest.json
           python3 - <<'PY'
           import json
           from pathlib import Path
           report=json.loads(Path("generated/QC-REPORT.json").read_text())
+          queue=json.loads(Path("generated/VERIFICATION-QUEUE-QC.json").read_text())
+          if queue.get("publication_gate") != "PASS":
+              raise SystemExit("Independent verification queue QC is not PASS")
           if report.get("publication_gate") == "BLOCK":
               raise SystemExit("QC publication gate is BLOCK: deterministic QC found blocking integrity errors")
           if report.get("publication_gate") not in {"PASS", "CHECK"}:
