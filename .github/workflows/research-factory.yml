@@ -22,3 +22,15 @@ jobs:
 
       - name: Validate JSON and canonical research contracts
         run: python3 scripts/validate_factory.py
+
+      - name: Inventory checked-out content deterministically
+        run: |
+          mkdir -p /tmp/research-factory
+          python3 factory/content_ingest.py . /tmp/research-factory/content-records.jsonl
+          python3 factory/normalize_corpus.py /tmp/research-factory/content-records.jsonl /tmp/research-factory/corpus-units.jsonl
+          test -s /tmp/research-factory/content-records.jsonl
+          test -s /tmp/research-factory/corpus-units.jsonl
+
+      - name: Run corpus normalization regression
+        working-directory: factory
+        run: python3 normalize_corpus_test.py
