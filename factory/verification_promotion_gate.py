@@ -53,17 +53,17 @@ def main():
             errors.append({"line": line_no, "error": "review_task_not_in_queue"})
             continue
         if review["decision"] not in ALLOWED_DECISIONS:
-            errors.append({"line": line_no, "error": "invalid_review_decision"})
+            errors.append({"line": line_no, "error": "invalid_review_decision"})\n            review_errors.add(task_id)
         if not isinstance(review["evidence_refs"], list) or not review["evidence_refs"]:
-            errors.append({"line": line_no, "error": "missing_evidence_refs"})
+            errors.append({"line": line_no, "error": "missing_evidence_refs"})\n            review_errors.add(task_id)
         if review["countercase_reviewed"] is not True:
-            errors.append({"line": line_no, "error": "countercase_review_required"})
+            errors.append({"line": line_no, "error": "countercase_review_required"})\n            review_errors.add(task_id)
         if review["independent"] is not True:
-            errors.append({"line": line_no, "error": "independent_review_required"})
+            errors.append({"line": line_no, "error": "independent_review_required"})\n            review_errors.add(task_id)
         if not str(review["reviewer_id"]).strip():
-            errors.append({"line": line_no, "error": "reviewer_id_required"})
+            errors.append({"line": line_no, "error": "reviewer_id_required"})\n            review_errors.add(task_id)
         if not str(review["audit_ref"]).strip():
-            errors.append({"line": line_no, "error": "audit_ref_required"})
+            errors.append({"line": line_no, "error": "audit_ref_required"})\n            review_errors.add(task_id)
         reviews[task_id] = review
 
     now = datetime.now(timezone.utc).isoformat()
@@ -76,7 +76,7 @@ def main():
         review = reviews.get(task_id)
         status = "NOT_VERIFIED"
         independent = False
-        if review and not any(e.get("line") == task_id for e in errors):
+        if review and task_id not in review_errors:
             if review["decision"] == "VERIFIED":
                 status = "VERIFIED"
                 independent = True
