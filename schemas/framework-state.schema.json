@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Framework State",
+  "type":"object",
+  "required":["schema_version","state","epistemic_status","framework_terms","measurement","integrity"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "state":{"enum":["HEAD_DOMINANT","BALANCED","HEART_VIEW_FRAMEWORK","UNSPECIFIED"]},
+    "epistemic_status":{"enum":["FRAMEWORK_DESCRIPTION","USER_REPORTED_EXPERIENCE","EMPIRICALLY_VERIFIED","NOT_VERIFIED"]},
+    "framework_terms":{"type":"object"},
+    "measurement":{"type":"object","required":["head_activity","heart_view"]},
+    "integrity":{"type":"object","required":["physiological_inactivity_claimed","empirical_status_not_invented"],"properties":{
+      "physiological_inactivity_claimed":{"const":false},
+      "empirical_status_not_invented":{"const":true}
+    }}
+  },
+  "additionalProperties":false
+}
