@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from factory.state import load, save
+from factory.state import load, save\nfrom factory.reasoning_pipeline import enrich as enrich_reasoning
 
 CFG = json.loads((ROOT / "factory" / "agent_config.json").read_text(encoding="utf-8"))
 SHIRMANI_AGENT = ROOT / "factory" / "agents" / "shirmani-heart-view-agent.md"
