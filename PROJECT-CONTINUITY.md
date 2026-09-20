@@ -142,3 +142,16 @@ The continuity repair and contract-hardening layers are now wired and validated 
 - Factory CI: latest observed contract-validation runs completed successfully.
 
 **Next implementation target:** connect the existing collector/normalizer output to canonical source-record and claim/evidence records, preserving hashes, provenance, verification state and explicit unavailable states. Only after that gate should downstream writing, multilingual, audio, publication and SEO generators consume the records.
+
+
+## 18. Continuation checkpoint — canonical batch integration
+
+The existing orchestrator contract output is now connected to a canonical research-index layer.
+
+- Added `factory/canonical_research_index.py`.
+- `agents/orchestrator.py` now builds `generated/research-index.json` and `generated/claim-graph.json` after each processed batch.
+- The canonical index preserves draft/unverified status and counts independently verified claims only when the record explicitly reports `PASS`.
+- Claim-graph edges are traceability references, not assertions of truth.
+- Missing evidence remains missing; no source content is promoted merely because it was collected or registered.
+
+**Next gate:** execute the factory smoke/contract validation in CI and then harden the source-record schema + provenance/hash checks before enabling downstream publication, multilingual, audio and SEO stages.
