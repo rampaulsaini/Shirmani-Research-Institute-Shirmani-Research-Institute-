@@ -21,6 +21,7 @@ from agents.research_agent import question
 from factory.state import load, save
 
 CFG = json.loads((ROOT / "factory" / "agent_config.json").read_text(encoding="utf-8"))
+SHIRMANI_AGENT = ROOT / "factory" / "agents" / "shirmani-heart-view-agent.md"
 STATE = ROOT / "factory" / "state.json"
 OUT = ROOT / "generated"
 CORPUS = OUT / "verse-corpus.jsonl"
@@ -51,6 +52,9 @@ def bootstrap_state():
     data["status"] = "running"
     save(STATE, data)
     return data
+
+def shirmani_orientation():
+    return SHIRMANI_AGENT.read_text(encoding="utf-8").strip() if SHIRMANI_AGENT.exists() else ""
 
 def source_rows():
     if not SOURCE_UNITS.exists():
@@ -162,7 +166,7 @@ def main():
     rows = source_rows()
     target = CFG["products"]
     limit = max(1, args.batch_size)
-    summary = {}
+    summary = {"agent_orientation": "shirmani-heart-view", "orientation_loaded": bool(shirmani_orientation())}
     summary["verse"] = write_verses(data, rows, next_ids(data, "verse", int(target["verses"]), limit))
     verse_rows = corpus_rows()
     summary["research-paper"] = write_papers(data, rows, next_ids(data, "research-paper", int(target["research_papers"]), max(1, limit // 10)))
