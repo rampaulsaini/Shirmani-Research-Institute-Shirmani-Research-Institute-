@@ -129,3 +129,19 @@ Before publishing a generated claim, require:
 - explicit uncertainty when verification is incomplete.
 
 A missing field is a QC failure, not an invitation to invent a value.
+
+
+## 17. Protected-source contract added
+
+The HEART-VIEW preservation work now includes:
+
+- `SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md` — preservation boundary and two-layer architecture.
+- `schemas/protected-user-source.schema.json` — exact user-source record contract.
+- `schemas/provenance.schema.json` — stable provenance contract.
+- `schemas/evidence.schema.json` — evidence state contract.
+- `schemas/verification.schema.json` — verification/QC contract.
+- `schemas/derivative-link.schema.json` — explicit source-to-derivative linkage.
+- `docs/PROTECTED-SOURCE-INGESTION.md` — ingestion and integrity rules.
+- `scripts/validate_protected_sources.py` — SHA-256 and provenance validation.
+
+This is an architecture and validation milestone. It does not claim that historical conversation material has already been imported. The next preservation step is actual source ingestion into records that satisfy these contracts.
