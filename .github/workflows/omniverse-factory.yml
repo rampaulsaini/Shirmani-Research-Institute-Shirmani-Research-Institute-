@@ -23,6 +23,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Inventory protected user-source material
+        run: python3 factory/protected_source_manifest.py
+
       - name: Build repository intelligence
         run: python3 factory/repository_intelligence.py
 
@@ -76,6 +79,7 @@ jobs:
 
       - name: Validate generated catalog
         run: |
+          test -s generated/protected-user-source-manifest.json
           test -s generated/repository-intelligence.json
           test -s generated/manifest.json
           test -s generated/source-units.jsonl
