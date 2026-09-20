@@ -177,3 +177,9 @@ The protected preservation layer is now defined in:
 The source/derivative boundary is explicit: exact user material is preserved separately from translations, summaries, interpretations, research formulations, creative outputs, and code representations. SHA-256 content hashes and provenance fields are required for canonical source records.
 
 The next implementation step is actual source ingestion and deterministic generation of the preservation manifest. Existing missing values must remain missing until verified; no historical user wording is counted as preserved merely because the policy or schema exists.
+
+
+## 19. Heart-View continuation hardening
+- `factory/deterministic_source_manifest.py` creates a deterministic SHA-256 manifest of Git-tracked repository files, preserving exact source bytes while making integrity auditable.
+- The factory workflow now builds and validates `generated/deterministic-source-manifest.json` before downstream research products.
+- This manifest establishes repository-file integrity; it does not by itself prove the truth of any research claim.
