@@ -33,7 +33,10 @@ jobs:
       - name: Build resumable canonical batches
         run: python3 factory/canonical_index.py
 
-      - name: Build deterministic reasoning and provenance layer
+      - name: Run resumable product batch worker
+        run: python3 factory/batch_worker.py --batch-size 1000
+
+      - name: Build deterministic reasoning, provenance and claim-evidence layer
         run: python3 factory/reasoning_pipeline.py
 
       - name: Run deterministic QC
@@ -56,6 +59,7 @@ jobs:
               raise SystemExit("Canonical knowledge layer has no active records")
           PY
           test -s generated/reasoning-manifest.jsonl
+          test -s generated/claim-evidence.jsonl
           test -s generated/QC-REPORT.json
           python3 - <<'PY'
           import json
