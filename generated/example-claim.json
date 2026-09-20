@@ -1,0 +1,35 @@
+{
+  "id": "example.self-description.001",
+  "claim": "यह एक उदाहरणात्मक framework proposition है।",
+  "claim_type": "PHILOSOPHICAL_PROPOSITION",
+  "status": "DRAFT",
+  "definitions": [
+    "framework proposition को empirical fact से अलग रखा जाता है।"
+  ],
+  "evidence": [
+    {
+      "type": "PRIMARY_SOURCE",
+      "description": "User-provided framework text; external empirical evidence not asserted.",
+      "source": "PROJECT-CONTINUITY.md"
+    }
+  ],
+  "formulation": [
+    {
+      "method": "Classification rule: philosophical proposition ≠ empirical proof.",
+      "result": "Stored as DRAFT framework content.",
+      "reproducible": true
+    }
+  ],
+  "verification": {
+    "status": "NOT_APPLICABLE",
+    "method": "No empirical verification claimed."
+  },
+  "countercases": [
+    "यदि स्वतंत्र empirical evidence उपलब्ध हो तो अलग evidence record जोड़ा जाएगा।"
+  ],
+  "provenance": {
+    "recorded_at": "2026-09-20T00:00:00Z",
+    "repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+    "path": "generated/example-claim.json"
+  }
+}
