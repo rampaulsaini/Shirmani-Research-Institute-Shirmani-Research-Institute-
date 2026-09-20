@@ -4,6 +4,7 @@
   "status": "OPERATIONAL_WITH_FACTORY_STATUS_RESTORED",
   "records": null,
   "processed_batch": null,
+  "artifacts": null,
   "qc": {
     "ok": false,
     "state": "CHECK",
