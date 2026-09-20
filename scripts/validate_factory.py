@@ -14,6 +14,7 @@ REQUIRED_JSON={
  "generated/heart-viewpoint-manifest.json":["schema_version","stage","name","framework","symbol","experience_language","operational_boundary","integrity"],
  "generated/content-index.json":["schema_version","status","records","record_count","coverage","integrity"],
  "generated/corpus-index.json":["schema_version","status","records","record_count","coverage","integrity"],
+ "generated/concept-index.json":["schema_version","status","records","record_count","coverage","integrity"],
  "generated/framework-proposition.json":["id","statement","classification","terms","evidence_status","verification","provenance"],
 }
 def load_json(rel):
@@ -58,6 +59,10 @@ def main():
  subprocess.run([sys.executable,str(bridge)],cwd=ROOT,check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
  subprocess.run([sys.executable,str(ROOT/"factory/framework_state.py")],cwd=ROOT,check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
  subprocess.run([sys.executable,str(ROOT/"factory/normalize_corpus_test.py")],cwd=ROOT/"factory",check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+ subprocess.run([sys.executable,str(ROOT/"factory/extract_concepts_test.py")],cwd=ROOT/"factory",check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+ concepts=loaded["generated/concept-index.json"]
+ if concepts["records"]!=[] or concepts["record_count"]!=0: raise AssertionError("concept-index.json: committed continuity baseline expects zero concept candidates")
+ if concepts["integrity"].get("fabricated_concepts") is not False or concepts["integrity"].get("semantic_claims_inferred") is not False: raise AssertionError("concept-index.json: integrity flags must remain false")
  generated=ROOT/"generated/contract-views/source-records.jsonl"
  rows=[json.loads(x) for x in generated.read_text(encoding="utf-8").splitlines() if x.strip()]
  if len(rows)!=registry["repository_count"]: raise AssertionError("source bridge: record count mismatch")
@@ -69,6 +74,7 @@ def main():
  print(f"Deterministic source records bridged: {len(rows)}")
  print("Content inventory baseline: READY_FOR_INGESTION (zero committed records)")
  print("Corpus normalization baseline: READY_FOR_ANALYSIS (zero committed units)")
+ print("Concept candidate baseline: READY_FOR_ANALYSIS (zero committed candidates)")
  print("Verified claim records: 0")
  print("Framework state: HEART_VIEW_FRAMEWORK (physiological inactivity not asserted)")
  return 0
