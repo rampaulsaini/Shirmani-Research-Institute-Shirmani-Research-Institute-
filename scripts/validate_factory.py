@@ -12,6 +12,7 @@ REQUIRED_JSON={
  "generated/claim-graph.json":["schema_version","status","nodes","edges","integrity"],
  "generated/framework-state.json":["schema_version","state","epistemic_status","framework_terms","measurement","integrity"],
  "generated/heart-viewpoint-manifest.json":["schema_version","stage","name","framework","symbol","experience_language","operational_boundary","integrity"],
+ "generated/content-index.json":["schema_version","status","records","record_count","coverage","integrity"],
 }
 def load_json(rel):
  p=ROOT/rel
@@ -57,6 +58,7 @@ def main():
  print(f"JSON contracts checked: {len(REQUIRED_JSON)}")
  print(f"Registered repositories: {registry['repository_count']}")
  print(f"Deterministic source records bridged: {len(rows)}")
+ print("Content inventory baseline: READY_FOR_INGESTION (zero committed records)")
  print("Verified claim records: 0")
  print("Framework state: HEART_VIEW_FRAMEWORK (physiological inactivity not asserted)")
  return 0
