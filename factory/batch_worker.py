@@ -45,6 +45,8 @@ def existing_count(kind):
 def bootstrap_state():
     data = load(STATE)
     done = data.setdefault("completed", {})
+    data.setdefault("version", 2)
+    data["state_repaired_from_outputs"] = True
     for kind in ("verse", "book", "research-paper", "certificate", "audio-prompt"):
         done[kind] = sorted(set(done.get(kind, [])) | set(range(1, existing_count(kind) + 1)))
     data["status"] = "running"
@@ -114,28 +116,36 @@ def mark(data, kind, number):
         data["completed"][kind].sort()
 
 def _atomic_jsonl_merge(path, new_rows, key="id"):
-    """Merge rows by stable ID and replace atomically; safe to retry after interruption."""
-    existing = {}
+    """Append only missing stable IDs; never rewrite a large canonical corpus."""
+    if not new_rows:
+        return 0
+    existing_ids = set()
     if path.exists():
-        for line in path.read_text(encoding="utf-8").splitlines():
-            if not line.strip():
-                continue
-            row = json.loads(line)
-            existing[str(row[key])] = row
-    added = 0
-    for row in new_rows:
-        k = str(row[key])
-        if k not in existing:
-            existing[k] = row
-            added += 1
-    ordered = sorted(existing.values(), key=lambda r: int(r[key]))
-    tmp = path.with_suffix(path.suffix + ".tmp")
+        with path.open(encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    try:
+                        existing_ids.add(str(json.loads(line)[key]))
+                    except (json.JSONDecodeError, KeyError):
+                        continue
+    pending = [r for r in new_rows if str(r[key]) not in existing_ids]
+    if not pending:
+        return 0
+    pending.sort(key=lambda r: int(r[key]))
+    tmp = path.with_suffix(path.suffix + ".append.tmp")
     tmp.write_text(
-        "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in ordered),
+        "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in pending),
         encoding="utf-8",
     )
-    tmp.replace(path)
-    return added
+    with path.open("ab") as out, tmp.open("rb") as src:
+        while True:
+            chunk = src.read(1024 * 1024)
+            if not chunk:
+                break
+            out.write(chunk)
+        out.flush()
+    tmp.unlink(missing_ok=True)
+    return len(pending)
 
 def write_verses(data, rows, ids):
     if not rows or not ids:
@@ -254,11 +264,13 @@ def main():
     summary["certificate"] = write_certificates(data, next_ids(data, "certificate", int(target["certificates"]), max(1, limit // 5)))
     summary["audio-prompt"] = write_audio_prompts(data, rows, next_ids(data, "audio-prompt", int(target["audio_prompts"]), limit))
     summary["book"] = write_books(data, verse_rows)
+    target_map = {"verse":"verses","book":"digital_books","research-paper":"research_papers","certificate":"certificates","audio-prompt":"audio_prompts"}
     data["status"] = "complete" if all(
-        len(data["completed"].get(k, [])) >= int(target["digital_books" if k == "book" else k.replace("-", "_") + "s"])
+        len(data["completed"].get(k, [])) >= int(target[target_map[k]])
         for k in ("verse", "book", "research-paper", "certificate", "audio-prompt")
     ) else "running"
     data["last_batch"] = summary
+    data["last_successful_batch_at"] = datetime.now(timezone.utc).isoformat()
     save(STATE, data)
     (OUT / "worker-status.json").write_text(json.dumps({
         "generated_at": datetime.now(timezone.utc).isoformat(),
