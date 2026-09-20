@@ -221,3 +221,24 @@ Actual checked-out content can now be inventoried deterministically in CI. The n
 **content-records → normalized corpus units → concepts → canonical claims → evidence links → verification → claim graph**
 
 No downstream publication, multilingual, audio or SEO stage should treat a content record as a verified claim.
+
+
+## 20. Next-label: normalized corpus-unit layer
+
+The deterministic ingestion stage now has a downstream normalization contract:
+
+`content-record → corpus-unit → concept → canonical claim → evidence → verification`
+
+- `schemas/corpus-unit.schema.json` defines the canonical unit metadata contract.
+- `factory/normalize_corpus.py` maps emitted content records into stable corpus-unit metadata without inferring source meaning.
+- `factory/normalize_corpus_test.py` provides deterministic regression coverage for text, binary-skipped and unavailable states.
+- `generated/corpus-index.json` is an explicit zero-unit continuity baseline until checked-out source content is actually inventoried.
+- `scripts/validate_factory.py` now gates the normalization regression and preserves the zero-unit baseline.
+
+A corpus unit is **not** a claim and is not evidence by itself. Meaning extraction, claim classification, evidence linkage and verification remain separate gates.
+
+### Framework boundary
+
+The **हृदय का शिरोमणि स्वरुप दृष्टिकोण**, **संपूर्ण संतुष्टि की निरंतरता**, **खुद के स्थाई स्वरुप से रुबरु**, and **खुद के स्थाई परिचय से परिचित** remain framework-language records. The statement that मस्तक/मन/बुद्धि become inactive remains a reported experiential formulation unless independently measured; the computational factory continues to use reasoning, mathematics, testing, verification and provenance for QC.
+
+**Next incomplete integration:** emit canonical corpus units from actual checked-out content during scheduled/CI ingestion, then connect those units to concept extraction and claim/evidence records without promoting unverified material to fact.
