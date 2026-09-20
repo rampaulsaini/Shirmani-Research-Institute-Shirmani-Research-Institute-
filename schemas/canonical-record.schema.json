@@ -1,0 +1,20 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Canonical Knowledge Record",
+  "type":"object",
+  "required":["id","repository","path","source_hash","text","source_type","first_seen_at","last_seen_at","active"],
+  "properties":{
+    "id":{"type":"string","pattern":"^ck_[a-f0-9]{24}$"},
+    "repository":{"type":"string","minLength":1},
+    "branch":{"type":["string","null"]},
+    "path":{"type":"string","minLength":1},
+    "source_hash":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "text":{"type":"string"},
+    "source_type":{"type":"string","minLength":1},
+    "collected_at":{"type":["string","null"]},
+    "first_seen_at":{"type":"string","minLength":1},
+    "last_seen_at":{"type":"string","minLength":1},
+    "active":{"type":"boolean"}
+  },
+  "additionalProperties":false
+}
