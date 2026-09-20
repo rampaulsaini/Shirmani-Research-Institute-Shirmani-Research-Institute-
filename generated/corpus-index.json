@@ -1,0 +1,18 @@
+{
+  "schema_version":"1.0.0",
+  "generated_at":null,
+  "status":"READY_FOR_ANALYSIS",
+  "records":[],
+  "record_count":0,
+  "coverage":{
+    "text_units":0,
+    "binary_references":0,
+    "unavailable_references":0
+  },
+  "integrity":{
+    "fabricated_units":false,
+    "content_meaning_inferred":false,
+    "missing_data_preserved":true,
+    "claims_generated":false
+  }
+}
