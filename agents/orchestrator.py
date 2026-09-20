@@ -49,7 +49,7 @@ def run(corpus, out, topic_path=None, batch_size=1000):
     Path(out,"claims-index.json").write_text(json.dumps(claims,ensure_ascii=False,indent=2),encoding="utf-8")
     contract_dir=Path(out)/"contracts"; contract_dir.mkdir(exist_ok=True)
     for name, records in (("source-records.jsonl",contract_sources),("concept-records.jsonl",contract_concepts),("claim-records.jsonl",contract_claims),("verification-reports.jsonl",verification_reports)):
-        (contract_dir/name).write_text("\\n".join(json.dumps(x,ensure_ascii=False) for x in records)+("\\n" if records else ""),encoding="utf-8")
+        (contract_dir/name).write_text("\n".join(json.dumps(x,ensure_ascii=False) for x in records)+("\n" if records else ""),encoding="utf-8")
     Path(out,"provenance-index.jsonl").write_text(
         "\n".join(json.dumps(x,ensure_ascii=False) for x in products)+"\n",encoding="utf-8")
     status={
