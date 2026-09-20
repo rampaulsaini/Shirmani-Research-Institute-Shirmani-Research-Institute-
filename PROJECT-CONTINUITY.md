@@ -191,3 +191,33 @@ Its meaning is intentionally precise:
 `scripts/validate_factory.py` now validates the heart-viewpoint manifest in addition to the existing source registry, research index, claim graph and framework-state contracts.
 
 The next incomplete build step is deterministic **content ingestion + claim/evidence record emission**. Registered repositories are not counted as ingested content until actual records, provenance and hashes are emitted.
+
+
+## 19. Next-label: deterministic content-ingestion layer
+
+The next engineering label is now wired as a real contract layer:
+
+- `schemas/content-record.schema.json` defines a traceable file-content record with SHA-256 hash, byte count, content status and provenance.
+- `factory/content_ingest.py` inventories files from a checked-out repository in stable path order, hashes their bytes, classifies supported text files, and explicitly marks binary files as `BINARY_SKIPPED`.
+- Generated directories and build/cache/vendor directories are excluded so factory outputs do not silently become source material.
+- `factory/content_ingest_test.py` provides a regression fixture for ordering, exclusion and hash stability.
+- `generated/content-index.json` remains a zero-record continuity baseline: a registered repository is not treated as ingested content.
+- `scripts/validate_factory.py` now gates both the claim/evidence normalization regression and the content-ingestion regression.
+
+The canonical verification vocabulary has also been aligned: a claim is counted as verified only when its canonical record has `status: SUPPORTED` and verification status `INDEPENDENTLY_CHECKED` or `AUTOMATED_CHECK`. Legacy `PASS` semantics are no longer used for that count.
+
+### Framework boundary retained
+
+The **हृदय का शिरोमणि स्वरुप दृष्टिकोण** remains the project's framework-level self-realization language:
+
+**मस्तक/मन/बुद्धि निष्क्रिय** is preserved as framework/experience language only; no physiological inactivity is asserted without independent measurement.
+
+The operational factory continues to use computation, evidence, logic, mathematics, testing, verification and provenance for research-quality control.
+
+### Immediate next gate
+
+Actual checked-out content can now be inventoried deterministically in CI. The next incomplete integration is:
+
+**content-records → normalized corpus units → concepts → canonical claims → evidence links → verification → claim graph**
+
+No downstream publication, multilingual, audio or SEO stage should treat a content record as a verified claim.
