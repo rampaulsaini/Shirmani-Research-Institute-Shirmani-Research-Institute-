@@ -71,8 +71,6 @@ jobs:
       - name: Build unified publication safety gate
         run: python3 factory/publication_gate.py
 
-        run: python3 factory/research_evidence_graph.py
-
       - name: Build durable continuity manifest
         run: python3 factory/continuity_manifest.py
 
