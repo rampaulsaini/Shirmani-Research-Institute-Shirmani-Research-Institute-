@@ -4,7 +4,7 @@
 This file is the durable restart point for future chats. The GitHub repository is the canonical project workspace; chat history is not required to reconstruct the architecture.
 
 ## Current architecture
-Source repositories → Repository Intelligence → Source Units → Canonical Knowledge → Canonical Batches → Agent/Company routing → Draft Products → Provenance/QC → Human/independent review → Publication.
+Source repositories → Repository Intelligence → Source Units → Canonical Knowledge → Canonical Batches → Agent/Company routing → Draft Products → Reasoning/Provenance → Deterministic QC → Human/independent review → Publication.
 
 ## Current verified state
 - Hub: rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-
@@ -13,9 +13,11 @@ Source repositories → Repository Intelligence → Source Units → Canonical K
 - Latest active canonical records: 3,537
 - Canonical batch size: 250
 - Canonical batches: 15
-- Latest verse corpus: 100,000 records
-- Latest QC: PASS; blocking errors: 0
+- Latest verse corpus target reached: 100,000 records
+- Product targets configured: 100 Mahagranth drafts, 100 research-paper drafts, 1,000 certificates, 10,000 audio prompts
 - Main workflow: .github/workflows/omniverse-factory.yml
+- Reasoning/provenance layer: factory/reasoning_pipeline.py
+- Deterministic QC: factory/quality_control.py
 - Framework: factory/shirmani-framework.json
 - Protected user philosophy: factory/canonical/shirmani-user-philosophy.md
 - Heart-View agent: factory/agents/shirmani-heart-view-agent.md
@@ -24,13 +26,7 @@ Source repositories → Repository Intelligence → Source Units → Canonical K
 - Queue registry: factory/queues.json
 - AI company registry: factory/ai-companies.json
 - Deep learning registry: factory/deep_learning.json
-
-## Product targets
-- 100 digital Mahagranth drafts
-- 100,000 verse/song/shlok/sutra records
-- 100 research-paper drafts
-- 1,000 certificates
-- 10,000 audio prompts
+- Latest QC hardening merged through PR #22; merge commit: 1fa6b597c550c399e62a1a37bfa0a81a58780b4c.
 
 ## Non-negotiable continuity rules
 1. Preserve user-authored source separately from AI interpretation.
@@ -46,18 +42,20 @@ Source repositories → Repository Intelligence → Source Units → Canonical K
 
 ## Latest completed engineering work
 - Removed the latent research-question dependency from factory/batch_worker.py.
-- Added and registered the deterministic Shirmani reasoning agent at factory/agents/shirmani_reasoning_agent.py.
-- Added factory/reasoning_pipeline.py for reasoning/provenance records without converting philosophy into scientific fact.
-- Latest factory refresh and QC commits are present through 2026-09-20.
+- Added and registered the deterministic Shirmani reasoning agent.
+- Added factory/reasoning_pipeline.py and merged provenance preservation for books/research papers through PR #8.
+- Main factory workflow now runs repository intelligence → archive → canonical knowledge → canonical batches → reasoning/provenance → QC.
+- QC hardening merged through PR #22 now validates generated content hashes, framework claim classes, method traces, evidence status, human-review flags, framework IDs, artifact hashes and reasoning/source consistency.
 
 ## Current next engineering priorities
-1. Run the reasoning/provenance layer inside the main factory workflow before QC.
-2. Extend deterministic QC to validate claim class, method trace, evidence status, provenance and human-review requirements.
-3. Strengthen durable queue/state/checkpoint handling for all product types.
-4. Expand lawful/open external knowledge ingestion with source/context metadata.
-5. Build independently reviewable research workflows before calling any research result verified.
-6. Keep the dashboard and publication layer synchronized with generated manifests.
-7. Continue incremental expansion toward the defined product targets.
+1. Run the hardened reasoning/provenance/QC stack end-to-end on the main factory and inspect the resulting QC report before publication claims.
+2. Align the reasoning agent's method trace and claim-class logic dynamically with factory/shirmani-framework.json, preventing vocabulary drift.
+3. Strengthen durable queue/state/checkpoint handling for every product type, especially the 10,000-audio target.
+4. Build independently reviewable research workflows before any research result can be marked verified.
+5. Synchronize dashboard/publication metadata with generated manifests and QC state.
+6. Resolve or explicitly record access status for unavailable source repositories.
+7. Expand lawful/open external knowledge ingestion with source/context metadata.
+8. Continue incremental expansion toward the configured product targets.
 
 ## Restart instruction
 When a new chat says “Continue Shirmani Research Institute”, first inspect this file and the referenced current files in GitHub, then continue from the next engineering priority without reconstructing the project from chat memory.
