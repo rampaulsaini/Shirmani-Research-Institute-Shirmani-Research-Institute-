@@ -20,6 +20,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Regenerate the downstream reasoning/provenance layer from the
+      # checked-out canonical artifacts before QC. This keeps the standalone
+      # QC workflow aligned with the main factory pipeline and avoids
+      # validating stale derived artifacts.
+      - name: Build reasoning, provenance and claim-evidence layer
+        run: python3 factory/reasoning_pipeline.py
+
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
 
