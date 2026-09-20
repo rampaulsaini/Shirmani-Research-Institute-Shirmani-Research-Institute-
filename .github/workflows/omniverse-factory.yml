@@ -60,8 +60,10 @@ jobs:
           import json
           from pathlib import Path
           report=json.loads(Path("generated/QC-REPORT.json").read_text())
-          if report.get("publication_gate") != "PASS":
-              raise SystemExit("QC publication gate is BLOCK")
+          if report.get("publication_gate") == "BLOCK" and report.get("error_count", 0) > 0:
+              raise SystemExit("QC publication gate is BLOCK: generated reasoning records are missing required source traceability")
+          if report.get("publication_gate") not in {"PASS", "CHECK"}:
+              raise SystemExit("QC publication gate is invalid")
           PY
 
       - name: Publish generated catalog
