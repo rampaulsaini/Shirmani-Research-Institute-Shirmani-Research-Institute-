@@ -38,20 +38,32 @@ def load_source_index():
     return index
 
 def source_ids_from_text(text, index):
+    """Resolve source IDs from inline labels and Markdown source sections.
+
+    A source may be written on the same line as a Source heading or on the
+    following non-empty line. Unresolved sources remain unresolved; IDs are
+    never invented.
+    """
     found = []
-    for line in text.splitlines():
+    lines = text.splitlines()
+    for pos, line in enumerate(lines):
         stripped = line.strip()
         candidate = None
         if "स्रोत:" in stripped:
             candidate = stripped.split("स्रोत:", 1)[1].split("·", 1)[0].strip()
         elif stripped.lower().startswith("## source"):
-            # Parse the normalized lowercase prefix, while preserving the
-            # original remainder. This avoids case-sensitive split failures
-            # such as "## Source ...".
-            lower = stripped.lower()
-            candidate = stripped[len("## source"):].strip(" :")
-            if not candidate:
-                candidate = lower[len("## source"):].strip(" :")
+            remainder = stripped[len("## source"):].strip(" :")
+            if remainder:
+                candidate = remainder
+            else:
+                for next_line in lines[pos + 1:]:
+                    next_stripped = next_line.strip()
+                    if not next_stripped:
+                        continue
+                    if next_stripped.startswith("#"):
+                        break
+                    candidate = next_stripped
+                    break
         if candidate and candidate in index:
             found.append(index[candidate])
     return sorted(set(found))
