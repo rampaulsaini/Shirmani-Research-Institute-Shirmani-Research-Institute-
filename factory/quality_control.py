@@ -191,6 +191,10 @@ def check_claim_evidence(path):
                 seen.add(rid)
             if not isinstance(r.get("source"), list) or not r.get("source"):
                 result["errors"].append({"line": line_no, "error": "claim_evidence_missing_source"})
+            else:
+                for source in r.get("source", []):
+                    if not isinstance(source, dict) or not source.get("source_id") or not source.get("locator"):
+                        result["errors"].append({"line": line_no, "error": "claim_evidence_invalid_source_ref"})
             if not isinstance(r.get("evidence"), list) or not r.get("evidence"):
                 result["errors"].append({"line": line_no, "error": "claim_evidence_missing_evidence"})
             statuses = {e.get("status") for e in (r.get("evidence") or []) if isinstance(e, dict)}
