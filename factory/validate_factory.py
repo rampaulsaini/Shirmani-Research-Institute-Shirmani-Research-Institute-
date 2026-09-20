@@ -64,6 +64,15 @@ def main():
             for row in rows:
                 assert row.get("id") or row.get("record_id")
 
+    # Provenance regression: generated paper drafts place the source value
+    # on the line after "## Source"; the parser must resolve that value.
+    from factory.reasoning_pipeline import source_ids_from_text
+    resolved = source_ids_from_text(
+        "## Source\nrepo/example:path.md\n",
+        {"repo/example:path.md": "42"},
+    )
+    assert resolved == ["42"], f"paper source provenance regression: {resolved}"
+
     print("Factory smoke test OK")
 
 if __name__ == "__main__":
