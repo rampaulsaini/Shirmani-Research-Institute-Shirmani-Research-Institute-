@@ -5,7 +5,8 @@ This is a metadata layer, not a claim-proving engine. It preserves the
 distinction between user philosophy, creative expression, hypotheses and
 independently verified evidence.
 """
-import hashlib, json
+import hashlib
+import json
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -39,11 +40,18 @@ def load_source_index():
 def source_ids_from_text(text, index):
     found = []
     for line in text.splitlines():
+        stripped = line.strip()
         candidate = None
-        if "स्रोत:" in line:
-            candidate = line.split("स्रोत:", 1)[1].split("·", 1)[0].strip()
-        elif line.strip().lower().startswith("## source"):
-            candidate = line.split("## source", 1)[1].strip(" :")
+        if "स्रोत:" in stripped:
+            candidate = stripped.split("स्रोत:", 1)[1].split("·", 1)[0].strip()
+        elif stripped.lower().startswith("## source"):
+            # Parse the normalized lowercase prefix, while preserving the
+            # original remainder. This avoids case-sensitive split failures
+            # such as "## Source ...".
+            lower = stripped.lower()
+            candidate = stripped[len("## source"):].strip(" :")
+            if not candidate:
+                candidate = lower[len("## source"):].strip(" :")
         if candidate and candidate in index:
             found.append(index[candidate])
     return sorted(set(found))
