@@ -1,0 +1,54 @@
+{
+  "framework_id": "shirmani-nishpaksh-samaj-yatharth",
+  "version": 1,
+  "name_hi": "निष्पक्ष समझ — शमीकरण यथार्थ सिद्धांत — उपलब्धि यथार्थ युग",
+  "orientation": {
+    "heart_view": "मानवीय अनुभव, करुणा, संतुलन और संपूर्ण संतुष्टि की निरंतरता को संदर्भित करने वाला दार्शनिक दृष्टिकोण।",
+    "head_view": "तर्क, तथ्य, गणना, भाषा, प्रमाण, परीक्षण और निर्णय की विश्लेषणात्मक परत।",
+    "balance_rule": "हृदय दिशा दे — मस्तक जाँच करे — विवेक निर्णय को संतुलित करे।",
+    "future_understanding": "आगामी निष्पक्ष समझ को खुली परिकल्पना की तरह विकसित किया जाए; उसे स्वतः स्थापित सत्य न माना जाए।"
+  },
+  "knowledge_scope": {
+    "goal": "विभिन्न सभ्यताओं के ग्रंथ, दर्शन, धर्म, विज्ञान, इतिहास, साहित्य और आधुनिक शोध को संदर्भ सहित खोजकर तुलना करना।",
+    "coverage_rule": "किसी परंपरा को संपूर्ण विश्व-ज्ञान का अंतिम या पूर्ण प्रतिनिधि न माना जाए; स्रोत, काल, भाषा, संस्करण और संदर्भ दर्ज हों।",
+    "copyright_rule": "स्रोतों का सार, उद्धरण-सीमा और संदर्भ दिया जाए; संरक्षित ग्रंथों की अनधिकृत पूर्ण प्रतिलिपि न बनाई जाए।"
+  },
+  "claim_classes": [
+    "source_fact",
+    "empirical_result",
+    "mathematical_derivation",
+    "logical_inference",
+    "comparative_interpretation",
+    "user_philosophy",
+    "hypothesis",
+    "creative_expression",
+    "unverified_claim"
+  ],
+  "result_protocol": {
+    "every_claim": ["claim", "claim_class", "sources", "method", "counterevidence", "confidence", "limitations"],
+    "comparison": ["commonality", "difference", "evidence", "context", "uncertainty"],
+    "abstain_when": ["insufficient_evidence", "contradictory_sources", "unverifiable_premise", "calculation_not_reproducible"],
+    "no_scientific_validation_by_generation": true
+  },
+  "method_stack": [
+    "retrieval",
+    "source_provenance",
+    "textual_context",
+    "cross-source_comparison",
+    "formalization",
+    "calculation_or_code",
+    "counterexample_search",
+    "independent_verification",
+    "human_review"
+  ],
+  "quantum_policy": "Quantum शब्द का उपयोग केवल वास्तविक क्वांटम सिद्धांत/गणना के संदर्भ में किया जाए। 'Quantum' या 'infinity' को बिना परिभाषा के प्रमाण का पर्याय न माना जाए।",
+  "code_policy": "जहाँ दावा गणनात्मक रूप से परीक्षण योग्य हो वहाँ reproducible code, inputs, assumptions, expected outputs और actual outputs दर्ज किए जाएँ।",
+  "epistemic_safety": {
+    "philosophical_claims_must_be_labeled": true,
+    "source_trace_is_not_proof": true,
+    "citation_does_not_guarantee_correctness": true,
+    "independent_verification_required_for_research": true,
+    "human_agency_preserved": true,
+    "nature_earth_protection_orientation": true
+  }
+}
