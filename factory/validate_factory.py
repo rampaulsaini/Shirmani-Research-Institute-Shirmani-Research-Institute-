@@ -14,6 +14,16 @@ AGENTS = [
     "language_agents", "artifact_agent", "deep_learning_agent",
 ]
 
+def _read_jsonl(path):
+    """Strictly read JSONL and report the exact bad line for fast diagnosis."""
+    for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            yield json.loads(line)
+        except json.JSONDecodeError as exc:
+            raise AssertionError(f"Invalid JSONL {path}:{line_no}: {exc}") from exc
+
 def main():
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
     for name in AGENTS:
@@ -47,11 +57,12 @@ def main():
             "claim-records.jsonl",
             "verification-reports.jsonl",
         ):
-            assert (contracts / name).exists()
-            for line in (contracts / name).read_text(encoding="utf-8").splitlines():
-                if line.strip():
-                    row = json.loads(line)
-                    assert row.get("id") or row.get("record_id")
+            path = contracts / name
+            assert path.exists(), f"missing contract file: {path}"
+            rows = list(_read_jsonl(path))
+            assert rows, f"empty contract file: {path}"
+            for row in rows:
+                assert row.get("id") or row.get("record_id")
 
     print("Factory smoke test OK")
 
