@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Build durable human-review records from the independent verification queue.
+"""Build a durable independent-verification review registry.
 
-Review records are append/update durable state: existing human/audit fields are
-preserved when the underlying verification task is unchanged. The factory
-never fabricates a reviewer, evidence, or VERIFIED status.
+The registry records review state separately from the verification queue.
+It never invents a reviewer, evidence, or verification result. Existing
+review records are preserved when the factory reruns.
 """
 import hashlib, json
 from datetime import datetime, timezone
@@ -12,104 +12,62 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "generated"
 
-def sha(value):
+def digest(value):
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
-def load_existing(path):
-    existing = {}
+def read_jsonl(path):
     if not path.exists():
-        return existing
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if not line.strip():
-            continue
-        try:
-            record = json.loads(line)
-            key = record.get("task_id")
-            if key:
-                existing[str(key)] = record
-        except Exception:
-            # The promotion gate will fail closed on malformed persisted state.
-            continue
-    return existing
-
-def new_record(task, now):
-    task_id = str(task["task_id"])
-    return {
-        "review_id": "review:" + sha(task_id)[:24],
-        "task_id": task_id,
-        "claim_id": str(task["claim_id"]),
-        "status": "QUEUED",
-        "verification_status": "NOT_VERIFIED",
-        "independent": False,
-        "reviewer": None,
-        "reviewer_role": None,
-        "reviewed_at": None,
-        "evidence_references": [],
-        "countercase_review": {"status": "NOT_REVIEWED", "references": []},
-        "reproduction_or_test": {"status": "NOT_RUN", "references": []},
-        "audit": {
-            "recorded_at": now,
-            "record_hash": sha(json.dumps(task, ensure_ascii=False, sort_keys=True)),
-        },
-        "created_at": now,
-        "generator": "factory/verification_registry.py",
-    }
+        raise SystemExit(f"{path.name} is missing")
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 def main():
-    queue = OUT / "independent-verification-queue.jsonl"
-    if not queue.exists():
-        raise SystemExit("independent-verification-queue.jsonl is missing")
+    queue = read_jsonl(OUT / "independent-verification-queue.jsonl")
+    existing_path = OUT / "independent-verification-registry.jsonl"
+    existing = {}
+    if existing_path.exists():
+        for row in read_jsonl(existing_path):
+            if row.get("task_id"):
+                existing[str(row["task_id"])] = row
 
     now = datetime.now(timezone.utc).isoformat()
-    out = OUT / "independent-verification-registry.jsonl"
-    existing = load_existing(out)
     records = []
-    preserved = 0
-    reset_for_changed_task = 0
-
-    for line in queue.read_text(encoding="utf-8").splitlines():
-        if not line.strip():
-            continue
-        task = json.loads(line)
-        task_id = str(task["task_id"])
-        task_hash = sha(json.dumps(task, ensure_ascii=False, sort_keys=True))
-        prior = existing.get(task_id)
-
-        if prior and (prior.get("audit") or {}).get("record_hash") == task_hash:
-            record = prior
-            preserved += 1
-            # Keep the immutable identity tied to the current task.
-            record["review_id"] = "review:" + sha(task_id)[:24]
-            record["task_id"] = task_id
-            record["claim_id"] = str(task["claim_id"])
-            record["generator"] = "factory/verification_registry.py"
-        else:
-            record = new_record(task, now)
-            if prior:
-                reset_for_changed_task += 1
-
+    for task in queue:
+        tid = str(task["task_id"])
+        cid = str(task["claim_id"])
+        old = existing.get(tid, {})
+        record = {
+            "review_id": str(old.get("review_id") or "review:" + digest(tid)[:24]),
+            "task_id": tid,
+            "claim_id": cid,
+            "source_ids": [str(x) for x in task.get("source_ids", [])],
+            "status": str(old.get("status") or "UNREVIEWED"),
+            "verification_status": str(old.get("verification_status") or "NOT_VERIFIED"),
+            "independent": bool(old.get("independent", False)),
+            "reviewer": old.get("reviewer"),
+            "reviewer_role": old.get("reviewer_role"),
+            "audit_reference": old.get("audit_reference"),
+            "evidence_references": old.get("evidence_references") or [],
+            "countercase_review": old.get("countercase_review"),
+            "notes": old.get("notes"),
+            "created_at": old.get("created_at") or now,
+            "updated_at": now,
+            "generator": "factory/verification_registry.py",
+        }
         records.append(record)
 
+    out = OUT / "independent-verification-registry.jsonl"
     out.write_text(
-        "\n".join(json.dumps(x, ensure_ascii=False) for x in records)
-        + ("\n" if records else ""),
-        encoding="utf-8",
+        "\n".join(json.dumps(x, ensure_ascii=False) for x in records) +
+        ("\n" if records else ""), encoding="utf-8"
     )
-
-    verified = sum(r.get("verification_status") == "VERIFIED" for r in records)
     summary = {
-        "version": 2,
+        "version": 1,
         "records": len(records),
-        "queued": sum(r.get("status") == "QUEUED" for r in records),
-        "reviewed": sum(r.get("status") == "REVIEWED" for r in records),
-        "verified": verified,
-        "preserved_existing_reviews": preserved,
-        "reset_for_changed_task": reset_for_changed_task,
-        "promotion_gate": "CHECK" if records else "BLOCK",
-        "policy": (
-            "Persisted review records are preserved when task provenance is unchanged; "
-            "changed tasks receive fresh review slots. No reviewer/evidence/verification is invented."
-        ),
+        "unreviewed": sum(r["status"] == "UNREVIEWED" for r in records),
+        "verified": sum(r["verification_status"] == "VERIFIED" for r in records),
+        "independent_records": sum(r["independent"] is True for r in records),
+        "publication_gate": "CHECK" if records else "BLOCK",
+        "policy": "Registry records human/auditable review state; it does not auto-verify claims.",
     }
     (OUT / "VERIFICATION-REGISTRY.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
