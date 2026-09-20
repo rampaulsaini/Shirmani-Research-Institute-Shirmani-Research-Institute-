@@ -1,0 +1,20 @@
+name: Next Label Heart View Contract
+
+on:
+  push:
+    branches: ["main", "factory/**"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-next-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate experience contract
+        run: python3 factory/validate_next_label.py
