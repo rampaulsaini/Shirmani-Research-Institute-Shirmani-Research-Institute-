@@ -13,64 +13,141 @@ from .publishing_agent import publish
 from .contract_bridge import source_record, concept_records, claim_record, verification_report
 
 def run(corpus, out, topic_path=None, batch_size=1000):
-    rows=[json.loads(x) for x in Path(corpus).read_text(encoding="utf-8").splitlines() if x.strip()]
+    rows = [json.loads(x) for x in Path(corpus).read_text(encoding="utf-8").splitlines() if x.strip()]
     Path(out).mkdir(parents=True, exist_ok=True)
     if topic_path:
-        rows=enrich(rows, topic_path)
-    claims=[]; products=[]; contract_sources=[]; contract_concepts=[]; contract_claims=[]; verification_reports=[]
-    artifact_path=Path(out)/"artifact-manifest.jsonl"
-    artifact_path.write_text("",encoding="utf-8")
-    queue_dir=Path(out)/"queues"; queue_dir.mkdir(exist_ok=True)
+        rows = enrich(rows, topic_path)
+    claims = []
+    products = []
+    contract_sources = []
+    contract_concepts = []
+    contract_claims = []
+    verification_reports = []
+    artifact_path = Path(out) / "artifact-manifest.jsonl"
+    artifact_path.write_text("", encoding="utf-8")
+    queue_dir = Path(out) / "queues"
+    queue_dir.mkdir(exist_ok=True)
+
     for r in rows[:batch_size]:
-        language=detect(r.get("text",""))
-        verification=classify(r["text"],r.get("source"))
-        contract_row={**r,"topics":r.get("topics",["general"])}
-        src=source_record(contract_row)
+        language = detect(r.get("text", ""))
+        verification = classify(r["text"], r.get("source"))
+        contract_row = {**r, "topics": r.get("topics", ["general"])}
+        src = source_record(contract_row)
         contract_sources.append(src)
         contract_concepts.extend(concept_records(contract_row))
         claims.append({
-            "id":r["id"], "topics":r.get("topics",["general"]),
-            "research":question(r["text"]), "verification":verification,
-            "language":language, "language_route":language_route(language)
+            "id": r["id"],
+            "topics": r.get("topics", ["general"]),
+            "research": question(r["text"]),
+            "verification": verification,
+            "language": language,
+            "language_route": language_route(language),
         })
+
         source_ref = r.get("source") or r.get("repository") or "unknown"
         if r.get("path"):
             source_ref = f"{source_ref}:{r['path']}"
-        cp=claim_record(contract_row, "UNVERIFIED", source_ref)
+
+        cp = claim_record(contract_row, "UNVERIFIED", source_ref)
         contract_claims.append(cp)
         verification_reports.append(verification_report(cp, "NOT_VERIFIED"))
-        source_ref = r.get("source") or r.get("repository") or "unknown"
-        if r.get("path"):
-            source_ref = f"{source_ref}:{r['path']}"
-        p=record("claim",source_ref,r["text"],str(r["id"]),verification["status"],r.get("topics",[]))
-        p["provenance"] = {"source_ids":[str(r["id"])],"source_repository":r.get("repository",source_ref),"source_path":r.get("path",""),"source_sha256":r.get("source_hash") or p["source_sha256"],"source_commit":r.get("commit"),"recorded_at":datetime.now(timezone.utc).isoformat()}
+
+        p = record(
+            "claim",
+            source_ref,
+            r["text"],
+            str(r["id"]),
+            verification["status"],
+            r.get("topics", []),
+        )
+        p["provenance"] = {
+            "source_ids": [str(r["id"])],
+            "source_repository": r.get("repository", source_ref),
+            "source_path": r.get("path", ""),
+            "source_sha256": r.get("source_hash") or p["source_sha256"],
+            "source_commit": r.get("commit"),
+            "recorded_at": datetime.now(timezone.utc).isoformat(),
+        }
+
         if validate(p):
             products.append(p)
-            append(artifact_path,manifest_record("claim",language,r["text"],[r["id"]],"orchestrator","draft",
-                {"source":source_ref,"verification_status":verification["status"],"source_ids":[str(r["id"])],"source_repository":r.get("repository",source_ref),"source_path":r.get("path",""),"source_sha256":r.get("source_hash") or p["source_sha256"],"source_commit":r.get("commit")}))
-            q=queue_dir/f"language.{language}.jsonl"
-            with q.open("a",encoding="utf-8") as f:
-                f.write(json.dumps({"job_id":f"claim-{r['id']}","artifact_id":p["id"],"language":language,
-                                    "agent":language_route(language)["agent"],"status":"pending","attempts":0},
-                                   ensure_ascii=False)+"
-")
-    Path(out,"claims-index.json").write_text(json.dumps(claims,ensure_ascii=False,indent=2),encoding="utf-8")
-    contract_dir=Path(out)/"contracts"; contract_dir.mkdir(exist_ok=True)
-    for name, records in (("source-records.jsonl",contract_sources),("concept-records.jsonl",contract_concepts),("claim-records.jsonl",contract_claims),("verification-reports.jsonl",verification_reports)):
-        (contract_dir/name).write_text("
-".join(json.dumps(x,ensure_ascii=False) for x in records)+("
-" if records else ""),encoding="utf-8")
-    Path(out,"provenance-index.jsonl").write_text(
-        "
-".join(json.dumps(x,ensure_ascii=False) for x in products)+"
-",encoding="utf-8")
-    status={
-        "generated_at":datetime.now(timezone.utc).isoformat(),
-        "agents":["source","corpus","topic","router","nvidia-or-fallback","research","verification","provenance","language.hi","language.pa","language.en","writing","book","certificate","music","qc","publishing"],
-        "records":len(rows),"processed_batch":min(len(rows),batch_size),
-        "artifact_manifest":str(artifact_path.relative_to(Path(out))),
-        "language_queues":sorted(str(p.relative_to(queue_dir)) for p in queue_dir.glob("*.jsonl")),
-        "qc":qc(out)
+            append(
+                artifact_path,
+                manifest_record(
+                    "claim",
+                    language,
+                    r["text"],
+                    [r["id"]],
+                    "orchestrator",
+                    "draft",
+                    {
+                        "source": source_ref,
+                        "verification_status": verification["status"],
+                        "source_ids": [str(r["id"])],
+                        "source_repository": r.get("repository", source_ref),
+                        "source_path": r.get("path", ""),
+                        "source_sha256": r.get("source_hash") or p["source_sha256"],
+                        "source_commit": r.get("commit"),
+                    },
+                ),
+            )
+            q = queue_dir / f"language.{language}.jsonl"
+            with q.open("a", encoding="utf-8") as f:
+                f.write(
+                    json.dumps(
+                        {
+                            "job_id": f"claim-{r['id']}",
+                            "artifact_id": p["id"],
+                            "language": language,
+                            "agent": language_route(language)["agent"],
+                            "status": "pending",
+                            "attempts": 0,
+                        },
+                        ensure_ascii=False,
+                    )
+                    + "\n"
+                )
+
+    Path(out, "claims-index.json").write_text(
+        json.dumps(claims, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+    contract_dir = Path(out) / "contracts"
+    contract_dir.mkdir(exist_ok=True)
+    for name, records in (
+        ("source-records.jsonl", contract_sources),
+        ("concept-records.jsonl", contract_concepts),
+        ("claim-records.jsonl", contract_claims),
+        ("verification-reports.jsonl", verification_reports),
+    ):
+        (contract_dir / name).write_text(
+            "\n".join(json.dumps(x, ensure_ascii=False) for x in records)
+            + ("\n" if records else ""),
+            encoding="utf-8",
+        )
+
+    Path(out, "provenance-index.jsonl").write_text(
+        "\n".join(json.dumps(x, ensure_ascii=False) for x in products)
+        + ("\n" if products else ""),
+        encoding="utf-8",
+    )
+
+    status = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "agents": [
+            "source", "corpus", "topic", "router", "nvidia-or-fallback",
+            "research", "verification", "provenance", "language.hi",
+            "language.pa", "language.en", "writing", "book", "certificate",
+            "music", "qc", "publishing",
+        ],
+        "records": len(rows),
+        "processed_batch": min(len(rows), batch_size),
+        "artifact_manifest": str(artifact_path.relative_to(Path(out))),
+        "language_queues": sorted(
+            str(p.relative_to(queue_dir)) for p in queue_dir.glob("*.jsonl")
+        ),
+        "qc": qc(out),
     }
-    publish(out,status)
+    publish(out, status)
     return status
