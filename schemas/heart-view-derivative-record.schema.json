@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/heart-view-derivative-record.schema.json",
+  "title":"Shirmani Heart-View Traceable Derivative",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["derivative_id","source_ids","derivative_type","text","verification_state"],
+  "properties":{
+    "derivative_id":{"type":"string","minLength":1},
+    "source_ids":{"type":"array","minItems":1,"items":{"type":"string"}},
+    "derivative_type":{"enum":["translation","normalization","summary","interpretation","research_formulation","creative_expression","code_representation"]},
+    "text":{"type":"string"},
+    "verification_state":{"enum":["NOT_VERIFIED","PARTIALLY_VERIFIED","INDEPENDENTLY_VERIFIED","HUMAN_REVIEW_REQUIRED"]},
+    "method":{"type":"array","items":{"type":"string"}},
+    "uncertainty":{"type":"string"},
+    "created_at":{"type":"string","format":"date-time"}
+  }
+}
