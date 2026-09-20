@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Claim Evidence Verification Record",
+  "type":"object",
+  "required":["id","claim","definitions","source","evidence","formulation","countercases","verification","conclusion","provenance"],
+  "properties":{
+    "id":{"type":"string","minLength":1},
+    "claim":{"type":"string","minLength":1},
+    "definitions":{"type":"array","items":{"type":"string"}},
+    "source":{"type":"array","items":{"type":"object","required":["type","locator"],"properties":{"type":{"type":"string"},"locator":{"type":"string"}}}},
+    "evidence":{"type":"array","items":{"type":"object","required":["kind","status"],"properties":{"kind":{"type":"string"},"status":{"enum":["SUPPORTED","PARTIAL","UNAVAILABLE","CONTRADICTED","NOT_VERIFIED"]},"detail":{"type":"string"}}}},
+    "formulation":{"type":"object","required":["method","result_status"],"properties":{"method":{"type":"string"},"result_status":{"enum":["DERIVED","TESTED","NOT_APPLICABLE","NOT_VERIFIED"]},"result":{"type":"string"}}},
+    "countercases":{"type":"array","items":{"type":"string"}},
+    "verification":{"type":"object","required":["status"],"properties":{"status":{"enum":["PASS","CHECK","FAIL","NOT_VERIFIED"]},"method":{"type":"string"},"independent":{"type":"boolean"}}},
+    "conclusion":{"type":"string"},
+    "provenance":{"type":"object","required":["created_at","generator"],"properties":{"created_at":{"type":"string"},"generator":{"type":"string"},"source_commit":{"type":"string"},"content_hash":{"type":"string"}}}
+  },
+  "additionalProperties":false
+}
