@@ -91,3 +91,41 @@ Generated research remains clearly marked as draft until independently supported
 **Shirmani Research Institute — Continue from PROJECT-CONTINUITY.md**
 
 The next session should inspect this file and the current generated status, then continue from the first incomplete build step.
+
+## 13. Existing execution layer discovered during continuation
+
+The repository already contains a substantial Python agent/factory layer. The canonical existing flow includes:
+
+- `factory/build_factory.py` — source cloning, collection, normalization, source units and product generation.
+- `factory/validate_factory.py` — factory smoke test and agent import validation.
+- `agents/contracts.py` — provenance contract.
+- `generated/agent-run/` — generated factory status, claims index, provenance index, artifact manifest and language queues.
+
+Therefore the new schemas in `schemas/` are a **contract hardening layer**, not a replacement for the existing agents.
+
+## 14. Current source-federation observation
+
+The existing generated manifest records many available repositories and at least one repository that could not be cloned because authentication was unavailable. That repository must remain explicitly unavailable until legitimate access is provided; its contents must not be fabricated.
+
+The hub repository itself is intentionally skipped by the source collector to avoid recursively collecting its own generated products as canonical external sources.
+
+## 15. Integration rule
+
+The next implementation step is to make the existing agents emit records compatible with the new schemas:
+
+`source → source-record → normalized unit → concept → claim → evidence → verification → artifact`
+
+Generated artifacts remain downstream products and must never silently become authoritative source material.
+
+## 16. Quality gate
+
+Before publishing a generated claim, require:
+
+- source reference;
+- claim classification;
+- evidence state;
+- verification state;
+- provenance;
+- explicit uncertainty when verification is incomplete.
+
+A missing field is a QC failure, not an invitation to invent a value.
