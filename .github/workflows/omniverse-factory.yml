@@ -44,6 +44,9 @@ jobs:
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
 
+      - name: Emit deterministic factory dashboard status
+        run: python3 factory/emit_factory_status.py
+
       - name: Build deterministic formulation/test records
         run: python3 factory/formulation_records.py
 
@@ -77,6 +80,7 @@ jobs:
       - name: Validate generated catalog
         run: |
           test -s generated/repository-intelligence.json
+          test -s generated/factory-status.json
           test -s generated/manifest.json
           test -s generated/source-units.jsonl
           test -s generated/canonical-knowledge.jsonl
