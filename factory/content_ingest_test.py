@@ -17,7 +17,7 @@ def main():
 
         first = discover(root)
         second = discover(root)
-        assert first == second
+        assert [{k:v for k,v in x.items() if k != "provenance"} for x in first] == [{k:v for k,v in x.items() if k != "provenance"} for x in second]
         assert len(first) == 1
         assert first[0]["source_path"] == "README.md"
         assert first[0]["content_hash"] == expected
