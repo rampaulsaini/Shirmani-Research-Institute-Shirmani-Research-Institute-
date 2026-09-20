@@ -80,8 +80,8 @@ def check_generated(path, framework):
                 # manifest. Validate method_trace here only when it is explicitly
                 # marked as a reasoning record; the dedicated reasoning manifest
                 # performs the strict framework method-stack validation.
-                if r.get("agent") == "reasoning" or r.get("reasoning") is not None:
-                    methods = r.get("method_trace")
+                if r.get("agent") == "reasoning" or r.get("reasoning") is not None or "reasoning_method_trace" in r:
+                    methods = r.get("reasoning_method_trace") or r.get("method_trace")
                     if not isinstance(methods, list) or not methods:
                         result["errors"].append({"line": line_no, "error": "missing_generated_method_trace"})
                     elif sorted(m for m in set(methods) - allowed_methods if not str(m).startswith("generated-")):
