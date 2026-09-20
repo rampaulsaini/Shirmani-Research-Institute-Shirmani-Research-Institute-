@@ -83,6 +83,13 @@ def claim_record(text, source_id=None):
         "human_review_required": True
     }
 
+def research_question(text):
+    """Create a deterministic research question without external model dependencies."""
+    cleaned = " ".join(str(text).split())
+    if not cleaned:
+        return "उपलब्ध स्रोत-सामग्री से कौन-सा प्रश्न स्वतंत्र रूप से जाँचा जा सकता है?"
+    return f"उपलब्ध स्रोत-सामग्री के आधार पर यह कथन किस सीमा तक सत्यापन योग्य है: {cleaned[:600]}?"
+
 def content_hash(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
