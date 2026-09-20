@@ -212,6 +212,32 @@ def check_claim_evidence(path):
     result["unique_ids"] = len(seen)
     return result
 
+def check_provenance_ledger(path, reasoning_path):
+    result = {"records": 0, "errors": []}
+    seen = set()
+    with open(path, encoding="utf-8") as f:
+        for line_no, line in enumerate(f, 1):
+            if not line.strip():
+                continue
+            result["records"] += 1
+            try:
+                r = json.loads(line)
+                aid = str(r.get("artifact_id", ""))
+                if not aid or aid in seen:
+                    result["errors"].append({"line": line_no, "error": "duplicate_or_missing_provenance_artifact_id"})
+                seen.add(aid)
+                if not isinstance(r.get("source_ids"), list):
+                    result["errors"].append({"line": line_no, "error": "provenance_source_ids_not_list"})
+                if not r.get("content_sha256") or not r.get("created_at") or not r.get("generator"):
+                    result["errors"].append({"line": line_no, "error": "provenance_required_field_missing"})
+                if r.get("verification_status") != "NOT_VERIFIED" or r.get("independent") is not False:
+                    result["errors"].append({"line": line_no, "error": "provenance_verification_not_fail_closed"})
+            except Exception as exc:
+                result["errors"].append({"line": line_no, "error": f"invalid_provenance_json:{exc}"})
+    if reasoning_path.exists() and result["records"] != sum(1 for x in reasoning_path.read_text(encoding="utf-8").splitlines() if x.strip()):
+        result["errors"].append({"error": "provenance_reasoning_record_count_mismatch"})
+    return result
+
 def main():
     generated = ROOT / "generated"
     framework = load_framework()
@@ -220,6 +246,7 @@ def main():
     verse = generated / "verse-corpus.jsonl"
     reasoning = generated / "reasoning-manifest.jsonl"
     claim_evidence = generated / "claim-evidence.jsonl"
+    provenance = generated / "provenance-ledger.jsonl"
     if src.exists():
         checks.append({"file": str(src.relative_to(ROOT)), **check_source_integrity(src)})
     if verse.exists():
@@ -228,6 +255,10 @@ def main():
         checks.append({"file": str(reasoning.relative_to(ROOT)), **check_reasoning(reasoning, generated, framework)})
     if claim_evidence.exists():
         checks.append({"file": str(claim_evidence.relative_to(ROOT)), **check_claim_evidence(claim_evidence)})
+    if provenance.exists():
+        checks.append({"file": str(provenance.relative_to(ROOT)), **check_provenance_ledger(provenance, reasoning)})
+    else:
+        checks.append({"file": "generated/provenance-ledger.jsonl", "records": 0, "errors": [{"error": "missing_provenance_ledger"}]})
     errors = sum(len(c["errors"]) for c in checks)
     blocking_errors = sum(1 for c in checks for e in c["errors"]
                           if e.get("error") != "duplicate_source_hash" and not e.get("error", "").startswith("duplicate_hash"))

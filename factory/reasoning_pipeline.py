@@ -166,9 +166,29 @@ def enrich():
         for r in records:
             f.write(json.dumps(claim_evidence_record(r, locations), ensure_ascii=False) + "\n")
     tmp.replace(ce)
+
+    # Durable provenance ledger: traceability only, never proof of truth.
+    ledger = OUT / "provenance-ledger.jsonl"
+    ledger_tmp = ledger.with_suffix(".jsonl.tmp")
+    with ledger_tmp.open("w", encoding="utf-8") as f:
+        for r in records:
+            f.write(json.dumps({
+                "artifact_id": r["artifact_id"],
+                "kind": r["kind"],
+                "source_ids": r["source_ids"],
+                "content_sha256": r["content_sha256"],
+                "created_at": r["created_at"],
+                "generator": "factory/reasoning_pipeline.py",
+                "verification_status": "NOT_VERIFIED",
+                "independent": False
+            }, ensure_ascii=False) + "\n")
+    ledger_tmp.replace(ledger)
+
     return {"records": len(records), "path": str(manifest.relative_to(ROOT)),
             "claim_evidence_records": len(records),
-            "claim_evidence_path": str(ce.relative_to(ROOT))}
+            "claim_evidence_path": str(ce.relative_to(ROOT)),
+            "provenance_ledger_records": len(records),
+            "provenance_ledger_path": str(ledger.relative_to(ROOT))}
 
 if __name__ == "__main__":
     print(json.dumps(enrich(), ensure_ascii=False))

@@ -69,6 +69,7 @@ jobs:
           PY
           test -s generated/reasoning-manifest.jsonl
           test -s generated/claim-evidence.jsonl
+          test -s generated/provenance-ledger.jsonl
           test -s generated/QC-REPORT.json
           test -s generated/formulation-records.jsonl
           test -s generated/FORMULATION-QC.json
@@ -77,8 +78,8 @@ jobs:
           import json
           from pathlib import Path
           report=json.loads(Path("generated/QC-REPORT.json").read_text())
-          if report.get("publication_gate") == "BLOCK" and report.get("error_count", 0) > 0:
-              raise SystemExit("QC publication gate is BLOCK: generated reasoning records are missing required source traceability")
+          if report.get("publication_gate") == "BLOCK":
+              raise SystemExit("QC publication gate is BLOCK: deterministic QC found blocking integrity errors")
           if report.get("publication_gate") not in {"PASS", "CHECK"}:
               raise SystemExit("QC publication gate is invalid")
           formulation=json.loads(Path("generated/FORMULATION-QC.json").read_text())
