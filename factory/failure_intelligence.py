@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Collect and deduplicate GitHub Actions failures without mutating workflows.
 
-The collector is intentionally evidence-first:
+Evidence-first rules:
 - workflow runs are counted separately from workflow definitions;
-- failed runs are grouped by workflow/job/step;
-- logs are sampled only for the newest failed runs;
+- failed runs are grouped by workflow/job/step and normalized signals;
+- logs are sampled only for the newest failed jobs;
 - no automatic retry or source-code mutation is performed;
 - missing API data remains explicitly unavailable.
 """
@@ -12,40 +12,36 @@ import hashlib
 import json
 import os
 import re
-import urllib.parse
 import urllib.request
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 
 API = "https://api.github.com"
-REPO = os.environ.get("GITHUB_REPOSITORY", "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-")
-TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
-MAX_LOG_RUNS = int(os.environ.get("FAILURE_LOG_SAMPLE_RUNS", "50"))
-MAX_RUN_PAGES = int(os.environ.get("FAILURE_RUN_PAGES", "20"))
+REPO = os.environ.get(
+    "GITHUB_REPOSITORY",
+    "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+)
+MAX_LOG_RUNS = max(0, int(os.environ.get("FAILURE_LOG_SAMPLE_RUNS", "50")))
+MAX_RUN_PAGES = max(1, int(os.environ.get("FAILURE_RUN_PAGES", "20")))
 
-def api(path):
-    url = API + path if path.startswith("/") else path
+def _headers():
     headers = {
         "Accept": "application/vnd.github+json",
         "X-GitHub-Api-Version": "2022-11-28",
         "User-Agent": "shirmani-failure-intelligence",
     }
-    if TOKEN:
-        headers["Authorization"] = "Bearer " + TOKEN
-    req = urllib.request.Request(url, headers=headers)
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if token:
+        headers["Authorization"] = "Bearer " + token
+    return headers
+
+def api(path):
+    req = urllib.request.Request(API + path, headers=_headers())
     with urllib.request.urlopen(req, timeout=30) as response:
         return json.loads(response.read().decode("utf-8"))
 
 def api_text(path):
-    url = API + path if path.startswith("/") else path
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28",
-        "User-Agent": "shirmani-failure-intelligence",
-    }
-    if TOKEN:
-        headers["Authorization"] = "Bearer " + TOKEN
-    req = urllib.request.Request(url, headers=headers)
+    req = urllib.request.Request(API + path, headers=_headers())
     with urllib.request.urlopen(req, timeout=30) as response:
         return response.read().decode("utf-8", errors="replace")
 
@@ -60,8 +56,7 @@ def normalize_signal(text):
     text = re.sub(r"\b\d{4}-\d{2}-\d{2}t\d{2}:\d{2}:\d{2}(?:\.\d+)?z\b", "<timestamp>", text)
     text = re.sub(r"/home/runner/work/[^\s]+", "<runner-path>", text)
     text = re.sub(r"\b[0-9a-f]{7,40}\b", "<sha>", text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
+    return re.sub(r"\s+", " ", text).strip()
 
 def fingerprint(parts):
     basis = "|".join(normalize_signal(x) for x in parts)
@@ -76,9 +71,9 @@ def failed_step_names(job):
 
 def classify(signal, step):
     s = (signal + " " + step).lower()
-    if "syntaxerror" in s or "py_compile" in s or "python" in s and "validate" in s:
+    if "syntaxerror" in s or "py_compile" in s or ("python" in s and "validate" in s):
         return "python-syntax-or-validation"
-    if "publication gate" in s or "qc" in s and "block" in s:
+    if "publication gate" in s or ("qc" in s and "block" in s):
         return "qc-publication-gate"
     if "timeout" in s or "timed out" in s:
         return "timeout"
@@ -102,11 +97,13 @@ def collect():
             break
 
     failures = [r for r in runs if r.get("conclusion") == "failure"]
-    workflow_counts = Counter(r.get("name") for r in failures)
+    workflow_counts = Counter(r.get("name") or "unknown-workflow" for r in failures)
     fingerprints = defaultdict(lambda: {
         "count": 0, "workflow_names": set(), "jobs": set(), "steps": set(),
         "category": "uncategorized", "sample_run_ids": [], "signals": []
     })
+    log_sample_index = 0
+    unavailable_jobs = 0
 
     for run in failures:
         run_id = run.get("id")
@@ -114,17 +111,23 @@ def collect():
             jobs = (api(f"/repos/{REPO}/actions/runs/{run_id}/jobs?per_page=100").get("jobs") or [])
         except Exception:
             jobs = []
+            unavailable_jobs += 1
 
         failed_jobs = [j for j in jobs if j.get("conclusion") == "failure"]
-        for job in failed_jobs or [{}]:
+        if not failed_jobs:
+            # Keep a run-level record instead of silently dropping a failure.
+            failed_jobs = [{"name": "unknown-job", "steps": [], "conclusion": "failure"}]
+
+        for job in failed_jobs:
             steps = failed_step_names(job)
             step = steps[0] if steps else (job.get("name") or "unknown-step")
             signal = ""
-            if run_index < MAX_LOG_RUNS and job.get("id"):
+            if log_sample_index < MAX_LOG_RUNS and job.get("id"):
+                log_sample_index += 1
                 try:
                     log = api_text(f"/repos/{REPO}/actions/jobs/{job['id']}/logs")
                     signal_lines = [
-                        redact(line) for line in str(log).splitlines()
+                        redact(line) for line in log.splitlines()
                         if re.search(r"##\[error\]|Traceback|SyntaxError|Error:|Exception|failed|FAIL|BLOCK", line, re.I)
                     ]
                     signal = signal_lines[-1] if signal_lines else ""
@@ -134,12 +137,12 @@ def collect():
             fp = fingerprint([run.get("name"), job.get("name"), step, signal])
             item = fingerprints[fp]
             item["count"] += 1
-            item["workflow_names"].add(run.get("name"))
+            item["workflow_names"].add(run.get("name") or "unknown-workflow")
             if job.get("name"):
-                item["jobs"].add(job.get("name"))
+                item["jobs"].add(job["name"])
             item["steps"].add(step)
             item["category"] = classify(signal, step)
-            if len(item["sample_run_ids"]) < 5:
+            if len(item["sample_run_ids"]) < 5 and run_id:
                 item["sample_run_ids"].append(run_id)
             if signal and signal not in item["signals"] and len(item["signals"]) < 3:
                 item["signals"].append(signal)
@@ -168,6 +171,7 @@ def collect():
             "automatic_repair": False,
             "automatic_retry": False,
             "log_sampling_limit": MAX_LOG_RUNS,
+            "unavailable_job_run_count": unavailable_jobs,
         },
         "failed_runs_by_workflow": dict(sorted(workflow_counts.items(), key=lambda x: (-x[1], x[0]))),
         "failure_groups": groups,
