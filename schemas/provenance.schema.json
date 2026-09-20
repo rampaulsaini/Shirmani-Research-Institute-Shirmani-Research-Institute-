@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Provenance Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["provenance_id", "source_repository", "source_path", "source_sha256", "recorded_at"],
+  "properties": {
+    "provenance_id": {"type": "string"},
+    "source_repository": {"type": "string"},
+    "source_path": {"type": "string"},
+    "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "source_commit": {"type": ["string", "null"]},
+    "status": {"enum": ["source-backed", "user-authored", "hypothesis", "unverified", "verified"]},
+    "notes": {"type": ["string", "null"]}
+  }
+}
