@@ -1,6 +1,7 @@
 name: Omniverse Research Factory
 
 on:
+  pull_request:
   workflow_dispatch:
   schedule:
     - cron: "17 2 * * 0"
@@ -67,6 +68,7 @@ jobs:
           PY
 
       - name: Publish generated catalog
+        if: github.event_name != 'pull_request'
         run: |
           set -e
           git config user.name "omniverse-factory[bot]"
