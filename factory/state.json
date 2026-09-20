@@ -111213,12 +111213,17 @@
       10000
     ]
   },
-  "updated_at": "2026-09-19T14:40:02.001723+00:00",
+  "updated_at": "2026-09-20T05:45:45.515039+00:00",
   "last_batch": {
+    "agent_orientation": "shirmani-heart-view",
+    "orientation_loaded": true,
+    "framework_id": "shirmani-nishpaksh-samaj-yatharth",
+    "framework_loaded": true,
+    "continuity_policy": "canonical-preservation-first; resumable; provenance-required",
     "verse": 0,
     "research-paper": 0,
     "certificate": 0,
-    "audio-prompt": 5000,
+    "audio-prompt": 0,
     "book": 0
   }
 }

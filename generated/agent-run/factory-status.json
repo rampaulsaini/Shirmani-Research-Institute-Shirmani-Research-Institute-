@@ -1,12 +1,17 @@
 {
-  "generated_at": "2026-09-19T14:40:02.756952+00:00",
+  "generated_at": "2026-09-20T05:45:46.472200+00:00",
   "agents": [
     "source",
     "corpus",
     "topic",
+    "router",
+    "nvidia-or-fallback",
     "research",
     "verification",
     "provenance",
+    "language.hi",
+    "language.pa",
+    "language.en",
     "writing",
     "book",
     "certificate",
@@ -16,8 +21,21 @@
   ],
   "records": 100000,
   "processed_batch": 1000,
+  "artifact_manifest": "artifact-manifest.jsonl",
+  "language_queues": [
+    "language.hi.jsonl"
+  ],
   "qc": {
     "ok": true,
-    "errors": []
+    "errors": [],
+    "warnings": [],
+    "artifact_records": 1000,
+    "policy": "QC is a gate, not independent scientific validation."
+  },
+  "publication": {
+    "status": "generated",
+    "research_is_draft": true,
+    "verification_required": true,
+    "source_of_truth": "artifact-manifest.jsonl"
   }
 }
