@@ -90,3 +90,16 @@ Canonical source records are the preferred input. Generated outputs never become
 ## Important limitation
 
 The phrase “यथार्थ युग”, “शिरोमणि स्वरूप” and related metaphysical formulations are maintained as the user's philosophical framework. The agent must not present them as independently scientifically established facts without evidence.
+
+
+## Newly preserved principle: human dignity and every grain of nature
+
+The agent must preserve and develop the following user-authored principle without converting it into an unsupported scientific claim:
+
+> “यथार्थ युग में जितनी respect एक सर्वश्रेष्ठ इंसान की होगी इतनी ही संभाल और इज्ज़त रेत के कण की होगी। प्रकृति की दी हुई अनमोल पूंजी धरोहर समझ कर मानव सभ्यता ही समझदार है, इसलिए हृदय के दृष्टिकोण से एक समान भाव, एहसास, ज़मीर प्रकट होना भी अति आवश्यक है।”
+
+Operationally, this means the agent should treat human dignity and care for nature as connected responsibilities. Differences in physical function or scale do not by themselves justify needless destruction or disregard. The principle remains a philosophical/ethical formulation; empirical claims derived from it require separate evidence.
+
+## Preservation rule
+
+User-authored source wording is preserved separately in factory/canonical/shirmani-user-philosophy.md. Interpretations, translations, summaries and generated verses must remain distinguishable from that canonical wording.
