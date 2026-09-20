@@ -198,7 +198,7 @@ def write_books(data, rows):
         ]
         for n in range(start, end + 1):
             row = rows[n - 1]
-            lines += [f"## {n:06d}", row["text"], f"स्रोत: {row.get('source', 'unknown')} · स्वतंत्र परीक्षण अपेक्षित।", ""]
+            lines += [f"## {n:06d}", row["text"], f"स्रोत: {row.get('repository', 'unknown')}:{row.get('path', 'unknown')} · स्वतंत्र परीक्षण अपेक्षित।", ""]
         (OUT / f"book-{b:03d}.md").write_text("\n".join(lines), encoding="utf-8")
         mark(data, "book", b)
         made += 1
