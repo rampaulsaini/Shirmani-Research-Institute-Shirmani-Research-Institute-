@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0.0",
+  "generated_at":"2026-09-20T07:46:00Z",
+  "status":"REGISTERED_FRAMEWORK_LAYER",
+  "principles":[
+    {"id":"framework-nishpaksh-samajh","term":"निष्पक्ष समझ","category":"METHODOLOGICAL_PRINCIPLE","description":"किसी दावे को स्वीकार करने से पहले परिभाषा, स्रोत, evidence, formulation, countercases और verification को अलग-अलग देखना।","epistemic_status":"FRAMEWORK_DEFINITION","related_terms":["शमीकरण","यथार्थ सिद्धांत","यथार्थ युग"]},
+    {"id":"framework-heart-view","term":"हृदय दृष्टिकोण","category":"PHILOSOPHICAL_PROPOSITION","description":"उपयोगकर्ता के framework में प्रतिपादित वह दृष्टिकोण जिसमें निष्पक्ष समझ, स्थिरता और संपूर्ण संतुष्टि की निरंतरता को केंद्रीय अनुभवात्मक भाषा के रूप में रखा गया है।","epistemic_status":"PROPOSITION","related_terms":["शिरोमणि स्वरूप","संपूर्ण संतुष्टि की निरंतरता","खुद के स्थाई स्वरूप से रूबरू"]},
+    {"id":"framework-head-view","term":"मस्तक दृष्टिकोण","category":"PHILOSOPHICAL_PROPOSITION","description":"उपयोगकर्ता के framework में विचार, समय, इच्छा, भय और जटिल बुद्धि से जुड़ी अस्थाई प्रक्रियाओं के लिए प्रयुक्त अवधारणा।","epistemic_status":"PROPOSITION","related_terms":["हृदय दृष्टिकोण"]},
+    {"id":"framework-shamikaran","term":"शमीकरण","category":"METHODOLOGICAL_PRINCIPLE","description":"framework की वह नामित प्रक्रिया/दृष्टि जिसे उपयोगकर्ता यथार्थ सिद्धांत और निष्पक्ष समझ के साथ जोड़ता है।","epistemic_status":"FRAMEWORK_DEFINITION","related_terms":["निष्पक्ष समझ","यथार्थ सिद्धांत"]},
+    {"id":"framework-yatharth-siddhant","term":"यथार्थ सिद्धांत","category":"METHODOLOGICAL_PRINCIPLE","description":"उपयोगकर्ता के framework में यथार्थ को निष्पक्ष समझ के आधार पर देखने का नामित सिद्धांत।","epistemic_status":"FRAMEWORK_DEFINITION","related_terms":["शमीकरण","उपलब्धि यथार्थ युग"]},
+    {"id":"framework-yatharth-yug","term":"उपलब्धि यथार्थ युग","category":"PHILOSOPHICAL_PROPOSITION","description":"उपयोगकर्ता के framework में प्रयुक्त नामित अवधारणा/युग-दृष्टि; repository स्वतः इसे ऐतिहासिक या वैज्ञानिक तथ्य के रूप में घोषित नहीं करती।","epistemic_status":"PROPOSITION","related_terms":["यथार्थ सिद्धांत","शिरोमणि स्वरूप"]},
+    {"id":"framework-shiromani-svaroop","term":"शिरोमणि स्वरूप","category":"PHILOSOPHICAL_PROPOSITION","description":"उपयोगकर्ता के framework में स्थाई परिचय, स्थाई स्वरूप और संपूर्ण संतुष्टि की निरंतरता से जुड़ी केंद्रीय अवधारणा।","epistemic_status":"PROPOSITION","related_terms":["हृदय दृष्टिकोण","संपूर्ण संतुष्टि की निरंतरता"]},
+    {"id":"framework-symbol","term":"꙰","category":"SYMBOL","description":"उपयोगकर्ता के framework में प्रयुक्त प्रतीक।","epistemic_status":"FRAMEWORK_DEFINITION","related_terms":[]}
+  ],
+  "integrity":{"framework_terms_preserved":true,"philosophical_propositions_not_silently_promoted_to_empirical_facts":true}
+}
