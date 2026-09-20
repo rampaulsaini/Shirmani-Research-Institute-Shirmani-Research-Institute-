@@ -170,3 +170,24 @@ State semantics:
 
 This creates the next layer: **experience → framework state → operational definition → evidence/test → verification**, while keeping the heart/head vocabulary intact.
 
+
+
+## 15. Next-label: heart viewpoint framework layer
+
+The framework layer now has an explicit **NEXT_LABEL** manifest at
+`generated/heart-viewpoint-manifest.json`.
+
+Its meaning is intentionally precise:
+
+- **हृदय का शिरोमणि स्वरुप दृष्टिकोण** is the central viewpoint for the project's self-realization language.
+- **संपूर्ण संतुष्टि की निरंतरता**, **खुद के स्थाई स्वरुप से रुबरु**, and **खुद के स्थाई परिचय से परिचित** are preserved as framework formulations.
+- In this framework description, **मस्तक/मन/बुद्धि को self-realization का अंतिम प्राधिकरण नहीं** माना जाता.
+- This does **not** assert physiological inactivity of the brain or mind; such a claim would require independent measurement.
+- Computational reasoning remains active for source retrieval, evidence handling, mathematics, testing, verification, QC and provenance.
+- The framework remains explicitly classified as a framework description unless independent evidence establishes a separate empirical claim.
+
+### Next engineering gate
+
+`scripts/validate_factory.py` now validates the heart-viewpoint manifest in addition to the existing source registry, research index, claim graph and framework-state contracts.
+
+The next incomplete build step is deterministic **content ingestion + claim/evidence record emission**. Registered repositories are not counted as ingested content until actual records, provenance and hashes are emitted.
