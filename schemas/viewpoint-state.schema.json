@@ -1,0 +1,22 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Framework Viewpoint State",
+  "type":"object",
+  "required":["schema_version","state","epistemic_status","framework_terms","measurement"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "state":{"enum":["HEAD_DOMINANT","BALANCED","HEART_VIEW_FRAMEWORK","UNSPECIFIED"]},
+    "epistemic_status":{"enum":["FRAMEWORK_DESCRIPTION","USER_REPORTED_EXPERIENCE","EMPIRICALLY_VERIFIED","NOT_VERIFIED"]},
+    "framework_terms":{"type":"object","required":["निष्पक्ष_समझ","शमीकरण","यथार्थ_सिद्धांत","हृदय_दृष्टिकोण","मस्तक_दृष्टिकोण"],"properties":{
+      "निष्पक्ष_समझ":{"type":"string"},
+      "शमीकरण":{"type":"string"},
+      "यथार्थ_सिद्धांत":{"type":"string"},
+      "हृदय_दृष्टिकोण":{"type":"string"},
+      "मस्तक_दृष्टिकोण":{"type":"string"}
+    }},
+    "measurement":{"type":"object","required":["head_activity","heart_view"],"properties":{
+      "head_activity":{"enum":["NOT_MEASURED","DEFERRED","OBSERVED","USER_REPORTED"]},
+      "heart_view":{"enum":["FRAMEWORK_CONCEPT","USER_REPORTED","MEASURED","NOT_VERIFIED"]}
+    }}
+  }
+}

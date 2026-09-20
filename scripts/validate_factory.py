@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+"""Deterministic, dependency-free validation for research-factory contracts."""
+import json, pathlib, sys, subprocess
+
+ROOT=pathlib.Path(__file__).resolve().parents[1]
+REQUIRED_JSON={
+ "generated/factory-status.json":["generated_at","mode","status","records","qc","dashboard_contract","integrity"],
+ "generated/agent-status.json":["agents"],
+ "generated/federation-status.json":[],
+ "generated/source-registry.json":["generated_at","repository_count","repositories"],
+ "generated/research-index.json":["schema_version","status","source_registry","claim_records","coverage","integrity"],
+ "generated/claim-graph.json":["schema_version","status","nodes","edges","integrity"],
+ "generated/framework-state.json":["schema_version","state","epistemic_status","framework_terms","measurement","integrity"],
+ "generated/heart-viewpoint-manifest.json":["schema_version","stage","name","framework","symbol","experience_language","operational_boundary","integrity"],
+ "generated/content-index.json":["schema_version","status","records","record_count","coverage","integrity"],
+ "generated/corpus-index.json":["schema_version","status","records","record_count","coverage","integrity"],
+ "generated/concept-index.json":["schema_version","status","records","record_count","coverage","integrity"],
+ "generated/framework-proposition.json":["id","statement","classification","terms","evidence_status","verification","provenance"],
+}
+def load_json(rel):
+ p=ROOT/rel
+ if not p.is_file(): raise AssertionError(f"missing file: {rel}")
+ try: return json.loads(p.read_text(encoding="utf-8"))
+ except json.JSONDecodeError as exc: raise AssertionError(f"invalid JSON: {rel}: {exc}") from exc
+def require_keys(obj,keys,rel):
+ for key in keys:
+  if key not in obj: raise AssertionError(f"{rel}: missing required key {key!r}")
+def main():
+ loaded={}
+ for rel,keys in REQUIRED_JSON.items():
+  loaded[rel]=load_json(rel); require_keys(loaded[rel],keys,rel)
+ factory=loaded["generated/factory-status.json"]
+ if factory["records"] is not None and not isinstance(factory["records"],int): raise AssertionError("factory-status.json: records must be integer or null")
+ if factory["integrity"].get("fabricated_metrics") is not False: raise AssertionError("factory-status.json: fabricated_metrics must be false")
+ registry=loaded["generated/source-registry.json"]; repos=registry["repositories"]
+ if not isinstance(repos,list): raise AssertionError("source-registry.json: repositories must be an array")
+ if registry["repository_count"]!=len(repos): raise AssertionError("source-registry.json: repository_count does not match repositories length")
+ graph=loaded["generated/claim-graph.json"]
+ if graph["nodes"] or graph["edges"]: raise AssertionError("claim-graph.json: continuity baseline expects an empty graph until canonical records are emitted")
+ if graph["integrity"].get("fabricated_nodes") is not False or graph["integrity"].get("fabricated_edges") is not False: raise AssertionError("claim-graph.json: fabricated graph data must be false")
+ index=loaded["generated/research-index.json"]
+ if index["claim_records"]!=[]: raise AssertionError("research-index.json: continuity baseline expects zero verified claim records")
+ if index["integrity"].get("fabricated_records") is not False: raise AssertionError("research-index.json: fabricated_records must be false")
+ if index["integrity"].get("missing_data_preserved") is not True: raise AssertionError("research-index.json: missing_data_preserved must be true")
+ corpus=loaded["generated/corpus-index.json"]
+ if corpus["records"]!=[] or corpus["record_count"]!=0: raise AssertionError("corpus-index.json: committed continuity baseline expects zero corpus units")
+ if corpus["integrity"].get("fabricated_units") is not False or corpus["integrity"].get("content_meaning_inferred") is not False: raise AssertionError("corpus-index.json: integrity flags must remain false")
+ prop=loaded["generated/framework-proposition.json"]
+ if prop["classification"]!="FRAMEWORK_PROPOSITION" or prop["evidence_status"]!="NOT_VERIFIED": raise AssertionError("framework-proposition.json: framework proposition must remain explicitly unverified")
+ if prop["verification"].get("independent") is not False: raise AssertionError("framework-proposition.json: independent verification must remain false until performed")
+ manifest=loaded["generated/heart-viewpoint-manifest.json"]
+ if manifest["stage"]!="NEXT_LABEL" or manifest["symbol"]!="꙰": raise AssertionError("heart-viewpoint-manifest.json: next-label contract mismatch")
+ if manifest["integrity"].get("scientific_certainty_invented") is not False: raise AssertionError("heart-viewpoint-manifest.json: scientific certainty must not be invented")
+ state=loaded["generated/framework-state.json"]
+ if state["integrity"].get("physiological_inactivity_claimed") is not False: raise AssertionError("framework-state.json: physiological inactivity must not be asserted")
+ if state["integrity"].get("empirical_status_not_invented") is not True: raise AssertionError("framework-state.json: empirical status must remain explicit")
+ bridge=ROOT/"factory/contract_bridge.py"
+ if not bridge.is_file(): raise AssertionError("missing factory/contract_bridge.py")
+ subprocess.run([sys.executable,str(bridge)],cwd=ROOT,check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+ subprocess.run([sys.executable,str(ROOT/"factory/framework_state.py")],cwd=ROOT,check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+ subprocess.run([sys.executable,str(ROOT/"factory/normalize_corpus_test.py")],cwd=ROOT/"factory",check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+ subprocess.run([sys.executable,str(ROOT/"factory/extract_concepts_test.py")],cwd=ROOT/"factory",check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+ concepts=loaded["generated/concept-index.json"]
+ if concepts["records"]!=[] or concepts["record_count"]!=0: raise AssertionError("concept-index.json: committed continuity baseline expects zero concept candidates")
+ if concepts["integrity"].get("fabricated_concepts") is not False or concepts["integrity"].get("semantic_claims_inferred") is not False: raise AssertionError("concept-index.json: integrity flags must remain false")
+ generated=ROOT/"generated/contract-views/source-records.jsonl"
+ rows=[json.loads(x) for x in generated.read_text(encoding="utf-8").splitlines() if x.strip()]
+ if len(rows)!=registry["repository_count"]: raise AssertionError("source bridge: record count mismatch")
+ for row in rows:
+  if row.get("source_type")!="REPOSITORY" or row.get("availability")!="REGISTERED": raise AssertionError("source bridge: invalid registration semantics")
+ print("FACTORY CONTRACT VALIDATION: PASS")
+ print(f"JSON contracts checked: {len(REQUIRED_JSON)}")
+ print(f"Registered repositories: {registry['repository_count']}")
+ print(f"Deterministic source records bridged: {len(rows)}")
+ print("Content inventory baseline: READY_FOR_INGESTION (zero committed records)")
+ print("Corpus normalization baseline: READY_FOR_ANALYSIS (zero committed units)")
+ print("Concept candidate baseline: READY_FOR_ANALYSIS (zero committed candidates)")
+ print("Verified claim records: 0")
+ print("Framework state: HEART_VIEW_FRAMEWORK (physiological inactivity not asserted)")
+ return 0
+if __name__=="__main__":
+ try: raise SystemExit(main())
+ except AssertionError as exc:
+  print(f"FACTORY CONTRACT VALIDATION: FAIL — {exc}",file=sys.stderr); raise SystemExit(1)

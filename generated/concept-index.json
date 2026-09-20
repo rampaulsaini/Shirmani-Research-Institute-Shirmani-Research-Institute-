@@ -1,0 +1,9 @@
+{
+  "schema_version":"1.0.0",
+  "generated_at":null,
+  "status":"READY_FOR_ANALYSIS",
+  "records":[],
+  "record_count":0,
+  "coverage":{"candidate_concepts":0,"verified_concepts":0},
+  "integrity":{"fabricated_concepts":false,"semantic_claims_inferred":false,"missing_data_preserved":true}
+}

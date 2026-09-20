@@ -1,0 +1,26 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Research Factory Index",
+  "type":"object",
+  "required":["schema_version","generated_at","status","source_registry","claim_records","artifact_records","coverage","integrity"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "generated_at":{"type":["string","null"]},
+    "status":{"type":"string"},
+    "source_registry":{"type":"string"},
+    "claim_records":{"type":"array"},
+    "artifact_records":{"type":"array"},
+    "coverage":{"type":"object","required":["source_records_indexed","claim_records_verified","artifact_records_verified"],"properties":{
+      "source_records_indexed":{"type":"integer","minimum":0},
+      "claim_records_verified":{"type":"integer","minimum":0},
+      "artifact_records_verified":{"type":"integer","minimum":0},
+      "note":{"type":"string"}
+    }},
+    "integrity":{"type":"object","required":["fabricated_records","missing_data_preserved","verification_required"],"properties":{
+      "fabricated_records":{"type":"boolean"},
+      "missing_data_preserved":{"type":"boolean"},
+      "verification_required":{"type":"boolean"}
+    }}
+  },
+  "additionalProperties":false
+}

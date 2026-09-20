@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Repository Source Registry",
+  "type":"object",
+  "required":["generated_at","repository_count","repositories"],
+  "properties":{
+    "generated_at":{"type":"string"},
+    "repository_count":{"type":"integer","minimum":0},
+    "repositories":{"type":"array","items":{"type":"object","required":["repository","role","github","clone_url","expected_inputs","ingestion"],"properties":{
+      "repository":{"type":"string"},
+      "role":{"type":"string"},
+      "github":{"type":"string"},
+      "clone_url":{"type":"string"},
+      "expected_inputs":{"type":"array","items":{"type":"string"}},
+      "ingestion":{"type":"string"}
+    }}}
+  },
+  "additionalProperties":false
+}

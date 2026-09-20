@@ -1,0 +1,25 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Claim Graph",
+  "type":"object",
+  "required":["schema_version","status","nodes","edges","integrity"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "status":{"enum":["READY_FOR_INGESTION","PARTIAL","READY","NOT_VERIFIED"]},
+    "nodes":{"type":"array","items":{"type":"object","required":["id","type"],"properties":{
+      "id":{"type":"string"},
+      "type":{"enum":["CLAIM","SOURCE","EVIDENCE","FORMULATION","VERIFICATION","ARTIFACT"]},
+      "label":{"type":"string"},
+      "record_ref":{"type":"string"}
+    }}},
+    "edges":{"type":"array","items":{"type":"object","required":["from","to","relation"],"properties":{
+      "from":{"type":"string"},"to":{"type":"string"},
+      "relation":{"enum":["SUPPORTED_BY","DERIVED_FROM","TESTED_BY","CONTRADICTS","VERIFIES","PRODUCES","CITES"]}
+    }}},
+    "integrity":{"type":"object","required":["fabricated_nodes","fabricated_edges","missing_data_preserved"],"properties":{
+      "fabricated_nodes":{"const":false},
+      "fabricated_edges":{"const":false},
+      "missing_data_preserved":{"const":true}
+    }}
+  }
+}

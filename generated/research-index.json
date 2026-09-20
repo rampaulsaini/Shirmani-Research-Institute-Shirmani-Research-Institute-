@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": null,
+  "status": "READY_FOR_INGESTION",
+  "source_registry": "generated/source-registry.json",
+  "claim_records": [],
+  "artifact_records": [],
+  "coverage": {
+    "source_records_indexed": 0,
+    "claim_records_verified": 0,
+    "artifact_records_verified": 0,
+    "note": "No source content is asserted as ingested merely because a repository is registered. Counts remain zero until deterministic ingestion produces records."
+  },
+  "integrity": {
+    "fabricated_records": false,
+    "missing_data_preserved": true,
+    "verification_required": true
+  }
+}

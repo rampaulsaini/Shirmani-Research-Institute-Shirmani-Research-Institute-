@@ -61,4 +61,6 @@ def run(corpus, out, topic_path=None, batch_size=1000):
         "qc":qc(out)
     }
     publish(out,status)
+    from factory.canonical_research_index import build as build_canonical_indexes
+    status["canonical_index"] = build_canonical_indexes(out)
     return status

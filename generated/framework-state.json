@@ -1,0 +1,22 @@
+{
+  "schema_version":"1.0.0",
+  "state":"HEART_VIEW_FRAMEWORK",
+  "epistemic_status":"FRAMEWORK_DESCRIPTION",
+  "framework_terms":{
+    "निष्पक्ष_समझ":"सभी दावों को बिना पूर्व-निर्णय परिभाषा, स्रोत, प्रमाण और परीक्षण के साथ देखना।",
+    "शमीकरण":"इस परियोजना में उपयोग किया गया framework term; इसका अर्थ रिकॉर्ड के संदर्भ में स्पष्ट किया जाना आवश्यक है।",
+    "यथार्थ_सिद्धांत":"परियोजना का framework concept; इसे empirical fact तभी माना जाएगा जब स्वतंत्र प्रमाण उपलब्ध हो।",
+    "हृदय_दृष्टिकोण":"परियोजना में प्रत्यक्ष, सरल और अनुभव-आधारित viewpoint के रूप में दर्ज framework concept।",
+    "मस्तक_दृष्टिकोण":"विचार, भाषा, ज्ञान, तर्क और समय-संबंधी cognitive processing के लिए प्रयुक्त framework concept।"
+  },
+  "measurement":{
+    "head_activity":"NOT_MEASURED",
+    "heart_view":"FRAMEWORK_CONCEPT"
+  },
+  "integrity":{
+    "physiological_inactivity_claimed":false,
+    "framework_language_preserved":true,
+    "empirical_status_not_invented":true
+  },
+  "note":"यदि किसी अनुभव में 'मस्तक/मन/बुद्धि निष्क्रिय' कहा जाए, तो इसे पहले user-reported or framework language के रूप में रिकॉर्ड किया जाएगा; बिना स्वतंत्र मापन के इसे physiological fact नहीं माना जाएगा।"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0.0",
+  "generated_at":"2026-09-20T00:00:00Z",
+  "status":"READY_EMPTY_INDEX",
+  "claims":[],
+  "coverage":{
+    "claim_records":0,
+    "verified_claims":0,
+    "not_verified_claims":0,
+    "note":"No claim is treated as verified until its claim/evidence/provenance record exists."
+  },
+  "integrity":{
+    "fabricated_claims":false,
+    "missing_values":"not replaced with invented evidence"
+  }
+}

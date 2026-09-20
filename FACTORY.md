@@ -3,7 +3,7 @@
 यह repository मुख्य Research Hub के रूप में काम करेगी। मौजूदा website सुरक्षित रखते हुए factory automation अलग layer में है।
 
 ## Pipeline
-24 repository sources → collector → normalization → traceable corpus → product generators → GitHub Pages
+25 registered repository sources → collector → normalization → traceable corpus → product generators → GitHub Pages
 
 ## Product targets
 - 100 digital महाग्रंथ drafts
