@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "mode": "free-deterministic",
   "agents": [
     "source",
@@ -57,5 +57,7 @@
   },
   "queues": "factory/queues.json",
   "artifact_manifest_schema": "factory/artifact-manifest.schema.json",
-  "dashboard_data": "factory/live_dashboard.json"
+  "dashboard_data": "factory/live_dashboard.json",
+  "framework": "factory/shirmani-framework.json",
+  "epistemic_policy": "Every generated claim must carry a claim_class; testable claims should include reproducible method metadata; unsupported claims must be labeled or the agent must abstain."
 }
