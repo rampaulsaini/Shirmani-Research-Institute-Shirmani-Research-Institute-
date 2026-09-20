@@ -29,6 +29,9 @@ jobs:
       - name: Build free deterministic archive
         run: python3 factory/build_factory.py
 
+      - name: Build incremental canonical knowledge layer
+        run: python3 factory/canonical_knowledge.py
+
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
 
@@ -37,7 +40,16 @@ jobs:
           test -s generated/repository-intelligence.json
           test -s generated/manifest.json
           test -s generated/source-units.jsonl
+          test -s generated/canonical-knowledge.jsonl
+          test -s generated/canonical-knowledge-manifest.json
           test -s generated/verse-corpus.jsonl
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path("generated/canonical-knowledge-manifest.json").read_text())
+          if m.get("active_record_count",0) <= 0:
+              raise SystemExit("Canonical knowledge layer has no active records")
+          PY
           test -s generated/QC-REPORT.json
           python3 - <<'PY'
           import json
