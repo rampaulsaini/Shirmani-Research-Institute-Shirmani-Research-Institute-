@@ -129,3 +129,21 @@ Before publishing a generated claim, require:
 - explicit uncertainty when verification is incomplete.
 
 A missing field is a QC failure, not an invitation to invent a value.
+
+
+## 17. Continuity hardening patch
+- factory/batch_worker.py now repairs legacy/empty state from durable outputs, uses an explicit product-target map, records the last successful batch timestamp, and appends only missing stable IDs instead of rewriting the full 100,000-record JSONL corpus.
+- factory/reasoning_pipeline.py now emits generated/claim-evidence.jsonl with explicit NOT_VERIFIED defaults; source trace is never upgraded to proof.
+- factory/quality_control.py now fail-closes malformed or missing claim-evidence records and rejects unearned PASS or independent verification states.
+- .github/workflows/omniverse-factory.yml now runs the resumable batch worker before reasoning/QC and requires the claim-evidence artifact.
+- factory/state.json is a valid durable initialization record rather than an empty JSON file.
+- Historical failure records remain preserved; no deletion or rewriting of failure history is part of this patch.
+
+
+## 18. Durable execution continuity manifest
+- `factory/continuity_manifest.py` records the GitHub workflow identity, QC publication gate, error count, and SHA-256 hashes/byte sizes for the principal generated artifacts.
+- `generated/continuity-manifest.json` is generated after QC and before catalog validation.
+- The manifest is an execution trace, not evidence of scientific truth; artifact hashes prove reproducibility of the recorded files, not correctness of their claims.
+- Resume logic remains output-first: durable generated outputs are used to reconstruct progress, while canonical/source records remain protected.
+
+- Follow-up fix: QC no longer applies the reasoning method-stack validator to the upstream verse corpus; strict method-stack validation remains on reasoning-manifest.jsonl. This prevents 100,000 false blocking errors while preserving reasoning QC.
