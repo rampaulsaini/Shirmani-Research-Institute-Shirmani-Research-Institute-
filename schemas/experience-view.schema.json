@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Experience View Record",
+  "type":"object",
+  "required":["id","stage","viewpoint","experience_language","epistemic_status","measurement_boundary","integrity","provenance"],
+  "properties":{
+    "id":{"type":"string"},
+    "stage":{"const":"NEXT_LABEL"},
+    "viewpoint":{"type":"string"},
+    "experience_language":{"type":"object"},
+    "epistemic_status":{"enum":["FRAMEWORK_DESCRIPTION","USER_REPORTED_EXPERIENCE","NOT_VERIFIED"]},
+    "measurement_boundary":{"type":"object","required":["physiology","computation"]},
+    "integrity":{"type":"object","required":["scientific_certainty_invented","physiological_inactivity_asserted"]},
+    "provenance":{"type":"object","required":["origin","recorded_at"]}
+  }
+}
