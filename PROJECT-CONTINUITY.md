@@ -147,3 +147,10 @@ A missing field is a QC failure, not an invitation to invent a value.
 - Resume logic remains output-first: durable generated outputs are used to reconstruct progress, while canonical/source records remain protected.
 
 - Follow-up fix: QC no longer applies the reasoning method-stack validator to the upstream verse corpus; strict method-stack validation remains on reasoning-manifest.jsonl. This prevents 100,000 false blocking errors while preserving reasoning QC.
+
+
+## 19. Independent verification queue
+- `factory/verification_queue.py` converts every claim/evidence record into a durable review task.
+- Queue tasks remain `QUEUED`, `NOT_VERIFIED`, and `independent=false`; the factory cannot auto-promote them to verified truth.
+- `factory/verification_queue_qc.py` enforces one queue task per claim, required verification questions/evidence, and fail-closed status semantics.
+- The continuity manifest now hashes the verification queue and its QC report so review work survives workflow reruns.
