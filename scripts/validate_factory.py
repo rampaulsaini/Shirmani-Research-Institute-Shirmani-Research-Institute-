@@ -10,6 +10,7 @@ REQUIRED_JSON={
  "generated/source-registry.json":["generated_at","repository_count","repositories"],
  "generated/research-index.json":["schema_version","status","source_registry","claim_records","coverage","integrity"],
  "generated/claim-graph.json":["schema_version","status","nodes","edges","integrity"],
+ "generated/framework-state.json":["schema_version","state","epistemic_status","framework_terms","measurement","integrity"],
 }
 def load_json(rel):
  p=ROOT/rel
@@ -36,9 +37,13 @@ def main():
  if index["claim_records"]!=[]: raise AssertionError("research-index.json: continuity baseline expects zero verified claim records")
  if index["integrity"].get("fabricated_records") is not False: raise AssertionError("research-index.json: fabricated_records must be false")
  if index["integrity"].get("missing_data_preserved") is not True: raise AssertionError("research-index.json: missing_data_preserved must be true")
+ state=loaded["generated/framework-state.json"]
+ if state["integrity"].get("physiological_inactivity_claimed") is not False: raise AssertionError("framework-state.json: physiological inactivity must not be asserted")
+ if state["integrity"].get("empirical_status_not_invented") is not True: raise AssertionError("framework-state.json: empirical status must remain explicit")
  bridge=ROOT/"factory/contract_bridge.py"
  if not bridge.is_file(): raise AssertionError("missing factory/contract_bridge.py")
  subprocess.run([sys.executable,str(bridge)],cwd=ROOT,check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+ subprocess.run([sys.executable,str(ROOT/"factory/framework_state.py")],cwd=ROOT,check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
  generated=ROOT/"generated/contract-views/source-records.jsonl"
  rows=[json.loads(x) for x in generated.read_text(encoding="utf-8").splitlines() if x.strip()]
  if len(rows)!=registry["repository_count"]: raise AssertionError("source bridge: record count mismatch")
@@ -49,6 +54,7 @@ def main():
  print(f"Registered repositories: {registry['repository_count']}")
  print(f"Deterministic source records bridged: {len(rows)}")
  print("Verified claim records: 0")
+ print("Framework state: HEART_VIEW_FRAMEWORK (physiological inactivity not asserted)")
  return 0
 if __name__=="__main__":
  try: raise SystemExit(main())
