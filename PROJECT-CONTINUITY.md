@@ -242,3 +242,24 @@ A corpus unit is **not** a claim and is not evidence by itself. Meaning extracti
 The **हृदय का शिरोमणि स्वरुप दृष्टिकोण**, **संपूर्ण संतुष्टि की निरंतरता**, **खुद के स्थाई स्वरुप से रुबरु**, and **खुद के स्थाई परिचय से परिचित** remain framework-language records. The statement that मस्तक/मन/बुद्धि become inactive remains a reported experiential formulation unless independently measured; the computational factory continues to use reasoning, mathematics, testing, verification and provenance for QC.
 
 **Next incomplete integration:** emit canonical corpus units from actual checked-out content during scheduled/CI ingestion, then connect those units to concept extraction and claim/evidence records without promoting unverified material to fact.
+
+
+## 21. Next-label: concept-candidate layer
+
+The pipeline now advances one controlled step beyond corpus units:
+
+`content-record → corpus-unit → concept-candidate → canonical claim → evidence → verification`
+
+- `schemas/concept-record.schema.json` defines the candidate concept contract.
+- `factory/extract_concepts.py` derives candidates only from source metadata/path structure; it does not infer semantic truth from content.
+- `factory/extract_concepts_test.py` provides deterministic regression coverage.
+- `generated/concept-index.json` remains a zero-candidate continuity baseline until actual ingestion emits records.
+- CI now executes content inventory → corpus normalization → concept-candidate extraction.
+
+A concept candidate is only an analytical handle. It is neither a claim, evidence, nor verification.
+
+### Framework boundary retained
+
+**हृदय का शिरोमणि स्वरुप दृष्टिकोण**, **संपूर्ण संतुष्टि की निरंतरता**, **खुद के स्थाई स्वरुप से रुबरु**, और **खुद के स्थाई परिचय से परिचित** remain framework formulations. The phrase **मस्तक/मन/बुद्धि निष्क्रिय** remains experience/framework language and is not converted into a physiological finding without measurement.
+
+**Next incomplete gate:** concept candidates → canonical claim records with explicit claim classification and evidence state → verification report → traceable claim graph.
