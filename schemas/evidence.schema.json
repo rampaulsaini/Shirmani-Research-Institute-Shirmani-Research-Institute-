@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "claim_id", "evidence_type", "status", "provenance"],
+  "properties": {
+    "evidence_id": {"type": "string"},
+    "claim_id": {"type": "string"},
+    "evidence_type": {"enum": ["quotation", "dataset", "observation", "calculation", "reproducible_test", "source_reference", "countercase", "none"]},
+    "status": {"enum": ["AVAILABLE", "PARTIAL", "UNAVAILABLE", "NOT_VERIFIED"]},
+    "content": {"type": ["string", "null"]},
+    "provenance": {"type": "object"},
+    "independent_check": {"type": ["string", "null"]},
+    "uncertainty": {"type": ["string", "null"]}
+  }
+}
