@@ -13,7 +13,7 @@ TRACKED = [
     "canonical-knowledge.jsonl", "canonical-knowledge-manifest.json",
     "canonical-index.json", "verse-corpus.jsonl", "reasoning-manifest.jsonl",
     "claim-evidence.jsonl", "provenance-ledger.jsonl", "independent-verification-queue.jsonl",
-    "VERIFICATION-QUEUE.json", "VERIFICATION-QUEUE-QC.json", "independent-verification-registry.jsonl", "VERIFICATION-REGISTRY.json", "VERIFICATION-REGISTRY-QC.json", "VERIFICATION-PROMOTION-QC.json", "PUBLICATION-GATE.json", "QC-REPORT.json", "worker-status.json",
+    "VERIFICATION-QUEUE.json", "VERIFICATION-QUEUE-QC.json", "independent-verification-registry.jsonl", "VERIFICATION-REGISTRY.json", "VERIFICATION-REGISTRY-QC.json", "VERIFICATION-PROMOTION-QC.json", "PUBLICATION-GATE.json", "research-evidence-graph.json", "RESEARCH-EVIDENCE-GRAPH.json", "RESEARCH-EVIDENCE-GRAPH-QC.json", "QC-REPORT.json", "worker-status.json",
 ]
 
 def sha256(path: Path) -> str:
