@@ -25,8 +25,11 @@ jobs:
           python3 scripts/validate_json.py generated/*.json schemas/*.json
       - name: No committed Python cache files
         run: |
-          if find . \( -type f -name '*.pyc' -o -type d -name '__pycache__' \) | grep -q .; then
-            echo 'Committed Python cache artifacts detected'; exit 1;
+          if git ls-files '*.pyc' | grep -q .; then
+            echo 'Committed Python bytecode artifacts detected'; exit 1;
+          fi
+          if git ls-files | grep -E '(^|/)__pycache__/' | grep -q .; then
+            echo 'Committed Python cache directories detected'; exit 1;
           fi
       - name: Factory contract smoke test
         run: |
