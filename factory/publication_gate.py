@@ -9,6 +9,7 @@ REPORTS = {
     "formulation_qc": "FORMULATION-QC.json",
     "verification_queue_qc": "VERIFICATION-QUEUE-QC.json",
     "verification_promotion_qc": "VERIFICATION-PROMOTION-QC.json",
+    "research_evidence_graph_qc": "RESEARCH-EVIDENCE-GRAPH-QC.json",
 }
 
 def read_report(filename):
@@ -27,7 +28,8 @@ def main():
     blocked = [k for k,v in reports.items() if isinstance(v,dict) and v.get("publication_gate")=="BLOCK"]
     queue_ok = isinstance(reports["verification_queue_qc"],dict) and reports["verification_queue_qc"].get("publication_gate")=="PASS"
     formulation_ok = isinstance(reports["formulation_qc"],dict) and reports["formulation_qc"].get("publication_gate")=="PASS"
-    decision = "BLOCK" if (missing or invalid or blocked or not queue_ok or not formulation_ok) else (
+    graph_ok = isinstance(reports["research_evidence_graph_qc"],dict) and reports["research_evidence_graph_qc"].get("publication_gate")=="PASS"
+    decision = "BLOCK" if (missing or invalid or blocked or not queue_ok or not formulation_ok or not graph_ok) else (
         "PASS" if all(isinstance(v,dict) and v.get("publication_gate") in {"PASS","CHECK"} for v in reports.values())
         else "CHECK")
     result = {
