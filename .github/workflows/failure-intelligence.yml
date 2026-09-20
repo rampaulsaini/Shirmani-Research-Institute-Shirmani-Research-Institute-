@@ -1,0 +1,29 @@
+name: Failure Intelligence Collector
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 3 * * *"
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect workflow failure registry
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FAILURE_LOG_SAMPLE_RUNS: "50"
+          FAILURE_RUN_PAGES: "20"
+        run: python3 factory/failure_intelligence.py
+      - name: Validate registry JSON
+        run: python3 -m json.tool generated/failure-registry.json >/dev/null
+      - name: Upload failure registry artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-intelligence-registry
+          path: generated/failure-registry.json
