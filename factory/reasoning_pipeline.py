@@ -120,8 +120,7 @@ def claim_evidence_record(record, locations):
                        "content_hash": record["content_sha256"]}
     }
 
-def make_record(kind, artifact_id, text, source_ids, extra=None):
-    reasoner = load_reasoner()
+def make_record(reasoner, kind, artifact_id, text, source_ids, extra=None):
     reasoning = reasoner.reason(text, source_ids)
     return {
         "artifact_id": str(artifact_id),
@@ -141,53 +140,55 @@ def make_record(kind, artifact_id, text, source_ids, extra=None):
 
 def enrich():
     OUT.mkdir(parents=True, exist_ok=True)
-    records = []
     source_index = load_source_index()
-    verse = OUT / "verse-corpus.jsonl"
-    if verse.exists():
-        for row in (json.loads(x) for x in verse.read_text(encoding="utf-8").splitlines() if x.strip()):
-            records.append(make_record("verse", row.get("id"), row.get("text", ""),
-                                       source_ids_from_row(row),
-                                       {"language": row.get("language", "hi"),
-                                        "status": row.get("status", "draft")}))
-    for path, kind in sorted([(p, "book") for p in OUT.glob("book-*.md")] +
-                             [(p, "research-paper") for p in OUT.glob("research-paper-draft-*.md")]):
-        text = path.read_text(encoding="utf-8")
-        records.append(make_record(kind, path.stem, text, source_ids_from_text(text, source_index),
-                                   {"path": str(path.relative_to(ROOT)), "status": "draft"}))
+    source_locations = load_source_locations()
+    reasoner = load_reasoner()
+
     manifest = OUT / "reasoning-manifest.jsonl"
-    manifest.write_text("\n".join(json.dumps(r, ensure_ascii=False) for r in records) +
-                        ("\n" if records else ""), encoding="utf-8")
-
-    locations = load_source_locations()
     ce = OUT / "claim-evidence.jsonl"
-    tmp = ce.with_suffix(".jsonl.tmp")
-    with tmp.open("w", encoding="utf-8") as f:
-        for r in records:
-            f.write(json.dumps(claim_evidence_record(r, locations), ensure_ascii=False) + "\n")
-    tmp.replace(ce)
-
-    # Durable provenance ledger: traceability only, never proof of truth.
     ledger = OUT / "provenance-ledger.jsonl"
-    ledger_tmp = ledger.with_suffix(".jsonl.tmp")
-    with ledger_tmp.open("w", encoding="utf-8") as f:
-        for r in records:
-            f.write(json.dumps({
-                "artifact_id": r["artifact_id"],
-                "kind": r["kind"],
-                "source_ids": r["source_ids"],
-                "content_sha256": r["content_sha256"],
-                "created_at": r["created_at"],
+    # Stream all three derived ledgers. Do not hold 100,000+ records in memory.
+    with manifest.open("w", encoding="utf-8") as mf, ce.open("w", encoding="utf-8") as cf, ledger.open("w", encoding="utf-8") as lf:
+        def emit(kind, artifact_id, text, source_ids, extra=None):
+            record = make_record(reasoner, kind, artifact_id, text, source_ids, extra)
+            mf.write(json.dumps(record, ensure_ascii=False) + "\n")
+            cf.write(json.dumps(claim_evidence_record(record, source_locations), ensure_ascii=False) + "\n")
+            lf.write(json.dumps({
+                "artifact_id": record["artifact_id"],
+                "kind": record["kind"],
+                "source_ids": record["source_ids"],
+                "content_sha256": record["content_sha256"],
+                "created_at": record["created_at"],
                 "generator": "factory/reasoning_pipeline.py",
                 "verification_status": "NOT_VERIFIED",
                 "independent": False
             }, ensure_ascii=False) + "\n")
-    ledger_tmp.replace(ledger)
+            return 1
 
-    return {"records": len(records), "path": str(manifest.relative_to(ROOT)),
-            "claim_evidence_records": len(records),
+        count = 0
+        verse = OUT / "verse-corpus.jsonl"
+        if verse.exists():
+            with verse.open(encoding="utf-8") as vf:
+                for line in vf:
+                    if not line.strip():
+                        continue
+                    row = json.loads(line)
+                    count += emit("verse", row.get("id"), row.get("text", ""),
+                                   source_ids_from_row(row),
+                                   {"language": row.get("language", "hi"),
+                                    "status": row.get("status", "draft")})
+
+        paths = sorted([(p, "book") for p in OUT.glob("book-*.md")] +
+                       [(p, "research-paper") for p in OUT.glob("research-paper-draft-*.md")])
+        for path, kind in paths:
+            text = path.read_text(encoding="utf-8")
+            count += emit(kind, path.stem, text, source_ids_from_text(text, source_index),
+                          {"path": str(path.relative_to(ROOT)), "status": "draft"})
+
+    return {"records": count, "path": str(manifest.relative_to(ROOT)),
+            "claim_evidence_records": count,
             "claim_evidence_path": str(ce.relative_to(ROOT)),
-            "provenance_ledger_records": len(records),
+            "provenance_ledger_records": count,
             "provenance_ledger_path": str(ledger.relative_to(ROOT))}
 
 if __name__ == "__main__":

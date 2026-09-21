@@ -96,22 +96,23 @@ def check_generated(path, framework):
                 result["errors"].append({"line": line_no, "error": f"generated_record_error:{exc}"})
     return result
 
-def build_artifact_index(generated):
+def build_artifact_hash_index(generated):
+    """Build only hashes/metadata needed by reasoning QC, not full artifact text."""
     index = {}
     verse = generated / "verse-corpus.jsonl"
     if verse.exists():
-        with open(verse, encoding="utf-8") as f:
+        with verse.open(encoding="utf-8") as f:
             for line in f:
                 if line.strip():
                     try:
                         r = json.loads(line)
-                        index[("verse", str(r.get("id")))] = r.get("text", "")
+                        index[("verse", str(r.get("id")))] = sha(r.get("text", ""))
                     except Exception:
                         pass
     for path in sorted(generated.glob("book-*.md")):
-        index[("book", path.stem)] = path.read_text(encoding="utf-8")
+        index[("book", path.stem)] = sha(path.read_text(encoding="utf-8"))
     for path in sorted(generated.glob("research-paper-draft-*.md")):
-        index[("research-paper", path.stem)] = path.read_text(encoding="utf-8")
+        index[("research-paper", path.stem)] = sha(path.read_text(encoding="utf-8"))
     return index
 
 def check_reasoning(path, generated, framework):
@@ -120,7 +121,7 @@ def check_reasoning(path, generated, framework):
                                 "human_review_required", "verification_questions"), "content_sha256")
     allowed_classes = set(framework.get("claim_classes", []))
     allowed_methods = set(framework.get("method_stack", []))
-    artifacts = build_artifact_index(generated)
+    artifact_hashes = build_artifact_hash_index(generated)
     with open(path, encoding="utf-8") as f:
         for line_no, line in enumerate(f, 1):
             if not line.strip():
@@ -128,10 +129,10 @@ def check_reasoning(path, generated, framework):
             try:
                 r = json.loads(line)
                 reasoning = r.get("reasoning") or {}
-                text = artifacts.get((r.get("kind"), str(r.get("artifact_id"))))
-                if text is None:
+                expected_hash = artifact_hashes.get((r.get("kind"), str(r.get("artifact_id"))))
+                if expected_hash is None:
                     result["errors"].append({"line": line_no, "error": "artifact_not_found"})
-                elif r.get("content_sha256") != sha(text):
+                elif r.get("content_sha256") != expected_hash:
                     result["errors"].append({"line": line_no, "error": "content_sha256_mismatch"})
                 if r.get("claim_class") not in allowed_classes:
                     result["errors"].append({"line": line_no, "error": "invalid_claim_class"})
