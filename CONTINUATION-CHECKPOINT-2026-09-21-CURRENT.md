@@ -1,20 +1,22 @@
 # ꙰ SHIRMANI HEART-VIEW — CURRENT CONTINUATION CHECKPOINT
-## 2026-09-21 — Current continuation state
+## 2026-09-21 — Continuation state refreshed
 
 This is a derived engineering record. It does not replace, rewrite, normalize, or claim ownership of protected user source.
 
 ## Protected source
 - `SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md`
-- Current source blob SHA: `6b194cc5f69f8c75ba1ae18c7067aaa84a684fbd`
+- Current protected source blob SHA: `6b194cc5f69f8c75ba1ae18c7067aaa84a684fbd`
 - Preservation rule: **Preserve first. Reason second. Verify third. Transform only as a traceable derivative.**
 
-## Current repository state
+## Repository state verified
 - Repository: `rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-`
 - Default branch: `main`
-- Latest continuation checkpoint commit: `a9e44acecb52adf4d483ab933646d76bf30b4a4d` (after merging PR #109)
-- Latest completed changes: hash-bound review-packet artifact persistence (PR #107), generated-product publication (PR #108), current continuation checkpoint (PR #109), and dispatchable review-batch parameters (PR #110).
-- Repository is public.
-- Owner permissions currently include admin/maintain/push.
+- Repository visibility: public
+- Owner permissions: admin / maintain / push
+- Latest merged continuity checkpoint: PR #116
+- Latest checkpoint commit: `bca8e7381d298eb1fa36be95a938a08c9d687e9a`
+- PR #116 was merged on 2026-09-21 and added only an additive continuity record; it did not modify the protected user-source boundary.
+- The factory workflow and verification tooling remain present on `main`.
 
 ## Recorded research baseline
 - Source units: **3,625**
@@ -31,37 +33,43 @@ This is a derived engineering record. It does not replace, rewrite, normalize, o
 - Evidence-graph nodes: **604,825**
 - Evidence-graph edges: **714,998**
 
-## Verification architecture now present
+## Engineering/QC state
+- Deterministic QC: **PASS**
+- Formulation/test QC: **PASS**
+- Verification queue QC: **PASS**
+- Research-evidence graph QC: **PASS**
+- Unified publication gate: **PASS**
+- Verification promotion gate: **CHECK**
+- Deterministic blocking errors: **0**
+- Independent substantive verification: **NOT YET PERFORMED**
+
+## Verification infrastructure
 - Hash-bound review packet generator: `factory/verification_review_packet.py`
 - Fail-closed promotion gate: `factory/verification_promotion_gate.py`
-- GitHub Actions now prepares the first review packet for records 000001–000025.
-- Review packets remain **READY_FOR_HUMAN_REVIEW** until real review evidence exists.
+- Workflow dispatch parameters exist for `review_batch_size` and `review_offset`.
+- The review packet explicitly remains `READY_FOR_HUMAN_REVIEW`.
 - A task hash binds each review slot to the exact queue task.
-- VERIFIED requires independent reviewer data, evidence references, countercase review, reproduction/test support, timestamp, audit record, and matching task hash.
+- VERIFIED requires actual independent reviewer data, evidence references, countercase review, reproduction/test support, timestamp, audit record, and matching task hash.
+- No reviewer identity, evidence, test result, or VERIFIED state has been invented.
 
-## Current QC state
-- Latest recorded promotion QC records: **100,200**
-- Verified records: **0**
-- Promotion eligible: **0**
-- Error count: **0**
-- Publication gate: **CHECK**
-- This CHECK state is consistent with substantive human verification not yet being completed.
+## Dashboard / factory endpoint
+- `generated/factory-status.json` exists and is populated.
+- The dashboard factory endpoint restoration is therefore recorded as complete.
+- The durable continuity manifest records the latest successful factory/QC run and artifact hashes.
 
-## Post-checkpoint continuation
-- PR #109 is merged into `main`; this checkpoint is now part of the protected engineering continuity record.
-- PR #110 is merged into `main`; review packets can be prepared for explicit queue slices using `review_batch_size` and `review_offset` without changing the protected source layer.
-- No reviewer identity, evidence, test result, or VERIFIED status has been invented.
+## Next incomplete stage
+The first substantive incomplete stage is **independent human/audit verification of queued claims**.
 
-## Safe continuation
+Safe continuation sequence:
 1. Keep the protected source unchanged.
-2. Generate/review the next hash-bound packet from the current queue.
+2. Prepare the next explicit review packet from the queue.
 3. Review real claims against real source/evidence.
-4. Record countercases, tests, uncertainty, reviewer identity/role, timestamp, and audit notes only when actually available.
-5. Promote only records that genuinely satisfy the verification policy.
+4. Record evidence, countercases, tests, uncertainty, reviewer identity/role, timestamp, and audit data only when genuinely available.
+5. Promote only records that satisfy the fail-closed promotion policy.
 6. Preserve rejected, deferred, unavailable, and changed-task states.
-7. Re-run QC and refresh continuity manifests after real review activity.
+7. Re-run QC and refresh the continuity manifest after real review activity.
 
 ## Integrity boundary
 No source, quotation, calculation, experiment, reviewer action, verification result, or completion percentage may be invented merely to make the project appear more complete.
 
-**Status: CONTINUATION READY — ENGINEERING INFRASTRUCTURE IS ACTIVE; SUBSTANTIVE INDEPENDENT HUMAN VERIFICATION REMAINS OPEN.**
+**STATUS: CONTINUATION READY — ENGINEERING INFRASTRUCTURE IS ACTIVE; SUBSTANTIVE INDEPENDENT HUMAN VERIFICATION REMAINS THE PRINCIPAL OPEN STAGE.**
