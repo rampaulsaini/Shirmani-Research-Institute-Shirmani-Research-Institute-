@@ -6,6 +6,7 @@ verification-queue task and that packet preparation has not been presented as
 human verification. It never creates reviewer evidence or VERIFIED status.
 """
 from __future__ import annotations
+import argparse
 import hashlib, json
 from pathlib import Path
 
@@ -30,9 +31,16 @@ def load_jsonl(path: Path) -> list[dict]:
     return records
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--packet", action="append", default=None, help="Validate only these packet paths; repeatable.")
+    args = parser.parse_args()
+
     queue = load_jsonl(GENERATED / "independent-verification-queue.jsonl")
     registry = load_jsonl(GENERATED / "independent-verification-registry.jsonl")
-    packets = sorted(GENERATED.glob("verification-review-packet-*.json"))
+    if args.packet:
+        packets = [Path(p) if Path(p).is_absolute() else ROOT / p for p in args.packet]
+    else:
+        packets = sorted(GENERATED.glob("verification-review-packet-*.json"))
     queue_by_id = {str(r.get("task_id")): r for r in queue}
     registry_by_id = {str(r.get("task_id")): r for r in registry}
     errors, checked_items = [], 0
@@ -88,6 +96,7 @@ def main() -> None:
     report = {
         "version": 1,
         "packets": len(packets),
+        "scope": "explicit" if args.packet else "all",
         "checked_items": checked_items,
         "error_count": len(errors),
         "publication_gate": "PASS" if not errors else "BLOCK",
