@@ -5,15 +5,20 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"generated"
 def sha(text): return hashlib.sha256(text.encode("utf-8")).hexdigest()
+_VERSE_INDEX = None
+
 def artifact_text(kind, aid):
+    global _VERSE_INDEX
     if kind=="verse":
-        p=OUT/"verse-corpus.jsonl"
-        if not p.exists(): return None
-        for line in p.read_text(encoding="utf-8").splitlines():
-            if line.strip():
-                row=json.loads(line)
-                if str(row.get("id"))==str(aid): return row.get("text","")
-        return None
+        if _VERSE_INDEX is None:
+            p=OUT/"verse-corpus.jsonl"
+            if not p.exists(): return None
+            _VERSE_INDEX={}
+            for line in p.read_text(encoding="utf-8").splitlines():
+                if line.strip():
+                    row=json.loads(line)
+                    _VERSE_INDEX[str(row.get("id"))]=row.get("text","")
+        return _VERSE_INDEX.get(str(aid))
     if kind=="book": p=OUT/("book-"+str(aid)+".md")
     elif kind=="research-paper": p=OUT/("research-paper-draft-"+str(aid)+".md")
     else: return None
