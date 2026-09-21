@@ -1,0 +1,24 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Shirmani Source Inventory Record",
+  "type":"object",
+  "required":["source_id","source_repository","source_path_or_url","source_type","source_status","title_or_label","content_hash","recorded_at","version","attribution","parent_source_id","notes"],
+  "properties":{
+    "source_id":{"type":"string","minLength":1},
+    "source_repository":{"type":"string","minLength":1},
+    "source_path_or_url":{"type":"string","minLength":1},
+    "source_type":{"enum":["document","code","image","audio","video","dataset","link","index","other"]},
+    "source_status":{"enum":["ORIGINAL","DERIVED","INDEX","INTERPRETATION","ARCHIVED","REVIEW"]},
+    "title_or_label":{"type":"string"},
+    "content_hash":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "recorded_at":{"type":"string","minLength":1},
+    "version":{"type":"string"},
+    "attribution":{"type":"string"},
+    "parent_source_id":{"type":["string","null"]},
+    "notes":{"type":"string"},
+    "branch":{"type":["string","null"]},
+    "source_unit_id":{"type":["integer","null"]},
+    "source_hash":{"type":["string","null"]}
+  },
+  "additionalProperties":false
+}
