@@ -193,6 +193,7 @@ jobs:
                 [ -n "$large_file" ] && git reset -- "$large_file" || true
               done < generated/oversized-artifact-paths.txt
             fi
+            git reset -- generated/oversized-artifact-paths.txt generated/oversized-artifacts.tar.gz || true
             rm -f generated/oversized-artifact-paths.txt generated/oversized-artifacts.tar.gz
             if git diff --cached --quiet; then
               exit 0
