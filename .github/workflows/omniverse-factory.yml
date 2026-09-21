@@ -153,6 +153,10 @@ jobs:
               raise SystemExit("Unified publication gate is BLOCK")
           PY
 
+      - name: Archive oversized generated artifacts
+        if: github.event_name != 'pull_request'
+        run: python3 factory/archive_large_artifacts.py
+
       - name: Publish generated catalog
         if: github.event_name != 'pull_request'
         run: |
