@@ -73,7 +73,13 @@ jobs:
             --batch-size "$REVIEW_BATCH_SIZE" \
             --offset "$REVIEW_OFFSET"
       - name: Run verification review packet QC
-        run: python3 factory/verification_review_packet_qc.py
+        env:
+          REVIEW_BATCH_SIZE: ${{ inputs.review_batch_size || '25' }}
+          REVIEW_OFFSET: ${{ inputs.review_offset || '0' }}
+        run: |
+          PACKET_PATH=$(printf "generated/verification-review-packet-%06d-%06d.json" "$((REVIEW_OFFSET + 1))" "$((REVIEW_OFFSET + REVIEW_BATCH_SIZE))")
+          test -s "$PACKET_PATH"
+          python3 factory/verification_review_packet_qc.py --packet "$PACKET_PATH"
       - name: Upload independent verification review packet
         uses: actions/upload-artifact@v4
         with:
