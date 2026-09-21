@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/source-manifest.schema.json",
+  "title": "Shirmani Source Manifest",
+  "description": "Deterministic manifest contract for traceable source collection. Missing or unavailable sources remain explicitly represented.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_id","generated_at","sources"],
+  "properties": {
+    "manifest_id":{"type":"string","minLength":1},
+    "generated_at":{"type":"string","minLength":1},
+    "sources":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["source_id","status","locator"],"properties":{"source_id":{"type":"string","minLength":1},"status":{"type":"string","enum":["READY","REGISTERED","MISSING","SOURCE_ONLY","UNAVAILABLE","NOT_VERIFIED","DEFERRED"]},"locator":{"type":"string","minLength":1},"title":{"type":"string"},"content_hash":{"type":["string","null"],"pattern":"^[A-Fa-f0-9]{64}$"},"retrieved_at":{"type":["string","null"]},"error":{"type":["string","null"]}}}}
+  }
+}
