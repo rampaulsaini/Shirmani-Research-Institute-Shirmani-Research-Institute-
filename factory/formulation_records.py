@@ -29,10 +29,9 @@ def artifact_text(kind, artifact_id):
                     row = json.loads(line)
                     _VERSE_INDEX[str(row.get("id"))] = row.get("text", "")
         return _VERSE_INDEX.get(str(artifact_id))
-    if kind == "book":
-        path = OUT / ("book-" + str(artifact_id) + ".md")
-    elif kind == "research-paper":
-        path = OUT / ("research-paper-draft-" + str(artifact_id) + ".md")
+    if kind in ("book", "research-paper"):
+        # artifact_id is the exact generated filename stem.
+        path = OUT / (str(artifact_id) + ".md")
     else:
         return None
     return path.read_text(encoding="utf-8") if path.exists() else None
