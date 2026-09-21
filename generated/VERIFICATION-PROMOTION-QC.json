@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "records": 100200,
+  "verified_records": 0,
+  "promotion_eligible": 0,
+  "error_count": 0,
+  "publication_gate": "CHECK",
+  "queue_records": 100200,
+  "orphan_queue_tasks": 0,
+  "policy": "Only complete independent review, evidence, countercase, reproduction/test and audit records may reach VERIFIED; every review must match the exact current queue task hash.",
+  "errors": []
+}

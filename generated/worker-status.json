@@ -1,7 +1,8 @@
 {
-  "generated_at": "2026-09-20T06:45:33.440106+00:00",
-  "batch_size": 5000,
+  "generated_at": "2026-09-21T06:18:37.843820+00:00",
+  "batch_size": 1000,
   "batch": {
+    "legacy_metadata_repaired": 100000,
     "agent_orientation": "shirmani-heart-view",
     "orientation_loaded": true,
     "framework_id": "shirmani-nishpaksh-samaj-yatharth",

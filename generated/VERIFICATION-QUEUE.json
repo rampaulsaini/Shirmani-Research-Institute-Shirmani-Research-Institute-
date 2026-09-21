@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "records": 100200,
+  "queued": 100200,
+  "publication_gate": "CHECK",
+  "verification_policy": "No task may be auto-promoted to verified by this factory."
+}

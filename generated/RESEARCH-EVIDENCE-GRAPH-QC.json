@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "nodes": 604825,
+  "edges": 714998,
+  "claim_nodes": 100200,
+  "claims_with_explicit_evidence_nodes": 100200,
+  "error_count": 0,
+  "publication_gate": "PASS",
+  "policy": "Graph integrity is deterministic traceability QC; evidence nodes do not establish truth or independent verification.",
+  "errors": []
+}
