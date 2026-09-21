@@ -1,0 +1,1 @@
+Trigger exact hash-bound generation of Heart-View review slice 26-50. No human verification is asserted.
