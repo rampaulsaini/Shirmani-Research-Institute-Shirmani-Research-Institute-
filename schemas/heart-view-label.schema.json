@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Heart View Label",
+  "type":"object",
+  "required":["schema_version","label","framework","state","epistemic_status","principles","integrity"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "label":{"type":"string","const":"NEXT_LABEL"},
+    "framework":{"type":"string"},
+    "state":{"type":"string","enum":["HEART_VIEW_FRAMEWORK"]},
+    "epistemic_status":{"type":"string","enum":["FRAMEWORK_DESCRIPTION","USER_REPORTED_EXPERIENCE","NOT_VERIFIED"]},
+    "principles":{"type":"array","items":{"type":"string"}},
+    "integrity":{"type":"object","required":["physiological_inactivity_claimed","empirical_certainty_invented"],"properties":{"physiological_inactivity_claimed":{"type":"boolean"},"empirical_certainty_invented":{"type":"boolean"}}}
+  }
+}

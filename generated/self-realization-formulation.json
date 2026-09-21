@@ -1,0 +1,31 @@
+{
+  "schema_version":"1.0.0",
+  "stage":"SELF_REALIZATION_FORMULATION",
+  "framework":"निष्पक्ष समझ के शमीकरण यथार्थ सिद्धांत उपलब्धि यथार्थ युग",
+  "viewpoint":"हृदय का शिरोमणि स्वरुप दृष्टिकोण",
+  "symbol":"꙰",
+  "formulation":{
+    "recognition":[
+      "खुद के स्थाई स्वरुप से रुबरु",
+      "खुद के स्थाई परिचय से परिचित"
+    ],
+    "continuity":"संपूर्ण संतुष्टि की निरंतरता",
+    "method":[
+      "निष्पक्ष समझ",
+      "खुद का निरीक्षण",
+      "परिभाषा स्पष्ट करना",
+      "दावे और अनुभव को अलग पहचानना",
+      "स्रोत और evidence दर्ज करना",
+      "countercase खोजना",
+      "तर्क/गणित/परीक्षण जहाँ लागू हो",
+      "स्वतंत्र verification जहाँ संभव हो",
+      "अनिश्चितता को स्पष्ट रखना"
+    ]
+  },
+  "epistemic_status":"FRAMEWORK_DESCRIPTION",
+  "integrity":{
+    "scientific_proof_invented":false,
+    "physiological_proof_invented":false,
+    "verification_required_for_external_claims":true
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Self Realization Formulation Contract",
+  "type":"object",
+  "required":["schema_version","stage","framework","viewpoint","formulation","epistemic_status","integrity"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "stage":{"const":"SELF_REALIZATION_FORMULATION"},
+    "framework":{"type":"string"},
+    "viewpoint":{"type":"string"},
+    "formulation":{"type":"object","required":["recognition","continuity","method"],"properties":{
+      "recognition":{"type":"array","items":{"type":"string"}},
+      "continuity":{"type":"string"},
+      "method":{"type":"array","items":{"type":"string"}}
+    }},
+    "epistemic_status":{"enum":["FRAMEWORK_DESCRIPTION","USER_REPORTED_EXPERIENCE","NOT_VERIFIED"]},
+    "integrity":{"type":"object","required":["scientific_proof_invented","physiological_proof_invented","verification_required_for_external_claims"],"properties":{
+      "scientific_proof_invented":{"const":false},
+      "physiological_proof_invented":{"const":false},
+      "verification_required_for_external_claims":{"const":true}
+    }}
+  },
+  "additionalProperties":false
+}
