@@ -174,8 +174,12 @@ jobs:
           fi
           git commit -m "chore(factory): refresh research products"
           BRANCH="factory/generated-refresh"
+          # Refresh the remote-tracking ref before force-with-lease so a prior
+          # successful factory publication cannot make this run fail with
+          # Git's "stale info" rejection.
+          git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
           git branch -f "$BRANCH" HEAD
           git push --force-with-lease origin "HEAD:$BRANCH"
           if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
-            gh pr create               --base main               --head "$BRANCH"               --title "chore(factory): publish verified generated research products"               --body "Automated publication PR created after the deterministic Heart-View factory gates passed. Protected source material is not rewritten. Generated outputs remain derivatives and subject to the repository verification policy."
+            gh pr create --base main --head "$BRANCH" --title "chore(factory): publish verified generated research products" --body "Automated publication PR created after the deterministic Heart-View factory gates passed. Protected source material is not rewritten. Generated outputs remain derivatives and subject to the repository verification policy."
           fi
