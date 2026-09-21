@@ -1,7 +1,7 @@
 {
   "manifest_version": 1,
-  "generated_at": "2026-09-21T06:18:25.947376+00:00",
-  "source_manifest_generated_at": "2026-09-21T06:18:00.839033+00:00",
+  "generated_at": "2026-09-21T08:13:59.147494+00:00",
+  "source_manifest_generated_at": "2026-09-21T08:13:40.174273+00:00",
   "unit_count": 3625,
   "repositories": [
     {
@@ -25746,5 +25746,5 @@
     "truth_claim": false,
     "missing_values": "preserved explicitly; never fabricated"
   },
-  "manifest_sha256": "de360d056fea41083d95258bb8251f25629b8599a596a4608ee0771cfe7ce99d"
+  "manifest_sha256": "7118899c6605f29f84a77b04f4956bfbd50ea984471aa044b5d52eceb99d67d1"
 }

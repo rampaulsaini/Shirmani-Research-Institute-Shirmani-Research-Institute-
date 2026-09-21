@@ -21,8 +21,8 @@
       ],
       "encoding": "gzip",
       "original_bytes": 193150830,
-      "stored_bytes": 18224535,
-      "original_sha256": "fe2f82b98f2bda36a48afecb3155dff4cdcfcfb38c2917632054a91cb5d0c06d"
+      "stored_bytes": 18224438,
+      "original_sha256": "73335d37eab16e12b947d48b90684c36e6e996d2d2dccc805100e04c01f95321"
     },
     {
       "source": "generated/formulation-records.jsonl",
@@ -41,8 +41,8 @@
       ],
       "encoding": "gzip",
       "original_bytes": 335334382,
-      "stored_bytes": 20315337,
-      "original_sha256": "97e26dabf4c7a4b8330a716e4f4ed0e68bbc66a5a30b1823ce837d4bc9d2de21"
+      "stored_bytes": 20314818,
+      "original_sha256": "46b6fa613cb2c5defaae1b709cebcdf88723124347d3c4682c6c0321c3af96f5"
     },
     {
       "source": "generated/research-evidence-graph.json",
@@ -61,8 +61,8 @@
       ],
       "encoding": "gzip",
       "original_bytes": 72157071,
-      "stored_bytes": 2552552,
-      "original_sha256": "83d25b5468978de4754ab55624617fa1ab2e6adf11d132f86d40b96839fd13db"
+      "stored_bytes": 2552632,
+      "original_sha256": "a6aca0cc34253511c73aab987d33803948831c8e284eeb3397c44d20d74ae856"
     },
     {
       "source": "generated/independent-verification-registry.jsonl",
@@ -71,8 +71,8 @@
       ],
       "encoding": "gzip",
       "original_bytes": 67626895,
-      "stored_bytes": 7912384,
-      "original_sha256": "69050e1b08b51b37434603bf565a6d6186ebad8658c043778748a594b6800a0f"
+      "stored_bytes": 7912926,
+      "original_sha256": "bc0b01564f485fb1014cb6295d56d1f932192dc48c5e6621460e61f2907caee7"
     }
   ]
 }
