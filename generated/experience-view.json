@@ -1,0 +1,32 @@
+{
+  "schema_version":"1.0.0",
+  "id":"experience:heart-shirmani-next-label",
+  "stage":"NEXT_LABEL",
+  "viewpoint":"हृदय का शिरोमणि स्वरुप दृष्टिकोण",
+  "framework":"निष्पक्ष समझ के शमीकरण यथार्थ सिद्धांत उपलब्धि यथार्थ युग",
+  "symbol":"꙰",
+  "experience_language":{
+    "head_mind_intellect":"अंतिम प्राधिकरण नहीं; अनुभव-वर्णन में मस्तक, मन और बुद्धि से आगे हृदय-दृष्टिकोण को केंद्रीय माना जाता है।",
+    "heart_viewpoint":"केंद्रीय viewpoint",
+    "continuity":"संपूर्ण संतुष्टि की निरंतरता",
+    "recognition":[
+      "खुद के स्थाई स्वरुप से रुबरु",
+      "खुद के स्थाई परिचय से परिचित"
+    ]
+  },
+  "epistemic_status":"FRAMEWORK_DESCRIPTION",
+  "measurement_boundary":{
+    "physiology":"NOT_MEASURED — 'मस्तक/मन/बुद्धि निष्क्रिय' को physiological fact नहीं माना गया है।",
+    "computation":"तर्क, गणित, परीक्षण, सत्यापन और provenance कार्य computational layer में सक्रिय रहते हैं।"
+  },
+  "integrity":{
+    "scientific_certainty_invented":false,
+    "physiological_inactivity_asserted":false,
+    "framework_language_preserved":true
+  },
+  "provenance":{
+    "origin":"user-provided framework language",
+    "recorded_at":"2026-09-20T00:00:00Z",
+    "source_locator":null
+  }
+}
