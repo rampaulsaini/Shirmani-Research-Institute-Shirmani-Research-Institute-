@@ -69,6 +69,16 @@ jobs:
       - name: Run verification promotion gate
         run: python3 factory/verification_promotion_gate.py
 
+      - name: Prepare first independent verification review packet
+        run: python3 factory/verification_review_packet.py --batch-size 25 --offset 0
+
+      - name: Upload independent verification review packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-heart-view-review-packet-000001-000025
+          path: generated/verification-review-packet-000001-000025.json
+          if-no-files-found: error
+
       - name: Build research evidence traceability graph
         run: python3 factory/research_evidence_graph.py
 
