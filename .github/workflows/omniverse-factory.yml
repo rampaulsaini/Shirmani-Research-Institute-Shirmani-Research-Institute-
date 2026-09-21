@@ -5,6 +5,17 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      review_batch_size:
+        description: "Number of independent-review tasks to package (1-1000)"
+        required: false
+        default: "25"
+        type: string
+      review_offset:
+        description: "Zero-based queue offset for the review packet"
+        required: false
+        default: "0"
+        type: string
   schedule:
     - cron: "17 2 * * 0"
 
@@ -69,14 +80,20 @@ jobs:
       - name: Run verification promotion gate
         run: python3 factory/verification_promotion_gate.py
 
-      - name: Prepare first independent verification review packet
-        run: python3 factory/verification_review_packet.py --batch-size 25 --offset 0
+      - name: Prepare independent verification review packet
+        env:
+          REVIEW_BATCH_SIZE: ${{ inputs.review_batch_size || '25' }}
+          REVIEW_OFFSET: ${{ inputs.review_offset || '0' }}
+        run: |
+          python3 factory/verification_review_packet.py \
+            --batch-size "$REVIEW_BATCH_SIZE" \
+            --offset "$REVIEW_OFFSET"
 
       - name: Upload independent verification review packet
         uses: actions/upload-artifact@v4
         with:
-          name: shirmani-heart-view-review-packet-000001-000025
-          path: generated/verification-review-packet-000001-000025.json
+          name: shirmani-heart-view-review-packet
+          path: generated/verification-review-packet-*.json
           if-no-files-found: error
 
       - name: Build research evidence traceability graph
