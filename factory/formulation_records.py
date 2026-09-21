@@ -14,17 +14,21 @@ OUT = ROOT / "generated"
 def sha(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
+_VERSE_INDEX = None
+
 def artifact_text(kind, artifact_id):
+    global _VERSE_INDEX
     if kind == "verse":
-        path = OUT / "verse-corpus.jsonl"
-        if not path.exists():
-            return None
-        for line in path.read_text(encoding="utf-8").splitlines():
-            if line.strip():
-                row = json.loads(line)
-                if str(row.get("id")) == str(artifact_id):
-                    return row.get("text", "")
-        return None
+        if _VERSE_INDEX is None:
+            path = OUT / "verse-corpus.jsonl"
+            if not path.exists():
+                return None
+            _VERSE_INDEX = {}
+            for line in path.read_text(encoding="utf-8").splitlines():
+                if line.strip():
+                    row = json.loads(line)
+                    _VERSE_INDEX[str(row.get("id"))] = row.get("text", "")
+        return _VERSE_INDEX.get(str(artifact_id))
     if kind == "book":
         path = OUT / ("book-" + str(artifact_id) + ".md")
     elif kind == "research-paper":
