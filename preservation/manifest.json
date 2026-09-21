@@ -1,0 +1,13 @@
+{
+  "manifest_version": "1.0",
+  "layer": "SHIRMANI HEART-VIEW SUPREME REASONING LAYER",
+  "rule": "Preserve first. Reason second. Transform only as a traceable derivative.",
+  "source_count": 1,
+  "source_units": [
+    "SHVSL-USER-000001"
+  ],
+  "immutable_source_path": "preservation/source-units.jsonl",
+  "hash_algorithm": "SHA-256",
+  "generated_by": "ChatGPT GitHub continuation",
+  "integrity_note": "This manifest records preservation metadata; it does not claim that all historical conversation material has been imported."
+}
