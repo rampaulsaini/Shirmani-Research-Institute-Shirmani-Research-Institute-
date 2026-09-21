@@ -153,6 +153,28 @@ jobs:
               raise SystemExit("Unified publication gate is BLOCK")
           PY
 
+      - name: Archive oversized generated artifacts
+        if: always()
+        run: |
+          set -e
+          find generated -type f -size +50M -print > generated/oversized-artifact-paths.txt
+          if [ -s generated/oversized-artifact-paths.txt ]; then
+            tar -czf generated/oversized-artifacts.tar.gz -T generated/oversized-artifact-paths.txt
+          else
+            : > generated/oversized-artifacts.tar.gz
+          fi
+
+      - name: Upload oversized generated artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-generated-oversized-${{ github.run_id }}
+          path: |
+            generated/oversized-artifacts.tar.gz
+            generated/oversized-artifact-paths.txt
+          if-no-files-found: warn
+          retention-days: 30
+
       - name: Publish generated catalog
         if: github.event_name != 'pull_request'
         run: |
@@ -163,6 +185,16 @@ jobs:
             git fetch origin main
             git reset --mixed origin/main
             git add generated factory
+            # GitHub blocks files above 100 MiB. Keep oversized generated
+            # products in the Actions artifact archive while publishing all
+            # compact manifests, indexes, QC reports and website-facing state.
+            if [ -s generated/oversized-artifact-paths.txt ]; then
+              while IFS= read -r large_file; do
+                [ -n "$large_file" ] && git reset -- "$large_file" || true
+              done < generated/oversized-artifact-paths.txt
+            fi
+            git reset -- generated/oversized-artifact-paths.txt generated/oversized-artifacts.tar.gz || true
+            rm -f generated/oversized-artifact-paths.txt generated/oversized-artifacts.tar.gz
             if git diff --cached --quiet; then
               exit 0
             fi
