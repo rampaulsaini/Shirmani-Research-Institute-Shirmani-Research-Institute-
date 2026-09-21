@@ -1,21 +1,32 @@
 {
-  "generated_at": "2026-09-20T05:57:07Z",
+  "generated_at": "2026-09-20T06:45:34.333317+00:00",
   "mode": "free-first-orchestration",
   "status": "OPERATIONAL_WITH_FACTORY_STATUS_RESTORED",
-  "records": null,
-  "processed_batch": null,
+  "records": 100000,
+  "processed_batch": 1000,
+  "source": "generated/agent-run/factory-status.json",
   "qc": {
-    "ok": false,
-    "state": "CHECK",
-    "reason": "No verified factory batch counters were available at continuity repair time."
+    "ok": true,
+    "state": "PASS",
+    "errors": [],
+    "warnings": [],
+    "artifact_records": 1000,
+    "policy": "QC is a gate, not independent scientific validation."
+  },
+  "publication": {
+    "status": "generated",
+    "research_is_draft": true,
+    "verification_required": true,
+    "source_of_truth": "generated/agent-run/artifact-manifest.jsonl"
   },
   "dashboard_contract": {
-    "factory_status": "RESTORED",
+    "factory_status": "AVAILABLE",
     "agent_status": "AVAILABLE",
     "federation_status": "AVAILABLE"
   },
   "integrity": {
     "fabricated_metrics": false,
-    "missing_values": "explicitly null"
-  }
+    "mirror_of": "generated/agent-run/factory-status.json"
+  },
+  "note": "Dashboard-facing execution metadata; not proof of scientific truth."
 }

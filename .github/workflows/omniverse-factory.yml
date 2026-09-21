@@ -77,6 +77,11 @@ jobs:
       - name: Build durable continuity manifest
         run: python3 factory/continuity_manifest.py
 
+      - name: Refresh dashboard factory status
+        run: |
+          test -s generated/agent-run/factory-status.json
+          cp generated/agent-run/factory-status.json generated/factory-status.json
+
       - name: Validate generated catalog
         run: |
           test -s generated/repository-intelligence.json
@@ -95,6 +100,7 @@ jobs:
           PY
           test -s generated/canonical-index.json
           test -s generated/verse-corpus.jsonl
+          test -s generated/factory-status.json
           python3 - <<'PY'
           import json
           from pathlib import Path
