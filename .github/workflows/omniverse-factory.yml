@@ -23,6 +23,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Build protected-source preservation manifest
+        run: python3 factory/protected_source_manifest.py
+
+      - name: Validate protected-source records when present
+        run: |
+          if [ -f generated/protected-user-source.jsonl ]; then
+            python3 scripts/validate_protected_sources.py generated/protected-user-source.jsonl
+          else
+            echo "No protected-source JSONL supplied; preservation inventory remains empty."
+          fi
+
       - name: Build repository intelligence
         run: python3 factory/repository_intelligence.py
 
