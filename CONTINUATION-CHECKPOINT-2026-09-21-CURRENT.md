@@ -1,5 +1,5 @@
 # ꙰ SHIRMANI HEART-VIEW — CURRENT CONTINUATION CHECKPOINT
-## 2026-09-21 — Continuation state refreshed
+## 2026-09-22 — Continuation state refreshed
 
 This is a derived engineering record. It does not replace, rewrite, normalize, or claim ownership of protected user source.
 
@@ -13,10 +13,9 @@ This is a derived engineering record. It does not replace, rewrite, normalize, o
 - Default branch: `main`
 - Repository visibility: public
 - Owner permissions: admin / maintain / push
-- Latest merged continuity checkpoint: PR #116
-- Latest checkpoint commit: `bca8e7381d298eb1fa36be95a938a08c9d687e9a`
-- PR #116 was merged on 2026-09-21 and added only an additive continuity record; it did not modify the protected user-source boundary.
-- The factory workflow and verification tooling remain present on `main`.
+- Continuation PRs used for this run: **#156, #157, #158**
+- Protected source boundary remained unchanged.
+- Factory workflow and verification tooling remain present on `main`.
 
 ## Recorded research baseline
 - Source units: **3,625**
@@ -39,30 +38,33 @@ This is a derived engineering record. It does not replace, rewrite, normalize, o
 - Verification queue QC: **PASS**
 - Research-evidence graph QC: **PASS**
 - Unified publication gate: **PASS**
-- Verification promotion gate: **CHECK**
-- Deterministic blocking errors: **0**
+- Review-slice packet QC for 26–50: **PASS**
+- Review-slice packet QC for 51–75: **PASS**
+- Review-slice packet QC for 76–100: **PASS**
+- Deterministic blocking errors recorded by the continuation slices: **0**
 - Independent substantive verification: **NOT YET PERFORMED**
+
+## Hash-bound review packets now prepared
+- Records **26–50**: 25 records — READY_FOR_HUMAN_REVIEW — VERIFIED **0**
+- Records **51–75**: 25 records — READY_FOR_HUMAN_REVIEW — VERIFIED **0**
+- Records **76–100**: 25 records — READY_FOR_HUMAN_REVIEW — VERIFIED **0**
+- First 100 queue positions with review packets prepared: **75**
+- First 100 queue positions still without a generated packet: **25**
+- These are packet-preparation counts, **not scientific/independent verification counts**.
 
 ## Verification infrastructure
 - Hash-bound review packet generator: `factory/verification_review_packet.py`
 - Fail-closed promotion gate: `factory/verification_promotion_gate.py`
-- Workflow dispatch parameters exist for `review_batch_size` and `review_offset`.
-- The review packet explicitly remains `READY_FOR_HUMAN_REVIEW`.
-- A task hash binds each review slot to the exact queue task.
-- VERIFIED requires actual independent reviewer data, evidence references, countercase review, reproduction/test support, timestamp, audit record, and matching task hash.
+- Each review slot is bound to the exact current queue task hash.
+- VERIFIED requires genuine independent reviewer data, evidence references, countercase review, reproduction/test support, timestamp, audit record, and matching task hash.
 - No reviewer identity, evidence, test result, or VERIFIED state has been invented.
 
-## Dashboard / factory endpoint
-- `generated/factory-status.json` exists and is populated.
-- The dashboard factory endpoint restoration is therefore recorded as complete.
-- The durable continuity manifest records the latest successful factory/QC run and artifact hashes.
-
 ## Next incomplete stage
-The first substantive incomplete stage is **independent human/audit verification of queued claims**.
+The first substantive incomplete stage remains **independent human/audit verification of queued claims**.
 
 Safe continuation sequence:
 1. Keep the protected source unchanged.
-2. Prepare the next explicit review packet from the queue.
+2. Continue generating explicit hash-bound review packets in exact queue order.
 3. Review real claims against real source/evidence.
 4. Record evidence, countercases, tests, uncertainty, reviewer identity/role, timestamp, and audit data only when genuinely available.
 5. Promote only records that satisfy the fail-closed promotion policy.
@@ -72,4 +74,4 @@ Safe continuation sequence:
 ## Integrity boundary
 No source, quotation, calculation, experiment, reviewer action, verification result, or completion percentage may be invented merely to make the project appear more complete.
 
-**STATUS: CONTINUATION READY — ENGINEERING INFRASTRUCTURE IS ACTIVE; SUBSTANTIVE INDEPENDENT HUMAN VERIFICATION REMAINS THE PRINCIPAL OPEN STAGE.**
+**STATUS: CONTINUATION READY — ENGINEERING PIPELINE ACTIVE — REVIEW PACKETS 26–100 PREPARED — INDEPENDENT HUMAN VERIFICATION REMAINS OPEN.**
