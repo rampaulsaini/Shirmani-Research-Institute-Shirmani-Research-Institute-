@@ -69,6 +69,9 @@ jobs:
       - name: Run verification promotion gate
         run: python3 factory/verification_promotion_gate.py
 
+      - name: Prepare first independent verification review packet
+        run: python3 factory/verification_review_packet.py --batch-size 25 --offset 0
+
       - name: Build research evidence traceability graph
         run: python3 factory/research_evidence_graph.py
 
