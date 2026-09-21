@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: shirmani-factory-publish
@@ -157,24 +158,25 @@ jobs:
         if: github.event_name != 'pull_request'
         run: python3 factory/archive_large_artifacts.py
 
-      - name: Publish generated catalog
+      - name: Publish generated catalog through pull request
         if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -e
           git config user.name "omniverse-factory[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git reset --mixed origin/main
-            git add generated factory
-            if git diff --cached --quiet; then
-              exit 0
-            fi
-            git commit -m "chore(factory): refresh research products"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            git reset --hard origin/main
-          done
-          echo "Could not publish after 3 attempts because main kept changing." >&2
-          exit 1
+          git fetch origin main
+          git reset --mixed origin/main
+          git add generated factory
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore(factory): refresh research products"
+          BRANCH="factory/generated-refresh"
+          git branch -f "$BRANCH" HEAD
+          git push --force-with-lease origin "HEAD:$BRANCH"
+          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0
+; then
+            gh pr create               --base main               --head "$BRANCH"               --title "chore(factory): publish verified generated research products"               --body "Automated publication PR created after the deterministic Heart-View factory gates passed. Protected source material is not rewritten. Generated outputs remain derivatives and subject to the repository verification policy."
+          fi
