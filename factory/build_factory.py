@@ -29,6 +29,37 @@ def classify_source(path, text):
         return "code"
     return "documentation"
 
+def source_type_enum(kind):
+    return {
+        "research": "PAPER",
+        "philosophy": "OTHER",
+        "workflow": "OTHER",
+        "documentation": "OTHER",
+        "media-metadata": "OTHER",
+        "code": "REPOSITORY",
+    }.get(kind, "OTHER")
+
+
+def source_record(repository, branch, path, raw_text, normalized_text, source_kind, recorded_at):
+    identity=f"{repository}:{path}"
+    source_id="SRC-"+hashlib.sha256(identity.encode("utf-8")).hexdigest()[:16]
+    return {
+        "source_id": source_id,
+        "source_repository": repository,
+        "source_path_or_url": path,
+        "source_type": source_type_enum(source_kind),
+        "source_status": "ORIGINAL",
+        "title_or_label": Path(path).name,
+        "content_hash": hashlib.sha256(raw_text.encode("utf-8")).hexdigest(),
+        "normalized_content_hash": hashlib.sha256(normalized_text.encode("utf-8")).hexdigest(),
+        "recorded_at": recorded_at,
+        "version": branch or "UNKNOWN",
+        "attribution": repository,
+        "parent_source_id": None,
+        "notes": "Inventory record emitted by the source-first factory; no source wording is rewritten by this record."
+    }
+
+
 def clone_sources():
     result=[]
     token=os.environ.get("FACTORY_GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
@@ -75,17 +106,23 @@ def clone_sources():
 
 def collect(source_meta):
     by_name={x["repository"].split("/",1)[1]:x for x in source_meta if x.get("available")}
-    out=[]; stamp=datetime.now(timezone.utc).isoformat()
+    out=[]; inventory=[]; stamp=datetime.now(timezone.utc).isoformat()
     for p in WORK.rglob("*"):
         if ".git" in p.parts: continue
         if p.is_file() and p.suffix.lower() in TEXT_EXT:
             repo_dir=p.relative_to(WORK).parts[0]; meta=by_name.get(repo_dir,{})
-            s=p.read_text(encoding="utf-8",errors="ignore")
-            s=re.sub(r"<script[\s\S]*?</script>"," ",s,flags=re.I); s=re.sub(r"<style[\s\S]*?</style>"," ",s,flags=re.I)
+            raw=p.read_text(encoding="utf-8",errors="ignore")
+            s=re.sub(r"<script[\s\S]*?</script>"," ",raw,flags=re.I); s=re.sub(r"<style[\s\S]*?</style>"," ",s,flags=re.I)
             s=re.sub(r"<[^>]+>"," ",s); s=re.sub(r"https?://\S+"," ",s); s=re.sub(r"\s+"," ",s).strip()
             if len(s)>80:
-                rel=str(p.relative_to(WORK/repo_dir)); out.append({"repository":meta.get("repository",repo_dir),"branch":meta.get("default_branch"),"path":rel,"text":s[:12000],"source_type":classify_source(rel,s),"collected_at":stamp})
-    return out
+                rel=str(p.relative_to(WORK/repo_dir)); kind=classify_source(rel,s)
+                out.append({"repository":meta.get("repository",repo_dir),"branch":meta.get("default_branch"),
+                            "path":rel,"text":s[:12000],"source_type":kind,
+                            "raw_content_hash":hashlib.sha256(raw.encode("utf-8")).hexdigest(),
+                            "collected_at":stamp})
+                inventory.append(source_record(meta.get("repository",repo_dir),meta.get("default_branch"),
+                                                rel,raw,s,kind,stamp))
+    return out, inventory
 
 def units(items):
     u=[]
@@ -117,12 +154,16 @@ def generated_claim_meta(text, source_id):
             "human_review_required": True}
 
 def main():
-    stamp=datetime.now(timezone.utc).isoformat(); sources=clone_sources(); u=units(collect(sources)); t=CFG["product_targets"]
+    stamp=datetime.now(timezone.utc).isoformat(); sources=clone_sources(); collected, inventory=collect(sources); u=units(collected); t=CFG["product_targets"]
     manifest={"generated_at":stamp,"sources":sources,"targets":t,"units":len(u),"architecture":"source-first; generated products never become canonical inputs"}
     (OUT/"manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
+    with (OUT/"source-records.jsonl").open("w",encoding="utf-8") as f:
+        for record in inventory:
+            f.write(json.dumps(record,ensure_ascii=False) + "\n")
+
     with (OUT/"source-units.jsonl").open("w",encoding="utf-8") as f:
         for i,item in enumerate(u,1):
-            row={"id":i,"repository":item["repository"],"branch":item["branch"],"path":item["path"],"source_hash":item["source_hash"],"text":item["text"],"source_type":item["source_type"],"collected_at":item["collected_at"]}
+            row={"id":i,"repository":item["repository"],"branch":item["branch"],"path":item["path"],"source_hash":item["source_hash"],"raw_content_hash":item.get("raw_content_hash"),"text":item["text"],"source_type":item["source_type"],"collected_at":item["collected_at"]}
             f.write(json.dumps(row,ensure_ascii=False)+"\n")
     if "--bootstrap-only" in sys.argv: return
     if not u: raise RuntimeError("No usable source units found; source isolation/authentication must be fixed before generation.")
