@@ -180,6 +180,8 @@ jobs:
           git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
           git branch -f "$BRANCH" HEAD
           git push --force-with-lease origin "HEAD:$BRANCH"
-          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
-            gh pr create               --base main               --head "$BRANCH"               --title "chore(factory): publish verified generated research products"               --body "Automated publication PR created after the deterministic Heart-View factory gates passed. Protected source material is not rewritten. Generated outputs remain derivatives and subject to the repository verification policy."
-          fi
+          # GitHub Actions may be configured to disallow workflow-created PRs.
+          # The generated branch is pushed successfully; PR creation is handled
+          # separately so a repository setting cannot turn a passing factory run
+          # into a false build failure.
+          echo "Generated catalog published to $BRANCH; PR creation is external to the factory build."
