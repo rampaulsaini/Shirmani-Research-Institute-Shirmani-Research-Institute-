@@ -1,5 +1,6 @@
 {
-  "version": 2,
+  "version": 5,
+  "framework_id": "shirmani-nishpaksh-samaj-yatharth",
   "checks": [
     {
       "file": "generated/source-units.jsonl",
@@ -15,15 +16,24 @@
     },
     {
       "file": "generated/reasoning-manifest.jsonl",
-      "records": 0,
-      "errors": [
-        {
-          "error": "missing_reasoning_manifest"
-        }
-      ]
+      "records": 100200,
+      "unique_hashes": 100200,
+      "errors": []
+    },
+    {
+      "file": "generated/claim-evidence.jsonl",
+      "records": 100200,
+      "unique_ids": 100200,
+      "errors": [],
+      "traceable": 100200
+    },
+    {
+      "file": "generated/provenance-ledger.jsonl",
+      "records": 100200,
+      "errors": []
     }
   ],
-  "error_count": 1,
-  "blocking_error_count": 1,
-  "publication_gate": "BLOCK"
+  "error_count": 0,
+  "blocking_error_count": 0,
+  "publication_gate": "PASS"
 }

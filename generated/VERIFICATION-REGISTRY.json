@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "records": 100200,
+  "queued": 100200,
+  "reviewed": 0,
+  "verified": 0,
+  "preserved_existing_reviews": 0,
+  "reset_for_changed_task": 0,
+  "promotion_gate": "CHECK",
+  "policy": "Persisted review records are preserved when task provenance is unchanged; changed tasks receive fresh review slots. No reviewer/evidence/verification is invented."
+}

@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "publication_gate": "PASS",
+  "required_reports": {
+    "deterministic_qc": "QC-REPORT.json",
+    "formulation_qc": "FORMULATION-QC.json",
+    "verification_queue_qc": "VERIFICATION-QUEUE-QC.json",
+    "verification_promotion_qc": "VERIFICATION-PROMOTION-QC.json",
+    "research_evidence_graph_qc": "RESEARCH-EVIDENCE-GRAPH-QC.json"
+  },
+  "missing_reports": [],
+  "invalid_reports": [],
+  "blocked_reports": [],
+  "verification_is_independent": false,
+  "policy": "Provenance, generated reasoning, and verification queues are not independent proof. VERIFIED requires the separate human/audit promotion gate.",
+  "reports": {
+    "deterministic_qc": {
+      "version": 5,
+      "framework_id": "shirmani-nishpaksh-samaj-yatharth",
+      "checks": [
+        {
+          "file": "generated/source-units.jsonl",
+          "records": 3625,
+          "unique_hashes": 0,
+          "errors": []
+        },
+        {
+          "file": "generated/verse-corpus.jsonl",
+          "records": 100000,
+          "unique_hashes": 100000,
+          "errors": []
+        },
+        {
+          "file": "generated/reasoning-manifest.jsonl",
+          "records": 100200,
+          "unique_hashes": 100200,
+          "errors": []
+        },
+        {
+          "file": "generated/claim-evidence.jsonl",
+          "records": 100200,
+          "unique_ids": 100200,
+          "errors": [],
+          "traceable": 100200
+        },
+        {
+          "file": "generated/provenance-ledger.jsonl",
+          "records": 100200,
+          "errors": []
+        }
+      ],
+      "error_count": 0,
+      "blocking_error_count": 0,
+      "publication_gate": "PASS"
+    },
+    "formulation_qc": {
+      "version": 1,
+      "records": 100200,
+      "passed_records": 100200,
+      "error_count": 0,
+      "publication_gate": "PASS",
+      "errors": []
+    },
+    "verification_queue_qc": {
+      "version": 1,
+      "records": 100200,
+      "unique_tasks": 100200,
+      "claim_records": 100200,
+      "error_count": 0,
+      "publication_gate": "PASS",
+      "errors": []
+    },
+    "verification_promotion_qc": {
+      "version": 1,
+      "records": 100200,
+      "verified_records": 0,
+      "promotion_eligible": 0,
+      "error_count": 0,
+      "publication_gate": "CHECK",
+      "queue_records": 100200,
+      "orphan_queue_tasks": 0,
+      "policy": "Only complete independent review, evidence, countercase, reproduction/test and audit records may reach VERIFIED; every review must match the exact current queue task hash.",
+      "errors": []
+    },
+    "research_evidence_graph_qc": {
+      "version": 2,
+      "nodes": 604825,
+      "edges": 714998,
+      "claim_nodes": 100200,
+      "claims_with_explicit_evidence_nodes": 100200,
+      "error_count": 0,
+      "publication_gate": "PASS",
+      "policy": "Graph integrity is deterministic traceability QC; evidence nodes do not establish truth or independent verification.",
+      "errors": []
+    }
+  }
+}
