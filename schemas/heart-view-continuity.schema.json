@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Heart View Continuity Contract",
+  "type":"object",
+  "required":["schema_version","stage","state","framework","continuity","recognition","epistemic_status","integrity"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "stage":{"const":"HEART_VIEW_CONTINUITY"},
+    "state":{"const":"HEART_VIEW_FRAMEWORK"},
+    "framework":{"type":"string"},
+    "continuity":{"type":"string"},
+    "recognition":{"type":"array","items":{"type":"string"}},
+    "epistemic_status":{"enum":["FRAMEWORK_DESCRIPTION","USER_REPORTED_EXPERIENCE","NOT_VERIFIED"]},
+    "integrity":{"type":"object","required":["physiological_claims_invented","evidence_upgraded"],"properties":{"physiological_claims_invented":{"const":false},"evidence_upgraded":{"const":false}}}
+  },
+  "additionalProperties":false
+}
