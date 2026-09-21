@@ -34,52 +34,36 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-
       - name: Build repository intelligence
         run: python3 factory/repository_intelligence.py
-
       - name: Build free deterministic archive
         run: python3 factory/build_factory.py
-
       - name: Build incremental canonical knowledge layer
         run: python3 factory/canonical_knowledge.py
-
       - name: Build resumable canonical batches
         run: python3 factory/canonical_index.py
-
       - name: Build source integrity manifest
         run: python3 factory/source_integrity_manifest.py
-
       - name: Validate canonical knowledge records
         run: python3 factory/canonical_record_qc.py
-
       - name: Run resumable product batch worker
         run: python3 factory/batch_worker.py --batch-size 1000
-
       - name: Build deterministic reasoning, provenance and claim-evidence layer
         run: python3 factory/reasoning_pipeline.py
-
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
-
       - name: Build deterministic formulation/test records
         run: python3 factory/formulation_records.py
-
       - name: Run formulation/test QC
         run: python3 factory/formulation_qc.py
-
       - name: Build independent verification queue
         run: python3 factory/verification_queue.py
-
       - name: Run verification queue QC
         run: python3 factory/verification_queue_qc.py
-
       - name: Build independent verification registry
         run: python3 factory/verification_registry.py
-
       - name: Run verification promotion gate
         run: python3 factory/verification_promotion_gate.py
-
       - name: Prepare independent verification review packet
         env:
           REVIEW_BATCH_SIZE: ${{ inputs.review_batch_size || '25' }}
@@ -88,31 +72,26 @@ jobs:
           python3 factory/verification_review_packet.py \
             --batch-size "$REVIEW_BATCH_SIZE" \
             --offset "$REVIEW_OFFSET"
-
+      - name: Run verification review packet QC
+        run: python3 factory/verification_review_packet_qc.py
       - name: Upload independent verification review packet
         uses: actions/upload-artifact@v4
         with:
           name: shirmani-heart-view-review-packet
           path: generated/verification-review-packet-*.json
           if-no-files-found: error
-
       - name: Build research evidence traceability graph
         run: python3 factory/research_evidence_graph.py
-
       - name: Run research evidence graph QC
         run: python3 factory/research_evidence_graph_qc.py
-
       - name: Build unified publication safety gate
         run: python3 factory/publication_gate.py
-
       - name: Build durable continuity manifest
         run: python3 factory/continuity_manifest.py
-
       - name: Refresh dashboard factory status
         run: |
           test -s generated/agent-run/factory-status.json
           cp generated/agent-run/factory-status.json generated/factory-status.json
-
       - name: Validate generated catalog
         run: |
           test -s generated/repository-intelligence.json
@@ -151,6 +130,7 @@ jobs:
           test -s generated/independent-verification-registry.jsonl
           test -s generated/VERIFICATION-REGISTRY.json
           test -s generated/VERIFICATION-PROMOTION-QC.json
+          test -s generated/VERIFICATION-PACKET-QC.json
           test -s generated/PUBLICATION-GATE.json
           test -s generated/research-evidence-graph.json
           test -s generated/RESEARCH-EVIDENCE-GRAPH.json
@@ -161,8 +141,11 @@ jobs:
           from pathlib import Path
           report=json.loads(Path("generated/QC-REPORT.json").read_text())
           queue=json.loads(Path("generated/VERIFICATION-QUEUE-QC.json").read_text())
+          packet=json.loads(Path("generated/VERIFICATION-PACKET-QC.json").read_text())
           if queue.get("publication_gate") != "PASS":
               raise SystemExit("Independent verification queue QC is not PASS")
+          if packet.get("publication_gate") != "PASS":
+              raise SystemExit("Verification review packet QC is not PASS")
           if report.get("publication_gate") == "BLOCK":
               raise SystemExit("QC publication gate is BLOCK: deterministic QC found blocking integrity errors")
           if report.get("publication_gate") not in {"PASS", "CHECK"}:
@@ -180,11 +163,9 @@ jobs:
           if publication.get("publication_gate") == "BLOCK":
               raise SystemExit("Unified publication gate is BLOCK")
           PY
-
       - name: Archive oversized generated artifacts
         if: github.event_name != 'pull_request'
         run: python3 factory/archive_large_artifacts.py
-
       - name: Publish generated catalog through pull request
         if: github.event_name != 'pull_request'
         env:
@@ -201,12 +182,9 @@ jobs:
           fi
           git commit -m "chore(factory): refresh research products"
           BRANCH="factory/generated-refresh"
-          # Refresh the remote-tracking ref before force-with-lease so a prior
-          # successful factory publication cannot make this run fail with
-          # Git's "stale info" rejection.
           git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
           git branch -f "$BRANCH" HEAD
           git push --force-with-lease origin "HEAD:$BRANCH"
           if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
-            gh pr create               --base main               --head "$BRANCH"               --title "chore(factory): publish verified generated research products"               --body "Automated publication PR created after the deterministic Heart-View factory gates passed. Protected source material is not rewritten. Generated outputs remain derivatives and subject to the repository verification policy."
+            gh pr create --base main --head "$BRANCH" --title "chore(factory): publish verified generated research products" --body "Automated publication PR created after the deterministic Heart-View factory gates passed. Protected source material is not rewritten. Generated outputs remain derivatives and subject to the repository verification policy."
           fi
