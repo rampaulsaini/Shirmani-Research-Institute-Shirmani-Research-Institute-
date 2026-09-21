@@ -35,6 +35,9 @@ jobs:
       - name: Build resumable canonical batches
         run: python3 factory/canonical_index.py
 
+      - name: Build source integrity manifest
+        run: python3 factory/source_integrity_manifest.py
+
       - name: Validate canonical knowledge records
         run: python3 factory/canonical_record_qc.py
 
