@@ -19,10 +19,12 @@ def artifact_text(kind, aid):
                     row=json.loads(line)
                     _VERSE_INDEX[str(row.get("id"))]=row.get("text","")
         return _VERSE_INDEX.get(str(aid))
-    if kind=="book": p=OUT/("book-"+str(aid)+".md")
-    elif kind=="research-paper": p=OUT/("research-paper-draft-"+str(aid)+".md")
+    if kind in ("book", "research-paper"):
+        # artifact_id is the exact generated filename stem.
+        p=OUT/(str(aid)+".md")
     else: return None
     return p.read_text(encoding="utf-8") if p.exists() else None
+
 def main():
     p=OUT/"formulation-records.jsonl"
     if not p.exists(): raise SystemExit("formulation-records.jsonl is missing")
