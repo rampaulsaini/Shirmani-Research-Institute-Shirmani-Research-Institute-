@@ -35,6 +35,9 @@ jobs:
       - name: Build resumable canonical batches
         run: python3 factory/canonical_index.py
 
+      - name: Validate canonical knowledge records
+        run: python3 factory/canonical_record_qc.py
+
       - name: Run resumable product batch worker
         run: python3 factory/batch_worker.py --batch-size 1000
 
@@ -82,6 +85,14 @@ jobs:
           test -s generated/source-units.jsonl
           test -s generated/canonical-knowledge.jsonl
           test -s generated/canonical-knowledge-manifest.json
+          test -s generated/CANONICAL-RECORD-QC.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path("generated/CANONICAL-RECORD-QC.json").read_text())
+          if report.get("publication_gate") != "PASS":
+              raise SystemExit("Canonical record QC is not PASS")
+          PY
           test -s generated/canonical-index.json
           test -s generated/verse-corpus.jsonl
           python3 - <<'PY'
