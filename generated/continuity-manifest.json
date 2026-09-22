@@ -1,44 +1,44 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-21T09:16:45.610653+00:00",
+  "generated_at": "2026-09-22T15:34:15.600166+00:00",
   "git": {
-    "sha": "6eb84f14aa7dfe1f878e92b6173fd0a6f58c7495",
+    "sha": "25eab372dee0e6a39dadaded759d9e7ba512300a",
     "ref": "refs/heads/main",
     "workflow": "Omniverse Research Factory",
-    "run_id": "35582166171",
-    "run_number": "349",
+    "run_id": "35747608557",
+    "run_number": "750",
     "event": "push"
   },
   "continuity": {
     "policy": "resume from durable generated outputs; preserve canonical/source records",
-    "last_good_workflow_run": "35582166171",
+    "last_good_workflow_run": "35747608557",
     "qc_publication_gate": "PASS",
     "qc_error_count": 0
   },
   "artifacts": {
     "repository-intelligence.json": {
       "bytes": 8732,
-      "sha256": "2ecd53630f305cd7a0d7a1c40fa289bb47d5f7940de4529f69f6afed2d3ab6b1"
+      "sha256": "4b350d93f528459dd102ae674116bebdeb381702d48ac9b2081fb62551627e98"
     },
     "manifest.json": {
       "bytes": 8951,
-      "sha256": "74eb44c3db8759efce0511160abad6702bb8f2c2f026732c8f97415b48836a3a"
+      "sha256": "28a038957420044a0e2bd485477382c2eefa425544bbe3b4e3c9b44ae4a7ddcc"
     },
     "source-units.jsonl": {
       "bytes": 1741351,
-      "sha256": "6c73e3c5ae34625d1e7e159b5857be6f8e9fce8542b45ae6fca4ba8a11fa629b"
+      "sha256": "febb6b08e5118b7d3cfcd1270bad047a70f9c38394943a829edda1a800e2248a"
     },
     "canonical-knowledge.jsonl": {
       "bytes": 2219648,
-      "sha256": "e5d6dfd9eff32e8c22f1dc09664e47781c1a191741ae8a59483631e6b8392c2a"
+      "sha256": "c934a4a2533dee5fa0bdf9ca038b7a70923fdc43c55298fbcb2000e73cb2efb5"
     },
     "canonical-knowledge-manifest.json": {
       "bytes": 361,
-      "sha256": "7f6883050d0e5353eafccc3fe17caef7986aeb853dd818e57db73bb84f8af290"
+      "sha256": "714d59b965713e07029f46718deb79541a7b65d95527c798ee25da57a32461da"
     },
     "canonical-index.json": {
       "bytes": 3342,
-      "sha256": "f48b932c47c6e2aca2a3cfe407afbf9370877b80db016d72ea3ff636788671fe"
+      "sha256": "42c8f3ce2afaeaca2e74d7715dbcd4bb070133dccf26174c793275f6f75af8c5"
     },
     "verse-corpus.jsonl": {
       "bytes": 146431282,
@@ -46,19 +46,19 @@
     },
     "reasoning-manifest.jsonl": {
       "bytes": 335334382,
-      "sha256": "128787bed635e1930713156f2e26084b1f5bc5ec8b4467f49b204eb74b479d94"
+      "sha256": "98027feb328cb7e0671434bb31ce4f11c4f5b1f46c8290b8a22228518ca36484"
     },
     "claim-evidence.jsonl": {
       "bytes": 193150830,
-      "sha256": "78c4e251a9394d43c7615af765c1dacaa6316f65d5999da227d2df3268e01a6d"
+      "sha256": "800733dbae0bdd06389e3f5cbe36c5448ca767a3be4f3303f19c912374d49292"
     },
     "provenance-ledger.jsonl": {
       "bytes": 30974871,
-      "sha256": "189c25e2cd8ab51e705664230f7e2d7e4105a020d74ef5a0fda00fbb561d16cc"
+      "sha256": "49c45582bbf4c0364493ecd1ab5813a16b8a5c74879787d71561c33e16303df5"
     },
     "independent-verification-queue.jsonl": {
       "bytes": 72157071,
-      "sha256": "1b28681867adec3665a78acba9a4e06a181aa2236d106ebcd1f0f9b587ddd2cb"
+      "sha256": "fc9a68e952ae3b72422b20a25f7b5fb683cb2552aca91146b7521c3e192e91e2"
     },
     "VERIFICATION-QUEUE.json": {
       "bytes": 176,
@@ -70,7 +70,7 @@
     },
     "independent-verification-registry.jsonl": {
       "bytes": 67626895,
-      "sha256": "4a5673b35fe520e7108256fc79e03595edeae7a7b7dbf90971dab79253abd8b2"
+      "sha256": "db753921ac3aba6f6ea08a6033d818c253e750f53d62e2ac0e2a7f06f97bf5e7"
     },
     "VERIFICATION-REGISTRY.json": {
       "bytes": 367,
@@ -79,6 +79,10 @@
     "VERIFICATION-PROMOTION-QC.json": {
       "bytes": 400,
       "sha256": "1557bb1f93f56dd56bb8e598aa26dfb4819dfd27f53dd466eeee812c82487f99"
+    },
+    "VERIFICATION-PACKET-QC.json": {
+      "bytes": 294,
+      "sha256": "ef728696e051b9da54ffc273e36fba3d6f0f3dc18d4d6443cb06c4d219ad62df"
     },
     "PUBLICATION-GATE.json": {
       "bytes": 2956,
@@ -102,7 +106,7 @@
     },
     "worker-status.json": {
       "bytes": 779,
-      "sha256": "bc4f5d52e2f6f1d38cddf387d67bdc7f0c24969357a716dd68d36df81db7dc31"
+      "sha256": "099147558d0c818a3227ffdccc2394a6651b9cce74e3548bb6e91c936cf0866e"
     }
   }
 }
