@@ -1,4 +1,4 @@
-# SHIRMANI HEART-VIEW — REVIEW SLICE 651–675
+# SHIRMANI HEART-VIEW — REVIEW SLICE 676–700
 
 Generated from the exact committed compressed queue/registry; no records were reconstructed by inference.
 
