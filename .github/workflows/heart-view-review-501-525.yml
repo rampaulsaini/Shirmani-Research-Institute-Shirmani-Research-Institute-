@@ -3,7 +3,7 @@ name: SHIRMANI Heart-View Review Slice 501-525
 on:
   push:
     branches:
-      - continue/heart-view-review-501-525-20260922
+      - main
     paths:
       - "CONTINUE-REVIEW-SLICE-000501-000525.trigger"
 
