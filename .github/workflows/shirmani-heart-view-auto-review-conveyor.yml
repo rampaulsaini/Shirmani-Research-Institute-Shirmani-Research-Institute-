@@ -118,6 +118,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          BRANCH="automation/heart-view-review-${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}"
           PR_NUMBER=$(gh pr list --base main --head "$BRANCH" --state open --json number --jq '.[0].number // empty')
           if [ -n "$PR_NUMBER" ]; then
             gh pr merge "$PR_NUMBER" --auto --squash --delete-branch || true
