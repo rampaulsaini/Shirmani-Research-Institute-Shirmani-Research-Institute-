@@ -112,6 +112,16 @@ jobs:
           if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
             gh pr create --base main --head "$BRANCH" --title "ci: auto-prepare Heart-View review ${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}" --body "Automated hash-bound review packet. Packet QC passed. Human verification remains NOT PERFORMED; no VERIFIED status is created."
           fi
+      - name: Enable automatic publication merge
+        if: steps.select.outputs.complete != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          PR_NUMBER=$(gh pr list --base main --head "$BRANCH" --state open --json number --jq '.[0].number // empty')
+          if [ -n "$PR_NUMBER" ]; then
+            gh pr merge "$PR_NUMBER" --auto --squash --delete-branch || true
+          fi
       - name: Clean temporary expanded queue and registry
         if: always()
         run: rm -f generated/independent-verification-queue.jsonl generated/independent-verification-registry.jsonl generated/VERIFICATION-PACKET-QC.json
