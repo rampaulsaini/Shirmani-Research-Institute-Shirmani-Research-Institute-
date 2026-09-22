@@ -46,7 +46,7 @@ jobs:
           if qc.get("publication_gate") != "PASS":
               raise SystemExit("packet QC did not PASS")
           Path("CONTINUATION-REVIEW-SLICE-000676-000700-QC.md").write_text(
-              "# SHIRMANI HEART-VIEW — REVIEW SLICE 651–675\n\n"
+              "# SHIRMANI HEART-VIEW — REVIEW SLICE 676–700\n\n"
               "Generated from the exact committed compressed queue/registry; no records were reconstructed by inference.\n\n"
               "- Packet: generated/verification-review-packet-000676-000700.json\n"
               "- Records: 25\n"
