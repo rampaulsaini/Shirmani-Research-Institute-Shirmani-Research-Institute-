@@ -97,15 +97,23 @@ jobs:
           EOF
           fi
 
-      - name: Publish generated packet directly to main
+      - name: Publish generated packet through pull request
         if: steps.select.outputs.complete != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot].noreply.github.com"
           git add "generated/verification-review-packet-$(printf '%06d' '${{ steps.select.outputs.start }}')-$(printf '%06d' '${{ steps.select.outputs.end }}').json" CONTINUATION-AUTO-STATE.md
           git commit -m "ci: auto-prepare Heart-View review ${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}"
-          git push origin HEAD:main
+          BRANCH="automation/heart-view-review-${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}"
+          git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
+          git branch -f "$BRANCH" HEAD
+          git push --force-with-lease origin "HEAD:$BRANCH"
+          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
+            gh pr create --base main --head "$BRANCH" --title "ci: auto-prepare Heart-View review ${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}" --body "Automated hash-bound review packet. Packet QC passed. Human verification remains NOT PERFORMED; no VERIFIED status is created."
+          fi
       - name: Clean temporary expanded queue and registry
         if: always()
         run: rm -f generated/independent-verification-queue.jsonl generated/independent-verification-registry.jsonl generated/VERIFICATION-PACKET-QC.json
