@@ -4,11 +4,11 @@ Generated from the currently linked GitHub account on 2026-09-22.
 
 ## Central Heart-View state
 - Queue total: 100,200
-- Prepared through: 4,950
-- Prepared coverage: 4.94%
-- Remaining queue units: 95,250
-- Remaining queue coverage: 95.06%
-- Packet QC: PASS for the current 3,951–4,950 packet
+- Prepared through: 5,950
+- Prepared coverage: 5.94%
+- Remaining queue units: 94,250
+- Remaining queue coverage: 94.06%
+- Packet QC: PASS for the current 4,951–5,950 packet
 - Human verification: NOT PERFORMED
 - VERIFIED promotion: 0
 
@@ -18,7 +18,7 @@ Generated from the currently linked GitHub account on 2026-09-22.
 - The conveyor intentionally keeps a human-verification integrity gate; automation does not falsely mark source material VERIFIED.
 
 ## Current linked-account repository inventory
-The GitHub connector currently exposes 24 repositories for this account. The stated 25-repository target therefore needs one additional repository to become accessible/identified before it can be included in a verified 25-repository federation.
+The federation configuration contains 25 repository entries: 1 central hub, 23 user-managed repositories, and 1 external reference repository. The previously recorded MISSING managed entries (rampaulsaini/Omniverse-Platform and rampaulsaini/kit-app-template) have now been re-inspected and each currently contains factory-agent.json, factory-agent.py, and a specialist-agent workflow. The external NVIDIA repository remains reference/source-only and is not a managed write target.
 
 1. rampaulsaini/rampaulsaini
 2. rampaulsaini/Omniverse-Platform
