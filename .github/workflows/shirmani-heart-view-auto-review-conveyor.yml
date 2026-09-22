@@ -7,14 +7,13 @@ on:
     paths:
       - "CONTINUE-AUTO-REVIEW.trigger"
       - "CONTINUE-AUTO-REVIEW-RETRY.trigger"
-  workflow_run:
-    workflows:
-      - "SHIRMANI Heart-View Auto Review Conveyor"
-    types:
-      - completed
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: shirmani-heart-view-auto-review-conveyor
@@ -22,7 +21,6 @@ concurrency:
 
 jobs:
   conveyor:
-    if: github.event_name == 'push' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -39,99 +37,82 @@ jobs:
           gzip -dc generated/independent-verification-queue.jsonl.gz > generated/independent-verification-queue.jsonl
           gzip -dc generated/independent-verification-registry.jsonl.gz > generated/independent-verification-registry.jsonl
 
-      - name: Select the first unprepared range
+      - name: Select first unprepared range
         id: select
-        shell: python
         run: |
+          set -euo pipefail
+          python3 - <<'PY'
           import os, re
           from pathlib import Path
-
-          total = sum(1 for line in Path("generated/independent-verification-queue.jsonl").open(encoding="utf-8") if line.strip())
-          packet_re = re.compile(r"^verification-review-packet-(\d{6})-(\d{6})\.json$")
-          ranges = []
+          total=sum(1 for line in Path("generated/independent-verification-queue.jsonl").open(encoding="utf-8") if line.strip())
+          rx=re.compile(r"^verification-review-packet-(\d{6})-(\d{6})\.json$")
+          ranges=[]
           for p in Path("generated").glob("verification-review-packet-*.json"):
-              m = packet_re.match(p.name)
-              if m:
-                  ranges.append((int(m.group(1)), int(m.group(2))))
-
-          covered = set()
-          for a, b in ranges:
-              covered.update(range(a, b + 1))
-
-          start = next((i for i in range(1, total + 1) if i not in covered), None)
+              m=rx.match(p.name)
+              if m: ranges.append((int(m.group(1)),int(m.group(2))))
+          covered=set()
+          for a,b in ranges: covered.update(range(a,b+1))
+          start=next((i for i in range(1,total+1) if i not in covered),None)
           if start is None:
-              with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-                  f.write("complete=true\n")
-              raise SystemExit(0)
-
-          next_existing = min((a for a, b in ranges if a > start), default=total + 1)
-          end = min(start + 999, next_existing - 1, total)
-          if end < start:
-              raise SystemExit(f"invalid range {start}-{end}")
-
-          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              with open(os.environ["GITHUB_OUTPUT"],"a") as f: f.write("complete=true\n")
+              raise SystemExit
+          next_existing=min((a for a,b in ranges if a>start),default=total+1)
+          end=min(start+999,next_existing-1,total)
+          if end<start: raise SystemExit(f"invalid range {start}-{end}")
+          with open(os.environ["GITHUB_OUTPUT"],"a") as f:
               f.write(f"complete=false\nstart={start}\nend={end}\nsize={end-start+1}\n")
+          PY
 
       - name: Generate exact hash-bound review packet
         if: steps.select.outputs.complete != 'true'
         run: |
           set -euo pipefail
-          python3 factory/verification_review_packet.py \
-            --batch-size "${{ steps.select.outputs.size }}" \
-            --offset "$(( ${{ steps.select.outputs.start }} - 1 ))"
+          python3 factory/verification_review_packet.py             --batch-size "${{ steps.select.outputs.size }}"             --offset "$(( ${{ steps.select.outputs.start }} - 1 ))"
 
       - name: Run fail-closed packet QC
         if: steps.select.outputs.complete != 'true'
         run: |
           set -euo pipefail
-          python3 factory/verification_review_packet_qc.py \
-            --packet "generated/verification-review-packet-$(printf '%06d' '${{ steps.select.outputs.start }}')-$(printf '%06d' '${{ steps.select.outputs.end }}').json"
+          python3 factory/verification_review_packet_qc.py             --packet "generated/verification-review-packet-$(printf '%06d' '${{ steps.select.outputs.start }}')-$(printf '%06d' '${{ steps.select.outputs.end }}').json"
 
-      - name: Write durable conveyor state
+      - name: Persist conveyor state
         run: |
           set -euo pipefail
           if [ "${{ steps.select.outputs.complete }}" = "true" ]; then
-            cat > CONTINUATION-AUTO-STATE.md <<EOFSTATE
-# SHIRMANI HEART-VIEW — AUTO REVIEW CONVEYOR
-
-- Queue total: $(wc -l < generated/independent-verification-queue.jsonl)
-- Queue packet preparation: COMPLETE
-- Human verification: NOT PERFORMED
-- VERIFIED promotion: 0
-
-All queue positions have hash-bound review packets prepared. Human verification remains a separate fail-closed stage.
-
-**Preserve first. Reason second. Verify third. Transform only as a traceable derivative.**
-EOFSTATE
-            exit 0
+            cat > CONTINUATION-AUTO-STATE.md <<EOF
+          # SHIRMANI HEART-VIEW — AUTO REVIEW CONVEYOR
+          - Queue packet preparation: COMPLETE
+          - Human verification: NOT PERFORMED
+          - VERIFIED promotion: 0
+          EOF
+          else
+            cat > CONTINUATION-AUTO-STATE.md <<EOF
+          # SHIRMANI HEART-VIEW — AUTO REVIEW CONVEYOR
+          - Queue total: $(wc -l < generated/independent-verification-queue.jsonl)
+          - Prepared this run: ${{ steps.select.outputs.start }}–${{ steps.select.outputs.end }}
+          - Packet status: READY_FOR_HUMAN_REVIEW
+          - Packet QC: PASS
+          - Human verification: NOT PERFORMED
+          - VERIFIED promotion: 0
+          Preserve first. Reason second. Verify third. Transform only as a traceable derivative.
+          EOF
           fi
 
-          cat > CONTINUATION-AUTO-STATE.md <<EOFSTATE
-# SHIRMANI HEART-VIEW — AUTO REVIEW CONVEYOR
-
-- Queue total: $(wc -l < generated/independent-verification-queue.jsonl)
-- Prepared this run: ${{ steps.select.outputs.start }}–${{ steps.select.outputs.end }}
-- Packet status: READY_FOR_HUMAN_REVIEW
-- Packet QC: PASS
-- Human verification: NOT PERFORMED
-- VERIFIED promotion: 0
-
-The conveyor preserves exact queue hashes and never invents evidence, reviewers, tests, or VERIFIED status.
-
-**Preserve first. Reason second. Verify third. Transform only as a traceable derivative.**
-EOFSTATE
-
-      - name: Commit the generated packet and state
+      - name: Create protected PR and merge
+        if: steps.select.outputs.complete != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          BRANCH="auto/heart-view-${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot].noreply.github.com"
-          git add generated/verification-review-packet-*.json CONTINUATION-AUTO-STATE.md
-          if git diff --cached --quiet; then
-            exit 0
-          fi
-          git commit -m "ci: auto-prepare next SHIRMANI Heart-View review range"
-          git push origin HEAD:main
+          git switch -c "$BRANCH"
+          git add "generated/verification-review-packet-$(printf '%06d' '${{ steps.select.outputs.start }}')-$(printf '%06d' '${{ steps.select.outputs.end }}').json" CONTINUATION-AUTO-STATE.md
+          git commit -m "ci: auto-prepare Heart-View review ${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}"
+          git push --force-with-lease origin "HEAD:$BRANCH"
+          PR_URL="$(gh pr create --repo "${{ github.repository }}" --base main --head "$BRANCH" --title "ci: auto-prepare Heart-View review ${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}" --body "Exact hash-bound review packet; packet QC PASS; human verification remains NOT PERFORMED.")"
+          gh pr merge "$PR_URL" --squash --delete-branch
 
       - name: Clean temporary expanded queue and registry
         if: always()
