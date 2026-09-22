@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "queue_mode": "continuous",
+  "generated_at": "2026-09-22",
+  "tasks": [
+    {"id":"federation-inventory","type":"inventory","priority":"P0","scope":"all-discovered-repositories","safe":true},
+    {"id":"workflow-detection","type":"automation-detection","priority":"P0","scope":"all-discovered-repositories","safe":true},
+    {"id":"provenance-integrity","type":"provenance-audit","priority":"P0","scope":"central-and-federation","safe":true},
+    {"id":"heart-view-layer-readiness","type":"architecture-readiness","priority":"P1","scope":"central-repository","safe":true},
+    {"id":"cross-repo-write-enable","type":"deployment-gate","priority":"P2","scope":"all-repositories","safe":false,"requires":"GitHub App or fine-grained token with explicit repository permissions"}
+  ]
+}

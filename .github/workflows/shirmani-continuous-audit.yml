@@ -1,0 +1,120 @@
+name: SHIRMANI Heart-View Supreme Continuous Audit
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "2-59/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-federation-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    name: "Audit ${{ matrix.repo }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 24
+      matrix:
+        repo:
+          - rampaulsaini/rampaulsaini
+          - rampaulsaini/Omniverse-Platform
+          - rampaulsaini/Omniverse-
+          - rampaulsaini/Omniverse
+          - rampaulsaini/Omnivers
+          - rampaulsaini/Omniver
+          - rampaulsaini/Karbon-
+          - rampaulsaini/Omniverse-Platform-supreme-
+          - rampaulsaini/Omniverse-AI
+          - rampaulsaini/C-Labs
+          - rampaulsaini/kit-app-template
+          - rampaulsaini/omniverse--ai-scripts-
+          - rampaulsaini/supreme-omniverse-test
+          - rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto
+          - rampaulsaini/my-omniverse-store
+          - rampaulsaini/omniverse-dashboard
+          - rampaulsaini/omniverse-marketplace-
+          - rampaulsaini/omniverse-marketplace
+          - rampaulsaini/Omniverse-Supreme-Core-
+          - rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth
+          - rampaulsaini/shiromani-rampal-saini
+          - rampaulsaini/Shirmani-Research-Paper
+          - rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-
+          - rampaulsaini/yatharth-music-ai
+
+    steps:
+      - name: Checkout central orchestrator
+        uses: actions/checkout@v4
+
+      - name: Audit repository
+        env:
+          TARGET_REPO: ${{ matrix.repo }}
+          CROSS_REPO_TOKEN: ${{ secrets.SHIRMANY_GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -u
+          mkdir -p audit-result
+          workdir="$RUNNER_TEMP/repo"
+
+          if [ -n "${CROSS_REPO_TOKEN:-}" ]; then
+            git -c http.extraheader="AUTHORIZATION: bearer $CROSS_REPO_TOKEN"               clone --depth 1 "https://github.com/$TARGET_REPO.git" "$workdir" >clone.log 2>&1
+          else
+            git clone --depth 1 "https://github.com/$TARGET_REPO.git" "$workdir" >clone.log 2>&1
+          fi
+
+          clone_status=$?
+          if [ "$clone_status" -ne 0 ]; then
+            TARGET_REPO="$TARGET_REPO" python - <<'PY'
+          import json, os, pathlib, datetime
+          pathlib.Path("audit-result/result.json").write_text(json.dumps({
+            "repository": os.environ["TARGET_REPO"],
+            "status": "AUTH_REQUIRED_OR_CLONE_FAILED",
+            "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat()
+          }, indent=2))
+          PY
+            exit 0
+          fi
+
+          cd "$workdir"
+          export commit="$(git rev-parse HEAD)"
+          export branch="$(git symbolic-ref --short -q HEAD || true)"
+          export files="$(git ls-files | wc -l | tr -d ' ')"
+          export dirs="$(find . -type d -not -path './.git*' | wc -l | tr -d ' ')"
+          export bytes="$(du -sb . | cut -f1)"
+          export workflows="$(find .github/workflows -maxdepth 1 -type f -name '*.y*ml' 2>/dev/null | wc -l | tr -d ' ')"
+          export latest_date="$(git show -s --format=%cI HEAD)"
+          export latest_subject="$(git show -s --format=%s HEAD)"
+          export visibility="public-or-accessible"
+
+          TARGET_REPO="$TARGET_REPO" python - <<'PY'
+          import json, os, pathlib, datetime
+          data = {
+            "repository": os.environ["TARGET_REPO"],
+            "status": "OK",
+            "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "commit": os.environ["commit"],
+            "branch": os.environ["branch"],
+            "tracked_files": int(os.environ["files"]),
+            "directories": int(os.environ["dirs"]),
+            "working_tree_bytes": int(os.environ["bytes"]),
+            "workflow_files": int(os.environ["workflows"]),
+            "latest_commit_date": os.environ["latest_date"],
+            "latest_commit_subject": os.environ["latest_subject"],
+            "visibility": os.environ["visibility"]
+          }
+          pathlib.Path("audit-result/result.json").write_text(json.dumps(data, indent=2, ensure_ascii=False))
+          PY
+
+      - name: Upload audit result
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-audit-${{ matrix.repo }}
+          path: audit-result/result.json
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Central Shirmani Research Institute federation manifest",
+  "owner": "rampaulsaini",
+  "discovered_at": "2026-09-22",
+  "discovered_owned_repositories": 24,
+  "target_federation_repositories": 25,
+  "note": "24 repositories are currently returned by the authenticated GitHub repository listing. The 25th target is not currently visible through that listing and must be identified before it is included.",
+  "repositories": [
+    "rampaulsaini/rampaulsaini",
+    "rampaulsaini/Omniverse-Platform",
+    "rampaulsaini/Omniverse-",
+    "rampaulsaini/Omniverse",
+    "rampaulsaini/Omnivers",
+    "rampaulsaini/Omniver",
+    "rampaulsaini/Karbon-",
+    "rampaulsaini/Omniverse-Platform-supreme-",
+    "rampaulsaini/Omniverse-AI",
+    "rampaulsaini/C-Labs",
+    "rampaulsaini/kit-app-template",
+    "rampaulsaini/omniverse--ai-scripts-",
+    "rampaulsaini/supreme-omniverse-test",
+    "rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto",
+    "rampaulsaini/my-omniverse-store",
+    "rampaulsaini/omniverse-dashboard",
+    "rampaulsaini/omniverse-marketplace-",
+    "rampaulsaini/omniverse-marketplace",
+    "rampaulsaini/Omniverse-Supreme-Core-",
+    "rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth",
+    "rampaulsaini/shiromani-rampal-saini",
+    "rampaulsaini/Shirmani-Research-Paper",
+    "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+    "rampaulsaini/yatharth-music-ai"
+  ],
+  "execution_policy": {
+    "mode": "read_only_audit_first",
+    "destructive_changes": "disabled",
+    "cross_repository_writes": "disabled_until_explicitly_authenticated",
+    "secret_policy": "never hard-code credentials",
+    "queue_model": "idempotent task records",
+    "provenance": "retain repository, commit, timestamp and task identifiers"
+  }
+}
