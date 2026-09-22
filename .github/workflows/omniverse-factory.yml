@@ -65,18 +65,44 @@ jobs:
         run: python3 factory/verification_registry.py
       - name: Run verification promotion gate
         run: python3 factory/verification_promotion_gate.py
+      - name: Determine resumable verification review cursor
+        id: review_cursor
+        env:
+          INPUT_BATCH_SIZE: ${{ inputs.review_batch_size }}
+          INPUT_OFFSET: ${{ inputs.review_offset }}
+        run: |
+          set -euo pipefail
+          batch_size="${INPUT_BATCH_SIZE:-1000}"
+          if [ -n "${INPUT_OFFSET:-}" ]; then
+            offset="${INPUT_OFFSET}"
+          else
+            offset=0
+            shopt -s nullglob
+            for packet in generated/verification-review-packet-*.json; do
+              name="${packet##*/}"
+              range="${name#verification-review-packet-}"
+              range="${range%.json}"
+              end="${range##*-}"
+              if [[ "$end" =~ ^[0-9]+$ ]] && [ "$end" -gt "$offset" ]; then
+                offset="$end"
+              fi
+            done
+          fi
+          echo "review_batch_size=$batch_size" >> "$GITHUB_OUTPUT"
+          echo "review_offset=$offset" >> "$GITHUB_OUTPUT"
+          echo "Resuming review queue at offset $offset with batch size $batch_size"
       - name: Prepare independent verification review packet
         env:
-          REVIEW_BATCH_SIZE: ${{ inputs.review_batch_size || '25' }}
-          REVIEW_OFFSET: ${{ inputs.review_offset || '0' }}
+          REVIEW_BATCH_SIZE: ${{ steps.review_cursor.outputs.review_batch_size }}
+          REVIEW_OFFSET: ${{ steps.review_cursor.outputs.review_offset }}
         run: |
           python3 factory/verification_review_packet.py \
             --batch-size "$REVIEW_BATCH_SIZE" \
             --offset "$REVIEW_OFFSET"
       - name: Run verification review packet QC
         env:
-          REVIEW_BATCH_SIZE: ${{ inputs.review_batch_size || '25' }}
-          REVIEW_OFFSET: ${{ inputs.review_offset || '0' }}
+          REVIEW_BATCH_SIZE: ${{ steps.review_cursor.outputs.review_batch_size }}
+          REVIEW_OFFSET: ${{ steps.review_cursor.outputs.review_offset }}
         run: |
           PACKET_PATH=$(printf "generated/verification-review-packet-%06d-%06d.json" "$((REVIEW_OFFSET + 1))" "$((REVIEW_OFFSET + REVIEW_BATCH_SIZE))")
           test -s "$PACKET_PATH"
