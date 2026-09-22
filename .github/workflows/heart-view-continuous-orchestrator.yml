@@ -1,0 +1,65 @@
+name: SHIRMANI HEART-VIEW SUPREME REASONING — Continuous Orchestrator
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-heart-view-orchestrator
+  cancel-in-progress: false
+
+jobs:
+  audit-and-queue:
+    name: Continuous audit / queue heartbeat
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Build immutable run manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p automation-runtime
+          now="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+          commit="$(git rev-parse HEAD)"
+          files="$(git ls-files | wc -l | tr -d ' ')"
+          cat > automation-runtime/run-manifest.json <<EOF
+          {
+            "system": "SHIRMANI HEART-VIEW SUPREME REASONING",
+            "layer": "continuous-orchestrator",
+            "mode": "audit-and-queue",
+            "timestamp_utc": "$now",
+            "repository": "${GITHUB_REPOSITORY}",
+            "branch": "${GITHUB_REF_NAME}",
+            "commit": "$commit",
+            "tracked_files": $files,
+            "next_layer": "queue -> worker -> multi-agent -> QC -> retry -> artifacts",
+            "destructive_actions": false
+          }
+          EOF
+
+      - name: Repository integrity snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short > automation-runtime/git-status.txt
+          git log -1 --pretty=fuller > automation-runtime/latest-commit.txt
+          find . -maxdepth 3 -type f -not -path "./.git/*" | sort > automation-runtime/file-index.txt
+
+      - name: Publish run artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: shirmani-heart-view-run-${{ github.run_id }}
+          path: automation-runtime/
+          if-no-files-found: error
+          retention-days: 14
