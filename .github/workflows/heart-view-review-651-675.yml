@@ -1,0 +1,74 @@
+name: SHIRMANI Heart-View Review Slice 651-675
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "CONTINUE-REVIEW-SLICE-000651-000675.trigger"
+      - "CONTINUE-REVIEW-SLICE-000651-000675-RETRY.trigger"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: shirmani-heart-view-review-651-675
+  cancel-in-progress: false
+
+jobs:
+  build-review-slice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore exact committed queue and registry
+        run: |
+          set -euo pipefail
+          test -s generated/independent-verification-queue.jsonl.gz
+          test -s generated/independent-verification-registry.jsonl.gz
+          gzip -dc generated/independent-verification-queue.jsonl.gz > generated/independent-verification-queue.jsonl
+          gzip -dc generated/independent-verification-registry.jsonl.gz > generated/independent-verification-registry.jsonl
+      - name: Generate exact hash-bound review packet 651-675
+        run: python3 factory/verification_review_packet.py --batch-size 25 --offset 650
+      - name: Run fail-closed packet QC
+        run: python3 factory/verification_review_packet_qc.py --packet generated/verification-review-packet-000651-000675.json
+      - name: Record durable continuation result
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          packet=json.loads(Path("generated/verification-review-packet-000651-000675.json").read_text())
+          qc=json.loads(Path("generated/VERIFICATION-PACKET-QC.json").read_text())
+          if packet.get("status") != "READY_FOR_HUMAN_REVIEW":
+              raise SystemExit("packet is not READY_FOR_HUMAN_REVIEW")
+          if qc.get("publication_gate") != "PASS":
+              raise SystemExit("packet QC did not PASS")
+          Path("CONTINUATION-REVIEW-SLICE-000651-000675-QC.md").write_text(
+              "# SHIRMANI HEART-VIEW — REVIEW SLICE 651–675\n\n"
+              "Generated from the exact committed compressed queue/registry; no records were reconstructed by inference.\n\n"
+              "- Packet: generated/verification-review-packet-000651-000675.json\n"
+              "- Records: 25\n"
+              "- Packet status: READY_FOR_HUMAN_REVIEW\n"
+              "- Packet QC: PASS\n"
+              "- Human verification: NOT PERFORMED\n"
+              "- VERIFIED promotion: 0\n\n"
+              "**Preserve first. Reason second. Verify third. Transform only as a traceable derivative.**\n",
+              encoding="utf-8")
+          PY
+          rm -f generated/independent-verification-queue.jsonl generated/independent-verification-registry.jsonl generated/VERIFICATION-PACKET-QC.json
+      - name: Commit generated review slice to a branch and open PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          BRANCH="prepare-heart-view-651-675-generated"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add generated/verification-review-packet-000651-000675.json CONTINUATION-REVIEW-SLICE-000651-000675-QC.md
+          git diff --cached --quiet && exit 0
+          git commit -m "docs: generate exact Heart-View review slice 651-675"
+          git push --force-with-lease origin "HEAD:$BRANCH"
+          gh pr create --base main --head "$BRANCH" --title "docs: preserve exact Heart-View review slice 651-675" --body "Exact hash-bound packet generated from the committed queue/registry. Packet QC must pass; human verification remains NOT PERFORMED and VERIFIED promotion remains 0."
