@@ -73,6 +73,7 @@ jobs:
         run: |
           set -euo pipefail
           batch_size="${INPUT_BATCH_SIZE:-1000}"
+          batch_size_num=$((10#${batch_size}))
           if [ -n "${INPUT_OFFSET:-}" ]; then
             offset="${INPUT_OFFSET}"
           else
@@ -88,8 +89,9 @@ jobs:
               fi
             done
           fi
-          echo "review_batch_size=$batch_size" >> "$GITHUB_OUTPUT"
-          echo "review_offset=$offset" >> "$GITHUB_OUTPUT"
+          offset_num=$((10#${offset:-0}))
+          echo "review_batch_size=$batch_size_num" >> "$GITHUB_OUTPUT"
+          echo "review_offset=$offset_num" >> "$GITHUB_OUTPUT"
           echo "Resuming review queue at offset $offset with batch size $batch_size"
       - name: Prepare independent verification review packet
         env:
@@ -104,7 +106,9 @@ jobs:
           REVIEW_BATCH_SIZE: ${{ steps.review_cursor.outputs.review_batch_size }}
           REVIEW_OFFSET: ${{ steps.review_cursor.outputs.review_offset }}
         run: |
-          PACKET_PATH=$(printf "generated/verification-review-packet-%06d-%06d.json" "$((REVIEW_OFFSET + 1))" "$((REVIEW_OFFSET + REVIEW_BATCH_SIZE))")
+          OFFSET_NUM=$((10#${REVIEW_OFFSET:-0}))
+          BATCH_NUM=$((10#${REVIEW_BATCH_SIZE:-1000}))
+          PACKET_PATH=$(printf "generated/verification-review-packet-%06d-%06d.json" "$((OFFSET_NUM + 1))" "$((OFFSET_NUM + BATCH_NUM))")
           test -s "$PACKET_PATH"
           python3 factory/verification_review_packet_qc.py --packet "$PACKET_PATH"
       - name: Upload independent verification review packet
