@@ -1,0 +1,38 @@
+name: Shirmani Heart-View Auto Review Conveyor
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-heart-view-auto-review
+  cancel-in-progress: false
+
+jobs:
+  conveyor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Prepare next missing hash-bound review slice
+        run: python3 factory/auto_review_conveyor.py
+      - name: Commit durable review continuation state
+        run: |
+          set -e
+          git config user.name "shirmani-heart-view[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/verification-review-packet-*.json
+          git add generated/auto-review-state.json
+          git add CONTINUATION-REVIEW-SLICE-*-QC.md
+          if git diff --cached --quiet; then
+            echo "No new review slice was required."
+            exit 0
+          fi
+          git commit -m "chore(review): continue next Heart-View verification slice"
+          git push origin HEAD:main
