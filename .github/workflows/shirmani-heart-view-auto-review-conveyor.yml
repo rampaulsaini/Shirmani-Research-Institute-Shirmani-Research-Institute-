@@ -103,13 +103,17 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot].noreply.github.com"
-          git add "generated/verification-review-packet-$(printf '%06d' '${{ steps.select.outputs.start }}')-$(printf '%06d' '${{ steps.select.outputs.end }}').json" CONTINUATION-AUTO-STATE.md
+          PACKET="generated/verification-review-packet-$(printf '%06d' '${{ steps.select.outputs.start }}')-$(printf '%06d' '${{ steps.select.outputs.end }}').json"
+          git add "$PACKET" CONTINUATION-AUTO-STATE.md
           git commit -m "ci: auto-prepare Heart-View review ${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}"
           BRANCH="automation/heart-view-review-${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}"
           git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
           git branch -f "$BRANCH" HEAD
           git push --force-with-lease origin "HEAD:$BRANCH"
-          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0
+          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
+            gh pr create --base main --head "$BRANCH" --title "ci: auto-prepare Heart-View review ${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}" --body "Automated hash-bound review packet. Packet QC passed. Human verification remains NOT PERFORMED; no VERIFIED status is created." || echo "PR creation unavailable; generated branch remains published."
+          fi
+
       - name: Enable automatic publication merge
         if: steps.select.outputs.complete != 'true'
         env:
@@ -121,25 +125,8 @@ jobs:
           if [ -n "$PR_NUMBER" ]; then
             gh pr merge "$PR_NUMBER" --auto --squash --delete-branch || true
           fi
+
       - name: Clean temporary expanded queue and registry
         if: always()
-        run: rm -f generated/independent-verification-queue.jsonl generated/independent-verification-registry.jsonl generated/VERIFICATION-PACKET-QC.json
-; then
-            if ! gh pr create --base main --head "$BRANCH" --title "ci: auto-prepare Heart-View review ${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}" --body "Automated hash-bound review packet. Packet QC passed. Human verification remains NOT PERFORMED; no VERIFIED status is created."; then
-              echo "PR creation is disabled for GitHub Actions in this repository; generated branch was pushed successfully."
-            fi
-          fi
-      - name: Enable automatic publication merge
-        if: steps.select.outputs.complete != 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
-          set -euo pipefail
-          BRANCH="automation/heart-view-review-${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}"
-          PR_NUMBER=$(gh pr list --base main --head "$BRANCH" --state open --json number --jq '.[0].number // empty')
-          if [ -n "$PR_NUMBER" ]; then
-            gh pr merge "$PR_NUMBER" --auto --squash --delete-branch || true
-          fi
-      - name: Clean temporary expanded queue and registry
-        if: always()
-        run: rm -f generated/independent-verification-queue.jsonl generated/independent-verification-registry.jsonl generated/VERIFICATION-PACKET-QC.json
+          rm -f generated/independent-verification-queue.jsonl generated/independent-verification-registry.jsonl generated/VERIFICATION-PACKET-QC.json
