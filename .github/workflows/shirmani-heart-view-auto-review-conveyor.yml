@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "CONTINUE-AUTO-REVIEW.trigger"
-      - "CONTINUE-AUTO-REVIEW-RETRY.trigger"
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
