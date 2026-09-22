@@ -38,6 +38,41 @@ jobs:
         run: python3 factory/repository_intelligence.py
       - name: Build free deterministic archive
         run: python3 factory/build_factory.py
+      - name: Validate source inventory records
+        run: |
+          test -s generated/source-records.jsonl
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          required = {
+              "source_id", "source_repository", "source_path_or_url",
+              "source_type", "source_status", "title_or_label",
+              "content_hash", "recorded_at", "version", "attribution"
+          }
+          source_types = {"BOOK","SCRIPTURE","PAPER","DATASET","WEBSITE","REPOSITORY","ARCHIVE","VIDEO","AUDIO","ORAL_RECORD","OTHER"}
+          source_statuses = {"ORIGINAL","DERIVED","INDEX","INTERPRETATION","ARCHIVED","REVIEW"}
+          seen = set()
+          path = Path("generated/source-records.jsonl")
+          for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+              if not line.strip():
+                  continue
+              row = json.loads(line)
+              missing = required - row.keys()
+              if missing:
+                  raise SystemExit(f"source inventory missing {sorted(missing)} at line {line_no}")
+              if row["source_type"] not in source_types:
+                  raise SystemExit(f"invalid source_type at line {line_no}: {row['source_type']}")
+              if row["source_status"] not in source_statuses:
+                  raise SystemExit(f"invalid source_status at line {line_no}: {row['source_status']}")
+              if row["source_id"] in seen:
+                  raise SystemExit(f"duplicate source_id at line {line_no}: {row['source_id']}")
+              seen.add(row["source_id"])
+              if not row["content_hash"]:
+                  raise SystemExit(f"empty content_hash at line {line_no}")
+          if not seen:
+              raise SystemExit("source inventory is empty")
+          print(f"Validated {len(seen)} source inventory records")
+          PY
       - name: Build incremental canonical knowledge layer
         run: python3 factory/canonical_knowledge.py
       - name: Build resumable canonical batches
@@ -103,6 +138,7 @@ jobs:
           test -s generated/repository-intelligence.json
           test -s generated/manifest.json
           test -s generated/source-integrity-manifest.json
+          test -s generated/source-records.jsonl
           test -s generated/source-units.jsonl
           test -s generated/canonical-knowledge.jsonl
           test -s generated/canonical-knowledge-manifest.json
