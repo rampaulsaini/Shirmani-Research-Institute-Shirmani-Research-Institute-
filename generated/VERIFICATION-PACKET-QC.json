@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "packets": 1,
+  "scope": "explicit",
+  "checked_items": 1000,
+  "error_count": 0,
+  "publication_gate": "PASS",
+  "status": "PACKET_INTEGRITY_PASS",
+  "policy": "Packet integrity is not human verification; all missing review evidence remains fail-closed.",
+  "errors": []
+}
