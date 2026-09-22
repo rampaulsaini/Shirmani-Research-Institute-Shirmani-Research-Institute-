@@ -1,0 +1,1 @@
+Continue exact SHIRMANI HEART-VIEW review slice 476–500 from the committed queue/registry. Fail closed; no inferred verification.
