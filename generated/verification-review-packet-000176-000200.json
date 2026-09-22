@@ -1,0 +1,914 @@
+{
+  "version": 1,
+  "packet_range": [
+    176,
+    200
+  ],
+  "records": 25,
+  "source": "generated/independent-verification-queue.jsonl",
+  "registry": "generated/independent-verification-registry.jsonl",
+  "status": "READY_FOR_HUMAN_REVIEW",
+  "verified_records": 0,
+  "items": [
+    {
+      "packet_ordinal": 176,
+      "task_id": "verify:c7f2144b2823d5e15d0a13fc",
+      "task_hash": "06f44b8c2b0dedab917c4f544acfb9e6a354c48a716031b97b447aed4bfcd393",
+      "claim_id": "claim:verse:176",
+      "source_ids": [
+        "176"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 177,
+      "task_id": "verify:17e73effcf3860fa45a57ffb",
+      "task_hash": "c8df40667cf15db36721d0dac2e9b9ec0b80cb13628336698de14c451d7e1c4d",
+      "claim_id": "claim:verse:177",
+      "source_ids": [
+        "177"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 178,
+      "task_id": "verify:7642e5c556668fd800627c81",
+      "task_hash": "d899a229eb09b4edf7c623b8078c13a82e3ef12b05d001caaccf9c45e748abe9",
+      "claim_id": "claim:verse:178",
+      "source_ids": [
+        "178"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 179,
+      "task_id": "verify:19426959668a7b14b66b21e8",
+      "task_hash": "aa5f8b6152221ea762079240ee46b38feab2319d517106a789d178a3c655b4fd",
+      "claim_id": "claim:verse:179",
+      "source_ids": [
+        "179"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 180,
+      "task_id": "verify:d7b9a66e1358675ee1ea3b23",
+      "task_hash": "fcabb2aebaa4de97d961b4d589b0c3bc9a6fd5c8d41cafd30bd594680f63761a",
+      "claim_id": "claim:verse:180",
+      "source_ids": [
+        "180"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 181,
+      "task_id": "verify:523f0aab359ce0d2cd293f77",
+      "task_hash": "3de6d8351d38ba72595f9a0f5e87c969fea5bdb82895edaabcd753e34fdfd4af",
+      "claim_id": "claim:verse:181",
+      "source_ids": [
+        "181"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 182,
+      "task_id": "verify:d81f731833f6f64011bea38e",
+      "task_hash": "f773916efb74cd4553c302c55f48acf4e028a37fc3729cc15076e21f95d49278",
+      "claim_id": "claim:verse:182",
+      "source_ids": [
+        "182"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 183,
+      "task_id": "verify:d8fde30bac043c9c73d1c20d",
+      "task_hash": "af229b842a41eb63e5ab0689b41e0a6016034e40a75d3c9d5ed577676ce74623",
+      "claim_id": "claim:verse:183",
+      "source_ids": [
+        "183"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 184,
+      "task_id": "verify:2e48bc391c7f0caebea3cd6d",
+      "task_hash": "2582cd25a8d19a902f6d290dede748c097d3eadaa11c2ea3aaa1c761ec0e5ae5",
+      "claim_id": "claim:verse:184",
+      "source_ids": [
+        "184"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 185,
+      "task_id": "verify:8902b35e82ffca1116592421",
+      "task_hash": "59f3ce140598522e05347a028953d9c75a189621a54f4be2abef38a6bc4244e4",
+      "claim_id": "claim:verse:185",
+      "source_ids": [
+        "185"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 186,
+      "task_id": "verify:a9b2168638d6b848ce121220",
+      "task_hash": "89aa29938c26b5ef31ec466e3cd795c33d767e9929326ce4f8679be7e0f67e8e",
+      "claim_id": "claim:verse:186",
+      "source_ids": [
+        "186"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 187,
+      "task_id": "verify:a722ef8f8a14a3dc7521b7bc",
+      "task_hash": "34b3570ebafd17fba48d369f9bacad337a12a269bd503e2f14c080897595ea94",
+      "claim_id": "claim:verse:187",
+      "source_ids": [
+        "187"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 188,
+      "task_id": "verify:62c7d7e10e515c3d78ec3f9a",
+      "task_hash": "a6163b03c5d4232b785decb71300a08114f35521d1fd0e9b4324db3db54df3ca",
+      "claim_id": "claim:verse:188",
+      "source_ids": [
+        "188"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 189,
+      "task_id": "verify:7a5e2eecc4819c4cd0985e1a",
+      "task_hash": "dc63bd0e6e917d28c6ee6da749c50ded2fc19c129aee85f2d7886d538cd767dc",
+      "claim_id": "claim:verse:189",
+      "source_ids": [
+        "189"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 190,
+      "task_id": "verify:7efdfe57214365d9d59d0fb2",
+      "task_hash": "1c43bb212383abe34d0834c2bbe513236b4f1b1c712d49be244ed3c355b679ac",
+      "claim_id": "claim:verse:190",
+      "source_ids": [
+        "190"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 191,
+      "task_id": "verify:103075b260c047d47d09247a",
+      "task_hash": "59233547c08a5aa5761f52a0db45942eda289031e8cc7e46b0cda7063a06421a",
+      "claim_id": "claim:verse:191",
+      "source_ids": [
+        "191"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 192,
+      "task_id": "verify:3844327a1542649524378d0f",
+      "task_hash": "3ddde26c4f7df99396b54fe5338276b31c139a31afe66cd76b917aac41c65587",
+      "claim_id": "claim:verse:192",
+      "source_ids": [
+        "192"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 193,
+      "task_id": "verify:d327fcaaf50e6fbd3da12650",
+      "task_hash": "37a92ed876fc92a17936db0c8b649058c00d2a5a0bccd3ce5892c4b42b65262d",
+      "claim_id": "claim:verse:193",
+      "source_ids": [
+        "193"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 194,
+      "task_id": "verify:cd28024e9b854ccde4ebd77d",
+      "task_hash": "70e549f43ad69069693bedb46b15913325c664d59eb94e3deee806ac841085ca",
+      "claim_id": "claim:verse:194",
+      "source_ids": [
+        "194"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 195,
+      "task_id": "verify:09b3d32d885bd8943efa36e1",
+      "task_hash": "ea30a732ef9c07ee3ecba49e8e04a6ebb7229c5caef66538986264d361066673",
+      "claim_id": "claim:verse:195",
+      "source_ids": [
+        "195"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 196,
+      "task_id": "verify:448f38b1605bb78c76475942",
+      "task_hash": "d9171fd515c62b386df315c75ad7436234d0fe96c8a881ee6d24b78e1ced4a4e",
+      "claim_id": "claim:verse:196",
+      "source_ids": [
+        "196"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 197,
+      "task_id": "verify:7af01eb7d2a41704de150703",
+      "task_hash": "5babe58c3522a31da41d48d0eface0f45e261d3e135009e1f81ef505e02d61ef",
+      "claim_id": "claim:verse:197",
+      "source_ids": [
+        "197"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 198,
+      "task_id": "verify:bd76d7876fa9149c9dc5f992",
+      "task_hash": "18e1411dd48036524811ab039f119425616d3d430d1ba6d60e00b7fb9442bca1",
+      "claim_id": "claim:verse:198",
+      "source_ids": [
+        "198"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 199,
+      "task_id": "verify:7258940bfb814299b7c716d5",
+      "task_hash": "0579f52e1c8b44f79c3c283f8c8bb56bc267a4d3299cbb2335edd38391fd398f",
+      "claim_id": "claim:verse:199",
+      "source_ids": [
+        "199"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    },
+    {
+      "packet_ordinal": 200,
+      "task_id": "verify:a88c76db7f70395b5bee08b5",
+      "task_hash": "fadecd49ec4b5950e650efac50c3e3d51c69f097278bd0e296c64eb8697d2a62",
+      "claim_id": "claim:verse:200",
+      "source_ids": [
+        "200"
+      ],
+      "verification_questions": [
+        "Can the claim be independently supported by an appropriate primary or authoritative source?",
+        "Can an independent reviewer reproduce the stated formulation or test?",
+        "Are there credible counterexamples or contradictory sources?"
+      ],
+      "current_status": "QUEUED",
+      "current_verification_status": "NOT_VERIFIED",
+      "review_template": {
+        "exact_claim": null,
+        "definitions": [],
+        "evidence_references": [],
+        "countercase_review": {
+          "status": "NOT_REVIEWED",
+          "references": []
+        },
+        "reproduction_or_test": {
+          "status": "NOT_RUN",
+          "references": []
+        },
+        "uncertainty": [],
+        "reviewer": null,
+        "reviewer_role": null,
+        "reviewed_at": null,
+        "reviewer_conclusion": null,
+        "audit_notes": []
+      },
+      "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention."
+    }
+  ]
+}
