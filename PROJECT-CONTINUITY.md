@@ -147,3 +147,15 @@ A missing field is a QC failure, not an invitation to invent a value.
 - Resume logic remains output-first: durable generated outputs are used to reconstruct progress, while canonical/source records remain protected.
 
 - Follow-up fix: QC no longer applies the reasoning method-stack validator to the upstream verse corpus; strict method-stack validation remains on reasoning-manifest.jsonl. This prevents 100,000 false blocking errors while preserving reasoning QC.
+
+
+## 19. 2026-09-20 preservation continuation checkpoint
+
+- The exact current-turn source capture is preserved separately under `preservation/CURRENT-CAPTURE-2026-09-20.md` with source ID `SRI-USER-DIRECTIVE-20260920-001`.
+- The non-destructive preservation policy remains under `preservation/SHIRMANI-SOURCE-PRESERVATION-POLICY.md`.
+- Preservation work continues through Pull Request #61; protected `main` is not bypassed.
+- The preservation branch is being rebased onto the current `main` baseline without modifying the protected `main` branch.
+- Exact source material remains separate from derivative reasoning, validation, and engineering artifacts.
+- No claim is made that every historical word from all prior conversations has already been imported; only actually captured source material is marked preserved.
+
+**Continuation rule:** PRESERVE FIRST → TRACE → REASON → VERIFY → DERIVE.
