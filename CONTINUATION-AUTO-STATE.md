@@ -1,6 +1,6 @@
 # SHIRMANI HEART-VIEW — AUTO REVIEW CONVEYOR
 - Queue total: 100200
-- Prepared this run: 951–1950
+- Prepared this run: 1951–2950
 - Packet status: READY_FOR_HUMAN_REVIEW
 - Packet QC: PASS
 - Human verification: NOT PERFORMED
