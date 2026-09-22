@@ -1,0 +1,89 @@
+name: SHIRMANI 25-Repository Continuous Federation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: shirmani-25-repository-federation
+  cancel-in-progress: false
+
+jobs:
+  federation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout federation manifest
+        uses: actions/checkout@v4
+
+      - name: Verify federation manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path("federation/repositories.json").read_text())
+          assert len(data["repositories"]) == 24
+          assert data["missing_private_repository"] is True
+          print("Known repositories:", len(data["repositories"]))
+          print("25th private repository: name still required")
+          PY
+
+      - name: Cross-repository continuous dispatch
+        if: ${{ secrets.FEDERATION_TOKEN != '' }}
+        env:
+          FEDERATION_TOKEN: ${{ secrets.FEDERATION_TOKEN }}
+          GH_TOKEN: ${{ secrets.FEDERATION_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p generated/federation
+          : > generated/federation/dispatch.log
+          python3 - <<'PY' > /tmp/repos.txt
+          import json
+          for r in json.load(open("federation/repositories.json"))["repositories"]:
+              print(r)
+          PY
+          while IFS= read -r repo; do
+            [ -z "$repo" ] && continue
+            echo "=== rampaulsaini/$repo ===" | tee -a generated/federation/dispatch.log
+            workflows=$(gh api "repos/rampaulsaini/$repo/actions/workflows?per_page=100" --jq '.workflows[] | select(.state=="active") | .path' 2>/dev/null || true)
+            target=""
+            for candidate in ".github/workflows/omniverse-factory.yml" ".github/workflows/shirmani-multi-automation-supervisor.yml" ".github/workflows/shirmani-heart-view-continuity.yml"; do
+              if printf '%s\n' "$workflows" | grep -Fxq "$candidate"; then target="$candidate"; break; fi
+            done
+            if [ -z "$target" ]; then
+              echo "NO_STANDARD_TARGET" | tee -a generated/federation/dispatch.log
+              continue
+            fi
+            echo "DISPATCH $target" | tee -a generated/federation/dispatch.log
+            gh workflow run "$target" --repo "rampaulsaini/$repo" || echo "DISPATCH_FAILED" | tee -a generated/federation/dispatch.log
+          done < /tmp/repos.txt
+
+      - name: Federation status
+        shell: bash
+        env:
+          FEDERATION_TOKEN: ${{ secrets.FEDERATION_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p generated/federation
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          data=json.loads(Path("federation/repositories.json").read_text())
+          status={"known_repositories":len(data["repositories"]),"target_capacity":25,"missing_private_repository":data["missing_private_repository"],"cross_repository_token_configured":bool(os.environ.get("FEDERATION_TOKEN")),"schedule":"*/5 * * * *","mode":"continuous_resumable","human_verification_gate":True}
+          Path("generated/federation/status.json").write_text(json.dumps(status,indent=2)+"\n")
+          print(json.dumps(status,indent=2))
+          PY
+
+      - name: Upload federation status
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-25-repository-federation-status
+          path: generated/federation/
