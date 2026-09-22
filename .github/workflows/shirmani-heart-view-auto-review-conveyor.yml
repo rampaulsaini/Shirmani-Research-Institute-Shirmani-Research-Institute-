@@ -29,8 +29,6 @@ jobs:
           fetch-depth: 1
 
       - name: Restore exact committed queue and registry
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           test -s generated/independent-verification-queue.jsonl.gz
@@ -101,6 +99,8 @@ jobs:
 
       - name: Publish generated packet through pull request
         if: steps.select.outputs.complete != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -111,11 +111,7 @@ jobs:
           git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
           git branch -f "$BRANCH" HEAD
           git push --force-with-lease origin "HEAD:$BRANCH"
-          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0
-      - name: Clean temporary expanded queue and registry
-        if: always()
-        run: rm -f generated/independent-verification-queue.jsonl generated/independent-verification-registry.jsonl generated/VERIFICATION-PACKET-QC.json
-; then
+          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
             gh pr create --base main --head "$BRANCH" --title "ci: auto-prepare Heart-View review ${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}" --body "Automated hash-bound review packet. Packet QC passed. Human verification remains NOT PERFORMED; no VERIFIED status is created."
           fi
       - name: Clean temporary expanded queue and registry
