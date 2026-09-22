@@ -4,11 +4,11 @@ Generated from the currently linked GitHub account on 2026-09-22.
 
 ## Central Heart-View state
 - Queue total: 100,200
-- Prepared through: 5,950
-- Prepared coverage: 5.94%
-- Remaining queue units: 94,250
-- Remaining queue coverage: 94.06%
-- Packet QC: PASS for the current 4,951–5,950 packet
+- Prepared through: 8,950
+- Prepared coverage: 8.93%
+- Remaining queue units: 91,250
+- Remaining queue coverage: 91.07%
+- Packet QC: PASS for the current 7,951–8,950 packet
 - Human verification: NOT PERFORMED
 - VERIFIED promotion: 0
 
