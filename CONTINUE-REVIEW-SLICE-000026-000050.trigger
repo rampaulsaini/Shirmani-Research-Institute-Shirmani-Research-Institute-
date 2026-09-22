@@ -1,3 +1,4 @@
-Trigger exact hash-bound generation of Heart-View review slice 26-50. No human verification is asserted.
-
-Continuation trigger refreshed: 2026-09-22T00:01+05:30
+# Trigger exact hash-bound review slice 26-50.
+# Queue/registry are restored from the committed compressed artifacts by GitHub Actions.
+# No verification status is fabricated here.
+# Refreshed: 2026-09-22
