@@ -6,7 +6,9 @@ from pathlib import Path
 
 CENTRAL = "rampaulsaini/Omniverse-Platform"
 SOURCE_PATH = "data/public/factory-status.json"
+HEALTH_PATH = "data/federation/health.json"
 TARGET = Path("factory-status.json")
+HEALTH_TARGET = Path("generated/federation-status.json")
 
 def main() -> int:
     token = os.environ.get("ORCHESTRATOR_TOKEN", "").strip()
