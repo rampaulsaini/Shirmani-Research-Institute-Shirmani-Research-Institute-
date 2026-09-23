@@ -1,10 +1,8 @@
 name: SHIRMANI Heart-View Review Slice 901-925
 
 on:
-  push:
-    branches:
-      - main
-    paths:
+  workflow_dispatch:
+paths:
       - "CONTINUE-REVIEW-SLICE-000901-000925.trigger"
       - "CONTINUE-REVIEW-SLICE-000901-000925-RETRY.trigger"
 
