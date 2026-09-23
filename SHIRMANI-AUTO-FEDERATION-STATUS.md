@@ -18,7 +18,7 @@ Generated from the currently linked GitHub account on 2026-09-22.
 - The conveyor intentionally keeps a human-verification integrity gate; automation does not falsely mark source material VERIFIED.
 
 ## Current linked-account repository inventory
-The federation configuration contains 25 repository entries: 1 central hub, 23 user-managed repositories, and 1 external reference repository. The previously recorded MISSING managed entries (rampaulsaini/Omniverse-Platform and rampaulsaini/kit-app-template) have now been re-inspected and each currently contains factory-agent.json, factory-agent.py, and a specialist-agent workflow. The external NVIDIA repository remains reference/source-only and is not a managed write target.
+The current approved/discoverable inventory contains 24 user-managed repositories, including the central hub. The earlier missing entries (rampaulsaini/Omniverse-Platform and rampaulsaini/kit-app-template) are present in the managed inventory. No 25th repository is invented or promoted without an explicit approved identity.
 
 1. rampaulsaini/rampaulsaini
 2. rampaulsaini/Omniverse-Platform
