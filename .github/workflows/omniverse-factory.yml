@@ -1,9 +1,7 @@
 name: Omniverse Research Factory
 
 on:
-  push:
-    branches: [main]
-  pull_request:
+  # Run continuously on the 5-minute resumable schedule; avoid duplicate push/PR floods.
   workflow_dispatch:
     inputs:
       review_batch_size:
