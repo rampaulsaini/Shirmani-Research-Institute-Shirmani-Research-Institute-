@@ -36,7 +36,7 @@ jobs:
           gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50 \
             --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion |
           python3 -c '
-          import json,sys,subprocess
+          import json,sys,subprocess,os
           runs=json.load(sys.stdin)
           skip={"SHIRMANI Multi-Automation Supervisor"}
           for r in runs:
@@ -45,8 +45,12 @@ jobs:
               if r.get("event") not in {"schedule","workflow_dispatch","push"}:
                   continue
               rid=str(r["databaseId"])
-              print(f"Retrying first-attempt failure: {r.get('workflowName')} #{rid}")
-              subprocess.run(["gh","run","rerun",rid,"--failed","--repo", "$GITHUB_REPOSITORY"], check=False)
+              workflow_name=r.get("workflowName")
+              print(f"Retrying first-attempt failure: {workflow_name} #{rid}")
+              subprocess.run(
+                  ["gh","run","rerun",rid,"--failed","--repo",os.environ["GITHUB_REPOSITORY"]],
+                  check=False
+              )
           '
 
       - name: Validate protected-source policy
