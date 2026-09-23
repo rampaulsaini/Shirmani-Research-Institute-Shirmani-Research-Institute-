@@ -23,10 +23,12 @@ footer{margin-top:30px;color:var(--muted);font-size:.9rem}
 <div class="card"><div class="muted">Target matrix</div><div class="value">25</div><p class="muted">एक repository slot अभी pending है</p></div>
 <div class="card"><div class="muted">Intake contract</div><div class="value ok">READY</div><p class="muted">Receipt-first, no untrusted execution</p></div>
 <div class="card"><div class="muted">Human review gate</div><div class="value ok">ON</div><p class="muted">Irreversible/public actions remain review-gated</p></div>
+<div class="card"><div class="muted">Current dispatch evidence</div><div class="value warn">NOT_YET_RUN</div><p class="muted">Integration is installed; current federation dispatch is not yet evidenced</p></div>
 </section>
 <h2>Federation flow</h2>
 <div class="card">Central Orchestrator → repository_dispatch → Spoke Intake → Auditable Receipt → Specialist Processing → QC → Human Review → Publication</div>
 <h2>Verified public status</h2>
+<div class="card"><strong>Evidence boundary:</strong> The current central federation artifact reports <code>NOT_YET_RUN</code>, with 0 dispatch attempts and 0 dispatched targets. This dashboard therefore does not present federation execution as completed. Repository wiring and intake readiness are separate from observed federation execution.</div>
 <div class="card"><pre id="state">Loading verified status…</pre></div>
 <p><a href="generated/federation-status.json">Federation status JSON</a> · <a href="factory-dashboard.html">Research Factory</a> · <a href="index.html">Main Hub</a></p>
 <footer>© 2026 Shirmani Research Institute · Status is evidence-bound; unavailable telemetry is not fabricated.</footer>
