@@ -13,6 +13,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: omniverse-federation-intake-${{ github.repository }}
+  cancel-in-progress: false
+
 jobs:
   intake:
     runs-on: ubuntu-latest
@@ -32,11 +36,34 @@ jobs:
           import json, os
           from datetime import datetime, timezone
           stamp=datetime.now(timezone.utc)
-          payload={"schema_version":1,"received_at":stamp.isoformat(),"event":os.getenv("EVENT",""),"source_repository":os.getenv("SOURCE") or "manual","automation_mode":os.getenv("MODE") or "MANUAL","brief":os.getenv("BRIEF",""),"status":"RECEIVED","policies":{"no_secret_exposure":True,"no_untrusted_execution":True,"human_review_before_irreversible_action":True}}
-          with open("federation/inbox/"+stamp.strftime("%Y%m%dT%H%M%SZ")+".json","w",encoding="utf-8") as f: json.dump(payload,f,ensure_ascii=False,indent=2)
+          source=os.getenv("SOURCE") or "manual"
+          if os.getenv("EVENT") == "repository_dispatch" and source != "rampaulsaini/Omniverse-Platform":
+              raise SystemExit("Rejected federation source: not the approved Omniverse Platform.")
+          brief=os.getenv("BRIEF","")
+          if len(brief) > 4000:
+              raise SystemExit("Federation brief exceeds the 4000-character safety limit.")
+          payload={
+            "schema_version":1,
+            "received_at":stamp.isoformat(),
+            "event":os.getenv("EVENT",""),
+            "source_repository":source,
+            "automation_mode":os.getenv("MODE") or "MANUAL",
+            "brief":brief,
+            "status":"RECEIVED",
+            "policies":{
+              "approved_source_only":True,
+              "no_secret_exposure":True,
+              "no_untrusted_execution":True,
+              "human_review_before_irreversible_action":True
+            }
+          }
+          path="federation/inbox/"+stamp.strftime("%Y%m%dT%H%M%SZ")+".json"
+          with open(path,"w",encoding="utf-8") as f:
+              json.dump(payload,f,ensure_ascii=False,indent=2)
           PY
       - name: Commit receipt
         run: |
+          set -euo pipefail
           git config user.name "Omniverse Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add federation/inbox
