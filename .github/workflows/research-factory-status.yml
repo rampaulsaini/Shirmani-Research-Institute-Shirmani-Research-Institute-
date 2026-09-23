@@ -13,24 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Refresh verified status contract
+      - name: Synchronize central safe status
         env:
           ORCHESTRATOR_TOKEN: ${{ secrets.SHIRMANI_ORCHESTRATOR_TOKEN }}
-        run: |
-          python - <<'PY'
-          import json, os
-          from pathlib import Path
-          p=Path("factory-status.json")
-          data=json.loads(p.read_text(encoding="utf-8"))
-          data["orchestrator_credential_configured"]=bool(os.environ.get("ORCHESTRATOR_TOKEN"))
-          data["live_counters"]=False
-          data["last_refresh_note"]="Credential presence recorded only; no secret value is written."
-          p.write_text(json.dumps(data,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-          PY
+        run: python scripts/sync-central-factory-status.py
       - name: Commit status
         run: |
           git config user.name "shirmani-research-factory"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add factory-status.json
-          git diff --cached --quiet || git commit -m "chore: refresh research factory status"
+          git diff --cached --quiet || git commit -m "chore: sync central factory status"
           git push
