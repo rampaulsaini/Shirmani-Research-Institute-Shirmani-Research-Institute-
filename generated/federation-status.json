@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-19T20:30:50.299573+00:00",
+  "generated_at": "2026-09-23T23:51:00+05:30",
   "hub": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
   "managed_agent_count": 23,
-  "ready_agent_count": 21,
+  "ready_agent_count": 23,
   "partial_agent_count": 0,
-  "missing_agent_count": 2,
+  "missing_agent_count": 0,
   "external_source_count": 1,
   "automation_mode": "event-and-schedule driven; not a continuously running external AI service",
   "managed_agents": [
@@ -21,10 +21,10 @@
     {
       "repository": "rampaulsaini/Omniverse-Platform",
       "kind": "managed-agent",
-      "status": "MISSING",
-      "agent_manifest": false,
-      "agent_runner": false,
-      "workflow": false
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true
     },
     {
       "repository": "rampaulsaini/Omniverse-",
@@ -109,10 +109,10 @@
     {
       "repository": "rampaulsaini/kit-app-template",
       "kind": "managed-agent",
-      "status": "MISSING",
-      "agent_manifest": false,
-      "agent_runner": false,
-      "workflow": false
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true
     },
     {
       "repository": "rampaulsaini/omniverse--ai-scripts-",
