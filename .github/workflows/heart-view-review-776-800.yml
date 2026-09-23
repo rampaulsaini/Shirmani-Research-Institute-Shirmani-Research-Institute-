@@ -2,9 +2,6 @@ name: SHIRMANI Heart-View Review Slice 776-800
 
 on:
   workflow_dispatch:
-paths:
-      - "CONTINUE-REVIEW-SLICE-000776-000800.trigger"
-      - "CONTINUE-REVIEW-SLICE-000776-000800-RETRY.trigger"
 
 permissions:
   contents: write
