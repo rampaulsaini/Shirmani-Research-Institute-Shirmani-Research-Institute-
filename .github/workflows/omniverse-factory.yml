@@ -17,8 +17,8 @@ on:
         default: "0"
         type: string
   schedule:
-    # Reduced from every 5 minutes to once per hour to prevent runner/resource saturation.
-    - cron: "0 * * * *"
+    # Continuous resumable execution: every 5 minutes.
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: write
