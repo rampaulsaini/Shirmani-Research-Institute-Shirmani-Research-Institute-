@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "name": "Shirmani Research Institute → Yatharth Creative Studio",
+  "mode": "automission",
+  "source_repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+  "target_repository": "rampaulsaini/yatharth-music-ai",
+  "target_event": "yatharth_studio_request",
+  "automation_variable": "SHIRMANI_AUTOMATION_MODE",
+  "automation_secret": "SHIRMANI_GITHUB_TOKEN",
+  "purpose": "Federate research/archive briefs into the Yatharth Creative Studio music-to-film production pipeline.",
+  "stages": ["research-brief","story","characters","storyboard","music","animation-plan","editing-plan","quality-review"],
+  "policies": {
+    "no_secret_exposure": true,
+    "no_fabricated_rendering_claims": true,
+    "human_review_before_publication": true,
+    "provider_neutral_adapters": true
+  }
+}
