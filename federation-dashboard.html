@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Omniverse Federation — Observability</title>
+<style>
+:root{--gold:#d4af37;--bg:#090b12;--card:rgba(255,255,255,.06);--muted:#aeb5c2;--ok:#6ee7b7;--warn:#fbbf24}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0%,rgba(212,175,55,.16),transparent 42%),var(--bg);color:#f8fafc;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1180px;margin:auto;padding:28px 18px 60px}a{color:var(--gold)}h1,h2{color:var(--gold)}.hero{padding:28px;border:1px solid rgba(212,175,55,.3);border-radius:20px;background:var(--card);backdrop-filter:blur(10px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}.card{padding:18px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:var(--card)}
+.value{font-size:1.65rem;font-weight:750}.ok{color:var(--ok)}.warn{color:var(--warn)}.muted{color:var(--muted)}pre{white-space:pre-wrap;overflow:auto;font-size:.88rem}
+.badge{display:inline-block;padding:5px 9px;border-radius:999px;border:1px solid rgba(110,231,183,.35);color:var(--ok);font-size:.8rem}
+footer{margin-top:30px;color:var(--muted);font-size:.9rem}
+</style></head>
+<body><main>
+<section class="hero">
+<div class="badge">OBSERVABILITY LAYER</div>
+<h1>꙰ Omniverse Federation Control Center</h1>
+<p class="muted">Research Institute की public observability layer — verified repository status को पढ़ती है; यह page स्वयं cross-repository execution का दावा नहीं करता।</p>
+</section>
+<section class="grid">
+<div class="card"><div class="muted">Discovered repositories</div><div class="value">24</div><p class="muted">वर्तमान approved/discoverable inventory</p></div>
+<div class="card"><div class="muted">Target matrix</div><div class="value">25</div><p class="muted">एक repository slot अभी pending है</p></div>
+<div class="card"><div class="muted">Intake contract</div><div class="value ok">READY</div><p class="muted">Receipt-first, no untrusted execution</p></div>
+<div class="card"><div class="muted">Human review gate</div><div class="value ok">ON</div><p class="muted">Irreversible/public actions remain review-gated</p></div>
+</section>
+<h2>Federation flow</h2>
+<div class="card">Central Orchestrator → repository_dispatch → Spoke Intake → Auditable Receipt → Specialist Processing → QC → Human Review → Publication</div>
+<h2>Verified public status</h2>
+<div class="card"><pre id="state">Loading verified status…</pre></div>
+<p><a href="generated/federation-status.json">Federation status JSON</a> · <a href="factory-dashboard.html">Research Factory</a> · <a href="index.html">Main Hub</a></p>
+<footer>© 2026 Shirmani Research Institute · Status is evidence-bound; unavailable telemetry is not fabricated.</footer>
+<script>
+async function load(){
+ const el=document.getElementById('state');
+ try{
+  const r=await fetch('generated/federation-status.json?ts='+Date.now());
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  const d=await r.json();
+  el.textContent=JSON.stringify(d,null,2);
+ }catch(e){el.textContent='Verified federation telemetry unavailable: '+e.message;}
+}
+load();setInterval(load,30000);
+</script></main></body></html>
