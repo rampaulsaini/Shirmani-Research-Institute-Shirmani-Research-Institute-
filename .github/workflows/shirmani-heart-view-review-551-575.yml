@@ -1,10 +1,8 @@
 name: SHIRMANI Heart-View Review Slice 551-575
 
 on:
-  push:
-    branches:
-      - main
-    paths:
+  workflow_dispatch:
+paths:
       - "CONTINUE-REVIEW-SLICE-000551-000575.trigger"
 
 permissions:
