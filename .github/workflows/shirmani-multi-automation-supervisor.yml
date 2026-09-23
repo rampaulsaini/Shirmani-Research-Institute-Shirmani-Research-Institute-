@@ -24,17 +24,14 @@ jobs:
         run: |
           set -euo pipefail
           echo "Recent failed workflow runs:"
-          gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50 \
-            --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion \
-            --jq '.[] | select(.workflowName != "SHIRMANI Multi-Automation Supervisor")'
+          gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50             --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion             --jq '.[] | select(.workflowName != "SHIRMANI Multi-Automation Supervisor")'
 
-      - name: Retry eligible first-attempt failures
+      - name: Retry eligible scheduled/manual failures only
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50 \
-            --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion |
+          gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50             --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion |
           python3 -c '
           import json,sys,subprocess,os
           runs=json.load(sys.stdin)
@@ -42,11 +39,13 @@ jobs:
           for r in runs:
               if r.get("workflowName") in skip or r.get("attempt") != 1:
                   continue
-              if r.get("event") not in {"schedule","workflow_dispatch","push"}:
+              # Do not automatically rerun push-triggered failures.
+              # This keeps untrusted/new code outside the retry loop.
+              if r.get("event") not in {"schedule","workflow_dispatch"}:
                   continue
               rid=str(r["databaseId"])
               workflow_name=r.get("workflowName")
-              print(f"Retrying first-attempt failure: {workflow_name} #{rid}")
+              print(f"Retrying first-attempt scheduled/manual failure: {workflow_name} #{rid}")
               subprocess.run(
                   ["gh","run","rerun",rid,"--failed","--repo",os.environ["GITHUB_REPOSITORY"]],
                   check=False
@@ -69,5 +68,5 @@ jobs:
       - name: Report supervisor status
         run: |
           echo "SHIRMANI multi-automation supervisor PASS"
-          echo "Mechanical automation may retry failed first attempts."
+          echo "Mechanical automation may retry scheduled/manual failures only."
           echo "Human verification remains an explicit integrity gate."
