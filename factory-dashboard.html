@@ -12,15 +12,15 @@ a{color:#d4af37}.note{color:#b3b3b3}pre{white-space:pre-wrap;overflow:auto}
 <p class="note">यह public dashboard Research Institute की दृश्य/control layer है। Automation execution केंद्रीय Omniverse-Platform में होती है; केवल उपलब्ध और सत्यापित status को यहाँ दिखाया जाता है।</p>
 <div class="grid">
 <div class="card"><h2>Federation Health</h2><div class="value" id="federation-state">UNKNOWN</div><p id="federation-note">Waiting for verified federation status…</p></div>
-<div class="card"><h2>Factory</h2><div class="value">OPERATIONAL</div><p>Central automation architecture</p></div>
+<div class="card"><h2>Factory Architecture</h2><div class="value">READY</div><p>Architecture/control layer is present; current research output remains evidence-bound.</p></div>
 <div class="card"><h2>Agent Router</h2><div class="value">ENABLED</div><p>Specialist routing layer</p></div>
 <div class="card"><h2>QC</h2><div class="value">ENABLED</div><p>Artifact quality gate</p></div>
-<div class="card"><h2>Delivery</h2><div class="value">READY</div><p>Delivery bundle layer</p></div>
+<div class="card"><h2>Delivery</h2><div class="value">READY</div><p>Delivery bundle layer; publication still follows review requirements.</p></div>
 </div>
 <h2>Unified Pipeline</h2><div class="card">Research / Order Intake → Queue → Agent Router → Specialist Factory → QC → Review / Completion → Delivery / Publishing</div>
 <h2>Research Federation</h2><div class="card">Source Librarian → Dedup → Concept Map → Research → Evidence → Verification → Language → Audio → Publishing → SEO → Archive</div>
-<h2>Live Status</h2><pre id="state">Loading…</pre>
-<h2>Federation Health Detail</h2><pre id="federation-detail">Loading…</pre>
+<h2>Live Status</h2><div class="card"><p class="note">Freshness: status artifacts are read directly from this repository. If a payload is unavailable or stale, the dashboard does not manufacture a current value.</p><pre id="state">Loading…</pre></div>
+<h2>Federation Health Detail</h2><div class="card"><pre id="federation-detail">Loading…</pre></div>
 <p><a href="generated/factory-status.json">Factory status</a> · <a href="generated/current-status.json">Current baseline</a> · <a href="generated/agent-status.json">Agent status</a> · <a href="generated/federation-status.json">Federation status</a> · <a href="FACTORY.md">Architecture</a> · <a href="index.html">Main Hub</a></p>
 <script>
 async function get(p){const r=await fetch(p+'?ts='+Date.now());if(!r.ok)throw Error(r.status);return r.json()}
