@@ -59,7 +59,7 @@ jobs:
         shell: bash
         run: |
           set -u
-          mkdir -p audit-result
+          mkdir -p "$GITHUB_WORKSPACE/audit-result"
           workdir="$RUNNER_TEMP/repo"
 
           if [ -n "${CROSS_REPO_TOKEN:-}" ]; then
@@ -72,7 +72,7 @@ jobs:
           if [ "$clone_status" -ne 0 ]; then
             TARGET_REPO="$TARGET_REPO" python - <<'PY'
           import json, os, pathlib, datetime
-          pathlib.Path("audit-result/result.json").write_text(json.dumps({
+          pathlib.Path("$GITHUB_WORKSPACE/audit-result/result.json").write_text(json.dumps({
             "repository": os.environ["TARGET_REPO"],
             "status": "AUTH_REQUIRED_OR_CLONE_FAILED",
             "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat()
@@ -108,7 +108,7 @@ jobs:
             "latest_commit_subject": os.environ["latest_subject"],
             "visibility": os.environ["visibility"]
           }
-          pathlib.Path("audit-result/result.json").write_text(json.dumps(data, indent=2, ensure_ascii=False))
+          pathlib.Path("$GITHUB_WORKSPACE/audit-result/result.json").write_text(json.dumps(data, indent=2, ensure_ascii=False))
           PY
 
       - name: Upload audit result
