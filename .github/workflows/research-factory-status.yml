@@ -21,6 +21,6 @@ jobs:
         run: |
           git config user.name "shirmani-research-factory"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add factory-status.json
+          git add factory-status.json generated/federation-status.json
           git diff --cached --quiet || git commit -m "chore: sync central factory status"
           git push
