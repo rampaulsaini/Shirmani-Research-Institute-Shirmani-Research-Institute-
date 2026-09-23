@@ -11,6 +11,7 @@ a{color:#d4af37}.note{color:#b3b3b3}pre{white-space:pre-wrap;overflow:auto}
 <p><strong>शिरोमणि रामपाल सैनी</strong> — Research Factory Control Center</p>
 <p class="note">यह public dashboard Research Institute की दृश्य/control layer है। Automation execution केंद्रीय Omniverse-Platform में होती है; केवल उपलब्ध और सत्यापित status को यहाँ दिखाया जाता है।</p>
 <div class="grid">
+<div class="card"><h2>Federation Health</h2><div class="value" id="federation-state">UNKNOWN</div><p id="federation-note">Waiting for verified federation status…</p></div>
 <div class="card"><h2>Factory</h2><div class="value">OPERATIONAL</div><p>Central automation architecture</p></div>
 <div class="card"><h2>Agent Router</h2><div class="value">ENABLED</div><p>Specialist routing layer</p></div>
 <div class="card"><h2>QC</h2><div class="value">ENABLED</div><p>Artifact quality gate</p></div>
@@ -19,9 +20,10 @@ a{color:#d4af37}.note{color:#b3b3b3}pre{white-space:pre-wrap;overflow:auto}
 <h2>Unified Pipeline</h2><div class="card">Research / Order Intake → Queue → Agent Router → Specialist Factory → QC → Review / Completion → Delivery / Publishing</div>
 <h2>Research Federation</h2><div class="card">Source Librarian → Dedup → Concept Map → Research → Evidence → Verification → Language → Audio → Publishing → SEO → Archive</div>
 <h2>Live Status</h2><pre id="state">Loading…</pre>
+<h2>Federation Health Detail</h2><pre id="federation-detail">Loading…</pre>
 <p><a href="generated/factory-status.json">Factory status</a> · <a href="generated/current-status.json">Current baseline</a> · <a href="generated/agent-status.json">Agent status</a> · <a href="generated/federation-status.json">Federation status</a> · <a href="FACTORY.md">Architecture</a> · <a href="index.html">Main Hub</a></p>
 <script>
 async function get(p){const r=await fetch(p+'?ts='+Date.now());if(!r.ok)throw Error(r.status);return r.json()}
-async function refresh(){try{const[d,a,f,c]=await Promise.all([get('generated/factory-status.json'),get('generated/agent-status.json'),get('generated/federation-status.json'),get('generated/current-status.json')]);document.getElementById('state').textContent=JSON.stringify({factory:d,current:c,agents:a,federation:f},null,2)}catch(e){document.getElementById('state').textContent='Verified status unavailable: '+e}}
+async function refresh(){try{const[d,a,f,c]=await Promise.all([get('generated/factory-status.json'),get('generated/agent-status.json'),get('generated/federation-status.json'),get('generated/current-status.json')]);document.getElementById('state').textContent=JSON.stringify({factory:d,current:c,agents:a,federation:f},null,2); document.getElementById('federation-state').textContent=f.state||'UNKNOWN'; document.getElementById('federation-note').textContent=f.federation_verified?'Verified central federation health':'Verified federation health unavailable'; document.getElementById('federation-detail').textContent=JSON.stringify({state:f.state,manifest_count:f.manifest_count,intended_count:f.intended_count,verified_count:f.verified_count,repair_required:f.repair_required,approved_matrix_configured:f.approved_matrix_configured,approved_matrix_count:f.approved_matrix_count,generated_at:f.generated_at,secrets_exposed:f.secrets_exposed,pii_exposed:f.pii_exposed},null,2)}catch(e){document.getElementById('state').textContent='Verified status unavailable: '+e;document.getElementById('federation-state').textContent='UNKNOWN';document.getElementById('federation-note').textContent='Verified federation health unavailable';document.getElementById('federation-detail').textContent='No verified federation-health payload is currently available.'}}
 refresh();setInterval(refresh,30000)
 </script></main></body></html>

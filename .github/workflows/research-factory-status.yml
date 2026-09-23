@@ -1,0 +1,27 @@
+name: Research Factory Federation Status
+# Central contracts are published by the Omniverse-Platform federation-health workflow.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Synchronize central safe status
+        env:
+          ORCHESTRATOR_TOKEN: ${{ secrets.SHIRMANI_ORCHESTRATOR_TOKEN }}
+        run: python scripts/sync-central-factory-status.py
+      - name: Commit status
+        run: |
+          git config user.name "shirmani-research-factory"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add factory-status.json generated/federation-status.json
+          git diff --cached --quiet || git commit -m "chore: sync central factory status"
+          git push
