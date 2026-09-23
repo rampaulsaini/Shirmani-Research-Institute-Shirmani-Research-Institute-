@@ -20,16 +20,23 @@ def main() -> int:
         TARGET.write_text(json.dumps(current, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         return 0
 
-    url = f"https://api.github.com/repos/{CENTRAL}/contents/{SOURCE_PATH}?ref=main"
-    req = urllib.request.Request(url, headers={
+    def fetch_json(source_path: str):
+        url = f"https://api.github.com/repos/{CENTRAL}/contents/{source_path}?ref=main"
+        req = urllib.request.Request(url, headers={
         "Accept": "application/vnd.github+json",
         "Authorization": f"Bearer {token}",
         "X-GitHub-Api-Version": "2022-11-28",
         "User-Agent": "shirmani-research-factory-federation",
     })
-    try:
+        })
         with urllib.request.urlopen(req, timeout=20) as response:
             payload = json.load(response)
+        if payload.get("encoding") != "base64" or not payload.get("content"):
+            raise RuntimeError(f"central status response missing content: {source_path}")
+        return json.loads(base64.b64decode(payload["content"]).decode("utf-8"))
+
+    try:
+        central = fetch_json(SOURCE_PATH)
     except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
         current["orchestrator_credential_configured"] = True
         current["live_counters"] = False
@@ -57,6 +64,28 @@ def main() -> int:
         "last_refresh_note": "Status synchronized from the central safe factory export.",
     }
     TARGET.write_text(json.dumps(synced, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    try:
+        health = fetch_json(HEALTH_PATH)
+        if health.get("repository") != CENTRAL:
+            raise RuntimeError("central federation health repository identity mismatch")
+        if health.get("state") not in {"OPERATIONAL", "DEGRADED", "OFFLINE", "UNKNOWN"}:
+            raise RuntimeError("central federation health state is invalid")
+        health["research_institute_repository"] = "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-"
+        health["central_orchestrator"] = CENTRAL
+        health["federation_verified"] = True
+        HEALTH_TARGET.parent.mkdir(parents=True, exist_ok=True)
+        HEALTH_TARGET.write_text(json.dumps(health, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, RuntimeError, json.JSONDecodeError) as exc:
+        HEALTH_TARGET.parent.mkdir(parents=True, exist_ok=True)
+        HEALTH_TARGET.write_text(json.dumps({
+            "schema_version": 1, "repository": CENTRAL, "state": "UNKNOWN",
+            "research_institute_repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+            "central_orchestrator": CENTRAL, "federation_verified": False,
+            "secrets_exposed": False, "pii_exposed": False,
+            "note": "Central federation health export could not be verified.",
+            "error_type": type(exc).__name__,
+        }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return 0
 
 if __name__ == "__main__":
