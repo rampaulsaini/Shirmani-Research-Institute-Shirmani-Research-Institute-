@@ -112,10 +112,19 @@ jobs:
           (pathlib.Path(os.environ["GITHUB_WORKSPACE"]) / "audit-result" / "result.json").write_text(json.dumps(data, indent=2, ensure_ascii=False))
           PY
 
+      - name: Build deterministic artifact name
+        id: artifact_name
+        env:
+          TARGET_REPO: ${{ matrix.repo }}
+        run: |
+          set -euo pipefail
+          suffix="$(printf '%s' "$TARGET_REPO" | sha256sum | cut -c1-12)"
+          echo "name=shirmani-audit-$suffix" >> "$GITHUB_OUTPUT"
+
       - name: Upload audit result
         uses: actions/upload-artifact@v4
         with:
-          name: shirmani-audit-${{ matrix.repo }}
+          name: ${{ steps.artifact_name.outputs.name }}
           path: audit-result/result.json
           if-no-files-found: error
           retention-days: 30
