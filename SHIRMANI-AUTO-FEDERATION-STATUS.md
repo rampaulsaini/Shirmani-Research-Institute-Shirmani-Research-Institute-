@@ -1,8 +1,10 @@
 # SHIRMANI AUTO-FEDERATION STATUS
 
-Generated from the currently linked GitHub account on 2026-09-22.
+Refreshed from the repository's currently recorded federation payload on 2026-09-23.
 
 ## Central Heart-View state
+- Latest checked factory baseline remains `CURRENT_BASELINE_SUCCESS` (Research Factory Integrity run #29); the generated federation JSON itself is older and is therefore treated as a stale snapshot, not a live health claim.
+- The public dashboard intentionally displays `UNKNOWN` when a fresh verified federation-health payload is unavailable.
 - Queue total: 100,200
 - Prepared through: 8,950
 - Prepared coverage: 8.93%
