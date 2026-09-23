@@ -1,4 +1,5 @@
 name: Research Factory Federation Status
+# Central contracts are published by the Omniverse-Platform federation-health workflow.
 
 on:
   workflow_dispatch:
