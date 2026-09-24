@@ -1,0 +1,53 @@
+{
+  "schema_version":"1.0.0",
+  "name":"꙰\"𝒥शिरोमणि Allocation Rules & Governance",
+  "status":"DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "description":"Human-reviewed rules for determining allocation eligibility and allocation proposals from verified contribution/work records. No automatic financial or employment execution.",
+  "fields":{
+    "rule_id":"string",
+    "eligibility_basis":"verified evidence/work/skill reference",
+    "allocation_unit":"string",
+    "allocation_formula":"versioned rule expression",
+    "approval_reference":"human governance decision reference",
+    "effective_period":"start/end or version range",
+    "eligibility_status":["NOT_ELIGIBLE","ELIGIBILITY_PENDING","ELIGIBLE","ALLOCATION_PROPOSED","HUMAN_APPROVED","ALLOCATED","SETTLED","DISPUTED","ARCHIVED"],
+    "allocation_reference":"string|null",
+    "audit_reference":"string|null"
+  },
+  "rules":{
+    "invented_contribution":false,
+    "invented_work":false,
+    "invented_skill":false,
+    "invented_income":false,
+    "automatic_allocation":false,
+    "automatic_payment":false,
+    "automatic_employment":false,
+    "guaranteed_reward":false,
+    "hidden_weighting":false
+  },
+  "human_review_required":[
+    "identity_changes",
+    "eligibility_decisions",
+    "allocation_rules",
+    "allocation_approval",
+    "contracts",
+    "payments",
+    "disputes",
+    "production_deployment"
+  ],
+  "integrity_statements":[
+    "REGISTERED != VERIFIED",
+    "VERIFIED != ELIGIBLE",
+    "ELIGIBLE != ALLOCATED",
+    "ALLOCATED != PAID",
+    "PAID != INCOME CLAIM",
+    "RULE != GUARANTEE"
+  ],
+  "integrations":[
+    "federation/verified-work.schema.json",
+    "federation/contribution-ledger.schema.json",
+    "federation/shiromani-value-exchange-spec.json",
+    "employment.html",
+    "income-hub.html"
+  ]
+}

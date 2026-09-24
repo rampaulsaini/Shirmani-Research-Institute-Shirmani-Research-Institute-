@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Allocation Rules & Governance · ꙰"𝒥शिरोमणि</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:0;background:#f7f7f5;color:#171717;line-height:1.6}
+main{max-width:980px;margin:auto;padding:32px 18px}header,.card{background:#fff;border:1px solid #ddd;border-radius:16px;padding:22px;margin-bottom:18px}
+h1{margin:0 0 6px}h2{margin-top:0}.status{font-weight:700}.flow{display:flex;flex-wrap:wrap;gap:8px}.flow span{border:1px solid #ccc;border-radius:999px;padding:7px 11px;background:#fafafa}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.rule{padding:12px;border:1px solid #e0e0e0;border-radius:12px}
+a{color:inherit}.small{color:#555;font-size:.94rem}
+</style>
+</head>
+<body><main>
+<header>
+<div>꙰"𝒥शिरोमणि</div>
+<h1>Allocation Rules & Governance</h1>
+<div class="status">DESIGN SPECIFICATION · NO LIVE ALLOCATION OR PAYMENT EXECUTION</div>
+<p>यह परत सत्यापित योगदान/कार्य के लिए पारदर्शी allocation eligibility और governance rules को संरचित करती है। यह अपने-आप पैसा, रोजगार, token, लाभ या भुगतान जारी नहीं करती।</p>
+</header>
+
+<section class="card">
+<h2>मूल प्रवाह</h2>
+<div class="flow">
+<span>Contribution</span><span>Evidence</span><span>Verification</span><span>Eligibility</span><span>Allocation Rule</span><span>Human Decision</span><span>Settlement</span><span>Audit</span>
+</div>
+</section>
+
+<section class="card">
+<h2>Allocation Rule Model</h2>
+<div class="grid">
+<div class="rule"><b>rule_id</b><br>हर allocation rule की विशिष्ट पहचान।</div>
+<div class="rule"><b>eligibility_basis</b><br>किस verified evidence/skill/work पर eligibility आधारित है।</div>
+<div class="rule"><b>allocation_unit</b><br>काम, सेवा, योगदान, वस्तु या अन्य स्पष्ट unit; monetary value अनिवार्य नहीं।</div>
+<div class="rule"><b>allocation_formula</b><br>मानव-समीक्षित, versioned और प्रकाशित नियम; छिपा हुआ weighting नहीं।</div>
+<div class="rule"><b>approval_reference</b><br>किस human governance decision ने rule को स्वीकृत किया।</div>
+<div class="rule"><b>effective_period</b><br>नियम कब लागू है और कब समाप्त/बदला गया।</div>
+</div>
+</section>
+
+<section class="card">
+<h2>Eligibility States</h2>
+<p><b>NOT_ELIGIBLE → ELIGIBILITY_PENDING → ELIGIBLE → ALLOCATION_PROPOSED → HUMAN_APPROVED → ALLOCATED → SETTLED / DISPUTED → ARCHIVED</b></p>
+<p class="small">ELIGIBLE केवल नियम के अनुसार consideration की पात्रता दर्शाता है। यह रोजगार, भुगतान, आय, guaranteed reward या भविष्य के परिणाम का वादा नहीं है।</p>
+</section>
+
+<section class="card">
+<h2>Governance Safeguards</h2>
+<ul>
+<li>Invented contribution, work, skill, customer, income या payment नहीं।</li>
+<li>Automatic allocation, automatic payment और automatic employment निष्क्रिय।</li>
+<li>Identity changes, eligibility decisions, allocation rules, contracts, payments और disputes के लिए human review।</li>
+<li>हर rule का version, evidence basis, approval reference और audit trail रखा जाना चाहिए।</li>
+<li>Rule बदलने पर पुरानी allocations का इतिहास मिटाया नहीं जाएगा।</li>
+<li>Dispute होने पर settlement को अलग governance state में रखा जाएगा।</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>Integrity Boundary</h2>
+<p><b>REGISTERED ≠ VERIFIED · VERIFIED ≠ ELIGIBLE · ELIGIBLE ≠ ALLOCATED · ALLOCATED ≠ PAID · PAID ≠ INCOME CLAIM · RULE ≠ GUARANTEE</b></p>
+</section>
+
+<section class="card">
+<h2>अगली कड़ी</h2>
+<p>Allocation Rules → Exchange Orders → Settlement Records → Employment/Income Connection → Audit Trail → Governance</p>
+<p><a href="verified-work.html">Verified Work</a> · <a href="contribution-ledger.html">Contribution Ledger</a> · <a href="shiromani-value-exchange-dashboard.html">Value Exchange Dashboard</a> · <a href="employment.html">Employment</a> · <a href="index.html">Main</a></p>
+</section>
+</main></body></html>
