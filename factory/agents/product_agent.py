@@ -15,7 +15,8 @@ else:
     # preserving research_id compatibility for downstream consumers.
     input_rows=[json.loads(line) for line in source_src.read_text(encoding="utf-8").splitlines() if line.strip()] if source_src.exists() else []
     for i,r in enumerate(input_rows,1):
-        rows.append({"product_id":f"P{i:06d}","research_id":f"S{i:06d}","title":f"Research-derived digital product {i:06d}","formats":["mahagranth","verse","paper","audio-script"],"source":f"{r.get("repository","unknown")}:{r.get("path","unknown")}","buyer_benefit":"source-grounded digital content access","price":None,"currency":"INR","status":"draft","draft_only":True,"provenance_required":True,"verification_required":True,"human_review_required":True})
+        source = f"{r.get('repository','unknown')}:{r.get('path','unknown')}"
+        rows.append({"product_id":f"P{i:06d}","research_id":f"S{i:06d}","title":f"Research-derived digital product {i:06d}","formats":["mahagranth","verse","paper","audio-script"],"source":source,"buyer_benefit":"source-grounded digital content access","price":None,"currency":"INR","status":"draft","draft_only":True,"provenance_required":True,"verification_required":True,"human_review_required":True})
 out.write_text("\n".join(json.dumps(r,ensure_ascii=False) for r in rows)+"\n",encoding="utf-8")
 # A separate catalog keeps generated product discovery machine-readable without
 # implying that drafts are published, priced, sold, or independently verified.
