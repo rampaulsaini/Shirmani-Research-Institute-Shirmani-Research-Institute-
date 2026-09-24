@@ -92,3 +92,14 @@ Source → Normalize → Claims → Sources → Evidence → Formulation/Test �
 - **Exchange scope:** verified contribution, skills, labor, knowledge, creative work, services, products and transparent peer/service/work exchange.
 - **Identity:** creator-declared canonical identity and photo source are preserved; exact visual match remains unverified and AI identity substitution is disabled.
 - **Governance:** payments, contracts, allocations, disputes, identity changes and any production deployment require human review and applicable legal/security/accounting gates.
+
+
+## 📒 Contribution Ledger & Personal Value Account
+
+- **Public ledger surface:** [contribution-ledger.html](contribution-ledger.html)
+- **Machine-readable schema:** [federation/contribution-ledger.schema.json](federation/contribution-ledger.schema.json)
+- **Current state:** Design specification — no live balance and no invented contribution/income records.
+- **Record flow:** Registered → Evidence Pending → Verified → Allocated → Settled / Disputed / Archived.
+- **Integrity rule:** REGISTERED ≠ VERIFIED · VERIFIED ≠ PAID · ALLOCATED ≠ SETTLED · LEDGER ENTRY ≠ INCOME.
+- **Privacy boundary:** credentials, payment-card data, passwords and unnecessary personal data are excluded from the public ledger model.
+- **Future connections:** Employment & Livelihood, verified work, value allocation, exchange orders and authorized settlement evidence.
