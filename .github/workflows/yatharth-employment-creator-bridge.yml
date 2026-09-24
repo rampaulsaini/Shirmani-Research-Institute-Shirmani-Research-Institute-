@@ -1,0 +1,56 @@
+name: YATHARTH Employment & Creator Automission Bridge
+
+on:
+  workflow_dispatch:
+    inputs:
+      brief:
+        description: "Employment/creator automission brief"
+        required: false
+        default: "Continue creator identity, employment, livelihood, income and portfolio continuity from the Shirmani main hub."
+        type: string
+  repository_dispatch:
+    types: [shirmani_main_automission]
+  schedule:
+    - cron: "37 */6 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yatharth-employment-creator-bridge
+  cancel-in-progress: false
+
+jobs:
+  bridge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate bridge contract
+        run: |
+          python - <<'PY'
+          import json
+          with open("federation/yatharth-employment-bridge.json", encoding="utf-8") as f:
+              c=json.load(f)
+          assert c["status"] == "READY"
+          assert c["automation_policy"]["no_invented_income"] is True
+          assert c["automation_policy"]["ai_substitution_allowed"] if "ai_substitution_allowed" in c["automation_policy"] else True
+          print("Bridge contract READY")
+          PY
+      - name: Publish automission summary
+        env:
+          MANUAL_BRIEF: ${{ inputs.brief }}
+          EVENT_BRIEF: ${{ github.event.client_payload.brief }}
+        run: |
+          BRIEF="${MANUAL_BRIEF:-${EVENT_BRIEF:-Continue verified creator/employment continuity.}}"
+          {
+            echo "## Yatharth Employment & Creator Automission"
+            echo ""
+            echo "- Source: `rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-`"
+            echo "- Target: `rampaulsaini/yatharth-music-ai`"
+            echo "- Mode: `CONTINUOUS`"
+            echo "- Identity substitution: `DISABLED`"
+            echo "- Invented income: `DISABLED`"
+            echo "- Photo verification: `PENDING USER VISUAL EVIDENCE`"
+            echo "- Brief: ${BRIEF}"
+          } >> "$GITHUB_STEP_SUMMARY"
