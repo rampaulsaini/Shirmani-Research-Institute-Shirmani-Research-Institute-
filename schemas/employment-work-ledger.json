@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "name": "shirmani-employment-work-ledger",
+  "purpose": "evidence-aware employment, freelancing and work opportunity tracking",
+  "statuses": ["planned","open","applied","shortlisted","contracted","active","completed","closed"],
+  "required_fields": ["work_id","role_or_service","work_type","status","source","scope","compensation_model","evidence_refs"],
+  "work_types": ["employment","freelance","contract","project","creator","digital_product","licensing","volunteer"],
+  "rules": {
+    "no_fabricated_vacancies": true,
+    "no_fabricated_salary": true,
+    "no_fabricated_client": true,
+    "no_employment_confirmation_without_evidence": true,
+    "published_roles_require_scope": true,
+    "published_roles_require_compensation_model": true,
+    "application_records_must_not_require_unnecessary_sensitive_data": true
+  },
+  "workflow": ["capability","portfolio","offer_or_role","discovery","application_or_order","contract_or_confirmation","payment","delivery","feedback","repeat_or_close"]
+}
