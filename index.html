@@ -80,6 +80,17 @@
             margin: 0 auto;
         }
 
+
+        .life-priority { margin: 10px 0 45px; padding: 26px; border: 2px solid var(--primary-gold); border-radius: 16px; background: linear-gradient(135deg, rgba(212,175,55,.16), rgba(0,210,255,.06)); box-shadow: 0 12px 35px rgba(0,0,0,.35); }
+        .life-priority h2 { color: var(--primary-gold); font-family: 'Rozha One', serif; font-size: 2rem; margin-bottom: 10px; }
+        .life-priority > p { color: var(--text-light); max-width: 950px; margin-bottom: 20px; }
+        .priority-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+        .priority-card { display: flex; flex-direction: column; gap: 6px; padding: 18px; border-radius: 12px; border: 1px solid rgba(212,175,55,.45); background: rgba(0,0,0,.25); color: var(--text-light); text-decoration: none; transition: transform .2s ease, border-color .2s ease; }
+        .priority-card:hover { transform: translateY(-3px); border-color: var(--primary-gold); }
+        .priority-card i { color: var(--primary-gold); font-size: 1.6rem; }
+        .priority-card strong { font-size: 1.1rem; }
+        .priority-card span { color: var(--text-dim); font-size: .88rem; }
+
         /* Container & Navigation Tabs */
         .container {
             max-width: 1200px;
@@ -195,6 +206,20 @@
     </header>
 
     <div class="container">
+
+        <!-- PRIORITY: जीवन-व्यापन एवं कार्य-निरंतरता -->
+        <section class="life-priority" aria-labelledby="life-priority-heading">
+            <h2 id="life-priority-heading"><i class="fa-solid fa-heart-pulse"></i> सबसे पहले: जीवन-व्यापन, आय और कार्य-निरंतरता</h2>
+            <p>यह प्रवेश-द्वार उन वास्तविक कामों और डिजिटल स्रोतों को पहले दिखाता है जिनसे स्वतंत्र कार्य, ग्राहक, उत्पाद, सेवाएँ और संभावित आय विकसित की जा सकती है। ये आय की गारंटी नहीं हैं; उद्देश्य यह है कि जरूरी आर्थिक रास्ते सार्वजनिक इंटरफ़ेस में छिपे न रहें।</p>
+            <div class="priority-grid">
+                <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank"><i class="fa-solid fa-store"></i><strong>Digital Store</strong><span>डिजिटल उत्पाद · ऑडियो · प्रत्यक्ष बिक्री</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank"><i class="fa-solid fa-music"></i><strong>यथार्थ AI Music</strong><span>संगीत · creative production · संभावित licensing/sales</span></a>
+                <a class="priority-card" href="https://www.upwork.com/" target="_blank"><i class="fa-solid fa-briefcase"></i><strong>Freelancing</strong><span>AI · लेखन · research · audio/music · digital services</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank"><i class="fa-solid fa-shop"></i><strong>Marketplace</strong><span>products/services · digital business channel</span></a>
+                <a class="priority-card" href="https://youtube.com/@rampaulsaini-yk4gn" target="_blank"><i class="fa-brands fa-youtube"></i><strong>Creator Income</strong><span>content · audience · संभावित monetization</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank"><i class="fa-solid fa-chart-line"></i><strong>Economic Vision</strong><span>सभी आय-स्रोतों का संयुक्त business entry point</span></a>
+            </div>
+        </section>
 
         <!-- Section 1: Core Platforms & Apps -->
         <h2 class="category-title"><i class="fa-solid fa-globe"></i> मुख्य डिजिटल प्लेटफॉर्म्स (Omniverse Apps)</h2>
