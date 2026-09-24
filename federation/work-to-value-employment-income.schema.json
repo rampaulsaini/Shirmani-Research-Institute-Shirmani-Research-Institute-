@@ -1,0 +1,57 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "schema_version":"1.0.0",
+  "name":"꙰\"𝒥शिरोमणि Work-to-Value Employment & Income Pipeline",
+  "status":"DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "type":"object",
+  "properties":{
+    "pipeline_id":{"type":"string"},
+    "work_reference":{"type":["string","null"]},
+    "skill_reference":{"type":["string","null"]},
+    "opportunity_reference":{"type":["string","null"]},
+    "match_reference":{"type":["string","null"]},
+    "agreement_reference":{"type":["string","null"]},
+    "fulfilment_reference":{"type":["string","null"]},
+    "settlement_reference":{"type":["string","null"]},
+    "reconciliation_reference":{"type":["string","null"]},
+    "audit_reference":{"type":["string","null"]},
+    "pipeline_status":{"type":"string","enum":["PROFILED","SKILL_VERIFIED","OPPORTUNITY_ELIGIBLE","MATCH_PROPOSED","HUMAN_ACCEPTED","AGREEMENT_RECORDED","WORK_IN_PROGRESS","FULFILLED","SETTLEMENT_PENDING","SETTLED","RECONCILED","DISPUTED","CANCELLED","REVERSED","ARCHIVED","NOT_VERIFIED"]}
+  },
+  "required":["pipeline_id","pipeline_status"],
+  "rules":{
+    "invented_work":false,
+    "invented_skill":false,
+    "invented_opportunity":false,
+    "invented_employer":false,
+    "invented_customer":false,
+    "invented_contract":false,
+    "invented_payment":false,
+    "invented_income":false,
+    "automatic_employment":false,
+    "automatic_matching":false,
+    "automatic_contracting":false,
+    "automatic_payment":false,
+    "automatic_income_recording":false,
+    "identity_substitution":false
+  },
+  "human_review_required":["identity_changes","skill_verification","opportunity_eligibility","counterparty_confirmation","contracts","fulfilment_acceptance","settlement","payments","income_recording","disputes","reversals","production_deployment"],
+  "income_evidence_rule":"Income must not be recorded as factual without actual external payment or accounting evidence appropriate to the claim.",
+  "privacy_boundary":"Use references and only necessary employment, work and settlement data; do not require unnecessary personal or financial data.",
+  "integrity_statements":[
+    "VERIFIED WORK != EMPLOYMENT",
+    "MATCH != CONTRACT",
+    "CONTRACT != COMPLETED WORK",
+    "FULFILLED != PAID",
+    "SETTLED != INCOME CLAIM WITHOUT EVIDENCE"
+  ],
+  "integrations":[
+    "federation/verified-work.schema.json",
+    "federation/allocation-rules.schema.json",
+    "federation/exchange-orders.schema.json",
+    "federation/settlement-records.schema.json",
+    "federation/reconciliation-audit-trail.schema.json",
+    "federation/contribution-ledger.schema.json",
+    "employment.html",
+    "income-hub.html"
+  ]
+}
