@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Settlement Records — ꙰"𝒥शिरोमणि</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:0;background:#f7f7f5;color:#202020;line-height:1.6}
+main{max-width:980px;margin:auto;padding:32px 20px}header{padding:28px 0;border-bottom:1px solid #ddd}
+h1{margin:.2em 0}.status{display:inline-block;padding:5px 10px;border:1px solid #888;border-radius:999px;font-size:.85rem}
+.card{background:white;border:1px solid #ddd;border-radius:14px;padding:20px;margin:18px 0}
+.flow{font-weight:700}.mono{font-family:ui-monospace,monospace}.note{background:#faf4df;padding:14px;border-radius:10px}
+a{color:inherit}
+</style>
+</head>
+<body><main>
+<header>
+<div>꙰"𝒥शिरोमणि</div>
+<h1>Settlement Records</h1>
+<div class="status">DESIGN SPECIFICATION · NO LIVE PAYMENT EXECUTION</div>
+<p>Fulfilled exchange को एक अलग, auditable settlement record में संरचित करने वाली परत।</p>
+</header>
+
+<section class="card">
+<h2>Settlement Flow</h2>
+<p class="flow">Fulfilled Exchange → Settlement Candidate → Settlement Review → Human Confirmation → Settlement Record → Reconciliation → Audit</p>
+<p>यह layer settlement की संरचना और evidence trail बनाती है; अपने आप धन transfer, payment, income या financial balance उत्पन्न नहीं करती।</p>
+</section>
+
+<section class="card">
+<h2>Settlement Record</h2>
+<ul>
+<li><span class="mono">settlement_id</span> — अद्वितीय settlement reference</li>
+<li><span class="mono">order_reference</span> — संबंधित exchange order</li>
+<li><span class="mono">fulfilment_reference</span> — fulfilled work/service/product का reference</li>
+<li><span class="mono">payer_reference / payee_reference</span> — वास्तविक पक्षों के references, यदि लागू हों</li>
+<li><span class="mono">settlement_type</span> — documented settlement mode</li>
+<li><span class="mono">settlement_amount_or_value</span> — recorded amount/value, केवल वास्तविक evidence के आधार पर</li>
+<li><span class="mono">currency_or_unit</span> — लागू currency/value unit</li>
+<li><span class="mono">terms_reference</span> — agreed terms का reference</li>
+<li><span class="mono">evidence_reference</span> — external/supporting evidence</li>
+<li><span class="mono">confirmation_reference</span> — human confirmation</li>
+<li><span class="mono">reconciliation_reference</span> — reconciliation result</li>
+<li><span class="mono">dispute_reference</span> — dispute/reversal reference, यदि लागू हो</li>
+<li><span class="mono">audit_reference</span> — audit trail</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>Settlement States</h2>
+<p class="mono">PENDING → UNDER_REVIEW → HUMAN_CONFIRMED → SETTLEMENT_READY → SETTLED → RECONCILIATION_PENDING → RECONCILED</p>
+<p>Governance states: <span class="mono">DISPUTED · REVERSED · CANCELLED · ARCHIVED</span></p>
+</section>
+
+<section class="card">
+<h2>Integrity Boundary</h2>
+<p class="mono">FULFILLED ≠ SETTLEMENT_READY · SETTLEMENT_READY ≠ SETTLED · SETTLED ≠ RECONCILED · SETTLED ≠ INCOME CLAIM · SETTLEMENT RECORD ≠ PAYMENT PROOF UNLESS ACTUAL EXTERNAL EVIDENCE EXISTS</p>
+</section>
+
+<section class="card">
+<h2>Safeguards</h2>
+<ul>
+<li>कोई invented payer, payee, amount, payment, income या reconciliation नहीं।</li>
+<li>Automatic transfer, payment और settlement execution disabled.</li>
+<li>Fabricated settlement confirmation स्वीकार नहीं; वास्तविक external evidence आवश्यक है।</li>
+<li>Identity, terms, settlement approval, payments, disputes, reversals और production changes पर human review आवश्यक।</li>
+<li>Actual payment evidence के बिना <span class="mono">SETTLED</span> या <span class="mono">RECONCILED</span> को वास्तविक payment fact नहीं माना जाएगा।</li>
+<li>Privacy boundary: केवल आवश्यक references; अनावश्यक personal या financial data नहीं।</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>Connected Layers</h2>
+<p><a href="exchange-orders.html">Exchange Orders</a> ·
+<a href="verified-work.html">Verified Work & Skill Verification</a> ·
+<a href="contribution-ledger.html">Contribution Ledger</a> ·
+<a href="allocation-rules.html">Allocation Rules</a> ·
+<a href="shiromani-value-exchange-dashboard.html">Value Exchange Dashboard</a> ·
+<a href="employment.html">Employment</a> ·
+<a href="index.html">Main</a></p>
+</section>
+
+<div class="note"><strong>Current state:</strong> यह design-only settlement/reconciliation layer है। कोई live bank account, payment processor, blockchain settlement, automatic transfer, fabricated balance या guaranteed income execution यहाँ दावा नहीं किया गया है।</div>
+</main></body></html>
