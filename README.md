@@ -32,6 +32,15 @@ Hosted via GitHub Pages.
 
 ---
 
+## 🪙 Yatharth Mudra — Public Status
+
+- **Public page:** [yatharth-mudra.html](yatharth-mudra.html)
+- **Public status record:** [federation/yatharth-mudra-public-status.json](federation/yatharth-mudra-public-status.json)
+- **Current state:** Design / Testnet-first — **not deployed, not mainnet, no public sale**.
+- **Symbol:** YTH · **Maximum supply:** 1,000,000,000 · **Initial supply:** 0 · **Decimals:** 8
+- **Automission role:** specification, provenance and routing only; no automatic minting, contract deployment or independent verification claim.
+- **Origin record:** 4 April 2024, 18:24 IST, Amritsar; creator-declared and not independently verified.
+
 ## 🔗 Central Knowledge Hub
 
 यह repository केंद्रीय **Nishpaksh Samaj Omniverse Truth** परियोजना के Research Institute / Archive layer से जुड़ी है।

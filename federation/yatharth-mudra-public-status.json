@@ -1,0 +1,27 @@
+{
+  "token_name": "Yatharth Mudra",
+  "symbol": "YTH",
+  "max_supply": 1000000000,
+  "decimals": 8,
+  "initial_supply": 0,
+  "status": "DESIGN_TESTNET_FIRST",
+  "network": null,
+  "contract_deployed": false,
+  "security_audit_completed": false,
+  "public_sale": false,
+  "monetary_price": null,
+  "automation": {
+    "automission_role": "specification_provenance_routing",
+    "minting": false,
+    "deployment": false,
+    "independent_verification": false
+  },
+  "origin": {
+    "date": "2024-04-04",
+    "time_local": "18:24",
+    "timezone": "Asia/Kolkata",
+    "place": "Amritsar, Punjab, India",
+    "verification_status": "CREATOR_DECLARED_NOT_INDEPENDENTLY_VERIFIED"
+  },
+  "safety_note": "Not launched, not mainnet-deployed, not for public sale, no guaranteed value or investment status."
+}
