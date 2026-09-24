@@ -1,0 +1,57 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "schema_version":"1.0.0",
+  "name":"꙰\"𝒥शिरोमणि Dispute & Resolution Lifecycle",
+  "status":"DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "description":"Evidence-first dispute record connecting fulfilment, settlement, reconciliation and human resolution without fabricating legal, financial or payment outcomes.",
+  "type":"object",
+  "properties":{
+    "dispute_id":{"type":"string"},
+    "source_reference":{"type":"string"},
+    "order_reference":{"type":["string","null"]},
+    "agreement_reference":{"type":["string","null"]},
+    "fulfilment_reference":{"type":["string","null"]},
+    "settlement_reference":{"type":["string","null"]},
+    "reconciliation_reference":{"type":["string","null"]},
+    "reporter_reference":{"type":["string","null"]},
+    "counterparty_reference":{"type":["string","null"]},
+    "dispute_type":{"type":"string"},
+    "claim_summary":{"type":"string"},
+    "evidence_reference":{"type":["string","null"]},
+    "decision_reference":{"type":["string","null"]},
+    "resolution_reference":{"type":["string","null"]},
+    "status":{"type":"string","enum":["OPEN","EVIDENCE_PENDING","UNDER_REVIEW","HUMAN_DECISION_REQUIRED","RESOLVED","REJECTED","ESCALATED","CANCELLED","ARCHIVED"]},
+    "audit_reference":{"type":["string","null"]}
+  },
+  "required":["dispute_id","source_reference","dispute_type","claim_summary","status"],
+  "rules":{
+    "dispute_reported_is_proven":false,
+    "evidence_pending_is_confirmed":false,
+    "automated_legal_decision":false,
+    "automated_refund":false,
+    "automated_reversal":false,
+    "automated_liability_decision":false,
+    "invented_counterparty":false,
+    "invented_payment":false,
+    "invented_resolution":false,
+    "silent_history_overwrite":false
+  },
+  "human_review_required":["identity_changes","contract_interpretation","delivery_acceptance","payment_disputes","refunds","reversals","liability","escalation","final_resolution"],
+  "evidence_rule":"A dispute record records a claim or exception; it is not proof that the claim is correct. Resolution status requires the applicable human decision and supporting evidence.",
+  "privacy_boundary":"Store only necessary references, claim details, evidence references and decision metadata; avoid unnecessary personal or financial data.",
+  "integrity_statements":[
+    "DISPUTE_REPORTED != DISPUTE_PROVEN",
+    "EVIDENCE_PENDING != EVIDENCE_CONFIRMED",
+    "RESOLVED != REFUNDED",
+    "REFUND_RECORDED != PAYMENT_PROOF",
+    "AUTOMATED_STATUS != HUMAN_DECISION"
+  ],
+  "integrations":[
+    "federation/exchange-orders.schema.json",
+    "federation/settlement-records.schema.json",
+    "federation/reconciliation-audit-trail.schema.json",
+    "federation/work-to-value-employment-income.schema.json",
+    "employment.html",
+    "income-command-center.html"
+  ]
+}
