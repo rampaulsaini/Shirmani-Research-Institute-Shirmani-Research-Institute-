@@ -1,0 +1,13 @@
+{
+  "openapi":"3.1.0",
+  "info":{"title":"Shirmani Global Social Platform API","version":"0.1.0","description":"Evidence-aware multi-user API contract for profile, feed, posts and self-interview learning."},
+  "servers":[{"url":"https://YOUR-API.example.com"}],
+  "paths":{
+    "/health":{"get":{"responses":{"200":{"description":"Service health"}}}},
+    "/v1/profile/{id}":{"get":{"parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Profile"},"404":{"description":"Not found"}}}},
+    "/v1/feed":{"get":{"responses":{"200":{"description":"Latest public feed"}}}},
+    "/v1/posts":{"post":{"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["author_id","text"],"properties":{"author_id":{"type":"string","format":"uuid"},"text":{"type":"string","maxLength":5000},"type":{"type":"string","maxLength":32}}}}}},"responses":{"201":{"description":"Created"},"400":{"description":"Invalid input"},"503":{"description":"Database unavailable"}}}},
+    "/v1/self-interviews":{"post":{"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["profile_id","question","answer"],"properties":{"profile_id":{"type":"string","format":"uuid"},"question":{"type":"string","maxLength":1000},"answer":{"type":"string","maxLength":5000}}}}}},"responses":{"201":{"description":"Saved learning response"},"400":{"description":"Invalid input"},"503":{"description":"Database unavailable"}}}}
+  },
+  "x-integrity-boundary":["No fabricated users, followers, views, payments, employment, income or testimonials.","Authentication and authorization must be added before production exposure.","AI output is not evidence of identity, transaction or personal experience.","Moderation, appeals, privacy and deletion controls are production requirements."]
+}
