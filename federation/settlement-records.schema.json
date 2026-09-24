@@ -1,0 +1,60 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "schema_version":"1.0.0",
+  "name":"꙰\"𝒥शिरोमणि Settlement Records",
+  "status":"DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "description":"Auditable settlement structure connecting fulfilled exchange orders to human-confirmed settlement and reconciliation records.",
+  "type":"object",
+  "properties":{
+    "settlement_id":{"type":"string"},
+    "order_reference":{"type":"string"},
+    "fulfilment_reference":{"type":["string","null"]},
+    "payer_reference":{"type":["string","null"]},
+    "payee_reference":{"type":["string","null"]},
+    "settlement_type":{"type":"string"},
+    "settlement_amount_or_value":{"type":["string","null"]},
+    "currency_or_unit":{"type":["string","null"]},
+    "terms_reference":{"type":["string","null"]},
+    "evidence_reference":{"type":["string","null"]},
+    "confirmation_reference":{"type":["string","null"]},
+    "settlement_status":{"type":"string","enum":["PENDING","UNDER_REVIEW","HUMAN_CONFIRMED","SETTLEMENT_READY","SETTLED","RECONCILIATION_PENDING","RECONCILED","DISPUTED","REVERSED","CANCELLED","ARCHIVED"]},
+    "reconciliation_reference":{"type":["string","null"]},
+    "dispute_reference":{"type":["string","null"]},
+    "audit_reference":{"type":["string","null"]}
+  },
+  "required":["settlement_id","order_reference","settlement_type","settlement_status"],
+  "rules":{
+    "invented_payer":false,
+    "invented_payee":false,
+    "invented_amount":false,
+    "invented_payment":false,
+    "invented_income":false,
+    "invented_reconciliation":false,
+    "automatic_transfer":false,
+    "automatic_payment":false,
+    "automatic_settlement":false,
+    "automatic_reconciliation":false,
+    "fabricated_confirmation":false,
+    "settlement_is_guarantee":false,
+    "settlement_is_payment_proof_without_external_evidence":false
+  },
+  "human_review_required":["identity_changes","settlement_terms","settlement_approval","payments","disputes","reversals","production_deployment"],
+  "evidence_rule":"SETTLED or RECONCILED must not be treated as a real payment fact without actual external evidence.",
+  "privacy_boundary":"Store references and only necessary settlement data; do not require unnecessary personal or financial data.",
+  "integrity_statements":[
+    "FULFILLED != SETTLEMENT_READY",
+    "SETTLEMENT_READY != SETTLED",
+    "SETTLED != RECONCILED",
+    "SETTLED != INCOME CLAIM",
+    "SETTLEMENT RECORD != PAYMENT PROOF UNLESS ACTUAL EXTERNAL EVIDENCE EXISTS"
+  ],
+  "integrations":[
+    "federation/exchange-orders.schema.json",
+    "federation/verified-work.schema.json",
+    "federation/contribution-ledger.schema.json",
+    "federation/allocation-rules.schema.json",
+    "federation/shiromani-value-exchange-spec.json",
+    "employment.html",
+    "income-hub.html"
+  ]
+}
