@@ -81,12 +81,12 @@
         }
 
 
-        .life-priority { margin: 10px 0 45px; padding: 26px; border: 2px solid var(--primary-gold); border-radius: 16px; background: linear-gradient(135deg, rgba(212,175,55,.16), rgba(0,210,255,.06)); box-shadow: 0 12px 35px rgba(0,0,0,.35); }
+        .life-priority { position: relative; margin: 10px 0 45px; padding: 26px; border: 2px solid var(--primary-gold); border-radius: 16px; background: linear-gradient(135deg, rgba(212,175,55,.16), rgba(0,210,255,.06)); box-shadow: 0 12px 35px rgba(0,0,0,.35); }
         .life-priority h2 { color: var(--primary-gold); font-family: 'Rozha One', serif; font-size: 2rem; margin-bottom: 10px; }
         .life-priority > p { color: var(--text-light); max-width: 950px; margin-bottom: 20px; }
         .priority-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
         .priority-card { display: flex; flex-direction: column; gap: 6px; padding: 18px; border-radius: 12px; border: 1px solid rgba(212,175,55,.45); background: rgba(0,0,0,.25); color: var(--text-light); text-decoration: none; transition: transform .2s ease, border-color .2s ease; }
-        .priority-card:hover { transform: translateY(-3px); border-color: var(--primary-gold); }
+        .priority-card:hover { transform: translateY(-3px); border-color: var(--primary-gold); } .priority-card small { color: var(--accent-blue); font-weight: 600; letter-spacing: .2px; } .income-note { margin-top: 16px; padding: 12px 14px; border-left: 3px solid var(--accent-blue); background: rgba(0,210,255,.06); color: var(--text-dim); font-size: .9rem; border-radius: 8px; }
         .priority-card i { color: var(--primary-gold); font-size: 1.6rem; }
         .priority-card strong { font-size: 1.1rem; }
         .priority-card span { color: var(--text-dim); font-size: .88rem; }
@@ -208,18 +208,39 @@
     <div class="container">
 
         <!-- PRIORITY: जीवन-व्यापन एवं कार्य-निरंतरता -->
-        <section class="life-priority" aria-labelledby="life-priority-heading">
-            <h2 id="life-priority-heading"><i class="fa-solid fa-heart-pulse"></i> सबसे पहले: जीवन-व्यापन, आय और कार्य-निरंतरता</h2>
-            <p>यह प्रवेश-द्वार उन वास्तविक कामों और डिजिटल स्रोतों को पहले दिखाता है जिनसे स्वतंत्र कार्य, ग्राहक, उत्पाद, सेवाएँ और संभावित आय विकसित की जा सकती है। ये आय की गारंटी नहीं हैं; उद्देश्य यह है कि जरूरी आर्थिक रास्ते सार्वजनिक इंटरफ़ेस में छिपे न रहें।</p>
+        <section class="life-priority" id="livelihood" aria-labelledby="life-priority-heading">
+            <h2 id="life-priority-heading"><i class="fa-solid fa-heart-pulse"></i> सबसे पहले: जीवन-व्यापन • आय • काम की निरंतरता</h2>
+            <p>यह इस Hub का <strong>प्रथम सार्वजनिक प्रवेश-द्वार</strong> है। Research, सेवा, डिजिटल उत्पाद, संगीत, creator work और freelancing—जो रास्ते वास्तविक काम या संभावित आय तक ले जा सकते हैं—यहाँ छिपे नहीं रहेंगे। किसी भी platform से आय की गारंटी नहीं है; यह section काम शुरू करने के रास्ते स्पष्ट करता है।</p>
             <div class="priority-grid">
-                <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank"><i class="fa-solid fa-store"></i><strong>Digital Store</strong><span>डिजिटल उत्पाद · ऑडियो · प्रत्यक्ष बिक्री</span></a>
-                <a class="priority-card" href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank"><i class="fa-solid fa-music"></i><strong>यथार्थ AI Music</strong><span>संगीत · creative production · संभावित licensing/sales</span></a>
-                <a class="priority-card" href="https://www.upwork.com/" target="_blank"><i class="fa-solid fa-briefcase"></i><strong>Freelancing</strong><span>AI · लेखन · research · audio/music · digital services</span></a>
-                <a class="priority-card" href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank"><i class="fa-solid fa-shop"></i><strong>Marketplace</strong><span>products/services · digital business channel</span></a>
-                <a class="priority-card" href="https://youtube.com/@rampaulsaini-yk4gn" target="_blank"><i class="fa-brands fa-youtube"></i><strong>Creator Income</strong><span>content · audience · संभावित monetization</span></a>
-                <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank"><i class="fa-solid fa-chart-line"></i><strong>Economic Vision</strong><span>सभी आय-स्रोतों का संयुक्त business entry point</span></a>
-                <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank"><i class="fa-solid fa-headphones"></i><strong>Audio & Knowledge Products</strong><span>MP3 · ज्ञान-सामग्री · डिजिटल उत्पाद बिक्री</span></a>
-                <a class="priority-card" href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank"><i class="fa-solid fa-handshake"></i><strong>Services & Client Work</strong><span>research · writing · AI · publishing · digital services</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank"><small>तुरंत काम</small><i class="fa-solid fa-store"></i><strong>Digital Store</strong><span>MP3 · ज्ञान-सामग्री · डिजिटल उत्पाद · प्रत्यक्ष बिक्री</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank"><small>Creative Income</small><i class="fa-solid fa-music"></i><strong>यथार्थ AI Music</strong><span>AI-assisted music · production · licensing/sales possibilities</span></a>
+                <a class="priority-card" href="https://www.upwork.com/" target="_blank"><small>Client Work</small><i class="fa-solid fa-briefcase"></i><strong>Upwork Freelancing</strong><span>AI · research · writing · audio/music · digital services</span></a>
+                <a class="priority-card" href="https://www.fiverr.com/" target="_blank"><small>Client Work</small><i class="fa-solid fa-bolt"></i><strong>Fiverr Services</strong><span>service packages · creative work · research · AI/digital delivery</span></a>
+                <a class="priority-card" href="https://contra.com/" target="_blank"><small>Independent Work</small><i class="fa-solid fa-user-tie"></i><strong>Contra</strong><span>portfolio-led freelance and independent professional services</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank"><small>Business Hub</small><i class="fa-solid fa-shop"></i><strong>Omniverse Marketplace</strong><span>products · services · client work · digital business channel</span></a>
+                <a class="priority-card" href="https://youtube.com/@rampaulsaini-yk4gn" target="_blank"><small>Creator Income</small><i class="fa-brands fa-youtube"></i><strong>YouTube / Creator</strong><span>content · audience · memberships/ads/other eligible monetization</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank"><small>Knowledge Products</small><i class="fa-solid fa-headphones"></i><strong>Audio & Knowledge</strong><span>audio · books · certificates · research material · digital products</span></a>
+                <a class="priority-card" href="https://www.gumroad.com/" target="_blank"><small>Digital Sales</small><i class="fa-solid fa-file-arrow-up"></i><strong>Gumroad</strong><span>digital products · files · memberships and creator sales</span></a>
+                <a class="priority-card" href="https://payhip.com/" target="_blank"><small>Digital Sales</small><i class="fa-solid fa-credit-card"></i><strong>Payhip</strong><span>digital downloads · memberships · creator storefront option</span></a>
+                <a class="priority-card" href="https://www.freelancer.com/" target="_blank"><small>Client Work</small><i class="fa-solid fa-globe"></i><strong>Freelancer</strong><span>global projects · writing · research · technology · creative work</span></a>
+                <a class="priority-card" href="https://www.linkedin.com/" target="_blank"><small>Professional Network</small><i class="fa-brands fa-linkedin"></i><strong>LinkedIn</strong><span>professional identity · direct clients · collaborations · opportunities</span></a>
+                <a class="priority-card" href="https://www.pond5.com/" target="_blank"><small>Media Licensing</small><i class="fa-solid fa-film"></i><strong>Media Licensing</strong><span>eligible audio/video/creative assets can be explored for licensing</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank"><small>Economic Vision</small><i class="fa-solid fa-chart-line"></i><strong>Economic Vision</strong><span>सभी income channels को एक दीर्घकालिक business system में जोड़ना</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank"><small>Services</small><i class="fa-solid fa-handshake"></i><strong>Services & Client Work</strong><span>research · writing · AI · publishing · audio · digital services</span></a>
+                <a class="priority-card" href="#income-map"><small>पूरा मानचित्र</small><i class="fa-solid fa-diagram-project"></i><strong>Income Source Map</strong><span>नीचे देखें: product → service → creator → licensing → long-term business</span></a>
+            </div>
+            <div class="income-note"><strong>महत्वपूर्ण:</strong> यह Hub livelihood को “बाद में” नहीं रखता। पहले जीवन-व्यापन और कार्य-निरंतरता के रास्ते दिखाए जाते हैं; उसके बाद research, archive और बाकी layers आते हैं।</div>
+        </section>
+
+        <section class="life-priority" id="income-map" aria-labelledby="income-map-heading">
+            <h2 id="income-map-heading"><i class="fa-solid fa-route"></i> आय-स्रोत का कार्य-मानचित्र</h2>
+            <div class="priority-grid">
+                <div class="priority-card"><small>1 • PRODUCT</small><strong>अपनी चीज़ बेचें</strong><span>Digital Store · audio · books · knowledge products · marketplace</span></div>
+                <div class="priority-card"><small>2 • SERVICE</small><strong>अपना कौशल बेचें</strong><span>AI · research · writing · publishing · design/creative · audio/music services</span></div>
+                <div class="priority-card"><small>3 • CREATOR</small><strong>Audience बनाएं</strong><span>YouTube · public content · podcast/audio · educational media</span></div>
+                <div class="priority-card"><small>4 • LICENSING</small><strong>Creative assets को license करें</strong><span>music/audio/video and other eligible digital assets</span></div>
+                <div class="priority-card"><small>5 • CLIENT PIPELINE</small><strong>नियमित ग्राहक बनाएं</strong><span>Freelance platforms + LinkedIn + direct outreach + repeat services</span></div>
+                <div class="priority-card"><small>6 • LONG TERM</small><strong>एकीकृत business system</strong><span>Store + Marketplace + Services + Creator + Research को एक sustainable economic layer में जोड़ना</span></div>
             </div>
         </section>
 
