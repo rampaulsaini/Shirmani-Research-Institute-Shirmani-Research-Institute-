@@ -1,0 +1,56 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "schema_version":"1.0.0",
+  "name":"꙰\"𝒥शिरोमणि Exchange Orders",
+  "status":"DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "description":"Auditable exchange-order structure connecting verified contribution/allocation eligibility to human-confirmed exchange and settlement records.",
+  "type":"object",
+  "properties":{
+    "order_id":{"type":"string"},
+    "initiator_reference":{"type":"string"},
+    "counterparty_reference":{"type":["string","null"]},
+    "source_contribution_reference":{"type":["string","null"]},
+    "source_allocation_reference":{"type":["string","null"]},
+    "exchange_type":{"type":"string"},
+    "offered_value":{"type":["string","null"]},
+    "requested_value":{"type":["string","null"]},
+    "terms":{"type":"string"},
+    "evidence_reference":{"type":["string","null"]},
+    "status":{"type":"string","enum":["DRAFT","OPEN","MATCHED","HUMAN_CONFIRMED","FULFILMENT_PENDING","FULFILLED","SETTLEMENT_PENDING","SETTLED","DISPUTED","CANCELLED","ARCHIVED"]},
+    "confirmation_reference":{"type":["string","null"]},
+    "settlement_reference":{"type":["string","null"]},
+    "audit_reference":{"type":["string","null"]}
+  },
+  "required":["order_id","initiator_reference","exchange_type","terms","status"],
+  "rules":{
+    "invented_counterparty":false,
+    "invented_job":false,
+    "invented_product":false,
+    "invented_customer":false,
+    "invented_payment":false,
+    "invented_income":false,
+    "automatic_matching":false,
+    "automatic_payment":false,
+    "automatic_settlement":false,
+    "order_is_guarantee":false,
+    "order_is_proof_of_completed_work":false
+  },
+  "human_review_required":["identity_changes","exchange_terms","contracts","confirmation","payments","disputes","production_deployment"],
+  "privacy_boundary":"Store references and only necessary exchange data; do not require unnecessary personal data.",
+  "integrity_statements":[
+    "ELIGIBLE != ORDERED",
+    "ORDERED != MATCHED",
+    "MATCHED != FULFILLED",
+    "FULFILLED != PAID",
+    "SETTLED != INCOME CLAIM",
+    "ORDER != GUARANTEE"
+  ],
+  "integrations":[
+    "federation/verified-work.schema.json",
+    "federation/contribution-ledger.schema.json",
+    "federation/allocation-rules.schema.json",
+    "federation/shiromani-value-exchange-spec.json",
+    "employment.html",
+    "income-hub.html"
+  ]
+}

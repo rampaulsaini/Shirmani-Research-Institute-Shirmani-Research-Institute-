@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exchange Orders — ꙰"𝒥शिरोमणि</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:0;background:#f7f7f5;color:#202020;line-height:1.6}
+main{max-width:980px;margin:auto;padding:32px 20px}header{padding:28px 0;border-bottom:1px solid #ddd}
+h1{margin:.2em 0}.status{display:inline-block;padding:5px 10px;border:1px solid #888;border-radius:999px;font-size:.85rem}
+.card{background:white;border:1px solid #ddd;border-radius:14px;padding:20px;margin:18px 0}
+.flow{font-weight:700}.mono{font-family:ui-monospace,monospace}.note{background:#faf4df;padding:14px;border-radius:10px}
+a{color:inherit}
+</style>
+</head>
+<body><main>
+<header>
+<div>꙰"𝒥शिरोमणि</div>
+<h1>Exchange Orders</h1>
+<div class="status">DESIGN SPECIFICATION · NO LIVE EXCHANGE OR PAYMENT EXECUTION</div>
+<p>Verified contribution, eligibility और transparent exchange terms को एक auditable order record में संरचित करने वाली परत।</p>
+</header>
+
+<section class="card">
+<h2>Exchange Flow</h2>
+<p class="flow">Verified / Eligible Contribution → Exchange Order → Counterparty / Service → Human Confirmation → Order State → Settlement Candidate → Audit</p>
+<p>यह layer किसी व्यक्ति, ग्राहक, नौकरी, उत्पाद, भुगतान या आय को स्वतः उत्पन्न या सत्यापित नहीं करती।</p>
+</section>
+
+<section class="card">
+<h2>Order Record</h2>
+<ul>
+<li><span class="mono">order_id</span> — अद्वितीय order reference</li>
+<li><span class="mono">initiator_reference</span> — initiator का reference</li>
+<li><span class="mono">counterparty_reference</span> — counterparty का reference, यदि वास्तविक और स्वीकृत हो</li>
+<li><span class="mono">source_contribution_reference</span> — verified contribution का reference</li>
+<li><span class="mono">source_allocation_reference</span> — applicable allocation का reference</li>
+<li><span class="mono">exchange_type</span> — service, skill, product, work या अन्य documented exchange type</li>
+<li><span class="mono">offered_value / requested_value</span> — प्रस्तावित exchange terms</li>
+<li><span class="mono">terms</span> — scope, conditions और fulfilment requirements</li>
+<li><span class="mono">evidence_reference</span> — supporting evidence</li>
+<li><span class="mono">confirmation_reference</span> — human confirmation record</li>
+<li><span class="mono">settlement_reference</span> — settlement candidate/result reference</li>
+<li><span class="mono">audit_reference</span> — audit trail reference</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>Order States</h2>
+<p class="mono">DRAFT → OPEN → MATCHED → HUMAN_CONFIRMED → FULFILMENT_PENDING → FULFILLED → SETTLEMENT_PENDING → SETTLED</p>
+<p>वैकल्पिक governance states: <span class="mono">DISPUTED · CANCELLED · ARCHIVED</span></p>
+</section>
+
+<section class="card">
+<h2>Integrity Boundary</h2>
+<p class="mono">ELIGIBLE ≠ ORDERED · ORDERED ≠ MATCHED · MATCHED ≠ FULFILLED · FULFILLED ≠ PAID · SETTLED ≠ INCOME CLAIM · ORDER ≠ GUARANTEE</p>
+</section>
+
+<section class="card">
+<h2>Safeguards</h2>
+<ul>
+<li>कोई invented counterparty, job, product, customer, payment या income नहीं।</li>
+<li>Automatic matching, payment और settlement disabled.</li>
+<li>Identity, terms, contracts, payments, disputes और production changes पर human review आवश्यक।</li>
+<li>Exchange order completed work या payment का proof नहीं है।</li>
+<li>Privacy boundary: केवल आवश्यक references; अनावश्यक personal data नहीं।</li>
+<li>Order cancellation और dispute को अलग governance states के रूप में रखा जाता है।</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>Connected Layers</h2>
+<p><a href="verified-work.html">Verified Work & Skill Verification</a> ·
+<a href="contribution-ledger.html">Contribution Ledger</a> ·
+<a href="allocation-rules.html">Allocation Rules</a> ·
+<a href="shiromani-value-exchange-dashboard.html">Value Exchange Dashboard</a> ·
+<a href="employment.html">Employment</a> ·
+<a href="index.html">Main</a></p>
+</section>
+
+<div class="note"><strong>Current state:</strong> यह design-only governance/exchange-order layer है। कोई live financial account, payment processor, blockchain contract, automatic settlement या guaranteed income execution यहाँ दावा नहीं किया गया है।</div>
+</main></body></html>
