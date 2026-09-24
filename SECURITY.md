@@ -43,3 +43,10 @@ Please include only the minimum information needed to reproduce the issue.
 Automation may prepare, validate, package, archive, and route material. Automation must not silently convert unverified material into a verified research claim.
 
 > Preserve first. Reason second. Verify third. Transform only as a traceable derivative.
+
+
+## Owner-controlled agent boundary
+
+The designated repository owner boundary is recorded in CODEOWNERS. Where GitHub branch protection and environment approvals are enabled, they should require owner review for protected surfaces and irreversible actions. Automation must never claim that a configuration file alone makes a public repository inaccessible to every other human.
+
+The machine-readable policy is stored at schemas/agent-governance.json and is intended to be consumed by validation tooling as a fail-closed policy document.

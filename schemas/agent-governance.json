@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "name": "shirmani-ai-agent-governance",
+  "foundation": "nishpaksh-samajh",
+  "truth_boundary": "framework_proposition_not_silent_empirical_fact",
+  "authorization": {
+    "irreversible_actions": "owner_authorization_required",
+    "financial_actions": "explicit_integration_and_authorization_required",
+    "verification_promotion": "independent_verification_required"
+  },
+  "default_status": "unverified",
+  "fail_closed": true,
+  "provenance_required_for_claims": true,
+  "fabrication_prohibited": true,
+  "secret_handling": "secret_store_only",
+  "public_surface_may_expose_secrets": false,
+  "agent_layers": [
+    "intake_source",
+    "reasoning",
+    "evidence",
+    "verification",
+    "product",
+    "marketing",
+    "economic_transaction",
+    "security_audit",
+    "publishing",
+    "continuity"
+  ]
+}
