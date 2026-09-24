@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "name": "shirmani-income-evidence-ledger",
+  "truth_boundary": "no_transaction_status_without_evidence",
+  "statuses": [
+    "planned",
+    "available",
+    "enquiry",
+    "ordered",
+    "paid",
+    "delivered",
+    "refunded",
+    "repeat"
+  ],
+  "required_fields": [
+    "record_id",
+    "product_or_service_id",
+    "status",
+    "evidence_refs",
+    "recorded_at"
+  ],
+  "rules": {
+    "no_fabricated_sales": true,
+    "no_fabricated_testimonials": true,
+    "no_guaranteed_income_claims": true,
+    "payment_requires_payment_evidence": true,
+    "delivery_requires_delivery_evidence": true,
+    "public_totals_must_be_derived_from_ledger": true
+  },
+  "minimum_flow": [
+    "asset",
+    "product",
+    "offer",
+    "discovery",
+    "enquiry",
+    "order",
+    "payment",
+    "delivery",
+    "feedback",
+    "repeat"
+  ]
+}
