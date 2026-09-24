@@ -1,0 +1,40 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "schema_version":"1.0.0",
+  "name":"꙰\"𝒥शिरोमणि Verified Work & Skill Verification",
+  "status":"DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "record_fields":{
+    "work_id":"string",
+    "contributor_reference":"string",
+    "work_type":"string",
+    "description":"string",
+    "evidence":["string"],
+    "skill_map":["string"],
+    "review_reference":"string",
+    "verification_status":["REGISTERED","EVIDENCE_PENDING","REVIEWED","VERIFIED","NOT_VERIFIED","DISPUTED","ARCHIVED"],
+    "allocation_eligibility":"boolean",
+    "allocation_reference":"string|null"
+  },
+  "rules":{
+    "invented_work":false,
+    "invented_skill":false,
+    "invented_income":false,
+    "automatic_employment":false,
+    "automatic_payment":false,
+    "automatic_allocation":false,
+    "human_review_required":["identity_changes","verification_decisions","allocation_rules","contracts","payments","disputes","production_deployment"]
+  },
+  "integrity_statements":[
+    "REGISTERED != VERIFIED",
+    "VERIFIED != EMPLOYED",
+    "VERIFIED != PAID",
+    "ALLOCATED != SETTLED",
+    "WORK_RECORD != INCOME"
+  ],
+  "integrations":[
+    "federation/contribution-ledger.schema.json",
+    "federation/shiromani-value-exchange-spec.json",
+    "employment.html",
+    "income-hub.html"
+  ]
+}
