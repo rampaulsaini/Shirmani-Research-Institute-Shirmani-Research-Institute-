@@ -1,0 +1,21 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "schema_version":"1.0.0",
+  "name":"Shirmani Global Social Platform Core",
+  "status":"DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "purpose":"Evidence-aware architecture for a global social platform where people can create accounts, publish, listen, watch, learn, connect and participate voluntarily.",
+  "scale_target":"850 crore people as an architectural target; not a claim of current capacity.",
+  "core_entities":["account","profile","post","media","video","audio","live_session","community","connection","message","learning_path","report","moderation_case","evidence_record"],
+  "learning_principles":["self_observation","guided_self_interview","listen_back","perspective_dialogue","voluntary_learning","multilingual_access"],
+  "integrity_rules":[
+    "No fabricated accounts, people, followers, views, likes, comments, payments, employment, testimonials or income.",
+    "AI assistance does not constitute proof of a real-world event, transaction, identity or personal experience.",
+    "Consequential moderation, identity disputes, appeals, payment disputes and liability decisions require documented human review where applicable.",
+    "Users retain clear privacy, audience, export and deletion controls.",
+    "Growth mechanisms must not depend on deception, coercion or concealed manipulation.",
+    "Global-scale readiness requires real infrastructure, security, privacy, observability, disaster recovery and load testing evidence."
+  ],
+  "primary_flow":["account","profile","create","publish","discover","listen_or_watch","connect","learn","community","feedback"],
+  "future_service_layers":["identity","social_graph","feed","media_storage","video_processing","audio_processing","live","messaging","search","recommendation","learning","moderation","notifications","payments","analytics","federation"],
+  "linked_artifacts":["index.html","employment.html","income-command-center.html","federation-dashboard.html"]
+}
