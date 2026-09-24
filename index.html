@@ -91,6 +91,19 @@
         .income-launchbar a { color:var(--text-light); text-decoration:none; padding:8px 12px; border:1px solid rgba(255,255,255,.16); border-radius:999px; background:rgba(255,255,255,.05); font-size:.86rem; }
         .income-launchbar a:hover { border-color:var(--primary-gold); color:var(--primary-gold); }
 
+        /* LIFE-SUSTAINABILITY / INCOME — deliberately above the research material */
+        .survival-nav{position:sticky;top:0;z-index:1000;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;padding:10px 12px;background:rgba(8,9,14,.96);border-bottom:2px solid var(--primary-gold);backdrop-filter:blur(12px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+        .survival-nav .label{color:var(--primary-gold);font-weight:800;margin-right:6px}
+        .survival-nav a{color:var(--text-light);text-decoration:none;padding:8px 12px;border:1px solid rgba(212,175,55,.45);border-radius:999px;background:rgba(212,175,55,.08);font-size:.86rem;font-weight:700}
+        .survival-nav a:hover{background:var(--primary-gold);color:#000}
+        .above-fold-income{max-width:1150px;margin:18px auto 10px;padding:24px 20px;border:3px solid var(--primary-gold);border-radius:20px;background:linear-gradient(135deg,rgba(212,175,55,.22),rgba(0,210,255,.10));box-shadow:0 14px 38px rgba(0,0,0,.4)}
+        .above-fold-income h2{color:var(--primary-gold);font-family:'Rozha One',serif;font-size:2rem;margin-bottom:8px;text-align:center}
+        .above-fold-income p{text-align:center;color:var(--text-light);max-width:950px;margin:0 auto 16px}
+        .above-fold-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+        .above-fold-actions a{display:block;text-align:center;padding:12px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.32);color:var(--text-light);text-decoration:none;font-weight:800}
+        .above-fold-actions a:hover{background:var(--primary-gold);color:#000}
+        @media(max-width:768px){.survival-nav{position:relative}.survival-nav a{font-size:.78rem;padding:7px 9px}.above-fold-income{margin:10px 10px 0}.above-fold-income h2{font-size:1.55rem}}
+
         .life-priority { position: relative; margin: 10px 0 45px; padding: 26px; border: 2px solid var(--primary-gold); border-radius: 16px; background: linear-gradient(135deg, rgba(212,175,55,.16), rgba(0,210,255,.06)); box-shadow: 0 12px 35px rgba(0,0,0,.35); }
         .life-priority h2 { color: var(--primary-gold); font-family: 'Rozha One', serif; font-size: 2rem; margin-bottom: 10px; }
         .life-priority > p { color: var(--text-light); max-width: 950px; margin-bottom: 20px; }
@@ -226,7 +239,7 @@
             <a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener">यथार्थ AI Music</a>
             <a href="#income-workbench">Freelancing & Services</a>
             <a href="#economic-vision">AI Marketing / Economic Vision</a>
-            <a href="#income-map">सभी Income Sources</a>
+            <a href="#livelihood">सभी Income Sources</a>
         </div>
     </section>
 
@@ -279,6 +292,25 @@
     <div class="container">
 
         <!-- PRIORITY: जीवन-व्यापन एवं कार्य-निरंतरता -->
+        <section id="income-source-command" class="life-priority" aria-labelledby="income-source-command-heading">
+            <h2 id="income-source-command-heading"><i class="fa-solid fa-sack-dollar"></i> आय के सभी मुख्य रास्ते — एक ही स्थान पर</h2>
+            <p><strong>जीवन-व्यापन के लिए पहले यही सार्वजनिक प्रवेश-द्वार देखें:</strong> owned digital products, AI music, freelancing/client services, marketplace, creator income, licensing, memberships/support, publishing, consulting और AI-assisted marketing. ये संभावित आय-पथ हैं; वास्तविक बिक्री/भुगतान को evidence के बिना completed income नहीं माना जाएगा।</p>
+            <div class="priority-grid">
+                <a class="priority-card" href="income-command-center.html"><small>COMMAND CENTER</small><i class="fa-solid fa-bolt"></i><strong>Income Command Center</strong><span>सभी work, product, service और marketing pathways.</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener"><small>OWNED SALES</small><i class="fa-solid fa-store"></i><strong>Digital Store</strong><span>अपने digital products की direct-sales entry.</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener"><small>CREATIVE INCOME</small><i class="fa-solid fa-music"></i><strong>यथार्थ AI Music</strong><span>Music, audio production, releases और eligible licensing.</span></a>
+                <a class="priority-card" href="income-command-center.html#income-workbench"><small>CLIENT INCOME</small><i class="fa-solid fa-briefcase"></i><strong>Freelancing & Services</strong><span>AI, research, writing, publishing, automation, audio/music.</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank" rel="noopener"><small>BUSINESS</small><i class="fa-solid fa-shop"></i><strong>Omniverse Marketplace</strong><span>Products + services + client work.</span></a>
+                <a class="priority-card" href="income-command-center.html#economic-vision"><small>AI MARKETING</small><i class="fa-solid fa-bullhorn"></i><strong>Marketing & Ads System</strong><span>Catalog → copy → creative → SEO → campaign → evidence.</span></a>
+                <a class="priority-card" href="income-command-center.html#creator"><small>CREATOR</small><i class="fa-brands fa-youtube"></i><strong>Creator / Content</strong><span>YouTube, social content और eligible monetization.</span></a>
+                <a class="priority-card" href="income-command-center.html#licensing"><small>LICENSING</small><i class="fa-solid fa-copyright"></i><strong>Media & Music Licensing</strong><span>Eligible audio/video/media assets.</span></a>
+                <a class="priority-card" href="income-command-center.html#support"><small>DIRECT SUPPORT</small><i class="fa-solid fa-heart"></i><strong>Membership / Support</strong><span>Recurring memberships और audience support channels.</span></a>
+                <a class="priority-card" href="income-command-center.html#products"><small>PRODUCT FACTORY</small><i class="fa-solid fa-box-open"></i><strong>Digital Product Factory</strong><span>Audio, books, certificates, templates और media assets.</span></a>
+                <a class="priority-card" href="income-command-center.html#services"><small>PROFESSIONAL</small><i class="fa-solid fa-user-tie"></i><strong>Consulting / Digital Production</strong><span>Website, content, automation और publishing support.</span></a>
+                <a class="priority-card" href="income-command-center.html"><small>FULL MAP</small><i class="fa-solid fa-diagram-project"></i><strong>पूरा Economic Vision</strong><span>बहु-स्रोत आय को एक measurable workflow में रखें.</span></a>
+            </div>
+        </section>
+
         <section class="life-priority" id="livelihood" aria-labelledby="life-priority-heading">
             <h2 id="life-priority-heading"><i class="fa-solid fa-heart-pulse"></i> सबसे पहले: जीवन-व्यापन • आय • काम की निरंतरता</h2>
             <p><strong>यह Hub का प्रथम सार्वजनिक प्रवेश-द्वार है।</strong> Research और परमार्थ का काम तभी लंबे समय तक चलता है जब काम करने वाले व्यक्ति के लिए भोजन, आवास, आवश्यक खर्च और कार्य-संसाधनों का टिकाऊ आधार हो। इसलिए income-generating work को छिपाया नहीं जाएगा। नीचे वास्तविक काम शुरू करने के लिए product, service, freelance, music, creator, licensing और business pathways एक साथ दिए गए हैं। <strong>किसी platform से आय की गारंटी नहीं है; eligibility, fees, demand और local payment rules अलग-अलग हो सकते हैं।</strong></p>
