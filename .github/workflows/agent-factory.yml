@@ -49,6 +49,12 @@ jobs:
       - name: Run product batch
         run: python factory/batch_worker.py --batch-size 5000
 
+      - name: Build product catalog
+        run: python factory/agents/product_agent.py
+
+      - name: Validate product catalog
+        run: python -c "import json; p=json.load(open('generated/product-catalog.json', encoding='utf-8')); assert p['status']=='draft_catalog'; assert all(x['draft_only'] and x['verification_required'] for x in p['products']); print('product catalog:', len(p['products']))"
+
       - name: Run multi-agent verification
         run: python -c "from agents.orchestrator import run; print(run('generated/verse-corpus.jsonl','generated/agent-run',batch_size=1000))"
 
