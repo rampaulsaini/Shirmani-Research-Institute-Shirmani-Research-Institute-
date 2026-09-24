@@ -1,1 +1,17 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","schema_version":"1.0.0","name":"Shirmani Social App MVP","status":"WORKING_LOCAL_FIRST_PROTOTYPE","storage":"browser_localStorage","features":["profile","create_post","local_feed","guided_self_interview","interview_history","json_export","local_delete"],"truth_boundary":["No fabricated people, accounts, followers, views, likes, payments, income or employment.","Local demo records are explicitly non-production and do not represent real users.","AI assistance, if added later, must not be treated as proof of identity, transaction or personal experience."],"production_dependencies":["authenticated_backend","database","object_storage","media_processing","realtime_transport","search","moderation","notifications","privacy_controls","observability","security_testing","backup_and_recovery"]}
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "schema_version":"1.1.0",
+  "name":"Shirmani Social App Hybrid MVP",
+  "status":"WORKING_LOCAL_FIRST_WITH_OPTIONAL_AUTHENTICATED_API",
+  "storage":"browser_localStorage_plus_sessionStorage_for_online_session",
+  "features":["profile","create_post","local_feed","guided_self_interview","interview_history","json_export","local_delete","optional_api_health","optional_authenticated_login","optional_online_posts","optional_online_self_interviews","local_fallback"],
+  "truth_boundary":[
+    "No fabricated people, accounts, followers, views, likes, payments, income or employment.",
+    "Local demo records are explicitly non-production and do not represent real users.",
+    "AI assistance, if added later, must not be treated as proof of identity, transaction or personal experience.",
+    "Online mode requires a separately deployed trusted API, database, HTTPS and operational security controls.",
+    "A failed online write falls back to local storage and is not represented as an online transaction."
+  ],
+  "online_api_contract":["GET /health","POST /v1/auth/register","POST /v1/auth/login","GET /v1/feed","POST /v1/posts","POST /v1/self-interviews"],
+  "production_dependencies":["authenticated_backend","database","object_storage","media_processing","realtime_transport","search","moderation","notifications","privacy_controls","observability","security_testing","backup_and_recovery","account_recovery","email_verification"]
+}
