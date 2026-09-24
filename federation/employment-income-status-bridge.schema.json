@@ -1,0 +1,50 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "schema_version":"1.0.0",
+  "name":"Shirmani Employment Income Status Bridge",
+  "status":"DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "purpose":"Connect employment/work lifecycle states to income evidence without inventing hiring, completion, payment, salary, or income.",
+  "states":["AVAILABLE","OPEN","CONFIRMED","COMPLETED","PAID","NOT_VERIFIED"],
+  "required_fields":["record_id","work_reference","status","evidence_references","recorded_at"],
+  "properties":{
+    "record_id":{"type":"string"},
+    "work_reference":{"type":"string"},
+    "opportunity_reference":{"type":"string"},
+    "contract_reference":{"type":"string"},
+    "deliverable_reference":{"type":"string"},
+    "status":{"enum":["AVAILABLE","OPEN","CONFIRMED","COMPLETED","PAID","NOT_VERIFIED"]},
+    "evidence_references":{"type":"array","items":{"type":"string"}},
+    "amount":{"type":"number","minimum":0},
+    "currency":{"type":"string"},
+    "recorded_at":{"type":"string","format":"date-time"},
+    "audit_reference":{"type":"string"}
+  },
+  "transition_requirements":{
+    "AVAILABLE":"Publication of an opportunity or service surface; no engagement or income is implied.",
+    "OPEN":"A real application, enquiry, order, or engagement route is available and its conditions are stated.",
+    "CONFIRMED":"External client, customer, hiring party, order, or contract evidence is required.",
+    "COMPLETED":"Completion/delivery and acceptance evidence is required; this does not itself prove payment.",
+    "PAID":"Payment evidence is required; amount must come from evidence and must not be invented.",
+    "NOT_VERIFIED":"Use when relevant information exists but the evidence required for the claimed state is insufficient."
+  },
+  "integrity_rules":[
+    "No fabricated employment or client confirmation.",
+    "No fabricated salary, fee, sales, payment, or income.",
+    "COMPLETED does not imply PAID.",
+    "PAID does not by itself prove accounting reconciliation or bank settlement.",
+    "A public income total must be derived from evidence-backed ledger records.",
+    "AI-generated text, certificates, profiles, testimonials, or portfolio descriptions are not transaction evidence.",
+    "Identity, contract interpretation, acceptance, payment disputes, refunds, reversals, and liability require human review."
+  ],
+  "evidence_minimums":{
+    "CONFIRMED":["external_confirmation_or_contract"],
+    "COMPLETED":["delivery_or_completion_evidence","acceptance_evidence"],
+    "PAID":["payment_evidence"]
+  },
+  "linked_artifacts":[
+    "schemas/income-evidence-ledger.json",
+    "federation/dispute-resolution.schema.json",
+    "employment.html",
+    "income-command-center.html"
+  ]
+}
