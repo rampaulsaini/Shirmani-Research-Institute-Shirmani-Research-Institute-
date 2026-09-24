@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reconciliation & Audit Trail — ꙰"𝒥शिरोमणि</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:0;background:#f7f7f5;color:#202020;line-height:1.6}
+main{max-width:980px;margin:auto;padding:32px 20px}header{padding:28px 0;border-bottom:1px solid #ddd}
+h1{margin:.2em 0}.status{display:inline-block;padding:5px 10px;border:1px solid #888;border-radius:999px;font-size:.85rem}
+.card{background:#fff;border:1px solid #ddd;border-radius:14px;padding:20px;margin:18px 0}
+.flow{font-weight:700}.mono{font-family:ui-monospace,monospace}.note{background:#faf4df;padding:14px;border-radius:10px}a{color:inherit}
+</style></head>
+<body><main>
+<header><div>꙰"𝒥शिरोमणि</div><h1>Reconciliation & Audit Trail</h1>
+<div class="status">DESIGN SPECIFICATION · NO LIVE FINANCIAL EXECUTION</div>
+<p>Settlement, evidence, governance changes और dispute history को एक auditable lifecycle में संरचित करने वाली परत।</p></header>
+
+<section class="card"><h2>Audit Flow</h2>
+<p class="flow">Settlement Record → Evidence Check → Reconciliation → Exception / Dispute Review → Human Decision → Audit Entry → Archive</p>
+<p>यह layer records को मिलाने, differences दर्ज करने और audit history संरचित करने के लिए है; यह अपने आप payment, transfer, income या financial truth घोषित नहीं करती।</p></section>
+
+<section class="card"><h2>Audit Record</h2><ul>
+<li><span class="mono">audit_id</span> — अद्वितीय audit reference</li>
+<li><span class="mono">record_type</span> — settlement, reconciliation, dispute, reversal या governance event</li>
+<li><span class="mono">source_reference</span> — मूल record का reference</li>
+<li><span class="mono">previous_state / new_state</span> — documented state transition</li>
+<li><span class="mono">evidence_reference</span> — supporting/external evidence</li>
+<li><span class="mono">actor_reference</span> — responsible reviewer/actor reference</li>
+<li><span class="mono">decision_reference</span> — human decision record</li>
+<li><span class="mono">exception_reference</span> — mismatch या exception</li>
+<li><span class="mono">created_at</span> — record timestamp</li>
+<li><span class="mono">audit_reference</span> — linked audit chain reference</li>
+</ul></section>
+
+<section class="card"><h2>Reconciliation States</h2>
+<p class="mono">PENDING → EVIDENCE_CHECK → MATCHED → RECONCILED</p>
+<p>Exception states: <span class="mono">MISMATCH · DISPUTED · REVERSED · CANCELLED · ARCHIVED</span></p></section>
+
+<section class="card"><h2>Integrity Boundary</h2>
+<p class="mono">RECORDED ≠ VERIFIED · EVIDENCE_FOUND ≠ EVIDENCE_AUTHENTICATED · MATCHED ≠ PAID · RECONCILED ≠ INCOME CLAIM · AUDIT ENTRY ≠ INDEPENDENT AUDIT</p></section>
+
+<section class="card"><h2>Safeguards</h2><ul>
+<li>कोई invented transaction, payment, amount, income, actor या evidence नहीं।</li>
+<li>Audit trail पुराने records को silently overwrite करने के बजाय state transitions और corrections दर्ज करता है।</li>
+<li>Mismatch, dispute और reversal को अलग states में रखा जाता है।</li>
+<li>Human review आवश्यक: identity changes, evidence decisions, reconciliation decisions, disputes, reversals और production changes.</li>
+<li>External evidence के बिना payment को factual settlement नहीं माना जाएगा।</li>
+<li>यह record खुद independent scientific, financial या legal audit प्रमाणपत्र नहीं है।</li>
+<li>Privacy boundary: केवल आवश्यक references; अनावश्यक personal/financial data नहीं।</li>
+</ul></section>
+
+<section class="card"><h2>Connected Layers</h2>
+<p><a href="settlement-records.html">Settlement Records</a> · <a href="exchange-orders.html">Exchange Orders</a> ·
+<a href="allocation-rules.html">Allocation Rules</a> · <a href="contribution-ledger.html">Contribution Ledger</a> ·
+<a href="verified-work.html">Verified Work</a> · <a href="shiromani-value-exchange-dashboard.html">Value Exchange Dashboard</a> ·
+<a href="employment.html">Employment</a> · <a href="index.html">Main</a></p></section>
+
+<div class="note"><strong>Current state:</strong> यह design-only reconciliation/audit layer है। कोई live bank, payment processor, blockchain, automatic reconciliation या independent audit execution यहाँ दावा नहीं किया गया है।</div>
+</main></body></html>

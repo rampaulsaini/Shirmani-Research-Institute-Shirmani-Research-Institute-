@@ -1,0 +1,55 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "schema_version":"1.0.0",
+  "name":"꙰\"𝒥शिरोमणि Reconciliation & Audit Trail",
+  "status":"DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "description":"Auditable record of evidence checks, reconciliation states, exceptions, disputes, reversals and human decisions across settlement lifecycle.",
+  "type":"object",
+  "properties":{
+    "audit_id":{"type":"string"},
+    "record_type":{"type":"string","enum":["SETTLEMENT","RECONCILIATION","DISPUTE","REVERSAL","GOVERNANCE_EVENT"]},
+    "source_reference":{"type":"string"},
+    "previous_state":{"type":["string","null"]},
+    "new_state":{"type":"string"},
+    "evidence_reference":{"type":["string","null"]},
+    "actor_reference":{"type":["string","null"]},
+    "decision_reference":{"type":["string","null"]},
+    "exception_reference":{"type":["string","null"]},
+    "created_at":{"type":["string","null"]},
+    "audit_reference":{"type":["string","null"]},
+    "reconciliation_status":{"type":"string","enum":["PENDING","EVIDENCE_CHECK","MATCHED","RECONCILED","MISMATCH","DISPUTED","REVERSED","CANCELLED","ARCHIVED"]}
+  },
+  "required":["audit_id","record_type","source_reference","new_state","reconciliation_status"],
+  "rules":{
+    "invented_transaction":false,
+    "invented_payment":false,
+    "invented_amount":false,
+    "invented_income":false,
+    "invented_actor":false,
+    "invented_evidence":false,
+    "automatic_reconciliation":false,
+    "silent_overwrite":false,
+    "fabricated_confirmation":false,
+    "independent_audit_claim":false
+  },
+  "human_review_required":["identity_changes","evidence_decisions","reconciliation_decisions","disputes","reversals","production_deployment"],
+  "evidence_rule":"External evidence must exist before a payment or settlement fact is treated as factual; the audit record itself is not independent audit proof.",
+  "privacy_boundary":"Store references and only necessary audit/reconciliation data; do not require unnecessary personal or financial data.",
+  "integrity_statements":[
+    "RECORDED != VERIFIED",
+    "EVIDENCE_FOUND != EVIDENCE_AUTHENTICATED",
+    "MATCHED != PAID",
+    "RECONCILED != INCOME CLAIM",
+    "AUDIT ENTRY != INDEPENDENT AUDIT"
+  ],
+  "integrations":[
+    "federation/settlement-records.schema.json",
+    "federation/exchange-orders.schema.json",
+    "federation/allocation-rules.schema.json",
+    "federation/contribution-ledger.schema.json",
+    "federation/verified-work.schema.json",
+    "federation/shiromani-value-exchange-spec.json",
+    "employment.html",
+    "income-hub.html"
+  ]
+}
