@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "name": "Omniverse Income & Creative Commerce Catalog",
+  "mode": "agent-ready",
+  "objective": "Convert owned knowledge, media, creative work and services into discoverable, publishable and measurable commercial offers.",
+  "channels": [
+    {
+      "id": "yatharth-ai-music",
+      "type": "creative-production",
+      "url": "https://rampaulsaini.github.io/yatharth-music-ai/"
+    },
+    {
+      "id": "digital-store",
+      "type": "owned-store",
+      "url": "https://rampaulsaini.github.io/my-omniverse-store/"
+    },
+    {
+      "id": "freelancing",
+      "type": "service-marketplace",
+      "url": "https://www.upwork.com/"
+    },
+    {
+      "id": "omniverse-marketplace",
+      "type": "marketplace",
+      "url": "https://rampaulsaini.github.io/omniverse-marketplace/"
+    },
+    {
+      "id": "creator",
+      "type": "creator-media",
+      "url": "https://youtube.com/@rampaulsaini-yk4gn"
+    },
+    {
+      "id": "ads",
+      "type": "paid-marketing",
+      "url": "https://ads.google.com/"
+    }
+  ],
+  "product_families": [
+    "knowledge",
+    "creative-media",
+    "digital-utility",
+    "professional-services",
+    "licensing"
+  ],
+  "pipeline": [
+    "discover",
+    "package",
+    "publish",
+    "market",
+    "measure",
+    "improve"
+  ],
+  "evidence_rules": {
+    "planned_campaign_is_not_live_campaign": true,
+    "projected_income_is_not_earned_income": true,
+    "generated_asset_is_not_verified_claim": true
+  },
+  "human_gates": [
+    "public-publication",
+    "paid-ad-account-actions",
+    "financial-actions",
+    "high-impact-commercial-actions"
+  ]
+}
