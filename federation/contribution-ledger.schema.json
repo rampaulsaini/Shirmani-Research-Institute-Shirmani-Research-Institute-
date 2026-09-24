@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0.0",
+  "name": "꙰\"𝒥शिरोमणि Contribution Ledger",
+  "status": "DESIGN_SPECIFICATION_NO_LIVE_BALANCE",
+  "purpose": "Evidence-linked contribution and work provenance records.",
+  "monetary_balance": false,
+  "invented_income": false,
+  "identity_substitution": false,
+  "record_fields": {
+    "contribution_id": "string",
+    "contributor_reference": "string",
+    "contribution_type": [
+      "skill",
+      "work",
+      "service",
+      "knowledge",
+      "creative",
+      "product",
+      "social_utility"
+    ],
+    "description": "string",
+    "evidence": [
+      {
+        "type": "string",
+        "ref": "string",
+        "description": "string"
+      }
+    ],
+    "status": [
+      "REGISTERED",
+      "EVIDENCE_PENDING",
+      "VERIFIED",
+      "ALLOCATED",
+      "SETTLED",
+      "DISPUTED",
+      "ARCHIVED"
+    ],
+    "review": {
+      "reviewer_reference": "string|null",
+      "reviewed_at": "datetime|null",
+      "decision": "string|null",
+      "rationale": "string|null"
+    },
+    "allocation_reference": "string|null",
+    "settlement_reference": "string|null",
+    "created_at": "datetime",
+    "updated_at": "datetime"
+  },
+  "rules": [
+    "REGISTERED does not imply VERIFIED.",
+    "VERIFIED does not imply PAID.",
+    "ALLOCATED does not imply SETTLED.",
+    "A ledger entry is not income.",
+    "Evidence must be separately reviewable.",
+    "Identity changes, allocation rules, disputes and settlements require human review.",
+    "No automatic minting, payment or financial execution."
+  ],
+  "integrations": {
+    "employment": "future_verified_work_reference",
+    "income": "future_authorized_income_record_only",
+    "yatharth_mudra": "design_reference_only",
+    "value_exchange_dashboard": "dashboard_index"
+  }
+}\n
