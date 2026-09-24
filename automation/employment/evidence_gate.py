@@ -44,7 +44,7 @@ def main():
         "closure_requires_evidence": any("evidence" in x.lower() for x in closure.get("integrity_rules", [])),
         "settled_requires_external_evidence": any("external payment/settlement evidence" in x for x in settlement.get("integrity_rules", [])),
         "reconciled_requires_evidence": any("RECONCILED requires payment evidence" in x for x in reconciliation.get("integrity_rules", [])),
-        "dispute_no_auto_decision": any("no automated decision" in x.lower() for x in dispute.get("integrity_rules", [])),
+        "dispute_no_auto_decision": dispute.get("rules", {}).get("automated_decision") is False,
         "ledger_payment_requires_evidence": bool(ledger.get("rules", {}).get("payment_requires_payment_evidence")),
         "ledger_delivery_requires_evidence": bool(ledger.get("rules", {}).get("delivery_requires_delivery_evidence")),
         "ledger_public_totals_derived": bool(ledger.get("rules", {}).get("public_totals_must_be_derived_from_ledger")),
