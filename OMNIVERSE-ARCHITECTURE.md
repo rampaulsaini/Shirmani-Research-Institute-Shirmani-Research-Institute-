@@ -33,3 +33,30 @@ External marketplaces, payment providers and other services are enabled only thr
 ## Free-first principle
 
 The default architecture uses GitHub, GitHub Actions, Python and deterministic/local components. External paid services are optional and must not be represented as free unless their current terms actually support that use.
+
+## Heart-View / Yatharth Yug governance foundation
+
+The project uses **निष्पक्ष समझ** as a working governance principle: inspect claims and generated outputs through explicit provenance, evidence, reproducible rules and traceable review. The phrase **“सर्ब भौमिक सत्य प्रत्यक्ष समक्ष शाश्वत वास्तविक स्वाभाविक सत्य”** is preserved as the project's philosophical/framework proposition; the factory does not silently convert that proposition into an independently verified empirical claim.
+
+The multi-level, multi-layer agent model is:
+
+1. Intake / Source
+2. Reasoning
+3. Evidence
+4. Verification
+5. Product
+6. Marketing
+7. Economic / Transaction
+8. Security / Audit
+9. Publishing
+10. Continuity
+
+Every layer is bounded by the same fail-closed chain:
+
+**source → provenance → reasoning → evidence → verification → QC → product/presentation → safety → publication**
+
+AI agents are operators within these boundaries, not independent owners or arbiters of truth. Verification status cannot be self-promoted. Claims require provenance, unverified material remains unverified, fabricated evidence/transactions/testimonials/revenue are prohibited, and irreversible or financial external actions require explicit authorization and approved integrations.
+
+### Preservation + livelihood
+
+Nature/Earth/humanity preservation and basic livelihood are first-class product constraints. Income, commerce, marketing and transaction pathways may be automated for preparation, validation and routing, but external financial side effects remain authorization-gated and are never represented as guaranteed income.
