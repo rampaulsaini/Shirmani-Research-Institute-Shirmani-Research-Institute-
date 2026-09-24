@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Omniverse NextGen Interface — research, creative production, livelihood, commerce and Automission in one visual control surface.">
+<title>Omniverse NextGen Interface</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05070c;--panel:rgba(12,18,29,.72);--line:rgba(255,255,255,.12);--gold:#f0ca67;--cyan:#62e7ff;--green:#78e6a2;--text:#f7f9fc;--muted:#9da9bb}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font-family:Inter,system-ui,sans-serif;background:radial-gradient(circle at 15% 5%,#16263a 0,transparent 34%),radial-gradient(circle at 85% 20%,#1b1730 0,transparent 30%),#05070c;line-height:1.55;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,#000,transparent 90%);z-index:-1}
+.wrap{max-width:1280px;margin:auto;padding:18px 18px 80px}.top{position:sticky;top:10px;z-index:20;display:flex;gap:8px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--line);border-radius:18px;background:rgba(5,7,12,.78);backdrop-filter:blur(18px);box-shadow:0 14px 50px #0007}.brand{font-family:Rajdhani;font-size:1.15rem;font-weight:700;letter-spacing:.08em;color:var(--gold)}nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}nav a{color:var(--muted);text-decoration:none;padding:7px 10px;border-radius:10px;font-size:.78rem}nav a:hover{color:var(--text);background:#fff1}
+.hero{min-height:72vh;display:grid;grid-template-columns:1.35fr .65fr;gap:22px;align-items:center;padding:55px 8px 30px}.eyebrow{display:inline-flex;gap:8px;align-items:center;color:var(--cyan);font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 18px var(--green)}h1{font-family:Rajdhani;font-size:clamp(3.4rem,8vw,7.8rem);line-height:.83;margin:18px 0;background:linear-gradient(120deg,#fff 5%,var(--gold) 42%,var(--cyan) 85%);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.03em}h1 small{display:block;font-family:Inter;font-size:clamp(1.1rem,2vw,1.7rem);line-height:1.25;letter-spacing:0;color:var(--text);margin-top:20px;max-width:850px}.lead{color:var(--muted);font-size:1.05rem;max-width:780px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.btn{display:inline-block;text-decoration:none;color:var(--text);border:1px solid var(--line);background:#ffffff09;padding:12px 16px;border-radius:13px;font-weight:700}.btn.primary{color:#111;background:var(--gold);border-color:var(--gold)}.btn:hover{transform:translateY(-2px;border-color:#fff5}
+.orb{aspect-ratio:1;border-radius:50%;position:relative;display:grid;place-items:center;background:radial-gradient(circle,#ffffff14 0 12%,transparent 13%),radial-gradient(circle,#62e7ff18 0 34%,transparent 35%),radial-gradient(circle,#f0ca6717 0 57%,transparent 58%);border:1px solid #fff2;box-shadow:inset 0 0 70px #62e7ff13,0 0 100px #62e7ff0d;animation:pulse 5s ease-in-out infinite}.orb:before,.orb:after{content:"";position:absolute;inset:9%;border:1px solid #f0ca6740;border-radius:50%;transform:rotate(35deg) scaleX(1.5)}.orb:after{inset:20%;border-color:#62e7ff40;transform:rotate(-55deg) scaleX(1.45)}.orbcore{text-align:center;z-index:1}.orbcore strong{font-family:Rajdhani;font-size:3rem;color:var(--gold);display:block}.orbcore span{font-size:.78rem;color:var(--muted)}@keyframes pulse{50%{transform:scale(1.025)}}
+.section{margin-top:55px}.section h2{font-family:Rajdhani;font-size:2.3rem;margin:0}.section>p{color:var(--muted);max-width:850px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:18px}.card{position:relative;overflow:hidden;padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--panel);backdrop-filter:blur(15px);min-height:145px;transition:.25s}.card:before{content:"";position:absolute;width:130px;height:130px;right:-60px;top:-60px;background:var(--cyan);opacity:.07;filter:blur(20px);border-radius:50%}.card:hover{transform:translateY(-4px);border-color:#ffffff32;box-shadow:0 18px 50px #0008}.icon{font-size:1.7rem}.card h3{margin:10px 0 5px}.card p{margin:0;color:var(--muted);font-size:.88rem}.status{margin-top:13px;font-size:.7rem;font-weight:800;letter-spacing:.08em;color:var(--green)}
+.pipeline{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:18px}.step{padding:15px 12px;border:1px solid var(--line);border-radius:14px;background:#ffffff06}.step b{font-family:Rajdhani;color:var(--gold);font-size:1.05rem}.step span{display:block;color:var(--muted);font-size:.72rem;margin-top:5px}
+.command{display:grid;grid-template-columns:1fr 1fr;gap:15px}.console{border:1px solid var(--line);border-radius:20px;background:#070a10cc;padding:18px}.line{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid #fff0f}.line:last-child{border:0}.line span{color:var(--muted);font-size:.84rem}.ready{color:var(--green);font-weight:800}.gate{color:var(--gold);font-weight:800}.notice{margin-top:16px;padding:14px 16px;border:1px solid #f0ca6733;border-radius:14px;color:#d9d1bd;background:#f0ca6709}
+footer{text-align:center;margin-top:70px;color:#7e8999;font-size:.8rem}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.orb{max-width:360px;margin:auto}.grid{grid-template-columns:repeat(2,1fr)}.pipeline{grid-template-columns:repeat(2,1fr)}.command{grid-template-columns:1fr}}@media(max-width:560px){.grid{grid-template-columns:1fr}.top{position:relative}.hero{padding-top:35px}h1{font-size:4rem}}
+</style>
+</head>
+<body><div class="wrap">
+<header class="top"><div class="brand">◉ OMNIVERSE / NEXTGEN</div><nav><a href="#vision">Vision</a><a href="#ecosystem">Ecosystem</a><a href="#commerce">Commerce</a><a href="#automission">Automission</a><a href="income-hub.html">Income Hub</a></nav></header>
+<main>
+<section class="hero" id="vision"><div>
+<div class="eyebrow"><i class="dot"></i> Agent-ready • evidence-bound • human-controlled</div>
+<h1>OMNIVERSE<small>एक ऐसा सार्वजनिक इंटरफेस जहाँ विचार, शोध, रचनात्मकता, AI Music, आवाज़, Podcast, products, services और livelihood एक ही स्पष्ट अनुभव में दिखाई दें।</small></h1>
+<p class="lead">मुख्य दर्शन/परियोजना सामग्री को सरल, पारदर्शी और प्रत्यक्ष रूप में प्रस्तुत करने के साथ-साथ उसके आसपास के creative और commercial workflows को अलग-अलग स्पष्ट स्तरों में व्यवस्थित किया गया है।</p>
+<div class="actions"><a class="btn primary" href="#ecosystem">अनुभव शुरू करें →</a><a class="btn" href="income-hub.html">💰 Income & Commerce</a><a class="btn" href="factory-dashboard.html">⚙ Research Factory</a></div>
+</div><div class="orb"><div class="orbcore"><strong>∞</strong><span>CONTINUOUS<br>CREATIVE FLOW</span></div></div></section>
+
+<section class="section" id="ecosystem"><h2>01 / एक नज़र में पूरा ecosystem</h2><p>हर महत्वपूर्ण surface को “क्या है → क्या कर सकता है → अगला कदम क्या है” के क्रम में रखा गया है, ताकि visitor को खोजने में कम और समझने में अधिक समय मिले।</p>
+<div class="grid">
+<article class="card"><div class="icon">🧭</div><h3>निष्पक्ष समझ</h3><p>“सर्व भौमिक सत्य प्रत्यक्ष समक्ष” और संबंधित विचारों को project-authored material के रूप में स्पष्ट संदर्भ सहित प्रस्तुत करने का स्थान।</p><div class="status">EXPLORE</div></article>
+<article class="card"><div class="icon">🔬</div><h3>Research Factory</h3><p>Source → Research → Evidence → Verification → QC → Publishing → Archive.</p><div class="status">OBSERVE</div></article>
+<article class="card"><div class="icon">🎵</div><h3>Yatharth AI Music</h3><p>Music → Story → Cartoon Film creative production workflow और federation intake.</p><div class="status">CREATE</div></article>
+<article class="card"><div class="icon">🎙️</div><h3>Voice & Live Podcast</h3><p>Voice, conversations, episodes और media packages को catalog और publish करने की दिशा.</p><div class="status">BROADCAST</div></article>
+<article class="card"><div class="icon">🛍️</div><h3>Digital Products</h3><p>Knowledge, creative media, utility assets और professional services को स्पष्ट offers में बदलना.</p><div class="status">PACKAGE</div></article>
+<article class="card"><div class="icon">📣</div><h3>AI Marketing</h3><p>SEO, social variants, ad creatives और campaign preparation; external launch gated.</p><div class="status">PREPARE</div></article>
+<article class="card"><div class="icon">📊</div><h3>Evidence & Metrics</h3><p>Views, clicks, leads, sales और verified outcomes को planned/generated states से अलग रखना.</p><div class="status">MEASURE</div></article>
+<article class="card"><div class="icon">🛡️</div><h3>Security Layer</h3><p>No secret exposure, no fabricated results, least-privilege boundaries और human review gates.</p><div class="status">PROTECT</div></article>
+</div></section>
+
+<section class="section" id="commerce"><h2>02 / Commerce — सामग्री से offer तक</h2><p>यह interface income को guaranteed result की तरह नहीं दिखाता; यह वास्तविक commercial pathways और उनके execution states को अलग-अलग रखता है।</p>
+<div class="grid">
+<article class="card"><h3>🎵 Yatharth AI Music</h3><p>Original songs, scores, audio packs और creative production.</p></article>
+<article class="card"><h3>🛒 Digital Store</h3><p>Books, audio, templates, media और knowledge products.</p></article>
+<article class="card"><h3>💼 Freelancing</h3><p>Research, AI workflow, writing, publishing, audio और digital services.</p></article>
+<article class="card"><h3>🌐 Marketplace</h3><p>Products + services + delivery models.</p></article>
+<article class="card"><h3>▶️ Creator</h3><p>Video, audio, podcast और audience-building pathways.</p></article>
+<article class="card"><h3>🎧 Licensing</h3><p>Eligible original audio/video/media assets.</p></article>
+<article class="card"><h3>📚 Knowledge</h3><p>Structured explainers, research notes, ebooks और learning packs.</p></article>
+<article class="card"><h3>🧩 Digital Utilities</h3><p>Templates, prompts, automation blueprints और production kits.</p></article>
+</div></section>
+
+<section class="section" id="automission"><h2>03 / Automission — multi-layer control</h2><p>AI agents repetitive discovery, packaging, preparation, measurement और reporting कर सकते हैं; बाहरी publication, paid ads और financial actions स्पष्ट gates के पीछे रहते हैं।</p>
+<div class="pipeline">
+<div class="step"><b>01 Discover</b><span>assets / ideas / needs</span></div><div class="step"><b>02 Understand</b><span>context / evidence</span></div><div class="step"><b>03 Package</b><span>offer / preview / copy</span></div><div class="step"><b>04 Publish</b><span>owned surfaces</span></div><div class="step"><b>05 Market</b><span>SEO / social / ads</span></div><div class="step"><b>06 Measure</b><span>verified metrics</span></div><div class="step"><b>07 Improve</b><span>iterate / learn</span></div>
+</div>
+<div class="command" style="margin-top:18px"><div class="console"><div class="line"><span>Asset catalog</span><b class="ready">READY</b></div><div class="line"><span>Product packaging</span><b class="ready">READY</b></div><div class="line"><span>SEO / social preparation</span><b class="ready">READY</b></div><div class="line"><span>Paid campaign launch</span><b class="gate">REVIEW / ACCOUNT GATE</b></div></div>
+<div class="console"><div class="line"><span>Financial action</span><b class="gate">HUMAN GATE</b></div><div class="line"><span>Public publication</span><b class="gate">REVIEW GATE</b></div><div class="line"><span>Verified sale / income</span><b class="gate">EVIDENCE REQUIRED</b></div><div class="line"><span>Secrets</span><b class="ready">NEVER DISPLAY</b></div></div></div>
+<div class="notice"><strong>स्थिति नियम:</strong> IDEA ≠ DRAFT ≠ READY ≠ PUBLISHED ≠ LIVE ≠ VERIFIED_SALE. Interface इन अवस्थाओं को मिलाकर नहीं दिखाएगा।</div></section>
+</main>
+<footer>Omniverse NextGen Interface · distinctive visual direction · evidence-bound automation · 2026</footer>
+</div></body></html>
