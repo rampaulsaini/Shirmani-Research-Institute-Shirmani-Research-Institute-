@@ -34,6 +34,11 @@ jobs:
               ? (context.payload.inputs.format || "animated-film")
               : "animated-film";
             const mode = process.env.AUTOMATION_MODE || "CONTINUOUS";
+            const allowedFormats = new Set(["animated-film", "animated-short", "music-video", "story-film"]);
+            if (!allowedFormats.has(format)) {
+              core.setFailed(`Unsupported production format: ${format}`);
+              return;
+            }
             await github.rest.repos.createDispatchEvent({
               owner: "rampaulsaini",
               repo: "yatharth-music-ai",
@@ -43,7 +48,8 @@ jobs:
                 source_workflow: "yatharth-creative-studio-bridge",
                 automation_mode: mode,
                 brief,
-                format
+                format,
+                source_run_id: String(context.runId)
               }
             });
             core.info("Automission federation event sent to Yatharth Creative Studio.");
