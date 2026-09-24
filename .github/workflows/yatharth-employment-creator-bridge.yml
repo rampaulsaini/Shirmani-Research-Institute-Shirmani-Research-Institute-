@@ -34,13 +34,17 @@ jobs:
               c=json.load(f)
           assert c["status"] == "READY"
           assert c["automation_policy"]["no_invented_income"] is True
-          assert c["automation_policy"]["ai_substitution_allowed"] if "ai_substitution_allowed" in c["automation_policy"] else True
+          assert c["identity"]["ai_substitution_allowed"] is False
+          assert c["automation_policy"]["no_claim_of_live_execution_without_evidence"] is True
+          assert c["automation_policy"]["no_claim_of_photo_verification_without_visual_evidence"] is True
           print("Bridge contract READY")
           PY
       - name: Publish automission summary
         env:
           MANUAL_BRIEF: ${{ inputs.brief }}
           EVENT_BRIEF: ${{ github.event.client_payload.brief }}
+          SOURCE_WORKFLOW: ${{ github.event.client_payload.source_workflow }}
+          SOURCE_RUN_ID: ${{ github.event.client_payload.source_run_id }}
         run: |
           BRIEF="${MANUAL_BRIEF:-${EVENT_BRIEF:-Continue verified creator/employment continuity.}}"
           {
@@ -48,6 +52,8 @@ jobs:
             echo ""
             echo "- Source: `rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-`"
             echo "- Target: `rampaulsaini/yatharth-music-ai`"
+            echo "- Source workflow: `${SOURCE_WORKFLOW:-manual}`"
+            echo "- Source run: `${SOURCE_RUN_ID:-manual}`"
             echo "- Mode: `CONTINUOUS`"
             echo "- Identity substitution: `DISABLED`"
             echo "- Invented income: `DISABLED`"
