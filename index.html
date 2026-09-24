@@ -215,7 +215,9 @@
             header h1 { font-size: 2rem; }
             .grid { grid-template-columns: 1fr; }
         }
-    </style>
+    
+        .repo-registry-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:18px}.repo-registry-card{display:flex;align-items:center;gap:10px;padding:12px 13px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(255,255,255,.045);color:var(--text-light);text-decoration:none}.repo-registry-card:hover{border-color:var(--primary-gold);background:rgba(212,175,55,.08)}.repo-num{font-weight:800;color:var(--primary-gold);min-width:26px}.repo-main{display:flex;flex-direction:column;min-width:0;flex:1}.repo-main strong{font-size:.9rem;overflow-wrap:anywhere}.repo-main small{color:var(--text-dim);margin-top:2px}.repo-status{font-size:.7rem;font-weight:800;padding:4px 7px;border-radius:999px;white-space:nowrap}.repo-ready{color:#6ee7b7;border:1px solid rgba(110,231,183,.4)}.repo-hub{color:var(--primary-gold);border:1px solid rgba(212,175,55,.5)}.repo-source{color:var(--accent-blue);border:1px solid rgba(0,210,255,.4)}
+</style>
 </head>
 <body>
 
@@ -272,6 +274,46 @@
         <a class="priority-card" href="#income-workbench"><i class="fa-solid fa-users"></i><small>RECURRING</small><strong>Membership / Support</strong><span>Audience support और recurring models के लिए channel planning.</span></a>
       </div>
       <div class="income-note"><strong>महत्वपूर्ण:</strong> ये वास्तविक काम/बिक्री के रास्ते हैं, आय की गारंटी नहीं। वास्तविक sale, payment, client, audience या ad execution को evidence के बिना completed नहीं माना जाएगा.</div>
+    </section>
+
+
+
+    <!-- SINGLE SOURCE OF TRUTH: 25-repository federation registry -->
+    <section class="container" id="repository-registry" aria-labelledby="repository-registry-heading">
+        <h2 id="repository-registry-heading" class="category-title"><i class="fa-solid fa-network-wired"></i> 25-Repository Master Registry • Accountability</h2>
+        <div class="card">
+            <p><strong>एक ही canonical inventory:</strong> मुख्य Hub पर 25 repository slots एक ही master registry में हैं। प्रत्येक repository inventory में केवल एक बार है और कोई target slot छोड़ा नहीं गया है।</p>
+            <p class="badge">24 owned repositories + 1 external source = 25 tracked repositories</p>
+            <p>स्थिति: <strong>READY</strong> = agent wiring/readiness दर्ज है; <strong>HUB</strong> = मुख्य orchestrator; <strong>SOURCE_ONLY</strong> = बाहरी source, managed agent नहीं। READY केवल readiness है—वास्तविक execution के लिए workflow evidence आवश्यक है।</p>
+        </div>
+        <div class="repo-registry-grid">
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/rampaulsaini" target="_blank" rel="noopener"><span class="repo-num">01</span><span class="repo-main"><strong>rampaulsaini/rampaulsaini</strong><small>Public knowledge</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Omniverse-Platform" target="_blank" rel="noopener"><span class="repo-num">02</span><span class="repo-main"><strong>rampaulsaini/Omniverse-Platform</strong><small>Omniverse platform</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Omniverse-" target="_blank" rel="noopener"><span class="repo-num">03</span><span class="repo-main"><strong>rampaulsaini/Omniverse-</strong><small>Omniverse core</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Omniverse" target="_blank" rel="noopener"><span class="repo-num">04</span><span class="repo-main"><strong>rampaulsaini/Omniverse</strong><small>Omniverse core</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Omnivers" target="_blank" rel="noopener"><span class="repo-num">05</span><span class="repo-main"><strong>rampaulsaini/Omnivers</strong><small>Omniverse core</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Omniver" target="_blank" rel="noopener"><span class="repo-num">06</span><span class="repo-main"><strong>rampaulsaini/Omniver</strong><small>Omniverse core</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Karbon-" target="_blank" rel="noopener"><span class="repo-num">07</span><span class="repo-main"><strong>rampaulsaini/Karbon-</strong><small>Data / carbon</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Omniverse-Platform-supreme-" target="_blank" rel="noopener"><span class="repo-num">08</span><span class="repo-main"><strong>rampaulsaini/Omniverse-Platform-supreme-</strong><small>Platform supreme</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Omniverse-AI" target="_blank" rel="noopener"><span class="repo-num">09</span><span class="repo-main"><strong>rampaulsaini/Omniverse-AI</strong><small>AI platform</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/C-Labs" target="_blank" rel="noopener"><span class="repo-num">10</span><span class="repo-main"><strong>rampaulsaini/C-Labs</strong><small>C-Labs</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/kit-app-template" target="_blank" rel="noopener"><span class="repo-num">11</span><span class="repo-main"><strong>rampaulsaini/kit-app-template</strong><small>Kit app template</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/omniverse--ai-scripts-" target="_blank" rel="noopener"><span class="repo-num">12</span><span class="repo-main"><strong>rampaulsaini/omniverse--ai-scripts-</strong><small>Automation scripts</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/supreme-omniverse-test" target="_blank" rel="noopener"><span class="repo-num">13</span><span class="repo-main"><strong>rampaulsaini/supreme-omniverse-test</strong><small>Integration test</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto" target="_blank" rel="noopener"><span class="repo-num">14</span><span class="repo-main"><strong>rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto</strong><small>Manifesto archive</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/my-omniverse-store" target="_blank" rel="noopener"><span class="repo-num">15</span><span class="repo-main"><strong>rampaulsaini/my-omniverse-store</strong><small>Digital products store</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/omniverse-dashboard" target="_blank" rel="noopener"><span class="repo-num">16</span><span class="repo-main"><strong>rampaulsaini/omniverse-dashboard</strong><small>Monitoring dashboard</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/omniverse-marketplace-" target="_blank" rel="noopener"><span class="repo-num">17</span><span class="repo-main"><strong>rampaulsaini/omniverse-marketplace-</strong><small>Marketplace</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/omniverse-marketplace" target="_blank" rel="noopener"><span class="repo-num">18</span><span class="repo-main"><strong>rampaulsaini/omniverse-marketplace</strong><small>Marketplace</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Omniverse-Supreme-Core-" target="_blank" rel="noopener"><span class="repo-num">19</span><span class="repo-main"><strong>rampaulsaini/Omniverse-Supreme-Core-</strong><small>Supreme core</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth" target="_blank" rel="noopener"><span class="repo-num">20</span><span class="repo-main"><strong>rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth</strong><small>Knowledge / truth</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/shiromani-rampal-saini" target="_blank" rel="noopener"><span class="repo-num">21</span><span class="repo-main"><strong>rampaulsaini/shiromani-rampal-saini</strong><small>Public content</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Shirmani-Research-Paper" target="_blank" rel="noopener"><span class="repo-num">22</span><span class="repo-main"><strong>rampaulsaini/Shirmani-Research-Paper</strong><small>Research publishing</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/yatharth-music-ai" target="_blank" rel="noopener"><span class="repo-num">23</span><span class="repo-main"><strong>rampaulsaini/yatharth-music-ai</strong><small>Music AI</small></span><span class="repo-status repo-ready">READY</span></a>
+<a class="repo-registry-card" href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-" target="_blank" rel="noopener"><span class="repo-num">24</span><span class="repo-main"><strong>rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-</strong><small>Main hub / orchestrator</small></span><span class="repo-status repo-hub">HUB</span></a>
+<a class="repo-registry-card" href="https://github.com/NVIDIA-Omniverse/kit-app-template" target="_blank" rel="noopener"><span class="repo-num">25</span><span class="repo-main"><strong>NVIDIA-Omniverse/kit-app-template</strong><small>External source only</small></span><span class="repo-status repo-source">SOURCE_ONLY</span></a>
+        </div>
+        <div class="income-note"><strong>Accountability rule:</strong> repository inventory, dispatch attempt, execution result और published output अलग-अलग facts हैं। AI/automission system किसी repository, run, sale, payment या completion को evidence के बिना successful नहीं दिखाएगा।</div>
     </section>
 
     <!-- Header / Banner Section -->
