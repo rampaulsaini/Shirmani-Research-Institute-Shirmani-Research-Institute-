@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": "1.0.0",
+  "name": "Shirmani Reconciliation Audit Trail",
+  "status": "DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "purpose": "Define evidence-backed reconciliation records that compare settlement/payment records with accounting or external reconciliation evidence.",
+  "type": "object",
+  "required": [
+    "reconciliation_id",
+    "settlement_reference",
+    "status",
+    "evidence_references",
+    "recorded_at"
+  ],
+  "properties": {
+    "reconciliation_id": {
+      "type": "string"
+    },
+    "settlement_reference": {
+      "type": "string"
+    },
+    "work_reference": {
+      "type": "string"
+    },
+    "payment_reference": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "PENDING",
+        "EVIDENCE_CHECK",
+        "MATCHED",
+        "RECONCILED",
+        "EXCEPTION",
+        "DISPUTED",
+        "REVERSED",
+        "CANCELLED",
+        "NOT_VERIFIED"
+      ]
+    },
+    "expected_amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "observed_amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string"
+    },
+    "evidence_references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "exception_reference": {
+      "type": "string"
+    },
+    "dispute_reference": {
+      "type": "string"
+    },
+    "human_review_reference": {
+      "type": "string"
+    },
+    "audit_reference": {
+      "type": "string"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "state_rules": {
+    "PENDING": "Reconciliation record exists but evidence has not been checked.",
+    "EVIDENCE_CHECK": "Payment/settlement and accounting evidence are under comparison.",
+    "MATCHED": "Relevant evidence agrees for the recorded fields; this is not by itself an independent audit.",
+    "RECONCILED": "Required payment and accounting/reconciliation evidence are present.",
+    "EXCEPTION": "A mismatch or missing evidence blocks normal reconciliation.",
+    "NOT_VERIFIED": "Evidence cannot establish the claimed reconciliation state."
+  },
+  "integrity_rules": [
+    "No invented transaction, payment, amount, balance, actor, evidence, or reconciliation result.",
+    "RECONCILED requires payment evidence and accounting/reconciliation evidence.",
+    "A mismatch must remain an exception until resolved through documented review.",
+    "An open blocking dispute prevents automatic closure.",
+    "Audit entries record changes and corrections rather than silently overwriting prior state.",
+    "This schema does not perform bank reconciliation or constitute an independent financial/legal audit.",
+    "AI-generated summaries are not reconciliation evidence by themselves.",
+    "Privacy boundary: store only necessary references and avoid unnecessary personal or financial data."
+  ],
+  "linked_artifacts": [
+    "federation/settlement-records.schema.json",
+    "schemas/income-evidence-ledger.json",
+    "federation/employment-audit-closure.schema.json",
+    "federation/dispute-resolution.schema.json"
+  ]
+}
