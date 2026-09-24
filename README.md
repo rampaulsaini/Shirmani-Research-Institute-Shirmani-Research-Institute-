@@ -81,3 +81,14 @@ Hosted via GitHub Pages.
 Source → Normalize → Claims → Sources → Evidence → Formulation/Test → Verification → QC → Publication → Archive
 
 यह संरचना user-authored framework और generated research material को सुरक्षित रखते हुए traceability, reproducibility और स्पष्ट public presentation को प्राथमिकता देती है।
+
+
+## ꙰"𝒥शिरोमणि — Universal Value & Exchange System
+
+- **Public page:** [shiromani-value-exchange.html](shiromani-value-exchange.html)
+- **Machine-readable specification:** [federation/shiromani-value-exchange-spec.json](federation/shiromani-value-exchange-spec.json)
+- **Current state:** Design specification — not deployed, no public sale, no monetary price, no guaranteed value, and no legal-tender claim.
+- **Architecture:** Origin → Contribution → Verification → Allocation → Exchange → Settlement → Audit.
+- **Exchange scope:** verified contribution, skills, labor, knowledge, creative work, services, products and transparent peer/service/work exchange.
+- **Identity:** creator-declared canonical identity and photo source are preserved; exact visual match remains unverified and AI identity substitution is disabled.
+- **Governance:** payments, contracts, allocations, disputes, identity changes and any production deployment require human review and applicable legal/security/accounting gates.

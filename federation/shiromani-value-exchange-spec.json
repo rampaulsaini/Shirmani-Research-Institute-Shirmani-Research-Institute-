@@ -1,0 +1,107 @@
+{
+  "system_name": "꙰\"𝒥शिरोमणि Universal Value & Exchange System",
+  "short_name": "Shiromani Value Exchange",
+  "status": "DESIGN_SPECIFICATION_NOT_DEPLOYED",
+  "design_intent": "Creator's vision for a contribution-, verification-, utility- and exchange-based value system, intentionally broader than a conventional crypto-token model.",
+  "identity": {
+    "creator_name": "शिरोमणि रामपॉल सैनी",
+    "identity_label": "निष्पक्ष समझ",
+    "signature": "꙰\"𝒥शिरोमणि",
+    "canonical_user_authored_identity": true,
+    "ai_substitution_allowed": false,
+    "canonical_photo_source": "https://i.ibb.co/vxM3L1qs/enhanced-image.webp",
+    "photo_verification_state": "UNVERIFIED_PENDING_USER_VISUAL_EVIDENCE"
+  },
+  "model": {
+    "core_sequence": [
+      "Origin",
+      "Contribution",
+      "Verification",
+      "Allocation",
+      "Exchange",
+      "Settlement",
+      "Audit"
+    ],
+    "value_layers": [
+      "verified contribution",
+      "skill",
+      "labor",
+      "knowledge",
+      "creative work",
+      "service",
+      "social utility",
+      "real product",
+      "transparent exchange"
+    ],
+    "exchange_modes": [
+      "person_to_person",
+      "person_to_service",
+      "skill_exchange",
+      "creator_to_audience",
+      "worker_to_employer",
+      "product_for_value",
+      "community_contribution",
+      "verified_work_exchange"
+    ],
+    "account_capabilities": [
+      "hold",
+      "earn",
+      "give",
+      "exchange",
+      "receive",
+      "spend",
+      "view_contribution_record",
+      "view_work_record",
+      "view_verification",
+      "view_transaction_history",
+      "view_provenance",
+      "request_review",
+      "dispute"
+    ]
+  },
+  "ico_replacement": {
+    "name": "Origin Contribution & Allocation System",
+    "purpose": "A staged origin/allocation framework rather than an ICO or public investment offering.",
+    "stages": [
+      "origin declaration",
+      "contribution registration",
+      "evidence review",
+      "allocation rules",
+      "human approval",
+      "exchange enablement",
+      "settlement",
+      "audit/archive"
+    ]
+  },
+  "safeguards": {
+    "public_sale": false,
+    "monetary_price": null,
+    "guaranteed_value": false,
+    "legal_tender_claim": false,
+    "investment_claim": false,
+    "automatic_minting": false,
+    "automatic_deployment": false,
+    "independent_verification": false,
+    "human_review_required": [
+      "identity changes",
+      "allocation rules",
+      "contracts",
+      "payments",
+      "disputes",
+      "production deployment"
+    ],
+    "no_invented_income": true
+  },
+  "production_gates": [
+    "jurisdictional legal review",
+    "accounting model",
+    "exchange/settlement rules",
+    "security review",
+    "identity/provenance controls",
+    "anti-abuse and recovery",
+    "test environment",
+    "independent audit where applicable",
+    "human governance",
+    "public evidence record"
+  ]
+}
