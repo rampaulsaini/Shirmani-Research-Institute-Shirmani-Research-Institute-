@@ -1,0 +1,41 @@
+{
+  "name": "SHIRMANI 25-Repository Federation",
+  "version": 1,
+  "owner": "rampaulsaini",
+  "known_repository_count": 24,
+  "missing_private_repository": true,
+  "missing_private_repository_name": null,
+  "execution_policy": {
+    "mode": "continuous_resumable",
+    "cadence": "*/5 * * * *",
+    "preserve_source": true,
+    "human_verification_gate": true,
+    "cross_repository_dispatch": "requires_FEDERATION_TOKEN"
+  },
+  "repositories": [
+    "Omniver",
+    "my-omniverse-store",
+    "Nishpaksh-Samaj-Omniverse-Truth",
+    "omniverse-dashboard",
+    "supreme-omniverse-test",
+    "omniverse-marketplace-",
+    "Omniverse-Platform",
+    "Omniverse-Supreme-Core-",
+    "Karbon-",
+    "Omnivers",
+    "Omniverse",
+    "shiromani-rampal-saini",
+    "yatharth-music-ai",
+    "rampaulsaini",
+    "Omniverse-",
+    "kit-app-template",
+    "Shirmani-Research-Paper",
+    "C-Labs",
+    "Koyab-Founding-Declaration-Omniversal-Manifesto",
+    "omniverse--ai-scripts-",
+    "Shirmani-Research-Institute-Shirmani-Research-Institute-",
+    "omniverse-marketplace",
+    "Omniverse-Platform-supreme-",
+    "Omniverse-AI"
+  ]
+}
