@@ -53,20 +53,17 @@ jobs:
               }
             }
 
-            // Safe default keeps the existing Shirmani → Yatharth bridge operational
-            // even before the optional 25-repository matrix is configured.
             if (!targets.length) {
-              targets = [{
-                repository: 'rampaulsaini/yatharth-music-ai',
-                event_type: 'yatharth_studio_request',
-                enabled: true
-              }];
+              targets = [
+                { repository: 'rampaulsaini/yatharth-music-ai', event_type: 'yatharth_studio_request', enabled: true },
+                { repository: 'rampaulsaini/yatharth-music-ai', event_type: 'shirmani_main_automission', enabled: true }
+              ];
             }
 
             const brief =
               process.env.MANUAL_BRIEF ||
               process.env.EVENT_BRIEF ||
-              'Automission continuity brief: continue verified research-to-creative production work.';
+              'Automission continuity brief: continue verified creator, employment, livelihood and research-to-creative production work.';
             const format = process.env.MANUAL_FORMAT || process.env.EVENT_FORMAT || 'animated-film';
             const mode = process.env.AUTOMATION_MODE || 'CONTINUOUS';
 
@@ -76,7 +73,6 @@ jobs:
                 core.warning(`Skipping invalid target: ${JSON.stringify(target)}`);
                 continue;
               }
-
               await github.rest.repos.createDispatchEvent({
                 owner: target.repository.split('/')[0],
                 repo: target.repository.split('/')[1],
@@ -90,7 +86,6 @@ jobs:
                   format
                 }
               });
-
               core.info(`Dispatched ${target.event_type} → ${target.repository}`);
             }
 

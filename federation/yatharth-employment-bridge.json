@@ -1,0 +1,44 @@
+{
+  "bridge_id": "shirmani-main-to-yatharth-creator-employment",
+  "status": "READY",
+  "source_repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+  "target_repository": "rampaulsaini/yatharth-music-ai",
+  "target_event": "shirmani_main_automission",
+  "domains": [
+    "creator-identity",
+    "employment",
+    "livelihood",
+    "income",
+    "creative-studio",
+    "provenance"
+  ],
+  "identity": {
+    "creator_name": "शिरोमणि रामपॉल सैनी",
+    "identity_label": "निष्पक्ष समझ",
+    "signature": "꙰\"𝒥शिरोमणि",
+    "ai_substitution_allowed": false,
+    "photo_verification_state": "UNVERIFIED_PENDING_USER_UPLOAD",
+    "canonical_photo_source": "https://i.ibb.co/vxM3L1qs/enhanced-image.webp",
+    "golden_temple_album_sources": [
+      "https://photos.app.goo.gl/4MP8THuxhei9NuxR6",
+      "https://photos.app.goo.gl/NwXjorezNdz4R3ED9"
+    ]
+  },
+  "automation_policy": {
+    "mode": "CONTINUOUS",
+    "human_review_required_for_identity_changes": true,
+    "human_review_required_for_payments_contracts": true,
+    "no_invented_income": true,
+    "no_claim_of_live_execution_without_evidence": true,
+    "no_claim_of_photo_verification_without_visual_evidence": true
+  },
+  "yatharth_mudra": {
+    "date": "2024-04-04",
+    "time": "18:24",
+    "timezone": "Asia/Kolkata",
+    "display_date": "4/4/2024",
+    "display_time": "6:24 PM",
+    "attribution": "यहीं मेरी निष्पक्ष समझ के शमीकरण यथार्थ सिद्धांत उपलब्धि यथार्थ युग के आधार पर आधारित दृष्टिकोण का था",
+    "note": "यह दिनांक और समय उपयोगकर्ता द्वारा घोषित यथार्थ मुद्रा संदर्भ के रूप में संरक्षित है; इसे स्वतंत्र बाहरी प्रमाण के रूप में प्रस्तुत नहीं किया जाता।"
+  }
+}
