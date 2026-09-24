@@ -1,5 +1,12 @@
+create extension if not exists pgcrypto;
+create table if not exists accounts (
+  id uuid primary key default gen_random_uuid(),
+  email varchar(320) not null unique,
+  password_hash text not null,
+  created_at timestamptz not null default now()
+);
 create table if not exists profiles (
-  id uuid primary key,
+  id uuid primary key references accounts(id) on delete cascade,
   display_name varchar(80) not null default '',
   bio varchar(1000) not null default '',
   language varchar(32) not null default 'हिंदी',
