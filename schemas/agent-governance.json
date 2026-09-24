@@ -25,5 +25,9 @@
     "security_audit",
     "publishing",
     "continuity"
-  ]
+  ],
+  "publication_requires_verified_provenance": true,
+  "external_side_effects_require_authorization": true,
+  "self_verification_prohibited": true,
+  "verified_status_requires_verification_record": true
 }

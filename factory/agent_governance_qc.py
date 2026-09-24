@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,6 +63,26 @@ def main() -> int:
         fail("secret handling is not secret-store-only")
     if policy.get("public_surface_may_expose_secrets") is not False:
         fail("public surfaces may expose secrets")
+
+    if "--self-test" in sys.argv[1:]:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp) / "valid-agent-output.json"
+            tmp_path.write_text(json.dumps({
+                "status": "verified",
+                "agent_layer": "verification",
+                "provenance": {
+                    "source_repository": "test/repository",
+                    "source_path": "source.txt",
+                    "source_sha256": "a" * 64,
+                    "generated_at": "1970-01-01T00:00:00Z",
+                    "status": "verified"
+                },
+                "verification_record": {"method": "independent-test"},
+                "external_side_effects": False
+            }), encoding="utf-8")
+            record_paths = [tmp_path]
+    else:
+        record_paths = [Path(p) for p in sys.argv[1:]]
 
     # Optional deterministic validation of generated AgentOutput-like records.
     # The validator never upgrades status and never treats missing provenance as verified.

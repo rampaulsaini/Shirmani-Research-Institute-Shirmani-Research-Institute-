@@ -54,6 +54,8 @@ jobs:
           PY
       - name: Run deterministic runtime AI-agent governance QC
         run: python3 factory/agent_governance_qc.py
+      - name: Run AI-agent governance validator self-test
+        run: python3 factory/agent_governance_qc.py --self-test
 
       - name: Build repository intelligence
         run: python3 factory/repository_intelligence.py
