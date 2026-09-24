@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": "1.0.0",
+  "name": "Shirmani Settlement Records",
+  "status": "DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "purpose": "Define evidence-backed settlement records for completed work or exchanges without asserting that funds moved unless external payment evidence exists.",
+  "type": "object",
+  "required": [
+    "settlement_id",
+    "work_reference",
+    "status",
+    "evidence_references",
+    "recorded_at"
+  ],
+  "properties": {
+    "settlement_id": {
+      "type": "string"
+    },
+    "work_reference": {
+      "type": "string"
+    },
+    "opportunity_reference": {
+      "type": "string"
+    },
+    "contract_reference": {
+      "type": "string"
+    },
+    "deliverable_reference": {
+      "type": "string"
+    },
+    "settlement_type": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "PENDING",
+        "UNDER_REVIEW",
+        "SETTLEMENT_READY",
+        "SETTLED",
+        "REFUNDED",
+        "DISPUTED",
+        "CANCELLED",
+        "NOT_VERIFIED"
+      ]
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string"
+    },
+    "evidence_references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confirmation_reference": {
+      "type": "string"
+    },
+    "refund_reference": {
+      "type": "string"
+    },
+    "reconciliation_reference": {
+      "type": "string"
+    },
+    "dispute_reference": {
+      "type": "string"
+    },
+    "audit_reference": {
+      "type": "string"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "transition_rules": {
+    "PENDING": "Settlement candidate exists; no payment fact is established.",
+    "UNDER_REVIEW": "Terms and evidence are being reviewed.",
+    "SETTLEMENT_READY": "Required terms and fulfilment evidence are present; funds movement is not implied.",
+    "SETTLED": "Actual settlement/payment evidence is present; amount must be derived from that evidence.",
+    "REFUNDED": "Refund evidence is present; refund amount must be derived from evidence.",
+    "NOT_VERIFIED": "Evidence is missing, contradictory, or insufficient."
+  },
+  "integrity_rules": [
+    "No fabricated payer, payee, amount, payment, refund, settlement, balance, or income.",
+    "SETTLED requires external payment/settlement evidence.",
+    "REFUNDED requires external refund evidence.",
+    "SETTLED does not imply accounting reconciliation.",
+    "Settlement records do not execute transfers or payments.",
+    "Disputes, reversals, refunds, identity, contract interpretation and liability require human review where applicable.",
+    "AI-generated summaries are not transaction evidence by themselves.",
+    "Public income totals must be derived from evidence-backed records."
+  ],
+  "linked_artifacts": [
+    "schemas/income-evidence-ledger.json",
+    "federation/employment-income-status-bridge.schema.json",
+    "federation/employment-audit-closure.schema.json",
+    "federation/dispute-resolution.schema.json",
+    "federation/reconciliation-audit-trail.schema.json"
+  ]
+}
