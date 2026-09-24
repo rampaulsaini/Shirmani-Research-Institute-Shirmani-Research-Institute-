@@ -1,8 +1,7 @@
 name: SHIRMANI Heart-View Supreme Continuous Audit
 
 on:
-  push:
-    branches: [main]
+  # Scheduled audit avoids a duplicate push-trigger flood; the main factory remains the 5-minute execution loop.
   workflow_dispatch:
   schedule:
     - cron: "2-59/5 * * * *"
