@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-For production API keys, use serverless endpoints (do NOT embed keys in client-side JS).
+Added tooling checks for path whitespace and OneDrive paths to improve developer experience.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ For production API keys, use serverless endpoints (do NOT embed keys in client-s
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/omniverse-marketplace-:README.md
+NVIDIA-Omniverse/kit-app-template:CHANGELOG.md
