@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "name": "Omniverse Commerce Automation Policy",
+  "mode": "automission",
+  "principles": [
+    "truthful-status",
+    "no-secret-exposure",
+    "provider-neutral-adapters",
+    "evidence-before-claim",
+    "human-review-for-external-financial-actions"
+  ],
+  "allowed_agent_actions": [
+    "catalog_assets",
+    "draft_product_copy",
+    "generate_preview_briefs",
+    "prepare_seo",
+    "prepare_social_variants",
+    "prepare_ad_creatives",
+    "measure_public_metrics",
+    "produce_sales_reports"
+  ],
+  "gated_actions": [
+    "publish_to_external_account",
+    "launch_paid_campaign",
+    "change_billing",
+    "withdraw_or_transfer_funds",
+    "claim_verified_income"
+  ],
+  "required_evidence": [
+    "destination",
+    "timestamp",
+    "action_id",
+    "result_status"
+  ],
+  "fallback": "If an external credential, account or permission is unavailable, keep the action READY/REVIEW_REQUIRED rather than claiming completion."
+}
