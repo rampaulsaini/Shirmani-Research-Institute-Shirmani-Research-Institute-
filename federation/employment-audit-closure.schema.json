@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": "1.0.0",
+  "name": "Shirmani Employment Audit Closure",
+  "status": "DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "purpose": "Define the evidence gates required before a work or income record can be treated as closed, reconciled, or publicly verified.",
+  "required_fields": [
+    "closure_id",
+    "work_reference",
+    "lifecycle_status",
+    "evidence_references",
+    "recorded_at"
+  ],
+  "properties": {
+    "closure_id": {"type": "string"},
+    "work_reference": {"type": "string"},
+    "opportunity_reference": {"type": "string"},
+    "contract_reference": {"type": "string"},
+    "deliverable_reference": {"type": "string"},
+    "settlement_reference": {"type": "string"},
+    "reconciliation_reference": {"type": "string"},
+    "dispute_reference": {"type": "string"},
+    "lifecycle_status": {
+      "enum": ["OPEN", "COMPLETED", "PAID", "RECONCILED", "CLOSED", "NOT_VERIFIED"]
+    },
+    "evidence_references": {"type": "array", "items": {"type": "string"}},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "human_review_reference": {"type": "string"}
+  },
+  "closure_gates": {
+    "COMPLETED": [
+      "delivery_or_completion_evidence",
+      "acceptance_evidence"
+    ],
+    "PAID": [
+      "payment_evidence"
+    ],
+    "RECONCILED": [
+      "payment_evidence",
+      "accounting_or_reconciliation_evidence"
+    ],
+    "CLOSED": [
+      "required_lifecycle_evidence",
+      "no_open_dispute_or_documented_human_resolution"
+    ]
+  },
+  "integrity_rules": [
+    "CLOSED is not proof of payment unless payment evidence exists.",
+    "PAID is not proof of accounting reconciliation unless reconciliation evidence exists.",
+    "COMPLETED does not imply PAID.",
+    "An open dispute blocks automatic closure.",
+    "Dispute resolution, contract interpretation, acceptance, refunds, reversals, liability, and identity questions require human review where applicable.",
+    "No fabricated settlement, reconciliation, completion, payment, income, refund, or resolution record.",
+    "Public verified totals must be derived from evidence-backed records rather than narrative claims.",
+    "AI-generated summaries, certificates, testimonials, profiles, or portfolio descriptions are not transaction evidence by themselves."
+  ],
+  "state_rules": {
+    "OPEN": "Work exists as an opportunity or active engagement route; closure is not established.",
+    "COMPLETED": "Completion evidence and acceptance evidence are present; payment remains a separate state.",
+    "PAID": "Payment evidence is present; reconciliation remains a separate state.",
+    "RECONCILED": "Payment and accounting/reconciliation evidence are present.",
+    "CLOSED": "Required lifecycle evidence is complete and no unresolved blocking dispute remains.",
+    "NOT_VERIFIED": "One or more required evidence gates are missing or cannot be independently established."
+  },
+  "linked_artifacts": [
+    "schemas/income-evidence-ledger.json",
+    "federation/employment-income-status-bridge.schema.json",
+    "federation/dispute-resolution.schema.json",
+    "employment.html",
+    "income-command-center.html"
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": "1.0.0",
+  "name": "Shirmani Dispute & Resolution Records",
+  "status": "DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "description": "Evidence-first dispute lifecycle connecting an exchange/order or settlement record to human review, decision, resolution and audit.",
+  "type": "object",
+  "properties": {
+    "dispute_id": {
+      "type": "string"
+    },
+    "source_reference": {
+      "type": "string"
+    },
+    "contract_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "settlement_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "issue_category": {
+      "type": "string",
+      "enum": [
+        "SCOPE",
+        "DELIVERY",
+        "QUALITY",
+        "PAYMENT",
+        "REFUND",
+        "TIMING",
+        "IDENTITY",
+        "OTHER"
+      ]
+    },
+    "claim_summary": {
+      "type": "string"
+    },
+    "evidence_references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "EVIDENCE_PENDING",
+        "UNDER_REVIEW",
+        "HUMAN_DECISION_REQUIRED",
+        "RESOLVED",
+        "REJECTED",
+        "ESCALATED",
+        "CANCELLED",
+        "ARCHIVED"
+      ]
+    },
+    "decision_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "resolution_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "audit_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "dispute_id",
+    "source_reference",
+    "issue_category",
+    "claim_summary",
+    "evidence_references",
+    "status"
+  ],
+  "rules": {
+    "dispute_reported_is_dispute_proven": false,
+    "evidence_pending_is_evidence_confirmed": false,
+    "automated_decision": false,
+    "automatic_refund": false,
+    "automatic_reversal": false,
+    "automatic_liability_finding": false,
+    "fabricated_evidence": false,
+    "fabricated_resolution": false,
+    "invented_payment": false,
+    "invented_income": false
+  },
+  "human_review_required": [
+    "identity",
+    "contract_interpretation",
+    "delivery_acceptance",
+    "quality_disputes",
+    "payment_disputes",
+    "refunds",
+    "reversals",
+    "liability",
+    "escalation"
+  ],
+  "evidence_rule": "A dispute record documents a reported issue; it is not proof that the claim is true. A resolution record is not payment or refund proof unless external evidence exists.",
+  "integrations": [
+    "federation/settlement-records.schema.json",
+    "federation/reconciliation-audit-trail.schema.json",
+    "schemas/income-evidence-ledger.json",
+    "employment.html"
+  ]
+}
