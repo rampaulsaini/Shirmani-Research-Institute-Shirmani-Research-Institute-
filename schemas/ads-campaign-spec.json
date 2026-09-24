@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "name": "shirmani-multichannel-ads-campaign-spec",
+  "purpose": "truthful ad-ready campaign artifacts; not proof that paid campaigns are live",
+  "channels": [
+    "Google Ads",
+    "Meta Ads",
+    "YouTube Ads",
+    "LinkedIn Ads",
+    "X Ads",
+    "Pinterest Ads",
+    "TikTok Ads",
+    "Reddit Ads"
+  ],
+  "campaign_layers": [
+    "product_awareness",
+    "problem_or_interest",
+    "proof_and_transparency",
+    "offer",
+    "retargeting"
+  ],
+  "required_fields": [
+    "product_id",
+    "claim_source",
+    "landing_page",
+    "cta",
+    "creative_status",
+    "account_execution_status"
+  ],
+  "claim_rules": {
+    "must_be_traceable_to_product_record": true,
+    "must_not_claim_verified_results_without_evidence": true,
+    "must_not_use_fake_testimonials": true,
+    "must_not_use_fake_scarcity": true,
+    "must_not_guarantee_income_or_personal_outcomes": true
+  },
+  "execution_boundary": "actual paid delivery requires the owner's ad-platform account, billing, permissions and any required API credentials; repository automation may prepare and validate campaigns but must not pretend that ads were purchased or delivered"
+}

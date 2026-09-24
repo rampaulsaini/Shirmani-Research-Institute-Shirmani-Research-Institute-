@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "name": "shirmani-income-products",
+  "truth_boundary": "product_quality_is_claimed_only_from_declared_source_and_evidence",
+  "statuses": [
+    "draft",
+    "published",
+    "verified"
+  ],
+  "required_fields": [
+    "product_id",
+    "title",
+    "price",
+    "currency",
+    "format",
+    "source_asset",
+    "buyer_benefit",
+    "limitations",
+    "provenance",
+    "status",
+    "evidence_required"
+  ],
+  "products": [
+    {
+      "product_id": "P001",
+      "title": "खुद का साक्षात्कार ही संपूर्ण संतुष्टि",
+      "price": 10000,
+      "currency": "INR",
+      "format": "digital_audio_or_store_offer",
+      "source_asset": "existing user-supplied product record",
+      "buyer_benefit": "digital access",
+      "limitations": "संतुष्टि/आध्यात्मिक परिणाम की गारंटी नहीं",
+      "provenance": "store/product record must be checked before sale",
+      "status": "published",
+      "evidence_required": [
+        "store availability",
+        "checkout evidence",
+        "delivery evidence"
+      ]
+    },
+    {
+      "product_id": "P002",
+      "title": "शिरोमणि अनंत असीम इश्क की क्षमता",
+      "price": 1500,
+      "currency": "INR",
+      "format": "digital_audio_or_store_offer",
+      "source_asset": "existing user-supplied product record",
+      "buyer_benefit": "digital audio/content access",
+      "limitations": "व्यक्तिगत परिणाम की गारंटी नहीं",
+      "provenance": "store/product record must be checked before sale",
+      "status": "published",
+      "evidence_required": [
+        "store availability",
+        "checkout evidence",
+        "delivery evidence"
+      ]
+    },
+    {
+      "product_id": "P003",
+      "title": "साहिब तदरूप साक्षात्कार",
+      "price": 10000,
+      "currency": "INR",
+      "format": "digital_audio_or_store_offer",
+      "source_asset": "existing user-supplied product record",
+      "buyer_benefit": "digital audio/content access",
+      "limitations": "व्यक्तिगत/आध्यात्मिक परिणाम की गारंटी नहीं",
+      "provenance": "store/product record must be checked before sale",
+      "status": "published",
+      "evidence_required": [
+        "store availability",
+        "checkout evidence",
+        "delivery evidence"
+      ]
+    },
+    {
+      "product_id": "P004",
+      "title": "खुद का साक्षात्कार ऑडियो",
+      "price": 6000,
+      "currency": "INR",
+      "format": "digital_audio",
+      "source_asset": "existing user-supplied product record",
+      "buyer_benefit": "digital audio access",
+      "limitations": "व्यक्तिगत परिणाम की गारंटी नहीं",
+      "provenance": "store/product record must be checked before sale",
+      "status": "published",
+      "evidence_required": [
+        "store availability",
+        "checkout evidence",
+        "delivery evidence"
+      ]
+    },
+    {
+      "product_id": "P005",
+      "title": "मेरा साहिब मेरा ही तदरूप साक्षात्कार",
+      "price": 5000,
+      "currency": "INR",
+      "format": "digital_audio",
+      "source_asset": "existing user-supplied product record",
+      "buyer_benefit": "digital audio access",
+      "limitations": "व्यक्तिगत परिणाम की गारंटी नहीं",
+      "provenance": "store/product record must be checked before sale",
+      "status": "published",
+      "evidence_required": [
+        "store availability",
+        "checkout evidence",
+        "delivery evidence"
+      ]
+    },
+    {
+      "product_id": "P006",
+      "title": "Short Audios Collection",
+      "price": 89,
+      "currency": "INR",
+      "format": "digital_audio_collection",
+      "source_asset": "existing user-supplied product record",
+      "buyer_benefit": "low-entry digital audio collection",
+      "limitations": "content scope follows the actual delivered collection",
+      "provenance": "store/product record must be checked before sale",
+      "status": "published",
+      "evidence_required": [
+        "store availability",
+        "checkout evidence",
+        "delivery evidence"
+      ]
+    },
+    {
+      "product_id": "P007",
+      "title": "प्रमाण पत्र",
+      "price": 495,
+      "currency": "INR",
+      "format": "digital_certificate_asset",
+      "source_asset": "existing user-supplied product record",
+      "buyer_benefit": "digital certificate/photo asset as actually described by the store",
+      "limitations": "does not establish external accreditation unless separately evidenced",
+      "provenance": "store/product record must be checked before sale",
+      "status": "published",
+      "evidence_required": [
+        "store availability",
+        "checkout evidence",
+        "delivery evidence"
+      ]
+    },
+    {
+      "product_id": "P008",
+      "title": "Short / Creator Assets",
+      "price": 950,
+      "currency": "INR",
+      "format": "creator_asset_package",
+      "source_asset": "existing user-supplied product record",
+      "buyer_benefit": "short-form creator assets as actually delivered",
+      "limitations": "final asset count and format must be stated on the offer page",
+      "provenance": "store/product record must be checked before sale",
+      "status": "published",
+      "evidence_required": [
+        "store availability",
+        "checkout evidence",
+        "delivery evidence"
+      ]
+    }
+  ]
+}
