@@ -12,20 +12,53 @@
     "recorded_at"
   ],
   "properties": {
-    "closure_id": {"type": "string"},
-    "work_reference": {"type": "string"},
-    "opportunity_reference": {"type": "string"},
-    "contract_reference": {"type": "string"},
-    "deliverable_reference": {"type": "string"},
-    "settlement_reference": {"type": "string"},
-    "reconciliation_reference": {"type": "string"},
-    "dispute_reference": {"type": "string"},
-    "lifecycle_status": {
-      "enum": ["OPEN", "COMPLETED", "PAID", "RECONCILED", "CLOSED", "NOT_VERIFIED"]
+    "closure_id": {
+      "type": "string"
     },
-    "evidence_references": {"type": "array", "items": {"type": "string"}},
-    "recorded_at": {"type": "string", "format": "date-time"},
-    "human_review_reference": {"type": "string"}
+    "work_reference": {
+      "type": "string"
+    },
+    "opportunity_reference": {
+      "type": "string"
+    },
+    "contract_reference": {
+      "type": "string"
+    },
+    "deliverable_reference": {
+      "type": "string"
+    },
+    "settlement_reference": {
+      "type": "string"
+    },
+    "reconciliation_reference": {
+      "type": "string"
+    },
+    "dispute_reference": {
+      "type": "string"
+    },
+    "lifecycle_status": {
+      "enum": [
+        "OPEN",
+        "COMPLETED",
+        "PAID",
+        "RECONCILED",
+        "CLOSED",
+        "NOT_VERIFIED"
+      ]
+    },
+    "evidence_references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "human_review_reference": {
+      "type": "string"
+    }
   },
   "closure_gates": {
     "COMPLETED": [
@@ -65,6 +98,8 @@
   "linked_artifacts": [
     "schemas/income-evidence-ledger.json",
     "federation/employment-income-status-bridge.schema.json",
+    "federation/settlement-records.schema.json",
+    "federation/reconciliation-audit-trail.schema.json",
     "federation/dispute-resolution.schema.json",
     "employment.html",
     "income-command-center.html"
