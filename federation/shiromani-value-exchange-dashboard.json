@@ -1,0 +1,29 @@
+{
+  "dashboard": "Universal Value & Exchange Dashboard",
+  "status": "DESIGN_SPECIFICATION_NOT_DEPLOYED",
+  "system": "꙰\"𝒥शिरोमणि",
+  "yatharth_mudra": {
+    "symbol": "YTH",
+    "status": "DESIGN_TESTNET_FIRST_NOT_DEPLOYED",
+    "public_sale": false,
+    "monetary_price": null,
+    "guaranteed_value": false,
+    "automatic_minting": false,
+    "automatic_settlement": false
+  },
+  "stages": ["ORIGIN","CONTRIBUTION","EVIDENCE","VERIFICATION","ALLOCATION","EXCHANGE","SETTLEMENT","AUDIT"],
+  "states": ["REGISTERED","EVIDENCE_PENDING","VERIFIED","ALLOCATED","SETTLED","DISPUTED","ARCHIVED"],
+  "live_financial_execution": false,
+  "production_gates_required": [
+    "jurisdictional_legal_review",
+    "accounting_and_tax_review",
+    "identity_and_provenance_controls",
+    "exchange_rules",
+    "security_review",
+    "testnet_validation",
+    "anti_abuse_and_recovery",
+    "dispute_handling",
+    "authorized_payment_integration",
+    "human_governance"
+  ]
+}
