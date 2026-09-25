@@ -97,6 +97,18 @@ class QueueStore:
     def release_for_retry(self, opportunity_id):
         self.set_status(opportunity_id, "QUEUED")
 
+    def recover_stale_processing(self, max_age_seconds=1800):
+        cutoff = datetime.fromtimestamp(
+            datetime.now(timezone.utc).timestamp() - max_age_seconds, timezone.utc
+        ).isoformat()
+        with self._connect() as db:
+            cur = db.execute(
+                """UPDATE opportunities SET status='QUEUED', updated_at=?
+                   WHERE status='PROCESSING' AND updated_at < ?""",
+                (utc_now(), cutoff),
+            )
+        return cur.rowcount
+
     def mark_idempotency(self, item, status):
         with self._connect() as db:
             db.execute("UPDATE execution_keys SET status=? WHERE idempotency_key=?",
