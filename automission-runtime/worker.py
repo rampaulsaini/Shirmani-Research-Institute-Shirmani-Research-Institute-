@@ -19,6 +19,8 @@ from factory_cycle import load_requests, run_factory_cycle
 from education_factory import build_program, validate_program
 from justice_factory import build_case_plan, validate_case_plan
 from task_ledger import AgentTaskLedger
+from master_learning import capture_master_intelligence, write_intelligence
+from master_dashboard import snapshot as master_dashboard_snapshot
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE_DIR = Path(os.getenv("AUTOMISSION_STATE_DIR", str(Path(__file__).parent / "state")))
@@ -125,6 +127,16 @@ def run_master_orchestration():
             except (TypeError, ValueError) as exc:
                 justice_results.append({"status": "REJECTED", "reason": str(exc)})
 
+    intelligence = capture_master_intelligence(
+        DB, STATE_DIR / "master-task-ledger.db",
+        STATE_DIR / "product-factory.db",
+    )
+    write_intelligence(STATE_DIR / "master-intelligence.db", intelligence)
+    dashboard = master_dashboard_snapshot(
+        DB, STATE_DIR / "master-task-ledger.db",
+        STATE_DIR / "product-factory.db",
+    )
+
     emit("master_automission", {
         "status": "ORCHESTRATED",
         "task_count": plan["task_count"],
@@ -134,6 +146,8 @@ def run_master_orchestration():
         "justice_results": justice_results,
         "external_irreversible_actions": "authorization_required",
         "task_ledger": ledger.snapshot(),
+        "master_intelligence": intelligence,
+        "dashboard": dashboard,
     })
 
 def cycle():
