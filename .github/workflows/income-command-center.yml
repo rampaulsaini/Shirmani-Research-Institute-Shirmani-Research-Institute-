@@ -1,0 +1,51 @@
+name: Income Command Center — Master Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  control-plane-health:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate income control plane
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for p in [Path("income/command-center.json"), Path("income/agent-registry.json")]:
+              data = json.loads(p.read_text(encoding="utf-8"))
+              assert data.get("schema_version")
+          cc = json.loads(Path("income/command-center.json").read_text(encoding="utf-8"))
+          assert cc["mode"] == "income-first"
+          assert len(cc["income_channels"]) == 6
+          assert cc["gates"]["human_approval_required_for_payment"] is True
+          print("Income Command Center contract: VALID")
+          PY
+
+      - name: Emit run receipt
+        run: |
+          mkdir -p artifacts
+          cat > artifacts/income-command-center-receipt.json <<EOF
+          {
+            "status": "HEALTHY",
+            "mode": "income-first",
+            "workflow": "income-command-center-master-automission",
+            "commit": "$GITHUB_SHA",
+            "irreversible_actions": "human-approval-required",
+            "revenue_claims": "verified-only"
+          }
+          EOF
+
+      - name: Upload receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: income-command-center-receipt
+          path: artifacts/income-command-center-receipt.json
