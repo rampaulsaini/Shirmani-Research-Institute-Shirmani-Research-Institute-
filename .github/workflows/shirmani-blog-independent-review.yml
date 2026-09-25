@@ -31,10 +31,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create source-bound review packet
+      - name: Select next unqueued claim range
         env:
-          BATCH_SIZE: ${{ inputs.batch_size || '25' }}
-          OFFSET: ${{ inputs.offset || '0' }}
+          GH_TOKEN: ${{ github.token }}
+          INPUT_BATCH: ${{ inputs.batch_size || '25' }}
+          INPUT_OFFSET: ${{ inputs.offset || '' }}
+        run: |
+          set -euo pipefail
+          batch="${INPUT_BATCH:-25}"
+          offset="${INPUT_OFFSET:-}"
+          if [ -z "$offset" ]; then
+            max_end=0
+            while IFS= read -r title; do
+              if [[ "$title" =~ blog-verification-packet-([0-9]+)-([0-9]+) ]]; then
+                end="${BASH_REMATCH[2]}"
+                if (( end > max_end )); then max_end="$end"; fi
+              fi
+            done < <(gh issue list --repo "$GITHUB_REPOSITORY" --state all --search "[Blog Independent Verification]" --limit 100 --json title --jq '.[].title')
+            offset="$max_end"
+          fi
+          echo "BATCH_SIZE=$batch" >> "$GITHUB_ENV"
+          echo "OFFSET=$offset" >> "$GITHUB_ENV"
+          echo "Selected batch=$batch offset=$offset"
+
+      - name: Avoid duplicate open packet
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "[Blog Independent Verification]" --limit 1 --json number --jq 'length' | grep -q '^1$'; then
+            echo "An open blog review packet already exists; no duplicate will be created."
+            exit 0
+          fi
+
+      - name: Create source-bound review packet
         run: python3 factory/blog_verification_packet.py --batch-size "$BATCH_SIZE" --offset "$OFFSET"
 
       - name: Validate fail-closed review packet
