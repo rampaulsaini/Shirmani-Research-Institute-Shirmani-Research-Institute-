@@ -92,6 +92,18 @@ jobs:
           print("Justice Access Factory contract: VALID")
           PY
 
+      - name: Validate master task ledger contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("income/master-task-ledger.json").read_text(encoding="utf-8"))
+          assert data["idempotency"]["required"] is True
+          assert data["learning_boundary"]["verified_outcomes_only"] is True
+          assert data["learning_boundary"]["fabricated_revenue_forbidden"] is True
+          print("Master Task Ledger contract: VALID")
+          PY
+
       - name: Run standalone runtime smoke cycle
         env:
           AUTOMISSION_RUN_ONCE: "true"
@@ -104,7 +116,9 @@ jobs:
           db_path = os.path.join(os.environ["AUTOMISSION_STATE_DIR"], "automission.db")
           with sqlite3.connect(db_path) as db:
               row = db.execute("select status from heartbeats order by id desc limit 1").fetchone()
+              ledger = db.execute("select name from sqlite_master where type='table' and name='events'").fetchone()
           assert row == ("HEARTBEAT_OK",), row
+          assert ledger == ("events",), ledger
           print("Standalone runtime smoke cycle: VALID")
           PY
 
