@@ -67,6 +67,18 @@ jobs:
           print("Digital Product Factory contracts: VALID")
           PY
 
+      - name: Validate affordable education factory
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("income/education-factory.json").read_text(encoding="utf-8"))
+          assert data["quality"]["original_curriculum_required"] is True
+          assert data["quality"]["university_affiliation_requires_real_partnership"] is True
+          assert data["quality"]["official_degree_claim_requires_valid_authorization"] is True
+          print("Affordable Education Factory contract: VALID")
+          PY
+
       - name: Run standalone runtime smoke cycle
         env:
           AUTOMISSION_RUN_ONCE: "true"
