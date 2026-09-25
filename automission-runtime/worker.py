@@ -10,6 +10,8 @@ from queue import QueueStore
 from sources import discover
 from agents import prepare
 from router import route_pending
+from executor import execute_plan
+from learning import capture_cycle_features
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE_DIR = Path(os.getenv("AUTOMISSION_STATE_DIR", str(Path(__file__).parent / "state")))
@@ -41,7 +43,7 @@ def heartbeat():
     with sqlite3.connect(DB) as db:
         db.execute("INSERT INTO heartbeats(ts,status,pid) VALUES(?,?,?)",
                    (utc_now(), "HEARTBEAT_OK", os.getpid()))
-    emit("heartbeat", {"status": "HEARTBEAT_OK"})
+    emit("heartbeat", {"status":"HEARTBEAT_OK"})
 
 def validate_contracts():
     required = [ROOT/"income"/"command-center.json", ROOT/"income"/"agent-registry.json",
@@ -66,18 +68,22 @@ def cycle():
         if item:
             store.upsert_opportunity(item)
             accepted += 1
+    pending = store.pending()
     routed = route_pending(store)
+    plans = [execute_plan(item) for item in pending]
+    approvals = sum(1 for p in plans if p["status"] == "APPROVAL_REQUIRED")
+    features = capture_cycle_features(DB, accepted, len(routed), approvals)
     emit("cycle", {"runtime":"income-command-center","mode":"standalone",
-                    "chatgpt_dependency":False,"execution":"discover-verify-route",
+                    "chatgpt_dependency":False,"execution":"discover-verify-route-execute-learn",
                     "opportunities_accepted":accepted,"routed_actions":len(routed),
-                    "approval_required":sum(1 for r in routed if r["status"]=="APPROVAL_REQUIRED"),
-                    "queue_depth":len(store.pending())})
+                    "approval_required":approvals,"queue_depth":len(store.pending()),
+                    "learning_features":features})
     heartbeat()
 
 def shutdown(signum, frame):
     global stop
     stop = True
-    emit("shutdown", {"signal": signum})
+    emit("shutdown", {"signal":signum})
 
 if __name__ == "__main__":
     signal.signal(signal.SIGTERM, shutdown)
@@ -87,7 +93,7 @@ if __name__ == "__main__":
         try:
             cycle()
         except Exception as exc:
-            emit("runtime_error", {"error": str(exc), "fail_closed": True})
+            emit("runtime_error", {"error":str(exc),"fail_closed":True})
         if RUN_ONCE:
             break
         time.sleep(INTERVAL)
