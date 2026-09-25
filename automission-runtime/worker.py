@@ -8,6 +8,8 @@ from pathlib import Path
 
 from queue import QueueStore
 from sources import discover
+from agents import prepare
+from router import route_pending
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE_DIR = Path(os.getenv("AUTOMISSION_STATE_DIR", str(Path(__file__).parent / "state")))
@@ -42,16 +44,12 @@ def heartbeat():
     emit("heartbeat", {"status": "HEARTBEAT_OK"})
 
 def validate_contracts():
-    required = [
-        ROOT / "income" / "command-center.json",
-        ROOT / "income" / "agent-registry.json",
-        ROOT / "income" / "master-orchestrator.yml",
-        ROOT / "income" / "runtime-contract.json",
-    ]
+    required = [ROOT/"income"/"command-center.json", ROOT/"income"/"agent-registry.json",
+                ROOT/"income"/"master-orchestrator.yml", ROOT/"income"/"runtime-contract.json"]
     missing = [str(p) for p in required if not p.exists()]
     if missing:
         raise RuntimeError("missing runtime contracts: " + ", ".join(missing))
-    contract = json.loads((ROOT / "income" / "runtime-contract.json").read_text())
+    contract = json.loads((ROOT/"income"/"runtime-contract.json").read_text())
     if contract.get("mode") != "continuous":
         raise RuntimeError("runtime contract is not continuous")
     if contract["safety"].get("fabrication_forbidden") is not True:
@@ -62,22 +60,18 @@ def validate_contracts():
 def cycle():
     validate_contracts()
     store = QueueStore(DB)
-    discovered = discover()
     accepted = 0
-    for item in discovered:
-        if item.get("evidence_url") and item.get("url"):
+    for raw in discover():
+        item = prepare(raw)
+        if item:
             store.upsert_opportunity(item)
             accepted += 1
-    pending = len(store.pending())
-    emit("cycle", {
-        "runtime": "income-command-center",
-        "mode": "standalone",
-        "chatgpt_dependency": False,
-        "execution": "discovery-and-queue",
-        "sources_configured": len(os.getenv("AUTOMISSION_SOURCE_FEEDS", "").split(",")) if os.getenv("AUTOMISSION_SOURCE_FEEDS") else 0,
-        "opportunities_accepted": accepted,
-        "queue_depth": pending
-    })
+    routed = route_pending(store)
+    emit("cycle", {"runtime":"income-command-center","mode":"standalone",
+                    "chatgpt_dependency":False,"execution":"discover-verify-route",
+                    "opportunities_accepted":accepted,"routed_actions":len(routed),
+                    "approval_required":sum(1 for r in routed if r["status"]=="APPROVAL_REQUIRED"),
+                    "queue_depth":len(store.pending())})
     heartbeat()
 
 def shutdown(signum, frame):
