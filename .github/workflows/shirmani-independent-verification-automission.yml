@@ -33,13 +33,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          echo "REVIEW_PACKET_CREATED=false" >> "$GITHUB_ENV"
           batch_size="${REQUESTED_BATCH_SIZE:-25}"
           if ! [[ "$batch_size" =~ ^[0-9]+$ ]] || [ "$batch_size" -lt 1 ] || [ "$batch_size" -gt 100 ]; then
             echo "::error::batch_size must be an integer from 1 to 100"
             exit 1
           fi
 
-          max_end=$(gh issue list --repo "$GITHUB_REPOSITORY" --state all --limit 1000             --search '"[Independent Verification] Packet"'             --json title --jq '.[].title' |
+          max_end=$(gh issue list --repo "$GITHUB_REPOSITORY" --state all --limit 1000 --search '"[Independent Verification] Packet"' --json title --jq '.[].title' |
             python3 -c '
           import re,sys
           maximum=0
@@ -50,16 +51,17 @@ jobs:
           print(maximum)
           ')
 
-          if gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100             --search '"[Independent Verification] Packet"' --json number,title --jq 'length' | grep -q '^0'; then
+          if gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100 --search '"[Independent Verification] Packet"' --json number,title --jq 'length' | grep -q '^0'; then
             offset="$max_end"
             python3 factory/verification_review_packet.py --batch-size "$batch_size" --offset "$offset"
+            echo "REVIEW_PACKET_CREATED=true" >> "$GITHUB_ENV"
           else
             echo "An independent-review packet is already open; no new packet will be created."
             exit 0
           fi
 
       - name: Validate review packet
-        if: success()
+        if: env.REVIEW_PACKET_CREATED == 'true'
         run: |
           set -euo pipefail
           packet=$(ls generated/verification-review-packet-*.json | head -n 1)
@@ -67,7 +69,7 @@ jobs:
           python3 factory/verification_review_packet_qc.py --packet "$packet"
 
       - name: Publish human-review work item
-        if: success()
+        if: env.REVIEW_PACKET_CREATED == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -105,10 +107,10 @@ jobs:
           for item in data["items"]:
               lines += [
                   f'### {item["packet_ordinal"]}. {item["task_id"]}',
-                  f'- **Task hash:** `{item["task_hash"]}`',
-                  f'- **Claim ID:** `{item["claim_id"]}`',
-                  f'- **Source IDs:** {", ".join(map(str,item.get("source_ids",[]))) or "none"}',
-                  "- **Verification questions:**",
+                  f'- Task hash: {item["task_hash"]}',
+                  f'- Claim ID: {item["claim_id"]}',
+                  f'- Source IDs: {", ".join(map(str,item.get("source_ids",[]))) or "none"}',
+                  "- Verification questions:",
               ]
               for q in item.get("verification_questions", []):
                   lines.append(f"  - {q}")
@@ -129,7 +131,7 @@ jobs:
           PY
           )
 
-          gh issue create --repo "$GITHUB_REPOSITORY"             --title "$title"             --body-file review_issue.md
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body-file review_issue.md
 
       - name: Publish automission status
         run: |
