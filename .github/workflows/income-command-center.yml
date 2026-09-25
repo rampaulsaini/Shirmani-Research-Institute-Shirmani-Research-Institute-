@@ -43,7 +43,29 @@ jobs:
       - name: Run queue idempotency and recovery tests
         run: |
           python -m unittest discover -s automission-runtime/tests -p "test_*.py" -v
-          echo "Queue, execution, outcome and end-to-end lifecycle tests: VALID"
+          echo "Runtime and digital-product factory tests: VALID"
+
+      - name: Validate digital product factory contracts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          contracts = [
+              "income/digital-product-factory.json",
+              "income/digital-product-factory-agents.json",
+              "income/digital-product-factory-runtime.json",
+              "income/digital-product-channels.json",
+          ]
+          for name in contracts:
+              data = json.loads(Path(name).read_text(encoding="utf-8"))
+              assert data, name
+          factory = json.loads(Path("income/digital-product-factory.json").read_text(encoding="utf-8"))
+          assert factory["safety"]["publication_requires_authorization"] is True
+          assert factory["safety"]["verified_sales_require_evidence"] is True
+          runtime = json.loads(Path("income/digital-product-factory-runtime.json").read_text(encoding="utf-8"))
+          assert runtime["fail_closed"] is True
+          print("Digital Product Factory contracts: VALID")
+          PY
 
       - name: Run standalone runtime smoke cycle
         env:
