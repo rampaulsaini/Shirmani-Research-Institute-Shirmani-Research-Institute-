@@ -1,0 +1,47 @@
+version: "1.0"
+name: income-command-center-master-automission
+schedule:
+  discovery: "0 */6 * * *"
+  verification: "15 */6 * * *"
+  queue_review: "30 */6 * * *"
+  learning: "45 2 * * *"
+pipeline:
+  - command
+  - source_librarian
+  - normalize_deduplicate
+  - evidence_verify
+  - parallel_channel_agents
+  - opportunity_scoring
+  - execution_queue
+  - human_approval_gate
+  - outcome_capture
+  - revenue_intelligence
+  - ml_learning_loop
+channel_order:
+  - employment
+  - freelancing
+  - ai_marketing
+  - digital_store
+  - yatharth_ai_music
+  - economic_vision
+scoring:
+  dimensions:
+    - evidence_quality
+    - fit
+    - effort
+    - time_to_income
+    - expected_value
+    - risk
+  note: "Scores prioritize workflow routing only; they are not guarantees of income."
+safety:
+  auto_apply: false
+  auto_contract: false
+  auto_payment: false
+  auto_claim_revenue: false
+  fabricated_opportunities: false
+  fabricated_outcomes: false
+  human_approval_required_for_irreversible_actions: true
+observability:
+  emit_run_receipt: true
+  emit_channel_metrics: true
+  preserve_evidence_provenance: true
