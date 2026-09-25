@@ -122,7 +122,7 @@ jobs:
           gh workflow run "SHIRMANI Inter-Repository Automission Orchestrator" \
             --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
             -f brief="Continue the approved SHIRMANI multi-layer automission" \
-            -f format="automated-research-package"
+            -f format="animated-film"
           echo "Layer 4 dispatched: inter-repository orchestrator"
 
       - name: Dispatch employment evidence gate when available
