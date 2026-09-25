@@ -55,9 +55,15 @@ jobs:
       - name: Validate protected-source policy
         run: |
           set -euo pipefail
-          test -s SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
-          grep -q "Preserve first. Reason second." SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
-          grep -q "Original user wording is source material" SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md")
+          text = p.read_text(encoding="utf-8")
+          required = ["Preserve first. Reason second.", "Original user wording is source material"]
+          if not p.is_file() or any(marker not in text for marker in required):
+              raise SystemExit("Protected-source policy validation failed")
+          print("Protected-source policy: PASS")
+          PY
 
       - name: Validate resumable state
         run: |
