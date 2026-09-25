@@ -38,9 +38,15 @@ jobs:
           MANUAL_FORMAT: ${{ inputs.format }}
           EVENT_BRIEF: ${{ github.event.client_payload.brief }}
           EVENT_FORMAT: ${{ github.event.client_payload.format }}
+        env:
+          FEDERATION_TOKEN_CONFIGURED: ${{ secrets.SHIRMANI_GITHUB_TOKEN != '' }}
         with:
-          github-token: ${{ secrets.SHIRMANI_GITHUB_TOKEN || github.token }}
+          github-token: ${{ github.token }}
           script: |
+            if (process.env.FEDERATION_TOKEN_CONFIGURED !== "true") {
+              core.warning("SHIRMANI_GITHUB_TOKEN is not configured; federation dispatch is safely deferred.");
+              return;
+            }
             const raw = process.env.REPOSITORY_MATRIX || '';
             let targets = [];
             if (raw.trim()) {
