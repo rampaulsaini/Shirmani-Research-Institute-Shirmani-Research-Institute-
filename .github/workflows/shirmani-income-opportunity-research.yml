@@ -3,6 +3,8 @@ name: SHIRMANI Income Opportunity Research
 on:
   workflow_dispatch:
   push:
+    branches:
+      - fix/automation-health-20260925
     paths:
       - "income/opportunity_research.py"
       - "income/opportunity-sources.json"
@@ -10,7 +12,7 @@ on:
       - ".github/workflows/shirmani-income-opportunity-research.yml"
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   intake:
