@@ -1,6 +1,9 @@
 name: SHIRMANI Automation Health Smoke
 
 on:
+  push:
+    branches:
+      - fix/automation-health-20260925
   pull_request:
     branches:
       - main
