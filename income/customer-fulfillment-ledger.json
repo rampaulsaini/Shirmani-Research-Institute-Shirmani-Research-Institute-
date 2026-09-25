@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "name": "Customer Fulfillment Ledger",
+  "purpose": "Track auditable product delivery from order receipt through verified delivery.",
+  "states": ["ORDER_RECEIVED","PREPARING","AUTHORIZATION_REQUIRED","READY","DELIVERED","VERIFIED","FAILED"],
+  "rules": {
+    "delivery_evidence_required": true,
+    "delivery_does_not_equal_verified_outcome": true,
+    "invalid_transitions_rejected": true,
+    "customer_order_data_minimized": true
+  }
+}
