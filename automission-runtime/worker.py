@@ -14,6 +14,9 @@ from execution import run
 from outcomes import record
 from learning import capture_cycle_features, prioritize_score
 from connectors import health_all
+from master_automission import MasterAutomission
+from factory_cycle import load_requests, run_factory_cycle
+from education_factory import build_program, validate_program
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE_DIR = Path(os.getenv("AUTOMISSION_STATE_DIR", str(Path(__file__).parent / "state")))
@@ -22,6 +25,8 @@ DB = STATE_DIR / "automission.db"
 INTERVAL = int(os.getenv("AUTOMISSION_HEARTBEAT_SECONDS", "300"))
 STALE_PROCESSING_SECONDS = int(os.getenv("AUTOMISSION_STALE_PROCESSING_SECONDS", "1800"))
 MAX_CONSECUTIVE_FAILURES = int(os.getenv("AUTOMISSION_MAX_CONSECUTIVE_FAILURES", "3"))
+PRODUCT_REQUEST_FILE = os.getenv("AUTOMISSION_PRODUCT_REQUEST_FILE", "")
+EDUCATION_REQUEST_FILE = os.getenv("AUTOMISSION_EDUCATION_REQUEST_FILE", "")
 RUN_ONCE = os.getenv("AUTOMISSION_RUN_ONCE", "false").lower() == "true"
 stop = False
 
@@ -74,8 +79,45 @@ def validate_contracts():
     if contract["safety"].get("irreversible_actions_require_authorization") is not True:
         raise RuntimeError("authorization gate missing")
 
+def run_master_orchestration():
+    master = MasterAutomission()
+    master.register("research-cycle", "research", "research-orchestrator", "research")
+    master.register("education-cycle", "education", "education-orchestrator", "build_program")
+    master.register("product-cycle", "products", "product-orchestrator", "create_blueprint")
+    master.register("qc-cycle", "qc", "quality-agent", "quality_control")
+    plan = master.plan()
+    routed = master.route()
+
+    product_results = []
+    if PRODUCT_REQUEST_FILE:
+        requests = load_requests(Path(PRODUCT_REQUEST_FILE))
+        from product_catalog import ProductCatalog
+        catalog = ProductCatalog(STATE_DIR / "product-factory.db")
+        product_results = run_factory_cycle(catalog, requests)
+
+    education_results = []
+    if EDUCATION_REQUEST_FILE:
+        requests = load_requests(Path(EDUCATION_REQUEST_FILE))
+        for request in requests:
+            try:
+                program = build_program(**request)
+                validate_program(program)
+                education_results.append({"status": "PROGRAM_READY", "program_hash": program["program_hash"]})
+            except (TypeError, ValueError) as exc:
+                education_results.append({"status": "REJECTED", "reason": str(exc)})
+
+    emit("master_automission", {
+        "status": "ORCHESTRATED",
+        "task_count": plan["task_count"],
+        "routes": routed,
+        "product_results": product_results,
+        "education_results": education_results,
+        "external_irreversible_actions": "authorization_required",
+    })
+
 def cycle():
     validate_contracts()
+    run_master_orchestration()
     store = QueueStore(DB)
     recovered = store.recover_stale_processing(STALE_PROCESSING_SECONDS)
     if recovered:
