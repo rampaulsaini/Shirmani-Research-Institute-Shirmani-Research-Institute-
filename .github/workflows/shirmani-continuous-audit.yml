@@ -54,7 +54,7 @@ jobs:
       - name: Audit repository
         env:
           TARGET_REPO: ${{ matrix.repo }}
-          CROSS_REPO_TOKEN: ${{ secrets.SHIRMANY_GITHUB_TOKEN }}
+          CROSS_REPO_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
         shell: bash
         run: |
           set -u
