@@ -105,7 +105,7 @@ jobs:
           gh workflow run "Shirmani to Yatharth Creative Studio - Automission Bridge" \
             --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
             -f brief="Continue the approved SHIRMANI research automission pipeline" \
-            -f format="automated-research-package"
+            -f format="animated-film"
           echo "Layer 3 dispatched: Yatharth Creative Studio bridge"
 
   layer-4-orchestration:
