@@ -60,13 +60,15 @@ jobs:
         run: |
           if gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "[Blog Independent Verification]" --limit 1 --json number --jq 'length' | grep -q '^1$'; then
             echo "An open blog review packet already exists; no duplicate will be created."
-            exit 0
+            echo "SKIP_REVIEW=true" >> "$GITHUB_ENV"
           fi
 
       - name: Create source-bound review packet
+        if: env.SKIP_REVIEW != 'true'
         run: python3 factory/blog_verification_packet.py --batch-size "$BATCH_SIZE" --offset "$OFFSET"
 
       - name: Validate fail-closed review packet
+        if: env.SKIP_REVIEW != 'true'
         run: |
           python3 - <<'PY'
           import glob, json
@@ -81,6 +83,7 @@ jobs:
           PY
 
       - name: Open human review issue
+        if: env.SKIP_REVIEW != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
