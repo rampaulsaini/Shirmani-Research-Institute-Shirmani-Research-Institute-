@@ -40,7 +40,7 @@ def fetch(url):
 
 def normalize(text):
     text = text.replace("\r","")
-    lines = [re.sub(r"\\s+", " ", x).strip() for x in text.split("\n")]
+    lines = [re.sub(r"\s+", " ", x).strip() for x in text.split("\n")]
     return "\n".join(x for x in lines if x)
 
 def classify(s):
@@ -79,13 +79,13 @@ def main():
     seen = set()
     for idx, unit in enumerate(units, 1):
         # Keep sentences/paragraph-sized units; split only on clear sentence boundaries.
-        pieces = [p.strip() for p in re.split(r"(?<=[.!?।])\\s+", unit) if p.strip()]
+        pieces = [p.strip() for p in re.split(r"(?<=[.!?।])\s+", unit) if p.strip()]
         if not pieces:
             pieces = [unit]
         for piece in pieces:
             if len(piece) < 20:
                 continue
-            norm = re.sub(r"\\s+", " ", piece)
+            norm = re.sub(r"\s+", " ", piece)
             h = hashlib.sha256(norm.encode("utf-8")).hexdigest()
             if h in seen:
                 continue
