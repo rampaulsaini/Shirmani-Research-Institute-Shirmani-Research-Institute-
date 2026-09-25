@@ -91,8 +91,11 @@ def run_master_orchestration():
     master.register("product-cycle", "products", "product-orchestrator", "create_blueprint")
     master.register("qc-cycle", "qc", "quality-agent", "quality_control")
     master.register("justice-cycle", "research", "legal-access-orchestrator", "case_analysis")
-    plan = master.plan()
-    routed = master.route()
+    fulfillment_db = STATE_DIR / "fulfillment.db"
+    fulfillment_learning = capture_fulfillment_intelligence(fulfillment_db)
+    planning_intelligence = {"fulfillment_learning": fulfillment_learning}
+    plan = master.plan(planning_intelligence)
+    routed = master.route(planning_intelligence)
     ledger = AgentTaskLedger(STATE_DIR / "master-task-ledger.db")
     for task, route in zip(master.tasks, routed):
         key = ledger.record(task)
@@ -127,12 +130,11 @@ def run_master_orchestration():
             except (TypeError, ValueError) as exc:
                 justice_results.append({"status": "REJECTED", "reason": str(exc)})
 
-    fulfillment_db = STATE_DIR / "fulfillment.db"
     intelligence = capture_master_intelligence(
         DB, STATE_DIR / "master-task-ledger.db",
         STATE_DIR / "product-factory.db",
     )
-    intelligence["fulfillment_learning"] = capture_fulfillment_intelligence(fulfillment_db)
+    intelligence["fulfillment_learning"] = fulfillment_learning
     write_intelligence(STATE_DIR / "master-intelligence.db", intelligence)
     dashboard = master_dashboard_snapshot(
         DB, STATE_DIR / "master-task-ledger.db",
