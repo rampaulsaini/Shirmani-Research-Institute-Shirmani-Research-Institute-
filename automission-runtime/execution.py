@@ -1,4 +1,5 @@
 from connectors import load
+from capability_policy import CapabilityPolicy
 from adapter_registry import AdapterRegistry, adapter_key
 from datetime import datetime, timezone
 from pathlib import Path
@@ -8,9 +9,14 @@ IRREVERSIBLE = {"apply","submit","accept_contract","publish","payment"}
 
 def run(item):
     action = item.get("action", "review")
-    if action in IRREVERSIBLE:
+    policy = CapabilityPolicy()
+    if not policy.allows_planning(action):
+        return {"status":"REJECTED","action":action,"reason":"capability_not_in_permission_matrix"}
+    if policy.requires_authorization(action):
         return {"status":"APPROVAL_REQUIRED","action":action,
-                "reason":"irreversible action requires authorization"}
+                "reason":"capability_requires_authorization"}
+    if not policy.allows_execution(action):
+        return {"status":"REJECTED","action":action,"reason":"capability_execution_denied"}
     channel = item.get("channel")
     adapter = load(channel)
     if adapter is None:
