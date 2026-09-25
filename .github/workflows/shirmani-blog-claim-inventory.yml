@@ -1,0 +1,53 @@
+name: SHIRMANI Blog Claim Inventory
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-blog-claim-inventory
+  cancel-in-progress: false
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build source-bound claim inventory
+        run: python3 factory/blog_claim_inventory.py
+
+      - name: Fail closed on invalid inventory
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("generated/BLOG-CLAIM-INVENTORY.json")
+          d = json.loads(p.read_text(encoding="utf-8"))
+          assert d["claim_count"] == len(d["claims"])
+          assert d["verified_count"] == 0
+          assert d["independent_verification_count"] == 0
+          assert all(c["status"] == "UNVERIFIED" for c in d["claims"])
+          assert d["policy"].startswith("Source text is not proof.")
+          print("BLOG_CLAIM_INVENTORY_QC=PASS")
+          print("CLAIMS=", d["claim_count"])
+          print("VERIFIED=0")
+          PY
+
+      - name: Commit updated inventory
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/BLOG-CLAIM-INVENTORY.json
+          if git diff --cached --quiet; then
+            echo "No inventory change"
+          else
+            git commit -m "data: refresh blog claim inventory"
+            git push
+          fi

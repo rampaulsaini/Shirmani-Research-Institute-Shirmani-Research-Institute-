@@ -1,0 +1,118 @@
+name: SHIRMANI Blog Independent Review Packets
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Claims per human-review packet (1-100)"
+        required: false
+        default: "25"
+        type: string
+      offset:
+        description: "Zero-based claim offset"
+        required: false
+        default: "0"
+        type: string
+  schedule:
+    - cron: "47 */6 * * *"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: shirmani-blog-independent-review
+  cancel-in-progress: false
+
+jobs:
+  packet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select next unqueued claim range
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INPUT_BATCH: ${{ inputs.batch_size || '25' }}
+          INPUT_OFFSET: ${{ inputs.offset || '' }}
+        run: |
+          set -euo pipefail
+          batch="${INPUT_BATCH:-25}"
+          offset="${INPUT_OFFSET:-}"
+          if [ -z "$offset" ]; then
+            max_end=0
+            while IFS= read -r title; do
+              if [[ "$title" =~ blog-verification-packet-([0-9]+)-([0-9]+) ]]; then
+                end="${BASH_REMATCH[2]}"
+                if (( end > max_end )); then max_end="$end"; fi
+              fi
+            done < <(gh issue list --repo "$GITHUB_REPOSITORY" --state all --search "[Blog Independent Verification]" --limit 100 --json title --jq '.[].title')
+            offset="$max_end"
+          fi
+          echo "BATCH_SIZE=$batch" >> "$GITHUB_ENV"
+          echo "OFFSET=$offset" >> "$GITHUB_ENV"
+          echo "Selected batch=$batch offset=$offset"
+
+      - name: Avoid duplicate open packet
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "[Blog Independent Verification]" --limit 1 --json number --jq 'length' | grep -q '^1$'; then
+            echo "An open blog review packet already exists; no duplicate will be created."
+            echo "SKIP_REVIEW=true" >> "$GITHUB_ENV"
+          fi
+
+      - name: Create source-bound review packet
+        if: env.SKIP_REVIEW != 'true'
+        run: python3 factory/blog_verification_packet.py --batch-size "$BATCH_SIZE" --offset "$OFFSET"
+
+      - name: Validate fail-closed review packet
+        if: env.SKIP_REVIEW != 'true'
+        run: |
+          python3 - <<'PY'
+          import glob, json
+          p=sorted(glob.glob("generated/blog-verification-packet-*.json"))[-1]
+          d=json.load(open(p,encoding="utf-8"))
+          assert d["status"]=="READY_FOR_HUMAN_REVIEW"
+          assert d["verification_status"]=="NOT_PERFORMED"
+          assert d["claims"]
+          print("BLOG_REVIEW_PACKET_QC=PASS")
+          print("PACKET=",p)
+          print("CLAIMS=",len(d["claims"]))
+          PY
+
+      - name: Open human review issue
+        if: env.SKIP_REVIEW != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          packet=$(find generated -maxdepth 1 -type f -name 'blog-verification-packet-*.json' -print | sort | tail -n 1)
+          python3 - "$packet" > /tmp/issue.md <<'PY'
+          import json,sys
+          d=json.load(open(sys.argv[1],encoding="utf-8"))
+          print("## Status")
+          print("READY_FOR_HUMAN_REVIEW — this issue is a work queue, not a verification result.")
+          print("")
+          print(f"- Source: {d['inventory_source_url']}")
+          print(f"- Source SHA256: {d['inventory_source_sha256']}")
+          print(f"- Inventory claims: {d['inventory_claim_count']}")
+          print(f"- Packet task hash: {d['task_hash']}")
+          print("")
+          print("## Claims")
+          for c in d["claims"]:
+              print(f"### {c['claim_id']} — {c['claim_type']}")
+              print(c["claim_text"])
+              print(f"- Source unit: {c['source_unit']}")
+              print(f"- Tags: {', '.join(c.get('claim_tags',[]))}")
+              print("- Evidence:")
+              print("- Counter-evidence:")
+              print("- Reproduction/test:")
+              print("- Uncertainty:")
+              print("- Independent reviewer:")
+              print("- Conclusion:")
+              print("")
+          print("## Rule")
+          print("Do not mark any claim VERIFIED from this issue alone. A promotion requires independent evidence, counter-evidence, reproducibility where applicable, reviewer identity, timestamp, and audit.")
+          PY
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "[Blog Independent Verification] $(basename "$packet" .json)" --body-file /tmp/issue.md

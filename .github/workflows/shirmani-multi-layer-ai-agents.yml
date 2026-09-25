@@ -1,0 +1,42 @@
+name: SHIRMANI Multi-Layer AI Agents QC
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - fix/automation-health-20260925
+    paths:
+      - "agents/**"
+      - ".github/workflows/shirmani-multi-layer-ai-agents.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-multi-layer-ai-agents
+  cancel-in-progress: true
+
+jobs:
+  architecture-qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate multi-layer architecture
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("agents/multi-layer-architecture.json").read_text(encoding="utf-8"))
+          assert d["schema"]=="shirmani.multi-layer-ai-agents.v1"
+          assert len(d["layers"])==7
+          assert d["state_machine"]==["DISCOVER","PLAN","EXECUTE","VERIFY","MEASURE","LEARN","OPTIMIZE"]
+          assert d["gates"]["research_to_execution"]=="VERIFIED"
+          assert all(d["gates"][k]=="OWNER_APPROVAL" for k in ["external_account_action","financial_transaction","publication","contract_or_commitment"])
+          assert d["ml_policy"]["no_fabricated_training_data"] is True
+          assert d["ml_policy"]["retrain_only_from_audited_records"] is True
+          print("MULTI_LAYER_ARCHITECTURE_QC=PASS")
+          print("LAYERS=7")
+          print("ML_GOVERNANCE=PASS")
+          print("EXECUTION_GATES=PASS")
+          PY

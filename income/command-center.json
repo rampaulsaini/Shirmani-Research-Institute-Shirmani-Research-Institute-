@@ -1,0 +1,56 @@
+{
+  "schema": "shirmani.income-command-center.v1",
+  "status": "FOUNDATION_READY",
+  "priority": "LIFE_SUPPORT_FIRST",
+  "objective": "Build a measurable, human-supervised income opportunity pipeline.",
+  "pipeline": [
+    "DISCOVER",
+    "PLAN",
+    "EXECUTE",
+    "VERIFY",
+    "MEASURE",
+    "LEARN",
+    "OPTIMIZE"
+  ],
+  "orchestrator": {
+    "mode": "CONTINUOUS",
+    "human_approval_required_for": [
+      "external_account_actions",
+      "financial_transactions",
+      "publication",
+      "contracts_or_commitments"
+    ]
+  },
+  "channels": [
+    {"id":"employment","name":"Employment & Work","enabled":true,"stage":"DISCOVER"},
+    {"id":"freelancing","name":"Freelancing","enabled":true,"stage":"DISCOVER"},
+    {"id":"ai_marketing","name":"AI Marketing","enabled":true,"stage":"DISCOVER"},
+    {"id":"digital_store","name":"Digital Store","enabled":true,"stage":"DISCOVER"},
+    {"id":"yatharth_music","name":"Yatharth AI Music","enabled":true,"stage":"DISCOVER"},
+    {"id":"economic_vision","name":"Economic Vision","enabled":true,"stage":"DISCOVER"}
+  ],
+  "opportunity_record": {
+    "required": [
+      "channel",
+      "opportunity",
+      "source_url",
+      "fit_reason",
+      "estimated_effort",
+      "estimated_value",
+      "risk",
+      "next_action",
+      "verification_status",
+      "owner_approval"
+    ],
+    "verification_status_default": "UNVERIFIED",
+    "owner_approval_default": "PENDING"
+  },
+  "guardrails": [
+    "No fabricated income claims.",
+    "No automatic financial transaction.",
+    "No automatic external-account commitment.",
+    "No publication without required human approval.",
+    "Every opportunity must retain a source URL and timestamp.",
+    "Unknown or stale opportunities remain visible as UNVERIFIED."
+  ]
+}

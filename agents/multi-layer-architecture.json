@@ -1,0 +1,29 @@
+{
+  "schema": "shirmani.multi-layer-ai-agents.v1",
+  "status": "IMPLEMENTATION_READY",
+  "principles": ["evidence_first","fail_closed","human_supervision","auditable_state"],
+  "layers": [
+    {"id":"L1_INTAKE","role":"source intake and normalization","agents":["source_librarian","deduplication"]},
+    {"id":"L2_REASONING","role":"structured research and evidence analysis","agents":["concept_mapper","researcher","evidence_collector","verifier"]},
+    {"id":"L3_EXECUTION_PLANNING","role":"convert verified opportunities into bounded plans","agents":["planner","priority_router","execution_preparer"]},
+    {"id":"L4_EXECUTION","role":"prepare or perform only explicitly authorized actions","agents":["employment","freelancing","ai_marketing","digital_store","yatharth_music","economic_vision"]},
+    {"id":"L5_MEASUREMENT","role":"capture outcomes and revenue intelligence","agents":["performance","revenue_intelligence"]},
+    {"id":"L6_ML_LEARNING","role":"learn from verified outcomes without inventing labels","agents":["feature_builder","pattern_learner","optimizer"]},
+    {"id":"L7_GOVERNANCE","role":"quality, safety, provenance and human approval gates","agents":["qc_guardian","approval_gate","audit_agent"]}
+  ],
+  "state_machine": ["DISCOVER","PLAN","EXECUTE","VERIFY","MEASURE","LEARN","OPTIMIZE"],
+  "gates": {
+    "research_to_execution": "VERIFIED",
+    "external_account_action": "OWNER_APPROVAL",
+    "financial_transaction": "OWNER_APPROVAL",
+    "publication": "OWNER_APPROVAL",
+    "contract_or_commitment": "OWNER_APPROVAL"
+  },
+  "ml_policy": {
+    "mode": "outcome_based",
+    "minimum_label": "VERIFIED_OUTCOME",
+    "no_fabricated_training_data": true,
+    "no_unverified_opportunity_as_positive_label": true,
+    "retrain_only_from_audited_records": true
+  }
+}

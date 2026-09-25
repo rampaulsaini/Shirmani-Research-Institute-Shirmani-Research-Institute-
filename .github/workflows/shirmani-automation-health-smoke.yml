@@ -1,0 +1,106 @@
+name: SHIRMANI Automation Health Smoke
+
+on:
+  push:
+    branches:
+      - fix/automation-health-20260925
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/**"
+      - "factory/**"
+      - "scripts/**"
+      - "research/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-automation-health-smoke-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install validation dependencies
+        run: python3 -m pip install --disable-pip-version-check --no-input pyyaml
+
+      - name: Validate workflow YAML
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import yaml
+
+          files = sorted(Path(".github/workflows").glob("*.y*ml"))
+          assert files, "No workflow files found"
+          for path in files:
+              data = yaml.safe_load(path.read_text(encoding="utf-8"))
+              if not isinstance(data, dict):
+                  raise SystemExit(f"{path}: workflow root is not a mapping")
+              if "jobs" not in data or not isinstance(data["jobs"], dict) or not data["jobs"]:
+                  raise SystemExit(f"{path}: missing jobs")
+              if not any(str(k) in {"on", "True"} for k in data):
+                  raise SystemExit(f"{path}: missing on trigger")
+              print(f"YAML PASS: {path}")
+          PY
+
+      - name: Validate GitHub Actions expressions and workflow syntax
+        uses: docker://rhysd/actionlint:latest
+
+      - name: Repository whitespace check
+        run: git diff --check
+
+      - name: Python compile check
+        run: |
+          python3 -m compileall -q factory scripts
+          echo "PYTHON_COMPILE=PASS"
+
+      - name: Run source-bound blog inventory smoke test
+        run: |
+          python3 factory/blog_claim_inventory.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("generated/BLOG-CLAIM-INVENTORY.json")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          assert d["claim_count"] == len(d["claims"])
+          assert d["verified_count"] == 0
+          assert d["independent_verification_count"] == 0
+          assert all(c["status"] == "UNVERIFIED" for c in d["claims"])
+          assert d["publication_gate"] == "CHECK"
+          print("BLOG_INVENTORY_SMOKE=PASS")
+          print("BLOG_CLAIMS=", d["claim_count"])
+          PY
+
+      - name: Run human-review packet smoke test
+        run: |
+          python3 factory/blog_verification_packet.py --batch-size 1 --offset 0
+          python3 - <<'PY'
+          import glob, json
+          p=sorted(glob.glob("generated/blog-verification-packet-*.json"))[-1]
+          d=json.load(open(p,encoding="utf-8"))
+          assert d["status"] == "READY_FOR_HUMAN_REVIEW"
+          assert d["verification_status"] == "NOT_PERFORMED"
+          assert len(d["claims"]) == 1
+          print("BLOG_REVIEW_PACKET_SMOKE=PASS")
+          PY
+
+      - name: Verify fail-closed promotion boundary
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("generated/VERIFICATION-PROMOTION-QC.json")
+          if p.exists():
+              d=json.loads(p.read_text(encoding="utf-8"))
+              assert d.get("verified_records", 0) == 0, "Smoke test must not inherit automated VERIFIED records"
+              assert d.get("promotion_eligible", 0) == 0, "Smoke test must not inherit automated promotion eligibility"
+          print("PROMOTION_BOUNDARY=PASS")
+          PY

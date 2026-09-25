@@ -1,0 +1,43 @@
+name: SHIRMANI Income Command Center Foundation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - fix/automation-health-20260925
+    paths:
+      - "income/**"
+      - ".github/workflows/shirmani-income-command-center.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-income-command-center
+  cancel-in-progress: true
+
+jobs:
+  foundation-qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate command center manifest
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("income/command-center.json")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          assert d["schema"] == "shirmani.income-command-center.v1"
+          assert d["priority"] == "LIFE_SUPPORT_FIRST"
+          assert d["pipeline"] == ["DISCOVER","PLAN","EXECUTE","VERIFY","MEASURE","LEARN","OPTIMIZE"]
+          assert len(d["channels"]) == 6
+          assert all(c["enabled"] for c in d["channels"])
+          required=set(d["opportunity_record"]["required"])
+          assert {"source_url","verification_status","owner_approval"} <= required
+          print("INCOME_COMMAND_CENTER_FOUNDATION=PASS")
+          print("CHANNELS=", len(d["channels"]))
+          print("HUMAN_APPROVAL_GATES=PASS")
+          PY

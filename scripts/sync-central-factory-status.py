@@ -39,15 +39,17 @@ def main() -> int:
             f"https://api.github.com/repos/{CENTRAL}/contents/"
             f"{source_path}?ref=main"
         )
-        req = urllib.request.Request(
-            url,
-            headers={
-                "Accept": "application/vnd.github+json",
-                "Authorization": f"Bearer {token}",
-                "X-GitHub-Api-Version": "2022-11-28",
-                "User-Agent": "shirmani-research-factory-federation",
-            },
-        )
+        headers = {
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+            "User-Agent": "shirmani-research-factory-federation",
+        }
+        # Guard against malformed/non-ASCII secrets causing urllib header encoding errors.
+        if token.isascii() and all(32 <= ord(ch) != 127 for ch in token):
+            headers["Authorization"] = f"Bearer {token}"
+        else:
+            token = ""
+        req = urllib.request.Request(url, headers=headers)
         with urllib.request.urlopen(req, timeout=20) as response:
             payload = json.load(response)
 

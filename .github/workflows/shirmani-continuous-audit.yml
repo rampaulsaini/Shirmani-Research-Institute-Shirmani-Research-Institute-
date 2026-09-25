@@ -54,7 +54,7 @@ jobs:
       - name: Audit repository
         env:
           TARGET_REPO: ${{ matrix.repo }}
-          CROSS_REPO_TOKEN: ${{ secrets.SHIRMANY_GITHUB_TOKEN }}
+          CROSS_REPO_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
         shell: bash
         run: |
           set -u
@@ -82,15 +82,24 @@ jobs:
           fi
 
           cd "$workdir"
-          export commit="$(git rev-parse HEAD)"
-          export branch="$(git symbolic-ref --short -q HEAD || true)"
-          export files="$(git ls-files | wc -l | tr -d ' ')"
-          export dirs="$(find . -type d -not -path './.git*' | wc -l | tr -d ' ')"
-          export bytes="$(du -sb . | cut -f1)"
-          export workflows="$(find .github/workflows -maxdepth 1 -type f -name '*.y*ml' 2>/dev/null | wc -l | tr -d ' ')"
-          export latest_date="$(git show -s --format=%cI HEAD)"
-          export latest_subject="$(git show -s --format=%s HEAD)"
-          export visibility="public-or-accessible"
+          commit="$(git rev-parse HEAD)"
+          export commit
+          branch="$(git symbolic-ref --short -q HEAD || true)"
+          export branch
+          files="$(git ls-files | wc -l | tr -d ' ')"
+          export files
+          dirs="$(find . -type d -not -path './.git*' | wc -l | tr -d ' ')"
+          export dirs
+          bytes="$(du -sb . | cut -f1)"
+          export bytes
+          workflows="$(find .github/workflows -maxdepth 1 -type f -name '*.y*ml' 2>/dev/null | wc -l | tr -d ' ')"
+          export workflows
+          latest_date="$(git show -s --format=%cI HEAD)"
+          export latest_date
+          latest_subject="$(git show -s --format=%s HEAD)"
+          export latest_subject
+          visibility="public-or-accessible"
+          export visibility
 
           TARGET_REPO="$TARGET_REPO" python - <<'PY'
           import json, os, pathlib, datetime
@@ -114,7 +123,7 @@ jobs:
       - name: Upload audit result
         uses: actions/upload-artifact@v4
         with:
-          name: shirmani-audit-${{ matrix.repo }}
+          name: shirmani-audit-${{ strategy.job-index }}
           path: audit-result/result.json
           if-no-files-found: error
           retention-days: 30

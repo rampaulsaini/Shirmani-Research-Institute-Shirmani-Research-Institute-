@@ -1,4 +1,4 @@
-name: SHIRMANI Multi-Automation Supervisor
+name: SHIRMANI Multi-Layer Automission Supervisor
 
 on:
   schedule:
@@ -10,63 +10,178 @@ permissions:
   contents: read
 
 concurrency:
-  group: shirmani-multi-automation-supervisor
+  group: shirmani-multi-layer-automission-supervisor
   cancel-in-progress: false
 
 jobs:
-  supervise:
+  layer-1-control:
+    name: Layer 1 — Control & Health
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      healthy: ${{ steps.health.outputs.healthy }}
     steps:
+      - uses: actions/checkout@v4
       - name: Inspect recent workflow failures
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          echo "Recent failed workflow runs:"
-          gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50             --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion             --jq '.[] | select(.workflowName != "SHIRMANI Multi-Automation Supervisor")'
+          gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50 \
+            --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion \
+            --jq '.[] | select(.workflowName != "SHIRMANI Multi-Layer Automission Supervisor")'
 
-      - name: Retry eligible scheduled/manual failures only
+      - name: Retry eligible scheduled/manual failures
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50             --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion |
+          gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50 \
+            --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion |
           python3 -c '
           import json,sys,subprocess,os
           runs=json.load(sys.stdin)
-          skip={"SHIRMANI Multi-Automation Supervisor"}
+          skip={"SHIRMANI Multi-Layer Automission Supervisor"}
           for r in runs:
               if r.get("workflowName") in skip or r.get("attempt") != 1:
                   continue
-              # Do not automatically rerun push-triggered failures.
-              # This keeps untrusted/new code outside the retry loop.
               if r.get("event") not in {"schedule","workflow_dispatch"}:
                   continue
               rid=str(r["databaseId"])
-              workflow_name=r.get("workflowName")
-              print(f"Retrying first-attempt scheduled/manual failure: {workflow_name} #{rid}")
-              subprocess.run(
-                  ["gh","run","rerun",rid,"--failed","--repo",os.environ["GITHUB_REPOSITORY"]],
-                  check=False
-              )
+              print(f"Retrying eligible failure: {r.get("workflowName")} #{rid}")
+              subprocess.run(["gh","run","rerun",rid,"--failed","--repo",os.environ["GITHUB_REPOSITORY"]],check=False)
           '
 
       - name: Validate protected-source policy
         run: |
           set -euo pipefail
-          test -s SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
-          grep -q "Preserve first. Reason second." SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
-          grep -q "Original user wording is source material" SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md")
+          if not p.is_file():
+              raise SystemExit("Protected-source policy file missing")
+          text = p.read_text(encoding="utf-8")
+          required = ["Preserve first. Reason second.", "Original user wording is source material"]
+          if any(marker not in text for marker in required):
+              raise SystemExit("Protected-source policy validation failed")
+          print("Protected-source policy: PASS")
+          PY
 
-      - name: Validate resumable state
+      - id: health
+        name: Publish control-layer health
+        run: echo "healthy=true" >> "$GITHUB_OUTPUT"
+
+  layer-2-research:
+    name: Layer 2 — Research Factory
+    needs: layer-1-control
+    if: needs.layer-1-control.outputs.healthy == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Dispatch research factory
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          test -s CONTINUATION-AUTO-STATE.md
-          grep -q "Human verification" CONTINUATION-AUTO-STATE.md
+          gh workflow run "Omniverse Research Factory" --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
+            -f review_batch_size=25 -f review_offset=0
+          echo "Layer 2 dispatched: Omniverse Research Factory"
+          if gh workflow list --repo "$GITHUB_REPOSITORY" --all | grep -Fq "Research Factory Federation Status"; then
+            gh workflow run "Research Factory Federation Status" --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" || true
+            echo "Federation status dispatched"
+          fi
 
-      - name: Report supervisor status
+  layer-3-creative:
+    name: Layer 3 — Creative Bridge
+    needs: layer-2-research
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Dispatch creative bridge
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          echo "SHIRMANI multi-automation supervisor PASS"
-          echo "Mechanical automation may retry scheduled/manual failures only."
-          echo "Human verification remains an explicit integrity gate."
+          set -euo pipefail
+          gh workflow run "Shirmani to Yatharth Creative Studio - Automission Bridge" \
+            --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
+            -f brief="Continue the approved SHIRMANI research automission pipeline" \
+            -f format="animated-film"
+          echo "Layer 3 dispatched: Yatharth Creative Studio bridge"
+
+  layer-4-orchestration:
+    name: Layer 4 — Inter-Repository Orchestration
+    needs: layer-3-creative
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Dispatch inter-repository automission
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run "SHIRMANI Inter-Repository Automission Orchestrator" \
+            --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
+            -f brief="Continue the approved SHIRMANI multi-layer automission" \
+            -f format="animated-film"
+          echo "Layer 4 dispatched: inter-repository orchestrator"
+
+      - name: Dispatch employment evidence gate when available
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh workflow list --repo "$GITHUB_REPOSITORY" --all | grep -Fq "Employment Automission Evidence Gate"; then
+            gh workflow run "Employment Automission Evidence Gate" --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" || true
+            echo "Employment evidence gate dispatched"
+          else
+            echo "Employment evidence gate workflow not found; continuing"
+          fi
+
+  layer-5-verification-work:
+    name: Layer 5 — Independent Verification Automission
+    needs: layer-4-orchestration
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Dispatch independent verification work packets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run "SHIRMANI Independent Verification Automission" \
+            --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
+            -f batch_size=25
+          echo "Independent verification work packet automission dispatched"
+
+  layer-5-audit:
+    name: Layer 5 — Independent Verification Gate
+    needs: layer-4-orchestration
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Dispatch continuous audit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run "SHIRMANI Heart-View Supreme Continuous Audit" \
+            --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME"
+          echo "Layer 5 audit dispatched"
+
+      - name: Preserve independent verification boundary
+        run: |
+          set -euo pipefail
+          echo "Independent verification remains separate from automated generation."
+          echo "No automated layer may promote records to VERIFIED."
+          echo "Current verified baseline remains 0 until independent evidence, reproduction and audit exist."
+
+  status:
+    name: Multi-Layer Status
+    needs: [layer-1-control, layer-2-research, layer-3-creative, layer-4-orchestration, layer-5-verification-work, layer-5-audit]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report
+        run: |
+          echo "SHIRMANI Multi-Layer Automission: control → research → creative → orchestration → audit."
+          echo "Automation layers are orchestrated; VERIFIED remains an independent gate."

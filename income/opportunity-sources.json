@@ -1,0 +1,28 @@
+{
+  "schema": "shirmani.income-opportunity-sources.v1",
+  "policy": "No fabricated opportunities. Replace scaffolding records with real source-backed records before execution.",
+  "channels": [
+    "employment",
+    "freelancing",
+    "ai_marketing",
+    "digital_store",
+    "yatharth_music",
+    "economic_vision"
+  ],
+  "records": [
+    {
+      "id": "SOURCE-PLACEHOLDER-EMPLOYMENT",
+      "channel": "employment",
+      "opportunity": "Operator-supplied employment opportunity",
+      "source_url": "https://example.com/",
+      "discovered_at": "2026-09-25T00:00:00Z",
+      "fit_reason": "Scaffolding record only; not executable.",
+      "estimated_effort": "UNKNOWN",
+      "estimated_value": "UNKNOWN",
+      "risk": "UNKNOWN",
+      "next_action": "Replace with a verified public source.",
+      "verification_status": "UNVERIFIED",
+      "owner_approval": "PENDING"
+    }
+  ]
+}

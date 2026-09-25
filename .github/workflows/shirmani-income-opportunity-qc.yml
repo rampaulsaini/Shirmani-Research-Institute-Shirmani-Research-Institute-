@@ -1,0 +1,36 @@
+name: SHIRMANI Income Opportunity QC
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - fix/automation-health-20260925
+    paths:
+      - "income/**"
+
+permissions:
+  contents: read
+
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate income architecture
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path("income/command-center.json").read_text(encoding="utf-8"))
+          s=json.loads(Path("income/opportunity-schema.json").read_text(encoding="utf-8"))
+          assert m["schema"]=="shirmani.income-command-center.v1"
+          assert s["schema"]=="shirmani.income-opportunity.v1"
+          assert len(m["channels"])==6
+          assert "actual_income" in Path("income/REVENUE-INTELLIGENCE.md").read_text(encoding="utf-8")
+          assert "estimated_value" in s["required"]
+          assert "owner_approval" in s["required"]
+          print("INCOME_ARCHITECTURE_QC=PASS")
+          print("CHANNELS=6")
+          print("ESTIMATED_VS_ACTUAL=SEPARATED")
+          print("HUMAN_APPROVAL=REQUIRED")
+          PY
