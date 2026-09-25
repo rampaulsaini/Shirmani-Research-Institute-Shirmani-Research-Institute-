@@ -45,7 +45,7 @@ jobs:
           import re,sys
           maximum=0
           for title in sys.stdin:
-              m=re.search(r"Packet (\\d+)-(\\d+)", title)
+              m=re.search(r"Packet (\d+)-(\d+)", title)
               if m:
                   maximum=max(maximum,int(m.group(2)))
           print(maximum)
