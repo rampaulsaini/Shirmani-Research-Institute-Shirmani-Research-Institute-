@@ -79,6 +79,19 @@ jobs:
           print("Affordable Education Factory contract: VALID")
           PY
 
+      - name: Validate justice and affordable legal access factory
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("income/justice-access-factory.json").read_text(encoding="utf-8"))
+          assert data["ai_boundary"]["decision_support_only"] is True
+          assert data["ai_boundary"]["binding_judgment_by_ai"] is False
+          assert data["ai_boundary"]["qualified_human_review_required"] is True
+          assert data["quality"]["fabricated_case_law_forbidden"] is True
+          print("Justice Access Factory contract: VALID")
+          PY
+
       - name: Run standalone runtime smoke cycle
         env:
           AUTOMISSION_RUN_ONCE: "true"
