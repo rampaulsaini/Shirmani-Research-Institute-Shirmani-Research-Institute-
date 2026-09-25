@@ -1,0 +1,137 @@
+name: SHIRMANI Independent Verification Automission
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Independent-review tasks per packet (1-100)"
+        required: false
+        default: "25"
+        type: string
+  schedule:
+    - cron: "23 */2 * * *"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: shirmani-independent-verification-automission
+  cancel-in-progress: false
+
+jobs:
+  dispatch-review-work:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout current research queue
+        uses: actions/checkout@v4
+
+      - name: Prepare next independent-review packet
+        env:
+          REQUESTED_BATCH_SIZE: ${{ inputs.batch_size }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          batch_size="${REQUESTED_BATCH_SIZE:-25}"
+          if ! [[ "$batch_size" =~ ^[0-9]+$ ]] || [ "$batch_size" -lt 1 ] || [ "$batch_size" -gt 100 ]; then
+            echo "::error::batch_size must be an integer from 1 to 100"
+            exit 1
+          fi
+
+          max_end=$(gh issue list --repo "$GITHUB_REPOSITORY" --state all --limit 1000             --search '"[Independent Verification] Packet"'             --json title --jq '.[].title' |
+            python3 -c '
+          import re,sys
+          maximum=0
+          for title in sys.stdin:
+              m=re.search(r"Packet (\\d+)-(\\d+)", title)
+              if m:
+                  maximum=max(maximum,int(m.group(2)))
+          print(maximum)
+          ')
+
+          if gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100             --search '"[Independent Verification] Packet"' --json number,title --jq 'length' | grep -q '^0'; then
+            offset="$max_end"
+            python3 factory/verification_review_packet.py --batch-size "$batch_size" --offset "$offset"
+          else
+            echo "An independent-review packet is already open; no new packet will be created."
+            exit 0
+          fi
+
+      - name: Validate review packet
+        if: success()
+        run: |
+          set -euo pipefail
+          packet=$(ls generated/verification-review-packet-*.json | head -n 1)
+          test -s "$packet"
+          python3 factory/verification_review_packet_qc.py --packet "$packet"
+
+      - name: Publish human-review work item
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          packet=$(ls generated/verification-review-packet-*.json | head -n 1)
+          python3 - "$packet" > review_issue.md <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          packet_path=Path(sys.argv[1])
+          data=json.loads(packet_path.read_text(encoding="utf-8"))
+          lines=[
+              "# Independent verification work packet",
+              "",
+              "**Status:** READY_FOR_HUMAN_REVIEW",
+              "",
+              "This issue is a work queue, not a verification result. Each task must be independently reviewed against the exact task hash. Do not claim VERIFIED from packet preparation, automation output, or inference.",
+              "",
+              "## Required review record for every task",
+              "- exact claim reviewed",
+              "- definitions/interpretation checked",
+              "- evidence references recorded",
+              "- countercase/alternative explanation reviewed",
+              "- reproduction or test performed where applicable",
+              "- uncertainty recorded",
+              "- independent reviewer identity and role recorded",
+              "- review timestamp and conclusion recorded",
+              "- audit notes recorded",
+              "",
+              "The repository promotion gate remains fail-closed. Only complete independent review records matching the current queue task hash can become VERIFIED.",
+              "",
+              "## Tasks",
+          ]
+          for item in data["items"]:
+              lines += [
+                  f'### {item["packet_ordinal"]}. {item["task_id"]}',
+                  f'- **Task hash:** `{item["task_hash"]}`',
+                  f'- **Claim ID:** `{item["claim_id"]}`',
+                  f'- **Source IDs:** {", ".join(map(str,item.get("source_ids",[]))) or "none"}',
+                  "- **Verification questions:**",
+              ]
+              for q in item.get("verification_questions", []):
+                  lines.append(f"  - {q}")
+              lines += ["", "<!-- Complete the independent review record outside this automation-generated text. -->", ""]
+          lines += [
+              "## Closure rule",
+              "Close this issue only after the independent review records for all listed tasks have been completed and preserved in the repository's verification registry workflow.",
+          ]
+          print("\n".join(lines))
+          PY
+
+          title=$(python3 - "$packet" <<'PY'
+          import json,sys
+          from pathlib import Path
+          d=json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+          a,b=d["packet_range"]
+          print(f"[Independent Verification] Packet {a:06d}-{b:06d}")
+          PY
+          )
+
+          gh issue create --repo "$GITHUB_REPOSITORY"             --title "$title"             --body-file review_issue.md
+
+      - name: Publish automission status
+        run: |
+          echo "Independent verification automission is dispatching human-review work."
+          echo "VERIFIED records are intentionally not created by automation."
