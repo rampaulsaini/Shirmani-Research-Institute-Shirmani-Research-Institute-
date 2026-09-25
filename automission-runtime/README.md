@@ -4,20 +4,14 @@ This runtime is designed to operate independently of ChatGPT. ChatGPT is not a r
 
 ## Operating model
 
-A persistent host/container runs the worker continuously. The worker:
-1. loads the income control-plane contracts;
-2. emits heartbeats;
-3. discovers only configured sources;
-4. normalizes and deduplicates opportunities;
-5. verifies evidence;
-6. places permitted work into a durable queue;
-7. records outcomes and verified revenue evidence;
-8. retries recoverable failures and fails closed on unsafe states.
+A persistent host/container runs the worker continuously. The worker loads the income control-plane contracts, emits heartbeats, discovers configured sources, normalizes/deduplicates opportunities, verifies evidence, routes permitted work, captures learning features, and exposes a provider-agnostic connector boundary.
 
-External credentials and platform APIs are injected through environment variables or a secret manager. No credentials are stored in the repository.
+## Connector model
+
+Each income channel can use a configured Python adapter implementing health(), discover(), prepare(item), and execute(item). Configure only authorized providers. Credentials belong in environment variables or a secret manager, never in Git.
 
 ## Deployment
 
-Use Docker Compose on a VPS/server or equivalent always-on host. GitHub Actions is used for CI/health checks, not as the sole 24/7 runtime.
+Use Docker Compose on an always-on VPS/server. GitHub Actions is CI/health validation, not the sole 24/7 runtime. The container restarts unless stopped and has a watchdog healthcheck.
 
-The worker deliberately does not claim income or perform irreversible actions without the configured authorization boundary.
+The worker does not fabricate opportunities, claim unverified revenue, or perform irreversible actions without authorization.
