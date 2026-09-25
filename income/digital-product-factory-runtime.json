@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "runtime": "automission-runtime/factory_cycle.py",
+  "cycle": [
+    "request",
+    "blueprint",
+    "agent_plan",
+    "manifest",
+    "quality_gate",
+    "pricing",
+    "publication_approval",
+    "publication",
+    "verified_sale",
+    "learning"
+  ],
+  "fail_closed": true,
+  "external_actions": {
+    "publication": "authorization_required",
+    "payment": "authorization_required",
+    "sales": "evidence_required"
+  }
+}
