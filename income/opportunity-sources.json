@@ -1,0 +1,16 @@
+[
+  {
+    "id": "SOURCE-PLACEHOLDER-EMPLOYMENT",
+    "channel": "employment",
+    "opportunity": "Operator-supplied employment opportunity",
+    "source_url": "https://example.com/",
+    "discovered_at": "2026-09-25T00:00:00Z",
+    "fit_reason": "Placeholder only; must be replaced by a real source before execution.",
+    "estimated_effort": "UNKNOWN",
+    "estimated_value": "UNKNOWN",
+    "risk": "UNKNOWN",
+    "next_action": "Replace placeholder with a real, source-backed opportunity.",
+    "verification_status": "UNVERIFIED",
+    "owner_approval": "PENDING"
+  }
+]
