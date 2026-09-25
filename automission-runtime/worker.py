@@ -18,6 +18,7 @@ from master_automission import MasterAutomission
 from factory_cycle import load_requests, run_factory_cycle
 from education_factory import build_program, validate_program
 from justice_factory import build_case_plan, validate_case_plan
+from task_ledger import AgentTaskLedger
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE_DIR = Path(os.getenv("AUTOMISSION_STATE_DIR", str(Path(__file__).parent / "state")))
@@ -90,6 +91,10 @@ def run_master_orchestration():
     master.register("justice-cycle", "research", "legal-access-orchestrator", "case_analysis")
     plan = master.plan()
     routed = master.route()
+    ledger = AgentTaskLedger(STATE_DIR / "master-task-ledger.db")
+    for task, route in zip(master.tasks, routed):
+        key = ledger.record(task)
+        ledger.set_status(key, route["status"])
 
     product_results = []
     if PRODUCT_REQUEST_FILE:
@@ -128,6 +133,7 @@ def run_master_orchestration():
         "education_results": education_results,
         "justice_results": justice_results,
         "external_irreversible_actions": "authorization_required",
+        "task_ledger": ledger.snapshot(),
     })
 
 def cycle():
