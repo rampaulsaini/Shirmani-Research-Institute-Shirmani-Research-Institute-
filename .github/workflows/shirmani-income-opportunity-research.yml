@@ -1,0 +1,39 @@
+name: SHIRMANI Income Opportunity Research
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "income/opportunity_research.py"
+      - "income/opportunity-sources.json"
+      - "income/opportunity-schema.json"
+      - ".github/workflows/shirmani-income-opportunity-research.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic opportunity intake
+        run: python3 income/opportunity_research.py
+      - name: Validate generated queue
+        run: python3 - <<'PY'
+import json
+from pathlib import Path
+p = Path("generated/income-opportunities.json")
+d = json.loads(p.read_text(encoding="utf-8"))
+assert d["schema"] == "shirmani.income-opportunity-queue.v1"
+assert d["counts"]["total"] == len(d["opportunities"]) + len(d["rejected_records"])
+for item in d["opportunities"]:
+    assert item["verification_status"] == "UNVERIFIED"
+    assert item["owner_approval"] == "PENDING"
+print("INCOME_QUEUE_QC=PASS")
+PY
+      - name: Upload intake artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: income-opportunity-intake
+          path: generated/income-opportunities.json
