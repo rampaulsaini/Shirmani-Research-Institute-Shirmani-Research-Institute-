@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "name": "Automission Capability Permission Matrix",
+  "purpose": "Define which adapter capabilities may be planned, queued, approved, or executed.",
+  "default_policy": "deny",
+  "capabilities": {
+    "read": {"planning": true, "execution": true},
+    "research": {"planning": true, "execution": true},
+    "create": {"planning": true, "execution": true},
+    "publish": {"planning": true, "execution": false, "authorization_required": true},
+    "submit": {"planning": true, "execution": false, "authorization_required": true},
+    "accept_contract": {"planning": true, "execution": false, "authorization_required": true},
+    "payment": {"planning": true, "execution": false, "authorization_required": true},
+    "apply": {"planning": true, "execution": false, "authorization_required": true}
+  },
+  "rules": {
+    "unknown_capability_denied": true,
+    "adapter_ready_does_not_bypass_action_authorization": true,
+    "verified_outcome_required_for_learning": true
+  }
+}
