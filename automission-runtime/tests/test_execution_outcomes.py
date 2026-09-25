@@ -101,6 +101,22 @@ class ExecutionOutcomeTests(unittest.TestCase):
             revenue["channels"]["freelancing"]["USD"]["verified_income"], 50.0
         )
 
+    def test_learning_migrates_legacy_channel_performance_schema(self):
+        with sqlite3.connect(self.db) as db:
+            db.execute("""CREATE TABLE channel_performance (
+                channel TEXT PRIMARY KEY,
+                verified_income REAL NOT NULL DEFAULT 0,
+                verified_outcomes INTEGER NOT NULL DEFAULT 0,
+                evidence_count INTEGER NOT NULL DEFAULT 0,
+                last_verified_at TEXT
+            )""")
+        revenue = capture_revenue_intelligence(self.db)
+        self.assertEqual(revenue["verified_income_by_currency"], {})
+        with sqlite3.connect(self.db) as db:
+            columns = {row[1] for row in db.execute("PRAGMA table_info(channel_performance)")}
+            self.assertIn("currency", columns)
+            self.assertNotIn("channel_performance_legacy", {row[1] for row in db.execute("PRAGMA table_info(channel_performance)")})
+
     def test_prioritization_requires_matching_currency_history(self):
         performance = {
             "channels": {
