@@ -91,8 +91,14 @@ class QueueStore:
                 if cur.rowcount != 1:
                     db.rollback()
                     return False
-                db.execute("INSERT INTO execution_keys VALUES(?,?,?,?,?)",
-                           (key, item["id"], item.get("action","review"), now, status))
+                db.execute(
+                    """INSERT INTO execution_keys
+                       (idempotency_key, opportunity_id, action, created_at, status)
+                       VALUES(?,?,?,?,?)
+                       ON CONFLICT(idempotency_key) DO UPDATE SET
+                       status=excluded.status""",
+                    (key, item["id"], item.get("action","review"), now, status),
+                )
                 db.commit()
                 return True
             except sqlite3.IntegrityError:
