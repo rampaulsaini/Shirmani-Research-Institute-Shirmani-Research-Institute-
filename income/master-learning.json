@@ -5,13 +5,15 @@
   "inputs": [
     "runtime outcomes",
     "persistent agent task ledger",
-    "verified product sales"
+    "verified product sales",
+    "verified customer fulfillment"
   ],
   "rules": {
     "verified_income_requires_amount_currency_and_evidence": true,
     "currency_isolation_required": true,
     "fabricated_revenue_forbidden": true,
     "fabricated_customers_forbidden": true,
-    "unverified_outcomes_must_not_train_ml": true
+    "unverified_outcomes_must_not_train_ml": true,
+    "verified_delivery_requires_evidence": true
   }
 }
