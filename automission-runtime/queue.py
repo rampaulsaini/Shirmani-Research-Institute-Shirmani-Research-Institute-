@@ -1,3 +1,4 @@
+import hashlib
 import json
 import sqlite3
 import uuid
@@ -14,7 +15,9 @@ class QueueStore:
         self._init()
 
     def _connect(self):
-        return sqlite3.connect(self.db_path)
+        db = sqlite3.connect(self.db_path, timeout=30)
+        db.execute("PRAGMA busy_timeout=30000")
+        return db
 
     def _init(self):
         with self._connect() as db:
@@ -36,6 +39,11 @@ class QueueStore:
                 action TEXT NOT NULL, status TEXT NOT NULL,
                 decided_at TEXT, notes TEXT
             )""")
+            db.execute("""CREATE TABLE IF NOT EXISTS execution_keys (
+                idempotency_key TEXT PRIMARY KEY, opportunity_id TEXT NOT NULL,
+                action TEXT NOT NULL, created_at TEXT NOT NULL,
+                status TEXT NOT NULL
+            )""")
 
     def upsert_opportunity(self, item):
         now = utc_now()
@@ -47,7 +55,8 @@ class QueueStore:
                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
                 ON CONFLICT(source,url,title) DO UPDATE SET
                 description=excluded.description, evidence_url=excluded.evidence_url,
-                payload=excluded.payload, updated_at=excluded.updated_at""",
+                payload=excluded.payload, updated_at=excluded.updated_at
+                WHERE opportunities.status NOT IN ('EXECUTED','APPROVAL_REQUIRED')""",
                 (oid, item["source"], item["channel"], item["title"],
                  item.get("description",""), item.get("url"), item.get("evidence_url"),
                  item.get("status","DISCOVERED"), float(item.get("score",0)),
@@ -61,3 +70,34 @@ class QueueStore:
                                  WHERE status IN ('DISCOVERED','VERIFIED','QUEUED')
                                  ORDER BY score DESC, updated_at ASC LIMIT ?""",(limit,)).fetchall()
         return [dict(zip(["id","source","channel","title","description","url","evidence_url","status","score","payload"], r)) for r in rows]
+
+    @staticmethod
+    def idempotency_key(item):
+        raw = f"{item['id']}|{item.get('action','review')}|{item.get('channel','')}"
+        return hashlib.sha256(raw.encode()).hexdigest()
+
+    def claim(self, item, status="PROCESSING"):
+        key = self.idempotency_key(item)
+        now = utc_now()
+        with self._connect() as db:
+            try:
+                db.execute("INSERT INTO execution_keys VALUES(?,?,?,?,?)",
+                           (key, item["id"], item.get("action","review"), now, status))
+            except sqlite3.IntegrityError:
+                return False
+            db.execute("UPDATE opportunities SET status=?, updated_at=? WHERE id=? AND status IN ('DISCOVERED','VERIFIED','QUEUED')",
+                       (status, now, item["id"]))
+        return True
+
+    def set_status(self, opportunity_id, status):
+        with self._connect() as db:
+            db.execute("UPDATE opportunities SET status=?, updated_at=? WHERE id=?",
+                       (status, utc_now(), opportunity_id))
+
+    def release_for_retry(self, opportunity_id):
+        self.set_status(opportunity_id, "QUEUED")
+
+    def mark_idempotency(self, item, status):
+        with self._connect() as db:
+            db.execute("UPDATE execution_keys SET status=? WHERE idempotency_key=?",
+                       (status, self.idempotency_key(item)))
