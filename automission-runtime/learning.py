@@ -97,8 +97,6 @@ def prioritize_score(base_score, channel, performance, currency=None):
     bucket = performance.get("channels", {}).get(channel, {})
     if currency:
         bucket = bucket.get(str(currency).upper(), {})
-    elif len(bucket) == 1:
-        bucket = next(iter(bucket.values()))
     else:
         return score
 
