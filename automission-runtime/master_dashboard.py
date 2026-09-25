@@ -1,7 +1,7 @@
 import sqlite3
 from pathlib import Path
 
-from master_learning import capture_master_intelligence
+from master_learning import capture_master_intelligence, capture_fulfillment_intelligence
 
 
 def _table_exists(db, name):
@@ -21,7 +21,7 @@ def _counts(db, table, column):
     }
 
 
-def snapshot(runtime_db: Path, ledger_db: Path, product_db: Path | None = None):
+def snapshot(runtime_db: Path, ledger_db: Path, product_db: Path | None = None, fulfillment_db: Path | None = None):
     with sqlite3.connect(runtime_db) as db:
         queue = _counts(db, "opportunities", "status")
         approvals = _counts(db, "approvals", "status")
@@ -42,4 +42,5 @@ def snapshot(runtime_db: Path, ledger_db: Path, product_db: Path | None = None):
     dashboard["master_learning"] = capture_master_intelligence(
         runtime_db, ledger_db, product_db
     )
+    dashboard["fulfillment_learning"] = capture_fulfillment_intelligence(fulfillment_db)
     return dashboard
