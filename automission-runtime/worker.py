@@ -97,7 +97,9 @@ def run_master_orchestration():
     plan = master.plan(planning_intelligence)
     routed = master.route(planning_intelligence)
     ledger = AgentTaskLedger(STATE_DIR / "master-task-ledger.db")
-    for task, route in zip(master.tasks, routed):
+    routed_by_task = {item["task_id"]: item for item in routed}
+    for task in master.tasks:
+        route = routed_by_task[task.task_id]
         key = ledger.record(task)
         ledger.set_status(key, route["status"])
 
