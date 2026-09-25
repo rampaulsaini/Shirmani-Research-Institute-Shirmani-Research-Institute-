@@ -30,11 +30,29 @@ jobs:
           print("Income Command Center contract: VALID")
           PY
 
+      - name: Install runtime validation dependency
+        run: python -m pip install --disable-pip-version-check "PyYAML>=6,<7"
+
       - name: Validate standalone runtime Python
         run: |
           python -m compileall -q automission-runtime
-          python automission-runtime/worker.py --help >/dev/null 2>&1 || true
           echo "Standalone runtime Python syntax: VALID"
+
+      - name: Run standalone runtime smoke cycle
+        env:
+          AUTOMISSION_RUN_ONCE: "true"
+          AUTOMISSION_HEARTBEAT_SECONDS: "1"
+          AUTOMISSION_STATE_DIR: ${{ runner.temp }}/automission-state
+        run: |
+          python automission-runtime/worker.py
+          python - <<'PY'
+          import os, sqlite3
+          db_path = os.path.join(os.environ["AUTOMISSION_STATE_DIR"], "automission.db")
+          with sqlite3.connect(db_path) as db:
+              row = db.execute("select status from heartbeats order by id desc limit 1").fetchone()
+          assert row == ("HEARTBEAT_OK",), row
+          print("Standalone runtime smoke cycle: VALID")
+          PY
 
       - name: Validate runtime contracts and configuration
         run: |
