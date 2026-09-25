@@ -52,9 +52,10 @@ def validate(record: dict) -> list[str]:
 def main() -> int:
     if not SEED.exists():
         raise SystemExit("source file missing; no opportunity records will be fabricated")
-    raw = json.loads(SEED.read_text(encoding="utf-8"))
-    if not isinstance(raw, list):
-        raise SystemExit("source file must contain a JSON array")
+    payload = json.loads(SEED.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict) or not isinstance(payload.get("records"), list):
+        raise SystemExit("source registry must contain a records array")
+    raw = payload["records"]
 
     accepted: list[dict] = []
     rejected: list[dict] = []
