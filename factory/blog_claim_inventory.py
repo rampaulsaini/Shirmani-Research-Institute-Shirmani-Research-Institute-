@@ -70,13 +70,12 @@ def main():
             errors.append(f"{url}: {e}")
     if raw is None:
         raise SystemExit("SOURCE_FETCH_FAILED: " + " | ".join(errors))
-    source_hash = hashlib.sha256(raw).hexdigest()
+    source_html_sha256 = hashlib.sha256(raw).hexdigest()
     parser = TextParser()
     parser.feed(raw.decode("utf-8", errors="replace"))
     text = normalize("".join(parser.parts))
     units = [x.strip() for x in text.split("\n") if len(x.strip()) >= 20]
     claims = []
-    seen = set()
     for idx, unit in enumerate(units, 1):
         # Keep sentences/paragraph-sized units; split only on clear sentence boundaries.
         pieces = [p.strip() for p in re.split(r"(?<=[.!?।])\s+", unit) if p.strip()]
@@ -86,10 +85,8 @@ def main():
             if len(piece) < 20:
                 continue
             norm = re.sub(r"\s+", " ", piece)
-            h = hashlib.sha256(norm.encode("utf-8")).hexdigest()
-            if h in seen:
-                continue
-            seen.add(h)
+            claim_basis = f"{used}\n{idx}\n{len(claims)+1}\n{norm}"
+            h = hashlib.sha256(claim_basis.encode("utf-8")).hexdigest()
             tags = []
             low = norm.lower()
             if any(x in low for x in ["मैं ", "मैंने ", "मेरे ", "मेरा ", "मेरी "]):
@@ -103,7 +100,8 @@ def main():
             claims.append({
                 "claim_id": "BLOG-" + h[:16],
                 "source_url": used,
-                "source_sha256": source_hash,
+                "source_sha256": source_html_sha256,
+                "source_text_sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
                 "source_unit": idx,
                 "claim_text": norm,
                 "claim_type": classify(norm),
@@ -128,7 +126,7 @@ def main():
         "independent_verification_count": 0,
         "verified_count": 0,
         "publication_gate": "CHECK",
-        "policy": "Source text is not proof. No claim is VERIFIED without independent review and evidence.",
+        "policy": "Source text is not proof. Every source occurrence remains traceable; no claim is VERIFIED without independent review and evidence.",
         "claims": claims
     }
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
