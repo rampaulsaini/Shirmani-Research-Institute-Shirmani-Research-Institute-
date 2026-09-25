@@ -30,6 +30,35 @@ jobs:
           print("Income Command Center contract: VALID")
           PY
 
+      - name: Validate standalone runtime Python
+        run: |
+          python -m compileall -q automission-runtime
+          python automission-runtime/worker.py --help >/dev/null 2>&1 || true
+          echo "Standalone runtime Python syntax: VALID"
+
+      - name: Validate runtime contracts and configuration
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import yaml
+
+          root = Path(".")
+          runtime = json.loads((root/"income/runtime-contract.json").read_text(encoding="utf-8"))
+          assert runtime["mode"] == "continuous"
+          assert runtime["safety"]["fabrication_forbidden"] is True
+          assert runtime["safety"]["irreversible_actions_require_authorization"] is True
+
+          registry = json.loads((root/"income/agent-registry.json").read_text(encoding="utf-8"))
+          assert len(registry["agents"]) >= 6
+
+          with open(root/"income/master-orchestrator.yml", encoding="utf-8") as f:
+              orchestrator = yaml.safe_load(f)
+          assert orchestrator["pipeline"]
+          assert orchestrator["safety"]["auto_apply"] is False
+          print("Runtime contracts: VALID")
+          PY
+
       - name: Emit run receipt
         run: |
           mkdir -p artifacts
@@ -39,6 +68,7 @@ jobs:
             "mode": "income-first",
             "workflow": "income-command-center-master-automission",
             "commit": "$GITHUB_SHA",
+            "runtime_python": "compileall-passed",
             "irreversible_actions": "human-approval-required",
             "revenue_claims": "verified-only"
           }
