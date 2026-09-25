@@ -16,7 +16,7 @@ on:
     - cron: "17 */6 * * *"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   dispatch:
@@ -25,7 +25,7 @@ jobs:
       - name: Send federation event
         uses: actions/github-script@v7
         env:
-          FEDERATION_TOKEN_CONFIGURED: ${{ secrets.SHIRMANI_GITHUB_TOKEN != '' }}
+          FEDERATION_TOKEN_CONFIGURED: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
           AUTOMATION_MODE: ${{ vars.SHIRMANI_AUTOMATION_MODE || 'CONTINUOUS' }}
         with:
           github-token: ${{ github.token }}
