@@ -18,7 +18,7 @@ on:
     - cron: "17 */6 * * *"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: shirmani-inter-repository-automission
@@ -38,7 +38,7 @@ jobs:
           MANUAL_FORMAT: ${{ inputs.format }}
           EVENT_BRIEF: ${{ github.event.client_payload.brief }}
           EVENT_FORMAT: ${{ github.event.client_payload.format }}
-          FEDERATION_TOKEN_CONFIGURED: ${{ secrets.SHIRMANI_GITHUB_TOKEN != '' }}
+          FEDERATION_TOKEN_CONFIGURED: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
         with:
           github-token: ${{ github.token }}
           script: |
