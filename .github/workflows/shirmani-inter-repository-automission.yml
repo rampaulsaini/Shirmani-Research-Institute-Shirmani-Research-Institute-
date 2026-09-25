@@ -38,7 +38,6 @@ jobs:
           MANUAL_FORMAT: ${{ inputs.format }}
           EVENT_BRIEF: ${{ github.event.client_payload.brief }}
           EVENT_FORMAT: ${{ github.event.client_payload.format }}
-        env:
           FEDERATION_TOKEN_CONFIGURED: ${{ secrets.SHIRMANI_GITHUB_TOKEN != '' }}
         with:
           github-token: ${{ github.token }}
@@ -58,9 +57,6 @@ jobs:
                 return;
               }
             }
-
-            // Safe default keeps the existing Shirmani → Yatharth bridge operational
-            // even before the optional 25-repository matrix is configured.
             if (!targets.length) {
               targets = [{
                 repository: 'rampaulsaini/yatharth-music-ai',
@@ -68,24 +64,25 @@ jobs:
                 enabled: true
               }];
             }
-
             const brief =
               process.env.MANUAL_BRIEF ||
               process.env.EVENT_BRIEF ||
               'Automission continuity brief: continue verified research-to-creative production work.';
             const format = process.env.MANUAL_FORMAT || process.env.EVENT_FORMAT || 'animated-film';
             const mode = process.env.AUTOMATION_MODE || 'CONTINUOUS';
-
             for (const target of targets) {
               if (target.enabled === false) continue;
               if (!target.repository || !target.event_type) {
                 core.warning(`Skipping invalid target: ${JSON.stringify(target)}`);
                 continue;
               }
-
+              const [owner, repo] = target.repository.split('/');
+              if (!owner || !repo) {
+                core.warning(`Skipping malformed repository: ${target.repository}`);
+                continue;
+              }
               await github.rest.repos.createDispatchEvent({
-                owner: target.repository.split('/')[0],
-                repo: target.repository.split('/')[1],
+                owner, repo,
                 event_type: target.event_type,
                 client_payload: {
                   source_repository: context.repo.owner + '/' + context.repo.repo,
@@ -96,10 +93,8 @@ jobs:
                   format
                 }
               });
-
               core.info(`Dispatched ${target.event_type} → ${target.repository}`);
             }
-
             core.summary
               .addHeading('Inter-Repository Automission')
               .addTable([
