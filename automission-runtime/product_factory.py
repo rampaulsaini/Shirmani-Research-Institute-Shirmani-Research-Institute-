@@ -1,6 +1,6 @@
 from product_agents import build_product_spec, validate_agent_plan
 from product_packaging import build_manifest
-from product_pipeline import run_quality_gate, prepare_for_publishing, request_publish_approval
+from product_pipeline import run_quality_gate, prepare_for_publishing, request_publish_approval\nfrom product_dashboard import snapshot\nfrom product_learning import capture_product_intelligence, prioritize_product
 
 class DigitalProductFactory:
     def __init__(self, catalog):
