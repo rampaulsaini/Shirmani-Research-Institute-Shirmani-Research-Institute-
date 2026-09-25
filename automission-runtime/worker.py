@@ -10,7 +10,8 @@ from queue import QueueStore
 from sources import discover
 from agents import prepare
 from router import route_pending
-from executor import execute_plan
+from execution import run
+from outcomes import record
 from learning import capture_cycle_features
 from connectors import health_all
 
@@ -83,18 +84,21 @@ def cycle():
             accepted += 1
     pending = store.pending()
     routed = route_pending(store)
-    plans = [execute_plan(item) for item in pending]
-    for plan in plans:
-        receipt(plan)
-    approvals = sum(1 for p in plans if p["status"] == "APPROVAL_REQUIRED")
+    results = []
+    for item in pending:
+        result = run(item)
+        receipt(result)
+        status = record(DB, item["id"], result)
+        results.append({"id":item["id"],"status":status})
+    approvals = sum(1 for r in results if r["status"] == "APPROVAL_REQUIRED")
     features = capture_cycle_features(DB, accepted, len(routed), approvals)
     emit("cycle", {"runtime":"income-command-center","mode":"standalone",
                     "chatgpt_dependency":False,
-                    "execution":"discover-verify-route-execute-receipt-learn",
+                    "execution":"discover-verify-route-adapter-outcome-learn",
                     "adapter_health":adapter_health,
                     "opportunities_accepted":accepted,"routed_actions":len(routed),
-                    "approval_required":approvals,"queue_depth":len(store.pending()),
-                    "learning_features":features})
+                    "outcomes_recorded":len(results),"approval_required":approvals,
+                    "queue_depth":len(store.pending()),"learning_features":features})
     heartbeat()
 
 def shutdown(signum, frame):
