@@ -6,7 +6,7 @@ from product_pipeline import (
     request_publish_approval,
 )
 from product_dashboard import snapshot
-from product_learning import capture_product_intelligence, prioritize_product
+from product_learning import capture_product_intelligence, prioritize_product, capture_fulfillment_signal, prioritize_with_fulfillment
 
 
 class DigitalProductFactory:
@@ -66,11 +66,10 @@ class DigitalProductFactory:
     def dashboard(self):
         return snapshot(self.catalog.db_path)
 
-    def score_next_product(self, base_score, product_type, currency):
+    def score_next_product(self, base_score, product_type, currency, product_id=None, fulfillment_db=None):
         intelligence = self.intelligence()
-        return prioritize_product(
-            base_score,
-            product_type,
-            currency,
-            intelligence,
-        )
+        score = prioritize_product(base_score, product_type, currency, intelligence)
+        if product_id is not None and fulfillment_db is not None:
+            signal = capture_fulfillment_signal(fulfillment_db)
+            score = prioritize_with_fulfillment(score, product_id, signal)
+        return score
