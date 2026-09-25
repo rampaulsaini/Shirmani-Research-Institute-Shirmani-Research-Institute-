@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "name": "Justice and Affordable Legal Access Factory",
+  "mission": "reduce cost and friction of legal information and case preparation",
+  "services": [
+    "case_intake",
+    "document_organization",
+    "legal_research",
+    "precedent_verification",
+    "case_summary",
+    "mediation_support",
+    "drafting_support",
+    "status_tracking"
+  ],
+  "ai_boundary": {
+    "decision_support_only": true,
+    "binding_judgment_by_ai": false,
+    "legal_source_verification_required": true,
+    "qualified_human_review_required": true
+  },
+  "quality": {
+    "citation_required": true,
+    "primary_source_preferred": true,
+    "fabricated_case_law_forbidden": true,
+    "fabricated_evidence_forbidden": true,
+    "audit_trail_required": true
+  },
+  "access": {
+    "low_cost_model": true,
+    "subsidized_service_possible": true,
+    "pro_bono_path_possible": true
+  }
+}
