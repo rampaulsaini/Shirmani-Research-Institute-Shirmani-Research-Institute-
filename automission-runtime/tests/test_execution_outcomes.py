@@ -115,7 +115,12 @@ class ExecutionOutcomeTests(unittest.TestCase):
         with sqlite3.connect(self.db) as db:
             columns = {row[1] for row in db.execute("PRAGMA table_info(channel_performance)")}
             self.assertIn("currency", columns)
-            self.assertNotIn("channel_performance_legacy", {row[1] for row in db.execute("PRAGMA table_info(channel_performance)")})
+            self.assertEqual(
+                db.execute(
+                    "SELECT name FROM sqlite_master WHERE type='table' AND name='channel_performance_legacy'"
+                ).fetchone()[0],
+                "channel_performance_legacy",
+            )
 
     def test_prioritization_requires_matching_currency_history(self):
         performance = {
