@@ -82,7 +82,8 @@ jobs:
                 core.warning(`Skipping malformed repository: ${target.repository}`);
                 continue;
               }
-              const federation = getOctokit(process.env.FEDERATION_TOKEN);\n            await federation.rest.repos.createDispatchEvent({
+              const federation = getOctokit(process.env.FEDERATION_TOKEN);
+              await federation.rest.repos.createDispatchEvent({
                 owner, repo,
                 event_type: target.event_type,
                 client_payload: {
