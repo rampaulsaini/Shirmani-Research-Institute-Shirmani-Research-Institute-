@@ -119,6 +119,17 @@ jobs:
           print("Production readiness gate: VALID")
           PY
 
+      - name: Validate customer fulfillment contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("income/customer-fulfillment-ledger.json").read_text())
+          assert data["rules"]["delivery_evidence_required"] is True
+          assert data["rules"]["delivery_does_not_equal_verified_outcome"] is True
+          print("customer fulfillment contract: OK")
+          PY
+
       - name: Validate master learning and dashboard contracts
         run: |
           python - <<'PY'
