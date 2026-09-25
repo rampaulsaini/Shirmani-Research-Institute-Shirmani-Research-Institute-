@@ -137,6 +137,22 @@ jobs:
             echo "Employment evidence gate workflow not found; continuing"
           fi
 
+  layer-5-verification-work:
+    name: Layer 5 — Independent Verification Automission
+    needs: layer-4-orchestration
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Dispatch independent verification work packets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run "SHIRMANI Independent Verification Automission" \
+            --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
+            -f batch_size=25
+          echo "Independent verification work packet automission dispatched"
+
   layer-5-audit:
     name: Layer 5 — Independent Verification Gate
     needs: layer-4-orchestration
@@ -161,7 +177,7 @@ jobs:
 
   status:
     name: Multi-Layer Status
-    needs: [layer-1-control, layer-2-research, layer-3-creative, layer-4-orchestration, layer-5-audit]
+    needs: [layer-1-control, layer-2-research, layer-3-creative, layer-4-orchestration, layer-5-verification-work, layer-5-audit]
     if: always()
     runs-on: ubuntu-latest
     steps:
