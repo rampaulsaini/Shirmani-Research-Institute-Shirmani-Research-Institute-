@@ -77,17 +77,30 @@ class QueueStore:
         return hashlib.sha256(raw.encode()).hexdigest()
 
     def claim(self, item, status="PROCESSING"):
+        """Atomically claim a pending opportunity and create its idempotency key."""
         key = self.idempotency_key(item)
         now = utc_now()
         with self._connect() as db:
             try:
+                db.execute("BEGIN IMMEDIATE")
+                cur = db.execute(
+                    """UPDATE opportunities SET status=?, updated_at=?
+                       WHERE id=? AND status IN ('DISCOVERED','VERIFIED','QUEUED')""",
+                    (status, now, item["id"]),
+                )
+                if cur.rowcount != 1:
+                    db.rollback()
+                    return False
                 db.execute("INSERT INTO execution_keys VALUES(?,?,?,?,?)",
                            (key, item["id"], item.get("action","review"), now, status))
+                db.commit()
+                return True
             except sqlite3.IntegrityError:
+                db.rollback()
                 return False
-            db.execute("UPDATE opportunities SET status=?, updated_at=? WHERE id=? AND status IN ('DISCOVERED','VERIFIED','QUEUED')",
-                       (status, now, item["id"]))
-        return True
+            except Exception:
+                db.rollback()
+                raise
 
     def set_status(self, opportunity_id, status):
         with self._connect() as db:
