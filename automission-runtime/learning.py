@@ -13,14 +13,33 @@ def _ensure_tables(db):
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         captured_at TEXT NOT NULL, features TEXT NOT NULL
     )""")
-    db.execute("""CREATE TABLE IF NOT EXISTS channel_performance (
-        channel TEXT NOT NULL,
-        currency TEXT NOT NULL,
-        verified_income REAL NOT NULL DEFAULT 0,
-        verified_outcomes INTEGER NOT NULL DEFAULT 0,
-        evidence_count INTEGER NOT NULL DEFAULT 0,
-        last_verified_at TEXT,
-        PRIMARY KEY (channel, currency)
+    columns = {row[1] for row in db.execute("PRAGMA table_info(channel_performance)")}
+    if columns and "currency" not in columns:
+        db.execute("ALTER TABLE channel_performance RENAME TO channel_performance_legacy")
+        columns = set()
+    if not columns:
+        db.execute("""CREATE TABLE IF NOT EXISTS channel_performance (
+            channel TEXT NOT NULL,
+            currency TEXT NOT NULL,
+            verified_income REAL NOT NULL DEFAULT 0,
+            verified_outcomes INTEGER NOT NULL DEFAULT 0,
+            evidence_count INTEGER NOT NULL DEFAULT 0,
+            last_verified_at TEXT,
+            PRIMARY KEY (channel, currency)
+        )""")
+    db.execute("""CREATE TABLE IF NOT EXISTS opportunities (
+        id TEXT PRIMARY KEY,
+        channel TEXT NOT NULL
+    )""")
+    db.execute("""CREATE TABLE IF NOT EXISTS outcomes (
+        id TEXT PRIMARY KEY,
+        opportunity_id TEXT NOT NULL,
+        status TEXT NOT NULL,
+        verified_income REAL DEFAULT 0,
+        currency TEXT,
+        evidence_url TEXT,
+        notes TEXT,
+        recorded_at TEXT NOT NULL
     )""")
 
 
@@ -48,18 +67,16 @@ def capture_revenue_intelligence(db_path: Path):
         for _, amount, currency, evidence_url, recorded_at, channel in rows:
             channel = channel or "unknown"
             currency = currency or "UNKNOWN"
-            bucket = channels.setdefault(channel, {})
-            currency_bucket = bucket.setdefault(
+            bucket = channels.setdefault(channel, {}).setdefault(
                 currency,
-                {"verified_income": 0.0, "verified_outcomes": 0, "evidence_count": 0,
-                 "last_verified_at": None},
+                {"verified_income": 0.0, "verified_outcomes": 0,
+                 "evidence_count": 0, "last_verified_at": None},
             )
-            currency_bucket["verified_income"] += float(amount)
-            currency_bucket["verified_outcomes"] += 1
-            currency_bucket["evidence_count"] += 1
-            if (currency_bucket["last_verified_at"] is None
-                    or recorded_at > currency_bucket["last_verified_at"]):
-                currency_bucket["last_verified_at"] = recorded_at
+            bucket["verified_income"] += float(amount)
+            bucket["verified_outcomes"] += 1
+            bucket["evidence_count"] += 1
+            if bucket["last_verified_at"] is None or recorded_at > bucket["last_verified_at"]:
+                bucket["last_verified_at"] = recorded_at
 
         db.execute("DELETE FROM channel_performance")
         for channel, currencies in channels.items():
@@ -75,7 +92,6 @@ def capture_revenue_intelligence(db_path: Path):
                 )
 
         total_income_by_currency = {}
-        verified_outcomes = len(rows)
         for channel_data in channels.values():
             for currency, bucket in channel_data.items():
                 total_income_by_currency[currency] = (
@@ -85,21 +101,18 @@ def capture_revenue_intelligence(db_path: Path):
 
         return {
             "verified_income_by_currency": total_income_by_currency,
-            "verified_outcomes": verified_outcomes,
-            "evidence_backed": verified_outcomes,
+            "verified_outcomes": len(rows),
+            "evidence_backed": len(rows),
             "channels": channels,
         }
 
 
 def prioritize_score(base_score, channel, performance, currency=None):
-    """Return a deterministic score boost using only verified history in one currency."""
     score = float(base_score or 0)
     bucket = performance.get("channels", {}).get(channel, {})
-    if currency:
-        bucket = bucket.get(str(currency).upper(), {})
-    else:
+    if not currency:
         return score
-
+    bucket = bucket.get(str(currency).upper(), {})
     verified_income = float(bucket.get("verified_income", 0) or 0)
     verified_outcomes = int(bucket.get("verified_outcomes", 0) or 0)
     if verified_outcomes:
