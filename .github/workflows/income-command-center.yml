@@ -41,7 +41,7 @@ jobs:
       - name: Run queue idempotency and recovery tests
         run: |
           python -m unittest discover -s automission-runtime/tests -p "test_*.py" -v
-          echo "Queue idempotency and recovery tests: VALID"
+          echo "Queue, execution and outcome recovery tests: VALID"
 
       - name: Run standalone runtime smoke cycle
         env:
