@@ -9,6 +9,8 @@ from pathlib import Path
 
 from execution import run
 from outcomes import record
+from ledger import record_verified_income
+from learning import capture_revenue_intelligence, prioritize_score
 
 
 class ExecutionOutcomeTests(unittest.TestCase):
@@ -58,6 +60,56 @@ class ExecutionOutcomeTests(unittest.TestCase):
                 ("op-3",),
             ).fetchone()
         self.assertEqual(row, ("REJECTED_NO_INCOME_EVIDENCE", 0.0))
+
+    def test_ledger_rejects_missing_evidence(self):
+        with self.assertRaises(ValueError):
+            record_verified_income(self.db, "op-ledger", 100, "INR", "")
+
+    def test_revenue_intelligence_ignores_unverified_income(self):
+        record(
+            self.db,
+            "op-unverified",
+            {"status": "EXECUTED", "verified_income": 500, "currency": "INR"},
+        )
+        revenue = capture_revenue_intelligence(self.db)
+        self.assertEqual(revenue["verified_income"], 0)
+        self.assertEqual(revenue["verified_outcomes"], 0)
+
+    def test_revenue_intelligence_aggregates_evidence_backed_income_by_channel(self):
+        with sqlite3.connect(self.db) as db:
+            db.execute(
+                """CREATE TABLE opportunities (
+                    id TEXT PRIMARY KEY, channel TEXT NOT NULL
+                )"""
+            )
+            db.executemany(
+                "INSERT INTO opportunities(id, channel) VALUES(?, ?)",
+                [("op-a", "freelancing"), ("op-b", "freelancing"), ("op-c", "digital_store")],
+            )
+        record(
+            self.db, "op-a",
+            {"status": "EXECUTED", "verified_income": 200, "currency": "INR",
+             "evidence_url": "https://example.test/a"},
+        )
+        record(
+            self.db, "op-b",
+            {"status": "EXECUTED", "verified_income": 300, "currency": "INR",
+             "evidence_url": "https://example.test/b"},
+        )
+        record(
+            self.db, "op-c",
+            {"status": "REJECTED_NO_INCOME_EVIDENCE", "verified_income": 100, "currency": "INR"},
+        )
+        revenue = capture_revenue_intelligence(self.db)
+        self.assertEqual(revenue["verified_income"], 500.0)
+        self.assertEqual(revenue["verified_outcomes"], 2)
+        self.assertEqual(revenue["channels"]["freelancing"]["verified_income"], 500.0)
+        self.assertNotIn("digital_store", revenue["channels"])
+
+    def test_prioritization_uses_only_verified_channel_history(self):
+        performance = {"channels": {"freelancing": {"verified_income": 500, "verified_outcomes": 2}}}
+        self.assertGreater(prioritize_score(10, "freelancing", performance), 10)
+        self.assertEqual(prioritize_score(10, "digital_store", performance), 10)
 
     def test_verified_income_requires_positive_amount_and_evidence(self):
         result = record(
