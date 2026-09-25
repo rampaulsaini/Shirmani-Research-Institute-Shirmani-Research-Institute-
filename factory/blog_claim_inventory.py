@@ -90,6 +90,16 @@ def main():
             if h in seen:
                 continue
             seen.add(h)
+            tags = []
+            low = norm.lower()
+            if any(x in low for x in ["मैं ", "मैंने ", "मेरे ", "मेरा ", "मेरी "]):
+                tags.append("PERSONAL_EXPERIENCE")
+            if any(x in low for x in ["गुरु", "आरोप", "निकाल", "अनुयायी", "संगत", "घटना"]):
+                tags.append("EVENT_OR_ALLEGATION")
+            if any(x in low for x in ["विज्ञान", "वैज्ञानिक", "समय", "मन ", "मस्तक", "बुद्धि", "जीव", "प्रकृति", "भौतिक"]):
+                tags.append("SCIENTIFIC_CLAIM")
+            if any(x in low for x in ["सर्वभौमिक सत्य", "यथार्थ सिद्धांत", "यथार्थ युग", "शिरोमणि स्वरूप", "संपूर्ण संतुष्टि"]):
+                tags.append("PHILOSOPHICAL_PROPOSITION")
             claims.append({
                 "claim_id": "BLOG-" + h[:16],
                 "source_url": used,
@@ -97,6 +107,7 @@ def main():
                 "source_unit": idx,
                 "claim_text": norm,
                 "claim_type": classify(norm),
+                "claim_tags": sorted(set(tags)) or ["GENERAL_CLAIM"],
                 "status": "UNVERIFIED",
                 "verification": {
                     "evidence": [],
