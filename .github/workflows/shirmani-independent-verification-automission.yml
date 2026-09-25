@@ -64,7 +64,7 @@ jobs:
         if: env.REVIEW_PACKET_CREATED == 'true'
         run: |
           set -euo pipefail
-          packet=$(ls generated/verification-review-packet-*.json | head -n 1)
+          packet=$(find generated -maxdepth 1 -type f -name 'verification-review-packet-*.json' -print | sort | head -n 1)
           test -s "$packet"
           python3 factory/verification_review_packet_qc.py --packet "$packet"
 
