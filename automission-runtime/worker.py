@@ -6,6 +6,9 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+from queue import QueueStore
+from sources import discover
+
 ROOT = Path(__file__).resolve().parents[1]
 STATE_DIR = Path(os.getenv("AUTOMISSION_STATE_DIR", str(Path(__file__).parent / "state")))
 STATE_DIR.mkdir(parents=True, exist_ok=True)
@@ -33,10 +36,9 @@ def emit(kind, payload):
     print(json.dumps({"ts": utc_now(), "kind": kind, **payload}), flush=True)
 
 def heartbeat():
-    ts = utc_now()
     with sqlite3.connect(DB) as db:
         db.execute("INSERT INTO heartbeats(ts,status,pid) VALUES(?,?,?)",
-                   (ts, "HEARTBEAT_OK", os.getpid()))
+                   (utc_now(), "HEARTBEAT_OK", os.getpid()))
     emit("heartbeat", {"status": "HEARTBEAT_OK"})
 
 def validate_contracts():
@@ -59,11 +61,22 @@ def validate_contracts():
 
 def cycle():
     validate_contracts()
+    store = QueueStore(DB)
+    discovered = discover()
+    accepted = 0
+    for item in discovered:
+        if item.get("evidence_url") and item.get("url"):
+            store.upsert_opportunity(item)
+            accepted += 1
+    pending = len(store.pending())
     emit("cycle", {
         "runtime": "income-command-center",
         "mode": "standalone",
         "chatgpt_dependency": False,
-        "execution": "control-plane-cycle"
+        "execution": "discovery-and-queue",
+        "sources_configured": len(os.getenv("AUTOMISSION_SOURCE_FEEDS", "").split(",")) if os.getenv("AUTOMISSION_SOURCE_FEEDS") else 0,
+        "opportunities_accepted": accepted,
+        "queue_depth": pending
     })
     heartbeat()
 
