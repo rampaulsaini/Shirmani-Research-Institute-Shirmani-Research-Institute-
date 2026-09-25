@@ -1,0 +1,8 @@
+{
+  "schema": "shirmani.income-opportunity.v1",
+  "required": ["id","channel","opportunity","source_url","discovered_at","fit_reason","estimated_effort","estimated_value","risk","next_action","verification_status","owner_approval"],
+  "enums": {
+    "verification_status": ["UNVERIFIED","SOURCE_CHECKED","VERIFIED","REJECTED"],
+    "owner_approval": ["PENDING","APPROVED","DECLINED"]
+  }
+}
