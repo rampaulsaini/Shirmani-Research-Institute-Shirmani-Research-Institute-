@@ -39,7 +39,7 @@ jobs:
           EVENT_BRIEF: ${{ github.event.client_payload.brief }}
           EVENT_FORMAT: ${{ github.event.client_payload.format }}
         with:
-          github-token: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
+          github-token: ${{ secrets.SHIRMANI_GITHUB_TOKEN || github.token }}
           script: |
             const raw = process.env.REPOSITORY_MATRIX || '';
             let targets = [];
