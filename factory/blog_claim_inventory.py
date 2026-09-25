@@ -74,6 +74,7 @@ def main():
     parser = TextParser()
     parser.feed(raw.decode("utf-8", errors="replace"))
     text = normalize("".join(parser.parts))
+    source_text_sha256 = hashlib.sha256(text.encode("utf-8")).hexdigest()
     units = [x.strip() for x in text.split("\n") if len(x.strip()) >= 20]
     claims = []
     for idx, unit in enumerate(units, 1):
@@ -101,7 +102,7 @@ def main():
                 "claim_id": "BLOG-" + h[:16],
                 "source_url": used,
                 "source_sha256": source_html_sha256,
-                "source_text_sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
+                "source_text_sha256": source_text_sha256,
                 "source_unit": idx,
                 "claim_text": norm,
                 "claim_type": classify(norm),
@@ -120,7 +121,9 @@ def main():
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "source_url": used,
-        "source_sha256": source_hash,
+        "source_sha256": source_html_sha256,
+        "source_html_sha256": source_html_sha256,
+        "source_text_sha256": source_text_sha256,
         "source_text_units": len(units),
         "claim_count": len(claims),
         "independent_verification_count": 0,
