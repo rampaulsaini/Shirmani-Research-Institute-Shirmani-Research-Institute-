@@ -12,7 +12,7 @@ from agents import prepare
 from router import route_pending
 from execution import run
 from outcomes import record
-from learning import capture_cycle_features
+from learning import capture_cycle_features, prioritize_score
 from connectors import health_all
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -115,6 +115,15 @@ def cycle():
 
     approvals = sum(1 for r in results if r["status"] == "APPROVAL_REQUIRED")
     features = capture_cycle_features(DB, accepted, len(routed), approvals)
+    # Verified-income learning remains evidence-first; apply only a bounded,
+    # deterministic score boost to future opportunities in channels with
+    # evidence-backed historical income.
+    for item in store.pending():
+        learned_score = prioritize_score(item.get("score", 0), item.get("channel", ""), features)
+        if learned_score != float(item.get("score", 0) or 0):
+            with sqlite3.connect(DB) as db:
+                db.execute("UPDATE opportunities SET score=?, updated_at=? WHERE id=?",
+                           (learned_score, utc_now(), item["id"]))
     emit("cycle", {"runtime":"income-command-center","mode":"standalone",
                     "chatgpt_dependency":False,
                     "execution":"discover-verify-route-atomic-claim-adapter-outcome-learn",
