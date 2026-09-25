@@ -104,6 +104,20 @@ jobs:
           print("Master Task Ledger contract: VALID")
           PY
 
+      - name: Validate master learning and dashboard contracts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          learning = json.loads(Path("income/master-learning.json").read_text(encoding="utf-8"))
+          dashboard = json.loads(Path("income/master-dashboard.json").read_text(encoding="utf-8"))
+          assert learning["rules"]["verified_income_requires_amount_currency_and_evidence"] is True
+          assert learning["rules"]["currency_isolation_required"] is True
+          assert dashboard["rules"]["missing_tables_are_nonfatal"] is True
+          assert dashboard["rules"]["no_external_action_from_dashboard"] is True
+          print("Master learning/dashboard contracts: VALID")
+          PY
+
       - name: Run standalone runtime smoke cycle
         env:
           AUTOMISSION_RUN_ONCE: "true"
@@ -119,6 +133,9 @@ jobs:
               ledger = db.execute("select name from sqlite_master where type='table' and name='events'").fetchone()
           assert row == ("HEARTBEAT_OK",), row
           assert ledger == ("events",), ledger
+          state_dir = os.environ["AUTOMISSION_STATE_DIR"]
+          assert os.path.exists(os.path.join(state_dir, "master-task-ledger.db"))
+          assert os.path.exists(os.path.join(state_dir, "master-intelligence.db"))
           print("Standalone runtime smoke cycle: VALID")
           PY
 
