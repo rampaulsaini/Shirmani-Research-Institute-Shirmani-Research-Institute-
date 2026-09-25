@@ -51,6 +51,9 @@ jobs:
       - name: Validate GitHub Actions expressions and workflow syntax
         uses: docker://rhysd/actionlint:latest
 
+      - name: Repository whitespace check
+        run: git diff --check
+
       - name: Python compile check
         run: |
           python3 -m compileall -q factory scripts
