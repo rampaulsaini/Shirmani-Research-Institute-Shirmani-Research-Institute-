@@ -119,7 +119,11 @@ def cycle():
     # deterministic score boost to future opportunities in channels with
     # evidence-backed historical income.
     for item in store.pending():
-        learned_score = prioritize_score(item.get("score", 0), item.get("channel", ""), features)
+        payload = json.loads(item.get("payload", "{}") or "{}")
+        currency = item.get("currency") or payload.get("currency")
+        learned_score = prioritize_score(
+            item.get("score", 0), item.get("channel", ""), features, currency
+        )
         if learned_score != float(item.get("score", 0) or 0):
             with sqlite3.connect(DB) as db:
                 db.execute("UPDATE opportunities SET score=?, updated_at=? WHERE id=?",
