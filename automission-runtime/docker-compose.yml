@@ -1,0 +1,21 @@
+services:
+  automission:
+    build:
+      context: ..
+      dockerfile: automission-runtime/Dockerfile
+    restart: unless-stopped
+    init: true
+    environment:
+      AUTOMISSION_HEARTBEAT_SECONDS: "300"
+      AUTOMISSION_STATE_DIR: /app/automission-runtime/state
+    volumes:
+      - automission_state:/app/automission-runtime/state
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import sqlite3; db=sqlite3.connect('/app/automission-runtime/state/automission.db'); row=db.execute('select status from heartbeats order by id desc limit 1').fetchone(); raise SystemExit(0 if row and row[0]=='HEARTBEAT_OK' else 1)\""]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  automission_state:
