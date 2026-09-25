@@ -31,3 +31,32 @@ def prioritize_product(base_score, product_type, currency, intelligence):
     return score + min(
         history["verified_income"] / history["verified_sales"], 1000.0
     ) * 0.01
+
+
+def capture_fulfillment_signal(db_path: Path):
+    """Return verified delivery counts only; no revenue inference."""
+    db_path = Path(db_path)
+    if not db_path.exists():
+        return {}
+    with sqlite3.connect(db_path) as db:
+        exists = db.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='deliveries'"
+        ).fetchone()
+        if not exists:
+            return {}
+        rows = db.execute(
+            """SELECT product_id, COUNT(*)
+               FROM deliveries
+               WHERE state='VERIFIED'
+                 AND delivery_evidence_url IS NOT NULL
+                 AND TRIM(delivery_evidence_url) <> ''
+               GROUP BY product_id ORDER BY product_id"""
+        ).fetchall()
+    return {product_id: int(count) for product_id, count in rows}
+
+
+def prioritize_with_fulfillment(base_score, product_id, fulfillment_signal):
+    """Bounded score adjustment from verified fulfillment only."""
+    score = float(base_score or 0)
+    verified = int(fulfillment_signal.get(product_id, 0) or 0)
+    return score + min(verified, 100) * 0.01
