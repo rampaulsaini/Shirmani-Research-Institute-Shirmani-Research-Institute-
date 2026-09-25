@@ -47,7 +47,8 @@ jobs:
               core.setFailed(`Unsupported production format: ${format}`);
               return;
             }
-            const federation = getOctokit(process.env.FEDERATION_TOKEN);\n            await federation.rest.repos.createDispatchEvent({
+            const federation = getOctokit(process.env.FEDERATION_TOKEN);
+            await federation.rest.repos.createDispatchEvent({
               owner: "rampaulsaini",
               repo: "yatharth-music-ai",
               event_type: "yatharth_studio_request",
