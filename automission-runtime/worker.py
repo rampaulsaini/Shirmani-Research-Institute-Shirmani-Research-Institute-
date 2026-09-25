@@ -20,6 +20,8 @@ STATE_DIR = Path(os.getenv("AUTOMISSION_STATE_DIR", str(Path(__file__).parent / 
 STATE_DIR.mkdir(parents=True, exist_ok=True)
 DB = STATE_DIR / "automission.db"
 INTERVAL = int(os.getenv("AUTOMISSION_HEARTBEAT_SECONDS", "300"))
+STALE_PROCESSING_SECONDS = int(os.getenv("AUTOMISSION_STALE_PROCESSING_SECONDS", "1800"))
+MAX_CONSECUTIVE_FAILURES = int(os.getenv("AUTOMISSION_MAX_CONSECUTIVE_FAILURES", "3"))
 RUN_ONCE = os.getenv("AUTOMISSION_RUN_ONCE", "false").lower() == "true"
 stop = False
 
@@ -75,6 +77,9 @@ def validate_contracts():
 def cycle():
     validate_contracts()
     store = QueueStore(DB)
+    recovered = store.recover_stale_processing(STALE_PROCESSING_SECONDS)
+    if recovered:
+        emit("queue_recovery", {"stale_processing_requeued": recovered})
     adapter_health = health_all()
     accepted = 0
     for raw in discover():
@@ -128,11 +133,17 @@ if __name__ == "__main__":
     signal.signal(signal.SIGTERM, shutdown)
     signal.signal(signal.SIGINT, shutdown)
     init_db()
+    consecutive_failures = 0
     while not stop:
         try:
             cycle()
+            consecutive_failures = 0
         except Exception as exc:
-            emit("runtime_error", {"error":str(exc),"fail_closed":True})
+            consecutive_failures += 1
+            emit("runtime_error", {"error":str(exc),"fail_closed":True,"consecutive_failures":consecutive_failures})
+            if consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
+                emit("fatal_runtime_error", {"reason":"restart_threshold_reached","restart_requested":True})
+                raise SystemExit(2)
         if RUN_ONCE:
             break
         time.sleep(INTERVAL)
