@@ -21,6 +21,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run deterministic opportunity intake
         run: python3 income/opportunity_research.py
+      - name: Build verification queue
+        run: python3 income/build_verification_queue.py
       - name: Validate generated queue
         run: python3 - <<'PY'
 import json
@@ -38,4 +40,5 @@ PY
         uses: actions/upload-artifact@v4
         with:
           name: income-opportunity-intake
-          path: generated/income-opportunities.json
+          path: generated/
+
