@@ -104,6 +104,21 @@ jobs:
           print("Master Task Ledger contract: VALID")
           PY
 
+      - name: Validate production readiness gate
+        run: |
+          PYTHONPATH=automission-runtime python - <<'PY'
+          import json
+          from pathlib import Path
+          from production_readiness import check_repository
+          contract = json.loads(Path("income/production-readiness.json").read_text(encoding="utf-8"))
+          result = check_repository(Path("."))
+          assert contract["safety"]["fabrication_forbidden"] is True
+          assert contract["safety"]["irreversible_actions_require_authorization"] is True
+          assert contract["safety"]["external_adapter_enablement_requires_review"] is True
+          assert result["all_required_contracts"] is True
+          print("Production readiness gate: VALID")
+          PY
+
       - name: Validate master learning and dashboard contracts
         run: |
           python - <<'PY'
