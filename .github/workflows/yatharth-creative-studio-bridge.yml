@@ -25,12 +25,12 @@ jobs:
       - name: Send federation event
         uses: actions/github-script@v7
         env:
-          FEDERATION_TOKEN_CONFIGURED: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
+          FEDERATION_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
           AUTOMATION_MODE: ${{ vars.SHIRMANI_AUTOMATION_MODE || 'CONTINUOUS' }}
         with:
           github-token: ${{ github.token }}
           script: |
-            if (process.env.FEDERATION_TOKEN_CONFIGURED !== "true") {
+            if (!process.env.FEDERATION_TOKEN) {
               core.warning("SHIRMANI_GITHUB_TOKEN is not configured; federation dispatch is safely deferred.");
               return;
             }
@@ -46,7 +46,7 @@ jobs:
               core.setFailed(`Unsupported production format: ${format}`);
               return;
             }
-            await github.rest.repos.createDispatchEvent({
+            const federation = getOctokit(process.env.FEDERATION_TOKEN);\n            await federation.rest.repos.createDispatchEvent({
               owner: "rampaulsaini",
               repo: "yatharth-music-ai",
               event_type: "yatharth_studio_request",
