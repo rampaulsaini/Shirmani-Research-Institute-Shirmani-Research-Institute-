@@ -82,19 +82,37 @@ def cycle():
         if item:
             store.upsert_opportunity(item)
             accepted += 1
-    pending = store.pending()
+
+    # Route only the current queue snapshot. Claims are atomic and idempotent,
+    # so concurrent workers cannot execute the same opportunity twice.
+    candidates = store.pending()
     routed = route_pending(store)
     results = []
-    for item in pending:
-        result = run(item)
-        receipt(result)
-        status = record(DB, item["id"], result)
-        results.append({"id":item["id"],"status":status})
+    for item in candidates:
+        if not store.claim(item):
+            continue
+        try:
+            result = run(item)
+            receipt(result)
+            status = record(DB, item["id"], result)
+            if status == "APPROVAL_REQUIRED":
+                store.set_status(item["id"], "APPROVAL_REQUIRED")
+            elif status in {"PLANNED", "REJECTED", "REJECTED_NO_INCOME_EVIDENCE"}:
+                store.set_status(item["id"], status)
+            else:
+                store.set_status(item["id"], "EXECUTED")
+            store.mark_idempotency(item, status)
+            results.append({"id":item["id"],"status":status})
+        except Exception as exc:
+            store.mark_idempotency(item, "FAILED")
+            store.release_for_retry(item["id"])
+            results.append({"id":item["id"],"status":"FAILED","error":str(exc)})
+
     approvals = sum(1 for r in results if r["status"] == "APPROVAL_REQUIRED")
     features = capture_cycle_features(DB, accepted, len(routed), approvals)
     emit("cycle", {"runtime":"income-command-center","mode":"standalone",
                     "chatgpt_dependency":False,
-                    "execution":"discover-verify-route-adapter-outcome-learn",
+                    "execution":"discover-verify-route-atomic-claim-adapter-outcome-learn",
                     "adapter_health":adapter_health,
                     "opportunities_accepted":accepted,"routed_actions":len(routed),
                     "outcomes_recorded":len(results),"approval_required":approvals,
