@@ -16,5 +16,5 @@ def test_unknown_capability_fails_closed():
 
 
 def test_reversible_capability_can_reach_adapter_gate():
-    result = run({"channel": "digital-store", "action": "create"})
+    result = run({"channel": "digital_store", "action": "create"})
     assert result["status"] in {"PLANNED", "APPROVAL_REQUIRED"}
