@@ -49,6 +49,53 @@ jobs:
           print("WORKFLOW_YAML_STRUCTURE=PASS")
           PY
 
+      - name: Validate automission receiver contract
+        run: |
+          python3 - <<'PY'
+          from urllib.request import urlopen
+
+          url = (
+              "https://raw.githubusercontent.com/"
+              "rampaulsaini/yatharth-music-ai/main/"
+              ".github/workflows/yatharth-studio-automission-receiver.yml"
+          )
+          text = urlopen(url, timeout=20).read().decode("utf-8")
+          required = [
+              "repository_dispatch:",
+              "yatharth_studio_request",
+              "automation/inbox",
+              "yatharth-studio-request-",
+              '"status": "RECEIVED"',
+              '"independent_verification_claim": False',
+              "git push origin HEAD:main",
+          ]
+          missing = [item for item in required if item not in text]
+          if missing:
+              raise SystemExit("Receiver contract missing: " + ", ".join(missing))
+          intake_url = (
+              "https://raw.githubusercontent.com/"
+              "rampaulsaini/yatharth-music-ai/main/"
+              ".github/workflows/shirmani-federation-intake.yml"
+          )
+          intake = urlopen(intake_url, timeout=20).read().decode("utf-8")
+          intake_required = [
+              'test "$SOURCE_WORKFLOW" = "SHIRMANI Inter-Repository Automission Orchestrator"',
+              "automation/inbox",
+              '"status": "RECEIVED"',
+              '"independent_verification_claim": False',
+              "yatharth-studio-request-",
+              "git add automation/inbox federation/inbox federation/outbox",
+              "BRIEF: " + "${" + "{ github.event.client_payload.brief || inputs.brief }}",
+              "FORMAT: " + "${" + "{ github.event.client_payload.format || inputs.format }}",
+          ]
+          missing_intake = [item for item in intake_required if item not in intake]
+          if missing_intake:
+              raise SystemExit("Federation intake contract missing: " + ", ".join(missing_intake))
+          print("SHIRMANI_FEDERATION_INTAKE_CONTRACT=PASS")
+
+          print("AUTOMISSION_RECEIVER_CONTRACT=PASS")
+          PY
+
       - name: Guard known shell failure patterns
         run: |
           python3 - <<'PY'
