@@ -39,6 +39,15 @@ jobs:
           git push --force-with-lease origin "HEAD:$branch"
 
           if ! gh pr list --base main --head "$branch" --state open --json number --jq 'length' | grep -q '^0
+            echo "Factory status publication PR already exists."
+            exit 0
+          fi
+
+          gh pr create \
+            --base main \
+            --head "$branch" \
+            --title "chore(factory): publish synchronized federation status" \
+            --body "Automated status publication. Generated status is submitted through the repository's pull-request protection boundary; no direct main-branch push is performed."
 ; then
             echo "Factory status publication PR already exists."
             exit 0
