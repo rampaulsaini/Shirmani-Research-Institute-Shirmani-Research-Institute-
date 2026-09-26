@@ -24,7 +24,6 @@ jobs:
       - name: Publish status through pull request
         env:
           GH_TOKEN: ${{ github.token }}
-        shell: bash
         run: |
           set -euo pipefail
           git config user.name "shirmani-research-factory"
@@ -41,8 +40,8 @@ jobs:
           git commit -m "chore: sync central factory status"
           git push --force-with-lease origin "HEAD:$branch"
 
-          open_pr_count="$(gh pr list --base main --head "$branch" --state open --json number --jq 'length')"
-          if [ "$open_pr_count" -ne 0 ]; then
+          existing_pr_count="$(gh pr list --base main --head "$branch" --state open --json number --jq 'length')"
+          if [ "$existing_pr_count" -gt 0 ]; then
             echo "Factory status publication PR already exists."
             exit 0
           fi
