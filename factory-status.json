@@ -9,5 +9,8 @@
   "delivery_factory": "READY",
   "live_counters": false,
   "orchestrator_credential_configured": false,
-  "note": "Live cross-repository counters are not fabricated. They require an approved federation query implementation."
+  "note": "Live cross-repository counters are not fabricated. They require an approved federation query implementation.",
+  "federation_verified": false,
+  "last_refresh_note": "Federation token is malformed or contains non-ASCII characters; retained safe local status.",
+  "federation_error_type": "MalformedCredential"
 }
