@@ -150,7 +150,13 @@ jobs:
                     break;
                   }
                 } catch (error) {
-                  if (error.status !== 404) throw error;
+                  const status = Number(error?.status || 0);
+                  if (status !== 404 && (status < 500 || status > 599)) {
+                    throw error;
+                  }
+                  if (status >= 500) {
+                    core.warning(`Transient GitHub API error while checking receiver receipt (${status}); retrying.`);
+                  }
                 }
                 core.info(`Waiting for receiver receipt (${attempt}/36): ${target.repository}`);
               }
