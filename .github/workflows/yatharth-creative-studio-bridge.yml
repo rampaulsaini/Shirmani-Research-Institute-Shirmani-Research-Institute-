@@ -1,6 +1,9 @@
 name: Shirmani to Yatharth Creative Studio - Automission Bridge
 
 on:
+  push:
+    branches:
+      - "**"
   workflow_dispatch:
     inputs:
       brief:
@@ -19,7 +22,15 @@ permissions:
   contents: read
 
 jobs:
+  push_guard:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirm push-only guard
+        run: echo "Push received; Yatharth federation dispatch is intentionally skipped."
+
   dispatch:
+    if: ${{ github.event_name != 'push' }}
     runs-on: ubuntu-latest
     env:
       FEDERATION_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
