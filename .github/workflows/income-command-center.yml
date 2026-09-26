@@ -42,7 +42,7 @@ jobs:
 
       - name: Run queue idempotency and recovery tests
         run: |
-          PYTHONPATH=automission-runtime python -m unittest discover -s automission-runtime/tests -p "test_*.py" -v
+          PYTHONPATH=automission-runtime python -m pytest -q automission-runtime/tests tests/test_master_fulfillment_priorities.py
           echo "Runtime and digital-product factory tests: VALID"
 
       - name: Validate digital product factory contracts
