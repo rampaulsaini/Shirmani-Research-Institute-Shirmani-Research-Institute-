@@ -34,6 +34,23 @@ def main() -> int:
         )
         return 0
 
+    try:
+        token.encode("ascii")
+    except UnicodeEncodeError:
+        current["orchestrator_credential_configured"] = False
+        current["live_counters"] = False
+        current["federation_verified"] = False
+        current["last_refresh_note"] = (
+            "Federation token is malformed or contains non-ASCII characters; "
+            "retained safe local status."
+        )
+        current["federation_error_type"] = "MalformedCredential"
+        TARGET.write_text(
+            json.dumps(current, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        return 0
+
     def fetch_json(source_path: str) -> dict:
         url = (
             f"https://api.github.com/repos/{CENTRAL}/contents/"
