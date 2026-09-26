@@ -49,6 +49,31 @@ jobs:
           print("WORKFLOW_YAML_STRUCTURE=PASS")
           PY
 
+      - name: Validate automission receiver contract
+        run: |
+          python3 - <<'PY'
+          from urllib.request import urlopen
+
+          url = (
+              "https://raw.githubusercontent.com/"
+              "rampaulsaini/yatharth-music-ai/main/"
+              ".github/workflows/yatharth-studio-automission-receiver.yml"
+          )
+          text = urlopen(url, timeout=20).read().decode("utf-8")
+          required = [
+              "repository_dispatch:",
+              "yatharth_studio_request",
+              "automation/inbox/yatharth-studio-request-",
+              '"status": "RECEIVED"',
+              '"independent_verification_claim": False',
+              "git push origin HEAD:main",
+          ]
+          missing = [item for item in required if item not in text]
+          if missing:
+              raise SystemExit("Receiver contract missing: " + ", ".join(missing))
+          print("AUTOMISSION_RECEIVER_CONTRACT=PASS")
+          PY
+
       - name: Guard known shell failure patterns
         run: |
           python3 - <<'PY'
