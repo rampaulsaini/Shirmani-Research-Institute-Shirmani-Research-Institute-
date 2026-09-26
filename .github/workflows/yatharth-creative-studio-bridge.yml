@@ -1,6 +1,11 @@
 name: Shirmani to Yatharth Creative Studio - Automission Bridge
 
 on:
+  # Explicit push handling prevents stale/legacy push events from becoming jobless failures.
+  # The job itself is gated to remain non-dispatching on push.
+  push:
+    branches:
+      - "**"
   workflow_dispatch:
     inputs:
       brief:
@@ -20,6 +25,7 @@ permissions:
 
 jobs:
   dispatch:
+    if: ${{ github.event_name != 'push' }}
     runs-on: ubuntu-latest
     env:
       FEDERATION_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
