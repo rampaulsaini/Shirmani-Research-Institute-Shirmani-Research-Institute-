@@ -53,8 +53,6 @@ jobs:
           REPOSITORY_MATRIX: ${{ vars.SHIRMANI_REPOSITORIES }}
           MANUAL_BRIEF: ${{ inputs.brief }}
           MANUAL_FORMAT: ${{ inputs.format }}
-          EVENT_BRIEF: ${{ github.event.client_payload.brief }}
-          EVENT_FORMAT: ${{ github.event.client_payload.format }}
           AUTOMATION_MODE: ${{ vars.SHIRMANI_AUTOMATION_MODE || 'CONTINUOUS' }}
         uses: actions/github-script@v7
         with:
@@ -80,13 +78,14 @@ jobs:
               }];
             }
 
+            const clientPayload = (context.payload && context.payload.client_payload) || {};
             const brief =
               process.env.MANUAL_BRIEF ||
-              process.env.EVENT_BRIEF ||
+              clientPayload.brief ||
               'Automission continuity brief: continue verified research-to-creative production work.';
             const format =
               process.env.MANUAL_FORMAT ||
-              process.env.EVENT_FORMAT ||
+              clientPayload.format ||
               'animated-film';
 
             const allowedFormats = new Set([
@@ -100,7 +99,10 @@ jobs:
               return;
             }
 
-            const mode = process.env.AUTOMATION_MODE || 'CONTINUOUS';
+            const configuredMode = process.env.AUTOMATION_MODE || 'CONTINUOUS';
+            const mode = ['CONTINUOUS', 'ON_DEMAND', 'SAFE'].includes(configuredMode)
+              ? configuredMode
+              : 'CONTINUOUS';
 
             for (const target of targets) {
               if (target.enabled === false) continue;
