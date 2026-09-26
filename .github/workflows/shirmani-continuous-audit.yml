@@ -61,8 +61,16 @@ jobs:
           mkdir -p "$GITHUB_WORKSPACE/audit-result"
           workdir="$RUNNER_TEMP/repo"
 
-          if [ -n "${CROSS_REPO_TOKEN:-}" ]; then
-            git -c http.extraheader="AUTHORIZATION: bearer $CROSS_REPO_TOKEN"               clone --depth 1 "https://github.com/$TARGET_REPO.git" "$workdir" >clone.log 2>&1
+          credential_ok=$(CROSS_REPO_TOKEN="${CROSS_REPO_TOKEN:-}" python3 - <<'PY'
+import os
+token = os.environ.get("CROSS_REPO_TOKEN", "")
+print("true" if token and token.isascii() and not any(ch.isspace() for ch in token) else "false")
+PY
+          )
+
+          if [ "$credential_ok" = "true" ]; then
+            git -c http.extraheader="AUTHORIZATION: bearer $CROSS_REPO_TOKEN" \
+              clone --depth 1 "https://github.com/$TARGET_REPO.git" "$workdir" >clone.log 2>&1
           else
             git clone --depth 1 "https://github.com/$TARGET_REPO.git" "$workdir" >clone.log 2>&1
           fi
