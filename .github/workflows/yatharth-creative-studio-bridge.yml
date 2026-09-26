@@ -1,8 +1,7 @@
 name: Shirmani to Yatharth Creative Studio - Automission Bridge
 
 on:
-  # Explicit push handling prevents stale/legacy push events from becoming jobless failures.
-  # The job itself is gated to remain non-dispatching on push.
+  # Push events are handled as successful no-op audit runs; federation dispatch is reserved for manual and scheduled events.
   push:
     branches:
       - "**"
@@ -25,17 +24,20 @@ permissions:
 
 jobs:
   dispatch:
-    if: ${{ github.event_name != 'push' }}
     runs-on: ubuntu-latest
     env:
       FEDERATION_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
     steps:
+      - name: Skip federation dispatch on push
+        if: ${{ github.event_name == 'push' }}
+        run: echo "Push audit only: federation dispatch is intentionally skipped."
+
       - name: Report missing federation credential
-        if: ${{ env.FEDERATION_TOKEN == '' }}
+        if: ${{ github.event_name != 'push' && env.FEDERATION_TOKEN == '' }}
         run: echo "Federation dispatch skipped: SHIRMANI_GITHUB_TOKEN is not configured."
 
       - name: Send federation event
-        if: ${{ env.FEDERATION_TOKEN != '' }}
+        if: ${{ github.event_name != 'push' && env.FEDERATION_TOKEN != '' }}
         continue-on-error: true
         uses: actions/github-script@v7
         with:
