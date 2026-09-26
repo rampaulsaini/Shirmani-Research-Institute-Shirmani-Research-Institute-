@@ -22,7 +22,12 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
+      - name: Report missing federation credential
+        if: ${{ secrets.SHIRMANI_GITHUB_TOKEN == '' }}
+        run: echo "Federation dispatch skipped: SHIRMANI_GITHUB_TOKEN is not configured."
+
       - name: Send federation event
+        if: ${{ secrets.SHIRMANI_GITHUB_TOKEN != '' }}
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
