@@ -7,6 +7,7 @@
     "read": {"planning": true, "execution": true},
     "research": {"planning": true, "execution": true},
     "create": {"planning": true, "execution": true},
+    "review": {"planning": true, "execution": true},
     "publish": {"planning": true, "execution": false, "authorization_required": true},
     "submit": {"planning": true, "execution": false, "authorization_required": true},
     "accept_contract": {"planning": true, "execution": false, "authorization_required": true},
