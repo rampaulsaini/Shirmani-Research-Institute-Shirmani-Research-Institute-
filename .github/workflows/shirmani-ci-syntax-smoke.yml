@@ -85,8 +85,8 @@ jobs:
               '"independent_verification_claim": False',
               "yatharth-studio-request-",
               "git add automation/inbox federation/inbox federation/outbox",
-              "BRIEF: ${{ github.event.client_payload.brief || inputs.brief }}",
-              "FORMAT: ${{ github.event.client_payload.format || inputs.format }}",
+              "BRIEF: " + "${" + "{ github.event.client_payload.brief || inputs.brief }}",
+              "FORMAT: " + "${" + "{ github.event.client_payload.format || inputs.format }}",
           ]
           missing_intake = [item for item in intake_required if item not in intake]
           if missing_intake:
