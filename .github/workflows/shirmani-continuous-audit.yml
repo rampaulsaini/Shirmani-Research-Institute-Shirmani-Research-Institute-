@@ -1,7 +1,6 @@
 name: SHIRMANI Heart-View Supreme Continuous Audit
 
 on:
-  # Scheduled audit avoids a duplicate push-trigger flood; the main factory remains the 5-minute execution loop.
   workflow_dispatch:
   schedule:
     - cron: "2-59/5 * * * *"
@@ -60,12 +59,13 @@ jobs:
           set -u
           mkdir -p "$GITHUB_WORKSPACE/audit-result"
           workdir="$RUNNER_TEMP/repo"
+          rm -rf "$workdir"
 
           credential_ok=$(CROSS_REPO_TOKEN="${CROSS_REPO_TOKEN:-}" python3 - <<'PY'
-import os
-token = os.environ.get("CROSS_REPO_TOKEN", "")
-print("true" if token and token.isascii() and not any(ch.isspace() for ch in token) else "false")
-PY
+          import os
+          token = os.environ.get("CROSS_REPO_TOKEN", "")
+          print("true" if token and token.isascii() and not any(ch.isspace() for ch in token) else "false")
+          PY
           )
 
           if [ "$credential_ok" = "true" ]; then
@@ -77,14 +77,14 @@ PY
 
           clone_status=$?
           if [ "$clone_status" -ne 0 ]; then
-            TARGET_REPO="$TARGET_REPO" python - <<'PY'
+            TARGET_REPO="$TARGET_REPO" python3 - <<'PY'
           import json, os, pathlib, datetime
-          pathlib.Path(os.environ["GITHUB_WORKSPACE"]) / "audit-result" / "result.json"
-          (pathlib.Path(os.environ["GITHUB_WORKSPACE"]) / "audit-result" / "result.json").write_text(json.dumps({
-            "repository": os.environ["TARGET_REPO"],
-            "status": "AUTH_REQUIRED_OR_CLONE_FAILED",
-            "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat()
-          }, indent=2))
+          result = pathlib.Path(os.environ["GITHUB_WORKSPACE"]) / "audit-result" / "result.json"
+          result.write_text(json.dumps({
+              "repository": os.environ["TARGET_REPO"],
+              "status": "AUTH_REQUIRED_OR_CLONE_FAILED",
+              "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat()
+          }, indent=2), encoding="utf-8")
           PY
             exit 0
           fi
@@ -109,23 +109,25 @@ PY
           visibility="public-or-accessible"
           export visibility
 
-          TARGET_REPO="$TARGET_REPO" python - <<'PY'
+          TARGET_REPO="$TARGET_REPO" python3 - <<'PY'
           import json, os, pathlib, datetime
           data = {
-            "repository": os.environ["TARGET_REPO"],
-            "status": "OK",
-            "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            "commit": os.environ["commit"],
-            "branch": os.environ["branch"],
-            "tracked_files": int(os.environ["files"]),
-            "directories": int(os.environ["dirs"]),
-            "working_tree_bytes": int(os.environ["bytes"]),
-            "workflow_files": int(os.environ["workflows"]),
-            "latest_commit_date": os.environ["latest_date"],
-            "latest_commit_subject": os.environ["latest_subject"],
-            "visibility": os.environ["visibility"]
+              "repository": os.environ["TARGET_REPO"],
+              "status": "OK",
+              "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              "commit": os.environ["commit"],
+              "branch": os.environ["branch"],
+              "tracked_files": int(os.environ["files"]),
+              "directories": int(os.environ["dirs"]),
+              "working_tree_bytes": int(os.environ["bytes"]),
+              "workflow_files": int(os.environ["workflows"]),
+              "latest_commit_date": os.environ["latest_date"],
+              "latest_commit_subject": os.environ["latest_subject"],
+              "visibility": os.environ["visibility"]
           }
-          (pathlib.Path(os.environ["GITHUB_WORKSPACE"]) / "audit-result" / "result.json").write_text(json.dumps(data, indent=2, ensure_ascii=False))
+          (pathlib.Path(os.environ["GITHUB_WORKSPACE"]) / "audit-result" / "result.json").write_text(
+              json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8"
+          )
           PY
 
       - name: Prepare safe artifact name
