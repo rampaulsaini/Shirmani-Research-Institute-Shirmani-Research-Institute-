@@ -3,7 +3,7 @@ name: Shirmani to Yatharth Creative Studio - Automission Bridge
 on:
   push:
     branches:
-      - "**"
+      - main
   workflow_dispatch:
     inputs:
       brief:
@@ -27,6 +27,7 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Confirm workflow syntax
         run: echo "Creative Studio bridge loaded successfully for ${{ github.event_name }}."
@@ -87,6 +88,34 @@ jobs:
             });
 
             core.info('Automission federation event sent to Yatharth Creative Studio.');
+
+      - name: Write federation status
+        if: always()
+        env:
+          FEDERATION_ENABLED: ${{ steps.federation.outputs.enabled || 'false' }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          data = {
+              "workflow": "yatharth-creative-studio-bridge",
+              "event": os.environ.get("GITHUB_EVENT_NAME"),
+              "run_id": os.environ.get("GITHUB_RUN_ID"),
+              "source_repository": os.environ.get("GITHUB_REPOSITORY"),
+              "dispatch_status": "SENT" if os.environ.get("FEDERATION_ENABLED") == "true" else "SKIPPED_TOKEN_UNAVAILABLE",
+              "independent_verification_claim": False
+          }
+          with open("federation-status.json", "w", encoding="utf-8") as f:
+              json.dump(data, f, indent=2, ensure_ascii=False)
+          PY
+
+      - name: Upload federation status
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-federation-status-${{ github.run_id }}
+          path: federation-status.json
+          if-no-files-found: error
 
       - name: Report federation dispatch skipped
         if: steps.federation.outputs.enabled != 'true'
