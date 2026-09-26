@@ -1,6 +1,9 @@
 name: SHIRMANI Multi-Automation Supervisor
 
 on:
+  push:
+    branches:
+      - fix/ci-federation-audit-20260926
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
