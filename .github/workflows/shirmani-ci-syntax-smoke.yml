@@ -55,8 +55,8 @@ jobs:
           from pathlib import Path
           import re
 
-          bad_export = re.compile(r'export [A-Za-z_][A-Za-z0-9_]*="\\$\\(')
-          bad_ls = re.compile(r'(^|[\\s])ls (?:[^\\n]*[?*])(?:[\\s]|$)')
+          bad_export = re.compile(r'export [A-Za-z_][A-Za-z0-9_]*="\$\(')
+          bad_ls = re.compile(r'(^|\s)ls (?:[^\n]*[?*])(?:\s|$)')
 
           failures = []
           for path in sorted(Path(".github/workflows").glob("*.y*ml")):
