@@ -63,7 +63,8 @@ jobs:
           required = [
               "repository_dispatch:",
               "yatharth_studio_request",
-              "automation/inbox/yatharth-studio-request-",
+              "automation/inbox",
+              "yatharth-studio-request-",
               '"status": "RECEIVED"',
               '"independent_verification_claim": False',
               "git push origin HEAD:main",
