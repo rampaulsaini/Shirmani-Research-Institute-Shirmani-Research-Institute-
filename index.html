@@ -46,6 +46,14 @@
             pointer-events: none;
         }
 
+
+        /* TOP PHOTO — main income/livelihood menu */
+        .main-photo-hero{max-width:1150px;margin:18px auto 12px;padding:16px 16px 20px;text-align:center;border:3px solid var(--primary-gold);border-radius:24px;background:linear-gradient(135deg,rgba(212,175,55,.20),rgba(0,210,255,.08));box-shadow:0 16px 44px rgba(0,0,0,.42);}
+        .main-photo-hero img{display:block;width:min(100%,520px);height:auto;max-height:620px;object-fit:cover;margin:0 auto 12px;border-radius:18px;border:3px solid var(--primary-gold);box-shadow:0 0 30px rgba(212,175,55,.35);}
+        .main-photo-hero .photo-title{color:var(--primary-gold);font-family:'Rozha One',serif;font-size:1.65rem;font-weight:700;line-height:1.25;}
+        .main-photo-hero .photo-subtitle{color:var(--text-light);font-size:.92rem;margin-top:4px;}
+        @media(max-width:768px){.main-photo-hero{margin:10px 10px 8px;padding:10px}.main-photo-hero img{width:100%;max-height:none;border-radius:14px}.main-photo-hero .photo-title{font-size:1.35rem}}
+
         /* Header / Banner */
         header {
             text-align: center;
@@ -221,16 +229,25 @@
 
     <div class="glow-bg"></div>
 
-    <nav class="survival-nav" aria-label="जीवन-व्यापन प्रथम नेविगेशन">
-        <a href="livelihood.html">🫶 ALL Income & Livelihood</a><a href="economic-marketing-command-center.html">🤖 AI Marketing Command</a>
-        <a href="public-income-showcase.html">⚡ Public Income & Product Showcase</a>
+    <section class="main-photo-hero" aria-label="निष्पक्ष समझ — मुख्य परिचय फोटो">
+        <img src="https://i.ibb.co/xqf3kTPS/enhanced-image.webp" alt="निष्पक्ष समझ — शिरोमणि रामपाल सैनी की मुख्य परिचय फोटो">
+        <div class="photo-title">निष्पक्ष समझ • शिरोमणि रामपाल सैनी</div>
+        <div class="photo-subtitle">मुख्य Income & Livelihood menu के ठीक ऊपर — जीवन-व्यापन प्रथम</div>
+    </section>
+
+    <nav class="survival-nav" aria-label="जीवन-व्यापन प्रथम मुख्य मेनू">
         <span class="label">🫶 जीवन-व्यापन प्रथम</span>
+        <a href="livelihood.html">🫶 ALL Income & Livelihood</a>
+        <a href="economic-marketing-command-center.html">🤖 AI Marketing Command</a>
+        <a href="public-income-showcase.html">⚡ Public Income & Product Showcase</a>
         <a href="income-command-center.html">⚡ Income Command Center</a>
-        <a href="livelihood.html">🫶 सभी Income Sources</a><a href="employment.html">💼 Employment & Work</a>
+        <a href="livelihood.html">🫶 सभी Income Sources</a>
+        <a href="employment.html">💼 Employment & Work</a>
         <a href="economic-marketing-command-center.html">🤖 AI Marketing</a>
         <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener">🛒 Digital Store</a>
         <a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener">🎵 यथार्थ AI Music</a>
-        <a href="employment.html">💼 Employment & Work</a><a href="#income-workbench">💼 Freelancing</a>
+        <a href="employment.html">💼 Employment & Work</a>
+        <a href="#income-workbench">💼 Freelancing</a>
         <a href="#economic-vision">📈 Economic Vision</a>
         <a href="public-income-showcase.html">🎙️ Products • Music • Freelancing • Live Podcast</a>
     </nav>
