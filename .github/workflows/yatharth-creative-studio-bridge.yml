@@ -90,4 +90,4 @@ jobs:
 
       - name: Report federation dispatch skipped
         if: steps.federation.outputs.enabled != 'true'
-        run: echo "Creative federation dispatch skipped safely because SHIRMANY_GITHUB_TOKEN is missing or malformed; no cross-repository dispatch performed."
+        run: echo "Creative federation dispatch skipped safely because SHIRMANI_GITHUB_TOKEN is missing or malformed; no cross-repository dispatch performed."
