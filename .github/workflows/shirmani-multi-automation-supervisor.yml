@@ -1,6 +1,9 @@
 name: SHIRMANI Multi-Automation Supervisor
 
 on:
+  push:
+    branches:
+      - fix/ci-federation-audit-20260926
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
@@ -18,6 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Checkout repository for protected-source and continuation checks
+        uses: actions/checkout@v4
+
       - name: Inspect recent workflow failures
         env:
           GH_TOKEN: ${{ github.token }}

@@ -226,7 +226,7 @@ jobs:
       - name: Publish generated catalog through pull request
         if: github.event_name != 'pull_request'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN || github.token }}
         run: |
           set -e
           git config user.name "omniverse-factory[bot]"
@@ -243,5 +243,7 @@ jobs:
           git branch -f "$BRANCH" HEAD
           git push --force-with-lease origin "HEAD:$BRANCH"
           if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
-            gh pr create --base main --head "$BRANCH" --title "chore(factory): publish verified generated research products" --body "Automated publication PR created after the deterministic Heart-View factory gates passed. Protected source material is not rewritten. Generated outputs remain derivatives and subject to the repository verification policy."
+            if ! gh pr create --base main --head "$BRANCH" --title "chore(factory): publish verified generated research products" --body "Automated publication PR created after the deterministic Heart-View factory gates passed. Protected source material is not rewritten. Generated outputs remain derivatives and subject to the repository verification policy."; then
+              echo "Publication PR creation was deferred; generated outputs remain on $BRANCH."
+            fi
           fi

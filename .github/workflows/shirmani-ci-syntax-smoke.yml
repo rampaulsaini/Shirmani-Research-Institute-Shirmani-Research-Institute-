@@ -1,0 +1,74 @@
+name: SHIRMANI CI Syntax Smoke
+
+on:
+  push:
+    branches:
+      - fix/ci-federation-audit-20260926
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/**"
+      - "scripts/**"
+      - "factory/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-ci-syntax-smoke-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate GitHub Actions syntax
+        uses: docker://rhysd/actionlint:latest
+
+      - name: Validate workflow YAML structure
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import yaml
+
+          for path in sorted(Path(".github/workflows").glob("*.y*ml")):
+              data = yaml.safe_load(path.read_text(encoding="utf-8"))
+              if not isinstance(data, dict):
+                  raise SystemExit(f"{path}: root is not a mapping")
+              if "jobs" not in data or not isinstance(data["jobs"], dict) or not data["jobs"]:
+                  raise SystemExit(f"{path}: missing jobs")
+              trigger_keys = {"on", True}
+              if not any(key in data for key in trigger_keys):
+                  raise SystemExit(f"{path}: missing workflow trigger")
+          print("WORKFLOW_YAML_STRUCTURE=PASS")
+          PY
+
+      - name: Guard known shell failure patterns
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          bad_export = re.compile(r'export [A-Za-z_][A-Za-z0-9_]*="\$\(')
+          bad_ls = re.compile(r'(^|\s)ls (?:[^\n]*[?*])(?:\s|$)')
+
+          failures = []
+          for path in sorted(Path(".github/workflows").glob("*.y*ml")):
+              if path.name == "shirmani-ci-syntax-smoke.yml":
+                  continue
+              text = path.read_text(encoding="utf-8")
+              if bad_export.search(text):
+                  failures.append(f"{path}: SC2155-style export/command-substitution pattern")
+              if bad_ls.search(text):
+                  failures.append(f"{path}: SC2012-style ls glob pattern")
+
+          if failures:
+              raise SystemExit("\\n".join(failures))
+          print("KNOWN_SHELL_FAILURE_PATTERNS=PASS")
+          PY

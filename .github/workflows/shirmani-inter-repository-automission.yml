@@ -1,11 +1,15 @@
 name: SHIRMANI Inter-Repository Automission Orchestrator
 
 on:
+  push:
+    branches:
+      - "**"
   workflow_dispatch:
     inputs:
       brief:
         description: "Research/creative brief to federate"
-        required: true
+        required: false
+        default: "Automission continuity brief: continue verified research-to-creative production work."
         type: string
       format:
         description: "Target production format"
@@ -13,31 +17,46 @@ on:
         default: "animated-film"
         type: string
   repository_dispatch:
-    types: [shirmani_automission_request]
+    types:
+      - shirmani_automission_request
   schedule:
     - cron: "17 */6 * * *"
 
 permissions:
   contents: read
 
-concurrency:
-  group: shirmani-inter-repository-automission
-  cancel-in-progress: false
-
 jobs:
-  dispatch:
+  audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     steps:
-      - name: Dispatch approved repository matrix
-        uses: actions/github-script@v7
+      - name: Confirm workflow syntax
+        run: echo "Inter-repository automation workflow loaded successfully for ${{ github.event_name }}."
+
+      - name: Check federation credential
+        id: federation
         env:
-          AUTOMATION_MODE: ${{ vars.SHIRMANI_AUTOMATION_MODE || 'CONTINUOUS' }}
+          FEDERATION_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          enabled=$(python3 - <<'PY'
+          import os
+          token = os.environ.get("FEDERATION_TOKEN", "")
+          print("true" if token and token.isascii() and not any(ch.isspace() for ch in token) else "false")
+          PY
+          )
+          echo "enabled=$enabled" >> "$GITHUB_OUTPUT"
+
+      - name: Dispatch approved repository matrix
+        if: steps.federation.outputs.enabled == 'true'
+        env:
           REPOSITORY_MATRIX: ${{ vars.SHIRMANI_REPOSITORIES }}
           MANUAL_BRIEF: ${{ inputs.brief }}
           MANUAL_FORMAT: ${{ inputs.format }}
           EVENT_BRIEF: ${{ github.event.client_payload.brief }}
           EVENT_FORMAT: ${{ github.event.client_payload.format }}
+          AUTOMATION_MODE: ${{ vars.SHIRMANI_AUTOMATION_MODE || 'CONTINUOUS' }}
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
           script: |
@@ -53,8 +72,6 @@ jobs:
               }
             }
 
-            // Safe default keeps the existing Shirmani → Yatharth bridge operational
-            // even before the optional 25-repository matrix is configured.
             if (!targets.length) {
               targets = [{
                 repository: 'rampaulsaini/yatharth-music-ai',
@@ -67,7 +84,22 @@ jobs:
               process.env.MANUAL_BRIEF ||
               process.env.EVENT_BRIEF ||
               'Automission continuity brief: continue verified research-to-creative production work.';
-            const format = process.env.MANUAL_FORMAT || process.env.EVENT_FORMAT || 'animated-film';
+            const format =
+              process.env.MANUAL_FORMAT ||
+              process.env.EVENT_FORMAT ||
+              'animated-film';
+
+            const allowedFormats = new Set([
+              'animated-film',
+              'animated-short',
+              'music-video',
+              'story-film'
+            ]);
+            if (!allowedFormats.has(format)) {
+              core.setFailed(`Unsupported production format: ${format}`);
+              return;
+            }
+
             const mode = process.env.AUTOMATION_MODE || 'CONTINUOUS';
 
             for (const target of targets) {
@@ -77,9 +109,15 @@ jobs:
                 continue;
               }
 
+              const parts = target.repository.split('/');
+              if (parts.length !== 2 || !parts[0] || !parts[1]) {
+                core.warning(`Skipping invalid repository: ${target.repository}`);
+                continue;
+              }
+
               await github.rest.repos.createDispatchEvent({
-                owner: target.repository.split('/')[0],
-                repo: target.repository.split('/')[1],
+                owner: parts[0],
+                repo: parts[1],
                 event_type: target.event_type,
                 client_payload: {
                   source_repository: context.repo.owner + '/' + context.repo.repo,
@@ -94,13 +132,16 @@ jobs:
               core.info(`Dispatched ${target.event_type} → ${target.repository}`);
             }
 
-            core.summary
+            await core.summary
               .addHeading('Inter-Repository Automission')
               .addTable([
                 [{data:'Field',header:true},{data:'Value',header:true}],
                 ['Mode', mode],
                 ['Targets', String(targets.filter(t => t.enabled !== false).length)],
-                ['Brief', brief],
                 ['Format', format]
               ])
               .write();
+
+      - name: Report federation dispatch skipped
+        if: steps.federation.outputs.enabled != 'true'
+        run: echo "Federation dispatch skipped safely because SHIRMANI_GITHUB_TOKEN is missing or malformed; no cross-repository dispatch performed."
