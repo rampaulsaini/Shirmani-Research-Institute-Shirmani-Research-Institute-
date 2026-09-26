@@ -6,9 +6,10 @@ ALLOWED_ADAPTERS = tuple(x.strip() for x in os.getenv("AUTOMISSION_ADAPTER_ALLOW
 CHANNELS = ("employment","freelancing","ai_marketing","digital_store","yatharth_ai_music","economic_vision")
 
 def module_for(channel):
-    if channel not in CHANNELS:
+    canonical = str(channel or "").strip().replace("-", "_")
+    if canonical not in CHANNELS:
         raise ValueError("unsupported channel")
-    return os.getenv("AUTOMISSION_" + channel.upper() + "_ADAPTER", "").strip()
+    return os.getenv("AUTOMISSION_" + canonical.upper() + "_ADAPTER", "").strip()
 
 def load(channel):
     name = module_for(channel)
