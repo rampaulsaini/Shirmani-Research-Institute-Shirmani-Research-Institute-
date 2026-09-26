@@ -130,6 +130,43 @@ jobs:
               });
 
               core.info(`Dispatched ${target.event_type} → ${target.repository}`);
+
+              // End-to-end handshake: the receiver must persist a receipt keyed to this run.
+              // Dispatch success alone is not treated as downstream completion.
+              const receiptPath = `automation/inbox/yatharth-studio-request-${context.runId}.json`;
+              let receipt = null;
+              for (let attempt = 1; attempt <= 12; attempt += 1) {
+                await new Promise(resolve => setTimeout(resolve, 5000));
+                try {
+                  const response = await github.rest.repos.getContent({
+                    owner: parts[0],
+                    repo: parts[1],
+                    path: receiptPath,
+                    ref: 'main'
+                  });
+                  const item = Array.isArray(response.data) ? response.data[0] : response.data;
+                  if (item && item.content) {
+                    receipt = JSON.parse(Buffer.from(item.content, 'base64').toString('utf8'));
+                    break;
+                  }
+                } catch (error) {
+                  if (error.status !== 404) throw error;
+                }
+                core.info(`Waiting for receiver receipt (${attempt}/12): ${target.repository}`);
+              }
+
+              if (!receipt) {
+                core.setFailed(`Downstream receiver did not publish a receipt within 60 seconds: ${target.repository}`);
+                return;
+              }
+              if (receipt.status !== 'RECEIVED' ||
+                  receipt.source_run_id !== String(context.runId) ||
+                  receipt.independent_verification_claim !== false) {
+                core.setFailed(`Downstream receipt failed integrity checks: ${target.repository}`);
+                return;
+              }
+
+              core.info(`Verified downstream receipt: ${target.repository} / ${receiptPath}`);
             }
 
             await core.summary
