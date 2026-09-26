@@ -32,10 +32,24 @@ jobs:
       - name: Confirm workflow syntax
         run: echo "Inter-repository automation workflow loaded successfully for ${{ github.event_name }}."
 
-      - name: Dispatch approved repository matrix
-        if: env.FEDERATION_ENABLED == 'true'
+      - name: Check federation credential
+        id: federation
         env:
-          FEDERATION_ENABLED: ${{ secrets.SHIRMANI_GITHUB_TOKEN != '' && 'true' || 'false' }}
+          FEDERATION_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          enabled=$(python3 - <<'PY'
+          import os
+          token = os.environ.get("FEDERATION_TOKEN", "")
+          print("true" if token and token.isascii() and not any(ch.isspace() for ch in token) else "false")
+          PY
+          )
+          echo "enabled=$enabled" >> "$GITHUB_OUTPUT"
+
+      - name: Dispatch approved repository matrix
+        if: steps.federation.outputs.enabled == 'true'
+        env:
           REPOSITORY_MATRIX: ${{ vars.SHIRMANI_REPOSITORIES }}
           MANUAL_BRIEF: ${{ inputs.brief }}
           MANUAL_FORMAT: ${{ inputs.format }}
@@ -129,7 +143,5 @@ jobs:
               .write();
 
       - name: Report federation dispatch skipped
-        if: env.FEDERATION_ENABLED != 'true'
-        env:
-          FEDERATION_ENABLED: ${{ secrets.SHIRMANI_GITHUB_TOKEN != '' && 'true' || 'false' }}
-        run: echo "Federation dispatch skipped safely because SHIRMANI_GITHUB_TOKEN is not configured."
+        if: steps.federation.outputs.enabled != 'true'
+        run: echo "Federation dispatch skipped safely because SHIRMANY_GITHUB_TOKEN is missing or malformed; no cross-repository dispatch performed."
