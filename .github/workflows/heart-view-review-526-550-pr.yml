@@ -2,6 +2,7 @@ name: SHIRMANI Heart-View Review Slice 526-550
 
 on:
   workflow_dispatch:
+  push:
     branches:
       - continue/heart-view-review-526-550-pr-20260922
     paths:
