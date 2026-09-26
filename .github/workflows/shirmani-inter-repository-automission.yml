@@ -115,6 +115,14 @@ jobs:
                 continue;
               }
 
+              const receiptPath = target.receipt_path || `automation/inbox/yatharth-studio-request-${context.runId}.json`;
+              if (!receiptPath.startsWith("automation/inbox/") ||
+                  receiptPath.includes("..") ||
+                  receiptPath.startsWith("/")) {
+                core.setFailed(`Invalid receipt_path for ${target.repository}: ${receiptPath}`);
+                return;
+              }
+
               await github.rest.repos.createDispatchEvent({
                 owner: parts[0],
                 repo: parts[1],
@@ -125,7 +133,8 @@ jobs:
                   source_run_id: String(context.runId),
                   automation_mode: mode,
                   brief,
-                  format
+                  format,
+                  receipt_path: receiptPath
                 }
               });
 
@@ -133,7 +142,6 @@ jobs:
 
               // End-to-end handshake: the receiver must persist a receipt keyed to this run.
               // Dispatch success alone is not treated as downstream completion.
-              const receiptPath = `automation/inbox/yatharth-studio-request-${context.runId}.json`;
               let receipt = null;
               for (let attempt = 1; attempt <= 12; attempt += 1) {
                 await new Promise(resolve => setTimeout(resolve, 5000));
