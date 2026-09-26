@@ -111,10 +111,16 @@ jobs:
           (pathlib.Path(os.environ["GITHUB_WORKSPACE"]) / "audit-result" / "result.json").write_text(json.dumps(data, indent=2, ensure_ascii=False))
           PY
 
+      - name: Prepare safe artifact name
+        id: artifact_name
+        env:
+          TARGET_REPO: ${{ matrix.repo }}
+        run: echo "name=shirmani-audit-${TARGET_REPO//\//-}" >> "$GITHUB_OUTPUT"
+
       - name: Upload audit result
         uses: actions/upload-artifact@v4
         with:
-          name: shirmani-audit-${{ matrix.repo }}
+          name: ${{ steps.artifact_name.outputs.name }}
           path: audit-result/result.json
           if-no-files-found: error
           retention-days: 30
