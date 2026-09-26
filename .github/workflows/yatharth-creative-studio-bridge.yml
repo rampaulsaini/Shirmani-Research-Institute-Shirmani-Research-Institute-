@@ -1,9 +1,10 @@
 name: Shirmani to Yatharth Creative Studio - Automission Bridge
 
 on:
-  push:
-    branches:
-      - main
+  # The Inter-Repository Automission Orchestrator owns the canonical
+  # yatharth_studio_request dispatch on main. This bridge remains manual
+  # (or responds to its dedicated yatharth_creative_request event) to avoid
+  # duplicate downstream hand-offs. 
   workflow_dispatch:
     inputs:
       brief:
