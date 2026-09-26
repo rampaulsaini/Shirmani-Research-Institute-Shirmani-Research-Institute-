@@ -66,6 +66,7 @@ def main() -> int:
         urllib.error.HTTPError,
         urllib.error.URLError,
         TimeoutError,
+        UnicodeEncodeError,
         json.JSONDecodeError,
         RuntimeError,
     ) as exc:
