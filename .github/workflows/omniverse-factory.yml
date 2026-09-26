@@ -226,7 +226,7 @@ jobs:
       - name: Publish generated catalog through pull request
         if: github.event_name != 'pull_request'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN || github.token }}
         run: |
           set -e
           git config user.name "omniverse-factory[bot]"
