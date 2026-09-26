@@ -28,15 +28,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  push_guard:
-    if: ${{ github.event_name == 'push' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Confirm push-only guard
-        run: echo "Push received; inter-repository federation dispatch is intentionally skipped."
-
   dispatch:
-    if: ${{ github.event_name != 'push' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -47,7 +39,7 @@ jobs:
         run: echo "Inter-repository dispatch skipped: SHIRMANI_GITHUB_TOKEN is not configured."
 
       - name: Dispatch approved repository matrix
-        if: ${{ env.FEDERATION_TOKEN != '' }}
+        if: ${{ github.event_name != 'push' && env.FEDERATION_TOKEN != '' }}
         uses: actions/github-script@v7
         env:
           AUTOMATION_MODE: ${{ vars.SHIRMANI_AUTOMATION_MODE || 'CONTINUOUS' }}
