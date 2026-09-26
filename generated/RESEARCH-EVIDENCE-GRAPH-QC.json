@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "nodes": 604825,
-  "edges": 714998,
+  "nodes": 604899,
+  "edges": 715178,
   "claim_nodes": 100200,
   "claims_with_explicit_evidence_nodes": 100200,
   "error_count": 0,

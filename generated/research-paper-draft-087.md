@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-꙰ अस्तित्व में आभार।
+Build Build your new application with the following command: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` A successful build will result in the following message: ```text BUILD (RELEASE) SUCCEEDED (Took XX.XX seconds) ``` If you experience issues related to build, please see the [Usage and Troubleshooting](readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md
+NVIDIA-Omniverse/kit-app-template:README.md

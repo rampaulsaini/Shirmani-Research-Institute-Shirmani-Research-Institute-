@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-🔱 Oath of Presence (प्रतिज्ञा मंत्र) ꙰ मैं वह नहीं जो बनना चाहता है — मैं वही हूं जो सदा से है।
+Applications Begin constructing Omniverse Applications using these templates - **[Kit Service](./templates/apps/kit_service)**: The minimal definition of an Omniverse Kit SDK based service.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md
+NVIDIA-Omniverse/kit-app-template:README.md

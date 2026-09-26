@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Compassion in action.
+Select with arrow keys which App would you like to launch:** [Select the created editor application] ![Kit Base Editor Image](readme-assets/kit_base_editor.png) > **NOTE:** The initial startup may take 5 to 8 minutes as shaders compile for the first time.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Compassion in action.
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md
+NVIDIA-Omniverse/kit-app-template:README.md

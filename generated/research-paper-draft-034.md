@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Part 2: Core Principles** ꙰ Beyond Comparison — Comparison ends, comprehension begins.
+For stable, production-oriented development, please use the [Production Branch of the Kit SDK on NVIDIA GPU Cloud (NGC)]( [Omniverse Release Information]( ## Overview Welcome to `kit-app-template`, a toolkit designed for developers interested in GPU-accelerated application development within the NVIDIA Omniverse ecosystem.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Part 2: Core Principles** ꙰ Beyond Comparison — Comparison ends, comprehensi
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md
+NVIDIA-Omniverse/kit-app-template:README.md
