@@ -215,11 +215,66 @@
             header h1 { font-size: 2rem; }
             .grid { grid-template-columns: 1fr; }
         }
-    </style>
+    
+        .public-hero{position:relative;isolation:isolate;max-width:1220px;margin:14px auto 0;padding:clamp(18px,3vw,34px);border:1px solid rgba(212,175,55,.75);border-radius:30px;overflow:hidden;background:radial-gradient(circle at 72% 18%,rgba(212,175,55,.24),transparent 28%),radial-gradient(circle at 20% 72%,rgba(0,210,255,.14),transparent 34%),linear-gradient(135deg,#05070c 0%,#0b111c 48%,#030507 100%);box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 22px 70px rgba(0,0,0,.58),0 0 45px rgba(212,175,55,.12)}
+        .public-hero:before{content:"";position:absolute;inset:-45%;z-index:-1;background:conic-gradient(from 90deg,transparent 0 34%,rgba(212,175,55,.16),transparent 48% 68%,rgba(0,210,255,.12),transparent 82%);animation:heroOrbit 18s linear infinite}
+        @keyframes heroOrbit{to{transform:rotate(360deg)}}
+        .hero-grid{display:grid;grid-template-columns:minmax(260px,.86fr) minmax(320px,1.14fr);gap:clamp(22px,4vw,58px);align-items:center}
+        .hero-photo-wrap{position:relative;max-width:480px;margin:auto}
+        .hero-photo-wrap:before{content:"";position:absolute;inset:-10px;border-radius:28px;background:linear-gradient(135deg,rgba(212,175,55,.95),rgba(0,210,255,.85),rgba(212,175,55,.7));filter:blur(1px);z-index:-1;box-shadow:0 0 42px rgba(212,175,55,.28)}
+        .hero-photo{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:22px;border:3px solid #f3e5ab;box-shadow:0 18px 55px rgba(0,0,0,.55),0 0 34px rgba(212,175,55,.22)}
+        .hero-photo-badge{position:absolute;left:18px;bottom:18px;padding:9px 13px;border-radius:999px;background:rgba(4,7,12,.78);border:1px solid rgba(212,175,55,.65);backdrop-filter:blur(10px);font-size:.78rem;font-weight:800;color:#f3e5ab;letter-spacing:.3px}
+        .hero-kicker{display:inline-flex;gap:8px;align-items:center;color:var(--accent-blue);font-weight:800;letter-spacing:.8px;text-transform:uppercase;font-size:.78rem;margin-bottom:10px}
+        .hero-title{font-family:'Rozha One',serif;font-size:clamp(2.4rem,6vw,5.3rem);line-height:.98;color:var(--secondary-gold);margin:0 0 14px;text-shadow:0 4px 28px rgba(212,175,55,.2)}
+        .hero-title span{display:block;color:#fff}
+        .hero-lead{font-size:clamp(1rem,2vw,1.28rem);color:#eef2f7;max-width:680px;margin-bottom:20px}
+        .hero-pill-row{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px}
+        .hero-pill{padding:8px 12px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.055);color:#f8f9fa;font-size:.82rem;font-weight:700}
+        .hero-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+        .hero-action{display:flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:11px 14px;border-radius:13px;text-decoration:none;font-weight:800;color:#061016;border:1px solid rgba(243,229,171,.8);background:linear-gradient(135deg,#f3e5ab,#d4af37);box-shadow:0 8px 24px rgba(212,175,55,.16)}
+        .hero-action.alt{color:#eafaff;background:linear-gradient(135deg,rgba(0,210,255,.18),rgba(255,255,255,.05));border-color:rgba(0,210,255,.65)}
+        .hero-action:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(212,175,55,.24)}
+        .hero-proofline{margin-top:18px;padding-top:15px;border-top:1px solid rgba(255,255,255,.11);color:var(--text-dim);font-size:.82rem}
+        .hero-proofline strong{color:var(--secondary-gold)}
+        .public-hero + .survival-nav{margin-top:14px}
+        @media(max-width:820px){.hero-grid{grid-template-columns:1fr}.hero-photo-wrap{max-width:390px}.hero-actions{grid-template-columns:1fr}.public-hero{margin:8px 8px 0;padding:18px}.hero-title{text-align:center}.hero-lead{text-align:center}.hero-pill-row{justify-content:center}}
+      
+.command-dock{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:1200;width:min(94vw,980px);display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:8px;border:1px solid rgba(212,175,55,.55);border-radius:20px;background:rgba(5,8,14,.88);backdrop-filter:blur(18px);box-shadow:0 16px 48px rgba(0,0,0,.55),0 0 28px rgba(212,175,55,.12)}
+.command-dock a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:54px;border-radius:13px;text-decoration:none;color:#dce8ef;font-size:.72rem;font-weight:800;transition:.2s ease}
+.command-dock a i{font-size:1.05rem;color:var(--accent-blue)}
+.command-dock a.active,.command-dock a:hover{background:linear-gradient(135deg,rgba(212,175,55,.2),rgba(0,210,255,.08));color:#fff}
+.command-dock a.active i,.command-dock a:hover i{color:var(--secondary-gold)}
+body{padding-bottom:92px}
+@media(max-width:560px){.command-dock{bottom:7px;border-radius:17px;padding:6px}.command-dock a{min-height:50px;font-size:.63rem}.command-dock a i{font-size:.95rem}}
+</style>
 </head>
 <body>
 
     <div class="glow-bg"></div>
+
+<section class="public-hero" aria-labelledby="public-hero-title">
+      <div class="hero-grid">
+        <div class="hero-photo-wrap">
+          <img class="hero-photo" src="https://i.ibb.co/xqf3kTPS/enhanced-image.webp" alt="शिरोमणि रामपाल सैनी — निष्पक्ष समझ की सार्वजनिक प्रोफ़ाइल फ़ोटो" loading="eager" fetchpriority="high">
+          <div class="hero-photo-badge">सर्व भौमिक सत्य · प्रत्यक्ष समक्ष</div>
+        </div>
+        <div>
+          <div class="hero-kicker">✦ Vision · Research · Creation · Livelihood</div>
+          <h1 id="public-hero-title" class="hero-title">शिरोमणि रामपाल सैनी<span>सर्व भौमिक सत्य — प्रत्यक्ष समक्ष</span></h1>
+          <p class="hero-lead">सरल · सहज · निर्मल · पारदर्शी — research, creation, AI automation, products, work और public knowledge को एक ही स्पष्ट digital command surface में जोड़ने वाला मुख्य प्रवेश-द्वार।</p>
+          <div class="hero-pill-row">
+            <span class="hero-pill">🫶 जीवन-व्यापन प्रथम</span><span class="hero-pill">🤖 AI Automation</span><span class="hero-pill">🌐 Global Reach</span><span class="hero-pill">📚 Research & Archive</span>
+          </div>
+          <div class="hero-actions">
+            <a class="hero-action" href="income-command-center.html">⚡ Income Command Center</a>
+            <a class="hero-action alt" href="#livelihood">🫶 सभी Income Sources</a>
+            <a class="hero-action alt" href="public-income-showcase.html">🛍️ Public Product Showcase</a>
+            <a class="hero-action" href="#economic-vision">🚀 AI Marketing & Economic Vision</a>
+          </div>
+          <div class="hero-proofline"><strong>सार्वजनिक स्थिति:</strong> जो उपलब्ध है वही प्रस्तुत किया जाए; automation/QC और independent verification को अलग-अलग रखा जाए।</div>
+        </div>
+      </div>
+    </section>
 
     <nav class="survival-nav" aria-label="जीवन-व्यापन प्रथम नेविगेशन">
         <a href="livelihood.html">🫶 ALL Income & Livelihood</a><a href="economic-marketing-command-center.html">🤖 AI Marketing Command</a>
@@ -274,51 +329,6 @@
       <div class="income-note"><strong>महत्वपूर्ण:</strong> ये वास्तविक काम/बिक्री के रास्ते हैं, आय की गारंटी नहीं। वास्तविक sale, payment, client, audience या ad execution को evidence के बिना completed नहीं माना जाएगा.</div>
     </section>
 
-    <!-- Header / Banner Section -->
-    <header>
-        <img src="https://i.ibb.co/xqf3kTPS/enhanced-image.webp" alt="शिरोमणि रामपाल सैनी" class="profile-img">
-        <h1>शिरोमणि रामपाल सैनी</h1>
-        <p>Omniverse डिजिटल आर्काइव, तदरूप साक्षात्कार, ऑडियो, वीडियो एवं ऑफिशियल डिजिटल प्लेटफॉर्म्स का मुख्य केंद्र</p>
-        <div class="income-first-strip" role="navigation" aria-label="जीवन-व्यापन और आर्थिक कार्य">
-            <strong>🫶 जीवन-व्यापन प्रथम — काम जारी रखने के लिए आय के रास्ते</strong>
-            <a href="income-command-center.html">Income Command Center</a>
-            <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener">Digital Store</a>
-            <a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener">यथार्थ AI Music</a>
-            <a href="#income-workbench">Freelancing & Services</a>
-            <a href="#economic-vision">Economic Vision</a>
-        </div>
-        <section class="life-command-center" id="income-command-center" aria-labelledby="income-command-heading">
-<style>
-.life-command-center{margin:0 auto 28px;max-width:1150px;padding:24px;border:2px solid var(--primary-gold);border-radius:18px;background:linear-gradient(135deg,rgba(212,175,55,.22),rgba(0,210,255,.10));box-shadow:0 15px 45px rgba(0,0,0,.38)}
-.life-command-center h2{color:var(--primary-gold);font-family:'Rozha One',serif;font-size:2.15rem;margin-bottom:8px}.life-command-center p{color:var(--text-light);margin-bottom:16px}.income-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.income-actions a{display:flex;flex-direction:column;gap:5px;padding:16px;border:1px solid rgba(212,175,55,.5);border-radius:13px;background:rgba(0,0,0,.3);color:var(--text-light);text-decoration:none}.income-actions a:hover{border-color:var(--primary-gold);transform:translateY(-2px)}.income-actions i{color:var(--primary-gold);font-size:1.35rem}.income-actions small{color:var(--accent-blue);font-weight:700}
-</style>
-<h2 id="income-command-heading">⚡ जीवन-व्यापन • आय • काम — PUBLIC COMMAND CENTER</h2>
-<p><strong>यह सबसे पहले दिखना चाहिए:</strong> Digital products, AI Music, freelancing, client services, creator income, licensing, marketplace और Economic Vision. ये pathways संभावित आय-स्रोत हैं; किसी platform या बिक्री की गारंटी नहीं दी जा रही है।</p>
-<div class="income-actions">
-<a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener"><i class="fa-solid fa-store"></i><small>OWNED ASSET</small><strong>Digital Store</strong><span>तैयार digital products → direct sale</span></a>
-<a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener"><i class="fa-solid fa-music"></i><small>CREATIVE INCOME</small><strong>यथार्थ AI Music</strong><span>Music, audio production और eligible licensing</span></a>
-<a href="https://www.upwork.com/" target="_blank" rel="noopener"><i class="fa-solid fa-briefcase"></i><small>CLIENT WORK</small><strong>Freelancing</strong><span>AI, research, writing, automation, digital services</span></a>
-<a href="https://www.fiverr.com/" target="_blank" rel="noopener"><i class="fa-solid fa-bolt"></i><small>SERVICE PACKAGES</small><strong>Fiverr</strong><span>स्पष्ट service offers बनाकर client work</span></a>
-<a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i><small>DIRECT CLIENTS</small><strong>LinkedIn</strong><span>Portfolio + direct outreach + collaborations</span></a>
-<a href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank" rel="noopener"><i class="fa-solid fa-shop"></i><small>BUSINESS</small><strong>Omniverse Marketplace</strong><span>Products + services का संयुक्त channel</span></a>
-<a href="https://youtube.com/@rampaulsaini-yk4gn" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i><small>CREATOR</small><strong>YouTube / Content</strong><span>Audience → content → eligible monetization</span></a>
-<a href="https://bandcamp.com/" target="_blank" rel="noopener"><i class="fa-solid fa-record-vinyl"></i><small>MUSIC SALES</small><strong>Music Sales</strong><span>Music releases और direct fan sales</span></a>
-<a href="https://www.pond5.com/" target="_blank" rel="noopener"><i class="fa-solid fa-film"></i><small>LICENSING</small><strong>Media Licensing</strong><span>Eligible audio/video assets के licensing paths</span></a>
-<a href="https://www.gumroad.com/" target="_blank" rel="noopener"><i class="fa-solid fa-file-arrow-up"></i><small>DIGITAL SALES</small><strong>Gumroad</strong><span>Digital downloads और creator products</span></a>
-<a href="#economic-vision"><i class="fa-solid fa-chart-line"></i><small>MASTER PLAN</small><strong>Economic Vision</strong><span>Product → Service → Client → Creator → Licensing</span></a>
-<a href="#income-workbench"><i class="fa-solid fa-list-check"></i><small>WORK NOW</small><strong>Income Workbench</strong><span>आज के बेचने योग्य काम और next actions</span></a>
-</div>
-</section>
-\n        <div class="income-launchbar" aria-label="जीवन-व्यापन और आय के मुख्य रास्ते">
-            <strong><i class="fa-solid fa-heart-pulse"></i> जीवन-व्यापन / आय — सबसे पहले</strong>
-            <a href="#livelihood">सभी आय-स्रोत</a>
-            <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener"><i class="fa-solid fa-store"></i> Digital Store</a>
-            <a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener"><i class="fa-solid fa-music"></i> यथार्थ AI Music</a>
-            <a href="#income-workbench"><i class="fa-solid fa-briefcase"></i> Freelancing</a>
-            <a href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank" rel="noopener"><i class="fa-solid fa-shop"></i> Marketplace</a>
-            <a href="#economic-vision"><i class="fa-solid fa-chart-line"></i> Economic Vision</a>
-        </div>
-    </header>
 
     <div class="container">
 
@@ -713,6 +723,14 @@
             <p>जहाँ ताज़ा verified federation payload उपलब्ध नहीं होता, dashboard को <strong>UNKNOWN</strong> दिखाना जानबूझकर रखा गया है ताकि पुराना या अप्रमाणित data वर्तमान स्थिति के रूप में प्रस्तुत न हो।</p>
         </div>
     </section>
+
+<nav class="command-dock" aria-label="मुख्य सार्वजनिक कमांड नेविगेशन">
+  <a class="active" href="#" aria-label="Home"><i class="fa-solid fa-house"></i><span>Home</span></a>
+  <a href="#livelihood" aria-label="Explore"><i class="fa-solid fa-compass"></i><span>Explore</span></a>
+  <a href="income-command-center.html" aria-label="Income"><i class="fa-solid fa-infinity"></i><span>Income</span></a>
+  <a href="factory-dashboard.html" aria-label="Automation"><i class="fa-solid fa-gears"></i><span>Automation</span></a>
+  <a href="#economic-vision" aria-label="Profile"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+</nav>
 
     <!-- Footer -->
     <footer>
