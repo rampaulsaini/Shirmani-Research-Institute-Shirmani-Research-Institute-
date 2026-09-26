@@ -1,6 +1,9 @@
 name: SHIRMANI Inter-Repository Automission Orchestrator
 
 on:
+  push:
+    branches:
+      - "**"
   workflow_dispatch:
     inputs:
       brief:
@@ -25,7 +28,15 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  push_guard:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirm push-only guard
+        run: echo "Push received; inter-repository federation dispatch is intentionally skipped."
+
   dispatch:
+    if: ${{ github.event_name != 'push' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
