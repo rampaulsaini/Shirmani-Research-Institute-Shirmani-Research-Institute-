@@ -51,13 +51,24 @@ jobs:
 
       - name: Guard known shell failure patterns
         run: |
-          set -euo pipefail
-          if grep -RInE 'export [A-Za-z_][A-Za-z0-9_]*="\$\(' .github/workflows; then
-            echo "SC2155-style export/command-substitution pattern found"
-            exit 1
-          fi
-          if grep -RInE '(^|[[:space:]])ls (.*\*|.*\?)([[:space:]]|$)' .github/workflows; then
-            echo "SC2012-style ls glob pattern found"
-            exit 1
-          fi
-          echo "KNOWN_SHELL_FAILURE_PATTERNS=PASS"
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          bad_export = re.compile(r'export [A-Za-z_][A-Za-z0-9_]*="\\$\\(')
+          bad_ls = re.compile(r'(^|[\\s])ls (?:[^\\n]*[?*])(?:[\\s]|$)')
+
+          failures = []
+          for path in sorted(Path(".github/workflows").glob("*.y*ml")):
+              if path.name == "shirmani-ci-syntax-smoke.yml":
+                  continue
+              text = path.read_text(encoding="utf-8")
+              if bad_export.search(text):
+                  failures.append(f"{path}: SC2155-style export/command-substitution pattern")
+              if bad_ls.search(text):
+                  failures.append(f"{path}: SC2012-style ls glob pattern")
+
+          if failures:
+              raise SystemExit("\\n".join(failures))
+          print("KNOWN_SHELL_FAILURE_PATTERNS=PASS")
+          PY
