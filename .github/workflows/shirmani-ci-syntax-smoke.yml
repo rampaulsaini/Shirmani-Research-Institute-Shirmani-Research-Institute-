@@ -1,0 +1,63 @@
+name: SHIRMANI CI Syntax Smoke
+
+on:
+  push:
+    branches:
+      - fix/ci-federation-audit-20260926
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/**"
+      - "scripts/**"
+      - "factory/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-ci-syntax-smoke-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate GitHub Actions syntax
+        uses: docker://rhysd/actionlint:latest
+
+      - name: Validate workflow YAML structure
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import yaml
+
+          for path in sorted(Path(".github/workflows").glob("*.y*ml")):
+              data = yaml.safe_load(path.read_text(encoding="utf-8"))
+              if not isinstance(data, dict):
+                  raise SystemExit(f"{path}: root is not a mapping")
+              if "jobs" not in data or not isinstance(data["jobs"], dict) or not data["jobs"]:
+                  raise SystemExit(f"{path}: missing jobs")
+              trigger_keys = {"on", True}
+              if not any(key in data for key in trigger_keys):
+                  raise SystemExit(f"{path}: missing workflow trigger")
+          print("WORKFLOW_YAML_STRUCTURE=PASS")
+          PY
+
+      - name: Guard known shell failure patterns
+        run: |
+          set -euo pipefail
+          if grep -RInE 'export [A-Za-z_][A-Za-z0-9_]*="\$\(' .github/workflows; then
+            echo "SC2155-style export/command-substitution pattern found"
+            exit 1
+          fi
+          if grep -RInE '(^|[[:space:]])ls (.*\*|.*\?)([[:space:]]|$)' .github/workflows; then
+            echo "SC2012-style ls glob pattern found"
+            exit 1
+          fi
+          echo "KNOWN_SHELL_FAILURE_PATTERNS=PASS"
