@@ -1,0 +1,210 @@
+name: Income Command Center — Master Automission
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  control-plane-health:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate income control plane
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for p in [Path("income/command-center.json"), Path("income/agent-registry.json")]:
+              data = json.loads(p.read_text(encoding="utf-8"))
+              assert data.get("schema_version")
+          cc = json.loads(Path("income/command-center.json").read_text(encoding="utf-8"))
+          assert cc["mode"] == "income-first"
+          assert len(cc["income_channels"]) == 6
+          assert cc["gates"]["human_approval_required_for_payment"] is True
+          print("Income Command Center contract: VALID")
+          PY
+
+      - name: Install runtime validation dependency
+        run: python -m pip install --disable-pip-version-check "PyYAML>=6,<7" "pytest>=8,<9"
+
+      - name: Validate standalone runtime Python
+        run: |
+          python -m compileall -q automission-runtime
+          echo "Standalone runtime Python syntax: VALID"
+
+      - name: Run queue idempotency and recovery tests
+        run: |
+          PYTHONPATH=automission-runtime python -m pytest -q automission-runtime/tests tests/test_master_fulfillment_priorities.py
+          echo "Runtime and digital-product factory tests: VALID"
+
+      - name: Validate digital product factory contracts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          contracts = [
+              "income/digital-product-factory.json",
+              "income/digital-product-factory-agents.json",
+              "income/digital-product-factory-runtime.json",
+              "income/digital-product-channels.json",
+          ]
+          for name in contracts:
+              data = json.loads(Path(name).read_text(encoding="utf-8"))
+              assert data, name
+          factory = json.loads(Path("income/digital-product-factory.json").read_text(encoding="utf-8"))
+          assert factory["safety"]["publication_requires_authorization"] is True
+          assert factory["safety"]["verified_sales_require_evidence"] is True
+          runtime = json.loads(Path("income/digital-product-factory-runtime.json").read_text(encoding="utf-8"))
+          assert runtime["fail_closed"] is True
+          print("Digital Product Factory contracts: VALID")
+          PY
+
+      - name: Validate affordable education factory
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("income/education-factory.json").read_text(encoding="utf-8"))
+          assert data["quality"]["original_curriculum_required"] is True
+          assert data["quality"]["university_affiliation_requires_real_partnership"] is True
+          assert data["quality"]["official_degree_claim_requires_valid_authorization"] is True
+          print("Affordable Education Factory contract: VALID")
+          PY
+
+      - name: Validate justice and affordable legal access factory
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("income/justice-access-factory.json").read_text(encoding="utf-8"))
+          assert data["ai_boundary"]["decision_support_only"] is True
+          assert data["ai_boundary"]["binding_judgment_by_ai"] is False
+          assert data["ai_boundary"]["qualified_human_review_required"] is True
+          assert data["quality"]["fabricated_case_law_forbidden"] is True
+          print("Justice Access Factory contract: VALID")
+          PY
+
+      - name: Validate master task ledger contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("income/master-task-ledger.json").read_text(encoding="utf-8"))
+          assert data["idempotency"]["required"] is True
+          assert data["learning_boundary"]["verified_outcomes_only"] is True
+          assert data["learning_boundary"]["fabricated_revenue_forbidden"] is True
+          print("Master Task Ledger contract: VALID")
+          PY
+
+      - name: Validate production readiness gate
+        run: |
+          PYTHONPATH=automission-runtime python - <<'PY'
+          import json
+          from pathlib import Path
+          from production_readiness import check_repository
+          contract = json.loads(Path("income/production-readiness.json").read_text(encoding="utf-8"))
+          result = check_repository(Path("."))
+          assert contract["safety"]["fabrication_forbidden"] is True
+          assert contract["safety"]["irreversible_actions_require_authorization"] is True
+          assert contract["safety"]["external_adapter_enablement_requires_review"] is True
+          assert result["all_required_contracts"] is True
+          print("Production readiness gate: VALID")
+          PY
+
+      - name: Validate customer fulfillment contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("income/customer-fulfillment-ledger.json").read_text())
+          assert data["rules"]["delivery_evidence_required"] is True
+          assert data["rules"]["delivery_does_not_equal_verified_outcome"] is True
+          print("customer fulfillment contract: OK")
+          PY
+
+      - name: Validate master learning and dashboard contracts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          learning = json.loads(Path("income/master-learning.json").read_text(encoding="utf-8"))
+          dashboard = json.loads(Path("income/master-dashboard.json").read_text(encoding="utf-8"))
+          assert learning["rules"]["verified_income_requires_amount_currency_and_evidence"] is True
+          assert learning["rules"]["currency_isolation_required"] is True
+          assert dashboard["rules"]["missing_tables_are_nonfatal"] is True
+          assert dashboard["rules"]["no_external_action_from_dashboard"] is True
+          print("Master learning/dashboard contracts: VALID")
+          PY
+
+      - name: Run standalone runtime smoke cycle
+        env:
+          AUTOMISSION_RUN_ONCE: "true"
+          AUTOMISSION_HEARTBEAT_SECONDS: "1"
+          AUTOMISSION_STATE_DIR: ${{ runner.temp }}/automission-state
+        run: |
+          python automission-runtime/worker.py
+          python - <<'PY'
+          import os, sqlite3
+          db_path = os.path.join(os.environ["AUTOMISSION_STATE_DIR"], "automission.db")
+          with sqlite3.connect(db_path) as db:
+              row = db.execute("select status from heartbeats order by id desc limit 1").fetchone()
+              ledger = db.execute("select name from sqlite_master where type='table' and name='events'").fetchone()
+          assert row == ("HEARTBEAT_OK",), row
+          assert ledger == ("events",), ledger
+          state_dir = os.environ["AUTOMISSION_STATE_DIR"]
+          assert os.path.exists(os.path.join(state_dir, "master-task-ledger.db"))
+          assert os.path.exists(os.path.join(state_dir, "master-intelligence.db"))
+          print("Standalone runtime smoke cycle: VALID")
+          PY
+
+      - name: Validate runtime contracts and configuration
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import yaml
+
+          root = Path(".")
+          runtime = json.loads((root/"income/runtime-contract.json").read_text(encoding="utf-8"))
+          assert runtime["mode"] == "continuous"
+          assert runtime["safety"]["fabrication_forbidden"] is True
+          assert runtime["safety"]["irreversible_actions_require_authorization"] is True
+
+          registry = json.loads((root/"income/agent-registry.json").read_text(encoding="utf-8"))
+          assert len(registry["agents"]) >= 6
+
+          with open(root/"income/master-orchestrator.yml", encoding="utf-8") as f:
+              orchestrator = yaml.safe_load(f)
+          assert orchestrator["pipeline"]
+          assert orchestrator["safety"]["auto_apply"] is False
+          print("Runtime contracts: VALID")
+          PY
+
+      - name: Emit run receipt
+        run: |
+          mkdir -p artifacts
+          cat > artifacts/income-command-center-receipt.json <<EOF
+          {
+            "status": "HEALTHY",
+            "mode": "income-first",
+            "workflow": "income-command-center-master-automission",
+            "commit": "$GITHUB_SHA",
+            "runtime_python": "compileall-passed",
+            "irreversible_actions": "human-approval-required",
+            "revenue_claims": "verified-only"
+          }
+          EOF
+
+      - name: Upload receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: income-command-center-receipt
+          path: artifacts/income-command-center-receipt.json

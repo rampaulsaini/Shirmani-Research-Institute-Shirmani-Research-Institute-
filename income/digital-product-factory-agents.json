@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "mode": "automission",
+  "roles": [
+    "research", "creator", "software", "book", "course",
+    "animation", "film", "design", "qc", "localization", "seo", "packaging"
+  ],
+  "principle": "Agents prepare and validate digital products; external publication, contracts and payments remain authorization-gated.",
+  "quality": {
+    "manifest_hash_required": true,
+    "quality_evidence_required": true
+  },
+  "learning": {
+    "sales_must_be_verified": true,
+    "currency_must_match": true,
+    "fabricated_outcomes_forbidden": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "name": "Master Automission Agent Task Ledger",
+  "purpose": "Persist deterministic task state across cycles without inventing outcomes.",
+  "statuses": [
+    "DISCOVERED",
+    "QUEUED",
+    "RUNNING",
+    "COMPLETED",
+    "FAILED",
+    "APPROVAL_REQUIRED"
+  ],
+  "idempotency": {
+    "key": "sha256(task_id|domain|action)",
+    "required": true
+  },
+  "learning_boundary": {
+    "verified_outcomes_only": true,
+    "fabricated_revenue_forbidden": true
+  }
+}

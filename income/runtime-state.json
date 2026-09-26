@@ -1,0 +1,13 @@
+{
+  "schema_version":"1.0.0",
+  "runtime":"income-command-center",
+  "desired_state":"RUNNING_24_7_365",
+  "observed_state":"CONTROL_PLANE_READY",
+  "last_heartbeat":null,
+  "active_workers":[],
+  "queue_depth":0,
+  "verified_opportunities":0,
+  "verified_income":0,
+  "recovery_events":0,
+  "note":"State is initialized conservatively. Workers must report evidence-backed heartbeats and outcomes."
+}

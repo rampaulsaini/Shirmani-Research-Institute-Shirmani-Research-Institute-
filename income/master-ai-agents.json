@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "name": "Total AI Agents ML Master Automission",
+  "domains": [
+    "research", "education", "software", "products", "music",
+    "books", "animation", "film", "design", "marketing",
+    "seo", "localization", "publishing", "qc", "support"
+  ],
+  "control_loop": [
+    "discover",
+    "research",
+    "plan",
+    "create",
+    "test",
+    "quality_control",
+    "package",
+    "price",
+    "authorize",
+    "publish",
+    "measure",
+    "learn",
+    "improve"
+  ],
+  "ml_boundary": {
+    "verified_outcomes_only": true,
+    "fabricated_revenue_forbidden": true,
+    "fabricated_customer_data_forbidden": true,
+    "fabricated_credentials_forbidden": true
+  },
+  "authorization": {
+    "publish": "required",
+    "payment": "required",
+    "submit": "required",
+    "accept_contract": "required"
+  }
+}
