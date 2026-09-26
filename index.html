@@ -217,6 +217,7 @@
         }
     
 /* === SHIRMANI PUBLIC INTERFACE — screenshot-aligned main menu === */
+ .srm-home-poster{display:block;width:100%;height:auto;max-height:780px;object-fit:contain;background:#000;border-radius:32px 32px 10px 10px}
 .srm-public-shell{max-width:1180px;margin:0 auto;padding:8px 10px 105px;position:relative;z-index:5}
 .srm-hero{position:relative;min-height:430px;border:2px solid #f5c928;border-radius:34px 34px 12px 12px;overflow:hidden;background:linear-gradient(90deg,rgba(2,11,24,.86),rgba(2,11,24,.24) 38%,rgba(2,11,24,.48)),radial-gradient(circle at 52% 32%,rgba(255,214,65,.35),transparent 34%),linear-gradient(135deg,#03152d,#081d3c 48%,#020a17);box-shadow:0 0 0 1px rgba(255,215,70,.2),0 18px 60px rgba(0,0,0,.6)}
 .srm-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 8% 72%,rgba(0,210,255,.28),transparent 25%),radial-gradient(circle at 88% 68%,rgba(0,210,255,.22),transparent 26%),linear-gradient(180deg,transparent 55%,rgba(0,0,0,.72));pointer-events:none}
@@ -240,12 +241,8 @@
 
 <!-- === SHIRMANI PUBLIC MAIN MENU / COMMAND INTERFACE === -->
 <section id="public-main-menu" class="srm-public-shell" aria-label="शिरमानी सार्वजनिक मुख्य मेनू">
-<div class="srm-hero"><div class="srm-hero-content">
-<div class="srm-brand"><span class="srm-orb">🌐</span><h2>शिरोमणि<br>रामपाल सैनी</h2><p>Vision • Research • Creation<br>For a Better World</p></div>
-<img class="srm-hero-portrait" src="https://i.ibb.co/xqf3kTPS/enhanced-image.webp" alt="शिरोमणि रामपाल सैनी">
-<div class="srm-right"><h2>सर्व भौमिक सत्य<br>प्रत्यक्ष समक्ष</h2><p class="srm-tag">सरल • सहज • निर्मल • पारदर्शी</p><div class="srm-income-callout"><strong>More Income</strong>More Freedom<br>A Better Tomorrow</div></div>
-</div></div>
-<nav class="srm-menu" aria-label="मुख्य सार्वजनिक मेनू">
+<div class="srm-hero"><img class="srm-home-poster" src="assets/shirmani-home-poster.webp" alt="शिरोमणि रामपाल सैनी — सार्वजनिक मुख्य पोस्टर"></div>
+ <nav class="srm-menu" aria-label="मुख्य सार्वजनिक मेनू">
 <a class="srm-row" href="livelihood.html"><span class="srm-icon">🫶</span><span class="srm-copy"><strong>ALL Income &amp; Livelihood</strong><span>For a Better World • Income • Work • Freedom</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
 <a class="srm-row" href="economic-marketing-command-center.html"><span class="srm-icon">🤖</span><span class="srm-copy"><strong>AI Marketing Command</strong><span>AI • Automation • Marketing • Global Reach</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
 <a class="srm-row" href="public-income-showcase.html"><span class="srm-icon">⚡</span><span class="srm-copy"><strong>Public Income &amp; Product Showcase</strong><span>Products • Services • Ideas • Global Market</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
