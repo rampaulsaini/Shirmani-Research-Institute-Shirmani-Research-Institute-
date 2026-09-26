@@ -1,9 +1,10 @@
 name: SHIRMANI Inter-Repository Automission Orchestrator
 
 on:
+  # Cross-repository dispatch is production-scoped: feature-branch pushes must not fan out downstream.
   push:
     branches:
-      - "**"
+      - main
   workflow_dispatch:
     inputs:
       brief:
@@ -24,6 +25,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: shirmani-inter-repository-automission-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   audit:
