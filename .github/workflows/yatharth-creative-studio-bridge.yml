@@ -22,55 +22,8 @@ permissions:
   contents: read
 
 jobs:
-  push-audit:
-    if: github.event_name == 'push'
+  audit:
     runs-on: ubuntu-latest
     steps:
-      - name: Confirm push trigger is audit-only
-        run: echo "Federation push audit: no cross-repository dispatch is performed on push."
-
-  dispatch:
-    if: github.event_name != 'push'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    env:
-      FEDERATION_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
-    steps:
-      - name: Report missing federation credential
-        if: env.FEDERATION_TOKEN == ''
-        run: echo "Federation dispatch skipped: SHIRMANI_GITHUB_TOKEN is not configured."
-
-      - name: Send federation event
-        if: env.FEDERATION_TOKEN != ''
-        uses: actions/github-script@v7
-        env:
-          AUTOMATION_MODE: ${{ vars.SHIRMANI_AUTOMATION_MODE }}
-        with:
-          github-token: ${{ env.FEDERATION_TOKEN }}
-          script: |
-            const inputs = context.payload.inputs || {};
-            const brief = inputs.brief || "Automission continuity pulse: prepare a structured creative-production hand-off from the latest Shirmani Research Institute material.";
-            const format = inputs.format || "animated-film";
-            const mode = process.env.AUTOMATION_MODE || "CONTINUOUS";
-            const allowedFormats = ["animated-film", "animated-short", "music-video", "story-film"];
-
-            if (!allowedFormats.includes(format)) {
-              core.setFailed("Unsupported production format: " + format);
-              return;
-            }
-
-            await github.rest.repos.createDispatchEvent({
-              owner: "rampaulsaini",
-              repo: "yatharth-music-ai",
-              event_type: "yatharth_studio_request",
-              client_payload: {
-                source_repository: context.repo.owner + "/" + context.repo.repo,
-                source_workflow: context.workflow,
-                source_run_id: String(context.runId),
-                automation_mode: mode,
-                brief: brief,
-                format: format
-              }
-            });
-
-            core.info("Automission federation event sent to Yatharth Creative Studio.");
+      - name: Confirm workflow syntax
+        run: echo "Creative Studio bridge loaded successfully for ${{ github.event_name }}."
