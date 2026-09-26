@@ -47,8 +47,10 @@ jobs:
             exit 0
           fi
 
-          gh pr create \
+          if ! gh pr create \
             --base main \
             --head "$branch" \
             --title "chore(factory): publish synchronized federation status" \
-            --body "Automated status publication. Generated status is submitted through the repository's pull-request protection boundary; no direct main-branch push is performed."
+            --body "Automated status publication. Generated status is submitted through the repository's pull-request protection boundary; no direct main-branch push is performed."; then
+            echo "Factory status publication PR was deferred because GitHub Actions is not permitted to create pull requests. The generated branch remains available for protected publication."
+          fi
