@@ -70,13 +70,20 @@ jobs:
           )
 
           if [ "$credential_ok" = "true" ]; then
-            git -c http.extraheader="AUTHORIZATION: bearer $CROSS_REPO_TOKEN" \
-              clone --depth 1 "https://github.com/$TARGET_REPO.git" "$workdir" >clone.log 2>&1
+            if git -c http.extraheader="AUTHORIZATION: bearer $CROSS_REPO_TOKEN" \
+              clone --depth 1 "https://github.com/$TARGET_REPO.git" "$workdir" >clone.log 2>&1; then
+              clone_status=0
+            else
+              clone_status=$?
+            fi
           else
-            git clone --depth 1 "https://github.com/$TARGET_REPO.git" "$workdir" >clone.log 2>&1
+            if git clone --depth 1 "https://github.com/$TARGET_REPO.git" "$workdir" >clone.log 2>&1; then
+              clone_status=0
+            else
+              clone_status=$?
+            fi
           fi
 
-          clone_status=$?
           if [ "$clone_status" -ne 0 ]; then
             TARGET_REPO="$TARGET_REPO" python3 - <<'PY'
           import json, os, pathlib, datetime
