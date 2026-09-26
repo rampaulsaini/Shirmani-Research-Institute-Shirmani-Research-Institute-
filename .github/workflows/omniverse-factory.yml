@@ -242,12 +242,7 @@ jobs:
           git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
           git branch -f "$BRANCH" HEAD
           git push --force-with-lease origin "HEAD:$BRANCH"
-          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0
-            if ! gh pr create --base main --head "$BRANCH" --title "chore(factory): publish verified generated research products" --body "Automated publication PR created after the deterministic Heart-View factory gates passed. Protected source material is not rewritten. Generated outputs remain derivatives and subject to the repository verification policy."; then
-              echo "Publication PR creation was deferred; generated outputs remain on $BRANCH."
-            fi
-          fi
-; then
+          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
             if ! gh pr create --base main --head "$BRANCH" --title "chore(factory): publish verified generated research products" --body "Automated publication PR created after the deterministic Heart-View factory gates passed. Protected source material is not rewritten. Generated outputs remain derivatives and subject to the repository verification policy."; then
               echo "Publication PR creation was deferred; generated outputs remain on $BRANCH."
             fi
