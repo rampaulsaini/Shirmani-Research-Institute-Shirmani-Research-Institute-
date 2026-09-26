@@ -3,12 +3,12 @@ from pathlib import Path
 from fulfillment_ledger import FulfillmentLedger
 
 
-def ledger(tmp_path):
+def make_ledger(tmp_path):
     return FulfillmentLedger(tmp_path / "fulfillment.db")
 
 
 def test_delivery_requires_evidence(tmp_path):
-    ledger = ledger(tmp_path)
+    ledger = make_ledger(tmp_path)
     key = ledger.create("order-1", "product-1")
     ledger.transition(key, "PREPARING")
     ledger.transition(key, "READY")
