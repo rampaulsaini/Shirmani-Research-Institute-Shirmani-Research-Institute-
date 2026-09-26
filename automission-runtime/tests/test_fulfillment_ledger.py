@@ -17,7 +17,7 @@ def test_delivery_requires_evidence(tmp_path):
 
 
 def test_delivery_is_auditable_and_verified_only_after_delivery(tmp_path):
-    ledger = ledger(tmp_path)
+    ledger = make_ledger(tmp_path)
     key = ledger.create("order-2", "product-2")
     ledger.transition(key, "PREPARING")
     ledger.transition(key, "READY")
