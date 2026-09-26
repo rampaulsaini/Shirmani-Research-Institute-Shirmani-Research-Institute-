@@ -135,7 +135,7 @@ jobs:
               // Dispatch success alone is not treated as downstream completion.
               const receiptPath = `automation/inbox/yatharth-studio-request-${context.runId}.json`;
               let receipt = null;
-              for (let attempt = 1; attempt <= 12; attempt += 1) {
+              for (let attempt = 1; attempt <= 36; attempt += 1) {
                 await new Promise(resolve => setTimeout(resolve, 5000));
                 try {
                   const response = await github.rest.repos.getContent({
@@ -152,11 +152,11 @@ jobs:
                 } catch (error) {
                   if (error.status !== 404) throw error;
                 }
-                core.info(`Waiting for receiver receipt (${attempt}/12): ${target.repository}`);
+                core.info(`Waiting for receiver receipt (${attempt}/36): ${target.repository}`);
               }
 
               if (!receipt) {
-                core.setFailed(`Downstream receiver did not publish a receipt within 60 seconds: ${target.repository}`);
+                core.setFailed(`Downstream receiver did not publish a receipt within 180 seconds: ${target.repository}`);
                 return;
               }
               if (receipt.status !== 'RECEIVED' ||
