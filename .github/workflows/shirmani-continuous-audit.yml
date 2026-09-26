@@ -1,4 +1,5 @@
 name: SHIRMANI Heart-View Supreme Continuous Audit
+# Syntax-audited federation audit workflow: malformed credentials fail closed.
 
 on:
   workflow_dispatch:
