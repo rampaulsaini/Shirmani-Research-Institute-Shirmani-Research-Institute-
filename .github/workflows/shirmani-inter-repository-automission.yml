@@ -37,7 +37,6 @@ jobs:
 
       - name: Dispatch approved repository matrix
         if: ${{ env.FEDERATION_TOKEN != '' }}
-        continue-on-error: true
         uses: actions/github-script@v7
         env:
           AUTOMATION_MODE: ${{ vars.SHIRMANI_AUTOMATION_MODE || 'CONTINUOUS' }}
