@@ -1,0 +1,25 @@
+name: NISHPAKSH Inspection Schema Smoke
+on:
+  push:
+    paths: ['inspection-app.html','docs/NISHPAKSH-INSPECTION-ENGINE-SPEC.md','schemas/nishpaksh-inspection-record.schema.json','.github/workflows/nishpaksh-inspection-schema-smoke.yml']
+  pull_request:
+    paths: ['inspection-app.html','docs/NISHPAKSH-INSPECTION-ENGINE-SPEC.md','schemas/nishpaksh-inspection-record.schema.json','.github/workflows/nishpaksh-inspection-schema-smoke.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m json.tool schemas/nishpaksh-inspection-record.schema.json >/dev/null
+      - name: app smoke
+        run: python - <<'PY'
+          from pathlib import Path
+          p=Path("inspection-app.html").read_text()
+          for x in ['id="purpose"','id="claim"','id="evidence"','id="evaluate"','ai_decision:false']:
+              assert x in p,x
+          print("PASS")
+          PY
+      - name: integrity smoke
+        run: grep -q 'Biometric match ≠ truth/competence' docs/NISHPAKSH-INSPECTION-ENGINE-SPEC.md
