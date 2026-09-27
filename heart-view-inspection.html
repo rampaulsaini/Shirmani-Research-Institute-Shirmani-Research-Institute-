@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shirmani Heart-View — निष्पक्ष समझ निरीक्षण</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:0;background:#f6f7f9;color:#17202a}
+main{max-width:1000px;margin:auto;padding:28px}
+.card{background:#fff;border:1px solid #d9dee5;border-radius:16px;padding:20px;margin:16px 0}
+h1,h2{margin-top:0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+button,select{font:inherit;padding:12px;border-radius:10px;border:1px solid #aeb7c2;background:#fff}
+button{cursor:pointer}.notice{border-left:4px solid #5865f2;padding:12px;background:#f0f2ff}
+.status{font-weight:700}.hidden{display:none}
+ul{line-height:1.7}
+</style>
+</head>
+<body>
+<main>
+<h1>🫀 Heart-View — निष्पक्ष समझ निरीक्षण</h1>
+<p>यह ऐप पहले यह स्पष्ट करता है कि निरीक्षण <strong>किस उद्देश्य</strong> के लिए है। परिणाम किसी व्यक्ति की मानव-मूल्य, चरित्र या अधिकार का स्वचालित निर्णय नहीं है।</p>
+
+<section class="card">
+<h2>1. उद्देश्य चुनें</h2>
+<select id="purpose" aria-label="inspection purpose">
+<option value="">— उद्देश्य चुनें —</option>
+<option>खुद का मानव-साक्षात्कार / self reflection</option>
+<option>शिक्षा / learning</option>
+<option>नौकरी या भूमिका के लिए आवेदन</option>
+<option>लोकसेवा भूमिका की प्रक्रिया</option>
+<option>अनुसंधान सहभागिता</option>
+<option>अन्य घोषित उद्देश्य</option>
+</select>
+<p id="purposeState" class="status"></p>
+</section>
+
+<section class="card">
+<h2>2. निरीक्षण के आयाम</h2>
+<div class="grid">
+<div><strong>भाषा</strong><p>शब्दों, संदर्भ, अर्थ और दावों का बहु-दृष्टिकोण विश्लेषण।</p></div>
+<div><strong>तर्क</strong><p>मान्यताएँ, प्रतिदृष्टांत, स्रोत और आंतरिक संगति।</p></div>
+<div><strong>कार्य</strong><p>घोषित कार्य/उत्तर की repeatability और evidence state।</p></div>
+<div><strong>सेंसिंग</strong><p>केवल स्पष्ट सहमति और वैध उद्देश्य पर; raw biometric data को सार्वजनिक नहीं किया जाता।</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2>3. निष्पक्षता और अधिकार</h2>
+<ul>
+<li>AI किसी व्यक्ति को “कम/अधिक मानव” घोषित नहीं करेगा।</li>
+<li>संरक्षित या संवेदनशील गुणों का अनुमान नहीं लगाया जाएगा।</li>
+<li>नौकरी, सरकारी पद, न्यायिक या नागरिक निर्णय स्वतः नहीं किए जाएंगे।</li>
+<li>महत्वपूर्ण परिणामों में मानव समीक्षा, कारण और अपील का मार्ग रहेगा।</li>
+<li>साक्ष्य न होने पर स्थिति <strong>NOT_VERIFIED</strong> रह सकती है।</li>
+</ul>
+<label><input type="checkbox" id="consent"> मैंने उद्देश्य और डेटा-सीमा पढ़ी है; वैकल्पिक sensing के लिए अलग सहमति आवश्यक है।</label>
+</section>
+
+<section class="card">
+<h2>4. प्रारंभिक निरीक्षण</h2>
+<button id="start">निरीक्षण शुरू करें</button>
+<p id="result" class="notice hidden"></p>
+</section>
+
+<section class="card">
+<h2>स्थिति मॉडल</h2>
+<p>PURPOSE_SELECTED → CONSENT → SELF_REPORT → EVIDENCE → MULTI_ANGLE_ANALYSIS → UNCERTAINTY → HUMAN_REVIEW → EXPLANATION → APPEAL/CORRECTION → ARCHIVE</p>
+</section>
+</main>
+<script>
+const purpose=document.querySelector('#purpose');
+const state=document.querySelector('#purposeState');
+const consent=document.querySelector('#consent');
+const result=document.querySelector('#result');
+purpose.addEventListener('change',()=>state.textContent=purpose.value?'उद्देश्य दर्ज: '+purpose.value:'');
+document.querySelector('#start').addEventListener('click',()=>{
+  if(!purpose.value){result.textContent='पहले निरीक्षण का उद्देश्य चुनना आवश्यक है।';result.classList.remove('hidden');return;}
+  if(!consent.checked){result.textContent='प्रारंभ से पहले डेटा-सीमा की पुष्टि आवश्यक है।';result.classList.remove('hidden');return;}
+  result.textContent='DRAFT: प्रारंभिक निरीक्षण सत्र तैयार है। अभी कोई प्रमाणित निर्णय, biometric पहचान या पद-योग्यता निष्कर्ष उत्पन्न नहीं किया गया है।';
+  result.classList.remove('hidden');
+});
+</script>
+</body>
+</html>
