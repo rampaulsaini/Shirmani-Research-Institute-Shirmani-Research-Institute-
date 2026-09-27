@@ -1,0 +1,71 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "schema_version":"1.0.0",
+  "name":"Shirmani Heart-View Inspection Protocol",
+  "status":"DESIGN_SPECIFICATION_NO_LIVE_EXECUTION",
+  "purpose":"A consent-based, evidence-aware inspection framework for self-reflection, education, role applications and other explicitly selected purposes.",
+  "inspection_purposes":[
+    "SELF_HUMAN_REFLECTION",
+    "EDUCATION",
+    "JOB_OR_ROLE_APPLICATION",
+    "PUBLIC_SERVICE_ROLE_REVIEW",
+    "RESEARCH_PARTICIPATION",
+    "OTHER_DECLARED_PURPOSE"
+  ],
+  "required_flow":[
+    "PURPOSE_SELECTION",
+    "CONSENT_AND_PRIVACY",
+    "BASELINE_SELF_REPORT",
+    "EVIDENCE_COLLECTION",
+    "MULTI_ANGLE_ANALYSIS",
+    "UNCERTAINTY_CHECK",
+    "HUMAN_REVIEW_WHERE_REQUIRED",
+    "RESULT_EXPLANATION",
+    "APPEAL_OR_CORRECTION",
+    "ARCHIVE_WITH_PROVENANCE"
+  ],
+  "analysis_layers":{
+    "language":{
+      "enabled":true,
+      "methods":["multilingual NLP","semantic consistency","claim/source separation","context comparison","ambiguity detection"],
+      "rule":"Text interpretation is probabilistic and must expose uncertainty."
+    },
+    "reasoning":{
+      "enabled":true,
+      "methods":["claim decomposition","counterexample prompts","assumption detection","source comparison","logical consistency checks"],
+      "rule":"No AI output is itself proof of truth."
+    },
+    "behavioral_observation":{
+      "enabled":true,
+      "methods":["structured self-report","task performance","repeatability","interaction consistency"],
+      "rule":"Do not infer protected or sensitive traits from behavior."
+    },
+    "optional_sensing":{
+      "enabled":true,
+      "methods":["device capability check","consented signal quality","liveness where legally and technically appropriate"],
+      "rule":"Raw biometric data must be minimized, protected and never used as a hidden identity or character score."
+    }
+  },
+  "fairness_rules":[
+    "Do not rank people as human/non-human.",
+    "Do not issue a universal moral-worth score.",
+    "Do not infer protected characteristics.",
+    "Do not make employment, governmental, judicial or civic decisions autonomously.",
+    "Every consequential result requires an accountable human or legally authorized process.",
+    "A certificate records the stated inspection and evidence state; it is not automatic accreditation."
+  ],
+  "evidence_states":["SELF_REPORTED","SOURCE_LINKED","TASK_OBSERVED","EXTERNALLY_VERIFIED","NOT_VERIFIED","DISPUTED"],
+  "result_states":["DRAFT","IN_REVIEW","EXPLAINED","HUMAN_REVIEW_REQUIRED","APPEAL_OPEN","FINALIZED","ARCHIVED"],
+  "privacy_boundary":{
+    "data_minimization":true,
+    "consent_required_for_optional_sensing":true,
+    "no_secret_recording":true,
+    "no_public_raw_biometrics":true,
+    "deletion_and_correction_path_required":true
+  },
+  "scale_target":{
+    "aspiration":"850 crore users",
+    "status":"ARCHITECTURAL_TARGET_ONLY",
+    "requirements":["horizontal scaling","regional data controls","multilingual NLP","offline/low-bandwidth mode","audit logging","rate limiting","disaster recovery","human-review queues","accessibility"]
+  }
+}
