@@ -1,0 +1,23 @@
+name: Nishpaksh Nirikshan App QC
+on:
+  push:
+    branches: ["feature/nishpaksh-nirikshan-app-20260927"]
+  pull_request:
+    paths:
+      - "nishpaksh-nirikshan/**"
+      - "schemas/nishpaksh-inspection-record.schema.json"
+      - "docs/nishpaksh-nirikshan-architecture.md"
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON schema syntax
+        run: python -m json.tool schemas/nishpaksh-inspection-record.schema.json >/dev/null
+      - name: Validate app files
+        run: |
+          test -s nishpaksh-nirikshan/index.html
+          test -s nishpaksh-nirikshan/assessment.html
+          test -s nishpaksh-nirikshan/styles.css
+          grep -q "human_review" nishpaksh-nirikshan/assessment.html
+          grep -q "NOT_VERIFIED" nishpaksh-nirikshan/assessment.html
