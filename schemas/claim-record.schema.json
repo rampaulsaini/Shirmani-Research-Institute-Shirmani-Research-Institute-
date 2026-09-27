@@ -31,7 +31,7 @@
         "COMPUTATIONAL",
         "HISTORICAL",
         "SCIENTIFIC",
-        "COMPARATIVE"
+        "COMPARATIVE","SENSORY","PERCEPTUAL","LINGUISTIC","SEMANTIC","MULTIMODAL","BEHAVIORAL","CAUSAL","TEMPORAL","SPATIAL","ETHICAL","EPISTEMIC","ONTOLOGICAL","OPERATIONAL","REPRODUCIBILITY","SECURITY","ACCESSIBILITY"
       ]
     },
     "status": {
@@ -50,6 +50,8 @@
         "type": "string"
       }
     },
+    "analysis_dimensions": {"type":"array","items":{"type":"object","additionalProperties":false,"required":["dimension","question"],"properties":{"dimension":{"type":"string"},"question":{"type":"string"},"observation":{"type":"string"},"status":{"enum":["OBSERVED","INFERRED","UNKNOWN","NOT_APPLICABLE"]}}}},
+    "alternative_interpretations": {"type":"array","items":{"type":"string"}},
     "evidence": {
       "type": "array",
       "items": {
