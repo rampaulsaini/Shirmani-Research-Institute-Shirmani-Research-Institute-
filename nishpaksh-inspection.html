@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>निष्पक्ष समझ निरीक्षण</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#18212b;background:#f6f8fa}
+body{margin:0}.wrap{max-width:980px;margin:auto;padding:24px}
+.card{background:#fff;border:1px solid #d9e0e7;border-radius:16px;padding:20px;margin:16px 0}
+h1{margin:.2rem 0}.muted{color:#5b6672}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+button,select,textarea,input{font:inherit;width:100%;box-sizing:border-box;padding:11px;border:1px solid #b9c3ce;border-radius:10px;background:#fff}
+button{cursor:pointer}.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#eef2f6;margin:3px}.status{font-weight:700}
+.hidden{display:none}.notice{border-left:4px solid #59636e;padding-left:12px}
+ul{padding-left:20px}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="card">
+<h1>निष्पक्ष समझ निरीक्षण App</h1>
+<p class="muted">Purpose-first · evidence-first · consent-aware · auditable</p>
+<div class="notice"><strong>पहला प्रश्न:</strong> निरीक्षण किस चीज़ के लिए है?</div>
+</header>
+
+<section class="card">
+<label for="purpose"><strong>Inspection purpose</strong></label>
+<select id="purpose">
+<option value="">चुनें…</option>
+<option value="HUMAN_SELF">खुद का स्व-निरीक्षण</option>
+<option value="EDUCATION">शिक्षा / learning</option>
+<option value="EMPLOYMENT">रोजगार / कार्य</option>
+<option value="ROLE_APPLICATION">किसी घोषित role के criteria</option>
+<option value="PUBLIC_SERVICE_REVIEW">सार्वजनिक सेवा criteria audit</option>
+<option value="RESEARCH">Research / proposition audit</option>
+</select>
+<p id="purposeHelp" class="muted">Purpose चुने बिना कोई assessment शुरू नहीं होता।</p>
+</section>
+
+<section class="card">
+<h2>Multi-angle निरीक्षण</h2>
+<div class="grid">
+<label><input type="checkbox" checked> शब्दार्थ / NLP semantics</label>
+<label><input type="checkbox" checked> Context & speaker attribution</label>
+<label><input type="checkbox" checked> Evidence & source provenance</label>
+<label><input type="checkbox" checked> Counter-evidence</label>
+<label><input type="checkbox" checked> Logic / consistency</label>
+<label><input type="checkbox"> Mathematics / deterministic checks</label>
+<label><input type="checkbox"> Temporal consistency</label>
+<label><input type="checkbox"> Translation consistency</label>
+<label><input type="checkbox"> Reproducibility</label>
+<label><input type="checkbox"> Document integrity</label>
+</div>
+<p class="muted">एक शब्द को एक ही अर्थ मानने के बजाय context, negation, modality, metaphor और quotation अलग रखे जाते हैं।</p>
+</section>
+
+<section class="card">
+<h2>Evidence & countercase</h2>
+<textarea id="claim" rows="4" placeholder="जिस claim / प्रश्न / अनुभव का निरीक्षण करना है, लिखें…"></textarea>
+<div class="grid" style="margin-top:12px">
+<textarea rows="3" placeholder="समर्थन करने वाला source/evidence"></textarea>
+<textarea rows="3" placeholder="Counter-evidence / वैकल्पिक explanation"></textarea>
+</div>
+<p><span class="pill">REGISTERED</span><span class="pill">EVIDENCE_PENDING</span><span class="pill">NOT_VERIFIED</span></p>
+</section>
+
+<section class="card">
+<h2>Optional sensing</h2>
+<p class="muted">Fingerprint, finger-vein, iris/eye, face या voice केवल स्पष्ट consent और वैध सीमित purpose के साथ future adapter के रूप में जोड़े जा सकते हैं। Raw biometric data public repository में नहीं रखा जाता।</p>
+<label><input id="consent" type="checkbox"> मैं optional sensing के लिए informed consent देता/देती हूँ।</label>
+<div class="grid" style="margin-top:12px">
+<button type="button" onclick="show('FINGER_VEIN')">Finger-vein adapter status</button>
+<button type="button" onclick="show('EYE')">Eye/iris adapter status</button>
+</div>
+<p id="sensorStatus" class="status">INACTIVE — no biometric capture</p>
+</section>
+
+<section class="card">
+<h2>Review boundary</h2>
+<ul>
+<li>Generated output ≠ verified evidence.</li>
+<li>Biometric match ≠ moral, mental, emotional या character truth.</li>
+<li>AI/ML/NLP final authority नहीं है।</li>
+<li>High-impact decisions के लिए lawful criteria, human review, oversight और appeal आवश्यक हैं।</li>
+<li>Certificate केवल specified purpose + criteria version + evidence set के अनुसार review completion दर्शाता है।</li>
+</ul>
+<button type="button" onclick="createCase()">Inspection case तैयार करें</button>
+<p id="caseStatus" class="status"></p>
+</section>
+
+<section class="card">
+<h2>Scale-ready architecture</h2>
+<p>Target: measured large-scale readiness. Capacity को load tests से स्थापित किया जाएगा, adoption का अनुमान नहीं लगाया जाएगा.</p>
+<p class="muted">App → consent/privacy → case store → evidence → NLP/ML agents → deterministic validators → review queue → human/audit gate → certificate/report → archive</p>
+</section>
+</main>
+<script>
+function show(kind){
+  const c=document.getElementById('consent').checked;
+  document.getElementById('sensorStatus').textContent=c
+    ? kind+' adapter: READY FOR MOCK/TEST ONLY — capture inactive'
+    : 'CONSENT REQUIRED — capture inactive';
+}
+function createCase(){
+  const purpose=document.getElementById('purpose').value;
+  if(!purpose){document.getElementById('caseStatus').textContent='पहले inspection purpose चुनें।';return;}
+  const claim=document.getElementById('claim').value.trim();
+  document.getElementById('caseStatus').textContent=
+    'Case prepared: '+purpose+(claim?' · claim captured':' · claim pending')+' · status=REGISTERED · human review required';
+}
+</script>
+</body>
+</html>
