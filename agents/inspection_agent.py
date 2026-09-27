@@ -36,7 +36,7 @@ def validate_session(session: Mapping[str, Any]) -> InspectionDecision:
     else:
         for claim in claims:
             if not claim.get("evidence_refs"):
-                reasons.append(f"EVIDENCE_MISSING:{claim.get("claim_id", "unknown")}")
+                reasons.append(f"EVIDENCE_MISSING:{claim.get('claim_id', 'unknown')}")
     if reasons:
         return InspectionDecision("CHECK", tuple(reasons))
     return InspectionDecision("HUMAN_REVIEW", ("STRUCTURE_AND_SAFETY_GATES_PASS",))
