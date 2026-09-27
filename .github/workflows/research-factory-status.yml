@@ -6,6 +6,10 @@ on:
   schedule:
     - cron: "0 * * * *"
 
+concurrency:
+  group: research-factory-status-sync
+  cancel-in-progress: false
+
 permissions:
   contents: write
   pull-requests: write
@@ -39,7 +43,15 @@ jobs:
           branch="automation/factory-status-sync"
           git checkout -B "$branch"
           git commit -m "chore: sync central factory status"
-          git push --force-with-lease origin "HEAD:$branch"
+          # Serialize publication and refresh the remote branch before the protected push.
+          # The branch is automation-owned; force-with-lease is retained as the safety gate.
+          git fetch origin "$branch" || true
+          if git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+            remote_sha="$(git rev-parse "origin/$branch")"
+            git push --force-with-lease="refs/heads/$branch:$remote_sha" origin "HEAD:$branch"
+          else
+            git push --force-with-lease origin "HEAD:$branch"
+          fi
 
           open_pr_count="$(gh pr list --base main --head "$branch" --state open --json number --jq 'length')"
           if [ "$open_pr_count" -ne 0 ]; then
