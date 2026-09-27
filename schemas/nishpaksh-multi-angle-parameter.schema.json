@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nishpaksh Multi-Angle Parameter Record",
+  "description": "Evidence-bound structure for examining a word, experience, object, signal, or claim from multiple independent angles.",
+  "type": "object",
+  "required": [
+    "parameter",
+    "subject",
+    "angles",
+    "evidence_status"
+  ],
+  "properties": {
+    "parameter": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "question": {
+      "type": "string"
+    },
+    "angles": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "angle",
+          "observation",
+          "status"
+        ],
+        "properties": {
+          "angle": {
+            "enum": [
+              "linguistic",
+              "ordinary_meaning",
+              "anatomical",
+              "physiological",
+              "sensory",
+              "measurement",
+              "mathematical",
+              "computational",
+              "psychological_experience",
+              "social_context",
+              "historical",
+              "scientific_literature",
+              "alternative_explanation",
+              "falsification"
+            ]
+          },
+          "observation": {
+            "type": "string"
+          },
+          "measurement": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "counter_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": [
+              "UNVERIFIED",
+              "PERSONAL_EXPERIENCE",
+              "DESCRIPTIVE",
+              "PARTIALLY_SUPPORTED",
+              "SUPPORTED",
+              "DISPUTED",
+              "CONTRADICTED",
+              "NON-FALSIFIABLE"
+            ]
+          },
+          "next_test": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evidence_status": {
+      "enum": [
+        "UNVERIFIED",
+        "PERSONAL_EXPERIENCE",
+        "DESCRIPTIVE",
+        "PARTIALLY_SUPPORTED",
+        "SUPPORTED",
+        "DISPUTED",
+        "CONTRADICTED",
+        "NON-FALSIFIABLE"
+      ]
+    },
+    "safety_boundary": {
+      "type": "string"
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
