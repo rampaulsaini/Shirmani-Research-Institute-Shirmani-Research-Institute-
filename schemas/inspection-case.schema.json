@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/inspection-case.schema.json",
+  "title":"Nishpaksh Inspection Case","type":"object","additionalProperties":false,
+  "required":["case_id","purpose","criteria_version","subject_consent","evidence","status","provenance"],
+  "properties":{
+    "case_id":{"type":"string","pattern":"^[A-Za-z0-9._:-]+$"},
+    "purpose":{"type":"string","enum":["HUMAN_SELF","EDUCATION","EMPLOYMENT","ROLE_APPLICATION","PUBLIC_SERVICE_REVIEW","RESEARCH"]},
+    "criteria_version":{"type":"string","minLength":1},
+    "subject_consent":{"type":"boolean"},
+    "criteria":{"type":"array","items":{"type":"object","required":["criterion_id","statement"],"properties":{"criterion_id":{"type":"string"},"statement":{"type":"string"},"source":{"type":"string"},"mandatory":{"type":"boolean"}}}},
+    "claims":{"type":"array","items":{"type":"object","required":["claim_id","text","status"],"properties":{"claim_id":{"type":"string"},"text":{"type":"string"},"status":{"type":"string","enum":["REGISTERED","SOURCE_ONLY","EVIDENCE_PENDING","PARTIALLY_SUPPORTED","VERIFIED","DISPUTED","CONTRADICTED","NOT_VERIFIED","DEFERRED","ARCHIVED"]},"confidence":{"type":"number","minimum":0,"maximum":1},"human_review_required":{"type":"boolean"}}}},
+    "evidence":{"type":"array","items":{"type":"object","required":["evidence_id","type","status"],"properties":{"evidence_id":{"type":"string"},"type":{"type":"string","enum":["DOCUMENT","DATASET","OBSERVATION","CALCULATION","TEST","SOURCE","BIOMETRIC_AUTH","OTHER"]},"status":{"type":"string","enum":["REGISTERED","SOURCE_ONLY","EVIDENCE_PENDING","PARTIALLY_SUPPORTED","VERIFIED","DISPUTED","CONTRADICTED","NOT_VERIFIED","DEFERRED","ARCHIVED"]},"source_ref":{"type":"string"},"sha256":{"type":"string"}}}},
+    "sensing":{"type":"object","properties":{"enabled":{"type":"boolean"},"modalities":{"type":"array","items":{"type":"string","enum":["FINGERPRINT","FINGER_VEIN","IRIS","FACE","VOICE","NONE"]}},"purpose_limited":{"type":"boolean"},"raw_data_public":{"type":"boolean"}}},
+    "analysis":{"type":"array","items":{"type":"string","enum":["NLP_SEMANTICS","CONTEXT","TEMPORAL","LOGIC","MATHEMATICS","FACTUAL_EVIDENCE","COUNTER_EVIDENCE","PROVENANCE","REPRODUCIBILITY","TRANSLATION","DOCUMENT_INTEGRITY","HUMAN_REVIEW"]}},
+    "status":{"type":"string","enum":["REGISTERED","SOURCE_ONLY","EVIDENCE_PENDING","PARTIALLY_SUPPORTED","VERIFIED","DISPUTED","CONTRADICTED","NOT_VERIFIED","DEFERRED","ARCHIVED"]},
+    "provenance":{"type":"object","required":["created_at","created_by"],"properties":{"created_at":{"type":"string"},"created_by":{"type":"string"},"source_commit":{"type":"string"},"record_sha256":{"type":"string"}}}
+  }
+}
