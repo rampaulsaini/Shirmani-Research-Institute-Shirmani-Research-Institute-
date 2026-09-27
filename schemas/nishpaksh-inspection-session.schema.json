@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/nishpaksh-inspection-session.schema.json",
+  "title": "Nishpaksh Inspection Session",
+  "type": "object",
+  "required": [
+    "session_id",
+    "inspection_target",
+    "status",
+    "created_at",
+    "consent",
+    "claims"
+  ],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inspection_target": {
+      "type": "string",
+      "enum": [
+        "SELF_HUMANITY",
+        "EDUCATION",
+        "ROLE_APPLICATION",
+        "PUBLIC_OFFICE",
+        "WORK_SKILL",
+        "RESEARCH_CLAIM",
+        "PERSONAL_REFLECTION"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "REGISTERED",
+        "IN_PROGRESS",
+        "EVIDENCE_PENDING",
+        "CHECK",
+        "VERIFIED",
+        "PARTIALLY_VERIFIED",
+        "NOT_VERIFIED",
+        "DISPUTED",
+        "UNAVAILABLE",
+        "HUMAN_REVIEW_REQUIRED",
+        "PUBLISHED",
+        "ARCHIVED"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "consent": {
+      "type": "object",
+      "required": [
+        "accepted",
+        "scope"
+      ],
+      "properties": {
+        "accepted": {
+          "type": "boolean"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "withdrawn_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "criteria_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim_id",
+          "text",
+          "state"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "REGISTERED",
+              "SUPPORTED",
+              "PARTIALLY_SUPPORTED",
+              "NOT_SUPPORTED",
+              "DISPUTED",
+              "UNVERIFIED"
+            ]
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "counterclaims": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "uncertainty": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "biometric": {
+      "type": "object",
+      "description": "Optional authentication metadata only; never a truth, character, eligibility, or fitness score.",
+      "properties": {
+        "used_for": {
+          "type": "string",
+          "enum": [
+            "AUTHENTICATION",
+            "CONSENT"
+          ]
+        },
+        "raw_data_retained": {
+          "type": "boolean",
+          "const": false
+        },
+        "alternative_available": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "human_review_required": {
+      "type": "boolean"
+    },
+    "evidence_manifest": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unresolved_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "report_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "report_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
