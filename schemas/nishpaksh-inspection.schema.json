@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0.0",
+  "name": "Nishpaksh Inspection Engine",
+  "purpose": "A purpose-first, evidence-aware inspection and reflection framework.",
+  "principles": [
+    "Purpose must be selected before assessment.",
+    "Reflection, evidence, inference and verification remain separate.",
+    "No biometric or behavioral signal is treated as proof of truth, intent, character or fitness.",
+    "AI may assist extraction, comparison and question generation; humans retain consequential decisions.",
+    "Certificates describe completion and evidence state, not absolute truth or human worth.",
+    "Consent, privacy, data minimization, retention limits and appeal paths are required."
+  ],
+  "inspection_targets": [
+    "self_as_human",
+    "education",
+    "employment_role",
+    "public_service_role",
+    "ministerial_role",
+    "chief_minister_role",
+    "prime_minister_role",
+    "other_authorized_role"
+  ],
+  "stages": [
+    "purpose_selection",
+    "consent_and_scope",
+    "identity_and_data_minimization",
+    "structured_interview",
+    "evidence_collection",
+    "source_and_claim_analysis",
+    "multi_angle_language_analysis",
+    "reflection_consistency_check",
+    "human_review",
+    "decision_or_completion_record",
+    "certificate_or_report",
+    "appeal_and_audit"
+  ],
+  "signal_policy": {
+    "text_nlp": "Allowed for linguistic structure, ambiguity, contradiction and source traceability; not for mind-reading or truth detection.",
+    "voice": "Optional accessibility/communication analysis only; no emotion, honesty or intent verdict.",
+    "eye_analysis": "Only with explicit consent and a defined scientific measurement; never infer truthfulness from gaze.",
+    "finger_vein": "Optional identity/security factor where lawful and technically validated; never used as a character or truth score.",
+    "face": "Optional identity verification where lawful; no inferred personality, emotion or moral judgment.",
+    "multimodal": "Signals may be compared for consistency of records, but disagreement is an uncertainty flag, not proof of deception."
+  },
+  "evidence_states": [
+    "REGISTERED",
+    "EVIDENCE_PENDING",
+    "CHECK",
+    "HUMAN_REVIEW",
+    "VERIFIED",
+    "NOT_VERIFIED",
+    "DISPUTED",
+    "ARCHIVED"
+  ],
+  "certificate_types": [
+    "completion_certificate",
+    "evidence_review_record",
+    "role_assessment_report"
+  ],
+  "subscription": {
+    "required_for": "managed assessment programs and longitudinal records",
+    "free_mode": "local reflection and public methodology preview",
+    "no_auto_charge": true,
+    "cancellation_and_retention_controls": true
+  },
+  "scale_architecture": {
+    "target_population_note": "Designed for large-scale public use; capacity claims must be load-tested.",
+    "privacy_partitioning": "tenant/user scoped data with minimal collection",
+    "observability": "append-only audit events with independent verification state",
+    "automation": "queue, idempotency, retry, dead-letter and recovery workflows"
+  }
+}
