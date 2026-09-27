@@ -18,7 +18,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: shirmani-inspection-contract-\${{ github.ref }}
+  group: shirmani-inspection-contract-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
