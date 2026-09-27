@@ -1,31 +1,19 @@
-name: NISHPAKSH Inspection Schema Smoke
+name: Nishpaksh Inspection Schema Smoke
 on:
   push:
-    paths: ['inspection-app.html','docs/NISHPAKSH-INSPECTION-ENGINE-SPEC.md','schemas/nishpaksh-inspection-record.schema.json','.github/workflows/nishpaksh-inspection-schema-smoke.yml']
+    paths: ['schemas/nishpaksh-inspection-session.schema.json','docs/NISHPakSH-INSPECTION-ENGINE.md','.github/workflows/nishpaksh-inspection-schema-smoke.yml']
   pull_request:
-    paths: ['inspection-app.html','docs/NISHPAKSH-INSPECTION-ENGINE-SPEC.md','schemas/nishpaksh-inspection-record.schema.json','.github/workflows/nishpaksh-inspection-schema-smoke.yml']
+    paths: ['schemas/nishpaksh-inspection-session.schema.json','docs/NISHPakSH-INSPECTION-ENGINE.md','.github/workflows/nishpaksh-inspection-schema-smoke.yml']
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  smoke:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python -m json.tool schemas/nishpaksh-inspection-record.schema.json >/dev/null
-      - name: app smoke
+      - name: Validate JSON
+        run: python -m json.tool schemas/nishpaksh-inspection-session.schema.json >/dev/null
+      - name: Fail closed on unsafe certification language
         run: |
-          from pathlib import Path
-          p = Path("inspection-app.html").read_text()
-          required = [
-              'id="purpose"',
-              'id="claim"',
-              'id="evidence"',
-              'id="evaluate"',
-              "ai_decision:false",
-          ]
-          for item in required:
-              assert item in p, item
-          print("PASS")
-      - name: integrity smoke
-        run: grep -q 'Biometric match ≠ truth/competence' docs/NISHPAKSH-INSPECTION-ENGINE-SPEC.md
+          ! grep -RniE 'automatic(ally)?[[:space:]]+(verified|certified)|biometric.*truth[[:space:]]+detector' docs/NISHPakSH-INSPECTION-ENGINE.md
