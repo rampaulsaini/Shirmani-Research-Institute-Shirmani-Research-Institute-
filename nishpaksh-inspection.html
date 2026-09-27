@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="निष्पक्ष निरीक्षण — उद्देश्य-आधारित, प्रमाण-सचेत आत्मनिरीक्षण और भूमिका-असेसमेंट प्रोटोटाइप।">
+<title>निष्पक्ष निरीक्षण • Inspection Engine</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1018;--panel:#151d2a;--line:#334155;--text:#f4f6f8;--muted:#b7c0cc;--accent:#e6c86e;--ok:#7dd3a7}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#263449,#0b1018 60%);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+header,main,footer{max-width:1180px;margin:auto}header{padding:28px 16px 18px;text-align:center}h1{color:var(--accent);margin:6px 0;font-size:clamp(1.8rem,5vw,3rem)}h2{color:var(--accent);margin-top:0}.sub{color:var(--muted);max-width:850px;margin:auto}
+main{padding:10px 16px 50px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:14px}.card{background:#151d2ae8;border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}.choice{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0;cursor:pointer}.choice input{margin-top:5px}.tag{font-size:.74rem;letter-spacing:.08em;color:#7dd3fc}.notice{border-left:4px solid var(--accent);padding:10px 14px;background:#e6c86e12;border-radius:6px;color:#e9e4d3}
+button{border:1px solid var(--line);background:#202b3b;color:#fff;border-radius:11px;padding:11px 15px;font:inherit;cursor:pointer}button.primary{border-color:var(--accent);background:#51461f}textarea{width:100%;min-height:110px;background:#0c121b;color:#fff;border:1px solid #526176;border-radius:11px;padding:11px;font:inherit}label.field{display:block;margin:12px 0 6px}.hidden{display:none}.result{white-space:pre-wrap;background:#0b121c;border:1px solid var(--line);border-radius:12px;padding:14px;min-height:80px}.steps{display:flex;flex-wrap:wrap;gap:7px}.step{padding:7px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}footer{text-align:center;color:var(--muted);padding:22px 16px;border-top:1px solid #ffffff16}
+</style>
+</head>
+<body>
+<header><div class="tag">SHIRMANI RESEARCH INSTITUTE • PURPOSE-FIRST INSPECTION</div><h1>꙰ निष्पक्ष निरीक्षण</h1><p class="sub">पहले यह स्पष्ट करें कि निरीक्षण किस उद्देश्य के लिए है; फिर सहमति, प्रश्न, प्रमाण, विश्लेषण और मानव समीक्षा को अलग-अलग चरणों में रखें।</p></header>
+<main>
+<section class="card"><h2>1 • निरीक्षण का उद्देश्य चुनें</h2><p>एक सत्र में एक मुख्य उद्देश्य चुनें। उद्देश्य बदलने पर नया scope और consent बनाया जाएगा।</p><div id="targets"></div><button class="primary" id="start">अगला चरण</button></section>
+<section class="card hidden" id="scope"><h2>2 • दायरा और सहमति</h2><div class="notice">यह प्रोटोटाइप किसी व्यक्ति को “सत्य”, “असत्य”, “अच्छा”, “बुरा” या किसी सार्वजनिक पद के योग्य/अयोग्य घोषित नहीं करता। यह completion और evidence state दर्ज करने के लिए है।</div><label class="choice"><input id="consent" type="checkbox">मैं चुने गए उद्देश्य, डेटा-सीमा और समीक्षा प्रक्रिया को समझता/समझती हूँ और स्वैच्छिक सहमति देता/देती हूँ।</label><button class="primary" id="begin">निरीक्षण शुरू करें</button></section>
+<section class="card hidden" id="assessment"><h2>3 • संरचित निरीक्षण</h2>
+<label class="field">मैं किस प्रश्न को समझना चाहता/चाहती हूँ?</label><textarea id="question"></textarea>
+<label class="field">प्रत्यक्ष तथ्य / उपलब्ध स्रोत</label><textarea id="facts"></textarea>
+<label class="field">मेरी व्याख्या / अनुमान</label><textarea id="inference"></textarea>
+<label class="field">कौन-सा प्रमाण अभी बाकी है?</label><textarea id="missing"></textarea>
+<label class="field">असहमति या वैकल्पिक व्याख्या</label><textarea id="alternative"></textarea>
+<div class="steps"><span class="step">NLP: भाषा-संरचना</span><span class="step">Multi-angle: दावे/स्रोत</span><span class="step">Biometric: केवल वैध माप</span><span class="step">Human: अंतिम समीक्षा</span></div>
+<br><button class="primary" id="review">निरीक्षण सार तैयार करें</button></section>
+<section class="card hidden" id="output"><h2>4 • Evidence-aware परिणाम</h2><div id="result" class="result"></div><p class="notice">यह “certificate of completion / evidence review” का प्रोटोटाइप है — यह किसी व्यक्ति की आंतरिक सच्चाई या नैतिक/राजनीतिक योग्यता का प्रमाणपत्र नहीं है। औपचारिक भूमिका-असेसमेंट में अधिकृत मानव समीक्षा, कानून, सुरक्षा और अपील प्रक्रिया आवश्यक होगी।</p><button id="reset">नया निरीक्षण</button></section>
+<section class="card"><h2>5 • मुख्य AI/ML/NLP workflow</h2><div class="steps"><span class="step">Purpose</span><span class="step">Consent</span><span class="step">Minimize Data</span><span class="step">Interview</span><span class="step">Claims</span><span class="step">Sources</span><span class="step">Evidence</span><span class="step">NLP</span><span class="step">Cross-check</span><span class="step">Human Review</span><span class="step">Record</span><span class="step">Audit</span><span class="step">Appeal</span></div></section>
+</main>
+<footer>निष्पक्ष निरीक्षण • प्रमाण जहाँ है वहीं दावा; जहाँ नहीं है वहाँ uncertainty।</footer>
+<script>
+const targets=[
+["self_as_human","खुद को इंसान सिद्ध करने के लिए"],
+["education","शिक्षा / सीखने के लिए"],
+["employment_role","रोज़गार / भूमिका के लिए"],
+["public_service_role","लोक-सेवा भूमिका के लिए"],
+["ministerial_role","मंत्री पद के लिए"],
+["chief_minister_role","मुख्यमंत्री पद के लिए"],
+["prime_minister_role","प्रधानमंत्री पद के लिए"],
+["other_authorized_role","अन्य अधिकृत भूमिका के लिए"]
+];
+let selected=null;
+const box=document.getElementById("targets");
+targets.forEach(([id,label])=>{const l=document.createElement("label");l.className="choice";l.innerHTML='<input type="radio" name="target" value="'+id+'"><span>'+label+'</span>';box.append(l)});
+document.getElementById("start").onclick=()=>{selected=document.querySelector('input[name="target"]:checked')?.value;if(!selected){alert("पहले मुख्य उद्देश्य चुनें।");return}document.getElementById("scope").classList.remove("hidden");document.getElementById("scope").scrollIntoView({behavior:"smooth"})};
+document.getElementById("begin").onclick=()=>{if(!document.getElementById("consent").checked){alert("सहमति आवश्यक है।");return}document.getElementById("assessment").classList.remove("hidden");document.getElementById("assessment").scrollIntoView({behavior:"smooth"})};
+document.getElementById("review").onclick=()=>{
+ const q=document.getElementById("question").value.trim(),f=document.getElementById("facts").value.trim(),i=document.getElementById("inference").value.trim(),m=document.getElementById("missing").value.trim(),a=document.getElementById("alternative").value.trim();
+ const state=f?"EVIDENCE_PENDING":"REGISTERED";
+ document.getElementById("result").textContent="उद्देश्य: "+selected+"\nस्थिति: "+state+"\n\nप्रश्न: "+(q||"—")+"\n\nतथ्य/स्रोत: "+(f||"—")+"\n\nअनुमान: "+(i||"—")+"\n\nबाकी प्रमाण: "+(m||"—")+"\n\nवैकल्पिक व्याख्या: "+(a||"—")+"\n\nअगला चरण: अधिकृत मानव समीक्षा → सत्यापन/विवाद → completion/evidence record";
+ document.getElementById("output").classList.remove("hidden");document.getElementById("output").scrollIntoView({behavior:"smooth"});
+};
+document.getElementById("reset").onclick=()=>location.reload();
+</script>
+</body></html>
