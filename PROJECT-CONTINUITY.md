@@ -147,3 +147,13 @@ A missing field is a QC failure, not an invitation to invent a value.
 - Resume logic remains output-first: durable generated outputs are used to reconstruct progress, while canonical/source records remain protected.
 
 - Follow-up fix: QC no longer applies the reasoning method-stack validator to the upstream verse corpus; strict method-stack validation remains on reasoning-manifest.jsonl. This prevents 100,000 false blocking errors while preserving reasoning QC.
+
+
+## 18. Nishpaksh inspection layer
+- Added `inspection-app.html` as a privacy/evidence-first prototype with purpose selection before inspection.
+- Added `schemas/inspection-record.schema.json` for machine-readable inspection records.
+- Added `factory/inspection_record_qc.py` as a deterministic fail-closed QC gate.
+- Added `docs/INSPECTION-APP.md` with multi-angle NLP, biometric boundaries, process-certificate semantics, subscription boundary, scaling and governance requirements.
+- Added the inspection QC step to `.github/workflows/omniverse-factory.yml`.
+- Biometric signals are explicitly non-authoritative: they may support authentication/liveness only and do not establish truth, character, competence, mental state or personhood.
+- Certificates remain `PROCESS_ONLY`; independent verification is a separate state.
