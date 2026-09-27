@@ -1,0 +1,30 @@
+name: SHIRMANI Inspection App Schema Smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'schemas/inspection-case.schema.json'
+      - 'docs/NISHPakSH-INSPECTION-APP-SPEC.md'
+      - '.github/workflows/shirmani-inspection-schema-smoke.yml'
+  pull_request:
+    paths:
+      - 'schemas/inspection-case.schema.json'
+      - 'docs/NISHPakSH-INSPECTION-APP-SPEC.md'
+      - '.github/workflows/shirmani-inspection-schema-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON
+        run: python3 -m json.tool schemas/inspection-case.schema.json >/dev/null
+      - name: Validate architecture contract
+        run: |
+          set -euo pipefail
+          grep -q 'PUBLIC_SERVICE_REVIEW' schemas/inspection-case.schema.json
+          grep -q 'FINGER_VEIN' schemas/inspection-case.schema.json
+          grep -q 'Generated ≠ verified' docs/NISHPakSH-INSPECTION-APP-SPEC.md
+          grep -q 'Biometric match ≠ moral/mental truth' docs/NISHPakSH-INSPECTION-APP-SPEC.md
