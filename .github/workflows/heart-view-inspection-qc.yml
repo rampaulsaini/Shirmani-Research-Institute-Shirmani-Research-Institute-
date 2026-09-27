@@ -1,0 +1,46 @@
+name: SHIRMANI Heart-View Inspection Protocol QC
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "heart-view-inspection.html"
+      - "agents/heart_view_inspection.py"
+      - "federation/heart-view-inspection.schema.json"
+      - ".github/workflows/heart-view-inspection-qc.yml"
+permissions:
+  contents: read
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile inspection agent
+        run: python -m py_compile agents/heart_view_inspection.py
+      - name: Validate schema JSON
+        run: python -m json.tool federation/heart-view-inspection.schema.json >/dev/null
+      - name: Run deterministic state checks
+        run: |
+          python - <<'PY'
+          from agents.heart_view_inspection import Inspection
+          x=Inspection("SELF_HUMAN_REFLECTION", True, ["SELF_REPORTED"])
+          r=x.prepare()
+          assert r["state"] == "IN_REVIEW"
+          y=Inspection("JOB_OR_ROLE_APPLICATION", True, ["NOT_VERIFIED"])
+          r=y.prepare()
+          assert r["state"] == "HUMAN_REVIEW_REQUIRED"
+          assert "EVIDENCE_INCOMPLETE_OR_NOT_INDEPENDENTLY_VERIFIED" in r["warnings"]
+          print("heart-view protocol checks: PASS")
+          PY
+      - name: Static HTML smoke check
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("heart-view-inspection.html").read_text(encoding="utf-8")
+          for marker in ["purpose","consent","MULTI_ANGLE_ANALYSIS","HUMAN_REVIEW","NOT_VERIFIED"]:
+              assert marker in p or marker.lower() in p.lower(), marker
+          print("heart-view HTML smoke check: PASS")
+          PY
