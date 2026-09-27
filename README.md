@@ -103,3 +103,13 @@ Source → Normalize → Claims → Sources → Evidence → Formulation/Test �
 - **Integrity rule:** REGISTERED ≠ VERIFIED · VERIFIED ≠ PAID · ALLOCATED ≠ SETTLED · LEDGER ENTRY ≠ INCOME.
 - **Privacy boundary:** credentials, payment-card data, passwords and unnecessary personal data are excluded from the public ledger model.
 - **Future connections:** Employment & Livelihood, verified work, value allocation, exchange orders and authorized settlement evidence.
+
+
+## 🧭 Nishpaksh Inspection Framework
+
+Public prototype: `nishpaksh-inspection-framework.html`  
+Machine-readable contract: `schemas/nishpaksh-inspection-session.schema.json`
+
+The inspection framework separates **purpose → consent → observation → evidence → AI analysis → human review → certificate semantics**. It supports self-observation, education, employment, public-service-role processes and research without making a paid subscription, AI score, biometric signal or generated report equivalent to truth or independent verification.
+
+Biometric modalities are purpose-limited and consent-gated; raw biometric storage is not the default. Eye/finger/vein signals are not treated as truth detectors. Consequential outcomes require human review and an appeal path.
