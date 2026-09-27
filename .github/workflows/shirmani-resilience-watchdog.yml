@@ -1,0 +1,37 @@
+name: SHIRMANI Resilience Watchdog
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_run:
+    workflows:
+      - SHIRMANI CI Syntax Smoke
+      - SHIRMANI Multi-Automation Supervisor
+      - SHIRMANI Inter-Repository Automission
+      - SHIRMANI Heart-View Auto Review Conveyor
+    types: [completed]
+  workflow_dispatch:
+permissions:
+  actions: write
+  contents: read
+concurrency:
+  group: shirmani-resilience-watchdog
+  cancel-in-progress: true
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: One bounded recovery retry
+        if: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.run_attempt == 1 }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          set -euo pipefail
+          echo "Bounded recovery for run $RUN_ID"
+          gh api --method POST "/repos/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}/rerun-failed-jobs"
+      - name: Heartbeat
+        run: |
+          set -euo pipefail
+          echo "RESILIENCE_HEARTBEAT=PASS"
+          echo "Repeated failures remain visible; retry is limited to one attempt."
