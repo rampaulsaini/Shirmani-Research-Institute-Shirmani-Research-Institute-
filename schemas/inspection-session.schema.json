@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Heart-View Inspection Session",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "session_id",
+    "purpose",
+    "consent",
+    "status",
+    "created_at",
+    "inspection"
+  ],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "self_understanding",
+        "education",
+        "employment_or_skill",
+        "role_specific_knowledge",
+        "public_service_reflection",
+        "research_participation"
+      ]
+    },
+    "role_context": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "consent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted",
+        "version"
+      ],
+      "properties": {
+        "accepted": {
+          "type": "boolean"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "CHECK",
+        "HUMAN_REVIEW",
+        "NOT_VERIFIED",
+        "VERIFIED"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "inspection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dimensions",
+        "inputs",
+        "analysis_contract"
+      ],
+      "properties": {
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "provenance"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text",
+                  "audio",
+                  "document",
+                  "image",
+                  "task_result"
+                ]
+              },
+              "provenance": {
+                "type": "string"
+              },
+              "user_controlled": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "analysis_contract": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "claim_evidence_separation",
+            "biometric_inference_disabled",
+            "high_impact_decision_disabled"
+          ],
+          "properties": {
+            "claim_evidence_separation": {
+              "const": true
+            },
+            "biometric_inference_disabled": {
+              "const": true
+            },
+            "high_impact_decision_disabled": {
+              "const": true
+            }
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
