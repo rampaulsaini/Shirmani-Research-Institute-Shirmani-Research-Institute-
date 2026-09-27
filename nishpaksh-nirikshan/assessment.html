@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>निरीक्षण पथ</title><link rel="stylesheet" href="styles.css"></head>
+<body><main><a href="index.html">← वापस</a><section class="hero"><h1 id="title">निरीक्षण</h1><p id="intro"></p>
+<form id="f"><label>निरीक्षण उद्देश्य<select id="purpose"><option>Self reflection</option><option>Education</option><option>Role competency</option><option>Research claim</option></select></label>
+<label>मुख्य प्रश्न<textarea id="question" required></textarea></label>
+<label>उपलब्ध प्रमाण<textarea id="evidence" placeholder="दस्तावेज़, स्रोत, अनुभव, परीक्षण परिणाम…"></textarea></label>
+<label>अनिश्चितता / विरोधी प्रमाण<textarea id="counter"></textarea></label>
+<button>निरीक्षण रिकॉर्ड बनाएं</button></form><pre id="out"></pre></section></main>
+<script>
+const p=new URLSearchParams(location.search).get('mode')||'self';
+const names={self:'खुद को समझना',education:'शिक्षा',role:'पद / भूमिका',research:'शोध'};
+title.textContent=names[p]||'निरीक्षण';
+intro.textContent=p==='role'?'भूमिका के घोषित मानदंड दर्ज करें; व्यक्ति को rank/score देने के बजाय criterion-by-criterion evidence दिखाएँ।':p==='research'?'हर claim के लिए source, evidence, countercase और verification state रखें।':'अपने अनुभव और सीख को तथ्य से अलग लिखें।';
+f.onsubmit=e=>{e.preventDefault(); const rec={id:'nirikshan-'+Date.now(),purpose:purpose.value,question:question.value,evidence:evidence.value?[{status:'PENDING_REVIEW',detail:evidence.value}]:[],countercases:counter.value?[counter.value]:[],verification:{status:'NOT_VERIFIED',independent:false},human_review:'REQUIRED',created_at:new Date().toISOString()}; out.textContent=JSON.stringify(rec,null,2);};
+</script></body></html>
