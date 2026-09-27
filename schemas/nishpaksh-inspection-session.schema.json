@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nishpaksh Inspection Session",
+  "type": "object",
+  "required": ["purpose", "role", "inspection_level", "consent", "evidence_policy", "review_policy"],
+  "properties": {
+    "purpose": {
+      "type": "string",
+      "enum": ["self_human_observation", "education", "employment", "public_service_role", "research", "well_being"]
+    },
+    "role": {"type": "string"},
+    "inspection_level": {"enum": ["basic", "standard", "deep_research"]},
+    "consent": {
+      "type": "object",
+      "required": ["granted", "timestamp"],
+      "properties": {"granted": {"type": "boolean"}, "timestamp": {"type": "string"}}
+    },
+    "modalities": {
+      "type": "array",
+      "items": {"enum": ["text_semantics", "logic_reasoning", "consistency", "eye_signal", "finger_sensor", "vein_sensor", "accessibility"]}
+    },
+    "biometric_policy": {
+      "type": "object",
+      "properties": {
+        "raw_storage_default": {"const": false},
+        "purpose_limited": {"const": true},
+        "deletion_supported": {"type": "boolean"},
+        "access_logged": {"type": "boolean"}
+      }
+    },
+    "evidence_policy": {
+      "type": "object",
+      "required": ["provenance_required", "uncertainty_required", "ai_output_is_not_independent_verification"],
+      "properties": {
+        "provenance_required": {"const": true},
+        "uncertainty_required": {"const": true},
+        "ai_output_is_not_independent_verification": {"const": true}
+      }
+    },
+    "review_policy": {
+      "type": "object",
+      "required": ["human_review_for_consequential_results", "appeal_available"],
+      "properties": {
+        "human_review_for_consequential_results": {"const": true},
+        "appeal_available": {"const": true}
+      }
+    },
+    "subscription": {
+      "type": "object",
+      "properties": {
+        "tier": {"enum": ["open", "research", "institution"]},
+        "paid_access_does_not_change_truth_status": {"const": true}
+      }
+    }
+  }
+}
