@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nishpaksh Inspection Assessment",
+  "type": "object",
+  "required": [
+    "assessment_id",
+    "purpose",
+    "criteria",
+    "evidence",
+    "verification"
+  ],
+  "properties": {
+    "assessment_id": {
+      "type": "string"
+    },
+    "purpose": {
+      "enum": [
+        "role",
+        "education",
+        "public_service",
+        "self_inspection",
+        "humanity_citizenship",
+        "custom"
+      ]
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "statement",
+          "evidence_types"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "statement": {
+            "type": "string"
+          },
+          "evidence_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "source",
+          "provenance",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "provenance": {
+            "type": "object"
+          },
+          "status": {
+            "enum": [
+              "REGISTERED",
+              "EVIDENCE_PENDING",
+              "VERIFIED",
+              "DISPUTED",
+              "ARCHIVED",
+              "NOT_VERIFIED"
+            ]
+          }
+        }
+      }
+    },
+    "analysis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string"
+          },
+          "model_version": {
+            "type": "string"
+          },
+          "output": {
+            "type": "string"
+          },
+          "uncertainty": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "biometric": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "consent_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "purpose": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "retention_policy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "state",
+        "human_review_required"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "NOT_VERIFIED",
+            "UNDER_REVIEW",
+            "VERIFIED",
+            "REJECTED",
+            "EXPIRED"
+          ]
+        },
+        "human_review_required": {
+          "type": "boolean"
+        },
+        "reviewer_role": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
