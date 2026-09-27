@@ -2,7 +2,7 @@
 "use strict";
 const KEY="shirmani_social_mvp_v1";
 const QUESTIONS=["इस क्षण मैं वास्तव में क्या अनुभव कर रहा/रही हूँ?","मेरे उत्तर के पीछे सबसे सरल कारण क्या है?","यदि मैं अपने उत्तर को फिर सुनूँ, तो उसमें क्या स्पष्ट दिखाई देता है?","मेरी बात और किसी दूसरे व्यक्ति की बात में क्या समानता/अंतर है?","आज की मेरी समझ में कौन-सा प्रश्न अभी खुला हुआ है?"];
-const defaults={profile:{name:"",bio:"",language:"हिंदी"},posts:[],interviews:[],questionIndex:0};
+const defaults={profile:{name:"",bio:"",language:"हिंदी"},posts:[],interviews:[],questionIndex:0,settings:{angles:["language","logic","evidence","nature","human","long","safety","culture"],sensingConsent:false}};
 const load=()=>{try{return Object.assign({},defaults,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch{return JSON.parse(JSON.stringify(defaults))}};
 let state=load();
 const save=()=>{localStorage.setItem(KEY,JSON.stringify(state));renderAll()};
@@ -25,5 +25,13 @@ $("saveInterview").addEventListener("click",()=>{const answer=$("answer").value.
 $("exportData").addEventListener("click",()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="shirmani-social-data.json";a.click();URL.revokeObjectURL(a.href);status("JSON export तैयार है।")});
 $("deleteData").addEventListener("click",()=>{if(!confirm("इस browser का पूरा local MVP data मिटाएँ?"))return;localStorage.removeItem(KEY);state=load();renderAll();status("Local data मिटा दिया गया।")});
 $("seedDemo").addEventListener("click",()=>{state.posts.push({id:crypto.randomUUID(),text:"यह केवल local demo है — यहाँ कोई वास्तविक follower, view, payment या व्यक्ति का दावा नहीं किया गया है।",type:"Demo",createdAt:new Date().toISOString()});save();status("Demo post जोड़ा गया।")});
-renderAll();const initial=location.hash.slice(1);if(["home","create","learn","profile","data"].includes(initial))showTab(initial);
+function bindAdvanced(){
+  const ids=["language","logic","evidence","nature","human","long","safety","culture"];
+  ids.forEach(k=>{const el=$("angle"+k.charAt(0).toUpperCase()+k.slice(1));if(el)el.checked=state.settings?.angles?.includes(k)!==false;});
+  const cs=$("consentSensing"); if(cs) cs.addEventListener("click",()=>{state.settings=state.settings||{};state.settings.sensingConsent=true;save();renderSensing();status("Optional sensing consent local device पर दर्ज हुआ।");});
+  const cl=$("clearSensing"); if(cl) cl.addEventListener("click",()=>{state.settings=state.settings||{};state.settings.sensingConsent=false;save();renderSensing();status("Sensing consent हटा दिया गया।");});
+  ids.forEach(k=>{const el=$("angle"+k.charAt(0).toUpperCase()+k.slice(1));if(el)el.addEventListener("change",()=>{state.settings=state.settings||{};state.settings.angles=ids.filter(x=>{const e=$("angle"+x.charAt(0).toUpperCase()+x.slice(1));return e&&e.checked});save();});});
+}
+function renderSensing(){const e=$("sensingStatus");if(e)e.textContent=state.settings?.sensingConsent?"Consent: ON — local preference only; no biometric identity inference.":"Consent: OFF — optional sensing disabled.";}
+renderAll();bindAdvanced();renderSensing();const initial=location.hash.slice(1);if(["home","create","learn","profile","data","settings","subscription"].includes(initial))showTab(initial);
 })();
