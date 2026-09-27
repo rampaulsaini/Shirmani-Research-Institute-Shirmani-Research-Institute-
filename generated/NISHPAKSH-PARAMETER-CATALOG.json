@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "parameter_families": [
+    {
+      "name": "शब्द",
+      "examples": [
+        "finger",
+        "vein",
+        "sensing",
+        "eye",
+        "deeply",
+        "analysis"
+      ],
+      "angles": [
+        "linguistic",
+        "ordinary_meaning",
+        "historical",
+        "scientific_literature",
+        "alternative_explanation",
+        "falsification"
+      ]
+    },
+    {
+      "name": "शरीर/संवेदी अवलोकन",
+      "examples": [
+        "finger-vein",
+        "eye",
+        "touch",
+        "vision",
+        "pulse"
+      ],
+      "angles": [
+        "anatomical",
+        "physiological",
+        "sensory",
+        "measurement",
+        "computational",
+        "alternative_explanation",
+        "falsification"
+      ]
+    },
+    {
+      "name": "विचार/दावा",
+      "examples": [
+        "यथार्थ",
+        "हृदय-दृष्टिकोण",
+        "संपूर्ण संतुष्टि",
+        "शमीकरण"
+      ],
+      "angles": [
+        "linguistic",
+        "psychological_experience",
+        "social_context",
+        "mathematical",
+        "scientific_literature",
+        "falsification"
+      ]
+    }
+  ],
+  "rules": [
+    "Observation ≠ proof",
+    "Personal experience ≠ independent evidence",
+    "जहाँ संभव हो operational definition, measurement और counter-test दें",
+    "biometric/sensing में consent, privacy और security अनिवार्य रखें",
+    "AI interpretation को independent verification के बिना VERIFIED न करें"
+  ]
+}
