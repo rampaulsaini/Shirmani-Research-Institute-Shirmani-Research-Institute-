@@ -32,6 +32,71 @@ label{display:block;margin:12px 0 5px;color:#e6eaf0}textarea,input,select{width:
 </section>
 <section class="card"><h2>100 गुण • स्वैच्छिक मूल्य-चयन</h2><p>ये चिंतन के लिए सुझाए गए शब्द हैं, कोई मनोवैज्ञानिक परीक्षण या प्रमाणित स्कोर नहीं। लागू गुण चुनें।</p><div class="meter"><span id="progress"></span></div><p id="count" aria-live="polite">0 / 100 चुने गए</p><div class="value-list" id="values"></div></section>
 <section class="card"><h2>निष्पक्षता और वैज्ञानिक सीमाएँ</h2><div class="notice">चेहरे, आँखों की दिशा, आवाज़ या शरीर के संकेतों से किसी की सच्ची भावना, चरित्र, बुद्धिमत्ता या इरादा विश्वसनीय रूप से तय नहीं किया जा सकता। इस केंद्र में ऐसे निष्कर्ष नहीं निकाले जाते।</div><p style="margin-top:12px">Neuroscience और NLP जैसे विषयों पर सामग्री को स्रोत सहित प्रस्तुत किया जाना चाहिए। न्यूरोसेंसर केवल अपने वास्तविक माप-क्षेत्र के संकेत देते हैं; वे विचार पढ़ने का साधन नहीं हैं। DNA, क्वांटम चेतना या ब्रह्माण्ड संबंधी अप्रमाणित सूत्रों को परिकल्पना के रूप में ही चिह्नित करें।</p></section>
+
+<section class="card" id="multi-angle-analysis">
+<h2>🔬 बहु-आयामी निष्पक्ष समझ — Sensory &amp; Context Analysis</h2>
+<p>यह मॉड्यूल किसी व्यक्ति की पहचान, मनःस्थिति, चरित्र, इरादा या “सत्य” को स्वतः निर्धारित नहीं करता। इसका उद्देश्य अलग-अलग संकेतों को <strong>अवलोकन → मापन → संदर्भ → वैकल्पिक व्याख्या → अनिश्चितता → स्वतंत्र सत्यापन</strong> के क्रम में देखना है।</p>
+<div class="grid">
+<article class="card"><div class="tag">01 / FINGER-VEIN</div><h3>Finger Vein Sensing</h3><p>Near-infrared imaging से रक्तवाहिका-पैटर्न जैसी जैविक संरचना का अध्ययन किया जा सकता है। इसे biometric/security research के रूप में रखें; बिना सहमति पहचान या संवेदनशील निष्कर्ष न निकालें।</p></article>
+<article class="card"><div class="tag">02 / EYE</div><h3>Eye / Gaze Analysis</h3><p>Gaze direction, blink rate, pupil-size और fixation जैसे माप दर्ज किए जा सकते हैं। प्रकाश, थकान, दवा, कैमरा और कार्य-निर्देश जैसे confounders अलग रखें; gaze को इरादे या झूठ का प्रमाण न मानें।</p></article>
+<article class="card"><div class="tag">03 / VOICE</div><h3>Voice / Speech</h3><p>Pitch, intensity, speech rate, pauses और शब्दों के पैटर्न मापे जा सकते हैं। इन्हें भावनात्मक या व्यक्तित्व-निर्णय का अकेला प्रमाण नहीं माना जाए।</p></article>
+<article class="card"><div class="tag">04 / FACE</div><h3>Face / Posture</h3><p>Visible movement, posture और facial action का वर्णन किया जा सकता है; लेकिन “चेहरा देखकर सच्चाई” या चरित्र निकालने जैसी inference निषिद्ध/अविश्वसनीय मानी जाए।</p></article>
+<article class="card"><div class="tag">05 / PHYSIOLOGY</div><h3>Physiological Signals</h3><p>Heart rate, skin conductance, respiration जैसे उपलब्ध sensor measurements को timestamp और device metadata के साथ दर्ज करें। Measurement ≠ interpretation.</p></article>
+<article class="card"><div class="tag">06 / LANGUAGE</div><h3>Words &amp; Meaning</h3><p>एक ही शब्द के literal, contextual, historical, technical, metaphorical और speaker-intended अर्थ अलग-अलग लिखें। अस्पष्ट शब्द को पहले operational definition दें।</p></article>
+<article class="card"><div class="tag">07 / CONTEXT</div><h3>Environment &amp; Situation</h3><p>स्थान, समय, प्रकाश, तापमान, सामाजिक परिस्थिति, task instructions और पूर्व संदर्भ जैसे confounders दर्ज करें।</p></article>
+<article class="card"><div class="tag">08 / COUNTERCASE</div><h3>वैकल्पिक व्याख्या</h3><p>हर observation के साथ कम-से-कम एक plausible alternative explanation लिखें। जो hypothesis counter-evidence से बचती रहे उसे automatically verified न करें।</p></article>
+</div>
+</section>
+
+<section class="card" id="analysis-matrix">
+<h2>🧭 Multi-Angle Analysis Matrix</h2>
+<p>हर claim या observation को एक ही angle से नहीं, कम-से-कम इन स्तरों पर अलग-अलग दर्ज करें।</p>
+<div class="value-list">
+<div class="value"><strong>प्रत्यक्ष</strong><small>मैंने वास्तव में क्या देखा/सुना/मापा?</small></div>
+<div class="value"><strong>मापन</strong><small>कौन-सा उपकरण, unit, sampling rate और error range?</small></div>
+<div class="value"><strong>शारीरिक</strong><small>कौन-सा biological signal है और उसकी सीमा क्या है?</small></div>
+<div class="value"><strong>इंद्रिय</strong><small>आँख, कान, स्पर्श आदि से मिली जानकारी कितनी सीमित/संदर्भित है?</small></div>
+<div class="value"><strong>भाषिक</strong><small>शब्द का कौन-सा अर्थ चुना गया और क्यों?</small></div>
+<div class="value"><strong>गणितीय</strong><small>परिभाषा, dimensions, variables, equations और assumptions क्या हैं?</small></div>
+<div class="value"><strong>वैज्ञानिक</strong><small>testable prediction, reproducibility और independent evidence क्या है?</small></div>
+<div class="value"><strong>ऐतिहासिक</strong><small>स्रोत, तारीख, provenance और version क्या है?</small></div>
+<div class="value"><strong>सामाजिक</strong><small>दूसरे प्रभावित पक्षों और वैकल्पिक viewpoints का क्या evidence है?</small></div>
+<div class="value"><strong>नैतिक</strong><small>consent, privacy, safety, dignity और misuse risk क्या है?</small></div>
+<div class="value"><strong>प्रौद्योगिकीय</strong><small>sensor/model की accuracy, bias, calibration और failure modes?</small></div>
+<div class="value"><strong>अनिश्चितता</strong><small>क्या ज्ञात है, क्या अज्ञात है और confidence क्यों सीमित है?</small></div>
+</div>
+</section>
+
+<section class="card" id="deep-analysis">
+<h2>🧠 Deep Analysis Protocol</h2>
+<div class="notice"><strong>नियम:</strong> Signal → Measurement → Context → Interpretation → Counter-evidence → Reproduction → Audit → Status.</div>
+<div class="grid">
+<article class="card"><h3>A. Signal</h3><p>Raw observation को interpretation से अलग रखें।</p></article>
+<article class="card"><h3>B. Measurement</h3><p>Unit, calibration, sampling, error और missing data दर्ज करें।</p></article>
+<article class="card"><h3>C. Context</h3><p>समय, परिस्थिति और confounders को साथ रखें।</p></article>
+<article class="card"><h3>D. Interpretation</h3><p>एक से अधिक व्याख्याएँ लिखें; एक को तथ्य न बनाएं।</p></article>
+<article class="card"><h3>E. Counter-evidence</h3><p>ऐसा evidence खोजें जो अपने hypothesis को गलत साबित कर सकता हो।</p></article>
+<article class="card"><h3>F. Reproduction</h3><p>दूसरा observer/researcher समान प्रक्रिया दोहरा सके।</p></article>
+<article class="card"><h3>G. Audit</h3><p>Source hash, method, assumptions और review trail सुरक्षित रखें।</p></article>
+<article class="card"><h3>H. Status</h3><p>VERIFIED, PARTIALLY VERIFIED, PERSONAL EXPERIENCE, PHILOSOPHICAL PROPOSITION, UNVERIFIED या CONTRADICTED/DISPUTED.</p></article>
+</div>
+</section>
+
+<section class="card" id="word-analysis">
+<h2>📖 शब्दों को Multi-Angle समझने का ढाँचा</h2>
+<p>“सत्य”, “मैं”, “हृदय”, “प्रेम”, “इश्क”, “मस्तक”, “संतुष्टि”, “शमीकरण”, “यथार्थ” जैसे शब्दों को एक साथ कई स्तरों पर परिभाषित करें:</p>
+<div class="value-list">
+<div class="value"><strong>शाब्दिक</strong><small>शब्दकोशीय अर्थ</small></div>
+<div class="value"><strong>व्याकरणिक</strong><small>वाक्य में भूमिका</small></div>
+<div class="value"><strong>संदर्भगत</strong><small>लेखक ने उस स्थान पर क्या अर्थ लिया?</small></div>
+<div class="value"><strong>दार्शनिक</strong><small>अस्तित्व/ज्ञान/मूल्य का अर्थ</small></div>
+<div class="value"><strong>वैज्ञानिक</strong><small>क्या operational definition बन सकती है?</small></div>
+<div class="value"><strong>गणितीय</strong><small>क्या variable/quantity में बदला जा सकता है?</small></div>
+<div class="value"><strong>व्यावहारिक</strong><small>किस observable action/experience से जुड़ा है?</small></div>
+<div class="value"><strong>सीमा</strong><small>कहाँ अर्थ बदलता या अस्पष्ट होता है?</small></div>
+</div>
+</section>
+
 </main><footer>शिरोमणि रिसर्च इंस्टीट्यूट • चिंतन आपका, निर्णय आपका।</footer>
 <script>
 (function(){
