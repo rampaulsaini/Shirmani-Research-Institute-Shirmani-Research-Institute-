@@ -2,7 +2,7 @@
 "use strict";
 const KEY="shirmani_social_mvp_v1";
 const QUESTIONS=["इस क्षण मैं वास्तव में क्या अनुभव कर रहा/रही हूँ?","मेरे उत्तर के पीछे सबसे सरल कारण क्या है?","यदि मैं अपने उत्तर को फिर सुनूँ, तो उसमें क्या स्पष्ट दिखाई देता है?","मेरी बात और किसी दूसरे व्यक्ति की बात में क्या समानता/अंतर है?","आज की मेरी समझ में कौन-सा प्रश्न अभी खुला हुआ है?"];
-const defaults={profile:{name:"",bio:"",language:"हिंदी"},posts:[],interviews:[],questionIndex:0};
+const defaults={profile:{name:"",bio:"",language:"हिंदी"},posts:[],interviews:[],questionIndex:0,analysis:[],privacy:{biometricOptIn:false}};
 const load=()=>{try{return Object.assign({},defaults,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch{return JSON.parse(JSON.stringify(defaults))}};
 let state=load();
 const save=()=>{localStorage.setItem(KEY,JSON.stringify(state));renderAll()};
@@ -15,6 +15,8 @@ function renderProfile(){$("displayName").value=state.profile.name||"";$("bio").
 function renderInterviews(){$("question").textContent=QUESTIONS[state.questionIndex%QUESTIONS.length];const h=$("interviewHistory");h.innerHTML=state.interviews.length?'<h3>पिछले उत्तर</h3>'+state.interviews.slice().reverse().map(x=>'<div class="result"><div class="meta">'+esc(fmt(x.createdAt))+'</div><div>'+esc(x.question)+'</div><p>'+esc(x.answer).replace(/\n/g,"<br>")+'</p></div>').join(""):'<p class="small">अभी कोई उत्तर सहेजा नहीं गया।</p>'}
 function renderSummary(){$("dataSummary").textContent="Profile: "+(state.profile.name||"—")+" · Posts: "+state.posts.length+" · Interviews: "+state.interviews.length}
 function renderAll(){renderFeed();renderProfile();renderInterviews();renderSummary()}
+function runAnalysis(){const input=$("analysisText").value.trim();if(!input){status("पहले शब्द/वाक्य लिखें।");return}const angles=[["शाब्दिक","प्रत्यक्ष शब्दार्थ"],["संदर्भ","परिस्थिति और स्रोत"],["भाव/अनुभव","व्यक्ति का बताया अनुभव"],["तर्क","आधार और निष्कर्ष"],["प्रमाण","स्वतंत्र evidence की स्थिति"],["विपरीत-परीक्षण","चुनौती/फाल्सिफिकेशन प्रश्न"],["समय","समय-संदर्भ"],["प्रकृति/मानव","संभावित प्रभाव और हित"]];state.analysis.push({input,createdAt:new Date().toISOString(),angles});save();$("analysisResult").innerHTML="<strong>विश्लेषण ढांचा तैयार:</strong> "+esc(input)+"<br><small>निष्कर्ष को स्वतः सत्य नहीं माना गया; प्रत्येक कोण स्वतंत्र रूप से जाँचा जाना है।</small>";status("Multi-angle analysis record सहेजा गया।")}
+$("runAnalysis")?.addEventListener("click",runAnalysis);
 function showTab(id){document.querySelectorAll(".panel").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll("[data-tab]").forEach(x=>x.classList.toggle("active",x.dataset.tab===id));location.hash=id}
 document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
 $("postForm").addEventListener("submit",e=>{e.preventDefault();const text=$("postText").value.trim();if(!text)return;state.posts.push({id:crypto.randomUUID(),text,type:$("postType").value,createdAt:new Date().toISOString()});$("postText").value="";save();showTab("home");status("Post local feed में प्रकाशित हो गया।")});
@@ -25,5 +27,5 @@ $("saveInterview").addEventListener("click",()=>{const answer=$("answer").value.
 $("exportData").addEventListener("click",()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="shirmani-social-data.json";a.click();URL.revokeObjectURL(a.href);status("JSON export तैयार है।")});
 $("deleteData").addEventListener("click",()=>{if(!confirm("इस browser का पूरा local MVP data मिटाएँ?"))return;localStorage.removeItem(KEY);state=load();renderAll();status("Local data मिटा दिया गया।")});
 $("seedDemo").addEventListener("click",()=>{state.posts.push({id:crypto.randomUUID(),text:"यह केवल local demo है — यहाँ कोई वास्तविक follower, view, payment या व्यक्ति का दावा नहीं किया गया है।",type:"Demo",createdAt:new Date().toISOString()});save();status("Demo post जोड़ा गया।")});
-renderAll();const initial=location.hash.slice(1);if(["home","create","learn","profile","data"].includes(initial))showTab(initial);
+renderAll();const initial=location.hash.slice(1);if(["home","create","learn","profile","data","understand","safety"].includes(initial))showTab(initial);
 })();
