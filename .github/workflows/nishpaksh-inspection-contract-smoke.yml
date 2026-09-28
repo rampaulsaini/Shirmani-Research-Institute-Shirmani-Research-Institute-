@@ -1,0 +1,33 @@
+name: Nishpaksh Inspection Contract Smoke
+
+on:
+  push:
+    paths:
+      - 'schemas/nishpaksh-inspection-session.schema.json'
+      - 'research/NISHPAKSH-INSPECTION-ENGINE.md'
+      - '.github/workflows/nishpaksh-inspection-contract-smoke.yml'
+  pull_request:
+    paths:
+      - 'schemas/nishpaksh-inspection-session.schema.json'
+      - 'research/NISHPAKSH-INSPECTION-ENGINE.md'
+      - '.github/workflows/nishpaksh-inspection-contract-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON schema
+        run: python -m json.tool schemas/nishpaksh-inspection-session.schema.json >/dev/null
+      - name: Validate safety and governance clauses
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("research/NISHPAKSH-INSPECTION-ENGINE.md").read_text()
+          required=["Purpose → Consent → Subscription","Human Review","Finger-vein","Raw biometric data","AI-generated result = VERIFIED नहीं","INSUFFICIENT_EVIDENCE"]
+          missing=[x for x in required if x not in p]
+          if missing:
+              raise SystemExit("Missing contract clauses: "+", ".join(missing))
+          print("Nishpaksh inspection contract smoke: PASS")
+          PY
