@@ -21,13 +21,12 @@ body.compact .setting{padding:10px 0}
 .setting:last-child{border-bottom:0}
 .setting strong{display:block;margin-bottom:4px}
 .setting span.desc{color:var(--muted);font-size:.9rem}
-.switch{position:relative;width:54px;height:30px;flex:none;display:inline-block}
-.switch input{position:absolute;opacity:0;width:1px;height:1px}
-.slider{position:absolute;inset:0;background:#334155;border-radius:30px;cursor:pointer;transition:.2s}
+.switch{position:relative;width:54px;height:30px;flex:none;display:inline-block;padding:0;border:0;background:transparent;cursor:pointer}
+.slider{position:absolute;inset:0;background:#334155;border-radius:30px;transition:.2s}
 .slider:before{content:"";position:absolute;width:22px;height:22px;left:4px;top:4px;background:white;border-radius:50%;transition:.2s}
-.switch input:focus-visible+.slider{outline:3px solid var(--cyan);outline-offset:3px}
-.switch input:checked+.slider{background:#00a9c7}
-.switch input:checked+.slider:before{transform:translateX(24px)}
+.switch:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:30px}
+.switch[aria-checked="true"] .slider{background:#00a9c7}
+.switch[aria-checked="true"] .slider:before{transform:translateX(24px)}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .btn{padding:11px 16px;border-radius:12px;border:1px solid var(--gold);color:var(--text);background:#0005;text-decoration:none;font-weight:700;cursor:pointer}
 .btn:hover{background:var(--gold);color:#000}
@@ -42,21 +41,15 @@ body.compact .setting{padding:10px 0}
 <h1 id="settings-title">⚙ Settings</h1>
 <p style="color:var(--muted)">ये settings केवल इसी browser में local रूप से लागू होती हैं; GitHub account settings नहीं बदलतीं।</p>
 
-<label class="setting">
+<div class="setting">
 <div><strong>Reduced Motion</strong><span class="desc">Animation और transition कम करके interface को स्थिर रखें।</span></div>
-<span class="switch">
-<input id="motion" type="checkbox" role="switch" aria-label="Reduced Motion">
-<span class="slider" aria-hidden="true"></span>
-</span>
-</label>
+<button id="motion" class="switch" type="button" role="switch" aria-checked="false" aria-label="Reduced Motion"><span class="slider" aria-hidden="true"></span></button>
+</div>
 
-<label class="setting">
+<div class="setting">
 <div><strong>Compact Interface</strong><span class="desc">Settings page पर spacing को compact करें।</span></div>
-<span class="switch">
-<input id="compact" type="checkbox" role="switch" aria-label="Compact Interface">
-<span class="slider" aria-hidden="true"></span>
-</span>
-</label>
+<button id="compact" class="switch" type="button" role="switch" aria-checked="false" aria-label="Compact Interface"><span class="slider" aria-hidden="true"></span></button>
+</div>
 
 <div class="setting">
 <div><strong>Profile</strong><span class="desc">Public profile page खोलें।</span></div>
@@ -86,18 +79,22 @@ body.compact .setting{padding:10px 0}
   }
 
   function apply(){
-    body.classList.toggle('reduced-motion',motion.checked);
-    body.classList.toggle('compact',compact.checked);
-    motion.setAttribute('aria-checked',String(motion.checked));
-    compact.setAttribute('aria-checked',String(compact.checked));
+    const motionOn=motion.getAttribute('aria-checked')==='true';
+    const compactOn=compact.getAttribute('aria-checked')==='true';
+    body.classList.toggle('reduced-motion',motionOn);
+    body.classList.toggle('compact',compactOn);
+  }
+
+  function setToggle(el,value){
+    el.setAttribute('aria-checked',String(!!value));
   }
 
   function read(){
     try{
       const raw=localStorage.getItem(KEY);
       const saved=raw?JSON.parse(raw):{};
-      motion.checked=saved.motion===true;
-      compact.checked=saved.compact===true;
+      setToggle(motion,saved.motion===true);
+      setToggle(compact,saved.compact===true);
       apply();
       setStatus('Settings loaded from this browser.');
     }catch(e){
@@ -116,12 +113,18 @@ body.compact .setting{padding:10px 0}
     }
   }
 
-  motion.addEventListener('change',save);
-  compact.addEventListener('change',save);
+  motion.addEventListener('click',function(){
+    setToggle(motion,motion.getAttribute('aria-checked')!=='true');
+    save();
+  });
+  compact.addEventListener('click',function(){
+    setToggle(compact,compact.getAttribute('aria-checked')!=='true');
+    save();
+  });
 
   document.getElementById('reset').addEventListener('click',function(){
-    motion.checked=false;
-    compact.checked=false;
+    setToggle(motion,false);
+    setToggle(compact,false);
     apply();
     try{localStorage.removeItem(KEY);setStatus('Settings reset.');}
     catch(e){setStatus('Settings reset for this session.');}
