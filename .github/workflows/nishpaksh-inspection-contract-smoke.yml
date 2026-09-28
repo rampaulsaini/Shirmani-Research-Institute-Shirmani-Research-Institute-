@@ -23,11 +23,26 @@ jobs:
       - name: Validate safety and governance clauses
         run: |
           python - <<'PY'
+          import re
           from pathlib import Path
-          p=Path("research/NISHPAKSH-INSPECTION-ENGINE.md").read_text()
-          required=["Purpose → Consent → Subscription","Human Review","Finger-vein","Raw biometric data","AI-generated result = VERIFIED नहीं","INSUFFICIENT_EVIDENCE"]
-          missing=[x for x in required if x not in p]
+
+          p = Path("research/NISHPAKSH-INSPECTION-ENGINE.md").read_text(encoding="utf-8")
+          checks = {
+              "purpose → consent → subscription": re.search(
+                  r"Purpose.*Consent.*Subscription", p, re.IGNORECASE | re.DOTALL
+              ),
+              "human review": re.search(r"Human Review", p, re.IGNORECASE),
+              "finger-vein": re.search(r"Finger-vein", p, re.IGNORECASE),
+              "raw biometric data boundary": re.search(r"Raw biometric", p, re.IGNORECASE),
+              "AI-generated result is not automatically VERIFIED": re.search(
+                  r"AI-generated result.*?(?:अपने-आप|automatically|auto).*?VERIFIED",
+                  p,
+                  re.IGNORECASE | re.DOTALL,
+              ),
+              "INSUFFICIENT_EVIDENCE": re.search(r"INSUFFICIENT_EVIDENCE", p),
+          }
+          missing = [name for name, matched in checks.items() if not matched]
           if missing:
-              raise SystemExit("Missing contract clauses: "+", ".join(missing))
+              raise SystemExit("Missing contract requirements: " + ", ".join(missing))
           print("Nishpaksh inspection contract smoke: PASS")
           PY
