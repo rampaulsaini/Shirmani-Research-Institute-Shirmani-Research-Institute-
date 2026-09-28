@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "name": "Nishpaksh Inspection Framework",
+  "status": "DESIGN_SPECIFICATION",
+  "purpose": "Evidence-first self-inspection and role-readiness application; it records purpose, questions, evidence, reasoning and human review without automated high-impact eligibility, identity, health, political or employment decisions.",
+  "core_flow": [
+    "Purpose Selection",
+    "Consent & Scope",
+    "Self-Observation",
+    "Evidence Capture",
+    "Multi-Angle Language Analysis",
+    "Reasoning / Countercase Review",
+    "Human Review",
+    "Certificate of Record"
+  ],
+  "inspection_targets": [
+    "SELF_AS_HUMAN",
+    "EDUCATION",
+    "EMPLOYMENT_ROLE",
+    "PUBLIC_SERVICE_ROLE",
+    "ORGANIZATIONAL_ROLE",
+    "RESEARCH_CLAIM"
+  ],
+  "certificate_semantics": {
+    "certificate_type": "PROCESS_AND_EVIDENCE_RECORD",
+    "does_not_mean": [
+      "truth of every belief",
+      "scientific proof",
+      "legal eligibility",
+      "medical fitness",
+      "political endorsement",
+      "employment selection",
+      "identity proof by AI"
+    ],
+    "required_states": [
+      "REGISTERED",
+      "EVIDENCE_PENDING",
+      "HUMAN_REVIEW",
+      "ISSUED",
+      "DISPUTED",
+      "EXPIRED",
+      "REVOKED"
+    ]
+  },
+  "principles": [
+    "Purpose is selected before questions.",
+    "Purpose, evidence and conclusions remain traceably linked.",
+    "AI output is advisory and never silently becomes verification.",
+    "Missing evidence remains missing.",
+    "Contested claims preserve competing interpretations and sources.",
+    "Consequential conclusions expose evidence and uncertainty.",
+    "Consequential certificates require human review.",
+    "Appeal, correction, deletion and data export are first-class features."
+  ],
+  "privacy": {
+    "data_minimization": true,
+    "biometric_collection": "OPTIONAL_RESEARCH_ONLY",
+    "biometric_decisioning": false,
+    "face_recognition_for_certificate": false,
+    "eye_tracking_for_certificate": false,
+    "finger_vein_identity_for_certificate": false,
+    "raw_biometric_publication": false,
+    "retention": "purpose_limited_and_user_configurable"
+  },
+  "ai_analysis": {
+    "language": "Multi-angle analysis of literal meaning, context, ambiguity, assumptions, evidence, countercases and uncertainty.",
+    "prohibited_inference": [
+      "emotion from face",
+      "truthfulness from eye movement",
+      "character from biometrics",
+      "political preference",
+      "protected-trait inference"
+    ],
+    "output_states": [
+      "OBSERVATION",
+      "INTERPRETATION",
+      "HYPOTHESIS",
+      "UNVERIFIED_CLAIM",
+      "EVIDENCE_SUPPORTED"
+    ]
+  },
+  "evidence": {
+    "accepted_examples": [
+      "document",
+      "credential",
+      "work_sample",
+      "citation",
+      "dataset",
+      "reproducible_test",
+      "user_statement",
+      "human_review"
+    ],
+    "provenance_required": true,
+    "independent_verification_separate": true
+  },
+  "audit": {
+    "append_only_event_log": true,
+    "hash_chain": "recommended",
+    "model_version_recorded": true,
+    "policy_version_recorded": true,
+    "reviewer_identity_recorded": "when human review is performed"
+  }
+}

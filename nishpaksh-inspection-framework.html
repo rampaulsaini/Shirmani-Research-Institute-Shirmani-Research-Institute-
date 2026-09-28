@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nishpaksh Inspection Framework</title>
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#18202a;background:#f5f7fa}
+body{margin:0}.wrap{max-width:1100px;margin:auto;padding:28px}
+header,section{background:#fff;border:1px solid #dfe5ec;border-radius:16px;padding:22px;margin:0 0 18px}
+h1,h2{margin-top:0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.card{border:1px solid #e2e7ee;border-radius:12px;padding:15px;background:#fbfcfe}
+label{display:block;font-weight:650;margin:10px 0 6px}select,input,button{width:100%;box-sizing:border-box;padding:11px;border:1px solid #cbd4df;border-radius:9px;background:white;font:inherit}
+button{cursor:pointer;margin-top:12px}.notice{padding:13px;border-left:4px solid #667085;background:#f7f8fa}
+.small{font-size:.9rem;color:#586474}.status{font-weight:700}
+ul{line-height:1.65}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>निष्पक्ष समझ — Inspection & Self-Observation Framework</h1>
+<p>एक role-neutral, evidence-aware प्रणाली: पहले उद्देश्य स्पष्ट करें, फिर निरीक्षण की सीमा, सहमति, प्रमाण, विश्लेषण और मानव समीक्षा को अलग-अलग दर्ज करें।</p>
+<div class="notice"><strong>महत्वपूर्ण:</strong> यह प्रणाली किसी व्यक्ति की मानवीय गरिमा, सत्यता, योग्यता या सार्वजनिक पद के लिए स्वतः अंतिम निर्णय नहीं देती। प्रमाणित स्थिति केवल परिभाषित प्रक्रिया के completion और उपलब्ध evidence को दर्शाती है।</div>
+</header>
+
+<section>
+<h2>1. निरीक्षण किस उद्देश्य के लिए?</h2>
+<div class="grid">
+<div class="card"><label for="purpose">मुख्य उद्देश्य</label>
+<select id="purpose">
+<option value="">चुनें</option>
+<option>Self / इंसान के रूप में आत्म-निरीक्षण</option>
+<option>Education / शिक्षा</option>
+<option>Employment / कार्य-पद</option>
+<option>Public-service role / सार्वजनिक सेवा भूमिका</option>
+<option>Research / अनुसंधान</option>
+<option>Well-being / जीवन-संतुलन अध्ययन</option>
+</select></div>
+<div class="card"><label for="role">भूमिका</label>
+<select id="role">
+<option>General participant</option><option>Student / learner</option><option>Worker / professional</option>
+<option>Public representative / official</option><option>Research participant</option>
+</select></div>
+<div class="card"><label for="level">निरीक्षण स्तर</label>
+<select id="level"><option>Basic</option><option>Standard</option><option>Deep / research</option></select>
+</div>
+</div>
+</section>
+
+<section>
+<h2>2. बहु-आयामी निरीक्षण मॉड्यूल</h2>
+<div class="grid">
+<div class="card"><strong>शब्द एवं भाषा</strong><p class="small">एक कथन को semantic, contextual, logical, temporal और alternative-interpretation angles से पढ़ना।</p></div>
+<div class="card"><strong>विवेक एवं तर्क</strong><p class="small">दावा → कारण → evidence → uncertainty → counter-evidence → conclusion trace.</p></div>
+<div class="card"><strong>व्यवहारिक consistency</strong><p class="small">स्व-घोषणा और उपलब्ध evidence के बीच स्पष्ट अंतर; स्वतः character verdict नहीं।</p></div>
+<div class="card"><strong>दृष्टि/eye signals</strong><p class="small">केवल सहमति और स्पष्ट उद्देश्य के साथ; raw video default रूप से स्थायी archive नहीं। Eye signals को truth detector नहीं माना जाए।</p></div>
+<div class="card"><strong>Finger/vein sensing</strong><p class="small">जहाँ वैध device और consent उपलब्ध हों, identity/authentication के सीमित उपयोग के लिए; raw biometric data न्यूनतम रखें।</p></div>
+<div class="card"><strong>Accessibility</strong><p class="small">भाषा, श्रवण, दृष्टि और motor differences के लिए alternative interaction paths।</p></div>
+</div>
+</section>
+
+<section>
+<h2>3. Evidence contract</h2>
+<ul>
+<li>Source, provenance, timestamp और uncertainty अलग fields में रहें।</li>
+<li>AI/ML output = analysis artifact; स्वतंत्र सत्यापन का विकल्प नहीं।</li>
+<li>Registered ≠ Verified; Verified ≠ Paid; subscription ≠ truth.</li>
+<li>संवेदनशील biometric सामग्री के लिए consent, retention limit, deletion और access log आवश्यक हों।</li>
+<li>हर consequential result के लिए human review, explanation और appeal path उपलब्ध हो।</li>
+</ul>
+</section>
+
+<section>
+<h2>4. Subscription & access model</h2>
+<div class="grid">
+<div class="card"><strong>Open</strong><p class="small">Self-observation, basic semantic analysis और public educational material.</p></div>
+<div class="card"><strong>Research</strong><p class="small">Deeper analysis, reproducible reports और controlled research workflows.</p></div>
+<div class="card"><strong>Institution</strong><p class="small">Authorized organizational workflows, audit logs और role-specific process configuration.</p></div>
+</div>
+<p class="small">भुगतान केवल service/access को प्रभावित कर सकता है; किसी व्यक्ति की सत्यता, गरिमा या verification outcome को खरीदने का साधन नहीं होना चाहिए।</p>
+</section>
+
+<section>
+<h2>5. Certificate semantics</h2>
+<p>Certificate को “इस परिभाषित प्रक्रिया को पूरा किया गया और इस समय उपलब्ध evidence के आधार पर यह record बनाया गया” के रूप में सीमित रखें। यह किसी व्यक्ति के संपूर्ण अस्तित्व या अंतिम सत्य का प्रमाणपत्र नहीं है।</p>
+<button id="start">निरीक्षण सत्र की संरचना तैयार करें</button>
+<p id="result" class="status" aria-live="polite"></p>
+</section>
+</div>
+<script>
+document.getElementById("start").addEventListener("click",()=>{
+ const purpose=document.getElementById("purpose").value;
+ const role=document.getElementById("role").value;
+ const level=document.getElementById("level").value;
+ const out=document.getElementById("result");
+ if(!purpose){out.textContent="पहले निरीक्षण का उद्देश्य चुनें।";return}
+ out.textContent="Session READY — "+purpose+" / "+role+" / "+level+". अभी कोई verification या certificate जारी नहीं हुआ है।";
+});
+</script>
+</body>
+</html>
