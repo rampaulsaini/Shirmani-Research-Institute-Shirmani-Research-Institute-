@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Nishpaksh Purpose First Inspection Session v2",
+  "type":"object",
+  "required":["session_id","purpose","criteria_version","consent","subscription_state","assessment_mode","parameters","evidence_policy"],
+  "properties":{
+    "session_id":{"type":"string","minLength":8},
+    "purpose":{"enum":["human_self_verification","human_reflection","education","employment_role","ministerial_role","pm_role","cm_role","judge_role","president_role","research_claim","custom_role"]},
+    "criteria_version":{"type":"string","minLength":1},
+    "consent":{"type":"object","required":["accepted","version"],"properties":{"accepted":{"type":"boolean"},"version":{"type":"string"},"biometric_opt_in":{"type":"boolean"}},"additionalProperties":false},
+    "subscription_state":{"enum":["not_started","trial","active","paused","expired"]},
+    "assessment_mode":{"enum":["self_reflection","knowledge_assessment","role_competency","document_review","multimodal_analysis","combined"]},
+    "parameters":{"type":"array","items":{"enum":["self_observation","reasoning","evidence_handling","logical_consistency","language_nlp","multi_angle_semantics","numeracy","domain_knowledge","decision_transparency","conflict_of_interest","source_traceability","attention_and_comprehension","communication","empathy_and_non_harm","nature_and_environment","social_impact","digital_literacy","finger_vein_optional","eye_analysis_optional","voice_analysis_optional","document_analysis_optional","audio_analysis_optional","visual_analysis_optional","causal_reasoning","counterfactual_reasoning","uncertainty_calibration","reproducibility","privacy_awareness","cybersecurity_hygiene","accessibility","language_fairness","model_bias_audit","reviewer_disagreement","appeal_audit"]}},
+    "evidence_policy":{"type":"object","required":["separate_experience_from_fact","independent_verification_required","human_review_gate"],"properties":{"separate_experience_from_fact":{"type":"boolean"},"independent_verification_required":{"type":"boolean"},"human_review_gate":{"type":"boolean"}},"additionalProperties":false},
+    "result_policy":{"type":"object","properties":{"ai_auto_certification":{"const":false},"subscription_cannot_change_outcome":{"const":true},"official_certificate_requires_authority":{"const":true}},"additionalProperties":false}
+  },
+  "additionalProperties":false
+}
