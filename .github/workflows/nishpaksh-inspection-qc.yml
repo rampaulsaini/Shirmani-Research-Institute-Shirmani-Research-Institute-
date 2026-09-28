@@ -1,0 +1,44 @@
+name: Nishpaksh Inspection Engine QC
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "nishpaksh-inspection.html"
+      - "schemas/nishpaksh-inspection-record.schema.json"
+      - "docs/NISHPaksh-INSPECTION-ENGINE.md"
+      - ".github/workflows/nishpaksh-inspection-qc.yml"
+  schedule:
+    - cron: "17 * * * *"
+permissions:
+  contents: read
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate inspection contract
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("schemas/nishpaksh-inspection-record.schema.json").read_text())
+          assert p["title"]=="Nishpaksh Inspection Record"
+          assert set(p["properties"]["target"]["enum"])=={"self","education","role","public-office","research"}
+          assert "VERIFIED" in p["properties"]["status"]["enum"]
+          assert "NOT_VERIFIED" in p["properties"]["status"]["enum"]
+          print("schema: PASS")
+          PY
+      - name: Validate public MVP surface
+        run: |
+          test -s nishpaksh-inspection.html
+          grep -q "Evidence-first" nishpaksh-inspection.html
+          grep -q "READY_FOR_HUMAN_REVIEW" nishpaksh-inspection.html
+          grep -q "biometric" nishpaksh-inspection.html
+          echo "public inspection surface: PASS"
+      - name: Validate documentation boundary
+        run: |
+          grep -q "independent verification" docs/NISHPaksh-INSPECTION-ENGINE.md
+          grep -q "NOT_VERIFIED" docs/NISHPaksh-INSPECTION-ENGINE.md
+          grep -q "No biometric signal" docs/NISHPaksh-INSPECTION-ENGINE.md
+          echo "documentation boundary: PASS"
