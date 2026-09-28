@@ -100,3 +100,74 @@ self-reflection depth, epistemic humility, source reliability, numerical reasoni
 
 ## 11. Human agency
 App व्यक्ति को सोचने, evidence देखने, counter-case देखने और correction/appeal का अवसर देगा। AI निर्णय-सहायक/विश्लेषक रहेगा; अंतिम high-impact certification में accountable human/audit gate रहेगा।
+
+
+## 12. Purpose-first decision matrix — अनिवार्य प्रारम्भिक चयन
+App का पहला स्क्रीन/चरण कोई score नहीं दिखाएगा। पहले उपयोगकर्ता से पूछा जाएगा:
+**“आप निष्पक्ष निरीक्षण किस उद्देश्य से करना चाहते हैं?”**
+
+| Purpose | क्या जाँचा जा सकता है | क्या नहीं निकाला जाएगा |
+|---|---|---|
+| खुद का निष्पक्ष निरीक्षण | self-observation, reasoning, evidence-vs-experience, consistency, uncertainty handling | मानव-मूल्य/गरिमा का universal score |
+| शिक्षा | syllabus/domain knowledge, reasoning, practical tasks, source use | व्यक्ति की सम्पूर्ण बुद्धिमत्ता का दावा |
+| रोजगार/पद | प्रकाशित job/role competencies, task simulation, communication, evidence handling | personality/biometric से hidden hiring score |
+| मंत्री/PM/CM/राष्ट्राध्यक्ष | लागू कानून/संविधान/प्रकाशित eligibility और role-relevant competencies | राजनीतिक पसंद, ideology या भविष्य का चुनावी परिणाम |
+| न्यायिक/संस्थागत भूमिका | प्रकाशित legal/professional criteria, reasoning, ethics rules, case-handling evidence | private sensitive traits से suitability inference |
+| शोध-दावा | claim definition, evidence, counter-evidence, reproducibility, audit trail | AI output को स्वतः scientific proof |
+| custom | user-defined, versioned criteria | अस्पष्ट/छिपे criteria |
+
+**महत्वपूर्ण:** “खुद को इंसान सिद्ध करना” को app में self-reflection/identity-understanding purpose के रूप में लिया जा सकता है, लेकिन app किसी व्यक्ति की मानवता को कानूनी/वैज्ञानिक सार्वभौमिक certificate से तय नहीं करेगा। मानव गरिमा और मूल अधिकार assessment से सशर्त नहीं होंगे।
+
+## 13. Parameter selection engine
+Purpose चुने जाने के बाद केवल आवश्यक parameters सक्रिय होंगे:
+**purpose → criteria version → minimum evidence → optional modules → tests → countertests → review level → report/certificate type.**
+अनावश्यक biometric या sensitive data collection default रूप से बंद रहेगी।
+
+## 14. Multi-angle word/meaning engine — विस्तार
+हर statement को कम-से-कम इन कोणों से देखा जा सके:
+literal, grammatical, contextual, temporal, speaker-intent-as-stated, domain, cultural/language variant, translation, ambiguity, presupposition, contradiction, evidence burden, counter-interpretation, causal claim, quantitative/unit consistency, source provenance, uncertainty.
+यह engine “व्यक्ति क्या वास्तव में सोच रहा है” जैसी अदृश्य मानसिक अवस्था को certainty के साथ घोषित नहीं करेगा।
+
+## 15. Biometric/visual safeguards
+Finger-vein, fingerprint, iris/eye, face, voice और liveness को तीन अलग श्रेणियों में रखा जाएगा:
+1. **Security/provenance** — access/identity continuity जहाँ वैध और आवश्यक हो।
+2. **Capture quality** — image/scan/audio quality, liveness, document readability.
+3. **Assessment evidence** — केवल validated, purpose-relevant measurements।
+तीसरी श्रेणी में कोई modality तभी आएगी जब उसका वैज्ञानिक validation, documented limitations और lawful purpose उपलब्ध हो।
+“आँख देखकर सच”, “finger-vein देखकर चरित्र”, “आवाज़ देखकर बुद्धिमत्ता” जैसे unsupported inference निषिद्ध होंगे।
+
+## 16. Certificate levels
+- **Participation/Session Report:** केवल session completion और collected evidence.
+- **Assessment Report:** criteria + findings + uncertainty + evidence.
+- **Verified Assessment:** independent verification और human/audit review के बाद.
+- **Official Certificate:** केवल वास्तविक अधिकृत संस्था/authority द्वारा जारी होने पर।
+किसी subscription से certificate outcome नहीं खरीदा जा सकेगा।
+
+## 17. Appeal / correction
+हर high-impact assessment में:
+**view evidence → challenge finding → add evidence → request re-review → reviewer decision → immutable audit trail**
+की प्रक्रिया होगी। पुराने result को चुपचाप overwrite नहीं किया जाएगा; नया version बनेगा।
+
+## 18. Fairness test suite
+हर model/version पर pre-release और periodic checks:
+- language parity
+- translation consistency
+- false-positive/false-negative analysis
+- accessibility
+- calibration
+- reviewer disagreement
+- drift
+- missing-data sensitivity
+- counterfactual robustness
+- biometric non-inference guard
+- sensitive-trait leakage tests
+- adversarial/prompt-injection tests.
+
+## 19. Nature/Earth/civilization module
+यदि user purpose में यह चुने, तो evidence-based dimensions हो सकते हैं:
+environmental externalities, resource efficiency, long-term risk, public-impact analysis, biodiversity/ecosystem considerations, disaster resilience, intergenerational effects, reversibility of decisions.
+यह किसी व्यक्ति को “प्रकृति का रक्षक” घोषित करने का universal moral score नहीं होगा; यह घोषित criteria पर evidence report होगा।
+
+## 20. 850 करोड़ target — architecture rule
+850 करोड़ को **design target / future scale scenario** माना जाएगा, वर्तमान user count नहीं।
+Scale test में केवल throughput नहीं, बल्कि privacy, auditability, model consistency, disaster recovery, regional latency, deletion propagation, abuse resistance और human-review capacity भी शामिल होंगे।
