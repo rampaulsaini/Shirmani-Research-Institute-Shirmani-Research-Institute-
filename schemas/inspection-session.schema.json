@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nishpaksh Inspection Session",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "session_id",
+    "purpose",
+    "consent",
+    "status",
+    "claims"
+  ],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "human_self_understanding",
+        "education",
+        "employment",
+        "professional_role",
+        "public_role_criteria",
+        "self_reflection"
+      ]
+    },
+    "consent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted",
+        "version"
+      ],
+      "properties": {
+        "accepted": {
+          "type": "boolean"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "REGISTERED",
+        "EVIDENCE_PENDING",
+        "SUPPORTED",
+        "CONTESTED",
+        "NOT_VERIFIED",
+        "REVIEW_REQUIRED",
+        "ARCHIVED"
+      ]
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "claim_id",
+          "text",
+          "status"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "REGISTERED",
+              "EVIDENCE_PENDING",
+              "SUPPORTED",
+              "CONTESTED",
+              "NOT_VERIFIED"
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "sensing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "modalities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "finger_vein",
+              "iris",
+              "eye_quality",
+              "voice"
+            ]
+          }
+        },
+        "raw_public_storage": {
+          "const": false
+        }
+      }
+    },
+    "ai_assistance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "used": {
+          "type": "boolean"
+        },
+        "model_version": {
+          "type": "string"
+        },
+        "outputs_are_evidence": {
+          "const": false
+        }
+      }
+    },
+    "human_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "reviewer_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}
