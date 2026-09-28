@@ -1,0 +1,57 @@
+name: SHIRMANI Heart-View Inspection Contract
+
+on:
+  push:
+    branches:
+      - main
+      - "feat/**"
+  pull_request:
+    branches: [main]
+    paths:
+      - "schemas/inspection-session.schema.json"
+      - "agents/inspection_agent.py"
+      - "docs/HEART-VIEW-INSPECTION-APP-SPEC.md"
+      - ".github/workflows/shirmani-inspection-contract.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-inspection-contract-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Compile inspection agent
+        run: python3 -m py_compile agents/inspection_agent.py
+      - name: Validate JSON schema
+        run: python3 -m json.tool schemas/inspection-session.schema.json >/dev/null
+      - name: Deterministic safety smoke
+        run: |
+          python3 - <<'PY'
+          from agents.inspection_agent import validate_session
+          base = {
+              "session_id": "smoke-0001",
+              "target": {"type": "SELF", "description": "contract smoke"},
+              "consent": {"analysis": True, "device_signals": False},
+              "criteria": [{"criterion_id": "c1", "statement": "Evidence required", "source": "test"}],
+              "claims": [{"claim_id": "claim-1", "text": "A testable claim", "evidence_refs": ["e1"]}],
+              "status": "REGISTERED",
+          }
+          assert validate_session(base).status == "HUMAN_REVIEW"
+          biometric = dict(base)
+          biometric["device_signals"] = {"face": "sample"}
+          blocked = validate_session(biometric)
+          assert blocked.status == "CHECK"
+          assert any("BIOMETRIC_INFERENCE_BLOCKED" in r for r in blocked.reasons)
+          missing = dict(base)
+          missing["claims"] = [{"claim_id": "claim-2", "text": "No evidence", "evidence_refs": []}]
+          assert validate_session(missing).status == "CHECK"
+          print("INSPECTION_CONTRACT=PASS")
+          PY

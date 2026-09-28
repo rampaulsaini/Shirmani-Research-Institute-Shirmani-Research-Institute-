@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/inspection-session.schema.json",
+  "title": "SHIRMANI Heart-View Inspection Session",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "session_id", "target", "consent", "criteria", "claims", "status"],
+  "properties": {
+    "schema_version": {"type": "string", "const": "1.0.0"},
+    "session_id": {"type": "string", "minLength": 8, "maxLength": 128, "pattern": "^[A-Za-z0-9._:-]+$"},
+    "target": {
+      "type": "object", "additionalProperties": false, "required": ["type", "description"],
+      "properties": {
+        "type": {"enum": ["SELF","EDUCATION","EMPLOYMENT","PUBLIC_SERVICE","PUBLIC_OFFICE","SKILL","CONTRIBUTION","OTHER"]},
+        "description": {"type": "string", "minLength": 1, "maxLength": 2000},
+        "jurisdiction": {"type": ["string","null"], "maxLength": 500}
+      }
+    },
+    "consent": {
+      "type": "object", "additionalProperties": false, "required": ["analysis", "device_signals"],
+      "properties": {
+        "analysis": {"type": "boolean"}, "device_signals": {"type": "boolean"},
+        "biometric_processing": {"type": "boolean", "default": false}
+      }
+    },
+    "criteria": {
+      "type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["criterion_id","statement","source"],
+        "properties": {"criterion_id": {"type": "string","minLength": 1,"maxLength": 128}, "statement": {"type": "string","minLength": 1,"maxLength": 4000}, "source": {"type": "string","minLength": 1,"maxLength": 4000}}}
+    },
+    "claims": {
+      "type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["claim_id","text","evidence_refs"],
+        "properties": {"claim_id": {"type": "string","minLength": 1,"maxLength": 128}, "text": {"type": "string","minLength": 1,"maxLength": 10000}, "evidence_refs": {"type": "array","items":{"type":"string","maxLength":128}}, "counterevidence_refs": {"type": "array","items":{"type":"string","maxLength":128}}, "uncertainty": {"type":"string","maxLength":2000}}}
+    },
+    "status": {"enum": ["REGISTERED","EVIDENCE_PENDING","CHECK","PASS","HUMAN_REVIEW","VERIFIED","NOT_VERIFIED","DISPUTED","ARCHIVED"]}
+  }
+}
