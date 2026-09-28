@@ -1,1 +1,134 @@
-<!DOCTYPE html><html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Settings — Shirmani Public Interface</title><style>:root{--bg:#07101d;--card:#101d2d;--gold:#ffd83d;--cyan:#4de8ff;--text:#f5f7fa;--muted:#b8c4d0}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#163451,#07101d 55%);color:var(--text);font-family:Arial,sans-serif;min-height:100vh}.wrap{max-width:900px;margin:auto;padding:22px 16px 90px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.back{color:var(--gold);text-decoration:none;font-weight:700}.card{background:rgba(16,29,45,.92);border:1px solid rgba(255,216,61,.35);border-radius:22px;padding:24px;box-shadow:0 12px 35px #0008}.card h1{color:var(--gold);margin-top:0}.setting{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #ffffff18}.setting:last-child{border-bottom:0}.setting strong{display:block;margin-bottom:4px}.setting span{color:var(--muted);font-size:.9rem}.switch{position:relative;width:54px;height:30px;flex:none}.switch input{opacity:0;width:0;height:0}.slider{position:absolute;inset:0;background:#334155;border-radius:30px;cursor:pointer;transition:.2s}.slider:before{content:"";position:absolute;width:22px;height:22px;left:4px;top:4px;background:white;border-radius:50%;transition:.2s}.switch input:checked+.slider{background:#00a9c7}.switch input:checked+.slider:before{transform:translateX(24px)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.btn{padding:11px 16px;border-radius:12px;border:1px solid var(--gold);color:var(--text);background:#0005;text-decoration:none;font-weight:700;cursor:pointer}.btn:hover{background:var(--gold);color:#000}.status{margin-top:16px;padding:12px;border-radius:12px;background:#00d9ff12;border:1px solid #00d9ff33;color:var(--cyan)}</style></head><body><main class="wrap"><div class="top"><strong>Public Interface Settings</strong><a class="back" href="index.html">← Home</a></div><section class="card"><h1>⚙ Settings</h1><p style="color:var(--muted)">ये settings इस browser में local रूप से लागू होती हैं; GitHub account settings नहीं बदलतीं।</p><label class="setting"><div><strong>Compact Motion</strong><span>Animation कम करें और interface को स्थिर रखें।</span></div><span class="switch"><input id="motion" type="checkbox"><span class="slider"></span></span></label><div class="setting"><div><strong>Profile</strong><span>Public profile page खोलें।</span></div><a class="btn" href="profile.html">Profile →</a></div><div id="status" class="status">Settings ready.</div><div class="actions"><button class="btn" id="reset" type="button">Reset</button><a class="btn" href="index.html">Home</a></div></section></main><script>const motion=document.getElementById('motion'),status=document.getElementById('status'),KEY='shirmani-public-settings';function apply(){document.body.style.setProperty('--motion',motion.checked?'0s':'.2s')}function save(){localStorage.setItem(KEY,JSON.stringify({motion:motion.checked}));apply();status.textContent='Settings saved in this browser';}try{motion.checked=!!JSON.parse(localStorage.getItem(KEY)||'{}').motion}catch(e){}apply();motion.addEventListener('change',save);document.getElementById('reset').addEventListener('click',()=>{localStorage.removeItem(KEY);motion.checked=false;apply();status.textContent='Settings reset'});</script></body></html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Settings — Shirmani Public Interface</title>
+<style>
+:root{--bg:#07101d;--card:#101d2d;--gold:#ffd83d;--cyan:#4de8ff;--text:#f5f7fa;--muted:#b8c4d0}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 50% 0,#163451,#07101d 55%);color:var(--text);font-family:Arial,sans-serif;min-height:100vh}
+body.reduced-motion *,body.reduced-motion *::before,body.reduced-motion *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
+body.compact .card{padding:16px}
+body.compact .setting{padding:10px 0}
+.wrap{max-width:900px;margin:auto;padding:22px 16px 90px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:10px}
+.back{color:var(--gold);text-decoration:none;font-weight:700}
+.card{background:rgba(16,29,45,.92);border:1px solid rgba(255,216,61,.35);border-radius:22px;padding:24px;box-shadow:0 12px 35px #0008}
+.card h1{color:var(--gold);margin-top:0}
+.setting{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #ffffff18}
+.setting:last-child{border-bottom:0}
+.setting strong{display:block;margin-bottom:4px}
+.setting span.desc{color:var(--muted);font-size:.9rem}
+.switch{position:relative;width:54px;height:30px;flex:none;display:inline-block}
+.switch input{position:absolute;opacity:0;width:1px;height:1px}
+.slider{position:absolute;inset:0;background:#334155;border-radius:30px;cursor:pointer;transition:.2s}
+.slider:before{content:"";position:absolute;width:22px;height:22px;left:4px;top:4px;background:white;border-radius:50%;transition:.2s}
+.switch input:focus-visible+.slider{outline:3px solid var(--cyan);outline-offset:3px}
+.switch input:checked+.slider{background:#00a9c7}
+.switch input:checked+.slider:before{transform:translateX(24px)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn{padding:11px 16px;border-radius:12px;border:1px solid var(--gold);color:var(--text);background:#0005;text-decoration:none;font-weight:700;cursor:pointer}
+.btn:hover{background:var(--gold);color:#000}
+.status{margin-top:16px;padding:12px;border-radius:12px;background:#00d9ff12;border:1px solid #00d9ff33;color:var(--cyan)}
+.status.error{color:#ffcfce;border-color:#ff777733;background:#ff44440d}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="top"><strong>Shirmani Public Interface</strong><a class="back" href="index.html">← Home</a></div>
+<section class="card" aria-labelledby="settings-title">
+<h1 id="settings-title">⚙ Settings</h1>
+<p style="color:var(--muted)">ये settings केवल इसी browser में local रूप से लागू होती हैं; GitHub account settings नहीं बदलतीं।</p>
+
+<label class="setting">
+<div><strong>Reduced Motion</strong><span class="desc">Animation और transition कम करके interface को स्थिर रखें।</span></div>
+<span class="switch">
+<input id="motion" type="checkbox" role="switch" aria-label="Reduced Motion">
+<span class="slider" aria-hidden="true"></span>
+</span>
+</label>
+
+<label class="setting">
+<div><strong>Compact Interface</strong><span class="desc">Settings page पर spacing को compact करें।</span></div>
+<span class="switch">
+<input id="compact" type="checkbox" role="switch" aria-label="Compact Interface">
+<span class="slider" aria-hidden="true"></span>
+</span>
+</label>
+
+<div class="setting">
+<div><strong>Profile</strong><span class="desc">Public profile page खोलें।</span></div>
+<a class="btn" href="profile.html">Profile →</a>
+</div>
+
+<div id="status" class="status" role="status" aria-live="polite">Settings ready.</div>
+
+<div class="actions">
+<button class="btn" id="reset" type="button">Reset Settings</button>
+<a class="btn" href="index.html">Home</a>
+</div>
+</section>
+</main>
+
+<script>
+(function(){
+  const KEY='shirmani-public-settings-v2';
+  const motion=document.getElementById('motion');
+  const compact=document.getElementById('compact');
+  const status=document.getElementById('status');
+  const body=document.body;
+
+  function setStatus(message,error){
+    status.textContent=message;
+    status.classList.toggle('error',!!error);
+  }
+
+  function apply(){
+    body.classList.toggle('reduced-motion',motion.checked);
+    body.classList.toggle('compact',compact.checked);
+    motion.setAttribute('aria-checked',String(motion.checked));
+    compact.setAttribute('aria-checked',String(compact.checked));
+  }
+
+  function read(){
+    try{
+      const raw=localStorage.getItem(KEY);
+      const saved=raw?JSON.parse(raw):{};
+      motion.checked=saved.motion===true;
+      compact.checked=saved.compact===true;
+      apply();
+      setStatus('Settings loaded from this browser.');
+    }catch(e){
+      apply();
+      setStatus('Local settings उपलब्ध नहीं हैं; controls फिर भी इसी page पर काम करेंगे।',true);
+    }
+  }
+
+  function save(){
+    apply();
+    try{
+      localStorage.setItem(KEY,JSON.stringify({motion:motion.checked,compact:compact.checked}));
+      setStatus('Settings saved in this browser.');
+    }catch(e){
+      setStatus('Setting applied for this session; browser storage उपलब्ध नहीं है।',true);
+    }
+  }
+
+  motion.addEventListener('change',save);
+  compact.addEventListener('change',save);
+
+  document.getElementById('reset').addEventListener('click',function(){
+    motion.checked=false;
+    compact.checked=false;
+    apply();
+    try{localStorage.removeItem(KEY);setStatus('Settings reset.');}
+    catch(e){setStatus('Settings reset for this session.');}
+  });
+
+  read();
+})();
+</script>
+</body>
+</html>
