@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nishpaksh Inspection Assessment",
+  "type": "object",
+  "required": [
+    "assessment_id",
+    "target_mode",
+    "criteria_version",
+    "status",
+    "created_at",
+    "evidence"
+  ],
+  "properties": {
+    "assessment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_mode": {
+      "enum": [
+        "EDUCATION",
+        "ROLE_COMPETENCY",
+        "PUBLIC_SERVICE_ROLE",
+        "SELF_REFLECTION",
+        "HUMAN_CAPABILITY"
+      ]
+    },
+    "target_role": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "criteria_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "EVIDENCE_PENDING",
+        "ANALYSIS_COMPLETE",
+        "HUMAN_REVIEW",
+        "VERIFIED_FOR_TARGET",
+        "CERTIFIED",
+        "NOT_VERIFIED",
+        "INCOMPLETE",
+        "DISPUTED",
+        "EXPIRED"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "model_provenance": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "verification_state",
+          "source"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "TASK_PERFORMANCE",
+              "PRIMARY_RECORD",
+              "CORROBORATION",
+              "SECONDARY_SOURCE",
+              "SELF_REPORT",
+              "UNVERIFIED_ASSERTION"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "provenance": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "verification_state": {
+            "enum": [
+              "VERIFIED",
+              "PARTIALLY_VERIFIED",
+              "NOT_VERIFIED",
+              "UNAVAILABLE",
+              "DISPUTED"
+            ]
+          },
+          "confidence": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "uncertainty": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "criteria_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion_id",
+          "result_state",
+          "evidence_ids"
+        ],
+        "properties": {
+          "criterion_id": {
+            "type": "string"
+          },
+          "result_state": {
+            "enum": [
+              "SUPPORTED",
+              "PARTIALLY_SUPPORTED",
+              "NOT_SUPPORTED",
+              "NOT_ASSESSED"
+            ]
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "human_review": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "review_record": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}
