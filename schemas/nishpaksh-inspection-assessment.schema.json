@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nishpaksh Inspection Assessment",
+  "type": "object",
+  "required": [
+    "session_id",
+    "purpose",
+    "criteria_version",
+    "evidence_summary",
+    "analysis",
+    "countercheck",
+    "review"
+  ],
+  "properties": {
+    "session_id": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "criteria_version": {
+      "type": "string"
+    },
+    "evidence_summary": {
+      "type": "object",
+      "required": [
+        "items",
+        "independent_verification_required"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "type",
+              "source",
+              "status"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "provided",
+                  "verified",
+                  "disputed",
+                  "insufficient"
+                ]
+              }
+            }
+          }
+        },
+        "independent_verification_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "required": [
+        "dimensions",
+        "uncertainties"
+      ],
+      "properties": {
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "finding",
+              "evidence_refs"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "finding": {
+                "type": "string"
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "uncertainties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "countercheck": {
+      "type": "object",
+      "required": [
+        "counter_evidence",
+        "alternative_interpretations"
+      ],
+      "properties": {
+        "counter_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "alternative_interpretations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "human_review_required",
+        "status"
+      ],
+      "properties": {
+        "human_review_required": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "approved",
+            "returned",
+            "rejected"
+          ]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
