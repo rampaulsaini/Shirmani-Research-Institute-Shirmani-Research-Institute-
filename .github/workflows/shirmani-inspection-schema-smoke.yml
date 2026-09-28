@@ -35,5 +35,8 @@ jobs:
           PY
       - name: Validate privacy boundary
         run: |
-          ! grep -RniE 'biometric.*(truth|intelligence|mental|moral|political)|eye.*(truth|intelligence|mental|moral)' docs/NISHPAKSH-INSPECTION-ENGINE.md
+          if grep -RniE 'biometric.*(truth|intelligence|mental|moral|political)|eye.*(truth|intelligence|mental|moral)' docs/NISHPAKSH-INSPECTION-ENGINE.md; then
+            echo 'biometric inference guard: FAIL'
+            exit 1
+          fi
           echo 'biometric inference guard: PASS'
