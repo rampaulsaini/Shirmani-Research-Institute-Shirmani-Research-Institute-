@@ -288,7 +288,7 @@
 <a class="srm-row" href="#economic-vision"><span class="srm-icon">📈</span><span class="srm-copy"><strong>Economic Vision</strong><span>Sustainable Growth • Equal Opportunities • Better World</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
 <a class="srm-row" href="public-income-showcase.html"><span class="srm-icon">🎙️</span><span class="srm-copy"><strong>Products • Music • Freelancing • Live Podcast</strong><span>Live Talk • Ideas • Knowledge • Global Community</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
 </nav>
-<nav class="srm-bottom-nav" aria-label="मुख्य मोबाइल नेविगेशन"><a href="#public-main-menu"><i>⌂</i>Home</a><a href="#income-source-command"><i>◉</i>Explore</a><a href="#income-map"><i class="infinity">∞</i>Infinite Possibilities</a><a href="settings.html"><i>⚙</i>Settings</a><a href="profile.html"><i>●</i>Profile</a></nav>
+<nav class="srm-bottom-nav" aria-label="मुख्य मोबाइल नेविगेशन"><a href="#public-main-menu"><i>⌂</i>Home</a><a href="#income-source-command"><i>◉</i>Explore</a><a href="#income-map"><i class="infinity">∞</i>Infinite Possibilities</a><a href="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/settings.html" data-public-nav="settings" aria-label="Settings खोलें"><i>⚙</i>Settings</a><a href="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/profile.html" data-public-nav="profile" aria-label="Profile खोलें"><i>●</i>Profile</a></nav>
 </section>
 
 
@@ -840,6 +840,18 @@
         <p>© 2026 शिरोमणि रामपाल सैनी - सर्वाधिकार सुरक्षित। Omniverse Platform.</p>
     </footer>
 
+<script>
+(function(){
+"use strict";
+const BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/";
+document.querySelectorAll("[data-public-nav]").forEach(function(link){
+link.addEventListener("click",function(){
+const url=BASE+(link.dataset.publicNav==="profile"?"profile.html":"settings.html");
+window.location.assign(url);
+});
+});
+})();
+</script>
 </body>
-    </html>
+</html>
             
