@@ -1,0 +1,78 @@
+name: Nishpaksh Inspection Integrity
+
+on:
+  push:
+    paths:
+      - "nishpaksh-inspection.html"
+      - "schemas/nishpaksh-inspection.schema.json"
+      - "docs/NISHPaksh-INSPECTION-ENGINE.md"
+      - ".github/workflows/nishpaksh-inspection-integrity.yml"
+  pull_request:
+    paths:
+      - "nishpaksh-inspection.html"
+      - "schemas/nishpaksh-inspection.schema.json"
+      - "docs/NISHPaksh-INSPECTION-ENGINE.md"
+      - ".github/workflows/nishpaksh-inspection-integrity.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate machine-readable schema
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("schemas/nishpaksh-inspection.schema.json")
+          data=json.loads(p.read_text(encoding="utf-8"))
+          required={"schema_version","purpose","inspection_targets","stages","signal_policy","evidence_states","certificate_types"}
+          missing=required-set(data)
+          if missing:
+              raise SystemExit(f"Missing required keys: {sorted(missing)}")
+          if len(data["inspection_targets"]) < 8:
+              raise SystemExit("Inspection target coverage is unexpectedly small")
+          if "purpose_selection" not in data["stages"]:
+              raise SystemExit("Purpose gate missing")
+          if "human_review" not in data["stages"]:
+              raise SystemExit("Human review gate missing")
+          print("Inspection schema integrity: PASS")
+          PY
+
+      - name: Validate public prototype guardrails
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("nishpaksh-inspection.html")
+          s=p.read_text(encoding="utf-8")
+          required=[
+            "Purpose",
+            "सहमति",
+            "EVIDENCE_PENDING",
+            "मानव समीक्षा",
+            "NLP",
+            "Biometric",
+            "certificate",
+          ]
+          missing=[x for x in required if x not in s]
+          if missing:
+              raise SystemExit(f"Prototype guardrails missing: {missing}")
+          print("Prototype guardrails: PASS")
+          PY
+
+      - name: HTML smoke check
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s=Path("nishpaksh-inspection.html").read_text(encoding="utf-8")
+          for token in ("<!doctype html>","<html","</html>","<script>","</script>"):
+              if token not in s:
+                  raise SystemExit(f"Missing HTML token: {token}")
+          print("HTML smoke check: PASS")
+          PY

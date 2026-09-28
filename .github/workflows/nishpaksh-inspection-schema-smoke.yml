@@ -1,0 +1,19 @@
+name: Nishpaksh Inspection Schema Smoke
+on:
+  push:
+    paths: ['schemas/nishpaksh-inspection-session.schema.json','docs/NISHPakSH-INSPECTION-ENGINE.md','.github/workflows/nishpaksh-inspection-schema-smoke.yml']
+  pull_request:
+    paths: ['schemas/nishpaksh-inspection-session.schema.json','docs/NISHPakSH-INSPECTION-ENGINE.md','.github/workflows/nishpaksh-inspection-schema-smoke.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON
+        run: python -m json.tool schemas/nishpaksh-inspection-session.schema.json >/dev/null
+      - name: Fail closed on unsafe certification language
+        run: |
+          ! grep -RniE 'automatic(ally)?[[:space:]]+(verified|certified)|biometric.*truth[[:space:]]+detector' docs/NISHPakSH-INSPECTION-ENGINE.md
