@@ -17,6 +17,96 @@ label{display:block;margin:12px 0 5px;color:#e6eaf0}textarea,input,select{width:
 <header><div class="tag">SHIRMANI RESEARCH INSTITUTE • DIGITAL SELF-REFLECTION</div><h1>꙰ शिरोमणि निष्पक्ष समझ</h1><p>स्वयं का साक्षात्कार • आत्मनिरीक्षण • संवाद • प्रमाण-सचेत शोध</p><div class="actions"><a class="btn" href="index.html">← मुख्य केंद्र</a><a class="btn primary" href="#reflection">आत्मनिरीक्षण शुरू करें</a></div></header>
 <main>
 <section class="card"><h2>केंद्र का उद्देश्य</h2><p>यह केंद्र अपने विचारों, अनुभवों, व्यवहार और मूल्यों को समझने के लिए एक शांत, निजी और स्वैच्छिक कार्यक्षेत्र है। यह किसी व्यक्ति के चरित्र, बुद्धिमत्ता, भावना या सत्य का स्वचालित निर्णय नहीं करता।</p></section>
+<section class="card purpose-gate" id="purpose-gate">
+<h2>0️⃣ पहला अनिवार्य चरण — निरीक्षण किस चीज़ के लिए?</h2>
+<p><strong>पहले उद्देश्य, फिर criteria, फिर evidence और उसके बाद assessment.</strong> उद्देश्य चुने बिना कोई score या verdict नहीं बनाया जाएगा।</p>
+<label for="purpose">निरीक्षण का उद्देश्य चुनें</label>
+<select id="purpose">
+<option value="">— उद्देश्य चुनें —</option>
+<option value="human_self_understanding">खुद का निष्पक्ष स्व-निरीक्षण / खुद को समझना</option>
+<option value="human_identity_reflection">“इंसान” होने पर व्यक्तिगत/दार्शनिक आत्म-चिंतन</option>
+<option value="education">शिक्षा / ज्ञान / सीखना</option>
+<option value="employment">रोज़गार / नौकरी / पद की competency</option>
+<option value="ministerial_role">मंत्री पद की role-relevant competency</option>
+<option value="pm_role">PM पद की role-relevant competency</option>
+<option value="cm_role">CM पद की role-relevant competency</option>
+<option value="judge_role">न्यायिक भूमिका की प्रकाशित professional competency</option>
+<option value="president_role">राष्ट्राध्यक्ष/राष्ट्रपति भूमिका की प्रकाशित criteria</option>
+<option value="research_claim">किसी research claim का evidence audit</option>
+<option value="nature_civilization">प्रकृति / पृथ्वी / मानव-सभ्यता प्रभाव निरीक्षण</option>
+<option value="custom_role">Custom purpose / अपना स्पष्ट उद्देश्य</option>
+</select>
+<div id="purposeNotice" class="notice">उद्देश्य चुनते ही केवल उसी उद्देश्य से संबंधित parameters सक्रिय होंगे।</div>
+<div class="grid" id="purposeCards"></div>
+</section>
+
+<section class="card" id="parameter-engine">
+<h2>1️⃣ Parameter Engine — उद्देश्य के अनुसार निरीक्षण</h2>
+<p>हर module का status स्पष्ट रहेगा: <strong>ACTIVE</strong>, <strong>OPTIONAL</strong> या <strong>OFF</strong>.</p>
+<div class="value-list" id="parameterList"></div>
+<div class="actions">
+<button class="btn primary" id="buildPlan">Evidence Plan बनाएँ</button>
+<button class="btn" id="resetPlan">Reset</button>
+</div>
+<div class="result" id="planResult">पहले उद्देश्य चुनें।</div>
+</section>
+
+<section class="card" id="multi-angle">
+<h2>2️⃣ Multi-Angle शब्द/NLP निरीक्षण</h2>
+<p>एक statement को literal, context, time, domain, ambiguity, assumptions, evidence burden, counter-interpretation और contradiction के कोणों से अलग-अलग देखा जाएगा। AI मन की छिपी अवस्था का दावा नहीं करेगा।</p>
+<label for="statement">निरीक्षण हेतु statement</label>
+<textarea id="statement" placeholder="उदाहरण: “मैंने यह काम किया, इसलिए यह निश्चित रूप से सही है।”"></textarea>
+<div class="actions"><button class="btn primary" id="analyzeText">Multi-angle analysis</button></div>
+<div class="result" id="nlpResult">विश्लेषण यहाँ दिखाई देगा।</div>
+</section>
+
+<section class="card" id="evidence-engine">
+<h2>3️⃣ Evidence • Counter-evidence • Verification</h2>
+<div class="grid">
+<div class="value"><strong>Evidence</strong><small>दस्तावेज़, स्रोत, परीक्षण, observable data और provenance.</small></div>
+<div class="value"><strong>Counter-evidence</strong><small>वैकल्पिक तथ्य, विरोधी स्रोत और falsification attempts.</small></div>
+<div class="value"><strong>Independent verification</strong><small>AI output को स्वतः VERIFIED/CERTIFIED नहीं बनाया जाएगा।</small></div>
+<div class="value"><strong>Human review</strong><small>High-impact assessment में accountable human/audit gate.</small></div>
+</div>
+<div class="notice">Certificate केवल घोषित purpose + criteria version + evidence + review के आधार पर report होगा। Official certificate केवल अधिकृत संस्था जारी कर सकती है।</div>
+</section>
+
+<section class="card" id="multimodal">
+<h2>4️⃣ Multimodal Inspection — सुरक्षित सीमा</h2>
+<div class="value-list">
+<label class="value"><input type="checkbox" disabled> 👁️ Eye/visual <small>interaction, accessibility और capture quality; honesty/mental-state inference नहीं।</small></label>
+<label class="value"><input type="checkbox" disabled> 🫳 Finger-vein <small>केवल explicit consent, supported device और security/provenance use-case; character/intelligence inference नहीं।</small></label>
+<label class="value"><input type="checkbox" disabled> 🎙️ Voice <small>transcription, language और audio quality; personality/competence का hidden score नहीं।</small></label>
+<label class="value"><input type="checkbox" disabled> 📄 Document <small>OCR, integrity, provenance, consistency और quality checks.</small></label>
+<label class="value"><input type="checkbox" disabled> 📷 Image/Video <small>consent-based context/capture analysis; sensitive-trait inference default नहीं।</small></label>
+</div>
+<div class="notice">ये अभी UI contracts हैं, sensor access या biometric inference का दावा नहीं। वास्तविक device integration अलग security/privacy validation के बाद ही जोड़ा जाएगा।</div>
+</section>
+
+<section class="card" id="subscription">
+<h2>5️⃣ Subscription Gate</h2>
+<p>Subscription service access, storage, assessment credits, reports या optional features के लिए हो सकती है। Payment से outcome, score या certificate status नहीं बदलेगा।</p>
+<select id="subscriptionState">
+<option value="not_started">Not started</option><option value="trial">Trial</option><option value="active">Active</option><option value="paused">Paused</option><option value="expired">Expired</option>
+</select>
+<div class="result" id="subscriptionResult">Subscription अभी assessment outcome को प्रभावित नहीं करती।</div>
+</section>
+
+<section class="card" id="scale-governance">
+<h2>6️⃣ 850 करोड़ future-scale architecture</h2>
+<div class="value-list">
+<div class="value"><strong>Stateless services</strong><small>Horizontal scaling + queues.</small></div>
+<div class="value"><strong>Privacy</strong><small>Consent, minimization, deletion, retention.</small></div>
+<div class="value"><strong>Audit</strong><small>Versioned criteria, evidence graph, immutable review history.</small></div>
+<div class="value"><strong>Languages</strong><small>Regional language packs + translation cross-check.</small></div>
+<div class="value"><strong>Safety</strong><small>Prompt-injection, adversarial, bias and leakage tests.</small></div>
+<div class="value"><strong>Resilience</strong><small>Rate limits, disaster recovery, graceful degradation.</small></div>
+<div class="value"><strong>Human review</strong><small>High-impact queues with appeal and re-review.</small></div>
+<div class="value"><strong>Low bandwidth</strong><small>Accessible, device-assisted and offline-capable pathways where appropriate.</small></div>
+</div>
+<div class="notice"><strong>850 करोड़</strong> को future design target माना गया है; यह वर्तमान user count या capacity guarantee नहीं है।</div>
+</section>
+
 <div class="grid">
 <article class="card"><div class="tag">01 / REFLECTION</div><h3>स्वयं का साक्षात्कार</h3><p>अपने अनुभव, लक्ष्य और वर्तमान आवश्यकताओं पर विचार करें।</p></article>
 <article class="card"><div class="tag">02 / VALUES</div><h3>100 गुण • मूल्य-सूची</h3><p>नीचे दिए गए गुणों में से वे चुनें जिन्हें आप अपने जीवन में विकसित करना चाहते हैं।</p></article>
@@ -43,4 +133,31 @@ document.getElementById("make").addEventListener("click",()=>document.getElement
 document.getElementById("clear").addEventListener("click",()=>{document.querySelectorAll("textarea").forEach(x=>x.value="");root.querySelectorAll("input").forEach(x=>x.checked=false);update();document.getElementById("result").textContent="आपका सार यहाँ दिखाई देगा।"});
 document.getElementById("copy").addEventListener("click",async()=>{const s=summary();const r=document.getElementById("result");r.textContent=s;if(navigator.clipboard&&window.isSecureContext){try{await navigator.clipboard.writeText(s);r.textContent+="\n\nकॉपी किया गया।"}catch(e){r.textContent+="\n\nकॉपी उपलब्ध नहीं; ऊपर का पाठ चुनकर कॉपी करें।"}}else r.textContent+="\n\nकॉपी सुविधा उपलब्ध नहीं; ऊपर का पाठ चुनकर कॉपी करें।"});
 })();
-</script></body></html>
+
+<script>
+(function(){
+const cfg={
+human_self_understanding:["self_observation","reasoning","evidence_handling","logical_consistency","language_nlp","multi_angle_semantics","attention_and_comprehension","communication","empathy_and_non_harm","self_correction","uncertainty_calibration"],
+human_identity_reflection:["self_observation","evidence_handling","experience_vs_fact","language_nlp","multi_angle_semantics","self_correction","uncertainty_calibration"],
+education:["domain_knowledge","numeracy","reasoning","source_traceability","practical_tasks","communication","reproducibility","language_nlp"],
+employment:["role_criteria","practical_tasks","reasoning","communication","source_traceability","safety","digital_literacy","uncertainty_calibration"],
+ministerial_role:["published_eligibility","role_duties","law_and_rules","decision_transparency","conflict_of_interest","evidence_handling","public_impact","crisis_reasoning","accountability"],
+pm_role:["published_eligibility","role_duties","law_and_rules","decision_transparency","conflict_of_interest","evidence_handling","public_impact","crisis_reasoning","accountability"],
+cm_role:["published_eligibility","role_duties","law_and_rules","decision_transparency","conflict_of_interest","evidence_handling","public_impact","crisis_reasoning","accountability"],
+judge_role:["published_eligibility","professional_rules","legal_reasoning","evidence_handling","conflict_of_interest","decision_transparency","appealability"],
+president_role:["published_eligibility","role_duties","law_and_rules","decision_transparency","public_impact","accountability"],
+research_claim:["claim_definition","source_traceability","evidence_handling","counter_evidence","reproducibility","quantitative_consistency","alternative_interpretations","independent_verification"],
+nature_civilization:["environmental_impact","resource_stewardship","long_term_risk","social_impact","biodiversity","disaster_resilience","intergenerational_effects","reversibility"],
+custom_role:["custom_criteria","evidence_handling","reasoning","source_traceability","uncertainty_calibration"]
+};
+const labels={self_observation:"Self-observation",reasoning:"Reasoning",evidence_handling:"Evidence handling",logical_consistency:"Logical consistency",language_nlp:"Multilingual NLP",multi_angle_semantics:"Multi-angle semantics",attention_and_comprehension:"Attention & comprehension",communication:"Communication",empathy_and_non_harm:"Empathy / non-harm",self_correction:"Self-correction",uncertainty_calibration:"Uncertainty calibration",experience_vs_fact:"Experience vs fact",domain_knowledge:"Domain knowledge",numeracy:"Numeracy",source_traceability:"Source traceability",practical_tasks:"Practical tasks",reproducibility:"Reproducibility",role_criteria:"Role criteria",safety:"Safety",digital_literacy:"Digital literacy",published_eligibility:"Published eligibility",role_duties:"Role duties",law_and_rules:"Law / rules",decision_transparency:"Decision transparency",conflict_of_interest:"Conflict of interest",public_impact:"Public impact",crisis_reasoning:"Crisis reasoning",accountability:"Accountability",professional_rules:"Professional rules",legal_reasoning:"Legal reasoning",appealability:"Appealability",claim_definition:"Claim definition",counter_evidence:"Counter-evidence",quantitative_consistency:"Quantitative / unit consistency",alternative_interpretations:"Alternative interpretations",independent_verification:"Independent verification",environmental_impact:"Environmental impact",resource_stewardship:"Resource stewardship",long_term_risk:"Long-term risk",social_impact:"Social impact",biodiversity:"Biodiversity / ecosystem",disaster_resilience:"Disaster resilience",intergenerational_effects:"Intergenerational effects",reversibility:"Decision reversibility",custom_criteria:"Custom criteria"};
+const purpose=document.getElementById("purpose"), list=document.getElementById("parameterList"), notice=document.getElementById("purposeNotice"), plan=document.getElementById("planResult");
+function render(){const p=purpose.value;list.innerHTML="";if(!p){notice.textContent="उद्देश्य चुनते ही केवल उसी उद्देश्य से संबंधित parameters सक्रिय होंगे।";return}const a=cfg[p]||[];notice.textContent="Selected purpose: "+(purpose.options[purpose.selectedIndex].text)+" — "+a.length+" purpose-bound parameters.";a.forEach((x,i)=>{const d=document.createElement("div");d.className="value";d.innerHTML="<strong>"+(i+1)+". "+(labels[x]||x)+"</strong><small>ACTIVE — purpose-bound; evidence और review के साथ।</small>";list.appendChild(d)})}
+purpose.addEventListener("change",render);
+document.getElementById("buildPlan").addEventListener("click",()=>{if(!purpose.value){plan.textContent="पहले purpose चुनें।";return}const a=cfg[purpose.value]||[];plan.textContent="Evidence Plan\n\nPurpose: "+purpose.options[purpose.selectedIndex].text+"\nCriteria: version-locked\nParameters: "+a.join(", ")+"\n\nNext: Consent → Evidence → Analysis → Countercheck → Human Review → Report/Certificate.";});
+document.getElementById("resetPlan").addEventListener("click",()=>{purpose.value="";render();plan.textContent="पहले उद्देश्य चुनें।"});
+document.getElementById("analyzeText").addEventListener("click",()=>{const s=document.getElementById("statement").value.trim();const r=document.getElementById("nlpResult");if(!s){r.textContent="पहले statement लिखें।";return}const qs=[];if(/\b(इसलिए|क्योंकि|अतः|therefore|because)\b/i.test(s))qs.push("Causal/inference marker मिला — कारण और निष्कर्ष अलग evidence मांगते हैं।");if(/\b(हमेशा|कभी नहीं|निश्चित|100%|always|never|certain)\b/i.test(s))qs.push("Absolute-language marker मिला — counterexample और uncertainty check आवश्यक।");if(/\b(सही|सत्य|true|correct)\b/i.test(s))qs.push("Truth/correctness claim — external evidence या defined test आवश्यक।");if(!qs.length)qs.push("कोई predefined risk marker नहीं मिला; फिर भी context, source, countercase और uncertainty की जाँच आवश्यक है।");r.textContent="Literal: "+s+"\n\nContext: अतिरिक्त संदर्भ आवश्यक।\nTemporal: तारीख/समय-सीमा आवश्यक।\nDomain: संबंधित domain criteria आवश्यक।\nAmbiguity: वैकल्पिक अर्थों की जाँच करें।\nEvidence burden: claim के प्रकार के अनुसार source/test दें।\nCounter-interpretation: विरोधी व्याख्या लिखें।\nContradiction: अन्य statements/evidence से cross-check करें।\n\nFlags:\n• "+qs.join("\n• ")+"\n\nAI output = analysis aid, independent verification नहीं।";});
+document.getElementById("subscriptionState").addEventListener("change",e=>document.getElementById("subscriptionResult").textContent="State: "+e.target.options[e.target.selectedIndex].text+" — service access state; assessment outcome बदलने का अधिकार नहीं।");
+render();
+})();
+</script></script></body></html>

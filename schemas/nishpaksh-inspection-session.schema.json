@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nishpaksh Inspection Session",
+  "type": "object",
+  "required": [
+    "purpose",
+    "consent",
+    "assessment_mode",
+    "parameters",
+    "evidence_policy",
+    "subscription_state",
+    "criteria_version"
+  ],
+  "properties": {
+    "purpose": {
+      "enum": [
+        "human_self_understanding",
+        "human_identity_reflection",
+        "education",
+        "employment_role",
+        "public_office_role",
+        "ministerial_role",
+        "pm_role",
+        "cm_role",
+        "judge_role",
+        "president_role",
+        "research_claim",
+        "nature_civilization",
+        "custom_role"
+      ]
+    },
+    "consent": {
+      "type": "object",
+      "required": [
+        "accepted",
+        "version"
+      ],
+      "properties": {
+        "accepted": {
+          "type": "boolean"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "assessment_mode": {
+      "enum": [
+        "self_reflection",
+        "knowledge_assessment",
+        "role_competency",
+        "document_review",
+        "multimodal_analysis",
+        "combined"
+      ]
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "self_observation",
+          "reasoning",
+          "evidence_handling",
+          "logical_consistency",
+          "language_nlp",
+          "multi_angle_semantics",
+          "numeracy",
+          "domain_knowledge",
+          "decision_transparency",
+          "conflict_of_interest",
+          "source_traceability",
+          "attention_and_comprehension",
+          "communication",
+          "empathy_and_non_harm",
+          "nature_and_environment",
+          "social_impact",
+          "digital_literacy",
+          "finger_vein_optional",
+          "eye_analysis_optional",
+          "voice_analysis_optional",
+          "document_analysis_optional",
+          "epistemic_humility",
+          "experience_vs_fact",
+          "self_correction",
+          "uncertainty_calibration",
+          "source_reliability",
+          "causal_reasoning",
+          "counterfactual_reasoning",
+          "temporal_consistency",
+          "decision_reversibility",
+          "privacy_awareness",
+          "cybersecurity_hygiene",
+          "environmental_externalities",
+          "accessibility",
+          "language_fairness",
+          "model_bias_checks",
+          "reviewer_disagreement",
+          "appeal_outcome",
+          "reproducibility",
+          "auditability",
+          "published_eligibility",
+          "role_duties",
+          "law_and_rules",
+          "legal_reasoning",
+          "professional_rules",
+          "public_impact",
+          "crisis_reasoning",
+          "accountability",
+          "environmental_impact",
+          "resource_stewardship",
+          "long_term_risk",
+          "biodiversity",
+          "disaster_resilience",
+          "intergenerational_effects",
+          "reversibility",
+          "custom_criteria"
+        ]
+      }
+    },
+    "evidence_policy": {
+      "type": "object",
+      "required": [
+        "separate_experience_from_fact",
+        "independent_verification_required"
+      ],
+      "properties": {
+        "separate_experience_from_fact": {
+          "type": "boolean"
+        },
+        "independent_verification_required": {
+          "type": "boolean"
+        },
+        "human_review_gate": {
+          "type": "boolean"
+        }
+      }
+    },
+    "subscription_state": {
+      "enum": [
+        "not_started",
+        "trial",
+        "active",
+        "expired",
+        "paused"
+      ]
+    },
+    "result_policy": {
+      "type": "string"
+    },
+    "criteria_version": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
