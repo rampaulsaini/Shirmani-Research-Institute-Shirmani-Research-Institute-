@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": "1.0.0",
+  "name": "Nishpaksh Understanding Inspection",
+  "status": "DESIGN_SPECIFICATION_NO_AUTOMATIC_DECISION",
+  "type": "object",
+  "properties": {
+    "inspection_id": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "SELF",
+        "HUMAN_FOUNDATION",
+        "EDUCATION",
+        "ROLE_WORK",
+        "PUBLIC_SERVICE",
+        "CUSTOM"
+      ]
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "consent": {
+      "type": "object",
+      "properties": {
+        "granted": {
+          "type": "boolean"
+        },
+        "scope": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "granted"
+      ]
+    },
+    "evidence_references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "analysis_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "uncertainty": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "human_review_required": {
+      "type": "boolean"
+    },
+    "verification_state": {
+      "type": "string",
+      "enum": [
+        "REGISTERED",
+        "EVIDENCE_PENDING",
+        "ANALYZED",
+        "HUMAN_REVIEW",
+        "USER_REVIEW",
+        "VERIFIED",
+        "NOT_VERIFIED",
+        "DISPUTED",
+        "ARCHIVED"
+      ]
+    },
+    "certificate_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "inspection_id",
+    "purpose",
+    "consent",
+    "verification_state"
+  ],
+  "rules": {
+    "automatic_qualification": false,
+    "automatic_disqualification": false,
+    "automatic_employment_decision": false,
+    "automatic_public_office_decision": false,
+    "automatic_political_preference_inference": false,
+    "automatic_health_inference": false,
+    "automatic_personality_inference": false,
+    "biometric_trait_inference": false,
+    "identity_substitution": false,
+    "invented_evidence": false
+  },
+  "biometric_boundary": {
+    "allowed_purposes": [
+      "identity_verification",
+      "liveness",
+      "access_control"
+    ],
+    "assessment_scoring": false,
+    "sensitive_trait_inference": false,
+    "raw_data_minimization": true,
+    "consent_required": true,
+    "legal_compliance_required": true
+  },
+  "integrity_statements": [
+    "AI_ANALYSIS != HUMAN_JUDGMENT",
+    "SCORE != TRUTH",
+    "GENERATED_REPORT != INDEPENDENT_VERIFICATION",
+    "SUBSCRIPTION != VERIFICATION",
+    "CERTIFICATE != AUTOMATIC_AUTHORITY"
+  ],
+  "privacy_boundary": "Collect only necessary data; provide purpose limitation, retention/deletion controls and user access/correction mechanisms."
+}
