@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nishpaksh Inspection Session",
+  "type": "object",
+  "required": [
+    "session_id",
+    "inspection_purpose",
+    "rubric_version",
+    "consent",
+    "status"
+  ],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inspection_purpose": {
+      "enum": [
+        "SELF_HUMAN",
+        "EDUCATION",
+        "EMPLOYMENT",
+        "PUBLIC_ROLE",
+        "RESEARCH",
+        "CERTIFICATION",
+        "OTHER"
+      ]
+    },
+    "rubric_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "consent": {
+      "type": "object",
+      "required": [
+        "accepted"
+      ],
+      "properties": {
+        "accepted": {
+          "type": "boolean"
+        },
+        "biometric_optional": {
+          "type": "boolean"
+        },
+        "data_minimization": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "INTAKE",
+        "EVIDENCE_PENDING",
+        "ANALYSIS",
+        "HUMAN_REVIEW",
+        "VERIFIED",
+        "PARTIALLY_VERIFIED",
+        "NOT_VERIFIED",
+        "DISPUTED",
+        "REJECTED",
+        "APPEAL",
+        "ARCHIVED"
+      ]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "appeal_status": {
+      "type": "string"
+    },
+    "provenance_hash": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

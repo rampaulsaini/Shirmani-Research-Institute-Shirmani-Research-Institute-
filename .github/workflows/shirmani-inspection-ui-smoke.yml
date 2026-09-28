@@ -1,0 +1,28 @@
+name: SHIRMANI Inspection App UI Smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'nishpaksh-inspection.html'
+      - '.github/workflows/shirmani-inspection-ui-smoke.yml'
+  pull_request:
+    paths:
+      - 'nishpaksh-inspection.html'
+      - '.github/workflows/shirmani-inspection-ui-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate HTML markers
+        run: |
+          set -euo pipefail
+          test -s nishpaksh-inspection.html
+          grep -q 'निरीक्षण किस चीज़ के लिए है' nishpaksh-inspection.html
+          grep -q 'PUBLIC_SERVICE_REVIEW' nishpaksh-inspection.html
+          grep -q 'FINGER_VEIN' nishpaksh-inspection.html
+          grep -q 'Generated output ≠ verified evidence' nishpaksh-inspection.html
+          grep -q 'human review required' nishpaksh-inspection.html
