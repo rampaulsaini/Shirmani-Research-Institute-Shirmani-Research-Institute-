@@ -23,6 +23,64 @@ label{display:block;margin:12px 0 5px;color:#e6eaf0}textarea,input,select{width:
 <article class="card"><div class="tag">03 / DIALOGUE</div><h3>निष्पक्ष संवाद</h3><p>तथ्य, अनुमान, अनुभव और प्रश्नों को अलग-अलग दर्ज करें।</p></article>
 <article class="card"><div class="tag">04 / RESEARCH</div><h3>विज्ञान एवं प्रमाण</h3><p>वैज्ञानिक निष्कर्षों, व्यक्तिगत अनुभवों और अपरीक्षित परिकल्पनाओं को अलग रखें।</p></article>
 </div>
+<section class="card" id="inspection-purpose">
+<h2>01 • पहले तय करें: निरीक्षण किस लिए है?</h2>
+<p>किसी भी assessment से पहले उद्देश्य चुनना अनिवार्य है। उद्देश्य बदलने पर criteria, evidence और analysis भी बदलेंगे।</p>
+<label for="purpose">निरीक्षण का उद्देश्य</label>
+<select id="purpose">
+<option value="">— उद्देश्य चुनें —</option>
+<option value="human_self_verification">खुद का निष्पक्ष स्व-निरीक्षण / स्वयं को समझना</option>
+<option value="human_reflection">“मैं इंसान हूँ” विषय पर self-reflection</option>
+<option value="education">शिक्षा / ज्ञान / कौशल</option>
+<option value="employment_role">रोजगार / किसी पद की competency</option>
+<option value="ministerial_role">मंत्री पद की role-relevant competency</option>
+<option value="pm_role">PM पद की role-relevant competency</option>
+<option value="cm_role">CM पद की role-relevant competency</option>
+<option value="judge_role">न्यायिक भूमिका की प्रकाशित competency</option>
+<option value="president_role">राष्ट्राध्यक्ष/संवैधानिक भूमिका की प्रकाशित competency</option>
+<option value="research_claim">शोध-दावा / सिद्धांत / प्रमाण audit</option>
+<option value="custom_role">अपना स्पष्ट उद्देश्य</option>
+</select>
+<div id="purposeResult" class="result" style="margin-top:12px">उद्देश्य चुनने पर आवश्यक निरीक्षण parameters यहाँ दिखेंगे।</div>
+<div class="notice" style="margin-top:12px">किसी व्यक्ति की मानव गरिमा, मूल अधिकार या राजनीतिक पसंद इस app के score से तय नहीं होगी। सार्वजनिक पदों के लिए केवल लागू, प्रकाशित और role-relevant criteria तथा उपलब्ध evidence का assessment किया जा सकता है।</div>
+</section>
+<section class="card" id="inspection-parameters">
+<h2>02 • निष्पक्ष निरीक्षण के बहु-आयामी parameters</h2>
+<div class="value-list">
+<div class="value"><strong>🧠 Reasoning</strong><small>premises, inference, counterexample, causality, uncertainty</small></div>
+<div class="value"><strong>📝 NLP</strong><small>literal, context, temporal, domain, ambiguity, translation</small></div>
+<div class="value"><strong>🔎 Evidence</strong><small>source, provenance, independent verification, counter-evidence</small></div>
+<div class="value"><strong>📚 Knowledge</strong><small>concepts, numeracy, practical tasks, source literacy</small></div>
+<div class="value"><strong>🗣️ Communication</strong><small>clarity, comprehension, dialogue, uncertainty communication</small></div>
+<div class="value"><strong>📄 Documents</strong><small>OCR, structure, provenance, integrity/quality indicators</small></div>
+<div class="value"><strong>🎧 Audio</strong><small>transcription and meaning; voice identity is not competence proof</small></div>
+<div class="value"><strong>👁️ Visual</strong><small>document/image/context quality; no “eye = truth” inference</small></div>
+<div class="value"><strong>🫶 Human self-observation</strong><small>self-correction, evidence-vs-experience, reflection</small></div>
+<div class="value"><strong>🌍 Nature/Earth</strong><small>environmental externalities, resources, long-term risk</small></div>
+<div class="value"><strong>🏛️ Public role</strong><small>published duties, law/rules, accountability, public impact</small></div>
+<div class="value"><strong>🛡️ Safety</strong><small>privacy, cybersecurity, harm minimization, accessibility</small></div>
+</div>
+</section>
+<section class="card">
+<h2>03 • Optional sensing — सुरक्षा पहले</h2>
+<p>Finger-vein, fingerprint, iris/eye, face, voice, liveness, typing dynamics आदि केवल स्पष्ट consent, lawful purpose और आवश्यकता/अनुपातिकता की समीक्षा के बाद।</p>
+<div class="notice">इन signals से “सच बोलना”, बुद्धिमत्ता, मानसिक अवस्था, चरित्र, धर्म, राजनीतिक पसंद या मानव-मूल्य निकालना app में निषिद्ध रहेगा। Raw biometric data public archive में default रूप से नहीं रखा जाएगा।</div>
+</section>
+<section class="card" id="inspection-subscription">
+<h2>04 • सदस्यता / Session Access</h2>
+<p>Purpose चुनने के बाद assessment session के लिए access state दर्ज होगी। Subscription केवल service access, storage, assessment credits और reports के लिए है; पैसे देकर outcome, certificate या eligibility नहीं बदली जा सकती।</p>
+<div class="grid">
+<div class="value"><strong>FREE / TRIAL</strong><small>प्रारम्भिक self-reflection और सीमित modules</small></div>
+<div class="value"><strong>ACTIVE</strong><small>उपलब्ध subscribed assessment modules</small></div>
+<div class="value"><strong>PAUSED / EXPIRED</strong><small>नई assessment रोकना; existing records audit policy के अनुसार सुरक्षित</small></div>
+</div>
+<div class="notice">Official/legal certificate तभी माना जाएगा जब संबंधित अधिकृत संस्था वास्तव में उसे जारी करे। AI-generated result अपने-आप VERIFIED नहीं है।</div>
+</section>
+<section class="card">
+<h2>05 • Result pipeline</h2>
+<p><strong>Purpose → Criteria Version → Consent → Evidence → AI/ML/NLP Analysis → Multi-angle Review → Counter-evidence → Human Review → Report → Appeal → Audit Archive</strong></p>
+<p>हर result के साथ evidence, uncertainty, limitations और criteria version दिखेंगे। पुराने result को छिपाकर बदलने के बजाय नया version बनाया जाएगा।</p>
+</section>
 <section class="card" id="reflection"><h2>आत्मनिरीक्षण कार्यपत्र</h2><p>यह सामग्री आपके ब्राउज़र में ही रहती है; यह पृष्ठ इसे किसी सर्वर पर भेजने का कोड नहीं रखता। साझा डिवाइस पर निजी जानकारी न लिखें।</p>
 <label for="moment">आज मैं किस बात को समझना चाहता/चाहती हूँ?</label><textarea id="moment" placeholder="अपना विचार लिखें…"></textarea>
 <label for="fact">इस विषय में कौन-सी बात प्रत्यक्ष तथ्य है?</label><textarea id="fact" placeholder="देखी/जाँची जा सकने वाली बात…"></textarea>
@@ -38,6 +96,22 @@ label{display:block;margin:12px 0 5px;color:#e6eaf0}textarea,input,select{width:
 const names=["ईमानदारी","सत्यनिष्ठा","करुणा","सहानुभूति","सम्मान","विनम्रता","धैर्य","साहस","आत्मअनुशासन","जिम्मेदारी","न्याय","निष्पक्षता","विश्वास","विश्वसनीयता","पारदर्शिता","कृतज्ञता","क्षमा","सहिष्णुता","स्वतंत्रता","समानता","गरिमा","संवेदनशीलता","सुनना","स्पष्टता","जिज्ञासा","सीखना","विवेक","तर्कशीलता","आत्म-जागरूकता","आत्मविश्वास","आत्मसम्मान","संतुलन","शांति","संयम","सादगी","निरंतरता","मेहनत","लगन","रचनात्मकता","कल्पनाशीलता","नवाचार","सहयोग","टीम भावना","सेवा","उदारता","साझेदारी","समावेशन","विविधता का सम्मान","सामाजिक उत्तरदायित्व","पर्यावरण-सम्मान","अहिंसा","सुरक्षा","सावधानी","स्वास्थ्य-जागरूकता","आराम","समय-प्रबंधन","योजना","प्राथमिकता","अनुकूलन","लचीलापन","समस्या-समाधान","निर्णय-जागरूकता","प्रमाण-जाँच","स्रोत-सत्यापन","गलती स्वीकारना","सुधार","प्रतिक्रिया ग्रहण","संवाद","असहमति का सम्मान","सीमाओं का सम्मान","सहमति","गोपनीयता","डिजिटल जिम्मेदारी","मीडिया साक्षरता","वित्तीय समझ","आर्थिक जिम्मेदारी","उद्यमशीलता","कौशल-विकास","स्वावलंबन","साझा समृद्धि","न्यायपूर्ण अवसर","सामुदायिक भावना","नेतृत्व","मार्गदर्शन","सेवाभाव","समानुभूति","आशावाद","यथार्थवाद","धीरज","एकाग्रता","ध्यान","आत्मचिंतन","उद्देश्य-बोध","अर्थपूर्णता","संतोष","आनंद","विश्व-नागरिकता","शोध-निष्ठा","सत्य के प्रति खुलापन"];
 const root=document.getElementById("values");names.forEach((n,i)=>{const l=document.createElement("label");l.className="value";const c=document.createElement("input");c.type="checkbox";c.value=n;c.addEventListener("change",update);l.append(c,document.createTextNode(" "+(i+1)+". "+n));root.append(l)});
 function update(){const n=root.querySelectorAll("input:checked").length;document.getElementById("count").textContent=n+" / 100 चुने गए";document.getElementById("progress").style.width=n+"%"}
+const purposeMap={
+human_self_verification:"Self-observation • reasoning • evidence-vs-experience • self-correction • uncertainty",
+human_reflection:"Self-reflection • language/meaning • evidence vs experience • alternative interpretations",
+education:"Knowledge • numeracy • reasoning • practical tasks • source literacy",
+employment_role:"Role criteria • task simulation • communication • evidence handling • safety",
+ministerial_role:"Published legal/role criteria • policy reasoning • evidence handling • accountability • public impact",
+pm_role:"Published constitutional/legal/role criteria • decision reasoning • evidence • accountability • public impact",
+cm_role:"Published constitutional/legal/role criteria • decision reasoning • evidence • accountability • public impact",
+judge_role:"Published legal/professional criteria • reasoning • case-handling evidence • ethics rules",
+president_role:"Published constitutional/legal criteria • role duties • evidence • accountability",
+research_claim:"Claim definition • evidence • counter-evidence • reproducibility • audit trail",
+custom_role:"User-defined criteria • version lock • evidence plan • counter-review"
+};
+document.getElementById("purpose").addEventListener("change",e=>{
+const p=e.target.value;document.getElementById("purposeResult").textContent=p?(purposeMap[p]||"Purpose-specific criteria required."):"उद्देश्य चुनने पर आवश्यक निरीक्षण parameters यहाँ दिखेंगे।";
+});
 function summary(){const fields=[["विषय", "moment"],["तथ्य", "fact"],["अनुमान", "assumption"],["अगला कदम", "next"]];let s=fields.map(([t,id])=>t+": "+(document.getElementById(id).value.trim()||"—")).join("\n\n");const v=[...root.querySelectorAll("input:checked")].map(x=>x.value);s+="\n\nचुने गए गुण ("+v.length+"): "+(v.join(", ")||"कोई चयन नहीं");return s}
 document.getElementById("make").addEventListener("click",()=>document.getElementById("result").textContent=summary());
 document.getElementById("clear").addEventListener("click",()=>{document.querySelectorAll("textarea").forEach(x=>x.value="");root.querySelectorAll("input").forEach(x=>x.checked=false);update();document.getElementById("result").textContent="आपका सार यहाँ दिखाई देगा।"});

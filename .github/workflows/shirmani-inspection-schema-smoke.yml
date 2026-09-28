@@ -1,0 +1,42 @@
+name: SHIRMANI Nishpaksh Inspection Schema Smoke
+
+on:
+  push:
+    paths:
+      - 'schemas/inspection-assessment.schema.json'
+      - 'docs/NISHPAKSH-INSPECTION-ENGINE.md'
+      - '.github/workflows/shirmani-inspection-schema-smoke.yml'
+  pull_request:
+    paths:
+      - 'schemas/inspection-assessment.schema.json'
+      - 'docs/NISHPAKSH-INSPECTION-ENGINE.md'
+      - '.github/workflows/shirmani-inspection-schema-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate inspection contract
+        run: |
+          python - <<'PY'
+          import json
+          p='schemas/inspection-assessment.schema.json'
+          x=json.load(open(p,encoding='utf-8'))
+          assert x.get('$schema')
+          assert 'purpose' in x['properties']
+          assert 'consent' in x['properties']
+          assert 'biometric' in x['properties']['analysis']['properties']
+          print('inspection schema: PASS')
+          PY
+      - name: Validate privacy boundary
+        run: |
+          if grep -RniE 'biometric.*(truth|intelligence|mental|moral|political)|eye.*(truth|intelligence|mental|moral)' docs/NISHPAKSH-INSPECTION-ENGINE.md; then
+            echo 'biometric inference guard: FAIL'
+            exit 1
+          fi
+          echo 'biometric inference guard: PASS'
