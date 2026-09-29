@@ -110,3 +110,12 @@ Source → Normalize → Claims → Sources → Evidence → Formulation/Test �
 - **Author archive:** [research/yatharth-drishtikon-author-archive-2026-09-29.md](research/yatharth-drishtikon-author-archive-2026-09-29.md)
 - **Public navigation:** Main Hub → “यथार्थ दृष्टिकोण — लेखक-प्रस्तावित विचार-संग्रह”
 - **Integrity boundary:** लेखक के दार्शनिक/अनुभवात्मक और empirical दावों को अलग रखा गया है; जहाँ आवश्यक हो वहाँ स्वतंत्र verification अपेक्षित है।
+
+
+## 🧭 शिरोमणि / यथार्थ दृष्टिकोण — Canonical Source & Comparison System
+
+- **Canonical author-source record:** [research/yatharth-shirmani-canonical-source-2026-09-29.md](research/yatharth-shirmani-canonical-source-2026-09-29.md)
+- **Evidence-based comparison system:** [research/shirmani-comparative-analysis-system.md](research/shirmani-comparative-analysis-system.md)
+- **Purpose:** लेखक के शब्दों को संरक्षित रखते हुए प्रत्येक proposition को परिभाषा, प्राथमिक/द्वितीयक स्रोत, समानता, अंतर, evidence, counter-evidence, logical test और verification state के साथ compare करना।
+- **Important:** “खरबों गुणा श्रेष्ठ” जैसे evaluative claims को platform स्वतः तथ्य नहीं मानेगा; operational metric और evidence के बिना वे UNVERIFIED रहेंगे।
+- **Automation target:** Source → Normalize → Claims → Comparison → Evidence → Formulation/Test → Verification → QC → Publication → Archive.
