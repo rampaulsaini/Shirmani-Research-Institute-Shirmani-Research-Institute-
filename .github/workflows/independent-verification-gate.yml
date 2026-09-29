@@ -1,0 +1,42 @@
+name: SHIRMANI Independent Verification Gate
+
+on:
+  push:
+    paths:
+      - "research/independent-verification-protocol-2026-09-29.md"
+      - "generated/independent-verification-status-2026-09-29.json"
+      - ".github/workflows/independent-verification-gate.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "23 */6 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate fail-closed registry
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/independent-verification-status-2026-09-29.json").read_text(encoding="utf-8"))
+          s=d["verification_summary"]
+          assert s["independently_verified_records"] == 0
+          assert s["independent_verified_percent"] == 0
+          assert s["verification_readiness_percent"] == 100
+          assert len(d["records"]) == s["queue_records"]
+          assert sum(1 for x in d["records"] if x["status"]=="EVIDENCE-SUPPORTED") == s["evidence_supported_records"]
+          assert all(x["status"] != "VERIFIED" for x in d["records"])
+          print("Independent verification gate: FAIL-CLOSED")
+          PY
+      - name: Validate integrity boundary
+        run: |
+          set -euo pipefail
+          grep -q "workflow succeeding is not independent verification" research/independent-verification-protocol-2026-09-29.md
+          grep -q "counter-evidence" research/independent-verification-protocol-2026-09-29.md
+          grep -q "reviewer identity/role" research/independent-verification-protocol-2026-09-29.md
