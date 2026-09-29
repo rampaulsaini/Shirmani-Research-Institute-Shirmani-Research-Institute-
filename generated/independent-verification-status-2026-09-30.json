@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.1.0",
+  "generated_at": "2026-09-30",
+  "framework": "Nishpaksh Samaj / Shamikaran Yatharth Siddhant / Yatharth Yug",
+  "author": "शिरोमणि रामपॉल सैनी",
+  "verification_summary": {
+    "queue_records": 14,
+    "evidence_supported_records": 7,
+    "author_defined_or_proposed_records": 3,
+    "not_verified_records": 4,
+    "independently_verified_records": 0,
+    "independent_verified_percent": 0,
+    "verification_readiness_percent": 100
+  },
+  "integrity_note": "Independent verification remains 0% until an actual independent review decision exists. Evidence-supported records are not automatically VERIFIED.",
+  "records": [
+    {
+      "id": "IV-001",
+      "status": "EVIDENCE-SUPPORTED",
+      "claim": "Stars and galaxies change/evolve over time.",
+      "sources": [
+        "https://science.nasa.gov/universe/stars/",
+        "https://science.nasa.gov/universe/galaxies/evolution/"
+      ]
+    },
+    {
+      "id": "IV-002",
+      "status": "EVIDENCE-SUPPORTED",
+      "claim": "Galaxies can collide and merge and their structures evolve.",
+      "sources": [
+        "https://science.nasa.gov/universe/galaxies/evolution/"
+      ]
+    },
+    {
+      "id": "IV-003",
+      "status": "EVIDENCE-SUPPORTED",
+      "claim": "Human activity affects climate, ecosystems and biodiversity.",
+      "sources": [
+        "https://www.ipcc.ch/report/ar6/wg2/",
+        "https://www.ipcc.ch/synthesis-report/"
+      ]
+    },
+    {
+      "id": "IV-004",
+      "status": "EVIDENCE-SUPPORTED",
+      "claim": "First-person self-knowledge and prereflective self-consciousness are established objects of philosophical analysis.",
+      "sources": [
+        "https://plato.stanford.edu/entries/self-knowledge/",
+        "https://plato.stanford.edu/entries/self-consciousness-phenomenological/"
+      ]
+    },
+    {
+      "id": "IV-011",
+      "status": "EVIDENCE-SUPPORTED",
+      "claim": "Earth systems and living systems are coupled to environmental conditions and resource/energy flows.",
+      "sources": [
+        "https://www.ipcc.ch/report/ar6/wg2/"
+      ]
+    },
+    {
+      "id": "IV-012",
+      "status": "EVIDENCE-SUPPORTED",
+      "claim": "Human activities can alter natural systems at scales relevant to ecosystems and human communities.",
+      "sources": [
+        "https://www.ipcc.ch/synthesis-report/",
+        "https://www.ipcc.ch/report/ar6/wg2/"
+      ]
+    },
+    {
+      "id": "IV-013",
+      "status": "EVIDENCE-SUPPORTED",
+      "claim": "First-person experience can be studied as a subject of philosophical and cognitive inquiry, while testimony alone does not establish universal external claims.",
+      "sources": [
+        "https://plato.stanford.edu/entries/self-knowledge/",
+        "https://plato.stanford.edu/entries/phenomenology/"
+      ]
+    },
+    {
+      "id": "IV-005",
+      "status": "AUTHOR-DEFINED",
+      "claim": "शिरोमणि is the author's construct linking purity, conscience, self-realization and continuous satisfaction.",
+      "sources": [
+        "research/yatharth-shirmani-canonical-source-2026-09-29.md"
+      ]
+    },
+    {
+      "id": "IV-010",
+      "status": "AUTHOR-PROPOSED",
+      "claim": "Nature, Earth, human civilization and living systems should be protected.",
+      "sources": []
+    },
+    {
+      "id": "IV-014",
+      "status": "AUTHOR-PROPOSED",
+      "claim": "AI/ML/NLP/Automission should operationalize source normalization, claim extraction, comparison, evidence tracing, QC, publication and archive.",
+      "sources": []
+    },
+    {
+      "id": "IV-006",
+      "status": "NOT_VERIFIED",
+      "claim": "Head-viewpoint/heart-viewpoint are literal universal scientific mechanisms determining consciousness.",
+      "sources": []
+    },
+    {
+      "id": "IV-007",
+      "status": "NOT_VERIFIED",
+      "claim": "Neutralizing the mind/head system permanently prevents return to ordinary personality.",
+      "sources": []
+    },
+    {
+      "id": "IV-008",
+      "status": "NOT_VERIFIED",
+      "claim": "A subatomic universal entity/state is present throughout all living and nonliving matter.",
+      "sources": []
+    },
+    {
+      "id": "IV-009",
+      "status": "NOT_VERIFIED",
+      "claim": "The framework is billions/trillions of times superior to historical figures or existing knowledge systems.",
+      "sources": []
+    }
+  ]
+}
