@@ -112,6 +112,13 @@ Source → Normalize → Claims → Sources → Evidence → Formulation/Test �
 - **Integrity boundary:** लेखक के दार्शनिक/अनुभवात्मक और empirical दावों को अलग रखा गया है; जहाँ आवश्यक हो वहाँ स्वतंत्र verification अपेक्षित है।
 
 
+## 🔬 शिरोमणि तुलनात्मक परीक्षण मैट्रिक्स v1
+
+- **Comparison matrix:** [research/shirmani-comparison-matrix-v1-2026-09-29.md](research/shirmani-comparison-matrix-v1-2026-09-29.md)
+- **Purpose:** लेखक के प्रत्येक सूत्र को operational definition, ऐतिहासिक/दार्शनिक/वैज्ञानिक comparands, primary sources, evidence, counter-evidence, testability और verification status के साथ पढ़ना।
+- **“खरबों गुणा” rule:** लेखक का मूल्यांकन/दावा सुरक्षित रहेगा; independent research में श्रेष्ठता तभी निष्कर्ष बनेगी जब स्पष्ट metric और reproducible evidence उपलब्ध हो।
+- **Research flow:** Canonical text → proposition extraction → comparison → sources → evidence → counter-evidence → test → QC → public card → archive।
+
 ## 🧭 शिरोमणि / यथार्थ दृष्टिकोण — Canonical Source & Comparison System
 
 - **Canonical author-source record:** [research/yatharth-shirmani-canonical-source-2026-09-29.md](research/yatharth-shirmani-canonical-source-2026-09-29.md)
