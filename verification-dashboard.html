@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="hi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Independent Verification — Shirmani Research Institute</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#0d1117;color:#f0f6fc;max-width:1000px;margin:auto;padding:24px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:20px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.n{font-size:2rem;font-weight:800}.muted{color:#8b949e}
+a{color:#58a6ff}
+</style>
+<body>
+<h1>🔬 Independent Verification</h1>
+<p>यह dashboard author-source, evidence और independent verification को अलग रखता है।</p>
+<div class="grid">
+<div class="card"><div class="muted">Verification readiness</div><div id="ready" class="n">—</div></div>
+<div class="card"><div class="muted">Independent verified</div><div id="verified" class="n">—</div></div>
+<div class="card"><div class="muted">Evidence-supported</div><div id="evidence" class="n">—</div></div>
+<div class="card"><div class="muted">Queue records</div><div id="queue" class="n">—</div></div>
+</div>
+<div class="card"><h2>0% क्यों?</h2><p>क्योंकि अभी qualifying independent review decision registry में दर्ज नहीं है। Workflow success, QC pass, AI output या author source अपने-आप independent verification नहीं बनते।</p></div>
+<div class="card"><h2>अगला वास्तविक कदम</h2><p>हर eligible claim के लिए operational definition, independent evidence, counter-evidence, reproducible test और independent reviewer decision जोड़ना है। Unsupported metaphysical या comparative claims को VERIFIED नहीं बनाया जाएगा।</p>
+<p><a href="research/independent-verification-protocol-2026-09-29.md">पूरा verification protocol</a> · <a href="generated/independent-verification-status-2026-09-29.json">Machine-readable status</a></p></div>
+<script>
+fetch('generated/independent-verification-status-2026-09-29.json').then(r=>r.json()).then(d=>{
+const s=d.verification_summary;
+ready.textContent=s.verification_readiness_percent+'%';
+verified.textContent=s.independently_verified_records+'/'+s.queue_records+' ('+s.independent_verified_percent+'%)';
+evidence.textContent=s.evidence_supported_records;
+queue.textContent=s.queue_records;
+});
+</script>
+</body></html>
