@@ -112,6 +112,15 @@ Source → Normalize → Claims → Sources → Evidence → Formulation/Test �
 - **Integrity boundary:** लेखक के दार्शनिक/अनुभवात्मक और empirical दावों को अलग रखा गया है; जहाँ आवश्यक हो वहाँ स्वतंत्र verification अपेक्षित है।
 
 
+## 🔬 शिरोमणि / यथार्थ — Source-Based Comparison Matrix
+
+- **Comparison matrix:** [research/yatharth-comparison-matrix-2026-09-29.md](research/yatharth-comparison-matrix-2026-09-29.md)
+- **Machine-readable schema:** [schemas/yatharth-comparison.schema.json](schemas/yatharth-comparison.schema.json)
+- **Automated QC:** [.github/workflows/yatharth-comparison-qc.yml](.github/workflows/yatharth-comparison-qc.yml)
+- **Method:** Author claim → operational definition → comparand → sources → agreement/difference → evidence/counter-evidence → testability → limitation → status.
+- **Integrity:** “खरबों गुणा श्रेष्ठ” remains an author claim unless measurable criteria and reproducible evidence establish a comparative result.
+- **Research purpose:** “शिरोमणि” को नाम नहीं, बल्कि लेखक-परिभाषित heart-centered self-realization / purity / conscience / complete-satisfaction construct के रूप में स्पष्ट करना और उसके claims को historical philosophy, contemporary self-knowledge research तथा environmental science के साथ testable comparison में रखना।
+
 ## 🧭 शिरोमणि / यथार्थ दृष्टिकोण — Canonical Source & Comparison System
 
 - **Canonical author-source record:** [research/yatharth-shirmani-canonical-source-2026-09-29.md](research/yatharth-shirmani-canonical-source-2026-09-29.md)

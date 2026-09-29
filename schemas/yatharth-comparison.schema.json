@@ -1,0 +1,21 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Yatharth Comparison Record",
+  "type":"object",
+  "required":["claim_id","author_claim","definition","comparands","evidence","status"],
+  "properties":{
+    "claim_id":{"type":"string"},
+    "author_claim":{"type":"string"},
+    "definition":{"type":"string"},
+    "comparands":{"type":"array","items":{"type":"string"}},
+    "primary_sources":{"type":"array","items":{"type":"string","format":"uri"}},
+    "secondary_sources":{"type":"array","items":{"type":"string","format":"uri"}},
+    "agreement":{"type":"array","items":{"type":"string"}},
+    "difference":{"type":"array","items":{"type":"string"}},
+    "evidence":{"type":"array","items":{"type":"string"}},
+    "counter_evidence":{"type":"array","items":{"type":"string"}},
+    "testability":{"type":"array","items":{"type":"string"}},
+    "limitations":{"type":"array","items":{"type":"string"}},
+    "status":{"type":"string","enum":["AUTHOR-DEFINED","AUTHOR-PROPOSED","NEEDS OPERATIONALIZATION","UNVERIFIED","EVIDENCE-SUPPORTED","VERIFIED"]}
+  }
+}
