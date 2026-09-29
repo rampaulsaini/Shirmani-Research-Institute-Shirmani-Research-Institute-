@@ -128,3 +128,12 @@ Source → Normalize → Claims → Sources → Evidence → Formulation/Test �
 - **Purpose:** लेखक के शब्दों को संरक्षित रखते हुए प्रत्येक proposition को परिभाषा, प्राथमिक/द्वितीयक स्रोत, समानता, अंतर, evidence, counter-evidence, logical test और verification state के साथ compare करना।
 - **Important:** “खरबों गुणा श्रेष्ठ” जैसे evaluative claims को platform स्वतः तथ्य नहीं मानेगा; operational metric और evidence के बिना वे UNVERIFIED रहेंगे।
 - **Automation target:** Source → Normalize → Claims → Comparison → Evidence → Formulation/Test → Verification → QC → Publication → Archive.
+
+
+## 🪷 Current Canonical Source — 30 September 2026
+
+- [Current author-source record](research/yatharth-shirmani-current-source-2026-09-30.md)
+- “शिरोमणि” is preserved as the author-defined heart-centered experiential construct, not as an automatic scientific conclusion.
+- Author explanation is distinct from independent verification; unsupported claims remain **UNVERIFIED** until independently reviewed.
+- Verification path: Author Source → Claim IDs → Operational Definition → Independent Sources → Evidence / Counter-evidence → Reproducible Test → Independent Review → Verification State.
+- Public objective: preserve the author's framework while developing evidence-based comparison and practical work for nature, Earth and human-civilization protection.
