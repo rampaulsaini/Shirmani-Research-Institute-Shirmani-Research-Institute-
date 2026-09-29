@@ -103,3 +103,10 @@ Source → Normalize → Claims → Sources → Evidence → Formulation/Test �
 - **Integrity rule:** REGISTERED ≠ VERIFIED · VERIFIED ≠ PAID · ALLOCATED ≠ SETTLED · LEDGER ENTRY ≠ INCOME.
 - **Privacy boundary:** credentials, payment-card data, passwords and unnecessary personal data are excluded from the public ledger model.
 - **Future connections:** Employment & Livelihood, verified work, value allocation, exchange orders and authorized settlement evidence.
+
+
+## 🧭 Yatharth Viewpoint Author Archive
+
+- **Author archive:** [research/yatharth-drishtikon-author-archive-2026-09-29.md](research/yatharth-drishtikon-author-archive-2026-09-29.md)
+- **Public navigation:** Main Hub → “यथार्थ दृष्टिकोण — लेखक-प्रस्तावित विचार-संग्रह”
+- **Integrity boundary:** लेखक के दार्शनिक/अनुभवात्मक और empirical दावों को अलग रखा गया है; जहाँ आवश्यक हो वहाँ स्वतंत्र verification अपेक्षित है।
