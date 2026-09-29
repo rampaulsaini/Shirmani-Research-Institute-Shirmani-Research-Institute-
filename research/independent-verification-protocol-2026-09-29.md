@@ -1,39 +1,48 @@
-# Independent Verification Protocol — Yatharth / Shirmani
-## 29 September 2026
+# Independent Verification — Implementation Protocol
 
-Purpose: separate author-source preservation from independent verification.
+## वर्तमान स्थिति
 
-Independent verification is not a declaration that the author's metaphysical or experiential propositions are objectively true. Each proposition must first be classified as AUTHOR-DEFINED, AUTHOR-PROPOSED, EMPIRICAL-TESTABLE, EVIDENCE-SUPPORTED, NOT_VERIFIED, or CONTRADICTED.
+29 सितम्बर 2026 को सार्वजनिक registry में 10 verification records हैं:
+4 EVIDENCE-SUPPORTED, 2 AUTHOR-DEFINED/AUTHOR-PROPOSED और 4 NOT_VERIFIED.
+INDEPENDENTLY VERIFIED = 0/10 = 0%.
 
-### Verification unit
-CLAIM → OPERATIONAL DEFINITION → INDEPENDENT SOURCE(S) → TEST/OBSERVATION → COUNTER-EVIDENCE → RESULT → REVIEWER/PROVENANCE → STATUS.
+यह 0% किसी लेख की गुणवत्ता का score नहीं है। इसका अर्थ केवल यह है कि
+registry में अभी कोई qualifying independent review decision दर्ज नहीं है।
 
-### Independence rule
-A GitHub workflow succeeding is not independent verification.
-An author-authored source is not an independent source.
-A generated packet is not a verification decision.
-A comparison matrix is not proof of truth.
-A first-person experience can be preserved as testimony, but it does not by itself establish a universal external proposition.
+## Verification readiness
 
-### Initial evidence checks
+Readiness = 100% का अर्थ है कि verification gate, status registry, source
+boundaries, counter-evidence fields और public reporting संरचना तैयार है।
+Readiness और verified coverage अलग metrics हैं।
 
-| ID | Proposition | External check | Initial status |
-|---|---|---|---|
-| IV-001 | Stars/galaxies undergo change and evolution. | NASA describes stellar life cycles and galaxy evolution. | EVIDENCE-SUPPORTED |
-| IV-002 | Galaxies can collide and merge; galactic structure changes over cosmic time. | NASA documents collisions, mergers and evolutionary stages. | EVIDENCE-SUPPORTED |
-| IV-003 | Human activity has measurable effects on climate and natural systems. | IPCC assesses human influence, climate impacts, ecosystems, biodiversity and human communities. | EVIDENCE-SUPPORTED |
-| IV-004 | First-person experience/self-knowledge is a legitimate object of analysis. | Stanford Encyclopedia discusses first-personal self-knowledge and prereflective self-consciousness. | EVIDENCE-SUPPORTED |
-| IV-005 | “शिरोमणि” as heart-centered self-realization and continuous complete satisfaction is an author-defined construct. | The canonical source defines the term. | AUTHOR-DEFINED |
-| IV-006 | “हृदय दृष्टिकोण” and “मस्तक दृष्टिकोण” are literal universal scientific mechanisms determining consciousness. | No operational definition or independent empirical test is currently attached. | NOT_VERIFIED |
-| IV-007 | Removing/neutralizing the head/mind system makes return to ordinary personality impossible. | No reproducible operational test or independent evidence supplied. | NOT_VERIFIED |
-| IV-008 | A universal state is smaller than an atom yet present throughout all living/nonliving matter. | No measurable physical definition or testable quantity supplied. | NOT_VERIFIED |
-| IV-009 | “शिरोमणि/यथार्थ” is billions/trillions of times superior to historical figures or existing knowledge systems. | No common metric, comparator protocol or reproducible outcome supplied. | NOT_VERIFIED |
-| IV-010 | Environmental protection should be a practical human objective. | Normative author goal; empirical effects of specific actions can be tested separately. | AUTHOR-PROPOSED |
+## Promotion rule
 
-### Status rule
-**Verified Records = 0%** remains until an actual independent review decision is recorded. This is distinct from source preservation, automation health, QC pass rate, evidence-supported individual claims, and verification readiness.
+किसी record को INDEPENDENT_VERIFIED करने के लिए:
+1. exact claim;
+2. operational definition;
+3. independent evidence/source;
+4. counter-evidence review;
+5. reproducible method/test where applicable;
+6. reviewer identity/role that is independent of the author;
+7. timestamp and provenance;
+8. explicit decision
 
-### Required promotion gate
-A record can move to VERIFIED only when the registry contains precise claim text, operational definition, independent source or reproducible experiment, counter-evidence review, provenance, reviewer identity/role, timestamp and explicit decision.
+दर्ज होना चाहिए।
 
-The system is deliberately fail-closed.
+## क्या अभी स्वतः VERIFIED नहीं होगा
+
+- GitHub Actions का सफल होना;
+- QC PASS;
+- AI agent का reasoning output;
+- लेखक का अपना स्रोत;
+- किसी स्रोत का केवल citation होना;
+- first-person experience;
+- “खरबों गुणा श्रेष्ठ” जैसे comparative assertions बिना common metric.
+
+## Framework preservation
+
+लेखक की भाषा और दार्शनिक/अनुभवात्मक propositions canonical archive में
+सुरक्षित रहेंगे। Verification layer उनका अर्थ मिटाती नहीं; वह केवल यह
+बताती है कि कौन-सा proposition बाहरी, पुनरुत्पाद्य evidence से कितना समर्थित है।
+
+इससे source, interpretation, evidence और verification एक-दूसरे में नहीं मिलते।
