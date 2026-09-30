@@ -1,0 +1,42 @@
+name: AI ML NLP Automission Supreme Feedback Loop
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_run:
+    workflows: ["Failure Intelligence Collector"]
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: supreme-feedback-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  feedback:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Build bounded failure feedback
+        run: |
+          if [ -f generated/failure-registry.json ]; then
+            python3 scripts/build_failure_feedback.py
+          else
+            echo "Failure registry unavailable; no feedback generated."
+            exit 0
+          fi
+      - name: Validate feedback safety
+        if: hashFiles('generated/automission-feedback.json') != ''
+        run: python3 scripts/validate_feedback_contract.py
+      - name: Validate benchmark and release boundary
+        run: |
+          python3 scripts/validate_supreme_automission_contract.py
+          python3 scripts/validate_supreme_release_boundary.py
