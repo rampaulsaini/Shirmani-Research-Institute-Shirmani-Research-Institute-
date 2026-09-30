@@ -128,3 +128,13 @@ Source → Normalize → Claims → Sources → Evidence → Formulation/Test �
 - **Purpose:** लेखक के शब्दों को संरक्षित रखते हुए प्रत्येक proposition को परिभाषा, प्राथमिक/द्वितीयक स्रोत, समानता, अंतर, evidence, counter-evidence, logical test और verification state के साथ compare करना।
 - **Important:** “खरबों गुणा श्रेष्ठ” जैसे evaluative claims को platform स्वतः तथ्य नहीं मानेगा; operational metric और evidence के बिना वे UNVERIFIED रहेंगे।
 - **Automation target:** Source → Normalize → Claims → Comparison → Evidence → Formulation/Test → Verification → QC → Publication → Archive.
+
+
+## 🚀 Public Platform Deployment Foundation
+
+- **Deployment runbook:** [docs/public-platform/deployment-runbook.md](docs/public-platform/deployment-runbook.md)
+- **Production environment template:** [server/.env.example](server/.env.example)
+- **Container:** [server/Dockerfile](server/Dockerfile)
+- **Container smoke gate:** [.github/workflows/public-platform-container-smoke.yml](.github/workflows/public-platform-container-smoke.yml)
+
+The API has a repository-side deployment foundation, but **Production LIVE is not declared** until an external runtime, database, HTTPS, security controls, monitoring, rollback and human-impact gates are actually evidenced. Independent research verification remains a separate evidence-and-human-review process.
