@@ -1,0 +1,34 @@
+{
+  "schema_version":"1.0.0",
+  "reviewed":"2026-10-01",
+  "purpose":"Deterministic evaluation matrix for continuous AI/ML/NLP quality improvement.",
+  "dimensions":["accuracy","precision","recall","f1","calibration","selective_risk","robustness","latency_p50","latency_p95","latency_p99","error_rate","abstention_rate","provenance_completeness","reproducibility"],
+  "test_suites":{
+    "golden_set":"fixed versioned reference cases",
+    "counter_evidence":"known conflicting and disconfirming cases",
+    "edge_cases":"ambiguous malformed boundary inputs",
+    "regression":"previously passing cases",
+    "unseen":"held-out cases not used for tuning",
+    "adversarial":"stress and perturbation cases"
+  },
+  "comparison_rules":[
+    "compare_candidate_against_last_approved_baseline",
+    "report_absolute_and_delta_metrics",
+    "report_per_task_and_per_relevant_class_metrics",
+    "a_missing_metric_is_not_a_pass",
+    "a_regression_in_a_critical_metric_blocks_release",
+    "confidence_must_be_calibrated_before_interpreting_as_probability"
+  ],
+  "speed_rules":{
+    "parallelize_independent_test_suites":true,
+    "reuse_only_immutable_versioned_artifacts":true,
+    "never_skip_critical_tests_for_latency":true
+  },
+  "release_boundary":{
+    "benchmark_pass_is_not_truth_verification":true,
+    "benchmark_pass_is_not_real_world_guarantee":true,
+    "workflow_success_is_not_independent_verification":true,
+    "independent_verified_claims":0,
+    "live_claim":false
+  }
+}
