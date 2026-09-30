@@ -104,3 +104,15 @@ test("server source exposes explicit deployment readiness gates", () => {
     "independent_verification: false"
   ]) assert.ok(source.includes(required), "missing readiness boundary: " + required);
 });
+
+
+test("server source exposes a deployment-gated payment webhook", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  for (const required of [
+    'app.post("/v1/payments/webhook"',
+    "PAYMENT_PROVIDER_NOT_CONFIGURED",
+    "INVALID_PAYMENT_SIGNATURE",
+    "payment_succeeded",
+    "payment_refunded"
+  ]) assert.ok(source.includes(required), "missing payment boundary: " + required);
+});
