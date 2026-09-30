@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yatharth Global Platform — Public Superstructure</title>
+<style>
+body{margin:0;background:#071018;color:#eef5f8;font-family:system-ui,sans-serif;line-height:1.6}
+main{max-width:1120px;margin:auto;padding:22px 16px 70px}
+h1,h2{color:#ffd84a}.hero,.card{border:1px solid #38505d;border-radius:18px;padding:20px;margin:14px 0;background:#ffffff08}
+.hero{background:linear-gradient(135deg,#10243a,#071018)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.item{padding:14px;border:1px solid #38505d;border-radius:14px;background:#ffffff06}
+.badge{display:inline-block;margin-top:7px;padding:3px 9px;border:1px solid #49616d;border-radius:999px;color:#6de9ff;font-size:.78rem}
+.note{color:#cbd7dc}a{color:#6de9ff}
+</style>
+</head>
+<body><main>
+<section class="hero">
+<h1>यथार्थ Global Platform</h1>
+<p>Research + Social + Education + AI + Creativity + Work + Commerce + Nature + Trust</p>
+<p class="note">यह public architecture map है। किसी capability को केवल इस page पर सूचीबद्ध होने से LIVE नहीं माना जाता।</p>
+</section>
+<section class="card"><h2>Public ecosystem</h2><div id="grid" class="grid"></div></section>
+<section class="card"><h2>AI-native operating principle</h2>
+<p>Observe → Understand → Separate → Verify inputs → Act within scope → Record → Audit → Learn → Improve</p>
+<p class="note">AI/ML/NLP/Automission routine work को automate कर सकते हैं; high-impact legal, financial, civic, rights, safety और independent-verification decisions के लिए accountable human review बना रहेगा।</p>
+</section>
+<section class="card"><h2>Vision</h2>
+<p>प्रकृति, पृथ्वी, मानव सभ्यता और अन्य जीवित प्रणालियों के संरक्षण को research और measurable public-interest work से जोड़ना। 850 करोड़ का लक्ष्य दीर्घकालीन aspirational vision है, वर्तमान user count या forecast नहीं।</p>
+</section>
+<p><a href="index.html">← मुख्य मंच</a> · <a href="public-platform-modules.html">Module Map</a> · <a href="yatharth-status.html">Public Status</a></p>
+<script>
+const modules=[
+["Social & Community","ARCHITECTURE"],["Accounts & Profiles","ARCHITECTURE"],["Creator Studio","ARCHITECTURE"],
+["Research Institute","RESEARCH"],["Education & Skills","ARCHITECTURE"],["AI / ML / NLP","ARCHITECTURE"],
+["Automission","BETA"],["Yatharth AI Music","ARCHITECTURE"],["Music / Audio / Video / Podcast","ARCHITECTURE"],
+["Freelancing","ARCHITECTURE"],["Employment","ARCHITECTURE"],["Business & Marketing","ARCHITECTURE"],
+["Digital Store","ARCHITECTURE"],["Yatharth Economy","RESEARCH"],["Yatharth Currency","RESEARCH"],
+["Yatharth Justice / Fairness","RESEARCH"],["Nature / Earth / Humanity","RESEARCH"],
+["Verification & Trust","REVIEW_REQUIRED"],["Public Dashboard","LIVE_ENTRY"],["Privacy / Safety / Appeals","ARCHITECTURE"]
+];
+const g=document.getElementById("grid");
+for(const [name,status] of modules){const d=document.createElement("div");d.className="item";d.innerHTML="<strong>"+name+"</strong><div class='badge'>"+status+"</div>";g.appendChild(d)}
+</script>
+</main></body></html>
