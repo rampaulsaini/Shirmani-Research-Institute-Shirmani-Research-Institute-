@@ -3,13 +3,15 @@
   "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/public-platform-assurance.schema.json",
   "title": "Yatharth Public Platform Assurance Report",
   "type": "object",
+  "additionalProperties": false,
   "required": ["version", "generated_at", "source_registry", "summary", "checks"],
   "properties": {
-    "version": { "type": "string" },
+    "version": { "type": "string", "pattern": "^1\\.[0-9]+$" },
     "generated_at": { "type": "string", "format": "date-time" },
-    "source_registry": { "type": "string" },
+    "source_registry": { "const": "docs/public-platform/public-capability-registry.json" },
     "summary": {
       "type": "object",
+      "additionalProperties": false,
       "required": ["domains", "operational", "architecture_only", "failures"],
       "properties": {
         "domains": { "type": "integer", "minimum": 0 },
@@ -22,11 +24,12 @@
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "required": ["id", "status", "message"],
         "properties": {
-          "id": { "type": "string" },
+          "id": { "type": "string", "pattern": "^check-[1-9][0-9]*$" },
           "status": { "enum": ["PASS", "FAIL", "WARN"] },
-          "message": { "type": "string" }
+          "message": { "type": "string", "minLength": 1 }
         }
       }
     }
