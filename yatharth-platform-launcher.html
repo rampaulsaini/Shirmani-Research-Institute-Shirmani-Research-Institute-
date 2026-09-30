@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yatharth Platform Launcher</title>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#07111d;color:#f4f7fb}main{max-width:1100px;margin:auto;padding:24px}h1{color:#ffd83d}p{color:#c9d5df}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.card{border:1px solid #294255;border-radius:16px;padding:16px;background:#0c1b29}.card h2{font-size:1.05rem;margin:0 0 8px}.status{display:inline-block;padding:4px 9px;border-radius:999px;border:1px solid #3d6078;font-size:.78rem}.status.LIVE{border-color:#48d597}.status.BETA{border-color:#5bd8ff}.status.ARCHITECTURE,.status.RESEARCH{border-color:#ffd83d}.status.REVIEW_REQUIRED,.status.NOT_VERIFIED{border-color:#ff9f43}.status.DISABLED{opacity:.65}.meta{font-size:.82rem;color:#9fb0bd;margin-top:8px}a{color:#5bd8ff}.notice{padding:14px;border:1px solid #725f2b;border-radius:14px;background:#17170e;margin:18px 0}.back{display:inline-block;margin-bottom:18px}</style>
+</head>
+<body><main>
+<a class="back" href="index.html">← मुख्य पृष्ठ</a>
+<h1>🌐 Yatharth Platform — Public Launcher</h1>
+<p>यह पृष्ठ machine-readable feature-status registry को सार्वजनिक रूप से पढ़कर उपलब्ध capabilities की वर्तमान lifecycle स्थिति दिखाता है। <b>ARCHITECTURE</b> को LIVE नहीं माना जाता। Independent Verification अलग fail-closed gate है।</p>
+<div class="notice" id="verification">सत्यापन स्थिति लोड हो रही है…</div>
+<section class="grid" id="modules" aria-live="polite"></section>
+<p class="meta">स्रोत: <code>docs/yatharth-system/feature-status-registry.json</code> · यदि registry उपलब्ध न हो तो UI अनुमान से LIVE नहीं दिखाएगा।</p>
+<script>
+const source="docs/yatharth-system/feature-status-registry.json";
+const labels={public_platform:"Public Platform",accounts_profiles:"Accounts & Profiles",social_publishing:"Social Publishing",marketplace:"Marketplace",freelancing:"Freelancing",employment:"Employment",education:"Education",yatharth_ai:"Yatharth AI",yatharth_ai_music:"Yatharth AI Music",research_institute:"Research Institute",independent_verification:"Independent Verification",automission:"Automission",governance_control_plane:"Governance Control Plane",nature_protection:"Nature / Earth Protection",digital_store:"Digital Store",yatharth_economy:"Yatharth Economy",yatharth_justice:"Yatharth Justice"};
+function safeStatus(v){const allowed=["LIVE","BETA","ARCHITECTURE","RESEARCH","REVIEW_REQUIRED","DISABLED","INCONCLUSIVE","NOT_VERIFIED"];return allowed.includes(v)?v:"REVIEW_REQUIRED";}
+async function load(){
+ try{
+  const r=await fetch(source,{cache:"no-store"}); if(!r.ok) throw new Error("registry unavailable");
+  const d=await r.json(); const modules=document.getElementById("modules");
+  const entries=Object.entries(d.domains||{}); if(!entries.length) throw new Error("empty registry");
+  modules.innerHTML=entries.map(([id,raw])=>{const s=safeStatus(raw);return '<article class="card"><h2>'+ (labels[id]||id) +'</h2><span class="status '+s+'">'+s+'</span><div class="meta">'+id+'</div></article>';}).join("");
+  const v=d.verification||{}; document.getElementById("verification").innerHTML='<b>Independent Verification:</b> '+Number(v.independent_verified_claims||0)+' verified claims · '+(v.queue_status||"REVIEW_REQUIRED")+' · '+(v.rule||"fail-closed");
+ }catch(e){
+  document.getElementById("verification").textContent="Registry उपलब्ध नहीं है। इस स्थिति में कोई capability स्वतः LIVE नहीं मानी जाती।";
+  document.getElementById("modules").innerHTML='<article class="card"><h2>Fail-closed</h2><span class="status REVIEW_REQUIRED">REVIEW_REQUIRED</span><div class="meta">Registry load failed</div></article>';
+ }
+}
+load();
+</script>
+</main></body></html>
