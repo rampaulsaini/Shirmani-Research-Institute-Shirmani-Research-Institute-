@@ -5,6 +5,7 @@ import rateLimit from "express-rate-limit";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import pg from "pg";
+import { governancePolicy } from "./governance-policy.js";
 
 const { Pool } = pg;
 const app = express();
@@ -462,6 +463,13 @@ app.post("/v1/payments/webhook", dbRequired, async (req, res) => {
 });
 
 // Public operational safety endpoints. These expose readiness facts without claiming global availability.
+app.get("/v1/governance/policy", (_req, res) => {
+  res.json({
+    ...governancePolicy(),
+    generated_at: new Date().toISOString()
+  });
+});
+
 app.get("/v1/platform/readiness", async (_req, res) => {
   const databaseConfigured = Boolean(process.env.DATABASE_URL);
   const authConfigured = Boolean(process.env.JWT_SECRET);
