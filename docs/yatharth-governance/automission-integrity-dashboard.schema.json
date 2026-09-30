@@ -1,0 +1,26 @@
+{
+  "schema_version":"1.0.0",
+  "reviewed":"2026-10-01",
+  "purpose":"Machine-readable single status contract for Automission integrity, speed, accuracy and verification boundaries.",
+  "required_gates":[
+    "quality","security","truth_release","evidence_provenance",
+    "reproducibility","tamper_evident_audit","continuity","syntax"
+  ],
+  "status_vocabulary":["PASS","FAIL","UNKNOWN","NOT_VERIFIED","REVIEW_REQUIRED","BETA","RESEARCH","ARCHITECTURE","LIVE"],
+  "required_status_fields":[
+    "generated_at","commit_sha","gate_results","independent_verified_claims",
+    "live_claim","verification_boundary","fail_closed"
+  ],
+  "performance_rules":{
+    "parallelizable_gates_should_run_independently":true,
+    "cache_only_immutable_dependencies":true,
+    "never_trade_evidence_integrity_for_latency":true,
+    "fail_closed_on_unknown_gate":true
+  },
+  "accuracy_rules":{
+    "unknown_is_not_pass":true,
+    "workflow_success_is_not_independent_verification":true,
+    "ai_output_can_assist":true,
+    "ai_output_can_verify":false
+  }
+}
