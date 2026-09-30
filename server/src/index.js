@@ -91,5 +91,27 @@ app.post("/v1/self-interviews", dbRequired, auth, async (req, res) => {
   res.status(201).json(rows[0]);
 });
 
+
+app.get("/v1/marketplace/listings", dbRequired, async (req, res) => {
+  const kind = typeof req.query.kind === "string" ? req.query.kind.slice(0,32) : null;
+  const params = []; let where = "";
+  if (kind) { params.push(kind); where = " where l.kind=$1"; }
+  const { rows } = await pool.query(
+    `select l.id,l.owner_id,p.display_name,l.kind,l.title,l.description,l.price_minor,l.currency,l.status,l.created_at
+     from marketplace_listings l join profiles p on p.id=l.owner_id${where}
+     order by l.created_at desc limit 100`, params);
+  res.json({items:rows});
+});
+
+app.post("/v1/marketplace/listings", dbRequired, auth, async (req, res) => {
+  const { kind, title, description = "", price_minor = 0, currency = "INR" } = req.body || {};
+  const allowed = new Set(["product","service","course","music","audio","job"]); 
+  if (!allowed.has(kind) || typeof title !== "string" || !title.trim() || title.length > 160 || typeof description !== "string" || description.length > 5000 || !Number.isInteger(price_minor) || price_minor < 0 || price_minor > 1000000000 || typeof currency !== "string" || !/^[A-Z]{3}$/.test(currency)) return res.status(400).json({error:"INVALID_LISTING"});
+  const { rows } = await pool.query(
+    "insert into marketplace_listings(owner_id,kind,title,description,price_minor,currency) values($1,$2,$3,$4,$5,$6) returning id,owner_id,kind,title,description,price_minor,currency,status,created_at",
+    [req.user.sub,kind,title.trim(),description,price_minor,currency]);
+  res.status(201).json(rows[0]);
+});
+
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
 app.listen(port, () => console.log(`shirmani-social-api listening on :${port}`));
