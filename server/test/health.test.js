@@ -144,3 +144,12 @@ test("OpenAPI contract documents the platform gates", () => {
   ]) assert.ok(api.paths[path], "missing OpenAPI path: " + path);
   assert.equal(api.info.version, "0.6.0");
 });
+
+
+test("canonical schema permits system-originated audit events", () => {
+  const schema = fs.readFileSync(new URL("../sql/schema.sql", import.meta.url), "utf8");
+  const match = schema.match(/create table if not exists audit_events \(([^]*?)\n\);/);
+  assert.ok(match, "audit_events table missing");
+  assert.match(match[1], /actor_id uuid references accounts\(id\) on delete set null/);
+  assert.doesNotMatch(match[1], /actor_id uuid not null/);
+});
