@@ -1,0 +1,25 @@
+name: AI ML NLP Automission Evidence Provenance Gate
+
+on:
+  push:
+    branches: ["feat/automission-quality-gate-20261001"]
+    paths:
+      - "docs/yatharth-governance/automission-quality-gate.json"
+      - "scripts/validate_automission_evidence_provenance.py"
+      - ".github/workflows/automission-evidence-provenance-gate.yml"
+  pull_request:
+    paths:
+      - "docs/yatharth-governance/automission-quality-gate.json"
+      - "scripts/validate_automission_evidence_provenance.py"
+      - ".github/workflows/automission-evidence-provenance-gate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  evidence-provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate evidence provenance contract
+        run: python3 scripts/validate_automission_evidence_provenance.py
