@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yatharth Public Status</title>
+<style>
+body{margin:0;font-family:system-ui,sans-serif;background:#071018;color:#eef5f8;line-height:1.6}
+main{max-width:1100px;margin:auto;padding:24px 16px 60px}
+.card{border:1px solid #49616d;border-radius:16px;padding:18px;margin:12px 0;background:#ffffff08}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+h1,h2{color:#ffd84a}.status{font-weight:700}.note{color:#cbd7dc}a{color:#6de9ff}
+</style>
+</head>
+<body>
+<main>
+<h1>Yatharth Public Status</h1>
+<p class="note">यह पृष्ठ सार्वजनिक platform capabilities की वर्तमान घोषित स्थिति दिखाता है। Architecture को deployment और personal experience को independent verification से अलग रखा गया है।</p>
+<div id="summary" class="card">स्थिति पढ़ी जा रही है…</div>
+<section class="card"><h2>Capabilities</h2><div id="grid" class="grid"></div></section>
+<section class="card"><h2>Verification boundary</h2><p>Independent verification तभी बढ़ेगा जब निर्धारित evidence contract और योग्य स्वतंत्र मानव समीक्षा पूरी हो।</p><p><strong>Independent verified claims:</strong> <span id="verified">0</span></p></section>
+<p><a href="index.html">← मुख्य मंच</a> · <a href="santushti-continuity.html">संपूर्ण संतुष्टि की निरंतरता</a></p>
+<script>
+(async()=>{
+ const summary=document.getElementById("summary"),grid=document.getElementById("grid"),verified=document.getElementById("verified");
+ try{
+  const r=await fetch("docs/yatharth-system/feature-status-registry.json",{cache:"no-store"});
+  if(!r.ok) throw new Error("status registry unavailable");
+  const d=await r.json();
+  verified.textContent=d.verification?.independent_verified_claims ?? "0";
+  summary.innerHTML="<strong>Truth rule:</strong> "+(d.truth_rule||"architecture_is_not_deployment")+"<br><strong>Reviewed:</strong> "+(d.last_reviewed||"not stated");
+  for(const [name,status] of Object.entries(d.domains||{})){
+   const card=document.createElement("div");card.className="card";
+   card.innerHTML="<strong>"+name.replaceAll("_"," ")+"</strong><br><span class='status'>"+status+"</span>";
+   grid.appendChild(card);
+  }
+ }catch(e){summary.textContent="Public status registry अभी उपलब्ध नहीं है।";grid.innerHTML="<div class='card'>STATUS_UNAVAILABLE</div>";}
+})();
+</script>
+</main>
+</body>
+</html>
