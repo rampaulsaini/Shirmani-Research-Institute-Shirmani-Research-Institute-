@@ -196,5 +196,110 @@ app.get("/v1/marketplace/transactions", dbRequired, auth, async (req,res)=>{
   res.json({items:rows});
 });
 
+
+
+// Public-platform social/work/learning primitives.
+// These endpoints operate only on records represented by the database schema.
+app.post("/v1/users/:id/follow", dbRequired, auth, async (req,res)=>{
+  if(req.params.id===req.user.sub) return res.status(400).json({error:"SELF_FOLLOW_NOT_ALLOWED"});
+  const {rows}=await pool.query("insert into follows(follower_id,followed_id) values($1,$2) on conflict do nothing returning follower_id,followed_id,created_at",[req.user.sub,req.params.id]);
+  if(!rows[0]) return res.status(200).json({following:true});
+  res.status(201).json({following:true,...rows[0]});
+});
+app.delete("/v1/users/:id/follow", dbRequired, auth, async (req,res)=>{
+  await pool.query("delete from follows where follower_id=$1 and followed_id=$2",[req.user.sub,req.params.id]);
+  res.status(204).end();
+});
+app.get("/v1/users/:id/followers", dbRequired, async (req,res)=>{
+  const {rows}=await pool.query("select f.follower_id as id,p.display_name from follows f join profiles p on p.id=f.follower_id where f.followed_id=$1 order by f.created_at desc limit 100",[req.params.id]);
+  res.json({items:rows});
+});
+app.get("/v1/users/:id/following", dbRequired, async (req,res)=>{
+  const {rows}=await pool.query("select f.followed_id as id,p.display_name from follows f join profiles p on p.id=f.followed_id where f.follower_id=$1 order by f.created_at desc limit 100",[req.params.id]);
+  res.json({items:rows});
+});
+
+app.get("/v1/posts/:id/comments", dbRequired, async (req,res)=>{
+  const {rows}=await pool.query("select c.id,c.author_id,p.display_name,c.text,c.created_at from comments c join profiles p on p.id=c.author_id where c.post_id=$1 order by c.created_at asc limit 200",[req.params.id]);
+  res.json({items:rows});
+});
+app.post("/v1/posts/:id/comments", dbRequired, auth, async (req,res)=>{
+  const {text}=req.body||{};
+  if(typeof text!=="string"||!text.trim()||text.length>2000) return res.status(400).json({error:"INVALID_COMMENT"});
+  const {rows}=await pool.query("insert into comments(post_id,author_id,text) values($1,$2,$3) returning id,post_id,author_id,text,created_at",[req.params.id,req.user.sub,text.trim()]);
+  res.status(201).json(rows[0]);
+});
+app.put("/v1/posts/:id/reaction", dbRequired, auth, async (req,res)=>{
+  const {reaction="like"}=req.body||{};
+  if(typeof reaction!=="string"||!/^[a-z0-9_-]{1,32}$/i.test(reaction)) return res.status(400).json({error:"INVALID_REACTION"});
+  const {rows}=await pool.query("insert into reactions(post_id,user_id,reaction) values($1,$2,$3) on conflict(post_id,user_id) do update set reaction=excluded.reaction returning post_id,user_id,reaction,created_at",[req.params.id,req.user.sub,reaction]);
+  res.json(rows[0]);
+});
+app.delete("/v1/posts/:id/reaction", dbRequired, auth, async (req,res)=>{
+  await pool.query("delete from reactions where post_id=$1 and user_id=$2",[req.params.id,req.user.sub]);
+  res.status(204).end();
+});
+
+app.get("/v1/notifications", dbRequired, auth, async (req,res)=>{
+  const {rows}=await pool.query("select id,actor_id,kind,target_type,target_id,payload,read_at,created_at from notifications where recipient_id=$1 order by created_at desc limit 100",[req.user.sub]);
+  res.json({items:rows});
+});
+app.post("/v1/notifications/:id/read", dbRequired, auth, async (req,res)=>{
+  const {rows}=await pool.query("update notifications set read_at=coalesce(read_at,now()) where id=$1 and recipient_id=$2 returning id,read_at",[req.params.id,req.user.sub]);
+  if(!rows[0]) return res.status(404).json({error:"NOTIFICATION_NOT_FOUND"});
+  res.json(rows[0]);
+});
+
+app.post("/v1/courses/:listingId/enroll", dbRequired, auth, async (req,res)=>{
+  const listing=await pool.query("select id,owner_id,kind,status from marketplace_listings where id=$1",[req.params.listingId]);
+  if(!listing.rows[0]||listing.rows[0].kind!=="course"||listing.rows[0].status!=="published") return res.status(404).json({error:"COURSE_NOT_AVAILABLE"});
+  if(listing.rows[0].owner_id===req.user.sub) return res.status(400).json({error:"OWNER_ENROLLMENT_NOT_ALLOWED"});
+  const {rows}=await pool.query("insert into course_enrollments(course_listing_id,learner_id) values($1,$2) on conflict do nothing returning id,course_listing_id,learner_id,status,created_at",[req.params.listingId,req.user.sub]);
+  if(!rows[0]) return res.status(200).json({enrolled:true});
+  res.status(201).json({enrolled:true,...rows[0]});
+});
+app.get("/v1/courses/enrollments", dbRequired, auth, async (req,res)=>{
+  const {rows}=await pool.query("select e.id,e.course_listing_id,l.title,e.status,e.created_at from course_enrollments e join marketplace_listings l on l.id=e.course_listing_id where e.learner_id=$1 order by e.created_at desc limit 100",[req.user.sub]);
+  res.json({items:rows});
+});
+
+app.post("/v1/work-orders", dbRequired, auth, async (req,res)=>{
+  const {listing_id,worker_id=null}=req.body||{};
+  if(typeof listing_id!=="string") return res.status(400).json({error:"INVALID_WORK_ORDER"});
+  const listing=await pool.query("select id,owner_id,kind,status from marketplace_listings where id=$1",[listing_id]);
+  if(!listing.rows[0]||!["service","job"].includes(listing.rows[0].kind)||listing.rows[0].status!=="published") return res.status(404).json({error:"WORK_LISTING_NOT_AVAILABLE"});
+  if(listing.rows[0].owner_id===req.user.sub) return res.status(400).json({error:"OWNER_WORK_ORDER_NOT_ALLOWED"});
+  const {rows}=await pool.query("insert into work_orders(listing_id,client_id,worker_id) values($1,$2,$3) returning id,listing_id,client_id,worker_id,status,created_at,updated_at",[listing_id,req.user.sub,worker_id]);
+  res.status(201).json(rows[0]);
+});
+app.get("/v1/work-orders", dbRequired, auth, async (req,res)=>{
+  const {rows}=await pool.query("select id,listing_id,client_id,worker_id,status,created_at,updated_at from work_orders where client_id=$1 or worker_id=$1 order by created_at desc limit 100",[req.user.sub]);
+  res.json({items:rows});
+});
+app.post("/v1/work-orders/:id/status", dbRequired, auth, async (req,res)=>{
+  const allowed=new Set(["accepted","in_progress","delivered","completed","cancelled","disputed"]);
+  const {status}=req.body||{};
+  if(!allowed.has(status)) return res.status(400).json({error:"INVALID_WORK_STATUS"});
+  const {rows}=await pool.query("update work_orders set status=$1,updated_at=now() where id=$2 and (client_id=$3 or worker_id=$3) returning id,status,updated_at",[status,req.params.id,req.user.sub]);
+  if(!rows[0]) return res.status(404).json({error:"WORK_ORDER_NOT_FOUND"});
+  res.json(rows[0]);
+});
+
+app.post("/v1/disputes", dbRequired, auth, async (req,res)=>{
+  const {target_type,target_id,reason}=req.body||{};
+  if(typeof target_type!=="string"||!target_type.trim()||typeof target_id!=="string"||!target_id.trim()||typeof reason!=="string"||!reason.trim()||reason.length>3000) return res.status(400).json({error:"INVALID_DISPUTE"});
+  const {rows}=await pool.query("insert into disputes(opened_by,target_type,target_id,reason) values($1,$2,$3,$4) returning id,target_type,target_id,reason,status,created_at",[req.user.sub,target_type.trim().slice(0,64),target_id.trim(),reason.trim()]);
+  res.status(201).json(rows[0]);
+});
+app.get("/v1/disputes", dbRequired, auth, async (req,res)=>{
+  const {rows}=await pool.query("select id,target_type,target_id,reason,status,resolution,created_at,updated_at from disputes where opened_by=$1 order by created_at desc limit 100",[req.user.sub]);
+  res.json({items:rows});
+});
+
+app.get("/v1/verification-reviews/:claimId", dbRequired, async (req,res)=>{
+  const {rows}=await pool.query("select id,claim_id,reviewer_type,reviewer_reference,evidence,decision,notes,created_at from verification_reviews where claim_id=$1 order by created_at desc limit 100",[req.params.claimId]);
+  res.json({items:rows});
+});
+
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
 app.listen(port, () => console.log(`shirmani-social-api listening on :${port}`));
