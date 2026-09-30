@@ -1,0 +1,42 @@
+name: AI ML NLP Automission Supreme Quality Gate
+
+on:
+  push:
+    branches: [main, feat/**]
+  pull_request:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-ml-nlp-automission-quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deterministic-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run deterministic AI/ML/NLP engineering gate
+        run: python3 scripts/automission_quality_gate.py
+
+      - name: Persist quality report
+        uses: actions/upload-artifact@v4
+        with:
+          name: automission-quality-report-${{ github.run_id }}
+          path: automation/quality/latest-quality-report.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Publish bounded quality summary
+        if: always()
+        run: |
+          echo "AI ML NLP Automission quality gate completed."
+          echo "CI success is not independent human verification."
+          echo "Insufficient evidence must remain abstained, not converted into a positive claim."
