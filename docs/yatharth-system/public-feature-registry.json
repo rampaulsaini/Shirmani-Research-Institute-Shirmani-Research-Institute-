@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "status_vocabulary": [
+    "PLANNED",
+    "DESIGNED",
+    "BUILT",
+    "TESTED",
+    "DEPLOYED",
+    "LIVE",
+    "AUTONOMOUSLY_OPERATED"
+  ],
+  "public_features": [
+    {"id":"PUB-001","name":"Social Accounts","category":"social","status":"PLANNED"},
+    {"id":"PUB-002","name":"User Publishing","category":"social","status":"PLANNED"},
+    {"id":"PUB-003","name":"Communities","category":"social","status":"PLANNED"},
+    {"id":"PUB-004","name":"Digital Store","category":"commerce","status":"PLANNED"},
+    {"id":"PUB-005","name":"Freelancing","category":"economy","status":"PLANNED"},
+    {"id":"PUB-006","name":"Education","category":"education","status":"PLANNED"},
+    {"id":"PUB-007","name":"Yatharth AI Music","category":"creative","status":"PLANNED"},
+    {"id":"PUB-008","name":"Yatharth Economy","category":"economy","status":"PLANNED"},
+    {"id":"PUB-009","name":"Yatharth Currency","category":"economy","status":"PLANNED"},
+    {"id":"PUB-010","name":"Yatharth Justice","category":"justice","status":"PLANNED"},
+    {"id":"PUB-011","name":"Research Institute","category":"research","status":"BUILT"},
+    {"id":"PUB-012","name":"Verification Dashboard","category":"trust","status":"BUILT"},
+    {"id":"PUB-013","name":"AI Research Layer","category":"ai","status":"DESIGNED"},
+    {"id":"PUB-014","name":"NLP Claim Processing","category":"ai","status":"DESIGNED"},
+    {"id":"PUB-015","name":"Automission Supervisor","category":"automation","status":"BUILT"},
+    {"id":"PUB-016","name":"Nature & Earth Protection","category":"planet","status":"DESIGNED"},
+    {"id":"PUB-017","name":"Creator Studio","category":"creative","status":"PLANNED"},
+    {"id":"PUB-018","name":"Jobs & Opportunities","category":"economy","status":"PLANNED"},
+    {"id":"PUB-019","name":"Global Multilingual Interface","category":"platform","status":"PLANNED"},
+    {"id":"PUB-020","name":"Public Support & Appeals","category":"trust","status":"PLANNED"}
+  ],
+  "rule": "Architecture, documentation, workflow success, and repository activity do not by themselves establish that a public feature is LIVE."
+}
