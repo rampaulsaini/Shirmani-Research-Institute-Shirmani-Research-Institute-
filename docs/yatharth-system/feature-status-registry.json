@@ -36,5 +36,16 @@
     "INCONCLUSIVE",
     "NOT_VERIFIED"
   ],
-  "public_dashboard": "yatharth-status.html"
+  "public_dashboard": "yatharth-status.html",
+  "completion_contract": {
+    "required": [
+      "implementation",
+      "tests",
+      "security_privacy",
+      "monitoring",
+      "user_facing_status",
+      "rollback_or_appeal"
+    ],
+    "truth_rule": "architecture_is_not_deployment"
+  }
 }
