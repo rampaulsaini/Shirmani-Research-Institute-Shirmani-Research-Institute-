@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed": "2026-10-01",
+  "purpose": "Define measurable performance targets for AI/ML/NLP/Automission while preventing accuracy, speed, or automation from being confused with truth or independent verification.",
+  "optimization_objectives": [
+    "correctness",
+    "evidence_completeness",
+    "counter_evidence_coverage",
+    "reproducibility",
+    "latency",
+    "cost_efficiency",
+    "failure_detection",
+    "traceability",
+    "human_reviewability"
+  ],
+  "hard_quality_rules": [
+    "no_claim_is_verified_without_qualifying_independent_human_review",
+    "no_model_may_suppress_counter_evidence_to_improve_a_score",
+    "no_latency_target_may_override_safety_or_evidence_requirements",
+    "no_aggregate_accuracy_metric_may_hide_class_specific_failure",
+    "unknown_must_remain_unknown_until_supported_by_evidence",
+    "high_impact_decisions_require_human_review",
+    "fail_closed_on_integrity_or_provenance_failure"
+  ],
+  "evaluation_dimensions": {
+    "factual_accuracy": "measure against independently curated evaluation sets",
+    "precision_recall": "report per task and per relevant class, not only aggregate",
+    "calibration": "report confidence calibration and uncertainty",
+    "robustness": "test adversarial, malformed, ambiguous, and distribution-shift inputs",
+    "provenance": "record source and transformation lineage",
+    "reproducibility": "pin code, configuration, model/version and input/output hashes",
+    "latency": "report p50, p95 and p99 rather than a single average",
+    "recovery": "measure detection and safe recovery from failed agents/workflows"
+  },
+  "release_boundary": {
+    "performance_pass_is_not_truth_verification": true,
+    "benchmark_pass_is_not_real_world_guarantee": true,
+    "workflow_success_is_not_independent_verification": true,
+    "independent_verified_claims": 0,
+    "live_claim": false
+  }
+}
