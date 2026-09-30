@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "baseline_id": "automission-baseline-v2",
   "source": "benchmarks/automission/sample_predictions.jsonl",
-  "fixture_sha256": "4d97f3a38063fe3d9faea2265c2459661778d5ac85a9132b787141e95b6332e2",
+  "fixture_sha256": "43012c4e5fb8efaa29bdd524a244f77fe49897d62d2591a83bb746bce74a0459",
   "metrics": {
     "accuracy": 0.8,
     "precision_macro": 0.833333,
