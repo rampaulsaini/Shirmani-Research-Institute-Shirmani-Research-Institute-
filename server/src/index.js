@@ -9,11 +9,17 @@ import pg from "pg";
 const { Pool } = pg;
 const app = express();
 const port = Number(process.env.PORT || 8787);
-const origin = process.env.CORS_ORIGIN || "*";
+const isProduction = process.env.NODE_ENV === "production";
+const origin = process.env.CORS_ORIGIN;
 const secret = process.env.JWT_SECRET;
-const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL }) : null;
+const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, max: 10 }) : null;
 
-app.use(cors({ origin }));
+if (isProduction && (!origin || origin === "*" || !secret || !process.env.DATABASE_URL)) {
+  console.error("Production startup requires CORS_ORIGIN, JWT_SECRET and DATABASE_URL.");
+  process.exit(1);
+}
+
+app.use(cors({ origin: origin || "*" }));
 app.use(express.json({ limit: "1mb" }));
 app.use(rateLimit({ windowMs: 60_000, limit: 120, standardHeaders: true, legacyHeaders: false }));
 app.use((_req, res, next) => { res.setHeader("Cache-Control", "no-store"); next(); });
@@ -26,14 +32,15 @@ const auth = (req, res, next) => {
   if (!secret) return res.status(503).json({ error: "JWT_SECRET_NOT_CONFIGURED" });
   const header = req.headers.authorization || "";
   if (!header.startsWith("Bearer ")) return res.status(401).json({ error: "AUTH_REQUIRED" });
-  try { req.user = jwt.verify(header.slice(7), secret); next(); }
+  try { req.user = jwt.verify(header.slice(7), secret, { issuer: "shirmani-social-api" }); next(); }
   catch { res.status(401).json({ error: "INVALID_TOKEN" }); }
 };
 
 app.get("/health", async (_req, res) => {
   let database = "NOT_CONFIGURED";
   if (pool) { try { await pool.query("select 1"); database = "READY"; } catch { database = "ERROR"; } }
-  res.json({ service: "shirmani-social-api", status: "READY", database, auth: secret ? "CONFIGURED" : "NOT_CONFIGURED", generated_at: new Date().toISOString() });
+  const status = database === "READY" && secret ? "READY" : "DEGRADED";
+  res.status(status === "READY" ? 200 : 503).json({ service: "shirmani-social-api", status, database, auth: secret ? "CONFIGURED" : "NOT_CONFIGURED", generated_at: new Date().toISOString() });
 });
 
 app.post("/v1/auth/register", dbRequired, async (req, res) => {
@@ -91,25 +98,19 @@ app.post("/v1/self-interviews", dbRequired, auth, async (req, res) => {
   res.status(201).json(rows[0]);
 });
 
-
 app.get("/v1/marketplace/listings", dbRequired, async (req, res) => {
   const kind = typeof req.query.kind === "string" ? req.query.kind.slice(0,32) : null;
   const params = []; let where = "";
   if (kind) { params.push(kind); where = " where l.kind=$1"; }
-  const { rows } = await pool.query(
-    `select l.id,l.owner_id,p.display_name,l.kind,l.title,l.description,l.price_minor,l.currency,l.status,l.created_at
-     from marketplace_listings l join profiles p on p.id=l.owner_id${where}
-     order by l.created_at desc limit 100`, params);
-  res.json({items:rows});
+  const { rows } = await pool.query(`select l.id,l.owner_id,p.display_name,l.kind,l.title,l.description,l.price_minor,l.currency,l.status,l.created_at from marketplace_listings l join profiles p on p.id=l.owner_id${where} order by l.created_at desc limit 100`, params);
+  res.json({items: rows});
 });
 
 app.post("/v1/marketplace/listings", dbRequired, auth, async (req, res) => {
   const { kind, title, description = "", price_minor = 0, currency = "INR" } = req.body || {};
-  const allowed = new Set(["product","service","course","music","audio","job"]); 
+  const allowed = new Set(["product","service","course","music","audio","job"]);
   if (!allowed.has(kind) || typeof title !== "string" || !title.trim() || title.length > 160 || typeof description !== "string" || description.length > 5000 || !Number.isInteger(price_minor) || price_minor < 0 || price_minor > 1000000000 || typeof currency !== "string" || !/^[A-Z]{3}$/.test(currency)) return res.status(400).json({error:"INVALID_LISTING"});
-  const { rows } = await pool.query(
-    "insert into marketplace_listings(owner_id,kind,title,description,price_minor,currency) values($1,$2,$3,$4,$5,$6) returning id,owner_id,kind,title,description,price_minor,currency,status,created_at",
-    [req.user.sub,kind,title.trim(),description,price_minor,currency]);
+  const { rows } = await pool.query("insert into marketplace_listings(owner_id,kind,title,description,price_minor,currency) values($1,$2,$3,$4,$5,$6) returning id,owner_id,kind,title,description,price_minor,currency,status,created_at", [req.user.sub,kind,title.trim(),description,price_minor,currency]);
   res.status(201).json(rows[0]);
 });
 
