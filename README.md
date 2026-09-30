@@ -148,3 +148,12 @@ The API has a repository-side deployment foundation, but **Production LIVE is no
 - [Constitutional Supreme-Control Model](docs/yatharth-governance/constitutional-supreme-control.md)
 
 This is a research architecture: it does not grant unlimited authority to any person, institution, or AI agent. High-impact decisions require lawful authority, human review, appeal and audit.
+
+
+## 🛡️ Yatharth Assurance Control Plane
+
+- [Assurance Control Plane](docs/public-platform/yatharth-assurance-control-plane.md)
+- [Assurance report schema](schemas/public-platform-assurance.schema.json)
+- [Assurance gate](.github/workflows/yatharth-assurance-gate.yml)
+
+The assurance gate checks registry integrity, API capability-state parity and explicit evidence boundaries. It does **not** promote capabilities to LIVE, AUTOMATED or INDEPENDENTLY_VERIFIED merely because CI, QC or Automission succeeded.
