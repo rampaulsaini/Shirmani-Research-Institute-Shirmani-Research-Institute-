@@ -25,3 +25,8 @@ Preserve → Normalize → Compare → Test → Independently Review → Verify
 For platform capabilities: Architecture → MVP → Tested → Deployment-Gated → Live → Automated
 
 These are separate dimensions; one status must never be inferred from another.
+
+
+## Readiness endpoint
+
+The API exposes `GET /v1/platform/readiness` as an explicit deployment gate. It reports database/auth/CORS configuration and deliberately returns `production_live: false` and `independent_verification: false`. A configured environment is readiness evidence only; it is not proof of global deployment or truth verification.
