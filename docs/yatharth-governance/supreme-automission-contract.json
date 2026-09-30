@@ -42,7 +42,11 @@
     "track_error_rate": true,
     "track_provenance_completeness": true,
     "track_reproducibility": true,
-    "abstain_on_unknown_or_insufficient_evidence": true
+    "abstain_on_unknown_or_insufficient_evidence": true,
+    "multi_agent_consensus_required": true,
+    "minimum_independent_agents": 3,
+    "unresolved_disagreement_output": "UNKNOWN",
+    "evidence_completeness_required": true
   },
   "safety": {
     "fail_closed_on_unknown_gate": true,
