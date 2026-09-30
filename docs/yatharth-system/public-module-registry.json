@@ -1,32 +1,150 @@
 {
-  "schema_version":"1.0.0",
-  "last_reviewed":"2026-09-30",
-  "truth_rule":"architecture_is_not_deployment",
-  "navigation":[
-    {"id":"yatharth","label":"यथार्थ","href":"nishpaksh-samaj.html","status":"LIVE_ENTRY"},
-    {"id":"research","label":"Research","href":"research/","status":"RESEARCH"},
-    {"id":"verification","label":"Verification & Trust","href":"yatharth-status.html","status":"REVIEW_REQUIRED"},
-    {"id":"ai","label":"AI / ML / NLP","href":"#ai-operations","status":"BETA"},
-    {"id":"automission","label":"Automission","href":"federation-dashboard.html","status":"BETA"},
-    {"id":"music","label":"Yatharth AI Music","href":"https://rampaulsaini.github.io/yatharth-music-ai/","status":"ARCHITECTURE"},
-    {"id":"media","label":"Music & Media","href":"#live-media","status":"ARCHITECTURE"},
-    {"id":"employment","label":"Employment","href":"employment.html","status":"ARCHITECTURE"},
-    {"id":"freelancing","label":"Freelancing","href":"#income-workbench","status":"ARCHITECTURE"},
-    {"id":"business","label":"Business & Marketing","href":"economic-marketing-command-center.html","status":"ARCHITECTURE"},
-    {"id":"store","label":"Digital Store","href":"https://rampaulsaini.github.io/my-omniverse-store/","status":"ARCHITECTURE"},
-    {"id":"economy","label":"Yatharth Economy","href":"#economic-vision","status":"RESEARCH"},
-    {"id":"governance","label":"Governance / Justice","href":"docs/public-platform/governance-control-plane.md","status":"BETA"},
-    {"id":"nature","label":"Nature & Humanity","href":"docs/public-platform/governance-control-plane.md","status":"RESEARCH"},
-    {"id":"education","label":"Education","href":"#education","status":"ARCHITECTURE"},
-    {"id":"community","label":"Community","href":"social-platform.html","status":"ARCHITECTURE"},
-    {"id":"dashboard","label":"Public Dashboard","href":"yatharth-status.html","status":"LIVE"}
+  "schema_version": "1.1.0",
+  "last_reviewed": "2026-09-30",
+  "truth_rule": "architecture_is_not_deployment",
+  "navigation": [
+    {
+      "id": "nature_earth_humanity",
+      "label": "Nature / Earth / Humanity",
+      "href": "public-platform-superstructure.html",
+      "status": "RESEARCH"
+    },
+    {
+      "id": "privacy_safety",
+      "label": "Privacy / Safety / Appeals",
+      "href": "public-platform-superstructure.html",
+      "status": "ARCHITECTURE"
+    },
+    {
+      "id": "creator_studio",
+      "label": "Creator Studio",
+      "href": "public-platform-superstructure.html",
+      "status": "ARCHITECTURE"
+    },
+    {
+      "id": "accounts_profiles",
+      "label": "Accounts & Profiles",
+      "href": "public-platform-superstructure.html",
+      "status": "ARCHITECTURE"
+    },
+    {
+      "id": "global_platform",
+      "label": "Yatharth Global Platform",
+      "href": "public-platform-superstructure.html",
+      "status": "LIVE_ENTRY"
+    },
+    {
+      "id": "yatharth",
+      "label": "यथार्थ",
+      "href": "nishpaksh-samaj.html",
+      "status": "LIVE_ENTRY"
+    },
+    {
+      "id": "research",
+      "label": "Research",
+      "href": "research/",
+      "status": "RESEARCH"
+    },
+    {
+      "id": "verification",
+      "label": "Verification & Trust",
+      "href": "yatharth-status.html",
+      "status": "REVIEW_REQUIRED"
+    },
+    {
+      "id": "ai",
+      "label": "AI / ML / NLP",
+      "href": "#ai-operations",
+      "status": "BETA"
+    },
+    {
+      "id": "automission",
+      "label": "Automission",
+      "href": "federation-dashboard.html",
+      "status": "BETA"
+    },
+    {
+      "id": "music",
+      "label": "Yatharth AI Music",
+      "href": "https://rampaulsaini.github.io/yatharth-music-ai/",
+      "status": "ARCHITECTURE"
+    },
+    {
+      "id": "media",
+      "label": "Music & Media",
+      "href": "#live-media",
+      "status": "ARCHITECTURE"
+    },
+    {
+      "id": "employment",
+      "label": "Employment",
+      "href": "employment.html",
+      "status": "ARCHITECTURE"
+    },
+    {
+      "id": "freelancing",
+      "label": "Freelancing",
+      "href": "#income-workbench",
+      "status": "ARCHITECTURE"
+    },
+    {
+      "id": "business",
+      "label": "Business & Marketing",
+      "href": "economic-marketing-command-center.html",
+      "status": "ARCHITECTURE"
+    },
+    {
+      "id": "store",
+      "label": "Digital Store",
+      "href": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "status": "ARCHITECTURE"
+    },
+    {
+      "id": "economy",
+      "label": "Yatharth Economy",
+      "href": "#economic-vision",
+      "status": "RESEARCH"
+    },
+    {
+      "id": "governance",
+      "label": "Governance / Justice",
+      "href": "docs/public-platform/governance-control-plane.md",
+      "status": "BETA"
+    },
+    {
+      "id": "nature",
+      "label": "Nature & Humanity",
+      "href": "docs/public-platform/governance-control-plane.md",
+      "status": "RESEARCH"
+    },
+    {
+      "id": "education",
+      "label": "Education",
+      "href": "#education",
+      "status": "ARCHITECTURE"
+    },
+    {
+      "id": "community",
+      "label": "Community",
+      "href": "social-platform.html",
+      "status": "ARCHITECTURE"
+    },
+    {
+      "id": "dashboard",
+      "label": "Public Dashboard",
+      "href": "yatharth-status.html",
+      "status": "LIVE"
+    }
   ],
-  "status_rules":{
-    "LIVE_ENTRY":"public entry exists; does not imply every downstream capability is live",
-    "ARCHITECTURE":"specified, not established as deployed",
-    "BETA":"implemented or integrated with explicit limitations",
-    "RESEARCH":"research/evidence layer",
-    "REVIEW_REQUIRED":"human review gate required"
+  "status_rules": {
+    "LIVE_ENTRY": "public entry exists; does not imply every downstream capability is live",
+    "ARCHITECTURE": "specified, not established as deployed",
+    "BETA": "implemented or integrated with explicit limitations",
+    "RESEARCH": "research/evidence layer",
+    "REVIEW_REQUIRED": "human review gate required"
   },
-  "verification":{"independent_verified_claims":0,"change_rule":"only qualifying independent human review may increase this value"}
+  "verification": {
+    "independent_verified_claims": 0,
+    "change_rule": "only qualifying independent human review may increase this value"
+  }
 }
