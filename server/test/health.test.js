@@ -91,3 +91,16 @@ test("server source exposes privacy, media and bounded Automission routes", () =
   ]) assert.ok(source.includes(route), "missing hardening route: " + route);
   assert.ok(source.includes("Binary storage is external"), "missing media storage boundary");
 });
+
+
+test("server source exposes explicit deployment readiness gates", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  for (const required of [
+    'app.get("/v1/platform/readiness"',
+    "READY_FOR_DEPLOYMENT_CHECKS",
+    "DATABASE_NOT_CONFIGURED",
+    "JWT_SECRET_NOT_CONFIGURED",
+    "production_live: false",
+    "independent_verification: false"
+  ]) assert.ok(source.includes(required), "missing readiness boundary: " + required);
+});
