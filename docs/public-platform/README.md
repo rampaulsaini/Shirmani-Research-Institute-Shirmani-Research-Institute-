@@ -29,3 +29,11 @@ PLANNED -> BUILT -> TESTED -> LIVE -> AUTONOMOUS
 
 ## Scale vision
 The 850-crore consumer figure is recorded as a long-term aspirational target, not a current user count or guaranteed outcome.
+
+## Current implementation boundary
+The repository now contains a multi-user API foundation for accounts, profiles, publishing, self-interviews, marketplace listings, trust reports, audit events and asynchronous AI-task intake. Automated CI validates contracts and server syntax/smoke behavior.
+
+This repository state is **not by itself a globally deployed service**. LIVE status requires an actual HTTPS API deployment, managed PostgreSQL, media storage, production authentication/recovery, privacy/deletion controls, moderation and appeals, payment/payout integration where applicable, monitoring, backups, incident response and human review gates. AUTONOMOUS status additionally requires demonstrated safe operation, rollback and oversight.
+
+### Truth boundary
+Author-created Yatharth/Shirmani philosophical material remains source material. AI extraction, classification, workflow completion, hashes, QC status or API success do not independently verify metaphysical, scientific, historical or comparative claims. Independent verification remains a separate evidence-and-human-review process.
