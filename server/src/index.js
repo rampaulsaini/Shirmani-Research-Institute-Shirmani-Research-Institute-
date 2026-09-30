@@ -73,6 +73,38 @@ app.post("/v1/auth/login", dbRequired, async (req, res) => {
   res.json({ token, account: { id: rows[0].id, email: rows[0].email } });
 });
 
+app.get("/v1/capabilities/status", (_req, res) => {
+  res.json({
+    status_model: ["PLANNED","ARCHITECTURE","MVP","TESTED","DEPLOYMENT_GATED","LIVE","AUTOMATED","INDEPENDENTLY_VERIFIED"],
+    capabilities: [
+      { id: "identity", status: "ARCHITECTURE" },
+      { id: "social", status: "MVP" },
+      { id: "research", status: "MVP" },
+      { id: "education", status: "ARCHITECTURE" },
+      { id: "ai", status: "ARCHITECTURE" },
+      { id: "ai-music", status: "ARCHITECTURE" },
+      { id: "digital-store", status: "MVP" },
+      { id: "freelancing", status: "MVP" },
+      { id: "employment", status: "ARCHITECTURE" },
+      { id: "business", status: "ARCHITECTURE" },
+      { id: "economy", status: "ARCHITECTURE" },
+      { id: "yatharth-mudra", status: "ARCHITECTURE" },
+      { id: "yatharth-justice", status: "ARCHITECTURE" },
+      { id: "trust", status: "MVP" },
+      { id: "verification", status: "DEPLOYMENT_GATED" },
+      { id: "nature-humanity", status: "ARCHITECTURE" },
+      { id: "platform-operations", status: "TESTED" }
+    ],
+    truth_boundary: {
+      ci_success_is_not_production_availability: true,
+      workflow_completion_is_not_truth_verification: true,
+      author_testimony_is_not_independent_verification: true,
+      conceptual_currency_design_is_not_legal_currency: true
+    },
+    generated_at: new Date().toISOString()
+  });
+});
+
 app.get("/v1/profile/:id", dbRequired, async (req, res) => {
   const { rows } = await pool.query("select id, display_name, bio, language, created_at, updated_at from profiles where id=$1", [req.params.id]);
   if (!rows[0]) return res.status(404).json({ error: "PROFILE_NOT_FOUND" });
