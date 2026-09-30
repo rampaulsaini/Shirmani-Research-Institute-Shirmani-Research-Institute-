@@ -1,0 +1,4 @@
+{"case_id":"gold-001","task":"text_classification","expected":"A","predicted":"A","confidence":0.95,"abstained":false,"model_version":"fixture-1","input_hash":"sha256:gold-001","evidence_ids":["fixture-evidence-1"],"latency_ms":12}
+{"case_id":"gold-002","task":"text_classification","expected":"B","predicted":"B","confidence":0.90,"abstained":false,"model_version":"fixture-1","input_hash":"sha256:gold-002","evidence_ids":["fixture-evidence-2"],"latency_ms":18}
+{"case_id":"counter-001","task":"text_classification","expected":"A","predicted":"UNKNOWN","confidence":0.40,"abstained":true,"model_version":"fixture-1","input_hash":"sha256:counter-001","evidence_ids":["fixture-evidence-3"],"latency_ms":20}
+{"case_id":"edge-001","task":"text_classification","expected":"B","predicted":"A","confidence":0.55,"abstained":false,"model_version":"fixture-1","input_hash":"sha256:edge-001","evidence_ids":[],"latency_ms":25}
