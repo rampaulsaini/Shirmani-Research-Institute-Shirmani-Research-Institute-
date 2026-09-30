@@ -374,5 +374,37 @@ app.get("/v1/dashboard", dbRequired, auth, async (req,res)=>{
   res.json({listings:listings.rows[0],orders:orders.rows[0],work_orders:work.rows[0],learning:learning.rows[0],ai_tasks:ai.rows[0],reports:reports.rows[0],income_note:"Recorded order/payment fields are not proof of real payment, income, delivery or customer satisfaction."});
 });
 
+// Privacy, media metadata and bounded Automission control-plane endpoints.
+app.get("/v1/ai-agents", dbRequired, auth, async (_req,res)=>{
+  const {rows}=await pool.query("select id,agent_key,display_name,scope,status,requires_human_review,created_at,updated_at from ai_agents order by agent_key");
+  res.json({items:rows});
+});
+app.get("/v1/ai-tasks/:id/events", dbRequired, auth, async (req,res)=>{
+  const task=await pool.query("select id from ai_tasks where id=$1 and owner_id=$2",[req.params.id,req.user.sub]);
+  if(!task.rows[0]) return res.status(404).json({error:"AI_TASK_NOT_FOUND"});
+  const {rows}=await pool.query("select e.id,e.event_type,e.payload,e.created_at,a.agent_key from ai_task_events e left join ai_agents a on a.id=e.agent_id where e.task_id=$1 order by e.created_at asc",[req.params.id]);
+  res.json({items:rows});
+});
+app.post("/v1/privacy-requests", dbRequired, auth, async (req,res)=>{
+  const {request_type,details=""}=req.body||{};
+  if(!["export","delete","correction"].includes(request_type)||typeof details!=="string"||details.length>3000) return res.status(400).json({error:"INVALID_PRIVACY_REQUEST"});
+  const {rows}=await pool.query("insert into privacy_requests(account_id,request_type,details) values($1,$2,$3) returning id,request_type,status,details,created_at",[req.user.sub,request_type,details]);
+  res.status(202).json(rows[0]);
+});
+app.get("/v1/privacy-requests", dbRequired, auth, async (req,res)=>{
+  const {rows}=await pool.query("select id,request_type,status,details,created_at,completed_at from privacy_requests where account_id=$1 order by created_at desc limit 50",[req.user.sub]);
+  res.json({items:rows});
+});
+app.post("/v1/media-assets", dbRequired, auth, async (req,res)=>{
+  const {media_type,storage_key,mime_type,byte_size}=req.body||{};
+  if(!["image","video","audio","document"].includes(media_type)||typeof storage_key!=="string"||!storage_key.trim()||storage_key.length>500||typeof mime_type!=="string"||mime_type.length>120||!Number.isInteger(byte_size)||byte_size<0) return res.status(400).json({error:"INVALID_MEDIA_METADATA"});
+  const {rows}=await pool.query("insert into media_assets(owner_id,media_type,storage_key,mime_type,byte_size) values($1,$2,$3,$4,$5) returning id,media_type,mime_type,byte_size,status,created_at",[req.user.sub,media_type,storage_key.trim(),mime_type.trim(),byte_size]);
+  res.status(201).json({...rows[0],storage_note:"Binary storage is external; metadata does not imply a publicly accessible file."});
+});
+app.get("/v1/media-assets", dbRequired, auth, async (req,res)=>{
+  const {rows}=await pool.query("select id,media_type,mime_type,byte_size,status,created_at from media_assets where owner_id=$1 order by created_at desc limit 100",[req.user.sub]);
+  res.json({items:rows});
+});
+
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
 app.listen(port, () => console.log(`shirmani-social-api listening on :${port}`));
