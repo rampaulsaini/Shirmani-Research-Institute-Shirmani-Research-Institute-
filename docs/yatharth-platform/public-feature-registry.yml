@@ -1,0 +1,58 @@
+version: "2026-09-30"
+purpose: "Machine-readable public platform feature registry"
+status_vocabulary: [PLANNED, SPECIFIED, BUILT, TESTED, LIVE, AUTONOMOUS]
+features:
+  - id: PUBLIC-001
+    name: Accounts and Profiles
+    status: SPECIFIED
+  - id: PUBLIC-002
+    name: Social Publishing and Sharing
+    status: SPECIFIED
+  - id: PUBLIC-003
+    name: Communities
+    status: SPECIFIED
+  - id: PUBLIC-004
+    name: Research and Knowledge Library
+    status: SPECIFIED
+  - id: PUBLIC-005
+    name: Education and Skills
+    status: SPECIFIED
+  - id: PUBLIC-006
+    name: Freelancing and Jobs
+    status: SPECIFIED
+  - id: PUBLIC-007
+    name: Digital Store and Creator Commerce
+    status: SPECIFIED
+  - id: PUBLIC-008
+    name: Yatharth AI Music and Creative Studio
+    status: SPECIFIED
+  - id: PUBLIC-009
+    name: Yatharth Justice and Dispute Support
+    status: SPECIFIED
+  - id: PUBLIC-010
+    name: Yatharth Currency / Economic Model
+    status: PLANNED
+  - id: PUBLIC-011
+    name: Multilingual AI
+    status: SPECIFIED
+  - id: PUBLIC-012
+    name: Customer Support
+    status: SPECIFIED
+  - id: PUBLIC-013
+    name: Trust and Verification
+    status: SPECIFIED
+  - id: PUBLIC-014
+    name: Nature, Earth and Humanity
+    status: SPECIFIED
+  - id: PUBLIC-015
+    name: Public Transparency Dashboard
+    status: SPECIFIED
+  - id: PUBLIC-016
+    name: Creator / Seller Analytics
+    status: SPECIFIED
+  - id: PUBLIC-017
+    name: AI Agent Services
+    status: SPECIFIED
+  - id: PUBLIC-018
+    name: Global Search and Discovery
+    status: SPECIFIED
