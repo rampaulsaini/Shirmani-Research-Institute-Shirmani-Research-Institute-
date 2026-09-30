@@ -98,6 +98,25 @@ create table if not exists transactions (
 );
 create index if not exists transactions_participant_idx on transactions(buyer_id,seller_id,created_at desc);
 
+-- Marketplace order intent/lifecycle. Payment provider integration remains deployment-gated.
+create table if not exists orders (
+  id uuid primary key default gen_random_uuid(),
+  buyer_id uuid not null references accounts(id) on delete restrict,
+  seller_id uuid not null references accounts(id) on delete restrict,
+  listing_id uuid not null references marketplace_listings(id) on delete restrict,
+  quantity integer not null default 1 check (quantity between 1 and 100),
+  unit_amount_minor bigint not null check (unit_amount_minor >= 0),
+  total_amount_minor bigint not null check (total_amount_minor >= 0),
+  currency char(3) not null,
+  status text not null default 'intent' check (status in ('intent','pending','paid','fulfilled','completed','failed','refunded','cancelled')),
+  provider text,
+  provider_reference text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create index if not exists orders_participant_idx on orders(buyer_id,seller_id,created_at desc);
+
+
 -- Social interaction primitives.
 create table if not exists follows (
   follower_id uuid not null references accounts(id) on delete cascade,
