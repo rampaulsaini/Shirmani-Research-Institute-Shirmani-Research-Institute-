@@ -38,8 +38,8 @@
   ],
   "public_dashboard": {
     "path": "yatharth-status.html",
-    "source_of_truth": "docs/yatharth-system/feature-status-registry.json",
-    "fail_safe": true
+    "fail_safe": true,
+    "source": "feature-status-registry.json"
   },
   "completion_contract": {
     "required": [
