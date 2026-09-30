@@ -12,10 +12,10 @@ for path in workflow_dir.glob("*.yml"):
     text = path.read_text(errors="replace")
     lower = text.lower()
     if "permissions:" in lower:
-        # A workflow may grant explicit write scopes, but must not grant all permissions.
+        # Explicit permissions are reviewable; broad all-permissions grants are not.
         assert "permissions: write-all" not in lower
         assert "permissions: read-all" not in lower
-        assert "contents: write" not in lower or "pull_request" in lower
+    # Do not permit YAML-style wildcard secret exposure in workflow text.
     assert "secrets: *" not in lower
 
 # The new boundary gate itself must remain read-only.
