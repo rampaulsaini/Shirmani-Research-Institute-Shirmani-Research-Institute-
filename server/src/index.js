@@ -112,6 +112,26 @@ app.post("/v1/self-interviews", dbRequired, auth, async (req, res) => {
   res.status(201).json(rows[0]);
 });
 
+app.get("/v1/account/export", dbRequired, auth, async (req, res) => {
+  const account = await pool.query("select id,email,created_at from accounts where id=$1", [req.user.sub]);
+  if (!account.rows[0]) return res.status(404).json({ error: "ACCOUNT_NOT_FOUND" });
+  const profile = await pool.query("select id,display_name,bio,language,created_at,updated_at from profiles where id=$1", [req.user.sub]);
+  const posts = await pool.query("select id,text,type,created_at from posts where author_id=$1 order by created_at desc", [req.user.sub]);
+  const interviews = await pool.query("select id,question,answer,created_at from self_interviews where profile_id=$1 order by created_at desc", [req.user.sub]);
+  const listings = await pool.query("select id,kind,title,description,price_minor,currency,status,created_at from marketplace_listings where owner_id=$1 order by created_at desc", [req.user.sub]);
+  res.json({ account: account.rows[0], profile: profile.rows[0] || null, posts: posts.rows, self_interviews: interviews.rows, marketplace_listings: listings.rows, exported_at: new Date().toISOString() });
+});
+
+app.delete("/v1/account", dbRequired, auth, async (req, res) => {
+  const { password } = req.body || {};
+  if (typeof password !== "string" || !password) return res.status(400).json({ error: "PASSWORD_CONFIRMATION_REQUIRED" });
+  const { rows } = await pool.query("select id,password_hash from accounts where id=$1", [req.user.sub]);
+  if (!rows[0]) return res.status(404).json({ error: "ACCOUNT_NOT_FOUND" });
+  if (!(await bcrypt.compare(password, rows[0].password_hash))) return res.status(401).json({ error: "INVALID_PASSWORD" });
+  await pool.query("delete from accounts where id=$1", [req.user.sub]);
+  res.status(204).end();
+});
+
 app.get("/v1/marketplace/listings", dbRequired, async (req, res) => {
   const kind = typeof req.query.kind === "string" ? req.query.kind.slice(0,32) : null;
   const params = []; let where = "";
