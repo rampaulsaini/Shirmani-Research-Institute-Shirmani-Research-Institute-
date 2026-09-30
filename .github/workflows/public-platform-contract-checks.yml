@@ -43,3 +43,7 @@ jobs:
       - name: Syntax check API
         working-directory: server
         run: node --check src/index.js
+      - name: API contract endpoint presence
+        working-directory: server
+        run: |
+          node -e "const fs=require('fs').readFileSync('src/index.js','utf8'); for (const route of ['/v1/account/export','/v1/account','/v1/reports','/v1/ai-tasks','/v1/ai-tasks/:id']) if (!fs.includes(route)) { console.error('Missing route:', route); process.exit(1) } console.log('Required endpoint routes present')"
