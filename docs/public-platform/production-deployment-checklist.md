@@ -53,3 +53,9 @@ A successful CI run means the tested code passed its CI checks. It does not by i
 - [ ] Apply `server/sql/schema.sql` as the canonical baseline.
 - [ ] Do not deploy the deprecated `server/schema.sql` reduced schema.
 - [ ] Apply migrations in order and record the deployed migration state.
+
+## Payment webhook gate
+- [ ] Configure an external payment provider and a secret in the deployment secret manager.
+- [ ] Verify provider signatures before changing order state.
+- [ ] Test success, failure, refund, duplicate-event and replay handling.
+- [ ] Never accept a client-supplied `paid` flag as payment proof.
