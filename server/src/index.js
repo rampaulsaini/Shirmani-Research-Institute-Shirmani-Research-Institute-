@@ -379,6 +379,45 @@ app.get("/v1/ai-agents", dbRequired, auth, async (_req,res)=>{
   const {rows}=await pool.query("select id,agent_key,display_name,scope,status,requires_human_review,created_at,updated_at from ai_agents order by agent_key");
   res.json({items:rows});
 });
+// Bounded Automission lifecycle: queue/dispatch/retry/cancel are auditable state transitions.
+// These routes never mark research claims as verified and do not execute arbitrary code.
+app.post("/v1/ai-tasks/:id/dispatch", dbRequired, auth, async (req,res)=>{
+  const {agent_key}=req.body||{};
+  if(typeof agent_key!=="string"||!agent_key.trim()) return res.status(400).json({error:"AGENT_REQUIRED"});
+  const agent=await pool.query("select id,agent_key,status,requires_human_review from ai_agents where agent_key=$1",[agent_key.trim()]);
+  if(!agent.rows[0]||agent.rows[0].status!=="enabled") return res.status(404).json({error:"AGENT_NOT_AVAILABLE"});
+  const client=await pool.connect();
+  try{
+    await client.query("begin");
+    const task=await client.query("select id,status from ai_tasks where id=$1 and owner_id=$2 for update",[req.params.id,req.user.sub]);
+    if(!task.rows[0]){await client.query("rollback");return res.status(404).json({error:"AI_TASK_NOT_FOUND"});}
+    if(!["queued","failed"].includes(task.rows[0].status)){await client.query("rollback");return res.status(409).json({error:"AI_TASK_NOT_DISPATCHABLE"});}
+    await client.query("update ai_tasks set status='running',updated_at=now() where id=$1",[req.params.id]);
+    await client.query("insert into ai_task_events(task_id,agent_id,event_type,payload) values($1,$2,'dispatched',$3)",[req.params.id,agent.rows[0].id,{agent_key:agent.rows[0].agent_key,requires_human_review:agent.rows[0].requires_human_review}]);
+    await client.query("commit");
+    res.status(202).json({id:req.params.id,status:"running",agent_key:agent.rows[0].agent_key,requires_human_review:agent.rows[0].requires_human_review});
+  }catch(e){await client.query("rollback");res.status(500).json({error:"AI_TASK_DISPATCH_FAILED"});}finally{client.release();}
+});
+app.post("/v1/ai-tasks/:id/retry", dbRequired, auth, async (req,res)=>{
+  const client=await pool.connect();
+  try{
+    await client.query("begin");
+    const task=await client.query("select id,status from ai_tasks where id=$1 and owner_id=$2 for update",[req.params.id,req.user.sub]);
+    if(!task.rows[0]){await client.query("rollback");return res.status(404).json({error:"AI_TASK_NOT_FOUND"});}
+    if(task.rows[0].status!=="failed"){await client.query("rollback");return res.status(409).json({error:"AI_TASK_NOT_RETRYABLE"});}
+    await client.query("update ai_tasks set status='queued',result=null,updated_at=now() where id=$1",[req.params.id]);
+    await client.query("insert into ai_task_events(task_id,event_type,payload) values($1,'retry_requested',$2)",[req.params.id,{requested_by:req.user.sub}]);
+    await client.query("commit");
+    res.status(202).json({id:req.params.id,status:"queued"});
+  }catch(e){await client.query("rollback");res.status(500).json({error:"AI_TASK_RETRY_FAILED"});}finally{client.release();}
+});
+app.post("/v1/ai-tasks/:id/cancel", dbRequired, auth, async (req,res)=>{
+  const {rows}=await pool.query("update ai_tasks set status='cancelled',updated_at=now() where id=$1 and owner_id=$2 and status in ('queued','running') returning id,status,updated_at",[req.params.id,req.user.sub]);
+  if(!rows[0]) return res.status(404).json({error:"AI_TASK_NOT_CANCELLABLE"});
+  await pool.query("insert into ai_task_events(task_id,event_type,payload) values($1,'cancelled',$2)",[req.params.id,{requested_by:req.user.sub}]);
+  res.json(rows[0]);
+});
+
 app.get("/v1/ai-tasks/:id/events", dbRequired, auth, async (req,res)=>{
   const task=await pool.query("select id from ai_tasks where id=$1 and owner_id=$2",[req.params.id,req.user.sub]);
   if(!task.rows[0]) return res.status(404).json({error:"AI_TASK_NOT_FOUND"});
