@@ -301,5 +301,46 @@ app.get("/v1/verification-reviews/:claimId", dbRequired, async (req,res)=>{
   res.json({items:rows});
 });
 
+
+
+// Marketplace checkout/order lifecycle (record-only until a real payment provider is configured).
+app.post("/v1/marketplace/orders", dbRequired, auth, async (req,res)=>{
+  const {listing_id, quantity=1}=req.body||{};
+  if(typeof listing_id!=="string"||!Number.isInteger(quantity)||quantity<1||quantity>100) return res.status(400).json({error:"INVALID_ORDER"});
+  const {rows}=await pool.query("select id,owner_id,kind,title,price_minor,currency,status from marketplace_listings where id=$1",[listing_id]);
+  const listing=rows[0];
+  if(!listing||listing.status!=="published") return res.status(404).json({error:"LISTING_NOT_AVAILABLE"});
+  if(listing.owner_id===req.user.sub) return res.status(400).json({error:"OWNER_ORDER_NOT_ALLOWED"});
+  const total=listing.price_minor*quantity;
+  if(!Number.isSafeInteger(total)) return res.status(400).json({error:"ORDER_TOTAL_TOO_LARGE"});
+  const order=await pool.query("insert into orders(buyer_id,seller_id,listing_id,quantity,unit_amount_minor,total_amount_minor,currency,status) values($1,$2,$3,$4,$5,$6,$7,'intent') returning id,buyer_id,seller_id,listing_id,quantity,unit_amount_minor,total_amount_minor,currency,status,created_at,updated_at",[req.user.sub,listing.owner_id,listing.id,quantity,listing.price_minor,total,listing.currency]);
+  await pool.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'marketplace_order_created','order',$2,$3)",[req.user.sub,order.rows[0].id,{listing_id,quantity}]);
+  res.status(201).json({...order.rows[0],listing_title:listing.title,listing_kind:listing.kind,payment_state:"NOT_PAID"});
+});
+
+app.get("/v1/marketplace/orders", dbRequired, auth, async (req,res)=>{
+  const {rows}=await pool.query("select o.id,o.buyer_id,o.seller_id,o.listing_id,o.quantity,o.unit_amount_minor,o.total_amount_minor,o.currency,o.status,o.provider,o.provider_reference,o.created_at,o.updated_at from orders o where o.buyer_id=$1 or o.seller_id=$1 order by o.created_at desc limit 100",[req.user.sub]);
+  res.json({items:rows});
+});
+
+app.post("/v1/marketplace/orders/:id/cancel", dbRequired, auth, async (req,res)=>{
+  const {rows}=await pool.query("update orders set status='cancelled',updated_at=now() where id=$1 and (buyer_id=$2 or seller_id=$2) and status in ('intent','pending') returning id,status,updated_at",[req.params.id,req.user.sub]);
+  if(!rows[0]) return res.status(404).json({error:"ORDER_NOT_CANCELLABLE"});
+  res.json(rows[0]);
+});
+
+// Seller/creator dashboard aggregates owned listings, orders and work.
+app.get("/v1/dashboard", dbRequired, auth, async (req,res)=>{
+  const [listings,orders,work,learning,ai,reports]=await Promise.all([
+    pool.query("select count(*)::int as total,count(*) filter(where status='published')::int as published from marketplace_listings where owner_id=$1",[req.user.sub]),
+    pool.query("select count(*)::int as total,count(*) filter(where status in ('paid','fulfilled','completed'))::int as completed,sum(case when status='paid' then total_amount_minor else 0 end)::bigint as paid_amount_minor from orders where buyer_id=$1 or seller_id=$1",[req.user.sub]),
+    pool.query("select count(*)::int as total,count(*) filter(where status='completed')::int as completed from work_orders where client_id=$1 or worker_id=$1",[req.user.sub]),
+    pool.query("select count(*)::int as total,count(*) filter(where status='completed')::int as completed from course_enrollments where learner_id=$1",[req.user.sub]),
+    pool.query("select count(*)::int as total,count(*) filter(where status='completed')::int as completed,count(*) filter(where status='failed')::int as failed from ai_tasks where owner_id=$1",[req.user.sub]),
+    pool.query("select count(*)::int as total,count(*) filter(where status='open')::int as open from reports where reporter_id=$1",[req.user.sub])
+  ]);
+  res.json({listings:listings.rows[0],orders:orders.rows[0],work_orders:work.rows[0],learning:learning.rows[0],ai_tasks:ai.rows[0],reports:reports.rows[0],income_note:"Recorded order/payment fields are not proof of real payment, income, delivery or customer satisfaction."});
+});
+
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
 app.listen(port, () => console.log(`shirmani-social-api listening on :${port}`));
