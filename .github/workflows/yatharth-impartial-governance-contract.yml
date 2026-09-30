@@ -1,0 +1,35 @@
+name: Yatharth Impartial Governance Contract
+
+on:
+  pull_request:
+    paths:
+      - 'docs/public-platform/yatharth-neutral-governance.md'
+      - 'docs/public-platform/universal-basic-services-blueprint.md'
+      - 'docs/public-platform/ai-impartiality-control-plane.md'
+      - '.github/workflows/yatharth-impartial-governance-contract.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/public-platform/yatharth-neutral-governance.md'
+      - 'docs/public-platform/universal-basic-services-blueprint.md'
+      - 'docs/public-platform/ai-impartiality-control-plane.md'
+  workflow_dispatch:
+
+jobs:
+  governance-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify governance invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in             docs/public-platform/yatharth-neutral-governance.md             docs/public-platform/universal-basic-services-blueprint.md             docs/public-platform/ai-impartiality-control-plane.md
+          do
+            test -s "$f"
+          done
+          grep -qi "AI is a decision-support" docs/public-platform/ai-impartiality-control-plane.md
+          grep -qi "independent human verification" docs/public-platform/yatharth-neutral-governance.md
+          grep -qi "No single-point supreme AI" docs/public-platform/yatharth-neutral-governance.md
+          grep -qi "No automated denial" docs/public-platform/universal-basic-services-blueprint.md
+          echo "Governance contract passed: AI remains bounded, appealable, and non-sovereign."
