@@ -56,5 +56,37 @@
     "continuity": "santushti-continuity.html",
     "status_dashboard": "yatharth-status.html",
     "main": "index.html"
+  },
+  "module_truth_boundary": {
+    "implemented_but_not_necessarily_live": [
+      "public_platform",
+      "accounts_profiles",
+      "marketplace",
+      "trust_privacy_controls",
+      "bounded_automission",
+      "governance_control_plane"
+    ],
+    "architecture_or_research_only": [
+      "freelancing",
+      "employment",
+      "education",
+      "yatharth_ai_music",
+      "yatharth_economy",
+      "yatharth_justice",
+      "nature_protection"
+    ],
+    "verification_rule": "Only qualifying independent review can move a claim into INDEPENDENTLY_VERIFIED; engineering implementation never changes scientific verification status."
+  },
+  "release_gates": {
+    "deployment_ready": [
+      "implementation",
+      "tests",
+      "security_privacy",
+      "monitoring",
+      "configuration",
+      "rollback_or_appeal"
+    ],
+    "live": "requires actual deployed target plus successful production health/smoke checks",
+    "independently_verified": "requires qualifying independent evidence and review"
   }
 }
