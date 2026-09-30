@@ -74,7 +74,7 @@ create table if not exists reports (
 
 create table if not exists audit_events (
   id uuid primary key default gen_random_uuid(),
-  actor_id uuid not null references accounts(id) on delete cascade,
+  actor_id uuid references accounts(id) on delete set null,
   event_type text not null,
   target_type text not null,
   target_id text not null,
