@@ -1,0 +1,29 @@
+name: AI ML NLP Automission Truth Release Gate
+
+on:
+  push:
+    branches: ["feat/automission-quality-gate-20261001"]
+    paths:
+      - "docs/yatharth-governance/automission-quality-gate.json"
+      - "docs/yatharth-system/feature-status-registry.json"
+      - "docs/yatharth-system/claim-lifecycle-contract.json"
+      - "scripts/validate_automission_truth_release.py"
+      - ".github/workflows/automission-truth-release-gate.yml"
+  pull_request:
+    paths:
+      - "docs/yatharth-governance/automission-quality-gate.json"
+      - "docs/yatharth-system/feature-status-registry.json"
+      - "docs/yatharth-system/claim-lifecycle-contract.json"
+      - "scripts/validate_automission_truth_release.py"
+      - ".github/workflows/automission-truth-release-gate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  truth-release-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate cross-layer truth boundary
+        run: python3 scripts/validate_automission_truth_release.py
