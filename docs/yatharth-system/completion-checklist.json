@@ -1,0 +1,8 @@
+{
+  "schema_version":"1.0.0",
+  "truth_rule":"architecture_is_not_deployment",
+  "last_reviewed":"2026-09-30",
+  "completion_contract":{"required":["code","tests","documentation","security_privacy","monitoring","user_status","rollback_appeal"],"independent_verification_is_separate":true},
+  "verification":{"independent_verified_claims":0,"change_rule":"only qualifying independent human review may increase this value"},
+  "release_gates":["schema_valid","contract_reviewed","security_reviewed","monitoring_defined","rollback_defined","appeal_path_defined","public_status_exposed"]
+}
