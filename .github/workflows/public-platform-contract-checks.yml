@@ -49,7 +49,7 @@ jobs:
           node - <<'NODE'
           const fs = require("fs");
           const s = fs.readFileSync("src/index.js", "utf8");
-          const routes = ["/health","/v1/auth/register","/v1/auth/login","/v1/profile/:id","/v1/feed","/v1/posts","/v1/self-interviews","/v1/marketplace/listings","/v1/ai-tasks/:id","/v1/marketplace/transactions"];
+          const routes = ["/health","/v1/auth/register","/v1/auth/login","/v1/profile/:id","/v1/feed","/v1/posts","/v1/self-interviews","/v1/marketplace/listings","/v1/ai-tasks/:id","/v1/marketplace/transactions","/v1/marketplace/orders","/v1/marketplace/orders/:id/cancel","/v1/dashboard"];
           for (const route of routes) if (!s.includes(route)) throw new Error("Missing implemented route: " + route);
           console.log("Implemented route coverage OK");
           NODE
