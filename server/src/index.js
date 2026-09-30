@@ -431,6 +431,11 @@ app.post("/v1/privacy-requests", dbRequired, auth, async (req,res)=>{
   const {rows}=await pool.query("insert into privacy_requests(account_id,request_type,details) values($1,$2,$3) returning id,request_type,status,details,created_at",[req.user.sub,request_type,details]);
   res.status(202).json(rows[0]);
 });
+app.get("/v1/privacy-requests/:id", dbRequired, auth, async (req,res)=>{
+  const {rows}=await pool.query("select id,request_type,status,details,created_at,completed_at from privacy_requests where id=$1 and account_id=$2",[req.params.id,req.user.sub]);
+  if(!rows[0]) return res.status(404).json({error:"PRIVACY_REQUEST_NOT_FOUND"});
+  res.json(rows[0]);
+});
 app.get("/v1/privacy-requests", dbRequired, auth, async (req,res)=>{
   const {rows}=await pool.query("select id,request_type,status,details,created_at,completed_at from privacy_requests where account_id=$1 order by created_at desc limit 50",[req.user.sub]);
   res.json({items:rows});
