@@ -48,3 +48,8 @@ This checklist is a deployment gate, not a claim that the repository is currentl
 
 ## Status rule
 A successful CI run means the tested code passed its CI checks. It does not by itself establish LIVE, AUTOMATED, financially operational, legally compliant, or INDEPENDENTLY_VERIFIED status.
+
+## Schema source of truth
+- [ ] Apply `server/sql/schema.sql` as the canonical baseline.
+- [ ] Do not deploy the deprecated `server/schema.sql` reduced schema.
+- [ ] Apply migrations in order and record the deployed migration state.
