@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "status_values": ["PLANNED","IN_BUILD","TESTED","LIMITED_LIVE","LIVE","DEFERRED"],
+  "principle": "Architecture, code, CI success and production deployment are distinct states.",
+  "modules": {
+    "social_accounts": "PLANNED",
+    "user_publishing": "PLANNED",
+    "digital_store": "PLANNED",
+    "freelancing": "PLANNED",
+    "education": "PLANNED",
+    "yatharth_ai_music": "PLANNED",
+    "yatharth_currency": "PLANNED",
+    "yatharth_justice": "PLANNED",
+    "ai_ml_nlp_control_plane": "IN_BUILD",
+    "automission": "IN_BUILD",
+    "research_verification": "IN_BUILD",
+    "nature_humanity_protection": "IN_BUILD",
+    "public_dashboard": "IN_BUILD"
+  }
+}
