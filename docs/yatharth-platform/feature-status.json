@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "last_reviewed": "2026-09-30",
+  "verification_policy": "fail-closed",
+  "features": [
+    {"id":"research.source-library","status":"architecture","verification":"not_applicable"},
+    {"id":"research.claim-registry","status":"architecture","verification":"not_applicable"},
+    {"id":"research.evidence-registry","status":"architecture","verification":"not_applicable"},
+    {"id":"research.independent-verification","status":"partial","verification":"0_percent_until_qualifying_review"},
+    {"id":"ai.nlp.claim-extraction","status":"architecture","verification":"not_applicable"},
+    {"id":"ai.ml.recommendation","status":"planned","verification":"not_applicable"},
+    {"id":"automation.automission","status":"partial","verification":"engineering_status_only"},
+    {"id":"automation.research-factory","status":"partial","verification":"engineering_status_only"},
+    {"id":"creative.yatharth-ai-music","status":"planned","verification":"not_applicable"},
+    {"id":"commerce.digital-store","status":"partial","verification":"deployment_specific"},
+    {"id":"economy.freelancing","status":"planned","verification":"not_applicable"},
+    {"id":"economy.employment","status":"planned","verification":"not_applicable"},
+    {"id":"governance.public-transparency","status":"partial","verification":"engineering_status_only"},
+    {"id":"platform.multilingual","status":"planned","verification":"not_applicable"},
+    {"id":"platform.public-api","status":"planned","verification":"not_applicable"}
+  ]
+}
