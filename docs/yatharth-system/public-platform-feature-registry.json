@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "status_semantics": ["planned","architected","implemented","tested","live","independent_reviewed"],
+  "features": [
+    {"id":"PUB-001","name":"Accounts and Profiles","status":"architected"},
+    {"id":"PUB-002","name":"Social Publishing and Sharing","status":"architected"},
+    {"id":"PUB-003","name":"Creator Studio","status":"architected"},
+    {"id":"PUB-004","name":"Digital Store","status":"architected"},
+    {"id":"PUB-005","name":"Freelancing and Services","status":"architected"},
+    {"id":"PUB-006","name":"Employment and Opportunities","status":"architected"},
+    {"id":"PUB-007","name":"Education and Courses","status":"architected"},
+    {"id":"PUB-008","name":"Yatharth AI Music","status":"architected"},
+    {"id":"PUB-009","name":"AI/ML/NLP Research Tools","status":"architected"},
+    {"id":"PUB-010","name":"Yatharth Economy Research","status":"architected"},
+    {"id":"PUB-011","name":"Yatharth Currency Research","status":"planned"},
+    {"id":"PUB-012","name":"Yatharth Justice and Appeals","status":"architected"},
+    {"id":"PUB-013","name":"Nature/Earth/Humanity Mission","status":"architected"},
+    {"id":"PUB-014","name":"Community and Collaboration","status":"architected"},
+    {"id":"PUB-015","name":"Trust, Verification and Transparency","status":"architected"},
+    {"id":"PUB-016","name":"Multilingual Global Access","status":"architected"},
+    {"id":"PUB-017","name":"Customer Support and Satisfaction","status":"architected"},
+    {"id":"PUB-018","name":"AI Automission Operations","status":"architected"}
+  ]
+}
