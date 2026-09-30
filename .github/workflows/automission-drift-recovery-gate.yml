@@ -1,0 +1,19 @@
+name: AI ML NLP Automission Drift and Recovery Gate
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  drift-recovery-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate drift and recovery boundary
+        run: python scripts/validate_automission_drift_recovery.py
