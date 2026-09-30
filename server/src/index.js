@@ -168,6 +168,29 @@ app.get("/v1/ai-tasks/:id", dbRequired, auth, async (req,res)=>{
   res.json(rows[0]);
 });
 
+app.post("/v1/marketplace/listings/:id/publish", dbRequired, auth, async (req, res) => {
+  const { rows } = await pool.query("update marketplace_listings set status='published' where id=$1 and owner_id=$2 returning id,status,created_at", [req.params.id, req.user.sub]);
+  if (!rows[0]) return res.status(404).json({ error: "LISTING_NOT_FOUND" });
+  res.json(rows[0]);
+});
+
+app.post("/v1/marketplace/listings/:id/pause", dbRequired, auth, async (req, res) => {
+  const { rows } = await pool.query("update marketplace_listings set status='paused' where id=$1 and owner_id=$2 returning id,status", [req.params.id, req.user.sub]);
+  if (!rows[0]) return res.status(404).json({ error: "LISTING_NOT_FOUND" });
+  res.json(rows[0]);
+});
+
+app.post("/v1/marketplace/listings/:id/archive", dbRequired, auth, async (req, res) => {
+  const { rows } = await pool.query("update marketplace_listings set status='archived' where id=$1 and owner_id=$2 returning id,status", [req.params.id, req.user.sub]);
+  if (!rows[0]) return res.status(404).json({ error: "LISTING_NOT_FOUND" });
+  res.json(rows[0]);
+});
+
+app.get("/v1/audit-events", dbRequired, auth, async (req, res) => {
+  const { rows } = await pool.query("select id,event_type,target_type,target_id,metadata,created_at from audit_events where actor_id=$1 order by created_at desc limit 100", [req.user.sub]);
+  res.json({ items: rows });
+});
+
 app.get("/v1/marketplace/transactions", dbRequired, auth, async (req,res)=>{
   const {rows}=await pool.query("select id,buyer_id,seller_id,listing_id,amount_minor,currency,status,provider,provider_reference,created_at,updated_at from transactions where buyer_id=$1 or seller_id=$1 order by created_at desc limit 100",[req.user.sub]);
   res.json({items:rows});
