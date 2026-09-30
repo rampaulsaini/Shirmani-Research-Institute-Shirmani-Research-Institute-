@@ -49,3 +49,22 @@ Automission routine intake, classification, evidence collection, comparison, aud
 
 ---
 **दिशा:** संपूर्ण संतुष्टि की निरंतरता का अर्थ हर क्षण पूर्ण होने का दावा नहीं, बल्कि सत्यनिष्ठ निरीक्षण, उपयोगी कार्य, सीख और सुधार की निरंतर धारा है।
+
+## Public status continuity
+
+The public status dashboard is `yatharth-status.html`. It reads `feature-status-registry.json` and must never infer deployment or verification from the existence of a page.
+
+For every capability, the displayed state is the registry state. A missing or unreadable registry is treated as unavailable rather than guessed.
+
+## Completion loop
+
+1. **Specify** the contract.
+2. **Implement** the smallest safe increment.
+3. **Test** the increment.
+4. **Expose** its public status.
+5. **Monitor** failures and rollback conditions.
+6. **Review** human-impact boundaries.
+7. **Record** evidence.
+8. **Only then** consider a later promotion in status.
+
+This keeps continuity practical: progress is made through small verifiable steps rather than by declaring the whole platform complete before its evidence exists.
