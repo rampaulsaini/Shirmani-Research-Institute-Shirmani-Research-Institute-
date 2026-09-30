@@ -59,14 +59,30 @@ if (!modelMatch) {
   }
 }
 
-const apiCapabilityMatches = [...api.matchAll(/\{ id: "([^"]+)", status: "([^"]+)" \}/g)];
-const apiCapabilities = new Map(apiCapabilityMatches.map((m) => [m[1], m[2]]));
+const capabilityRouteMatch = api.match(/app\.get\("\/v1\/capabilities\/status",[\\s\\S]*?\n\});/);
+if (!capabilityRouteMatch) {
+  fail("API /v1/capabilities/status route is missing or structurally unreadable.");
+}
+const capabilitySurface = capabilityRouteMatch?.[0] || "";
+const apiCapabilityMatches = [...capabilitySurface.matchAll(/\{ id: "([^"]+)", status: "([^"]+)" \}/g)];
+const apiCapabilities = new Map();
+for (const [, id, status] of apiCapabilityMatches) {
+  if (apiCapabilities.has(id)) fail("Duplicate API capability declaration: " + id);
+  apiCapabilities.set(id, status);
+}
 const operationalThreshold = new Set(["MVP", "TESTED", "DEPLOYMENT_GATED", "LIVE", "AUTOMATED", "INDEPENDENTLY_VERIFIED"]);
 
 for (const [domain, state] of Object.entries(capabilities)) {
   if (operationalThreshold.has(state) && !apiCapabilities.has(domain)) {
     fail("Operational capability " + domain + " is " + state + " but absent from /v1/capabilities/status.");
   }
+  if (operationalThreshold.has(state) && apiCapabilities.get(domain) !== state) {
+    fail("Operational capability " + domain + " state mismatch: registry=" + state + " API=" + apiCapabilities.get(domain));
+  }
+}
+const operationalApiOnly = [...apiCapabilities.keys()].filter((domain) => !Object.hasOwn(capabilities, domain));
+if (operationalApiOnly.length) {
+  fail("API exposes capability IDs absent from registry: " + operationalApiOnly.join(", "));
 }
 
 const registryOperational = Object.values(capabilities).filter((s) => operationalThreshold.has(s)).length;
@@ -112,5 +128,7 @@ const report = {
   checks
 };
 
+const reportPath = process.env.ASSURANCE_REPORT_PATH || path.join(root, "assurance-report.json");
+fs.writeFileSync(reportPath, JSON.stringify(report, null, 2) + "\\n");
 console.log(JSON.stringify(report, null, 2));
 if (failures) process.exit(1);
