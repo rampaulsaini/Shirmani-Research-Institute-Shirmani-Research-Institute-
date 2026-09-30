@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "last_reviewed": "2026-09-30",
   "truth_rule": "architecture_is_not_deployment",
   "domains": {
@@ -23,6 +23,18 @@
   },
   "verification": {
     "independent_verified_claims": 0,
-    "rule": "increase only after qualifying independent human review is recorded"
-  }
+    "rule": "increase only after qualifying independent human review is recorded",
+    "review_gate": "qualifying_independent_human_review_required"
+  },
+  "status_vocabulary": [
+    "LIVE",
+    "BETA",
+    "ARCHITECTURE",
+    "RESEARCH",
+    "REVIEW_REQUIRED",
+    "DISABLED",
+    "INCONCLUSIVE",
+    "NOT_VERIFIED"
+  ],
+  "public_dashboard": "yatharth-status.html"
 }
