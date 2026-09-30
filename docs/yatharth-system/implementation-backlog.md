@@ -45,3 +45,11 @@
 
 ## Definition of done
 A module is complete only when its code, tests, documentation, security model, user-facing status, operational monitoring and rollback/appeal path exist at the level appropriate to that module.
+
+
+## P0 completion control — public contract checks
+- Validate the status registry vocabulary and required verification fields on every change.
+- Validate that the public status dashboard points to the registry.
+- Validate that public continuity pages do not present architecture as deployment.
+- Validate that independent verification remains fail-closed at zero until a qualifying review record exists.
+- Record failures without deleting source/evidence history.
