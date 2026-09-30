@@ -62,6 +62,14 @@ def main():
     required = set(manifest["evaluation"]["required_fields"])
     if not rows:
         raise AssertionError("benchmark fixture is empty")
+    declared_suites = set(manifest["suites"])
+    seen_suites = {str(r.get("suite")) for r in rows}
+    missing_suites = declared_suites - seen_suites
+    if missing_suites:
+        raise AssertionError(f"missing benchmark suite coverage: {sorted(missing_suites)}")
+    unknown_suites = seen_suites - declared_suites
+    if unknown_suites:
+        raise AssertionError(f"unknown benchmark suites: {sorted(unknown_suites)}")
     for row in rows:
         missing = required - set(row)
         if missing:
