@@ -35,6 +35,8 @@ jobs:
         run: python3 scripts/run_automission_benchmark.py
       - name: Validate benchmark artifact
         run: python3 scripts/validate_automission_benchmark_report.py
+      - name: Check regression against immutable baseline
+        run: python3 scripts/automission_regression_guard.py
       - uses: actions/upload-artifact@v4
         with:
           name: supreme-automission-benchmark
