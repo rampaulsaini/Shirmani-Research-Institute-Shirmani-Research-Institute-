@@ -100,6 +100,7 @@ test("server source exposes explicit deployment readiness gates", () => {
     "READY_FOR_DEPLOYMENT_CHECKS",
     "DATABASE_NOT_CONFIGURED",
     "JWT_SECRET_NOT_CONFIGURED",
+    "NOT_CONFIGURED_OR_WILDCARD",
     "production_live: false",
     "independent_verification: false"
   ]) assert.ok(source.includes(required), "missing readiness boundary: " + required);
