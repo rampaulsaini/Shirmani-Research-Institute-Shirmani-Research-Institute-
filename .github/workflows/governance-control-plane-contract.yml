@@ -1,0 +1,37 @@
+name: Governance Control Plane Contract
+
+on:
+  pull_request:
+    paths:
+      - "docs/public-platform/governance-*.md"
+      - "docs/public-platform/public-service-metrics.md"
+      - ".github/workflows/governance-control-plane-contract.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/public-platform/governance-*.md"
+      - "docs/public-platform/public-service-metrics.md"
+      - ".github/workflows/governance-control-plane-contract.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate non-sovereign AI boundary
+        run: |
+          grep -q "must not become an unreviewable sovereign authority" docs/public-platform/governance-control-plane.md
+          grep -q "no AI-only" docs/public-platform/governance-control-plane.md
+          grep -q "Independent verification" docs/public-platform/governance-control-plane.md
+      - name: Validate emergency expiry
+        run: |
+          grep -q "automatic expiry" docs/public-platform/governance-control-plane.md
+          grep -q "automatic expiry" docs/public-platform/governance-state-model.md
+      - name: Validate service evidence boundary
+        run: |
+          grep -q "actual status rather than label an aspirational service" docs/public-platform/governance-control-plane.md
+          grep -q "uncertainty" docs/public-platform/public-service-metrics.md
