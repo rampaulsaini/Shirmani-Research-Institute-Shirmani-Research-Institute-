@@ -29,3 +29,18 @@ create table if not exists self_interviews (
 );
 create index if not exists posts_created_at_idx on posts(created_at desc);
 create index if not exists interviews_profile_idx on self_interviews(profile_id, created_at desc);
+
+
+create table if not exists marketplace_listings (
+  id uuid primary key default gen_random_uuid(),
+  owner_id uuid not null references profiles(id) on delete cascade,
+  kind varchar(32) not null check (kind in ('product','service','course','music','audio','job')),
+  title varchar(160) not null,
+  description varchar(5000) not null default '',
+  price_minor bigint not null default 0 check (price_minor >= 0),
+  currency char(3) not null default 'INR',
+  status varchar(24) not null default 'draft' check (status in ('draft','published','paused','archived')),
+  created_at timestamptz not null default now()
+);
+create index if not exists marketplace_listings_created_idx on marketplace_listings(created_at desc);
+create index if not exists marketplace_listings_kind_idx on marketplace_listings(kind, created_at desc);
