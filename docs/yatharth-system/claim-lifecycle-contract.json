@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed": "2026-10-01",
+  "purpose": "Traceable lifecycle for author claims, research propositions and verification records.",
+  "truth_rule": "a_claim_is_not_a_verified_fact_until_qualifying_independent_review_is_recorded",
+  "states": ["DRAFT","NORMALIZED","SOURCE_REQUIRED","EVIDENCE_PENDING","TESTABLE","COUNTER_EVIDENCE_REVIEW","REVIEW_REQUIRED","VERIFIED","INCONCLUSIVE","NOT_VERIFIED","ARCHIVED"],
+  "transitions": {
+    "DRAFT": ["NORMALIZED","ARCHIVED"],
+    "NORMALIZED": ["SOURCE_REQUIRED","EVIDENCE_PENDING","ARCHIVED"],
+    "SOURCE_REQUIRED": ["EVIDENCE_PENDING","ARCHIVED"],
+    "EVIDENCE_PENDING": ["TESTABLE","COUNTER_EVIDENCE_REVIEW","REVIEW_REQUIRED","ARCHIVED"],
+    "TESTABLE": ["COUNTER_EVIDENCE_REVIEW","REVIEW_REQUIRED","ARCHIVED"],
+    "COUNTER_EVIDENCE_REVIEW": ["REVIEW_REQUIRED","INCONCLUSIVE","NOT_VERIFIED","ARCHIVED"],
+    "REVIEW_REQUIRED": ["VERIFIED","INCONCLUSIVE","NOT_VERIFIED","ARCHIVED"],
+    "VERIFIED": ["ARCHIVED"],
+    "INCONCLUSIVE": ["REVIEW_REQUIRED","ARCHIVED"],
+    "NOT_VERIFIED": ["EVIDENCE_PENDING","REVIEW_REQUIRED","ARCHIVED"],
+    "ARCHIVED": []
+  },
+  "verification_requirements": {
+    "minimum": ["claim_id","exact_claim","operational_definition","provenance","evidence","counter_evidence_status","limitations","review_record"],
+    "verified_requires": ["qualifying_independent_human_review","reviewer_identity_or_role","review_date","review_basis","correction_or_appeal_route"],
+    "ai_output_can_assist": true,
+    "ai_output_can_verify": false
+  },
+  "public_rule": "If evidence or review is missing, publish the uncertainty/status rather than inventing certainty."
+}
