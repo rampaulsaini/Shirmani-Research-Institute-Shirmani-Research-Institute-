@@ -1,31 +1,10 @@
-create extension if not exists pgcrypto;
-create table if not exists accounts (
-  id uuid primary key default gen_random_uuid(),
-  email varchar(320) not null unique,
-  password_hash text not null,
-  created_at timestamptz not null default now()
-);
-create table if not exists profiles (
-  id uuid primary key references accounts(id) on delete cascade,
-  display_name varchar(80) not null default '',
-  bio varchar(1000) not null default '',
-  language varchar(32) not null default 'हिंदी',
-  created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
-);
-create table if not exists posts (
-  id uuid primary key default gen_random_uuid(),
-  author_id uuid not null references profiles(id) on delete cascade,
-  text varchar(5000) not null,
-  type varchar(32) not null default 'विचार',
-  created_at timestamptz not null default now()
-);
-create table if not exists self_interviews (
-  id uuid primary key default gen_random_uuid(),
-  profile_id uuid not null references profiles(id) on delete cascade,
-  question varchar(1000) not null,
-  answer varchar(5000) not null,
-  created_at timestamptz not null default now()
-);
-create index if not exists posts_created_at_idx on posts(created_at desc);
-create index if not exists interviews_profile_idx on self_interviews(profile_id, created_at desc);
+-- Compatibility notice.
+-- Canonical public-platform PostgreSQL schema:
+--   server/sql/schema.sql
+-- 
+-- Do not deploy this legacy reduced schema. It is retained only so older
+-- tooling can detect the migration path. Production/deployment tooling must
+-- apply server/sql/schema.sql and its migrations.
+-- 
+-- Truth boundary: applying a schema is not evidence that the API is LIVE,
+-- AUTOMATED, or INDEPENDENTLY_VERIFIED.

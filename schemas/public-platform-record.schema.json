@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/public-platform-record.schema.json",
+  "title":"Yatharth Public Platform Record",
+  "type":"object",
+  "required":["id","record_type","status","created_at"],
+  "properties":{
+    "id":{"type":"string","minLength":1},
+    "record_type":{"enum":["account","content","offer","ai_task","verification"]},
+    "status":{"type":"string","minLength":1},
+    "owner_id":{"type":["string","null"]},
+    "provenance_ref":{"type":["string","null"]},
+    "evidence_refs":{"type":"array","items":{"type":"string"}},
+    "counter_evidence_refs":{"type":"array","items":{"type":"string"}},
+    "created_at":{"type":"string","format":"date-time"},
+    "updated_at":{"type":["string","null"]}
+  },
+  "additionalProperties":true
+}
