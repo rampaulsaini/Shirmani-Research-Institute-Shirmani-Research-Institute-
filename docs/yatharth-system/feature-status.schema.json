@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Yatharth Public Feature Status",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "features"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "area", "status", "verification_status"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z0-9_-]+$"},
+          "name": {"type": "string"},
+          "area": {"type": "string"},
+          "status": {"type": "string", "enum": ["PLANNED","ARCHITECTURE_READY","IMPLEMENTATION_IN_PROGRESS","IMPLEMENTED","TESTED","DEPLOYED","INDEPENDENTLY_REVIEWED"]},
+          "verification_status": {"type": "string", "enum": ["NOT_APPLICABLE","NOT_VERIFIED","PARTIALLY_SUPPORTED","INCONCLUSIVE","VERIFIED"]},
+          "public_route": {"type": ["string","null"]},
+          "notes": {"type": "string"}
+        }
+      }
+    }
+  }
+}

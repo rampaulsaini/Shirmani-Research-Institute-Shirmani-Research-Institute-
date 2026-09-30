@@ -1143,6 +1143,30 @@
           }
         }
       }
+    },
+    "/v1/marketplace/orders/{id}/cancel": {
+      "post": {
+        "summary": "Cancel a marketplace order",
+        "description": "Cancels an intent/pending order for an authorized buyer or seller. A real payment/refund remains provider-gated.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order cancelled"
+          },
+          "404": {
+            "description": "Order not found or not cancellable"
+          }
+        }
+      }
     }
   },
   "components": {

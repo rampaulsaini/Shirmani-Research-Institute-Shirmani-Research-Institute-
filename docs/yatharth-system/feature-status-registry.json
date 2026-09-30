@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.2.0",
+  "last_reviewed": "2026-09-30",
+  "truth_rule": "architecture_is_not_deployment",
+  "domains": {
+    "public_platform": "ARCHITECTURE",
+    "accounts_profiles": "ARCHITECTURE",
+    "social_publishing": "ARCHITECTURE",
+    "marketplace": "ARCHITECTURE",
+    "freelancing": "ARCHITECTURE",
+    "employment": "ARCHITECTURE",
+    "education": "ARCHITECTURE",
+    "yatharth_ai": "ARCHITECTURE",
+    "yatharth_ai_music": "ARCHITECTURE",
+    "research_institute": "RESEARCH",
+    "independent_verification": "REVIEW_REQUIRED",
+    "automission": "BETA",
+    "governance_control_plane": "BETA",
+    "nature_protection": "RESEARCH",
+    "digital_store": "ARCHITECTURE",
+    "yatharth_economy": "RESEARCH",
+    "yatharth_justice": "RESEARCH"
+  },
+  "verification": {
+    "independent_verified_claims": 0,
+    "queue_status": "REVIEW_REQUIRED",
+    "rule": "increase only after qualifying independent human review is recorded"
+  },
+  "status_vocabulary": [
+    "LIVE",
+    "BETA",
+    "ARCHITECTURE",
+    "RESEARCH",
+    "REVIEW_REQUIRED",
+    "DISABLED",
+    "INCONCLUSIVE",
+    "NOT_VERIFIED"
+  ],
+  "public_dashboard": {
+    "path": "yatharth-status.html",
+    "fail_safe": true,
+    "source": "feature-status-registry.json"
+  },
+  "completion_contract": {
+    "required": [
+      "implementation",
+      "tests",
+      "security_privacy",
+      "monitoring",
+      "user_facing_status",
+      "rollback_or_appeal"
+    ],
+    "truth_rule": "architecture_is_not_deployment"
+  },
+  "public_entrypoints": {
+    "continuity": "santushti-continuity.html",
+    "status_dashboard": "yatharth-status.html",
+    "main": "index.html"
+  }
+}

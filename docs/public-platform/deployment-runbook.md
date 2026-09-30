@@ -73,7 +73,7 @@ Confirm:
 
 Payment webhooks remain disabled until a provider is configured and signed-event verification is tested. Media records currently store metadata; binary object storage requires a separate provider and access-control policy.
 
-## 7. LIVE status
+## 7. Production LIVE status
 
 Only an authorized maintainer may declare LIVE after the external deployment evidence is recorded. Repository CI success alone must never set LIVE.
 
