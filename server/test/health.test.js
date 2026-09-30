@@ -116,3 +116,17 @@ test("server source exposes a deployment-gated payment webhook", () => {
     "payment_refunded"
   ]) assert.ok(source.includes(required), "missing payment boundary: " + required);
 });
+
+
+test("server source exposes bounded Automission lifecycle controls", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  for (const required of [
+    'app.post("/v1/ai-tasks/:id/dispatch"',
+    'app.post("/v1/ai-tasks/:id/retry"',
+    'app.post("/v1/ai-tasks/:id/cancel"',
+    "AI_TASK_NOT_DISPATCHABLE",
+    "AI_TASK_NOT_RETRYABLE",
+    "AI_TASK_NOT_CANCELLABLE",
+    "requires_human_review"
+  ]) assert.ok(source.includes(required), "missing Automission lifecycle control: " + required);
+});
