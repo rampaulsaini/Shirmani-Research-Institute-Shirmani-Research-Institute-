@@ -1,0 +1,45 @@
+name: Public Platform Contract Checks
+
+on:
+  pull_request:
+    paths:
+      - "public-platform-*.html"
+      - "docs/public-platform/**"
+      - "schemas/public-platform-record.schema.json"
+      - "schemas/social-platform-api.openapi.json"
+      - "server/**"
+  push:
+    branches: [main]
+    paths:
+      - "public-platform-*.html"
+      - "docs/public-platform/**"
+      - "schemas/public-platform-record.schema.json"
+      - "schemas/social-platform-api.openapi.json"
+      - "server/**"
+
+permissions:
+  contents: read
+
+jobs:
+  contract-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate JSON contracts
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('docs/public-platform/public-capability-registry.json','utf8')); JSON.parse(require('fs').readFileSync('docs/public-platform/platform-schema.json','utf8')); JSON.parse(require('fs').readFileSync('schemas/public-platform-record.schema.json','utf8')); JSON.parse(require('fs').readFileSync('schemas/social-platform-api.openapi.json','utf8')); console.log('JSON contracts valid')"
+      - name: Validate required public surfaces
+        run: |
+          test -f public-platform-hub.html
+          test -f public-platform-mvp.html
+          test -f public-platform-console.html
+          test -f docs/public-platform/integration-runbook.md
+      - name: Install API dependencies
+        working-directory: server
+        run: npm ci
+      - name: Syntax check API
+        working-directory: server
+        run: node --check src/index.js
