@@ -10,7 +10,7 @@ assert gate["truth_rule"] == "architecture_is_not_deployment"
 assert gate["verification_rule"] == "workflow_success_is_not_independent_verification"
 assert [x["id"] for x in gate["layers"]] == [f"L{i}" for i in range(1, 9)]
 assert gate["layers"][5]["authority"] == "human_required"
-assert all(gate["non_negotiable"].values())
+assert all(value is False for value in gate["non_negotiable"].values())
 assert len(gate["required_audit_fields"]) >= 10
 assert gate["status"]["automission"] == registry["domains"]["automission"]
 assert gate["status"]["independent_verified_claims"] == registry["verification"]["independent_verified_claims"] == 0
