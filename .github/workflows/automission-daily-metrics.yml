@@ -1,0 +1,50 @@
+name: SHIRMANI Automission Daily Metrics
+
+on:
+  schedule:
+    - cron: "25 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Capture daily workflow-run count
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p docs/automation-dashboard
+          DATE="$(date -u +%F)"
+          COUNT="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs?created=${DATE}" --jq '.total_count')"
+          TOTAL="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs" --jq '.total_count')"
+          python - <<'PY'
+          import json, os, pathlib
+          p = pathlib.Path("docs/automation-dashboard/daily-runs.json")
+          data = json.loads(p.read_text()) if p.exists() else {"schema_version":1,"days":[]}
+          row = {
+              "date": os.environ["DATE"],
+              "workflow_runs": int(os.environ["COUNT"]),
+              "total_workflow_runs": int(os.environ["TOTAL"])
+          }
+          data["days"] = [x for x in data["days"] if x["date"] != row["date"]]
+          data["days"].append(row)
+          data["days"].sort(key=lambda x: x["date"])
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+          PY
+        env:
+          DATE: ${{ github.event.schedule && '' || '' }}
+
+      - name: Commit daily metrics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/automation-dashboard/daily-runs.json
+          git diff --cached --quiet || git commit -m "chore: record daily Automission workflow metrics"
+          git push
