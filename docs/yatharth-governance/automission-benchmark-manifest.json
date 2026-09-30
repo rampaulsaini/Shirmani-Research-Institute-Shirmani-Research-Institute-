@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_id": "automission-benchmark-v1",
+  "purpose": "Versioned deterministic benchmark contract for measurable AI/ML/NLP quality, regression detection, abstention, provenance and reproducibility.",
+  "evaluation": {
+    "prediction_format": "JSONL",
+    "required_fields": ["case_id", "task", "expected", "predicted", "confidence", "abstained", "model_version", "input_hash", "evidence_ids"],
+    "confidence_range": [0.0, 1.0],
+    "unknown_label": "UNKNOWN",
+    "abstention_is_allowed": true
+  },
+  "suites": [
+    "golden_set",
+    "counter_evidence",
+    "edge_cases",
+    "regression",
+    "unseen",
+    "adversarial"
+  ],
+  "metrics": {
+    "classification": ["accuracy", "precision_macro", "recall_macro", "f1_macro"],
+    "confidence": ["brier_score", "expected_calibration_error"],
+    "selective": ["abstention_rate", "selective_risk"],
+    "integrity": ["provenance_completeness", "reproducibility"],
+    "latency": ["latency_p50_ms", "latency_p95_ms", "latency_p99_ms", "error_rate"]
+  },
+  "release_policy": {
+    "critical_regression_thresholds": {
+      "accuracy_delta_min": -0.02,
+      "f1_macro_delta_min": -0.02,
+      "brier_score_delta_max": 0.02,
+      "provenance_completeness_delta_min": 0.0
+    },
+    "missing_required_metric": "BLOCK",
+    "benchmark_pass_does_not_verify_truth": true,
+    "benchmark_pass_does_not_guarantee_real_world_performance": true,
+    "workflow_success_is_not_independent_verification": true,
+    "independent_verified_claims": 0,
+    "live_claim": false
+  }
+}
