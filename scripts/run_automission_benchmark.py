@@ -106,6 +106,9 @@ def main():
     ece = sum(n * gap for n, gap in bins) / len(non_abstained) if non_abstained else 0.0
 
     abstention_rate = sum(r["abstained"] for r in rows) / len(rows)
+    coverage = len(non_abstained) / len(rows)
+    if coverage < 0.5:
+        raise AssertionError(f"abstention coverage too low: {coverage:.6f}")
     selective_risk = 1.0 - accuracy if non_abstained else 0.0
     provenance = sum(bool(r["evidence_ids"]) for r in rows) / len(rows)
     latencies = [float(r["latency_ms"]) for r in rows]
@@ -121,6 +124,7 @@ def main():
             "brier_score": round(brier, 6),
             "expected_calibration_error": round(ece, 6),
             "abstention_rate": round(abstention_rate, 6),
+            "coverage": round(coverage, 6),
             "selective_risk": round(selective_risk, 6),
             "provenance_completeness": round(provenance, 6),
             "latency_p50_ms": round(percentile(latencies, 50), 3),
@@ -132,7 +136,8 @@ def main():
         "counts": {
             "cases": len(rows),
             "non_abstained": len(non_abstained),
-            "abstained": sum(r["abstained"] for r in rows)
+            "abstained": sum(r["abstained"] for r in rows),
+            "suite_counts": {suite: sum(r.get("suite") == suite for r in rows) for suite in sorted(declared_suites)}
         },
         "release_boundary": manifest["release_policy"],
         "status": "BENCHMARK_ONLY"
