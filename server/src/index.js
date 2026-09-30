@@ -406,5 +406,22 @@ app.get("/v1/media-assets", dbRequired, auth, async (req,res)=>{
   res.json({items:rows});
 });
 
+// Public operational safety endpoints. These expose readiness facts without claiming global availability.
+app.get("/v1/platform/readiness", (_req, res) => {
+  const databaseConfigured = Boolean(process.env.DATABASE_URL);
+  const authConfigured = Boolean(process.env.JWT_SECRET);
+  const corsConfigured = Boolean(process.env.CORS_ORIGIN);
+  res.status(databaseConfigured && authConfigured ? 200 : 503).json({
+    status: databaseConfigured && authConfigured ? "READY_FOR_DEPLOYMENT_CHECKS" : "BLOCKED",
+    checks: {
+      database: databaseConfigured ? "CONFIGURED" : "DATABASE_NOT_CONFIGURED",
+      auth: authConfigured ? "CONFIGURED" : "JWT_SECRET_NOT_CONFIGURED",
+      cors: corsConfigured ? "CONFIGURED" : "NOT_CONFIGURED"
+    },
+    production_live: false,
+    independent_verification: false
+  });
+});
+
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
 app.listen(port, () => console.log(`shirmani-social-api listening on :${port}`));
