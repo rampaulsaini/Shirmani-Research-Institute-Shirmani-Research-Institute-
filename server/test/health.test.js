@@ -26,3 +26,16 @@ test("server source exposes every currently documented implemented route", () =>
     "/v1/marketplace/transactions"
   ]) assert.ok(source.includes(route), "missing route: " + route);
 });
+
+
+test("server source exposes account, trust and AI control routes", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  for (const route of [
+    'app.patch("/v1/profile/:id"',
+    'app.get("/v1/self-interviews"',
+    'app.post("/v1/reports"',
+    'app.post("/v1/ai-tasks"',
+    'app.get("/v1/account/export"',
+    'app.delete("/v1/account"'
+  ]) assert.ok(source.includes(route), "missing control route: " + route);
+});
