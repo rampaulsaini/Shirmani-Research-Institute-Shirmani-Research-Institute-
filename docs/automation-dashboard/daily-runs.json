@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "days": [
+    {"date":"2026-09-24","workflow_runs":682,"total_workflow_runs":null},
+    {"date":"2026-09-25","workflow_runs":218,"total_workflow_runs":null},
+    {"date":"2026-09-26","workflow_runs":320,"total_workflow_runs":null},
+    {"date":"2026-09-27","workflow_runs":226,"total_workflow_runs":null},
+    {"date":"2026-09-28","workflow_runs":135,"total_workflow_runs":null},
+    {"date":"2026-09-29","workflow_runs":147,"total_workflow_runs":null},
+    {"date":"2026-09-30","workflow_runs":1315,"total_workflow_runs":6561}
+  ]
+}
