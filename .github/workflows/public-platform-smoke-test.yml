@@ -30,4 +30,4 @@ jobs:
       - name: Health without database
         working-directory: server
         run: |
-          node -e "process.env.PORT='8787'; import('./src/index.js'); setTimeout(async()=>{const r=await fetch('http://127.0.0.1:8787/health'); const j=await r.json(); if(j.status!=='READY') process.exit(1); console.log(j); process.exit(0)},1200)"
+          node -e "process.env.PORT='8787'; import('./src/index.js'); setTimeout(async()=>{const r=await fetch('http://127.0.0.1:8787/health'); const j=await r.json(); if(r.status!==503 || j.status!=='DEGRADED') process.exit(1); console.log(j); process.exit(0)},1200)"
