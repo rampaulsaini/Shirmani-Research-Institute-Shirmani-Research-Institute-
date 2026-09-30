@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "name": "supreme-automission-conveyor",
+  "status": "BETA",
+  "design_goal": "maximize measurable accuracy, precision, reproducibility and throughput without weakening evidence or human-review boundaries",
+  "truth_boundary": {
+    "architecture_is_not_deployment": true,
+    "benchmark_is_not_truth_verification": true,
+    "workflow_success_is_not_independent_verification": true,
+    "independent_verified_claims": 0,
+    "live_claim": false
+  },
+  "pipeline": [
+    "intake",
+    "normalize",
+    "evidence",
+    "model_execution",
+    "cross_check",
+    "disagreement_analysis",
+    "confidence_calibration",
+    "abstention",
+    "deterministic_evaluation",
+    "provenance",
+    "integrity",
+    "human_review_gate",
+    "release"
+  ],
+  "performance": {
+    "parallelize_independent_gates": true,
+    "cancel_stale_runs": true,
+    "bounded_retries": true,
+    "cache_immutable_dependencies": true,
+    "never_trade_evidence_for_latency": true
+  },
+  "accuracy": {
+    "track_accuracy": true,
+    "track_macro_precision_recall_f1": true,
+    "track_brier_score": true,
+    "track_calibration_error": true,
+    "track_selective_risk": true,
+    "track_p50_p95_p99_latency": true,
+    "track_error_rate": true,
+    "track_provenance_completeness": true,
+    "track_reproducibility": true,
+    "abstain_on_unknown_or_insufficient_evidence": true
+  },
+  "safety": {
+    "fail_closed_on_unknown_gate": true,
+    "high_impact_actions_require_human_review": true,
+    "counter_evidence_must_be_preserved": true,
+    "ai_output_cannot_be_independent_verification": true,
+    "secrets_must_not_enter_logs_or_artifacts": true
+  }
+}
