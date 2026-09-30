@@ -79,6 +79,20 @@ app.get("/v1/profile/:id", dbRequired, async (req, res) => {
   res.json(rows[0]);
 });
 
+app.patch("/v1/profile/:id", dbRequired, auth, async (req, res) => {
+  if (req.params.id !== req.user.sub) return res.status(403).json({ error: "PROFILE_OWNERSHIP_REQUIRED" });
+  const { display_name = "", bio = "", language = "हिंदी" } = req.body || {};
+  if (typeof display_name !== "string" || display_name.length > 80 || typeof bio !== "string" || bio.length > 1000 || typeof language !== "string" || language.length > 32) return res.status(400).json({ error: "INVALID_PROFILE" });
+  const { rows } = await pool.query("update profiles set display_name=$1,bio=$2,language=$3,updated_at=now() where id=$4 returning id,display_name,bio,language,created_at,updated_at", [display_name.trim(), bio.trim(), language.trim(), req.user.sub]);
+  if (!rows[0]) return res.status(404).json({ error: "PROFILE_NOT_FOUND" });
+  res.json(rows[0]);
+});
+
+app.get("/v1/self-interviews", dbRequired, auth, async (req, res) => {
+  const { rows } = await pool.query("select id,profile_id,question,answer,created_at from self_interviews where profile_id=$1 order by created_at desc limit 100", [req.user.sub]);
+  res.json({ items: rows });
+});
+
 app.get("/v1/feed", dbRequired, async (_req, res) => {
   const { rows } = await pool.query("select p.id,p.author_id,pr.display_name,p.text,p.type,p.created_at from posts p join profiles pr on pr.id=p.author_id order by p.created_at desc limit 50");
   res.json({ items: rows });
@@ -111,6 +125,20 @@ app.post("/v1/marketplace/listings", dbRequired, auth, async (req, res) => {
   const allowed = new Set(["product","service","course","music","audio","job"]);
   if (!allowed.has(kind) || typeof title !== "string" || !title.trim() || title.length > 160 || typeof description !== "string" || description.length > 5000 || !Number.isInteger(price_minor) || price_minor < 0 || price_minor > 1000000000 || typeof currency !== "string" || !/^[A-Z]{3}$/.test(currency)) return res.status(400).json({error:"INVALID_LISTING"});
   const { rows } = await pool.query("insert into marketplace_listings(owner_id,kind,title,description,price_minor,currency) values($1,$2,$3,$4,$5,$6) returning id,owner_id,kind,title,description,price_minor,currency,status,created_at", [req.user.sub,kind,title.trim(),description,price_minor,currency]);
+  res.status(201).json(rows[0]);
+});
+
+app.post("/v1/ai-tasks", dbRequired, auth, async (req, res) => {
+  const { task_type, input = {} } = req.body || {};
+  if (typeof task_type !== "string" || !task_type.trim() || task_type.length > 64 || typeof input !== "object" || input === null || Array.isArray(input)) return res.status(400).json({ error: "INVALID_AI_TASK" });
+  const { rows } = await pool.query("insert into ai_tasks(owner_id,task_type,input) values($1,$2,$3) returning id,task_type,status,created_at,updated_at", [req.user.sub, task_type.trim(), input]);
+  res.status(202).json(rows[0]);
+});
+
+app.post("/v1/reports", dbRequired, auth, async (req, res) => {
+  const { target_type, target_id, reason, details = "" } = req.body || {};
+  if (typeof target_type !== "string" || !target_type.trim() || typeof target_id !== "string" || !target_id.trim() || typeof reason !== "string" || !reason.trim() || reason.length > 100 || typeof details !== "string" || details.length > 3000) return res.status(400).json({ error: "INVALID_REPORT" });
+  const { rows } = await pool.query("insert into reports(reporter_id,target_type,target_id,reason,details) values($1,$2,$3,$4,$5) returning id,target_type,target_id,reason,details,status,created_at", [req.user.sub, target_type.trim().slice(0,32), target_id, reason.trim(), details]);
   res.status(201).json(rows[0]);
 });
 
