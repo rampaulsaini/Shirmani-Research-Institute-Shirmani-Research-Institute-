@@ -39,3 +39,29 @@ test("server source exposes account, trust and AI control routes", () => {
     'app.delete("/v1/account"'
   ]) assert.ok(source.includes(route), "missing control route: " + route);
 });
+
+
+test("server source exposes public platform module routes", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  for (const route of [
+    'app.get("/v1/users/:id/followers"',
+    'app.post("/v1/posts/:id/comments"',
+    'app.get("/v1/notifications"',
+    'app.post("/v1/courses/:listingId/enroll"',
+    'app.post("/v1/work-orders"',
+    'app.post("/v1/disputes"',
+    'app.get("/v1/verification-reviews/:claimId"',
+    'app.post("/v1/marketplace/orders"',
+    'app.get("/v1/dashboard"'
+  ]) assert.ok(source.includes(route), "missing module route: " + route);
+});
+
+test("server source preserves production truth boundaries", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  for (const boundary of [
+    "DATABASE_NOT_CONFIGURED",
+    "JWT_SECRET_NOT_CONFIGURED",
+    "NOT_PAID",
+    "Recorded order/payment fields are not proof"
+  ]) assert.ok(source.includes(boundary), "missing boundary: " + boundary);
+});
