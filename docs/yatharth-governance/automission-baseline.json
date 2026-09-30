@@ -1,27 +1,27 @@
 {
   "schema_version": "1.0.0",
-  "baseline_id": "automission-baseline-v1",
+  "baseline_id": "automission-baseline-v2",
   "source": "benchmarks/automission/sample_predictions.jsonl",
-  "fixture_sha256": "f596d775de63c19fd65d589bdb6c0125b8f506df55307d963377939e6e7aaf5e",
+  "fixture_sha256": "43012c4e5fb8efaa29bdd524a244f77fe49897d62d2591a83bb746bce74a0459",
   "metrics": {
-    "accuracy": 0.666667,
-    "precision_macro": 0.75,
-    "recall_macro": 0.75,
-    "f1_macro": 0.666667,
-    "brier_score": 0.105,
-    "expected_calibration_error": 0.2,
-    "abstention_rate": 0.25,
-    "selective_risk": 0.333333,
-    "provenance_completeness": 0.75,
-    "latency_p50_ms": 19,
-    "latency_p95_ms": 24.55,
-    "latency_p99_ms": 24.91,
+    "accuracy": 0.8,
+    "precision_macro": 0.833333,
+    "recall_macro": 0.833333,
+    "f1_macro": 0.8,
+    "brier_score": 0.092,
+    "expected_calibration_error": 0.23,
+    "abstention_rate": 0.285714,
+    "selective_risk": 0.2,
+    "provenance_completeness": 0.857143,
+    "latency_p50_ms": 20,
+    "latency_p95_ms": 37.5,
+    "latency_p99_ms": 39.5,
     "error_rate": 0,
     "reproducibility": 1
   },
   "release_boundary": {
     "independent_verified_claims": 0,
     "live_claim": false,
-    "note": "Deterministic fixture baseline only; benchmark does not establish truth verification."
+    "note": "Expanded deterministic fixture baseline covering golden, counter-evidence, edge, regression, unseen and adversarial suites; benchmark remains non-verifying."
   }
 }
