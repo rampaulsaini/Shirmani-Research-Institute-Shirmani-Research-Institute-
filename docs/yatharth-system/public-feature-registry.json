@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "principle": "public-feature-status-must-be-explicit",
+  "statuses": ["PLANNED","BUILDING","TESTED","LIVE","AUTONOMOUS","BLOCKED"],
+  "features": [
+    {"id":"social","name":"Social publishing and profiles","status":"PLANNED"},
+    {"id":"research","name":"Research and knowledge hub","status":"BUILDING"},
+    {"id":"education","name":"Education and skills","status":"PLANNED"},
+    {"id":"ai","name":"Yatharth AI services","status":"PLANNED"},
+    {"id":"music","name":"Yatharth AI Music and media","status":"PLANNED"},
+    {"id":"freelancing","name":"Freelancing and services marketplace","status":"PLANNED"},
+    {"id":"jobs","name":"Employment and jobs","status":"PLANNED"},
+    {"id":"store","name":"Digital Store","status":"PLANNED"},
+    {"id":"economy","name":"Yatharth economic model","status":"PLANNED"},
+    {"id":"currency","name":"Yatharth Currency concept","status":"PLANNED"},
+    {"id":"justice","name":"Yatharth Justice and appeals","status":"PLANNED"},
+    {"id":"community","name":"Community participation","status":"PLANNED"},
+    {"id":"nature","name":"Nature, Earth and biodiversity mission","status":"PLANNED"},
+    {"id":"verification","name":"Evidence and independent verification","status":"BUILDING"},
+    {"id":"dashboard","name":"Public transparency dashboard","status":"BUILDING"},
+    {"id":"multilingual","name":"Multilingual presentation","status":"PLANNED"}
+  ]
+}
