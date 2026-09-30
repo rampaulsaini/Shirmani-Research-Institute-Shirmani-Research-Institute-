@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Shirmani Global Public Platform API",
-    "version": "0.5.0",
-    "description": "Evidence-aware multi-user API contract for identity, public publishing, self-interview learning and marketplace discovery."
+    "version": "0.6.0",
+    "description": "Evidence-aware multi-user API contract covering public platform modules, bounded Automission, privacy/media metadata, commerce and explicit deployment gates."
   },
   "servers": [
     {
@@ -658,6 +658,491 @@
           }
         }
       }
+    },
+    "/v1/capabilities/status": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Capability status and truth-boundary contract"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/platform/readiness": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Deployment readiness facts"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/ai-agents": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bounded Automission agent registry"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/ai-tasks/{id}/events": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owned AI task event history"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/ai-tasks/{id}/dispatch": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dispatch an owned task to an enabled bounded agent"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/ai-tasks/{id}/retry": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retry a failed owned task"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/ai-tasks/{id}/cancel": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cancel an owned queued/running task"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/privacy-requests": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owned privacy requests"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/privacy-requests/{id}": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owned privacy request"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/media-assets": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owned media metadata"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/marketplace/orders": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owned marketplace orders"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/payments/webhook": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Deployment-gated external payment webhook"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/users/{id}/followers": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Public follower list"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/users/{id}/following": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Public following list"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/posts/{id}/comments": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Public post comments"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/notifications": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authenticated notifications"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/dashboard": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authenticated dashboard"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/work-orders": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authenticated work orders"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/disputes": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authenticated disputes"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
+    },
+    "/v1/verification-reviews/{claimId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Verification review records"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "503": {
+            "description": "Service/dependency unavailable"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -674,6 +1159,10 @@
     "Authenticated writes derive ownership from the verified JWT subject.",
     "Marketplace listings are not proof of payment, delivery, employment, income or customer satisfaction.",
     "AI output is not independent verification.",
-    "Moderation, appeals, privacy, deletion, auditability and human review are production gates."
+    "Moderation, appeals, privacy, deletion, auditability and human review are production gates.",
+    "Deployment readiness does not mean production LIVE.",
+    "Automission lifecycle completion does not mean independent verification.",
+    "Payment webhook records require external provider signature verification.",
+    "Media endpoints expose metadata; binary storage remains deployment-specific."
   ]
 }
