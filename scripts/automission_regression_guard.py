@@ -20,6 +20,7 @@ def main():
       "f1_macro": cm["f1_macro"]-bm["f1_macro"] >= -0.02,
       "brier_score": cm["brier_score"]-bm["brier_score"] <= 0.02,
       "provenance_completeness": cm["provenance_completeness"]-bm["provenance_completeness"] >= 0.0,
+      "coverage": cm["coverage"]-bm["coverage"] >= -0.05,
     }
     print(json.dumps({"baseline":base.get("commit_sha","unknown"),"current":cur.get("fixture_sha256"),"checks":rules},indent=2))
     if not all(rules.values()):
