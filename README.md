@@ -138,3 +138,13 @@ Source → Normalize → Claims → Sources → Evidence → Formulation/Test �
 - **Container smoke gate:** [.github/workflows/public-platform-container-smoke.yml](.github/workflows/public-platform-container-smoke.yml)
 
 The API has a repository-side deployment foundation, but **Production LIVE is not declared** until an external runtime, database, HTTPS, security controls, monitoring, rollback and human-impact gates are actually evidenced. Independent research verification remains a separate evidence-and-human-review process.
+
+
+## ⚖️ Neutral Governance & Public-Service Architecture
+
+- [Yatharth Neutral Governance](docs/yatharth-governance/README.md)
+- [AI/ML/NLP/Automission Control Contract](docs/yatharth-governance/ai-control-contract.md)
+- [Essential Services & Nature Protection](docs/yatharth-governance/public-services-and-nature.md)
+- [Constitutional Supreme-Control Model](docs/yatharth-governance/constitutional-supreme-control.md)
+
+This is a research architecture: it does not grant unlimited authority to any person, institution, or AI agent. High-impact decisions require lawful authority, human review, appeal and audit.
