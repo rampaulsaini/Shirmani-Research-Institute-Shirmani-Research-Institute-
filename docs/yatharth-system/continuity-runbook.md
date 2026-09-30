@@ -23,3 +23,9 @@
 IMPLEMENTED → TESTED → DEPLOYED → LIVE → VERIFIED
 
 इन signals को एक-दूसरे का पर्याय न माना जाए। Independent verification अलग gate है।
+
+## Public navigation check
+The continuity surface should link only to files that exist on the same release branch. When a referenced file is missing, treat the release as not complete and repair the link or restore the file before declaring the module LIVE.
+
+## Release discipline
+Before merging a continuity change: validate JSON contracts, run available tests, inspect the public entry points, and record any unavailable CI result explicitly. Never infer PASS from the absence of a reported failure.
