@@ -65,3 +65,15 @@ test("server source preserves production truth boundaries", () => {
     "Recorded order/payment fields are not proof"
   ]) assert.ok(source.includes(boundary), "missing boundary: " + boundary);
 });
+
+
+test("server source exposes explicit capability status without overstating readiness", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  for (const required of [
+    'app.get("/v1/capabilities/status"',
+    '"DEPLOYMENT_GATED"',
+    '"INDEPENDENTLY_VERIFIED"',
+    "workflow_completion_is_not_truth_verification",
+    "conceptual_currency_design_is_not_legal_currency"
+  ]) assert.ok(source.includes(required), "missing capability status boundary: " + required);
+});
