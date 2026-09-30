@@ -1,0 +1,28 @@
+schema_version: '1.0'
+updated: '2026-09-30'
+
+# status: planned | architecture | implemented | deployed | blocked | needs_human_review
+# verified is reserved for independent verification and must not imply platform verification.
+features:
+  public_interface: {status: architecture, owner_layer: platform}
+  research_library: {status: architecture, owner_layer: research}
+  claim_registry: {status: architecture, owner_layer: verification}
+  evidence_registry: {status: architecture, owner_layer: verification}
+  independent_verification: {status: architecture, owner_layer: verification, fail_closed: true}
+  ai_research_assistant: {status: architecture, owner_layer: ai}
+  ai_ml_nlp_pipeline: {status: architecture, owner_layer: ai}
+  automission: {status: architecture, owner_layer: automation}
+  research_factory: {status: architecture, owner_layer: automation}
+  multilingual: {status: planned, owner_layer: platform}
+  yatharth_ai_music: {status: planned, owner_layer: creative}
+  creator_studio: {status: planned, owner_layer: creative}
+  digital_store: {status: planned, owner_layer: commerce}
+  freelancing: {status: planned, owner_layer: economy}
+  jobs: {status: planned, owner_layer: economy}
+  business_services: {status: planned, owner_layer: economy}
+  education: {status: planned, owner_layer: education}
+  community: {status: planned, owner_layer: community}
+  nature_humanity: {status: planned, owner_layer: mission}
+  public_dashboard: {status: architecture, owner_layer: observability}
+  security_privacy: {status: architecture, owner_layer: governance}
+  human_review_appeals: {status: architecture, owner_layer: governance}
