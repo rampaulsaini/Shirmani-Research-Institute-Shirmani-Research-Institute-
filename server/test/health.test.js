@@ -77,3 +77,17 @@ test("server source exposes explicit capability status without overstating readi
     "conceptual_currency_design_is_not_legal_currency"
   ]) assert.ok(source.includes(required), "missing capability status boundary: " + required);
 });
+
+
+test("server source exposes privacy, media and bounded Automission routes", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  for (const route of [
+    'app.get("/v1/ai-agents"',
+    'app.get("/v1/ai-tasks/:id/events"',
+    'app.post("/v1/privacy-requests"',
+    'app.get("/v1/privacy-requests"',
+    'app.post("/v1/media-assets"',
+    'app.get("/v1/media-assets"'
+  ]) assert.ok(source.includes(route), "missing hardening route: " + route);
+  assert.ok(source.includes("Binary storage is external"), "missing media storage boundary");
+});
