@@ -22,3 +22,11 @@ Repository credentials belong only in GitHub repository secrets or a secure secr
 
 ## Economic boundary
 A prototype listing or currency design is not a payment, sale, income result or deployed currency. Those states require real transaction evidence and applicable legal, security and deployment controls.
+
+## Data protection and trust gates
+- Account recovery must use a dedicated verified recovery flow; passwords remain server-side hashes only.
+- Provide authenticated export and deletion workflows with retention exceptions documented before launch.
+- Reports must enter a review queue; automated classification may assist but must not silently decide high-impact disputes.
+- Transaction records are evidence of recorded transaction state, not proof of successful delivery, income, employment or satisfaction unless independently supported.
+- AI tasks require bounded inputs, authenticated ownership, rate limits, observable status transitions and human escalation for high-impact outputs.
+- Audit events should be append-oriented and access-controlled; never store passwords, access tokens or payment secrets in audit metadata.
