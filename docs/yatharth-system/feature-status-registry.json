@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "last_reviewed": "2026-09-30",
+  "truth_rule": "architecture_is_not_deployment",
+  "domains": {
+    "public_platform": "ARCHITECTURE",
+    "accounts_profiles": "ARCHITECTURE",
+    "social_publishing": "ARCHITECTURE",
+    "marketplace": "ARCHITECTURE",
+    "freelancing": "ARCHITECTURE",
+    "employment": "ARCHITECTURE",
+    "education": "ARCHITECTURE",
+    "yatharth_ai": "ARCHITECTURE",
+    "yatharth_ai_music": "ARCHITECTURE",
+    "research_institute": "RESEARCH",
+    "independent_verification": "REVIEW_REQUIRED",
+    "automission": "BETA",
+    "governance_control_plane": "BETA",
+    "nature_protection": "RESEARCH",
+    "digital_store": "ARCHITECTURE",
+    "yatharth_economy": "RESEARCH",
+    "yatharth_justice": "RESEARCH"
+  },
+  "verification": {
+    "independent_verified_claims": 0,
+    "rule": "increase only after qualifying independent human review is recorded"
+  }
+}
