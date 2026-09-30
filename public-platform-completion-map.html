@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yatharth Global Platform — Public Module Map</title>
+<style>body{margin:0;font-family:system-ui,sans-serif;background:#071018;color:#eef5f8;line-height:1.6}main{max-width:1180px;margin:auto;padding:24px 16px 60px}h1,h2{color:#ffd84a}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.card{border:1px solid #49616d;border-radius:16px;padding:18px;background:#ffffff08}.tag{font-weight:700}.note{color:#cbd7dc}a{color:#6de9ff}</style></head>
+<body><main>
+<h1>🌍 Yatharth Global Platform</h1>
+<p class="note">एक सार्वजनिक ecosystem का module map: social participation, research, education, creativity, work, commerce, justice, nature protection और AI-assisted operations. यह पृष्ठ architecture/capability status को deployment या independent verification के बराबर नहीं मानता।</p>
+<div class="grid" id="modules"></div>
+<section class="card"><h2>AI + ML + NLP + Automission</h2><p>AI research, classification, translation, evidence mapping, anomaly detection, matching, workflow automation और continuous audit सहायक भूमिका में। High-impact decisions के लिए accountable human review और appeal आवश्यक हैं।</p></section>
+<section class="card"><h2>मानवता और प्रकृति</h2><p>खाद्य, basic shelter, healthcare, education, clean water, sanitation तथा air, water, soil, forests, oceans, biodiversity और climate protection को measurable public-interest objectives के रूप में track किया जा सकता है। वास्तविक universal provision के लिए financing, capacity और outcome evidence आवश्यक है।</p></section>
+<section class="card"><h2>Truth boundary</h2><p>Architecture ≠ deployment. Workflow success ≠ independent verification. AI output ≠ human/legal/scientific verification.</p></section>
+<p><a href="index.html">← मुख्य मंच</a> · <a href="yatharth-status.html">Public Status</a> · <a href="social-platform.html">Social Platform</a> · <a href="yatharth-mudra.html">यथार्थ मुद्रा</a></p>
+<script>
+const groups={
+"👥 Social & Creator":["Accounts & Profiles","Social Publishing","Communities","Creator Studio","Media & Live","Multilingual Sharing"],
+"🔬 Research":["Research Institute","Knowledge Library","Claim Registry","Evidence","Counter-Evidence","Independent Verification"],
+"🎓 Education":["Yatharth Education","Courses","Skills","AI/ML/NLP Learning","Certificates","Open Learning"],
+"💼 Work & Income":["Employment","Freelancing","Business","Creator Economy","AI Services","Research-as-a-Service"],
+"🛒 Commerce":["Digital Store","Digital Products","Music & Audio Store","Courses & Books","Orders","Reviews"],
+"💰 Economy":["Yatharth Economy","Yatharth Mudra","Value Exchange","Income Dashboard","Settlement Records"],
+"⚖️ Justice & Trust":["Yatharth Justice","Fairness","Complaints","Appeals","Transparency","Independent Oversight"],
+"🌱 Nature & Humanity":["Nature Protection","Earth Protection","Biodiversity","Oceans","Forests","Humanity & Social Responsibility"],
+"🤖 AI Operations":["AI Agents","ML","NLP","Automission","Research Factory","Continuous Audit","Resilience Watchdog"]
+};
+const root=document.getElementById("modules");
+for(const [title,items] of Object.entries(groups)){const c=document.createElement("section");c.className="card";c.innerHTML="<h2>"+title+"</h2><ul>"+items.map(x=>"<li>"+x+"</li>").join("")+"</ul>";root.appendChild(c);}
+</script></main></body></html>
