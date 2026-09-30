@@ -25,14 +25,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+      - name: Refresh failure intelligence
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 factory/failure_intelligence.py
       - name: Build bounded failure feedback
         run: |
-          if [ -f generated/failure-registry.json ]; then
-            python3 scripts/build_failure_feedback.py
-          else
-            echo "Failure registry unavailable; no feedback generated."
-            exit 0
-          fi
+          test -f generated/failure-registry.json
+          python3 scripts/build_failure_feedback.py
       - name: Validate feedback safety
         if: hashFiles('generated/automission-feedback.json') != ''
         run: python3 scripts/validate_feedback_contract.py
