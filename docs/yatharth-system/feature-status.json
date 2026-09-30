@@ -1,0 +1,24 @@
+{
+  "schema_version":"1.0",
+  "generated_at":"2026-09-30T00:00:00Z",
+  "features":[
+    {"id":"CORE_SOURCE","name":"Canonical Yatharth source","area":"Research","status":"IMPLEMENTED","verification_status":"NOT_APPLICABLE","public_route":"/yatharth/","notes":"Author-originated source registry."},
+    {"id":"CLAIM_REGISTRY","name":"Claim registry and lifecycle","area":"Research","status":"IMPLEMENTED","verification_status":"NOT_APPLICABLE","public_route":"/research/claims/","notes":"Normalized claims remain distinct from evidence and verification."},
+    {"id":"EVIDENCE_MAP","name":"Evidence and counter-evidence","area":"Research","status":"ARCHITECTURE_READY","verification_status":"NOT_VERIFIED","public_route":"/research/evidence/","notes":"Independent evidence mapping remains research work."},
+    {"id":"INDEPENDENT_VERIFICATION","name":"Independent verification gate","area":"Verification","status":"ARCHITECTURE_READY","verification_status":"NOT_VERIFIED","public_route":"/verification/","notes":"Automation output is not independent human verification."},
+    {"id":"AI_ML_NLP","name":"AI/ML/NLP research layer","area":"AI","status":"ARCHITECTURE_READY","verification_status":"NOT_APPLICABLE","public_route":"/ai/","notes":"Architecture exists; production capabilities require implementation and testing."},
+    {"id":"AUTOMISSION","name":"Automission orchestration","area":"Automation","status":"IMPLEMENTATION_IN_PROGRESS","verification_status":"NOT_APPLICABLE","public_route":"/automission/","notes":"Repository automation is active; full public-platform orchestration remains in progress."},
+    {"id":"RESEARCH_FACTORY","name":"Research Factory","area":"Automation","status":"IMPLEMENTATION_IN_PROGRESS","verification_status":"NOT_APPLICABLE","public_route":"/research/factory/","notes":"Continuous research automation is active in the repository."},
+    {"id":"PUBLIC_PLATFORM","name":"Public platform container","area":"Platform","status":"IMPLEMENTATION_IN_PROGRESS","verification_status":"NOT_APPLICABLE","public_route":"/","notes":"Public platform completion layer is being extended."},
+    {"id":"YATHARTH_AI_MUSIC","name":"Yatharth AI Music","area":"Creative","status":"ARCHITECTURE_READY","verification_status":"NOT_APPLICABLE","public_route":"/music/","notes":"Requires product integration, generation pipeline and publishing tests."},
+    {"id":"EMPLOYMENT","name":"Employment and skills","area":"Economic","status":"ARCHITECTURE_READY","verification_status":"NOT_APPLICABLE","public_route":"/employment/","notes":"Live job, skill and service integrations remain to be connected."},
+    {"id":"FREELANCING","name":"Freelancing marketplace","area":"Economic","status":"ARCHITECTURE_READY","verification_status":"NOT_APPLICABLE","public_route":"/freelancing/","notes":"Marketplace, payments, identity and dispute processes remain implementation work."},
+    {"id":"DIGITAL_STORE","name":"Digital Store","area":"Commerce","status":"ARCHITECTURE_READY","verification_status":"NOT_APPLICABLE","public_route":"/store/","notes":"Catalog and payment integration remain deployment work."},
+    {"id":"YATHARTH_ECONOMY","name":"Yatharth economic model","area":"Economic","status":"PLANNED","verification_status":"NOT_APPLICABLE","public_route":"/economy/","notes":"Requires explicit economic, legal and technical specification."},
+    {"id":"YATHARTH_CURRENCY","name":"Yatharth currency concept","area":"Economic","status":"PLANNED","verification_status":"NOT_APPLICABLE","public_route":"/currency/","notes":"Concept only until legal, monetary and technical requirements are defined."},
+    {"id":"JUSTICE_FAIRNESS","name":"Justice, fairness and dispute processes","area":"Governance","status":"ARCHITECTURE_READY","verification_status":"NOT_APPLICABLE","public_route":"/justice/","notes":"Must preserve human appeal, due process and applicable law."},
+    {"id":"NATURE_HUMANITY","name":"Nature and humanity mission","area":"Mission","status":"ARCHITECTURE_READY","verification_status":"NOT_APPLICABLE","public_route":"/nature/","notes":"Mission/proposal layer; empirical and policy claims require evidence."},
+    {"id":"COMMUNITY","name":"Community and participation","area":"Community","status":"ARCHITECTURE_READY","verification_status":"NOT_APPLICABLE","public_route":"/community/","notes":"Moderation, privacy and safety controls remain implementation work."},
+    {"id":"SYSTEM_DASHBOARD","name":"Public system dashboard","area":"Transparency","status":"IMPLEMENTATION_IN_PROGRESS","verification_status":"NOT_APPLICABLE","public_route":"/dashboard/","notes":"Report dimension-specific status; do not invent a single overall completion percentage."}
+  ]
+}
