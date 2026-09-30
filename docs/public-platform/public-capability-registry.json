@@ -1,0 +1,10 @@
+{
+  "name":"Yatharth Global Platform",
+  "status_model":["PLANNED","BUILT","TESTED","LIVE","AUTONOMOUS"],
+  "public_hub":"public-platform-hub.html",
+  "domains":["social","research","education","ai","ai-music","creator","digital-store","freelancing","employment","economy","yatharth-mudra","yatharth-justice","community","trust","verification","nature-humanity"],
+  "principle":"Maximize user value and satisfaction rather than maximizing time spent for its own sake.",
+  "scale_vision":{"target_users":"850 crore (aspirational long-term target)","status":"vision"},
+  "human_oversight":["high-impact account actions","financial actions","disputes","safety escalations","independent verification"],
+  "truth_boundary":"Architecture or automation success is not independent verification."
+}

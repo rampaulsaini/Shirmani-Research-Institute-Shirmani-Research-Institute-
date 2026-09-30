@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Yatharth Global Platform object contract",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "statusModel": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "PLANNED",
+          "BUILT",
+          "TESTED",
+          "LIVE",
+          "AUTONOMOUS"
+        ]
+      }
+    },
+    "objects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "purpose",
+          "requiredFields"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "requiredFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "version",
+    "statusModel",
+    "objects"
+  ]
+}

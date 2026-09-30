@@ -1,23 +1,17 @@
 # Shirmani Social API
 
-This service is the production-backend foundation for the global social-platform frontend.
+Production-backend foundation for the Yatharth public-platform surfaces.
 
-## Run
+## Setup
 1. Copy `.env.example` to `.env`.
-2. Set `DATABASE_URL` and a long random `JWT_SECRET`.
-3. Apply `schema.sql` to PostgreSQL.
+2. Configure `DATABASE_URL` and a long random `JWT_SECRET`.
+3. Apply `sql/schema.sql` to PostgreSQL.
 4. Run `npm install` and `npm start`.
 
-## API
-- `GET /health`
-- `POST /v1/auth/register`
-- `POST /v1/auth/login`
-- `GET /v1/profile/:id`
-- `GET /v1/feed`
-- `POST /v1/posts` (Bearer token)
-- `POST /v1/self-interviews` (Bearer token)
+The schema provides the current API tables plus extensible primitives for social interactions, notifications, media metadata, learning, work fulfilment, disputes and independent-review records.
 
-## Production gate
-The repository does not claim that this backend is deployed. Before public exposure, configure HTTPS/TLS, secret management, backups, database migrations, monitoring, abuse/moderation workflows, account recovery, email verification, privacy/deletion workflows, object storage/media processing, and security testing.
+## Readiness
+This repository contains an API foundation and database contract. It does **not** claim that payments, object storage, employment, dispute decisions, AI workers, or independent verification are live. Those require provider integration, deployment evidence and/or qualified independent review.
 
-The API deliberately does not create or claim followers, views, payments, income, employment, testimonials or real-world verification without evidence.
+## Safety
+Never place credentials, payment secrets, API keys or private user data in Git commits, issues or chat. High-impact moderation, financial, dispute and verification decisions require appropriate human oversight and appeal.
