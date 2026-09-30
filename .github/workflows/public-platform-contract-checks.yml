@@ -39,7 +39,7 @@ jobs:
           test -f docs/public-platform/integration-runbook.md
       - name: Install API dependencies
         working-directory: server
-        run: npm ci
+        run: npm install
       - name: Syntax check API
         working-directory: server
         run: node --check src/index.js
