@@ -462,16 +462,22 @@ app.post("/v1/payments/webhook", dbRequired, async (req, res) => {
 });
 
 // Public operational safety endpoints. These expose readiness facts without claiming global availability.
-app.get("/v1/platform/readiness", (_req, res) => {
+app.get("/v1/platform/readiness", async (_req, res) => {
   const databaseConfigured = Boolean(process.env.DATABASE_URL);
   const authConfigured = Boolean(process.env.JWT_SECRET);
-  const corsConfigured = Boolean(process.env.CORS_ORIGIN);
-  res.status(databaseConfigured && authConfigured ? 200 : 503).json({
-    status: databaseConfigured && authConfigured ? "READY_FOR_DEPLOYMENT_CHECKS" : "BLOCKED",
+  const corsConfigured = Boolean(process.env.CORS_ORIGIN && process.env.CORS_ORIGIN !== "*");
+  let database = databaseConfigured ? "CONFIGURED" : "DATABASE_NOT_CONFIGURED";
+  if (pool) {
+    try { await pool.query("select 1"); database = "READY"; }
+    catch { database = "ERROR"; }
+  }
+  const ready = database === "READY" && authConfigured && corsConfigured;
+  res.status(ready ? 200 : 503).json({
+    status: ready ? "READY_FOR_DEPLOYMENT_CHECKS" : "BLOCKED",
     checks: {
-      database: databaseConfigured ? "CONFIGURED" : "DATABASE_NOT_CONFIGURED",
+      database,
       auth: authConfigured ? "CONFIGURED" : "JWT_SECRET_NOT_CONFIGURED",
-      cors: corsConfigured ? "CONFIGURED" : "NOT_CONFIGURED"
+      cors: corsConfigured ? "CONFIGURED" : "NOT_CONFIGURED_OR_WILDCARD"
     },
     production_live: false,
     independent_verification: false
