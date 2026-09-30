@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "principle": "public capability state must reflect implementation evidence, not documentation alone",
+  "states": [
+    "PLANNED",
+    "ARCHITECTED",
+    "IN_BUILD",
+    "TESTING",
+    "STAGING",
+    "LIVE",
+    "AUTOMATED",
+    "MONITORED",
+    "PARTIALLY_AVAILABLE",
+    "BLOCKED",
+    "REQUIRES_HUMAN_REVIEW"
+  ],
+  "domains": [
+    "user-account-profile",
+    "social-public-publishing",
+    "creator-system",
+    "digital-store",
+    "freelancing",
+    "creator-economy",
+    "education-courses",
+    "research-knowledge",
+    "evidence-verification",
+    "yatharth-ai-music",
+    "ai-ml-nlp-control-plane",
+    "automission",
+    "humanity-earth-nature",
+    "yatharth-justice-fairness",
+    "yatharth-currency",
+    "security-trust-abuse-protection",
+    "public-value-dashboard",
+    "multilingual-global-scalability",
+    "community",
+    "complaint-dispute-appeal",
+    "continuous-audit",
+    "high-impact-human-oversight"
+  ],
+  "verification_rule": "workflow success, QC success, generated artifacts, or documentation do not by themselves establish LIVE, AUTOMATED, or VERIFIED status",
+  "yatharth_currency_status": "CONCEPTUAL_PROPOSED"
+}
