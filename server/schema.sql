@@ -1,7 +1,7 @@
 create extension if not exists pgcrypto;
 create table if not exists accounts (
   id uuid primary key default gen_random_uuid(), email varchar(320) not null unique,
-  password_hash text not null, created_at timestamptz not null default now()
+  password_hash text not null, role varchar(24) not null default 'user' check (role in ('user','moderator','admin')), created_at timestamptz not null default now()
 );
 create table if not exists profiles (
   id uuid primary key references accounts(id) on delete cascade,
@@ -62,3 +62,7 @@ create index if not exists transactions_seller_idx on transactions(seller_id, cr
 create index if not exists reports_status_idx on reports(status, created_at desc);
 create index if not exists audit_events_target_idx on audit_events(target_type, target_id, created_at desc);
 create index if not exists ai_tasks_status_idx on ai_tasks(status, created_at desc);
+
+
+create index if not exists reports_target_idx on reports(target_type, target_id, created_at desc);
+create index if not exists ai_tasks_owner_idx on ai_tasks(owner_id, created_at desc);
