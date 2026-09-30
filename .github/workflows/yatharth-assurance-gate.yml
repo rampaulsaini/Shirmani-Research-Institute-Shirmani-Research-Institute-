@@ -1,0 +1,43 @@
+name: Yatharth Assurance Gate
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "docs/public-platform/public-capability-registry.json"
+      - "server/src/index.js"
+      - "schemas/public-platform-assurance.schema.json"
+      - "scripts/validate-yatharth-assurance.mjs"
+      - "docs/public-platform/yatharth-assurance-control-plane.md"
+  push:
+    branches: [main]
+    paths:
+      - "docs/public-platform/public-capability-registry.json"
+      - "server/src/index.js"
+      - "schemas/public-platform-assurance.schema.json"
+      - "scripts/validate-yatharth-assurance.mjs"
+      - "docs/public-platform/yatharth-assurance-control-plane.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yatharth-assurance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  assurance:
+    name: Registry/API/Evidence Consistency
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Validate assurance contracts
+        run: |
+          node -e 'const fs=require("fs"); const s=JSON.parse(fs.readFileSync("schemas/public-platform-assurance.schema.json","utf8")); const r=JSON.parse(fs.readFileSync("docs/public-platform/public-capability-registry.json","utf8")); if(!s.$schema || !r.status_model || !r.capability_states) process.exit(1); console.log("Assurance contracts loaded")'
+
+      - name: Run assurance gate
+        run: node scripts/validate-yatharth-assurance.mjs
