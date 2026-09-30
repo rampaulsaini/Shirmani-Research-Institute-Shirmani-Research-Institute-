@@ -53,3 +53,16 @@ A module is complete only when its code, tests, documentation, security model, u
 - Validate that public continuity pages do not present architecture as deployment.
 - Validate that independent verification remains fail-closed at zero until a qualifying review record exists.
 - Record failures without deleting source/evidence history.
+
+
+## P0.1 — public continuity completion gate
+- Keep the public status dashboard linked to the machine-readable registry.
+- Validate that every displayed capability has an explicit lifecycle status.
+- Keep verification counts fail-closed and auditable.
+- Treat missing registry data as unavailable, never as LIVE.
+- Preserve rollback/appeal requirements before production activation.
+
+## P0.2 — livelihood continuity
+- Surface Digital Store, Yatharth AI Music/Media, Freelancing, Jobs and creator-service pathways in the public navigation.
+- Keep every pathway labeled according to actual implementation state.
+- Do not represent prospective income, sales, employment or client outcomes as completed outcomes.
