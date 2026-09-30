@@ -111,6 +111,25 @@ def main():
         raise AssertionError(f"abstention coverage too low: {coverage:.6f}")
     selective_risk = 1.0 - accuracy if non_abstained else 0.0
     provenance = sum(bool(r["evidence_ids"]) for r in rows) / len(rows)
+
+    # Per-suite metrics prevent strong aggregate results from masking weak suites.
+    suite_metrics = {}
+    for suite in sorted(declared_suites):
+        suite_rows = [r for r in rows if r.get("suite") == suite]
+        suite_non_abstained = [r for r in suite_rows if not r["abstained"]]
+        suite_correct = sum(r["expected"] == r["predicted"] for r in suite_non_abstained)
+        suite_accuracy = suite_correct / len(suite_non_abstained) if suite_non_abstained else 0.0
+        suite_provenance = sum(bool(r["evidence_ids"]) for r in suite_rows) / len(suite_rows) if suite_rows else 0.0
+        suite_metrics[suite] = {
+            "cases": len(suite_rows),
+            "coverage": round(len(suite_non_abstained) / len(suite_rows), 6) if suite_rows else 0.0,
+            "accuracy": round(suite_accuracy, 6),
+            "provenance_completeness": round(suite_provenance, 6),
+            "abstention_rate": round(sum(r["abstained"] for r in suite_rows) / len(suite_rows), 6) if suite_rows else 0.0,
+        }
+    weakest_suite_accuracy = min(v["accuracy"] for v in suite_metrics.values())
+    if weakest_suite_accuracy < 0.5:
+        raise AssertionError(f"suite accuracy floor breached: {weakest_suite_accuracy:.6f}")
     latencies = [float(r["latency_ms"]) for r in rows]
     report = {
         "schema_version": "1.0.0",
@@ -133,6 +152,8 @@ def main():
             "error_rate": round(sum(r["predicted"] is None for r in rows) / len(rows), 6),
             "reproducibility": 1.0
         },
+        "suite_metrics": suite_metrics,
+        "weakest_suite_accuracy": round(weakest_suite_accuracy, 6),
         "counts": {
             "cases": len(rows),
             "non_abstained": len(non_abstained),
