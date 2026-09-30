@@ -37,3 +37,5 @@ This repository state is **not by itself a globally deployed service**. LIVE sta
 
 ### Truth boundary
 Author-created Yatharth/Shirmani philosophical material remains source material. AI extraction, classification, workflow completion, hashes, QC status or API success do not independently verify metaphysical, scientific, historical or comparative claims. Independent verification remains a separate evidence-and-human-review process.
+
+- [Governance Control Plane](./governance-control-plane.md) — bounded PM/President/judiciary/oversight roles, AI limits, essential-service objectives, environmental protection and Automission review gates.
