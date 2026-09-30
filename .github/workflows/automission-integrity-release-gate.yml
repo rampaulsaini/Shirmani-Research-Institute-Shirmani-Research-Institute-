@@ -1,0 +1,25 @@
+name: AI ML NLP Automission Unified Integrity Release Gate
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run unified integrity validation
+        run: python scripts/validate_automission_integrity_release.py
+      - name: Upload truthful integrity snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: automission-integrity-snapshot
+          path: automission-integrity-snapshot.json
+          if-no-files-found: error
