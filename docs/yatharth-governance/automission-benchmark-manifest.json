@@ -53,7 +53,8 @@
     ],
     "selective": [
       "abstention_rate",
-      "selective_risk"
+      "selective_risk",
+      "coverage"
     ],
     "integrity": [
       "provenance_completeness",
@@ -71,13 +72,15 @@
       "accuracy_delta_min": -0.02,
       "f1_macro_delta_min": -0.02,
       "brier_score_delta_max": 0.02,
-      "provenance_completeness_delta_min": 0
+      "provenance_completeness_delta_min": 0,
+      "coverage_delta_min": -0.05
     },
     "missing_required_metric": "BLOCK",
     "benchmark_pass_does_not_verify_truth": true,
     "benchmark_pass_does_not_guarantee_real_world_performance": true,
     "workflow_success_is_not_independent_verification": true,
     "independent_verified_claims": 0,
-    "live_claim": false
+    "live_claim": false,
+    "abstention_safety_rule": "Coverage below 0.5 is BLOCK; abstention must not be used to mask model failure."
   }
 }
