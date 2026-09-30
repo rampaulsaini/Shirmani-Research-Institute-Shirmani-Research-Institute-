@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed": "2026-10-01",
+  "purpose": "Machine-checkable quality boundary for AI/ML/NLP/Automission orchestration.",
+  "truth_rule": "architecture_is_not_deployment",
+  "verification_rule": "workflow_success_is_not_independent_verification",
+  "layers": [
+    {"id":"L1","name":"Intake","authority":"bounded"},
+    {"id":"L2","name":"Normalize","authority":"bounded"},
+    {"id":"L3","name":"Evidence","authority":"bounded"},
+    {"id":"L4","name":"Compare","authority":"bounded"},
+    {"id":"L5","name":"Impact Audit","authority":"bounded"},
+    {"id":"L6","name":"Human Decision Gate","authority":"human_required"},
+    {"id":"L7","name":"Federation","authority":"bounded"},
+    {"id":"L8","name":"Public Presentation","authority":"bounded"}
+  ],
+  "required_audit_fields": ["event_id","timestamp","actor_or_agent","authority_or_rule","input_provenance","model_or_version","recommendation_or_decision","uncertainty","human_reviewer","appeal_status","correction_history"],
+  "non_negotiable": {
+    "fabricated_sources": false,
+    "hidden_adverse_evidence": false,
+    "ai_output_as_independent_verification": false,
+    "workflow_success_as_verification": false,
+    "self_authorized_legal_power": false,
+    "irreversible_high_impact_action_without_human_gate": false,
+    "secret_exposure": false
+  },
+  "high_impact_human_review": ["liberty_or_punishment","essential_service_denial","materially_adverse_benefits","automated_employment_exclusion","medical_triage_or_diagnosis","child_safety","legal_rights","election_administration","irreversible_environmental_action","research_verification"],
+  "status": {"automission":"BETA","independent_verified_claims":0,"live_claim":false}
+}
