@@ -1,19 +1,450 @@
 {
-  "openapi":"3.1.0",
-  "info":{"title":"Shirmani Global Public Platform API","version":"0.3.0","description":"Evidence-aware multi-user API contract for identity, public publishing, self-interview learning and marketplace discovery."},
-  "servers":[{"url":"https://YOUR-API.example.com"}],
-  "paths":{
-    "/health":{"get":{"responses":{"200":{"description":"Service health"}}}},
-    "/v1/auth/register":{"post":{"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password"],"properties":{"email":{"type":"string","format":"email"},"password":{"type":"string","minLength":12,"maxLength":200},"display_name":{"type":"string","maxLength":80},"bio":{"type":"string","maxLength":1000},"language":{"type":"string","maxLength":32}}}}}},"responses":{"201":{"description":"Account and profile created"},"400":{"description":"Invalid registration"},"409":{"description":"Email already registered"},"503":{"description":"Database or JWT unavailable"}}}},
-    "/v1/auth/login":{"post":{"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password"],"properties":{"email":{"type":"string","format":"email"},"password":{"type":"string"}}}}}},"responses":{"200":{"description":"JWT session"},"401":{"description":"Invalid credentials"},"503":{"description":"Database or JWT unavailable"}}}},
-    "/v1/profile/{id}":{"get":{"parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Profile"},"404":{"description":"Not found"}}}},
-    "/v1/feed":{"get":{"responses":{"200":{"description":"Latest public feed"}}}},
-    "/v1/posts":{"post":{"security":[{"bearerAuth":[]}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["text"],"properties":{"text":{"type":"string","minLength":1,"maxLength":5000},"type":{"type":"string","maxLength":32}}}}}},"responses":{"201":{"description":"Created"},"400":{"description":"Invalid post"},"401":{"description":"Authentication required"},"503":{"description":"Database unavailable"}}}},
-    "/v1/self-interviews":{"post":{"security":[{"bearerAuth":[]}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["question","answer"],"properties":{"question":{"type":"string","minLength":1,"maxLength":1000},"answer":{"type":"string","minLength":1,"maxLength":5000}}}}}},"responses":{"201":{"description":"Saved learning response"},"400":{"description":"Invalid self interview"},"401":{"description":"Authentication required"},"503":{"description":"Database unavailable"}}}},
-    "/v1/marketplace/listings":{"get":{"parameters":[{"name":"kind","in":"query","required":false,"schema":{"type":"string","enum":["product","service","course","music","audio","job"]}}],"responses":{"200":{"description":"Public marketplace listings"}}},"post":{"security":[{"bearerAuth":[]}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["kind","title"],"properties":{"kind":{"type":"string","enum":["product","service","course","music","audio","job"]},"title":{"type":"string","minLength":1,"maxLength":160},"description":{"type":"string","maxLength":5000},"price_minor":{"type":"integer","minimum":0},"currency":{"type":"string","pattern":"^[A-Z]{3}$"}}}}}},"responses":{"201":{"description":"Listing created"},"400":{"description":"Invalid listing"},"401":{"description":"Authentication required"},"503":{"description":"Database unavailable"}}}}
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Shirmani Global Public Platform API",
+    "version": "0.3.0",
+    "description": "Evidence-aware multi-user API contract for identity, public publishing, self-interview learning and marketplace discovery."
   },
-  "components":{"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"}}},
-  "x-integrity-boundary":[
+  "servers": [
+    {
+      "url": "https://YOUR-API.example.com"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Service health"
+          }
+        }
+      }
+    },
+    "/v1/auth/register": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 12,
+                    "maxLength": 200
+                  },
+                  "display_name": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "bio": {
+                    "type": "string",
+                    "maxLength": 1000
+                  },
+                  "language": {
+                    "type": "string",
+                    "maxLength": 32
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Account and profile created"
+          },
+          "400": {
+            "description": "Invalid registration"
+          },
+          "409": {
+            "description": "Email already registered"
+          },
+          "503": {
+            "description": "Database or JWT unavailable"
+          }
+        }
+      }
+    },
+    "/v1/auth/login": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JWT session"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "503": {
+            "description": "Database or JWT unavailable"
+          }
+        }
+      }
+    },
+    "/v1/profile/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/v1/feed": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Latest public feed"
+          }
+        }
+      }
+    },
+    "/v1/posts": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "text"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 5000
+                  },
+                  "type": {
+                    "type": "string",
+                    "maxLength": 32
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Invalid post"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "503": {
+            "description": "Database unavailable"
+          }
+        }
+      }
+    },
+    "/v1/self-interviews": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "question",
+                  "answer"
+                ],
+                "properties": {
+                  "question": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1000
+                  },
+                  "answer": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 5000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Saved learning response"
+          },
+          "400": {
+            "description": "Invalid self interview"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "503": {
+            "description": "Database unavailable"
+          }
+        }
+      }
+    },
+    "/v1/marketplace/listings": {
+      "get": {
+        "parameters": [
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "product",
+                "service",
+                "course",
+                "music",
+                "audio",
+                "job"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Public marketplace listings"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "kind",
+                  "title"
+                ],
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "product",
+                      "service",
+                      "course",
+                      "music",
+                      "audio",
+                      "job"
+                    ]
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 160
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 5000
+                  },
+                  "price_minor": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "currency": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{3}$"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Listing created"
+          },
+          "400": {
+            "description": "Invalid listing"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "503": {
+            "description": "Database unavailable"
+          }
+        }
+      }
+    },
+    "/v1/reports": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "target_type",
+                  "target_id",
+                  "reason"
+                ],
+                "properties": {
+                  "target_type": {
+                    "type": "string",
+                    "maxLength": 32
+                  },
+                  "target_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "details": {
+                    "type": "string",
+                    "maxLength": 3000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Report created"
+          },
+          "400": {
+            "description": "Invalid report"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "503": {
+            "description": "Database unavailable"
+          }
+        }
+      }
+    },
+    "/v1/ai-tasks": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "task_type"
+                ],
+                "properties": {
+                  "task_type": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "input": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "AI task accepted for asynchronous processing"
+          },
+          "400": {
+            "description": "Invalid AI task"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "503": {
+            "description": "Database unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "x-integrity-boundary": [
     "No fabricated users, followers, views, payments, employment, income or testimonials.",
     "Authenticated writes derive ownership from the verified JWT subject.",
     "Marketplace listings are not proof of payment, delivery, employment, income or customer satisfaction.",
