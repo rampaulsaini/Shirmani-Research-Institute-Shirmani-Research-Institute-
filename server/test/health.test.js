@@ -130,3 +130,17 @@ test("server source exposes bounded Automission lifecycle controls", () => {
     "requires_human_review"
   ]) assert.ok(source.includes(required), "missing Automission lifecycle control: " + required);
 });
+
+
+test("OpenAPI contract documents the platform gates", () => {
+  const api = JSON.parse(fs.readFileSync(new URL("../../schemas/social-platform-api.openapi.json", import.meta.url), "utf8"));
+  for (const path of [
+    "/v1/platform/readiness",
+    "/v1/capabilities/status",
+    "/v1/ai-tasks/{id}/dispatch",
+    "/v1/ai-tasks/{id}/retry",
+    "/v1/ai-tasks/{id}/cancel",
+    "/v1/payments/webhook"
+  ]) assert.ok(api.paths[path], "missing OpenAPI path: " + path);
+  assert.equal(api.info.version, "0.6.0");
+});
