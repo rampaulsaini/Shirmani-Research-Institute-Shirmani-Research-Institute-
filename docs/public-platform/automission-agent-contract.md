@@ -23,3 +23,6 @@ Human review remains required where a result can materially affect account acces
 ## Audit minimum
 
 Each task should have a task ID, agent ID, owner, input provenance, output provenance, timestamps, status transitions, failure/retry information, and a human-review decision where required.
+
+## Lifecycle controls
+Automission task lifecycle is bounded to explicit transitions: `queued → running`, `failed → queued` for retry, and `queued/running → cancelled`. Dispatch, retry and cancellation create task events. Agent execution remains externally controlled; these endpoints do not execute arbitrary code or certify research claims.
