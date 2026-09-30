@@ -71,3 +71,8 @@ comment on table verification_evidence is
 'Supporting evidence records only. Evidence presence never changes a claim to independently verified.';
 comment on table ai_agents is
 'Bounded automation registry. Agents cannot independently certify philosophical or scientific truth.';
+
+
+-- Payment-provider and other system-originated audit events may have no user actor.
+-- The canonical schema uses a nullable actor_id for this bounded system-event case.
+alter table if exists audit_events alter column actor_id drop not null;
