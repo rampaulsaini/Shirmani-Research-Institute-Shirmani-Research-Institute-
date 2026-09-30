@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "status_semantics": ["planned","in_build","tested","live","autonomous_assisted","human_review_required"],
+  "domains": [
+    {"id":"social","name":"Social & Profiles","features":["accounts","profiles","posts","sharing","follow","community","messaging"]},
+    {"id":"knowledge","name":"Research & Knowledge","features":["library","articles","books","claim_registry","evidence","comparison","verification"]},
+    {"id":"education","name":"Education & Skills","features":["courses","learning_paths","skills","certificates","research_training"]},
+    {"id":"ai","name":"AI / ML / NLP","features":["ai_assistant","semantic_search","classification","translation","recommendation","agents"]},
+    {"id":"creative","name":"Yatharth AI Music & Creative Studio","features":["music","audio","video","podcast","creator_tools","digital_media"]},
+    {"id":"work","name":"Freelancing & Employment","features":["freelancing","jobs","services","client_matching","work_tracking"]},
+    {"id":"commerce","name":"Digital Store & Marketplace","features":["digital_products","storefronts","courses","music_store","orders","reviews"]},
+    {"id":"economy","name":"Yatharth Economy & Value Exchange","features":["value_exchange","creator_income","service_income","economic_research"]},
+    {"id":"mudra","name":"Yatharth Mudra","features":["concept_registry","economic_model","legal_review","risk_controls"]},
+    {"id":"justice","name":"Yatharth Justice","features":["principles","complaints","evidence","review","appeal","transparency"]},
+    {"id":"nature","name":"Nature / Earth / Humanity","features":["nature_protection","earth_protection","sustainability","community_action"]},
+    {"id":"trust","name":"Trust & Verification","features":["provenance","audit","counter_evidence","independent_review","verification_status"]},
+    {"id":"platform_ops","name":"Platform Operations","features":["status","security","privacy","support","accessibility","multilingual"] }
+  ]
+}
