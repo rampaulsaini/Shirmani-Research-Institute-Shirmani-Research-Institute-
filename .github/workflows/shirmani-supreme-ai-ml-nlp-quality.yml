@@ -30,9 +30,10 @@ jobs:
           python3 -m py_compile factory/batch_worker.py
           python3 -m py_compile agents/orchestrator.py
           python3 -m py_compile agents/deep_learning_agent.py
+          python3 -m py_compile factory/signal_to_nlp.py
 
       - name: Run deterministic AI/ML/NLP self-tests
-        run: python3 -m unittest discover -s tests -p 'test_supreme_ai_ml_nlp.py' -v
+        run: python3 -m unittest discover -s tests -p 'test_*nlp*.py' -v
 
       - name: Run deterministic AI/ML/NLP ensemble gate
         run: python3 factory/supreme_quality_controller.py
