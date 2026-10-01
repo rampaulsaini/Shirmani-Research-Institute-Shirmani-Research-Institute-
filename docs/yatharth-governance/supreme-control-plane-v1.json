@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "name": "supreme-automission-control-plane",
+  "mode": "FAIL_CLOSED",
+  "truth_boundary": {
+    "benchmark_is_not_verification": true,
+    "workflow_success_is_not_verification": true,
+    "independent_verified_claims": 0,
+    "live_claim": false
+  },
+  "decision_contract": {
+    "required_evidence_for_non_abstained": true,
+    "unknown_label": "UNKNOWN",
+    "confidence_escalation_threshold": 0.70,
+    "max_agent_disagreement": 0,
+    "stale_evidence_seconds": 86400
+  },
+  "drift": {
+    "numeric_relative_change_threshold": 0.20,
+    "schema_change_is_drift": true,
+    "prompt_policy_change_is_drift": true
+  },
+  "recovery": {
+    "max_attempts": 2,
+    "quarantine_on_exhaustion": true,
+    "retry_only_idempotent": true
+  },
+  "audit": {
+    "algorithm": "sha256",
+    "hash_linked": true,
+    "required_fields": ["event_id","timestamp","component","model_version","policy_version","input_fingerprint","route","decision","confidence","abstained","evidence_ids","latency_ms"]
+  },
+  "performance": {
+    "bounded_concurrency": true,
+    "backpressure": true,
+    "cache_only_immutable_inputs": true,
+    "timeout_fail_closed": true
+  }
+}

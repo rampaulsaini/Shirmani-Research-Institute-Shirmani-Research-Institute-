@@ -1,0 +1,49 @@
+name: Supreme Automission Control Plane
+
+on:
+  push:
+    paths:
+      - "scripts/automission_control_plane.py"
+      - "scripts/test_automission_control_plane.py"
+      - "docs/yatharth-governance/supreme-control-plane-v1.json"
+  pull_request:
+    paths:
+      - "scripts/automission_control_plane.py"
+      - "scripts/test_automission_control_plane.py"
+      - "docs/yatharth-governance/supreme-control-plane-v1.json"
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-automission-control-plane-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  control-plane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile
+        run: python -m compileall -q scripts/automission_control_plane.py scripts/test_automission_control_plane.py
+      - name: Self-test
+        run: python scripts/automission_control_plane.py
+      - name: Unit tests
+        run: python -m unittest -q scripts.test_automission_control_plane
+      - name: Fail-closed contract
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open("docs/yatharth-governance/supreme-control-plane-v1.json", encoding="utf-8"))
+          assert p["mode"] == "FAIL_CLOSED"
+          assert p["truth_boundary"]["independent_verified_claims"] == 0
+          assert p["truth_boundary"]["live_claim"] is False
+          print("Contract: PASS")
+          PY
