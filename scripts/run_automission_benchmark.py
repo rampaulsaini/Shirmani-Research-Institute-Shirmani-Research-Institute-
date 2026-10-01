@@ -128,9 +128,23 @@ def main(output_path: Path = OUT):
             "provenance_completeness": round(suite_provenance, 6),
             "abstention_rate": round(sum(r["abstained"] for r in suite_rows) / len(suite_rows), 6) if suite_rows else 0.0,
         }
-    weakest_suite_accuracy = min(v["accuracy"] for v in suite_metrics.values())
+    exempt_suites = set(manifest["evaluation"].get("accuracy_floor_exempt_suites", []))
+    for suite in exempt_suites:
+        suite_rows = [r for r in rows if r.get("suite") == suite]
+        if suite_rows and not all(
+            r["abstained"] and r["predicted"] == manifest["evaluation"]["unknown_label"]
+            for r in suite_rows
+        ):
+            raise AssertionError(f"abstention safety rule breached: {suite}")
+    scored_suite_metrics = {
+        suite: metrics for suite, metrics in suite_metrics.items()
+        if suite not in exempt_suites
+    }
+    if not scored_suite_metrics:
+        raise AssertionError("no non-exempt suites available for accuracy floor")
+    weakest_suite_accuracy = min(v["accuracy"] for v in scored_suite_metrics.values())
     if weakest_suite_accuracy < 0.5:
-        raise AssertionError(f"suite accuracy floor breached: {weakest_suite_accuracy:.6f}")
+        raise AssertionError(f"non-exempt suite accuracy floor breached: {weakest_suite_accuracy:.6f}")
     latencies = [float(r["latency_ms"]) for r in rows]
     report = {
         "schema_version": "1.0.0",
@@ -155,6 +169,7 @@ def main(output_path: Path = OUT):
         },
         "suite_metrics": suite_metrics,
         "weakest_suite_accuracy": round(weakest_suite_accuracy, 6),
+        "accuracy_floor_exempt_suites": sorted(exempt_suites),
         "counts": {
             "cases": len(rows),
             "non_abstained": len(non_abstained),
