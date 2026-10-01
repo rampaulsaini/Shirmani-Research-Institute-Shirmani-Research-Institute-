@@ -35,14 +35,25 @@
     "confidence": {"type": "number", "minimum": 0, "maximum": 1},
     "evidence": {
       "type": "array",
-      "minItems": 1
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "type"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "type": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": true
+      }
     },
     "verification": {
       "type": "object",
       "required": ["independent_check"],
       "properties": {
         "independent_check": {"type": "boolean"},
-        "method": {"type": "string"}
+        "method": {"type": "string"},
+        "independent_evaluator_count": {"type": "integer", "minimum": 0},
+        "confidence_calibrated": {"type": "boolean"}
       },
       "additionalProperties": true
     },
