@@ -42,7 +42,7 @@ jobs:
           python -m py_compile factory/supreme_nlp.py
           python factory/supreme_nlp.py
       - name: Run regression tests
-        run: python tests/test_supreme_nlp.py
+        run: python -m unittest discover -s tests -p "test_supreme_nlp.py" -v
       - name: Validate schema JSON
         run: python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
       - name: Verify status contract
@@ -55,7 +55,15 @@ jobs:
           assert data["record"]["independent_check"] is True
           assert 0 <= data["record"]["confidence"] <= 1
           assert all(data["guards"].values())
+          assert data["quality_score"] == 1.0
+          dimensions = data["record"]["quality_dimensions"]
+          assert dimensions["schema_complete"] is True
+          assert dimensions["typed_observations"] is True
+          assert dimensions["evidence_present"] is True
+          assert dimensions["independent_verification"] is True
+          assert dimensions["claim_strength_guard"] is True
           print("SUPREME_NLP_QUALITY_GATE=PASS")
+          print("QUALITY_SCORE:", data["quality_score"])
           PY
 
   publish-status:
