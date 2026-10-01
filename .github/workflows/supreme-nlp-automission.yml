@@ -1,0 +1,57 @@
+name: Supreme NLP Automission Quality Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "factory/supreme_nlp.py"
+      - "schemas/supreme-nlp-record.schema.json"
+      - ".github/workflows/supreme-nlp-automission.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: supreme-nlp-automission
+  cancel-in-progress: false
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile and self-test
+        run: |
+          python -m py_compile factory/supreme_nlp.py
+          python factory/supreme_nlp.py
+      - name: Validate schema JSON
+        run: python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
+      - name: Verify status contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path("generated/supreme-nlp-status.json").read_text(encoding="utf-8"))
+          assert data["ok"] is True
+          assert data["record"]["independent_check"] is True
+          assert 0 <= data["record"]["confidence"] <= 1
+          print("SUPREME_NLP_QUALITY_GATE=PASS")
+          PY
+      - name: Commit verified status
+        run: |
+          git config user.name "omniverse-factory[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/supreme-nlp-status.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(nlp): update Supreme NLP quality status"
+          git push
