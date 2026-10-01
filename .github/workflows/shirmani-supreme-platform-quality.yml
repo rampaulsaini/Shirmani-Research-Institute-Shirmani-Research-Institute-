@@ -55,6 +55,21 @@ jobs:
       - name: Multimodal signal QC
         run: python3 factory/multimodal_signal_qc.py
 
+      - name: Repository federation registry gate
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("automation/repository-network-registry-2026-10-01.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          repos = data.get("repositories", [])
+          assert len(repos) == 24, f"Expected 24 registered repositories, found {len(repos)}"
+          assert len(set(repos)) == len(repos), "Duplicate repository entries detected"
+          assert "rampaulsaini/Omniverse-Platform" in repos, "Private Omniverse-Platform missing from registry"
+          assert "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-" in repos, "Research Institute missing from registry"
+          print("Repository registry PASS: 24 unique repositories")
+          PY
+
       - name: Workflow hygiene checks
         run: |
           python3 - <<'PY'
