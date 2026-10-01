@@ -1,6 +1,16 @@
 name: SHIRMANI Supreme NLP Continuous
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "agents/supreme_nlp.py"
+      - "agents/supreme_nlp_agent.py"
+      - "agents/language_agents.py"
+      - "tests/**"
+      - "factory/supreme_nlp_qc.py"
+      - "factory/supreme-nlp-policy.json"
+      - ".github/workflows/supreme-nlp-continuous.yml"
   schedule:
     - cron: "*/5 * * * *"
   push:
@@ -66,6 +76,7 @@ jobs:
           PY
 
       - name: Commit status
+        if: github.event_name != 'pull_request'
         run: |
           git config user.name "omniverse-factory[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
