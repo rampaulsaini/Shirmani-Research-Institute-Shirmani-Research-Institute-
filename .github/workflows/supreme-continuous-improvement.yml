@@ -1,0 +1,47 @@
+name: Supreme Continuous Improvement Supervisor
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-continuous-improvement
+  cancel-in-progress: true
+
+jobs:
+  supervise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile and supervise
+        run: python factory/continuous_supervisor.py
+
+      - name: Validate supervisor JSON
+        run: python -m json.tool generated/continuous-supervisor-status.json >/dev/null
+
+      - name: Upload supervisor state
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-continuous-supervisor
+          path: generated/continuous-supervisor-status.json
+          retention-days: 14
