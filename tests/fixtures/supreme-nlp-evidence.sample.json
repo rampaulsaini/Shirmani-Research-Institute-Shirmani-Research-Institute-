@@ -1,0 +1,17 @@
+{
+  "record_id": "sample-signal-001",
+  "input_type": "sensor",
+  "observations": [
+    "Repeated electrical-signal pattern detected over the observation window.",
+    "Environmental temperature and light measurements were also recorded."
+  ],
+  "inference": "The measured pattern is associated with the reference dataset's stress-response class.",
+  "confidence": 0.82,
+  "uncertainty": [
+    "The signal-to-state relationship is model-derived.",
+    "The observation does not establish subjective feeling or consciousness."
+  ],
+  "evidence_refs": ["fixture:reference-dataset-v1"],
+  "interpretation_boundary": "Translate measured signals and model inferences into plain language without presenting inferred subjective experience as established fact.",
+  "verification": {"status": "UNVERIFIED", "independent": false}
+}
