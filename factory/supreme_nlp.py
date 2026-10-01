@@ -54,10 +54,16 @@ def validate_record(record: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("evidence must be a non-empty list")
     if not all(isinstance(item, dict) for item in evidence):
         raise ValueError("each evidence item must be an object")
+    if not all(isinstance(item.get("id"), str) and item["id"].strip() for item in evidence):
+        raise ValueError("each evidence item must have a non-empty id")
+    if not all(isinstance(item.get("type"), str) and item["type"].strip() for item in evidence):
+        raise ValueError("each evidence item must have a non-empty type")
     if not isinstance(verification, dict):
         raise ValueError("verification must be an object")
     if not isinstance(provenance, dict):
         raise ValueError("provenance must be an object")
+    if not isinstance(provenance.get("source"), str) or not provenance["source"].strip():
+        raise ValueError("provenance.source must be a non-empty string")
     if not isinstance(interpretation, dict):
         raise ValueError("interpretation must be an object")
     if not isinstance(interpretation.get("plain_language"), str) or not interpretation["plain_language"].strip():
@@ -74,6 +80,16 @@ def validate_record(record: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("scientific_claim requires an independent verification check")
     if claim_type == "scientific_claim" and len(evidence) < 2:
         raise ValueError("scientific_claim requires at least two evidence items")
+    if claim_type == "scientific_claim":
+        evaluator_count = verification.get("independent_evaluator_count", 0)
+        if not isinstance(evaluator_count, int) or evaluator_count < 2:
+            raise ValueError("scientific_claim requires at least two independent evaluators")
+        if verification.get("confidence_calibrated") is not True:
+            raise ValueError("scientific_claim requires calibrated confidence")
+        if len({item["id"] for item in evidence}) < 2:
+            raise ValueError("scientific_claim requires distinct evidence identities")
+        if len({item["type"] for item in evidence}) < 2:
+            raise ValueError("scientific_claim requires diverse evidence types")
 
     return {
         "event_id": str(record["event_id"]),
@@ -89,6 +105,9 @@ def validate_record(record: Dict[str, Any]) -> Dict[str, Any]:
             "evidence_present": True,
             "independent_verification": independent_check,
             "claim_strength_guard": True,
+            "evidence_identity_guard": True,
+            "evaluator_independence_guard": (claim_type != "scientific_claim" or verification.get("independent_evaluator_count", 0) >= 2),
+            "confidence_calibration_guard": (claim_type != "scientific_claim" or verification.get("confidence_calibrated") is True),
         },
     }
 
