@@ -1,0 +1,52 @@
+name: Supreme NLP Automission Control
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - "scripts/**"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-automission
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Supreme NLP deterministic audit
+        run: python3 scripts/supreme_nlp_audit.py
+
+      - name: Validate status schema
+        run: |
+          python3 scripts/validate_json.py             generated/supreme-nlp-status.json             schemas/supreme-nlp-status.schema.json
+
+      - name: Validate core governance
+        run: |
+          python3 scripts/validate_json.py             schemas/agent-governance.json             schemas/claim-evidence.schema.json
+          python3 scripts/validate_json.py             schemas/multimodal-signal.schema.json             schemas/supreme-nlp-status.schema.json
+
+      - name: Publish audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-audit
+          path: generated/supreme-nlp-status.json
+          if-no-files-found: error

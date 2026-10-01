@@ -1,0 +1,28 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Supreme NLP Automission Status",
+  "type":"object",
+  "required":["generated_at","pipeline","gates","metrics","truth_boundary"],
+  "properties":{
+    "generated_at":{"type":"string"},
+    "pipeline":{"type":"array","items":{"type":"string"}},
+    "gates":{"type":"object","required":["schema","syntax","evidence","verification","security"],"properties":{
+      "schema":{"enum":["PASS","FAIL"]},
+      "syntax":{"enum":["PASS","FAIL"]},
+      "evidence":{"enum":["PASS","CHECK","FAIL"]},
+      "verification":{"enum":["PASS","CHECK","FAIL"]},
+      "security":{"enum":["PASS","CHECK","FAIL"]}
+    }},
+    "metrics":{"type":"object","required":["python_files","json_schemas","workflow_files","evidence_ready"],"properties":{
+      "python_files":{"type":"integer","minimum":0},
+      "json_schemas":{"type":"integer","minimum":0},
+      "workflow_files":{"type":"integer","minimum":0},
+      "evidence_ready":{"type":"boolean"}
+    }},
+    "truth_boundary":{"type":"object","required":["observed_vs_inferred","unverified_claims_allowed"],"properties":{
+      "observed_vs_inferred":{"type":"boolean"},
+      "unverified_claims_allowed":{"type":"boolean"}
+    }}
+  },
+  "additionalProperties":false
+}
