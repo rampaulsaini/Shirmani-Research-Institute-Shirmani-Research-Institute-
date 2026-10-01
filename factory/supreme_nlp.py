@@ -14,14 +14,12 @@ from pathlib import Path
 from typing import Any, Dict
 
 REQUIRED_FIELDS = {
-    "event_id",
-    "source_type",
-    "observations",
-    "interpretation",
-    "confidence",
-    "evidence",
-    "verification",
-    "provenance",
+    "event_id", "source_type", "observations", "interpretation",
+    "confidence", "evidence", "verification", "provenance",
+}
+
+CLAIM_TYPES = {
+    "observation", "data_interpretation", "hypothesis", "scientific_claim",
 }
 
 
@@ -44,29 +42,38 @@ def validate_record(record: Dict[str, Any]) -> Dict[str, Any]:
     provenance = record["provenance"]
     interpretation = record["interpretation"]
 
+    if not isinstance(record["event_id"], str) or not record["event_id"].strip():
+        raise ValueError("event_id must be a non-empty string")
+    if not isinstance(record["source_type"], str) or not record["source_type"].strip():
+        raise ValueError("source_type must be a non-empty string")
     if not isinstance(observations, list) or not observations:
         raise ValueError("observations must be a non-empty list")
+    if not all(isinstance(item, dict) for item in observations):
+        raise ValueError("each observation must be an object")
     if not isinstance(evidence, list) or not evidence:
         raise ValueError("evidence must be a non-empty list")
+    if not all(isinstance(item, dict) for item in evidence):
+        raise ValueError("each evidence item must be an object")
     if not isinstance(verification, dict):
         raise ValueError("verification must be an object")
     if not isinstance(provenance, dict):
         raise ValueError("provenance must be an object")
     if not isinstance(interpretation, dict):
         raise ValueError("interpretation must be an object")
+    if not isinstance(interpretation.get("plain_language"), str) or not interpretation["plain_language"].strip():
+        raise ValueError("interpretation.plain_language must be a non-empty string")
 
     independent_check = verification.get("independent_check")
     if not isinstance(independent_check, bool):
         raise ValueError("verification.independent_check must be boolean")
 
     claim_type = interpretation.get("claim_type", "data_interpretation")
-    if claim_type not in {
-        "observation",
-        "data_interpretation",
-        "hypothesis",
-        "scientific_claim",
-    }:
+    if claim_type not in CLAIM_TYPES:
         raise ValueError("unsupported interpretation.claim_type")
+    if claim_type == "scientific_claim" and not independent_check:
+        raise ValueError("scientific_claim requires an independent verification check")
+    if claim_type == "scientific_claim" and len(evidence) < 2:
+        raise ValueError("scientific_claim requires at least two evidence items")
 
     return {
         "event_id": str(record["event_id"]),
@@ -76,6 +83,13 @@ def validate_record(record: Dict[str, Any]) -> Dict[str, Any]:
         "evidence_count": len(evidence),
         "independent_check": independent_check,
         "claim_type": claim_type,
+        "quality_dimensions": {
+            "schema_complete": True,
+            "typed_observations": True,
+            "evidence_present": True,
+            "independent_verification": independent_check,
+            "claim_strength_guard": True,
+        },
     }
 
 
@@ -97,10 +111,7 @@ def run_self_test() -> Dict[str, Any]:
             "independent_check": True,
             "method": "deterministic_fixture",
         },
-        "provenance": {
-            "source": "self_test",
-            "timestamp": "synthetic",
-        },
+        "provenance": {"source": "self_test", "timestamp": "synthetic"},
     }
     result = validate_record(sample)
 
@@ -122,16 +133,39 @@ def run_self_test() -> Dict[str, Any]:
     else:
         verification_guard = False
 
-    if not confidence_guard or not verification_guard:
+    negative = dict(sample)
+    negative["interpretation"] = dict(sample["interpretation"], claim_type="scientific_claim")
+    negative["verification"] = {"independent_check": False}
+    try:
+        validate_record(negative)
+    except ValueError:
+        claim_strength_guard = True
+    else:
+        claim_strength_guard = False
+
+    negative = dict(sample)
+    negative["evidence"] = ["not-an-object"]
+    try:
+        validate_record(negative)
+    except ValueError:
+        evidence_shape_guard = True
+    else:
+        evidence_shape_guard = False
+
+    guards = {
+        "confidence_bounds": confidence_guard,
+        "verification_type": verification_guard,
+        "claim_strength": claim_strength_guard,
+        "evidence_shape": evidence_shape_guard,
+    }
+    if not all(guards.values()):
         raise AssertionError("negative validation guards failed")
 
     return {
         "ok": True,
         "record": result,
-        "guards": {
-            "confidence_bounds": confidence_guard,
-            "verification_type": verification_guard,
-        },
+        "guards": guards,
+        "quality_score": sum(guards.values()) / len(guards),
     }
 
 
