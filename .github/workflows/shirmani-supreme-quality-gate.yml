@@ -1,0 +1,42 @@
+name: SHIRMANI Supreme Quality Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "scripts/**"
+      - "schemas/**"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-quality-gate
+  cancel-in-progress: false
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout protected source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Run deterministic quality gate
+        run: python3 factory/supreme_quality_gate.py
+      - name: Publish quality report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-quality-report
+          path: generated/supreme-quality-report.json
+          if-no-files-found: error
+          retention-days: 14
