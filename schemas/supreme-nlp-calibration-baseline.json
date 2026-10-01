@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": 1,
+  "description": "Persisted deterministic calibration baseline for the Supreme NLP control-plane fixture.",
+  "metrics": {
+    "accuracy": 0.9,
+    "brier_score": 0.1025,
+    "expected_calibration_error": 0.18
+  },
+  "limits": {
+    "max_accuracy_drop": 0.1,
+    "max_brier_increase": 0.1,
+    "max_ece_increase": 0.1
+  }
+}
