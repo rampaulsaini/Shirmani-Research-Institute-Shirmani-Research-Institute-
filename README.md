@@ -150,6 +150,12 @@ The API has a repository-side deployment foundation, but **Production LIVE is no
 This is a research architecture: it does not grant unlimited authority to any person, institution, or AI agent. High-impact decisions require lawful authority, human review, appeal and audit.
 
 
+## 🧪 Supreme NLP Benchmark Contract
+
+- [Measurable Supreme NLP benchmark contract](docs/supreme-nlp-benchmark-contract-2026-10-01.md)
+- Benchmark focus: signal integrity, multimodal fusion, language translation, calibration, uncertainty, robustness, reproducibility, evidence traceability, independent verification and safety.
+- “Ultra mega infinity Quantum supreme NLP practitioner” is treated as a research target requiring measurable benchmarks rather than as an automatically verified scientific capability.
+
 ## 🧠 Supreme AI–ML–NLP–Automission Total Graph
 
 - [Canonical total graph](docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md)
