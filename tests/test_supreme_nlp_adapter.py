@@ -4,7 +4,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from factory.supreme_nlp_adapter import normalize_observation, to_plain_language
+from factory.supreme_nlp_adapter import build_record, normalize_observation, to_plain_language
 
 
 def test_normalize_observation():
@@ -46,3 +46,34 @@ def test_unknown_modality_rejected():
         assert "unsupported modality" in str(exc)
     else:
         raise AssertionError("unknown modalities must be rejected")
+
+
+def test_build_record_links_evidence_to_all_observations():
+    record = build_record(
+        event_id="fixture-001",
+        source_type="plant_sensor",
+        observations=[
+            {"id": "obs-1", "modality": "bioelectric", "feature": "voltage", "value": 0.42, "unit": "mV"},
+            {"id": "obs-2", "modality": "temperature", "feature": "ambient", "value": 24.1, "unit": "C"},
+        ],
+        confidence=0.75,
+        context="controlled fixture",
+    )
+    assert record["interpretation"]["claim_type"] == "data_interpretation"
+    assert record["verification"]["independent_check"] is False
+    assert record["evidence"][0]["observation_ids"] == ["obs-1", "obs-2"]
+    assert "subjective feelings" in record["interpretation"]["epistemic_note"]
+
+
+def test_build_record_rejects_empty_observations():
+    try:
+        build_record(
+            event_id="fixture-002",
+            source_type="sensor",
+            observations=[],
+            confidence=0.5,
+        )
+    except ValueError as exc:
+        assert "at least one observation" in str(exc)
+    else:
+        raise AssertionError("empty observation batches must be rejected")
