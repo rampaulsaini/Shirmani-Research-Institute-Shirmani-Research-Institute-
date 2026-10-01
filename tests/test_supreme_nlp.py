@@ -52,6 +52,49 @@ def test_scientific_claim_requires_independent_verification():
         raise AssertionError("unverified scientific claim must be rejected")
 
 
+def test_scientific_claim_requires_independent_evaluators_and_calibration():
+    record = {
+        "event_id": "scientific-2",
+        "source_type": "synthetic",
+        "observations": [{"signal": 1}],
+        "interpretation": {"plain_language": "candidate finding", "claim_type": "scientific_claim"},
+        "confidence": 0.8,
+        "evidence": [{"id": "e1", "type": "sensor"}, {"id": "e2", "type": "experiment"}],
+        "verification": {
+            "independent_check": True,
+            "method": "cross-check",
+            "independent_evaluator_count": 1,
+            "confidence_calibrated": False,
+        },
+        "provenance": {"source": "test"},
+    }
+    try:
+        validate_record(record)
+    except ValueError as exc:
+        assert "independent evaluators" in str(exc)
+    else:
+        raise AssertionError("insufficient evaluator independence must be rejected")
+
+
+def test_evidence_identity_is_required():
+    record = {
+        "event_id": "evidence-1",
+        "source_type": "synthetic",
+        "observations": [{"signal": 1}],
+        "interpretation": {"plain_language": "x", "claim_type": "observation"},
+        "confidence": 0.5,
+        "evidence": [{"type": "sensor"}],
+        "verification": {"independent_check": True},
+        "provenance": {"source": "test"},
+    }
+    try:
+        validate_record(record)
+    except ValueError as exc:
+        assert "evidence item" in str(exc)
+    else:
+        raise AssertionError("evidence without identity must be rejected")
+
+
 def test_observations_and_evidence_must_be_objects():
     record = {
         "event_id": "shape-1",
@@ -75,5 +118,7 @@ if __name__ == "__main__":
     test_self_test()
     test_missing_field_rejected()
     test_scientific_claim_requires_independent_verification()
+    test_scientific_claim_requires_independent_evaluators_and_calibration()
+    test_evidence_identity_is_required()
     test_observations_and_evidence_must_be_objects()
     print("SUPREME_NLP_REGRESSION_TESTS=PASS")
