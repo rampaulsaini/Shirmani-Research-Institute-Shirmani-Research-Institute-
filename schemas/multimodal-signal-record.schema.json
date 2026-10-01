@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shirmani Multimodal Signal Interpretation Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "source",
+    "timestamp",
+    "raw_signal",
+    "quality",
+    "features",
+    "model_inference",
+    "interpretation",
+    "confidence",
+    "uncertainty",
+    "verification_state"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "id"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "text",
+            "audio",
+            "image",
+            "video",
+            "sensor",
+            "environment",
+            "document",
+            "other"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "raw_signal": {
+      "type": "object"
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS",
+            "DEGRADED",
+            "REJECT"
+          ]
+        },
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "object"
+    },
+    "model_inference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label"
+      ],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "interpretation": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification_state": {
+      "enum": [
+        "UNVERIFIED",
+        "CHECKED",
+        "INDEPENDENTLY_VERIFIED",
+        "REJECTED"
+      ]
+    }
+  }
+}
