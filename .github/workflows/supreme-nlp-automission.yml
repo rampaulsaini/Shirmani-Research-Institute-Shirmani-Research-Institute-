@@ -13,21 +13,25 @@ on:
       - ".github/workflows/supreme-nlp-automission.yml"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: supreme-nlp-automission
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   audit-and-improve:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+          cache: pip
 
       - name: Compile and contract-test
         run: |
@@ -35,7 +39,13 @@ jobs:
           python scripts/validate_supreme_nlp.py
 
       - name: Validate schema syntax
-        run: python -c "import json; json.load(open('schemas/supreme-nlp-record.schema.json',encoding='utf-8'))"
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          json.loads(Path("schemas/supreme-nlp-record.schema.json").read_text(encoding="utf-8"))
+          print("SCHEMA_JSON_OK")
+          PY
 
       - name: Generate deterministic status
         run: |
@@ -44,26 +54,65 @@ jobs:
           import json
           from pathlib import Path
           from agents.supreme_nlp import build_record
-          p=Path("generated/signal-input.jsonl")
-          rows=[json.loads(x) for x in p.read_text(encoding="utf-8").splitlines() if x.strip()] if p.exists() else []
+
+          p = Path("generated/signal-input.jsonl")
+          rows = (
+              [json.loads(x) for x in p.read_text(encoding="utf-8").splitlines() if x.strip()]
+              if p.exists() else []
+          )
           if not rows:
-              rows=[
-                {"modality":"synthetic","feature":"baseline_a","value":1.0,"quality":1.0,"source":"automission-smoke"},
-                {"modality":"synthetic","feature":"baseline_b","value":1.0,"quality":1.0,"source":"automission-smoke"}
+              rows = [
+                  {"modality":"synthetic","feature":"baseline_a","value":1.0,"quality":1.0,"source":"automission-smoke"},
+                  {"modality":"synthetic","feature":"baseline_b","value":1.0,"quality":1.0,"source":"automission-smoke"},
               ]
-          rec=build_record(rows,"automission-cycle")
-          Path("generated/supreme-nlp/status.json").write_text(json.dumps(rec,ensure_ascii=False,indent=2),encoding="utf-8")
+
+          rec = build_record(rows, "automission-cycle")
+          Path("generated/supreme-nlp/status.json").write_text(
+              json.dumps(rec, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
           print(rec["simple_language"])
+          print("FINGERPRINT:", rec["fingerprint"])
           PY
 
       - name: Run Automission improvement audit
         run: python agents/automission_supervisor.py
 
-      - name: Persist deterministic outputs
+      - name: Validate generated record
         run: |
-          git config user.name "omniverse-factory[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/supreme-nlp/status.json generated/supreme-nlp/automission-plan.json
-          git diff --cached --quiet && exit 0
-          git commit -m "chore(automission): update supreme NLP audit"
-          git push
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          status = json.loads(Path("generated/supreme-nlp/status.json").read_text(encoding="utf-8"))
+          plan = json.loads(Path("generated/supreme-nlp/automission-plan.json").read_text(encoding="utf-8"))
+
+          assert status["fingerprint"]
+          assert status["result"]["status"] in {"no_data", "insufficient_quality", "interpreted"}
+          assert 0 <= status["result"].get("interpretation", {}).get("confidence", 0) <= 1 if status["result"]["status"] == "interpreted" else True
+          assert plan["state"] in {"MONITOR", "IMPROVEMENT_REQUIRED"}
+          assert isinstance(plan["actions"], list) and plan["actions"]
+          print("GENERATED_RECORD_CONTRACT_OK")
+          PY
+
+      - name: Upload audit artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-automission-${{ github.run_id }}
+          path: |
+            generated/supreme-nlp/status.json
+            generated/supreme-nlp/automission-plan.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Emit machine-readable summary
+        run: |
+          {
+            echo "## Supreme NLP Automission"
+            echo ""
+            echo "- Cycle: `automission-cycle`"
+            echo "- Evidence: generated status + improvement plan"
+            echo "- Verification: deterministic contract tests passed"
+            echo "- Code mutation: disabled in scheduled audit"
+            echo "- Artifacts: uploaded for traceability"
+          } >> "$GITHUB_STEP_SUMMARY"
