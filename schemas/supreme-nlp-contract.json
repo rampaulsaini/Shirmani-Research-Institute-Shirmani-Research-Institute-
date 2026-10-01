@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "name": "shirmani-supreme-nlp-contract",
+  "purpose": "Multimodal signal-to-language research contract with evidence, uncertainty and independent verification boundaries.",
+  "pipeline": ["ingest","normalize","quality_check","feature_extraction","multimodal_fusion","semantic_inference","language_generation","confidence_estimation","independent_verification","audit","archive"],
+  "supported_modalities": ["text","speech","image","video","audio","sensor","time_series","environmental"],
+  "output_contract": {
+    "observation": "What was actually measured or supplied.",
+    "interpretation": "Model-derived interpretation of the observation.",
+    "confidence": "Numeric confidence between 0 and 1.",
+    "evidence": "Traceable inputs supporting the interpretation.",
+    "uncertainty": "Known limitations and unresolved alternatives.",
+    "verification_status": "UNVERIFIED unless an independent verification record exists."
+  },
+  "truth_boundary": {
+    "direct_feeling_claims": "NOT_INFERRED",
+    "subjective_state_from_signal": "HYPOTHESIS_UNLESS_VALIDATED",
+    "scientific_fact": "REQUIRES_EVIDENCE",
+    "verified": "REQUIRES_INDEPENDENT_VERIFICATION_RECORD"
+  },
+  "fail_closed": true,
+  "fabrication_prohibited": true,
+  "human_review_for_high_impact": true
+}
