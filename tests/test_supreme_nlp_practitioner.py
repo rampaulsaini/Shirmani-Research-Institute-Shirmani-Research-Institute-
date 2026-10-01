@@ -16,6 +16,9 @@ class SupremeNlpPractitionerTests(unittest.TestCase):
         self.assertEqual(report["schema_version"], SCHEMA_VERSION)
         self.assertIn("soil moisture", report["plain_language_hi"].lower())
         self.assertEqual(report["observation_quality"], 0.9)
+        self.assertEqual(report["observation_quality_label"], "high")
+        self.assertEqual(report["signals"][0]["modality"], "other")
+        self.assertEqual(report["nlp_modes"], ["Natural Language Processing", "Nispak Learning Programs"])
 
     def test_invalid_numbers_are_finite(self):
         signals = normalize_signals([{"name": "x", "value": "not-a-number"}])
@@ -24,7 +27,7 @@ class SupremeNlpPractitionerTests(unittest.TestCase):
     def test_consciousness_is_not_claimed(self):
         report = practitioner_report(
             "human",
-            [{"name": "heart_rate", "value": 72, "unit": "bpm"}],
+            [{"name": "heart_rate", "value": 72, "unit": "bpm", "modality": "other"}],
         )
         boundary = report["interpretation"]["claim_boundary"]
         self.assertIn("do not", boundary)
