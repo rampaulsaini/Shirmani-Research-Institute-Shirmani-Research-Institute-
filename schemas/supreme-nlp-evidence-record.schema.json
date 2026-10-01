@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Supreme NLP Evidence Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["record_id", "input_type", "observations", "inference", "confidence", "uncertainty", "verification"],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "input_type": {"enum": ["text", "speech", "image", "video", "sensor", "multimodal"]},
+    "observations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "inference": {"type": "string", "minLength": 1},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "uncertainty": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "interpretation_boundary": {"type": "string", "minLength": 1},
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "independent"],
+      "properties": {
+        "status": {"enum": ["UNVERIFIED", "PENDING", "VERIFIED", "REJECTED"]},
+        "independent": {"type": "boolean"}
+      }
+    }
+  }
+}
