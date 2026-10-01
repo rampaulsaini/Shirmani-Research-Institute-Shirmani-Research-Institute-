@@ -1,0 +1,35 @@
+name: SHIRMANI Supreme NLP Evaluation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "factory/supreme_nlp_evaluation.py"
+      - "factory/fixtures/supreme_nlp_records.jsonl"
+      - "docs/supreme-nlp-evaluation-and-automission.md"
+      - ".github/workflows/supreme-nlp-evaluation.yml"
+  pull_request:
+    paths:
+      - "factory/supreme_nlp_evaluation.py"
+      - "factory/fixtures/supreme_nlp_records.jsonl"
+      - "docs/supreme-nlp-evaluation-and-automission.md"
+      - ".github/workflows/supreme-nlp-evaluation.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */5 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-evaluation
+  cancel-in-progress: true
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Evaluate Supreme NLP contract
+        run: python3 factory/supreme_nlp_evaluation.py
