@@ -47,13 +47,14 @@ jobs:
           python-version: "3.x"
       - name: Compile and self-test
         run: |
-          python -m py_compile factory/supreme_nlp.py factory/supreme_nlp_adapter.py factory/supreme_nlp_calibration.py
+          python -m py_compile factory/supreme_nlp.py factory/supreme_nlp_adapter.py factory/supreme_nlp_calibration.py factory/supreme_nlp_drift.py
           python -m factory.supreme_nlp
       - name: Run regression tests
         run: |
           python tests/test_supreme_nlp.py
           python tests/test_supreme_nlp_adapter.py
           python tests/test_supreme_nlp_calibration.py
+          python tests/test_supreme_nlp_drift.py
       - name: Validate schema JSON
         run: python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
       - name: Verify status contract
