@@ -1,0 +1,47 @@
+name: Supreme NLP Evidence Gate
+
+on:
+  push:
+    paths:
+      - "schemas/supreme-nlp-evidence-record.schema.json"
+      - "scripts/validate_supreme_nlp_evidence.py"
+      - "tests/fixtures/supreme-nlp-evidence.sample.json"
+      - "docs/supreme-nlp-evidence-gate-2026-10-01.md"
+  pull_request:
+    paths:
+      - "schemas/supreme-nlp-evidence-record.schema.json"
+      - "scripts/validate_supreme_nlp_evidence.py"
+      - "tests/fixtures/supreme-nlp-evidence.sample.json"
+      - "docs/supreme-nlp-evidence-gate-2026-10-01.md"
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evidence-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate sample evidence record
+        run: python3 scripts/validate_supreme_nlp_evidence.py tests/fixtures/supreme-nlp-evidence.sample.json
+      - name: Compile validator
+        run: python3 -m py_compile scripts/validate_supreme_nlp_evidence.py
+      - name: Verify fail-closed rule
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, subprocess
+          p = pathlib.Path("/tmp/invalid-record.json")
+          record = json.loads(pathlib.Path("tests/fixtures/supreme-nlp-evidence.sample.json").read_text())
+          record["verification"]["status"] = "VERIFIED"
+          record["verification"]["independent"] = False
+          p.write_text(json.dumps(record), encoding="utf-8")
+          result = subprocess.run(["python3", "scripts/validate_supreme_nlp_evidence.py", str(p)], capture_output=True, text=True)
+          if result.returncode == 0:
+              raise SystemExit("validator accepted an invalid VERIFIED record")
+          print("PASS: invalid VERIFIED record was rejected")
+          PY
