@@ -1,14 +1,28 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
   "name": "SHIRMANI Supreme NLP Policy",
   "fail_closed": true,
   "default_status": "UNVERIFIED",
   "evidence_boundary": "observable_signal_only",
   "subjective_state_claims_require_independent_verification": true,
-  "required_layers": ["multimodal_input","signal_normalization","semantic_interpretation","uncertainty","provenance","counter_evidence","independent_verification","human_review_for_consequential_actions"],
+  "confidence_requires_evaluated_validation": true,
+  "required_layers": [
+    "multimodal_input",
+    "signal_normalization",
+    "signal_statistics",
+    "semantic_interpretation",
+    "multilingual_script_routing",
+    "uncertainty",
+    "provenance",
+    "counter_evidence",
+    "independent_verification",
+    "human_review_for_consequential_actions"
+  ],
   "forbidden_shortcuts": [
     "claiming subjective feeling directly from an unvalidated sensor signal",
     "promoting model output to VERIFIED because a workflow succeeded",
-    "fabricating confidence without an evaluated validation set"
+    "fabricating confidence without an evaluated validation set",
+    "treating script detection as translation",
+    "equating correlation with causation"
   ]
 }
