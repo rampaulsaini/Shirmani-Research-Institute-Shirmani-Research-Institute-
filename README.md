@@ -168,3 +168,22 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Boundary:** “विश्व की नागरिकता” is a global-participation goal, not a claim of legal citizenship or government-issued status.
 - **Integrity:** author-declared identity, generated content, QC results and independent verification remain distinct states.
 
+
+
+## 🌍 Global Public Identity & Livelihood Layer
+
+The public platform is designed to make the creator's **Nishpaksh Samaj / Yatharth research framework** discoverable through a durable, multilingual, evidence-linked public identity.
+
+Public-facing surfaces can organize:
+- research and publications;
+- Yatharth AI / AI-Music work;
+- digital products and audio;
+- freelancing and lawful services;
+- portfolio, skills and employment opportunities;
+- multilingual biography and project history;
+- contribution/evidence records;
+- transparent contact and collaboration pathways.
+
+This platform can support **international visibility and a verifiable public portfolio**. It does not itself confer legal citizenship, nationality, immigration status, or any government-issued identity. Those remain matters for the relevant governments and legal processes.
+
+The livelihood layer must never invent income, customers, sales, credentials, testimonials, employment, or verification status.
