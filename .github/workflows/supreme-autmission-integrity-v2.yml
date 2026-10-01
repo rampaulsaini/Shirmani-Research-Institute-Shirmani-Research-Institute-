@@ -1,0 +1,59 @@
+name: Supreme Automission Integrity Gate v2
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "factory/**"
+      - "agents/**"
+      - "schemas/**"
+      - "generated/**"
+      - "scripts/supreme_autmission_gate.py"
+      - ".github/workflows/supreme-autmission-integrity-v2.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-autmission-integrity-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  integrity-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run deterministic integrity gate
+        run: |
+          set -euo pipefail
+          python scripts/supreme_autmission_gate.py --root . --output generated/supreme-autmission-integrity-v2.json
+      - name: Validate report
+        run: |
+          set -euo pipefail
+          test -s generated/supreme-autmission-integrity-v2.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d = json.loads(Path("generated/supreme-autmission-integrity-v2.json").read_text(encoding="utf-8"))
+          assert d["schema_version"] == "2.0"
+          assert d["status"] in {"PASS", "REVIEW", "BLOCKED"}
+          assert isinstance(d["checks"], list)
+          print("status:", d["status"])
+          print("checks:", len(d["checks"]))
+          PY
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-autmission-integrity-v2
+          path: generated/supreme-autmission-integrity-v2.json
+          if-no-files-found: error
