@@ -58,6 +58,36 @@ jobs:
               )
           '
 
+      - name: Clean up old failed workflow runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, subprocess
+          from datetime import datetime, timezone, timedelta
+          repo = os.environ["GITHUB_REPOSITORY"]
+          cutoff = datetime.now(timezone.utc) - timedelta(hours=24)
+          payload = subprocess.check_output([
+              "gh", "run", "list", "--repo", repo, "--status", "failure",
+              "--limit", "100", "--json", "databaseId,workflowName,createdAt"
+          ], text=True)
+          runs = json.loads(payload)
+          protected = {"SHIRMANI Multi-Automation Supervisor"}
+          deleted = 0
+          for run in runs:
+              if run.get("workflowName") in protected:
+                  continue
+              created = datetime.fromisoformat(run["createdAt"].replace("Z", "+00:00"))
+              if created >= cutoff:
+                  continue
+              rid = str(run["databaseId"])
+              print("Deleting stale failed run: {} #{}".format(run["workflowName"], rid))
+              subprocess.run(["gh", "run", "delete", rid, "--confirm", "--repo", repo], check=False)
+              deleted += 1
+          print("Stale failed-run cleanup attempted: {}".format(deleted))
+          PY
+
       - name: Validate protected-source policy
         run: |
           set -euo pipefail
