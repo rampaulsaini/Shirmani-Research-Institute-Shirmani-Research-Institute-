@@ -1,0 +1,73 @@
+name: Supreme NLP Empirical Quality Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+  push:
+    paths:
+      - "factory/supreme_nlp_eval.py"
+      - "tests/test_supreme_nlp_eval.py"
+      - ".github/workflows/supreme-nlp-quality.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-quality
+  cancel-in-progress: false
+
+jobs:
+  empirical-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile evaluator
+        run: python -m py_compile factory/supreme_nlp_eval.py
+
+      - name: Regression tests
+        run: python -m unittest tests.test_supreme_nlp_eval -v
+
+      - name: Run deterministic benchmark
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from factory.supreme_nlp_eval import (
+              classification_metrics,
+              quality_gate,
+              robustness_consistency,
+          )
+
+          y_true = ["stable", "stable", "change", "change", "stable", "change"]
+          baseline = ["stable", "stable", "change", "stable", "change", "change"]
+          perturbed = ["stable", "stable", "change", "stable", "stable", "change"]
+          confidence = [0.90, 0.80, 0.85, 0.70, 0.60, 0.95]
+
+          metrics = classification_metrics(y_true, baseline, confidence)
+          metrics["robustness"] = robustness_consistency(baseline, perturbed)
+          gate = quality_gate(metrics)
+
+          report = {"metrics": metrics, "gate": gate, "benchmark": "deterministic-fixture-v1"}
+          Path("supreme-nlp-quality-report.json").write_text(
+              json.dumps(report, indent=2, sort_keys=True),
+              encoding="utf-8",
+          )
+          print(json.dumps(report, indent=2, sort_keys=True))
+          if gate["status"] != "PASS":
+              raise SystemExit("SUPREME_NLP_QUALITY_GATE_FAILED")
+          print("SUPREME_NLP_QUALITY_GATE_PASS")
+          PY
+
+      - name: Upload quality report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-quality-report
+          path: supreme-nlp-quality-report.json
+          if-no-files-found: error
