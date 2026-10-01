@@ -87,3 +87,31 @@ The public platform should present the creator's work through evidence, provenan
 The strongest platform is one that can say:
 
 **What was observed, what was inferred, what was verified, what remains unknown, and how the result can be reproduced.**
+
+
+## Signal-to-NLP evidence contract
+
+For any acoustic, vibration, electrical, bioelectrical, environmental, image, video,
+or other measurable input, the platform uses:
+
+**Measure → Normalize → Feature extraction → Model → Interpretation → Plain language → Verification**
+
+The new `factory/signal_to_nlp.py` layer deliberately separates:
+
+- measured features from interpretation
+- signal-quality confidence from truth probability
+- inferred state from subjective experience
+- author/model claims from independently verified evidence
+
+No sensor stream is converted into a claim of consciousness, emotion, pain, intention,
+or subjective experience without a validated model and supporting evidence.
+
+## Failure handling
+
+A failed run is an engineering signal, not something to hide. The Automission Supervisor
+is read-only with respect to historical runs: it observes failures, preserves evidence,
+and runs local integrity gates. It does not automatically rewrite history or blindly
+rerun arbitrary failed workflows.
+
+The standalone failure-intelligence workflow has been removed from the canonical branch;
+failure observation is now integrated into the controlled supervisor/quality architecture.
