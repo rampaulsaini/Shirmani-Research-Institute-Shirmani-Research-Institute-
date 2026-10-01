@@ -1,4 +1,5 @@
 name: NLP Perception Evidence QC
+
 on:
   push:
     paths:
@@ -13,41 +14,116 @@ on:
       - "docs/ai/supreme-nlp-architecture.md"
       - ".github/workflows/nlp-perception-qc.yml"
   workflow_dispatch:
+
 permissions:
   contents: read
+
+concurrency:
+  group: nlp-perception-qc-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   gate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
       - name: Compile deterministic gate
         run: python -m py_compile factory/nlp_perception_gate.py
+
       - name: Validate schema JSON
-        run: python - <<'PY'
-          import json
-          json.load(open('schemas/nlp-perception-record.schema.json', encoding='utf-8'))
-          print('schema-json: PASS')
-          PY
-      - name: Run gate on representative observed record
+        shell: bash
         run: |
-          cat > /tmp/record.json <<'JSON'
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("schemas/nlp-perception-record.schema.json")
+          json.loads(p.read_text(encoding="utf-8"))
+          print(f"schema-json: PASS {p}")
+          PY
+
+      - name: Run representative evidence cases
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cat > /tmp/observed.json <<'JSON'
           {
-            "record_id":"qc-demo-001",
-            "timestamp":"2026-10-01T00:00:00Z",
-            "status":"OBSERVED",
-            "modality":"sensor",
-            "subject_type":"plant",
-            "content":"Measured response signal recorded by a sensor.",
-            "features":[{"name":"response_signal","value":1}],
-            "evidence_refs":[],
-            "uncertainty":0,
-            "model":null,
-            "model_version":null,
-            "provenance":{"source_id":"qc-fixture","source_hash":null,"location":"test"},
-            "human_review":false
+            "record_id": "qc-observed-001",
+            "timestamp": "2026-10-01T00:00:00Z",
+            "status": "OBSERVED",
+            "modality": "sensor",
+            "subject_type": "plant",
+            "content": "Measured response signal recorded by a sensor.",
+            "features": [{"name": "response_signal", "value": 1}],
+            "evidence_refs": [],
+            "uncertainty": 0,
+            "model": null,
+            "model_version": null,
+            "provenance": {
+              "source_id": "qc-fixture",
+              "source_hash": null,
+              "location": "test"
+            },
+            "human_review": false
           }
           JSON
-          python factory/nlp_perception_gate.py /tmp/record.json
+
+          python factory/nlp_perception_gate.py /tmp/observed.json
+
+          cat > /tmp/inferred-with-evidence.json <<'JSON'
+          {
+            "record_id": "qc-inferred-001",
+            "timestamp": "2026-10-01T00:00:00Z",
+            "status": "INFERRED",
+            "modality": "sensor",
+            "subject_type": "plant",
+            "content": "The measured pattern is associated with the tested response condition.",
+            "features": [{"name": "response_signal", "value": 1}],
+            "evidence_refs": ["study:qc-001"],
+            "uncertainty": 0.2,
+            "model": "qc-baseline",
+            "model_version": "1",
+            "provenance": {
+              "source_id": "qc-fixture",
+              "source_hash": null,
+              "location": "test"
+            },
+            "human_review": false
+          }
+          JSON
+
+          python factory/nlp_perception_gate.py /tmp/inferred-with-evidence.json
+
+          cat > /tmp/invalid-inference.json <<'JSON'
+          {
+            "record_id": "qc-invalid-001",
+            "timestamp": "2026-10-01T00:00:00Z",
+            "status": "INFERRED",
+            "modality": "sensor",
+            "subject_type": "plant",
+            "content": "Unsupported interpretation.",
+            "features": [],
+            "evidence_refs": [],
+            "uncertainty": 0.1,
+            "model": "qc-baseline",
+            "model_version": "1",
+            "provenance": {"source_id": "qc-fixture"},
+            "human_review": false
+          }
+          JSON
+
+          if python factory/nlp_perception_gate.py /tmp/invalid-inference.json; then
+            echo "negative-case unexpectedly passed"
+            exit 1
+          fi
+          echo "negative-case: PASS (correctly rejected)"
+
+      - name: Smoke-test CLI contract
+        run: |
+          python factory/nlp_perception_gate.py 2>&1 | grep -F "usage:"
