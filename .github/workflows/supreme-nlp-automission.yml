@@ -18,9 +18,11 @@ on:
     paths:
       - "factory/supreme_nlp.py"
       - "factory/supreme_nlp_adapter.py"
+      - "factory/supreme_nlp_calibration.py"
       - "schemas/supreme-nlp-record.schema.json"
       - "tests/test_supreme_nlp.py"
       - "tests/test_supreme_nlp_adapter.py"
+      - "tests/test_supreme_nlp_calibration.py"
       - ".github/workflows/supreme-nlp-automission.yml"
 
 permissions:
@@ -46,7 +48,7 @@ jobs:
       - name: Compile and self-test
         run: |
           python -m py_compile factory/supreme_nlp.py factory/supreme_nlp_adapter.py factory/supreme_nlp_calibration.py
-          python factory/supreme_nlp.py
+          python -m factory.supreme_nlp
       - name: Run regression tests
         run: |
           python tests/test_supreme_nlp.py
@@ -96,7 +98,7 @@ jobs:
         with:
           python-version: "3.x"
       - name: Generate verified status
-        run: python factory/supreme_nlp.py
+        run: python -m factory.supreme_nlp
       - name: Commit verified status
         run: |
           git config user.name "omniverse-factory[bot]"
