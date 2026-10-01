@@ -1,0 +1,108 @@
+name: SHIRMANI Heart-View Review Conveyor
+
+on:
+  workflow_dispatch:
+    inputs:
+      review_offset:
+        description: "Zero-based queue offset"
+        required: true
+        default: "0"
+        type: string
+      batch_size:
+        description: "Review packet size (1-1000)"
+        required: true
+        default: "25"
+        type: string
+  push:
+    paths:
+      - "CONTINUE-REVIEW-SLICE-*.trigger"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-heart-view-review-conveyor
+  cancel-in-progress: false
+
+jobs:
+  build-review-slice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Resolve review slice
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_OFFSET: ${{ inputs.review_offset }}
+          INPUT_BATCH_SIZE: ${{ inputs.batch_size }}
+        run: |
+          set -euo pipefail
+          offset="${INPUT_OFFSET:-0}"
+          batch_size="${INPUT_BATCH_SIZE:-25}"
+          if [[ "$EVENT_NAME" == "push" ]]; then
+            trigger="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep -E '^CONTINUE-REVIEW-SLICE-[0-9]{6}-[0-9]{6}\\.trigger$' | head -n 1 || true)"
+            if [[ "$trigger" =~ CONTINUE-REVIEW-SLICE-([0-9]{6})-([0-9]{6})\\.trigger$ ]]; then
+              start="${BASH_REMATCH[1]}"; end="${BASH_REMATCH[2]}"
+              offset=$((10#$start - 1)); batch_size=$((10#$end - 10#$start + 1))
+            else
+              echo "No valid review-slice trigger found."; exit 1
+            fi
+          fi
+          [[ "$offset" =~ ^[0-9]+$ ]] || { echo "Invalid offset: $offset"; exit 1; }
+          [[ "$batch_size" =~ ^[0-9]+$ ]] || { echo "Invalid batch size: $batch_size"; exit 1; }
+          (( batch_size >= 1 && batch_size <= 1000 )) || { echo "Batch size must be 1..1000"; exit 1; }
+          start=$((offset + 1)); end=$((offset + batch_size))
+          printf -v start6 "%06d" "$start"; printf -v end6 "%06d" "$end"
+          {
+            echo "OFFSET=$offset"; echo "BATCH_SIZE=$batch_size"
+            echo "START6=$start6"; echo "END6=$end6"
+            echo "PACKET=generated/verification-review-packet-${start6}-${end6}.json"
+            echo "QC_DOC=CONTINUATION-REVIEW-SLICE-${start6}-${end6}-QC.md"
+          } >> "$GITHUB_ENV"
+      - name: Restore exact committed queue and registry
+        run: |
+          set -euo pipefail
+          test -s generated/independent-verification-queue.jsonl.gz
+          test -s generated/independent-verification-registry.jsonl.gz
+          gzip -dc generated/independent-verification-queue.jsonl.gz > generated/independent-verification-queue.jsonl
+          gzip -dc generated/independent-verification-registry.jsonl.gz > generated/independent-verification-registry.jsonl
+      - name: Generate exact hash-bound review packet
+        run: python3 factory/verification_review_packet.py --batch-size "$BATCH_SIZE" --offset "$OFFSET"
+      - name: Run fail-closed packet QC
+        run: python3 factory/verification_review_packet_qc.py --packet "$PACKET"
+      - name: Record durable continuation result
+        run: |
+          set -euo pipefail
+          PACKET="$PACKET" QC_DOC="$QC_DOC" START6="$START6" END6="$END6" python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          packet=json.loads(Path(os.environ["PACKET"]).read_text(encoding="utf-8"))
+          qc=json.loads(Path("generated/VERIFICATION-PACKET-QC.json").read_text(encoding="utf-8"))
+          if packet.get("status") != "READY_FOR_HUMAN_REVIEW": raise SystemExit("packet is not READY_FOR_HUMAN_REVIEW")
+          if qc.get("publication_gate") != "PASS": raise SystemExit("packet QC did not PASS")
+          review_range=packet.get("range", ["?","?"])
+          Path(os.environ["QC_DOC"]).write_text(
+              f"# SHIRMANI HEART-VIEW — REVIEW SLICE {review_range[0]}–{review_range[1]}\n\n"
+              "Generated from the exact committed compressed queue/registry; no records were reconstructed by inference.\n\n"
+              f"- Packet: generated/verification-review-packet-{os.environ['START6']}-{os.environ['END6']}.json\n"
+              f"- Records: {packet.get('records')}\n"
+              f"- Packet status: {packet.get('status')}\n"
+              f"- Packet QC: {qc.get('publication_gate')}\n"
+              "- Human verification: NOT PERFORMED\n"
+              "- VERIFIED promotion: 0\n\n"
+              "**Preserve first. Reason second. Verify third. Transform only as a traceable derivative.**\n",
+              encoding="utf-8")
+          PY
+          rm -f generated/independent-verification-queue.jsonl generated/independent-verification-registry.jsonl generated/VERIFICATION-PACKET-QC.json
+      - name: Commit review slice
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PACKET" "$QC_DOC"
+          git diff --cached --quiet && exit 0
+          git commit -m "docs: generate exact Heart-View review slice ${START6}-${END6}"
+          git push
