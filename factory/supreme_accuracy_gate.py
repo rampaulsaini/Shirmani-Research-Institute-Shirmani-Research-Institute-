@@ -67,7 +67,7 @@ def evaluate(root: str = "generated/agent-run", output: str = "generated/supreme
         language_counts[str(row.get("language", "unknown"))] += 1
         status_counts[str(row.get("status", "unknown"))] += 1
         provenance = row.get("provenance")
-        evidence = (provenance or {}).get("source") if isinstance(provenance, dict) else None
+        evidence = row.get("source") or ((provenance or {}).get("source") if isinstance(provenance, dict) else None)
         evidence_counts["with_source" if evidence else "without_source"] += 1
         if row.get("text"):
             texts.append((aid, row["text"]))
