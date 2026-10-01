@@ -1,0 +1,38 @@
+name: SHIRMANI Supreme Platform Health Gate
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-platform-health
+  cancel-in-progress: true
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate GitHub Actions syntax
+        uses: docker://rhysd/actionlint:latest
+
+      - name: Run deterministic platform health gate
+        run: python3 scripts/supreme_platform_health.py
+
+      - name: Publish health report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-platform-health-report
+          path: generated/platform-health-report.json
+          if-no-files-found: error
+          retention-days: 14
