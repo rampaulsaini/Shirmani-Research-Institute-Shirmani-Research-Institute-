@@ -48,6 +48,9 @@ jobs:
           print("SCHEMA_JSON_OK")
           PY
 
+      - name: Run multimodal signal interpretation QC
+        run: python factory/multimodal_signal_qc.py
+
       - name: Generate deterministic status
         run: |
           mkdir -p generated/supreme-nlp
