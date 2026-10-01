@@ -1,0 +1,111 @@
+name: SHIRMANI Heart-View Review Conveyor
+
+on:
+  workflow_dispatch:
+    inputs:
+      review_batch_size:
+        description: "Number of verification records to package (1-1000)"
+        required: false
+        default: "100"
+        type: string
+      review_offset:
+        description: "Zero-based queue offset; leave empty to resume after the latest packet"
+        required: false
+        default: ""
+        type: string
+  workflow_call:
+    inputs:
+      review_batch_size:
+        required: false
+        type: string
+        default: "100"
+      review_offset:
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-heart-view-review-conveyor
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate review controls
+        env:
+          INPUT_BATCH_SIZE: ${{ inputs.review_batch_size }}
+          INPUT_OFFSET: ${{ inputs.review_offset }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          def integer(name, default):
+              raw = os.getenv(name, '').strip() or default
+              value = int(raw, 10)
+              if value < 0:
+                  raise SystemExit(f'{name} must be non-negative')
+              return value
+          batch = integer('INPUT_BATCH_SIZE', '100')
+          if not 1 <= batch <= 1000:
+              raise SystemExit('review_batch_size must be between 1 and 1000')
+          offset = integer('INPUT_OFFSET', '0')
+          print(f'validated batch_size={batch} offset={offset}')
+          PY
+
+      - name: Determine resumable cursor
+        id: cursor
+        env:
+          INPUT_BATCH_SIZE: ${{ inputs.review_batch_size }}
+          INPUT_OFFSET: ${{ inputs.review_offset }}
+        run: |
+          set -euo pipefail
+          batch="${INPUT_BATCH_SIZE:-100}"
+          offset="${INPUT_OFFSET:-}"
+          if [ -z "$offset" ]; then
+            offset=0
+            shopt -s nullglob
+            for packet in generated/verification-review-packet-*.json; do
+              range="${packet##*/verification-review-packet-}"
+              range="${range%.json}"
+              end="${range##*-}"
+              if [[ "$end" =~ ^[0-9]+$ ]] && [ "$end" -gt "$offset" ]; then offset="$end"; fi
+            done
+          fi
+          echo "batch=$((10#$batch))" >> "$GITHUB_OUTPUT"
+          echo "offset=$((10#${offset:-0}))" >> "$GITHUB_OUTPUT"
+
+      - name: Build verification review packet
+        env:
+          REVIEW_BATCH_SIZE: ${{ steps.cursor.outputs.batch }}
+          REVIEW_OFFSET: ${{ steps.cursor.outputs.offset }}
+        run: |
+          python3 factory/verification_review_packet.py \
+            --batch-size "$REVIEW_BATCH_SIZE" \
+            --offset "$REVIEW_OFFSET"
+
+      - name: Run packet QC
+        env:
+          REVIEW_BATCH_SIZE: ${{ steps.cursor.outputs.batch }}
+          REVIEW_OFFSET: ${{ steps.cursor.outputs.offset }}
+        run: |
+          set -euo pipefail
+          packet=$(printf 'generated/verification-review-packet-%06d-%06d.json' \
+            "$((10#$REVIEW_OFFSET + 1))" \
+            "$((10#$REVIEW_OFFSET + 10#$REVIEW_BATCH_SIZE))")
+          test -s "$packet"
+          python3 factory/verification_review_packet_qc.py --packet "$packet"
+
+      - name: Publish review artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-heart-view-review-packet
+          path: generated/verification-review-packet-*.json
+          if-no-files-found: error
+          retention-days: 14

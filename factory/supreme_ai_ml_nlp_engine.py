@@ -166,8 +166,12 @@ def evaluate(rows: list[dict[str, Any]], verification: dict[str, Any],
 
     scores = [float(v["score"]) for v in agents.values()]
     stats = _score_stats(scores)
+    # A single record is insufficient evidence for ensemble consensus.
+    # Keep Automission fail-closed during bootstrap/partial-data states.
+    minimum_consensus_records = 2
     consensus = (
-        len(scores) >= 6
+        len(rows) >= minimum_consensus_records
+        and len(scores) >= 6
         and stats["min"] >= 0.90
         and stats["spread"] <= 0.10
         and verification_agent == 1.0
