@@ -1,0 +1,63 @@
+name: SHIRMANI Supreme AI Quality Gate
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "scripts/**"
+      - "schemas/**"
+      - "automation/**"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-ai-quality-gate
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run deterministic AI/ML/NLP quality contract
+        run: python3 scripts/supreme_ai_quality_gate.py
+
+      - name: Validate workflow YAML structure
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import yaml
+          for p in sorted(Path(".github/workflows").glob("*.y*ml")):
+              d=yaml.safe_load(p.read_text(encoding="utf-8"))
+              if not isinstance(d,dict) or "jobs" not in d or not d["jobs"]:
+                  raise SystemExit(f"invalid workflow structure: {p}")
+          print("WORKFLOW_STRUCTURE=PASS")
+          PY
+
+      - name: Emit machine-readable quality result
+        run: |
+          mkdir -p generated
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          out={
+            "contract":"automation/supreme-ai-quality-contract.json",
+            "gate":"SUPREME_AI_QUALITY_GATE",
+            "result":"PASS",
+            "accuracy_claimed":False,
+            "independent_verification_promotion":False,
+            "principle":"measure accuracy against a declared evaluator and test set"
+          }
+          Path("generated/supreme-ai-quality-status.json").write_text(json.dumps(out,indent=2)+"\n",encoding="utf-8")
+          PY
