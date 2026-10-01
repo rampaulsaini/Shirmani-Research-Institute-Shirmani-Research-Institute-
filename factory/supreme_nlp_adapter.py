@@ -43,6 +43,7 @@ def normalize_observation(
     unit: str | None = None,
     timestamp: str | None = None,
     source_id: str | None = None,
+    observation_id: str | None = None,
 ) -> Dict[str, Any]:
     """Create a canonical, typed observation from a measured value."""
     if modality not in ALLOWED_MODALITIES:
@@ -50,7 +51,11 @@ def normalize_observation(
     if not isinstance(feature, str) or not feature.strip():
         raise ValueError("feature must be a non-empty string")
 
+    if observation_id is not None and (not isinstance(observation_id, str) or not observation_id.strip()):
+        raise ValueError("observation_id must be a non-empty string when provided")
+
     observation: Dict[str, Any] = {
+        "id": observation_id or f"{modality}:{feature.strip()}",
         "modality": modality,
         "feature": feature.strip(),
         "value": _finite_number(value, "value"),
@@ -85,6 +90,7 @@ def to_plain_language(
             unit=item.get("unit"),
             timestamp=item.get("timestamp"),
             source_id=item.get("source_id"),
+            observation_id=item.get("id"),
         )
         unit = f" {normalized['unit']}" if normalized.get("unit") else ""
         lines.append(
