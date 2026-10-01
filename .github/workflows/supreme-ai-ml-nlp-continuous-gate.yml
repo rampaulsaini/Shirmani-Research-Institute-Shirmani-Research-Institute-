@@ -1,0 +1,61 @@
+name: SHIRMANI Supreme Continuous AI-ML-NLP Gate
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-continuous-gate
+  cancel-in-progress: false
+
+jobs:
+  deterministic-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Python syntax gate
+        run: |
+          python3 -m py_compile factory/supreme_ai_ml_nlp_engine.py
+          python3 -m py_compile factory/supreme_quality_controller.py
+          python3 -m py_compile factory/batch_worker.py
+          python3 -m py_compile agents/orchestrator.py
+
+      - name: Deterministic regression suite
+        run: python3 -m unittest discover -s tests -p 'test_supreme_ai_ml_nlp.py' -v
+
+      - name: Validate benchmark contract
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("schemas/supreme-ai-ml-nlp-benchmark-contract.json")
+          d = json.loads(p.read_text(encoding="utf-8"))
+          required = {"schema_version", "name", "purpose", "tracks", "required_record_fields", "status_vocabulary"}
+          missing = sorted(required - set(d))
+          assert not missing, f"Missing benchmark keys: {missing}"
+          assert len(d["required_record_fields"]) >= 10
+          assert "UNVERIFIED" in d["status_vocabulary"]
+          assert "INDEPENDENTLY_VERIFIED" in d["status_vocabulary"]
+          print("BENCHMARK CONTRACT: PASS")
+          PY
+
+      - name: Continuous quality controller
+        run: python3 factory/supreme_quality_controller.py
+
+      - name: Publish quality report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-continuous-quality-report
+          path: generated/supreme-quality-report.json
+          if-no-files-found: ignore
+          retention-days: 14
