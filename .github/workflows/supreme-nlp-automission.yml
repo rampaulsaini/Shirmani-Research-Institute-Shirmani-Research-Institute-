@@ -88,11 +88,19 @@ jobs:
           status = json.loads(Path("generated/supreme-nlp/status.json").read_text(encoding="utf-8"))
           plan = json.loads(Path("generated/supreme-nlp/automission-plan.json").read_text(encoding="utf-8"))
 
+          assert status["schema_version"] == "1.2"
           assert status["fingerprint"]
+          assert status["provenance"]["source_count"] >= 0
+          assert status["uncertainty"]["confidence_is_calibrated"] is False
+          assert status["uncertainty"]["independent_verification"] == "NOT_VERIFIED"
+          assert status["uncertainty"]["causal_claim"] == "NOT_ESTABLISHED"
           assert status["result"]["status"] in {"no_data", "insufficient_quality", "interpreted"}
-          assert 0 <= status["result"].get("interpretation", {}).get("confidence", 0) <= 1 if status["result"]["status"] == "interpreted" else True
-          assert plan["state"] in {"MONITOR", "IMPROVEMENT_REQUIRED"}
+          if status["result"]["status"] == "interpreted":
+              assert 0 <= status["result"]["interpretation"]["confidence"] <= 0.95
+          assert plan["state"] in {"NO_STATUS", "MONITOR", "IMPROVEMENT_REQUIRED"}
           assert isinstance(plan["actions"], list) and plan["actions"]
+          assert plan["gates"]["code_mutation"] == "DISABLED"
+          assert plan["gates"]["deployment"] == "HUMAN_APPROVAL_REQUIRED"
           print("GENERATED_RECORD_CONTRACT_OK")
           PY
 
