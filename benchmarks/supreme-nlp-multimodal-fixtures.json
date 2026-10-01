@@ -1,0 +1,20 @@
+{
+  "version": "2026-10-01",
+  "purpose": "Deterministic regression fixtures for multimodal signal-to-language normalization.",
+  "integrity": {
+    "signals_are_measurements": true,
+    "subjective_experience_is_not_inferred": true,
+    "scientific_claim_requires_independent_verification": true
+  },
+  "cases": [
+    {"id":"audio-001","modality":"audio","feature":"rms_amplitude","value":0.31,"unit":"normalized"},
+    {"id":"image-001","modality":"image","feature":"luminance_mean","value":128.4,"unit":"level"},
+    {"id":"environment-001","modality":"environment","feature":"humidity","value":61.2,"unit":"percent"},
+    {"id":"bioelectric-001","modality":"bioelectric","feature":"voltage","value":0.42,"unit":"mV"},
+    {"id":"vibration-001","modality":"vibration","feature":"amplitude","value":2.5,"unit":"mm"},
+    {"id":"chemical-001","modality":"chemical","feature":"conductivity","value":1.8,"unit":"mS_cm"},
+    {"id":"motion-001","modality":"motion","feature":"velocity","value":0.73,"unit":"m_s"},
+    {"id":"temperature-001","modality":"temperature","feature":"ambient","value":24.1,"unit":"C"},
+    {"id":"light-001","modality":"light","feature":"illuminance","value":420,"unit":"lux"}
+  ]
+}

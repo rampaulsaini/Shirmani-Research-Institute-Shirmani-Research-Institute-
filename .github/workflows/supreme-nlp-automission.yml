@@ -1,0 +1,125 @@
+name: Supreme NLP Automission Quality Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  pull_request:
+    paths:
+      - "factory/supreme_nlp.py"
+      - "factory/supreme_nlp_adapter.py"
+      - "factory/supreme_nlp_calibration.py"
+      - "factory/supreme_nlp_drift.py"
+      - "benchmarks/supreme_nlp_benchmark.py"
+      - "benchmarks/supreme-nlp-multimodal-fixtures.json"
+      - "schemas/supreme-nlp-record.schema.json"
+      - "schemas/supreme-nlp-calibration-baseline.json"
+      - "tests/test_supreme_nlp.py"
+      - "tests/test_supreme_nlp_adapter.py"
+      - "tests/test_supreme_nlp_calibration.py"
+      - "tests/test_supreme_nlp_benchmark.py"
+      - ".github/workflows/supreme-nlp-automission.yml"
+  push:
+    paths:
+      - "factory/supreme_nlp.py"
+      - "factory/supreme_nlp_adapter.py"
+      - "factory/supreme_nlp_calibration.py"
+      - "factory/supreme_nlp_drift.py"
+      - "schemas/supreme-nlp-record.schema.json"
+      - "schemas/supreme-nlp-calibration-baseline.json"
+      - "tests/test_supreme_nlp.py"
+      - "tests/test_supreme_nlp_adapter.py"
+      - "tests/test_supreme_nlp_calibration.py"
+      - ".github/workflows/supreme-nlp-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  # Keep scheduled/main verification independent while ensuring that a newer
+  # commit supersedes an older validation run for the same PR/ref.
+  group: supreme-nlp-automission-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile and self-test
+        run: |
+          python -m py_compile factory/supreme_nlp.py factory/supreme_nlp_adapter.py factory/supreme_nlp_calibration.py factory/supreme_nlp_drift.py benchmarks/supreme_nlp_benchmark.py
+          python -m factory.supreme_nlp
+      - name: Run regression tests
+        run: |
+          python tests/test_supreme_nlp.py
+          python tests/test_supreme_nlp_adapter.py
+          python tests/test_supreme_nlp_calibration.py
+          python tests/test_supreme_nlp_drift.py
+          python tests/test_supreme_nlp_benchmark.py
+      - name: Validate schema JSON
+        run: |
+          python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
+          python -m json.tool schemas/supreme-nlp-calibration-baseline.json >/dev/null
+          python -m json.tool benchmarks/supreme-nlp-multimodal-fixtures.json >/dev/null
+      - name: Verify status contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("generated/supreme-nlp-status.json").read_text(encoding="utf-8"))
+          assert data["ok"] is True
+          assert data["record"]["independent_check"] is True
+          assert 0 <= data["record"]["confidence"] <= 1
+          assert all(data["guards"].values())
+          assert data["quality_score"] == 1.0
+          assert data["calibration"]["ok"] is True
+          assert data["calibration"]["metrics"]["accuracy"] >= data["calibration"]["thresholds"]["minimum_accuracy"]
+          assert data["calibration"]["metrics"]["brier_score"] <= data["calibration"]["thresholds"]["maximum_brier_score"]
+          assert data["calibration"]["metrics"]["expected_calibration_error"] <= data["calibration"]["thresholds"]["maximum_ece"]
+          assert data["calibration_drift"]["ok"] is True
+          assert all(data["calibration_drift"]["guards"].values())
+          dimensions = data["record"]["quality_dimensions"]
+          assert dimensions["schema_complete"] is True
+          assert dimensions["typed_observations"] is True
+          assert dimensions["evidence_present"] is True
+          assert dimensions["independent_verification"] is True
+          assert dimensions["claim_strength_guard"] is True
+          print("SUPREME_NLP_QUALITY_GATE=PASS")
+          print("QUALITY_SCORE:", data["quality_score"])
+          PY
+
+  publish-status:
+    if: github.event_name != 'pull_request'
+    needs: quality-gate
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Generate verified status
+        run: python -m factory.supreme_nlp
+      - name: Commit verified status
+        run: |
+          git config user.name "omniverse-factory[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/supreme-nlp-status.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(nlp): update Supreme NLP quality status"
+          git push
