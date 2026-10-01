@@ -1,0 +1,41 @@
+name: SHIRMANI Supreme NLP Quality Gate
+
+on:
+  push:
+    paths:
+      - "agents/supreme_nlp_engine.py"
+      - "tests/test_supreme_nlp_engine.py"
+      - "research/supreme-nlp-architecture-2026-10-01.md"
+      - ".github/workflows/supreme-nlp-quality-gate.yml"
+  pull_request:
+    paths:
+      - "agents/supreme_nlp_engine.py"
+      - "tests/test_supreme_nlp_engine.py"
+      - "research/supreme-nlp-architecture-2026-10-01.md"
+      - ".github/workflows/supreme-nlp-quality-gate.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "11 */6 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run Supreme NLP regression tests
+        run: python3 -m unittest discover -s tests -p "test_supreme_nlp_engine.py" -v
+      - name: Compile safety-critical module
+        run: python3 -m py_compile agents/supreme_nlp_engine.py
+      - name: Verify evidence boundary
+        run: |
+          set -euo pipefail
+          grep -qi "subjective" agents/supreme_nlp_engine.py
+          grep -qi "independent" agents/supreme_nlp_engine.py
+          echo "Supreme NLP evidence boundary: PASS"
