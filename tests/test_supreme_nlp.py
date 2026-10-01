@@ -1,5 +1,11 @@
 """Regression tests for the dependency-free Supreme NLP gate."""
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from factory.supreme_nlp import run_self_test, validate_record
+
 
 def test_self_test():
     result = run_self_test()
@@ -7,12 +13,16 @@ def test_self_test():
     assert result["record"]["status"] == "verified"
     assert all(result["guards"].values())
 
+
 def test_missing_field_rejected():
     record = {
         "event_id": "x",
         "source_type": "synthetic",
         "observations": [{"x": 1}],
-        "interpretation": {"plain_language": "x", "claim_type": "observation"},
+        "interpretation": {
+            "plain_language": "x",
+            "claim_type": "observation",
+        },
         "confidence": 0.5,
         "evidence": [{"id": "e"}],
         "verification": {"independent_check": True},
@@ -23,6 +33,7 @@ def test_missing_field_rejected():
         assert "missing required fields" in str(exc)
     else:
         raise AssertionError("missing provenance must be rejected")
+
 
 if __name__ == "__main__":
     test_self_test()
