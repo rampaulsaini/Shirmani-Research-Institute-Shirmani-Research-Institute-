@@ -1,18 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "baseline_id": "automission-baseline-v2",
+  "baseline_id": "automission-baseline-v3",
   "source": "benchmarks/automission/sample_predictions.jsonl",
-  "fixture_sha256": "43012c4e5fb8efaa29bdd524a244f77fe49897d62d2591a83bb746bce74a0459",
+  "fixture_sha256": "91fcffd0291ba9f2ccaaccc577392ac4a84d3bcb011003a0c39ac98a1b1947da",
   "metrics": {
-    "accuracy": 0.8,
-    "precision_macro": 0.833333,
-    "recall_macro": 0.833333,
-    "f1_macro": 0.8,
-    "brier_score": 0.092,
-    "expected_calibration_error": 0.23,
-    "abstention_rate": 0.285714,
-    "selective_risk": 0.2,
-    "provenance_completeness": 0.857143,
+    "accuracy": 1,
+    "precision_macro": 1,
+    "recall_macro": 1,
+    "f1_macro": 1,
+    "brier_score": 0.039375,
+    "expected_calibration_error": 0.13,
+    "abstention_rate": 0.428571,
+    "coverage": 0.571429,
+    "selective_risk": 0,
+    "provenance_completeness": 1,
     "latency_p50_ms": 20,
     "latency_p95_ms": 37,
     "latency_p99_ms": 39.4,
@@ -22,6 +23,13 @@
   "release_boundary": {
     "independent_verified_claims": 0,
     "live_claim": false,
-    "note": "Expanded deterministic fixture baseline covering golden, counter-evidence, edge, regression, unseen and adversarial suites; benchmark remains non-verifying."
+    "note": "Explicitly refreshed after the edge-case semantic safety correction. Benchmark remains non-verifying; UNKNOWN abstentions remain review-bound."
+  },
+  "refresh_audit": {
+    "reason": "semantic_fixture_correction_edge_case_abstention",
+    "previous_baseline_id": "automission-baseline-v2",
+    "prior_fixture_sha256": "43012c4e5fb8efaa29bdd524a244f77fe49897d62d2591a83bb746bce74a0459",
+    "requires_human_review": true,
+    "automatic_refresh": false
   }
 }
