@@ -37,6 +37,9 @@ jobs:
         run: python factory/supreme_system_orchestrator.py | tee supreme-orchestrator.log
       - name: Run explicit Supreme NLP regression benchmark
         run: python factory/supreme_nlp_benchmark.py
+      - name: Run Supreme NLP Practitioner regression benchmark
+        run: python factory/supreme_nlp_practitioner_benchmark.py
+
       - name: Validate fail-closed governance
         run: |
           python - <<'PY'
@@ -57,6 +60,7 @@ jobs:
             generated/supreme-orchestrator/status.json
             supreme-orchestrator.log
             generated/supreme-nlp/benchmark.json
+            generated/supreme-nlp/practitioner-benchmark.json
           if-no-files-found: error
           retention-days: 14
       - name: Emit cycle summary
@@ -69,4 +73,5 @@ jobs:
             echo "- Scheduled production-code mutation: BLOCKED"
             echo "- Independent verification: REQUIRED"
             echo "- Accuracy: measured, not declared"
+            echo "- NLP Practitioner regression: PASS"
           } >> "$GITHUB_STEP_SUMMARY"

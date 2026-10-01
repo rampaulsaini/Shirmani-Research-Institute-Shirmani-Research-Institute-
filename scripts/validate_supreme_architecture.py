@@ -17,6 +17,7 @@ REQUIRED_WORKFLOWS = {
     "supreme-nlp-automission.yml",
     "supreme-nlp-practitioner.yml",
     "supreme-ai-ml-nlp-automission-continuous-audit.yml",
+    "supreme-ai-ml-nlp-automission-qc.yml",
 }
 
 def fail(msg: str) -> None:
@@ -49,6 +50,10 @@ for filename in sorted(REQUIRED_WORKFLOWS):
 practitioner = (WF / "supreme-nlp-practitioner.yml").read_text(encoding="utf-8")
 if "Governance assertions" not in practitioner:
     fail("supreme-nlp-practitioner.yml: governance assertions are missing")
+
+total = (WF / "supreme-total-orchestrator.yml").read_text(encoding="utf-8")
+if "factory/supreme_nlp_practitioner_benchmark.py" not in total:
+    fail("supreme-total-orchestrator.yml: practitioner benchmark is not gated")
 
 print("ARCHITECTURE_CONTRACT: PASS")
 print(f"Checked required Supreme workflows: {len(REQUIRED_WORKFLOWS)}")
