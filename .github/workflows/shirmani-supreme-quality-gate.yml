@@ -13,6 +13,18 @@ on:
       - "federation/**"
       - "schemas/**"
       - "scripts/**"
+      - "research/independent-verification-protocol-2026-09-29.md"
+      - "generated/independent-verification-status-2026-09-29.json"
+      - ".github/workflows/**"
+  pull_request:
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "federation/**"
+      - "schemas/**"
+      - "scripts/**"
+      - "research/independent-verification-protocol-2026-09-29.md"
+      - "generated/independent-verification-status-2026-09-29.json"
       - ".github/workflows/**"
 
 permissions:
