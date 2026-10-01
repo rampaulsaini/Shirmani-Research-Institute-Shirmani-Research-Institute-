@@ -150,6 +150,14 @@ The API has a repository-side deployment foundation, but **Production LIVE is no
 This is a research architecture: it does not grant unlimited authority to any person, institution, or AI agent. High-impact decisions require lawful authority, human review, appeal and audit.
 
 
+## 🛡️ Supreme Platform Hardening — 2026-10-01
+
+- **Hardening record:** [docs/supreme-platform-hardening-2026-10-01.md](docs/supreme-platform-hardening-2026-10-01.md)
+- **Unified review conveyor:** [.github/workflows/heart-view-review-conveyor.yml](.github/workflows/heart-view-review-conveyor.yml)
+- 42 duplicated fixed-range Heart-View review workflow definitions have been consolidated into one resumable conveyor.
+- The AI/ML/NLP consensus gate is fail-closed and requires a minimum evidence batch before Automission can continue.
+- Failure Intelligence remains enabled as a diagnostic feedback mechanism rather than being mistaken for a failed workflow.
+
 ## 🧠 Supreme AI–ML–NLP–Automission Total Graph
 
 - [Canonical total graph](docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md)
