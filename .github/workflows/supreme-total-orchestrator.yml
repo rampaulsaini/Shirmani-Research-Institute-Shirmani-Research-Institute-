@@ -34,31 +34,66 @@ jobs:
           print(f"JSON schemas validated: {len(fs)}")
           PY
       - name: Run unified Supreme gates
-        run: python factory/supreme_system_orchestrator.py | tee supreme-orchestrator.log
-      - name: Run explicit Supreme NLP regression benchmark
-        run: python factory/supreme_nlp_benchmark.py
-      - name: Validate fail-closed governance
+        id: unified
+        shell: bash
         run: |
+          set +e
+          python factory/supreme_system_orchestrator.py | tee supreme-orchestrator.log
+          rc=${PIPESTATUS[0]}
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          echo "Unified control-plane exit code: $rc"
+          exit 0
+
+      - name: Run explicit Supreme NLP regression benchmark
+        id: benchmark
+        shell: bash
+        run: |
+          set -o pipefail
+          python factory/supreme_nlp_benchmark.py | tee supreme-nlp-benchmark.log
+
+      - name: Validate fail-closed governance and diagnose gates
+        shell: bash
+        run: |
+          set -euo pipefail
           python - <<'PY'
           import json
           from pathlib import Path
-          d=json.loads(Path("generated/supreme-orchestrator/status.json").read_text())
-          g=d["governance"]
-          assert d["status"]=="PASS"
-          assert g["fail_closed"] and not g["scheduled_code_mutation_allowed"]
-          assert not g["subjective_experience_claim_allowed"]
-          assert g["independent_verification_required"] and g["accuracy_is_measured_not_declared"]
+
+          p = Path("generated/supreme-orchestrator/status.json")
+          d = json.loads(p.read_text(encoding="utf-8"))
+          g = d["governance"]
+
+          print("CONTROL_PLANE_STATUS:", d["status"])
+          failed = [x for x in d.get("gates", []) if x.get("status") != "PASS"]
+          if failed:
+              print("BLOCKED_GATES:")
+              for item in failed:
+                  print(json.dumps(item, ensure_ascii=False))
+          else:
+              print("BLOCKED_GATES: none")
+
+          assert g["fail_closed"] is True
+          assert g["scheduled_code_mutation_allowed"] is False
+          assert g["subjective_experience_claim_allowed"] is False
+          assert g["independent_verification_required"] is True
+          assert g["accuracy_is_measured_not_declared"] is True
+          assert d["status"] == "PASS", "Supreme control plane is BLOCKED; see gate diagnostics above."
           print("SUPREME_GOVERNANCE_GATE: PASS")
           PY
-      - uses: actions/upload-artifact@v4
+
+      - name: Upload Supreme diagnostics and evidence artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: supreme-total-automission-${{ github.run_id }}
           path: |
             generated/supreme-orchestrator/status.json
             supreme-orchestrator.log
+            supreme-nlp-benchmark.log
             generated/supreme-nlp/benchmark.json
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 14
+
       - name: Emit cycle summary
         run: |
           {
