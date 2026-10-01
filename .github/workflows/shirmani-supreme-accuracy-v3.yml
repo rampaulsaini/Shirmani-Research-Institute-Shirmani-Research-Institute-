@@ -1,0 +1,60 @@
+name: SHIRMANI Supreme Accuracy V3
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: shirmani-supreme-accuracy-v3
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Compile control plane
+        run: |
+          python3 -m py_compile factory/supreme_accuracy_v3.py
+          python3 -m py_compile factory/supreme_ai_ml_nlp_engine.py
+          python3 -m py_compile factory/supreme_quality_controller.py
+
+      - name: Run V3 deterministic regression tests
+        run: python3 -m unittest discover -s tests -p 'test_supreme_accuracy_v3.py' -v
+
+      - name: Run Supreme Accuracy V3 audit
+        run: python3 factory/supreme_accuracy_v3.py
+
+      - name: Enforce execution and publication boundaries
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("generated/supreme-accuracy-v3-report.json").read_text(encoding="utf-8"))
+          a=r["audit"]
+          assert a["accuracy_measurement"] == "NOT_MEASURED"
+          assert a["execution_gate"] in {"PASS", "HOLD"}
+          assert a["publication_gate"] in {"PASS", "HOLD"}
+          if a["execution_gate"] == "PASS":
+              assert a["next_action"] == "CONTINUE_AUTOMISSION"
+          print("SUPREME ACCURACY V3: boundary check PASS")
+          print("Execution:", a["execution_gate"])
+          print("Publication:", a["publication_gate"])
+          print("Ensemble QC score:", a["ensemble_score"])
+          PY
+
+      - name: Publish V3 audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-accuracy-v3-report
+          path: generated/supreme-accuracy-v3-report.json
+          retention-days: 14
