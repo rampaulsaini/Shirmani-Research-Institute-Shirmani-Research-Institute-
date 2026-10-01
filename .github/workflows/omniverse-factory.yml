@@ -54,6 +54,24 @@ jobs:
           PY
       - name: Run deterministic runtime AI-agent governance QC
         run: python3 factory/agent_governance_qc.py
+      - name: Run multimodal signal to NLP bridge QC
+        run: python3 factory/multimodal_signal_nlp.py
+      - name: Validate multimodal signal NLP contract
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('generated/MULTIMODAL-SIGNAL-NLP-QC.json').read_text())
+          if report.get('publication_gate') != 'PASS':
+              raise SystemExit('Multimodal signal NLP gate is not PASS')
+          for line in Path('generated/multimodal-signal-nlp.jsonl').read_text().splitlines():
+              row=json.loads(line)
+              if row.get('verification_status') != 'NOT_VERIFIED':
+                  raise SystemExit('Signal NLP output attempted to self-verify')
+              if row.get('subjective_feeling_claim') is True:
+                  raise SystemExit('Signal NLP output made an unsupported subjective-feeling claim')
+          print('Multimodal signal NLP contract: PASS')
+          PY
 
       - name: Build repository intelligence
         run: python3 factory/repository_intelligence.py
