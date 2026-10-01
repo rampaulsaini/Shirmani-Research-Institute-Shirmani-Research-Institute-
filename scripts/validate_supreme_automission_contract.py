@@ -34,6 +34,15 @@ def main():
         assert accuracy[k] is True, f"accuracy requirement disabled: {k}"
     assert accuracy["minimum_independent_agents"] >= 3
     assert accuracy["unresolved_disagreement_output"] == "UNKNOWN"
+    assert accuracy["drift_detection"] is True
+    budgets = c["performance"]["quality_budgets"]
+    assert budgets["max_p95_latency_ms"] > 0
+    assert budgets["max_p99_latency_ms"] >= budgets["max_p95_latency_ms"]
+    assert 0 <= budgets["max_error_rate"] <= 1
+    assert 0 <= budgets["max_expected_calibration_error"] <= 1
+    assert 0 <= budgets["max_selective_risk"] <= 1
+    assert 0 <= budgets["min_coverage"] <= 1
+    assert budgets["min_provenance_completeness"] == 1.0
     for k,v in c["safety"].items():
         assert v is True
     print("Supreme Automission Contract: PASS")
