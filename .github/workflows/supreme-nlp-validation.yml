@@ -3,15 +3,18 @@ name: Supreme NLP Validation
 on:
   push:
     paths:
-      - "docs/yatharth-governance/supreme-nlp-architecture.md"
-      - "schemas/supreme-nlp-evaluation.schema.json"
-      - "schemas/**/*.json"
-      - "scripts/**/*.py"
+      - "docs/yatharth-governance/**"
+      - "schemas/**"
+      - "scripts/**"
+      - "tests/test_supreme_nlp_regression.py"
+      - ".github/workflows/supreme-nlp-validation.yml"
   pull_request:
     paths:
       - "docs/yatharth-governance/**"
       - "schemas/**"
       - "scripts/**"
+      - "tests/test_supreme_nlp_regression.py"
+      - ".github/workflows/supreme-nlp-validation.yml"
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
@@ -20,41 +23,82 @@ permissions:
   contents: read
 
 concurrency:
-  group: supreme-nlp-validation
+  group: supreme-nlp-validation-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  schema-and-integrity:
+  evidence-first-regression:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Validate JSON schemas
-        shell: bash
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate all JSON schemas
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
           for p in Path("schemas").rglob("*.json"):
-              with p.open(encoding="utf-8") as f:
-                  json.load(f)
+              json.loads(p.read_text(encoding="utf-8"))
               print("VALID", p)
           PY
-      - name: Check prohibited verification shortcuts
+      - name: Compile deterministic NLP gate
+        run: python -m py_compile scripts/supreme_nlp_regression.py
+      - name: Run regression tests
+        run: python -m unittest tests/test_supreme_nlp_regression.py -v
+      - name: Run evidence contract fixture
         shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/supreme-nlp-fixture.json <<'JSON'
+          [
+            {
+              "record_id": "automission-observed-001",
+              "level": "OBSERVED",
+              "input_provenance": {
+                "source_type": "sensor",
+                "source_ref": "fixture",
+                "timestamp": "2026-10-01T00:00:00Z"
+              },
+              "observation": {
+                "entity_type": "plant",
+                "signal": "measured_response",
+                "value": 0.8
+              },
+              "uncertainty": 0.0
+            },
+            {
+              "record_id": "automission-inferred-001",
+              "level": "INFERRED",
+              "input_provenance": {
+                "source_type": "sensor",
+                "source_ref": "fixture",
+                "timestamp": "2026-10-01T00:00:00Z"
+              },
+              "observation": {
+                "entity_type": "plant",
+                "signal": "measured_response",
+                "value": 0.8
+              },
+              "evidence": ["fixture-study-001"],
+              "uncertainty": 0.2
+            }
+          ]
+          JSON
+          python scripts/supreme_nlp_regression.py /tmp/supreme-nlp-fixture.json
+      - name: Integrity shortcut scan
         run: |
           python - <<'PY'
           from pathlib import Path
-          text = "\n".join(
-              p.read_text(encoding="utf-8", errors="ignore")
-              for p in [Path("docs/yatharth-governance/supreme-nlp-architecture.md")]
-              if p.exists()
-          ).lower()
-          forbidden = [
+          targets = list(Path("docs").rglob("*.md")) + list(Path("scripts").rglob("*.py"))
+          text = "\n".join(p.read_text(encoding="utf-8", errors="ignore").lower() for p in targets)
+          forbidden = (
               "model confidence = scientific proof",
               "workflow success = scientific proof",
-              "ai verified itself"
-          ]
+              "ai verified itself",
+          )
           hits = [x for x in forbidden if x in text]
           if hits:
               raise SystemExit("Integrity gate failed: " + ", ".join(hits))
