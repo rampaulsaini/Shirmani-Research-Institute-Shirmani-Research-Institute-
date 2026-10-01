@@ -1,0 +1,75 @@
+name: SHIRMANI Supreme Quality Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "federation/**"
+      - "schemas/**"
+      - "scripts/**"
+      - "research/independent-verification-protocol-2026-09-29.md"
+      - "generated/independent-verification-status-2026-09-29.json"
+      - ".github/workflows/**"
+  pull_request:
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "federation/**"
+      - "schemas/**"
+      - "scripts/**"
+      - "research/independent-verification-protocol-2026-09-29.md"
+      - "generated/independent-verification-status-2026-09-29.json"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: shirmani-supreme-quality-gate
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout exact revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile agent and factory code
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import pathlib, py_compile
+          roots=[pathlib.Path("agents"), pathlib.Path("factory"), pathlib.Path("scripts")]
+          files=[p for r in roots if r.exists() for p in r.rglob("*.py")
+                 if "__pycache__" not in p.parts and "_sources" not in p.parts]
+          for p in files:
+              py_compile.compile(str(p), doraise=True)
+          print(f"compiled={len(files)}")
+          PY
+
+      - name: Run deterministic Supreme Quality Gate
+        run: python3 factory/supreme_quality_gate.py
+
+      - name: Publish auditable report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-quality-report
+          path: generated/SUPREME-QUALITY-REPORT.json
+          if-no-files-found: error
