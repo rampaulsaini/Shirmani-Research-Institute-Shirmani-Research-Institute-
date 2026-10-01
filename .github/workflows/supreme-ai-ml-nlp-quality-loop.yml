@@ -1,0 +1,38 @@
+name: Supreme AI ML NLP Quality Loop
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+permissions:
+  contents: read
+concurrency:
+  group: supreme-ai-ml-nlp-quality-loop
+  cancel-in-progress: true
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Compile quality gates
+        run: python -m compileall -q agents factory
+      - name: Run deterministic gate self-tests
+        run: |
+          python - <<'PY'
+          from agents.supreme_consensus import AgentJudgment,evaluate
+          from agents.nlp_quality_gate import inspect
+          from agents.ml_evaluation_gate import evaluate as ml_eval
+          assert evaluate("claim",[AgentJudgment("research","SUPPORTED",.95,("e1",)),AgentJudgment("verification","SUPPORTED",.90,("e1",)),AgentJudgment("provenance","SUPPORTED",.92,("e1",))],required_evidence=("e1",))["decision"]=="VERIFIED"
+          assert inspect("यह एक पर्याप्त स्रोत आधारित परीक्षण पाठ है",source_id="e1")["quality"]=="PASS"
+          assert ml_eval(["a","b","a"],["a","b","a"])["metrics"]["accuracy"]==1.0
+          print("SUPREME_QUALITY_GATE=PASS")
+          PY
+      - name: Verify fail-closed invariants
+        run: |
+          test -f agents/supreme_consensus.py
+          test -f agents/nlp_quality_gate.py
+          test -f agents/ml_evaluation_gate.py
+          test -f agents/failure_learning.py
