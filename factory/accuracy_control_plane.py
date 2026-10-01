@@ -54,10 +54,11 @@ def score_claim(row: dict[str, Any]) -> tuple[int, list[str]]:
     else:
         failures.append("missing_evidence")
 
-    if provenance.get("content_hash") and len(str(provenance["content_hash"])) == 64:
+    expected_hash = sha256_text(claim)
+    if provenance.get("content_hash") == expected_hash:
         score += 15
     else:
-        failures.append("missing_or_invalid_content_hash")
+        failures.append("missing_or_mismatched_content_hash")
 
     if provenance.get("repository") and provenance.get("path") is not None:
         score += 10
