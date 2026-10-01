@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "name": "shirmani-nlp-benchmark-record",
+  "required": ["id","input","expected","prediction","confidence","evidence_refs","provenance"],
+  "properties": {
+    "confidence": {"type":"number","minimum":0,"maximum":1},
+    "evidence_refs": {"type":"array","items":{"type":"string"}},
+    "provenance": {"type":"object"}
+  },
+  "integrity": {
+    "missing_dataset_status": "NOT_READY",
+    "unsupported_claims": "must_not_be_promoted_to_verified_fact"
+  }
+}
