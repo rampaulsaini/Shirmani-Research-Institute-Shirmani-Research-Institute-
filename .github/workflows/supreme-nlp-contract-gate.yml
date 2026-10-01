@@ -1,0 +1,57 @@
+name: Supreme NLP Signal Contract Gate
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'docs/supreme-nlp-signal-contract.md'
+      - 'schemas/supreme-nlp-interpretation.schema.json'
+      - '.github/workflows/supreme-nlp-contract-gate.yml'
+      - 'agents/**'
+      - 'factory/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-contract-gate
+  cancel-in-progress: true
+
+jobs:
+  contract-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Validate interpretation schema
+        run: python -m json.tool schemas/supreme-nlp-interpretation.schema.json >/dev/null
+      - name: Validate schema semantics
+        run: |
+          python3 - <<'PY'
+          import json
+          p='schemas/supreme-nlp-interpretation.schema.json'
+          s=json.load(open(p,encoding='utf-8'))
+          expected={'measured_signal','model_output','interpretation','confidence','evidence','verification_state','limitations'}
+          missing=expected-set(s['required'])
+          assert not missing, f'MISSING_REQUIRED_FIELDS:{sorted(missing)}'
+          assert s['properties']['verification_state']['enum']==['NOT_VERIFIED','TESTED','VERIFIED_BY_DEFINED_PROTOCOL','REJECTED']
+          print('SUPREME_NLP_CONTRACT: PASS')
+          PY
+      - name: Validate repository Python syntax
+        run: |
+          python3 - <<'PY'
+          import pathlib, py_compile
+          roots=[pathlib.Path('agents'),pathlib.Path('factory')]
+          files=[p for r in roots if r.exists() for p in r.rglob('*.py') if '_sources' not in p.parts and '__pycache__' not in p.parts]
+          for p in files: py_compile.compile(str(p), doraise=True)
+          print(f'python syntax: PASS ({len(files)} files)')
+          PY
+      - name: Emit gate result
+        run: |
+          echo "Measured signal != model inference != interpretation != proof"
+          echo "SUPREME_NLP_CONTRACT_GATE=PASS"
