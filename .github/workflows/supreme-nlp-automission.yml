@@ -8,9 +8,11 @@ on:
     paths:
       - "factory/supreme_nlp.py"
       - "factory/supreme_nlp_adapter.py"
+      - "factory/supreme_nlp_calibration.py"
       - "schemas/supreme-nlp-record.schema.json"
       - "tests/test_supreme_nlp.py"
       - "tests/test_supreme_nlp_adapter.py"
+      - "tests/test_supreme_nlp_calibration.py"
       - ".github/workflows/supreme-nlp-automission.yml"
   push:
     paths:
@@ -43,12 +45,13 @@ jobs:
           python-version: "3.x"
       - name: Compile and self-test
         run: |
-          python -m py_compile factory/supreme_nlp.py factory/supreme_nlp_adapter.py
+          python -m py_compile factory/supreme_nlp.py factory/supreme_nlp_adapter.py factory/supreme_nlp_calibration.py
           python factory/supreme_nlp.py
       - name: Run regression tests
         run: |
           python tests/test_supreme_nlp.py
           python tests/test_supreme_nlp_adapter.py
+          python tests/test_supreme_nlp_calibration.py
       - name: Validate schema JSON
         run: python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
       - name: Verify status contract
@@ -62,6 +65,10 @@ jobs:
           assert 0 <= data["record"]["confidence"] <= 1
           assert all(data["guards"].values())
           assert data["quality_score"] == 1.0
+          assert data["calibration"]["ok"] is True
+          assert data["calibration"]["metrics"]["accuracy"] >= data["calibration"]["thresholds"]["minimum_accuracy"]
+          assert data["calibration"]["metrics"]["brier_score"] <= data["calibration"]["thresholds"]["maximum_brier_score"]
+          assert data["calibration"]["metrics"]["expected_calibration_error"] <= data["calibration"]["thresholds"]["maximum_ece"]
           dimensions = data["record"]["quality_dimensions"]
           assert dimensions["schema_complete"] is True
           assert dimensions["typed_observations"] is True
