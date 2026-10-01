@@ -1,0 +1,62 @@
+name: Supreme NLP Validation
+
+on:
+  push:
+    paths:
+      - "docs/yatharth-governance/supreme-nlp-architecture.md"
+      - "schemas/supreme-nlp-evaluation.schema.json"
+      - "schemas/**/*.json"
+      - "scripts/**/*.py"
+  pull_request:
+    paths:
+      - "docs/yatharth-governance/**"
+      - "schemas/**"
+      - "scripts/**"
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-validation
+  cancel-in-progress: true
+
+jobs:
+  schema-and-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON schemas
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for p in Path("schemas").rglob("*.json"):
+              with p.open(encoding="utf-8") as f:
+                  json.load(f)
+              print("VALID", p)
+          PY
+      - name: Check prohibited verification shortcuts
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = "\n".join(
+              p.read_text(encoding="utf-8", errors="ignore")
+              for p in [Path("docs/yatharth-governance/supreme-nlp-architecture.md")]
+              if p.exists()
+          ).lower()
+          forbidden = [
+              "model confidence = scientific proof",
+              "workflow success = scientific proof",
+              "ai verified itself"
+          ]
+          hits = [x for x in forbidden if x in text]
+          if hits:
+              raise SystemExit("Integrity gate failed: " + ", ".join(hits))
+          print("Integrity gate passed")
+          PY
