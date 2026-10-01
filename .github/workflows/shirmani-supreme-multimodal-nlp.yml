@@ -1,0 +1,62 @@
+name: SHIRMANI Supreme Multimodal NLP Evidence Loop
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "factory/supreme_multimodal_nlp.py"
+      - "tests/test_supreme_multimodal_nlp.py"
+      - "schemas/multimodal-signal-record.schema.json"
+      - ".github/workflows/shirmani-supreme-multimodal-nlp.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: shirmani-supreme-multimodal-nlp
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile and deterministic tests
+        run: |
+          python3 -m py_compile factory/supreme_multimodal_nlp.py
+          python3 -m unittest discover -s tests -p "test_supreme_multimodal_nlp.py" -v
+      - name: Validate JSON schema
+        run: python3 -m json.tool schemas/multimodal-signal-record.schema.json >/dev/null
+      - name: Fail-closed contract test
+        run: |
+          python3 - <<'PY'
+          from factory.supreme_multimodal_nlp import evaluate_multimodal
+          r=evaluate_multimodal([{"source_id":"probe-1","modality":"sensor","values":[1,1.1,0.9]}])
+          assert r["fail_closed"] is True
+          assert all("claim_boundary" in x for x in r["outputs"])
+          print("SUPREME MULTIMODAL NLP: PASS")
+          PY
+      - name: Publish verification summary
+        run: |
+          mkdir -p generated
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from factory.supreme_multimodal_nlp import evaluate_multimodal
+          r=evaluate_multimodal([{"source_id":"workflow-self-test","modality":"synthetic","values":[1,1.02,0.98,1.01]}])
+          Path("generated/supreme-multimodal-nlp-report.json").write_text(json.dumps(r,ensure_ascii=False,indent=2),encoding="utf-8")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supreme-multimodal-nlp-report
+          path: generated/supreme-multimodal-nlp-report.json
+          retention-days: 14
