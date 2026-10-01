@@ -1,0 +1,41 @@
+name: SHIRMANI Supreme AI Quality Gate
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["agents/**","factory/**","schemas/**","generated/claim-evidence.jsonl","generated/continuity-manifest.json",".github/workflows/shirmani-supreme-quality-gate.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-supreme-quality-gate
+  cancel-in-progress: true
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
+      - name: Run deterministic supreme quality gate
+        run: python factory/supreme_quality_gate.py
+      - name: Publish gate state
+        run: |
+          git config user.name "omniverse-factory[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/supreme-quality-status.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(quality): publish supreme AI integrity gate"
+          git push
+      - name: Enforce fail-closed integrity
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open("generated/supreme-quality-status.json",encoding="utf-8"))
+          assert r["status"]=="PASS","SUPREME_QUALITY_GATE_FAILED"
+          assert r["accuracy_claim"]=="NOT_MEASURED"
+          assert r["independent_verification"]=="NOT_GRANTED_BY_AUTOMATION"
+          print("SUPREME_AI_QUALITY_GATE=PASS")
+          PY
