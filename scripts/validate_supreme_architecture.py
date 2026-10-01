@@ -28,10 +28,9 @@ missing = sorted(p for p in REQUIRED_WORKFLOWS if not (WF / p).is_file())
 if missing:
     fail("Missing required Supreme workflows: " + ", ".join(missing))
 
-for path in sorted(WF.glob("*.yml")):
+for filename in sorted(REQUIRED_WORKFLOWS):
+    path = WF / filename
     text = path.read_text(encoding="utf-8")
-    if not re.search(r"(?m)^name:\s*(?:SHIRMANI|Supreme)", text, re.I):
-        continue
 
     # Scheduled automation must be bounded and explicitly read-only unless a
     # workflow is intentionally changed later with an audited exception.
