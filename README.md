@@ -168,3 +168,9 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Boundary:** “विश्व की नागरिकता” is a global-participation goal, not a claim of legal citizenship or government-issued status.
 - **Integrity:** author-declared identity, generated content, QC results and independent verification remain distinct states.
 
+## 🧠 Supreme NLP Practitioner — Operational Benchmark
+
+- **Benchmark contract:** [research/supreme-nlp-practitioner-operational-benchmark-2026-10-01.md](research/supreme-nlp-practitioner-operational-benchmark-2026-10-01.md)
+- **Machine-readable schema:** [schemas/supreme-nlp-benchmark.schema.json](schemas/supreme-nlp-benchmark.schema.json)
+- **Continuous QC:** [.github/workflows/supreme-ai-ml-nlp-automission-qc.yml](.github/workflows/supreme-ai-ml-nlp-automission-qc.yml)
+- **Rule:** performance is measured through reproducible benchmarks; confidence, uncertainty, provenance, error analysis and independent verification remain explicit.
