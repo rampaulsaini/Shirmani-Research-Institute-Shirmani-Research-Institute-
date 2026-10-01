@@ -16,12 +16,13 @@ def test_normalize_observation():
         source_id="sensor-1",
     )
     assert item["value"] == 0.42
+    assert item["id"] == "bioelectric:voltage"
     assert item["unit"] == "mV"
 
 
 def test_plain_language_is_cautious():
     result = to_plain_language(
-        [{"modality": "vibration", "feature": "amplitude", "value": 2.5, "unit": "mm"}],
+        [{"modality": "vibration", "feature": "amplitude", "value": 2.5, "unit": "mm", "id": "obs-1"}],
         context="controlled fixture",
     )
     assert "vibration signal 'amplitude'" in result["plain_language"]
