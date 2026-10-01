@@ -1,0 +1,42 @@
+name: SHIRMANI Continuous Improvement Sentinel
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-continuous-improvement-sentinel
+  cancel-in-progress: false
+
+jobs:
+  sentinel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout canonical source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Validate signal contract
+        run: python3 -m json.tool factory/multimodal-signal-contract.json >/dev/null
+
+      - name: Run continuous architecture and governance audit
+        run: python3 factory/continuous_improvement_audit.py
+
+      - name: Compile core intelligence modules
+        run: |
+          python3 -m py_compile factory/supreme_ai_ml_nlp_engine.py
+          python3 -m py_compile factory/supreme_quality_controller.py
+          python3 -m py_compile factory/continuous_improvement_audit.py
+
+      - name: Publish machine-readable improvement state
+        uses: actions/upload-artifact@v4
+        with:
+          name: continuous-improvement-audit
+          path: generated/continuous-improvement-audit.json
+          retention-days: 14
