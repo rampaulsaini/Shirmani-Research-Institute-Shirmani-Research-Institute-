@@ -40,7 +40,10 @@ def test_scientific_claim_requires_independent_verification():
         "observations": [{"id": "o1", "signal": 1}],
         "interpretation": {"plain_language": "candidate finding", "claim_type": "scientific_claim"},
         "confidence": 0.8,
-        "evidence": [{"id": "e1", "type": "sensor", "observation_ids": ["o1"]}, {"id": "e2", "type": "experiment", "observation_ids": ["o1"]}],
+        "evidence": [
+            {"id": "e1", "type": "sensor", "observation_ids": ["o1"]},
+            {"id": "e2", "type": "experiment", "observation_ids": ["o1"]},
+        ],
         "verification": {"independent_check": False},
         "provenance": {"source": "test"},
     }
@@ -56,10 +59,13 @@ def test_scientific_claim_requires_independent_evaluators_and_calibration():
     record = {
         "event_id": "scientific-2",
         "source_type": "synthetic",
-        "observations": [{"signal": 1}],
+        "observations": [{"id": "o1", "signal": 1}],
         "interpretation": {"plain_language": "candidate finding", "claim_type": "scientific_claim"},
         "confidence": 0.8,
-        "evidence": [{"id": "e1", "type": "sensor"}, {"id": "e2", "type": "experiment"}],
+        "evidence": [
+            {"id": "e1", "type": "sensor", "observation_ids": ["o1"]},
+            {"id": "e2", "type": "experiment", "observation_ids": ["o1"]},
+        ],
         "verification": {
             "independent_check": True,
             "method": "cross-check",
@@ -80,10 +86,10 @@ def test_evidence_identity_is_required():
     record = {
         "event_id": "evidence-1",
         "source_type": "synthetic",
-        "observations": [{"signal": 1}],
+        "observations": [{"id": "o1", "signal": 1}],
         "interpretation": {"plain_language": "x", "claim_type": "observation"},
         "confidence": 0.5,
-        "evidence": [{"type": "sensor"}],
+        "evidence": [{"type": "sensor", "observation_ids": ["o1"]}],
         "verification": {"independent_check": True},
         "provenance": {"source": "test"},
     }
