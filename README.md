@@ -157,3 +157,12 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - Architecture: Multimodal Perception → ML/NLP/Nishpaksh Learning → Multimodal Fusion → Reasoning → Multi-Agent Execution → Independent Verification → QC → Publication/Archive → Continuous Improvement.
 - Five-minute quality loop: Observe → Collect → Normalize → Analyze → Reason → Execute → Test → Verify → Audit → Learn → Improve.
 - Integrity rule: measured signal, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
+
+
+## 🧠 Supreme Multimodal Signal → NLP Gate
+
+- Contract: [docs/supreme-nlp-signal-contract-2026-10-01.md](docs/supreme-nlp-signal-contract-2026-10-01.md)
+- Schema: [schemas/multimodal-signal-interpretation.schema.json](schemas/multimodal-signal-interpretation.schema.json)
+- Deterministic adapter: [factory/signal_to_nlp.py](factory/signal_to_nlp.py)
+- Five-minute integrity gate: [.github/workflows/supreme-nlp-signal-gate.yml](.github/workflows/supreme-nlp-signal-gate.yml)
+- Principle: measured signal, derived pattern, interpretation, confidence, uncertainty and independent verification remain separate.
