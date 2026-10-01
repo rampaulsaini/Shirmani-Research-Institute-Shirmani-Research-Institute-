@@ -11,7 +11,7 @@ def main():
     assert rec["schema_version"]=="supreme-eval-v1"
     assert m["status"]=="OK" and m["count"]==6
     assert all(0<=m[k]<=1 for k in ("accuracy","precision","recall","f1","brier_score","ece"))
-    assert m["abstentions"]==2 and m["evaluated"]==4 and m["coverage"]==4/6
+    assert m["abstentions"]==2 and m["evaluated"]==4 and m["coverage"]==0.666667
     assert rec["calibration"]["status"]=="NOT_CALIBRATED"
     assert rec["governance"]["accuracy_is_measured_not_declared"] is True
     assert len(rec["fingerprint"])==64
