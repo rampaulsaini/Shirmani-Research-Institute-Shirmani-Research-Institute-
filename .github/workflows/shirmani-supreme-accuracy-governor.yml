@@ -1,0 +1,62 @@
+name: SHIRMANI Supreme Accuracy Governor
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "generated/**"
+      - "schemas/**"
+      - ".github/workflows/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-supreme-accuracy-governor
+  cancel-in-progress: true
+
+jobs:
+  govern:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile all agent Python modules
+        run: |
+          set -euo pipefail
+          python -m compileall -q agents factory
+
+      - name: Run factory deterministic smoke test
+        run: |
+          set -euo pipefail
+          python factory/validate_factory.py
+
+      - name: Run fail-closed accuracy governor
+        run: |
+          set -euo pipefail
+          python factory/supreme_accuracy_governor.py
+
+      - name: Publish governor state
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot].noreply.github.com"
+          git add generated/supreme-accuracy-governor.json
+          git diff --cached --quiet && exit 0
+          git commit -m "ci: update supreme accuracy governor state"
+          git push origin HEAD:main
