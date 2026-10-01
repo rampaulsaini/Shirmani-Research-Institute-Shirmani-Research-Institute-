@@ -1,16 +1,13 @@
 name: SHIRMANI Multi-Automation Supervisor
 
 on:
-  push:
-    branches:
-      - fix/ci-federation-audit-20260926
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
-  actions: write
   contents: read
+  actions: read
 
 concurrency:
   group: shirmani-multi-automation-supervisor
@@ -19,44 +16,25 @@ concurrency:
 jobs:
   supervise:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 8
     steps:
-      - name: Checkout repository for protected-source and continuation checks
+      - name: Checkout canonical source
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
-      - name: Inspect recent workflow failures
+      - name: Inspect recent failures without mutating runs
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          echo "Recent failed workflow runs:"
-          gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50             --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion             --jq '.[] | select(.workflowName != "SHIRMANI Multi-Automation Supervisor")'
+          gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50             --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion             --jq '.[] | {id:.databaseId,workflow:.workflowName,attempt:.attempt,event:.event,branch:.headBranch,created:.createdAt}'             | tee generated/recent-failures.jsonl
 
-      - name: Retry eligible scheduled/manual failures only
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Run local integrity and NLP gates
         run: |
           set -euo pipefail
-          gh run list --repo "$GITHUB_REPOSITORY" --status failure --limit 50             --json databaseId,workflowName,attempt,event,headBranch,createdAt,conclusion |
-          python3 -c '
-          import json,sys,subprocess,os
-          runs=json.load(sys.stdin)
-          skip={"SHIRMANI Multi-Automation Supervisor"}
-          for r in runs:
-              if r.get("workflowName") in skip or r.get("attempt") != 1:
-                  continue
-              # Do not automatically rerun push-triggered failures.
-              # This keeps untrusted/new code outside the retry loop.
-              if r.get("event") not in {"schedule","workflow_dispatch"}:
-                  continue
-              rid=str(r["databaseId"])
-              workflow_name=r.get("workflowName")
-              print(f"Retrying first-attempt scheduled/manual failure: {workflow_name} #{rid}")
-              subprocess.run(
-                  ["gh","run","rerun",rid,"--failed","--repo",os.environ["GITHUB_REPOSITORY"]],
-                  check=False
-              )
-          '
+          python3 -m py_compile factory/signal_to_nlp.py
+          python3 -m unittest discover -s tests -p 'test_*nlp*.py' -v
 
       - name: Validate protected-source policy
         run: |
@@ -71,8 +49,9 @@ jobs:
           test -s CONTINUATION-AUTO-STATE.md
           grep -q "Human verification" CONTINUATION-AUTO-STATE.md
 
-      - name: Report supervisor status
-        run: |
-          echo "SHIRMANI multi-automation supervisor PASS"
-          echo "Mechanical automation may retry scheduled/manual failures only."
-          echo "Human verification remains an explicit integrity gate."
+      - name: Publish supervisor evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: automission-supervisor-evidence
+          path: generated/recent-failures.jsonl
+          retention-days: 14
