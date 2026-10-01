@@ -58,6 +58,13 @@ def robust_stats(rows: list[Observation]) -> dict[str, float]:
     mad=sum(abs(v-median) for v in vals)/len(vals)
     return {"mean":mean,"spread":spread,"median":median,"mad":mad}
 
+def evidence_grade(sample_count: int, quality: float, modalities: int, sources: int, agreement: float) -> str:
+    """Conservative evidence grade; heuristic only, not scientific proof."""
+    score = (0.30 * clip(sample_count / 10) + 0.20 * quality
+             + 0.15 * clip(modalities / 3) + 0.15 * clip(sources / 3)
+             + 0.20 * agreement)
+    return "A" if score >= .85 else "B" if score >= .70 else "C" if score >= .50 else "D"
+
 def fuse(observations: Iterable[dict[str, Any]], request: str = "") -> dict[str, Any]:
     rows=[normalize(x) for x in observations]
     usable=[x for x in rows if x.quality > 0]
@@ -90,7 +97,9 @@ def fuse(observations: Iterable[dict[str, Any]], request: str = "") -> dict[str,
         "status":"interpreted","intent":semantic_intent(request),"language":detect_language(request),
         "features":{"mean":stats["mean"],"spread":stats["spread"],"median":stats["median"],"mad":stats["mad"],
                     "variability":variability,"outlier_ratio":outlier_ratio,"agreement":agreement,
-                    "quality":quality,"modalities":len(modalities),"sources":len(sources),
+                    "quality":quality,"modalities":len(modalities),"sources":len(sources), "sample_count":len(usable),
+                    "independent_sources":len(sources),
+                    "evidence_grade":evidence_grade(len(usable), quality, len(modalities), len(sources), agreement),
                     "diversity":diversity,"replication":replication,"confidence":confidence},
         "interpretation":{"state":state,"evidence":[asdict(x) for x in usable],"limitations":limitations},
         "observations":[asdict(x) for x in rows],
