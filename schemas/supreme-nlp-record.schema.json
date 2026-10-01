@@ -1,28 +1,40 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Supreme NLP Record",
-  "type": "object",
-  "required": ["schema_version", "task_id", "generated_at", "pipeline", "result", "simple_language", "fingerprint"],
-  "properties": {
-    "schema_version": {"const": "1.0"},
-    "task_id": {"type": "string", "minLength": 1},
-    "generated_at": {"type": "string", "minLength": 1},
-    "pipeline": {"type": "string", "minLength": 1},
-    "simple_language": {"type": "string", "minLength": 1},
-    "fingerprint": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
-    "result": {
-      "type": "object",
-      "required": ["status", "signals"],
-      "properties": {
-        "status": {"enum": ["no_data", "insufficient_quality", "interpreted"]},
-        "signals": {"type": "array"},
-        "interpretation": {
-          "type": ["object", "null"],
-          "properties": {
-            "state": {"type": "string"},
-            "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-            "evidence": {"type": "array", "items": {"type": "string"}},
-            "limitations": {"type": "array", "items": {"type": "string"}}
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Supreme NLP Record",
+  "type":"object",
+  "required":["schema_version","task_id","generated_at","pipeline","result","simple_language","fingerprint"],
+  "properties":{
+    "schema_version":{"const":"1.1"},
+    "task_id":{"type":"string","minLength":1},
+    "generated_at":{"type":"string","minLength":1},
+    "pipeline":{"type":"string","minLength":1},
+    "simple_language":{"type":"string","minLength":1},
+    "fingerprint":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "result":{
+      "type":"object",
+      "required":["status","signals"],
+      "properties":{
+        "status":{"enum":["no_data","insufficient_quality","interpreted"]},
+        "signals":{"type":"array"},
+        "features":{
+          "type":"object",
+          "required":["mean","spread","anomaly_score","agreement","quality","modalities","evidence_grade"],
+          "properties":{
+            "mean":{"type":"number"},"spread":{"type":"number"},
+            "anomaly_score":{"type":"number","minimum":0,"maximum":1},
+            "agreement":{"type":"number","minimum":0,"maximum":1},
+            "quality":{"type":"number","minimum":0,"maximum":1},
+            "modalities":{"type":"integer","minimum":0},
+            "evidence_grade":{"enum":["A","B","C","D"]}
+          }
+        },
+        "interpretation":{
+          "type":["object","null"],
+          "properties":{
+            "state":{"type":"string"},
+            "confidence":{"type":"number","minimum":0,"maximum":1},
+            "evidence":{"type":"array","items":{"type":"string"}},
+            "limitations":{"type":"array","items":{"type":"string"}}
           }
         }
       }
