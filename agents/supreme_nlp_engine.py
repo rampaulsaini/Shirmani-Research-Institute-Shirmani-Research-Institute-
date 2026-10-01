@@ -17,11 +17,11 @@ from typing import Any
 class Signal:
     modality: str
     value: float
-    baseline: float = 0.0
-    scale: float = 1.0
     unit: str = ""
     source_id: str = ""
     timestamp: str = ""
+    baseline: float = 0.0
+    scale: float = 1.0
 
     def normalized_deviation(self) -> float:
         if self.scale <= 0:
@@ -133,7 +133,7 @@ def interpret(
 
 if __name__ == "__main__":
     sample = [
-        Signal("demo", 1.8, 1.0, 1.0, "unit", "local-demo", "2026-10-01T00:00:00Z"),
-        Signal("vibration", 1.4, 1.0, 1.0, "unit", "sensor-b", "2026-10-01T00:00:01Z"),
+        Signal("demo", 1.8, "unit", "local-demo", "2026-10-01T00:00:00Z", 1.0, 1.0),
+        Signal("vibration", 1.4, "unit", "sensor-b", "2026-10-01T00:00:01Z", 1.0, 1.0),
     ]
     print(json.dumps(interpret(sample), ensure_ascii=False, indent=2))
