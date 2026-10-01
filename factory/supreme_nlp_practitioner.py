@@ -13,8 +13,10 @@ from typing import Any, Mapping
 import math
 import re
 
-SCHEMA_VERSION = "1.0"
+SCHEMA_VERSION = "1.1"
 VALID_DOMAINS = {"human", "animal", "plant", "material", "environment", "unknown"}
+NLP_MODES = ("Natural Language Processing", "Nispaksh Learning Programs")
+VALID_MODALITIES = {"sound", "vibration", "temperature", "electrical", "motion", "light", "chemical", "pressure", "image", "text", "other"}
 
 
 @dataclass(frozen=True)
@@ -25,6 +27,7 @@ class Signal:
     source: str = ""
     observed_at: str = ""
     quality: float = 1.0
+    modality: str = "other"
 
     def normalized_quality(self) -> float:
         return max(0.0, min(1.0, float(self.quality)))
@@ -51,9 +54,12 @@ def normalize_signals(raw: Mapping[str, Any] | list[Mapping[str, Any]]) -> list[
             source = str(item.get("source", ""))
             observed_at = str(item.get("observed_at", ""))
             quality = _finite(item.get("quality", 1.0))
+            modality = str(item.get("modality", "other")).lower()
         else:
-            name, value, unit, source, observed_at, quality = str(key), _finite(item), "", "", "", 1.0
-        result.append(Signal(name, value, unit, source, observed_at, quality))
+            name, value, unit, source, observed_at, quality, modality = str(key), _finite(item), "", "", "", 1.0, "other"
+        if modality not in VALID_MODALITIES:
+            modality = "other"
+        result.append(Signal(name, value, unit, source, observed_at, quality, modality))
     return result
 
 
@@ -93,6 +99,7 @@ def translate_observations(
             })
 
     q = _quality(signals)
+    quality_label = "high" if q >= 0.80 else "medium" if q >= 0.50 else "low"
     language = (
         "इन संकेतों के आधार पर अभी इतना कहा जा सकता है: "
         + ("; ".join(observations) if observations else "कोई मापनीय संकेत उपलब्ध नहीं है।")
@@ -108,6 +115,8 @@ def translate_observations(
         "context": context,
         "signals": [asdict(s) for s in signals],
         "observation_quality": q,
+        "observation_quality_label": quality_label,
+        "nlp_modes": list(NLP_MODES),
         "observations": observations,
         "changes": changes,
         "plain_language_hi": language,
@@ -116,7 +125,7 @@ def translate_observations(
             "claim_boundary": (
                 "Signals can support descriptions or hypotheses; they do not by "
                 "themselves prove subjective experience, consciousness, intention, "
-                "or emotion."
+                "emotion, or a quantum state."
             ),
             "hypotheses": [],
             "required_next_measurements": [],
