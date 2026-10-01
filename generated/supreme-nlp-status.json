@@ -23,7 +23,8 @@
     "confidence_bounds": true,
     "verification_type": true,
     "claim_strength": true,
-    "evidence_shape": true
+    "evidence_shape": true,
+    "evidence_linkage": true
   },
   "quality_score": 1.0,
   "calibration": {
@@ -115,6 +116,6 @@
       "expected_calibration_error": true
     }
   },
-  "generated_at": "2026-10-01T07:20:57.905865+00:00",
-  "engine_hash": "216f90a893708bfccd8077b7bcac112fda70068d9e610fd384d54a71c69df3e2"
+  "generated_at": "2026-10-01T07:44:44.868287+00:00",
+  "engine_hash": "638634ab0559fdf778cba12b621f068d73939dfa0c636338c0b0a12d43f34210"
 }
