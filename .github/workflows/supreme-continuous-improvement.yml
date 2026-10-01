@@ -34,28 +34,52 @@ jobs:
           python -m py_compile agents/automission_supervisor.py
           python -m py_compile factory/supreme_quality_gate.py
 
-      - name: Run NLP engine smoke test
+      - name: Run canonical NLP smoke test
         run: |
           mkdir -p generated/supreme-nlp
           python - <<'PY'
           import json
           from pathlib import Path
           from agents.supreme_nlp_engine import Signal, interpret
-          signals=[
-            Signal("demo-a",1.0,"unit","source-a","2026-10-01T00:00:00Z"),
-            Signal("demo-b",0.5,"unit","source-b","2026-10-01T00:00:01Z"),
+
+          signals = [
+              Signal("demo-a", 1.0, "unit", "source-a", "2026-10-01T00:00:00Z"),
+              Signal("demo-b", 0.5, "unit", "source-b", "2026-10-01T00:00:01Z"),
           ]
-          out=interpret(signals, {"mode":"smoke_test"})
+          out = interpret(signals, {"mode": "smoke_test"})
           Path("generated/supreme-nlp/status.json").write_text(
-            json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-          print(json.dumps(out,ensure_ascii=False))
+              json.dumps(out, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          assert out["schema_version"] == "1.0"
+          assert len(out["fingerprint"]) == 64
+          assert out["result"]["status"] == "interpreted"
+          assert 0 <= out["result"]["features"]["confidence"] <= 1
+          print(json.dumps(out, ensure_ascii=False))
           PY
 
       - name: Run deterministic quality gate
         run: python factory/supreme_quality_gate.py
 
-      - name: Run existing Automission supervisor
-        run: python agents/automission_supervisor.py
+      - name: Run Automission supervisor and verify schema integration
+        run: |
+          python agents/automission_supervisor.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          status = json.loads(Path("generated/supreme-nlp/status.json").read_text())
+          plan = json.loads(Path("generated/supreme-nlp/automission-plan.json").read_text())
+
+          assert plan["source_fingerprint"] == status["fingerprint"]
+          assert plan["confidence"] == status["result"]["features"]["confidence"]
+          assert plan["evidence_grade"] == status["result"]["features"]["evidence_grade"]
+          assert plan["governance"]["fail_closed"] is True
+          assert plan["governance"]["scheduled_code_mutation_allowed"] is False
+          assert plan["governance"]["independent_verification_required"] is True
+          assert plan["actions"], "Automission must emit an action or monitoring decision"
+          print("AUTOMISSION/NLP SCHEMA INTEGRATION: PASS")
+          PY
 
       - name: Validate verification boundary
         run: |
@@ -70,9 +94,9 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          for root in ("factory","schemas","automation"):
-              p=Path(root)
-              for f in p.rglob("*.json"):
+
+          for root in ("factory", "schemas", "automation"):
+              for f in Path(root).rglob("*.json"):
                   json.loads(f.read_text(encoding="utf-8"))
           print("JSON CONFIGURATION: PASS")
           PY
@@ -88,15 +112,19 @@ jobs:
           import json
           from pathlib import Path
           from datetime import datetime, timezone
-          out={
-            "status":"audit_passed",
-            "pipeline":"Observe -> Collect -> Clean -> Analyze -> Reason -> Translate -> Verify -> Audit -> Improve",
-            "cycle":"5-minute scheduled audit",
-            "independent_verification_required":True,
-            "scheduled_code_mutation_allowed":False,
-            "generated_at":datetime.now(timezone.utc).isoformat()
+
+          out = {
+              "status": "audit_passed",
+              "pipeline": "Observe -> Collect -> Clean -> Analyze -> Reason -> Translate -> Verify -> Audit -> Improve",
+              "cycle": "5-minute scheduled audit",
+              "schema_contract": "supreme-nlp-practitioner v1.0",
+              "independent_verification_required": True,
+              "scheduled_code_mutation_allowed": False,
+              "generated_at": datetime.now(timezone.utc).isoformat(),
           }
           Path("generated/supreme-nlp/continuous-improvement-status.json").write_text(
-            json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-          print(json.dumps(out,ensure_ascii=False))
+              json.dumps(out, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          print(json.dumps(out, ensure_ascii=False))
           PY
