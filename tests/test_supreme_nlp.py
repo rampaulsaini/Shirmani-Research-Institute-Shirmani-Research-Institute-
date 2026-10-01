@@ -19,10 +19,10 @@ def test_missing_field_rejected():
     record = {
         "event_id": "x",
         "source_type": "synthetic",
-        "observations": [{"x": 1}],
+        "observations": [{"id": "o1", "x": 1}],
         "interpretation": {"plain_language": "x", "claim_type": "observation"},
         "confidence": 0.5,
-        "evidence": [{"id": "e"}],
+        "evidence": [{"id": "e", "observation_ids": ["o1"]}],
         "verification": {"independent_check": True},
     }
     try:
@@ -37,10 +37,10 @@ def test_scientific_claim_requires_independent_verification():
     record = {
         "event_id": "scientific-1",
         "source_type": "synthetic",
-        "observations": [{"signal": 1}],
+        "observations": [{"id": "o1", "signal": 1}],
         "interpretation": {"plain_language": "candidate finding", "claim_type": "scientific_claim"},
         "confidence": 0.8,
-        "evidence": [{"id": "e1", "type": "sensor"}, {"id": "e2", "type": "experiment"}],
+        "evidence": [{"id": "e1", "type": "sensor", "observation_ids": ["o1"]}, {"id": "e2", "type": "experiment", "observation_ids": ["o1"]}],
         "verification": {"independent_check": False},
         "provenance": {"source": "test"},
     }
@@ -122,3 +122,22 @@ if __name__ == "__main__":
     test_evidence_identity_is_required()
     test_observations_and_evidence_must_be_objects()
     print("SUPREME_NLP_REGRESSION_TESTS=PASS")
+
+
+def test_evidence_cannot_reference_unknown_observation():
+    record = {
+        "event_id": "link-1",
+        "source_type": "synthetic",
+        "observations": [{"id": "o1", "signal": 1}],
+        "interpretation": {"plain_language": "x", "claim_type": "observation"},
+        "confidence": 0.5,
+        "evidence": [{"id": "e1", "type": "sensor", "observation_ids": ["missing"]}],
+        "verification": {"independent_check": True},
+        "provenance": {"source": "test"},
+    }
+    try:
+        validate_record(record)
+    except ValueError as exc:
+        assert "known observations" in str(exc)
+    else:
+        raise AssertionError("evidence must reference known observations")
