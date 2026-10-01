@@ -14,12 +14,14 @@ GATES=[
 ("verification_queue_qc","factory/verification_queue_qc.py"),
 ("verification_promotion_gate","factory/verification_promotion_gate.py"),
 ("publication_gate","factory/publication_gate.py"),
+("nlp_benchmark","factory/supreme_nlp_benchmark.py"),
 ]
 REQUIRED=[
 "agents/automission_supervisor.py",
 "agents/supreme_nlp_practitioner.py",
 "schemas/supreme-nlp-signal-record.schema.json",
 "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md",
+"factory/supreme_nlp_benchmark.py",
 "research/independent-verification-protocol-2026-09-29.md",
 ]
 def run_gate(name:str,rel:str)->dict[str,Any]:
@@ -40,7 +42,8 @@ def main()->int:
        "status":"PASS" if ok else "BLOCK","missing_required_files":missing,"gates":gates,
        "governance":{"fail_closed":True,"scheduled_code_mutation_allowed":False,
        "subjective_experience_claim_allowed":False,"independent_verification_required":True,
-       "human_review_for_high_impact_actions":True,"accuracy_is_measured_not_declared":True}}
+       "human_review_for_high_impact_actions":True,"accuracy_is_measured_not_declared":True,
+       "synthetic_regression_benchmark_required":True}}
     d["fingerprint"]=hashlib.sha256(json.dumps(d,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
     (OUT/"status.json").write_text(json.dumps(d,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(d,ensure_ascii=False,indent=2)); return 0 if ok else 1
