@@ -1,0 +1,55 @@
+name: SHIRMANI Supreme AI-ML-NLP Quality Loop
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: shirmani-supreme-quality-loop
+  cancel-in-progress: false
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout canonical source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Validate core AI/ML/NLP Python modules
+        run: |
+          python3 -m py_compile factory/supreme_quality_controller.py
+          python3 -m py_compile factory/batch_worker.py
+          python3 -m py_compile agents/orchestrator.py
+          python3 -m py_compile agents/deep_learning_agent.py
+
+      - name: Run deterministic quality controller
+        run: python3 factory/supreme_quality_controller.py
+
+      - name: Enforce fail-closed boundary
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("generated/supreme-quality-report.json").read_text(encoding="utf-8"))
+          assert r["mode"] == "fail-closed-deterministic-quality-control"
+          assert r["next_action"] == "CONTINUE_AUTOMISSION"
+          assert r["verification"]["fail_closed"] is True
+          print("SUPREME QUALITY LOOP: PASS")
+          print("Checks:", r["passed_checks"], "/", r["total_checks"])
+          PY
+
+      - name: Publish machine-readable quality artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-ai-ml-nlp-quality-report
+          path: generated/supreme-quality-report.json
+          retention-days: 14
