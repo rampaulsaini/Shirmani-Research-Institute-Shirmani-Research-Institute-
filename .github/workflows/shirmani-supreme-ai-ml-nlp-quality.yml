@@ -37,6 +37,9 @@ jobs:
       - name: Run deterministic AI/ML/NLP ensemble gate
         run: python3 factory/supreme_quality_controller.py
 
+      - name: Deterministic replay and structural audit
+        run: python3 factory/supreme_quality_audit.py
+
       - name: Enforce fail-closed boundary
         run: |
           set -euo pipefail
