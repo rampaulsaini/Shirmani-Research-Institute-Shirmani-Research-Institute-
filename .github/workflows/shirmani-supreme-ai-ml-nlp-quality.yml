@@ -23,14 +23,15 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Validate core AI/ML/NLP Python modules
+      - name: Validate core AI/ML/NLP modules
         run: |
+          python3 -m py_compile factory/supreme_ai_ml_nlp_engine.py
           python3 -m py_compile factory/supreme_quality_controller.py
           python3 -m py_compile factory/batch_worker.py
           python3 -m py_compile agents/orchestrator.py
           python3 -m py_compile agents/deep_learning_agent.py
 
-      - name: Run deterministic quality controller
+      - name: Run deterministic AI/ML/NLP ensemble gate
         run: python3 factory/supreme_quality_controller.py
 
       - name: Enforce fail-closed boundary
@@ -40,11 +41,13 @@ jobs:
           import json
           from pathlib import Path
           r=json.loads(Path("generated/supreme-quality-report.json").read_text(encoding="utf-8"))
-          assert r["mode"] == "fail-closed-deterministic-quality-control"
+          assert r["mode"] == "fail-closed-deterministic-ai-ml-nlp-quality-control"
           assert r["next_action"] == "CONTINUE_AUTOMISSION"
           assert r["verification"]["fail_closed"] is True
-          print("SUPREME QUALITY LOOP: PASS")
+          assert r["ensemble"]["consensus_pass"] is True
+          print("SUPREME AI-ML-NLP ENSEMBLE: PASS")
           print("Checks:", r["passed_checks"], "/", r["total_checks"])
+          print("Ensemble score:", r["ensemble"]["ensemble_score"])
           PY
 
       - name: Publish machine-readable quality artifact
