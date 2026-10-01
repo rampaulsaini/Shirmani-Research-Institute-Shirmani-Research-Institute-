@@ -1,0 +1,41 @@
+name: Ultra NLP Signal-to-Language Quality
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "factory/signal_to_language.py"
+      - "tests/test_signal_to_language.py"
+      - "docs/ULTRA_NLP_SIGNAL_TO_LANGUAGE.md"
+      - ".github/workflows/ultra-nlp-signal-language.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ultra-nlp-signal-language
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile
+        run: python -m compileall -q factory tests
+      - name: Deterministic unit tests
+        run: python -m unittest tests/test_signal_to_language.py -v
+      - name: Fail-closed epistemic check
+        run: |
+          python - <<'PY'
+          from factory.signal_to_language import SignalObservation, translate_signal
+          r = translate_signal(SignalObservation("demo","plant","stress",0.9,source="sensor"))
+          assert "subjective" not in r.statement.lower()
+          assert r.epistemic_status.startswith("OBSERVED_SIGNAL")
+          assert 0.0 <= r.confidence <= 1.0
+          print("Epistemic boundary: OK")
+          PY
