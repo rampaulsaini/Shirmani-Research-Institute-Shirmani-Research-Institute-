@@ -7,14 +7,18 @@ on:
   pull_request:
     paths:
       - "factory/supreme_nlp.py"
+      - "factory/supreme_nlp_adapter.py"
       - "schemas/supreme-nlp-record.schema.json"
       - "tests/test_supreme_nlp.py"
+      - "tests/test_supreme_nlp_adapter.py"
       - ".github/workflows/supreme-nlp-automission.yml"
   push:
     paths:
       - "factory/supreme_nlp.py"
+      - "factory/supreme_nlp_adapter.py"
       - "schemas/supreme-nlp-record.schema.json"
       - "tests/test_supreme_nlp.py"
+      - "tests/test_supreme_nlp_adapter.py"
       - ".github/workflows/supreme-nlp-automission.yml"
 
 permissions:
@@ -39,10 +43,12 @@ jobs:
           python-version: "3.x"
       - name: Compile and self-test
         run: |
-          python -m py_compile factory/supreme_nlp.py
+          python -m py_compile factory/supreme_nlp.py factory/supreme_nlp_adapter.py
           python factory/supreme_nlp.py
       - name: Run regression tests
-        run: python tests/test_supreme_nlp.py
+        run: |
+          python tests/test_supreme_nlp.py
+          python tests/test_supreme_nlp_adapter.py
       - name: Validate schema JSON
         run: python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
       - name: Verify status contract
