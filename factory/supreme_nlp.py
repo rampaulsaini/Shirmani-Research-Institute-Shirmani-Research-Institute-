@@ -53,6 +53,11 @@ def validate_record(record: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("observations must be a non-empty list")
     if not all(isinstance(item, dict) for item in observations):
         raise ValueError("each observation must be an object")
+    observation_ids = [item.get("id") for item in observations]
+    if not all(isinstance(item_id, str) and item_id.strip() for item_id in observation_ids):
+        raise ValueError("each observation must have a non-empty id")
+    if len(set(observation_ids)) != len(observation_ids):
+        raise ValueError("observation ids must be unique")
     if not isinstance(evidence, list) or not evidence:
         raise ValueError("evidence must be a non-empty list")
     if not all(isinstance(item, dict) for item in evidence):
@@ -61,6 +66,15 @@ def validate_record(record: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("each evidence item must have a non-empty id")
     if not all(isinstance(item.get("type"), str) and item["type"].strip() for item in evidence):
         raise ValueError("each evidence item must have a non-empty type")
+    evidence_ids = [item["id"] for item in evidence]
+    if len(set(evidence_ids)) != len(evidence_ids):
+        raise ValueError("evidence ids must be unique")
+    for item in evidence:
+        observation_refs = item.get("observation_ids")
+        if not isinstance(observation_refs, list) or not observation_refs:
+            raise ValueError("each evidence item must reference observation_ids")
+        if not all(isinstance(ref, str) and ref in observation_ids for ref in observation_refs):
+            raise ValueError("evidence observation_ids must reference known observations")
     if not isinstance(verification, dict):
         raise ValueError("verification must be an object")
     if not isinstance(provenance, dict):
@@ -120,15 +134,15 @@ def run_self_test() -> Dict[str, Any]:
         "event_id": "synthetic-self-test-001",
         "source_type": "synthetic_multimodal",
         "observations": [
-            {"modality": "signal", "feature": "pattern_A", "value": 0.72},
-            {"modality": "environment", "feature": "temperature", "value": 24.1},
+            {"id": "obs-1", "modality": "signal", "feature": "pattern_A", "value": 0.72},
+            {"id": "obs-2", "modality": "environment", "feature": "temperature", "value": 24.1},
         ],
         "interpretation": {
             "plain_language": "A measurable signal pattern was detected.",
             "claim_type": "data_interpretation",
         },
         "confidence": 0.72,
-        "evidence": [{"id": "synthetic_fixture", "type": "fixture"}],
+        "evidence": [{"id": "synthetic_fixture", "type": "fixture", "observation_ids": ["obs-1", "obs-2"]}],
         "verification": {
             "independent_check": True,
             "method": "deterministic_fixture",
@@ -166,6 +180,15 @@ def run_self_test() -> Dict[str, Any]:
         claim_strength_guard = False
 
     negative = dict(sample)
+    negative["evidence"] = [dict(sample["evidence"][0], observation_ids=["missing-observation"])]
+    try:
+        validate_record(negative)
+    except ValueError:
+        evidence_linkage_guard = True
+    else:
+        evidence_linkage_guard = False
+
+    negative = dict(sample)
     negative["evidence"] = ["not-an-object"]
     try:
         validate_record(negative)
@@ -179,6 +202,7 @@ def run_self_test() -> Dict[str, Any]:
         "verification_type": verification_guard,
         "claim_strength": claim_strength_guard,
         "evidence_shape": evidence_shape_guard,
+        "evidence_linkage": evidence_linkage_guard,
     }
     if not all(guards.values()):
         raise AssertionError("negative validation guards failed")
