@@ -15,8 +15,25 @@ def main():
     assert len(c["pipeline"]) >= 12
     for k in ("parallelize_independent_gates","cancel_stale_runs","bounded_retries","cache_immutable_dependencies","never_trade_evidence_for_latency"):
         assert c["performance"][k] is True
-    for k,v in c["accuracy"].items():
-        assert v is True
+    accuracy = c["accuracy"]
+    required_accuracy_flags = [
+        "track_accuracy",
+        "track_macro_precision_recall_f1",
+        "track_brier_score",
+        "track_calibration_error",
+        "track_selective_risk",
+        "track_p50_p95_p99_latency",
+        "track_error_rate",
+        "track_provenance_completeness",
+        "track_reproducibility",
+        "abstain_on_unknown_or_insufficient_evidence",
+        "multi_agent_consensus_required",
+        "evidence_completeness_required",
+    ]
+    for k in required_accuracy_flags:
+        assert accuracy[k] is True, f"accuracy requirement disabled: {k}"
+    assert accuracy["minimum_independent_agents"] >= 3
+    assert accuracy["unresolved_disagreement_output"] == "UNKNOWN"
     for k,v in c["safety"].items():
         assert v is True
     print("Supreme Automission Contract: PASS")
