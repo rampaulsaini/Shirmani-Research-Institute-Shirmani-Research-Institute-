@@ -148,3 +148,12 @@ The API has a repository-side deployment foundation, but **Production LIVE is no
 - [Constitutional Supreme-Control Model](docs/yatharth-governance/constitutional-supreme-control.md)
 
 This is a research architecture: it does not grant unlimited authority to any person, institution, or AI agent. High-impact decisions require lawful authority, human review, appeal and audit.
+
+
+## 🧠 Supreme AI–ML–NLP–Automission Total Graph
+
+- [Canonical total graph](docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md)
+- [2026-10-01 author-source archive](research/yatharth-shirmani-author-source-2026-10-01.md)
+- Architecture: Multimodal Perception → ML/NLP/Nishpaksh Learning → Multimodal Fusion → Reasoning → Multi-Agent Execution → Independent Verification → QC → Publication/Archive → Continuous Improvement.
+- Five-minute quality loop: Observe → Collect → Normalize → Analyze → Reason → Execute → Test → Verify → Audit → Learn → Improve.
+- Integrity rule: measured signal, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
