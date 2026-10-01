@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/multimodal-signal-interpretation.schema.json",
+  "title": "Multimodal Signal Interpretation Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "signal_id",
+    "observed_features",
+    "pattern_summary",
+    "interpretation",
+    "confidence",
+    "uncertainty",
+    "evidence_level",
+    "provenance"
+  ],
+  "properties": {
+    "signal_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observed_features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {}
+        },
+        "additionalProperties": false
+      }
+    },
+    "pattern_summary": {
+      "type": "string"
+    },
+    "interpretation": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_level": {
+      "enum": [
+        "measured",
+        "derived_pattern",
+        "model_inference",
+        "hypothesis",
+        "unverified"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "input_hash",
+        "method",
+        "created_at"
+      ],
+      "properties": {
+        "input_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "method": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
