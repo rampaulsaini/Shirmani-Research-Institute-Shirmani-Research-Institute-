@@ -11,7 +11,7 @@ on:
       - ".github/workflows/supreme-nlp-contract.yml"
   workflow_dispatch:
   schedule:
-    - cron: "11 */5 * * *"
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: read
@@ -28,3 +28,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Validate Supreme NLP contract
         run: python3 factory/supreme_nlp_contract_qc.py
+      - name: Run deterministic NLP integrity benchmark
+        run: python3 factory/supreme_nlp_integrity_benchmark.py
