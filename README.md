@@ -150,6 +150,13 @@ The API has a repository-side deployment foundation, but **Production LIVE is no
 This is a research architecture: it does not grant unlimited authority to any person, institution, or AI agent. High-impact decisions require lawful authority, human review, appeal and audit.
 
 
+### 🧪 Ultra-Mega NLP Practitioner Benchmark
+
+- [Signal-to-language benchmark contract](docs/nlp-signal-to-language-benchmark-2026-10-01.md)
+- [Benchmark record schema](schemas/nlp-benchmark.schema.json)
+- `factory/nlp_benchmark.py` runs deterministically on every factory cycle.
+- Missing evaluation data remains `NOT_READY`; no accuracy is fabricated.
+
 ## 🧠 Supreme AI–ML–NLP–Automission Total Graph
 
 - [Canonical total graph](docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md)
