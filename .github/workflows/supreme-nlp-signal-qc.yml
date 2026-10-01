@@ -1,0 +1,33 @@
+name: Supreme NLP Signal QC
+on:
+  push:
+    paths:
+      - "factory/supreme_nlp_signal.py"
+      - "schemas/multimodal-signal-nlp.schema.json"
+      - ".github/workflows/supreme-nlp-signal-qc.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  signal-nlp-qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deterministic baseline test
+        run: |
+          set -euo pipefail
+          python3 -m py_compile factory/supreme_nlp_signal.py
+          PYTHONPATH=. python3 - <<'PY'
+          from factory.supreme_nlp_signal import summarize, translate, translate_channels
+          s=summarize("test-channel",[1,2,3,4])
+          assert (s.count,s.minimum,s.maximum,s.trend)==(4,1,4,3)
+          r=translate(s,"hi")
+          assert r["confidence"]["type"]=="measurement_quality"
+          assert r["confidence"]["not_semantic_truth_probability"] is True
+          assert r["interpretation_boundary"]["subjective_feeling_proven"] is False
+          assert r["interpretation_boundary"]["consciousness_proven"] is False
+          assert translate_channels({"a":[1,1,2],"b":[4,3,2]},"en")
+          print("Supreme NLP signal baseline: PASS")
+          PY
+      - name: Validate schema JSON
+        run: python3 -c 'import json; json.load(open("schemas/multimodal-signal-nlp.schema.json",encoding="utf-8")); print("Schema JSON: PASS")'
