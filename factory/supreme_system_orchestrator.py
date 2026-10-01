@@ -18,6 +18,7 @@ GATES=[
 ("verification_promotion_gate","factory/verification_promotion_gate.py"),
 ("publication_gate","factory/publication_gate.py"),
 ("nlp_benchmark","factory/supreme_nlp_benchmark.py"),
+("nlp_practitioner_benchmark","factory/supreme_nlp_practitioner_benchmark.py"),
 ]
 REQUIRED=[
 "agents/automission_supervisor.py",
