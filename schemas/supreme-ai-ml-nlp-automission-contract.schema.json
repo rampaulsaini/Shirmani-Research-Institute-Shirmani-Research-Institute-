@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Supreme AI ML NLP Automission Evidence Contract",
+  "type":"object",
+  "required":["run_id","timestamp","stage","status","provenance","confidence","uncertainty","verification_state"],
+  "properties":{
+    "run_id":{"type":"string","minLength":1},
+    "timestamp":{"type":"string","format":"date-time"},
+    "stage":{"type":"string","enum":["observe","collect","normalize","analyze","reason","execute","test","verify","audit","learn","improve"]},
+    "status":{"type":"string","enum":["PASS","CHECK","FAIL","BLOCKED","UNAVAILABLE"]},
+    "provenance":{"type":"object"},
+    "confidence":{"type":["number","null"],"minimum":0,"maximum":1},
+    "uncertainty":{"type":"string"},
+    "verification_state":{"type":"string","enum":["NOT_VERIFIED","INDEPENDENTLY_VERIFIED","UNAVAILABLE"]},
+    "model_version":{"type":["string","null"]},
+    "evidence_refs":{"type":"array","items":{"type":"string"}},
+    "audit_ref":{"type":["string","null"]}
+  }
+}
