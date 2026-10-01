@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 from factory.supreme_nlp_calibration import run_calibration_suite
+from factory.supreme_nlp_drift import compare_calibration
 
 REQUIRED_FIELDS = {
     "event_id", "source_type", "observations", "interpretation",
@@ -195,7 +196,19 @@ def main() -> None:
     calibration = run_calibration_suite()
     if not calibration["ok"]:
         raise AssertionError("confidence calibration suite failed")
+    baseline_path = Path("schemas/supreme-nlp-calibration-baseline.json")
+    baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+    drift = compare_calibration(
+        baseline,
+        calibration,
+        max_accuracy_drop=baseline["limits"]["max_accuracy_drop"],
+        max_brier_increase=baseline["limits"]["max_brier_increase"],
+        max_ece_increase=baseline["limits"]["max_ece_increase"],
+    )
+    if not drift["ok"]:
+        raise AssertionError("confidence calibration drift gate failed")
     result["calibration"] = calibration
+    result["calibration_drift"] = drift
     result["generated_at"] = datetime.now(timezone.utc).isoformat()
     result["engine_hash"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     out = Path("generated/supreme-nlp-status.json")
