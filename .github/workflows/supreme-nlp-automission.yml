@@ -4,6 +4,15 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/supreme_nlp.py"
+      - "agents/automission_engine.py"
+      - "tests/test_supreme_nlp.py"
+      - "schemas/*nlp*.json"
+      - "schemas/automission-result.schema.json"
+      - "docs/SUPREME-MULTIMODAL-NLP-AUTOMISSION.md"
+      - ".github/workflows/supreme-nlp-automission.yml"
 
 permissions:
   contents: read
@@ -16,20 +25,34 @@ jobs:
   architecture-integrity:
     name: Architecture Integrity
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate required architecture files
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Validate architecture files
         shell: bash
         run: |
           set -euo pipefail
           test -s docs/SUPREME-MULTIMODAL-NLP-AUTOMISSION.md
-          test -s schemas/multimodal-signal-record.schema.json
-          python -m json.tool schemas/multimodal-signal-record.schema.json >/dev/null
+          test -s agents/supreme_nlp.py
+          test -s agents/automission_engine.py
+          test -s tests/test_supreme_nlp.py
+          python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
+          python -m json.tool schemas/automission-result.schema.json >/dev/null
 
-      - name: Check safety language is present
+      - name: Compile agents
+        run: python -m compileall -q agents
+
+      - name: Run deterministic verification tests
+        run: python -m unittest discover -s tests -p "test_*.py" -v
+
+      - name: Check evidence-first safety language
         shell: bash
         run: |
           set -euo pipefail
@@ -37,7 +60,7 @@ jobs:
           grep -q "independent verification" docs/SUPREME-MULTIMODAL-NLP-AUTOMISSION.md
           grep -q "Production changes require" docs/SUPREME-MULTIMODAL-NLP-AUTOMISSION.md
 
-      - name: Emit machine-readable status
+      - name: Emit machine-readable audit status
         shell: bash
         run: |
           set -euo pipefail
@@ -47,7 +70,7 @@ jobs:
             "system": "supreme-multimodal-nlp-automission",
             "cycle": "architecture-integrity",
             "result": "PASS",
-            "verification": "schema-and-document-integrity",
+            "verification": "schema-tests-and-document-integrity",
             "production_model_training": false
           }
           JSON
