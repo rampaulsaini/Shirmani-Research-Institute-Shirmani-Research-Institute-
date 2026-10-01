@@ -1,0 +1,79 @@
+name: Supreme Multimodal NLP Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+  push:
+    paths:
+      - "factory/supreme_nlp.py"
+      - ".github/workflows/supreme-multimodal-nlp.yml"
+      - "schemas/supreme-nlp-report.schema.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: supreme-multimodal-nlp
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile and deterministic unit checks
+        run: |
+          python -m py_compile factory/supreme_nlp.py
+          python - <<'PY'
+          from factory.supreme_nlp import interpret
+          high = interpret([
+              {"id":"a","modality":"sensor","value":1.2,"confidence":0.95},
+              {"id":"b","modality":"environmental","value":22.0,"unit":"C","confidence":0.90},
+          ])
+          assert high["status"] == "interpretable"
+          assert high["verification_required"] is True
+
+          low = interpret([
+              {"id":"a","modality":"sensor","value":1.2,"confidence":0.20},
+          ])
+          assert low["status"] == "insufficient_evidence"
+          print("SUPREME_NLP_DETERMINISTIC_CHECK=PASS")
+          PY
+
+      - name: Generate evidence-gated NLP report
+        run: python factory/supreme_nlp.py
+
+      - name: Validate report
+        run: |
+          python -m json.tool generated/supreme-nlp-report.json >/dev/null
+          python - <<'PY'
+          import json
+          p=json.load(open("generated/supreme-nlp-report.json",encoding="utf-8"))
+          required={"schema_version","status","observation_count",
+                    "plain_language_interpretation","verification_required",
+                    "independent_verification","content_hash_sha256"}
+          assert required <= p.keys()
+          assert p["verification_required"] is True
+          assert len(p["content_hash_sha256"]) == 64
+          print("SUPREME_NLP_GATE=PASS")
+          PY
+
+      - name: Commit verified report
+        run: |
+          git config user.name "omniverse-factory[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/supreme-nlp-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(nlp): update evidence-gated multimodal report"
+          git push
