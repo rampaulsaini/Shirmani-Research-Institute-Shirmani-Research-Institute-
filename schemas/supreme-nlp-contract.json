@@ -1,0 +1,13 @@
+{
+  "schema_version":"2.0",
+  "name":"shirmani-supreme-nlp-contract",
+  "purpose":"Evidence-first multimodal signal-to-language research and Automission contract.",
+  "truth_boundary":"Measured signals, model inference, interpretation and subjective experience are distinct claims.",
+  "pipeline":["ingest","quality_control","feature_extraction","temporal_analysis","multimodal_fusion","inference","calibration","evidence_binding","plain_language_translation","independent_verification","audit"],
+  "modalities":["text","speech","image","video","vibration","electrical","thermal","acoustic","chemical","environmental","motion","other_sensor"],
+  "required_output":["claim","observations","evidence","confidence","uncertainty","alternatives","provenance","verification_status"],
+  "quality_gates":{"minimum_observation_count":1,"confidence_range":[0.0,1.0],"calibration_required":true,"no_automatic_100_percent_claims":true},
+  "experience_boundary":{"subjective_experience":"not_inferred_from_signal_alone","experience_claim_requires":"independent_empirical_evidence","signal_to_language":"permitted_as_model_hypothesis"},
+  "verification":{"promotion_to_verified":"independent_verification_required","contradiction_check":"required","reproducibility_check":"required"},
+  "automission":{"cadence_minutes":5,"idempotent_tasks":true,"scheduled_code_mutation":false,"production_promotion":"independent_verification_and_owner_approval","fail_closed":true}
+}
