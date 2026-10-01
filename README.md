@@ -168,3 +168,13 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Boundary:** “विश्व की नागरिकता” is a global-participation goal, not a claim of legal citizenship or government-issued status.
 - **Integrity:** author-declared identity, generated content, QC results and independent verification remain distinct states.
 
+
+
+## 🧠 Supreme AI–ML–NLP–Automission Continuous Quality
+
+- Runtime contract: [schemas/supreme-runtime-contract.json](schemas/supreme-runtime-contract.json)
+- Deterministic runtime QC: [factory/supreme_runtime_qc.py](factory/supreme_runtime_qc.py)
+- Continuous quality workflow: [.github/workflows/supreme-ai-ml-nlp-automission.yml](.github/workflows/supreme-ai-ml-nlp-automission.yml)
+- Schedule: every 5 minutes, plus main-branch changes and manual dispatch.
+- Boundary: measured signals, model inference, interpretation, confidence and unresolved uncertainty remain distinct; pattern detection alone is not treated as proof of subjective feeling.
+- Governance: fail-closed publication, provenance-required claims, independent verification for verification promotion, and human authorization for irreversible/high-impact actions.
