@@ -1,0 +1,93 @@
+name: SHIRMANI Supreme Multimodal NLP Continuous
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/supreme_multimodal_nlp.py"
+      - "tests/test_supreme_multimodal_nlp.py"
+      - "schemas/supreme-multimodal-nlp-record.schema.json"
+      - ".github/workflows/supreme-multimodal-nlp-continuous.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-multimodal-nlp-continuous
+  cancel-in-progress: false
+
+jobs:
+  multimodal-nlp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      PYTHONPATH: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile module and tests
+        run: |
+          python -m py_compile agents/supreme_multimodal_nlp.py tests/test_supreme_multimodal_nlp.py
+
+      - name: Validate schema
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          json.loads(Path("schemas/supreme-multimodal-nlp-record.schema.json").read_text(encoding="utf-8"))
+          print("SUPREME_MULTIMODAL_SCHEMA_OK")
+          PY
+
+      - name: Run deterministic regression suite
+        run: python -m unittest tests/test_supreme_multimodal_nlp.py -v
+
+      - name: Generate canonical audit record
+        run: |
+          mkdir -p generated/supreme-nlp
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.supreme_multimodal_nlp import build_record
+
+          rows = [
+              {"modality":"plant","feature":"electrical_signal","value":1.0,"quality":1.0,"source":"synthetic-a","baseline":0.9},
+              {"modality":"audio","feature":"vibration","value":1.1,"quality":0.95,"source":"synthetic-b","baseline":1.0},
+              {"modality":"environment","feature":"temperature","value":25.0,"quality":0.9,"source":"synthetic-c","baseline":24.0},
+          ]
+          record = build_record(rows, "supreme-multimodal-automission-audit")
+          Path("generated/supreme-nlp/multimodal-status.json").write_text(
+              json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+          print(record["simple_language"])
+          print("FINGERPRINT:", record["fingerprint"])
+          PY
+
+      - name: Enforce governance boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/supreme-nlp/multimodal-status.json").read_text(encoding="utf-8"))
+          g=d["governance"]
+          assert g["fail_closed"] is True
+          assert g["subjective_experience_claim_allowed"] is False
+          assert g["scientific_certainty_claim_allowed"] is False
+          assert g["independent_verification_required"] is True
+          assert g["scheduled_code_mutation_allowed"] is False
+          print("SUPREME_MULTIMODAL_GOVERNANCE_OK")
+          PY
+
+      - name: Publish audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-multimodal-nlp-\${{ github.run_id }}
+          path: generated/supreme-nlp/multimodal-status.json
+          retention-days: 14
