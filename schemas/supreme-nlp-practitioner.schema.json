@@ -13,13 +13,16 @@
       "properties":{
         "status":{"enum":["insufficient_quality","interpreted"]},
         "language":{"type":"string"},"intent":{"type":"string"},
-        "features":{"type":"object","required":["confidence","agreement","quality","modalities","sources"],
+        "features":{"type":"object","required":["confidence","agreement","quality","modalities","sources","sample_count","independent_sources","evidence_grade"],
           "properties":{
             "confidence":{"type":"number","minimum":0,"maximum":1},
             "agreement":{"type":"number","minimum":0,"maximum":1},
             "quality":{"type":"number","minimum":0,"maximum":1},
             "modalities":{"type":"integer","minimum":0},
-            "sources":{"type":"integer","minimum":0}
+            "sources":{"type":"integer","minimum":0},
+            "sample_count":{"type":"integer","minimum":0},
+            "independent_sources":{"type":"integer","minimum":0},
+            "evidence_grade":{"enum":["A","B","C","D"]}
           }
         }
       }
