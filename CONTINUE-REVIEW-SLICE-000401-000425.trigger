@@ -1,1 +1,0 @@
-Continue exact Heart-View review slice 401–425 from the committed verification queue. Preserve fail-closed verification; do not invent reviewer data.
