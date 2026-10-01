@@ -8,15 +8,17 @@ on:
     paths:
       - "factory/supreme_nlp.py"
       - "schemas/supreme-nlp-record.schema.json"
+      - "tests/test_supreme_nlp.py"
       - ".github/workflows/supreme-nlp-automission.yml"
   push:
     paths:
       - "factory/supreme_nlp.py"
       - "schemas/supreme-nlp-record.schema.json"
+      - "tests/test_supreme_nlp.py"
       - ".github/workflows/supreme-nlp-automission.yml"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: supreme-nlp-automission
@@ -39,6 +41,8 @@ jobs:
         run: |
           python -m py_compile factory/supreme_nlp.py
           python factory/supreme_nlp.py
+      - name: Run regression tests
+        run: python tests/test_supreme_nlp.py
       - name: Validate schema JSON
         run: python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
       - name: Verify status contract
@@ -46,12 +50,32 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          data=json.loads(Path("generated/supreme-nlp-status.json").read_text(encoding="utf-8"))
+          data = json.loads(Path("generated/supreme-nlp-status.json").read_text(encoding="utf-8"))
           assert data["ok"] is True
           assert data["record"]["independent_check"] is True
           assert 0 <= data["record"]["confidence"] <= 1
+          assert all(data["guards"].values())
           print("SUPREME_NLP_QUALITY_GATE=PASS")
           PY
+
+  publish-status:
+    if: github.event_name != 'pull_request'
+    needs: quality-gate
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Generate verified status
+        run: python factory/supreme_nlp.py
       - name: Commit verified status
         run: |
           git config user.name "omniverse-factory[bot]"
