@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Multimodal Signal Record",
+  "type":"object",
+  "required":["record_id","source_type","timestamp","observations","interpretation"],
+  "properties":{
+    "record_id":{"type":"string","minLength":1},
+    "source_type":{"type":"string","enum":["text","audio","image","video","sensor","bioelectric","environmental","other"]},
+    "timestamp":{"type":"string","format":"date-time"},
+    "observations":{"type":"array","items":{"type":"object","required":["feature","value"],"properties":{
+      "feature":{"type":"string"},"value":{},"unit":{"type":"string"},"quality":{"type":"number","minimum":0,"maximum":1}
+    }}},
+    "interpretation":{"type":"object","required":["statement","confidence","evidence_level"],"properties":{
+      "statement":{"type":"string"},
+      "confidence":{"type":"number","minimum":0,"maximum":1},
+      "evidence_level":{"type":"string","enum":["observed","inferred","hypothesis","unverified"]},
+      "alternative_explanations":{"type":"array","items":{"type":"string"}},
+      "evidence_refs":{"type":"array","items":{"type":"string"}}
+    }},
+    "human_review":{"type":"boolean","default":false}
+  },
+  "additionalProperties":false
+}
