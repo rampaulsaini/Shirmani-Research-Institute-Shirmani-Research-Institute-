@@ -1,0 +1,56 @@
+name: Supreme Accuracy Supervisor
+
+on:
+  workflow_dispatch:
+  schedule:
+    # GitHub Actions supports a 5-minute minimum schedule. Actual start time may vary.
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "automation/**"
+      - "schemas/**"
+      - ".github/workflows/supreme-accuracy-supervisor.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-supreme-accuracy-supervisor
+  cancel-in-progress: true
+
+jobs:
+  supervise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile agent stack
+        run: |
+          python -m compileall -q agents factory scripts
+          echo "Python compilation: OK"
+
+      - name: Run supreme accuracy gate
+        run: python factory/supreme_accuracy_gate.py
+
+      - name: Validate gate JSON
+        run: python -m json.tool generated/supreme-accuracy-status.json >/dev/null
+
+      - name: Publish supervisor state
+        run: |
+          git config user.name "omniverse-factory[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/supreme-accuracy-status.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(accuracy): update supreme quality gate"
+          git push
