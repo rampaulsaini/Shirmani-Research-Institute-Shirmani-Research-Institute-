@@ -40,7 +40,7 @@ def test_scientific_claim_requires_independent_verification():
         "observations": [{"signal": 1}],
         "interpretation": {"plain_language": "candidate finding", "claim_type": "scientific_claim"},
         "confidence": 0.8,
-        "evidence": [{"id": "e1"}, {"id": "e2"}],
+        "evidence": [{"id": "e1", "type": "sensor"}, {"id": "e2", "type": "experiment"}],
         "verification": {"independent_check": False},
         "provenance": {"source": "test"},
     }
