@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Supreme NLP Signal Interpretation Record",
+  "type": "object",
+  "required": ["schema_version", "signals", "interpretation", "record_sha256"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "signals": {"type": "array", "items": {
+      "type": "object",
+      "required": ["name", "value"],
+      "properties": {
+        "name": {"type": "string"},
+        "value": {"type": "number"},
+        "unit": {"type": "string"},
+        "timestamp": {"type": "string"},
+        "source": {"type": "string"}
+      }
+    }},
+    "interpretation": {"type": "object", "required": ["state", "confidence", "evidence", "limitations"]},
+    "context": {"type": "object"},
+    "record_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Controlled Automission Result",
+  "type": "object",
+  "required": ["mission_id", "stage", "status", "verification_required", "evidence", "metrics", "created_at"],
+  "properties": {
+    "mission_id": {"type": "string", "minLength": 12},
+    "stage": {"enum": ["observe", "analyze", "propose", "test", "verify", "audit", "publish"]},
+    "status": {"type": "string"},
+    "verification_required": {"const": true},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "metrics": {"type": "object", "additionalProperties": {"type": "number"}},
+    "created_at": {"type": "string"}
+  }
+}
