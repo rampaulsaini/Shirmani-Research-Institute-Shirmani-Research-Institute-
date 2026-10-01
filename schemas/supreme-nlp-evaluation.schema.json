@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Supreme NLP Evaluation Record",
+  "type": "object",
+  "required": ["record_id", "task", "input_provenance", "model", "metrics", "uncertainty", "status"],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "task": {"type": "string", "minLength": 1},
+    "input_provenance": {
+      "type": "object",
+      "required": ["source_type"],
+      "properties": {
+        "source_type": {"type": "string"},
+        "source_ref": {"type": "string"},
+        "timestamp": {"type": "string"},
+        "integrity_hash": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "model": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"type": "string"},
+        "version": {"type": "string"},
+        "configuration_ref": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {"type": "number"}
+    },
+    "uncertainty": {
+      "type": "object",
+      "required": ["method"],
+      "properties": {
+        "method": {"type": "string"},
+        "score": {"type": "number"},
+        "abstained": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "interpretation": {
+      "type": "object",
+      "properties": {
+        "observation": {"type": "string"},
+        "inference": {"type": "string"},
+        "hypothesis": {"type": "string"},
+        "limitations": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "status": {
+      "type": "string",
+      "enum": ["REGISTERED", "TESTED", "QC_PASS", "REVIEW_REQUIRED", "NOT_VERIFIED", "VERIFIED"]
+    }
+  },
+  "additionalProperties": false
+}

@@ -140,6 +140,14 @@ Source → Normalize → Claims → Sources → Evidence → Formulation/Test �
 The API has a repository-side deployment foundation, but **Production LIVE is not declared** until an external runtime, database, HTTPS, security controls, monitoring, rollback and human-impact gates are actually evidenced. Independent research verification remains a separate evidence-and-human-review process.
 
 
+## 🧠 Supreme NLP + Nishpaksh Learning Programs
+
+- [Supreme NLP + Nishpaksh Learning Architecture](docs/yatharth-governance/supreme-nlp-architecture.md)
+- [Evaluation Record Schema](schemas/supreme-nlp-evaluation.schema.json)
+- [Continuous Validation](.github/workflows/supreme-nlp-validation.yml)
+
+NLP here means both **Natural Language Processing** and the project-defined **Nishpaksh Learning Programs** layer. The architecture converts measurable observations into structured language while keeping observation, inference, hypothesis, evidence and verification separate. Claims about subjective experience require operational definitions and independent evidence; model confidence or workflow success is never treated as scientific proof.
+
 ## ⚖️ Neutral Governance & Public-Service Architecture
 
 - [Yatharth Neutral Governance](docs/yatharth-governance/README.md)
