@@ -45,11 +45,13 @@ def detect_script(text: str) -> str:
     latin = 0
     for char in str(text):
         code = ord(char)
+        matched = False
         for name, (lo, hi) in SCRIPT_RANGES.items():
             if lo <= code <= hi:
                 counts[name] += 1
+                matched = True
                 break
-        elif "A" <= char <= "Z" or "a" <= char <= "z":
+        if not matched and ("A" <= char <= "Z" or "a" <= char <= "z"):
             latin += 1
     if max(counts.values(), default=0) > 0:
         return max(counts, key=counts.get)
