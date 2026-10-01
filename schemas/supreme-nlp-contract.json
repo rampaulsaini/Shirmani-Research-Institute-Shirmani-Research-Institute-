@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "name": "shirmani-supreme-nlp-contract",
+  "purpose": "Evidence-first multimodal signal-to-language research contract.",
+  "truth_boundary": "A model may translate measured signals into human-readable hypotheses; it must not silently equate signals with subjective experience.",
+  "required_pipeline": [
+    "ingest",
+    "quality_control",
+    "feature_extraction",
+    "multimodal_fusion",
+    "inference",
+    "calibration",
+    "evidence_binding",
+    "plain_language_translation",
+    "independent_verification",
+    "audit"
+  ],
+  "signal_modalities": [
+    "text",
+    "speech",
+    "image",
+    "video",
+    "vibration",
+    "electrical",
+    "thermal",
+    "acoustic",
+    "chemical",
+    "environmental",
+    "motion",
+    "other_sensor"
+  ],
+  "output_contract": {
+    "claim": "required",
+    "observations": "required",
+    "evidence": "required",
+    "confidence": "required",
+    "uncertainty": "required",
+    "limitations": "required",
+    "provenance": "required",
+    "verification_status": "required"
+  },
+  "confidence_policy": {
+    "range": [0.0, 1.0],
+    "calibration_required": true,
+    "no_automatic_100_percent_claims": true
+  },
+  "experience_claim_policy": {
+    "direct_subjective_experience_inference": "prohibited_without_independent_empirical_evidence",
+    "signal_translation": "allowed_as_hypothesis",
+    "human_readable_interpretation": "must_distinguish_observation_from_inference"
+  },
+  "automission_policy": {
+    "scheduled_code_mutation": false,
+    "production_promotion": "independent_verification_required",
+    "external_side_effects": "owner_authorization_required",
+    "fail_closed": true
+  }
+}
