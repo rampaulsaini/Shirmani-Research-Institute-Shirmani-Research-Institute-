@@ -24,7 +24,7 @@ def read_json(path: Path, default=None):
 
 def jsonl(path: Path):
     if not path.exists():
-        return []
+        raise FileNotFoundError(path)
     rows = []
     for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
         if not line.strip():
@@ -41,9 +41,11 @@ def sha(text):
 
 
 def check_corpus():
-    rows = jsonl(OUT / "verse-corpus.jsonl")
+    path = OUT / "verse-corpus.jsonl"
+    rows = jsonl(path)
     ids = [str(r.get("id")) for r in rows]
     return rows, {
+        "source_file": path.name,
         "records": len(rows),
         "duplicate_ids": len(ids) - len(set(ids)),
         "bad_content_hashes": sum(
@@ -56,19 +58,41 @@ def check_corpus():
         "unsafe_verified_claims": sum(
             1 for r in rows if r.get("evidence_status") == "VERIFIED"
         ),
+        "nonempty": bool(rows),
     }
 
 
 def check_verification():
     candidates = sorted(OUT.glob("independent-verification-status-*.json"))
-    d = read_json(candidates[-1], {}) if candidates else {}
+    if not candidates:
+        return {
+            "source_file": None,
+            "queue_records": 0,
+            "independently_verified_records": None,
+            "independent_verified_percent": None,
+            "artifact_present": False,
+            "fail_closed": True,
+        }
+    d = read_json(candidates[-1], {})
+    if not isinstance(d, dict):
+        return {
+            "source_file": candidates[-1].name,
+            "queue_records": 0,
+            "independently_verified_records": None,
+            "independent_verified_percent": None,
+            "artifact_present": False,
+            "fail_closed": True,
+        }
     s = d.get("verification_summary", {})
     records = d.get("records", [])
+    if not isinstance(records, list):
+        records = []
     return {
-        "source_file": candidates[-1].name if candidates else None,
+        "source_file": candidates[-1].name,
         "queue_records": len(records),
         "independently_verified_records": s.get("independently_verified_records"),
         "independent_verified_percent": s.get("independent_verified_percent"),
+        "artifact_present": True,
         "fail_closed": all(r.get("status") != "VERIFIED" for r in records),
     }
 
@@ -83,11 +107,27 @@ def check_worker():
 
 
 def main():
-    rows, corpus = check_corpus()
+    hard_failures = []
+    try:
+        rows, corpus = check_corpus()
+    except (FileNotFoundError, ValueError) as exc:
+        rows = []
+        corpus = {
+            "source_file": "verse-corpus.jsonl",
+            "records": 0,
+            "duplicate_ids": 0,
+            "bad_content_hashes": 0,
+            "missing_provenance": 0,
+            "unsafe_verified_claims": 0,
+            "nonempty": False,
+            "error": str(exc),
+        }
+        hard_failures.append(f"corpus.unavailable={exc}")
     verification = check_verification()
     worker = check_worker()
 
-    hard_failures = []
+    if not corpus.get("nonempty"):
+        hard_failures.append("corpus.nonempty=false")
     for key in (
         "duplicate_ids",
         "bad_content_hashes",
@@ -96,6 +136,8 @@ def main():
     ):
         if corpus[key] != 0:
             hard_failures.append(f"corpus.{key}={corpus[key]}")
+    if not verification["artifact_present"]:
+        hard_failures.append("verification.artifact_present=false")
     if verification["fail_closed"] is False:
         hard_failures.append("verification.fail_closed=false")
     if not worker["worker_observable"]:
@@ -106,16 +148,18 @@ def main():
         hard_failures.append("ensemble.consensus_pass=false")
 
     checks = {
-        "corpus_integrity": not any(
-            corpus[k] != 0
-            for k in (
+        "corpus_integrity": (
+            corpus.get("nonempty") is True
+            and all(corpus[k] == 0 for k in (
                 "duplicate_ids",
                 "bad_content_hashes",
                 "missing_provenance",
                 "unsafe_verified_claims",
-            )
+            ))
         ),
-        "verification_boundary": verification["fail_closed"],
+        "verification_boundary": (
+            verification["artifact_present"] and verification["fail_closed"]
+        ),
         "worker_observable": worker["worker_observable"],
         "multi_agent_consensus": ensemble["consensus_pass"],
         "schema_integrity": ensemble["schema_version"] == SCHEMA_VERSION,
@@ -126,7 +170,7 @@ def main():
         ),
     }
     report = {
-        "schema_version": "3.0",
+        "schema_version": "3.1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "mode": "fail-closed-deterministic-ai-ml-nlp-quality-control",
         "claim_policy": (
