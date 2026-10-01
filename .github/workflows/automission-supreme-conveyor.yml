@@ -35,28 +35,14 @@ jobs:
         run: python3 scripts/run_automission_benchmark.py
       - name: Validate benchmark artifact
         run: python3 scripts/validate_automission_benchmark_report.py
-      - name: Multi-agent consensus integrity check
-        run: |
-          python3 - <<'PY'
-          import json
-          from collections import Counter, defaultdict
-          from pathlib import Path
-          p=Path("benchmarks/automission/consensus_predictions.jsonl")
-          rows=[json.loads(x) for x in p.read_text(encoding="utf-8").splitlines() if x.strip()]
-          groups=defaultdict(list)
-          for r in rows: groups[r["case_id"]].append(r)
-          assert groups, "empty consensus fixture"
-          for case,rs in groups.items():
-              assert len({r["agent_id"] for r in rs}) >= 3, f"insufficient agent coverage: {case}"
-              counts=Counter(r["predicted"] for r in rs).most_common()
-              if len(counts)>1 and counts[0][1]==counts[1][1]:
-                  consensus="UNKNOWN"
-              else:
-                  consensus=counts[0][0]
-              if consensus=="UNKNOWN" and not all(isinstance(r["evidence_ids"],list) for r in rs):
-                  raise AssertionError(f"invalid evidence record: {case}")
-          print("multi-agent consensus integrity: PASS")
-          PY
+      - name: Validate evidence-aware multi-agent consensus
+        run: python3 scripts/validate_automission_consensus.py
+      - name: Upload consensus audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: automission-consensus-audit
+          path: automission-consensus-audit.json
+          if-no-files-found: error
       - name: Check regression against immutable baseline
         run: python3 scripts/automission_regression_guard.py
       - uses: actions/upload-artifact@v4
