@@ -148,3 +148,12 @@ The API has a repository-side deployment foundation, but **Production LIVE is no
 - [Constitutional Supreme-Control Model](docs/yatharth-governance/constitutional-supreme-control.md)
 
 This is a research architecture: it does not grant unlimited authority to any person, institution, or AI agent. High-impact decisions require lawful authority, human review, appeal and audit.
+
+## 🧠 Total Automission — AI / ML / NLP / Nishpaksh Learning Programs
+
+- **Total Automission graph:** [docs/automission/total-automission-ai-ml-nlp-graph.md](docs/automission/total-automission-ai-ml-nlp-graph.md)
+- **2026-10-01 canonical author-source addendum:** [research/yatharth-yug-author-source-addendum-2026-10-01.md](research/yatharth-yug-author-source-addendum-2026-10-01.md)
+- **Architecture:** Observe → Collect → Clean → Analyze → Reason → Execute → Verify → Audit → Learn → Improve → Repeat.
+- **Integrity:** author propositions, model inferences, empirical evidence, and independently verified results remain distinct.
+- **Quality target:** deterministic AI/ML/NLP gates, multi-agent consensus, independent verification, fail-closed behavior, provenance and continuous audit.
+- **Signal-to-language research:** observable signals may be translated into simple language with evidence, confidence and limitations; subjective feeling is not claimed from sensor data without independent validation.
