@@ -1,0 +1,39 @@
+name: SHIRMANI Supreme NLP Continuous QC
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "agents/supreme_nlp_agent.py"
+      - "factory/supreme_nlp_qc.py"
+      - "schemas/supreme-nlp-contract.json"
+      - "docs/supreme-nlp-architecture.md"
+      - ".github/workflows/supreme-nlp-continuous-qc.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-qc
+  cancel-in-progress: true
+
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python syntax and import check
+        run: python3 -m py_compile agents/supreme_nlp_agent.py factory/supreme_nlp_qc.py
+      - name: Run Supreme NLP contract QC
+        run: python3 factory/supreme_nlp_qc.py
+      - name: Verify fail-closed language boundary
+        run: |
+          set -euo pipefail
+          grep -q '"no_mind_reading": true' schemas/supreme-nlp-contract.json
+          grep -q '"no_unearned_certainty": true' schemas/supreme-nlp-contract.json
+          grep -q '"provenance_required": true' schemas/supreme-nlp-contract.json
+          echo "Supreme NLP fail-closed boundary: PASS"
