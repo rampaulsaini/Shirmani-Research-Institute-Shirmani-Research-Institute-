@@ -1,0 +1,59 @@
+name: Supreme Multimodal NLP Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-automission
+  cancel-in-progress: false
+
+jobs:
+  architecture-integrity:
+    name: Architecture Integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate required architecture files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s docs/SUPREME-MULTIMODAL-NLP-AUTOMISSION.md
+          test -s schemas/multimodal-signal-record.schema.json
+          python -m json.tool schemas/multimodal-signal-record.schema.json >/dev/null
+
+      - name: Check safety language is present
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "observed signal" docs/SUPREME-MULTIMODAL-NLP-AUTOMISSION.md
+          grep -q "independent verification" docs/SUPREME-MULTIMODAL-NLP-AUTOMISSION.md
+          grep -q "Production changes require" docs/SUPREME-MULTIMODAL-NLP-AUTOMISSION.md
+
+      - name: Emit machine-readable status
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p automission/status
+          cat > automission/status/supreme-nlp-status.json <<'JSON'
+          {
+            "system": "supreme-multimodal-nlp-automission",
+            "cycle": "architecture-integrity",
+            "result": "PASS",
+            "verification": "schema-and-document-integrity",
+            "production_model_training": false
+          }
+          JSON
+
+      - name: Upload audit record
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-automission-status
+          path: automission/status/supreme-nlp-status.json
