@@ -43,10 +43,22 @@ class SupremeAiMlNlpTests(unittest.TestCase):
         bad_worker = {"worker_observable": False}
         good = evaluate(rows, verification, good_worker)
         bad = evaluate(rows, verification, bad_worker)
-        self.assertTrue(good["consensus_pass"] is False or bad["consensus_pass"] is False)
-        self.assertEqual(good["next_action"], "STOP_AND_REPAIR")
+        self.assertTrue(good["consensus_pass"])
+        self.assertEqual(good["next_action"], "CONTINUE_AUTOMISSION")
+        self.assertFalse(bad["consensus_pass"])
         self.assertEqual(bad["next_action"], "STOP_AND_REPAIR")
 
+    def test_consensus_rejects_failed_verification_boundary(self):
+        rows = [{
+            "id": "1",
+            "text": "independent evidence method trace",
+            "source_ids": ["s1"],
+            "method_trace": "m1",
+            "content_hash": "h",
+        }]
+        result = evaluate(rows, {"fail_closed": False}, {"worker_observable": True})
+        self.assertFalse(result["consensus_pass"])
+        self.assertEqual(result["next_action"], "STOP_AND_REPAIR")
 
 if __name__ == "__main__":
     unittest.main()
