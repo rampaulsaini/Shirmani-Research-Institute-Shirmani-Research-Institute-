@@ -111,7 +111,7 @@ jobs:
           {
             echo "## Supreme NLP Automission"
             echo ""
-            echo "- Cycle: `automission-cycle`"
+            echo "- Cycle: automission-cycle"
             echo "- Evidence: generated status + improvement plan"
             echo "- Verification: deterministic contract tests passed"
             echo "- Code mutation: disabled in scheduled audit"
