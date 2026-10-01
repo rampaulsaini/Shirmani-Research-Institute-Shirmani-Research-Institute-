@@ -30,4 +30,10 @@ jobs:
           print("Supreme NLP signal baseline: PASS")
           PY
       - name: Validate schema JSON
-        run: python3 -c 'import json; json.load(open("schemas/multimodal-signal-nlp.schema.json",encoding="utf-8")); print("Schema JSON: PASS")'
+        run: |
+          python3 - <<'PY'
+          import json
+          with open("schemas/multimodal-signal-nlp.schema.json", encoding="utf-8") as handle:
+              json.load(handle)
+          print("Schema JSON: PASS")
+          PY
