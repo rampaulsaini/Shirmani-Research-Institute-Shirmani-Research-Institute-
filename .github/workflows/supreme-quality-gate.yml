@@ -1,0 +1,42 @@
+name: Supreme Automission Quality Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-quality-gate
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run deterministic high-assurance gate
+        run: python factory/supreme_quality_gate.py
+
+      - name: Validate gate output
+        if: always()
+        run: python -m json.tool generated/supreme-quality-gate.json >/dev/null
+
+      - name: Upload gate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-automission-quality-gate
+          path: generated/supreme-quality-gate.json
