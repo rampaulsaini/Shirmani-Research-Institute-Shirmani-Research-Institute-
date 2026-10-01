@@ -3,6 +3,15 @@ name: SHIRMANI Supreme Platform Health Gate
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/**"
+      - "agents/**"
+      - "factory/**"
+      - "scripts/**"
+      - "tests/**"
+      - "docs/**"
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
