@@ -168,3 +168,12 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Boundary:** “विश्व की नागरिकता” is a global-participation goal, not a claim of legal citizenship or government-issued status.
 - **Integrity:** author-declared identity, generated content, QC results and independent verification remain distinct states.
 
+
+
+## 🧠 SHIRMANI Supreme NLP Practitioner
+
+- **Canonical contract:** [docs/supreme-nlp-practitioner-contract.md](docs/supreme-nlp-practitioner-contract.md)
+- **Deterministic QC:** [factory/supreme_nlp_contract_qc.py](factory/supreme_nlp_contract_qc.py)
+- **Continuous gate:** [.github/workflows/supreme-nlp-contract.yml](.github/workflows/supreme-nlp-contract.yml)
+- **Pipeline:** Signal → Quality Check → Normalization → Representation → Context → Inference → Plain-Language Translation → Confidence → Evidence → Independent Verification → Audit.
+- **Integrity boundary:** measured signals, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
