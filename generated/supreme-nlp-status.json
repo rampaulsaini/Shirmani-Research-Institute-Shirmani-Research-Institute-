@@ -7,12 +7,22 @@
     "observation_count": 2,
     "evidence_count": 1,
     "independent_check": true,
-    "claim_type": "data_interpretation"
+    "claim_type": "data_interpretation",
+    "quality_dimensions": {
+      "schema_complete": true,
+      "typed_observations": true,
+      "evidence_present": true,
+      "independent_verification": true,
+      "claim_strength_guard": true
+    }
   },
   "guards": {
     "confidence_bounds": true,
-    "verification_type": true
+    "verification_type": true,
+    "claim_strength": true,
+    "evidence_shape": true
   },
-  "generated_at": "2026-10-01T06:59:50.581582+00:00",
-  "engine_hash": "131c552975619793b2fed528dbb09f017864d3bc917f08fe12c835169ce497f7"
+  "quality_score": 1.0,
+  "generated_at": "2026-10-01T07:04:04.209682+00:00",
+  "engine_hash": "f9c8257ac36ab5a1b21e0225047fe089b7704520f939556fe9c60e61507b6b75"
 }
