@@ -1,0 +1,22 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Supreme NLP Practitioner Record",
+  "type":"object",
+  "required":["schema_version","task_id","pipeline","result","fingerprint"],
+  "properties":{
+    "schema_version":{"const":"2.0"},
+    "task_id":{"type":"string","minLength":1},
+    "pipeline":{"type":"string","minLength":1},
+    "fingerprint":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "result":{
+      "type":"object",
+      "required":["status","signals"],
+      "properties":{
+        "status":{"enum":["no_data","insufficient_quality","interpreted","conflict"]},
+        "signals":{"type":"array"},
+        "features":{"type":["object","null"]},
+        "interpretation":{"type":["object","null"]}
+      }
+    }
+  }
+}
