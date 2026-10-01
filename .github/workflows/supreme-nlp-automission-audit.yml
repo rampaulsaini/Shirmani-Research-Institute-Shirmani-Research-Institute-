@@ -1,0 +1,41 @@
+name: Supreme NLP Automission Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-automission-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate JSON schemas
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          files=list(pathlib.Path('.').glob('schemas/*.json'))
+          bad=[]
+          for p in files:
+              try: json.loads(p.read_text(encoding='utf-8'))
+              except Exception as e: bad.append(f'{p}: {e}')
+          if bad:
+              print('Schema validation failed'); print('\n'.join(bad)); sys.exit(1)
+          print(f'Validated {len(files)} JSON files for syntax')
+          PY
+      - name: Audit architecture contract
+        shell: bash
+        run: |
+          test -s docs/SUPREME_NLP_AUTOMISSION_ARCHITECTURE.md
+          test -s schemas/supreme_nlp_result.schema.json
+          grep -q 'Observe -> Validate -> Analyze -> Reason -> Verify -> Explain -> Audit -> Improve' docs/SUPREME_NLP_AUTOMISSION_ARCHITECTURE.md
+          echo 'Supreme NLP architecture contract present'
