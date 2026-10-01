@@ -1,0 +1,29 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Multimodal Signal Interpretation Record",
+  "type":"object",
+  "required":["id","modality","observation","interpretation","evidence","uncertainty","provenance"],
+  "properties":{
+    "id":{"type":"string","minLength":1},
+    "modality":{"enum":["text","speech","image","video","sensor","bioelectric","environmental","other"]},
+    "observation":{"type":"object","required":["features"],"properties":{
+      "features":{"type":"array","items":{"type":"string"}},
+      "raw_reference":{"type":["string","null"]}
+    }},
+    "interpretation":{"type":"object","required":["statement","status"],"properties":{
+      "statement":{"type":"string"},
+      "status":{"enum":["OBSERVED","INFERRED","HYPOTHESIS","NOT_INTERPRETABLE"]}
+    }},
+    "evidence":{"type":"array","items":{"type":"object","required":["type","reference"],"properties":{
+      "type":{"type":"string"},"reference":{"type":"string"}
+    }}},
+    "uncertainty":{"type":"object","required":["confidence","limitations"],"properties":{
+      "confidence":{"type":"number","minimum":0,"maximum":1},
+      "limitations":{"type":"array","items":{"type":"string"}}
+    }},
+    "provenance":{"type":"object","required":["created_at","generator"],"properties":{
+      "created_at":{"type":"string"},"generator":{"type":"string"},"source_hash":{"type":["string","null"]}
+    }}
+  },
+  "additionalProperties":false
+}
