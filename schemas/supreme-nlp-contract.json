@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "name": "SHIRMANI HEART-VIEW SUPREME NLP CONTRACT",
+  "purpose": "Convert multimodal observable signals into simple-language interpretations while preserving evidence, uncertainty and provenance.",
+  "status_model": ["OBSERVED", "INFERRED", "UNVERIFIED", "REJECTED"],
+  "input_modalities": ["text", "speech", "image", "video", "sensor", "time_series", "environmental", "bioelectric"],
+  "required_output_fields": ["signal_id", "observation", "interpretation", "confidence", "evidence", "limitations", "provenance", "status"],
+  "confidence_range": [0.0, 1.0],
+  "rules": {
+    "no_mind_reading": true,
+    "no_unearned_certainty": true,
+    "observation_must_be_separated_from_interpretation": true,
+    "unsupported_claims_default_to_unverified": true,
+    "missing_evidence_default_to_unverified": true,
+    "provenance_required": true,
+    "human_review_for_high_impact_output": true
+  }
+}
