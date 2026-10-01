@@ -114,3 +114,66 @@ def to_plain_language(
         ),
         "observation_count": len(items),
     }
+
+
+def build_record(
+    *,
+    event_id: str,
+    source_type: str,
+    observations: Iterable[Dict[str, Any]],
+    confidence: float,
+    evidence_id: str = "measurement-batch",
+    evidence_type: str = "measured_signal",
+    provenance_source: str = "supreme_nlp_adapter",
+    context: str | None = None,
+) -> Dict[str, Any]:
+    """Build a gate-compatible, evidence-linked interpretation record.
+
+    This is the bridge between measured multimodal inputs and the Supreme NLP
+    verification contract. It never upgrades a measurement into a claim about
+    subjective experience.
+    """
+    if not isinstance(event_id, str) or not event_id.strip():
+        raise ValueError("event_id must be a non-empty string")
+    if not isinstance(source_type, str) or not source_type.strip():
+        raise ValueError("source_type must be a non-empty string")
+    confidence = _finite_number(confidence, "confidence")
+    if not 0.0 <= confidence <= 1.0:
+        raise ValueError("confidence must be between 0 and 1")
+
+    normalized = [
+        normalize_observation(
+            modality=item.get("modality", ""),
+            feature=item.get("feature", ""),
+            value=item.get("value"),
+            unit=item.get("unit"),
+            timestamp=item.get("timestamp"),
+            source_id=item.get("source_id"),
+            observation_id=item.get("id"),
+        )
+        for item in observations
+    ]
+    if not normalized:
+        raise ValueError("at least one observation is required")
+
+    language = to_plain_language(normalized, context=context)
+    return {
+        "event_id": event_id.strip(),
+        "source_type": source_type.strip(),
+        "observations": normalized,
+        "interpretation": language,
+        "confidence": confidence,
+        "evidence": [{
+            "id": evidence_id,
+            "type": evidence_type,
+            "observation_ids": [item["id"] for item in normalized],
+        }],
+        "verification": {
+            "independent_check": False,
+            "method": "adapter_contract_pending_independent_check",
+        },
+        "provenance": {
+            "source": provenance_source,
+            "adapter": "supreme_nlp_adapter",
+        },
+    }
