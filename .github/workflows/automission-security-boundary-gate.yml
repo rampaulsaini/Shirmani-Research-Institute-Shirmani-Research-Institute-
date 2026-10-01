@@ -1,0 +1,25 @@
+name: AI ML NLP Automission Security Boundary Gate
+
+on:
+  push:
+    branches: ["feat/automission-quality-gate-20261001"]
+    paths:
+      - ".github/workflows/**"
+      - "scripts/validate_automission_security_boundary.py"
+      - "docs/yatharth-governance/automission-quality-gate.json"
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - "scripts/validate_automission_security_boundary.py"
+      - "docs/yatharth-governance/automission-quality-gate.json"
+
+permissions:
+  contents: read
+
+jobs:
+  security-boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate workflow security boundary
+        run: python3 scripts/validate_automission_security_boundary.py

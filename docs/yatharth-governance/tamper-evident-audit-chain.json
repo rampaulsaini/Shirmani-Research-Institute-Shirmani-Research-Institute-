@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed": "2026-10-01",
+  "purpose": "Define a tamper-evident, reproducible audit chain for Automission events without converting automation into independent verification.",
+  "hash_algorithm": "sha256",
+  "canonicalization": "UTF-8 JSON with lexicographically sorted object keys and no insignificant whitespace",
+  "event_fields": [
+    "event_id",
+    "timestamp",
+    "actor_or_agent",
+    "authority_or_rule",
+    "input_provenance",
+    "model_or_version",
+    "configuration_hash",
+    "input_hash",
+    "output_hash",
+    "recommendation_or_decision",
+    "uncertainty",
+    "human_reviewer",
+    "appeal_status",
+    "correction_history",
+    "prev_event_hash",
+    "event_hash"
+  ],
+  "chain_rules": [
+    "first_event_prev_event_hash_must_be_null",
+    "each_later_event_prev_event_hash_must_equal_immediately_prior_event_hash",
+    "event_hash_must_be_sha256_of_canonical_event_without_event_hash",
+    "changing_input_or_output_or_evidence_must_change_the_affected_hash",
+    "a_broken_chain_must_fail_closed",
+    "missing_provenance_must_not_be_promoted_to_verified",
+    "workflow_success_is_not_independent_verification"
+  ],
+  "verification_boundary": {
+    "ai_output_can_assist": true,
+    "ai_output_can_verify": false,
+    "workflow_success_can_verify": false,
+    "independent_verified_claims_requires_qualifying_independent_human_review": true
+  },
+  "privacy": {
+    "store_secrets": false,
+    "store_credentials": false,
+    "prefer_content_hashes_over_sensitive_raw_content": true
+  }
+}

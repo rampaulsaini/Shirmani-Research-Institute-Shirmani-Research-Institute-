@@ -1,0 +1,29 @@
+name: AI ML NLP Automission Reproducibility Integrity Gate
+
+on:
+  push:
+    branches: ["feat/automission-quality-gate-20261001"]
+    paths:
+      - "docs/yatharth-governance/automission-quality-gate.json"
+      - "docs/yatharth-system/claim-lifecycle-contract.json"
+      - "docs/yatharth-system/feature-status-registry.json"
+      - "scripts/validate_automission_reproducibility.py"
+      - ".github/workflows/automission-reproducibility-integrity-gate.yml"
+  pull_request:
+    paths:
+      - "docs/yatharth-governance/automission-quality-gate.json"
+      - "docs/yatharth-system/claim-lifecycle-contract.json"
+      - "docs/yatharth-system/feature-status-registry.json"
+      - "scripts/validate_automission_reproducibility.py"
+      - ".github/workflows/automission-reproducibility-integrity-gate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  reproducibility-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate reproducibility and evidence integrity
+        run: python3 scripts/validate_automission_reproducibility.py

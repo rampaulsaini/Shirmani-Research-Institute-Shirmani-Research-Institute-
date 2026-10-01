@@ -1,0 +1,83 @@
+name: AI ML NLP Automission Supreme Quality Conveyor
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-automission-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate supreme conveyor contract
+        run: python3 scripts/validate_supreme_automission_contract.py
+
+  deterministic-evaluation:
+    needs: contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run deterministic benchmark
+        run: python3 scripts/run_automission_benchmark.py
+      - name: Validate benchmark artifact
+        run: python3 scripts/validate_automission_benchmark_report.py
+      - name: Validate evidence-aware multi-agent consensus
+        run: python3 scripts/validate_automission_consensus.py
+      - name: Upload consensus audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: automission-consensus-audit
+          path: automission-consensus-audit.json
+          if-no-files-found: error
+      - name: Check regression against immutable baseline
+        run: python3 scripts/automission_regression_guard.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supreme-automission-benchmark
+          path: automission-benchmark-report.json
+          if-no-files-found: error
+
+  static-integrity:
+    needs: contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile agent and factory Python
+        run: |
+          python3 - <<'PY'
+          import pathlib, py_compile
+          roots=[pathlib.Path("agents"), pathlib.Path("factory"), pathlib.Path("scripts")]
+          files=[p for r in roots for p in r.rglob("*.py") if "__pycache__" not in p.parts]
+          for p in files: py_compile.compile(str(p), doraise=True)
+          print("compiled", len(files), "Python files")
+          PY
+      - name: Validate JSON
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          files=list(pathlib.Path("docs").rglob("*.json"))+list(pathlib.Path("schemas").rglob("*.json"))
+          for p in files: json.loads(p.read_text(encoding="utf-8"))
+          print("validated", len(files), "JSON files")
+          PY
+
+  release-boundary:
+    needs: [deterministic-evaluation, static-integrity]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce fail-closed release boundary
+        run: python3 scripts/validate_supreme_release_boundary.py

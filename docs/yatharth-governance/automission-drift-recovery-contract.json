@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed": "2026-10-01",
+  "purpose": "Continuously detect data, model and performance drift and prevent degraded AI/ML/NLP behavior from silently reaching users.",
+  "drift_dimensions": [
+    "input_distribution",
+    "label_distribution",
+    "feature_distribution",
+    "embedding_distribution",
+    "model_output_distribution",
+    "confidence_calibration",
+    "task_accuracy",
+    "latency",
+    "error_rate",
+    "abstention_rate"
+  ],
+  "monitoring_rules": [
+    "compare_current_window_with_approved_reference_window",
+    "segment_metrics_by_task_and_relevant_class",
+    "track_missing_and_malformed_input_rates",
+    "track_confidence_calibration_over_time",
+    "detect_regression_before_release",
+    "record_model_and_configuration_version_for_each_evaluation",
+    "retain_evidence_for_alerts"
+  ],
+  "response_policy": {
+    "normal": "continue_and_monitor",
+    "warning": "increase_sampling_and_review",
+    "critical": "fail_closed_and_block_release",
+    "rollback": "return_to_last_approved_artifact_when_integrity_or_quality_contract_is_breached"
+  },
+  "safety_boundary": {
+    "drift_alert_is_not_proof_of_cause": true,
+    "drift_pass_is_not_truth_verification": true,
+    "workflow_success_is_not_independent_verification": true,
+    "automatic_rollback_must_not_delete_audit_history": true,
+    "independent_verified_claims": 0,
+    "live_claim": false
+  }
+}
