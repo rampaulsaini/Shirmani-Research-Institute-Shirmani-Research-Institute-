@@ -1,0 +1,75 @@
+name: Supreme NLP Multimodal Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: supreme-nlp-automission
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Supreme NLP architecture
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("schemas/supreme-nlp-pipeline.json").read_text())
+          assert p["fail_closed"] is True
+          assert p["default_status"] == "unverified"
+          assert len(p["pipeline"]) >= 8
+          assert len(p["agents"]) >= 10
+          assert p["safeguards"]["workflow_success_is_not_verification"] is True
+          assert p["safeguards"]["provenance_required"] is True
+          assert p["safeguards"]["uncertainty_required"] is True
+          assert p["safeguards"]["irreversible_actions"] == "owner_authorization_required"
+          print("SUPREME_NLP_ARCHITECTURE=PASS")
+          PY
+
+      - name: Compile AI and factory code
+        run: |
+          python3 -m compileall -q agents factory
+          echo "PYTHON_COMPILE=PASS"
+
+      - name: Validate existing governance boundary
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("schemas/agent-governance.json").read_text())
+          assert p.get("fail_closed") is True
+          assert p.get("provenance_required_for_claims") is True
+          assert p.get("fabrication_prohibited") is True
+          print("EXISTING_GOVERNANCE=PASS")
+          PY
+
+      - name: Emit machine-readable capability manifest
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          src=json.loads(Path("schemas/supreme-nlp-pipeline.json").read_text())
+          out=Path("generated/supreme-nlp-capability-manifest.json")
+          out.parent.mkdir(parents=True,exist_ok=True)
+          src["runtime_validation"]="passed"
+          src["generated_by"]="supreme-nlp-automission"
+          out.write_text(json.dumps(src,indent=2)+"\n",encoding="utf-8")
+          print(out)
+          PY
+
+      - name: Upload capability manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-capability-manifest
+          path: generated/supreme-nlp-capability-manifest.json

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "name": "supreme-nlp-automission",
+  "fail_closed": true,
+  "default_status": "unverified",
+  "pipeline": [
+    "observe",
+    "normalize",
+    "feature_extraction",
+    "multimodal_fusion",
+    "nlp_interpretation",
+    "evidence_retrieval",
+    "independent_verification",
+    "confidence",
+    "audit",
+    "safe_publication"
+  ],
+  "modalities": [
+    "text",
+    "speech",
+    "image",
+    "video",
+    "timeseries",
+    "environmental",
+    "bioelectrical",
+    "vibration_acoustic",
+    "metadata"
+  ],
+  "agents": [
+    "intake",
+    "signal_quality",
+    "nlp",
+    "multimodal_fusion",
+    "research_evidence",
+    "reasoning",
+    "counter_evidence",
+    "independent_verification",
+    "safety_security",
+    "publication",
+    "continuous_audit",
+    "improvement"
+  ],
+  "measurements": [
+    "precision",
+    "recall",
+    "f1",
+    "calibration",
+    "false_positive_rate",
+    "false_negative_rate",
+    "latency",
+    "robustness",
+    "reproducibility",
+    "ood_detection",
+    "independent_verification_rate"
+  ],
+  "verification_states": [
+    "UNVERIFIED",
+    "EVIDENCE-SUPPORTED",
+    "INDEPENDENTLY-VERIFIED"
+  ],
+  "safeguards": {
+    "subjective_feeling_claim_requires_evidence": true,
+    "uncertainty_required": true,
+    "provenance_required": true,
+    "counter_evidence_required": true,
+    "workflow_success_is_not_verification": true,
+    "irreversible_actions": "owner_authorization_required"
+  }
+}\n
