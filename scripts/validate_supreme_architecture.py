@@ -17,6 +17,7 @@ REQUIRED_WORKFLOWS = {
     "supreme-nlp-automission.yml",
     "supreme-nlp-practitioner.yml",
     "supreme-ai-ml-nlp-automission-continuous-audit.yml",
+    "supreme-signal-fusion.yml",
 }
 
 def fail(msg: str) -> None:
@@ -51,6 +52,10 @@ if "Governance assertions" not in practitioner:
     fail("supreme-nlp-practitioner.yml: governance assertions are missing")
 
 print("ARCHITECTURE_CONTRACT: PASS")
+fusion = (WF / "supreme-signal-fusion.yml").read_text(encoding="utf-8")
+if "subjective_experience_claim_allowed" not in fusion:
+    fail("supreme-signal-fusion.yml: evidence-boundary governance is missing")
+
 print(f"Checked required Supreme workflows: {len(REQUIRED_WORKFLOWS)}")
 print("Scheduled Supreme workflows: bounded + read-only + concurrency-gated")
 print("NLP practitioner governance: explicitly exercised")
