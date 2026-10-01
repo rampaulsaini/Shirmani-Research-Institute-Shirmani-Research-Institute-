@@ -1,0 +1,75 @@
+name: SHIRMANI Supreme Evidence Fusion
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "factory/supreme_evidence_fusion.py"
+      - "schemas/supreme-evidence-fusion.schema.json"
+      - "tests/test_supreme_evidence_fusion.py"
+      - ".github/workflows/shirmani-supreme-evidence-fusion.yml"
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "factory/supreme_evidence_fusion.py"
+      - "schemas/supreme-evidence-fusion.schema.json"
+      - "factory/reasoning_pipeline.py"
+      - "factory/quality_control.py"
+      - "generated/claim-evidence.jsonl"
+      - "generated/reasoning-manifest.jsonl"
+      - "generated/provenance-ledger.jsonl"
+      - "generated/source-units.jsonl"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-evidence-fusion
+  cancel-in-progress: true
+
+jobs:
+  fusion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Syntax
+        run: python -m py_compile factory/supreme_evidence_fusion.py
+      - name: Unit tests
+        run: python -m unittest discover -s tests -p "test_supreme_evidence_fusion.py" -v
+      - name: Run evidence fusion
+        run: python factory/supreme_evidence_fusion.py
+      - name: Validate JSON report
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          schema=json.loads(Path("schemas/supreme-evidence-fusion.schema.json").read_text())
+          report=json.loads(Path("generated/supreme-evidence-fusion.json").read_text())
+          for key in schema["required"]:
+              if key not in report:
+                  raise SystemExit(f"missing required field: {key}")
+          if report["schema_version"] != "3.0":
+              raise SystemExit("wrong schema version")
+          if report["decision"]["verified_promotion"] != "NEVER_AUTOMATED":
+              raise SystemExit("verification boundary violated")
+          print("Supreme evidence-fusion schema gate: PASS")
+          print("Status:", report["status"])
+          print("Quality signal:", report["quality_signal_percent"])
+          PY
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-evidence-fusion
+          path: generated/supreme-evidence-fusion.json
+          if-no-files-found: error
