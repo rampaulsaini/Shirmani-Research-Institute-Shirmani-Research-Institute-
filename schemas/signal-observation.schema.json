@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Supreme NLP Signal Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "subject_type",
+    "modality",
+    "values",
+    "source",
+    "captured_at",
+    "context",
+    "evidence_hash"
+  ],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "subject_type": {
+      "enum": ["HUMAN", "ANIMAL", "PLANT", "MATERIAL", "ENVIRONMENT", "DEVICE", "OTHER"]
+    },
+    "modality": {
+      "enum": [
+        "TEXT", "AUDIO", "IMAGE", "VIDEO", "VIBRATION", "ELECTRICAL",
+        "TEMPERATURE", "LIGHT", "CHEMICAL", "MOTION", "MULTIMODAL", "OTHER"
+      ]
+    },
+    "values": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "number"}
+    },
+    "unit": {"type": ["string", "null"]},
+    "source": {"type": "string", "minLength": 1},
+    "captured_at": {"type": "string", "minLength": 1},
+    "context": {"type": "object"},
+    "evidence_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
