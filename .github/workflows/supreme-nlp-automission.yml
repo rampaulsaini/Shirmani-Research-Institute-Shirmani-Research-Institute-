@@ -4,6 +4,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
+  pull_request:
+    paths:
+      - "factory/supreme_nlp.py"
+      - "schemas/supreme-nlp-record.schema.json"
+      - ".github/workflows/supreme-nlp-automission.yml"
   push:
     paths:
       - "factory/supreme_nlp.py"
