@@ -1,0 +1,31 @@
+name: SHIRMANI Supreme Signal Fusion Verification
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-signal-fusion
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile
+        run: python -m py_compile agents/supreme_signal_fusion.py scripts/validate_supreme_signal_fusion.py
+      - name: Contract test
+        run: python scripts/validate_supreme_signal_fusion.py
+      - name: Schema syntax
+        run: python -m json.tool schemas/supreme-signal-fusion.schema.json >/dev/null
