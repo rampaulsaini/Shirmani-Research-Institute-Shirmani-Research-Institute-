@@ -48,6 +48,9 @@ jobs:
           print("SCHEMA_JSON_OK")
           PY
 
+      - name: Run multimodal signal interpretation QC
+        run: python factory/multimodal_signal_qc.py
+
       - name: Generate deterministic status
         run: |
           mkdir -p generated/supreme-nlp
@@ -95,6 +98,17 @@ jobs:
           assert isinstance(plan["actions"], list) and plan["actions"]
           print("GENERATED_RECORD_CONTRACT_OK")
           PY
+
+      - name: Run Supreme repository audit
+        run: python automation/supreme_nlp_automission.py
+
+      - name: Upload Supreme repository evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-repository-audit-${{ github.run_id }}
+          path: artifacts/supreme-nlp-audit.json
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Upload audit artifacts
         uses: actions/upload-artifact@v4
