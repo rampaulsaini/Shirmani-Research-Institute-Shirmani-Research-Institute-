@@ -1,0 +1,96 @@
+name: Supreme AI-ML-NLP Automission Quality Gate
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md'
+      - 'docs/supreme-ai-ml-nlp-automission-benchmark-contract.md'
+      - 'research/**'
+      - 'schemas/**'
+      - 'scripts/**'
+      - '.github/workflows/supreme-ai-ml-nlp-quality-gate.yml'
+  schedule:
+    - cron: '*/5 * * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-ai-quality-gate
+  cancel-in-progress: true
+
+jobs:
+  architecture-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify canonical architecture
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          test -s docs/supreme-ai-ml-nlp-automission-benchmark-contract.md
+          test -s research/yatharth-shirmani-author-source-2026-10-01.md
+
+      - name: Verify required control vocabulary
+        shell: bash
+        run: |
+          set -euo pipefail
+          file='docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md'
+          for term in             "Independent Verification"             "Fail Closed"             "uncertainty"             "Five-minute Automission quality loop"; do
+            grep -Fq "$term" "$file"
+          done
+
+      - name: Verify benchmark contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          file='docs/supreme-ai-ml-nlp-automission-benchmark-contract.md'
+          for term in             "measured"             "provenance"             "calibration"             "independent verification"             "fail-closed"             "rollback reference"; do
+            grep -Fqi "$term" "$file"
+          done
+
+  safety-boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check workflow permissions
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RIn --include='*.yml' --include='*.yaml' 'permissions: write-all' .github/workflows; then
+            echo "Unsafe broad permission found."
+            exit 1
+          fi
+          echo "No write-all workflow permission found."
+
+      - name: Check accidental secret-like literals
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE --exclude-dir=.git --exclude='*.lock'             'AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{50,}' .; then
+            echo "Potential hard-coded credential detected."
+            exit 1
+          fi
+          echo "No supported credential pattern detected."
+
+  result:
+    needs: [architecture-integrity, safety-boundary]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Emit gate result
+        shell: bash
+        run: |
+          if [[ "${{ needs.architecture-integrity.result }}" != "success" ||                 "${{ needs.safety-boundary.result }}" != "success" ]]; then
+            echo "SUPREME_AI_QUALITY_GATE=FAIL"
+            exit 1
+          fi
+          echo "SUPREME_AI_QUALITY_GATE=PASS"
