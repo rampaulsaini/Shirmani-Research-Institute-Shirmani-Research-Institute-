@@ -19,6 +19,8 @@ jobs:
   nlp:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      PYTHONPATH: .
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,7 +36,7 @@ jobs:
           assert p["subjective_state_claims_require_independent_verification"] is True
           print("SUPREME_NLP_POLICY=PASS")
           PY
-          python3 -m py_compile agents/supreme_nlp_agent.py factory/supreme_nlp_qc.py
+          python3 -m py_compile agents/supreme_nlp_agent.py agents/supreme_nlp.py factory/supreme_nlp_qc.py
           python3 factory/supreme_nlp_qc.py
       - name: Produce deterministic status
         run: |
