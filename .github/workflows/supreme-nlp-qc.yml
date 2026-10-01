@@ -1,0 +1,53 @@
+name: SHIRMANI Supreme NLP Contract QC
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "agents/supreme_nlp_practitioner.py"
+      - "schemas/supreme-nlp-contract.json"
+      - "factory/supreme_nlp_qc.py"
+      - ".github/workflows/supreme-nlp-qc.yml"
+  pull_request:
+    paths:
+      - "agents/supreme_nlp_practitioner.py"
+      - "schemas/supreme-nlp-contract.json"
+      - "factory/supreme_nlp_qc.py"
+      - ".github/workflows/supreme-nlp-qc.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-qc
+  cancel-in-progress: true
+
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Python syntax
+        run: python3 -m py_compile agents/supreme_nlp_practitioner.py factory/supreme_nlp_qc.py
+      - name: Run Supreme NLP contract QC
+        run: python3 factory/supreme_nlp_qc.py
+      - name: Run deterministic practitioner smoke test
+        run: |
+          python3 - <<'PY'
+          from agents.supreme_nlp_practitioner import interpret, to_plain_language
+          x = interpret(
+              [{"modality":"electrical","value":0.42,"timestamp":"2026-10-01T00:00:00Z","source":"synthetic-test"}],
+              "signal pattern is consistent with the registered test hypothesis",
+              0.81,
+              evidence=["synthetic fixture"],
+          )
+          assert x["status"] == "unverified"
+          assert x["verification_status"] == "pending_independent_verification"
+          assert 0 <= x["confidence"] <= 1
+          assert "प्रत्यक्ष व्यक्तिपरक अनुभव" in to_plain_language(x)
+          print("Supreme NLP practitioner smoke test: PASS")
+          PY
