@@ -141,6 +141,10 @@ jobs:
         run: python3 factory/research_evidence_graph.py
       - name: Run research evidence graph QC
         run: python3 factory/research_evidence_graph_qc.py
+      - name: Build deterministic accuracy control plane
+        run: python3 factory/accuracy_control_plane.py
+      - name: Run accuracy control plane QC
+        run: python3 factory/accuracy_control_plane_qc.py
       - name: Build unified publication safety gate
         run: python3 factory/publication_gate.py
       - name: Build durable continuity manifest
@@ -189,6 +193,8 @@ jobs:
           test -s generated/VERIFICATION-PROMOTION-QC.json
           test -s generated/VERIFICATION-PACKET-QC.json
           test -s generated/PUBLICATION-GATE.json
+          test -s generated/ACCURACY-CONTROL.json
+          python3 factory/accuracy_control_plane_qc.py
           test -s generated/research-evidence-graph.json
           test -s generated/RESEARCH-EVIDENCE-GRAPH.json
           test -s generated/RESEARCH-EVIDENCE-GRAPH-QC.json
