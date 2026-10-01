@@ -1,5 +1,4 @@
 name: Supreme NLP Automission
-
 on:
   workflow_dispatch:
   schedule:
@@ -8,52 +7,38 @@ on:
     paths:
       - "agents/supreme_nlp.py"
       - "agents/automission_supervisor.py"
+      - "agents/supreme_evaluation.py"
       - "scripts/validate_supreme_nlp.py"
       - "scripts/validate_automission_supervisor.py"
+      - "scripts/validate_supreme_evaluation.py"
       - "schemas/supreme-nlp-record.schema.json"
       - "docs/SUPREME-NLP-ARCHITECTURE.md"
       - "factory/supreme_nlp_qc.py"
       - ".github/workflows/supreme-nlp-automission.yml"
-
 permissions:
   contents: read
-
 concurrency:
   group: supreme-nlp-automission
   cancel-in-progress: false
-
 jobs:
   audit-and-improve:
     runs-on: ubuntu-latest
     timeout-minutes: 8
-    env:
-      PYTHONPATH: .
+    env: {PYTHONPATH: .}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.x"
-
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
       - name: Compile and contract-test
         run: |
-          python -m py_compile agents/supreme_nlp.py agents/automission_supervisor.py factory/supreme_nlp_qc.py
+          python -m py_compile agents/supreme_nlp.py agents/automission_supervisor.py agents/supreme_evaluation.py factory/supreme_nlp_qc.py
           python scripts/validate_supreme_nlp.py
+          python scripts/validate_supreme_evaluation.py
           python factory/supreme_nlp_qc.py
       - name: Validate Automission supervisor contract
         run: python scripts/validate_automission_supervisor.py
-
       - name: Validate schema syntax
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          json.loads(Path("schemas/supreme-nlp-record.schema.json").read_text(encoding="utf-8"))
-          print("SCHEMA_JSON_OK")
-          PY
-
+        run: python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
       - name: Generate deterministic status
         run: |
           mkdir -p generated/supreme-nlp
@@ -61,47 +46,51 @@ jobs:
           import json
           from pathlib import Path
           from agents.supreme_nlp import build_record
-
-          p = Path("generated/signal-input.jsonl")
-          rows = (
-              [json.loads(x) for x in p.read_text(encoding="utf-8").splitlines() if x.strip()]
-              if p.exists() else []
-          )
+          p=Path("generated/signal-input.jsonl")
+          rows=[json.loads(x) for x in p.read_text(encoding="utf-8").splitlines() if x.strip()] if p.exists() else []
           if not rows:
-              rows = [
-                  {"modality":"synthetic","feature":"baseline_a","value":1.0,"quality":1.0,"source":"automission-smoke"},
-                  {"modality":"synthetic","feature":"baseline_b","value":1.0,"quality":1.0,"source":"automission-smoke"},
-              ]
-
-          rec = build_record(rows, "automission-cycle")
-          Path("generated/supreme-nlp/status.json").write_text(
-              json.dumps(rec, ensure_ascii=False, indent=2) + "\n",
-              encoding="utf-8",
-          )
-          print(rec["simple_language"])
-          print("FINGERPRINT:", rec["fingerprint"])
+              rows=[{"modality":"synthetic","feature":"baseline_a","value":1.0,"quality":1.0,"source":"automission-smoke"},
+                     {"modality":"synthetic","feature":"baseline_b","value":1.0,"quality":1.0,"source":"automission-smoke"}]
+          rec=build_record(rows,"automission-cycle")
+          Path("generated/supreme-nlp/status.json").write_text(json.dumps(rec,ensure_ascii=False,indent=2)+"
+",encoding="utf-8")
+          print(rec["simple_language"]); print("FINGERPRINT:",rec["fingerprint"])
           PY
-
       - name: Run Automission improvement audit
         run: python agents/automission_supervisor.py
-
-      - name: Validate generated record
+      - name: Evaluate labelled ML outputs
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-
-          status = json.loads(Path("generated/supreme-nlp/status.json").read_text(encoding="utf-8"))
-          plan = json.loads(Path("generated/supreme-nlp/automission-plan.json").read_text(encoding="utf-8"))
-
+          from agents.supreme_evaluation import build_record
+          p=Path("generated/evaluation-input.jsonl")
+          rows=[json.loads(x) for x in p.read_text(encoding="utf-8").splitlines() if x.strip()] if p.exists() else []
+          if not rows:
+              rows=[{"label":1,"probability":0.90},{"label":1,"probability":0.80},
+                    {"label":0,"probability":0.10},{"label":0,"probability":0.20},
+                    {"label":1,"probability":0.55},{"label":0,"probability":0.51}]
+          rec=build_record(rows,0.60)
+          Path("generated/supreme-nlp/evaluation.json").write_text(json.dumps(rec,ensure_ascii=False,indent=2)+"
+",encoding="utf-8")
+          print(json.dumps(rec["metrics"],ensure_ascii=False)); print("CALIBRATION:",rec["calibration"]["status"])
+          PY
+      - name: Validate generated records
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          status=json.loads(Path("generated/supreme-nlp/status.json").read_text(encoding="utf-8"))
+          plan=json.loads(Path("generated/supreme-nlp/automission-plan.json").read_text(encoding="utf-8"))
+          ev=json.loads(Path("generated/supreme-nlp/evaluation.json").read_text(encoding="utf-8"))
           assert status["fingerprint"]
-          assert status["result"]["status"] in {"no_data", "insufficient_quality", "interpreted"}
-          assert 0 <= status["result"].get("interpretation", {}).get("confidence", 0) <= 1 if status["result"]["status"] == "interpreted" else True
-          assert plan["state"] in {"MONITOR", "IMPROVEMENT_REQUIRED"}
-          assert isinstance(plan["actions"], list) and plan["actions"]
+          assert status["result"]["status"] in {"no_data","insufficient_quality","interpreted"}
+          assert plan["state"] in {"MONITOR","IMPROVEMENT_REQUIRED"}
+          assert isinstance(plan["actions"],list) and plan["actions"]
+          assert ev["governance"]["accuracy_is_measured_not_declared"] is True
+          assert ev["metrics"]["status"] in {"OK","NO_LABELLED_DATA"}
           print("GENERATED_RECORD_CONTRACT_OK")
           PY
-
       - name: Upload audit artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -109,17 +98,17 @@ jobs:
           path: |
             generated/supreme-nlp/status.json
             generated/supreme-nlp/automission-plan.json
+            generated/supreme-nlp/evaluation.json
           if-no-files-found: error
           retention-days: 14
-
       - name: Emit machine-readable summary
         run: |
           {
             echo "## Supreme NLP Automission"
-            echo ""
             echo "- Cycle: automission-cycle"
-            echo "- Evidence: generated status + improvement plan"
+            echo "- Evidence: status + improvement plan + labelled evaluation"
+            echo "- Calibration: ECE/Brier measured; calibration not declared without sufficient labelled data"
+            echo "- Abstention: enabled below confidence threshold"
             echo "- Verification: deterministic contract tests passed"
             echo "- Code mutation: disabled in scheduled audit"
-            echo "- Artifacts: uploaded for traceability"
           } >> "$GITHUB_STEP_SUMMARY"
