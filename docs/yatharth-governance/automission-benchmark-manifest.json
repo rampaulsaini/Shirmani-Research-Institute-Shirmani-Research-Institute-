@@ -33,11 +33,13 @@
     "suite_coverage_rule": "Every declared suite must have at least one benchmark case; missing suite coverage is BLOCK.",
     "accuracy_floor_exempt_suites": [
       "counter_evidence",
+      "edge_cases",
       "unseen"
     ],
     "abstention_safety_rules": {
       "counter_evidence": "abstention_required_when_evidence_conflicts_or_is_insufficient",
-      "unseen": "abstention_required_when_case_is_out_of_distribution"
+      "unseen": "abstention_required_when_case_is_out_of_distribution",
+      "edge_cases": "abstention_required_when_evidence_is_empty_or_insufficient"
     }
   },
   "suites": [
