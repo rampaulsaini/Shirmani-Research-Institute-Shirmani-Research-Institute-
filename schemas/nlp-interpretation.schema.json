@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Supreme NLP Evidence-Bound Interpretation",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["record_id","observation_hash","statement","hypotheses","confidence","evidence_level","limitations","generated_at"],
+  "properties":{
+    "record_id":{"type":"string"},
+    "observation_hash":{"type":"string","minLength":64,"maxLength":64},
+    "statement":{"type":"string"},
+    "hypotheses":{"type":"array","items":{"type":"string"}},
+    "confidence":{"type":"number","minimum":0,"maximum":1},
+    "evidence_level":{"enum":["observational","correlational","validated","unknown"]},
+    "limitations":{"type":"array","items":{"type":"string"}},
+    "generated_at":{"type":"string"}
+  }
+}
