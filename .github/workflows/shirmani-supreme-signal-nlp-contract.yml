@@ -1,0 +1,48 @@
+name: SHIRMANI Supreme Multimodal Signal-NLP Contract
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-signal-nlp-contract
+  cancel-in-progress: false
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout canonical source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Compile contract engine
+        run: python3 -m py_compile factory/supreme_signal_nlp_contract.py
+      - name: Run focused contract tests
+        run: python3 -m unittest tests/test_supreme_signal_nlp_contract.py -v
+      - name: Execute fail-closed signal-to-NLP gate
+        run: python3 factory/supreme_signal_nlp_contract.py
+      - name: Verify machine-readable contract report
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path("generated/supreme-signal-nlp-contract-report.json").read_text())
+          assert report["mode"] == "fail-closed-multimodal-signal-to-nlp-contract"
+          assert report["next_action"] == "CONTINUE_AUTOMISSION"
+          assert report["independent_verification_claim"] is False
+          assert report["passed_checks"] == report["total_checks"]
+          print("SUPREME SIGNAL-NLP CONTRACT: PASS")
+          PY
+      - name: Publish contract artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-signal-nlp-contract-report
+          path: generated/supreme-signal-nlp-contract-report.json
+          retention-days: 14
