@@ -11,9 +11,9 @@ class SupremeNLPTests(unittest.TestCase):
     def test_multimodal_output_is_bounded(self):
         result = interpret(
             [
-                Signal("bioelectric", 1.8, 1.0, 1.0, "u", "a"),
-                Signal("vibration", 1.5, 1.0, 1.0, "u", "b"),
-                Signal("thermal", 0.8, 1.0, 1.0, "u", "c"),
+                Signal("bioelectric", 1.8, "u", "a", "", 1.0, 1.0),
+                Signal("vibration", 1.5, "u", "b", "", 1.0, 1.0),
+                Signal("thermal", 0.8, "u", "c", "", 1.0, 1.0),
             ],
             labelled_evaluation=True,
         )
@@ -26,7 +26,7 @@ class SupremeNLPTests(unittest.TestCase):
 
     def test_invalid_scale_is_rejected(self):
         with self.assertRaises(ValueError):
-            interpret([Signal("x", 1.0, 0.0, 0.0)])
+            interpret([Signal("x", 1.0, "", "", "", 0.0, 0.0)])
 
 
 if __name__ == "__main__":
