@@ -61,6 +61,7 @@ def clone_sources():
         available=False; head=None; remote=""; branch=None
         if dest.exists():
             probe_code,probe=run(["git","-C",str(dest),"rev-parse","--is-inside-work-tree"])
+            probe = str(probe)
             _,remote=run(["git","-C",str(dest),"remote","get-url","origin"])
             _,branch_out=run(["git","-C",str(dest),"symbolic-ref","--short","refs/remotes/origin/HEAD"])
             branch=branch_out.strip().removeprefix("origin/") or None

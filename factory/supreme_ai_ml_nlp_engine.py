@@ -6,6 +6,7 @@ and explicit about what each signal actually measures.
 """
 from __future__ import annotations
 
+import hashlib
 import math
 import re
 from collections import Counter, defaultdict
@@ -64,11 +65,14 @@ def robust_anomaly_scores(values: list[float]) -> list[float]:
 
 
 def evidence_score(row: dict[str, Any]) -> float:
+    """Score evidence completeness, including an exact content-hash check."""
+    text = str(row.get("text", ""))
+    expected_hash = hashlib.sha256(text.encode("utf-8")).hexdigest() if text else ""
     checks = [
         bool(row.get("source_ids")),
         bool(row.get("method_trace")),
-        bool(row.get("content_hash")),
-        bool(row.get("text")),
+        bool(expected_hash) and row.get("content_hash") == expected_hash,
+        bool(text),
     ]
     return sum(checks) / len(checks)
 
@@ -167,7 +171,8 @@ def evaluate(rows: list[dict[str, Any]], verification: dict[str, Any],
     scores = [float(v["score"]) for v in agents.values()]
     stats = _score_stats(scores)
     consensus = (
-        len(scores) >= 6
+        len(rows) > 0
+        and len(scores) >= 6
         and stats["min"] >= 0.90
         and stats["spread"] <= 0.10
         and verification_agent == 1.0

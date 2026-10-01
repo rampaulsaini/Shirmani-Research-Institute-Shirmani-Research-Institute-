@@ -150,6 +150,14 @@ The API has a repository-side deployment foundation, but **Production LIVE is no
 This is a research architecture: it does not grant unlimited authority to any person, institution, or AI agent. High-impact decisions require lawful authority, human review, appeal and audit.
 
 
+## 🛡️ Supreme Platform Health & Evidence Gate
+
+- **Automated health gate:** [.github/workflows/supreme-platform-health.yml](.github/workflows/supreme-platform-health.yml)
+- **Deterministic health engine:** [scripts/supreme_platform_health.py](scripts/supreme_platform_health.py)
+- **Checks:** workflow structure, duplicate workflow names, stale continuation triggers, Python compilation, deterministic tests and required public surfaces.
+- **Five-minute AI/ML/NLP quality loop:** remains a separate quality-control layer; health status does not imply independent scientific verification.
+- **Identity boundary:** the public platform can establish a traceable author/research identity and evidence record; legal citizenship or government-issued status is not created by software.
+
 ## 🧠 Supreme AI–ML–NLP–Automission Total Graph
 
 - [Canonical total graph](docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md)

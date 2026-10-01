@@ -43,9 +43,30 @@ class SupremeAiMlNlpTests(unittest.TestCase):
         bad_worker = {"worker_observable": False}
         good = evaluate(rows, verification, good_worker)
         bad = evaluate(rows, verification, bad_worker)
-        self.assertTrue(good["consensus_pass"] is False or bad["consensus_pass"] is False)
+        self.assertFalse(good["consensus_pass"])
+        self.assertFalse(bad["consensus_pass"])
         self.assertEqual(good["next_action"], "STOP_AND_REPAIR")
         self.assertEqual(bad["next_action"], "STOP_AND_REPAIR")
+
+    def test_valid_content_hash_can_pass_consensus(self):
+        import hashlib
+
+        text = "independent evidence method trace"
+        rows = [{
+            "id": "1",
+            "text": text,
+            "source_ids": ["s1"],
+            "method_trace": "m1",
+            "content_hash": hashlib.sha256(text.encode("utf-8")).hexdigest(),
+        }]
+        result = evaluate(rows, {"fail_closed": True}, {"worker_observable": True})
+        self.assertTrue(result["consensus_pass"])
+        self.assertEqual(result["next_action"], "CONTINUE_AUTOMISSION")
+
+    def test_empty_corpus_cannot_pass_consensus(self):
+        result = evaluate([], {"fail_closed": True}, {"worker_observable": True})
+        self.assertFalse(result["consensus_pass"])
+        self.assertEqual(result["next_action"], "STOP_AND_REPAIR")
 
 
 if __name__ == "__main__":
