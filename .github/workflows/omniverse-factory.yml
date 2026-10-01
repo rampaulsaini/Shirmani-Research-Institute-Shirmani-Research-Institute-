@@ -1,7 +1,9 @@
 name: Omniverse Research Factory
 
 on:
-  # Run continuously on the 5-minute resumable schedule; avoid duplicate push/PR floods.
+  # Rebuild immediately after controlled main-branch changes, then continue on the 5-minute schedule.
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       review_batch_size:
@@ -226,7 +228,7 @@ jobs:
       - name: Publish generated catalog through pull request
         if: github.event_name != 'pull_request'
         env:
-          GH_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN || github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -e
           git config user.name "omniverse-factory[bot]"
