@@ -1,0 +1,65 @@
+name: Supreme NLP Signal Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+  push:
+    paths:
+      - "factory/supreme_nlp.py"
+      - "schemas/signal-observation.schema.json"
+      - "schemas/nlp-interpretation.schema.json"
+      - "docs/SUPREME-NLP-ARCHITECTURE.md"
+      - ".github/workflows/supreme-nlp-audit.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile control plane
+        run: python -m py_compile factory/supreme_nlp.py
+      - name: Deterministic signal smoke test
+        run: |
+          python - <<'PY'
+          from factory.supreme_nlp import observe, interpret
+          o = observe(
+              "smoke-001", "PLANT", "ELECTRICAL",
+              {"signal": 1.0}, "relative-unit", "synthetic",
+              {"test": True}
+          )
+          i = interpret(
+              o,
+              "Synthetic signal pattern detected.",
+              ["pattern may indicate a measurable state change"],
+              0.5,
+              "observational",
+              ["synthetic test; no subjective-experience claim"]
+          )
+          assert len(o.evidence_hash) == 64
+          assert 0 <= i.confidence <= 1
+          print("SUPREME_NLP_SMOKE_PASS")
+          PY
+      - name: Validate JSON schemas
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for p in [
+              Path("schemas/signal-observation.schema.json"),
+              Path("schemas/nlp-interpretation.schema.json")
+          ]:
+              json.loads(p.read_text(encoding="utf-8"))
+              print("VALID", p)
+          PY
