@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "record": {
+    "event_id": "synthetic-self-test-001",
+    "status": "verified",
+    "confidence": 0.72,
+    "observation_count": 2,
+    "evidence_count": 1,
+    "independent_check": true
+  },
+  "generated_at": "2026-10-01T06:55:01.520854+00:00",
+  "engine_hash": "a7939d8b9c3f83488c0097eb224e1ead16c9c11567b77d22e59cc9ad26505589"
+}
