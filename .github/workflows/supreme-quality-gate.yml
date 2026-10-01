@@ -2,6 +2,11 @@ name: Supreme Automission Quality Gate
 
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - "factory/supreme_quality_gate.py"
+      - ".github/workflows/supreme-quality-gate.yml"
+      - "generated/**"
   schedule:
     - cron: "*/5 * * * *"
 
