@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "name": "supreme-ai-ml-nlp-benchmark-contract",
+  "purpose": "Measure progress without converting heuristic quality scores into claims of perfect accuracy.",
+  "principles": [
+    "accuracy_is_measured_not_declared",
+    "signal_inference_interpretation_are_separate",
+    "verification_is_independent_from_qc",
+    "failed_gates_stop_publication_or_production_changes",
+    "human_review_for_high_impact_actions"
+  ],
+  "tracks": {
+    "nlp": [
+      "multilingual semantic consistency",
+      "intent and entity preservation",
+      "translation fidelity",
+      "uncertainty calibration",
+      "hallucination / unsupported-claim rate"
+    ],
+    "ml": [
+      "precision_recall_f1 where labels exist",
+      "calibration error",
+      "drift detection",
+      "anomaly detection precision",
+      "reproducibility"
+    ],
+    "multimodal_signal_to_language": [
+      "signal_quality",
+      "temporal_consistency",
+      "cross_modal agreement",
+      "plain_language fidelity",
+      "abstention quality"
+    ],
+    "agents": [
+      "task completion rate",
+      "tool error rate",
+      "independent verification coverage",
+      "bounded execution compliance",
+      "recovery after failed gates"
+    ],
+    "automission": [
+      "cycle latency",
+      "successful cycle rate",
+      "retry rate",
+      "failure classification accuracy",
+      "artifact provenance coverage"
+    ]
+  },
+  "required_record_fields": [
+    "run_id",
+    "timestamp",
+    "input_hash",
+    "model_or_rule_version",
+    "dataset_or_signal_source",
+    "metric",
+    "value",
+    "unit",
+    "confidence",
+    "evidence_refs",
+    "verification_status"
+  ],
+  "status_vocabulary": [
+    "MEASURED",
+    "INFERRED",
+    "UNVERIFIED",
+    "INDEPENDENTLY_VERIFIED",
+    "FAILED",
+    "ABSTAINED"
+  ]
+}
