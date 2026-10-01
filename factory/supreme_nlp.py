@@ -13,6 +13,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict
 
+from factory.supreme_nlp_calibration import run_calibration_suite
+
 REQUIRED_FIELDS = {
     "event_id", "source_type", "observations", "interpretation",
     "confidence", "evidence", "verification", "provenance",
@@ -190,6 +192,10 @@ def run_self_test() -> Dict[str, Any]:
 
 def main() -> None:
     result = run_self_test()
+    calibration = run_calibration_suite()
+    if not calibration["ok"]:
+        raise AssertionError("confidence calibration suite failed")
+    result["calibration"] = calibration
     result["generated_at"] = datetime.now(timezone.utc).isoformat()
     result["engine_hash"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     out = Path("generated/supreme-nlp-status.json")
