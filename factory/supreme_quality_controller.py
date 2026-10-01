@@ -1,4 +1,4 @@
-"""Deterministic Supreme Quality Controller for the SHIRMANI Automission plane."""
+"""Fail-closed Supreme Quality Controller for the SHIRMANI Automission plane."""
 from __future__ import annotations
 
 import hashlib
@@ -6,7 +6,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from factory.supreme_ai_ml_nlp_engine import evaluate
+from factory.supreme_ai_ml_nlp_engine import SCHEMA_VERSION, evaluate
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "generated"
@@ -16,17 +16,24 @@ REPORT = OUT / "supreme-quality-report.json"
 def read_json(path: Path, default=None):
     if not path.exists():
         return default
-    return json.loads(path.read_text(encoding="utf-8"))
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return default
 
 
 def jsonl(path: Path):
     if not path.exists():
         return []
-    return [
-        json.loads(x)
-        for x in path.read_text(encoding="utf-8").splitlines()
-        if x.strip()
-    ]
+    rows = []
+    for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"invalid JSONL at {path}:{line_no}") from exc
+    return rows
 
 
 def sha(text):
@@ -53,10 +60,12 @@ def check_corpus():
 
 
 def check_verification():
-    d = read_json(OUT / "independent-verification-status-2026-09-29.json", {})
+    candidates = sorted(OUT.glob("independent-verification-status-*.json"))
+    d = read_json(candidates[-1], {}) if candidates else {}
     s = d.get("verification_summary", {})
     records = d.get("records", [])
     return {
+        "source_file": candidates[-1].name if candidates else None,
         "queue_records": len(records),
         "independently_verified_records": s.get("independently_verified_records"),
         "independent_verified_percent": s.get("independent_verified_percent"),
@@ -89,6 +98,8 @@ def main():
             hard_failures.append(f"corpus.{key}={corpus[key]}")
     if verification["fail_closed"] is False:
         hard_failures.append("verification.fail_closed=false")
+    if not worker["worker_observable"]:
+        hard_failures.append("worker.worker_observable=false")
 
     ensemble = evaluate(rows, verification, worker)
     if ensemble["consensus_pass"] is False:
@@ -107,9 +118,15 @@ def main():
         "verification_boundary": verification["fail_closed"],
         "worker_observable": worker["worker_observable"],
         "multi_agent_consensus": ensemble["consensus_pass"],
+        "schema_integrity": ensemble["schema_version"] == SCHEMA_VERSION,
+        "finite_scores": all(
+            isinstance(a.get("score"), (int, float))
+            and 0.0 <= float(a["score"]) <= 1.0
+            for a in ensemble["agents"].values()
+        ),
     }
     report = {
-        "schema_version": "2.0",
+        "schema_version": "3.0",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "mode": "fail-closed-deterministic-ai-ml-nlp-quality-control",
         "claim_policy": (
@@ -129,10 +146,7 @@ def main():
         ),
     }
     OUT.mkdir(parents=True, exist_ok=True)
-    REPORT.write_text(
-        json.dumps(report, ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
+    REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False))
     if hard_failures:
         raise SystemExit(2)
