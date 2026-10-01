@@ -42,7 +42,7 @@ jobs:
           python -m py_compile factory/supreme_nlp.py
           python factory/supreme_nlp.py
       - name: Run regression tests
-        run: python -m unittest discover -s tests -p "test_supreme_nlp.py" -v
+        run: python tests/test_supreme_nlp.py
       - name: Validate schema JSON
         run: python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
       - name: Verify status contract
