@@ -61,9 +61,13 @@ def main():
     if missing:
         fail("graph_missing:" + ",".join(missing))
 
-    loop_pos = [graph.find(term) for term in REQUIRED_LOOP]
-    if any(pos < 0 for pos in loop_pos):
+    # Validate the canonical five-minute loop as one exact contract. Searching
+    # each word independently is unsafe because the architecture diagram
+    # legitimately mentions the same stages in other contexts.
+    canonical_loop = "Observe → Collect → Normalize → Analyze → Reason → Execute → Test → Verify → Audit → Learn → Improve"
+    if canonical_loop not in graph:
         fail("five_minute_loop_incomplete")
+    loop_pos = [canonical_loop.find(term) for term in REQUIRED_LOOP]
     if loop_pos != sorted(loop_pos):
         fail("five_minute_loop_order_changed")
 
@@ -113,7 +117,7 @@ def main():
         fail("unsupported_certainty_language_in_graph:" + ",".join(sorted(set(unsafe))))
 
     result = {
-        "version": 1,
+        "version": 2,
         "gate": "SUPREME_AI_ML_NLP_AUTOMISSION_HARDENING",
         "status": "PASS",
         "checks": {
