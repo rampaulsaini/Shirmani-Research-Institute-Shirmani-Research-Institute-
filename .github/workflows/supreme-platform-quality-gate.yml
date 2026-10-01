@@ -1,0 +1,41 @@
+name: SHIRMANI Supreme Platform Quality Gate
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/**","factory/**","agents/**","scripts/**","tests/**","schemas/**","docs/**","index.html","README.md"]
+  pull_request:
+    paths: [".github/workflows/**","factory/**","agents/**","scripts/**","tests/**","schemas/**","docs/**","index.html","README.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-platform-quality-\${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - name: Python syntax gate
+        run: python3 -m compileall -q factory agents scripts tests
+      - name: Deterministic unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Repository quality gate
+        run: python3 scripts/platform_quality_gate.py
+      - name: Validate generated quality report
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path("generated/platform-quality-gate.json").read_text())
+          if report["status"] != "PASS": raise SystemExit("platform quality gate did not PASS")
+          print("Platform quality gate: PASS")
+          PY
+      - name: Upload quality report
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-platform-quality-gate
+          path: generated/platform-quality-gate.json
+          retention-days: 14
