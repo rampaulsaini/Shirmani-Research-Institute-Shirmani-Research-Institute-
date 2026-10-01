@@ -1,0 +1,76 @@
+name: SHIRMANI Heart-View Manual Review Packet
+
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: "1-based first queue record"
+        required: true
+        default: "1"
+        type: string
+      size:
+        description: "Number of records (maximum 1000)"
+        required: true
+        default: "25"
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-heart-view-manual-review
+  cancel-in-progress: false
+
+jobs:
+  review-packet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate requested range
+        env:
+          START: ${{ inputs.start }}
+          SIZE: ${{ inputs.size }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          start=int(os.environ["START"])
+          size=int(os.environ["SIZE"])
+          if start < 1: raise SystemExit("start must be >= 1")
+          if size < 1 or size > 1000: raise SystemExit("size must be 1..1000")
+          PY
+      - name: Restore exact committed queue and registry
+        run: |
+          set -euo pipefail
+          test -s generated/independent-verification-queue.jsonl.gz
+          test -s generated/independent-verification-registry.jsonl.gz
+          gzip -dc generated/independent-verification-queue.jsonl.gz > generated/independent-verification-queue.jsonl
+          gzip -dc generated/independent-verification-registry.jsonl.gz > generated/independent-verification-registry.jsonl
+      - name: Generate exact hash-bound review packet
+        env:
+          START: ${{ inputs.start }}
+          SIZE: ${{ inputs.size }}
+        run: |
+          set -euo pipefail
+          python3 factory/verification_review_packet.py --batch-size "$SIZE" --offset "$((START - 1))"
+      - name: Run fail-closed packet QC
+        env:
+          START: ${{ inputs.start }}
+          SIZE: ${{ inputs.size }}
+        run: |
+          set -euo pipefail
+          END=$((START + SIZE - 1))
+          PACKET="generated/verification-review-packet-$(printf '%06d' "$START")-$(printf '%06d' "$END").json"
+          python3 factory/verification_review_packet_qc.py --packet "$PACKET"
+      - name: Publish packet as artifact only
+        uses: actions/upload-artifact@v4
+        with:
+          name: heart-view-review-${{ inputs.start }}-${{ inputs.size }}
+          path: |
+            generated/verification-review-packet-*.json
+            generated/VERIFICATION-PACKET-QC.json
+          retention-days: 14
+      - name: Clean temporary expanded queue and registry
+        if: always()
+        run: rm -f generated/independent-verification-queue.jsonl generated/independent-verification-registry.jsonl generated/VERIFICATION-PACKET-QC.json
