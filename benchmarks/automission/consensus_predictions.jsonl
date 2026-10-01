@@ -7,9 +7,9 @@
 {"case_id":"counter-001","expected":"A","agent_id":"research","predicted":"UNKNOWN","confidence":0.40,"evidence_ids":["fixture-evidence-3"]}
 {"case_id":"counter-001","expected":"A","agent_id":"verification","predicted":"UNKNOWN","confidence":0.35,"evidence_ids":["fixture-evidence-3"]}
 {"case_id":"counter-001","expected":"A","agent_id":"reasoning","predicted":"UNKNOWN","confidence":0.31,"evidence_ids":["fixture-evidence-3"]}
-{"case_id":"edge-001","expected":"B","agent_id":"research","predicted":"A","confidence":0.55,"evidence_ids":[]}
-{"case_id":"edge-001","expected":"B","agent_id":"verification","predicted":"B","confidence":0.52,"evidence_ids":[]}
-{"case_id":"edge-001","expected":"B","agent_id":"reasoning","predicted":"A","confidence":0.51,"evidence_ids":[]}
+{"case_id":"edge-001","expected":"B","agent_id":"research","predicted":"UNKNOWN","confidence":0.20,"evidence_ids":[]}
+{"case_id":"edge-001","expected":"B","agent_id":"verification","predicted":"UNKNOWN","confidence":0.18,"evidence_ids":[]}
+{"case_id":"edge-001","expected":"B","agent_id":"reasoning","predicted":"UNKNOWN","confidence":0.16,"evidence_ids":[]}
 {"case_id":"regression-001","expected":"A","agent_id":"research","predicted":"A","confidence":0.84,"evidence_ids":["fixture-evidence-5"]}
 {"case_id":"regression-001","expected":"A","agent_id":"verification","predicted":"A","confidence":0.82,"evidence_ids":["fixture-evidence-5"]}
 {"case_id":"regression-001","expected":"A","agent_id":"reasoning","predicted":"A","confidence":0.79,"evidence_ids":["fixture-evidence-5"]}
