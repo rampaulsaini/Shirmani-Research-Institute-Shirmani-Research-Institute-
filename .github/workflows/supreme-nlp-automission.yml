@@ -11,6 +11,8 @@ on:
       - "scripts/validate_supreme_nlp.py"
       - "scripts/validate_automission_supervisor.py"
       - "schemas/supreme-nlp-record.schema.json"
+      - "docs/SUPREME-NLP-ARCHITECTURE.md"
+      - "factory/supreme_nlp_qc.py"
       - ".github/workflows/supreme-nlp-automission.yml"
 
 permissions:
@@ -37,8 +39,9 @@ jobs:
 
       - name: Compile and contract-test
         run: |
-          python -m py_compile agents/supreme_nlp.py agents/automission_supervisor.py
+          python -m py_compile agents/supreme_nlp.py agents/automission_supervisor.py factory/supreme_nlp_qc.py
           python scripts/validate_supreme_nlp.py
+          python factory/supreme_nlp_qc.py
       - name: Validate Automission supervisor contract
         run: python scripts/validate_automission_supervisor.py
 
