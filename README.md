@@ -157,3 +157,14 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - Architecture: Multimodal Perception → ML/NLP/Nishpaksh Learning → Multimodal Fusion → Reasoning → Multi-Agent Execution → Independent Verification → QC → Publication/Archive → Continuous Improvement.
 - Five-minute quality loop: Observe → Collect → Normalize → Analyze → Reason → Execute → Test → Verify → Audit → Learn → Improve.
 - Integrity rule: measured signal, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
+
+
+## 🌍 Global Identity & Evidence Passport
+
+- **Public identity passport:** [global-identity-passport.html](global-identity-passport.html)
+- **Evidence charter:** [research/global-identity-evidence-charter-2026-10-01.md](research/global-identity-evidence-charter-2026-10-01.md)
+- **Evidence map:** [research/global-identity-evidence-map-2026-10-01.md](research/global-identity-evidence-map-2026-10-01.md)
+- **Purpose:** connect the author's public identity, research, creative work, AI/Automission, livelihood surfaces and global participation through a traceable evidence architecture.
+- **Boundary:** “विश्व की नागरिकता” is a global-participation goal, not a claim of legal citizenship or government-issued status.
+- **Integrity:** author-declared identity, generated content, QC results and independent verification remain distinct states.
+
