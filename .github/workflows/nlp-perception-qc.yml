@@ -6,12 +6,16 @@ on:
       - "factory/nlp_perception_gate.py"
       - "schemas/nlp-perception-record.schema.json"
       - "docs/ai/supreme-nlp-architecture.md"
+      - "docs/ai/supreme-nlp-evidence-contract.md"
+      - "tests/test_nlp_perception_gate.py"
       - ".github/workflows/nlp-perception-qc.yml"
   pull_request:
     paths:
       - "factory/nlp_perception_gate.py"
       - "schemas/nlp-perception-record.schema.json"
       - "docs/ai/supreme-nlp-architecture.md"
+      - "docs/ai/supreme-nlp-evidence-contract.md"
+      - "tests/test_nlp_perception_gate.py"
       - ".github/workflows/nlp-perception-qc.yml"
   workflow_dispatch:
 
@@ -46,6 +50,9 @@ jobs:
           json.loads(p.read_text(encoding="utf-8"))
           print(f"schema-json: PASS {p}")
           PY
+
+      - name: Run deterministic unit contract
+        run: python -m unittest discover -s tests -p "test_*.py" -v
 
       - name: Run representative evidence cases
         shell: bash
