@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from statistics import mean
 from typing import Any
 
 from agents.supreme_nlp import summarize, to_simple_language, fingerprint
@@ -28,20 +27,20 @@ CASES: list[tuple[str, list[dict[str, Any]], str]] = [
     (
         "moderate",
         [
-            {"modality": "synthetic", "feature": "x", "value": 0.60, "quality": 1.0, "source": "a"},
+            {"modality": "synthetic", "feature": "x", "value": 0.00, "quality": 1.0, "source": "a"},
             {"modality": "synthetic", "feature": "x", "value": 1.00, "quality": 1.0, "source": "b"},
-            {"modality": "synthetic", "feature": "x", "value": 1.40, "quality": 1.0, "source": "c"},
-            {"modality": "synthetic", "feature": "x", "value": 1.00, "quality": 1.0, "source": "d"},
+            {"modality": "synthetic", "feature": "x", "value": 0.00, "quality": 1.0, "source": "c"},
+            {"modality": "synthetic", "feature": "x", "value": 2.00, "quality": 1.0, "source": "d"},
         ],
         "moderate_variability_pattern",
     ),
     (
         "high",
         [
-            {"modality": "synthetic", "feature": "x", "value": 0.00, "quality": 1.0, "source": "a"},
-            {"modality": "synthetic", "feature": "x", "value": 2.00, "quality": 1.0, "source": "b"},
-            {"modality": "synthetic", "feature": "x", "value": 0.00, "quality": 1.0, "source": "c"},
-            {"modality": "synthetic", "feature": "x", "value": 2.00, "quality": 1.0, "source": "d"},
+            {"modality": "synthetic", "feature": "x", "value": -1.00, "quality": 1.0, "source": "a"},
+            {"modality": "synthetic", "feature": "x", "value": 1.00, "quality": 1.0, "source": "b"},
+            {"modality": "synthetic", "feature": "x", "value": -1.00, "quality": 1.0, "source": "c"},
+            {"modality": "synthetic", "feature": "x", "value": 1.00, "quality": 1.0, "source": "d"},
         ],
         "high_variability_pattern",
     ),
