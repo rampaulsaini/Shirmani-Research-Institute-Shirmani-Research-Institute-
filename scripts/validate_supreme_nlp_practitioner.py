@@ -1,5 +1,12 @@
 """Deterministic contract tests for Supreme NLP Practitioner."""
-from agents.supreme_nlp_practitioner import build_practitioner_record, detect_language, semantic_intent, fuse
+import math
+
+from agents.supreme_nlp_practitioner import (
+    build_practitioner_record,
+    detect_language,
+    semantic_intent,
+    fuse,
+)
 
 def main():
     rows=[
@@ -17,10 +24,27 @@ def main():
     assert len(rec["fingerprint"])==64
     assert rec["governance"]["fail_closed"] is True
     assert rec["governance"]["subjective_experience_claim_allowed"] is False
+
+    # Multilingual intent/language routing must remain deterministic.
     assert detect_language("यह क्या है?")=="hi"
     assert detect_language("ਇਹ ਕੀ ਹੈ?")=="pa"
+    assert detect_language("これは何ですか？")=="ja"
+    assert detect_language("这是什么？")=="zh"
     assert semantic_intent("what is the cause?")=="causal_question"
     assert semantic_intent("इसका एहसास क्या है?")=="experience_interpretation"
+
+    # Fail-closed input hardening: malformed/non-finite numeric values must not
+    # propagate NaN/Infinity into confidence or summary statistics.
+    hardened=fuse([
+        {"modality":"sensor","feature":"x","value":"not-a-number","quality":1.0,"source":"bad"},
+        {"modality":"sensor","feature":"x","value":float("nan"),"quality":1.0,"source":"nan"},
+        {"modality":"sensor","feature":"x","value":float("inf"),"quality":1.0,"source":"inf"},
+        {"modality":"sensor","feature":"x","value":1.0,"quality":1.0,"source":"good"},
+    ])
+    hf=hardened["features"]
+    for key in ("mean","spread","median","mad","variability","outlier_ratio","agreement","confidence"):
+        assert math.isfinite(hf[key]), key
+
     assert fuse([])["status"]=="insufficient_quality"
     print("SUPREME_NLP_PRACTITIONER_CONTRACT_OK")
     print(rec["simple_language"])
