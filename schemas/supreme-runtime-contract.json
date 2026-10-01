@@ -1,0 +1,8 @@
+{
+  "schema_version":"1.0",
+  "name":"shirmani-supreme-runtime-contract",
+  "purpose":"Evidence-first runtime contract for AI, ML, NLP, multimodal interpretation and Automission.",
+  "principles":{"accuracy":"measured_not_declared","verification":"independent_verification_required","publication":"fail_closed","provenance":"required_for_claims","uncertainty":"explicit","human_control":"required_for_high_impact_actions"},
+  "signal_translation":{"allowed_inputs":["text","speech","image","video","sensor","environmental","bioelectric","vibration","temperature","light","chemical_proxy"],"required_distinctions":["measured_signal","model_inference","interpretation","confidence","unresolved_uncertainty"],"subjective_feeling_claim":"not_proven_by_pattern_detection_alone"},
+  "quality_loop":["observe","collect","normalize","analyze","reason","execute","test","verify","audit","learn","improve"]
+}
