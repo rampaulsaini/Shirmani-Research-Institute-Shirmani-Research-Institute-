@@ -121,3 +121,27 @@ def build_practitioner_record(observations: Iterable[dict[str, Any]], request: s
         "governance":{"fail_closed":True,"subjective_experience_claim_allowed":False,
                       "code_mutation_allowed":False,"independent_verification_required":True}
     }
+
+def calibration_metrics(predictions, outcomes, bins=10):
+    """Brier score + expected calibration error for labelled evaluation."""
+    ps=[clip(float(x)) for x in predictions]
+    ys=[int(x) for x in outcomes]
+    if len(ps)!=len(ys) or not ps: raise ValueError("equal non-zero inputs required")
+    if any(y not in (0,1) for y in ys): raise ValueError("outcomes must be binary")
+    brier=sum((p-y)**2 for p,y in zip(ps,ys))/len(ps)
+    ece=0.0
+    for b in range(bins):
+        lo=b/bins; hi=(b+1)/bins
+        m=[(p,y) for p,y in zip(ps,ys) if p>=lo and (p<hi or b==bins-1)]
+        if m: ece += len(m)/len(ps)*abs(sum(p for p,_ in m)/len(m)-sum(y for _,y in m)/len(m))
+    return {"sample_count":len(ps),"brier_score":brier,"expected_calibration_error":ece,"bins":bins}
+
+def compare_practitioner_records(reference, candidate):
+    """Material disagreement blocks automatic promotion."""
+    r=reference.get("result",{}); c=candidate.get("result",{})
+    rs=r.get("interpretation",{}).get("state"); cs=c.get("interpretation",{}).get("state")
+    rp=r.get("features",{}).get("confidence"); cp=c.get("features",{}).get("confidence")
+    disagreement=rs!=cs or (isinstance(rp,(int,float)) and isinstance(cp,(int,float)) and abs(rp-cp)>=0.20)
+    return {"disagreement":bool(disagreement),"reference_state":rs,"candidate_state":cs,
+            "reference_confidence":rp,"candidate_confidence":cp,
+            "promotion_allowed":False if disagreement else None}

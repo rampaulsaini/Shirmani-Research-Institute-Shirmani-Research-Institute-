@@ -1,0 +1,38 @@
+name: SHIRMANI Supreme NLP Quality Loop
+on:
+  push:
+    branches: [main]
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - ".github/workflows/supreme-nlp-quality-loop.yml"
+  pull_request:
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - ".github/workflows/supreme-nlp-quality-loop.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-supreme-nlp-quality-loop
+  cancel-in-progress: true
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile Supreme NLP control plane
+        run: python -m py_compile agents/supreme_nlp_practitioner.py factory/supreme_nlp_qc.py factory/supreme_nlp_smoke.py
+      - name: Validate Supreme NLP contract
+        run: python factory/supreme_nlp_qc.py
+      - name: Run deterministic calibration and contradiction smoke tests
+        run: python factory/supreme_nlp_smoke.py
