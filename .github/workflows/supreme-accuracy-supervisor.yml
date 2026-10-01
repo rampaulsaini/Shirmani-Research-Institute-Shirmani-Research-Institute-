@@ -3,7 +3,7 @@ name: Supreme Accuracy Supervisor
 on:
   workflow_dispatch:
   schedule:
-    # GitHub Actions supports a 5-minute minimum schedule. Actual start time may vary.
+    # GitHub Actions supports a 5-minute minimum schedule; actual start time can vary.
     - cron: "*/5 * * * *"
   push:
     paths:
@@ -11,6 +11,8 @@ on:
       - "factory/**"
       - "automation/**"
       - "schemas/**"
+      - "tests/**"
+      - "research/**"
       - ".github/workflows/supreme-accuracy-supervisor.yml"
 
 permissions:
@@ -35,22 +37,92 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Compile agent stack
+      - name: Compile complete Python stack
         run: |
-          python -m compileall -q agents factory scripts
+          python -m compileall -q agents factory scripts tests
           echo "Python compilation: OK"
 
-      - name: Run supreme accuracy gate
+      - name: Run deterministic AI-ML-NLP tests when present
+        run: |
+          if [ -f tests/test_supreme_ai_ml_nlp.py ]; then
+            python -m unittest discover -s tests -p 'test_supreme_ai_ml_nlp.py' -v
+          else
+            echo "No dedicated supreme AI-ML-NLP test module found; compile gate remains active."
+          fi
+
+      - name: Run supreme integrity gate
         run: python factory/supreme_accuracy_gate.py
 
-      - name: Validate gate JSON
+      - name: Validate machine-readable gate
         run: python -m json.tool generated/supreme-accuracy-status.json >/dev/null
 
-      - name: Publish supervisor state
+      - name: Enforce fail-closed publication boundary
         run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("generated/supreme-accuracy-status.json").read_text(encoding="utf-8"))
+          assert r["truth_claim"] is False
+          assert r["gate"] in {"PASS","HOLD"}
+          m=r["metrics"]
+          if r["gate"] == "PASS":
+              assert m["source_coverage"] >= 0.95
+              assert m["independent_verification_coverage"] >= 0.95
+              assert m["contradiction_or_counter_evidence_rate"] == 0.0
+          else:
+              print("FAIL-CLOSED: HOLD is preserved; no truth/publication claim is permitted.")
+          print("Gate:", r["gate"])
+          print("Integrity score:", r["integrity_score"])
+          print("Verified:", m["verified_records"], "/", m["artifact_records"])
+          PY
+
+      - name: Upload supervisor state
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-accuracy-status
+          path: generated/supreme-accuracy-status.json
+          retention-days: 14
+
+      - name: Persist state only when semantic state changes
+        run: |
+          set -euo pipefail
           git config user.name "omniverse-factory[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add generated/supreme-accuracy-status.json
-          git diff --cached --quiet && exit 0
-          git commit -m "chore(accuracy): update supreme quality gate"
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          # Do not create a new commit for timestamp/latency-only changes.
+          python - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          current=json.loads(Path("generated/supreme-accuracy-status.json").read_text(encoding="utf-8"))
+          try:
+              previous=json.loads(subprocess.check_output(
+                  ["git","show","HEAD:generated/supreme-accuracy-status.json"],
+                  text=True
+              ))
+          except Exception:
+              previous=None
+          for value in (current, previous):
+              if isinstance(value, dict):
+                  value.pop("generated_at", None)
+                  metrics=value.get("metrics")
+                  if isinstance(metrics, dict):
+                      metrics.pop("latency_ms", None)
+          if previous is not None and current == previous:
+              subprocess.run(["git","restore","--staged","generated/supreme-accuracy-status.json"], check=True)
+              Path("generated/supreme-accuracy-status.json").write_text(
+                  subprocess.check_output(
+                      ["git","show","HEAD:generated/supreme-accuracy-status.json"], text=True
+                  ),
+                  encoding="utf-8",
+              )
+              print("No semantic state change; commit suppressed.")
+          PY
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore(accuracy): update supreme quality state"
           git push
