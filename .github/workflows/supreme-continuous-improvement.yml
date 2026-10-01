@@ -24,7 +24,6 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
@@ -37,11 +36,26 @@ jobs:
 
       - name: Run NLP engine smoke test
         run: |
-          python agents/supreme_nlp_engine.py
+          mkdir -p generated/supreme-nlp
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.supreme_nlp_engine import Signal, interpret
+          signals=[
+            Signal("demo-a",1.0,"unit","source-a","2026-10-01T00:00:00Z"),
+            Signal("demo-b",0.5,"unit","source-b","2026-10-01T00:00:01Z"),
+          ]
+          out=interpret(signals, {"mode":"smoke_test"})
+          Path("generated/supreme-nlp/status.json").write_text(
+            json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False))
+          PY
+
+      - name: Run deterministic quality gate
+        run: python factory/supreme_quality_gate.py
 
       - name: Run existing Automission supervisor
-        run: |
-          python agents/automission_supervisor.py
+        run: python agents/automission_supervisor.py
 
       - name: Validate verification boundary
         run: |
@@ -70,14 +84,13 @@ jobs:
 
       - name: Quality summary
         run: |
-          mkdir -p generated/supreme-nlp
           python - <<'PY'
           import json
           from pathlib import Path
           from datetime import datetime, timezone
           out={
             "status":"audit_passed",
-            "pipeline":"Observe -> Analyze -> Reason -> Verify -> Audit -> Improve",
+            "pipeline":"Observe -> Collect -> Clean -> Analyze -> Reason -> Translate -> Verify -> Audit -> Improve",
             "cycle":"5-minute scheduled audit",
             "independent_verification_required":True,
             "scheduled_code_mutation_allowed":False,
