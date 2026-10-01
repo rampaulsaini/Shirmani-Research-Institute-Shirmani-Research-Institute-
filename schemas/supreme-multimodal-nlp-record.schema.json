@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/supreme-multimodal-nlp-record.schema.json",
+  "title": "SHIRMANI Supreme Multimodal NLP Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","generated_at","pipeline","result","simple_language","governance","fingerprint"],
+  "properties": {
+    "schema_version": {"type":"string","minLength":1},
+    "generated_at": {"type":"string","format":"date-time"},
+    "pipeline": {"type":"string","minLength":1},
+    "result": {"type":"object"},
+    "simple_language": {"type":"string","minLength":1},
+    "governance": {
+      "type":"object",
+      "additionalProperties": false,
+      "required":["fail_closed","subjective_experience_claim_allowed","scientific_certainty_claim_allowed","independent_verification_required","scheduled_code_mutation_allowed"],
+      "properties": {
+        "fail_closed":{"type":"boolean"},
+        "subjective_experience_claim_allowed":{"type":"boolean"},
+        "scientific_certainty_claim_allowed":{"type":"boolean"},
+        "independent_verification_required":{"type":"boolean"},
+        "scheduled_code_mutation_allowed":{"type":"boolean"}
+      }
+    },
+    "fingerprint":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}
