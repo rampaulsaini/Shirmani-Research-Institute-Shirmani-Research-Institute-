@@ -9,7 +9,9 @@ on:
       - "factory/supreme_nlp.py"
       - "factory/supreme_nlp_adapter.py"
       - "factory/supreme_nlp_calibration.py"
+      - "factory/supreme_nlp_drift.py"
       - "schemas/supreme-nlp-record.schema.json"
+      - "schemas/supreme-nlp-calibration-baseline.json"
       - "tests/test_supreme_nlp.py"
       - "tests/test_supreme_nlp_adapter.py"
       - "tests/test_supreme_nlp_calibration.py"
@@ -19,7 +21,9 @@ on:
       - "factory/supreme_nlp.py"
       - "factory/supreme_nlp_adapter.py"
       - "factory/supreme_nlp_calibration.py"
+      - "factory/supreme_nlp_drift.py"
       - "schemas/supreme-nlp-record.schema.json"
+      - "schemas/supreme-nlp-calibration-baseline.json"
       - "tests/test_supreme_nlp.py"
       - "tests/test_supreme_nlp_adapter.py"
       - "tests/test_supreme_nlp_calibration.py"
@@ -56,7 +60,9 @@ jobs:
           python tests/test_supreme_nlp_calibration.py
           python tests/test_supreme_nlp_drift.py
       - name: Validate schema JSON
-        run: python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
+        run: |
+          python -m json.tool schemas/supreme-nlp-record.schema.json >/dev/null
+          python -m json.tool schemas/supreme-nlp-calibration-baseline.json >/dev/null
       - name: Verify status contract
         run: |
           python - <<'PY'
