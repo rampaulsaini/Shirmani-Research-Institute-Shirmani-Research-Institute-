@@ -1,0 +1,71 @@
+name: Supreme AI ML NLP Automission Quality Loop
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+  push:
+    paths:
+      - 'agents/**'
+      - 'factory/**'
+      - 'schemas/**'
+      - 'automation/**'
+      - 'scripts/**'
+      - '.github/workflows/supreme-ai-ml-nlp-automission.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: supreme-ai-ml-nlp-automission
+  cancel-in-progress: false
+
+jobs:
+  quality-loop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Compile agent and factory code
+        run: |
+          python - <<'PY'
+          import pathlib, py_compile
+          roots=[pathlib.Path('agents'), pathlib.Path('factory'), pathlib.Path('scripts')]
+          files=[p for r in roots if r.exists() for p in r.rglob('*.py') if '__pycache__' not in p.parts and '_sources' not in p.parts]
+          for p in files: py_compile.compile(str(p), doraise=True)
+          print('compiled', len(files), 'python files')
+          PY
+      - name: Validate JSON and schemas
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          files=list(pathlib.Path('schemas').glob('*.json')) + list(pathlib.Path('factory').glob('*.json')) + list(pathlib.Path('automation').glob('*.json'))
+          for p in files: json.loads(p.read_text(encoding='utf-8'))
+          print('validated', len(files), 'JSON files')
+          PY
+      - name: Run existing factory smoke gate
+        run: python factory/validate_factory.py
+      - name: Emit quality-loop telemetry
+        run: |
+          mkdir -p generated
+          python - <<'PY'
+          import json, pathlib, subprocess, datetime
+          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          payload={'schema_version':'2.0','status':'CHECKED','loop':'Observe→Collect→Normalize→Analyze→Reason→Execute→Test→Verify→Audit→Learn→Improve','commit':sha,'timestamp':datetime.datetime.now(datetime.timezone.utc).isoformat(),'verification_state':'UNVERIFIED','truth_boundary':'measured_signal_and_model_inference_are_distinct'}
+          pathlib.Path('generated/supreme-quality-loop-status.json').write_text(json.dumps(payload,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Commit telemetry only
+        run: |
+          git config user.name 'omniverse-factory[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add generated/supreme-quality-loop-status.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore(automission): record supreme quality-loop telemetry'
+          git push
