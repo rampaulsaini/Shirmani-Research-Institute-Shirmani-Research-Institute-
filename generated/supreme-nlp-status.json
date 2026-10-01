@@ -6,8 +6,13 @@
     "confidence": 0.72,
     "observation_count": 2,
     "evidence_count": 1,
-    "independent_check": true
+    "independent_check": true,
+    "claim_type": "data_interpretation"
   },
-  "generated_at": "2026-10-01T06:55:37.502659+00:00",
-  "engine_hash": "a7939d8b9c3f83488c0097eb224e1ead16c9c11567b77d22e59cc9ad26505589"
+  "guards": {
+    "confidence_bounds": true,
+    "verification_type": true
+  },
+  "generated_at": "2026-10-01T06:59:50.581582+00:00",
+  "engine_hash": "131c552975619793b2fed528dbb09f017864d3bc917f08fe12c835169ce497f7"
 }
