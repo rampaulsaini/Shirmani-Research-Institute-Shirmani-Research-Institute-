@@ -143,6 +143,8 @@ jobs:
         run: python3 factory/research_evidence_graph.py
       - name: Run research evidence graph QC
         run: python3 factory/research_evidence_graph_qc.py
+      - name: Run deterministic Ultra-Mega NLP benchmark harness
+        run: python3 factory/nlp_benchmark.py
       - name: Build unified publication safety gate
         run: python3 factory/publication_gate.py
       - name: Build durable continuity manifest
@@ -195,6 +197,7 @@ jobs:
           test -s generated/RESEARCH-EVIDENCE-GRAPH.json
           test -s generated/RESEARCH-EVIDENCE-GRAPH-QC.json
           test -s generated/continuity-manifest.json
+          test -s generated/NLP-BENCHMARK.json
           python3 - <<'PY'
           import json
           from pathlib import Path
