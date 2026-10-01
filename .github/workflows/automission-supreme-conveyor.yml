@@ -2,8 +2,24 @@ name: AI ML NLP Automission Supreme Quality Conveyor
 
 on:
   push:
-    branches: ["**"]
+    branches: ["main"]
+    paths:
+      - ".github/workflows/automission-supreme-conveyor.yml"
+      - "agents/**"
+      - "factory/**"
+      - "scripts/**"
+      - "benchmarks/**"
+      - "docs/yatharth-governance/**"
+      - "schemas/**"
   pull_request:
+    paths:
+      - ".github/workflows/automission-supreme-conveyor.yml"
+      - "agents/**"
+      - "factory/**"
+      - "scripts/**"
+      - "benchmarks/**"
+      - "docs/yatharth-governance/**"
+      - "schemas/**"
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
@@ -17,6 +33,7 @@ concurrency:
 
 jobs:
   contract:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,6 +42,7 @@ jobs:
 
   deterministic-evaluation:
     needs: contract
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -61,14 +79,19 @@ jobs:
           PY
       - name: Check regression against immutable baseline
         run: python3 scripts/automission_regression_guard.py
+      - name: Run supreme precision governor
+        run: python3 scripts/supreme_precision_governor.py
       - uses: actions/upload-artifact@v4
         with:
           name: supreme-automission-benchmark
-          path: automission-benchmark-report.json
+          path: |
+            automission-benchmark-report.json
+            generated/supreme-precision-governor.json
           if-no-files-found: error
 
   static-integrity:
     needs: contract
+    timeout-minutes: 8
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -92,6 +115,7 @@ jobs:
 
   release-boundary:
     needs: [deterministic-evaluation, static-integrity]
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -1,3 +1,4 @@
+import argparse
 import hashlib
 import json
 import math
@@ -56,7 +57,7 @@ def macro_prf(rows):
     return statistics.mean(precisions), statistics.mean(recalls), statistics.mean(f1s)
 
 
-def main():
+def main(output_path: Path = OUT):
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     rows = load_jsonl(FIXTURE)
     required = set(manifest["evaluation"]["required_fields"])
@@ -163,15 +164,19 @@ def main():
         "release_boundary": manifest["release_policy"],
         "status": "BENCHMARK_ONLY"
     }
-    OUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps(report, indent=2, sort_keys=True))
     print("Automission deterministic benchmark: PASS")
     print("Boundary: benchmark result is not independent verification and does not establish a LIVE claim.")
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Run the bounded Automission benchmark.")
+    parser.add_argument("--output", type=Path, default=OUT, help="benchmark report output path")
+    args = parser.parse_args()
     try:
-        main()
+        main(args.output)
     except AssertionError as exc:
         print(f"Automission deterministic benchmark: FAIL: {exc}", file=sys.stderr)
         raise
