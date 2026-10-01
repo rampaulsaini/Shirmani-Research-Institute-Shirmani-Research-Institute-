@@ -1,0 +1,69 @@
+name: SHIRMANI Supreme Multimodal NLP Gate
+
+on:
+  push:
+    paths:
+      - "factory/supreme_multimodal_nlp.py"
+      - "tests/test_supreme_multimodal_nlp.py"
+      - ".github/workflows/shirmani-supreme-multimodal-nlp.yml"
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-multimodal-nlp
+  cancel-in-progress: false
+
+jobs:
+  multimodal-nlp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Compile deterministic NLP engine
+        run: python3 -m py_compile factory/supreme_multimodal_nlp.py
+
+      - name: Run multimodal NLP unit tests
+        run: python3 -m unittest discover -s tests -p 'test_supreme_multimodal_nlp.py' -v
+
+      - name: Run fail-closed signal translation contract
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from factory.supreme_multimodal_nlp import signal_to_nlp
+
+          result = signal_to_nlp(
+              {
+                  "channel": "electrical",
+                  "values": [1.0, 1.1, 1.0, 1.2],
+                  "unit": "a.u.",
+                  "source_id": "synthetic-contract-test",
+                  "timestamp": "2026-10-01T00:00:00Z",
+              },
+              evidence=["synthetic-contract-evidence"],
+          )
+
+          assert result["verification_status"] == "UNVERIFIED"
+          assert "subjective feeling" in result["claim_boundary"]
+          assert 0.0 <= result["confidence"] <= 1.0
+          assert result["quality"]["quality_pass"] is True
+          assert result["evidence_ids"] == ["synthetic-contract-evidence"]
+
+          print(json.dumps(result, ensure_ascii=False, indent=2))
+          print("SUPREME MULTIMODAL NLP CONTRACT: PASS")
+          PY
+
+      - name: Publish contract artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-multimodal-nlp-contract
+          path: factory/supreme_multimodal_nlp.py
+          retention-days: 14
