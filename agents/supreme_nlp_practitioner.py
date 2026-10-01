@@ -6,7 +6,7 @@ claim of subjective experience.
 from __future__ import annotations
 from dataclasses import dataclass, asdict
 from datetime import datetime, timezone
-from math import sqrt
+from math import isfinite, sqrt
 from typing import Any, Iterable
 import hashlib, json, re
 
@@ -21,13 +21,22 @@ class Observation:
     timestamp: str = ""
 
 def clip(x: float, lo: float = 0.0, hi: float = 1.0) -> float:
-    return max(lo, min(hi, float(x)))
+    value = float(x)
+    if not isfinite(value):
+        return lo
+    return max(lo, min(hi, value))
 
 def normalize(raw: dict[str, Any]) -> Observation:
+    try:
+        value = float(raw.get("value", 0.0))
+    except (TypeError, ValueError):
+        value = 0.0
+    if not isfinite(value):
+        value = 0.0
     return Observation(
         modality=str(raw.get("modality", "unknown")).strip().lower() or "unknown",
         feature=str(raw.get("feature", "unknown")).strip().lower() or "unknown",
-        value=float(raw.get("value", 0.0)),
+        value=value,
         quality=clip(raw.get("quality", 1.0)),
         source=str(raw.get("source", "unknown")).strip() or "unknown",
         unit=str(raw.get("unit", "")).strip(),
