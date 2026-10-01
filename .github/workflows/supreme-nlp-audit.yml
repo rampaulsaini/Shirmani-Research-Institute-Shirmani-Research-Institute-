@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - "factory/supreme_nlp.py"
+      - "tests/test_supreme_nlp.py"
       - "schemas/signal-observation.schema.json"
       - "schemas/nlp-interpretation.schema.json"
       - "docs/SUPREME-NLP-ARCHITECTURE.md"
@@ -30,6 +31,8 @@ jobs:
           python-version: "3.x"
       - name: Compile control plane
         run: python -m py_compile factory/supreme_nlp.py
+      - name: Regression suite
+        run: python -m unittest discover -s tests -p "test_*.py" -v
       - name: Deterministic signal smoke test
         run: |
           python - <<'PY'
@@ -48,18 +51,19 @@ jobs:
               ["synthetic test; no subjective-experience claim"]
           )
           assert len(o.evidence_hash) == 64
-          assert 0 <= i.confidence <= 1
+          assert i.observation_hash == o.evidence_hash
+          assert i.verification_status == "UNVERIFIED"
           print("SUPREME_NLP_SMOKE_PASS")
           PY
-      - name: Validate JSON schemas
+      - name: Parse JSON schemas
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          for p in [
+          for p in (
               Path("schemas/signal-observation.schema.json"),
-              Path("schemas/nlp-interpretation.schema.json")
-          ]:
+              Path("schemas/nlp-interpretation.schema.json"),
+          ):
               json.loads(p.read_text(encoding="utf-8"))
-              print("VALID", p)
+              print("VALID_JSON", p)
           PY
