@@ -1,0 +1,32 @@
+{
+  "version": "2026-10-01",
+  "purpose": "Fail-closed quality contract for AI-agent, ML/NLP, and Automission outputs.",
+  "principles": [
+    "deterministic checks before probabilistic generation",
+    "evidence and provenance before claims",
+    "independent verification remains distinct from preparation",
+    "no silent fallback or hidden mutation",
+    "every promoted result must be reproducible"
+  ],
+  "gates": {
+    "syntax": {"required": true},
+    "schema": {"required": true},
+    "provenance": {"required": true},
+    "evidence": {"required": true},
+    "reproducibility": {"required": true},
+    "independent_verification": {"required": true, "promotion_status": "fail-closed"}
+  },
+  "metrics": {
+    "accuracy": "measured only against a declared evaluator and test set",
+    "precision": "measured per task, not inferred from workflow success",
+    "recall": "measured per task, not inferred from workflow success",
+    "hallucination_rate": "must be measured on a labeled evaluation set",
+    "automation_health": "operational metric only; never treated as factual accuracy"
+  },
+  "promotion": {
+    "minimum_independent_verification_percent": 100,
+    "allow_unverified_claims": false,
+    "allow_missing_provenance": false,
+    "allow_schema_errors": false
+  }
+}
