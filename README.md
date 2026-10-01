@@ -157,3 +157,12 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - Architecture: Multimodal Perception → ML/NLP/Nishpaksh Learning → Multimodal Fusion → Reasoning → Multi-Agent Execution → Independent Verification → QC → Publication/Archive → Continuous Improvement.
 - Five-minute quality loop: Observe → Collect → Normalize → Analyze → Reason → Execute → Test → Verify → Audit → Learn → Improve.
 - Integrity rule: measured signal, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
+
+
+### ♾️ Continuous Supreme AI–ML–NLP Improvement
+
+- **Benchmark contract:** [schemas/supreme-ai-ml-nlp-benchmark-contract.json](schemas/supreme-ai-ml-nlp-benchmark-contract.json)
+- **Engineering contract:** [docs/supreme-ai-ml-nlp-benchmark-contract.md](docs/supreme-ai-ml-nlp-benchmark-contract.md)
+- **Continuous gate:** [.github/workflows/supreme-ai-ml-nlp-continuous-gate.yml](.github/workflows/supreme-ai-ml-nlp-continuous-gate.yml)
+- The benchmark measures NLP, ML, multimodal signal-to-language, agent reliability and Automission performance.
+- “Fully supreme accuracy” remains an engineering target; the platform records measured metrics, uncertainty, verification status and failure states rather than inventing certainty.
