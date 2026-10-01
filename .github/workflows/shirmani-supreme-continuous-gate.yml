@@ -1,0 +1,140 @@
+name: SHIRMANI Supreme Continuous AI-ML-NLP Gate
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "scripts/**"
+      - "schemas/**"
+      - "tests/**"
+      - ".github/workflows/**"
+      - "docs/supreme-ai-ml-nlp-automission-*.md"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-continuous-gate
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      PYTHONPATH: .
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout canonical state
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile AI, ML, NLP and Automission code
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import py_compile
+          roots = [Path("agents"), Path("factory"), Path("scripts")]
+          files = []
+          for root in roots:
+              if root.exists():
+                  files.extend(p for p in root.rglob("*.py")
+                               if "__pycache__" not in p.parts and "_sources" not in p.parts)
+          for p in files:
+              py_compile.compile(str(p), doraise=True)
+          print(f"COMPILE_PASS files={len(files)}")
+          PY
+      - name: Validate Supreme NLP contracts
+        run: |
+          python scripts/validate_supreme_nlp.py
+          python scripts/validate_supreme_nlp_practitioner.py
+          python scripts/validate_automission_supervisor.py
+      - name: Validate Supreme AI-ML-NLP regression tests
+        run: python -m unittest discover -s tests -p 'test_supreme_ai_ml_nlp.py' -v
+      - name: Validate machine-readable schemas
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          required = [
+              "schemas/supreme-nlp-record.schema.json",
+              "schemas/supreme-nlp-signal-record.schema.json",
+              "schemas/supreme-nlp-practitioner.schema.json",
+              "schemas/multimodal-signal-interpretation.schema.json",
+          ]
+          for name in required:
+              p = Path(name)
+              assert p.is_file() and p.stat().st_size > 0, f"missing schema: {name}"
+              json.loads(p.read_text(encoding="utf-8"))
+          print("SCHEMA_PASS")
+          PY
+      - name: Enforce evidence and governance boundary
+        run: |
+          set -euo pipefail
+          grep -q "subjective_experience_claim_allowed.*False" agents/supreme_nlp_practitioner.py
+          grep -q "subjective experience" agents/supreme_nlp.py
+          grep -q "independent_verification_required.*True" agents/supreme_nlp_practitioner.py
+          grep -q "scheduled_code_mutation_allowed.*False" agents/automission_supervisor.py
+          grep -q "Accuracy is measured, never declared" docs/supreme-ai-ml-nlp-automission-operating-contract.md
+          grep -q "INFERRED ≠ VERIFIED" docs/supreme-ai-ml-nlp-automission-operating-contract.md
+          echo "GOVERNANCE_BOUNDARY_PASS"
+      - name: Validate canonical Automission graph
+        run: |
+          set -euo pipefail
+          test -s docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          test -s docs/supreme-ai-ml-nlp-automission-operating-contract.md
+          grep -q "Observe → Collect → Normalize → Analyze → Reason → Execute → Test → Verify → Audit → Learn → Improve" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          echo "AUTOMISSION_GRAPH_PASS"
+      - name: Generate deterministic multimodal audit
+        run: |
+          mkdir -p generated/supreme-nlp
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.supreme_nlp_practitioner import build_practitioner_record
+          rows = [
+              {"modality":"sensor","feature":"voltage","value":1.00,"quality":0.98,"source":"audit-A"},
+              {"modality":"audio","feature":"vibration","value":1.02,"quality":0.96,"source":"audit-B"},
+              {"modality":"environment","feature":"temperature","value":0.99,"quality":0.97,"source":"audit-C"},
+              {"modality":"sensor","feature":"voltage","value":1.01,"quality":0.98,"source":"audit-A"},
+          ]
+          rec = build_practitioner_record(rows, "supreme-continuous-gate")
+          assert rec["governance"]["fail_closed"] is True
+          assert rec["governance"]["subjective_experience_claim_allowed"] is False
+          assert rec["governance"]["code_mutation_allowed"] is False
+          assert rec["governance"]["independent_verification_required"] is True
+          assert 0 <= rec["result"]["features"]["confidence"] <= 1
+          assert 0 <= rec["result"]["features"]["agreement"] <= 1
+          Path("generated/supreme-nlp/continuous-gate-status.json").write_text(
+              json.dumps(rec, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print("MULTIMODAL_AUDIT_PASS")
+          print("fingerprint:", rec["fingerprint"])
+          PY
+      - name: Emit machine-readable quality summary
+        if: always()
+        run: |
+          {
+            echo "## SHIRMANI Supreme Continuous AI-ML-NLP Gate"
+            echo ""
+            echo "- Pipeline: Observe → Collect → Normalize → Analyze → Reason → Execute → Test → Verify → Audit → Learn → Improve"
+            echo "- Compile/contracts/regression/schema/governance checks: executed"
+            echo "- Biological/physical interpretation: evidence-bound, not subjective-experience proof"
+            echo "- Independent verification: remains a distinct gate"
+            echo "- Scheduled production code mutation: disabled"
+            echo "- UTC: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload deterministic audit record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-supreme-continuous-gate-${{ github.run_id }}
+          path: generated/supreme-nlp/continuous-gate-status.json
+          if-no-files-found: warn
+          retention-days: 14
