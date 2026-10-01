@@ -1,0 +1,36 @@
+name: SHIRMANI Supreme AI Quality Gate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+  push:
+    branches: [main]
+    paths: ["agents/**","factory/**","schemas/**","scripts/**",".github/workflows/shirmani-supreme-quality-gate.yml"]
+permissions: {contents: write}
+concurrency: {group: shirmani-supreme-quality-gate, cancel-in-progress: true}
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Deterministic quality gate
+        id: gate
+        continue-on-error: true
+        run: python3 factory/supreme_accuracy_gate.py
+      - name: Persist quality report
+        if: always()
+        run: |
+          git config user.name "omniverse-factory[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/supreme-quality-gate.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(quality): update supreme AI quality gate"
+          git push
+      - name: Enforce gate
+        if: steps.gate.outcome != 'success'
+        run: |
+          echo "REVIEW: quality threshold or hard-fail validation was not satisfied."
+          exit 1
