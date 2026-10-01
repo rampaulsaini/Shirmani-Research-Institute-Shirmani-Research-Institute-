@@ -1,0 +1,30 @@
+name: Supreme AI-ML-NLP-Automission Continuous Quality
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-supreme-runtime
+  cancel-in-progress: false
+jobs:
+  supreme-runtime-qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run supreme runtime contract QC
+        run: python3 factory/supreme_runtime_qc.py
+      - name: Run agent governance QC
+        run: python3 factory/agent_governance_qc.py
+      - name: Validate factory modules
+        run: python3 -m compileall -q agents factory
+      - name: Upload runtime QC result
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-supreme-runtime-qc
+          path: generated/supreme-runtime-qc.json
+          if-no-files-found: error
