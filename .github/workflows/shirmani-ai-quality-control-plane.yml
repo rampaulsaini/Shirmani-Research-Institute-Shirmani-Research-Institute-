@@ -1,0 +1,70 @@
+name: SHIRMANI AI ML NLP Accuracy Control Plane
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-ai-quality-control-plane
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Deterministic integrity scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
+          test -s CONTINUATION-AUTO-STATE.md
+          python3 - <<'PY'
+          import json, pathlib, sys
+          required = [pathlib.Path("automation/repository-manifest.json"), pathlib.Path("automation/commerce-automation-policy.json"), pathlib.Path("automation/income-catalog.json")]
+          for p in required:
+              if not p.is_file(): sys.exit(f"MISSING: {p}")
+              json.loads(p.read_text(encoding="utf-8"))
+              print("VALID_JSON:", p)
+          PY
+      - name: Evidence and provenance contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("CONTINUATION-AUTO-STATE.md").read_text(encoding="utf-8").lower()
+          required = ["human verification", "verified", "provenance"]
+          missing = [x for x in required if x not in p]
+          if missing: raise SystemExit("Evidence contract missing: " + ", ".join(missing))
+          PY
+      - name: Uncertainty and fail-closed gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          text = "\n".join(p.read_text(encoding="utf-8").lower() for p in [Path("SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md"), Path("CONTINUATION-AUTO-STATE.md")] if p.exists())
+          required = ["independent verification", "fail-closed", "benchmark_only"]
+          missing = [x for x in required if x not in text]
+          if missing: raise SystemExit("Safety/verification contract missing: " + ", ".join(missing))
+          PY
+      - name: Publish machine-readable quality receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p automation/quality
+          python3 - <<'PY'
+          import json, os, pathlib, datetime
+          out = pathlib.Path("automation/quality/latest-quality-receipt.json")
+          receipt = {"schema_version":"1.0","pipeline":"ai-ml-nlp-automission","status":"QUALITY_GATED","accuracy_claim":"NOT_ESTABLISHED","independent_verification":False,"mode":"BENCHMARK_ONLY_UNTIL_INDEPENDENT_VERIFICATION","controls":["deterministic_integrity","evidence_provenance","uncertainty_fail_closed","continuous_automission"],"commit":os.environ.get("GITHUB_SHA"),"timestamp_utc":datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          out.write_text(json.dumps(receipt, indent=2, ensure_ascii=False)+"\n", encoding="utf-8")
+          PY
