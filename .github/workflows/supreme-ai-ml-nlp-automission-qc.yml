@@ -1,0 +1,87 @@
+name: Supreme AI ML NLP Automission QC
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+      - "docs/yatharth-governance/**"
+      - "research/yatharth-shirmani-author-source-2026-10-01.md"
+      - "schemas/**"
+      - ".github/workflows/supreme-ai-ml-nlp-automission-qc.yml"
+  pull_request:
+    paths:
+      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+      - "docs/yatharth-governance/**"
+      - "research/yatharth-shirmani-author-source-2026-10-01.md"
+      - "schemas/**"
+      - ".github/workflows/supreme-ai-ml-nlp-automission-qc.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  architecture-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Required architecture artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          test -s docs/yatharth-governance/ai-control-contract.md
+          test -s research/yatharth-shirmani-author-source-2026-10-01.md
+          test -s schemas/supreme-nlp-benchmark.schema.json
+      - name: Verify evidence-first boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "Accuracy is measured, not declared" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          grep -q "Independent verification" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          grep -q "Human review" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          grep -q "Fail Closed" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          grep -q "generated text as independent evidence" docs/yatharth-governance/ai-control-contract.md
+      - name: Validate benchmark schema
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          data = json.loads(Path("schemas/supreme-nlp-benchmark.schema.json").read_text(encoding="utf-8"))
+          assert data["type"] == "object"
+          expected = {"benchmark_id","task","dataset","metrics","provenance","verification"}
+          missing = expected - set(data["required"])
+          assert not missing, f"missing required schema fields: {sorted(missing)}"
+      - name: Secret-pattern guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE --exclude-dir=.git --exclude='*.lock' '(ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16})' .; then
+            echo "Potential credential pattern detected."
+            exit 1
+          fi
+  benchmark-contract:
+    runs-on: ubuntu-latest
+    needs: architecture-integrity
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check benchmark requirements
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '"confidence"' schemas/supreme-nlp-benchmark.schema.json
+          grep -q '"uncertainty"' schemas/supreme-nlp-benchmark.schema.json
+          grep -q '"independent_verification"' schemas/supreme-nlp-benchmark.schema.json
+          grep -q '"error_analysis"' schemas/supreme-nlp-benchmark.schema.json
+          grep -q '"provenance"' schemas/supreme-nlp-benchmark.schema.json
+      - name: Fail-closed semantic checks
+        shell: python
+        run: |
+          from pathlib import Path
+          text = Path("docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md").read_text(encoding="utf-8")
+          required = ["measured signal","model inference","interpretation","confidence","unresolved uncertainty"]
+          missing = [x for x in required if x not in text]
+          if missing:
+              raise SystemExit("Missing uncertainty boundary terms: " + ", ".join(missing))
+          print("Supreme NLP semantic safety contract: PASS")
