@@ -111,3 +111,25 @@ between:
 
 This keeps the NLP layer scientifically testable while allowing increasingly
 rich multimodal signal-to-language research.
+
+
+## Empirical quality control
+
+The control plane now includes a dependency-free empirical evaluator for labeled
+NLP outputs. It measures accuracy, macro precision/recall/F1, abstention rate,
+confidence calibration (ECE), and controlled perturbation consistency.
+
+The quality gate is fail-closed:
+
+**measure → compare with thresholds → publish report → PASS/FAIL**
+
+A deterministic fixture is executed by GitHub Actions every 15 minutes and on
+relevant changes. The resulting JSON report is uploaded as an artifact. This
+fixture validates the machinery; it is not a substitute for a representative,
+independently collected research benchmark.
+
+For future real datasets, Automission should compare model versions using
+held-out evaluation data, subgroup/condition slices, out-of-distribution
+checks, calibration, robustness and reproducibility before proposing
+promotion. A failed gate produces telemetry for improvement rather than
+silently lowering the threshold.
