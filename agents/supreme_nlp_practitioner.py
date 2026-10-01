@@ -44,10 +44,12 @@ def normalize(raw: dict[str, Any]) -> Observation:
     )
 
 def detect_language(text: str) -> str:
+    # Japanese commonly mixes Hiragana/Katakana with Han characters. Detect
+    # kana first so a Japanese sentence containing Kanji is not misclassified as Chinese.
+    if re.search(r"[\u3040-\u30FF]", text): return "ja"
     if re.search(r"[\u0900-\u097F]", text): return "hi"
     if re.search(r"[\u0A00-\u0A7F]", text): return "pa"
     if re.search(r"[\u4E00-\u9FFF]", text): return "zh"
-    if re.search(r"[\u3040-\u30FF]", text): return "ja"
     return "en"
 
 def semantic_intent(text: str) -> str:
