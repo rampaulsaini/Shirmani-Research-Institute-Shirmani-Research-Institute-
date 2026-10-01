@@ -9,6 +9,7 @@ on:
       - "agents/supreme_nlp.py"
       - "agents/automission_supervisor.py"
       - "scripts/validate_supreme_nlp.py"
+      - "scripts/validate_automission_supervisor.py"
       - "schemas/supreme-nlp-record.schema.json"
       - ".github/workflows/supreme-nlp-automission.yml"
 
@@ -38,6 +39,8 @@ jobs:
         run: |
           python -m py_compile agents/supreme_nlp.py agents/automission_supervisor.py
           python scripts/validate_supreme_nlp.py
+      - name: Validate Automission supervisor contract
+        run: python scripts/validate_automission_supervisor.py
 
       - name: Validate schema syntax
         run: |
