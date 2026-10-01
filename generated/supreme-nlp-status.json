@@ -87,6 +87,34 @@
       "maximum_ece": true
     }
   },
-  "generated_at": "2026-10-01T07:18:31.324590+00:00",
-  "engine_hash": "94005ac108151eac52d8197a18dceb769015ab615893458087dc28825ee3e67a"
+  "calibration_drift": {
+    "ok": true,
+    "baseline": {
+      "accuracy": 0.9,
+      "brier_score": 0.1025,
+      "expected_calibration_error": 0.18
+    },
+    "current": {
+      "accuracy": 0.9,
+      "brier_score": 0.1025,
+      "expected_calibration_error": 0.18
+    },
+    "deltas": {
+      "accuracy_drop": 0.0,
+      "brier_increase": 0.0,
+      "ece_increase": 0.0
+    },
+    "thresholds": {
+      "accuracy_drop": 0.1,
+      "brier_increase": 0.1,
+      "ece_increase": 0.1
+    },
+    "guards": {
+      "accuracy": true,
+      "brier_score": true,
+      "expected_calibration_error": true
+    }
+  },
+  "generated_at": "2026-10-01T07:20:57.905865+00:00",
+  "engine_hash": "216f90a893708bfccd8077b7bcac112fda70068d9e610fd384d54a71c69df3e2"
 }
