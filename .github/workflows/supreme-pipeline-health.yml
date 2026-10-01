@@ -1,0 +1,63 @@
+name: Supreme Pipeline Health
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-pipeline-health
+  cancel-in-progress: true
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile orchestration layer
+        run: python -m compileall -q factory tests
+
+      - name: Run deterministic pipeline tests
+        run: python -m unittest tests/test_supreme_pipeline_controller.py -v
+
+      - name: Emit batch health contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from factory.supreme_pipeline_controller import evaluate_batch
+          rows = []
+          manifest = Path("generated/agent-run/artifact-manifest.jsonl")
+          if manifest.exists():
+              for line in manifest.read_text(encoding="utf-8").splitlines():
+                  if line.strip():
+                      value = json.loads(line)
+                      if isinstance(value, dict):
+                          rows.append(value)
+          result = evaluate_batch(rows)
+          Path("generated/supreme-pipeline-health.json").write_text(
+              json.dumps(result, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          print(json.dumps(result, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Upload health contract
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-pipeline-health
+          path: generated/supreme-pipeline-health.json
+          retention-days: 14
