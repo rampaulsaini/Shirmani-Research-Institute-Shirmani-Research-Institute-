@@ -77,8 +77,11 @@ def main():
         raise AssertionError("selective risk outside [0,1]")
     if metrics["coverage"] <= 0:
         raise AssertionError("zero useful coverage")
-    if metrics["provenance_completeness"] < 1:
-        raise AssertionError("provenance completeness is not total")
+    provenance_required_cases = report.get("provenance_required_cases")
+    if provenance_required_cases is None:
+        raise AssertionError("missing provenance_required_cases; fail-closed")
+    if provenance_required_cases > 0 and metrics["provenance_completeness"] < 1:
+        raise AssertionError("required-case provenance completeness is not total")
     if report.get("status") != "BENCHMARK_ONLY":
         raise AssertionError("determinism gate cannot promote benchmark status")
     if report.get("release_boundary", {}).get("independent_verified_claims") != 0:

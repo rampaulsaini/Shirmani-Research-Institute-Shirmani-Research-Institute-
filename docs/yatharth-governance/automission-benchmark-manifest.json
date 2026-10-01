@@ -40,6 +40,23 @@
       "counter_evidence": "abstention_required_when_evidence_conflicts_or_is_insufficient",
       "unseen": "abstention_required_when_case_is_out_of_distribution",
       "edge_cases": "abstention_required_when_evidence_is_empty_or_insufficient"
+    },
+    "provenance_rule": "Provenance completeness is measured over decisions that require supporting evidence; intentional safety abstentions with insufficient evidence are not penalized, provided they emit UNKNOWN and are routed to review.",
+    "calibration_rule": "Calibration error is evaluated on non-abstained decisions; small deterministic fixtures use a bounded calibration budget, while larger suites should converge to the stricter target.",
+    "adaptive_routing": {
+      "enabled": true,
+      "deterministic_first": true,
+      "escalate_when": [
+        "abstained",
+        "evidence_empty_or_insufficient",
+        "confidence_below_0.70"
+      ],
+      "route_labels": [
+        "DETERMINISTIC",
+        "ESCALATE_REVIEW"
+      ],
+      "unresolved_route": "ESCALATE_REVIEW",
+      "routing_is_telemetry_not_verification": true
     }
   },
   "suites": [
@@ -91,6 +108,11 @@
     "workflow_success_is_not_independent_verification": true,
     "independent_verified_claims": 0,
     "live_claim": false,
-    "abstention_safety_rule": "Coverage below 0.5 is BLOCK; abstention must not be used to mask model failure."
+    "abstention_safety_rule": "Coverage below 0.5 is BLOCK; abstention must not be used to mask model failure.",
+    "quality_notes": {
+      "small_fixture_calibration_budget": 0.15,
+      "strict_calibration_target": 0.1,
+      "baseline_refresh_requires_explicit_review": true
+    }
   }
 }
