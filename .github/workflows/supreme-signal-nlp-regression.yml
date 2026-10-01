@@ -1,0 +1,31 @@
+name: SHIRMANI Supreme Signal-NLP Regression
+
+on:
+  push:
+    branches: [main, "feat/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-signal-nlp-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Compile interpreter and controller
+        run: |
+          python3 -m py_compile factory/supreme_signal_nlp_interpreter.py
+          python3 -m py_compile factory/supreme_ai_ml_nlp_engine.py
+          python3 -m py_compile factory/supreme_quality_controller.py
+      - name: Run signal-NLP regression tests
+        run: python3 -m unittest tests.test_supreme_signal_nlp_interpreter -v
+      - name: Run existing AI-ML-NLP regression suite
+        run: python3 -m unittest tests.test_supreme_ai_ml_nlp -v
