@@ -72,6 +72,8 @@ jobs:
           assert data["calibration"]["metrics"]["accuracy"] >= data["calibration"]["thresholds"]["minimum_accuracy"]
           assert data["calibration"]["metrics"]["brier_score"] <= data["calibration"]["thresholds"]["maximum_brier_score"]
           assert data["calibration"]["metrics"]["expected_calibration_error"] <= data["calibration"]["thresholds"]["maximum_ece"]
+          assert data["calibration_drift"]["ok"] is True
+          assert all(data["calibration_drift"]["guards"].values())
           dimensions = data["record"]["quality_dimensions"]
           assert dimensions["schema_complete"] is True
           assert dimensions["typed_observations"] is True
