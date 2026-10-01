@@ -33,8 +33,10 @@ permissions:
   contents: read
 
 concurrency:
-  group: supreme-nlp-automission
-  cancel-in-progress: false
+  # Keep scheduled/main verification independent while ensuring that a newer
+  # commit supersedes an older validation run for the same PR/ref.
+  group: supreme-nlp-automission-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   quality-gate:
