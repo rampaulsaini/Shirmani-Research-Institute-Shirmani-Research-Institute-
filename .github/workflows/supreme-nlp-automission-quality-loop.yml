@@ -1,0 +1,70 @@
+name: Supreme NLP Automission Quality Loop
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: supreme-nlp-automission
+  cancel-in-progress: false
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate control contract
+        run: |
+          test -s docs/supreme-ai-ml-nlp-automission-control-contract.md
+          test -s schemas/automission-quality-cycle.schema.json
+      - name: Validate machine-readable schema
+        run: |
+          python - <<'PY'
+          import json
+          with open('schemas/automission-quality-cycle.schema.json', encoding='utf-8') as f: x=json.load(f)
+          required={'cycle_id','timestamp','input_provenance','agent_versions','verification_status','uncertainty','tests','audit'}
+          assert set(x['required']) == required
+          assert 'VERIFIED' in x['verification_status_enum']
+          print('schema gate: PASS')
+          PY
+      - name: Integrity scan
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          forbidden=('100% accuracy','fully supreme accuracy')
+          hits=[]
+          for p in Path('.').rglob('*'):
+              if p.is_file() and '.git' not in p.parts:
+                  try: s=p.read_text(encoding='utf-8',errors='ignore').lower()
+                  except Exception: continue
+                  for phrase in forbidden:
+                      if phrase in s: hits.append((str(p),phrase))
+          if hits:
+              print('Integrity notice: unsupported absolute-accuracy wording found:')
+              for h in hits[:20]: print(' -',h[0],':',h[1])
+              raise SystemExit(1)
+          print('integrity scan: PASS')
+          PY
+      - name: Emit cycle contract
+        run: |
+          mkdir -p generated/automission
+          python - <<'PY'
+          import json,os,datetime
+          now=datetime.datetime.now(datetime.timezone.utc)
+          rec={'cycle_id':now.strftime('%Y%m%dT%H%M%SZ'),'timestamp':now.isoformat(),'input_provenance':{'repository':os.environ.get('GITHUB_REPOSITORY'),'sha':os.environ.get('GITHUB_SHA')},'agent_versions':{'quality_gate':'github-actions-v1'},'verification_status':'CHECK','uncertainty':{'state':'preserved','claim':'No independent scientific verification performed by this cycle.'},'tests':{'control_contract':'PASS','schema':'PASS','integrity_scan':'PASS'},'audit':{'workflow':'Supreme NLP Automission Quality Loop','run_id':os.environ.get('GITHUB_RUN_ID')}}
+          with open('generated/automission/latest-quality-cycle.json','w',encoding='utf-8') as f: json.dump(rec,f,ensure_ascii=False,indent=2)
+          print(json.dumps(rec,ensure_ascii=False,indent=2))
+          PY
+      - name: Publish cycle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: automission-quality-cycle
+          path: generated/automission/latest-quality-cycle.json
+          retention-days: 14
