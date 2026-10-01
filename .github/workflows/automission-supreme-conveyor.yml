@@ -77,6 +77,8 @@ jobs:
                   raise AssertionError(f"invalid evidence record: {case}")
           print("multi-agent consensus integrity: PASS")
           PY
+      - name: Enforce measurable quality budgets
+        run: python3 scripts/validate_automission_quality_budgets.py
       - name: Check regression against immutable baseline
         run: python3 scripts/automission_regression_guard.py
       - uses: actions/upload-artifact@v4
