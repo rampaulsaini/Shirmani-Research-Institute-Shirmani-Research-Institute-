@@ -1,18 +1,19 @@
-"""Dependency-free AI/ML/NLP quality ensemble for SHIRMANI Automission.
+"""Dependency-free, deterministic AI/ML/NLP quality ensemble for SHIRMANI Automission.
 
-This is a deterministic quality/evaluation layer, not a claim of perfect
-accuracy. It combines independent heuristic agents so weak evidence cannot be
-silently promoted to a VERIFIED result.
+This module is an evaluation/quality-control layer, not a claim of perfect
+accuracy. It is designed to be reproducible, bounded in runtime, fail-closed,
+and explicit about what each signal actually measures.
 """
 from __future__ import annotations
 
 import math
 import re
-from collections import Counter
+from collections import Counter, defaultdict
 from statistics import median
 from typing import Any
 
 TOKEN_RE = re.compile(r"[^\W_]+", re.UNICODE)
+SCHEMA_VERSION = "2.0"
 
 
 def tokens(text: str) -> list[str]:
@@ -35,8 +36,15 @@ def lexical_profile(text: str) -> dict[str, float]:
     }
 
 
+def _shingles(text: str, width: int = 3) -> set[tuple[str, ...]]:
+    ts = tokens(text)
+    if len(ts) <= width:
+        return {tuple(ts)} if ts else set()
+    return {tuple(ts[i:i + width]) for i in range(len(ts) - width + 1)}
+
+
 def jaccard(a: str, b: str) -> float:
-    aa, bb = set(tokens(a)), set(tokens(b))
+    aa, bb = _shingles(a), _shingles(b)
     if not aa and not bb:
         return 1.0
     if not aa or not bb:
@@ -65,20 +73,53 @@ def evidence_score(row: dict[str, Any]) -> float:
     return sum(checks) / len(checks)
 
 
+def _near_duplicate_pairs(rows: list[dict[str, Any]], limit: int = 200_000) -> int:
+    """Count high-similarity candidate pairs without an unrestricted O(n²) scan."""
+    if len(rows) < 2:
+        return 0
+    buckets: dict[tuple[str, ...], list[int]] = defaultdict(list)
+    shingles = [_shingles(r.get("text", "")) for r in rows]
+    for i, ss in enumerate(shingles):
+        for s in sorted(ss):
+            buckets[s].append(i)
+    candidates: set[tuple[int, int]] = set()
+    for ids in buckets.values():
+        if len(ids) > 64:
+            ids = ids[:64]
+        for p, i in enumerate(ids):
+            for j in ids[p + 1:]:
+                candidates.add((i, j) if i < j else (j, i))
+                if len(candidates) >= limit:
+                    return limit
+    count = 0
+    for i, j in sorted(candidates):
+        if jaccard(rows[i].get("text", ""), rows[j].get("text", "")) >= 0.98:
+            count += 1
+    return count
+
+
+def _score_stats(scores: list[float]) -> dict[str, float]:
+    if not scores:
+        return {"mean": 0.0, "min": 0.0, "max": 0.0, "spread": 0.0}
+    return {
+        "mean": round(sum(scores) / len(scores), 6),
+        "min": round(min(scores), 6),
+        "max": round(max(scores), 6),
+        "spread": round(max(scores) - min(scores), 6),
+    }
+
+
 def evaluate(rows: list[dict[str, Any]], verification: dict[str, Any],
              worker: dict[str, Any]) -> dict[str, Any]:
     profiles = [lexical_profile(r.get("text", "")) for r in rows]
     lengths = [p["tokens"] for p in profiles]
     anomalies = robust_anomaly_scores(lengths)
 
-    exact_texts = Counter(str(r.get("text", "")).strip() for r in rows if r.get("text"))
+    exact_texts = Counter(
+        str(r.get("text", "")).strip() for r in rows if r.get("text")
+    )
     exact_duplicate_records = sum(max(0, n - 1) for n in exact_texts.values())
-
-    pair_high_similarity = 0
-    for i in range(len(rows)):
-        for j in range(i + 1, len(rows)):
-            if jaccard(rows[i].get("text", ""), rows[j].get("text", "")) >= 0.98:
-                pair_high_similarity += 1
+    pair_high_similarity = _near_duplicate_pairs(rows)
 
     evidence = [evidence_score(r) for r in rows]
     nlp_agent = 1.0
@@ -87,10 +128,11 @@ def evaluate(rows: list[dict[str, Any]], verification: dict[str, Any],
             0.0,
             1.0
             - (exact_duplicate_records / len(rows))
-            - (pair_high_similarity / max(1, len(rows) * (len(rows) - 1) / 2)) * 0.5,
+            - (pair_high_similarity / max(1, len(rows))) * 0.5,
         )
 
-    ml_agent = 1.0 - (sum(a > 0.0 for a in anomalies) / max(1, len(anomalies)))
+    anomalous = sum(a > 0.0 for a in anomalies)
+    ml_agent = 1.0 - (anomalous / max(1, len(anomalies)))
     evidence_agent = sum(evidence) / max(1, len(evidence))
     verification_agent = 1.0 if verification.get("fail_closed") is True else 0.0
     worker_agent = 1.0 if worker.get("worker_observable") is True else 0.0
@@ -102,7 +144,7 @@ def evaluate(rows: list[dict[str, Any]], verification: dict[str, Any],
         },
         "nlp_consistency_agent": {
             "score": round(nlp_agent, 6),
-            "basis": "token diversity and near-duplicate detection",
+            "basis": "exact duplicates plus bounded token-shingle near-duplicate screening",
         },
         "ml_anomaly_agent": {
             "score": round(ml_agent, 6),
@@ -122,17 +164,25 @@ def evaluate(rows: list[dict[str, Any]], verification: dict[str, Any],
         },
     }
 
-    scores = [v["score"] for v in agents.values()]
-    consensus = min(scores) >= 0.90 and verification_agent == 1.0
+    scores = [float(v["score"]) for v in agents.values()]
+    stats = _score_stats(scores)
+    consensus = (
+        len(scores) >= 6
+        and stats["min"] >= 0.90
+        and stats["spread"] <= 0.10
+        and verification_agent == 1.0
+        and worker_agent == 1.0
+    )
     return {
-        "schema_version": "1.0",
-        "method": "deterministic-multi-agent-consensus",
+        "schema_version": SCHEMA_VERSION,
+        "method": "deterministic-bounded-multi-agent-consensus",
         "claim_policy": "Heuristic quality scores are not accuracy probabilities.",
         "records_evaluated": len(rows),
         "exact_duplicate_records": exact_duplicate_records,
         "near_duplicate_pairs": pair_high_similarity,
         "agents": agents,
-        "ensemble_score": round(sum(scores) / len(scores), 6),
+        "score_stats": stats,
+        "ensemble_score": stats["mean"],
         "consensus_pass": consensus,
         "next_action": "CONTINUE_AUTOMISSION" if consensus else "STOP_AND_REPAIR",
     }
