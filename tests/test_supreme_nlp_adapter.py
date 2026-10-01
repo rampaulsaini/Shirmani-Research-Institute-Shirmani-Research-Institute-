@@ -1,4 +1,9 @@
 """Regression tests for the deterministic multimodal NLP adapter."""
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from factory.supreme_nlp_adapter import normalize_observation, to_plain_language
 
 
