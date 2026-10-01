@@ -23,6 +23,8 @@ jobs:
   audit-and-improve:
     runs-on: ubuntu-latest
     timeout-minutes: 8
+    env:
+      PYTHONPATH: .
     steps:
       - name: Checkout
         uses: actions/checkout@v4
