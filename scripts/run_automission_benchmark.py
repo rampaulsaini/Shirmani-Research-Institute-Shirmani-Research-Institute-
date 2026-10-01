@@ -40,8 +40,9 @@ def percentile(values, p):
     return values[lo] + (values[hi] - values[lo]) * (k - lo)
 
 
-def macro_prf(rows):
-    labels = sorted({r["expected"] for r in rows} | {r["predicted"] for r in rows})
+def macro_prf(rows, label_rows=None):
+    label_rows = label_rows if label_rows is not None else rows
+    labels = sorted({r["expected"] for r in label_rows} | {r["predicted"] for r in label_rows})
     precisions, recalls, f1s = [], [], []
     for label in labels:
         tp = sum(r["expected"] == label and r["predicted"] == label for r in rows)
@@ -88,7 +89,7 @@ def main():
     non_abstained = [r for r in rows if not r["abstained"]]
     correct = sum(r["expected"] == r["predicted"] for r in non_abstained)
     accuracy = correct / len(non_abstained) if non_abstained else 0.0
-    precision, recall, f1 = macro_prf(non_abstained) if non_abstained else (0.0, 0.0, 0.0)
+    precision, recall, f1 = macro_prf(non_abstained, non_abstained) if non_abstained else (0.0, 0.0, 0.0)
 
     brier = statistics.mean(
         (float(r["confidence"]) - (1.0 if r["expected"] == r["predicted"] else 0.0)) ** 2
