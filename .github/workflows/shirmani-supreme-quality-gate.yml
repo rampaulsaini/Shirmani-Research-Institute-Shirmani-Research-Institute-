@@ -1,26 +1,13 @@
 name: SHIRMANI Supreme AI Quality Gate
-
 on:
   workflow_dispatch:
   schedule:
     - cron: "*/15 * * * *"
   push:
     branches: [main]
-    paths:
-      - "agents/**"
-      - "factory/**"
-      - "generated/**"
-      - "schemas/**"
-      - "scripts/**"
-      - ".github/workflows/shirmani-supreme-quality-gate.yml"
-
-permissions:
-  contents: write
-
-concurrency:
-  group: shirmani-supreme-quality-gate
-  cancel-in-progress: true
-
+    paths: ["agents/**","factory/**","schemas/**","scripts/**",".github/workflows/shirmani-supreme-quality-gate.yml"]
+permissions: {contents: write}
+concurrency: {group: shirmani-supreme-quality-gate, cancel-in-progress: true}
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -28,14 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: "pip"
+        with: {python-version: "3.12"}
       - name: Deterministic quality gate
         id: gate
         continue-on-error: true
         run: python3 factory/supreme_accuracy_gate.py
       - name: Persist quality report
+        if: always()
         run: |
           git config user.name "omniverse-factory[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -46,5 +32,5 @@ jobs:
       - name: Enforce gate
         if: steps.gate.outcome != 'success'
         run: |
-          echo "Quality gate requires review; automation will not treat these artifacts as verified."
+          echo "REVIEW: quality threshold or hard-fail validation was not satisfied."
           exit 1
