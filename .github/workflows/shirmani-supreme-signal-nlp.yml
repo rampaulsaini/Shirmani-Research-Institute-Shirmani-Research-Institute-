@@ -1,6 +1,8 @@
 name: SHIRMANI Supreme Signal-NLP Automission Gate
 
 on:
+  pull_request:
+    branches: [main]
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
