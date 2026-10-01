@@ -157,3 +157,14 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - Architecture: Multimodal Perception → ML/NLP/Nishpaksh Learning → Multimodal Fusion → Reasoning → Multi-Agent Execution → Independent Verification → QC → Publication/Archive → Continuous Improvement.
 - Five-minute quality loop: Observe → Collect → Normalize → Analyze → Reason → Execute → Test → Verify → Audit → Learn → Improve.
 - Integrity rule: measured signal, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
+
+
+## 🧪 Supreme NLP Evidence Gate
+
+- [Evidence gate contract](docs/supreme-nlp-evidence-gate-2026-10-01.md)
+- [Machine-readable record schema](schemas/supreme-nlp-evidence-record.schema.json)
+- [Deterministic validator](scripts/validate_supreme_nlp_evidence.py)
+- [Sample evidence record](tests/fixtures/supreme-nlp-evidence.sample.json)
+- [Five-minute CI gate](.github/workflows/supreme-nlp-evidence-gate.yml)
+
+The gate keeps observation, model inference, confidence, uncertainty and independent verification separate. It is designed to make multimodal signal-to-language research measurable and fail closed rather than treating an AI interpretation as automatic proof.
