@@ -80,6 +80,7 @@ def main():
         if term not in graph:
             fail("accuracy_boundary_missing:" + term)
 
+    governance_lower = governance.casefold()
     for term in (
         "fabricate sources",
         "turn a prediction into fact",
@@ -87,7 +88,7 @@ def main():
         "Human override",
         "Collect only necessary data",
     ):
-        if term not in governance:
+        if term.casefold() not in governance_lower:
             fail("governance_boundary_missing:" + term)
 
     if 'cron: "*/5 * * * *"' not in workflow:
