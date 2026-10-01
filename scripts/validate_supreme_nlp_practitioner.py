@@ -14,6 +14,8 @@ def main():
     f=rec["result"]["features"]
     assert 0<=f["confidence"]<=1 and 0<=f["agreement"]<=1
     assert f["modalities"]==3 and f["sources"]==3
+    assert f["sample_count"]==4 and f["independent_sources"]==3
+    assert f["evidence_grade"] in {"A","B","C","D"}
     assert len(rec["fingerprint"])==64
     assert rec["governance"]["fail_closed"] is True
     assert rec["governance"]["subjective_experience_claim_allowed"] is False
