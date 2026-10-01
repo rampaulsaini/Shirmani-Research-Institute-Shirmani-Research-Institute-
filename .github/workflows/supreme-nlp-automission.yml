@@ -1,0 +1,77 @@
+name: Supreme NLP Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/supreme_nlp.py"
+      - "scripts/validate_supreme_nlp.py"
+      - "schemas/supreme-nlp-record.schema.json"
+      - ".github/workflows/supreme-nlp-automission.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: supreme-nlp-automission
+  cancel-in-progress: true
+
+jobs:
+  audit-and-improve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile and smoke test
+        run: |
+          python -m py_compile agents/supreme_nlp.py
+          python scripts/validate_supreme_nlp.py
+
+      - name: Validate JSON schema
+        run: |
+          python - <<'PY'
+          import json
+          json.load(open("schemas/supreme-nlp-record.schema.json", encoding="utf-8"))
+          print("SUPREME_NLP_SCHEMA_JSON_OK")
+          PY
+
+      - name: Generate deterministic status record
+        run: |
+          mkdir -p generated/supreme-nlp
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.supreme_nlp import build_record
+          p = Path("generated/signal-input.jsonl")
+          rows = [json.loads(x) for x in p.read_text(encoding="utf-8").splitlines() if x.strip()] if p.exists() else []
+          if rows:
+              signals = rows
+              status = build_record(signals, "automission-live-input")
+          else:
+              signals = [
+                  {"modality":"synthetic","feature":"baseline","value":1.0,"quality":1.0,"source":"automission-smoke"},
+                  {"modality":"synthetic","feature":"baseline","value":1.0,"quality":1.0,"source":"automission-smoke"}
+              ]
+              status = build_record(signals, "automission-synthetic-baseline")
+          Path("generated/supreme-nlp/status.json").write_text(
+              json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8")
+          print(status["simple_language"])
+          PY
+
+      - name: Persist status
+        run: |
+          git config user.name "omniverse-factory[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/supreme-nlp/status.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(automission): update supreme NLP status"
+          git push
