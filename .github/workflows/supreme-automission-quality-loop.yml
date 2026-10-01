@@ -1,0 +1,40 @@
+name: Supreme Automission Quality Loop
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "factory/supreme_quality_gate.py"
+      - "docs/supreme-nlp-practitioner-contract.md"
+      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+      - ".github/workflows/supreme-automission-quality-loop.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: supreme-automission-quality-loop
+  cancel-in-progress: false
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run deterministic quality gate
+        run: python factory/supreme_quality_gate.py
+      - name: Validate generated status
+        run: python -m json.tool generated/supreme-quality-gate.json >/dev/null
+      - name: Publish quality artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-automission-quality-gate
+          path: generated/supreme-quality-gate.json
