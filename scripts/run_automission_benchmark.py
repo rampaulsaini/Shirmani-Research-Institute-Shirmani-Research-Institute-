@@ -111,7 +111,22 @@ def main(output_path: Path = OUT):
     if coverage < 0.5:
         raise AssertionError(f"abstention coverage too low: {coverage:.6f}")
     selective_risk = 1.0 - accuracy if non_abstained else 0.0
-    provenance = sum(bool(r["evidence_ids"]) for r in rows) / len(rows)
+    provenance_required = [r for r in rows if (not r["abstained"]) or r["evidence_ids"]]
+    provenance = (
+        sum(bool(r["evidence_ids"]) for r in provenance_required) / len(provenance_required)
+        if provenance_required else 0.0
+    )
+    # Adaptive routing is a bounded escalation policy, not a verification mechanism.
+    routing = {}
+    for r in rows:
+        route = "ESCALATE_REVIEW" if (
+            r["abstained"] or not r["evidence_ids"] or float(r["confidence"]) < 0.70
+        ) else "DETERMINISTIC"
+        routing[r["case_id"]] = route
+    route_counts = {
+        "DETERMINISTIC": sum(v == "DETERMINISTIC" for v in routing.values()),
+        "ESCALATE_REVIEW": sum(v == "ESCALATE_REVIEW" for v in routing.values()),
+    }
 
     # Per-suite metrics prevent strong aggregate results from masking weak suites.
     suite_metrics = {}
@@ -145,6 +160,8 @@ def main(output_path: Path = OUT):
     weakest_suite_accuracy = min(v["accuracy"] for v in scored_suite_metrics.values())
     if weakest_suite_accuracy < 0.5:
         raise AssertionError(f"non-exempt suite accuracy floor breached: {weakest_suite_accuracy:.6f}")
+    if any(routing[r["case_id"]] == "DETERMINISTIC" and r["abstained"] for r in rows):
+        raise AssertionError("routing invariant breached: abstention must escalate to review")
     latencies = [float(r["latency_ms"]) for r in rows]
     report = {
         "schema_version": "1.0.0",
@@ -170,6 +187,12 @@ def main(output_path: Path = OUT):
         "suite_metrics": suite_metrics,
         "weakest_suite_accuracy": round(weakest_suite_accuracy, 6),
         "accuracy_floor_exempt_suites": sorted(exempt_suites),
+        "provenance_required_cases": len(provenance_required),
+        "routing": {
+            "policy": "deterministic_first_then_escalate_on_uncertainty_or_missing_evidence",
+            "routes": routing,
+            "route_counts": route_counts,
+        },
         "counts": {
             "cases": len(rows),
             "non_abstained": len(non_abstained),
