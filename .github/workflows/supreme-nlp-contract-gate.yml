@@ -1,0 +1,42 @@
+name: SHIRMANI Supreme NLP Contract Gate
+
+on:
+  push:
+    branches: [main, "feat/**"]
+    paths:
+      - "docs/supreme-nlp-practitioner-contract.md"
+      - "docs/supreme-ai-ml-nlp-automission-quality-contract-2026-10-01.md"
+      - "docs/supreme-nlp-evaluation-protocol-2026-10-01.md"
+      - "factory/supreme_nlp_contract_qc.py"
+      - ".github/workflows/supreme-nlp-contract-gate.yml"
+  pull_request:
+    paths:
+      - "docs/supreme-nlp-practitioner-contract.md"
+      - "docs/supreme-ai-ml-nlp-automission-quality-contract-2026-10-01.md"
+      - "docs/supreme-nlp-evaluation-protocol-2026-10-01.md"
+      - "factory/supreme_nlp_contract_qc.py"
+      - ".github/workflows/supreme-nlp-contract-gate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-contract
+  cancel-in-progress: true
+
+jobs:
+  contract-qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python syntax check
+        run: python3 -m py_compile factory/supreme_nlp_contract_qc.py
+      - name: Run Supreme NLP contract QC
+        run: python3 factory/supreme_nlp_contract_qc.py
+      - name: Verify fail-closed boundary
+        run: |
+          set -euo pipefail
+          grep -q "Missing provenance → UNVERIFIED" docs/supreme-nlp-evaluation-protocol-2026-10-01.md
+          grep -q "Unsupported subjective-experience claim → BLOCK" docs/supreme-nlp-evaluation-protocol-2026-10-01.md
+          grep -q "Workflow success alone → never VERIFIED" docs/supreme-nlp-evaluation-protocol-2026-10-01.md
