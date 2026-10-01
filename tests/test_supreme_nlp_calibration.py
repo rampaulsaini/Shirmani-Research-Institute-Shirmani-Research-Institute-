@@ -1,5 +1,6 @@
 """Regression tests for Supreme NLP confidence calibration."""
 from pathlib import Path
+import math
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -23,8 +24,8 @@ def test_calibration_metrics_are_deterministic():
         {"confidence": 0.1, "outcome": 0},
     ])
     assert result["accuracy"] == 1.0
-    assert result["brier_score"] == 0.01
-    assert result["expected_calibration_error"] == 0.1
+    assert math.isclose(result["brier_score"], 0.01, rel_tol=0.0, abs_tol=1e-12)
+    assert math.isclose(result["expected_calibration_error"], 0.1, rel_tol=0.0, abs_tol=1e-12)
 
 
 def test_invalid_confidence_is_rejected():
