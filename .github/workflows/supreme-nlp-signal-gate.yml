@@ -1,0 +1,52 @@
+name: Supreme NLP Signal Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-signal-gate
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate signal schema
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path("schemas/multimodal-signal-interpretation.schema.json").read_text())
+          assert set(s["required"]) == {"signal_id","observed_features","pattern_summary","interpretation","confidence","uncertainty","evidence_level","provenance"}
+          assert s["properties"]["confidence"]["minimum"] == 0
+          assert s["properties"]["confidence"]["maximum"] == 1
+          print("signal schema: PASS")
+          PY
+
+      - name: Run signal-to-NLP smoke test
+        run: python3 factory/test_signal_to_nlp.py
+
+      - name: Verify fail-closed no-input behavior
+        run: |
+          rm -f generated/signal-nlp-output.jsonl
+          python3 factory/signal_to_nlp.py
+          test ! -e generated/signal-nlp-output.jsonl
+
+      - name: Verify subjective-state safety boundary
+        run: |
+          python3 - <<'PY'
+          from factory.signal_to_nlp import interpret
+          r=interpret({"signal_id":"guard-001","observations":{"electrical_signal":[1,2,3]}})
+          text=(r["interpretation"]+" "+" ".join(r["uncertainty"])).lower()
+          assert "subjective feeling" in text
+          assert "consciousness" in text
+          print("subjective-state safety gate: PASS")
+          PY
