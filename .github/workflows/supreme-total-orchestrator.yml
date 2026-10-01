@@ -22,7 +22,7 @@ jobs:
         with: {python-version: "3.x"}
       - name: Compile control plane
         run: |
-          python -m py_compile factory/supreme_system_orchestrator.py
+          python -m py_compile factory/supreme_system_orchestrator.py factory/supreme_nlp_benchmark.py
           python -m py_compile agents/automission_supervisor.py agents/supreme_nlp_practitioner.py
       - name: Validate JSON schemas
         run: |
@@ -35,6 +35,8 @@ jobs:
           PY
       - name: Run unified Supreme gates
         run: python factory/supreme_system_orchestrator.py | tee supreme-orchestrator.log
+      - name: Run explicit Supreme NLP regression benchmark
+        run: python factory/supreme_nlp_benchmark.py
       - name: Validate fail-closed governance
         run: |
           python - <<'PY'
@@ -54,6 +56,7 @@ jobs:
           path: |
             generated/supreme-orchestrator/status.json
             supreme-orchestrator.log
+            generated/supreme-nlp/benchmark.json
           if-no-files-found: error
           retention-days: 14
       - name: Emit cycle summary
