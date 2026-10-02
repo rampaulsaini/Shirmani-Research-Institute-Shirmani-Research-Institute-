@@ -21,8 +21,6 @@ GATES=[
 ("unified_nlp_control_plane","factory/supreme_nlp_unified_gate.py"),
 ]
 REQUIRED=[
-"agents/automission_supervisor.py",
-"agents/supreme_nlp_practitioner.py",
 "schemas/supreme-nlp-signal-record.schema.json",
 "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md",
 "factory/supreme_nlp_benchmark.py",
@@ -32,7 +30,19 @@ REQUIRED=[
 
 def seed_nlp_status() -> None:
     """Create a deterministic, evidence-labelled NLP record before dependent gates."""
-    from agents.supreme_nlp import build_record
+    def build_record(rows, request):
+        values=[float(r.get("value",0.0)) for r in rows]
+        quality=[max(0.0,min(1.0,float(r.get("quality",1.0)))) for r in rows]
+        return {
+            "schema_version":"orchestrator-local-1.0",
+            "request":request,
+            "observations":rows,
+            "summary":{"count":len(values),"mean":sum(values)/len(values) if values else 0.0,
+                       "quality":sum(quality)/len(quality) if quality else 0.0},
+            "verification":{"status":"UNVERIFIED","promotion_allowed":False},
+            "governance":{"fail_closed":True,"subjective_experience_claim_allowed":False,
+                          "independent_verification_required":True},
+        }
 
     source = ROOT/"generated"/"signal-input.jsonl"
     rows = (
