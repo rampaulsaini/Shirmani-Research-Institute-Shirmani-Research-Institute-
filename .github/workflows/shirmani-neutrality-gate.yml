@@ -1,0 +1,55 @@
+name: SHIRMANI Neutrality Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "docs/SHIRMANI-NEUTRALITY-OPERATING-CONTRACT.md"
+      - "schemas/neutrality-audit.schema.json"
+      - "scripts/validate_neutrality_contract.py"
+      - ".github/workflows/shirmani-neutrality-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-neutrality-gate
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile validator
+        run: python -m py_compile scripts/validate_neutrality_contract.py
+      - name: Validate schema
+        run: python -m json.tool schemas/neutrality-audit.schema.json >/dev/null
+      - name: Execute fail-closed neutrality gate
+        run: python scripts/validate_neutrality_contract.py
+      - name: Validate generated audit
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("generated/neutrality/neutrality-audit.json")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          assert d["status"] == "PASS"
+          assert all(d["governance"].values())
+          assert all(x["passed"] for x in d["checks"])
+          assert len(d["fingerprint"]) == 64
+          print("NEUTRALITY_GATE: PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-neutrality-audit-${{ github.run_id }}
+          path: generated/neutrality/neutrality-audit.json
+          retention-days: 14
