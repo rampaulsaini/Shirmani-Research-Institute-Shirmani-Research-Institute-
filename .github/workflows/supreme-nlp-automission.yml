@@ -13,6 +13,10 @@ on:
       - "schemas/supreme-nlp-record.schema.json"
       - "docs/SUPREME-NLP-ARCHITECTURE.md"
       - "factory/supreme_nlp_qc.py"
+      - "agents/claim_guard.py"
+      - "automation/supreme-nlp-policy.json"
+      - "automation/heart-view-source-profile.json"
+      - "scripts/validate_heart_view_governance.py"
       - ".github/workflows/supreme-nlp-automission.yml"
 
 permissions:
@@ -44,6 +48,9 @@ jobs:
           python factory/supreme_nlp_qc.py
       - name: Validate Automission supervisor contract
         run: python scripts/validate_automission_supervisor.py
+
+      - name: Validate Heart-View source governance
+        run: python scripts/validate_heart_view_governance.py
 
       - name: Validate schema syntax
         run: |
