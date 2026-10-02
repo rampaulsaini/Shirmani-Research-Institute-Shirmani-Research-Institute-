@@ -1,4 +1,14 @@
 """Quality gate for the Supreme NLP v2 control layer."""
+from pathlib import Path
+import sys
+
+# Direct execution places factory/ on sys.path rather than the repository root.
+# Add the root explicitly so the canonical agents package resolves identically
+# in local runs and GitHub Actions.
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from agents.supreme_nlp import build_record
 
 def main():
