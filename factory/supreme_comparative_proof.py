@@ -49,7 +49,7 @@ def _hash(value: Any) -> str:
     ).hexdigest()
 
 def _uncertainty_language(text: str) -> bool:
-    markers = ("प्रमाण", "proof", "UNVERIFIED", "निष्कर्ष नहीं")
+    markers = ("प्रमाण", "proof", "UNVERIFIED", "निष्कर्ष नहीं", "विश्वसनीय")
     return any(m in text for m in markers)
 
 def run() -> dict[str, Any]:
@@ -65,7 +65,7 @@ def run() -> dict[str, Any]:
             if multi["status"] == "NO_CLAIM"
             else "प्राप्त संकेतों में पर्याप्त असहमति है; इसलिए निष्कर्ष रोक दिया गया है।"
             if multi["status"] == "BLOCKED"
-            else "मापनीय संकेतों की व्याख्या उपलब्ध है।"
+            else "मापनीय संकेतों की व्याख्या उपलब्ध है; यह प्रत्यक्ष भाव या चेतना का प्रमाण नहीं है।"
         )
 
         rows.append({
