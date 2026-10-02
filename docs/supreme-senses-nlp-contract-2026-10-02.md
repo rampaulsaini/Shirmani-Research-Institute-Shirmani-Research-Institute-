@@ -22,3 +22,6 @@ Every model improvement identifies task, population, dataset fingerprint, baseli
 
 ## Fail-closed rule
 Missing provenance, evidence, uncertainty or alternative interpretation blocks publication of the interpretation record.
+
+## Operational status
+The contract is implemented as a deterministic, fail-closed boundary. Workflow success is an engineering test result, not proof that an inferred biological or subjective state is true.
