@@ -1,0 +1,47 @@
+name: SHIRMANI Supreme NLP v2 Scientific Validation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+  push:
+    paths:
+      - "supreme-nlp/**"
+      - "research/supreme-nlp-scientific-validation-protocol-v2.md"
+      - "tests/test_supreme_nlp_v2.py"
+      - ".github/workflows/supreme-nlp-v2-validation.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-v2-validation
+  cancel-in-progress: true
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run v2 contract tests
+        run: python3 tests/test_supreme_nlp_v2.py
+      - name: Run benchmark when dataset exists
+        run: |
+          if [ -s generated/supreme-nlp/benchmark.jsonl ]; then
+            python3 supreme-nlp/benchmark_v2.py generated/supreme-nlp/benchmark.jsonl
+          else
+            echo "Benchmark dataset not present: NOT_READY (fail-closed, no verification claim)"
+          fi
+      - name: Emit scientific validation status
+        run: |
+          {
+            echo "## Supreme NLP v2"
+            echo "- Signal interpretation remains evidence-first."
+            echo "- Subjective-experience claims require operational definitions and independent replication."
+            echo "- Quantum/biophysical claims remain hypotheses until mechanism-specific evidence is independently reproduced."
+            echo "- No benchmark result is promoted to VERIFIED automatically."
+          } >> "$GITHUB_STEP_SUMMARY"
