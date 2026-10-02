@@ -18,6 +18,15 @@ def main():
     else:
         raise AssertionError("bins=0 must be rejected")
 
+    # Calibration rejects non-finite and out-of-range probabilities.
+    for bad in ([float("nan")], [float("inf")], [-0.1], [1.1]):
+        try:
+            calibration_report(bad, [0])
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("invalid probabilities must be rejected")
+
     # Non-finite signal values are normalized into a safe finite representation.
     safe = build_record([{"modality":"sensor","feature":"x","value":float("nan")}], "nan")
     assert safe["result"]["signals"][0]["value"] == 0.0
