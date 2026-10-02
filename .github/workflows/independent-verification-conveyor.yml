@@ -14,6 +14,7 @@ on:
       - "factory/independent_verification_pipeline.py"
       - "factory/bootstrap_independent_verification_queue.py"
       - "factory/bootstrap_verification_review_registry.py"
+      - "factory/verification_review_packet.py"
       - ".github/workflows/independent-verification-conveyor.yml"
       - "research/independent-verification-protocol-2026-09-29.md"
 
@@ -59,7 +60,21 @@ jobs:
             echo "Promotion QC: NOT_READY; VERIFIED remains blocked."
           fi
 
-      - name: Publish conveyor report
+      - name: Generate next hash-bound human review packet
+        run: |
+          set -euo pipefail
+          if [ -s generated/independent-verification-queue.jsonl ] && [ -s generated/independent-verification-registry.jsonl ]; then
+            total=$(wc -l < generated/independent-verification-queue.jsonl)
+            batch=25
+            offset=$(( ((GITHUB_RUN_NUMBER - 1) * batch) % total ))
+            python3 factory/verification_review_packet.py --batch-size "$batch" --offset "$offset"
+            echo "Review packet offset: $offset"
+            echo "Review packet batch: $batch"
+          else
+            echo "Review packet: NOT_READY; queue/registry unavailable."
+          fi
+
+      - name: Publish conveyor report and review packet
         uses: actions/upload-artifact@v4
         with:
           name: independent-verification-conveyor-${{ github.run_id }}
@@ -69,6 +84,7 @@ jobs:
             generated/VERIFICATION-PROMOTION-QC.json
             generated/independent-verification-queue.jsonl
             generated/independent-verification-registry.jsonl
+            generated/verification-review-packet-*.json
           if-no-files-found: ignore
           retention-days: 14
 
@@ -77,7 +93,8 @@ jobs:
           {
             echo "## Independent Verification Conveyor"
             echo "- Pipeline: evidence -> independent test -> reproducible result -> audit -> VERIFIED"
-            echo "- Review slots are generated automatically; VERIFIED is never auto-declared"
-            echo "- Current independent verification baseline remains fail-closed at 0%"
+            echo "- Hash-bound human review packet is generated automatically on each cycle"
+            echo "- VERIFIED is never auto-declared"
+            echo "- Independent verification remains fail-closed until genuine independent review data exists"
             echo "- Continuous cycle: every 5 minutes"
           } >> "$GITHUB_STEP_SUMMARY"
