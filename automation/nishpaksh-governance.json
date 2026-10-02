@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0",
+  "name": "SHIRMANI NISHPAKSH HEART-VIEW GOVERNANCE",
+  "purpose": "Evidence-first, non-preferential, fail-closed governance for AI/ML/NLP/Automission.",
+  "principles": [
+    "No person, ideology, institution, source, model, or prior output receives privileged truth status.",
+    "User-source terminology may be preserved as source material, but empirical claims require evidence.",
+    "Observation, interpretation, inference, hypothesis, and verified result must remain separate.",
+    "Unsupported claims of subjective experience, consciousness, emotion, or universal truth must not be promoted to verified facts.",
+    "Counter-evidence and alternative explanations are mandatory for verification.",
+    "Uncertainty must be explicit and confidence must never be treated as proof.",
+    "Production-changing automation is fail-closed and requires tests plus independent verification."
+  ],
+  "promotion_states": ["RAW","OBSERVED","INTERPRETED","EVIDENCE-SUPPORTED","INDEPENDENTLY-VERIFIED"],
+  "forbidden_promotion": [
+    "signal_to_subjective-experience_without_operational_definition",
+    "confidence_to_certainty",
+    "single-agent-self-approval",
+    "workflow-success_to-independent-verification",
+    "unreviewed-production-code-mutation"
+  ],
+  "required_record_fields": [
+    "source",
+    "timestamp",
+    "input_fingerprint",
+    "method",
+    "observations",
+    "interpretation",
+    "limitations",
+    "counter_evidence",
+    "alternative_explanations",
+    "verification_status"
+  ],
+  "human_agency": {
+    "mode": "inform-not-control",
+    "high_impact_actions": "human_review_required"
+  },
+  "automission": {
+    "mode": "continuous_audit",
+    "schedule_target": "5-minute",
+    "idempotent": true,
+    "fail_closed": true
+  }
+}

@@ -1,0 +1,78 @@
+name: SHIRMANI Nishpaksh Automission Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/**"
+      - "automation/**"
+      - ".github/workflows/shirmani-nishpaksh-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-nishpaksh-automission
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python baseline
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and syntax audit
+        run: |
+          set -euo pipefail
+          python -m compileall -q agents
+
+      - name: Nishpaksh governance audit
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.nishpaksh_governance import audit_record
+
+          policy=json.loads(Path("automation/nishpaksh-governance.json").read_text(encoding="utf-8"))
+          assert policy["automission"]["fail_closed"] is True
+          assert "counter_evidence" in policy["required_record_fields"]
+          assert "alternative_explanations" in policy["required_record_fields"]
+
+          demo={
+            "source":"automission-self-test",
+            "timestamp":"test",
+            "input_fingerprint":"test",
+            "method":"deterministic-policy-check",
+            "observations":["observable test signal"],
+            "interpretation":"signal-based interpretation with explicit uncertainty",
+            "limitations":["not proof of subjective experience"],
+            "counter_evidence":["alternative sensor explanation"],
+            "alternative_explanations":["measurement artifact"],
+            "verification_status":"OBSERVED"
+          }
+          result=audit_record(demo)
+          assert result["status"]=="PASS", result
+          print("Nishpaksh governance: PASS")
+          PY
+
+      - name: Verify existing NLP safety boundary
+        run: |
+          set -euo pipefail
+          grep -Rqi "subjective experience" agents/supreme_nlp_engine.py
+          grep -Rqi "independent" agents/supreme_nlp_practitioner.py
+          grep -Rqi "counter-evidence" agents/supreme_nlp_agent.py
+
+      - name: Fail-closed result
+        run: |
+          echo "No verification promotion occurs from workflow success alone."
+          echo "Observable signal -> interpretation -> evidence -> independent verification."
