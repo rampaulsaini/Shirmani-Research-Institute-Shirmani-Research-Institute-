@@ -177,3 +177,12 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Continuous gate:** [.github/workflows/supreme-nlp-contract.yml](.github/workflows/supreme-nlp-contract.yml)
 - **Pipeline:** Signal → Quality Check → Normalization → Representation → Context → Inference → Plain-Language Translation → Confidence → Evidence → Independent Verification → Audit.
 - **Integrity boundary:** measured signals, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
+
+## ⚙️ SHIRMANI Supreme NLP Runtime Gate v3
+
+- **Runtime gate:** [factory/supreme_nlp_runtime_gate.py](factory/supreme_nlp_runtime_gate.py)
+- **Five-minute workflow:** [.github/workflows/supreme-nlp-runtime-gate.yml](.github/workflows/supreme-nlp-runtime-gate.yml)
+- **Runtime contract:** [docs/supreme-nlp-runtime-gate-v3.md](docs/supreme-nlp-runtime-gate-v3.md)
+- **Mode:** fail-closed integrity/telemetry gate; it does not claim trained-model execution or scientific verification.
+- **Telemetry:** every run records artifact fingerprints, governance state, errors/warnings and the next quality-loop stages.
+- **Promotion:** runtime READY ≠ scientific truth; independent verification and human gates remain mandatory.
