@@ -1,0 +1,45 @@
+name: SHIRMANI Impartial Automission Governance
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "scripts/impartial_automission_gate.py"
+      - "docs/IMPARTIAL-AUTOMISSION-GOVERNANCE.md"
+      - ".github/workflows/impartial-automission-governance.yml"
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-impartial-automission-governance
+  cancel-in-progress: true
+jobs:
+  impartiality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run fail-closed impartiality contract
+        run: python scripts/impartial_automission_gate.py
+      - name: Enforce governance invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/governance/impartiality-status.json").read_text(encoding="utf-8"))
+          assert d["status"] == "PASS"
+          g=d["governance"]
+          for k in ("fail_closed","identity_neutrality","counter_evidence_required","unknown_is_not_proof","accuracy_is_measured_not_declared","independent_verification_required"): assert g[k] is True
+          assert g["subjective_experience_claim_allowed"] is False
+          assert g["scheduled_code_mutation_allowed"] is False
+          print("IMPARTIAL_AUTOMISSION_GOVERNANCE: PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: impartial-automission-governance-${{ github.run_id }}
+          path: generated/governance/impartiality-status.json
+          if-no-files-found: error
+          retention-days: 14
