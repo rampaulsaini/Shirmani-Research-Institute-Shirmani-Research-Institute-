@@ -201,6 +201,12 @@ def _binary_label(value: Any) -> int:
         return int(value)
     raise ValueError("labels and predictions must be explicit binary values (0/1 or bool)")
 
+def _boolean_flag(value: Any) -> bool:
+    """Accept only explicit boolean abstention flags; reject truthy strings."""
+    if isinstance(value, bool):
+        return value
+    raise ValueError("abstentions must be explicit boolean values")
+
 def classification_report(predictions, labels):
     """Compute deterministic binary precision/recall/F1 and confusion counts."""
     if len(predictions) != len(labels) or not predictions:
@@ -223,7 +229,7 @@ def selective_risk(predictions, labels, abstentions):
         raise ValueError("predictions, labels and abstentions must have equal non-zero length")
     p=[_binary_label(x) for x in predictions]
     y=[_binary_label(x) for x in labels]
-    a=[bool(x) for x in abstentions]
+    a=[_boolean_flag(x) for x in abstentions]
     accepted=[i for i,x in enumerate(a) if not x]
     errors=sum(p[i] != y[i] for i in accepted)
     total=len(y)
