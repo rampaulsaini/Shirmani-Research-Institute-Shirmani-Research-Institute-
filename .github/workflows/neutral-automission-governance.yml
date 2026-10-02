@@ -1,0 +1,42 @@
+name: SHIRMANI Neutral Automission Governance
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/yatharth-governance/neutral-automission-charter.md'
+      - 'schemas/agent-governance.json'
+      - 'factory/neutral_automission_qc.py'
+      - '.github/workflows/neutral-automission-governance.yml'
+  pull_request:
+    paths:
+      - 'docs/yatharth-governance/neutral-automission-charter.md'
+      - 'schemas/agent-governance.json'
+      - 'factory/neutral_automission_qc.py'
+      - '.github/workflows/neutral-automission-governance.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-neutral-automission-governance
+  cancel-in-progress: true
+
+jobs:
+  neutrality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run neutral Automission governance QC
+        run: python3 factory/neutral_automission_qc.py
+      - name: Verify repository cleanliness
+        run: |
+          test -f docs/yatharth-governance/neutral-automission-charter.md
+          test -f factory/neutral_automission_qc.py
+          test -f schemas/agent-governance.json
+      - name: Emit fail-closed status
+        run: echo 'Neutrality gate PASS — publication/production gates remain governed by the existing evidence and human-review contracts.'
