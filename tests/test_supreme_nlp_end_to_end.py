@@ -76,6 +76,21 @@ class SupremeNlpEndToEndTests(unittest.TestCase):
         self.assertGreaterEqual(brier, 0)
         self.assertLessEqual(brier, 1)
 
+    def test_heterogeneous_units_are_not_raw_averaged(self):
+        rows = [
+            {"modality": "electrical", "feature": "voltage", "value": 1000, "unit": "mV", "quality": 1, "source": "a"},
+            {"modality": "temperature", "feature": "temperature", "value": 20, "unit": "C", "quality": 1, "source": "b"},
+        ]
+        record = build_record(rows, "heterogeneous-units")
+        groups = record["result"]["features"]["group_summaries"]
+        self.assertEqual(len(groups), 2)
+        self.assertNotEqual(record["result"]["features"]["mean"], 510)
+
+    def test_confidence_is_explicitly_uncalibrated(self):
+        record = build_record(self.rows, "calibration-boundary")
+        self.assertEqual(record["result"]["interpretation"]["confidence_status"], "UNCALIBRATED")
+        self.assertEqual(record["result"]["verification"]["promotion_allowed"], False)
+
     def test_simple_language_has_explicit_epistemic_boundary(self):
         record = analyze(self.rows)
         text = to_simple_language(record)
