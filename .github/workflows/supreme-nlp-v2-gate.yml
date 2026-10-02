@@ -1,0 +1,41 @@
+name: SHIRMANI Supreme NLP v2 Continuous Gate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main, supreme-nlp-automission-hardening-2026-10-02]
+    paths:
+      - "factory/supreme_nlp_v2_benchmark.py"
+      - ".github/workflows/supreme-nlp-v2-gate.yml"
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-supreme-nlp-v2-gate
+  cancel-in-progress: true
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run deterministic adversarial NLP gate
+        run: python3 factory/supreme_nlp_v2_benchmark.py
+      - name: Validate fail-closed result
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("generated/supreme-nlp-v2-benchmark.json").read_text())
+          if r.get("status")!="PASS": raise SystemExit("Supreme NLP v2 gate BLOCK")
+          if r.get("verification_state")!="UNVERIFIED": raise SystemExit("Verification must remain UNVERIFIED")
+          if not all(r.get("gates",{}).values()): raise SystemExit("A safety gate failed")
+          print("Supreme NLP v2 gate: PASS; verification remains UNVERIFIED.")
+          PY
+      - name: Publish regression artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-v2-regression-${{ github.run_id }}
+          path: generated/supreme-nlp-v2-benchmark.json
+          retention-days: 14
