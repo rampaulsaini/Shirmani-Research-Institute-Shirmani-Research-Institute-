@@ -1,9 +1,13 @@
 import json
+import importlib.util
 import tempfile
 from pathlib import Path
-import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from supreme_nlp.benchmark_v2 import evaluate
+
+ROOT=Path(__file__).resolve().parents[1]
+spec=importlib.util.spec_from_file_location("benchmark_v2", ROOT/"supreme-nlp"/"benchmark_v2.py")
+mod=importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+evaluate=mod.evaluate
 
 def main():
     with tempfile.TemporaryDirectory() as d:
