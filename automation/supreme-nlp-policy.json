@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "name": "SHIRMANI Heart-View Supreme NLP / Automission",
+  "purpose": "Evidence-aware, source-preserving, fail-closed multimodal NLP and agent automation.",
+  "source_policy": {
+    "user_authored_framework": "preserve_as_source",
+    "scientific_fact": "requires_external_evidence",
+    "hypothesis": "must_be_labeled",
+    "unknown": "must_remain_unknown",
+    "metaphysical_claim": "never_promote_to_empirical_fact_without_evidence"
+  },
+  "neutrality": {
+    "goal": "minimize unsupported preference, coercion and confirmation bias",
+    "required": [
+      "separate source viewpoint from verified evidence",
+      "represent counter-evidence",
+      "never manufacture certainty",
+      "report uncertainty and provenance",
+      "allow disagreement without punishment"
+    ]
+  },
+  "verification": {
+    "states": ["SOURCE", "HYPOTHESIS", "EVIDENCE-SUPPORTED", "INDEPENDENTLY-VERIFIED", "REJECTED"],
+    "publication_requires": "INDEPENDENTLY-VERIFIED",
+    "fail_closed": true,
+    "independent_verifier_must_differ_from_generator": true
+  },
+  "multimodal_signal_policy": {
+    "inputs": ["text", "speech", "image", "video", "sensor", "bioelectric", "environmental"],
+    "translation_rule": "observable_signal_to_plain_language",
+    "emotion_claim_rule": "do_not_equate_signal_pattern_with_subjective_experience_without_validated_evidence"
+  },
+  "automission": {
+    "cycle": ["OBSERVE", "NORMALIZE", "RETRIEVE", "REASON", "GENERATE", "VERIFY", "AUDIT", "LEARN"],
+    "idempotent": true,
+    "rollback_required": true,
+    "production_change_requires": ["tests", "security_scan", "independent_review"]
+  }
+}
