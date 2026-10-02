@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Supreme NLP Evidence Record V2",
+  "type": "object",
+  "required": ["evidence_class", "status", "provenance", "confidence", "claims"],
+  "properties": {
+    "evidence_class": {
+      "type": "string",
+      "enum": ["OBSERVED", "INFERRED", "CORRELATED", "HYPOTHESIS", "UNKNOWN"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["NO_CLAIM", "CANDIDATE", "VERIFIED", "BLOCKED"]
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["source", "timestamp", "fingerprint"],
+      "properties": {
+        "source": {"type": "string"},
+        "timestamp": {"type": "string"},
+        "fingerprint": {"type": "string"}
+      }
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "claims": {"type": "array", "items": {"type": "string"}},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}
