@@ -3,7 +3,6 @@ from __future__ import annotations
 from dataclasses import dataclass, asdict
 from datetime import datetime, timezone
 import hashlib, json, math
-from statistics import median
 from typing import Any, Iterable
 
 VERSION = "super-senses-v1"
@@ -53,9 +52,10 @@ def _agreement(rows: list[Observation]) -> float:
     scores=[]
     for vals in groups.values():
         if len(vals)<2: continue
-        m=median(vals)
+        m=sum(vals)/len(vals)
         spread=math.sqrt(sum((v-m)**2 for v in vals)/len(vals))
-        scores.append(max(0.0,1.0-spread/(3*max(abs(m),1e-9))))
+        relative=spread/max(abs(m),1e-9)
+        scores.append(max(0.0,1.0-relative/0.5))
     return sum(scores)/len(scores) if scores else 0.0
 
 def _anomaly(rows: list[Observation]) -> float:
