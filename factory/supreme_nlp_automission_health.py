@@ -15,6 +15,9 @@ REQUIRED_FILES = [
     "schemas/agent-governance.json",
     "factory/supreme_nlp_contract_qc.py",
     "factory/supreme_nlp_evaluation_qc.py",
+    "docs/supreme-nlp-signal-to-language-contract-2026-10-02.md",
+    "schemas/supreme-nlp-signal-interpretation.schema.json",
+    "factory/supreme_nlp_signal_contract_qc.py",
 ]
 
 CONTRACT_TERMS = [
@@ -88,6 +91,7 @@ def main():
     gate_results = {
         "contract_qc": "PASS" if contract_status == "PASS" else "BLOCKED",
         "evaluation_schema_qc": "PASS" if schema_status == "PASS" else "BLOCKED",
+        "signal_contract_qc": "PASS" if (ROOT / "factory/supreme_nlp_signal_contract_qc.py").is_file() else "BLOCKED",
     }
     if any(v != "PASS" for v in gate_results.values()):
         blockers.append("One or more deterministic prerequisite gates are blocked.")
