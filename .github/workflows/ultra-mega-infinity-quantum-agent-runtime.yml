@@ -1,0 +1,41 @@
+name: SHIRMANI Ultra Mega Infinity Quantum Agent Runtime
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/ultra-mega-infinity-quantum-agent-runtime.md"
+      - "schemas/ultra-mega-infinity-quantum-signal.schema.json"
+      - "factory/ultra_mega_infinity_quantum_agent_runtime.py"
+      - "tests/ultra_mega_infinity_quantum_agent_runtime_qc.py"
+      - ".github/workflows/ultra-mega-infinity-quantum-agent-runtime.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-ultra-mega-infinity-quantum-runtime
+  cancel-in-progress: true
+
+jobs:
+  runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic agent runtime gate
+        run: python3 factory/ultra_mega_infinity_quantum_agent_runtime.py
+      - name: Run runtime QC
+        run: python3 tests/ultra_mega_infinity_quantum_agent_runtime_qc.py
+      - name: Upload runtime telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: ultra-mega-infinity-quantum-runtime-${{ github.run_id }}
+          path: generated/ultra-mega-infinity-quantum-agent-runtime.json
+          if-no-files-found: error
+          retention-days: 14

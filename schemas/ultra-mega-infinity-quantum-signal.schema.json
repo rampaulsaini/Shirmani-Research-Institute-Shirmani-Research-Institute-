@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Multimodal Signal Record",
+  "type":"object",
+  "required":["record_id","source_type","timestamp","signal_type","measurement","provenance","interpretation_status"],
+  "properties":{
+    "record_id":{"type":"string","minLength":1},
+    "source_type":{"type":"string","enum":["human","plant","living_system","environment","non_living_system","synthetic"]},
+    "timestamp":{"type":"string","minLength":1},
+    "signal_type":{"type":"string","enum":["text","speech","audio","image","video","electrical","acoustic","vibration","thermal","chemical","optical","environmental","multimodal"]},
+    "measurement":{"type":"object"},
+    "provenance":{"type":"array","items":{"type":"string"},"minItems":1},
+    "model":{"type":"object","properties":{"name":{"type":"string"},"version":{"type":"string"}},"additionalProperties":false},
+    "detected_pattern":{"type":"string"},
+    "model_inference":{"type":"string"},
+    "plain_language_interpretation":{"type":"string"},
+    "confidence":{"type":"string"},
+    "alternative_interpretations":{"type":"array","items":{"type":"string"}},
+    "unresolved_unknowns":{"type":"array","items":{"type":"string"}},
+    "interpretation_status":{"type":"string","enum":["REGISTERED","UNVERIFIED","REVIEW","VERIFIED","BLOCKED"]}
+  },
+  "additionalProperties":false
+}
