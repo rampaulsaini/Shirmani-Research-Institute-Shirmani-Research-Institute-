@@ -14,6 +14,7 @@ on:
       - "schemas/supreme-nlp-*.json"
       - "schemas/agent-governance.json"
       - "factory/supreme_nlp_*.py"
+      - "tests/supreme_nlp_*.py"
       - ".github/workflows/supreme-nlp-automission-health.yml"
 
 permissions:
@@ -30,8 +31,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run deterministic Automission health gate
-        run: python3 factory/supreme_nlp_automission_health.py
+      - name: Run deterministic Automission hardening tests
+        run: python3 tests/supreme_nlp_automission_hardening.py
 
       - name: Validate generated health record
         run: |
@@ -45,12 +46,14 @@ jobs:
             "event_id", "timestamp", "repository", "contract_status",
             "schema_status", "governance_status", "graph_status",
             "regression_status", "verification_state", "blockers",
-            "warnings", "provenance", "cycle_duration_seconds"
+            "warnings", "provenance", "cycle_duration_seconds", "gate_results"
           }
           missing = required - data.keys()
           if missing:
               raise SystemExit("Health record missing: " + ", ".join(sorted(missing)))
-          print("Health record schema gate: PASS")
+          if data["regression_status"] != "PASS" or data["blockers"]:
+              raise SystemExit("Automission regression gate is not PASS")
+          print("Health record schema/regression gate: PASS")
           PY
 
       - name: Upload Automission telemetry
