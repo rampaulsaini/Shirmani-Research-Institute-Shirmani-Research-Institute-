@@ -54,7 +54,8 @@ jobs:
             echo "## Evidence → VERIFIED Control Plane"
             echo "- Evidence collection → independent test → reproducibility → counter-evidence → audit → explicit reviewer decision"
             echo "- VERIFIED remains fail-closed"
-            echo "- Automation cannot manufacture an independent review decision"\n            echo "- Supreme NLP contract: provenance + uncertainty + abstention + multimodal disagreement preservation"
+            echo "- Automation cannot manufacture an independent review decision"
+            echo "- Supreme NLP contract: provenance + uncertainty + abstention + multimodal disagreement preservation"
           } >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
