@@ -1,0 +1,21 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/supreme-nlp-result.schema.json",
+  "title":"Supreme NLP Result",
+  "type":"object",
+  "required":["schema_version","status","features","interpretation","governance"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "status":{"type":"string","enum":["insufficient_data","interpreted","blocked"]},
+    "fingerprint":{"type":"string"},
+    "features":{"type":"object","required":["modalities","independent_sources","sample_count","agreement","evidence_grade","drift_score"],"properties":{
+      "modalities":{"type":"integer","minimum":0},"independent_sources":{"type":"integer","minimum":0},
+      "sample_count":{"type":"integer","minimum":0},"agreement":{"type":"number","minimum":0,"maximum":1},
+      "evidence_grade":{"type":"string","enum":["A","B","C","D"]},"drift_score":{"type":"number","minimum":0,"maximum":1}}},
+    "interpretation":{"type":"object","required":["text","confidence","limitations"],"properties":{
+      "text":{"type":"string"},"confidence":{"type":"number","minimum":0,"maximum":1},
+      "limitations":{"type":"array","items":{"type":"string"}}}},
+    "governance":{"type":"object","required":["fail_closed","independent_verification_required","subjective_experience_claim_allowed"],"properties":{
+      "fail_closed":{"const":true},"independent_verification_required":{"const":true},"subjective_experience_claim_allowed":{"const":false}}}
+  }
+}
