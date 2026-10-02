@@ -210,6 +210,17 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Five-minute Automission:** [.github/workflows/supreme-nlp-benchmark-controller.yml](.github/workflows/supreme-nlp-benchmark-controller.yml)
 - **Self-improvement mode:** proposal-only; production self-modification is disabled and human authorization is required.
 - **Promotion rule:** benchmark evidence, regression checks, provenance and independent verification remain separate from workflow success.
+## 🌿 Supreme Multimodal Signal → Plain-Language NLP
+
+- **Canonical contract:** [docs/supreme-multimodal-signal-to-language-contract.md](docs/supreme-multimodal-signal-to-language-contract.md)
+- **Machine-readable schema:** [schemas/supreme-multimodal-signal-record.schema.json](schemas/supreme-multimodal-signal-record.schema.json)
+- **Deterministic QC:** [factory/supreme_multimodal_signal_qc.py](factory/supreme_multimodal_signal_qc.py)
+- **5-minute gate:** [.github/workflows/supreme-multimodal-signal-nlp.yml](.github/workflows/supreme-multimodal-signal-nlp.yml)
+- **Pipeline:** Signal → Quality → Features → Pattern → Model Inference → Evidence → Plain Language → Confidence → Verification → Audit.
+- **Scope:** instrumented environmental, plant/biological, acoustic, vibration, thermal, electrical and multimodal signals can be translated into simple language when measurable data and evaluation evidence exist.
+- **Integrity:** the system describes supported measurements and model inferences; it does not automatically convert patterns into claims of subjective feeling, consciousness or intention.
+
+
 ## ⚛️ Ultra Mega Infinity Quantum AI–ML–NLP–Automission
 
 - **Architecture:** [docs/ultra-mega-infinity-quantum-ai-ml-nlp-automission.md](docs/ultra-mega-infinity-quantum-ai-ml-nlp-automission.md)
