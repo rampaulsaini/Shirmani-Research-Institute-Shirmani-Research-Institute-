@@ -1,0 +1,29 @@
+name: SHIRMANI Supreme NLP Evaluation Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-evaluation-contract.md"
+      - "factory/supreme_nlp_evaluation_qc.py"
+      - "generated/supreme-nlp-benchmark-records.jsonl"
+      - ".github/workflows/supreme-nlp-evaluation.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */5 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-evaluation
+  cancel-in-progress: true
+
+jobs:
+  evaluation-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate evaluation contract and measured-record integrity
+        run: python3 factory/supreme_nlp_evaluation_qc.py
