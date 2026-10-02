@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Shirmani Supreme NLP Result",
+  "type":"object",
+  "required":["input_hash","claim","evidence","uncertainty","status","promotion_allowed"],
+  "properties":{
+    "input_hash":{"type":"string","minLength":64,"maxLength":64},
+    "claim":{"type":"string"},
+    "evidence":{"type":"array","items":{"type":"string"}},
+    "uncertainty":{"type":"number","minimum":0,"maximum":1},
+    "status":{"enum":["DRAFT","NOT_VERIFIED","VERIFIED","REJECTED","DEFERRED"]},
+    "promotion_allowed":{"type":"boolean"}
+  },
+  "additionalProperties":false
+}
