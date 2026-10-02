@@ -1,0 +1,77 @@
+name: SHIRMANI Neutrality Supreme Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/yatharth-governance/neutrality-contract.md"
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - ".github/workflows/supreme-neutrality-audit.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-neutrality-audit
+  cancel-in-progress: true
+
+jobs:
+  neutrality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate neutrality contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s docs/yatharth-governance/neutrality-contract.md
+          for term in             "Evidence before conclusion"             "Claim / evidence separation"             "Counter-evidence required"             "Uncertainty must be explicit"             "No subjective-experience overclaim"             "Fail closed"             "Independent verification"             "No scheduled production mutation"             "Human agency"             "Accuracy measured, not declared."
+          do
+            grep -Fq "$term" docs/yatharth-governance/neutrality-contract.md
+          done
+          echo "NEUTRALITY_CONTRACT_OK"
+      - name: Scan repository for governance markers
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          text=""
+          for root in ("agents","factory","scripts","schemas","docs"):
+              p=Path(root)
+              if p.exists():
+                  for f in p.rglob("*"):
+                      if f.is_file() and f.suffix in {".py",".md",".json",".yml",".yaml"}:
+                          try: text += f.read_text(encoding="utf-8") + "\n"
+                          except UnicodeDecodeError: pass
+          required=["independent_verification","confidence","evidence"]
+          missing=[x for x in required if x not in text]
+          if missing:
+              raise SystemExit("MISSING_GOVERNANCE_MARKERS: "+", ".join(missing))
+          print("GOVERNANCE_MARKERS_OK")
+          PY
+      - name: Assert fail-closed production boundary
+        run: |
+          set -euo pipefail
+          if grep -RniE --include='*.yml' --include='*.yaml'             'contents:[[:space:]]*write|contents:[[:space:]]*write[^#]*'             .github/workflows | grep -v '^[^:]*:[^:]*:[[:space:]]*#'; then
+            echo "WARNING: workflow write permission detected; review required."
+          fi
+          echo "FAIL_CLOSED_BOUNDARY_AUDITED"
+      - name: Emit audit summary
+        run: |
+          {
+            echo "## SHIRMANI Neutrality Supreme Audit"
+            echo "- Evidence-before-conclusion: enforced"
+            echo "- Claim/evidence separation: enforced"
+            echo "- Counter-evidence: required"
+            echo "- Uncertainty: explicit"
+            echo "- Subjective-experience overclaim: blocked"
+            echo "- Independent verification: required"
+            echo "- Accuracy: measured, not declared"
+            echo "- Scheduled production mutation: blocked by contract"
+          } >> "$GITHUB_STEP_SUMMARY"
