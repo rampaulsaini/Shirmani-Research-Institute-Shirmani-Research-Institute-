@@ -44,6 +44,25 @@ jobs:
           print("Schema JSON: PASS")
           PY
 
+      - name: Run Supreme NLP benchmark and calibration gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python factory/supreme_nlp_benchmark.py
+          python tests/test_supreme_nlp_benchmark.py
+          test -s generated/supreme-nlp-benchmark.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path("generated/supreme-nlp-benchmark.json").read_text(encoding="utf-8"))
+          metrics=report["metrics"]
+          for key in ("accuracy","macro_precision","macro_recall","macro_f1","expected_calibration_error"):
+              assert 0 <= metrics[key] <= 1, key
+          assert report["verification_state"] == "UNVERIFIED"
+          print("Benchmark metrics: PASS")
+          print(metrics)
+          PY
+
       - name: Run repository smoke checks
         shell: bash
         run: |
@@ -53,6 +72,14 @@ jobs:
           grep -q "Observe → Collect → Normalize → Analyze → Reason → Execute → Test → Verify → Audit → Learn → Improve" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
           grep -q "Accuracy is measured" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
           echo "Repository smoke checks: PASS"
+
+      - name: Upload benchmark evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-benchmark-${{ github.run_id }}
+          path: generated/supreme-nlp-benchmark.json
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Emit audit summary
         shell: bash
@@ -64,5 +91,6 @@ jobs:
             echo "- Schema: PASS"
             echo "- Canonical graph: PASS"
             echo "- Smoke checks: PASS"
+            echo "- Benchmark: accuracy + macro precision/recall/F1 + calibration gate PASS"
             echo "- Verification: independent verification remains a distinct stage"
           } >> "$GITHUB_STEP_SUMMARY"
