@@ -1,0 +1,33 @@
+name: SHIRMANI Supreme NLP Quality Gate V2
+on:
+  workflow_dispatch:
+  push:
+    branches: ["feature/supreme-nlp-quality-gate-v2"]
+    paths:
+      - "supreme-nlp/**"
+      - "tests/supreme_nlp_quality_gate_test.py"
+      - ".github/workflows/supreme-nlp-quality-gate-v2.yml"
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run quality-gate unit tests
+        run: python3 tests/supreme_nlp_quality_gate_test.py
+      - name: Compile Supreme NLP modules
+        run: python3 -m py_compile supreme-nlp/*.py
+      - name: Run practitioner contract
+        run: python3 supreme-nlp/practitioner.py
+      - name: Assert fail-closed verification boundary
+        run: |
+          python3 - <<'PY'
+          import json
+          d=json.load(open("generated/supreme-nlp/practitioner-status.json",encoding="utf-8"))
+          assert d["automission"]["verification_promotion"]=="disabled"
+          assert d["automission"]["human_review_required_for_verified"] is True
+          assert d["quality_gate"]["rule"]=="confidence_never_equals_verification"
+          print("SUPREME_NLP_QUALITY_GATE_V2_OK")
+          PY
