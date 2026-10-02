@@ -1,0 +1,54 @@
+name: SHIRMANI Supreme Nishpaksh Governance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "docs/SUPREME-NISHPaksh-AUTOMISSION-GOVERNANCE.md"
+      - "scripts/validate_nishpaksh_governance.py"
+      - ".github/workflows/supreme-nishpaksh-governance.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nishpaksh-governance
+  cancel-in-progress: true
+
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Validate Nishpaksh governance contract
+        run: python scripts/validate_nishpaksh_governance.py
+
+      - name: Enforce no scheduled production mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE "git (push|commit)|gh pr merge|create_pull_request|update_file|create_file" \
+            .github/workflows/supreme-nishpaksh-governance.yml; then
+            echo "FAIL: governance workflow contains mutation commands"
+            exit 1
+          fi
+          echo "SCHEDULED_MUTATION_CHECK: PASS"
+
+      - name: Emit audit summary
+        run: |
+          {
+            echo "## Supreme Nishpaksh Governance"
+            echo "- Evidence-first: enforced"
+            echo "- Counter-evidence requirement: enforced in contract"
+            echo "- Subjective-experience claim boundary: preserved"
+            echo "- Scheduled production mutation: blocked"
+            echo "- Independent verification: required"
+            echo "- Accuracy: measured, not declared"
+          } >> "$GITHUB_STEP_SUMMARY"
