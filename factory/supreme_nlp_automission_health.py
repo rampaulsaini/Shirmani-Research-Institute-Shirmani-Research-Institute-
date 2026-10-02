@@ -19,6 +19,9 @@ REQUIRED_FILES = [
     "schemas/agent-governance.json",
     "factory/supreme_nlp_contract_qc.py",
     "factory/supreme_nlp_evaluation_qc.py",
+    "docs/supreme-nlp-multimodal-signal-language-contract.md",
+    "schemas/supreme-nlp-signal-interpretation.schema.json",
+    "factory/supreme_nlp_signal_interpretation_qc.py",
 ]
 
 def fingerprint(paths):
@@ -150,6 +153,7 @@ def main():
     for name, path in [
         ("contract_qc", ROOT / "factory/supreme_nlp_contract_qc.py"),
         ("evaluation_qc", ROOT / "factory/supreme_nlp_evaluation_qc.py"),
+        ("signal_interpretation_qc", ROOT / "factory/supreme_nlp_signal_interpretation_qc.py"),
     ]:
         if path.exists():
             code, output = run_gate(path)
