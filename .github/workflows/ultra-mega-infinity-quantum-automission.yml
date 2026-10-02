@@ -12,6 +12,10 @@ on:
       - "factory/ultra_mega_infinity_quantum_automission.py"
       - "tests/ultra_mega_infinity_quantum_automission.py"
       - "schemas/agent-governance.json"
+      - "docs/supreme-multimodal-signal-to-language-contract.md"
+      - "schemas/supreme-multimodal-signal-record.schema.json"
+      - "factory/supreme_multimodal_signal_qc.py"
+      - "tests/supreme_multimodal_signal_qc.py"
   pull_request:
     branches: [main]
 
