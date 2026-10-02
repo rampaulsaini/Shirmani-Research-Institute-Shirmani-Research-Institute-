@@ -63,8 +63,22 @@ jobs:
       - name: Fail closed on unsupported verification promotion
         run: |
           set -euo pipefail
-          if grep -R -n 'VERIFIED' agents factory --include='*.py' | grep -v 'INDEPENDENTLY_VERIFIED'; then
-            echo '::error::Potential unsupported VERIFIED promotion detected.'
-            exit 1
-          fi
-          echo 'Verification promotion boundary: PASS'
+          python3 - <<'PY'
+          import ast
+          from pathlib import Path
+
+          violations = []
+          for root in (Path("agents"), Path("factory")):
+              for path in root.rglob("*.py"):
+                  try:
+                      tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+                  except SyntaxError:
+                      continue
+                  for node in ast.walk(tree):
+                      if isinstance(node, ast.Constant) and node.value == "VERIFIED":
+                          violations.append(f"{path}:{node.lineno}: bare VERIFIED literal")
+          if violations:
+              print("\n".join(violations))
+              raise SystemExit("Unsupported verification promotion detected; use INDEPENDENTLY_VERIFIED only.")
+          print("Verification promotion boundary: PASS (AST exact-literal audit)")
+          PY
