@@ -1,0 +1,40 @@
+name: SHIRMANI Supreme NLP Deterministic Regression Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-*.md"
+      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+      - "schemas/supreme-nlp-*.json"
+      - "schemas/agent-governance.json"
+      - "factory/supreme_nlp_*.py"
+      - ".github/workflows/supreme-nlp-*.yml"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-regression-gate
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic regression gate
+        run: python3 factory/supreme_nlp_regression_gate.py
+      - name: Publish health telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-regression-health-${{ github.run_id }}
+          path: generated/supreme-nlp-automission-health.json
+          if-no-files-found: error
+          retention-days: 14
