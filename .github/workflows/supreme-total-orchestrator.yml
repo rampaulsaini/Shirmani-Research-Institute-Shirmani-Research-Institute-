@@ -23,7 +23,7 @@ jobs:
       - name: Compile control plane
         run: |
           python -m py_compile factory/supreme_system_orchestrator.py factory/supreme_nlp_benchmark.py
-          python -m py_compile agents/automission_supervisor.py agents/supreme_nlp_practitioner.py
+          python -m py_compile agents/automission_supervisor.py agents/supreme_nlp_practitioner.py agents/supreme_nlp.py
       - name: Validate JSON schemas
         run: |
           python - <<'PY'
@@ -37,6 +37,20 @@ jobs:
         run: python factory/supreme_system_orchestrator.py | tee supreme-orchestrator.log
       - name: Run explicit Supreme NLP regression benchmark
         run: python factory/supreme_nlp_benchmark.py
+      - name: Validate Nishpaksh governance contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          g=json.loads(Path("schemas/agent-governance.json").read_text())
+          n=g["neutrality_contract"]
+          assert g["fail_closed"] is True
+          assert n["enabled"] is True
+          assert n["counter_evidence_required"] is True
+          assert n["uncertainty_required"] is True
+          assert n["source_provenance_required"] is True
+          print("NISHPAKSH_GOVERNANCE_GATE: PASS")
+          PY
       - name: Validate fail-closed governance
         run: |
           python - <<'PY'
@@ -45,7 +59,9 @@ jobs:
           d=json.loads(Path("generated/supreme-orchestrator/status.json").read_text())
           g=d["governance"]
           assert d["status"]=="PASS"
-          assert g["fail_closed"] and not g["scheduled_code_mutation_allowed"]
+          assert g["fail_closed"] and g["nishpaksh_mode"]
+          assert g["equal_treatment_required"] and g["counter_evidence_required"]
+          assert not g["scheduled_code_mutation_allowed"]
           assert not g["subjective_experience_claim_allowed"]
           assert g["independent_verification_required"] and g["accuracy_is_measured_not_declared"]
           print("SUPREME_GOVERNANCE_GATE: PASS")
@@ -64,6 +80,7 @@ jobs:
           {
             echo "## SHIRMANI Supreme Total Automission"
             echo "- Cycle: 5-minute"
+            echo "- Nishpaksh governance: PASS"
             echo "- Unified gates: PASS"
             echo "- Fail-closed governance: PASS"
             echo "- Scheduled production-code mutation: BLOCKED"
