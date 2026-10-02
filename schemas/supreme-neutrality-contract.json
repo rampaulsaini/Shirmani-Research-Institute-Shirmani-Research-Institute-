@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/supreme-neutrality-contract.json",
+  "title": "Shirmani Supreme Neutral Automission Contract",
+  "schema_version": "1.0",
+  "purpose": "Evidence-first, non-coercive, fail-closed governance for AI-agent, ML and NLP Automission.",
+  "principles": [
+    "observe_before_interpret",
+    "separate_observation_inference_and_claim",
+    "preserve_counter_evidence",
+    "never_convert_belief_into_fact_without_evidence",
+    "never_claim_subjective_experience_from_signal_alone",
+    "independent_verification_before_verified_status",
+    "human_review_for_high_impact_actions",
+    "reversible_changes_by_default",
+    "provenance_for_every_material_claim",
+    "equal treatment of source classes"
+  ],
+  "required_record_fields": [
+    "observation",
+    "interpretation",
+    "alternative_interpretations",
+    "evidence_refs",
+    "counter_evidence_refs",
+    "confidence",
+    "uncertainty",
+    "verification_status",
+    "model_version",
+    "provenance"
+  ],
+  "status_policy": {
+    "default": "UNVERIFIED",
+    "promotion_to_verified": "INDEPENDENT_VERIFICATION_REQUIRED",
+    "conflicting_evidence": "RETAIN_UNRESOLVED",
+    "missing_evidence": "DO_NOT_INFER",
+    "unsupported_subjective_state": "HYPOTHESIS_ONLY"
+  },
+  "automation_policy": {
+    "fail_closed": true,
+    "autonomous_irreversible_action": false,
+    "autonomous_financial_action": false,
+    "autonomous_verification_promotion": false,
+    "source_rewriting": false,
+    "self_modifying_production_code": false
+  }
+}
