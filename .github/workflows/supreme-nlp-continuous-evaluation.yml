@@ -1,0 +1,71 @@
+name: SHIRMANI Supreme NLP Continuous Evaluation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-*.md"
+      - "schemas/supreme-nlp-*.json"
+      - "factory/supreme_nlp_*.py"
+      - ".github/workflows/supreme-nlp-continuous-evaluation.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */5 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-evaluation
+  cancel-in-progress: true
+
+jobs:
+  contract-evaluation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Supreme NLP operating contract and safety fixtures
+        run: python3 factory/supreme_nlp_evaluation.py
+
+      - name: Validate JSON schema syntax
+        run: python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("schemas/supreme-nlp-signal.schema.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          assert data.get("$schema"), "schema URI missing"
+          assert data.get("title"), "schema title missing"
+          print("Supreme NLP signal schema: PASS")
+          PY
+
+      - name: Record evaluation telemetry
+        run: |
+          mkdir -p generated
+          python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          out = {
+              "schema_version": 1,
+              "generated_at": datetime.now(timezone.utc).isoformat(),
+              "workflow": os.getenv("GITHUB_WORKFLOW"),
+              "run_id": os.getenv("GITHUB_RUN_ID"),
+              "sha": os.getenv("GITHUB_SHA"),
+              "event": os.getenv("GITHUB_EVENT_NAME"),
+              "contract_gate": "PASS",
+              "scientific_verification": "NOT_VERIFIED"
+          }
+          Path("generated/supreme-nlp-evaluation-status.json").write_text(
+              json.dumps(out, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8"
+          )
+          PY
+
+      - name: Upload evaluation telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-evaluation-status
+          path: generated/supreme-nlp-evaluation-status.json
+          if-no-files-found: error

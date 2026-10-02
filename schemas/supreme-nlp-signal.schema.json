@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/supreme-nlp-signal.schema.json",
+  "title": "SHIRMANI Supreme NLP Signal Interpretation Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "signal",
+    "quality",
+    "inference",
+    "interpretation",
+    "evidence",
+    "verification",
+    "provenance"
+  ],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "signal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modality", "status"],
+      "properties": {
+        "modality": {"type": "string", "enum": ["text","audio","image","video","environmental","iot","plant_biological","non_living","multimodal"]},
+        "status": {"type": "string", "enum": ["MEASURED","MISSING","INVALID"]},
+        "source_ref": {"type": ["string","null"]}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {"type": "string", "enum": ["PASS","CHECK","BLOCK"]},
+        "issues": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "inference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status","model_version"],
+      "properties": {
+        "status": {"type": "string", "enum": ["INFERRED","NOT_AVAILABLE"]},
+        "model_version": {"type": "string"},
+        "label": {"type": ["string","null"]},
+        "confidence": {"type": ["number","null"], "minimum": 0, "maximum": 1}
+      }
+    },
+    "interpretation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status","plain_language"],
+      "properties": {
+        "status": {"type": "string", "enum": ["INTERPRETED","UNKNOWN"]},
+        "plain_language": {"type": "string"},
+        "subjective_feeling_claim": {"type": "boolean"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {"type": "string", "enum": ["SUPPORTED","PARTIAL","NOT_VERIFIED","CONTRADICTED","UNAVAILABLE"]},
+        "references": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status","independent"],
+      "properties": {
+        "status": {"type": "string", "enum": ["VERIFIED","REVIEW","NOT_VERIFIED","BLOCK"]},
+        "independent": {"type": "boolean"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at","generator","content_sha256"],
+      "properties": {
+        "created_at": {"type": "string"},
+        "generator": {"type": "string"},
+        "content_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    }
+  }
+}
