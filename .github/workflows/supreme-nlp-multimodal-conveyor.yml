@@ -4,6 +4,14 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
+  pull_request:
+    paths:
+      - "agents/supreme_nlp_multimodal.py"
+      - "schemas/supreme-nlp-adapter-contract.schema.json"
+      - "scripts/validate_supreme_nlp_multimodal.py"
+      - "tests/test_supreme_nlp_multimodal.py"
+      - "docs/SUPREME-NLP-MULTIMODAL-OPERATING-CONTRACT.md"
+      - ".github/workflows/supreme-nlp-multimodal-conveyor.yml"
   push:
     branches: [main]
     paths:
