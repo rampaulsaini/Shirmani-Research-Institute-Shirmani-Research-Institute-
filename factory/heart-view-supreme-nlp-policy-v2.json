@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "name": "heart-view-supreme-nlp-neutral-automission",
+  "fail_closed": true,
+  "default_status": "NOT_VERIFIED",
+  "preserve_source_verbatim": true,
+  "provenance_required": true,
+  "evidence_required_for_external_claims": true,
+  "independent_verification_required_for_verified_status": true,
+  "subjective_experience_claims_require_independent_verification": true,
+  "philosophical_framework_is_not_empirical_proof": true,
+  "model_confidence_is_not_proof": true,
+  "multi_agent_agreement_is_not_proof": true,
+  "allow_abstention": true,
+  "allow_contradicted_state": true,
+  "allow_insufficient_data_state": true,
+  "neutrality": {
+    "separate_source_from_inference": true,
+    "separate_hypothesis_from_finding": true,
+    "represent_relevant_counterevidence": true,
+    "do_not_promote_preferred_conclusion": true,
+    "do_not_manufacture_consensus": true
+  },
+  "automission": {
+    "scheduled_audit_allowed": true,
+    "deterministic_test_improvement_allowed": true,
+    "silent_production_code_mutation": false,
+    "irreversible_external_actions_require_authorization": true
+  },
+  "publication": {
+    "verified_only_for_verified_claims": true,
+    "unverified_material_must_be_labelled": true,
+    "fabricated_evidence_forbidden": true
+  }
+}
