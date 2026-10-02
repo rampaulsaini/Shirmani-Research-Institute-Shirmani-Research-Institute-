@@ -186,3 +186,14 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Deterministic QC:** [factory/supreme_nlp_evaluation_qc.py](factory/supreme_nlp_evaluation_qc.py)
 - **Automission cadence:** deterministic contract/evaluation gates run every 5 minutes.
 - **Accuracy rule:** measured benchmark evidence is required; workflow success is not model accuracy and confidence is not proof.
+
+
+## ⚙️ Supreme NLP–Automission Operational Health Loop
+
+- **Operational contract:** [docs/supreme-nlp-automission-operational-contract-2026-10-02.md](docs/supreme-nlp-automission-operational-contract-2026-10-02.md)
+- **Health schema:** [schemas/supreme-nlp-automission-health.schema.json](schemas/supreme-nlp-automission-health.schema.json)
+- **Deterministic health gate:** [factory/supreme_nlp_automission_health.py](factory/supreme_nlp_automission_health.py)
+- **5-minute workflow:** [.github/workflows/supreme-nlp-automission-health.yml](.github/workflows/supreme-nlp-automission-health.yml)
+- **Telemetry:** `generated/supreme-nlp-automission-health.json`
+- **Fail-closed:** missing contract/schema/governance/provenance blocks READY status.
+- **Boundary:** Automission health is operational evidence; it is not model accuracy or independent scientific verification.
