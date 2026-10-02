@@ -16,6 +16,9 @@ def main():
     assert d["status"]=="INTERPRETED"; assert d["observed_signal"]["record_count"]==4
     assert d["inference"]["confidence"]<=0.90; assert d["verification_state"]=="UNVERIFIED"
     assert d["governance"]["fail_closed"] is True and d["governance"]["subjective_experience_claim_allowed"] is False
-    assert d["patterns"]; assert "भावना" in d["plain_language"]
+    assert d["patterns"]
+    text=d["plain_language"].lower()
+    assert "measurable signal pattern" in text
+    assert "subjective feeling" in text
     print("SHIRMANI Supreme signal-to-language regression: PASS")
 if __name__=="__main__": main()
