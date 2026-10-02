@@ -1,0 +1,34 @@
+name: SHIRMANI Supreme NLP QC
+
+on:
+  push:
+    paths:
+      - 'factory/supreme_nlp_pipeline.py'
+      - 'schemas/supreme_nlp_result.schema.json'
+      - 'docs/SHIRMANI-SUPREME-NLP-ARCHITECTURE.md'
+      - '.github/workflows/supreme-nlp-qc.yml'
+  pull_request:
+    paths:
+      - 'factory/supreme_nlp_pipeline.py'
+      - 'schemas/supreme_nlp_result.schema.json'
+      - 'docs/SHIRMANI-SUPREME-NLP-ARCHITECTURE.md'
+      - '.github/workflows/supreme-nlp-qc.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile pipeline
+        run: python -m py_compile factory/supreme_nlp_pipeline.py
+      - name: Smoke test
+        run: python factory/supreme_nlp_pipeline.py
+      - name: Validate schema JSON
+        run: python -m json.tool schemas/supreme_nlp_result.schema.json >/dev/null
