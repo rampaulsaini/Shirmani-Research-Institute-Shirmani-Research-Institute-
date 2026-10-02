@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nishpaksh Supreme NLP Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "status",
+    "claim_type",
+    "measured_signal",
+    "model_inference",
+    "interpretation",
+    "confidence",
+    "provenance",
+    "counter_evidence",
+    "verification"
+  ],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1},
+    "status": {
+      "type": "string",
+      "enum": ["REGISTERED","EVIDENCE_PENDING","TESTED","INDEPENDENT_REVIEW","VERIFIED","UNVERIFIED","REVIEW","BLOCKED"]
+    },
+    "claim_type": {
+      "type": "string",
+      "enum": ["MEASURED_SIGNAL","MODEL_INFERENCE","INTERPRETATION","HYPOTHESIS","VERIFIED_FINDING","UNKNOWN"]
+    },
+    "measured_signal": {"type": ["string","null"]},
+    "model_inference": {"type": ["string","null"]},
+    "interpretation": {"type": ["string","null"]},
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value","method"],
+      "properties": {
+        "value": {"type": ["number","null"], "minimum": 0, "maximum": 1},
+        "method": {"type": "string"}
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "counter_evidence": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state","independent"],
+      "properties": {
+        "state": {"type": "string"},
+        "independent": {"type": "boolean"}
+      }
+    }
+  }
+}

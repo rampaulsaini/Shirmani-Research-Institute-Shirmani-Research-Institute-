@@ -177,3 +177,11 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Continuous gate:** [.github/workflows/supreme-nlp-contract.yml](.github/workflows/supreme-nlp-contract.yml)
 - **Pipeline:** Signal → Quality Check → Normalization → Representation → Context → Inference → Plain-Language Translation → Confidence → Evidence → Independent Verification → Audit.
 - **Integrity boundary:** measured signals, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
+
+## 🧭 Nishpaksh Supreme AI–ML–NLP–Automission v2
+
+- Contract: [docs/nishpaksh-supreme-automission-v2.md](docs/nishpaksh-supreme-automission-v2.md)
+- Machine-readable NLP result schema: [schemas/nishpaksh-nlp-result.schema.json](schemas/nishpaksh-nlp-result.schema.json)
+- Deterministic integrity gate: [factory/nishpaksh_supreme_gate.py](factory/nishpaksh_supreme_gate.py)
+- Five-minute Automission: [.github/workflows/nishpaksh-supreme-automission.yml](.github/workflows/nishpaksh-supreme-automission.yml)
+- Neutrality rule: provenance, counter-evidence, uncertainty and independent verification remain explicit; workflow success does not become scientific proof.

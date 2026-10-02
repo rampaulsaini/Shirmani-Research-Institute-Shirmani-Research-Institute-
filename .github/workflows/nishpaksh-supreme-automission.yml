@@ -1,0 +1,42 @@
+name: Nishpaksh Supreme AI-ML-NLP Automission
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/nishpaksh-supreme-automission-v2.md"
+      - "schemas/nishpaksh-nlp-result.schema.json"
+      - "schemas/agent-governance.json"
+      - "factory/nishpaksh_supreme_gate.py"
+      - ".github/workflows/nishpaksh-supreme-automission.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nishpaksh-supreme-automission
+  cancel-in-progress: true
+
+jobs:
+  supreme-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate JSON schema
+        run: python3 -m json.tool schemas/nishpaksh-nlp-result.schema.json >/dev/null
+
+      - name: Validate Nishpaksh Supreme contract
+        run: python3 factory/nishpaksh_supreme_gate.py
+
+      - name: Record immutable execution facts
+        run: |
+          echo "timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "workflow=nishpaksh-supreme-automission"
+          echo "result=PASS"
+          echo "independent_verification=NOT_IMPLIED"
