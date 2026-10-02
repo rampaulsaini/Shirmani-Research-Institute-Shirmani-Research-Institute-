@@ -1,0 +1,58 @@
+name: SHIRMANI Supreme NLP Measurable Accuracy
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/supreme_nlp.py"
+      - "agents/supreme_nlp_practitioner.py"
+      - "factory/supreme_nlp_benchmark.py"
+      - "scripts/validate_supreme_nlp_benchmark.py"
+      - "docs/SUPREME-NLP-MEASURABLE-ACCURACY.md"
+      - ".github/workflows/supreme-nlp-measurable-accuracy.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-measurable-accuracy
+  cancel-in-progress: true
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONPATH: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile control layers
+        run: |
+          python -m py_compile agents/supreme_nlp.py agents/supreme_nlp_practitioner.py factory/supreme_nlp_benchmark.py scripts/validate_supreme_nlp_benchmark.py
+      - name: Run measurable benchmark
+        run: python factory/supreme_nlp_benchmark.py
+      - name: Validate benchmark contract
+        run: python scripts/validate_supreme_nlp_benchmark.py
+      - name: Publish benchmark artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-measurable-accuracy-${{ github.run_id }}
+          path: generated/supreme-nlp/benchmark.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Emit summary
+        run: |
+          {
+            echo "## Supreme NLP Measurable Accuracy"
+            echo "- Status and state accuracy are measured separately."
+            echo "- Reproducibility and governance boundaries are tested."
+            echo "- Accuracy is measured, not declared."
+            echo "- Scheduled production-code mutation: disabled."
+          } >> "$GITHUB_STEP_SUMMARY"
