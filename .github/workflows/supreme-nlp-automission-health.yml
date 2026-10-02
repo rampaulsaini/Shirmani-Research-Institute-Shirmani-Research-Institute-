@@ -10,8 +10,10 @@ on:
     branches: [main]
     paths:
       - "docs/supreme-nlp-*.md"
+      - "docs/supreme-nlp-automission-operational-contract-2026-10-02.md"
       - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
       - "schemas/supreme-nlp-*.json"
+      - "schemas/supreme-nlp-automission-health.schema.json"
       - "schemas/agent-governance.json"
       - "factory/supreme_nlp_*.py"
       - ".github/workflows/supreme-nlp-automission-health.yml"
@@ -29,6 +31,12 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+
+      - name: Validate Supreme NLP contract
+        run: python3 factory/supreme_nlp_contract_qc.py
+
+      - name: Validate Supreme NLP evaluation gate
+        run: python3 factory/supreme_nlp_evaluation_qc.py
 
       - name: Run deterministic Automission health gate
         run: python3 factory/supreme_nlp_automission_health.py
