@@ -11,7 +11,7 @@ from math import sqrt, isfinite
 from typing import Any, Dict, Iterable
 import hashlib, json
 
-VERSION = "supreme-nlp-v2"
+VERSION = "supreme-nlp-v3"
 
 @dataclass(frozen=True)
 class Signal:
@@ -125,6 +125,7 @@ def summarize(signals: Iterable[Dict[str, Any]]) -> Dict[str, Any]:
             "state": state,
             "confidence": confidence,
             "confidence_status": "UNCALIBRATED",
+            "score_semantics": "bounded_heuristic_score_not_calibrated_probability",
             "evidence": evidence,
             "limitations": limitations,
         },
@@ -148,7 +149,7 @@ def to_simple_language(result: Dict[str, Any]) -> str:
     i, f = result["interpretation"], result["features"]
     return (
         f"मिले हुए संकेतों में '{i['state']}' जैसा पैटर्न दिखाई देता है। "
-        f"प्रारंभिक confidence {i['confidence']:.0%} है और evidence grade {f['evidence_grade']} है। "
+        f"प्रारंभिक signal score {i['confidence']:.0%} है और evidence grade {f['evidence_grade']} है। "
         "यह observable संकेतों की व्याख्या है; इसे किसी जीव के प्रत्यक्ष भाव, चेतना या subjective experience का प्रमाण नहीं माना जाना चाहिए।"
     )
 
@@ -162,7 +163,7 @@ def build_record(signals: Iterable[Dict[str, Any]], task_id: str) -> Dict[str, A
         "schema_version": VERSION,
         "task_id": task_id,
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "pipeline": "observe->normalize->quality->feature->multimodal->interpret->NLP->confidence->verification->audit",
+        "pipeline": "observe->normalize->quality->feature->multimodal->interpret->NLP->score->calibration->verification->audit",
         "result": result,
         "simple_language": to_simple_language(result),
         "fingerprint": fingerprint(result),
@@ -170,5 +171,7 @@ def build_record(signals: Iterable[Dict[str, Any]], task_id: str) -> Dict[str, A
             "generator": "agents/supreme_nlp.py",
             "contract": "observable-signal-only",
             "verification_status": "UNVERIFIED",
+            "confidence_status": "UNCALIBRATED",
+            "score_semantics": "bounded_heuristic_score_not_calibrated_probability",
         },
     }
