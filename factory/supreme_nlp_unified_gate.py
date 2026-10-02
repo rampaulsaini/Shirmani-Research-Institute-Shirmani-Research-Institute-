@@ -12,7 +12,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from agents.supreme_sense_nlp import analyze, to_simple_language
+
 from agents.supreme_nlp_practitioner import build_practitioner_record
 
 OUT = Path("generated/supreme-nlp/unified-control-plane.json")
@@ -32,8 +32,14 @@ def canonical_hash(value: object) -> str:
 
 def main() -> int:
     practitioner = build_practitioner_record(ROWS, "unified-control-plane")
-    multimodal = analyze(ROWS, request="multimodal signal interpretation")
-    multimodal["simple_language"] = to_simple_language(multimodal)
+    # Use the canonical practitioner implementation as the unified signal gate.
+    multimodal = practitioner["result"]
+    multimodal = {
+        "status": "CANDIDATE" if multimodal["status"] == "interpreted" else "NO_CLAIM",
+        "confidence": multimodal.get("features", {}).get("confidence", 0.0),
+        "verification": {"status":"UNVERIFIED","promotion_allowed":False},
+        "simple_language": practitioner["simple_language"],
+    }
 
     pg = practitioner["governance"]
     checks = {
