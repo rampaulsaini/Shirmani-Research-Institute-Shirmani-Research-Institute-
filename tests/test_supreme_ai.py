@@ -1,15 +1,15 @@
 import unittest
-from agents.supreme_nlp import analyze
+from agents.supreme_nlp import summarize
 from agents.ultra_automission import build_plan
 
 class SupremeAITests(unittest.TestCase):
     def test_empty_input_fails_closed(self):
-        r=analyze([])
+        r=summarize([])
         self.assertEqual(r["status"],"no_observable_signal")
         self.assertEqual(r["interpretation"]["confidence"],0.0)
 
     def test_confidence_is_bounded(self):
-        r=analyze([
+        r=summarize([
             {"modality":"electrical","feature":"x","value":1.0,"quality":0.9,"source":"a"},
             {"modality":"vibration","feature":"x","value":0.8,"quality":0.9,"source":"b"}
         ])
