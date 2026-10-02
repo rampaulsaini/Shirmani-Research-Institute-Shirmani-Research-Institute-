@@ -10,7 +10,9 @@ on:
       - "factory/supreme_nlp_contract_qc.py"
       - "schemas/supreme-nlp-evaluation.schema.json"
       - "factory/supreme_nlp_evaluation_qc.py"
+      - "factory/supreme_nlp_adversarial_qc.py"
       - "docs/supreme-nlp-evaluation-gate.md"
+      - "docs/supreme-nlp-adversarial-regression-gate.md"
       - ".github/workflows/supreme-nlp-contract.yml"
   workflow_dispatch:
   schedule:
@@ -33,3 +35,5 @@ jobs:
         run: python3 factory/supreme_nlp_contract_qc.py
       - name: Validate Supreme NLP evaluation gate
         run: python3 factory/supreme_nlp_evaluation_qc.py
+      - name: Run adversarial regression gate
+        run: python3 factory/supreme_nlp_adversarial_qc.py
