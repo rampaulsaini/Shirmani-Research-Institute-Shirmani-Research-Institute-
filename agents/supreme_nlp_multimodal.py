@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 import hashlib, json, math
 from typing import Any, Iterable
 
-VERSION = "supreme-nlp-multimodal-v1"
+VERSION = "supreme-nlp-multimodal-v2"
 
 @dataclass(frozen=True)
 class Observation:
@@ -55,8 +55,10 @@ def fingerprint(record: dict[str, Any]) -> str:
     return hashlib.sha256(_stable(x).encode()).hexdigest()
 
 def _agreement(rows: list[Observation]) -> float:
+    # Compare only like-for-like measurements. Different units are not
+    # numerically comparable without an explicit conversion contract.
     groups=defaultdict(list)
-    for r in rows: groups[r.feature].append(r.value)
+    for r in rows: groups[(r.feature, r.unit)].append(r.value)
     scores=[]
     for vals in groups.values():
         if len(vals)<2: continue
@@ -106,6 +108,8 @@ def analyze(observations: Iterable[dict[str,Any]], request="", source_type="unkn
         "Scientific performance claims के लिए labelled datasets और independent replication आवश्यक हैं।",
     ]
     if len(modalities)<2: limitations.append("Multimodal corroboration उपलब्ध नहीं है।")
+    comparable_groups=len({(r.feature,r.unit) for r in usable if r.unit})
+    if comparable_groups == 0: limitations.append("Measurement units declared नहीं हैं; cross-unit numerical agreement का दावा नहीं किया गया।")
     if calibration=="UNCALIBRATED": limitations.append("Baseline calibration उपलब्ध नहीं है।")
 
     record={
@@ -119,6 +123,7 @@ def analyze(observations: Iterable[dict[str,Any]], request="", source_type="unkn
       "provenance":{"source":"agents/supreme_nlp_multimodal.py","timestamp":datetime.now(timezone.utc).isoformat(),"fingerprint":""},
       "metrics":{"observations":len(rows),"usable_observations":len(usable),"modalities":modalities,
                  "sources":sources,"quality":round(quality,4),"agreement":round(agreement,4),
+                 "comparable_measurement_groups":comparable_groups,
                  "baseline_drift":round(drift,4),"calibration_status":calibration},
       "confidence":confidence,
       "uncertainty":{"status":"EXPLICIT","reason":reason,"abstention_available":True},
