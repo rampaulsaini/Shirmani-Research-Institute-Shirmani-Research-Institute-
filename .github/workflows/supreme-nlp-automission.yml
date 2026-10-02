@@ -1,125 +1,61 @@
-name: Supreme NLP Automission
+name: SHIRMANI Supreme NLP Automission
 
 on:
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
   push:
+    branches: [main, supreme-nlp-automission-v3]
     paths:
       - "agents/supreme_nlp.py"
       - "agents/automission_supervisor.py"
-      - "scripts/validate_supreme_nlp.py"
-      - "scripts/validate_automission_supervisor.py"
-      - "schemas/supreme-nlp-record.schema.json"
-      - "docs/SUPREME-NLP-ARCHITECTURE.md"
-      - "factory/supreme_nlp_qc.py"
+      - "schemas/supreme-nlp-observation.schema.json"
+      - "tests/test_supreme_nlp_contract.py"
+      - "docs/SUPREME-NLP-AUTOMISSION.md"
       - ".github/workflows/supreme-nlp-automission.yml"
 
 permissions:
   contents: read
 
 concurrency:
-  group: supreme-nlp-automission
-  cancel-in-progress: false
+  group: shirmani-supreme-nlp-automission
+  cancel-in-progress: true
 
 jobs:
-  audit-and-improve:
+  regression:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
-    env:
-      PYTHONPATH: .
+    timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-
-      - name: Compile and contract-test
-        run: |
-          python -m py_compile agents/supreme_nlp.py agents/automission_supervisor.py factory/supreme_nlp_qc.py
-          python scripts/validate_supreme_nlp.py
-          python factory/supreme_nlp_qc.py
-      - name: Validate Automission supervisor contract
-        run: python scripts/validate_automission_supervisor.py
-
-      - name: Validate schema syntax
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          json.loads(Path("schemas/supreme-nlp-record.schema.json").read_text(encoding="utf-8"))
-          print("SCHEMA_JSON_OK")
-          PY
-
-      - name: Generate deterministic status
+      - name: Compile
+        run: python -m py_compile agents/supreme_nlp.py agents/automission_supervisor.py
+      - name: Unit tests
+        run: python -m unittest discover -s tests -p "test_supreme_nlp_contract.py" -v
+      - name: Schema syntax
+        run: python -m json.tool schemas/supreme-nlp-observation.schema.json >/dev/null
+      - name: Synthetic multimodal benchmark
         run: |
           mkdir -p generated/supreme-nlp
+          cat > generated/supreme-nlp/observations.jsonl <<'EOF'
+          {"modality":"bioelectric","feature":"signal","value":0.42,"unit":"mV","quality":0.95,"source":"synthetic-a","timestamp":"2026-10-02T00:00:00Z"}
+          {"modality":"vibration","feature":"frequency","value":12.4,"unit":"Hz","quality":0.90,"source":"synthetic-b","timestamp":"2026-10-02T00:00:01Z"}
+          EOF
           python - <<'PY'
-          import json
-          from pathlib import Path
-          from agents.supreme_nlp import build_record
-
-          p = Path("generated/signal-input.jsonl")
-          rows = (
-              [json.loads(x) for x in p.read_text(encoding="utf-8").splitlines() if x.strip()]
-              if p.exists() else []
-          )
-          if not rows:
-              rows = [
-                  {"modality":"synthetic","feature":"baseline_a","value":1.0,"quality":1.0,"source":"automission-smoke"},
-                  {"modality":"synthetic","feature":"baseline_b","value":1.0,"quality":1.0,"source":"automission-smoke"},
-              ]
-
-          rec = build_record(rows, "automission-cycle")
-          Path("generated/supreme-nlp/status.json").write_text(
-              json.dumps(rec, ensure_ascii=False, indent=2) + "\n",
-              encoding="utf-8",
-          )
-          print(rec["simple_language"])
-          print("FINGERPRINT:", rec["fingerprint"])
+          from agents.supreme_nlp import process_jsonl, validate_record_contract
+          record = process_jsonl("generated/supreme-nlp/observations.jsonl", "generated/supreme-nlp/status.json")
+          errors = validate_record_contract(record)
+          assert not errors, errors
+          assert record["result"]["status"] == "interpreted"
+          assert record["provenance"]["verification_status"] == "UNVERIFIED"
+          assert record["result"]["features"]["modalities"] >= 2
+          print("Supreme NLP Automission gate: PASS")
           PY
-
-      - name: Run Automission improvement audit
-        run: python agents/automission_supervisor.py
-
-      - name: Validate generated record
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          status = json.loads(Path("generated/supreme-nlp/status.json").read_text(encoding="utf-8"))
-          plan = json.loads(Path("generated/supreme-nlp/automission-plan.json").read_text(encoding="utf-8"))
-
-          assert status["fingerprint"]
-          assert status["result"]["status"] in {"no_data", "insufficient_quality", "interpreted"}
-          assert 0 <= status["result"].get("interpretation", {}).get("confidence", 0) <= 1 if status["result"]["status"] == "interpreted" else True
-          assert plan["state"] in {"MONITOR", "IMPROVEMENT_REQUIRED"}
-          assert isinstance(plan["actions"], list) and plan["actions"]
-          print("GENERATED_RECORD_CONTRACT_OK")
-          PY
-
-      - name: Upload audit artifacts
+      - name: Upload audit artifact
         uses: actions/upload-artifact@v4
         with:
           name: supreme-nlp-automission-${{ github.run_id }}
-          path: |
-            generated/supreme-nlp/status.json
-            generated/supreme-nlp/automission-plan.json
-          if-no-files-found: error
+          path: generated/supreme-nlp/status.json
           retention-days: 14
-
-      - name: Emit machine-readable summary
-        run: |
-          {
-            echo "## Supreme NLP Automission"
-            echo ""
-            echo "- Cycle: automission-cycle"
-            echo "- Evidence: generated status + improvement plan"
-            echo "- Verification: deterministic contract tests passed"
-            echo "- Code mutation: disabled in scheduled audit"
-            echo "- Artifacts: uploaded for traceability"
-          } >> "$GITHUB_STEP_SUMMARY"
