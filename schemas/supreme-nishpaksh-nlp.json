@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "name": "shirmani-supreme-nishpaksh-nlp",
+  "mode": "fail-closed",
+  "source_integrity": "immutable-user-source",
+  "truth_classes": [
+    "user-authored",
+    "observed",
+    "model-inference",
+    "source-backed",
+    "independently-verified"
+  ],
+  "prohibited_silent_upgrades": [
+    "user-authored -> fact",
+    "model-inference -> verified",
+    "signal-interpretation -> subjective-experience-proof"
+  ],
+  "required_report_fields": [
+    "signal_observed",
+    "interpretation",
+    "alternative_interpretations",
+    "confidence",
+    "evidence",
+    "limitations",
+    "verification_status"
+  ],
+  "automission_cycle": [
+    "observe",
+    "normalize",
+    "understand",
+    "reason",
+    "evidence",
+    "counter_check",
+    "verify",
+    "audit",
+    "improve",
+    "publish"
+  ],
+  "required_gates": [
+    "provenance",
+    "deterministic_qc",
+    "security",
+    "regression",
+    "independent_verification_when_applicable"
+  ],
+  "human_authorization_required": [
+    "irreversible_actions",
+    "financial_actions",
+    "verification_promotion"
+  ],
+  "metrics": [
+    "task_accuracy",
+    "f1_or_exact_match",
+    "calibration_error",
+    "false_positive_rate",
+    "false_negative_rate",
+    "contradiction_rate",
+    "provenance_completeness",
+    "independent_verification_rate",
+    "regression_rate",
+    "reproducibility",
+    "latency"
+  ]
+}
