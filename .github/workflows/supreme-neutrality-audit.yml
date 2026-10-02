@@ -1,0 +1,43 @@
+name: SHIRMANI Supreme Neutrality Evidence Audit
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/SHIRMANI-NEUTRALITY-EVIDENCE-CONTRACT.md"
+      - "schemas/neutrality-evidence-record.schema.json"
+      - "scripts/validate_neutrality_contract.py"
+      - ".github/workflows/supreme-neutrality-audit.yml"
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-supreme-neutrality-audit
+  cancel-in-progress: true
+jobs:
+  neutrality-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate neutrality and evidence contract
+        run: python scripts/validate_neutrality_contract.py
+      - name: Validate JSON schema
+        run: python -m json.tool schemas/neutrality-evidence-record.schema.json >/dev/null
+      - name: Emit audit summary
+        run: |
+          {
+            echo "## SHIRMANI Supreme Neutrality Evidence Audit"
+            echo "- Evidence standards: symmetric"
+            echo "- Authority shortcut: blocked"
+            echo "- Counter-evidence: required"
+            echo "- Uncertainty: explicit"
+            echo "- Independent verification: required"
+            echo "- Scheduled code mutation: disabled"
+          } >> "$GITHUB_STEP_SUMMARY"
