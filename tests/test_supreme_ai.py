@@ -6,7 +6,7 @@ class SupremeAITests(unittest.TestCase):
     def test_empty_input_fails_closed(self):
         r=summarize([])
         self.assertEqual(r["status"],"no_observable_signal")
-        self.assertEqual(r["interpretation"]["confidence"],0.0)
+        self.assertIsNone(r["interpretation"])
 
     def test_confidence_is_bounded(self):
         r=summarize([
