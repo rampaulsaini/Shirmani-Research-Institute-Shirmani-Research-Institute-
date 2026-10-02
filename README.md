@@ -170,6 +170,16 @@ This is a research architecture: it does not grant unlimited authority to any pe
 
 
 
+## 🛡️ Supreme NLP Unified Control Plane — 2026-10-02
+
+- **Unified gate:** [factory/supreme_nlp_unified_gate.py](factory/supreme_nlp_unified_gate.py)
+- **Operating contract:** [docs/supreme-nlp-unified-control-plane-2026-10-02.md](docs/supreme-nlp-unified-control-plane-2026-10-02.md)
+- **Integration:** the Total Orchestrator now requires practitioner + multimodal governance checks together.
+- **Promotion boundary:** NLP outputs remain UNVERIFIED until independent evidence and verification are completed.
+- **Accuracy:** measured through reproducible evaluation; workflow success is not model accuracy.
+- **Biological/environmental signals:** measurable signals may be translated into plain language, while signal, inference, interpretation, confidence and uncertainty remain explicitly separated.
+
+
 ## 🧠 SHIRMANI Supreme NLP Practitioner
 
 - **Canonical contract:** [docs/supreme-nlp-practitioner-contract.md](docs/supreme-nlp-practitioner-contract.md)
