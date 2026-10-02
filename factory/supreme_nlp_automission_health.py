@@ -126,7 +126,7 @@ def main():
         "verification_state": verification_state,
         "blockers": blockers,
         "warnings": warnings,
-        "provenance": ["repository files", "deterministic contract checks"],
+        "provenance": ["repository files", "deterministic contract checks", "executed QC gates"],
         "cycle_duration_seconds": round(time.monotonic() - started, 4),
         "gate_results": gate_results,
     }
