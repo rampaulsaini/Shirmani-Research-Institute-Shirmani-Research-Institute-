@@ -31,6 +31,29 @@ def main():
     safe = build_record([{"modality":"sensor","feature":"x","value":float("nan")}], "nan")
     assert safe["result"]["signals"][0]["value"] == 0.0
 
+    # Invalid baseline statistics must not leak NaN/Inf into z-score diagnostics.
+    baseline_safe = build_record([
+        {"modality":"a","feature":"x","value":1.0,"unit":"u","baseline_mean":float("nan"),"baseline_std":float("inf")},
+        {"modality":"b","feature":"x","value":2.0,"unit":"u","baseline_mean":1.0,"baseline_std":1.0},
+    ], "baseline-nonfinite")
+    features = baseline_safe["result"]["features"]
+    assert features["baseline_z_score_max_abs"] == 1.0
+    assert features["cross_modal_disagreement"] == 0.0
+
+    # Missing units are never treated as compatible for cross-modal comparison.
+    missing_units = build_record([
+        {"modality":"a","feature":"x","value":1.0,"baseline_mean":0.0,"baseline_std":1.0},
+        {"modality":"b","feature":"x","value":100.0,"baseline_mean":0.0,"baseline_std":1.0},
+    ], "missing-unit")
+    assert missing_units["result"]["features"]["cross_modal_disagreement"] == 0.0
+
+    # Repeated source IDs are a source count, not evidence of independent experiments.
+    duplicate_sources = build_record([
+        {"modality":"a","feature":"x","value":1.0,"source":"same"},
+        {"modality":"b","feature":"y","value":1.1,"source":"same"},
+    ], "duplicate-source")
+    assert duplicate_sources["result"]["features"]["source_count"] == 1
+
     print("SUPREME_NLP_V3_HARDENING=PASS")
 
 if __name__ == "__main__":
