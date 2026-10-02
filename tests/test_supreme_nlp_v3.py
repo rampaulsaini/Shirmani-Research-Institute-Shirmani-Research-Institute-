@@ -53,6 +53,15 @@ def main():
         else:
             raise AssertionError("ambiguous selective-risk labels must be rejected")
 
+    # Abstention flags must be explicit booleans; strings such as "false" are ambiguous.
+    for bad in ("false", "true", "yes", 0, 1):
+        try:
+            selective_risk([1], [1], [bad])
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("ambiguous abstention flags must be rejected")
+
     s=selective_risk([1,1,0,0],[1,0,1,0],[False,True,False,False])
     assert s["coverage"] == .75
     assert s["abstention_rate"] == .25
