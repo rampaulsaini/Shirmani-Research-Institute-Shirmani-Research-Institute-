@@ -1,0 +1,44 @@
+name: SHIRMANI Supreme NLP Runtime Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-practitioner-contract.md"
+      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+      - "schemas/**"
+      - "factory/supreme_nlp_contract_qc.py"
+      - "factory/supreme_nlp_runtime_gate.py"
+      - ".github/workflows/supreme-nlp-runtime-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-runtime-gate
+  cancel-in-progress: true
+
+jobs:
+  runtime-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Contract QC
+        run: python3 factory/supreme_nlp_contract_qc.py
+      - name: Python syntax gate
+        run: python3 -m compileall -q factory agents
+      - name: Supreme NLP runtime gate
+        run: python3 factory/supreme_nlp_runtime_gate.py
+      - name: Publish runtime telemetry
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-runtime-status
+          path: generated/supreme-nlp-runtime-status.json
+          if-no-files-found: error
+          retention-days: 14
