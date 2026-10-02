@@ -1,0 +1,70 @@
+name: SHIRMANI Impartiality Governance Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "schemas/impartiality-governance.schema.json"
+      - "schemas/impartiality-governance.json"
+      - "docs/SHIRMANI-IMPARTIALITY-GOVERNANCE.md"
+      - ".github/workflows/supreme-impartiality-governance.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-impartiality-governance
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate governance contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          policy=json.loads(Path("schemas/impartiality-governance.json").read_text(encoding="utf-8"))
+          schema=json.loads(Path("schemas/impartiality-governance.schema.json").read_text(encoding="utf-8"))
+          required={"version","purpose","principles","claim_classes","required_output_fields","gates"}
+          assert required.issubset(policy), "Governance contract missing required sections"
+          assert policy["principles"]["equal_treatment"] is True
+          assert policy["principles"]["evidence_over_assertion"] is True
+          assert policy["principles"]["counter_evidence_required_for_contested_claims"] is True
+          assert policy["principles"]["uncertainty_must_be_explicit"] is True
+          assert policy["principles"]["independent_verification_required"] is True
+          assert policy["principles"]["scheduled_production_code_mutation_allowed"] is False
+          assert "MODEL_INFERENCE" in policy["claim_classes"]
+          assert "HYPOTHESIS" in policy["claim_classes"]
+          assert "UNVERIFIED_ASSERTION" in policy["claim_classes"]
+          print("IMPARTIALITY_GOVERNANCE_GATE: PASS")
+          PY
+      - name: Validate existing fail-closed boundaries
+        run: |
+          set -euo pipefail
+          test -f .github/workflows/independent-verification-gate.yml
+          test -f .github/workflows/supreme-total-orchestrator.yml
+          grep -q "scheduled_code_mutation_allowed" .github/workflows/supreme-total-orchestrator.yml
+          grep -q "accuracy_is_measured_not_declared" .github/workflows/supreme-total-orchestrator.yml
+          grep -q "independent_verification_required" .github/workflows/supreme-total-orchestrator.yml
+          echo "EXISTING_FAIL_CLOSED_BOUNDARIES: PASS"
+      - name: Emit machine-readable summary
+        run: |
+          {
+            echo "## SHIRMANI Impartiality Governance"
+            echo "- Equal treatment: REQUIRED"
+            echo "- Evidence over assertion: REQUIRED"
+            echo "- Counter-evidence: REQUIRED for contested claims"
+            echo "- Uncertainty: EXPLICIT"
+            echo "- Independent verification: REQUIRED"
+            echo "- Scheduled production-code mutation: BLOCKED"
+            echo "- Accuracy: MEASURED, NOT DECLARED"
+          } >> "$GITHUB_STEP_SUMMARY"

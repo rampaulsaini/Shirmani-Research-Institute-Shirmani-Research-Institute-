@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Impartiality Governance Contract",
+  "type":"object",
+  "required":["version","purpose","principles","claim_classes","required_output_fields","gates"],
+  "properties":{
+    "version":{"type":"string"},
+    "purpose":{"type":"string"},
+    "principles":{"type":"object"},
+    "claim_classes":{"type":"array","items":{"type":"string"}},
+    "required_output_fields":{"type":"array","items":{"type":"string"}},
+    "gates":{"type":"object","additionalProperties":{"type":"string"}}
+  },
+  "additionalProperties":true
+}

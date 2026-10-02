@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Impartiality Governance Contract",
+  "version": "2.0.0",
+  "purpose": "A machine-checkable neutrality boundary for AI, ML, NLP and Automission outputs.",
+  "principles": {
+    "equal_treatment": true,
+    "evidence_over_assertion": true,
+    "counter_evidence_required_for_contested_claims": true,
+    "uncertainty_must_be_explicit": true,
+    "abstention_allowed": true,
+    "source_traceability_required": true,
+    "independent_verification_required": true,
+    "subjective_experience_claims_are_not_fact_by_default": true,
+    "scheduled_production_code_mutation_allowed": false
+  },
+  "claim_classes": [
+    "OBSERVED_SIGNAL",
+    "MEASURED_RESULT",
+    "SOURCE_REPORTED_CLAIM",
+    "MODEL_INFERENCE",
+    "HYPOTHESIS",
+    "UNVERIFIED_ASSERTION"
+  ],
+  "required_output_fields": [
+    "claim_class",
+    "evidence",
+    "counter_evidence",
+    "confidence",
+    "uncertainty",
+    "source_trace",
+    "verification_state"
+  ],
+  "gates": {
+    "missing_evidence": "ABSTAIN_OR_LABEL_UNVERIFIED",
+    "conflicting_evidence": "REPORT_CONFLICT",
+    "low_confidence": "ABSTAIN_OR_ESCALATE",
+    "verification_failure": "FAIL_CLOSED",
+    "policy_violation": "FAIL_CLOSED"
+  }
+}
