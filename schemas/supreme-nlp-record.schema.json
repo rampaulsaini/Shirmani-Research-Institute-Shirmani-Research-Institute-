@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shirmani Supreme NLP Record",
+  "type": "object",
+  "required": ["record_id", "created_at", "language", "text_stats", "signal_analysis", "provenance", "verification"],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "minLength": 1},
+    "language": {"type": "string", "enum": ["hi", "pa", "en"]},
+    "text_stats": {"type": "object"},
+    "signal_analysis": {
+      "type": "object",
+      "required": ["plain_language", "confidence", "claim_status", "human_experience_inference"],
+      "properties": {
+        "plain_language": {"type": "string"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "claim_status": {"type": "string", "enum": ["OBSERVATION_ONLY"]},
+        "human_experience_inference": {"type": "string", "enum": ["NOT_ESTABLISHED"]}
+      },
+      "additionalProperties": true
+    },
+    "provenance": {"type": "object"},
+    "verification": {
+      "type": "object",
+      "required": ["status", "independent"],
+      "properties": {
+        "status": {"enum": ["NOT_VERIFIED", "CHECK", "PASS", "FAIL"]},
+        "independent": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
