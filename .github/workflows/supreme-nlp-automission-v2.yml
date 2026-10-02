@@ -1,0 +1,37 @@
+name: SHIRMANI Supreme NLP Automission v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-automission-operating-contract-v2.md"
+      - "schemas/supreme-nlp-signal-record.schema.json"
+      - "factory/supreme_nlp_automission_v2_qc.py"
+      - ".github/workflows/supreme-nlp-automission-v2.yml"
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-automission-v2
+  cancel-in-progress: true
+
+jobs:
+  supreme-nlp-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deterministic v2 QC
+        run: python3 factory/supreme_nlp_automission_v2_qc.py
+      - name: JSON schema syntax
+        run: python3 -m json.tool schemas/supreme-nlp-signal-record.schema.json >/dev/null
+      - name: Bounded status
+        run: |
+          echo "AUTOMISSION_STATUS=PASS"
+          echo "ACCURACY=BENCHMARK_REQUIRED"
+          echo "INDEPENDENT_VERIFICATION=REQUIRED"
+          echo "HIGH_IMPACT_AUTONOMY=BLOCKED_WITHOUT_HUMAN_GATE"
