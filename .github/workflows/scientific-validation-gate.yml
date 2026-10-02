@@ -1,0 +1,29 @@
+name: SHIRMANI Scientific Validation Gate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/SCIENTIFIC-VALIDATION-PROTOCOL.md"
+      - "schemas/scientific-validation-record.schema.json"
+      - "factory/scientific_validation_gate.py"
+      - "tests/scientific_validation_gate.py"
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-scientific-validation-gate
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate scientific evidence contract
+        run: python3 factory/scientific_validation_gate.py
+      - name: Run hardening tests
+        run: python3 tests/scientific_validation_gate.py
