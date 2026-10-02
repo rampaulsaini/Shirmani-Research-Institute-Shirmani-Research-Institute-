@@ -73,6 +73,8 @@ jobs:
         run: python3 factory/batch_worker.py --batch-size 1000
       - name: Build deterministic reasoning, provenance and claim-evidence layer
         run: python3 factory/reasoning_pipeline.py
+      - name: Run Supreme NLP multimodal integrity smoke gate
+        run: python3 factory/supreme_nlp_qc.py
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
       - name: Build deterministic formulation/test records
