@@ -1,0 +1,75 @@
+name: SHIRMANI Supreme NLP Automission V2
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - "agents/supreme_nlp_automission_v2.py"
+      - "scripts/validate_supreme_nlp_automission_v2.py"
+      - "schemas/supreme-nlp-automission-v2.schema.json"
+      - "docs/SUPREME-NLP-AUTOMISSION-V2.md"
+      - ".github/workflows/supreme-nlp-automission-v2.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-automission-v2
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile
+        run: python -m py_compile agents/supreme_nlp_automission_v2.py scripts/validate_supreme_nlp_automission_v2.py
+      - name: Validate contract
+        run: python scripts/validate_supreme_nlp_automission_v2.py
+      - name: Validate schema
+        run: python -m json.tool schemas/supreme-nlp-automission-v2.schema.json >/dev/null
+      - name: Build deterministic audit artifact
+        run: |
+          mkdir -p generated/supreme-nlp-v2
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.supreme_nlp_automission_v2 import build_record
+          r=build_record([
+            {"modality":"synthetic","feature":"baseline_a","value":1.0,"quality":1.0,"source":"workflow-audit"},
+            {"modality":"synthetic","feature":"baseline_b","value":1.01,"quality":1.0,"source":"workflow-audit"}
+          ],"github-actions-${{ github.run_id }}")
+          Path("generated/supreme-nlp-v2/status.json").write_text(json.dumps(r,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(r["interpretation"]["simple_language"])
+          print("FINGERPRINT:",r["fingerprint"])
+          PY
+      - name: Fail-closed governance gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/supreme-nlp-v2/status.json").read_text())
+          g=d["governance"]
+          assert g["fail_closed"] is True
+          assert g["independent_verification_required"] is True
+          assert g["subjective_experience_claim_allowed"] is False
+          assert g["accuracy_is_measured_not_declared"] is True
+          assert g["scheduled_code_mutation_allowed"] is False
+          print("SUPREME_NLP_AUTOMISSION_V2_GATE: PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-automission-v2-${{ github.run_id }}
+          path: generated/supreme-nlp-v2/status.json
+          retention-days: 14
