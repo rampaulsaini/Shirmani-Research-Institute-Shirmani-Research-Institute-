@@ -16,6 +16,10 @@ REQUIRED_FILES = [
     "schemas/agent-governance.json",
     "factory/supreme_nlp_contract_qc.py",
     "factory/supreme_nlp_evaluation_qc.py",
+    "docs/supreme-nlp-automission-operational-contract-2026-10-02.md",
+    "factory/supreme_agent_orchestration_qc.py",
+    "docs/supreme-agent-orchestration-contract-2026-10-02.md",
+    "schemas/supreme-agent-cycle.schema.json",
 ]
 
 def fingerprint(paths):
@@ -39,6 +43,8 @@ def main():
     graph = ROOT / "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
     gov = ROOT / "schemas/agent-governance.json"
     schema = ROOT / "schemas/supreme-nlp-evaluation.schema.json"
+    health_schema = ROOT / "schemas/supreme-nlp-automission-health.schema.json"
+    agent_contract = ROOT / "docs/supreme-agent-orchestration-contract-2026-10-02.md"
 
     contract_text = contract.read_text(encoding="utf-8") if contract.exists() else ""
     graph_text = graph.read_text(encoding="utf-8") if graph.exists() else ""
@@ -84,6 +90,14 @@ def main():
         except json.JSONDecodeError:
             blockers.append("Supreme NLP evaluation schema is invalid.")
 
+    operational_contract = ROOT / "docs/supreme-nlp-automission-operational-contract-2026-10-02.md"
+    operational_status = "PASS" if operational_contract.is_file() else "BLOCKED"
+    if not operational_contract.is_file():
+        blockers.append("Operational contract is missing.")
+    agent_status = "PASS" if agent_contract.is_file() else "BLOCKED"
+    if not agent_contract.is_file():
+        blockers.append("Agent orchestration contract is missing.")
+
     contract_status = "PASS" if contract_text and not any("Contract" in x for x in blockers) else "BLOCKED"
     graph_status = "PASS" if graph_text and not any("Total graph" in x for x in blockers) else "BLOCKED"
     regression_status = "BLOCKED" if blockers else "PASS"
@@ -94,6 +108,8 @@ def main():
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
         "contract_status": contract_status,
+        "operational_contract_status": operational_status,
+        "agent_orchestration_status": agent_status,
         "schema_status": schema_status,
         "governance_status": governance_status,
         "graph_status": graph_status,

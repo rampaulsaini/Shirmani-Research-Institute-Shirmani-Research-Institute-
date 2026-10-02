@@ -197,3 +197,15 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Telemetry:** `generated/supreme-nlp-automission-health.json`
 - **Fail-closed:** missing contract/schema/governance/provenance blocks READY status.
 - **Boundary:** Automission health is operational evidence; it is not model accuracy or independent scientific verification.
+
+
+## 🧠 Supreme Multi-Agent Orchestration — 5-Minute Automission
+
+- **Agent contract:** [docs/supreme-agent-orchestration-contract-2026-10-02.md](docs/supreme-agent-orchestration-contract-2026-10-02.md)
+- **Machine-readable cycle schema:** [schemas/supreme-agent-cycle.schema.json](schemas/supreme-agent-cycle.schema.json)
+- **Deterministic orchestration QC:** [factory/supreme_agent_orchestration_qc.py](factory/supreme_agent_orchestration_qc.py)
+- **Five-minute workflow:** [.github/workflows/supreme-agent-orchestration.yml](.github/workflows/supreme-agent-orchestration.yml)
+- **Agent graph:** Intake → Planner → Research → Evidence → NLP Interpreter → ML/Signal → Security → Verification → QC → Publisher → Archive → Telemetry.
+- **State rule:** workflow execution never silently upgrades UNVERIFIED to VERIFIED.
+- **Signal boundary:** measurable biological/environmental/non-living signals may be translated into plain language, while measured signal, inference, interpretation, confidence, evidence and unknowns remain separate.
+- **Quality target:** accuracy, reproducibility, traceability, latency, robustness and safe failure are measured properties; “supreme accuracy” is not inserted as an unverified fact.
