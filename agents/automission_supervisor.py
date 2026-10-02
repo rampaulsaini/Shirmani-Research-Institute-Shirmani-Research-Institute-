@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from agents.impartiality_guard import merge_governance
+from agents.impartiality_guard import merge_governance
 
 
 def _load(path: str) -> dict[str, Any] | None:
