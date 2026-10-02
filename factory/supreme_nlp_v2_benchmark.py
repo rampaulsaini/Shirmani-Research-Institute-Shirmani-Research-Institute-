@@ -25,6 +25,8 @@ CASES=[
 def infer(text: str):
     tokens=re.findall(r"[\w\u0900-\u097F]+",text.lower())
     pos=sorted(set(tokens)&POS); neg=sorted(set(tokens)&NEG)
+    if "not" in tokens and any(t in POS or t in NEG for t in tokens):
+        return "neutral-or-uncertain", sorted(set(tokens)&(POS|NEG))
     if len(pos)>len(neg): return "positive-pattern",pos
     if len(neg)>len(pos): return "negative-pattern",neg
     return "neutral-or-uncertain",pos+neg
