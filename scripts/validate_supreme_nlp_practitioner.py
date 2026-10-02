@@ -16,14 +16,18 @@ def main():
         {"modality":"sensor","feature":"voltage","value":1.02,"quality":.96,"source":"s1"},
     ]
     rec=build_practitioner_record(rows,"वनस्पति संकेत क्या बताते हैं?")
-    assert rec["schema_version"]=="1.0"
+    assert rec["schema_version"]=="1.1"
     assert rec["result"]["status"]=="interpreted"
     f=rec["result"]["features"]
     assert 0<=f["confidence"]<=1 and 0<=f["agreement"]<=1
+    assert f["confidence_type"]=="heuristic_uncalibrated"
+    assert f["groups"]==3
+    assert f["contradiction_detected"] is False
     assert f["modalities"]==3 and f["sources"]==3
     assert len(rec["fingerprint"])==64
     assert rec["governance"]["fail_closed"] is True
     assert rec["governance"]["subjective_experience_claim_allowed"] is False
+    assert rec["governance"]["confidence_calibration_required"] is True
 
     # Multilingual intent/language routing must remain deterministic.
     assert detect_language("यह क्या है?")=="hi"
