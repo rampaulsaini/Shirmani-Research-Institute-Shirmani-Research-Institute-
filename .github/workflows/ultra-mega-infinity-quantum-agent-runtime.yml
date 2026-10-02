@@ -1,6 +1,8 @@
 name: SHIRMANI Ultra Mega Infinity Quantum Agent Runtime
 
 on:
+  pull_request:
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
