@@ -170,6 +170,15 @@ This is a research architecture: it does not grant unlimited authority to any pe
 
 
 
+## 🧠 SHIRMANI Supreme NLP — Continuous Evaluation & Multimodal Signal Contract
+
+- **Operating system:** [docs/supreme-nlp-operating-system-2026-10-02.md](docs/supreme-nlp-operating-system-2026-10-02.md)
+- **Signal schema:** [schemas/supreme-nlp-signal.schema.json](schemas/supreme-nlp-signal.schema.json)
+- **Evaluation gate:** [factory/supreme_nlp_evaluation.py](factory/supreme_nlp_evaluation.py)
+- **Continuous workflow:** [.github/workflows/supreme-nlp-continuous-evaluation.yml](.github/workflows/supreme-nlp-continuous-evaluation.yml)
+- **Boundary:** measured signal, model inference, interpretation, verification and unknown state remain distinct; workflow success is not scientific verification.
+- **Biological/environmental signals:** instrumented measurements may be translated into plain language, while subjective feeling or consciousness is never silently inferred as established fact.
+
 ## 🧠 SHIRMANI Supreme NLP Practitioner
 
 - **Canonical contract:** [docs/supreme-nlp-practitioner-contract.md](docs/supreme-nlp-practitioner-contract.md)
