@@ -40,3 +40,19 @@ pattern". That does not establish that a plant, animal or object experienced
 a human-like emotion. Establishing such a claim requires a domain-specific
 operational definition, controlled experiments, labelled data, independent
 replication and appropriate scientific review.
+
+
+## Heart-View source governance
+
+The Heart-View / Yatharth-Yug vocabulary is retained as user-authored source
+material. The governance layer records whether a statement is a source
+statement, observation, hypothesis, evidence-supported claim or independently
+verified claim.
+
+It also preserves counter-evidence. A generator cannot act as its own
+independent verifier, and a source statement is never promoted to scientific
+fact merely because it is repeated by an AI agent.
+
+The source profile is stored in
+`automation/heart-view-source-profile.json`, while the fail-closed claim
+guard is implemented in `agents/claim_guard.py`.
