@@ -173,6 +173,7 @@ jobs:
           test -s generated/canonical-index.json
           test -s generated/verse-corpus.jsonl
           test -s generated/factory-status.json
+          test -s generated/MULTIMODAL-SIGNAL-QC.json
           python3 - <<'PY'
           import json
           from pathlib import Path
