@@ -1,0 +1,29 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Supreme NLP Quality Gate",
+  "type":"object",
+  "required":["schema_version","generated_at","status","promotion_allowed","checks","failed_checks","metrics","calibration","governance","fingerprint"],
+  "properties":{
+    "schema_version":{"const":"supreme-nlp-quality-v1"},
+    "generated_at":{"type":"string","minLength":1},
+    "status":{"enum":["PASS","IMPROVEMENT_REQUIRED","BLOCKED"]},
+    "promotion_allowed":{"const":false},
+    "checks":{"type":"object"},
+    "failed_checks":{"type":"array","items":{"type":"string"}},
+    "metrics":{"type":"object","required":["quality","agreement","independent_sources","sample_count","drift","contradiction_index","confidence"]},
+    "calibration":{"type":"object"},
+    "governance":{
+      "type":"object",
+      "required":["fail_closed","subjective_experience_claim_allowed","scheduled_code_mutation_allowed","independent_verification_required","accuracy_is_measured_not_declared"],
+      "properties":{
+        "fail_closed":{"const":true},
+        "subjective_experience_claim_allowed":{"const":false},
+        "scheduled_code_mutation_allowed":{"const":false},
+        "independent_verification_required":{"const":true},
+        "accuracy_is_measured_not_declared":{"const":true}
+      }
+    },
+    "next_actions":{"type":"array","items":{"type":"string"}},
+    "fingerprint":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}
