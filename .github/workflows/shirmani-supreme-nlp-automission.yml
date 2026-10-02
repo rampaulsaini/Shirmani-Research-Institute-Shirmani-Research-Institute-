@@ -1,0 +1,111 @@
+name: SHIRMANI Supreme NLP Automission
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Execution mode"
+        required: true
+        default: "observe"
+        type: choice
+        options: [observe, verify, remediate]
+  schedule:
+    - cron: "*/5 * * * *"
+
+concurrency:
+  group: shirmani-supreme-nlp-automission
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  orchestrate:
+    name: Observe -> Verify -> Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      AUTOMISSION_MODE: ${{ inputs.mode || 'observe' }}
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Discover source and system state
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "mode=$AUTOMISSION_MODE"
+          echo "sha=$GITHUB_SHA"
+          echo "ref=$GITHUB_REF"
+          test -d .github/workflows
+          test -d docs
+
+      - name: Validate architecture
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f docs/SHIRMANI_SUPREME_NLP_AUTOMISSION_ARCHITECTURE.md
+          grep -q "Evidence boundary" docs/SHIRMANI_SUPREME_NLP_AUTOMISSION_ARCHITECTURE.md
+          grep -q "Independent Verification" docs/SHIRMANI_SUPREME_NLP_AUTOMISSION_ARCHITECTURE.md
+          grep -q "Controlled Self-Improvement" docs/SHIRMANI_SUPREME_NLP_AUTOMISSION_ARCHITECTURE.md
+
+      - name: Validate YAML workflow set
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import pathlib
+          files = list(pathlib.Path(".github/workflows").glob("*.y*ml"))
+          print(f"workflow_files={len(files)}")
+          if not files:
+              raise SystemExit("No workflow files found")
+          PY
+
+      - name: Run repository tests when available
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f pyproject.toml ]; then
+            python -m pip install --upgrade pip
+            python -m pip install -e ".[test]" 2>/dev/null || true
+          fi
+          if [ -d tests ]; then
+            python -m pytest -q tests
+          else
+            echo "No tests directory yet; verification remains pending."
+          fi
+
+      - name: Generate machine-readable audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .automission
+          python - <<'PY'
+          import json, os, pathlib, datetime
+          p = pathlib.Path(".automission/last-run.json")
+          record = {
+            "system": "SHIRMANI_SUPREME_NLP_AUTOMISSION",
+            "mode": os.environ.get("AUTOMISSION_MODE", "observe"),
+            "sha": os.environ.get("GITHUB_SHA"),
+            "ref": os.environ.get("GITHUB_REF"),
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "status": "observed",
+            "verification": "pending"
+          }
+          p.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n")
+          print(p.read_text())
+          PY
+
+      - name: Upload audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-automission-audit
+          path: .automission/last-run.json
+          if-no-files-found: error
