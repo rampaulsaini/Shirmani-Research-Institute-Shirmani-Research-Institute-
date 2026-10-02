@@ -29,6 +29,9 @@ jobs:
       - name: Validate Supreme NLP operating contract
         run: python3 factory/supreme_nlp_evaluation.py
 
+      - name: Run Supreme NLP safety and epistemic fixtures
+        run: python3 factory/supreme_nlp_evaluation.py
+
       - name: Validate JSON schema syntax
         run: python3 - <<'PY'
           import json
