@@ -20,6 +20,7 @@ class Signal:
     value: float
     quality: float = 1.0
     source: str = "unknown"
+    experiment_id: str = ""
     unit: str = ""
     baseline_mean: float | None = None
     baseline_std: float | None = None
@@ -49,6 +50,7 @@ def normalize(raw: dict[str, Any]) -> Signal:
         value=value,
         quality=clip(raw.get("quality",1.0)),
         source=str(raw.get("source","unknown")),
+        experiment_id=str(raw.get("experiment_id","")),
         unit=str(raw.get("unit","")),
         baseline_mean=num("baseline_mean"),
         baseline_std=num("baseline_std"),
@@ -103,6 +105,7 @@ def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
     quality=sum(x.quality for x in usable)/len(usable)
     modalities=len({x.modality for x in usable})
     sources=len({x.source for x in usable if x.source!="unknown"})
+    experiments=len({x.experiment_id for x in usable if x.experiment_id.strip()})
     anomaly=clip((spread/(abs(mean)+1e-9))/3.0)
     z=_zscores(usable)
     disagreement=_disagreement(usable)
@@ -128,6 +131,7 @@ def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
         "features":{
             "mean":mean,"spread":spread,"anomaly_score":anomaly,
             "quality":quality,"modalities":modalities,"source_count":sources,
+            "independent_experiment_count":experiments,
             "sample_count":len(usable),
             "baseline_z_score_mean":round(sum(z)/len(z),4) if z else None,
             "baseline_z_score_max_abs":round(max((abs(x) for x in z),default=0.0),4),
