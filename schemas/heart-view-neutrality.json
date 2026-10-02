@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "name": "shirmani-heart-view-neutrality-governance",
+  "purpose": "Deterministic, evidence-first neutrality contract for AI agents and Automission.",
+  "default_status": "unverified",
+  "fail_closed": true,
+  "claims_require_provenance": true,
+  "uncertainty_must_be_explicit": true,
+  "counterevidence_must_be_preserved": true,
+  "no_hidden_preference": true,
+  "no_unsupported_inference": true,
+  "no_automatic_verification": true,
+  "no_automatic_irreversible_action": true,
+  "human_authorization_required_for_external_side_effects": true,
+  "protected_user_source": {
+    "preserve_verbatim": true,
+    "path": "2026-09-20-shirmani-heart-view-request(2).md"
+  },
+  "output_contract": {
+    "required_fields": [
+      "claim",
+      "status",
+      "provenance",
+      "evidence",
+      "uncertainty",
+      "counterevidence",
+      "verification_state"
+    ],
+    "allowed_status": [
+      "user-authored",
+      "source-backed",
+      "hypothesis",
+      "unverified",
+      "verified"
+    ],
+    "allowed_verification_state": [
+      "not-reviewed",
+      "evidence-supported",
+      "independently-verified"
+    ]
+  }
+}

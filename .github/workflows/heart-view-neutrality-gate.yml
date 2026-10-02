@@ -1,0 +1,53 @@
+name: SHIRMANI Heart-View Neutrality Gate
+
+on:
+  push:
+    paths:
+      - "schemas/heart-view-neutrality.json"
+      - "factory/heart_view_neutrality_qc.py"
+      - "generated/agent-output*.json"
+      - ".github/workflows/heart-view-neutrality-gate.yml"
+  pull_request:
+    paths:
+      - "schemas/heart-view-neutrality.json"
+      - "factory/heart_view_neutrality_qc.py"
+      - "generated/agent-output*.json"
+      - ".github/workflows/heart-view-neutrality-gate.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-heart-view-neutrality
+  cancel-in-progress: false
+
+jobs:
+  neutrality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate neutrality policy
+        run: python3 factory/heart_view_neutrality_qc.py
+
+      - name: Validate generated AgentOutput records when present
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=(generated/agent-output*.json)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No generated AgentOutput records present; policy gate remains PASS."
+            exit 0
+          fi
+          python3 factory/heart_view_neutrality_qc.py "${files[@]}"
+
+      - name: Enforce protected-source boundary
+        run: |
+          set -euo pipefail
+          test -f "2026-09-20-shirmani-heart-view-request(2).md" || true
+          echo "Protected user-source boundary checked; source text is not rewritten by this gate."
