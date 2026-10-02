@@ -9,7 +9,7 @@ from dataclasses import dataclass, asdict
 from datetime import datetime, timezone
 from math import sqrt, isfinite
 from typing import Any, Iterable
-import hashlib, json, re
+import hashlib, json
 
 VERSION = "supreme-nlp-v3"
 
@@ -61,13 +61,30 @@ def _zscores(rows):
     return out
 
 def _disagreement(rows):
+    """Compare only compatible feature/unit groups in standardized space."""
     groups={}
-    for s in rows: groups.setdefault(s.modality,[]).append(s.value)
-    if len(groups)<2: return 0.0
-    means=[sum(v)/len(v) for v in groups.values()]
-    center=sum(means)/len(means)
-    scale=max(sum(abs(x) for x in means)/len(means),1e-9)
-    return clip(sqrt(sum((x-center)**2 for x in means)/len(means))/scale)
+    for s in rows:
+        if s.baseline_mean is None:
+            continue
+        key=(s.feature, s.unit)
+        groups.setdefault(key, {}).setdefault(s.modality, []).append(s)
+    scores=[]
+    for modality_groups in groups.values():
+        if len(modality_groups)<2:
+            continue
+        means=[]
+        for values in modality_groups.values():
+            zs=[]
+            for s in values:
+                sd=abs(s.baseline_std or 0.0)
+                if sd <= 1e-12:
+                    sd=max(abs(s.baseline_mean or 0.0),1.0)
+                zs.append((s.value-s.baseline_mean)/sd)
+            means.append(sum(zs)/len(zs))
+        center=sum(means)/len(means)
+        scale=max(sum(abs(x) for x in means)/len(means),1.0)
+        scores.append(sqrt(sum((x-center)**2 for x in means)/len(means))/scale)
+    return clip(sum(scores)/len(scores)) if scores else 0.0
 
 def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
     rows=[normalize(x) for x in signals]
@@ -103,7 +120,7 @@ def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
         },
         "features":{
             "mean":mean,"spread":spread,"anomaly_score":anomaly,
-            "quality":quality,"modalities":modalities,"independent_sources":sources,
+            "quality":quality,"modalities":modalities,"source_count":sources,
             "sample_count":len(usable),
             "baseline_z_score_mean":round(sum(z)/len(z),4) if z else None,
             "baseline_z_score_max_abs":round(max((abs(x) for x in z),default=0.0),4),
@@ -139,7 +156,17 @@ def calibration_report(probabilities, labels, bins=10):
     """Return Brier score and ECE for labelled evaluation data."""
     if len(probabilities)!=len(labels) or not probabilities:
         raise ValueError("probabilities and labels must have equal non-zero length")
-    p=[clip(x) for x in probabilities]
+    if not isinstance(bins, int) or isinstance(bins, bool) or bins <= 0:
+        raise ValueError("bins must be a positive integer")
+    try:
+        raw_p=[float(x) for x in probabilities]
+    except (TypeError, ValueError) as exc:
+        raise ValueError("probabilities must be numeric") from exc
+    if not all(isfinite(x) for x in raw_p):
+        raise ValueError("probabilities must be finite")
+    if any(x < 0.0 or x > 1.0 for x in raw_p):
+        raise ValueError("probabilities must be within [0, 1]")
+    p=raw_p
     y=[1 if bool(x) else 0 for x in labels]
     brier=sum((a-b)**2 for a,b in zip(p,y))/len(p)
     ece=0.0
