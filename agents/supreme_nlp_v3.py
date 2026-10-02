@@ -34,7 +34,10 @@ def normalize(raw: dict[str, Any]) -> Signal:
     def num(k):
         try:
             v = raw.get(k)
-            return None if v is None else float(v)
+            if v is None:
+                return None
+            value = float(v)
+            return value if isfinite(value) else None
         except (TypeError, ValueError):
             return None
     try: value=float(raw.get("value", 0.0))
@@ -65,6 +68,10 @@ def _disagreement(rows):
     groups={}
     for s in rows:
         if s.baseline_mean is None:
+            continue
+        # A missing unit cannot establish compatibility across modalities.
+        # Keep such rows out of disagreement rather than comparing raw scales.
+        if not s.unit.strip():
             continue
         key=(s.feature, s.unit)
         groups.setdefault(key, {}).setdefault(s.modality, []).append(s)
