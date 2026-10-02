@@ -75,3 +75,10 @@ Data → NLP → ML → Multimodal Intelligence → Agent Collaboration → Inde
 ## Current repository baseline
 
 The repository already contains a recent supreme AI-ML-NLP Automission quality-loop commit. This document extends that architecture into a single canonical graph and operating contract.
+
+
+## Multimodal signal-to-language extension
+
+Raw Signal → Quality → Calibration/Context → Normalization → Feature Representation → Pattern Detection → ML/NLP Inference → Evidence Lookup → Alternative Interpretations → Plain-Language Translation → Uncertainty → Independent Verification → Audit
+
+This extension supports instrumented audio, vibration, environmental, electrical/biopotential, chemical and multimodal sequences. It preserves the distinction between measured signal, detected pattern, model inference, interpretation, uncertainty and unresolved questions. A signal pattern is not automatically treated as proof of subjective feeling, consciousness or intention.
