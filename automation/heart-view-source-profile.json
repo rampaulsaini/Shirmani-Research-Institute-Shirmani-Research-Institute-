@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "profile": "SHIRMANI_HEART_VIEW_SOURCE",
+  "status": "USER_AUTHORED_SOURCE",
+  "preservation": {
+    "do_not_silently_rewrite": true,
+    "do_not_promote_to_scientific_fact": true,
+    "retain_original_provenance": true
+  },
+  "vocabulary": [
+    "शिरोमणि",
+    "शिरोमणि स्वरूप",
+    "हृदय दृष्टिकोण",
+    "निष्पक्ष समझ",
+    "शमीकरण यथार्थ सिद्धांत",
+    "यथार्थ युग",
+    "संपूर्ण संतुष्टि की निरंतरता",
+    "स्थाई परिचय",
+    "स्थाई स्वरूप",
+    "सर्वभौमिक सत्य प्रत्यक्ष समक्ष"
+  ],
+  "intended_public_value": [
+    "जीवों और वनस्पतियों का संरक्षण",
+    "प्रकृति और पृथ्वी की सुरक्षा",
+    "मानव समय और जीवन के महत्व पर जोर",
+    "स्वतंत्र निरीक्षण और आत्म-समझ को शिक्षा के रूप में साझा करना"
+  ],
+  "epistemic_rules": {
+    "source_statement": "attribute_to_source",
+    "observable_measurement": "report_as_observation",
+    "interpretation": "label_as_interpretation",
+    "hypothesis": "label_as_hypothesis",
+    "scientific_fact": "require_external_evidence",
+    "subjective_experience_claim": "require_validated_domain_evidence",
+    "uncertainty": "always_preserve"
+  }
+}
