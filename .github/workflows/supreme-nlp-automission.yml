@@ -11,6 +11,7 @@ on:
       - "factory/supreme_nlp_qc.py"
       - "scripts/validate_supreme_nlp.py"
       - "schemas/supreme-nlp-v2.schema.json"
+      - "scripts/validate_supreme_nlp_gate.py"
       - ".github/workflows/supreme-nlp-automission.yml"
   push:
     branches: [main]
@@ -23,6 +24,7 @@ on:
       - "schemas/supreme-nlp-record.schema.json"
       - "docs/SUPREME-NLP-ARCHITECTURE.md"
       - "factory/supreme_nlp_qc.py"
+      - "scripts/validate_supreme_nlp_gate.py"
       - ".github/workflows/supreme-nlp-automission.yml"
 
 permissions:
@@ -52,6 +54,8 @@ jobs:
           python -m py_compile agents/supreme_nlp.py agents/supreme_nlp_automission_v2.py agents/automission_supervisor.py factory/supreme_nlp_qc.py
           python scripts/validate_supreme_nlp.py
           python factory/supreme_nlp_qc.py
+      - name: Run Supreme NLP robustness matrix
+        run: python -m unittest discover -s tests -p 'test_supreme_nlp_robustness.py' -v
       - name: Validate Supreme NLP Automission V2 policy
         run: |
           python -c "from agents.supreme_nlp_automission_v2 import inspect; r=inspect([{\"value\":1.0,\"quality\":1.0}]); assert r[\"governance\"][\"fail_closed\"] and r[\"governance\"][\"independent_verification_required\"] and not r[\"governance\"][\"subjective_experience_claim_allowed\"]; print(\"SUPREME_NLP_AUTOMISSION_V2_POLICY_OK\")"
@@ -97,6 +101,9 @@ jobs:
 
       - name: Run Automission improvement audit
         run: python agents/automission_supervisor.py
+
+      - name: Validate fail-closed governance gate
+        run: python scripts/validate_supreme_nlp_gate.py
 
       - name: Validate generated record
         run: |
