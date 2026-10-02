@@ -47,7 +47,11 @@ def _stable(v: Any) -> str:
     return json.dumps(v,sort_keys=True,ensure_ascii=False,separators=(",",":"))
 
 def fingerprint(record: dict[str, Any]) -> str:
-    x=dict(record); x.pop("fingerprint",None)
+    x=dict(record)
+    x.pop("fingerprint",None)
+    provenance=dict(x.get("provenance") or {})
+    provenance.pop("fingerprint",None)
+    x["provenance"]=provenance
     return hashlib.sha256(_stable(x).encode()).hexdigest()
 
 def _agreement(rows: list[Observation]) -> float:
