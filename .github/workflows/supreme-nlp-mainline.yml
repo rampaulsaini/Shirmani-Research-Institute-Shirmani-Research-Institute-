@@ -1,0 +1,86 @@
+name: SHIRMANI Supreme NLP Mainline Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "factory/supreme_nlp.py"
+      - "schemas/supreme-nlp-pipeline.json"
+      - "schemas/supreme-nlp-record.schema.json"
+      - ".github/workflows/supreme-nlp-mainline.yml"
+      - "generated/source-units.jsonl"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-mainline
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate architecture contract
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("schemas/supreme-nlp-pipeline.json").read_text())
+          assert p["fail_closed"] is True
+          assert p["default_status"] == "unverified"
+          assert len(p["pipeline"]) >= 8
+          assert len(p["agents"]) >= 10
+          assert p["safeguards"]["workflow_success_is_not_verification"] is True
+          assert p["safeguards"]["provenance_required"] is True
+          assert p["safeguards"]["uncertainty_required"] is True
+          print("SUPREME_NLP_ARCHITECTURE=PASS")
+          PY
+      - name: Validate existing governance
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("schemas/agent-governance.json").read_text())
+          assert p["fail_closed"] is True
+          assert p["provenance_required_for_claims"] is True
+          assert p["fabrication_prohibited"] is True
+          print("AGENT_GOVERNANCE=PASS")
+          PY
+      - name: Compile Python
+        run: python3 -m py_compile factory/supreme_nlp.py
+      - name: Run Supreme NLP control plane
+        run: python3 factory/supreme_nlp.py
+      - name: Fail-closed epistemic gate
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          status=json.loads(Path("generated/supreme-nlp-status.json").read_text())
+          e=status["epistemic_policy"]
+          assert e["subjective_experience_direct_read"] is False
+          assert e["unverified_claims_remain_unverified"] is True
+          assert e["accuracy_is_measured_not_declared"] is True
+          for line in Path("generated/supreme-nlp-records.jsonl").read_text().splitlines():
+              if not line.strip():
+                  continue
+              r=json.loads(line)
+              assert r["schema_version"] == "supreme-nlp-v2"
+              assert r["result"]["verification"]["status"] == "NOT_VERIFIED"
+              assert r["result"]["interpretation"]["confidence_status"] == "UNCALIBRATED"
+          print("SUPREME_NLP_EPISTEMIC_GATE=PASS")
+          PY
+      - name: Upload deterministic report
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-mainline-${{ github.run_id }}
+          path: |
+            generated/supreme-nlp-status.json
+            generated/supreme-nlp-records.jsonl
+          if-no-files-found: error
+          retention-days: 14
