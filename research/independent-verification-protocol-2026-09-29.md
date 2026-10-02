@@ -37,3 +37,6 @@ A first-person experience can be preserved as testimony, but it does not by itse
 A record can move to VERIFIED only when the registry contains precise claim text, operational definition, independent source or reproducible experiment, counter-evidence review, provenance, reviewer identity/role, timestamp and explicit decision.
 
 The system is deliberately fail-closed.
+
+### v2 enforcement
+The machine-checkable fail-closed validator is defined in `scripts/independent_verification_gate.py`; the expanded lifecycle and measurable accuracy model are documented in `research/independent-verification-system-v2.md`. These additions do not convert any existing record to VERIFIED.
