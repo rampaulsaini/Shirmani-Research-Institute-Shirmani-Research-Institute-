@@ -199,6 +199,17 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Boundary:** Automission health is operational evidence; it is not model accuracy or independent scientific verification.
 
 
+
+
+## 🧪 Supreme NLP Benchmark & Controlled Self-Improvement
+
+- **Benchmark contract:** [docs/supreme-nlp-benchmark-and-self-improvement.md](docs/supreme-nlp-benchmark-and-self-improvement.md)
+- **Benchmark schema:** [schemas/supreme-nlp-benchmark-record.schema.json](schemas/supreme-nlp-benchmark-record.schema.json)
+- **Deterministic controller:** [factory/supreme_nlp_benchmark_controller.py](factory/supreme_nlp_benchmark_controller.py)
+- **Hardening test:** [tests/supreme_nlp_benchmark_controller.py](tests/supreme_nlp_benchmark_controller.py)
+- **Five-minute Automission:** [.github/workflows/supreme-nlp-benchmark-controller.yml](.github/workflows/supreme-nlp-benchmark-controller.yml)
+- **Self-improvement mode:** proposal-only; production self-modification is disabled and human authorization is required.
+- **Promotion rule:** benchmark evidence, regression checks, provenance and independent verification remain separate from workflow success.
 ## ⚛️ Ultra Mega Infinity Quantum AI–ML–NLP–Automission
 
 - **Architecture:** [docs/ultra-mega-infinity-quantum-ai-ml-nlp-automission.md](docs/ultra-mega-infinity-quantum-ai-ml-nlp-automission.md)
