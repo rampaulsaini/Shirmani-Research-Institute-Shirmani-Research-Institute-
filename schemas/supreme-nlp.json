@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shirmani Supreme NLP Record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "task_id",
+    "generated_at",
+    "pipeline",
+    "result",
+    "simple_language",
+    "fingerprint",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "supreme-nlp-v2"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "pipeline": {
+      "type": "string"
+    },
+    "simple_language": {
+      "type": "string"
+    },
+    "fingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "generator",
+        "contract",
+        "verification_status"
+      ]
+    },
+    "result": {
+      "type": "object",
+      "required": [
+        "status",
+        "verification"
+      ]
+    }
+  },
+  "additionalProperties": true
+}
