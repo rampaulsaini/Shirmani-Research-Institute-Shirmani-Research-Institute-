@@ -4,6 +4,16 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
+  pull_request:
+    branches: [main]
+    paths:
+      - "agents/supreme_nlp.py"
+      - "agents/supreme_nlp_multimodal.py"
+      - "agents/supreme_nlp_practitioner.py"
+      - "agents/supreme_nlp_quality.py"
+      - "schemas/supreme-nlp-*.json"
+      - "tests/test_supreme_nlp_*.py"
+      - ".github/workflows/supreme-nlp-quality-gate.yml"
   push:
     branches: [main]
     paths:
@@ -33,10 +43,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-
       - name: Compile quality layer
         run: python -m py_compile agents/supreme_nlp_quality.py
-
       - name: Validate schemas
         run: |
           python - <<'PY'
@@ -46,10 +54,8 @@ jobs:
               json.loads(p.read_text(encoding="utf-8"))
           print("SUPREME_NLP_SCHEMAS_OK")
           PY
-
       - name: Run NLP regression tests
         run: python -m unittest discover -s tests -p 'test_supreme_nlp*.py' -v
-
       - name: Generate and evaluate deterministic candidate
         run: |
           mkdir -p generated/supreme-nlp
@@ -58,7 +64,6 @@ jobs:
           from pathlib import Path
           from agents.supreme_nlp import build_record
           from agents.supreme_nlp_quality import evaluate
-
           rows=[
             {"modality":"electrical","feature":"signal","value":1.0,"quality":1.0,"source":"synthetic-a"},
             {"modality":"audio","feature":"signal","value":1.01,"quality":1.0,"source":"synthetic-b"},
@@ -71,13 +76,11 @@ jobs:
             {"modality":"thermal","feature":"signal","value":1.00,"quality":1.0,"source":"synthetic-c"},
             {"modality":"electrical","feature":"signal","value":1.01,"quality":1.0,"source":"synthetic-a"},
           ]
-          record=build_record(rows,"quality-gate-cycle")
-          report=evaluate(record)
+          report=evaluate(build_record(rows,"quality-gate-cycle"))
           Path("generated/supreme-nlp/quality-gate.json").write_text(
             json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(report,ensure_ascii=False,indent=2))
           PY
-
       - name: Enforce governance
         run: |
           python - <<'PY'
@@ -94,13 +97,11 @@ jobs:
           assert len(d["fingerprint"]) == 64
           print("SUPREME_NLP_QUALITY_GOVERNANCE: PASS")
           PY
-
       - uses: actions/upload-artifact@v4
         with:
           name: supreme-nlp-quality-gate-${{ github.run_id }}
           path: generated/supreme-nlp/quality-gate.json
           retention-days: 14
-
       - name: Emit summary
         run: |
           {
