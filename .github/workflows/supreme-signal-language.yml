@@ -11,7 +11,7 @@ on:
       - "tests/supreme_signal_language_test.py"
       - ".github/workflows/supreme-signal-language.yml"
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: shirmani-supreme-signal-language
   cancel-in-progress: true
@@ -42,11 +42,12 @@ jobs:
           assert 0 <= d["inference"]["confidence"] <= 1
           print("Signal-to-language fail-closed contract: PASS")
           PY
-      - name: Commit telemetry
-        run: |
-          git config user.name "shirmani-signal-language[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/supreme-nlp/signal-language.json generated/supreme-nlp/signal-input.jsonl
-          git diff --cached --quiet && exit 0
-          git commit -m "chore(supreme-nlp): refresh signal-to-language telemetry"
-          git push
+      - name: Publish telemetry artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-signal-language-${{ github.run_id }}
+          path: |
+            generated/supreme-nlp/signal-language.json
+            generated/supreme-nlp/signal-input.jsonl
+          if-no-files-found: error
+          retention-days: 14
