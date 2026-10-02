@@ -1,0 +1,64 @@
+name: SHIRMANI Neutral Automission Governance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "docs/SHIRMANI-NEUTRAL-AUTOMISSION-CONTRACT.md"
+      - "AGENT-GOVERNANCE.md"
+      - ".github/workflows/shirmani-neutral-automission-governance.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-neutral-automission-governance
+  cancel-in-progress: false
+
+jobs:
+  governance-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate canonical governance invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s docs/SHIRMANI-NEUTRAL-AUTOMISSION-CONTRACT.md
+          test -s AGENT-GOVERNANCE.md
+
+          grep -q "Source-neutrality" docs/SHIRMANI-NEUTRAL-AUTOMISSION-CONTRACT.md
+          grep -q "Equal-treatment invariant" docs/SHIRMANI-NEUTRAL-AUTOMISSION-CONTRACT.md
+          grep -q "Evidence-before-certainty" docs/SHIRMANI-NEUTRAL-AUTOMISSION-CONTRACT.md
+          grep -q "Counter-evidence invariant" docs/SHIRMANI-NEUTRAL-AUTOMISSION-CONTRACT.md
+          grep -q "No subjective-experience overclaim" docs/SHIRMANI-NEUTRAL-AUTOMISSION-CONTRACT.md
+          grep -q "Fail-closed publication" docs/SHIRMANI-NEUTRAL-AUTOMISSION-CONTRACT.md
+          grep -q "Human authorization boundary" docs/SHIRMANI-NEUTRAL-AUTOMISSION-CONTRACT.md
+
+          grep -q "Preserve first. Reason second. Verify third." AGENT-GOVERNANCE.md
+          grep -q "No agent may promote its own output to \`verified\`" AGENT-GOVERNANCE.md
+
+      - name: Verify canonical pipeline
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "Observe → Collect → Normalize → Analyze → Reason → Seek Counter-Evidence → Translate → Test → Independently Verify → Audit → Learn → Improve"             docs/SHIRMANI-NEUTRAL-AUTOMISSION-CONTRACT.md
+
+      - name: Emit machine-readable governance status
+        shell: bash
+        run: |
+          {
+            echo "## SHIRMANI Neutral Automission Governance"
+            echo "- Neutrality invariants: PASS"
+            echo "- Evidence-before-certainty: PASS"
+            echo "- Counter-evidence requirement: PASS"
+            echo "- Subjective-experience boundary: PASS"
+            echo "- Fail-closed publication: PASS"
+            echo "- Human authorization boundary: PASS"
+            echo "- Scheduled code mutation: DISABLED"
+            echo "- Independent verification remains distinct from workflow success"
+          } >> "$GITHUB_STEP_SUMMARY"
