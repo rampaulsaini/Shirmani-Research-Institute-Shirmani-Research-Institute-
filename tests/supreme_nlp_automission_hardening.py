@@ -19,6 +19,7 @@ def main():
     run("factory/supreme_nlp_contract_qc.py")
     run("factory/supreme_nlp_evaluation_qc.py")
     run("factory/supreme_nlp_automission_health.py")
+    run("tests/supreme_runtime_contract.py")
     record = json.loads(
         (ROOT / "generated/supreme-nlp-automission-health.json").read_text(encoding="utf-8")
     )
