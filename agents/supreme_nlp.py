@@ -85,9 +85,21 @@ def summarize(signals: Iterable[Dict[str, Any]]) -> Dict[str, Any]:
         return {"status": "insufficient_quality", "interpretation": None,
                 "signals": [asdict(s) for s in rows]}
 
-    mean = sum(s.value for s in usable) / len(usable)
-    variance = sum((s.value - mean) ** 2 for s in usable) / len(usable)
-    spread = sqrt(max(variance, 0.0))
+    # Compute moments on a bounded scale so adversarial finite magnitudes
+    # (e.g. +/-1e308) cannot overflow Python exponentiation.
+    scale = max(abs(s.value) for s in usable)
+    if scale == 0.0:
+        mean = 0.0
+        spread = 0.0
+    else:
+        scaled_values = [s.value / scale for s in usable]
+        mean_scaled = sum(scaled_values) / len(scaled_values)
+        variance_scaled = sum((v - mean_scaled) ** 2 for v in scaled_values) / len(scaled_values)
+        mean = mean_scaled * scale
+        spread_scaled = sqrt(max(variance_scaled, 0.0))
+        # Multiplication can itself overflow when scale is near float max.
+        import sys
+        spread = sys.float_info.max if spread_scaled > sys.float_info.max / scale else spread_scaled * scale
     quality = sum(s.quality for s in usable) / len(usable)
     modalities = len({s.modality for s in usable})
     sources = len({s.source for s in usable if s.source != "unknown"})
