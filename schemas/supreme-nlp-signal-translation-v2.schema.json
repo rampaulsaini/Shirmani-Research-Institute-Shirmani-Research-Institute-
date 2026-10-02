@@ -1,25 +1,50 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "SHIRMANI Supreme NLP Signal Translation Record v2",
-  "type": "object",
-  "required": ["record_id","timestamp","domain","source","signal","quality","features","context","model","inference","translation","confidence","evidence","alternatives","uncertainty","verification_state","audit"],
-  "properties": {
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Supreme NLP Signal Translation Record v2",
+  "type":"object",
+  "required":["record_id","timestamp","domain","source","signal","quality","features","context","model","inference","translation","confidence","calibration","ood","evidence","alternatives","uncertainty","verification_state","audit"],
+  "properties":{
     "record_id":{"type":"string","minLength":1},
     "timestamp":{"type":"string","minLength":1},
     "domain":{"type":"string","enum":["text","audio","image_video","environmental","plant","biological","machine","other"]},
     "source":{"type":"object","required":["source_id","provenance"],"properties":{"source_id":{"type":"string","minLength":1},"provenance":{"type":"array","items":{"type":"string"},"minItems":1}}},
     "signal":{"type":"object","required":["summary","unit_or_encoding"],"properties":{"summary":{"type":"string","minLength":1},"unit_or_encoding":{"type":"string","minLength":1}}},
     "quality":{"type":"object","required":["status"],"properties":{"status":{"type":"string","enum":["PASS","WARN","FAIL","UNKNOWN"]},"issues":{"type":"array","items":{"type":"string"}}}},
-    "features":{"type":"array","items":{"type":"string"}},
+    "features":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},
     "context":{"type":"object"},
     "model":{"type":"object","required":["name","version"],"properties":{"name":{"type":"string","minLength":1},"version":{"type":"string","minLength":1}}},
     "inference":{"type":"string","minLength":1},
     "translation":{"type":"string","minLength":1},
     "confidence":{"type":"object","required":["value","calibrated"],"properties":{"value":{"type":"number","minimum":0,"maximum":1},"calibrated":{"type":"boolean"}}},
-    "evidence":{"type":"array","items":{"type":"string"}},
-    "alternatives":{"type":"array","items":{"type":"string"}},
-    "uncertainty":{"type":"array","items":{"type":"string"},"minItems":1},
+    "calibration":{"type":"object","required":["method","status","error"],"properties":{
+      "method":{"type":"string","minLength":1},
+      "status":{"type":"string","enum":["MEASURED","UNMEASURED","INSUFFICIENT"]},
+      "error":{"type":"number","minimum":0}
+    }},
+    "ood":{"type":"object","required":["status","method"],"properties":{
+      "status":{"type":"string","enum":["IN_DISTRIBUTION","OUT_OF_DISTRIBUTION","UNKNOWN"]},
+      "method":{"type":"string","minLength":1}
+    }},
+    "evidence":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},
+    "alternatives":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},
+    "uncertainty":{"type":"array","items":{"type":"string","minLength":1},"minItems":1},
     "verification_state":{"type":"string","enum":["REGISTERED","UNVERIFIED","REVIEW","VERIFIED","BLOCKED","ABSTAIN"]},
-    "audit":{"type":"object","required":["pipeline_version","checks"],"properties":{"pipeline_version":{"type":"string","minLength":1},"checks":{"type":"array","items":{"type":"string"}}}}
-  }
+    "verification":{"type":"object","required":["verifier_id","method","artifact_ref","outcome","independence_attestation"],"properties":{
+      "verifier_id":{"type":"string","minLength":1},
+      "method":{"type":"string","minLength":1},
+      "artifact_ref":{"type":"string","minLength":1},
+      "outcome":{"type":"string","enum":["PASS","FAIL","INCONCLUSIVE"]},
+      "independence_attestation":{"type":"boolean"}
+    }},
+    "audit":{"type":"object","required":["pipeline_version","checks"],"properties":{"pipeline_version":{"type":"string","minLength":1},"checks":{"type":"array","items":{"type":"string"},"minItems":1}}}
+  },
+  "allOf":[{
+    "if":{"properties":{"verification_state":{"const":"VERIFIED"}},"required":["verification_state"]},
+    "then":{"required":["verification"],"properties":{
+      "confidence":{"properties":{"calibrated":{"const":true}}},
+      "calibration":{"properties":{"status":{"const":"MEASURED"}}},
+      "ood":{"properties":{"status":{"enum":["IN_DISTRIBUTION","UNKNOWN"]}}},
+      "verification":{"properties":{"outcome":{"const":"PASS"},"independence_attestation":{"const":true}}}
+    }}
+  }]
 }
