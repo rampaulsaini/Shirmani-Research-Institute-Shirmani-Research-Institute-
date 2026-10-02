@@ -1,0 +1,55 @@
+name: SHIRMANI Supreme Neutrality Gate
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "automation/supreme-neutrality-policy.json"
+      - "research/shirmani-heart-view-supreme-reasoning-neutral-evidence-contract.md"
+      - ".github/workflows/shirmani-supreme-neutrality-gate.yml"
+  schedule:
+    - cron: "17 */3 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  neutrality-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate policy invariants
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          p=json.loads(Path("automation/supreme-neutrality-policy.json").read_text(encoding="utf-8"))
+          assert p["principles"]["evidence_before_claim"] is True
+          assert p["principles"]["counter_evidence_required"] is True
+          assert p["principles"]["uncertainty_must_be_explicit"] is True
+          assert p["principles"]["independent_verification_required"] is True
+          assert p["automission_controls"]["production_code_mutation"] is False
+          assert p["automission_controls"]["automatic_merge"] is False
+          assert p["claim_policy"]["USER_FRAMEWORK"].startswith("Preserve faithfully")
+          assert p["multimodal_signal_policy"]["subjective_experience"]["direct_proof_from_signal"] is False
+          print("Supreme Neutrality Gate: PASS")
+          PY
+
+      - name: Validate reasoning contract
+        run: |
+          set -euo pipefail
+          f="research/shirmani-heart-view-supreme-reasoning-neutral-evidence-contract.md"
+          grep -q "What was observed?" "$f"
+          grep -q "What evidence could falsify the inference?" "$f"
+          grep -q "Observe -> Validate -> Reason -> Challenge -> Explain -> Verify -> Audit -> Improve." "$f"
+          grep -q "must distinguish" "$f"
+          echo "Reasoning contract: PASS"
+
+      - name: Fail-closed semantic check
+        run: |
+          set -euo pipefail
+          grep -q "No proposition becomes factual merely because it appears" research/shirmani-heart-view-supreme-reasoning-neutral-evidence-contract.md
+          echo "Fail-closed semantic boundary: PASS"
