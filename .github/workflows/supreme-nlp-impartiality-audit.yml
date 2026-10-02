@@ -1,0 +1,44 @@
+name: SHIRMANI Supreme NLP Impartiality Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "factory/supreme-nlp-impartiality-policy.json"
+      - "factory/supreme_nlp_impartiality_audit.py"
+      - "agents/supreme_nlp_agent.py"
+      - "agents/supreme_nlp_practitioner.py"
+      - "schemas/supreme-nlp-contract.json"
+      - ".github/workflows/supreme-nlp-impartiality-audit.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-impartiality-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run fail-closed impartiality audit
+        run: python3 factory/supreme_nlp_impartiality_audit.py
+      - name: Emit audit summary
+        run: |
+          {
+            echo "## Supreme NLP Impartiality Audit"
+            echo "- Preferred conclusion: NONE"
+            echo "- Evidence/counter-evidence separation: REQUIRED"
+            echo "- Subjective-experience claims: NOT inferred directly"
+            echo "- Independent verification: REQUIRED"
+            echo "- Repository mutation: DISABLED"
+          } >> "$GITHUB_STEP_SUMMARY"

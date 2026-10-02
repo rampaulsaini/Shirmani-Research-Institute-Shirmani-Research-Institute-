@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "name": "SHIRMANI Supreme NLP Impartiality Policy",
+  "purpose": "Keep interpretation neutral by separating observations, inferences, hypotheses, verification and publication.",
+  "fail_closed": true,
+  "preferred_conclusion": null,
+  "decision_rule": "Evidence determines status; neither the user's preferred conclusion nor the model's preferred conclusion is evidence.",
+  "claim_levels": {
+    "observation": "OBSERVED",
+    "deterministic_transformation": "DERIVED",
+    "model_interpretation": "INFERRED",
+    "unresolved_explanation": "HYPOTHESIS",
+    "independent_check": "VERIFIED"
+  },
+  "mandatory_fields": [
+    "evidence_refs",
+    "counter_evidence_refs",
+    "uncertainty",
+    "verification_status",
+    "provenance"
+  ],
+  "forbidden_shortcuts": [
+    "treating repetition as evidence",
+    "treating authority as evidence",
+    "treating model confidence as proof",
+    "suppressing credible counter-evidence",
+    "promoting an inference to a fact without verification",
+    "using a preferred conclusion to choose evidence"
+  ],
+  "high_impact_rule": "Human approval remains required for consequential external actions."
+}
