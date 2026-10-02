@@ -1,6 +1,12 @@
 name: Nishpaksh AI-ML-NLP-Automission v2
 
 on:
+  pull_request:
+    paths:
+      - "docs/yatharth-governance/nishpaksh-ai-automission-v2.md"
+      - "factory/nishpaksh_automission_v2_qc.py"
+      - "schemas/agent-governance.json"
+      - ".github/workflows/nishpaksh-automission-v2.yml"
   push:
     branches: [main]
     paths:
