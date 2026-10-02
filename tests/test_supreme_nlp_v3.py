@@ -38,6 +38,21 @@ def main():
     assert m["f1"] == .5
     assert m["tp"] == 1 and m["fp"] == 1 and m["fn"] == 1 and m["tn"] == 1
 
+    # Strict binary validation must apply consistently to predictions/labels.
+    for bad in ("false", "true", "yes"):
+        try:
+            classification_report([1], [bad])
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("ambiguous classification labels must be rejected")
+        try:
+            selective_risk([1], [bad], [False])
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("ambiguous selective-risk labels must be rejected")
+
     s=selective_risk([1,1,0,0],[1,0,1,0],[False,True,False,False])
     assert s["coverage"] == .75
     assert s["abstention_rate"] == .25
@@ -58,6 +73,15 @@ def main():
     missing=drift_report(reference,[{"feature":"other","unit":"ms","value":10}])
     assert missing["drift_detected"] is True
     assert missing["features"]["latency|ms"]["status"] == "INSUFFICIENT_EVIDENCE"
+
+    # Invalid drift thresholds must fail closed instead of accepting NaN/zero.
+    for bad in (0, -1, float("nan"), float("inf")):
+        try:
+            drift_report(reference,current,bad)
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("invalid drift thresholds must be rejected")
 
     print("SUPREME_NLP_V3_CONTRACT=PASS")
 
