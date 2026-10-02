@@ -1,6 +1,7 @@
 name: SHIRMANI Evidence-to-VERIFIED Control Plane
 on:
   workflow_dispatch:
+  pull_request:
   schedule:
     - cron: "*/5 * * * *"
   push:
