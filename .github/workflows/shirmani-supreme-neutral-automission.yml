@@ -1,0 +1,36 @@
+name: SHIRMANI Supreme Neutral Automission
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-neutral-automission
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate configuration
+        run: python3 -m json.tool config/supreme_nlp.json >/dev/null
+
+      - name: Run deterministic neutrality/evidence audit
+        run: python3 scripts/supreme_automission_audit.py
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-neutral-audit
+          path: automation/reports/supreme-neutral-audit.json
+          if-no-files-found: error
+          retention-days: 14
