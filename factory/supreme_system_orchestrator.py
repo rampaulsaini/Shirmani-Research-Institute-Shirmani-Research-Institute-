@@ -5,6 +5,7 @@ import hashlib,json,subprocess
 from datetime import datetime,timezone
 from pathlib import Path
 from typing import Any
+from agents.impartiality_guard import merge_governance
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"generated"/"supreme-orchestrator"
@@ -18,6 +19,7 @@ GATES=[
 ("verification_promotion_gate","factory/verification_promotion_gate.py"),
 ("publication_gate","factory/publication_gate.py"),
 ("nlp_benchmark","factory/supreme_nlp_benchmark.py"),
+("impartiality_governance","factory/impartiality_governance_gate.py"),
 ]
 REQUIRED=[
 "agents/automission_supervisor.py",
@@ -100,7 +102,7 @@ def main()->int:
             "verified_records":0,
             "note":"Empty ledgers are intentional until evidence-backed claims are submitted; no verification is fabricated."
         },
-        "governance":{
+        "governance":merge_governance({
             "fail_closed":True,
             "scheduled_code_mutation_allowed":False,
             "subjective_experience_claim_allowed":False,
@@ -108,7 +110,7 @@ def main()->int:
             "human_review_for_high_impact_actions":True,
             "accuracy_is_measured_not_declared":True,
             "synthetic_regression_benchmark_required":True,
-        },
+        }),
     }
     d["fingerprint"]=hashlib.sha256(
         json.dumps(d,sort_keys=True,ensure_ascii=False).encode()
