@@ -47,6 +47,8 @@ def main() -> int:
         "v3_unverified": interpretation["verification_status"] == "UNVERIFIED",
         "v3_confidence_uncalibrated": interpretation["confidence_status"] == "UNCALIBRATED",
         "v3_calibration_required": interpretation["calibration_required"] is True,
+        "v3_experiment_provenance_declared": v3["features"].get("experiment_provenance_status") in {"DECLARED_IDENTIFIERS_ONLY", "MISSING_EXPERIMENT_IDENTIFIERS"},
+        "v3_independent_replication_unverified": v3_record["provenance"].get("independent_replication_verified") is False,
         "v3_promotion_blocked": True,
         "simple_language_present": bool(v3_record["simple_language"].strip()),
         "fingerprint_present": bool(v3_record["fingerprint"].strip()),
@@ -71,6 +73,9 @@ def main() -> int:
             "verification_status": interpretation.get("verification_status"),
             "abstention": interpretation.get("abstention"),
             "calibration_required": interpretation.get("calibration_required"),
+            "experiment_provenance_status": v3["features"].get("experiment_provenance_status"),
+            "independent_experiment_count": v3["features"].get("independent_experiment_count"),
+            "independent_replication_verified": v3_record["provenance"].get("independent_replication_verified"),
             "fingerprint": v3_record["fingerprint"],
             "simple_language": v3_record["simple_language"],
         },
@@ -81,6 +86,7 @@ def main() -> int:
             "independent_verification_required": True,
             "production_code_mutation_allowed": False,
             "promotion_requires_independent_evidence": True,
+            "declared_experiment_identifiers_are_not_replication": True,
         },
     }
     report["fingerprint"] = canonical_hash(report)
