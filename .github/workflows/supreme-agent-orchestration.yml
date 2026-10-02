@@ -1,0 +1,51 @@
+name: SHIRMANI Supreme Agent Orchestration
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-agent-orchestration-contract-2026-10-02.md"
+      - "schemas/supreme-agent-cycle.schema.json"
+      - "schemas/agent-governance.json"
+      - "factory/supreme_agent_orchestration_qc.py"
+      - ".github/workflows/supreme-agent-orchestration.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-agent-orchestration
+  cancel-in-progress: true
+
+jobs:
+  orchestration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate agent orchestration contract
+        run: python3 factory/supreme_agent_orchestration_qc.py
+
+      - name: Validate existing NLP gates
+        run: |
+          python3 factory/supreme_nlp_contract_qc.py
+          python3 factory/supreme_nlp_evaluation_qc.py
+
+      - name: Validate operational health contract
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          required = [
+              "docs/supreme-nlp-automission-operational-contract-2026-10-02.md",
+              "schemas/supreme-nlp-automission-health.schema.json",
+              "factory/supreme_nlp_automission_health.py",
+          ]
+          missing = [p for p in required if not Path(p).is_file()]
+          if missing:
+              raise SystemExit("Operational health artifacts missing: " + ", ".join(missing))
+          print("Operational health contract: PASS")
+          PY
