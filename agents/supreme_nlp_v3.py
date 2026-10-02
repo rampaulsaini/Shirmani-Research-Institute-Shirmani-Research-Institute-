@@ -2,7 +2,7 @@
 
 Observable-signal interpretation only. No fluent output is treated as proof of
 subjective experience. The layer is deterministic and exposes abstention,
-disagreement, provenance and calibration requirements.
+disagreement, provenance, calibration and drift diagnostics.
 """
 from __future__ import annotations
 from dataclasses import dataclass, asdict
@@ -132,7 +132,7 @@ def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
 def simple_language(result):
     if result.get("status")!="interpreted":
         return "अभी पर्याप्त गुणवत्ता वाला संकेत उपलब्ध नहीं है; इसलिए विश्वसनीय व्याख्या नहीं दी जा सकती।"
-    i=result["interpretation"]; f=result["features"]
+    i=result["interpretation"]
     if i["abstention"]:
         return "संकेतों में पर्याप्त अनिश्चितता या modality disagreement है; प्रणाली ने सुरक्षित रूप से निष्कर्ष से विराम लिया है।"
     return f"मिले संकेतों में '{i['state']}' जैसा observable pattern है। प्रारंभिक uncalibrated confidence {i['confidence']:.0%} है। यह किसी जीव के प्रत्यक्ष भाव या चेतना का प्रमाण नहीं है।"
@@ -178,3 +178,68 @@ def calibration_report(probabilities, labels, bins=10):
             conf=sum(p[i] for i in idx)/len(idx)
             ece += len(idx)/len(p)*abs(acc-conf)
     return {"brier_score":round(brier,6),"expected_calibration_error":round(ece,6),"sample_count":len(p),"status":"CALIBRATED_EVALUATION"}
+
+def classification_report(predictions, labels):
+    """Compute deterministic binary precision/recall/F1 and confusion counts."""
+    if len(predictions) != len(labels) or not predictions:
+        raise ValueError("predictions and labels must have equal non-zero length")
+    p=[1 if bool(x) else 0 for x in predictions]
+    y=[1 if bool(x) else 0 for x in labels]
+    tp=sum(a==1 and b==1 for a,b in zip(p,y))
+    fp=sum(a==1 and b==0 for a,b in zip(p,y))
+    fn=sum(a==0 and b==1 for a,b in zip(p,y))
+    tn=sum(a==0 and b==0 for a,b in zip(p,y))
+    precision=tp/(tp+fp) if tp+fp else 0.0
+    recall=tp/(tp+fn) if tp+fn else 0.0
+    f1=2*precision*recall/(precision+recall) if precision+recall else 0.0
+    accuracy=(tp+tn)/len(y)
+    return {"precision":round(precision,6),"recall":round(recall,6),"f1":round(f1,6),"accuracy":round(accuracy,6),"tp":tp,"fp":fp,"fn":fn,"tn":tn,"sample_count":len(y)}
+
+def selective_risk(predictions, labels, abstentions):
+    """Measure error only on accepted predictions and expose coverage/abstention."""
+    if not (len(predictions)==len(labels)==len(abstentions)) or not predictions:
+        raise ValueError("predictions, labels and abstentions must have equal non-zero length")
+    p=[1 if bool(x) else 0 for x in predictions]
+    y=[1 if bool(x) else 0 for x in labels]
+    a=[bool(x) for x in abstentions]
+    accepted=[i for i,x in enumerate(a) if not x]
+    errors=sum(p[i] != y[i] for i in accepted)
+    total=len(y)
+    coverage=len(accepted)/total
+    return {"selective_risk":round(errors/len(accepted),6) if accepted else 1.0,"coverage":round(coverage,6),"abstention_rate":round(1-coverage,6),"accepted_count":len(accepted),"sample_count":total}
+
+def drift_report(reference, current, threshold=2.0):
+    """Screen feature drift using absolute standardized mean shifts.
+
+    This is a screening diagnostic, not proof of distributional change. Missing
+    feature groups fail closed as INSUFFICIENT_EVIDENCE.
+    """
+    if threshold <= 0 or not isfinite(float(threshold)):
+        raise ValueError("threshold must be a positive finite number")
+    ref=[normalize(x) for x in reference]
+    cur=[normalize(x) for x in current]
+    ref_groups={}
+    cur_groups={}
+    for row in ref:
+        ref_groups.setdefault((row.feature,row.unit),[]).append(row.value)
+    for row in cur:
+        cur_groups.setdefault((row.feature,row.unit),[]).append(row.value)
+    keys=sorted(set(ref_groups)|set(cur_groups))
+    if not keys:
+        return {"status":"INSUFFICIENT_EVIDENCE","drift_detected":False,"features":{}}
+    features={}
+    drift=False
+    for key in keys:
+        rv=ref_groups.get(key,[]); cv=cur_groups.get(key,[])
+        if not rv or not cv:
+            features["|".join(key)]={"status":"INSUFFICIENT_EVIDENCE"}
+            drift=True
+            continue
+        rm=sum(rv)/len(rv); cm=sum(cv)/len(cv)
+        rs=sqrt(sum((x-rm)**2 for x in rv)/len(rv))
+        scale=max(rs,1e-12)
+        shift=abs(cm-rm)/scale
+        flagged=shift>=threshold
+        drift=drift or flagged
+        features["|".join(key)]={"reference_mean":rm,"current_mean":cm,"standardized_shift":round(shift,6),"drift":flagged}
+    return {"status":"DRIFT_DETECTED" if drift else "NO_DRIFT_DETECTED","drift_detected":drift,"threshold":float(threshold),"features":features}
