@@ -4,7 +4,10 @@
   "verification_summary": {
     "queue_records": 10,
     "independently_verified_records": 0,
-    "independent_verified_percent": 0
+    "independent_verified_percent": 0,
+    "evidence_supported_records": 4,
+    "author_defined_or_proposed_records": 2,
+    "not_verified_records": 4
   },
   "records": [
     {
@@ -42,7 +45,8 @@
       "reviewer_decision": {
         "decision": "PENDING"
       },
-      "source_status": "EVIDENCE-SUPPORTED"
+      "source_status": "EVIDENCE-SUPPORTED",
+      "status": "EVIDENCE-SUPPORTED"
     },
     {
       "id": "IV-002",
@@ -78,7 +82,8 @@
       "reviewer_decision": {
         "decision": "PENDING"
       },
-      "source_status": "EVIDENCE-SUPPORTED"
+      "source_status": "EVIDENCE-SUPPORTED",
+      "status": "EVIDENCE-SUPPORTED"
     },
     {
       "id": "IV-003",
@@ -115,7 +120,8 @@
       "reviewer_decision": {
         "decision": "PENDING"
       },
-      "source_status": "EVIDENCE-SUPPORTED"
+      "source_status": "EVIDENCE-SUPPORTED",
+      "status": "EVIDENCE-SUPPORTED"
     },
     {
       "id": "IV-004",
@@ -152,7 +158,8 @@
       "reviewer_decision": {
         "decision": "PENDING"
       },
-      "source_status": "EVIDENCE-SUPPORTED"
+      "source_status": "EVIDENCE-SUPPORTED",
+      "status": "EVIDENCE-SUPPORTED"
     },
     {
       "id": "IV-005",
@@ -188,7 +195,8 @@
       "reviewer_decision": {
         "decision": "PENDING"
       },
-      "source_status": "AUTHOR-DEFINED"
+      "source_status": "AUTHOR-DEFINED",
+      "status": "AUTHOR-DEFINED"
     },
     {
       "id": "IV-006",
@@ -222,7 +230,8 @@
       "reviewer_decision": {
         "decision": "PENDING"
       },
-      "source_status": "NOT_VERIFIED"
+      "source_status": "NOT_VERIFIED",
+      "status": "NOT_VERIFIED"
     },
     {
       "id": "IV-007",
@@ -256,7 +265,8 @@
       "reviewer_decision": {
         "decision": "PENDING"
       },
-      "source_status": "NOT_VERIFIED"
+      "source_status": "NOT_VERIFIED",
+      "status": "NOT_VERIFIED"
     },
     {
       "id": "IV-008",
@@ -290,7 +300,8 @@
       "reviewer_decision": {
         "decision": "PENDING"
       },
-      "source_status": "NOT_VERIFIED"
+      "source_status": "NOT_VERIFIED",
+      "status": "NOT_VERIFIED"
     },
     {
       "id": "IV-009",
@@ -324,7 +335,8 @@
       "reviewer_decision": {
         "decision": "PENDING"
       },
-      "source_status": "NOT_VERIFIED"
+      "source_status": "NOT_VERIFIED",
+      "status": "NOT_VERIFIED"
     },
     {
       "id": "IV-010",
@@ -358,7 +370,8 @@
       "reviewer_decision": {
         "decision": "PENDING"
       },
-      "source_status": "AUTHOR-PROPOSED"
+      "source_status": "AUTHOR-PROPOSED",
+      "status": "AUTHOR-PROPOSED"
     }
   ]
-}\n
+}
