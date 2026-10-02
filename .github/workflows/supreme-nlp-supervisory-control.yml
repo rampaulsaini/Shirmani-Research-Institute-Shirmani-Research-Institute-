@@ -1,0 +1,45 @@
+name: SHIRMANI Supreme NLP Supervisory Control
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-supervisory-control.md"
+      - "schemas/supreme-nlp-supervisory-control.schema.json"
+      - "factory/supreme_nlp_supervisory_control.py"
+      - "tests/supreme_nlp_supervisory_control.py"
+      - "factory/supreme_nlp_*.py"
+      - "schemas/agent-governance.json"
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-supervisory-control
+  cancel-in-progress: true
+
+jobs:
+  supervisor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run supervisory controller
+        run: python3 factory/supreme_nlp_supervisory_control.py
+      - name: Run supervisory hardening test
+        run: python3 tests/supreme_nlp_supervisory_control.py
+      - name: Upload supervisory telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-supervisory-control-${{ github.run_id }}
+          path: generated/supreme-nlp-supervisory-control.json
+          if-no-files-found: error
+          retention-days: 14
