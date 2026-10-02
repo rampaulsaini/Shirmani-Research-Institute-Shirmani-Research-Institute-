@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from math import sqrt, isfinite
 from typing import Any, Dict, Iterable
 import hashlib, json
+from agents.impartiality_guard import merge_governance
 
 VERSION = "supreme-nlp-v2"
 
@@ -171,4 +172,11 @@ def build_record(signals: Iterable[Dict[str, Any]], task_id: str) -> Dict[str, A
             "contract": "observable-signal-only",
             "verification_status": "UNVERIFIED",
         },
+        "governance": merge_governance({
+            "fail_closed": True,
+            "scheduled_code_mutation_allowed": False,
+            "subjective_experience_claim_allowed": False,
+            "independent_verification_required": True,
+            "accuracy_is_measured_not_declared": True,
+        }),
     }
