@@ -82,7 +82,9 @@ def main()->int:
     # then execute all fail-closed gates.
     seed_nlp_status()
     ensure_empty_verification_ledgers()
-    gates=[run_gate(n,p) for n,p in GATES]
+    e2e=subprocess.run(["python","-m","unittest","tests/test_supreme_nlp_end_to_end.py","-v"],cwd=ROOT,text=True,capture_output=True,timeout=180)
+    e2e_gate={"name":"supreme_nlp_end_to_end","status":"PASS" if e2e.returncode==0 else "BLOCK","returncode":e2e.returncode,"stdout_tail":e2e.stdout[-2000:],"stderr_tail":e2e.stderr[-2000:]}
+    gates=[run_gate(n,p) for n,p in GATES]+[e2e_gate]
 
     ok=not missing and all(g["status"]=="PASS" for g in gates)
     d={
