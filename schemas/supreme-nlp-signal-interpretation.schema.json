@@ -1,0 +1,26 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Supreme NLP Signal Interpretation Record",
+  "type":"object",
+  "required":["record_id","timestamp","signal_modality","source_provenance","acquisition_context","quality_status","detected_pattern","model","task_scope","inference","uncertainty","evidence","alternative_interpretations","unresolved_questions","verification_state"],
+  "properties":{
+    "record_id":{"type":"string","minLength":1},
+    "timestamp":{"type":"string","minLength":1},
+    "signal_modality":{"type":"string","enum":["text","speech","audio","vibration","image","video","environmental","electrical","biopotential","chemical","multimodal","other"]},
+    "source_provenance":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},
+    "acquisition_context":{"type":"string","minLength":1},
+    "quality_status":{"type":"string","enum":["PASS","REVIEW","BLOCKED"]},
+    "detected_pattern":{"type":"string","minLength":1},
+    "model":{"type":"object","required":["name","version"],"properties":{"name":{"type":"string","minLength":1},"version":{"type":"string","minLength":1}},"additionalProperties":false},
+    "task_scope":{"type":"string","minLength":1},
+    "inference":{"type":"string","minLength":1},
+    "uncertainty":{"type":"string","minLength":1},
+    "evidence":{"type":"array","items":{"type":"string"}},
+    "alternative_interpretations":{"type":"array","items":{"type":"string"}},
+    "unresolved_questions":{"type":"array","items":{"type":"string"}},
+    "subjective_experience_claim":{"type":"boolean"},
+    "verification_state":{"type":"string","enum":["REGISTERED","UNVERIFIED","REVIEW","VERIFIED","BLOCKED"]},
+    "plain_language":{"type":"string"}
+  },
+  "additionalProperties":false
+}

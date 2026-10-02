@@ -16,6 +16,9 @@ REQUIRED = [
     "factory/supreme_nlp_contract_qc.py",
     "factory/supreme_nlp_evaluation_qc.py",
     "factory/supreme_nlp_automission_health.py",
+    "docs/supreme-nlp-multimodal-signal-language-contract.md",
+    "schemas/supreme-nlp-signal-interpretation.schema.json",
+    "factory/supreme_nlp_signal_interpretation_qc.py",
 ]
 
 STAGES = ["observe","collect","normalize","analyze","reason","execute","test","verify","audit","learn","improve"]
@@ -55,6 +58,7 @@ def main():
         ("contract_qc", "factory/supreme_nlp_contract_qc.py"),
         ("evaluation_qc", "factory/supreme_nlp_evaluation_qc.py"),
         ("health_qc", "factory/supreme_nlp_automission_health.py"),
+        ("signal_interpretation_qc", "factory/supreme_nlp_signal_interpretation_qc.py"),
     ]:
         if Path(path).exists():
             gates[name] = gate(path)

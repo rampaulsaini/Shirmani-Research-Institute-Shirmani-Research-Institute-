@@ -12,6 +12,10 @@ on:
       - "factory/ultra_mega_infinity_quantum_automission.py"
       - "tests/ultra_mega_infinity_quantum_automission.py"
       - "schemas/agent-governance.json"
+      - "docs/supreme-nlp-multimodal-signal-language-contract.md"
+      - "schemas/supreme-nlp-signal-interpretation.schema.json"
+      - "factory/supreme_nlp_signal_interpretation_qc.py"
+      - "tests/supreme_nlp_signal_interpretation.py"
   pull_request:
     branches: [main]
 
@@ -30,6 +34,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run supreme orchestrator
         run: python3 factory/ultra_mega_infinity_quantum_automission.py
+      - name: Run multimodal signal gate
+        run: python3 factory/supreme_nlp_signal_interpretation_qc.py
+      - name: Run multimodal signal hardening test
+        run: python3 tests/supreme_nlp_signal_interpretation.py
       - name: Run hardening test
         run: python3 tests/ultra_mega_infinity_quantum_automission.py
       - name: Upload cycle telemetry
