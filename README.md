@@ -177,3 +177,13 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Continuous gate:** [.github/workflows/supreme-nlp-contract.yml](.github/workflows/supreme-nlp-contract.yml)
 - **Pipeline:** Signal → Quality Check → Normalization → Representation → Context → Inference → Plain-Language Translation → Confidence → Evidence → Independent Verification → Audit.
 - **Integrity boundary:** measured signals, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
+
+
+## 🧠 SHIRMANI HEART-VIEW SUPREME REASONING LAYER — 2026-10
+
+- **Canonical layer:** [docs/heart-view-supreme-reasoning-layer.md](docs/heart-view-supreme-reasoning-layer.md)
+- **NLP evaluation standard:** [docs/supreme-nlp-evaluation-standard.md](docs/supreme-nlp-evaluation-standard.md)
+- **Multimodal signal contract:** [schemas/multimodal-signal-record.schema.json](schemas/multimodal-signal-record.schema.json)
+- **Control-plane QC:** [factory/supreme_nlp_control_qc.py](factory/supreme_nlp_control_qc.py)
+- **Five-minute control loop:** [.github/workflows/supreme-ai-control-loop.yml](.github/workflows/supreme-ai-control-loop.yml)
+- **Accuracy principle:** measured, benchmarked and independently verified; workflow success alone is never treated as scientific proof.
