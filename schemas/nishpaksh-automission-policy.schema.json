@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/nishpaksh-automission-policy.schema.json",
+  "title": "SHIRMANI Nishpaksh Automission Policy",
+  "type": "object",
+  "required": ["policy_version","fail_closed","evidence_boundary","promotion_rules","prohibited_shortcuts"],
+  "properties": {
+    "policy_version": {"type":"string"},
+    "fail_closed": {"const": true},
+    "evidence_boundary": {
+      "type":"object",
+      "required":["observable_signal_only","subjective_experience_direct_proof_allowed"],
+      "properties": {
+        "observable_signal_only": {"const": true},
+        "subjective_experience_direct_proof_allowed": {"const": false}
+      }
+    },
+    "promotion_rules": {
+      "type":"object",
+      "required":["independent_verification_required","counter_evidence_required","calibration_required_for_calibrated_confidence"],
+      "properties": {
+        "independent_verification_required": {"const": true},
+        "counter_evidence_required": {"const": true},
+        "calibration_required_for_calibrated_confidence": {"const": true}
+      }
+    },
+    "prohibited_shortcuts": {
+      "type":"array",
+      "items":{"type":"string"}
+    }
+  }
+}
