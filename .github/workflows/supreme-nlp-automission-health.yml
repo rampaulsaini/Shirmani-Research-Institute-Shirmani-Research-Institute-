@@ -14,6 +14,8 @@ on:
       - "schemas/supreme-nlp-*.json"
       - "schemas/agent-governance.json"
       - "factory/supreme_nlp_*.py"
+      - "docs/supreme-nlp-signal-to-language-contract-2026-10-02.md"
+      - "schemas/supreme-nlp-signal-interpretation.schema.json"
       - ".github/workflows/supreme-nlp-automission-health.yml"
 
 permissions:
@@ -30,26 +32,43 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Python syntax gate
+        run: python3 -m py_compile factory/supreme_nlp_contract_qc.py factory/supreme_nlp_evaluation_qc.py factory/supreme_nlp_automission_health.py
+
+      - name: Practitioner contract gate
+        run: python3 factory/supreme_nlp_contract_qc.py
+
+      - name: Evaluation schema gate
+        run: python3 factory/supreme_nlp_evaluation_qc.py
+
+      - name: Signal interpretation contract gate
+        run: python3 factory/supreme_nlp_signal_contract_qc.py
+
       - name: Run deterministic Automission health gate
         run: python3 factory/supreme_nlp_automission_health.py
 
       - name: Validate generated health record
-        run: python3 - <<'PY'
-        import json
-        from pathlib import Path
-        p = Path("generated/supreme-nlp-automission-health.json")
-        data = json.loads(p.read_text(encoding="utf-8"))
-        required = {
-          "event_id", "timestamp", "repository", "contract_status",
-          "schema_status", "governance_status", "graph_status",
-          "regression_status", "verification_state", "blockers",
-          "warnings", "provenance", "cycle_duration_seconds"
-        }
-        missing = required - data.keys()
-        if missing:
-            raise SystemExit("Health record missing: " + ", ".join(sorted(missing)))
-        print("Health record schema gate: PASS")
-        PY
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("generated/supreme-nlp-automission-health.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          required = {
+            "event_id", "timestamp", "repository", "contract_status",
+            "schema_status", "governance_status", "graph_status",
+            "regression_status", "verification_state", "blockers",
+            "warnings", "gate_results", "provenance", "cycle_duration_seconds"
+          }
+          missing = required - data.keys()
+          if missing:
+              raise SystemExit("Health record missing: " + ", ".join(sorted(missing)))
+          if data["regression_status"] != "PASS":
+              raise SystemExit("Regression gate did not PASS")
+          if data["verification_state"] not in {"UNVERIFIED", "VERIFIED"}:
+              raise SystemExit("Unexpected verification state")
+          print("Health record schema gate: PASS")
+          PY
 
       - name: Upload Automission telemetry
         uses: actions/upload-artifact@v4
