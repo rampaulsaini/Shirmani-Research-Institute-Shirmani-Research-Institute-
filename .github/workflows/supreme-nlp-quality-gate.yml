@@ -1,0 +1,65 @@
+name: Supreme NLP Evidence Quality Gate
+
+on:
+  push:
+    branches: [main, feat/supreme-nlp-evidence-gate]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-evidence-gate
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic NLP contract tests
+        run: python3 -m unittest factory.test_supreme_nlp -v
+      - name: Validate evidence boundary
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          schema = json.loads(Path("schemas/nlp-observation.schema.json").read_text())
+          required = set(schema["required"])
+          assert {"observation_id","subject_type","observations","interpretation_policy"} == required
+          policy = schema["properties"]["interpretation_policy"]["properties"]
+          assert policy["measured_vs_inferred"]["type"] == "boolean"
+          assert policy["abstain_on_missing_evidence"]["type"] == "boolean"
+          print("NLP evidence boundary: PASS")
+          PY
+      - name: Smoke-test signal-to-language translation
+        run: |
+          python3 - <<'PY'
+          import json, subprocess, tempfile
+          from pathlib import Path
+          sample = {
+            "observation_id":"ci-smoke-001",
+            "subject_type":"plant",
+            "observations":[
+              {"channel":"leaf_temperature","value":24.5,"unit":"C","timestamp":"2026-10-02T00:00:00Z"}
+            ],
+            "interpretation_policy":{
+              "measured_vs_inferred":True,
+              "abstain_on_missing_evidence":True
+            }
+          }
+          with tempfile.TemporaryDirectory() as d:
+            i=Path(d)/"in.json"; o=Path(d)/"out.json"
+            i.write_text(json.dumps(sample, ensure_ascii=False), encoding="utf-8")
+            subprocess.run(["python3","factory/supreme_nlp.py",str(i),str(o)], check=True)
+            result=json.loads(o.read_text(encoding="utf-8"))
+            assert result["status"] == "PASS"
+            assert result["inference_status"] == "NOT_ESTABLISHED"
+            assert "measured_signal != subjective_feeling" in result["safety_rule"]
+          print("NLP translation smoke test: PASS")
+          PY
