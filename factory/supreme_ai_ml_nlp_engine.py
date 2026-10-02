@@ -13,7 +13,8 @@ from statistics import median
 from typing import Any
 
 TOKEN_RE = re.compile(r"[^\W_]+", re.UNICODE)
-SCHEMA_VERSION = "2.0"
+SCHEMA_VERSION = "2.1"
+MIN_CONSENSUS_RECORDS = 2
 
 
 def tokens(text: str) -> list[str]:
@@ -167,7 +168,8 @@ def evaluate(rows: list[dict[str, Any]], verification: dict[str, Any],
     scores = [float(v["score"]) for v in agents.values()]
     stats = _score_stats(scores)
     consensus = (
-        len(scores) >= 6
+        len(rows) >= MIN_CONSENSUS_RECORDS
+        and len(scores) >= 6
         and stats["min"] >= 0.90
         and stats["spread"] <= 0.10
         and verification_agent == 1.0
@@ -175,6 +177,7 @@ def evaluate(rows: list[dict[str, Any]], verification: dict[str, Any],
     )
     return {
         "schema_version": SCHEMA_VERSION,
+        "minimum_consensus_records": MIN_CONSENSUS_RECORDS,
         "method": "deterministic-bounded-multi-agent-consensus",
         "claim_policy": "Heuristic quality scores are not accuracy probabilities.",
         "records_evaluated": len(rows),
