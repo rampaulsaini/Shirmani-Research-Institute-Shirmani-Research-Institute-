@@ -38,7 +38,7 @@ def expected_calibration_error(predictions: Iterable[float], labels: Iterable[in
     total=len(pairs); ece=0.0
     for b in range(bins):
         lo=b/bins; hi=(b+1)/bins
-        bucket=[p for p in pairs if (lo <= p < hi) or (b == bins-1 and p == hi)]
+        bucket=[(p,y) for p,y in pairs if (lo <= p < hi) or (b == bins-1 and p == hi)]
         if not bucket: continue
         avg_p=sum(p for p,_ in bucket)/len(bucket)
         avg_y=sum(y for _,y in bucket)/len(bucket)

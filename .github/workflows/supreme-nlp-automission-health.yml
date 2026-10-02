@@ -30,11 +30,17 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
       - name: Generate deterministic Automission health record
+        env:
+          PYTHONPATH: .
         run: python3 factory/supreme_nlp_automission_health.py
 
       - name: Run deterministic Automission hardening tests
+        env:
+          PYTHONPATH: .
         run: python3 tests/supreme_nlp_automission_hardening.py
 
       - name: Validate generated health record
