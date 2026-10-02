@@ -1,0 +1,74 @@
+name: SHIRMANI Super-Senses Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "agents/supreme_senses.py"
+      - "tests/test_supreme_senses.py"
+      - "schemas/super-senses-record.schema.json"
+      - ".github/workflows/supreme-senses-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-super-senses
+  cancel-in-progress: true
+
+jobs:
+  evidence-cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile and test
+        run: |
+          python -m py_compile agents/supreme_senses.py
+          python -m unittest discover -s tests -p 'test_supreme_senses.py' -v
+      - name: Validate schema
+        run: python -m json.tool schemas/super-senses-record.schema.json >/dev/null
+      - name: Generate evidence cycle
+        run: |
+          mkdir -p generated/super-senses
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.supreme_senses import analyze, to_simple_language
+          rows=[
+            {"modality":"audio","feature":"signal","value":1.00,"quality":1,"source":"synthetic-a","timestamp":"cycle"},
+            {"modality":"electrical","feature":"signal","value":1.01,"quality":1,"source":"synthetic-b","timestamp":"cycle"},
+            {"modality":"thermal","feature":"signal","value":0.99,"quality":1,"source":"synthetic-c","timestamp":"cycle"},
+          ]
+          r=analyze(rows,"automission evidence cycle")
+          Path("generated/super-senses/status.json").write_text(json.dumps(r,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(to_simple_language(r))
+          print("FINGERPRINT:",r["fingerprint"])
+          PY
+      - name: Fail-closed governance gate
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("generated/super-senses/status.json"))
+          g=d["governance"]
+          assert g["fail_closed"] is True
+          assert g["production_code_mutation_allowed"] is False
+          assert g["independent_verification_required"] is True
+          assert g["accuracy_is_measured_not_declared"] is True
+          assert 0 <= d["confidence"] <= 1
+          assert d["status"] in {"CANDIDATE","ABSTAIN"}
+          print("SUPER_SENSES_GOVERNANCE: PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: super-senses-${{ github.run_id }}
+          path: generated/super-senses/status.json
+          retention-days: 14
