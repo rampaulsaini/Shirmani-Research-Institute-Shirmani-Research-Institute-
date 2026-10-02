@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Impartial Supreme NLP Signal Record",
+  "type": "object",
+  "required": ["record_id","cycle","observation","interpretation","governance","fingerprint"],
+  "properties": {
+    "record_id": {"type":"string","minLength":1},
+    "cycle": {"type":"string","minLength":1},
+    "observation": {
+      "type":"object",
+      "required":["modality","features","quality","provenance"],
+      "properties":{
+        "modality":{"type":"string","minLength":1},
+        "features":{"type":"array","items":{"type":"object","required":["name","value"],"properties":{"name":{"type":"string"},"value":{}}}},
+        "quality":{"type":"number","minimum":0,"maximum":1},
+        "provenance":{"type":"string","minLength":1}
+      }
+    },
+    "interpretation": {
+      "type":"object",
+      "required":["status","pattern","statement","confidence","uncertainty","evidence_status"],
+      "properties":{
+        "status":{"enum":["NO_DATA","INSUFFICIENT_EVIDENCE","INTERPRETED","NOT_VERIFIED"]},
+        "pattern":{"type":"string"},
+        "statement":{"type":"string"},
+        "confidence":{"type":"number","minimum":0,"maximum":1},
+        "uncertainty":{"type":"string"},
+        "evidence_status":{"enum":["INSUFFICIENT_EVIDENCE","OBSERVATIONAL","SUPPORTED","INDEPENDENTLY_VERIFIED"]}
+      }
+    },
+    "governance":{
+      "type":"object",
+      "required":["impartiality","fail_closed","subjective_experience_claim_allowed","self_verification_allowed"],
+      "properties":{
+        "impartiality":{"const":true},
+        "fail_closed":{"const":true},
+        "subjective_experience_claim_allowed":{"const":false},
+        "self_verification_allowed":{"const":false}
+      }
+    },
+    "simple_language":{"type":"string"},
+    "limitations":{"type":"array","items":{"type":"string"}},
+    "fingerprint":{"type":"string","minLength":64,"maxLength":64}
+  }
+}
