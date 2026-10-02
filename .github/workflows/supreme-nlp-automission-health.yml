@@ -33,6 +33,9 @@ jobs:
       - name: Run deterministic Automission health gate
         run: python3 factory/supreme_nlp_automission_health.py
 
+      - name: Compile deterministic gate modules
+        run: python3 -m py_compile factory/supreme_nlp_automission_health.py factory/supreme_nlp_contract_qc.py factory/supreme_nlp_evaluation_qc.py
+
       - name: Validate generated health record
         run: python3 - <<'PY'
         import json
@@ -40,7 +43,7 @@ jobs:
         p = Path("generated/supreme-nlp-automission-health.json")
         data = json.loads(p.read_text(encoding="utf-8"))
         required = {
-          "event_id", "timestamp", "repository", "contract_status",
+          "event_id", "timestamp", "repository", "contract_status", "operational_status",
           "schema_status", "governance_status", "graph_status",
           "regression_status", "verification_state", "blockers",
           "warnings", "provenance", "cycle_duration_seconds"

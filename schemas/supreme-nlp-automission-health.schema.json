@@ -8,6 +8,7 @@
     "repository",
     "contract_status",
     "schema_status",
+    "operational_status",
     "governance_status",
     "graph_status",
     "regression_status",
@@ -15,7 +16,8 @@
     "blockers",
     "warnings",
     "provenance",
-    "cycle_duration_seconds"
+    "cycle_duration_seconds",
+    "input_fingerprint"
   ],
   "properties": {
     "event_id": {"type": "string", "minLength": 1},
@@ -23,6 +25,7 @@
     "repository": {"type": "string", "minLength": 1},
     "contract_status": {"type": "string", "enum": ["PASS", "BLOCKED"]},
     "schema_status": {"type": "string", "enum": ["PASS", "BLOCKED"]},
+    "operational_status": {"type": "string", "enum": ["PASS", "BLOCKED"]},
     "governance_status": {"type": "string", "enum": ["PASS", "BLOCKED"]},
     "graph_status": {"type": "string", "enum": ["PASS", "BLOCKED"]},
     "regression_status": {"type": "string", "enum": ["PASS", "REVIEW", "BLOCKED"]},
@@ -30,7 +33,8 @@
     "blockers": {"type": "array", "items": {"type": "string"}},
     "warnings": {"type": "array", "items": {"type": "string"}},
     "provenance": {"type": "array", "items": {"type": "string"}},
-    "cycle_duration_seconds": {"type": "number", "minimum": 0}
+    "cycle_duration_seconds": {"type": "number", "minimum": 0},
+    "input_fingerprint": {"type": ["string", "null"]}
   },
   "additionalProperties": false
 }
