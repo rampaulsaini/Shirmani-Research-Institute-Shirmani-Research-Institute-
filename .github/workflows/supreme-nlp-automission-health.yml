@@ -1,0 +1,57 @@
+name: SHIRMANI Supreme NLP Automission Health
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-*.md"
+      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+      - "schemas/supreme-nlp-*.json"
+      - "schemas/agent-governance.json"
+      - "factory/supreme_nlp_*.py"
+      - ".github/workflows/supreme-nlp-automission-health.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-automission-health
+  cancel-in-progress: true
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run deterministic Automission health gate
+        run: python3 factory/supreme_nlp_automission_health.py
+
+      - name: Validate generated health record
+        run: python3 - <<'PY'
+        import json
+        from pathlib import Path
+        p = Path("generated/supreme-nlp-automission-health.json")
+        data = json.loads(p.read_text(encoding="utf-8"))
+        required = {
+          "event_id", "timestamp", "repository", "contract_status",
+          "schema_status", "governance_status", "graph_status",
+          "regression_status", "verification_state", "blockers",
+          "warnings", "provenance", "cycle_duration_seconds"
+        }
+        missing = required - data.keys()
+        if missing:
+            raise SystemExit("Health record missing: " + ", ".join(sorted(missing)))
+        print("Health record schema gate: PASS")
+        PY
+
+      - name: Upload Automission telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-automission-health
+          path: generated/supreme-nlp-automission-health.json
+          retention-days: 14
