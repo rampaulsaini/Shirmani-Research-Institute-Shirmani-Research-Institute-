@@ -1,0 +1,122 @@
+name: SHIRMANI Heart-View Supreme Reasoning Layer
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "agents/supreme_nlp.py"
+      - "factory/supreme_nlp_qc.py"
+      - "schemas/agent-governance.json"
+      - ".github/workflows/shirmani-heart-view-supreme-reasoning.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-heart-view-supreme-reasoning
+  cancel-in-progress: true
+
+jobs:
+  supreme-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile intelligence layer
+        run: |
+          python -m py_compile agents/supreme_nlp.py factory/supreme_nlp_qc.py
+
+      - name: Validate fail-closed governance
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("schemas/agent-governance.json").read_text(encoding="utf-8"))
+          assert p["fail_closed"] is True
+          assert p["default_status"] == "unverified"
+          assert p["provenance_required_for_claims"] is True
+          assert p["fabrication_prohibited"] is True
+          assert p["authorization"]["verification_promotion"] == "independent_verification_required"
+          assert p["authorization"]["irreversible_actions"] == "owner_authorization_required"
+          print("GOVERNANCE_FAIL_CLOSED=PASS")
+          PY
+
+      - name: Run Supreme NLP baseline QC
+        run: python factory/supreme_nlp_qc.py
+
+      - name: Run adversarial empty-input gate
+        run: |
+          python - <<'PY'
+          from agents.supreme_nlp import build_record
+          r=build_record([], "adversarial-empty")
+          assert r["result"]["status"] == "no_data"
+          assert r["provenance"]["verification_status"] == "UNVERIFIED"
+          assert "विश्वसनीय व्याख्या" in r["simple_language"]
+          print("ADVERSARIAL_EMPTY_INPUT=PASS")
+          PY
+
+      - name: Run low-quality fail-safe gate
+        run: |
+          python - <<'PY'
+          from agents.supreme_nlp import build_record
+          signals=[
+            {"modality":"sensor","feature":"electrical","value":999,"quality":0,"source":"bad-a"},
+            {"modality":"sensor","feature":"electrical","value":-999,"quality":0,"source":"bad-b"},
+          ]
+          r=build_record(signals, "adversarial-low-quality")
+          assert r["result"]["status"] == "insufficient_quality"
+          assert r["provenance"]["verification_status"] == "UNVERIFIED"
+          print("LOW_QUALITY_FAIL_SAFE=PASS")
+          PY
+
+      - name: Run multimodal disagreement gate
+        run: |
+          python - <<'PY'
+          from agents.supreme_nlp import build_record
+          signals=[
+            {"modality":"sensor","feature":"electrical","value":1.0,"quality":0.95,"source":"a"},
+            {"modality":"vibration","feature":"rms","value":100.0,"quality":0.95,"source":"b"},
+            {"modality":"thermal","feature":"temperature","value":-100.0,"quality":0.90,"source":"c"},
+          ]
+          r=build_record(signals, "adversarial-disagreement")
+          assert r["result"]["status"] == "interpreted"
+          assert r["result"]["verification"]["status"] == "UNVERIFIED"
+          assert r["result"]["interpretation"]["confidence_status"] == "UNCALIBRATED"
+          assert r["result"]["features"]["independent_sources"] == 3
+          print("MULTIMODAL_DISAGREEMENT=PASS")
+          PY
+
+      - name: Verify no false verification promotion
+        run: |
+          python - <<'PY'
+          from agents.supreme_nlp import build_record
+          r=build_record([
+            {"modality":"sensor","feature":"x","value":1,"quality":1,"source":"a"}
+          ], "promotion-boundary")
+          assert r["result"]["verification"]["status"] == "UNVERIFIED"
+          assert r["provenance"]["verification_status"] == "UNVERIFIED"
+          print("NO_FALSE_VERIFICATION_PROMOTION=PASS")
+          PY
+
+      - name: Emit Supreme Reasoning audit summary
+        run: |
+          {
+            echo "## SHIRMANI Heart-View Supreme Reasoning Layer"
+            echo "- Continuous audit cadence: every 5 minutes"
+            echo "- NLP integrity: PASS"
+            echo "- Fail-closed governance: PASS"
+            echo "- Adversarial gates: PASS"
+            echo "- Verification promotion: independently gated"
+            echo "- Confidence calibration: explicitly separated from raw confidence"
+            echo "- Observable-signal contract: enforced"
+          } >> "$GITHUB_STEP_SUMMARY"
