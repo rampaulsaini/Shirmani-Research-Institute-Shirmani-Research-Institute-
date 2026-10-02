@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Nishpaksh Evaluation Record",
+  "type": "object",
+  "required": [
+    "claim_id",
+    "claim_class",
+    "claim_text",
+    "provenance",
+    "evidence_state",
+    "uncertainty",
+    "verification_state"
+  ],
+  "properties": {
+    "claim_id": {"type": "string", "minLength": 1},
+    "claim_class": {
+      "type": "string",
+      "enum": ["framework", "empirical", "interpretation", "normative", "operational"]
+    },
+    "claim_text": {"type": "string", "minLength": 1},
+    "provenance": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "supporting_evidence": {"type": "array", "items": {"type": "string"}},
+    "counter_evidence": {"type": "array", "items": {"type": "string"}},
+    "evidence_state": {
+      "type": "string",
+      "enum": ["NONE", "PENDING", "PARTIAL", "SUPPORTED", "CONTRADICTED", "MIXED"]
+    },
+    "evidence_quality": {"type": "number", "minimum": 0, "maximum": 1},
+    "model_inference": {"type": ["string", "null"]},
+    "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "uncertainty": {"type": "array", "items": {"type": "string"}},
+    "verification_state": {
+      "type": "string",
+      "enum": ["NOT_VERIFIED", "INDEPENDENTLY_VERIFIED", "REVIEW", "BLOCKED"]
+    },
+    "model_version": {"type": ["string", "null"]},
+    "dataset_fingerprint": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}
