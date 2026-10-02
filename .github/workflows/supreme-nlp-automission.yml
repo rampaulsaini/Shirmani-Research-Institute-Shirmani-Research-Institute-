@@ -11,6 +11,7 @@ on:
       - "factory/supreme_nlp_qc.py"
       - "scripts/validate_supreme_nlp.py"
       - "schemas/supreme-nlp-v2.schema.json"
+      - "scripts/validate_supreme_nlp_gate.py"
       - ".github/workflows/supreme-nlp-automission.yml"
   push:
     branches: [main]
@@ -23,6 +24,7 @@ on:
       - "schemas/supreme-nlp-record.schema.json"
       - "docs/SUPREME-NLP-ARCHITECTURE.md"
       - "factory/supreme_nlp_qc.py"
+      - "scripts/validate_supreme_nlp_gate.py"
       - ".github/workflows/supreme-nlp-automission.yml"
 
 permissions:
@@ -99,6 +101,9 @@ jobs:
 
       - name: Run Automission improvement audit
         run: python agents/automission_supervisor.py
+
+      - name: Validate fail-closed governance gate
+        run: python scripts/validate_supreme_nlp_gate.py
 
       - name: Validate generated record
         run: |
