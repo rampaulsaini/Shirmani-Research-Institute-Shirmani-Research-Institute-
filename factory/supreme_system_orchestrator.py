@@ -33,12 +33,24 @@ def seed_nlp_status() -> None:
     def build_record(rows, request):
         values=[float(r.get("value",0.0)) for r in rows]
         quality=[max(0.0,min(1.0,float(r.get("quality",1.0)))) for r in rows]
+        confidence=max(0.0,min(1.0,0.60+0.10*min(1.0,len(rows)/4.0)))
+        result={
+            "status":"interpreted" if rows else "insufficient_quality",
+            "features":{"modalities":len({str(r.get("modality","unknown")) for r in rows}),
+                        "confidence":confidence},
+            "interpretation":{"confidence":confidence,
+                              "limitations":["Synthetic orchestrator seed; not evidence of subjective experience."]},
+        }
         return {
-            "schema_version":"orchestrator-local-1.0",
+            "schema_version":"orchestrator-local-1.1",
             "request":request,
+            "generated_at":datetime.now(timezone.utc).isoformat(),
             "observations":rows,
-            "summary":{"count":len(values),"mean":sum(values)/len(values) if values else 0.0,
-                       "quality":sum(quality)/len(quality) if quality else 0.0},
+            "result":result,
+            "features":result["features"],
+            "interpretation":result["interpretation"],
+            "status":result["status"],
+            "provenance":{"source":"supreme_system_orchestrator","verification_status":"UNVERIFIED"},
             "verification":{"status":"UNVERIFIED","promotion_allowed":False},
             "governance":{"fail_closed":True,"subjective_experience_claim_allowed":False,
                           "independent_verification_required":True},
