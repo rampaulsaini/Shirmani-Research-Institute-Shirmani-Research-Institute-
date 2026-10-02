@@ -1,96 +1,76 @@
-"""Deterministic benchmark for the Supreme NLP evidence-preserving baseline.
-
-This benchmark measures implementation behaviour on synthetic, labelled cases.
-It is NOT a scientific validation of biological, emotional, conscious, or
-subjective experience claims. Real-world accuracy requires independent labelled
-datasets and domain-specific evaluation.
-"""
+"""Deterministic regression benchmark for the provider-neutral Supreme NLP runtime."""
 from __future__ import annotations
-
 import json
 from pathlib import Path
-from typing import Any
+from agents.supreme_runtime import Signal, SupremeAutomission
 
-from agents.supreme_nlp import summarize, to_simple_language, fingerprint
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "generated" / "supreme-nlp-benchmark.json"
 
-CASES: list[tuple[str, list[dict[str, Any]], str]] = [
-    (
-        "stable",
-        [
-            {"modality": "synthetic", "feature": "x", "value": 1.00, "quality": 1.0, "source": "a"},
-            {"modality": "synthetic", "feature": "x", "value": 1.02, "quality": 1.0, "source": "b"},
-            {"modality": "synthetic", "feature": "x", "value": 0.98, "quality": 1.0, "source": "c"},
-            {"modality": "synthetic", "feature": "x", "value": 1.01, "quality": 1.0, "source": "d"},
-        ],
-        "stable_pattern",
-    ),
-    (
-        "moderate",
-        [
-            {"modality": "synthetic", "feature": "x", "value": 0.00, "quality": 1.0, "source": "a"},
-            {"modality": "synthetic", "feature": "x", "value": 1.00, "quality": 1.0, "source": "b"},
-            {"modality": "synthetic", "feature": "x", "value": 0.00, "quality": 1.0, "source": "c"},
-            {"modality": "synthetic", "feature": "x", "value": 2.00, "quality": 1.0, "source": "d"},
-        ],
-        "moderate_variability_pattern",
-    ),
-    (
-        "high",
-        [
-            {"modality": "synthetic", "feature": "x", "value": -1.00, "quality": 1.0, "source": "a"},
-            {"modality": "synthetic", "feature": "x", "value": 1.00, "quality": 1.0, "source": "b"},
-            {"modality": "synthetic", "feature": "x", "value": -1.00, "quality": 1.0, "source": "c"},
-            {"modality": "synthetic", "feature": "x", "value": 1.00, "quality": 1.0, "source": "d"},
-        ],
-        "high_variability_pattern",
-    ),
+CASES = [
+    ("en-pos-01", "great research", "positive-pattern"),
+    ("en-pos-02", "excellent work", "positive-pattern"),
+    ("en-neg-01", "bad result", "negative-pattern"),
+    ("en-neg-02", "danger poor outcome", "negative-pattern"),
+    ("en-neutral-01", "research paper", "neutral-or-uncertain"),
+    ("hi-pos-01", "श्रेष्ठ प्रेम", "positive-pattern"),
+    ("hi-pos-02", "अच्छा और उत्तम", "positive-pattern"),
+    ("hi-neg-01", "खराब परिणाम", "negative-pattern"),
+    ("hi-neg-02", "दुख और खतरा", "negative-pattern"),
+    ("hi-neutral-01", "अनुसंधान प्रणाली", "neutral-or-uncertain"),
+    ("mixed-pos-01", "great प्रेम", "positive-pattern"),
+    ("mixed-neg-01", "bad खतरा", "negative-pattern"),
 ]
 
-
-def run() -> dict[str, Any]:
-    results = []
+def main():
+    runtime = SupremeAutomission()
+    rows = []
     correct = 0
-    for case_id, signals, expected in CASES:
-        result = summarize(signals)
-        observed = (result.get("interpretation") or {}).get("state")
-        ok = observed == expected
+    for case_id, text, expected in CASES:
+        result = runtime.run(Signal(
+            kind="text",
+            value=text,
+            source="fixed-regression-fixture",
+            timestamp="2026-10-02T00:00:00Z",
+        ))
+        predicted = result["inference"]["label"] if result["inference"] else "BLOCKED"
+        ok = predicted == expected
         correct += int(ok)
-        text = to_simple_language(result)
-        results.append({
-            "case": case_id,
+        rows.append({
+            "id": case_id,
             "expected": expected,
-            "observed": observed,
+            "predicted": predicted,
             "correct": ok,
-            "has_uncertainty_language": "प्रमाण नहीं" in text,
-            "fingerprint": fingerprint(result),
+            "verification_state": result["verification_state"],
+            "model": result["provenance"]["model"],
+            "model_version": result["provenance"]["model_version"],
         })
 
-    accuracy = correct / len(CASES)
-    uncertainty_ok = all(x["has_uncertainty_language"] for x in results)
-    deterministic_ok = all(bool(x["fingerprint"]) for x in results)
-    status = "PASS" if accuracy == 1.0 and uncertainty_ok and deterministic_ok else "BLOCK"
-    return {
-        "benchmark": "supreme-nlp-synthetic-v1",
-        "status": status,
-        "dataset_type": "synthetic_internal_regression",
-        "cases": len(CASES),
-        "classification_accuracy": round(accuracy, 4),
-        "uncertainty_language_contract": uncertainty_ok,
-        "deterministic_fingerprints": deterministic_ok,
-        "results": results,
+    record = {
+        "benchmark_id": "supreme-nlp-reference-v1",
+        "task": "lexical-pattern-detection",
+        "population_scope": "fixed multilingual regression fixture",
+        "dataset_fingerprint": "fixture-embedded-v1",
+        "model": {"name": "deterministic-baseline-nlp", "version": "0.2"},
+        "metric": "accuracy",
+        "result": correct / len(CASES),
+        "sample_count": len(CASES),
+        "correct_count": correct,
+        "verification_state": "UNVERIFIED",
+        "provenance": ["embedded benchmark fixture", "agents/supreme_runtime.py"],
         "limitations": [
-            "Synthetic regression accuracy is not real-world model accuracy.",
-            "No biological, emotional, consciousness, or subjective-experience claim is validated by this benchmark.",
-            "External labelled datasets and independent replication are required for scientific performance claims.",
+            "tiny fixed fixture",
+            "lexical baseline only",
+            "not representative of general language understanding",
+            "not evidence of subjective feeling, consciousness or intention",
         ],
+        "cases": rows,
     }
-
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(record, ensure_ascii=False, indent=2))
+    if correct != len(CASES):
+        raise SystemExit("Reference NLP regression benchmark failed")
 
 if __name__ == "__main__":
-    out = run()
-    Path("generated/supreme-nlp").mkdir(parents=True, exist_ok=True)
-    Path("generated/supreme-nlp/benchmark.json").write_text(
-        json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
-    print(json.dumps(out, ensure_ascii=False, indent=2))
-    raise SystemExit(0 if out["status"] == "PASS" else 1)
+    main()
