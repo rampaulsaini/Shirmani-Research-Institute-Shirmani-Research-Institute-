@@ -1,0 +1,40 @@
+name: SHIRMANI Supreme Senses NLP Contract
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-senses-nlp-contract-2026-10-02.md"
+      - "schemas/supreme-senses-signal.schema.json"
+      - "factory/supreme_senses_signal_qc.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-senses-contract
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON schema
+        run: python3 -m json.tool schemas/supreme-senses-signal.schema.json >/dev/null
+      - name: Compile QC gate
+        run: python3 -m py_compile factory/supreme_senses_signal_qc.py
+      - name: Contract smoke test
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path("schemas/supreme-senses-signal.schema.json").read_text())
+          required=set(s["required"])
+          assert {"measurement","model_inference","plain_language","confidence","uncertainty","evidence","alternative_interpretations"} <= required
+          print("Supreme-Senses contract smoke test: PASS")
+          PY
