@@ -1,0 +1,47 @@
+name: SHIRMANI Supreme Neutrality Regression
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "scripts/supreme_neutrality_regression.py"
+      - "docs/supreme-ai-ml-nlp-automission-operating-contract.md"
+      - ".github/workflows/supreme-neutrality-regression.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-neutrality-regression
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run neutrality regression suite
+        run: python scripts/supreme_neutrality_regression.py
+      - name: Upload regression evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-neutrality-regression-${{ github.run_id }}
+          path: generated/supreme-neutrality/regression-report.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Emit summary
+        run: |
+          {
+            echo "## Supreme Neutrality Regression"
+            echo "- Regression suite: PASS"
+            echo "- Evidence/counter-evidence fields: REQUIRED"
+            echo "- Confidence/uncertainty: REQUIRED"
+            echo "- Inference ≠ verification: ENFORCED"
+            echo "- Unsupported subjective-experience claims: BLOCKED"
+          } >> "$GITHUB_STEP_SUMMARY"
