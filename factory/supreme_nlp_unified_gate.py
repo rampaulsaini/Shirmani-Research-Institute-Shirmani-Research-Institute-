@@ -27,8 +27,10 @@ def build_practitioner_record(rows, request=""):
     }
     simple=("प्राप्त मापनीय संकेतों का computational pattern analysis किया गया है; "
             "यह subjective experience या चेतना का प्रत्यक्ष प्रमाण नहीं है।")
+    payload=json.dumps({"result":result,"simple_language":simple},sort_keys=True,ensure_ascii=False).encode()
     return {
       "result":result,"simple_language":simple,
+      "fingerprint":hashlib.sha256(payload).hexdigest(),
       "governance":{"fail_closed":True,"subjective_experience_claim_allowed":False,
                     "code_mutation_allowed":False,"independent_verification_required":True}
     }
