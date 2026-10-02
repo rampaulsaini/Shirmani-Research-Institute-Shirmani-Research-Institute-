@@ -31,6 +31,20 @@ def main():
     safe = build_record([{"modality":"sensor","feature":"x","value":float("nan")}], "nan")
     assert safe["result"]["signals"][0]["value"] == 0.0
 
+    # Non-finite quality must fail closed instead of becoming a perfect-quality signal.
+    quality_safe = build_record([
+        {"modality":"sensor","feature":"x","value":1.0,"quality":float("nan")}
+    ], "nan-quality")
+    assert quality_safe["result"]["status"] == "insufficient_quality"
+
+    # Non-mapping signal inputs are rejected instead of being coerced unpredictably.
+    try:
+        build_record([None], "invalid-signal")
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("non-mapping signals must be rejected")
+
     # Invalid baseline statistics must not leak NaN/Inf into z-score diagnostics.
     baseline_safe = build_record([
         {"modality":"a","feature":"x","value":1.0,"unit":"u","baseline_mean":float("nan"),"baseline_std":float("inf")},
