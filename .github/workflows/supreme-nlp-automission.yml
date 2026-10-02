@@ -3,7 +3,7 @@ name: Supreme NLP Multimodal Automission
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: read
@@ -41,6 +41,27 @@ jobs:
         run: |
           python3 -m compileall -q agents factory
           echo "PYTHON_COMPILE=PASS"
+
+      - name: Run deterministic Supreme NLP control plane
+        run: python3 factory/supreme_nlp.py
+
+      - name: Validate Supreme NLP epistemic boundary
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("generated/supreme-nlp-status.json").read_text())
+          e=p["epistemic_policy"]
+          assert e["subjective_experience_direct_read"] is False
+          assert e["unverified_claims_remain_unverified"] is True
+          assert e["accuracy_is_measured_not_declared"] is True
+          for line in Path("generated/supreme-nlp-records.jsonl").read_text().splitlines():
+              if line.strip():
+                  r=json.loads(line)
+                  assert r["verification"]["status"] == "NOT_VERIFIED"
+                  assert r["signal_analysis"]["human_experience_inference"] == "NOT_ESTABLISHED"
+          print("SUPREME_NLP_EPISTEMIC_GATE=PASS")
+          PY
 
       - name: Validate existing governance boundary
         run: |
