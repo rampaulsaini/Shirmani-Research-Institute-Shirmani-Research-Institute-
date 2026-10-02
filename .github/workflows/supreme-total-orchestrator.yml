@@ -23,7 +23,7 @@ jobs:
       - name: Compile control plane
         run: |
           python -m py_compile factory/supreme_system_orchestrator.py factory/supreme_nlp_benchmark.py
-          python -m py_compile agents/automission_supervisor.py agents/supreme_nlp_practitioner.py
+          python -m py_compile agents/automission_supervisor.py agents/supreme_nlp_practitioner.py factory/supreme_cross_layer_gate.py
       - name: Validate JSON schemas
         run: |
           python - <<'PY'
@@ -37,6 +37,8 @@ jobs:
         run: python factory/supreme_system_orchestrator.py | tee supreme-orchestrator.log
       - name: Run explicit Supreme NLP regression benchmark
         run: python factory/supreme_nlp_benchmark.py
+      - name: Run cross-layer consistency gate
+        run: python factory/supreme_cross_layer_gate.py
       - name: Validate fail-closed governance
         run: |
           python - <<'PY'
@@ -57,6 +59,9 @@ jobs:
             generated/supreme-orchestrator/status.json
             supreme-orchestrator.log
             generated/supreme-nlp/benchmark.json
+            generated/supreme-nlp/practitioner-status.json
+            generated/supreme-quality-report.json
+            generated/supreme-orchestrator/cross-layer-gate.json
           if-no-files-found: error
           retention-days: 14
       - name: Emit cycle summary
@@ -69,4 +74,5 @@ jobs:
             echo "- Scheduled production-code mutation: BLOCKED"
             echo "- Independent verification: REQUIRED"
             echo "- Accuracy: measured, not declared"
+            echo "- Cross-layer consistency: REQUIRED"
           } >> "$GITHUB_STEP_SUMMARY"
