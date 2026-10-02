@@ -1,0 +1,67 @@
+name: SHIRMANI Heart-View Supreme NLP V2
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "factory/heart-view-supreme-nlp-policy-v2.json"
+      - "docs/HEART-VIEW-SUPREME-NLP-AUTOMISSION-V2.md"
+      - ".github/workflows/heart-view-supreme-nlp-v2.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: heart-view-supreme-nlp-v2
+  cancel-in-progress: false
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate policy
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("factory/heart-view-supreme-nlp-policy-v2.json").read_text())
+          assert p["fail_closed"] is True
+          assert p["preserve_source_verbatim"] is True
+          assert p["provenance_required"] is True
+          assert p["independent_verification_required_for_verified_status"] is True
+          assert p["subjective_experience_claims_require_independent_verification"] is True
+          assert p["philosophical_framework_is_not_empirical_proof"] is True
+          assert p["model_confidence_is_not_proof"] is True
+          assert p["multi_agent_agreement_is_not_proof"] is True
+          assert p["automission"]["silent_production_code_mutation"] is False
+          assert p["neutrality"]["do_not_promote_preferred_conclusion"] is True
+          print("HEART_VIEW_SUPREME_NLP_V2_POLICY=PASS")
+          PY
+      - name: Validate architecture contract
+        run: |
+          grep -q "Preserve → Parse → Reason → Evidence → Verify → Audit → Transform → Publish" docs/HEART-VIEW-SUPREME-NLP-AUTOMISSION-V2.md
+          grep -q "Signal-to-language boundary" docs/HEART-VIEW-SUPREME-NLP-AUTOMISSION-V2.md
+          grep -q "Fail-closed states" docs/HEART-VIEW-SUPREME-NLP-AUTOMISSION-V2.md
+          echo "ARCHITECTURE_CONTRACT=PASS"
+      - name: Emit deterministic status
+        run: |
+          mkdir -p generated/heart-view-supreme-nlp
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          status={"architecture":"heart-view-supreme-nlp-v2","state":"READY_FOR_INTEGRATION","verification":"NOT_PERFORMED","claims_about_subjective_experience":"NOT_VERIFIED","automission":"SCHEDULED_AUDIT_ONLY","production_code_mutation":False,"source_preservation":True,"neutrality_contract":True}
+          Path("generated/heart-view-supreme-nlp/status.json").write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n")
+          print(json.dumps(status,ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: heart-view-supreme-nlp-v2-${{ github.run_id }}
+          path: generated/heart-view-supreme-nlp/status.json
+          retention-days: 14
