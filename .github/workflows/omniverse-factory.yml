@@ -56,6 +56,8 @@ jobs:
           PY
       - name: Run deterministic runtime AI-agent governance QC
         run: python3 factory/agent_governance_qc.py
+      - name: Run Nishpaksh Supreme Control QC
+        run: python3 factory/nishpaksh_supreme_control_qc.py
 
       - name: Build repository intelligence
         run: python3 factory/repository_intelligence.py
