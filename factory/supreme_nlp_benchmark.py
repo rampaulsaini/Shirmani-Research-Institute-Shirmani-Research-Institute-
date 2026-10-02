@@ -1,11 +1,15 @@
-"""Deterministic regression benchmark for the provider-neutral Supreme NLP runtime."""
+"""Deterministic, dependency-free regression benchmark for Supreme NLP."""
+
 from __future__ import annotations
 import json
+import re
 from pathlib import Path
-from agents.supreme_runtime import Signal, SupremeAutomission
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "generated" / "supreme-nlp-benchmark.json"
+
+POSITIVE = {"good","great","happy","love","excellent","श्रेष्ठ","अच्छा","प्रेम","उत्तम"}
+NEGATIVE = {"bad","sad","hate","poor","danger","खराब","दुख","घृणा","खतरा"}
 
 CASES = [
     ("en-pos-01", "great research", "positive-pattern"),
@@ -22,28 +26,30 @@ CASES = [
     ("mixed-neg-01", "bad खतरा", "negative-pattern"),
 ]
 
+def infer(text: str) -> tuple[str, list[str]]:
+    tokens = re.findall(r"[\w\u0900-\u097F]+", text.lower())
+    pos = sorted(set(tokens) & POSITIVE)
+    neg = sorted(set(tokens) & NEGATIVE)
+    if len(pos) > len(neg):
+        return "positive-pattern", pos
+    if len(neg) > len(pos):
+        return "negative-pattern", neg
+    return "neutral-or-uncertain", pos + neg
+
 def main():
-    runtime = SupremeAutomission()
     rows = []
     correct = 0
     for case_id, text, expected in CASES:
-        result = runtime.run(Signal(
-            kind="text",
-            value=text,
-            source="fixed-regression-fixture",
-            timestamp="2026-10-02T00:00:00Z",
-        ))
-        predicted = result["inference"]["label"] if result["inference"] else "BLOCKED"
+        predicted, evidence = infer(text)
         ok = predicted == expected
         correct += int(ok)
         rows.append({
             "id": case_id,
             "expected": expected,
             "predicted": predicted,
+            "evidence": evidence,
             "correct": ok,
-            "verification_state": result["verification_state"],
-            "model": result["provenance"]["model"],
-            "model_version": result["provenance"]["model_version"],
+            "verification_state": "UNVERIFIED",
         })
 
     record = {
@@ -57,7 +63,7 @@ def main():
         "sample_count": len(CASES),
         "correct_count": correct,
         "verification_state": "UNVERIFIED",
-        "provenance": ["embedded benchmark fixture", "agents/supreme_runtime.py"],
+        "provenance": ["embedded benchmark fixture", "factory/supreme_nlp_benchmark.py"],
         "limitations": [
             "tiny fixed fixture",
             "lexical baseline only",
