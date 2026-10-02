@@ -10,12 +10,15 @@ OUT = ROOT / "generated" / "supreme-nlp-automission-health.json"
 REQUIRED_FILES = [
     "docs/supreme-nlp-practitioner-contract.md",
     "docs/supreme-nlp-evaluation-gate.md",
+    "docs/supreme-nlp-automission-operational-contract-2026-10-02.md",
     "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md",
     "schemas/supreme-nlp-evaluation.schema.json",
     "schemas/supreme-nlp-automission-health.schema.json",
     "schemas/agent-governance.json",
+    "schemas/supreme-nlp-automission-health.schema.json",
     "factory/supreme_nlp_contract_qc.py",
     "factory/supreme_nlp_evaluation_qc.py",
+    "factory/supreme_nlp_automission_health.py",
 ]
 
 def fingerprint(paths):
@@ -37,11 +40,14 @@ def main():
 
     contract = ROOT / "docs/supreme-nlp-practitioner-contract.md"
     graph = ROOT / "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+    operational = ROOT / "docs/supreme-nlp-automission-operational-contract-2026-10-02.md"
     gov = ROOT / "schemas/agent-governance.json"
     schema = ROOT / "schemas/supreme-nlp-evaluation.schema.json"
+    health_schema = ROOT / "schemas/supreme-nlp-automission-health.schema.json"
 
     contract_text = contract.read_text(encoding="utf-8") if contract.exists() else ""
     graph_text = graph.read_text(encoding="utf-8") if graph.exists() else ""
+    operational_text = operational.read_text(encoding="utf-8") if operational.exists() else ""
 
     for term in [
         "Measured signal", "Model inference", "Interpretation",
@@ -54,6 +60,13 @@ def main():
     for term in ["Multimodal Perception", "NLP", "Independent Verification", "Continuous Improvement"]:
         if term not in graph_text:
             blockers.append("Total graph missing stage: " + term)
+
+    for term in [
+        "Canonical loop", "Fail-closed principle", "Five-minute Automission rule",
+        "Accuracy is a measured task-specific property", "High-impact actions require human authorization"
+    ]:
+        if term not in operational_text:
+            blockers.append("Operational contract missing required term: " + term)
 
     governance_status = "BLOCKED"
     if gov.exists():
@@ -84,8 +97,24 @@ def main():
         except json.JSONDecodeError:
             blockers.append("Supreme NLP evaluation schema is invalid.")
 
-    contract_status = "PASS" if contract_text and not any("Contract" in x for x in blockers) else "BLOCKED"
+    contract_status = "PASS" if contract_text and operational_text and not any(("Contract" in x or "Operational contract" in x) for x in blockers) else "BLOCKED"
     graph_status = "PASS" if graph_text and not any("Total graph" in x for x in blockers) else "BLOCKED"
+    if health_schema.exists():
+        try:
+            hs = json.loads(health_schema.read_text(encoding="utf-8"))
+            expected_health = {
+                "event_id","timestamp","repository","contract_status","schema_status",
+                "governance_status","graph_status","regression_status","verification_state",
+                "blockers","warnings","provenance","cycle_duration_seconds"
+            }
+            required_health = set(hs.get("required", []))
+            if not expected_health.issubset(required_health):
+                blockers.append("Health schema is missing required telemetry keys.")
+            if hs.get("additionalProperties") is not False:
+                blockers.append("Health schema must reject undeclared properties.")
+        except json.JSONDecodeError:
+            blockers.append("Supreme NLP health schema is invalid.")
+
     regression_status = "BLOCKED" if blockers else "PASS"
     verification_state = "BLOCKED" if blockers else "UNVERIFIED"
 
@@ -101,7 +130,7 @@ def main():
         "verification_state": verification_state,
         "blockers": blockers,
         "warnings": warnings,
-        "provenance": ["repository files", "deterministic contract checks"],
+        "provenance": ["repository files", "deterministic contract checks", "operational contract", "health schema"],
         "cycle_duration_seconds": round(time.monotonic() - started, 4),
     }
 
