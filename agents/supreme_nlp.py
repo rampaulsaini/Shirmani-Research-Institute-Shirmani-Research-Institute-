@@ -172,3 +172,30 @@ def build_record(signals: Iterable[Dict[str, Any]], task_id: str) -> Dict[str, A
             "verification_status": "UNVERIFIED",
         },
     }
+
+
+def process_jsonl(input_path: str, output_path: str) -> Dict[str, Any]:
+    """Process registered observations and persist an auditable status record."""
+    from pathlib import Path
+    p = Path(input_path)
+    records = [json.loads(line) for line in p.read_text(encoding="utf-8").splitlines() if line.strip()] if p.exists() else []
+    result = build_record(records, task_id=f"supreme-nlp:{p.name}")
+    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+    Path(output_path).write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return result
+
+
+def validate_record_contract(record: Dict[str, Any]) -> list[str]:
+    """Return contract violations; an empty list means the governance boundary passes."""
+    errors: list[str] = []
+    if record.get("provenance", {}).get("verification_status") != "UNVERIFIED":
+        errors.append("VERIFICATION_STATUS_MUST_REMAIN_UNVERIFIED")
+    result = record.get("result") or {}
+    if result.get("status") == "interpreted":
+        verification = result.get("verification") or {}
+        if verification.get("independent_required") is not True:
+            errors.append("INDEPENDENT_VERIFICATION_REQUIRED")
+        limitations = (result.get("interpretation") or {}).get("limitations") or []
+        if not any("direct proof" in x or "direct proof" in str(x) for x in limitations):
+            errors.append("SUBJECTIVE_EXPERIENCE_LIMITATION_MISSING")
+    return errors
