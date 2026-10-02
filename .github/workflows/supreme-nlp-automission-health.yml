@@ -34,22 +34,24 @@ jobs:
         run: python3 factory/supreme_nlp_automission_health.py
 
       - name: Validate generated health record
-        run: python3 - <<'PY'
-        import json
-        from pathlib import Path
-        p = Path("generated/supreme-nlp-automission-health.json")
-        data = json.loads(p.read_text(encoding="utf-8"))
-        required = {
-          "event_id", "timestamp", "repository", "contract_status",
-          "schema_status", "governance_status", "graph_status",
-          "regression_status", "verification_state", "blockers",
-          "warnings", "provenance", "cycle_duration_seconds"
-        }
-        missing = required - data.keys()
-        if missing:
-            raise SystemExit("Health record missing: " + ", ".join(sorted(missing)))
-        print("Health record schema gate: PASS")
-        PY
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("generated/supreme-nlp-automission-health.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          required = {
+            "event_id", "timestamp", "repository", "contract_status",
+            "operational_contract_status", "agent_orchestration_status",
+            "schema_status", "governance_status", "graph_status",
+            "regression_status", "verification_state", "blockers",
+            "warnings", "provenance", "cycle_duration_seconds"
+          }
+          missing = required - data.keys()
+          if missing:
+              raise SystemExit("Health record missing: " + ", ".join(sorted(missing)))
+          print("Health record schema gate: PASS")
+          PY
 
       - name: Upload Automission telemetry
         uses: actions/upload-artifact@v4
