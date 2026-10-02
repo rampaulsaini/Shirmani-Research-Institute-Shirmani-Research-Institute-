@@ -18,6 +18,7 @@ GATES=[
 ("verification_promotion_gate","factory/verification_promotion_gate.py"),
 ("publication_gate","factory/publication_gate.py"),
 ("nlp_benchmark","factory/supreme_nlp_benchmark.py"),
+("unified_nlp_control_plane","factory/supreme_nlp_unified_gate.py"),
 ]
 REQUIRED=[
 "agents/automission_supervisor.py",
@@ -25,6 +26,7 @@ REQUIRED=[
 "schemas/supreme-nlp-signal-record.schema.json",
 "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md",
 "factory/supreme_nlp_benchmark.py",
+"factory/supreme_nlp_unified_gate.py",
 "research/independent-verification-protocol-2026-09-29.md",
 ]
 
