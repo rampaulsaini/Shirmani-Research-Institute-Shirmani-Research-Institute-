@@ -1,17 +1,17 @@
-name: SHIRMANI Supreme NLP Contract
+name: SHIRMANI Supreme NLP Continuous Quality Loop
 
 on:
   push:
     branches: [main]
     paths:
-      - "docs/supreme-nlp-practitioner-contract.md"
-      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
-      - "schemas/agent-governance.json"
-      - "factory/supreme_nlp_contract_qc.py"
-      - "schemas/supreme-nlp-evaluation.schema.json"
-      - "factory/supreme_nlp_evaluation_qc.py"
-      - "docs/supreme-nlp-evaluation-gate.md"
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - "docs/supreme-nlp-*.md"
+      - "tests/test_supreme_nlp_end_to_end.py"
       - ".github/workflows/supreme-nlp-contract.yml"
+  pull_request:
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
@@ -20,16 +20,62 @@ permissions:
   contents: read
 
 concurrency:
-  group: shirmani-supreme-nlp-contract
+  group: shirmani-supreme-nlp-continuous-loop
   cancel-in-progress: true
 
 jobs:
-  contract:
+  supreme-nlp:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout immutable research state
+        uses: actions/checkout@v4
+
       - name: Validate Supreme NLP contract
         run: python3 factory/supreme_nlp_contract_qc.py
-      - name: Validate Supreme NLP evaluation gate
+
+      - name: Validate evaluation schema and gate
         run: python3 factory/supreme_nlp_evaluation_qc.py
+
+      - name: Run end-to-end regression suite
+        run: python3 -m unittest tests/test_supreme_nlp_end_to_end.py -v
+
+      - name: Run deterministic NLP benchmark
+        run: python3 factory/supreme_nlp_benchmark.py
+
+      - name: Run unified fail-closed NLP gate
+        run: python3 factory/supreme_nlp_unified_gate.py
+
+      - name: Generate Automission improvement diagnosis
+        run: python3 agents/automission_supervisor.py
+
+      - name: Verify generated artifacts exist
+        run: |
+          test -s generated/supreme-nlp-benchmark.json
+          test -s generated/supreme-nlp/unified-control-plane.json
+          test -s generated/supreme-nlp/automission-plan.json
+
+      - name: Publish machine-readable cycle summary
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          benchmark=json.loads(Path("generated/supreme-nlp-benchmark.json").read_text())
+          unified=json.loads(Path("generated/supreme-nlp/unified-control-plane.json").read_text())
+          plan=json.loads(Path("generated/supreme-nlp/automission-plan.json").read_text())
+          summary={
+              "benchmark_accuracy": benchmark["result"],
+              "benchmark_verification": benchmark["verification_state"],
+              "unified_gate": unified["status"],
+              "promotion_allowed": unified["promotion_allowed"],
+              "automission_state": plan["state"],
+              "automission_actions": plan["actions"],
+              "production_code_mutation_allowed": False,
+              "independent_verification_required": True,
+              "accuracy_is_measured_not_declared": True,
+          }
+          Path("generated/supreme-nlp/cycle-summary.json").write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2) + "\n"
+          )
+          print(json.dumps(summary, ensure_ascii=False, indent=2))
+          PY
