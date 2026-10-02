@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Signal-to-Language Translation Record",
+  "type": "object",
+  "required": [
+    "record_id",
+    "source_modality",
+    "measurement",
+    "detected_pattern",
+    "model_inference",
+    "plain_language_interpretation",
+    "confidence",
+    "provenance",
+    "verification_state",
+    "unknowns"
+  ],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "source_modality": {"type": "string", "minLength": 1},
+    "measurement": {"type": "string", "minLength": 1},
+    "detected_pattern": {"type": "string", "minLength": 1},
+    "model_inference": {"type": "string", "minLength": 1},
+    "plain_language_interpretation": {"type": "string", "minLength": 1},
+    "confidence": {"type": "string", "minLength": 1},
+    "provenance": {"type": "array", "items": {"type": "string"}},
+    "alternative_interpretations": {"type": "array", "items": {"type": "string"}},
+    "verification_state": {
+      "type": "string",
+      "enum": ["REGISTERED", "UNVERIFIED", "REVIEW", "VERIFIED", "BLOCKED"]
+    },
+    "unknowns": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}
