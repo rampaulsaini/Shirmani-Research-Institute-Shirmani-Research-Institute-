@@ -10,7 +10,10 @@ on:
       - "generated/independent-verification-status-2026-09-29.json"
       - "generated/independent-verification-queue.jsonl"
       - "generated/independent-verification-registry.jsonl"
+      - "generated/independent-verification-records.json"
       - "factory/independent_verification_pipeline.py"
+      - "factory/bootstrap_independent_verification_queue.py"
+      - "factory/bootstrap_verification_review_registry.py"
       - ".github/workflows/independent-verification-conveyor.yml"
       - "research/independent-verification-protocol-2026-09-29.md"
 
@@ -28,6 +31,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Bootstrap deterministic review queue
+        run: python3 factory/bootstrap_independent_verification_queue.py
+
+      - name: Bootstrap pending review slots
+        run: python3 factory/bootstrap_verification_review_registry.py
 
       - name: Run fail-closed verification conveyor
         run: python3 factory/independent_verification_pipeline.py
@@ -58,6 +67,8 @@ jobs:
             generated/independent-verification-conveyor-report.json
             generated/VERIFICATION-QUEUE-QC.json
             generated/VERIFICATION-PROMOTION-QC.json
+            generated/independent-verification-queue.jsonl
+            generated/independent-verification-registry.jsonl
           if-no-files-found: ignore
           retention-days: 14
 
@@ -66,7 +77,7 @@ jobs:
           {
             echo "## Independent Verification Conveyor"
             echo "- Pipeline: evidence -> independent test -> reproducible result -> audit -> VERIFIED"
-            echo "- VERIFIED is never auto-declared by Automission"
-            echo "- Current baseline remains fail-closed at 0% independently verified"
+            echo "- Review slots are generated automatically; VERIFIED is never auto-declared"
+            echo "- Current independent verification baseline remains fail-closed at 0%"
             echo "- Continuous cycle: every 5 minutes"
           } >> "$GITHUB_STEP_SUMMARY"
