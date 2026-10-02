@@ -1,0 +1,74 @@
+name: SHIRMANI Nishpaksh Heart-View Automission Integrity
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/yatharth-governance/**"
+      - "docs/supreme-nlp-practitioner-contract.md"
+      - "scripts/nishpaksh_automission_integrity.py"
+      - ".github/workflows/nishpaksh-heart-view-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-nishpaksh-heart-view-automission
+  cancel-in-progress: true
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run Nishpaksh deterministic integrity gate
+        run: python scripts/nishpaksh_automission_integrity.py
+
+      - name: Run existing Supreme NLP contract
+        run: |
+          python -m py_compile factory/supreme_nlp_qc.py agents/supreme_nlp.py
+          python scripts/validate_supreme_nlp.py
+          python factory/supreme_nlp_qc.py
+
+      - name: Verify fail-closed governance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path("docs/yatharth-governance/ai-control-contract.md").read_text(encoding="utf-8")
+          required = [
+              "Evidence",
+              "Compare",
+              "Human Decision Gate",
+              "Automission must never self-authorize legal power",
+              "hide adverse evidence",
+              "fabricate sources",
+          ]
+          missing = [x for x in required if x not in text]
+          assert not missing, missing
+          print("FAIL_CLOSED_GOVERNANCE_GATE: PASS")
+          PY
+
+      - name: Emit cycle summary
+        run: |
+          {
+            echo "## SHIRMANI Nishpaksh Heart-View Automission"
+            echo "- Cycle: 5-minute"
+            echo "- Source preservation: PASS"
+            echo "- Equal treatment: PASS"
+            echo "- Evidence + counter-evidence: REQUIRED"
+            echo "- Independent verification: REQUIRED"
+            echo "- Fail-closed: PASS"
+            echo "- Scheduled production-code mutation: BLOCKED"
+            echo "- Accuracy: measured, not declared"
+          } >> "$GITHUB_STEP_SUMMARY"
