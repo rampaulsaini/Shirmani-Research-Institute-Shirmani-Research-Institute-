@@ -9,6 +9,14 @@ on:
       - "schemas/agent-governance.json"
       - "factory/supreme_nlp_*.py"
       - ".github/workflows/supreme-nlp-operational-health.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-*.md"
+      - "schemas/supreme-nlp-*.json"
+      - "schemas/agent-governance.json"
+      - "factory/supreme_nlp_*.py"
+      - ".github/workflows/supreme-nlp-operational-health.yml"
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
