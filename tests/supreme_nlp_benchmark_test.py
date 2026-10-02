@@ -11,12 +11,13 @@ def main():
         cwd=ROOT, text=True, capture_output=True, check=False
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    data = json.loads((ROOT / "generated/supreme-nlp/benchmark.json").read_text(encoding="utf-8"))
-    assert data["benchmark"] == "supreme-nlp-synthetic-v1"
-    assert data["status"] == "PASS"
-    assert data["classification_accuracy"] == 1.0
-    assert data["uncertainty_language_contract"] is True
-    assert data["deterministic_fingerprints"] is True
+    data = json.loads((ROOT / "generated/supreme-nlp-benchmark.json").read_text(encoding="utf-8"))
+    assert data["benchmark_id"] == "supreme-nlp-reference-v1"
+    assert data["metric"] == "accuracy"
+    assert data["sample_count"] == 12
+    assert data["correct_count"] == 12
+    assert data["result"] == 1.0
+    assert data["verification_state"] == "UNVERIFIED"
     assert data["limitations"]
     print("SHIRMANI Supreme NLP benchmark regression: PASS")
 
