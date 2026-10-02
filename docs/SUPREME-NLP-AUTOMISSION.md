@@ -1,42 +1,29 @@
-# Supreme NLP + Automission
+# SHIRMANI SUPREME NLP + AUTOMISSION
 
-This layer extends the existing Heart-View/Research Factory without replacing its
-fail-closed verification gates.
+यह layer registered multimodal signals को सरल भाषा में बदलती है और हर परिणाम के साथ evidence, uncertainty, provenance और verification boundary रखती है।
 
 ## Pipeline
 
-observe -> normalize -> quality -> feature extraction -> interpretation -> NLP -> audit -> improvement
+Observe -> Normalize -> Quality -> Feature extraction -> Multimodal agreement -> Interpret -> NLP -> Confidence -> Independent verification -> Audit
 
-The baseline implementation accepts observable multimodal records (for example
-sensor, audio, image-derived or environmental features) and converts them into
-simple Hindi language. It explicitly separates **signal interpretation** from
-claims about subjective experience.
+समर्थित baseline modalities में text, audio, image, video, vibration, temperature, bioelectric, chemical, motion, light और environmental signals शामिल हैं।
 
-## Accuracy contract
+## Evidence boundary
 
-No software component in this repository may honestly guarantee absolute or
-"fully supreme" accuracy. Accuracy must be measured on labelled test data,
-calibration sets, independent validation and regression suites.
+System observable signal pattern को वर्णित कर सकता है, लेकिन measured signal को अपने-आप subjective feeling, consciousness, emotion या intent का direct proof नहीं मानता। ऐसे claims के लिए labelled data, domain calibration और independent replication अलग verification चरण में आवश्यक हैं।
 
-The layer therefore reports:
-- evidence grade;
-- signal quality;
-- agreement/disagreement;
-- model confidence;
-- limitations;
-- deterministic fingerprint.
+## Automission
 
-## Automission contract
+हर 5-minute cycle में regression tests, schema checks, synthetic benchmark और contract validation चल सकते हैं। Scheduled audit production code को silently mutate नहीं करता और workflow success को scientific verification नहीं मानता।
 
-Every five-minute cycle may audit the current status and produce an improvement
-plan. Improvement recommendations are advisory unless repository governance
-and verification gates authorize a code change. Existing publication and
-independent-verification gates remain authoritative.
+## Quality metrics
 
-## Biological/physical interpretation
+- regression pass rate
+- schema rejection rate
+- interpretation coverage
+- confidence calibration error, जब labelled evaluation set उपलब्ध हो
+- independent-source agreement
+- drift score
+- reproducibility fingerprint
 
-A model can translate measured signals into language such as "high variability
-pattern". That does not establish that a plant, animal or object experienced
-a human-like emotion. Establishing such a claim requires a domain-specific
-operational definition, controlled experiments, labelled data, independent
-replication and appropriate scientific review.
+“Supreme” यहाँ measurable engineering quality-improvement target है; infallibility का दावा नहीं।
