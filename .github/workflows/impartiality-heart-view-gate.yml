@@ -1,0 +1,34 @@
+name: SHIRMANI Impartial Heart-View Gate
+
+on:
+  push:
+    branches: [main, feature/impartial-heart-view-automission]
+    paths:
+      - "schemas/impartiality-governance.json"
+      - "schemas/supreme-nlp-contract.json"
+      - "schemas/supreme-nlp-signal-record.schema.json"
+      - "factory/impartiality_qc.py"
+      - ".github/workflows/impartiality-heart-view-gate.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "7 */6 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-impartiality-gate
+  cancel-in-progress: false
+
+jobs:
+  impartiality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run fail-closed impartiality QC
+        run: python3 factory/impartiality_qc.py
+      - name: Prohibit unearned absolute-accuracy claims
+        run: |
+          set -euo pipefail
+          ! grep -RniE --exclude-dir=.git --exclude='*.lock'             '(^|[^A-Za-z])(100%[[:space:]]+accuracy|absolute[[:space:]-]+accuracy|fully[[:space:]-]+supreme[[:space:]-]+accuracy)([^A-Za-z]|$)'             schemas factory .github/workflows
