@@ -1,0 +1,70 @@
+name: SHIRMANI Neutrality Audit
+
+on:
+  push:
+    paths:
+      - 'docs/SHIRMANI-NEUTRALITY-PROTOCOL.md'
+      - 'schemas/neutrality-claim.schema.json'
+      - 'agents/**'
+      - 'factory/**'
+      - '.github/workflows/shirmani-neutrality-audit.yml'
+  pull_request:
+    paths:
+      - 'docs/SHIRMANI-NEUTRALITY-PROTOCOL.md'
+      - 'schemas/neutrality-claim.schema.json'
+      - 'agents/**'
+      - 'factory/**'
+      - '.github/workflows/shirmani-neutrality-audit.yml'
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-neutrality-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate neutrality protocol
+        run: |
+          set -euo pipefail
+          test -s docs/SHIRMANI-NEUTRALITY-PROTOCOL.md
+          grep -q 'No person, doctrine, institution, ideology, model, agent, or prior output receives privileged truth status' docs/SHIRMANI-NEUTRALITY-PROTOCOL.md
+          grep -q 'observable signal' docs/SHIRMANI-NEUTRALITY-PROTOCOL.md
+          grep -q 'INDEPENDENTLY_VERIFIED' docs/SHIRMANI-NEUTRALITY-PROTOCOL.md
+      - name: Validate claim schema
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('schemas/neutrality-claim.schema.json').read_text())
+          required={'claim_id','claim_text','claim_type','evidence_status','verification_status','provenance'}
+          assert required <= set(p['required'])
+          assert 'USER_SOURCE' in p['properties']['claim_type']['enum']
+          assert 'INDEPENDENTLY_VERIFIED' in p['properties']['claim_type']['enum']
+          assert 'UNVERIFIED' in p['properties']['verification_status']['enum']
+          print('Neutrality schema: PASS')
+          PY
+      - name: Enforce conservative Supreme NLP boundary
+        run: |
+          set -euo pipefail
+          grep -R -q 'subjective experience' agents/supreme_nlp.py agents/supreme_nlp_practitioner.py agents/supreme_nlp_engine.py
+          grep -R -q 'independent' agents/supreme_nlp.py agents/supreme_nlp_practitioner.py agents/supreme_nlp_engine.py
+          grep -R -q 'UNVERIFIED' agents/supreme_nlp.py agents/supreme_nlp_practitioner.py agents/supreme_nlp_engine.py
+      - name: Python syntax audit
+        run: python3 -m compileall -q agents factory
+      - name: Fail closed on unsupported verification promotion
+        run: |
+          set -euo pipefail
+          if grep -R -n 'VERIFIED' agents factory --include='*.py' | grep -v 'INDEPENDENTLY_VERIFIED'; then
+            echo '::error::Potential unsupported VERIFIED promotion detected.'
+            exit 1
+          fi
+          echo 'Verification promotion boundary: PASS'
