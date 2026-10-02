@@ -80,6 +80,6 @@ jobs:
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: supreme-nlp-multimodal-\${{ github.run_id }}
+          name: supreme-nlp-multimodal-${{ github.run_id }}
           path: generated/supreme-nlp/multimodal-candidate.json
           retention-days: 14
