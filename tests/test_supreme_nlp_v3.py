@@ -19,6 +19,15 @@ def main():
     n=build_record(noisy,"abstain")
     assert n["result"]["interpretation"]["abstention"] is True
 
+    # Ambiguous truthy strings must not silently become positive labels.
+    for bad in ("false", "true", "yes"):
+        try:
+            calibration_report([0.5], [bad])
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("ambiguous string labels must be rejected")
+
     c=calibration_report([0,.25,.75,1],[0,0,1,1])
     assert 0 <= c["brier_score"] <= 1
     assert 0 <= c["expected_calibration_error"] <= 1
