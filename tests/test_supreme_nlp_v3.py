@@ -32,7 +32,7 @@ def main():
     s=selective_risk([1,1,0,0],[1,0,1,0],[False,True,False,False])
     assert s["coverage"] == .75
     assert s["abstention_rate"] == .25
-    assert s["selective_risk"] == 1/3
+    assert s["selective_risk"] == round(1/3,6)
 
     reference=[
       {"feature":"latency","unit":"ms","value":10},
