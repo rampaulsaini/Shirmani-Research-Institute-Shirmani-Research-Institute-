@@ -1,0 +1,49 @@
+name: SHIRMANI Nishpaksh Supreme Automission Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/yatharth-governance/nishpaksh-automission-control-contract.md"
+      - "docs/supreme-nlp-practitioner-contract.md"
+      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+      - "factory/nishpaksh_automission_qc.py"
+      - ".github/workflows/nishpaksh-supreme-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-nishpaksh-supreme-automission
+  cancel-in-progress: true
+
+jobs:
+  neutrality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run fail-closed neutrality gate
+        run: python3 factory/nishpaksh_automission_qc.py
+      - name: Validate protected source is present
+        run: |
+          test -s SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
+          grep -q "Original user wording is source material" SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
+      - name: Emit audit summary
+        run: |
+          {
+            echo "## SHIRMANI Nishpaksh Supreme Automission"
+            echo "- Neutrality gate: PASS"
+            echo "- Evidence-first classification: PASS"
+            echo "- Counter-evidence preservation: PASS"
+            echo "- Subjective-experience overclaim prevention: PASS"
+            echo "- Scheduled code mutation: BLOCKED"
+            echo "- Independent verification: REQUIRED"
+            echo "- Accuracy: measured, not declared"
+          } >> "$GITHUB_STEP_SUMMARY"
