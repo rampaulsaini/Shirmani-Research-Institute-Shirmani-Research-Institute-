@@ -1,23 +1,39 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/supreme-nlp-signal-record.schema.json",
-  "title": "Supreme NLP Signal Record",
+  "title": "SHIRMANI Supreme NLP Signal Record v2",
   "type": "object",
   "additionalProperties": false,
-  "required": ["record_id","observed_at","source_type","observed_signal","inference","confidence","uncertainty","verification_status"],
+  "required": [
+    "record_id","observed_at","source_type","observed_signal",
+    "inference","confidence","uncertainty","verification_status"
+  ],
   "properties": {
     "record_id": {"type":"string","minLength":1},
     "observed_at": {"type":"string","format":"date-time"},
     "source_type": {"type":"string","enum":["human","animal","plant","environment","machine","non_living","synthetic"]},
     "observed_signal": {"type":"string","minLength":1},
+    "signal_modality": {"type":"string","enum":["text","speech","audio","image","video","electrical","acoustic","vibration","thermal","chemical","optical","movement","environmental","multimodal"]},
+    "signal_fingerprint": {"type":["string","null"]},
+    "preprocessing_version": {"type":["string","null"]},
     "inference": {"type":"string","minLength":1},
     "plain_language_explanation": {"type":"string"},
     "confidence": {"type":"number","minimum":0,"maximum":1},
     "uncertainty": {"type":"string","minLength":1},
+    "alternative_interpretations": {"type":"array","items":{"type":"string"}},
     "evidence_refs": {"type":"array","items":{"type":"string"}},
     "counter_evidence_refs": {"type":"array","items":{"type":"string"}},
     "verification_status": {"type":"string","enum":["UNVERIFIED","CHECKED","INDEPENDENTLY_VERIFIED","REJECTED"]},
     "model_version": {"type":"string"},
-    "provenance": {"type":"array","items":{"type":"string"}}
+    "provenance": {"type":"array","items":{"type":"string"}},
+    "interpretation_boundary": {
+      "type":"object",
+      "additionalProperties":false,
+      "properties":{
+        "subjective_feeling_claimed":{"type":"boolean"},
+        "consciousness_claimed":{"type":"boolean"},
+        "intention_claimed":{"type":"boolean"}
+      }
+    }
   }
 }
