@@ -1,0 +1,68 @@
+name: SHIRMANI Supreme Multimodal NLP Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/supreme_nlp_multimodal.py"
+      - "scripts/validate_supreme_nlp_multimodal.py"
+      - "scripts/validate_supreme_nlp_multimodal_continuous.py"
+      - "schemas/supreme-nlp-adapter-contract.schema.json"
+      - ".github/workflows/supreme-multimodal-nlp-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-multimodal-nlp
+  cancel-in-progress: true
+
+jobs:
+  multimodal-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile multimodal intelligence
+        run: python -m py_compile agents/supreme_nlp_multimodal.py scripts/validate_supreme_nlp_multimodal.py scripts/validate_supreme_nlp_multimodal_continuous.py
+      - name: Validate multimodal contract
+        run: python scripts/validate_supreme_nlp_multimodal.py
+      - name: Validate adapter governance
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("schemas/supreme-nlp-adapter-contract.schema.json").read_text(encoding="utf-8"))
+          g=p["properties"]["governance"]["properties"]
+          assert g["abstention_supported"]["const"] is True
+          assert g["subjective_experience_claim_allowed"]["const"] is False
+          assert g["independent_verification_required"]["const"] is True
+          print("MULTIMODAL_GOVERNANCE: PASS")
+          PY
+      - name: Run continuous integration contract
+        run: python scripts/validate_supreme_nlp_multimodal_continuous.py
+      - name: Upload auditable result
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-multimodal-nlp-${{ github.run_id }}
+          path: generated/supreme-nlp/multimodal-contract-status.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Emit cycle summary
+        run: |
+          {
+            echo "## SHIRMANI Supreme Multimodal NLP"
+            echo "- Continuous cycle: 5 minutes"
+            echo "- Multimodal contract: PASS"
+            echo "- Abstention: ENABLED"
+            echo "- Subjective-experience claim: BLOCKED"
+            echo "- Independent verification: REQUIRED"
+            echo "- Production code mutation: BLOCKED"
+          } >> "$GITHUB_STEP_SUMMARY"
