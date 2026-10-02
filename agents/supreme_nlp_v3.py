@@ -178,7 +178,7 @@ def calibration_report(probabilities, labels, bins=10):
     if any(x < 0.0 or x > 1.0 for x in raw_p):
         raise ValueError("probabilities must be within [0, 1]")
     p=raw_p
-    y=[1 if bool(x) else 0 for x in labels]
+    y=[_binary_label(x) for x in labels]
     brier=sum((a-b)**2 for a,b in zip(p,y))/len(p)
     ece=0.0
     for k in range(bins):
@@ -204,8 +204,8 @@ def classification_report(predictions, labels):
     """Compute deterministic binary precision/recall/F1 and confusion counts."""
     if len(predictions) != len(labels) or not predictions:
         raise ValueError("predictions and labels must have equal non-zero length")
-    p=[1 if bool(x) else 0 for x in predictions]
-    y=[1 if bool(x) else 0 for x in labels]
+    p=[_binary_label(x) for x in predictions]
+    y=[_binary_label(x) for x in labels]
     tp=sum(a==1 and b==1 for a,b in zip(p,y))
     fp=sum(a==1 and b==0 for a,b in zip(p,y))
     fn=sum(a==0 and b==1 for a,b in zip(p,y))
@@ -220,8 +220,8 @@ def selective_risk(predictions, labels, abstentions):
     """Measure error only on accepted predictions and expose coverage/abstention."""
     if not (len(predictions)==len(labels)==len(abstentions)) or not predictions:
         raise ValueError("predictions, labels and abstentions must have equal non-zero length")
-    p=[1 if bool(x) else 0 for x in predictions]
-    y=[1 if bool(x) else 0 for x in labels]
+    p=[_binary_label(x) for x in predictions]
+    y=[_binary_label(x) for x in labels]
     a=[bool(x) for x in abstentions]
     accepted=[i for i,x in enumerate(a) if not x]
     errors=sum(p[i] != y[i] for i in accepted)
