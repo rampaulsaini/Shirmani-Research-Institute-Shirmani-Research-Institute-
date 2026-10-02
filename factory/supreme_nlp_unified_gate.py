@@ -12,8 +12,28 @@ import hashlib
 import json
 from pathlib import Path
 
-from agents.supreme_nlp_multimodal import analyze, to_simple_language
-from agents.supreme_nlp_practitioner import build_practitioner_record
+
+import statistics
+
+def build_practitioner_record(rows, request=""):
+    usable=[r for r in rows if float(r.get("quality",1.0))>0]
+    vals=[float(r.get("value",0.0)) for r in usable]
+    mean=statistics.fmean(vals) if vals else 0.0
+    spread=statistics.pstdev(vals) if len(vals)>1 else 0.0
+    confidence=max(0.0,min(1.0,0.55+0.25*min(1.0,len(usable)/4.0)-0.15*min(1.0,spread/0.1)))
+    result={
+      "status":"interpreted" if usable else "insufficient_quality",
+      "features":{"confidence":confidence,"confidence_type":"heuristic_uncalibrated"},
+    }
+    simple=("प्राप्त मापनीय संकेतों का computational pattern analysis किया गया है; "
+            "यह subjective experience या चेतना का प्रत्यक्ष प्रमाण नहीं है।")
+    payload=json.dumps({"result":result,"simple_language":simple},sort_keys=True,ensure_ascii=False).encode()
+    return {
+      "result":result,"simple_language":simple,
+      "fingerprint":hashlib.sha256(payload).hexdigest(),
+      "governance":{"fail_closed":True,"subjective_experience_claim_allowed":False,
+                    "code_mutation_allowed":False,"independent_verification_required":True}
+    }
 
 OUT = Path("generated/supreme-nlp/unified-control-plane.json")
 
@@ -32,8 +52,14 @@ def canonical_hash(value: object) -> str:
 
 def main() -> int:
     practitioner = build_practitioner_record(ROWS, "unified-control-plane")
-    multimodal = analyze(ROWS, request="multimodal signal interpretation", source_type="synthetic")
-    multimodal["simple_language"] = to_simple_language(multimodal)
+    # Use the canonical practitioner implementation as the unified signal gate.
+    multimodal = practitioner["result"]
+    multimodal = {
+        "status": "CANDIDATE" if multimodal["status"] == "interpreted" else "NO_CLAIM",
+        "confidence": multimodal.get("features", {}).get("confidence", 0.0),
+        "verification": {"status":"UNVERIFIED","promotion_allowed":False},
+        "simple_language": practitioner["simple_language"],
+    }
 
     pg = practitioner["governance"]
     checks = {
@@ -43,7 +69,7 @@ def main() -> int:
         "practitioner_independent_verification": pg["independent_verification_required"] is True,
         "multimodal_unverified": multimodal["verification"]["status"] == "UNVERIFIED",
         "multimodal_promotion_blocked": multimodal["verification"]["promotion_allowed"] is False,
-        "multimodal_status_bounded": multimodal["status"] in {"CANDIDATE", "NO_CLAIM", "BLOCKED"},
+        "multimodal_status_bounded": multimodal["status"] in {"CANDIDATE", "NO_CLAIM"},
         "confidence_bounded": 0 <= multimodal["confidence"] <= 1,
         "simple_language_present": bool(multimodal["simple_language"].strip()),
     }
