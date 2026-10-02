@@ -1,5 +1,6 @@
 import json
-import hashlib
+import subprocess
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -25,6 +26,16 @@ def fingerprint(paths):
         h.update(rel.encode())
         h.update(p.read_bytes())
     return h.hexdigest()
+
+def run_gate(path):
+    result = subprocess.run(
+        [sys.executable, str(path)],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    return result.returncode, (result.stdout + result.stderr).strip()
 
 def main():
     started = time.monotonic()
@@ -84,7 +95,21 @@ def main():
         except json.JSONDecodeError:
             blockers.append("Supreme NLP evaluation schema is invalid.")
 
-    contract_status = "PASS" if contract_text and not any("Contract" in x for x in blockers) else "BLOCKED"
+    gate_results = {}
+    for name, path in [
+        ("contract_qc", ROOT / "factory/supreme_nlp_contract_qc.py"),
+        ("evaluation_qc", ROOT / "factory/supreme_nlp_evaluation_qc.py"),
+    ]:
+        if path.exists():
+            code, output = run_gate(path)
+            gate_results[name] = {"exit_code": code, "output": output[-2000:]}
+            if code != 0:
+                blockers.append(f"{name} failed with exit code {code}.")
+        else:
+            gate_results[name] = {"exit_code": None, "output": "missing"}
+            blockers.append(f"{name} file is missing.")
+
+    contract_status = "PASS" if contract_text and not any("Contract" in x for x in blockers) and gate_results["contract_qc"]["exit_code"] == 0 else "BLOCKED"
     graph_status = "PASS" if graph_text and not any("Total graph" in x for x in blockers) else "BLOCKED"
     regression_status = "BLOCKED" if blockers else "PASS"
     verification_state = "BLOCKED" if blockers else "UNVERIFIED"
@@ -103,6 +128,7 @@ def main():
         "warnings": warnings,
         "provenance": ["repository files", "deterministic contract checks"],
         "cycle_duration_seconds": round(time.monotonic() - started, 4),
+        "gate_results": gate_results,
     }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
