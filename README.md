@@ -150,6 +150,15 @@ The API has a repository-side deployment foundation, but **Production LIVE is no
 This is a research architecture: it does not grant unlimited authority to any person, institution, or AI agent. High-impact decisions require lawful authority, human review, appeal and audit.
 
 
+## 🔬 Supreme NLP Evidence & Comparative Reasoning Gate
+
+- **Evidence contract:** [docs/supreme-nlp-evidence-comparison-gate.md](docs/supreme-nlp-evidence-comparison-gate.md)
+- **Claim-evidence schema:** [schemas/supreme-nlp-claim-evidence.schema.json](schemas/supreme-nlp-claim-evidence.schema.json)
+- **Deterministic QC:** [factory/supreme_nlp_evidence_comparison_qc.py](factory/supreme_nlp_evidence_comparison_qc.py)
+- **Five-minute Automission:** [.github/workflows/supreme-nlp-evidence-comparison-gate.yml](.github/workflows/supreme-nlp-evidence-comparison-gate.yml)
+- **Four-Yuga comparison protocol:** [research/yatharth-four-yuga-comparison-protocol-2026-10-02.md](research/yatharth-four-yuga-comparison-protocol-2026-10-02.md)
+- **Rule:** author wording, source-derived facts, model inference, interpretation, evidence, counter-evidence and verification state remain separate.
+
 ## 🧠 Supreme AI–ML–NLP–Automission Total Graph
 
 - [Canonical total graph](docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md)
