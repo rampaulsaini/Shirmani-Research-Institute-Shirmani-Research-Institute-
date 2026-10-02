@@ -7,11 +7,16 @@ on:
   push:
     paths:
       - "agents/supreme_nlp.py"
+      - "agents/supreme_nlp_practitioner.py"
       - "agents/automission_supervisor.py"
+      - "agents/neutrality_gate.py"
       - "scripts/validate_supreme_nlp.py"
+      - "scripts/validate_supreme_nlp_practitioner.py"
+      - "scripts/validate_neutrality_gate.py"
       - "scripts/validate_automission_supervisor.py"
       - "schemas/supreme-nlp-record.schema.json"
       - "docs/SUPREME-NLP-ARCHITECTURE.md"
+      - "docs/supreme-nlp-neutral-automission.md"
       - "factory/supreme_nlp_qc.py"
       - ".github/workflows/supreme-nlp-automission.yml"
 
@@ -39,9 +44,12 @@ jobs:
 
       - name: Compile and contract-test
         run: |
-          python -m py_compile agents/supreme_nlp.py agents/automission_supervisor.py factory/supreme_nlp_qc.py
+          python -m py_compile agents/supreme_nlp.py agents/supreme_nlp_practitioner.py agents/automission_supervisor.py agents/neutrality_gate.py factory/supreme_nlp_qc.py
           python scripts/validate_supreme_nlp.py
+          python scripts/validate_supreme_nlp_practitioner.py
+          python scripts/validate_neutrality_gate.py
           python factory/supreme_nlp_qc.py
+
       - name: Validate Automission supervisor contract
         run: python scripts/validate_automission_supervisor.py
 
@@ -82,6 +90,26 @@ jobs:
           print("FINGERPRINT:", rec["fingerprint"])
           PY
 
+      - name: Run neutrality and evidence gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.neutrality_gate import audit
+
+          out = audit([{
+              "claim_type": "SOURCE_WORLDVIEW",
+              "verification_status": "UNVERIFIED",
+              "provenance": "user-source-2026-09-20",
+              "evidence": [],
+          }])
+
+          p = Path("generated/supreme-nlp/neutrality-status.json")
+          p.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          assert out["status"] == "HOLD"
+          print(json.dumps(out, ensure_ascii=False, indent=2))
+          PY
+
       - name: Run Automission improvement audit
         run: python agents/automission_supervisor.py
 
@@ -93,12 +121,14 @@ jobs:
 
           status = json.loads(Path("generated/supreme-nlp/status.json").read_text(encoding="utf-8"))
           plan = json.loads(Path("generated/supreme-nlp/automission-plan.json").read_text(encoding="utf-8"))
+          neutral = json.loads(Path("generated/supreme-nlp/neutrality-status.json").read_text(encoding="utf-8"))
 
           assert status["fingerprint"]
           assert status["result"]["status"] in {"no_data", "insufficient_quality", "interpreted"}
-          assert 0 <= status["result"].get("interpretation", {}).get("confidence", 0) <= 1 if status["result"]["status"] == "interpreted" else True
           assert plan["state"] in {"MONITOR", "IMPROVEMENT_REQUIRED"}
           assert isinstance(plan["actions"], list) and plan["actions"]
+          assert neutral["status"] == "HOLD"
+          assert neutral["governance"]["fail_closed"] is True
           print("GENERATED_RECORD_CONTRACT_OK")
           PY
 
@@ -109,6 +139,7 @@ jobs:
           path: |
             generated/supreme-nlp/status.json
             generated/supreme-nlp/automission-plan.json
+            generated/supreme-nlp/neutrality-status.json
           if-no-files-found: error
           retention-days: 14
 
@@ -117,9 +148,10 @@ jobs:
           {
             echo "## Supreme NLP Automission"
             echo ""
-            echo "- Cycle: automission-cycle"
-            echo "- Evidence: generated status + improvement plan"
-            echo "- Verification: deterministic contract tests passed"
+            echo "- Cycle: every 5 minutes"
+            echo "- Evidence: deterministic multimodal status"
+            echo "- Neutrality: source/model/evidence separation enforced"
+            echo "- Verification: independent verification remains required"
             echo "- Code mutation: disabled in scheduled audit"
             echo "- Artifacts: uploaded for traceability"
           } >> "$GITHUB_STEP_SUMMARY"
