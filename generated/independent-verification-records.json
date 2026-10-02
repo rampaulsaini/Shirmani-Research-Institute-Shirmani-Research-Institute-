@@ -1,0 +1,6 @@
+{
+  "schema_version":"1.0.0",
+  "status":"QUEUE_READY",
+  "verification_summary":{"queue_records":0,"independently_verified_records":0,"independent_verified_percent":0},
+  "records":[]
+}
