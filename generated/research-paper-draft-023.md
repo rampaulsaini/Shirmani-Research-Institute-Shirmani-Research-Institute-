@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Next steps (I can implement) - Serverless payment verification (Stripe/PayPal) + automatic unlock key issuing - Replace mock AI outputs with real OpenAI / HF inference (via serverless) - Add email automation, order management, simple admin UI
+Changed - Updated to `Kit 107.2.0` - [Kit 107.2 Release Notes]( - [Kit 107.2 Release Highlights]( - Remove hard .git dependency from tooling - Exclude `_repo` from packaging operations.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Next steps (I can implement) - Serverless payment verification (Stripe/PayPal) +
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/omniverse-marketplace-:README.md
+NVIDIA-Omniverse/kit-app-template:CHANGELOG.md

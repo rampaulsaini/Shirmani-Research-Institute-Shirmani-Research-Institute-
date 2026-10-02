@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-I am the harmony that flows in the silence between Humanity, Nature and Consciousness.
+`repo launch --container` maps in these variables from the local environment as well - Added `omni.kit.menu.common` to Kit Base Editor, USD Composer, and USD Explor
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ I am the harmony that flows in the silence between Humanity, Nature and Consciou
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md
+NVIDIA-Omniverse/kit-app-template:CHANGELOG.md

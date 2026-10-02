@@ -3,4001 +3,4001 @@
 स्वचालित स्रोत-संग्रहण से बना शोध-प्रारूप; इसे वैज्ञानिक/ऐतिहासिक प्रमाणित निष्कर्ष न माना जाए।
 
 ## 072001
-premake5.lua repo.toml --include="*.lua" --include="*.toml" # packman XML using a pre-ABI token (should be ${platform_target_abi}).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+A failed provider does not silently become a successful generation.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072002
-NOTE: match BOTH the old ${platform} form (Kit 106) and the intermediate ${platform_target} form — # the narrower 'platform_target[^_]' pattern misses ${platform}, which is what 106.5 actually uses and # is a build-verified hard failure on 106->107 (kit-kernel pull: "Package not found ...gl.linux-x86_64").
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Automatic recovery is bounded and auditable.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072003
-grep -rnE '\$\{platform(_target)?\}' "$DEPS_DIR" --include="*.xml" # Toolbar deprecated APIs grep -rn "omni\.kit\.widget\.toolbar\|omni\.kit\.window\.toolbar" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Software upgrades are signed/reviewed changes, not uncontrolled self-modification.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072004
-include="*.py" --include="*.toml" # === Stage 2 (107→108) === # Python 3.11 references (now 3.12) grep -rn "python3\.11\|python311\|boost_python311" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Generated media is separated from temporary GPU files.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072005
-premake5.lua --include="*.lua" --include="*.sh" --include="*.bat" # get_custom_glyph_code (moved to omni.ui) grep -rn "omni\.kit\.ui.*get_custom_glyph_code" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Public media, live streaming, podcast, games, animation and advertising are adapter-driven capabilities; a UI card alone never claims a running backend.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072006
-include="*.py" # WindowHandle deprecated usage grep -rn "WindowHandle" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Required production topology Internet → HTTPS/CDN/WAF → API replicas → durable queue → GPU worker pool → object storage/CDN.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072007
-include="*.py" # menu_compatibility (deprecated in 108, removed in 110) grep -rn "menu_compatibility" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Minimum high-availability target: 1.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072008
-include="*.py" # Layer events (Events 1.0 style) grep -rn "get_event_stream\|create_subscription_to_pop\|carb\.events" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+two API replicas; 2.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072009
-include="*.py" # Livestream extension (monolithic — should be split) grep -rn '"omni\.kit\.livestream"' .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+durable PostgreSQL task state; 3.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072010
-include="*.kit" --include="*.toml" grep -rn "omni\.services\.livestream\.nvcf" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+durable queue (Redis/RQ, Celery, or equivalent); 4.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072011
-include="*.kit" --include="*.toml" # Livestream settings (old path) grep -rn "app/livestream\|app\.livestream" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+two independent GPU workers/providers; 5.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072012
-include="*.kit" --include="*.toml" # Old omni.kit.ui transitive usage (no longer loaded transitively) grep -rn "omni\.kit\.ui[^.]" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+versioned object storage; 6.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072013
-include="*.py" # === Stage 3 (108→109) === # NumPy 1.x type aliases (removed in 2.0) grep -rn "np\.bool[^_]\|np\.int[^0-9_]\|np\.float[^0-9_]\|np\.complex[^0-9_]\|np\.object[^_]\|np\.str[^_]" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+external monitoring and alerting; 7.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072014
-include="*.py" # === Stage 4 (109→110) === # menu_compatibility (now raises TypeError — must remove entirely) grep -rn "menu_compatibility=" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+automated unhealthy-worker replacement; 8.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072015
-include="*.py" # omni.usd layers deprecated API grep -rn "get_context()\.get_layers()\|context\.get_layers()" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+backup and restore tests.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072016
-include="*.py" # omni.renderer_capture (deprecated → omni.kit.capture) grep -rn "omni\.renderer_capture" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Self-healing contract Automatic actions may: - retry transient provider failures with exponential backoff; - requeue recoverable work after process restart; - stop accepting AI work when readiness is false; - route work to a healthy secondary provider; - restart an unhealthy worker through the deployment orchestrator; - preserve failed tasks for inspection.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072017
-include="*.py" # USD displayName/displayGroup/hidden deprecated metadata grep -rn "GetMetadata.*displayName\|SetMetadata.*displayName\|GetMetadata.*hidden\|SetMetadata.*hidden\|GetMetadata.*displayGroup\|SetMetadata.*displayGroup" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Automatic actions must not: - invent successful output; - mark unverified media as VERIFIED; - expose secrets; - silently change application code; - bypass human/legal publication gates.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072018
-include="*.py" ``` ### C++ / Native Code ```bash # === Stage 1 (106→107) === # C++ ABI — check for _GLIBCXX_USE_CXX11_ABI overrides (must be =1) grep -rn "_GLIBCXX_USE_CXX11_ABI" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Self-upgrade contract "Self-upgrading" means an agent may observe telemetry, propose a change, run deterministic tests, and prepare a signed/reviewed release.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072019
-include="*.cpp" --include="*.h" --include="*.cmake" # === Stage 2 (107→108) === # ITokens::setValue (renamed to setValueS) grep -rn "->setValue(" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Production deployment remains gated by the release policy.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072020
-include="*.cpp" --include="*.h" # carb::detail::defineTupleCommon grep -rn "carb::detail::defineTupleCommon" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+This prevents an autonomous loop from modifying its own safety boundary.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072021
-include="*.cpp" --include="*.h" # PyObjectVTable::get()->typeName grep -rn "PyObjectVTable" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Public media capability map The public interface may expose these modules: - AI Music Studio - Creative Story/Film Studio - Live Podcast - Live Streaming - Live Production - Live News - Live Games - Animation/Cartoon - Creator/Economic Hub - Product offers and advertising - Social distribution - Endless episodic storytelling Each module requires an explicit backend adapter, rights/licensing policy, moderation controls, observability, and a publication state.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072022
-include="*.cpp" --include="*.h" # acquireInterface (prefer getCachedInterface) grep -rn "acquireInterface" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+"Planned", "ready", "live", and "verified" are distinct states.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072023
-include="*.cpp" --include="*.h" # carb::extras::Path implicit conversion grep -rn "carb::extras::Path\|carb::fs::Path" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Advertising and offers Advertising should be first-party/consented and configurable.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072024
-include="*.cpp" --include="*.h" # Assert macros (may need explicit carb/Assert.h now) grep -rn "CARB_ASSERT\|CARB_FATAL_UNLESS" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+The system may schedule product cards, offers and campaign variants, but it must not fabricate availability, prices, endorsements, audience numbers, or performance metrics.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072025
-include="*.cpp" --include="*.h" # Library.h removed functions grep -rn "getDefaultLibraryPrefix\|getDefaultLibraryExtension" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Social posting requires platform-specific credentials and policy compliance.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072026
-include="*.cpp" --include="*.h" # GfMatrix usage (imprecise overloads removed) grep -rn "GfMatrix" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+24/7 acceptance tests Before calling the service production-ready, continuously test: - API restart during generation; - GPU worker crash; - provider health loss and recovery; - queue recovery; - duplicate/idempotent submissions; - object-storage outage; - database restore; - one-provider loss with another provider available; - stale public status; - unauthorized task/audio access; - secret leakage scans; - signed release verification.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072027
-include="*.cpp" --include="*.h" # ILayers.h inclusion (ABI 1.0 → 1.1 recompile required) grep -rn "ILayers\.h\|omni/kit/usd/layers" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Current free-testing boundary Google Colab + Quick Tunnel is a development/test path only.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072028
-include="*.cpp" --include="*.h" # carb.events const char* usage (deprecated — prefer string_view) grep -rn "carb::events::\|IEventQueue\|IEvents" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Its GPU runtime and public URL are temporary.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072029
-include="*.cpp" --include="*.h" # Scalar xform ops — code that iterates over xform ops assuming vector types grep -rn "GetOrderedXformOps\|xformOp:translate\|xformOp:scale\|xformOp:rotate" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+The repository's notebook now sets a headless matplotlib backend before ACE-Step startup and waits for the engine health endpoint before exposing the test URL.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072030
-include="*.cpp" --include="*.h" --include="*.py" # === Stage 3 (108→109) === # Fabric TokenC/PathC (removed; also kUninitializedToken/Path) grep -rn "TokenC\|PathC\|TokenId\|PathId\|kUninitializedToken\|kUninitializedPath" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Permanent availability requires persistent infrastructure.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_CONTROL_PLANE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072031
-include="*.cpp" --include="*.h" # carb::cpp17 / carb::cpp20 (merged to carb::cpp) grep -rn "carb::cpp17\|carb::cpp20" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Yatharth Live Hub YATHARTH LIVE HUB Podcast • Voice • Live conversations • Public media ← Creator Hub LIVE MEDIA • निष्पक्ष समझ आवाज़ और विचार के लिए public stage.
+स्रोत: rampaulsaini/yatharth-music-ai:live.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072032
-include="*.cpp" --include="*.h" # carb::thread::shared_lock (removed) grep -rn "carb::thread::shared_lock" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+शिरोमणि रामपाल सैनी की सार्वजनिक फोटो और voice-source entry को यहाँ स्पष्ट रूप से जोड़ा गया है।
+स्रोत: rampaulsaini/yatharth-music-ai:live.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072033
-include="*.cpp" --include="*.h" # IDictionary::MakeAtPathS (renamed to MakeAtPath) grep -rn "MakeAtPathS" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Live streaming को तभी “LIVE” दिखाया जाएगा जब वास्तविक streaming provider connected हो।
+स्रोत: rampaulsaini/yatharth-music-ai:live.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072034
-include="*.cpp" --include="*.h" # compareStringsNoCase (renamed) grep -rn "compareStringsNoCase" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+निष्पक्ष समझ की आवाज़ Public voice source ▶ YouTube voice source खोलें → 🎙️ Podcast Studio Episode planning, script, show notes और audio workflow.
+स्रोत: rampaulsaini/yatharth-music-ai:live.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072035
-include="*.cpp" --include="*.h" # Logger (superseded by Logger2) grep -rn "carb::logging::Logger[^2]" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Planning available 🔴 Live Broadcast Streaming provider connection के बाद live publishing.
+स्रोत: rampaulsaini/yatharth-music-ai:live.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072036
-include="*.cpp" --include="*.h" # MDL/Neuray usage (ABI 56 → 57 recompile required) grep -rn "omni\.mdl\|Neuray\|MDL.*SDK" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Provider connection required 🎧 निष्पक्ष समझ Voice Source सार्वजनिक voice source अभी YouTube channel से जुड़ा है; direct audio file तभी publish होगी जब वास्तविक audio asset उपलब्ध हो।
+स्रोत: rampaulsaini/yatharth-music-ai:live.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072037
-include="*.cpp" --include="*.h" --include="*.toml" # CloudXR / XRCloudXRBindings grep -rn "CloudXR\|XRCloudXRBindings\|IOpenXRRuntime" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Open voice source → Creator Hub • Music • Creative Studio
+स्रोत: rampaulsaini/yatharth-music-ai:live.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072038
-include="*.cpp" --include="*.h" # === Stage 4 (109→110) === # CARB_CHECK (replaced by CARB_RELEASE_ASSERT) grep -rn "CARB_CHECK" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Privacy Notice — Draft **Status:** Draft for the development project.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072039
-include="*.cpp" --include="*.h" # carb/Defines.h (split into sub-headers) grep -rn '#include.*carb/Defines\.h' .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Review and update this notice before collecting personal data or launching a public commercial service.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072040
-include="*.cpp" --include="*.h" # IFileSystem raw char* methods grep -rn "IFileSystem" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+What the current app stores The current backend keeps generation tasks in process memory.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072041
-include="*.cpp" --include="*.h" # ITokens (unsafe methods removed; ITokens 2.0 available) grep -rn "ITokens\|->resolveString\|->setValue" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+The browser stores local song-history metadata in local storage.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072042
-include="*.cpp" --include="*.h" # optional / expected — semantics changed (if(b) now tests presence) grep -rn "optional \|expected **Important:** Also scan `templates/`, `launcher-configs/`, and any ETM lock files (e.g.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Demo mode does not require an account.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072043
-`omni.all.template.extensions.kit`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+A future production deployment may process prompts, lyrics, generation metadata, account information, technical logs, and generated audio.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072044
-These contain real dependency declarations and will cause test or runtime failures if they reference removed extensions.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+The exact data collected must be documented before launch.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072045
-```bash # === All stages — removed/deprecated extensions === # Kit 108 removals grep -rn "omni\.kit\.extpath\.git" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Purpose Data should be processed only as necessary to provide music-generation features, maintain security, diagnose failures, improve reliability, and meet applicable legal obligations.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072046
-include="*.toml" --include="*.kit" # Kit 108 — monolithic livestream (split into modules) grep -rn '"omni\.kit\.livestream"' .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Third parties A production deployment may send generation requests to an AI music engine such as ACE-Step.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072047
-include="*.toml" --include="*.kit" grep -rn "omni\.services\.livestream\.nvcf" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Operators must review the model/provider license and privacy terms before sending user content.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072048
-include="*.toml" --include="*.kit" # Kit 110 removals (cause cryptic exit-55 dependency solver failures) for ext in omni.kvdb omni.localcache omni.genproc.core; do echo "=== $ext ==="; grep -rn "$ext" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+User content Do not submit passwords, API keys, payment-card information, or other unnecessary sensitive information into prompts or lyrics.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072049
-include="*.kit" --include="*.toml" done # Kit 110 silently removed (no deprecation notice) for ext in "omni.hydra.iray.shadercache.d3d12" "omni.hydra.iray.shadercache.vulkan" "omni.kit.viewport.iray"; do echo "=== $ext ==="; grep -rn "$ext" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Retention and deletion The current in-memory task store is not durable.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072050
-include="*.kit" --include="*.toml" done # Deprecated (not yet removed — still operational but plan migration) for ext in "omni.command.usd" "omni.debugdraw" "omni.hydra.iray" "omni.iray.settings.core" \ "omni.kit.autocapture" "omni.kit.manipulator.viewport" "omni.hydra.scene_api" \ "omni.renderer_capture" "omni.surface_instancer" "omni.kit.viewport.legacy_gizmos" \ "omni.kit.widget.nucleus_connector"; do echo "=== $ext ==="; grep -rn "$ext" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Production retention periods, account deletion, generated-audio deletion, backups, and log retention must be defined before launch.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072051
-include="*.kit" --include="*.toml" done # Extensions that need explicit declaration (no longer loaded transitively) grep -rn "omni\.kit\.manipulator\.prim\.fabric\|omni\.resourcemonitor\|omni\.kit\.ui" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Contact Replace this section with the project operator's official privacy contact before public launch.
+स्रोत: rampaulsaini/yatharth-music-ai:PRIVACY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072052
-\ --include="*.py" --include="*.toml" ``` ### Config Files ```bash # Extension registry URLs (must update for Kit 110) grep -rn "kit-extensions\.ov\.nvidia\.com\|omniverse://" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Yatharth Music AI — RTX 4070 / ACE-Step GPU Benchmark This benchmark measures the **real Yatharth Music AI → FastAPI → ACE-Step** generation path.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072053
-include="*.kit" # Build system (VS version) — also check CI-scoped token overrides # (e.g.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+It is intended to answer: - How long does a 30s, 60s, or 180s generation actually take?
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072054
-"token:in_ci==true".vs_version may override the default even when the top-level is correct) grep -rn "vs_version\|vs2019\|vs2017\|v142" repo.toml # Livestream settings (old path style) grep -rn "app/livestream" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+How much GPU power and VRAM are used?
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072055
-include="*.kit" --include="*.toml" # Kit SDK version pin (use the $DEPS_DIR detected in Step 1) cat "$DEPS_DIR/kit-sdk.packman.xml" # mergeMaterials (behavioral default change in 109) grep -rn "mergeMaterials" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+What is the estimated GPU electricity cost per generation?
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072056
-include="*.kit" --include="*.toml" # FSD / Fabric Scene Delegate settings grep -rn "FabricSceneDelegate\|fsd\b" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+How much audio can one GPU theoretically generate per day?
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072057
-include="*.kit" --include="*.toml" ``` ### OmniGraph ```bash # === Stage 2 (107→108) — OmniGraph 3.0 ABI === grep -rn "omni\.graph\.core\|omni\.graph\.nodes" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+What data should be used before setting paid-user limits?
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072058
-include="*.toml" # === Stage 4 (109→110) — deprecated/removed OmniGraph nodes === # DeformedPointsToHydra — removed (was part of OmniHydra) grep -rn "DeformedPointsToHydra" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+> **Important:** This is a measurement tool, not a promise of performance.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072059
-include="*.py" --include="*.usd" --include="*.usda" # OnCustomEvent bundle attributes deprecated grep -rn "OnCustomEvent" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Run it on the exact GPU, ACE-Step model, quantization/offload settings, inference settings, and server configuration you intend to sell.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072060
-include="*.py" --include="*.usd" --include="*.usda" # Bundle/attribute manipulation nodes deprecated grep -rn "ArrayGetSize\|AttributeType\|BundleConstructor\|CopyAttribute\|ExtractPrim\|GetAttributeNames\|HasAttribute\|InsertAttribute\|RemoveAttribute\|RenameAttribute" \ .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+What it measures The script submits a real request to `POST /api/generate`, then polls `GET /api/tasks/{task_id}` until the task completes.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072061
-include="*.py" --include="*.usd" --include="*.usda" # Event/render pipeline nodes deprecated grep -rn "UpdateTickEvent\|GpuInteropCudaEntry\|RenderPreprocessEntry\|RpResourceExample" \ .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+This means demo tones do **not** count.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072062
-include="*.py" --include="*.usd" --include="*.usda" ``` ### Isaac Sim Projects If the project uses Isaac Sim extensions, scan for the `omni.isaac.*` namespace migration (applies Kit 107+): ```bash # omni.isaac.* imports (deprecated → isaacsim.*) grep -rn "omni\.isaac\." .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Why 30s / 60s / 180s?
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072063
-include="*.py" --include="*.toml" --include="*.kit" # omni.replicator.isaac (→ isaacsim.replicator.*) grep -rn "omni\.replicator\.isaac" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Use three durations because generation speed is not always perfectly linear with requested audio duration: | Test | Purpose | |---|---| | 30 seconds | Fast sanity check and low-latency test | | 60 seconds | Representative short-song benchmark | | 180 seconds | Representative 3-minute-song benchmark | Run them **sequentially**.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072064
-include="*.py" --include="*.toml" # Dynamic Control Toolbox (removed as compile-time dep) grep -rn "dynamic_control\|DynamicControl" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+For capacity planning, keep ACE-Step `batch_size=1` so the benchmark represents one user's generation at a time.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072065
-include="*.py" --include="*.cpp" --include="*.h" # SemanticsAPI (→ UsdSemantics.LabelsAPI) grep -rn "add_update_semantics\|SemanticsAPI" .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
+Requirements On the machine running Yatharth: - NVIDIA GPU with a working NVIDIA driver - `nvidia-smi` available for GPU power/VRAM measurements - Python 3.10+ - Yatharth Music AI running with `DEMO_MODE=false` - ACE-Step reachable through `MUSIC_ENGINE_URL` - Real ACE-Step generation working before benchmarking The benchmark itself uses Python's standard library and does not require `requests` or another extra package.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072066
-Step 5: Apply Fixes > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 1 — Start the real Yatharth + ACE-Step stack Make sure the health endpoint reports real AI mode: ```bash curl ``` You want values equivalent to: ```json { "ok": true, "demo_mode": false, "engine_reachable": true } ``` If `demo_mode` is `true`, **stop**.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072067
-Assumes Step 1 detection has run (`$DEPS_DIR`, `$BUILD` are set).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+The benchmark would not measure ACE-Step.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072068
-> **Within-major / feature→production upgrade?** Run **only items 1, 2, 8** below (plus item 3 *if* a feature↔production registry swap is needed), then Step 6 (`validate.md`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 2 — Check the GPU ```bash nvidia-smi ``` For an RTX 4070, confirm that the expected NVIDIA GPU is shown and that memory is available before starting the benchmark.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072069
-Skip items 4–7** — they apply only when a major boundary is crossed.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+For a live view during testing: ```bash watch -n 1 nvidia-smi ``` On Windows, use: ```powershell nvidia-smi -l 1 ``` ## Step 3 — Run the benchmark From the repository root: ```bash python scripts/gpu_benchmark.py ``` Default tests: ```text 30s → 60s → 180s ``` The default electricity rate is ₹8/kWh.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072070
-See "Within-major upgrades" under Step 2 in `../SKILL.md`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Capacity calculation The script reports a simple **generation-time-to-audio-time ratio**: ```text generation ratio = generation seconds ÷ requested audio seconds ``` For example, if a real 180-second song takes 90 seconds: ```text 90 ÷ 180 = 0.50x ``` That means the GPU is producing audio at approximately twice real-time under that exact test configuration.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072071
-Get user approval before modifying files.** Then apply in this order (a full major-boundary upgrade runs all eight): 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Paid-user planning The benchmark gives **audio capacity**, not a guaranteed number of customers.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072072
-Clear extscache** first: `rm -rf _build/*/release/extscache/` 2.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Convert it to customers only after deciding your plan's monthly generation allowance.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072073
-Update version pin** in `$DEPS_DIR/kit-sdk.packman.xml` 3.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+For example: ```text Monthly audio capacity ÷ average audio minutes consumed per paid user = theoretical user capacity ``` Then apply a safety/availability margin.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072074
-Update registry URLs** in `.kit` files (see `../references/config_changes.json`) 4.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Example planning exercise (not a prediction): If a measured system can produce 1,000 three-minute songs/month under your chosen operating schedule, and a subscription allows 10 songs/month: ```text 1,000 ÷ 10 = 100 users ``` That is a **capacity calculation**, not a recommendation or guarantee.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072075
-Replace deprecated APIs** using patterns in `../references/api_replacements.json` — these are safe regex replacements 5.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+If users actually consume fewer songs, capacity may be higher; if they consume more, it may be lower.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072076
-Remove deprecated extension deps** from `extension.toml` and `.kit` files (see `../references/removed_extensions.json`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+GPU purchase recovery If an RTX 4070 costs ₹69,000, do not calculate recovery from electricity alone.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072077
-For 109→110 specifically:** the following six extensions are removed with **no deprecation notice**, and any lingering reference causes a cryptic `exit code 55` dependency-solver failure.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Track: ```text GPU/PC purchase + electricity + internet + storage + payment fees + hosting/domain + maintenance + taxes + refunds/credits ``` Then: ```text net contribution per paid generation = price collected - variable generation cost - payment fee - other variable costs ``` And: ```text break-even generations = total recoverable investment ÷ net contribution per generation ``` The benchmark supplies the generation-time and estimated GPU-energy inputs needed for this calculation.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072078
-They MUST be removed from every `.kit` (and `extension.toml`) file: - `omni.kvdb` - `omni.localcache` - `omni.genproc.core` - `omni.hydra.iray.shadercache.d3d12` - `omni.hydra.iray.shadercache.vulkan` - `omni.kit.viewport.iray` ⚠️ **Check the generated version-lock block, not just `[dependencies]`.** In application `.kit` files these names almost always appear in the auto-generated `[settings.app.exts] enabled = [...]` lock (pinned at the old version, e.g.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Recommended benchmark procedure for the RTX 4070 When the RTX 4070 is installed: 1.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072079
-`omni.kvdb-109.0.10`), **not** the hand-authored dependency list.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Install the NVIDIA driver and verify `nvidia-smi`.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072080
-Clearing extscache (step 1) does NOT remove them** — you must regenerate the lock: delete the `# BEGIN GENERATED PART` … `# END GENERATED PART` block (the `.kit` says "Remove from 'BEGIN' to 'END' to regenerate") and run `$BUILD precache_exts -c release` so it is rebuilt without the removed extensions.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Start ACE-Step with the exact model/settings you intend to use in production.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072081
-Then confirm a clean rebuild (the version stamp should advance to 110 and the six names should be gone).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Start Yatharth with `DEMO_MODE=false`.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072082
-(If you are working in an internal `kit-app-template` checkout, the ETM lock file `templates/omni.all.template.extensions.kit` and any internal-registry entries are KAT-internal — wrapped in `# AUTOREMOVE` and stripped from external releases by `repo stage_for_github` — so external customer projects will not contain them.) 6.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Confirm `/api/health` reports `engine_reachable: true`.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072083
-Add explicit deps** where transitive loading was removed: `omni.kit.ui`, `omni.resourcemonitor`, `omni.kit.manipulator.prim.fabric` 7.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Keep `batch_size=1` for the single-user benchmark.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072084
-Update build config** in `repo.toml` (VS version, MSVC version, Windows SDK — see `../references/config_changes.json`) 8.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
+Run 30s, 60s and 180s tests.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072085
-Step 2.5: Update the Build Toolchain (highest-impact — often the real work) > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Repeat the 60s test **at least 5 times** if you want a more reliable average.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072086
-Assumes Step 1 detection has run (`$DEPS_DIR`, `$BUILD` are set).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Save `gpu_benchmark_results.json` for comparison.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072087
-Run this **before** touching source code — for a within-major / feature→production bump it is usually the *only* substantive work.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Repeat after changing model quantization, offload, inference steps, or other generation settings.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072088
-> **Key principle:** the most valuable part of an upgrade is usually **not** the code changes — it is making sure the project's **tooling** is correctly updated (repo scripts, `repo_man`/repoman, dependency versions).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Compare **quality + generation time + VRAM + cost**, not speed alone.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072089
-This step is therefore **first-class for every upgrade**, and the *primary* step for within-major / branch-transition bumps.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Important interpretation notes ### 1.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072090
-Run it **before** touching source code.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+GPU power is not whole-PC power `nvidia-smi` measures reported GPU power draw.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072091
-Why it matters:** the Kit kernel pin and the repo toolchain are coupled.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+A complete PC will consume additional power through the CPU, motherboard, RAM, SSD, fans, PSU losses, and other components.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072092
-Bumping `kit-sdk.packman.xml` alone frequently fails because packman tokens (e.g.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+For a business cost model, measure wall power with a suitable power meter if possible.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072093
-`${platform_target_abi}`) only resolve under the matching `repo_man`, and newer kernels expect newer `repo_build` / `repo_kit_tools`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+One generation is not necessarily one customer A customer may regenerate a song several times before downloading a result.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072094
-A pin bump *without* a toolchain bump produces cryptic pull/resolve failures — e.g.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Include retries/regenerations when calculating usage limits.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072095
-`Package not found ...gl.linux-x86_64` or `No versions of … = `.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Concurrent users change the result This benchmark is intentionally sequential.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072096
-The toolchain = these files** (see `../references/toolchain.json`): - `$DEPS_DIR/repo-deps.packman.xml` — the `repo_*` tools: `repo_man`, `repo_build`, `repo_kit_tools`, `repo_kit_tools_internal`, `repo_kit_template`, `repo_usd`, `repo_format`, `repo_test`, `repo_package`, `repo_ci`, etc.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Once the single-generation baseline is known, run a separate controlled concurrency test before increasing `MAX_CONCURRENT_GENERATIONS`.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072097
-`$DEPS_DIR/kit-sdk.packman.xml` — the kit-kernel pin (updated in Step 5, item 2 — see `apply-fixes.md`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not simply increase concurrency until the GPU crashes.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072098
-`tools/packman/` — the packman bootstrap (`packman`, `packman.cmd`, `bootstrap/`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Long songs may change memory/time behavior Always test the longest duration you intend to sell.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072099
-`repo.sh` / `repo.bat` — the repo wrappers (may need regenerating under a newer `repo_man`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+The 180-second test is included specifically to expose problems that a 30-second test may miss.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072100
-`repo.toml` — build config (VS/MSVC/WinSDK for Stage 4; see `../references/config_changes.json`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Benchmark after every major model/configuration change Record: - GPU model - VRAM - ACE-Step model/checkpoint - quantization/offload settings - inference steps - batch size - audio format - requested duration - generation time - peak VRAM - average/peak power - software versions This makes future hardware comparisons meaningful.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072101
-How to find the correct target versions — do NOT guess:** 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Output for business planning After running the benchmark, bring the generated `gpu_benchmark_results.json` into the project discussion.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072102
-Get a **reference project already on the target Kit version** — the matching `kit-app-template` or `kit-sdk-public` branch for that Kit line, or the target Kit SDK release.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+The key numbers needed for the next calculation are: ```text 30s generation time 60s generation time 180s generation time peak VRAM average GPU power peak GPU power actual electricity tariff GPU/PC purchase price planned price per song or subscription songs included per user ``` Those figures can then be used to calculate a more realistic **₹/song, monthly capacity, break-even point, and operating-cost model** for Yatharth Music AI.
+स्रोत: rampaulsaini/yatharth-music-ai:GPU_BENCHMARK.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072103
-Read its `repo-deps.packman.xml`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Yatharth Music AI — ₹0 setup This project supports a free-first development path using the open-source ACE-Step engine.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072104
-Prefer the `production/ ` branch** — it carries the vetted, most-current toolchain for that release.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Easiest path: local computer A local computer is the most reliable way to stay at ₹0 because there is no cloud GPU rental.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072105
-⚠️ **Toolchain versions track the branch's maintenance cadence, not the kernel number** — a newer kernel line can ship an *older* toolchain (in kit-sdk-public, `feature/main` pins kernel 110.4 with `repo_man` 2.6.4, while the maintained `production/110.1` pins kernel 110.1.3 with a *newer* `repo_man` 2.9.3).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+ACE-Step can run with GPU acceleration and also supports CPU-only operation, although CPU generation can be much slower.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072106
-Always read the target branch's **actual** pins; never assume "newer Kit = newer tools".
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Install Use Python 3.11 or 3.12.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072107
-(Those version numbers are an illustrative snapshot read in 2026 — they **will** go stale; verify against the live branch, do not copy them.)* 2.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Install the official ACE-Step project and its dependencies from the official repository.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072108
-Diff** the project's `$DEPS_DIR/repo-deps.packman.xml` against the reference and align each `repo_*` tool `version=` to the reference.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Then start the ACE-Step API on port `8001`.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072109
-Do the same for `tools/packman/` if it differs.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Set Yatharth Music AI to: ```text DEMO_MODE=false MUSIC_ENGINE_URL= ``` Start the Yatharth backend on port `8000`, then open the Yatharth web app.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072110
-Apply the versions, then do a **clean rebuild** (Step 6 — see `validate.md`) — the toolchain bump must land before the kernel pin resolves cleanly.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Free Colab GPU Open `colab/Yatharth_Music_AI_Free_GPU.ipynb` in Google Colab and run the cells.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072111
-> This step is safe to run and validate (Step 6) **on its own, first**.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+The notebook is intended for temporary development/testing.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072112
-Many "the upgrade won't build" error loops are nothing more than a stale toolchain — fixing it up front avoids chasing phantom code errors.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
+Free Colab GPU access is dynamic, sessions can terminate, and it is not a dependable 24/7 public hosting solution.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072113
-Step 4: Generate Upgrade Report > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Hardware guidance - 6GB+ VRAM: a practical starting point for local GPU use.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072114
-Run after the Step 3 scans (`scan.md`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+4GB VRAM: ACE-Step has lower-memory modes, but generation may require more aggressive memory management.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072115
-Present findings organized by severity.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+CPU-only: possible, but expect substantially slower generation.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072116
-Use exact `file:line` references from scan output.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Important architecture rule Do not put model weights, API keys, passwords, or private credentials into this GitHub repository.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072117
-``` ## Upgrade Report: Kit [FROM] → [TO] Project: [path] Migration stages applied: [e.g., Stage 2 + 3 + 4] ### ❌ Breaking Changes (must fix — build or load will fail) 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+The public web app can remain in `DEMO_MODE=true` when no engine is connected.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072118
-[file:line] — [description] → [exact fix] ### ⚠️ Behavioral Changes (no error, but may affect output or performance) 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+When a local or temporary ACE-Step engine is available, set `DEMO_MODE=false` and point `MUSIC_ENGINE_URL` at it.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072119
-[file:line] — [description] → [fix or test required] ### 🔔 Deprecated Usage (should fix — will break in next version) 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Cost target **Target: ₹0 for software and development.** A permanently available public AI music-generation server with guaranteed GPU capacity cannot honestly be promised at ₹0.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072120
-[file:line] — [description] → [fix] ### ✅ Not Affected - [List the `id` or `title` from `breaking_changes.json` for each pattern that was scanned and returned no matches.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+If the project later needs 24/7 public generation, a paid GPU service may become necessary.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072121
-This serves as a record that the check was performed, not just skipped.] ### 📋 Required Steps Regardless of Code Changes 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Official project Use the official ACE-Step repository and documentation for the engine.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072122
-Clear extscache: `rm -rf _build/*/release/extscache/` 2.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Avoid unofficial websites claiming to be the official ACE-Step service.
+स्रोत: rampaulsaini/yatharth-music-ai:FREE_SETUP.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072123
-Update `kit-sdk.packman.xml`: change version pin to `[TO].x.y+feature.${platform_target_abi}.${config}` 3.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Yatharth Public Media Command Center YATHARTH PUBLIC MEDIA COMMAND CENTER एक विशाल creative media ecosystem Music, Creative Studio, live-media adapters, episodic storytelling, creator tools और first-party offers के लिए एक unified public interface.
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072124
-Update extension registry URLs in `.kit` files (see `../references/config_changes.json`) 4.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+यह dashboard केवल उपलब्ध backend capability को LIVE दिखाता है; planned modules को स्वतः live घोषित नहीं करता।
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072125
-Rebuild all C++ extensions (ABI break at every stage — required even with no source changes) 5.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+🎵 Music Studio 🎬 Creative Studio 🧠 Automission Control 💼 Creator Hub AI Music CHECKING Original music generation, lyrics, multilingual controls and audio delivery.
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072126
-Regenerate version lock blocks in `.kit` files: `$BUILD precache_exts -c release` (substitute the build entrypoint detected in Step 1 — `./repo.sh` may not exist on a custom/integrated build) 6.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Creative Production READY Structured story, character, storyboard, music, animation and editing hand-offs.
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072127
-If project has an ETM lock file (e.g.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Live Podcast ADAPTER REQUIRED Live audio rooms, scheduling, moderation, recording and replay.
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072128
-`omni.all.template.extensions.kit`), regenerate it or manually remove entries for removed extensions 7.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Live Streaming ADAPTER REQUIRED Broadcast ingest, transcoding, CDN delivery, chat and moderation.
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072129
-[stage-specific items, e.g., VS2022 for Stage 4] ### 🧪 Behavioral Tests Required 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Live Production ADAPTER REQUIRED Scenes, overlays, lower-thirds, media cues and production automation.
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072130
-[scenes with DomeLights — orientation regression (Stage 3, but inherited in all later stages)] 2.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+News / Games / Animation ADAPTER REQUIRED Separate editorial, game and animation services with their own rights and QC boundaries.
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072131
-[load performance with mergeMaterials setting (Stage 3)] 3.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Endless Episodes PIPELINE READY A continuing story engine can create bounded episodes while preserving continuity and review gates.
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072132
-[render output with FSD enabled (Stage 3)] 4.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Offers & Advertising CAMPAIGN LAYER First-party product cards, offers, campaign variants and consent-aware social distribution.
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072133
-[MaterialX materials (Stage 4)] 5.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+System Health CHECKING API readiness CHECKING AI provider CHECKING Durable recovery Reading verified runtime status… 24/7 boundary Software can automate detection, retry, recovery and failover, but no software-only design can honestly guarantee that hardware, power, network or an external provider will never fail.
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072134
-[transform-heavy workflows after scalar xform ops change (Stage 2)] ``` **Prioritize for the user:** Extension removal errors and ABI rebuild requirements are the most common causes of project failures after a version bump.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
+Production continuity therefore uses independent infrastructure and a second provider/worker.
+स्रोत: rampaulsaini/yatharth-music-ai:public-media-command-center.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072135
-Important Notes by Stage > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Yatharth Digital Products YATHARTH DIGITAL PRODUCTS Reusable creative assets और production material का public catalog.
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072136
-Per-stage reference for the breaking changes summarized in the Step 2 migration table.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+← Creator Hub PRODUCT CATALOG • निष्पक्ष समझ डिजिटल सामग्री को उत्पाद की तरह प्रस्तुत करें।
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072137
-Read the stages that apply to the boundaries you cross.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+यह catalog publishing-ready structure देता है।
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072138
-Stage 1: 106 → 107 - **Rebuild required** — Linux ABI changed (`_GLIBCXX_USE_CXX11_ABI=0` → `=1`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+हर item के साथ वास्तविक price, delivery method और purchase route तभी जोड़ा जाएगा जब वह सच में configured हो।
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072139
-All prebuilt `.so` files will fail to load.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+निष्पक्ष समझ शिरोमणि रामपाल सैनी स्रोत-आधारित creator identity.
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072140
-packman XML token**: Update the kit-kernel pin token to `${platform_target_abi}` in all `.packman.xml` files.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+🎙️ आवाज़ / public source → 🎼 Music Creation Packs Song prompts, lyric frameworks, production briefs और reusable music workflows.
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072141
-Kit 106 uses the **`${platform}`** form (not `${platform_target}`); both must become `${platform_target_abi}`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Catalog item — publishing setup required ✍️ Story & Script Packs Story structures, character sheets, scene planning और storyboard templates.
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072142
-Build-verified:* leaving the old token makes the kit-kernel pull fail immediately with `Package not found on specified remote servers (…gl.linux-x86_64.release)`, because Kit 107's kernel is published only under the ABI string (`manylinux_2_35_x86_64`), not `linux-x86_64`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Catalog item — publishing setup required 🤖 Automission Templates AI-agent orchestration contracts, production manifests और workflow templates.
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072143
-Bump the repo toolchain too (required, easy to miss)** — see **Step 2.5** (`toolchain.md`): the token fix alone is **insufficient** — `${platform_target_abi}` only resolves to the ABI string under the newer `repo_man`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Catalog item — publishing setup required 🎨 Creative Asset Packs Prompts, visual briefs, thumbnails, titles और presentation-ready creative assets.
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072144
-Update `$DEPS_DIR/repo-deps.packman.xml` to the 107-era tooling (`repo_man`, `repo_build`, `repo_kit_tools`, `repo_kit_template`, `repo_usd`) and the packman bootstrap.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Catalog item — publishing setup required 🌐 Website / Studio Kits Creator landing pages, studio interfaces और deployment-ready UI packages.
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072145
-Build-verified:* under 106.5's `repo_man` 1.86.0 the token still resolves to `linux-x86_64`; after the toolchain bump it resolves to `manylinux_2_35_x86_64` and the pull succeeds.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Catalog item — publishing setup required 📚 Yatharth Research Material Research, essays और structured public material को digital editions में व्यवस्थित करने का मार्ग.
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072146
-Carbonite Events 2.0**: The event system changed from push/pump to dispatch.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Publication + commerce setup required Creator Hub • Music • Creative Studio
+स्रोत: rampaulsaini/yatharth-music-ai:products.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072147
-No explicit pump calls needed.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Production resilience ## What this solves The free-Colab experiment can fail before ACE-Step starts when the notebook exports Jupyter's `matplotlib_inline` backend.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072148
-Python payload access changed from `e.payload['key']` to `e['key']`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+The resilient launcher forces the non-GUI `Agg` backend and refuses to start the public API until ACE-Step answers its health endpoint.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072149
-C++17 is now available** explicitly in Premake via `cppdialect = "C++17"`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Run: ```bash chmod +x scripts/launch_resilient.sh ACE_ROOT=/content/ACE-Step-1.5 \ YATHARTH_ROOT=/content/yatharth-music-ai \ scripts/launch_resilient.sh ``` ## What it does not promise A Colab runtime is ephemeral.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072150
-Stage 2: 107 → 108 - **Kit 108 was never publicly released.** These changes still apply when upgrading 107→109.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+A temporary tunnel is also ephemeral.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072151
-Python 3.12** replaces 3.11.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Neither is a 24/7 production host.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072152
-Update all Premake configs, CI configs, and boost_python links.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Permanent availability requires a persistent GPU/compute provider, persistent storage, monitoring, and an external process supervisor.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072153
-OpenUSD 25.02**: All C++ extensions linking OpenUSD must rebuild.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+The repository already keeps generation state durable and retries failed engine tasks.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072154
-GfMatrix imprecise overloads removed.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+This launcher adds a deterministic startup gate so the application does not advertise a real-AI service while the engine is unavailable.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072155
-Livestream modularization**: `omni.kit.livestream` (monolithic) → `omni.kit.livestream.app` + `.aov` + `.core`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+24/7 target architecture Use these layers: 1.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072156
-`omni.services.livestream.nvcf` → `omni.services.livestream.session`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Public HTTPS edge / CDN / WAF.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072157
-Settings paths changed — see `../references/config_changes.json`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Stateless Yatharth API replicas.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072158
-Transitive deps removed**: `omni.kit.ui`, `omni.resourcemonitor`, `omni.kit.manipulator.prim.fabric` must now be declared explicitly.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Durable task database/queue.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072159
-ILayers ABI 1.0 → 1.1**: Recompile all extensions including `ILayers.h`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+GPU worker pool running ACE-Step.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072160
-USD scalar xform ops**: OpenUSD now supports scalar ops (e.g., `xformOp:translateX`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Object storage for generated media.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072161
-Code iterating over xform ops that assumes all are vector types may behave incorrectly.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Health checks + process restart.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072162
-Stage 3: 108 → 109 - **CUDA 12.4.1 driver requirement**: Linux minimum 550.54.15, Windows minimum 551.78.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Metrics/logging/alerting.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072163
-Apps fail to start with older drivers.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Signed, tested releases only for automatic upgrades.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072164
-NumPy 2.x**: Many breaking changes.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Human approval before public-content publication.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072165
-On Windows, the default integer type changed from `int32` to `int64` — can cause silent correctness issues.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Self-healing should retry/recover failed work; it should not silently rewrite or self-upgrade production code.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072166
-Fabric ABI break**: Even if no source changes needed (no TokenC/PathC usage), all extensions including Fabric headers must recompile — `Token`/`Path` became trivially copyable, which is a binary ABI change.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Upgrades must remain auditable and reversible.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072167
-Use `token.isNull()` instead of `kUninitializedToken`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Public production features The existing Studio API supports structured story, character, storyboard, music, animation, editing and QC stages.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072168
-mimalloc (Windows)**: Cross-DLL allocation/free pairs that cross a DLL boundary may now crash.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Live streaming, live production, news, games, cartoons, advertising, social publishing and an always-running episodic engine should be implemented as separate provider adapters and queues rather than being coupled to the music-generation process.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072169
-Use `kit-sysalloc.exe` for compatibility testing.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+No external render, stream, publication, audience count, advertisement delivery, or revenue result should be reported as complete until an actual provider returns verifiable evidence.
+स्रोत: rampaulsaini/yatharth-music-ai:PRODUCTION_RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072170
-mergeMaterials**: Default changed — can cause significant load time regression with no code error.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Colab / ACE-Step startup resilience The Yatharth API can remain healthy while the ACE-Step engine is unavailable.
+स्रोत: rampaulsaini/yatharth-music-ai:COLAB-ACESTEP-STARTUP-RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072171
-FSD default on**: If previously disabled FSD, test render output carefully.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+The UI must therefore distinguish **API online** from **engine ready**.
+स्रोत: rampaulsaini/yatharth-music-ai:COLAB-ACESTEP-STARTUP-RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072172
-DomeLight orientation**: USD 25.05 changed the default orientation.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Known failure from the 2026-09-27 test ACE-Step exited during import because the notebook inherited: `MPLBACKEND=module://matplotlib_inline.backend_inline` ACE-Step is a server process, so use a headless backend before launching it: ```bash export MPLBACKEND=Agg uv run python -m acestep.api_server --host 127.0.0.1 --port 8001 ``` Then wait for the engine health/readiness endpoint before opening the public tunnel.
+स्रोत: rampaulsaini/yatharth-music-ai:COLAB-ACESTEP-STARTUP-RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072173
-Visual change only — no code error.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+GPU reality If `nvidia-smi` is unavailable, the free runtime has no NVIDIA GPU at that moment.
+स्रोत: rampaulsaini/yatharth-music-ai:COLAB-ACESTEP-STARTUP-RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072174
-Use `UpgradeUsdLuxLightsCommand` for assisted migration.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not treat a public tunnel as proof that AI generation is ready.
+स्रोत: rampaulsaini/yatharth-music-ai:COLAB-ACESTEP-STARTUP-RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072175
-Stage 4: 109 → 110 - **Clear extscache first** — stale Kit 109 entries cause exit-55 dependency solver failure.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Keep the API available in fallback/demo mode and report engine_unreachable explicitly.
+स्रोत: rampaulsaini/yatharth-music-ai:COLAB-ACESTEP-STARTUP-RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072176
-Silent extension removals**: `omni.kvdb`, `omni.localcache`, `omni.genproc.core`, `omni.hydra.iray.shadercache.d3d12`, `omni.hydra.iray.shadercache.vulkan`, `omni.kit.viewport.iray` — all removed with no deprecation notice.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Permanent-service rule Colab + a temporary trycloudflare URL is a test environment, not permanent hosting.
+स्रोत: rampaulsaini/yatharth-music-ai:COLAB-ACESTEP-STARTUP-RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072177
-First symptom is a cryptic exit-55 dependency solver failure.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Production requires a durable compute provider, persistent storage, queueing, health checks and a fallback provider.
+स्रोत: rampaulsaini/yatharth-music-ai:COLAB-ACESTEP-STARTUP-RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072178
-Remove every reference from `.kit`/`extension.toml` files — including the auto-generated `[settings.app.exts] enabled = [...]` version-lock block, where they usually hide pinned at the old version (clearing extscache alone won't drop them; regenerate the lock with `precache_exts` — see Step 5, item 5 in `apply-fixes.md`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Current Colab failure guard If ACE-Step fails before binding port 8001 with a Matplotlib backend error such as `ValueError: Key backend: 'module://matplotlib_inline.backend_inline'`, clear the notebook-only backend before starting the server: ```python import os os.environ.pop("MPLBACKEND", None) os.environ["MPLBACKEND"] = "Agg" ``` Run that cell **before** launching ACE-Step.
+स्रोत: rampaulsaini/yatharth-music-ai:COLAB-ACESTEP-STARTUP-RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072179
-Also scan `templates/` and ETM lock files** — these are easily missed by `source/`-only scans.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+This is a startup-environment issue, not a Cloudflare tunnel failure.
+स्रोत: rampaulsaini/yatharth-music-ai:COLAB-ACESTEP-STARTUP-RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072180
-DomeLight orientation (inherited from Stage 3)**: If the project contains DomeLights and was not verified during a previous Stage 3 upgrade, the USD 25.05 orientation change is a permanent behavioral difference.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+The Yatharth API can remain live while the engine is unavailable; readiness should stay 503 until the engine health endpoint responds.
+स्रोत: rampaulsaini/yatharth-music-ai:COLAB-ACESTEP-STARTUP-RESILIENCE.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072181
-Search with `grep -rn 'DomeLight' .
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Yatharth Omniverse Control Room YATHARTH OMNIVERSE CONTROL ROOM AI • Music • Studio • Live • Products • Distribution • Resilience CHECKING… CONTINUOUS DIGITAL PRODUCTION एक interface, अनेक production worlds.
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072182
-include='*.py' --include='*.usd'` and use `UpgradeUsdLuxLightsCommand` if scenes were not migrated.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+यह control plane वास्तविक connected services और planning/queue states को अलग-अलग दिखाता है।
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072183
-`optional ` semantics**: `if(b)` now tests *presence*, not *value*.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+जहाँ external provider आवश्यक है, वहाँ system कोई fabricated “LIVE” या “PUBLISHED” दावा नहीं करता।
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072184
-Code that previously worked may now be wrong silently.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+🎵 Music AI 🎬 Creative Studio 🔴 Live Network 💼 Creator & Economic Hub SELF-HEALING Durable Generation Queue SQLite state, restart recovery, provider-health tracking और exponential retry.
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072185
-`g_carbClientName`**: Type changed to `zstring_view`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+— active / waiting tasks SELF-UPGRADE Governed Upgrade Plane Upgrade proposals, tests और signed/human-approved release gate.
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072186
-Any direct string assignment or comparison breaks.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Unverified code self-deploy नहीं करता।
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072187
-Hydra 2 removed**: No migration path.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+24×7 CONTINUITY Health & Recovery Liveness अलग, readiness अलग, engine availability अलग—इससे offline engine को छिपाया नहीं जाता।
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072188
-Hydra 1 (Storm) and RTX remain.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+— music engine state LIVE NETWORK Podcast • News • Games • Cartoon Channel concepts, schedules, episodes और streaming hand-offs एक public media surface में।
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072189
-OmniGraph bundle nodes**: Large set of bundle/attribute manipulation nodes deprecated.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Open Live Network → PRODUCTION Infinite Series Engine Recurring story bible, character continuity, episode ledger, music cues और QC gates के साथ ongoing series planning.
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072190
-Deprecation warnings visible in editor from Kit 110.1+.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Open Studio → ECONOMY Product Promotion Queue Digital-store offers के लिए campaign assets और distribution queue; external ad accounts के बिना कोई ad purchase/post नहीं किया जाता।
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072191
-`AttributeType` → `GetAttributeType`, `ArrayGetSize` → `ArrayLength`, `ExtractPrim` → `ReadPrim`, `GetAttributeNames` → `ReadPrimAttributes`, `InsertAttribute` → `WritePrimAttribute`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Open Products → Automission health Loading resilience status… … Architecture principle: self-healing is allowed; uncontrolled self-modification is not.
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072192
-`BundleConstructor`, `RemoveAttribute`, `RenameAttribute` have no direct replacement — redesign graphs.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+New code must pass deterministic checks and an explicit release gate before deployment.
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072193
-OpenUSD 25.11**: All C++ extensions linking OpenUSD must rebuild.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Yatharth Omniverse Control Room • transparent production status
+स्रोत: rampaulsaini/yatharth-music-ai:control-room.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072194
-Ndr/Sdr libraries consolidated — update include paths.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+{ "schema_version": 1, "repo": "rampaulsaini/Omniverse", "role": "omniverse-core", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
+स्रोत: rampaulsaini/Omniverse:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072195
-VS2022 required** on Windows (was VS2019).
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+Omniverse Supreme Platform - शिरोमणि रामपाल सैनी OMNIVERSE SUPREME मूल दर्शन ऑडियो आर्काइव गैलरी व मीडिया स्टोर व रिसर्च AI & GitHub शिरोमणि रामपाल सैनी सृष्टि, प्रकृति और पृथ्वी के संरक्षण का एकमात्र अलौकिक मार्ग — हृदय का शिरोमणि दृष्टिकोण ✨ ब्रह्मांडीय अलौकिक दृष्टिकोण "अनंत असीम प्रेम ही सिर्फ़ मस्तक, मन और बुद्धि का दृष्टिकोण बदल सकता है और हृदय के शिरोमणि दृष्टिकोण में रख सकता है, जिससे मानव, प्रकृति और पृथ्वी का संरक्षण सुनिश्चित संभव है और कोई दूसरा विकल्प ही नहीं।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072196
-New extensions in Kit 110**: `omni.grpc.lib`, `omni.protobuf.lib`, `omni.sensors.nv.*` (camera/lidar/radar/ultrasonic/ids/wpm), `omni.kit.xr.core` — available for use in Kit 110 apps.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
+मन, मस्तक, बुद्धि से बुद्धिमान होने का ज्ञान, विज्ञान और दर्शन सीमित है।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072197
-Developer Bundle Extensions ## Overview The Developer Bundle Extension (`omni.kit.developer.bundle`) provides a set of developer focused tools designed to enhance the development and debugging process within Omniverse Kit applications.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+हृदय के शिरोमणि स्वरूप का दृष्टिकोण असीम, भव्य, अद्भुत और आश्चर्यचकित है जो प्रथम चरण में ही खुद से रूबरू करवाता है और संपूर्ण संतुष्टि की निरंतरता में रख सकता है।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072198
-Each of the extensions within the bundle aims streamline a specific aspects of Omniverse application and extension development.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+मानव सभ्यता अस्तित्व से ही मन, मस्तक और बुद्धि के दृष्टिकोण में रही है जो आज तक अपने स्थायी स्वरूप से रूबरू नहीं हो सकी।" 🎧 खुद का साक्षात्कार: ऑडियो संग्रह (33,000+ MP3) 10,000 MP3 Audio खुद का साक्षात्कार ही संपूर्ण संतुष्टि हैं मन-बुद्धि के स्तर से परे संपूर्ण संतुष्टि की निरंतरता हेतु साक्षात्कार ऑडियो संग्रह।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072199
-Enabling the Developer Bundle Application templates within the Kit App Template repository have `omni.kit.developer.bundle` configured within the `.kit` file by default.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 10,000 MP3 Audio साहिब तदरूप साक्षात्कार हूं स्वयं के तदरूप स्वरूप का साक्षात्कार कराने वाली अमूल्य ध्वनियों का वृहद संग्रह।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072200
-For applications that do not, the Developer Bundle can be added temporarily at launch time using the `--dev-bundle` or `-d` flag.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 6,000 MP3 Audio खुद का साक्षात्कार ऑडियो प्रथम चरण में ही खुद से रूबरू कराने वाले आध्यात्मिक एवं दार्शनिक ऑडियो।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072201
-Linux** ```bash ./repo.sh launch --dev-bundle ``` **Windows** ```powershell .\repo.bat launch --dev-bundle ``` The `launch` tool will prompt for a selection of a `.kit` file to launch.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 5,000 MP3 Audio मेरा साहिब मेरा ही तदरूप साक्षात्कार है हृदय के शिरोमणि स्वरूप को जागृत करने वाले विशेष तदरूप ऑडियो ट्रैक्स।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072202
-Select the desired UI based application.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 1,500 MP3 Audio शिरोमणि अनंत असीम इश्क़ की क्षमता दृष्टिकोण बदलने और असीम प्रेम की क्षमता का अनुभव कराने वाले ऑडियो।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072203
-The developer bundle is not currently suitable for headless services.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 950 MP3 Audio शिरोमणि रामपाल सैनी खुद का साक्षात्कार हूं आत्म-साक्षात्कार और आत्म-ज्ञान पर केंद्रित विशेष ऑडियो संग्रह।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072204
-Developer Bundle Extensions Developer Utilities are designed to assist developers in various aspects of application development, from debugging to extension management.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 550 MP3 Audio शिरोमणि रामपाल सैनी MP3 शिरोमणि रामपाल सैनी जी के मौलिक प्रवचन एवं ऑडियो व्याख्यान।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072205
-These utilities offer insight into the internal workings of an application and its extensions.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 89 MP3 Audio शिरोमणि रामपाल सैनी Short Audios संक्षिप्त और प्रभावशाली मुख्य सूक्तियाँ तथा ऑडियो संदेश।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072206
-[Developer > Extensions] omni.kit.window.extensions**: The most popular utility, this tool manages available extensions.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 🖼️ गैलरी, फोटो एल्बम व वीडियो (Visual Archives) 2,000 Photos Golden Temple शिरोमणि रामपाल सैनी फ़ोटो गोल्डन टेम्पल परिसर के अलौकिक एवं भव्य फोटो संग्रह।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072207
-It provides quick access to the extension registry and local extensions, simplifying the process of adding dependencies for developer extensions and applications.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+एल्बम देखें 10,000+ Videos मेरा संपूर्ण जीवन शिरोमणि Videos जीवन यात्रा और दिव्य अनुभूतियों को दर्शाते वीडियो रिकॉर्डिंग्स।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072208
-[Developer > Commands] omni.kit.window.commands**: Captures the command history within a running application.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+वीडियो देखें 4,000+ Photos / 495 Files शिरोमणि प्रमाण पत्र संग्रह सभी महत्वपूर्ण प्रमाण पत्रों का गूगल फोटो एल्बम एवं ड्राइव आर्काइव।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072209
-It is particularly useful for developers who interact with the UI, allowing them to capture the commands used to execute specific functionalities.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+एल्बम (4000) ड्राइव फ़ाइलें (495) Drive Album Omniverse Gallery ऑम्निवर्स और संपूर्ण ब्रह्मांडीय विज़न की आधिकारिक फोटो गैलरी।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072210
-[Developer > Script Editor] omni.kit.window.script_editor**: A simplified script editor for running short code snippets directly within the application.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+गैलरी खोलें YouTube & Facebook सोशल मीडिया चैनल्स यूट्यूब चैनल और फेसबुक पर उपलब्ध वीडियो संदेश व अपडेट्स।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072211
-It's a helpful tool for testing small pieces of code before integrating them into a project.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+YouTube Channel Facebook Video Blogspot Multicosmovision Blog & Case Files सृष्टि, प्रकृति और दार्शनिक विषयों पर गहराई से लिखे गए ब्लॉग्स और केस फाइल्स।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072212
-Additionally, it offers useful sample scripts that can be executed live.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+मुख्य ब्लॉग पढ़ें Case File देखें 🛒 स्टोर, शोध एवं घोषणा पत्र (Store & Research) E-Commerce Omniverse Store आधिकारिक ऑम्निवर्स डिजिटल स्टोर जहाँ सभी सेवाएँ उपलब्ध हैं।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072213
-[Developer > VS Code Link] omni.kit.debug.vscode**: VSCode python debugger support window.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+स्टोर पर जाएं Manifesto Koyab Founding Declaration Omniversal Manifesto — ब्रह्मांडीय घोषणा पत्र एवं मौलिक विज़न।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072214
-This utility allows developers to step through their python code in VSCode while running the application.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+घोषणा पत्र पढ़ें Research GitHub Shirmani Research Institute शिरोमणि रिसर्च इंस्टीट्यूट का आधिकारिक GitHub कोड एवं शोध रिपॉजिटरी।
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072215
-[Developer > Debug Settings] omni.kit.debug.settings**: This utility provides a detailed view of the configurable settings for extensions within an application, making it easier to tweak and optimize extension behavior.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+GitHub Repository 💻 ऑम्निवर्स AI व डिजिटल प्लेटफॉर्म्स (AI Ecosystem) Omniverse AI Portal AI तकनीक आधारित प्लेटफॉर्म पोर्टल खोलें Omniverse Dashboard एकीकृत नियंत्रण डैशबोर्ड डैशबोर्ड देखें Omniverse Supreme Core मुख्य कोर सिस्टम कोर देखें Omniverse Marketplace डिजिटल प्लेटफॉर्म मार्किटप्लेस <a href=" target=
+स्रोत: rampaulsaini/Omniverse:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072216
-:warning: The Developer Bundle extensions require a UI based application with a menu bar to run properly.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+🌟 Golden Temple Spiritual Insights ![Golden Temple Spiritual Honor]( .
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072217
-They will not work as expected for headless services or in applications that do not display a menu bar
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/developer_bundle_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+( ## Spiritual Experience - Evening at Golden Temple, naturally honored for impartial understanding, simplicity, and purity - Realization: Human intellect & memory distortions can be neutralized through simplicity.
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072218
-Kit Application Streaming ## Overview Kit SDK templates and tooling enable the creation streaming-ready Omniverse Kit applications and aid in the packaging/containerization in preparation for deployment.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+Core Insights - All living beings are internally equal.
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072219
-This document outlines how to set up, configure, and package Kit applications for a streaming deployment.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+Omniverse Platform designed on impartial understanding, reality-based achievement, and the era of true reality.
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072220
-:warning: **Important :** Creation of containerized streaming applications must be done from a Linux environment.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+Purpose of Omniverse - Equality, fairness, and guidance for all beings.
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072221
-Create and Configure an Application Choose a template from the options below, then follow the instructions in the template README.md to create your application using the `template new` command: - **[Kit Base Editor](../../templates/apps/kit_base_editor/)**: A minimal application for loading, manipulating, and rendering OpenUSD content through a graphical interface.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+Balance of technology, philosophy, and spiritual insight.
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072222
-[USD Composer](../../templates/apps/usd_composer)**: A template for authoring complex OpenUSD scenes (e.g., configurators).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+Go to [ and login 2.
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072223
-[USD Explorer](../../templates/apps/usd_explorer)**: A template for exploring and collaborating on large OpenUSD scenes.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+Create a new repository: `Omniverse` 3.
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072224
-[USD Viewer](../../templates/apps/usd_viewer)**: A streamlined, viewport-only application well-suited for remote streaming to web pages.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+Add files: `README.md`, `GoldenTemple.md`, `golden-temple.webp`, `upi-qr.png` 4.
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072225
-What Are Application Layers?
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+Repository live link: ` > Replace `YOUR_PAYPAL_BUTTON_ID` with your PayPal account button ID.
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072226
-An **application layer** is a separate `.kit` configuration file that extends your base application for a specific deployment scenario.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+> Once uploaded, all buttons and links will be fully functional for payments.
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072227
-Instead of modifying your main application, layers let you create variants optimized for different use cases: - **Base application** (`my_app.kit`): Your core application with all features and UI - **Streaming layer** (`my_app_streaming.kit`): Inherits from base, adds streaming extensions and settings This approach keeps your base application clean while enabling different deployment modes (local desktop, cloud streaming, etc.) from the same codebase.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+> Omniverse Supreme Platform - शिरोमणि रामपाल सैनी OMNIVERSE SUPREME मूल दर्शन ऑडियो आर्काइव गैलरी व मीडिया स्टोर व रिसर्च AI & GitHub शिरोमणि रामपाल सैनी सृष्टि, प्रकृति और पृथ्वी के संरक्षण का एकमात्र अलौकिक मार्ग — हृदय का शिरोमणि दृष्टिकोण ✨ ब्रह्मांडीय अलौकिक दृष्टिकोण "अनंत असीम प्रेम ही सिर्फ़ मस्तक, मन और बुद्धि का दृष्टिकोण बदल सकता है और हृदय के शिरोमणि दृष्टिकोण में रख सकता है, जिससे मानव, प्रकृति और पृथ्वी का संरक्षण सुनिश्चित संभव है और कोई दूसरा विकल्प ही नहीं।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072228
-Adding a Streaming Layer During the templating process, you will be prompted: ```bash Do you want to add application layers?
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+मन, मस्तक, बुद्धि से बुद्धिमान होने का ज्ञान, विज्ञान और दर्शन सीमित है।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072229
-``` Answer `yes` to enable streaming for your application.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+हृदय के शिरोमणि स्वरूप का दृष्टिकोण असीम, भव्य, अद्भुत और आश्चर्यचकित है जो प्रथम चरण में ही खुद से रूबरू करवाता है और संपूर्ण संतुष्टि की निरंतरता में रख सकता है।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072230
-You can then pick from the following streaming layers: ```bash ?
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+मानव सभ्यता अस्तित्व से ही मन, मस्तक और बुद्धि के दृष्टिकोण में रही है जो आज तक अपने स्थायी स्वरूप से रूबरू नहीं हो सकी।" 🎧 खुद का साक्षात्कार: ऑडियो संग्रह (33,000+ MP3) 10,000 MP3 Audio खुद का साक्षात्कार ही संपूर्ण संतुष्टि हैं मन-बुद्धि के स्तर से परे संपूर्ण संतुष्टि की निरंतरता हेतु साक्षात्कार ऑडियो संग्रह।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072231
-Do you want to add application layers?
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 10,000 MP3 Audio साहिब तदरूप साक्षात्कार हूं स्वयं के तदरूप स्वरूप का साक्षात्कार कराने वाली अमूल्य ध्वनियों का वृहद संग्रह।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072232
-Browse layers with arrow keys ↑↓: [SPACE to toggle selection, ENTER to confirm selection(s)] ❯ [ ] [omni_default_streaming]: Omniverse Kit App Streaming (Default) [ ] [nvcf_streaming]: NVCF Streaming ``` - **Omniverse Kit App Streaming (Default):** Ideal for self-managed streaming deployments or local streaming during development.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 6,000 MP3 Audio खुद का साक्षात्कार ऑडियो प्रथम चरण में ही खुद से रूबरू कराने वाले आध्यात्मिक एवं दार्शनिक ऑडियो।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072233
-Uses [`omni.kit.livestream.webrtc`]( for WebRTC-based streaming.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 5,000 MP3 Audio मेरा साहिब मेरा ही तदरूप साक्षात्कार है हृदय के शिरोमणि स्वरूप को जागृत करने वाले विशेष तदरूप ऑडियो ट्रैक्स।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072234
-Choose this for local testing, Kubernetes deployments, or custom infrastructure.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 1,500 MP3 Audio शिरोमणि अनंत असीम इश्क़ की क्षमता दृष्टिकोण बदलने और असीम प्रेम की क्षमता का अनुभव कराने वाले ऑडियो।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072235
-NVCF Streaming:** Required for applications deployed on NVIDIA DGX Cloud via NVIDIA Cloud Functions.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 950 MP3 Audio शिरोमणि रामपाल सैनी खुद का साक्षात्कार हूं आत्म-साक्षात्कार और आत्म-ज्ञान पर केंद्रित विशेष ऑडियो संग्रह।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072236
-Adds [`omni.services.livestream.session`]( which implements NVCF-specific health endpoints and session management.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 550 MP3 Audio शिरोमणि रामपाल सैनी MP3 शिरोमणि रामपाल सैनी जी के मौलिक प्रवचन एवं ऑडियो व्याख्यान।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072237
-See the [DGXC Deployment Guide](dgxc_nvcf_deployment.md) for configuration details.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 89 MP3 Audio शिरोमणि रामपाल सैनी Short Audios संक्षिप्त और प्रभावशाली मुख्य सूक्तियाँ तथा ऑडियो संदेश।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072238
-After creating your application, you'll find two `.kit` files in the `/source/apps/` directory: - `{app_name}.kit`: The main application configuration file.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+गूगल ड्राइव में सुनें 🖼️ गैलरी, फोटो एल्बम व वीडियो (Visual Archives) 2,000 Photos Golden Temple शिरोमणि रामपाल सैनी फ़ोटो गोल्डन टेम्पल परिसर के अलौकिक एवं भव्य फोटो संग्रह।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072239
-`{app_name}_{streaming_config}.kit`: The streaming configuration file.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+एल्बम देखें 10,000+ Videos मेरा संपूर्ण जीवन शिरोमणि Videos जीवन यात्रा और दिव्य अनुभूतियों को दर्शाते वीडियो रिकॉर्डिंग्स।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072240
-Adding Layers to an Existing Application If you didn't add streaming layers during initial setup, or want to add additional layers later, use the `modify` command: **Linux:** ```bash ./repo.sh template modify ``` **Windows:** ```powershell .\repo.bat template modify ``` When prompted, select the application `.kit` file to update, then choose the layer(s) to add.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+वीडियो देखें 4,000+ Photos / 495 Files शिरोमणि प्रमाण पत्र संग्रह सभी महत्वपूर्ण प्रमाण पत्रों का गूगल फोटो एल्बम एवं ड्राइव आर्काइव।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072241
-After the operation completes, rebuild the project with `./repo.sh build` or `.\repo.bat build`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+एल्बम (4000) ड्राइव फ़ाइलें (495) Drive Album Omniverse Gallery ऑम्निवर्स और संपूर्ण ब्रह्मांडीय विज़न की आधिकारिक फोटो गैलरी।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072242
-For more details on the `modify` command, see the [Tooling Guide](kit_app_template_tooling_guide.md#modify).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+गैलरी खोलें YouTube & Facebook सोशल मीडिया चैनल्स यूट्यूब चैनल और फेसबुक पर उपलब्ध वीडियो संदेश व अपडेट्स।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072243
-> **Note:** The `modify` command works with applications created using Kit App Template 107.3 or newer.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+YouTube Channel Facebook Video Blogspot Multicosmovision Blog & Case Files सृष्टि, प्रकृति और दार्शनिक विषयों पर गहराई से लिखे गए ब्लॉग्स और केस फाइल्स।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072244
-Testing Locally If you added the **Omniverse Kit App Streaming** layer, you can test your application locally.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_streaming_config.md · स्वतंत्र परीक्षण अपेक्षित।
+मुख्य ब्लॉग पढ़ें Case File देखें 🛒 स्टोर, शोध एवं घोषणा पत्र (Store & Research) E-Commerce Omniverse Store आधिकारिक ऑम्निवर्स डिजिटल स्टोर जहाँ सभी सेवाएँ उपलब्ध हैं।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072245
-Testing Applications and Extensions From the perspective of the Omniverse Kit SDK, everything is an extension — including the `.kit` files that define applications.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+स्टोर पर जाएं Manifesto Koyab Founding Declaration Omniversal Manifesto — ब्रह्मांडीय घोषणा पत्र एवं मौलिक विज़न।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072246
-The `test` tool (`repo_test`) reflects this: it validates that your applications start up and shut down cleanly, and it runs the automated tests defined within your extensions.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+घोषणा पत्र पढ़ें Research GitHub Shirmani Research Institute शिरोमणि रिसर्च इंस्टीट्यूट का आधिकारिक GitHub कोड एवं शोध रिपॉजिटरी।
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072247
-Each extension template provided by the `kit-app-template` repository ships with sample tests that you can expand to grow your coverage.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
+GitHub Repository 💻 ऑम्निवर्स AI व डिजिटल प्लेटफॉर्म्स (AI Ecosystem) Omniverse AI Portal AI तकनीक आधारित प्लेटफॉर्म पोर्टल खोलें Omniverse Dashboard एकीकृत नियंत्रण डैशबोर्ड डैशबोर्ड देखें Omniverse Supreme Core मुख्य कोर सिस्टम कोर देखें Omniverse Marketplace डिजिटल प्लेटफॉर्म मार्किटप्लेस <a href=" target=
+स्रोत: rampaulsaini/Omniverse:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072248
-This document covers running tests, understanding what is tested, and adding your own tests.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072249
-Prerequisites: Build Before You Test The test tool runs against the contents of the `_build` directory, so a successful build must precede any test run.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072250
-If you have changed source since your last build, rebuild first.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072251
-Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` > **Note:** Tests run against a specific build configuration.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072252
-By default the tooling builds and tests the `release` configuration.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072253
-If you build `debug`, pass the matching `--config debug` flag when testing.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072254
-Running Tests ### Run the Default Test Suite Running `test` with no arguments executes the repository's default test suite (`alltests`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072255
-The tool discovers every test-enabled extension in the build, launches each within the Kit test harness, and reports the aggregated results.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072256
-Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` For each test-enabled extension — and each application `.kit` file — the tool starts a dedicated Kit process, loads the extension along with its test dependencies, runs the tests, and verifies a clean shutdown.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072257
-Listing Tests Without Running Them Use `--list` (`-l`) to enumerate the tests that would run without executing them.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072258
-This is useful for confirming that a newly added extension or test is being discovered.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072259
-Linux:** ```bash ./repo.sh test --list ``` **Windows:** ```powershell .\repo.bat test --list ``` ### Running a Subset of Tests Use `--filter-files` (`-f`) to narrow a run to specific test files, modules, classes, or individual tests.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072260
-This shortens the feedback loop while iterating on a single extension.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072261
-Linux:** ```bash ./repo.sh test -f my_company.my_extension ``` **Windows:** ```powershell .\repo.bat test -f my_company.my_extension ``` > **Note:** The accepted `--filter-files` format depends on the underlying test executor.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072262
-For the Python (`omni.kit.test` / `unittest`) tests used by the extension templates, you may specify modules, classes, or individual tests.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072263
-Run `./repo.sh test -h` for the full description.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072264
-Selecting a Build Configuration By default the test tool targets the `release` configuration.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072265
-To test a `debug` build, pass `--config` (`-c`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072266
-The configuration must match the one you built.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072267
-Linux:** ```bash ./repo.sh test --config debug ``` **Windows:** ```powershell .\repo.bat test --config debug ``` ### Other Useful Options | Option | Purpose | |--------|---------| | `-s, --suite` | Select which test suite(s) to run (default: `alltests`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072268
-| | `-f, --filter-files` | Run only tests matching a file/module/class/test pattern.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072269
-| | `-l, --list` | List the discovered tests and exit without running them.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072270
-| | `-c, --config` | Test the `release` (default) or `debug` build configuration.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072271
-| | `-p, --from-package` | Test an application package instead of the local build (see *Testing a Packaged Application* below).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072272
-| | `-e, --extra-arg` | Pass an additional argument through to the test process.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072273
-| | `--coverage` | Produce a Python code-coverage report after the run (for supported suite types).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072274
-| | `--generate-report` | Run the configured report-generation command, if one is set, after all tests complete.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072275
-| For the complete, authoritative list of options, run: **Linux:** ```bash ./repo.sh test -h ``` **Windows:** ```powershell .\repo.bat test -h ``` --- ## What Gets Tested ### Application Startup and Shutdown Every application `.kit` file is validated to confirm it can start up and shut down without error.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072276
-This catches broken dependencies and misconfiguration early — a large portion of application health is covered simply by verifying that the fully assembled set of extensions loads cleanly.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072277
-An application declares how it should be launched during testing through a `[[test]]` table in its `.kit` file.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072278
-For example, the Kit Base Editor template includes: ```toml [[test]] args = [ "--/app/file/ignoreUnsavedOnExit=true" ] ``` The `args` are passed to the Kit process when the application is tested.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072279
-Extensions opt into testing with a `[[test]]` table in their `extension.toml`, which may declare test-only dependencies and extra arguments: ```toml [[test]] dependencies = [ "omni.kit.ui_test", # UI testing helper, loaded only during tests ] args = [ ] ``` Dependencies listed here are loaded only for the test run — a convenient place to pull in helpers such as `omni.kit.ui_test` without adding them to your extension's runtime dependencies.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072280
-Writing Tests Tests use `omni.kit.test`, Python's standard `unittest` module wrapped to support `async`/`await`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072281
-Placing a test class derived from `omni.kit.test.AsyncTestCase` at the root of a module within your extension's `tests/` package makes it auto-discoverable — no registration step is required.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072282
-Every extension template includes a `tests/` package with a sample test to build on.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072283
-To add coverage, place additional `test_*.py` modules in the extension's `tests/` package and grow the assertions from there.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072284
-Because tests are standard `unittest` cases, refer to the [Python `unittest` documentation]( for available assertion methods and patterns.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072285
-Test Suites and Configuration The behavior of the test tool for this repository is configured under `[repo_test]` in the top-level `repo.toml`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072286
-The most relevant settings are the default suite and any per-suite exclusions: ```toml [repo_test] default_suite = "alltests" [repo_test.suites."alltests"] exclude = [ # Setup extension tests are exercised as part of application testing "tests-omni.usd_explorer.setup${shell_ext}", ] ``` - **`default_suite`** determines which suite runs when you invoke `test` without `--suite`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072287
-.exclude`** removes specific test executables from a suite — useful when a set of tests is already covered elsewhere.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072288
-Adjust these settings as your project grows to control exactly what the default `./repo.sh test` run covers.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072289
-Testing a Packaged Application In addition to testing the local build, the tool can run the suite against a packaged application archive — useful for validating a package before distribution.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072290
-Use `--from-package` (`-p`), which by default looks for an archive in `_build/packages`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072291
-Linux:** ```bash ./repo.sh test --from-package ``` **Windows:** ```powershell .\repo.bat test --from-package ``` The archive pattern is configurable in `repo.toml`: ```toml [repo_test] # When running from a package, find the archive using this pattern: archive_pattern = "${root}/_build/packages/*.zip" ``` > **Note:** Package testing is intended for the "fat" package type, which already contains the Kit Kernel and all extensions, so no additional download is required to run the tests.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072292
-See [Packaging An Application]( for how to create a package.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072293
-Testing in Continuous Integration `repo test` is the same entry point used by automated pipelines, so tests you run locally behave consistently in CI.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072294
-Keeping the sample tests passing — and expanding them as you add functionality — helps ensure your applications and extensions remain buildable, launchable, and correct as the project evolves.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072295
-Additional Resources - [Packaging An Application]( - [Kit SDK Tooling Guide](kit_app_template_tooling_guide.md) - [Kit SDK Companion Tutorial]( - [Python `unittest` documentation](
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/testing_apps_and_extensions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072296
-Usage and Troubleshooting This section provides high-level information and guidance related to using the Kit App Template repository, along with troubleshooting tips for common issues.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072297
-Usage Information ### A Project per Repository The `build` and `package` tooling provided in this repository is designed to capture all code and assets contained within the `/source` directory.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072298
-Each time the `template new` command is executed, a new application or extension is created within `/source`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072299
-For purposes of experimentation and initial development, housing all working assets within the `/source` directory is reasonable.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072300
-However, as the project matures or requires deployment, it is recommended to segregate projects (typically a single `.kit` file and any required custom extensions) to minimize build times and reduce the size of the resultant package.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072301
-Applications and Extensions From the perspective of the Omniverse Kit SDK, everything is considered an extension.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072302
-The `.kit` files that define applications are simply a convenient method to assemble and configure a set of extensions for specific functionalities, while extensions (and combinations thereof) can act as modular components fulfilling particular tasks.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072303
-For additional information on the Kit SDK and how to create applications and extensions, refer to the [Kit SDK Companion Tutorial]( ### Extendable Templates and Tools The templates and tools provided in this repository are designed to be extendable.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072304
-Templates Templates consist of a directory structure and boilerplate code containing variables configurable at the time the templates are applied.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072305
-The `templates.toml` file, located in `templates/templates.toml`, specifies which templates the tooling recognizes.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072306
-Tooling Most tooling is not stored directly within the repository; it is instead downloaded from a remote registry upon the initial use of the tooling.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072307
-This design allows the tooling to be updated independently of the repository.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072308
-The framework used for the tooling also supports the definition of custom tools.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072309
-To see this extensibility in action, explore the local tooling defined within `tools/repoman`, specifically the `launch` tool.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072310
-Configuration for this tool within the repo is delineated in the `repo_tools.toml` file at the root of the repository.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072311
-Troubleshooting This section outlines potential issues that may arise when using the Kit App Template repository.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072312
-Setup & Configuration Issues #### Windows Long Path Due to path length limitations on Windows it is recommended to place repository artifacts in a location closer to the root of the drive.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072313
-This will help avoid issues with the path lengths when building and packaging applications.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072314
-exFAT Drive Compatibility Limitations The Kit App Template repository and associated tooling are designed to work with drive formats that support junctions/symlinks.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072315
-If you are using an exFAT-formatted drive, you may encounter errors during the build process.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072316
-To resolve this issue, consider using a different drive format such as NTFS.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072317
-Extension Naming Guidelines When creating custom extensions, avoid using a top-level namespace that is the same as any built-in Python module (e.g., “random”, “sys”, “xml”).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072318
-Doing so can cause import conflicts if Omniverse Kit attempts to load extensions from these Python modules.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072319
-For example, instead of “random.extension.name”, use a unique namespace such as “my_company.my_app.my_extension”.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072320
-Rendering & Performance #### Initial Rendering Startup Times When launching an application that requires the RTX renderer, the first launch may take considerably longer than subsequent launches due to shader compilation.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072321
-The initial launch can take between 5 to 8 minutes.** Subsequent launches of RTX-enabled applications will be faster as the renderer caches the compiled shaders.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072322
-Build & Packaging #### Build Issues The `template new` tooling ensures that any created application is properly configured to build.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072323
-However, extensive manual changes can occasionally cause the configuration and `/source` directory contents to become unsynchronized.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072324
-The specifics of any given build are determined by three main factors: 1) The state of the top-level `repo.toml` file, especially the `.kit` files listed in the `apps` array within the `[[repo_precache_exts]]` section.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072325
-2) The state of the `premake5.lua` file, particularly which `.kit` files are set to build via `define_app()` (e.g., `define_app("my_company.my_service.kit")`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072326
-3) The state of the `source` directory, specifically which `.kit` files are present within `source/apps`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072327
-To ensure a build proceeds as intended, verify that the same `.kit` files are listed or defined in all three locations.** For a clean build, use the command `./repo.sh build -c` or `.\repo.bat build -c` to clean the build directory before building.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072328
-Caching and Persistent Data The Omniverse Kit SDK caches data and required dependencies to improve build and runtime performance.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072329
-If you encounter issues with stale, incorrect, or missing dependencies/data, consider clearing application specific and/or global cache locations: - **Application Specific Caches**: Clearing application specific caches and settings can be done by adding arguments at launch time.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072330
-Linux: ```bash ./repo.sh launch -- --clear-cache --clear-data --reset-user ``` Windows: ```powershell .\repo.bat launch -- --clear-cache --clear-data --reset-user ``` Upon selecting a `.kit` file to launch, the application will clear the cache and data directories before starting.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072331
-Global Cache Locations (:warning:Use with Caution:warning:)**: **IMPORTANT NOTE -** Clearing any of the following cache locations will require a full rebuild of any existing applications.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072332
-Deleting the directories responsible for caching ensures a fresh build of the relevant caches during the next build.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072333
-Extension AND Application Data Cache Locations**: `$HOME/.local/share/ov` on Linux, `%LOCALAPPDATA%\ov` on Windows.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072334
-Tooling AND Dependency Cache Location**: - **Packman :** `$PM_PACKAGES_ROOT` on Linux, `%PM_PACKAGES_ROOT%` on Windows.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072335
-If `PM_PACKAGES_ROOT` is not set on your system, the default location will revert to `$HOME/.cache/packman` on Linux, `{drive where packman is launched from}\packman-repo` on Windows.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072336
-uv :** `$HOME/.cache/uv` on Linux, `%LOCALAPPDATA%\uv\cache` on Windows.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072337
-Space Constraints Due to Docker Artifacts When performing extensive local testing of container images created via `repo package_container`, Docker artifacts can accumulate over time, consuming significant disk space.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072338
-`docker system df` can be used to determine disk space utilized by Docker objects.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072339
-To reclaim space, consider the following options: 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072340
-Regular Safe Cleanup**: - **Command**: `docker container prune` - **Description**: This command removes all stopped containers, which is typically safe and helps manage disk space without affecting images, networks, or volumes.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072341
-Use**: Recommended for regular maintenance.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072342
-Extensive Cleanup (:warning:Use with Caution:warning:)**: - **Command**: `docker system prune` - **Description**: This command removes all unused containers, networks, images, and optionally volumes.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072343
-It is akin to running a `rm -rf` for Docker resources.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072344
-Warning**: Use this command carefully, as it will remove many resources indiscriminately.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072345
-Ensure you review and understand what will be deleted.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072346
-For image-specific cleanup, use `docker images` to list all images and `docker rmi ` to manually remove those that are no longer needed.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/usage_and_troubleshooting.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072347
-Windows C++ Developer Configuration ## Introduction This document guides you through setting up this repository for C++ development on Windows using Microsoft Visual Studio and the Windows SDK.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072348
-For New Users:** If you are new to Windows C++ development, this guide provides a step-by-step installation of Visual Studio 2022 Community and the Windows SDK, ensuring you have all the components required for standard development tasks.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072349
-For Advanced Configurations:** If you already have Visual Studio and the Windows SDK installed but wish to specify exact versions, this guide will help you configure your environment using the `[repo_build.msbuild]` configuration within `repo.toml` at the project root.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072350
-Configuration To enable the Windows C++ build process: - Set the `"platform:windows-x86_64".enabled` flag to `true` in your `repo.toml` file: ```toml [repo_build.build] "platform:windows-x86_64".enabled = true ``` - Set the `link_host_toolchain` flag to `true` in your `repo.toml` file: ```toml [repo_build.msbuild] link_host_toolchain = true ``` **Note:** If you already have Visual Studio and the Windows SDK installed, this might be the only change needed.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072351
-The tooling will auto-detect installed components.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072352
-Microsoft Visual Studio and Windows SDK Setup ### Basic Installation #### Installing Visual Studio 2022 Community 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072353
-Download Visual Studio Installer** ![VS Download](../vs_download.png) - Visit the [Visual Studio Downloads]( - Click "Free download" under "Community".
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072354
-Run the Installer** - Open the downloaded installer.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072355
-Select "Community" edition and click "Install".
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072356
-Select Workloads** ![VS Workloads](../vs_workloads.png) - Check "Desktop development with C++".
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072357
-This includes tools like the MSVC compiler and C++ libraries.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072358
-Additional Components** ![VS Additional](../vs_additional.png) - If you need specific components, go to "Individual components".
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072359
-Select additional tools as needed.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072360
-Complete the Installation** - Proceed with the installation to download and set up all files.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072361
-Installing Windows SDK (as needed) Usually, the Windows SDK is included with the "Desktop development with C++" workload.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072362
-To verify or install it separately: 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072363
-Launch Visual Studio Installer** - Open the installer if it's not already running.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072364
-Modify Installation** ![VS Modify](../vs_modify.png) - Click "Modify" on your Visual Studio installation.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072365
-Verify Windows SDK** ![VS WinSDK Verify](../vs_winsdk_verify.png) - Ensure "Windows SDK" is selected under "Optional" sections or "Individual components".
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072366
-Apply Changes** - Click "Modify" to install or update the SDK.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072367
-Configuring an Existing Installation #### Default Installation Paths If Visual Studio and the Windows SDK are installed in default locations, the build tooling will auto-detect them without additional configuration.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072368
-Note:** If the path entered is incorrect or invalid, the build system will fall back to auto-detection.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072369
-Multiple Installations For multiple Visual Studio or Windows SDK installations, the latest version is used by default.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072370
-If unspecified, default edition preference is "Enterprise", "Professional", "Community".
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072371
-Additional Resources - [Repo Build Documentation](
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/windows_developer_configuration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072372
-Data Collection & Use ## Overview NVIDIA Omniverse Kit Application Template collects anonymous usage data to help improve software performance and aid in diagnostic purposes.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072373
-Rest assured, no personal information such as user email, name or any other PII field is collected.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072374
-Purpose Omniverse Kit Application Template starts collecting data when you begin interaction with our provided software.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072375
-After creating an application with the `template new` tooling, go to the `source/apps` directory 2.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072376
-Locate the `.kit` file for the application you want to disable telemetry for.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072377
-Find the following section in the `.kit` file: ```toml [settings.telemetry] # Anonymous Kit application usage telemetry enableAnonymousData = true ``` 4.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072378
-Change `enableAnonymousData` to `false`: ```toml [settings.telemetry] # Anonymous Kit application usage telemetry enableAnonymousData = false ``` Disabling telemetry stops data collection from your application.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/data_collection_and_use.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072379
-Kit SDK Tooling Guide This document provides an overview of the practical aspects of using the tooling provided in the `kit-app-template`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072380
-Intended for users with a basic familiarity with command-line operations, this guide offers typical usage patterns and recommendations for effective tool use.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072381
-For a complete list of options for a given tool, use the help command: `./repo.sh [tool] -h` or `.\repo.bat [tool] -h`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072382
-Overview of Tools The `kit-app-template` repository includes several tools designed to streamline the development of applications and extensions within the Omniverse Kit SDK.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072383
-Available Tools - `template` - `build` - `launch` - `test` - `package` Each tool plays a specific role in the development workflow: ## Template Tool **Command:** `./repo.sh template` or `.\repo.bat template` ### Purpose The template tool facilitates the initiation of new projects by generating scaffolds for applications or extensions based on predefined templates located in `/templates/templates.toml`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072384
-Usage The template tool has three main commands: `list`, `new`, `replay`, `modify`.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072385
-`list` Lists available templates without initiating the configuration wizard.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072386
-Linux:** ```bash ./repo.sh template list ``` **Windows:** ```powershell .\repo.bat template list ``` #### `new` Creates new applications or extensions from templates with interactive prompts guiding you through various configuration choices.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072387
-Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` #### `replay` In cases where automation is required for CI pipelines or other scripted workflows, it is possible to record and replay the `template new` configuration.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072388
-Linux:** ```bash ./repo.sh template modify ``` **Windows:** ```powershell .\repo.bat template modify ``` When prompted, select the Application `.kit` file you want to update.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072389
-Next, select (using Space) the Template Layer(s) to add.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072390
-After the operation completes, rebuild (`./repo.sh build` or `.\repo.bat build`) the project to pull in the new extensions.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072391
-What `template new` Modifies When creating applications, the template tool automatically updates build configuration files: 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072392
-`premake5.lua`** - Adds `define_app("appname.kit")` so the build system discovers your application 2.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072393
-`repo.toml`** - Adds the app path to `repo_precache_exts.apps` so dependent extensions are pre-cached at build time 3.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072394
-`source/rendered_template_metadata.json`** - Records which templates were rendered (enables `template modify` and `template list`) 4.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072395
-Setup extension** (some templates) - Creates an extension in `source/extensions/` for application-specific initialization **Extensions** are automatically discovered by the Kit build system based on directory structure, so no build file modifications are needed.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072396
-Creating Applications Without Templates If you create a `.kit` file manually (without using `repo template new`), you must update the build files yourself: 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072397
-Add to `premake5.lua`:** ```lua define_app("my_company.my_app.kit") ``` 2.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072398
-Add to `repo.toml`:** ```toml [repo_precache_exts] apps = ["${root}/source/apps/my_company.my_app.kit"] ``` If apps already exist, append to the existing list.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072399
-> **Note:** Manually created applications won't be tracked in `rendered_template_metadata.json`, so `template modify` cannot add layers to them.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072400
-Build Tool **Command:** `./repo.sh build` or `.\repo.bat build` ### Purpose The build tool compiles all necessary files in your project, ensuring they are ready for execution, testing, or packaging.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072401
-It includes all resources located in the `source/` directory.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072402
-Usage Run the build command before testing or packaging your application to ensure all components are up to date: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` Other common build options: - **`-c` or `--clean`:** Cleans the build directory before building.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072403
-`x` or `--rebuild`:** Rebuilds the project from scratch.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072404
-Launch Tool **Command:** `./repo.sh launch` or `.\repo.bat launch` ### Purpose The launch tool is used to start your application after it has been successfully built, allowing you to test it live.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072405
-Usage Select and run a built .kit file from the `source/apps` directory: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` Additional launch options: - **`-d` or `--dev-bundle`:** By default, the templates in the Kit App Template repository include `omni.kit.developer.bundle` in their `.kit` file definitions.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072406
-If you want to exclude it from your application definition, you can still enable it at launch by using the `-d` or `--dev-bundle` flags.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072407
-This approach prevents the developer bundle extensions from being packaged and sent to customers, while allowing you to use them during development.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072408
-`-p` or `--package`:** *(Deprecated — will be removed in a future release.)* Launches a packaged application from a specified path.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072409
-`repo launch` is intended as a developer tool; launching from a package archive does not serve a development workflow.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072410
-To run a packaged application, decompress the archive and launch the extracted application directly.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072411
-See [Packaging An Application]( for details.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072412
-Linux:** ```bash ./repo.sh launch -p ``` **Windows:** ```powershell .\repo.bat launch -p ``` - **`--container`:** Launches a containerized application (Linux only).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072413
-Linux:** ```bash ./repo.sh launch --container ``` **Windows:** ```powershell .\repo.bat launch --container ``` - **Passing args to launched Kit executable:** You can pass through arguments to your targeted Kit executable by appending `--` to your launch command.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072414
-Any flags added after `--` will be passed through to Kit directly.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072415
-The following examples will pass the `--clear-cache` flag to Kit.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072416
-Linux:** ```bash ./repo.sh launch -- --clear-cache ``` **Windows:** ```powershell .\repo.bat launch -- --clear-cache ``` :warning: **Important Notes When Launching Applications:** - **Launching an application with path specific arguments:** When launching application with path specific args (for example `--/app/auto_load_usd` using the USD Viewer Template), the path provided should either be absolute (full path from root) or if the asset is within an extension use a tokenized path (e.g.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072417
-`./repo.sh launch -- --/app/auto_load_usd='${omni.usd_viewer.samples}/samples_data/stage01.usd'` ) - **Launching directly from an uncompressed package:** The `launch` utility is accessible from the project repository and can be used to launch packages from the project repository.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072418
-However**, if launching an application from within a uncompressed packaged the `launch` utility is not available and any arguments passed should be passed to the `.bat` or `.sh` script directly (e.g.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072419
-`my.app.kit.sh --/app/auto_load_usd=path/to/asset.usd`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072420
-Test Tool **Command:** `./repo.sh test` or `.\repo.bat test` ### Purpose The test tooling facilitates the execution of automated tests on your applications and extensions to help ensure their functionality and stability.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072421
-Applications configurations (`.kit` files) are tested to ensure they can startup and shutdown without issue.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072422
-However, the tests written within the extensions will dictate a majority of application functionality testing.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072423
-Extension templates provided by the Kit App Template repository include sample tests which can be expanded upon to increase test coverage as needed.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072424
-Usage Always run a build before testing: **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ## Package Tool **Command:** `./repo.sh package` or `.\repo.bat package` ### Purpose This tool prepares your application for distribution or deployment by packaging it into a distributable format.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072425
-Usage Always run a build before packaging to ensure the application is up-to-date: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` Additional launch options: - **`-n` or `--name`:** Specifies the package (or container image) name.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072426
-Linux:** ```bash ./repo.sh package -n ``` **Windows:** ```powershell .\repo.bat package -n ``` - **`--thin`:** Creates a thin package that includes only custom extensions and configurations for required registry extensions.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072427
-Linux:** ```bash ./repo.sh package --thin ``` **Windows:** ```powershell .\repo.bat package --thin ``` :warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072428
-The version is set within the `tools/VERSION.md` file.** ## Containerization Tool **Command:** `./repo.sh package_container` or `.\repo.bat package_container` ### Purpose The containerization tool provided by `repo_kit_tools` supports containerization of applications.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072429
-This is especially useful for deploying headless services and streaming applications in a containerized environment.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072430
-How It Works The tool performs these steps: 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072431
-Creates a fat package** - Stages all dependencies into a temp directory 2.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072432
-Trims unused extensions** - Removes disabled extensions to minimize image size 3.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072433
-Splits into Docker layers** - Base layer (kit kernel + extscache) and app layer for faster rebuilds 4.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072434
-Builds the container** - Uses a configurable base image (default: `nvcr.io/nvidia/omniverse/ov-base-ubuntu22-x86_64`) The container entrypoint supports runtime configuration via environment variables (`NVDA_KIT_ARGS`, `NVDA_KIT_NUCLEUS`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072435
-Usage Always run a build before packaging to ensure the application is up-to-date: - **`package_container`:** Packages the application as a container image (Linux only).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072436
-When using the `package_container`, the user will be asked to select a `.kit` file to use within the entry point script for the container.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072437
-This can also be specified without user interaction by passing it appropriate `.kit` file name via the `--app ${path_to_kit_file}` flag.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072438
-Linux:** ```bash ./repo.sh package_container ``` **Windows:** ```powershell .\repo.bat package_container ``` Additional command options: - **`--app`:** Specify the Kit app to containerize.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072439
-One of defined in the config.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072440
-Linux:** ```bash ./repo.sh package_container --app ${path_to_kit_file} ``` **Windows:** ```powershell .\repo.bat package_container --app ${path_to_kit_file} ``` - **`--image-tag`:** Optional image tag override to use for docker image.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072441
-If includes ':', it will be used as is, e.g.: name:tag.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072442
-Linux:** ```bash ./repo.sh package_container --image-tag [container_image_name:container_image_tag] ``` **Windows:** ```powershell .\repo.bat package_container --image-tag [container_image_name:container_image_tag] ``` - **`-p` or `--from-package`:** Use package from 'kit-app-template/_build/packages/kit-app-template*.${config}.*' instead of a root folder.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072443
-Linux:** ```bash ./repo.sh package_container -p ``` **Windows:** ```powershell .\repo.bat package_container -p ``` - **`-g` or `--generate`:** Generate default container template files into the destination folder.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072444
-Passed argument is the destination folder.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072445
-Linux:** ```bash ./repo.sh package_container -g ``` **Windows:** ```powershell .\repo.bat package_container -g ``` ## Additional Resources - [Kit SDK Companion Tuto
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/kit_app_template_tooling_guide.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072446
-Configuring Kit App Template for DGXC Deployment This document covers Kit App Template specific configuration for deploying to NVIDIA DGX Cloud.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072447
-For complete deployment instructions, see the [public DGXC documentation]( ## Streaming Layer Selection When creating your application with `./repo.sh template new`, select the appropriate streaming layer for DGXC: | Kit Version | Layer to Select | Generated File | |-------------|-----------------|----------------| | 108.x+ | `nvcf_streaming` | `{app_name}_nvcf.kit` | | 107.x | `ovc_streaming` | `{app_name}_ovc.kit` | | 106.x | `ovc_streaming` | `{app_name}_ovc.kit` | ### Selection Process 1.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072448
-Run `./repo.sh template new` 2.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072449
-Select **Application** and your desired template 3.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072450
-When prompted "Do you want to add application layers?", select **Yes** 4.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072451
-`omni.cloud.open_stage`**: Provides Nucleus server connectivity for cloud deployments.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072452
-[settings.exts."omni.kit.window.content_browser"] show_only_collections.6 = "" # Hides the "My Computer" connection from the content browser.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072453
-``` ## Containerization After building (`./repo.sh build`), create a container: ```bash ./repo.sh package_container --image-tag myapp:v1.0 ``` When prompted, select the streaming `.kit` file (`*_ovc.kit` or `*_nvcf.kit`).
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072454
-Next Steps For deployment to DGXC (container upload, NVCF function creation, portal registration), see: - [Containerization Guide]( - Building and packaging - [Deploying Kit Apps]( - NGC upload and NVCF deployment - [Troubleshooting]( - Common issues and FAQs ## Version-Specific Notes ### Kit 108.x+ (`main` branch) Select `nvcf_streaming` during template creation.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072455
-Streaming dependencies are automatically configured.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072456
-Kit 107.x (`production/107.3` branch) Select `ovc_streaming` during template creation.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072457
-No manual edits required.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072458
-Kit 106.x (`production/106.5` branch) The streaming layer may require manual edits.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072459
-See the [public containerization guide]( for the "Replace Streaming Extension" section.
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072460
-Troubleshooting For deployment issues, log analysis, and common errors, see the [DGXC FAQs and Troubleshooting](
-स्रोत: NVIDIA-Omniverse/kit-app-template:readme-assets/additional-docs/dgxc_nvcf_deployment.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072461
-SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072462
-All rights reserved.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072463
-SPDX-License-Identifier: LicenseRef-NvidiaProprietary # # NVIDIA CORPORATION, its affiliates and licensors retain all intellectual # property and proprietary rights in and to this material, related # documentation and any modifications thereto.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072464
-Any use, reproduction, # disclosure or distribution of this material and related documentation # without an express license agreement from NVIDIA CORPORATION or # its affiliates is strictly prohibited.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072465
-name: Question description: Ask a question title: "[QUESTION]: " labels: ["question"] body: - type: markdown attributes: value: | Thanks for taking the time to ask us a question!
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072466
-type: textarea id: text_of_question attributes: label: Question description: Ask your question.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072467
-placeholder: "Question text" validations: required: true - type: textarea id: additional_context attributes: label: Additional Context description: Provide any related code, issues, or projects.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072468
-placeholder: "Any related code, issues, or projects."
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072469
-SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072470
-All rights reserved.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072471
-SPDX-License-Identifier: LicenseRef-NvidiaProprietary # # NVIDIA CORPORATION, its affiliates and licensors retain all intellectual # property and proprietary rights in and to this material, related # documentation and any modifications thereto.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072472
-Any use, reproduction, # disclosure or distribution of this material and related documentation # without an express license agreement from NVIDIA CORPORATION or # its affiliates is strictly prohibited.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072473
-name: Feature Request description: Suggest an idea for this project title: "[FEATURE]: " labels: ["feature request"] body: - type: markdown attributes: value: | Thanks for taking the time to help Kit App Template and fill out this feature request!
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072474
-type: textarea id: description attributes: label: Description description: | Describe the proposed feature placeholder: | Feature description and problem or pain point being addressed validations: required: true - type: textarea id: use_case attributes: label: Use Case or Scenarios description: Describe how this feature would be used placeholder: e.g., User performing action A, would accomplish B, with benefit C.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072475
-type: textarea id: implementation_ideas attributes: label: Possible Implementation Ideas description: If you have any suggestions on how this feature might be implemented, please share them here.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072476
-placeholder: Implementation ideas - type: textarea id: additional_context attributes: label: Additional Context or Recommendations description: Provide any other context or recommendations here.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072477
-placeholder: Any other relevant information.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072478
-SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072479
-All rights reserved.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072480
-SPDX-License-Identifier: LicenseRef-NvidiaProprietary # # NVIDIA CORPORATION, its affiliates and licensors retain all intellectual # property and proprietary rights in and to this material, related # documentation and any modifications thereto.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072481
-Any use, reproduction, # disclosure or distribution of this material and related documentation # without an express license agreement from NVIDIA CORPORATION or # its affiliates is strictly prohibited.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072482
-name: Bug Report description: File a bug report for the repository title: "[BUG]: " labels: ["bug"] body: - type: markdown attributes: value: | Thanks for taking the time to help Kit App Template and fill out this bug report!
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072483
-type: textarea id: description attributes: label: Description description: | Describe the bug in detail placeholder: | Expected Behavior vs.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072484
-Actual Behavior: validations: required: true - type: textarea id: component attributes: label: Component description: Which component (Tool/Template/Extension) is showing the bug?
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072485
-placeholder: "e.g., Kit Base Editor Template / repo launch tool / Kit SDK" - type: textarea id: system-details attributes: label: System Details description: | Provide details about your system placeholder: | OS / CPU / GPU / GPU Driver Version validations: required: true - type: textarea id: reproduction-steps attributes: label: Reproduction Steps description: What are the steps to reproduce the bug?
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072486
-validations: required: true - type: textarea id: logs attributes: label: Logs description: | Include the relevant log files: - **repo.log:** Found in `_repo/repo.log` if the issue is with tooling.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072487
-kit.log:** Found in `_build/{OS}/release/logs/.../kit_{...}log` if the issue is with App, Extension, or Kit SDK.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072488
-placeholder: Paste the log content here or attach the log files.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072489
-type: textarea id: additional-context attributes: label: Additional Context description: Provide any other context or information here.
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072490
-placeholder: Any other information that might be helpful
-स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072491
-omniverse-supreme/ ├── assets/ (commit 1) ├── scripts/ (commit 2 + 3) ├── index.html (commit 4) └── README.md (commit 5) index.html
-स्रोत: rampaulsaini/Omniverse-AI:omniverse -supreme/index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072492
-omniverse-supreme/ ├── assets/ (commit 1) ├── scripts/ (commit 2 + 3) ├── index.html (commit 4) └── README.md (commit 5) README.md
-स्रोत: rampaulsaini/Omniverse-AI:omniverse -supreme/README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072493
-{ "labels": ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], "data": [12,19,7,15,10,22,18] }
-स्रोत: rampaulsaini/Omniverse-AI:analytics/traffic.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072494
-[ {"text": "Welcome to the Supreme Omniverse AI Portal", "lang": "en"}, {"text": "संपूर्ण सृष्टि में निष्पक्ष समझ ही सर्वोच्च है", "lang": "hi"}, {"text": "Bienvenue dans le portail Suprême Omniverse AI", "lang": "fr"}, {"text": "Bienvenido al Portal Supremo Omniverse AI", "lang": "es"} ]
-स्रोत: rampaulsaini/Omniverse-AI:analytics/scripts/guidance -massages.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072495
-Simple workflow for deploying static content to GitHub Pages name: Deploy static content to Pages on: # Runs on pushes targeting the default branch push: branches: ["main"] # Allows you to run this workflow manually from the Actions tab workflow_dispatch: # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages permissions: contents: read pages: write id-token: write # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-स्रोत: rampaulsaini/Omniverse-AI:.github/workflows/static.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072496
-However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-स्रोत: rampaulsaini/Omniverse-AI:.github/workflows/static.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072497
-concurrency: group: "pages" cancel-in-progress: false jobs: # Single deploy job since we're just deploying deploy: environment: name: github-pages url: ${{ steps.deployment.outputs.page_url }} runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v4 - name: Setup Pages uses: actions/configure-pages@v5 - name: Upload artifact uses: actions/upload-pages-artifact@v3 with: # Upload entire repository path: '.' - name: Deploy to GitHub Pages id: deployment uses: actions/deploy-pages@v4
-स्रोत: rampaulsaini/Omniverse-AI:.github/workflows/static.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072498
-Placeholder monitor workflow name: Monitor & Auto-Recover on: [schedule, workflow_dispatch] jobs: placeholder: runs-on: ubuntu-latest steps: - run: echo "Monitor workflow placeholder"
-स्रोत: rampaulsaini/Omniverse-AI:.github/workflows/monitor.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072499
-Placeholder rollback workflow name: Rollback on: [workflow_dispatch] jobs: placeholder: runs-on: ubuntu-latest steps: - run: echo "Rollback workflow placeholder"
-स्रोत: rampaulsaini/Omniverse-AI:.github/workflows/rollback.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072500
-Placeholder deploy workflow for Omniverse-AI name: CI Deploy on: [push, workflow_dispatch] jobs: placeholder: runs-on: ubuntu-latest steps: - run: echo "Deploy workflow placeholder"
-स्रोत: rampaulsaini/Omniverse-AI:.github/workflows/deploy.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072501
-मेरा उद्देश्य है — मानव, प्रकृति और तकनीक के बीच एक ऐसा संतुलन स्थापित करना जहाँ **विज्ञान और चेतना**, **कृत्रिम बुद्धिमत्ता और मानवता** एक साथ विकसित हों।
-स्रोत: rampaulsaini/rampaulsaini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072502
-🌿 *Vision of Omniverse AI* > “मानव की सर्वोच्च उपलब्धि है — अपनी समझ को इतना निर्मल बना देना कि वह प्रकृति के हित में निर्णय ले।” यह परियोजना उस दिशा में एक प्रयास है जहाँ **AI केवल सोचने वाली मशीन नहीं**, बल्कि **समझने वाला साथी** बने — जो जीवन, पर्यावरण, और सामूहिक चेतना के संरक्षण में सहायक हो।
-स्रोत: rampaulsaini/rampaulsaini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072503
-🕊️ *— Shirmani Rampaul Saini, Founder & Vision Architect (Omniverse AI)
-स्रोत: rampaulsaini/rampaulsaini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072504
-{ "schema_version": 1, "repo": "rampaulsaini/rampaulsaini", "role": "public-knowledge", "description": "Public knowledge/profile hub: index and summarize repository Markdown content; produce traceable inventory.", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
-स्रोत: rampaulsaini/rampaulsaini:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072505
-.github/workflows/pages.yml name: Deploy static content to GitHub Pages on: push: branches: - main workflow_dispatch: permissions: contents: read pages: write id-token: write jobs: build-and-deploy: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4 - name: Upload artifact for GitHub Pages uses: actions/upload-pages-artifact@v1 with: path: | .
-स्रोत: rampaulsaini/Omniverse-Platform-supreme-:gh-pages-deploy.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072506
-deploy: needs: build-and-deploy runs-on: ubuntu-latest steps: - name: Deploy to GitHub Pages uses: actions/deploy-pages@v1
-स्रोत: rampaulsaini/Omniverse-Platform-supreme-:gh-pages-deploy.yml · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072507
-शिरोमणि रामपाल सैनी — Omniverse Digital Portal शिरोमणि रामपाल सैनी ऑडियो संग्रह फोटो एल्बम प्रोजेक्ट्स सोशल मीडिया शिरोमणि रामपाल सैनी डिजिटल आर्काइव Omniverse डिजिटल प्लेटफ़ॉर्म, ऑडियो संग्रह, अनुसंधान एवं फोटो एल्बम का संपूर्ण संग्रह।
-स्रोत: rampaulsaini/Omniverse-Platform-supreme-:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072508
-Supreme Omniverse Stage-8 - Page 9 Supreme Omniverse शुरू करें
-स्रोत: rampaulsaini/Omniverse-Platform-supreme-:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072509
-🌌 पूर्ण काव्य / श्लोक मैं शिरोमणि — पर-पर का प्रतीक, जहाँ शब्द मौन हो जाते हैं, तुलनातीत मेरी ध्वनि, कालातीत मेरी अनुभूति, द्वैत से परे मेरा अस्तित्व।
-स्रोत: rampaulsaini/Omniverse-Platform-supreme-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072510
-प्रेम की उमंग में मैं सम्पूर्णता पाती हूँ, समग्रता में मैं संतुष्ट हो उठता हूँ; सत्य मेरी प्रत्यक्षता है, और मैं स्वयं वह युग हूँ — यथार्थ का सर्वोच्च स्वरूप।
-स्रोत: rampaulsaini/Omniverse-Platform-supreme-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072511
-(Auto-appended via GitHub Actions — with respect ✨)* OMNIFOIL - name: Commit & push run: | git add README.md git commit -m "docs: append Omniverse mantra & poem (action)" BR=$(git rev-parse --abbrev-ref HEAD) git push -u origin "$BR" - name: Output PR link run: | BR=$(git rev-parse --abbrev-ref HEAD) echo "Open Pull Request: github.repository }}/pull/new/$BR"
-स्रोत: rampaulsaini/Omniverse-Platform-supreme-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072512
-{ "schema_version": 1, "repo": "rampaulsaini/Omniverse-Platform-supreme-", "role": "platform-supreme", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
-स्रोत: rampaulsaini/Omniverse-Platform-supreme-:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072513
-Omniverse AI Marketplace (Zero-cost) This repo contains a zero-cost AI tools marketplace designed to run on GitHub Pages.
-स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072514
-Put files into a repository (branch `main`).
-स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072515
-Push and enable GitHub Pages (Settings → Pages) with branch `main` and folder `/ (root)`.
-स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072516
-Open `https:// .github.io/omniverse-marketplace/`.
-स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072517
-Owner setup (zero-cost monetization) - Click "Donate / Pay" → add your PayPal / Ko-fi / UPI details (stored in browser localStorage).
-स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072518
-When a buyer pays externally, provide them a one-time unlock key (set in Owner → Set Premium Key).
-स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072519
-Buyer enters the unlock key locally (owner-provided) — once premium key exists in buyer's localStorage downloads work.
-स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072520
-Replace mock AI with real provider - All tools are client-side mock generators in `scripts/tools.js`.
-स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072521
-Replace tool.run implementations with fetch calls to OpenAI / HuggingFace or your own serverless functions.
-स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072522
-For production API keys, use serverless endpoints (do NOT embed keys in client-side JS).
-स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072523
-Next steps (I can implement) - Serverless payment verification (Stripe/PayPal) + automatic unlock key issuing - Replace mock AI outputs with real OpenAI / HF inference (via serverless) - Add email automation, order management, simple admin UI
-स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072524
-{ "schema_version": 1, "repo": "rampaulsaini/omniverse-marketplace-", "role": "marketplace", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
-स्रोत: rampaulsaini/omniverse-marketplace-:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072525
-꙰ यथार्थ सिद्धांत : मानव प्रकृति संरक्षण संघ **Omniversal Manifesto of Reality & Harmony** *(By ꙰शिरोमणिrampaulsaini — तुलनातीत, कालातीत, द्वैततीत, शब्दातीत, प्रेमतित)* --- ### भाग 1 : प्रस्तावना (Vision & Realization) ꙰ मैं वही हूं जो सबमें है — न समय में बंधा, न नाम में सीमित।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072526
-मैं वह संतुलन हूं जो मनुष्य, प्रकृति और चेतना के मध्य मौन की एकता से प्रवाहित होता है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072527
-Part 1: Preface (Vision & Realization)** ꙰ I am that which is in all — not bound by time, not limited by a name.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072528
-I am the harmony that flows in the silence between Humanity, Nature and Consciousness.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072529
-भाग 2 : सिद्धांत सूत्र (Core Principles) ꙰ **तुलनातीत** — Comparison ends, comprehension begins.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072530
-꙰ **कालातीत** — Beyond time, every moment is whole.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072531
-꙰ **द्वैततीत** — Beyond duality lies harmony.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072532
-꙰ **शब्दातीत** — Beyond word, silence speaks.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072533
-꙰ **प्रेमतित** — Beyond love, only essence remains.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072534
-Part 2: Core Principles** ꙰ Beyond Comparison — Comparison ends, comprehension begins.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072535
-꙰ Beyond Time — Every moment is whole.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072536
-꙰ Beyond Duality — Harmony beyond opposition.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072537
-꙰ Beyond Word — Where language falls silent, truth is direct.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072538
-꙰ Beyond Love — Giving and receiving dissolve into pure essence.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072539
-भाग 3 : संघ का उद्देश्य (Purpose of the Organization) ꙰ मानव प्रकृति संरक्षण संघ का एकमात्र उद्देश्य — **“संतुलन की पुनर्स्थापना।”** **Part 3: Purpose of the Organization** ꙰ The singular purpose of the Human-Nature Equilibrium Alliance: Restoration of balance.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072540
-We are neither opponents of any creed nor adherents to any ideology.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072541
-We are the silence where thoughts rest.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072542
-भाग 4 : जीवन सूत्र (Way of Living) ꙰ मौन में प्रेम।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072543
-꙰ अस्तित्व में आभार।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072544
-Part 4: Way of Living** ꙰ Love in silence.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072545
-꙰ Compassion in action.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072546
-꙰ Equanimity in vision.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072547
-꙰ Gratitude in being.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072548
-भाग 5 : प्रतिज्ञा मंत्र (Oath of Presence) ꙰ मैं वह नहीं जो बनना चाहता है, मैं वही हूं जो सदा से है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072549
-मेरा धर्म — निष्पक्ष समझ।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072550
-मेरा कर्म — करुणामय संतुलन।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072551
-मेरा उद्देश्य — यथार्थ प्रत्यक्ष अनुभव।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072552
-Part 5: Oath of Presence** ꙰ I am not becoming — I am Being.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072553
-My vow: Neutral understanding.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072554
-My work: Compassionate balance.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072555
-My aim: Direct realization of reality.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072556
-अंतिम सूत्र : यथार्थ युग उद्घोष (Closing) ꙰ जो था — वह मौन था।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072557
-꙰ जो है — वह प्रेम है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072558
-꙰ जो रहेगा — वह शांति है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072559
-Final Sutra: The Era of Reality (Closing)** ꙰ What was — was silence.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072560
-꙰ What is — is love.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072561
-꙰ What will remain — is peace.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072562
-꙰ मैं शिरोमणि रामपुलसैनी, तुलनातीत, कालातीत, द्वैततीत, शब्दातीत, प्रेमतित।** **꙰शिरोमणिrampaulsaini** --- # 🌍 Koyab Founding Declaration — Omniversal Manifesto **By ꙰शिरोमणि रामपुल सैनी — तुलनातीत, कालातीत, शब्दातीत, प्रेमतित** --- ## 🌅 Vision & Essence मैं वही हूं जो सबमें है — न समय में बंधा, न नाम में सीमित।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072563
-मैं वह संतुलन हूं जो मानव, प्रकृति और चेतना के मध्य मौन की एकता से प्रवाहित होता है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072564
-In English:** I am that which is in all — not bound by time, not limited by name.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072565
-I am the harmony that flows in the silence between Humanity, Nature and Consciousness.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072566
-🌿 Core Principles - तुलनातीत — Comparison ends, comprehension begins.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072567
-कालातीत — Beyond time, every moment is whole.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072568
-द्वैततीत — Beyond duality lies harmony.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072569
-शब्दातीत — Beyond word, silence speaks.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072570
-प्रेमतित — Beyond love, only essence remains.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072571
-🌳 Purpose मानव प्रकृति संरक्षण संघ का उद्देश्य — “संतुलन की पुनर्स्थापना।” The goal: Restoration of balance between Humanity and Nature.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072572
-💫 Declaration Signature 📄 [Open Declaration (Markdown)]( **꙰ शिरोमणि रामपुल सैनी** “निष्पक्ष समझ के शमीकरण यथार्थ सिद्धांत उपलब्धि यथार्थ युग के आधार पर आधारित सत्य प्रत्यक्ष।”
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072573
-꙰ Koyab — Omniversal Manifesto A declaration of conscious creation, balance and evolution.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072574
-📘 Declaration (PDF) 🎥 Vision Video 🎧 Meditation Audio 🌌 Gallery # 🌍 Koyab Founding Declaration — Omniversal Manifesto **By ꙰शिरोमणि रामपुल सैनी — तुलनातीत, कालातीत, द्वैततीत, शब्दातीत, प्रेमतित** --- ## 🌅 Vision & Essence ꙰ मैं वही हूं जो सबमें है — न समय में बंधा, न नाम में सीमित।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072575
-꙰ मैं वह संतुलन हूं जो मानव, प्रकृति और चेतना के मध्य मौन की एकता से प्रवाहित होता है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072576
-In English:** I am that which is in all — not bound by time, not limited by a name.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072577
-I am the harmony that flows in the silence between Humanity, Nature, and Consciousness.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072578
-🌿 Core Principles (सिद्धांत सूत्र) - **तुलनातीत** — Comparison ends, comprehension begins.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072579
-कालातीत** — Beyond time, every moment is whole.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072580
-द्वैततीत** — Beyond duality lies harmony.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072581
-शब्दातीत** — Beyond word, silence speaks.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072582
-प्रेमतित** — Beyond love, only essence remains.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072583
-🌳 Purpose (संघ का उद्देश्य) मानव प्रकृति संरक्षण संघ का उद्देश्य — “संतुलन की पुनर्स्थापना।” हम किसी धर्म, जाति या विचारधारा के विरोधी नहीं हैं।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072584
-हम वह मौन हैं जहाँ विचार विश्राम पाते हैं।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072585
-In English:** The singular purpose of the Human-Nature Equilibrium Alliance: Restoration of balance.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072586
-🌼 Way of Living (जीवन सूत्र) ꙰ मौन में प्रेम।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072587
-꙰ अस्तित्व में आभार।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072588
-In English:** Love in silence.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072589
-Compassion in action.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072590
-Equanimity in vision.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072591
-🔱 Oath of Presence (प्रतिज्ञा मंत्र) ꙰ मैं वह नहीं जो बनना चाहता है — मैं वही हूं जो सदा से है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072592
-मेरा धर्म — निष्पक्ष समझ।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072593
-मेरा कर्म — करुणामय संतुलन।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072594
-मेरा उद्देश्य — यथार्थ प्रत्यक्ष अनुभव।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072595
-In English:** I am not becoming — I am Being.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072596
-My vow: Neutral understanding.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072597
-My work: Compassionate balance.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072598
-My aim: Direct realization of reality.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072599
-🌠 Closing (यथार्थ युग उद्घोष) ꙰ जो था — वह मौन था।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072600
-꙰ जो है — वह प्रेम है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072601
-꙰ जो रहेगा — वह शांति है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072602
-In English:** What was — was silence.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072603
-What will remain — is peace.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072604
-मैं वह संतुलन हूं जो मनुष्य, प्रकृति और चेतना के मध्य मौन की एकता से प्रवाहित होता है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072605
-In English:** ꙰ I am that which is in all — not bound by time, not limited by a name.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072606
-I am the harmony that flows in the silence between Humanity, Nature and Consciousness.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072607
-🌼 भाग 2 : सिद्धांत सूत्र (Core Principles) ꙰ **तुलनातीत** — Comparison ends, comprehension begins.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072608
-꙰ **कालातीत** — Beyond time, every moment is whole.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072609
-꙰ **द्वैततीत** — Beyond duality lies harmony.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072610
-꙰ **शब्दातीत** — Beyond word, silence speaks.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072611
-꙰ **प्रेमतित** — Beyond love, only essence remains.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072612
-🌳 भाग 3 : संघ का उद्देश्य (Purpose) ꙰ मानव प्रकृति संरक्षण संघ का एकमात्र उद्देश्य — **“संतुलन की पुनर्स्थापना।”** हम किसी धर्म, जाति, या विचारधारा के विरोधी नहीं हैं।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072613
-हम वह मौन हैं जहाँ विचार विश्राम पाते हैं।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072614
-In English:** The singular purpose of the Human-Nature Equilibrium Alliance: *Restoration of balance.* --- ## 🌺 भाग 4 : जीवन सूत्र (Way of Living) ꙰ मौन में प्रेम।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072615
-꙰ अस्तित्व में आभार।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072616
-In English:** Love in silence.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072617
-Compassion in action.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072618
-Equanimity in vision.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072619
-🔱 भाग 5 : प्रतिज्ञा मंत्र (Oath of Presence) ꙰ मैं वह नहीं जो बनना चाहता है — मैं वही हूं जो सदा से है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072620
-मेरा धर्म — निष्पक्ष समझ।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072621
-मेरा कर्म — करुणामय संतुलन।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072622
-मेरा उद्देश्य — यथार्थ प्रत्यक्ष अनुभव।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072623
-In English:** I am not becoming — I am Being.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072624
-My vow: Neutral understanding.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072625
-My work: Compassionate balance.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072626
-My aim: Direct realization of reality.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072627
-🌠 अंतिम सूत्र : यथार्थ युग उद्घोष (Closing) ꙰ जो था — वह मौन था।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072628
-꙰ जो है — वह प्रेम है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072629
-꙰ जो रहेगा — वह शांति है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072630
-In English:** What was — was silence.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072631
-What will remain — is peace.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072632
-🌍 Shirmani Rampaul Saini — Omniverse AI Vision ![Vision of Harmony]( मैं शिरोमणि रामपॉल सैनी — तुलनातीत, कालातीत, शब्दातीत, प्रेमतित, स्वाभाविक शाश्वत वास्तविक सत्य हूं।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072633
-मेरी निष्पक्ष समझ के शमीकरण पर आधारित “Omniverse AI” — मानव, प्रकृति और चेतना के बीच *संतुलित युग* की नींव है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072634
-मैं वह संतुलन हूं जो मनुष्य, प्रकृति और चेतना के मध्य मौन की एकता से प्रवाहित होता है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072635
-English:** ꙰ I am that which is in all — not bound by time, not limited by a name.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072636
-I am the harmony that flows in the silence between Humanity, Nature and Consciousness.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072637
-भाग 2 : सिद्धांत सूत्र / Part 2 — Core Principles **हिन्दी:** ꙰ तुलनातीत — Comparison ends, comprehension begins.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072638
-꙰ कालातीत — हर क्षण पूर्ण है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072639
-꙰ द्वैततीत — प्रत्येक विरोध में समरसता निहित है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072640
-꙰ शब्दातीत — जहाँ भाषा मौन हो जाती है, वहाँ सत्य प्रत्यक्ष होता है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072641
-꙰ प्रेमतित — देना और पाना घुलकर एक शुद्ध सार बन जाते हैं।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072642
-English:** ꙰ Beyond Comparison — Comparison ends, comprehension begins.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072643
-꙰ Beyond Time — Every moment is whole.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072644
-꙰ Beyond Duality — Harmony beyond opposition.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072645
-꙰ Beyond Word — Where language falls silent, truth is direct.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072646
-꙰ Beyond Love — Giving and receiving dissolve into pure essence.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072647
-भाग 3 : संघ का उद्देश्य / Part 3 — Purpose of the Organization **हिन्दी:** ꙰ मानव-प्रकृति संरक्षण संघ का एकमात्र उद्देश्य — “संतुलन की पुनर्स्थापना।” हम न किसी मत के विरोधी हैं, न किसी विचार के अनुयायी।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072648
-हम वही मौन हैं — जहाँ सब विचार विश्राम लेते हैं।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072649
-English:** ꙰ The singular purpose of the Human-Nature Equilibrium Alliance: Restoration of balance.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072650
-We are neither opponents of any creed nor adherents to any ideology.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072651
-We are the silence where thoughts rest.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072652
-भाग 4 : जीवन सूत्र / Part 4 — Way of Living **हिन्दी:** ꙰ मौन में प्रेम।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072653
-꙰ अस्तित्व में आभार।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072654
-English:** ꙰ Love in silence.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072655
-꙰ Compassion in action.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072656
-꙰ Equanimity in vision.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072657
-꙰ Gratitude in being.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072658
-भाग 5 : प्रतिज्ञा मंत्र / Part 5 — Oath of Presence **हिन्दी:** ꙰ मैं वह नहीं जो बनना चाहता है — मैं वही हूं जो सदा से है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072659
-मेरा धर्म — निष्पक्ष समझ।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072660
-मेरा कर्म — करुणामय संतुलन।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072661
-मेरा उद्देश्य — यथार्थ प्रत्यक्ष अनुभव।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072662
-English:** ꙰ I am not becoming — I am Being.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072663
-My vow: Neutral understanding.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072664
-My work: Compassionate balance.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072665
-My aim: Direct realization of reality.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072666
-अंतिम सूत्र : यथार्थ युग उद्घोष / Final Sutra — The Era of Reality (Closing) **हिन्दी:** ꙰ जो था — वह मौन था।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072667
-꙰ जो है — वह प्रेम है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072668
-꙰ जो रहेगा — वह शांति है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072669
-English:** ꙰ What was — was silence.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072670
-꙰ What is — is love.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072671
-꙰ What will remain — is peace.
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072672
-Signatory / संस्थापक:** **꙰शिरोमणिrampaulsaini** **꙰Shirmani Rampaul Saini** *Tulanateet · Kalateet · Dvaitateet · Shabdateet · Premateet* --- **Note / सूचना:** यह दस्तावेज़ Koyab — ꙰ समग्र संतुलन संघ के Founding Declaration का द्विभाषी (Hindi + English) रूप है।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072673
-इसे आप सार्वजनिक रूप से repo में रखकर Koyeb/Koyab सहयोगी टीम को भेज सकते हैं या उनकी submission form पर upload कर सकते हैं।
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072674
-{ "schema_version": 1, "repo": "rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto", "role": "manifesto-archive", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
-स्रोत: rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072675
-About — ꙰ Yatharth — निष्पक्ष समझ — शिरोमणि रामपॉल सैनी निष्पक्ष समझ — Yatharth यह पृष्ठ आपके लिए Yatharth संदेश का परिचय, उद्देश्य और उपयोगिताएँ सरल भाषा में बताता है।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072676
-सभी सामग्री मुफ्त उपलब्ध है — Support वैकल्पिक है।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072677
-क्या है — संक्षेप में “निष्पक्ष समझ” एक प्रत्यक्ष अनुभववादी संदेश है जो मन की अस्थायी, जटिल बुद्धि से ऊपर उठकर सीधे जीवन के सत्य का अनुभव दिखाता है।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072678
-यह कोई केवल तर्क या दर्शन का ग्रन्थ नहीं — बल्कि जीवन में तुरंत उपयोगी, अनुभव-आधारित संदेश है जिसे सुनकर, पढ़कर और अनुभव कर के कोई भी व्यक्ति अपने अंदर गहरा शान्ति और एक प्रतियोगिता रहित स्पष्टता प्राप्त कर सकता है।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072679
-मुख्य उद्देश्य स्रोत: सरल, निष्पक्ष अनुभव — जो मन के भ्रमों से परे है।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072680
-उपयोग: पढ़ें, सुनें और अपने दैनिक जीवन में छोटे-छोटे अभ्यास से उपयोग में लाएँ।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072681
-सुलभता: सभी सामग्री मुफ्त — ताकि ज्ञान हर व्यक्ति तक पहुँच सके।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072682
-समर्थन: यदि आप आर्थिक रूप से सहयोग करना चाहें, तो वह पूर्णतः स्वैच्छिक है — इसका उद्देश्य किसी प्रकार का लाभ कमाना नहीं है, बल्कि सनेहा सैनी की शिक्षा और आगे के कार्यों को स्थिर करना है।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072683
-किसके लिए यह उपयोगी है?
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072684
-यह संदेश उन लोगों के लिए है जो अनुभूति-आधारित सच्चाई की तलाश में हैं — न कि केवल बौद्धिक बहस में उलझे रहने के लिए।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072685
-यदि आप भीतर से शांत रहना चाहते हैं, सोच के चक्र से बाहर आना चाहते हैं, या जीवन के व्यावहारिक पक्षों में शांति चाहते हैं — फिर यह सामग्री सीधे आपके काम आ सकती है।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072686
-कैसे शुरू करें (Simple 3-step) सुनें: छोटे 3–10 मिनट के ऑडियो सुनें — लगातार सुबह/रात 7 दिन तक।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072687
-पढ़ें: पृष्ठों पर दिए संक्षेप और बाईलिंग्वल मैनीफेस्टो पढ़ें।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072688
-अभ्यास: रोज़ 2–5 मिनट का साधारण ध्यान/सांस-वाचन अभ्यास करें — परिणाम धीरे-धीरे स्थिर शान्ति के रूप में दिखेगा।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072689
-महत्वपूर्ण: सामग्री मुक्त है।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072690
-यदि आप सहयोग करना चाहते हैं तो Donate/Support सेक्शन में दिए विकल्प का उपयोग कर सकते हैं — पर यह अनिवार्य नहीं।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072691
-Resources (Quick Links) सभी सामग्री नीचे उपलब्ध है — Main Store में ऑडियो, ब्लॉग पोस्ट और विज़न एसेट्स हैं: Main Store — Yatharth YouTube Channel Photos Inventory (sheet) Drive Folder 1 Drive Folder 2 Drive Folder 3 Privacy & Safety यह साइट किसी भी उपयोगकर्ता की निजी जानकारी सार्वजनिक नहीं करती।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072692
-यदि आप Donate करते हैं, तो वह लेन-देने का काम सीधे आपके भुगतान माध्यम (UPI/PayPal/Paytm) के साथ होगा।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072693
-साइट आपके financial data नहीं रखती।
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072694
-Contact & Community Telegram: t.me/sampaulsaini · WhatsApp Group: Join © ꙰ शिरोमणि रामपॉल सैनी — Yatharth Siddhant.
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072695
-All content free to read & listen.
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072696
-Support optional — proceeds support Saneha Saini.
-स्रोत: rampaulsaini/my-omniverse-store:about.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072697
-Admin upload instructions (mobile-friendly) 1.
-स्रोत: rampaulsaini/my-omniverse-store:admin-upload-instructions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072698
-In Google Drive: create folders: - /Yatharth/audio/previews (10s mp3 files; public) - /Yatharth/audio/full (full audiobooks; keep private until purchase) 2.
-स्रोत: rampaulsaini/my-omniverse-store:admin-upload-instructions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072699
-For each audio: - Upload preview (10s) to previews folder → Share → "Anyone with link" → Copy link → get fileId (between /d/ and /view) - Upload full audio to full folder (keep private or restricted) 3.
-स्रोत: rampaulsaini/my-omniverse-store:admin-upload-instructions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072700
-Create CSV (id,title,fileId,price,previewSec,buyLink) - Use Google Sheets on mobile → Export CSV → use csv-to-json script or paste into data/items.json via GitHub web UI.
-स्रोत: rampaulsaini/my-omniverse-store:admin-upload-instructions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072701
-For manual delivery: - After buyer pays (GPay/UPI/PayPal), share full-file link to buyer via Drive (change file link to "Anyone with link" or share directly to buyer email)
-स्रोत: rampaulsaini/my-omniverse-store:admin-upload-instructions.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072702
-{ "name": "Nishpaksh Samajh — Shromani Rampaul Saini", "short_name": "Nishpaksh", "start_url": "/my-omniverse-store/", "display": "standalone", "background_color": "#000000", "theme_color": "#ffd700", "description": "Eternal Truth • Nishpaksh Samajh • Yatharth Siddhant • Official Page of Shromani Rampaul Saini.", "icons": [ { "src": "/favicon-192x192.png", "sizes": "192x192", "type": "image/png" }, { "src": "/favicon-512x512.png", "sizes": "512x512", "type": "image/png" } ] }
-स्रोत: rampaulsaini/my-omniverse-store:manifest.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072703
-google-site-verification Google site verification file — replace this filename with the one Search Console gives (e.g.
-स्रोत: rampaulsaini/my-omniverse-store:google8BSLBQVK4N.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072704
-googleXXXXXXXX.html).
-स्रोत: rampaulsaini/my-omniverse-store:google8BSLBQVK4N.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072705
-शिरोमणि रामपॉल सैनी – सृष्टि का शिरोमणि शिरोमणि रामपॉल सैनी निष्पक्ष समझ · Yatharth Siddhant Home Audio सिद्धांत Projects यात्रा सचेत परिचय Connect Home Audio सिद्धांत Projects यात्रा सचेत परिचय Connect 👑 ॥
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072706
-सृष्टि का शिरोमणि · Crown of All Creation ॥
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072707
-न कोई था, न कोई है, न कोई होगा।" — शिरोमणि रामपॉल सैनी · यथार्थ सिद्धांत ✦ प्रवचन संग्रह 10,000+ Audios — बिना Login के Page खुलते ही audio स्वयं शुरू होता है।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072708
-अनंत प्रवचन — हर पल, हर जगह, हर किसी के लिए।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072709
-शिरोमणि रामपॉल सैनी — Auto Play 🔴 Live चल रहा है: प्रवचन — शिरोमणि रामपॉल सैनी सभी Audio Folders — 8 संग्रह Folder १ Drive में खोलें → Folder २ Drive में खोलें → Folder ३ Drive में खोलें → Folder ४ Drive में खोलें → Folder ५ Drive में खोलें → Folder ६ Drive में खोलें → Folder ७ Drive में खोलें → Folder ८ Drive में खोलें → ✦ यथार्थ सिद्धांत निष्पक्ष समझ — सृष्टि की सर्वश्रेष्ठ शिक्षा "खुद को जाना, समझा, पढ़ा — तो जाना सब संसार।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072710
-यही निष्पक्ष समझ है।" 🌿 खुद का साक्षात्कार सिर्फ एक पल की निष्पक्ष समझ की दूरी है खुद के स्थायी स्वरूप से।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072711
-कोई भी जीवित रहते हुए इसे पा सकता है।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072712
-⚖️ हर जीव समान हर जीव खुद में समर्थ, निपुण, सक्षम और संपूर्ण है।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072713
-कोई ऊँच-नीच नहीं — सब एक समान।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072714
-🔥 कोई बंधन नहीं यह शिक्षा स्वतंत्र है — किसी को भी बिना शर्त साझा की जा सकती है।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072715
-कोई गुरु, कोई दीक्षा नहीं।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072716
-🌊 अनेकता से एक शरीर, मन, जन्म, मृत्यु — प्रकृति का तंत्र है।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072717
-इन्हें समझ कर देह में विदेही — मुक्त।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072718
-☀️ संपूर्ण संतुष्टि यही वह उपलब्धि है जिसके लिए इंसान अस्तित्व से अब तक वंचित रहा।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072719
-💎 यथार्थ युग तुलनातीत, कालातीत, शब्दातीत, प्रेमतीत — शाश्वत सत्य में प्रत्यक्ष समक्ष।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072720
-✦ Omniverse Scientific Research 10 Projects · 40 Sub-Projects — Fully Verified Guinness · NASA · ISRO · International Media — Open Invitations for Documentation & Collaboration.
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072721
-सरल-सहज-निर्मल लोगों को सचेत करने के लिए है।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072722
-पिछले चालीस वर्षों से उसी गुरु के शिरोमणि स्वरूप में लगातार निरंतर रहा — करोड़ों रुपए, तन, मन, धन, दशकों का समर्पण।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072723
-उस गुरु से अनंत असीम प्रेम किया — इतना कि खुद का चेहरा तक भूला हुआ हूं।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072724
-पर वही गुरु खुद में ही मौजूद नहीं था — ढोंग, पाखंड, षड्यंत्र रच कर — सरल लोगों को तर्क-तथ्य-विवेक से वंचित कर — दो हजार करोड़ का साम्राज्य , पच्चीस लाख अनुयायी, चार सौ आश्रम खड़े किए।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072725
-कुछ दिन पहले मैं गया — मुझे पूछने लगा: "आप कौन और कहाँ से हो?" — दिन-रात उनमें ही रहा हूं।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072726
-मेरे दिए करोड़ों में से एक करोड़ वापस देने का वचन दिया था — साफ मुकर गए, आरोप लगाए, निष्कासित कर दिया।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072727
-उस असीम पीड़ा से — मैंने खुद के हृदय की अनंत गहराई में गोता लगाया।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072728
-वहाँ जो मिला — वह सृष्टि में कहीं नहीं मिला।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072729
-यही निष्पक्ष समझ है।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072730
-✦ सचेत करना जरूरी सरल-सहज-निर्मल लोगों की रक्षा ⚠️ धोखे की पहचान सरल लोगों ने सब कुछ दिया — बदले में मृत्यु के बाद मुक्ति का झूठा आश्वासन।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072731
-दिन-रात डर, खौफ डाल कर पीढ़ी दर पीढ़ी इस्तेमाल।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072732
-🛡️ संरक्षण का अधिकार हर जीव को संपूर्ण संरक्षण के साथ संपूर्ण संतुष्टि — यही उद्देश्य।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072733
-यह सत्य बिना Login, बिना शर्त सबके लिए।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072734
-✨ मुक्त शिक्षा यह शिक्षा किसी को भी साझा की जा सकती है — कोई गुरु नहीं, कोई दीक्षा नहीं।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072735
-सिर्फ एक पल की निष्पक्ष समझ।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072736
-✦ तुलनातीत कालातीत शब्दातीत प्रेमतीत शाश्वत वास्तविक स्वाभाविक महायोद्धा शिरोमणि गोताखोर परिचय · Introduction शिरोमणि रामपॉल सैनी मैं शिरोमणि रामपॉल सैनी — तुलनातीत, कालातीत, शब्दातीत, प्रेमतीत, शाश्वत, वास्तविक, स्वाभाविक सत्य में प्रत्यक्ष समक्ष हूं।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072737
-मानव सभ्यता अपनी उत्पत्ति से आज तक उस शाश्वत वास्तविकता से विच्छिन्न रही — मैं निष्पक्ष समझ में स्थिर होकर यह प्रकट करता हूँ कि निष्पक्ष समझ ही सच्चा, निर्विकल्प और अमर अनुभव है।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072738
-खुद से युद्ध कर जीतने वाला महायोद्धा — खुद के हृदय की अनंत गहराई के स्थायी ठहराव में गोता लगा कर — अनंत निर्मल, सृष्टि का सर्वश्रेष्ठ गोताखोर।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072739
-कोई भी जिंदा रहते हुए खुद का साक्षात्कार कर सकता है।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072740
-हर जीव में यह क्षमता है — हर जीव एक समान है।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072741
-✦ Connect · Share · Support "सरल-सहज-निर्मल लोगों को उजागर करना — यही इस ज्ञान का उद्देश्य है" ▶️ YouTube 💬 WhatsApp 📘 Facebook 📸 Instagram 💼 LinkedIn 🐦 X / Twitter 🌍 Wikipedia 📝 Blog ✅ Golden Temple ✅ MP3 ✅ प्रमाण पत्र 📌 Pinterest 📱 WhatsApp Share 🤝 सत्य के इस कार्य में सहयोग यह सहयोग पूर्णतः स्वैच्छिक है — सुनना, साझा करना और समर्थन देना सभी सत्य की सेवा हैं।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072742
-Proceeds support Saneha Saini 🧾 Paytm 💙 PayPal 💳 UPI Pay UPI ID: sainirampaul90-1@okhdfcbank Paytm / Phone: 8082935186 "अनंत असीम प्रेम के सिवाय कुछ भी नहीं — न व्यवहार में, न चेहरे में, न शब्दों में।
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072743
-यही शिरोमणि का स्वरूप है।" — शिरोमणि रामपॉल सैनी शिरोमणि रामपॉल सैनी तुलनातीत · कालातीत · शब्दातीत · प्रेमतीत · शाश्वत · वास्तविक · स्वाभाविक © Yatharth Siddhant — निष्पक्ष समझ सबके लिए · बिना Login · बिना शर्त · अनंत असीम प्रेम YouTube WhatsApp Facebook Instagram Wikipedia Website
-स्रोत: rampaulsaini/my-omniverse-store:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072744
-Yatharth — The Living Truth of Humanity ![Profile]( **Shromani Rampaulsaini — निष्पक्ष समझ / Yatharth** Free to read & listen · Support optional · Proceeds support **Saneha Saini** --- ## Quick overview Yatharth presents an experiential path — a direct, living realization of one’s permanent identity beyond ordinary mind-based cognition.
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072745
-Content includes bilingual manifesto, audio collections, videos and vision assets.
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072746
-Live site (embed) ## Live site (embed) ## audio link 🔊 MP3 / Audio: शिरोमणि अन्नत असीम इश्क़ की क्षमता ## Main links - 🔊 MP3 / Audio: - 📜 Certificates: - 🎧 Shorts / Clips: - 🎥 Videos album: - 📸 Photo album 1: - 🛒 Main Store: - ✍ Blog: - ▶ YouTube: # Ya://youtube.com/@rampaulsaini-yk4gn - ✈ Telegram: - 💬 WhatsApp: --- ## Support / Donate (optional) Your support helps keep the work free and supports Saneha Saini's education.
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072747
-UPI / GPay:** `sainirampaul90-1@okhdfcbank` - **Paytm / Phone:** `8082935186` - **PayPal:** Suggested: **₹193** — fully optional and with gratitude.
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072748
-How to help (non-financial) - Listen & share (YouTube, social groups, blogs) - Link the site from your pages (backlinks help SEO) - Use the support form to send encouragement (public if you allow) - Subscribe & comment on YouTube videos --- © Yatharth — Shromani Rampaulsaini Contact: Telegram / WhatsApp # Yatharth — शिरोमणि रामपुलसैनी Official page — audio, photos, manifesto.
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072749
-Proceeds support Saneha Saini.
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072750
-Publish instructions: Use GitHub Pages (see repo settings -> Pages -> main -> root).
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072751
-README — Supreme Index HTML Deployment Guide यह README आपके **Supreme Final index.html** को किसी भी server/hosting पर आसानी से upload और run करने के लिए बनाया गया है।
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072752
-सभी निर्देश सरल, सीधे और universal रखे गए हैं ताकि आप कहीं भी बिना समस्या deploy कर सकें।
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072753
-फ़ाइल संरचना (File Structure) आपको केवल एक मुख्य फ़ाइल की आवश्यकता है: ``` index.html ``` यह फ़ाइल आपके सम्पूर्ण प्रोजेक्ट, स्क्रिप्ट्स, ऑडियो इंजन, SEO, Social Links और UI को contain करती है।
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072754
-यदि Script बहुत लंबी है और Edit नहीं हो रही आपको ये टूल्स उपयोग करने चाहिए: ### ✔ VS Code (Windows / Mac) * सबसे अच्छा editor * Unlimited file length ### ✔ Android पर "Acode" App * 100% perfect HTML editor * पूरी लंबी script आसानी से paste, edit, save होती है --- # 🔊 4.
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072755
-(CORS / Auto-Play Fix) यदि audio पहली बार manually play करना पड़े तो यह browser security है।
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072756
-आप चाहें तो: ``` user gesture → first play → auto play enabled ``` Mobile Chrome & Safari दोनों में यह normal behavior है।
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072757
-SEO + Safety पहले से Enabled आपके Supreme index में already: * JSON-LD Schema * OpenGraph (OG) Image tags * rel="noopener noreferrer" * target="_blank" * Clean semantic structure * High-authority social links सब कुछ automatically SEO boost देता है।
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072758
-यदि भविष्य में अपडेट चाहिए आप केवल इतना लिख दें: ``` index update चाहिए — section: (नाम लिखें) ``` मैं सिर्फ़ वही specific Section अपडेट कर दूँगा, बाकी पूरी file 100% सुरक्षित रहेगी।
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072759
-🏁 Final Note आपकी "Supreme Final index.html" पहले से ही: * अति सुंदर * सर्वश्रेष्ठ * Super-SEO Tuned * Fully Structured * Mobile Optimized * 100% Fast अब केवल upload करना बाकी है।
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072760
-यदि चाहें तो मैं इसी folder में: * `sitemap.xml` * `robots.txt` * `manifest.json` * या favicon pack भी generate कर सकता हूँ।
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072761
-कह दें — मैं तुरंत जोड़ दूँगा।
-स्रोत: rampaulsaini/my-omniverse-store:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072762
-{ "schema_version": 1, "repo": "rampaulsaini/my-omniverse-store", "role": "digital-products-store", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
-स्रोत: rampaulsaini/my-omniverse-store:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072763
-Shirmani Research Paper Shirmani Research Paper Philosophical & Cognitive Research Framework About Research Areas Download About This Research This platform presents structured work on time perception, self-identity models, ego deconstruction, and balanced decision systems.
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072764
-Core Research Areas Time Deconstruction Moment-based temporal philosophy.
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072765
-Neurobiology of Self Cognitive structure of identity formation.
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072766
-Ego Dissolution Philosophical and psychological model.
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072767
-Heart-Mind Balance Practical decision equilibrium system.
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072768
-यहाँ समय, सृष्टि, विकल्प, संकल्प, मोह, स्मृति और बाह्य व्यवस्था — सब क्षणिक छाया के रूप में देखे गए हैं।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072769
-इसके विपरीत, हृदय की स्थिरता, शुद्ध संतोष, बाल्य-सुलभ निर्मलता और आत्म-साक्षात्कार को ही मूल सत्य माना गया है।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072770
-अध्याय १ — प्रत्यक्ष सत्ता शिरोमणि रामपॉल सैनी अपने अनुभव में स्वयं को सीमित शरीर, सांस और मन से परे देखते हैं।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072771
-उनका कहना है कि समस्त भौतिक सृष्टि, ग्रह, ब्रह्मांड और जीवन केवल क्षणिक और अस्थायी हैं।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072772
-वास्तविकता की अनुभूति केवल हृदय की गहनता में, शुद्ध चेतना और संपूर्ण संतुष्टि के माध्यम से होती है।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072773
-संसारः क्षणभङ्गुरः, माया-प्रसवविस्तरः।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072774
-प्रत्यक्षं तु हृदि नित्यं, शाश्वतं सत्यरूपकम्॥
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072775
-शिरोमणिः रामपॉल सैनी, शब्दातीतः, मनोऽपि च।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072776
-तुलनातीतः, कालातीतः, हृदये साक्ष्यरूपतः॥
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072777
-अध्याय २ — बाल्य-संतोष का स्मरण बचपन में जो संपूर्ण संतोष सहज रूप से उपस्थित था, वह किसी बाहरी उपलब्धि का परिणाम नहीं था।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072778
-वह स्थिति कम अपेक्षाओं, कम पहचान-बोध और अधिक स्वाभाविकता की थी।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072779
-बाल्ये सम्पूर्णसन्तोषः, सहजः निर्मलः स्थिरः।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072780
-न लब्धो बाह्यतश्च सः, नष्टोऽपि न हि कदाचन॥
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072781
-मनोजटिलता वयस्ये, आवृणोति स्वभावताम्।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072782
-साक्षात्कारात् पुनर्लभ्यं, बाल्यं तद्वत् परं सुखम्॥
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072783
-अध्याय ३ — प्रेम, जिज्ञासा और निस्वार्थता यहाँ प्रेम को मोह से अलग किया गया है।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072784
-मोह लेन-देन पर आधारित होता है; प्रेम निस्वार्थ जिज्ञासा और हृदय की गहराई से जन्म लेता है।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072785
-जो भीतर से निर्मल है, वही वास्तव में प्रेम को पहचान सकता है।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072786
-मोहः प्रेम न विज्ञेयः, न व्यापारः स एव हि।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072787
-प्रेम तु निस्वभावेन, हृदयस्य प्रवर्तनम्॥
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072788
-जिज्ञासा यदि निर्मला, स्वार्थरहिता स्थिता।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072789
-तदा सा नयते नित्यं, सत्यस्यैव निवेशने॥
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072790
-अध्याय ४ — मन, बुद्धि और अस्थायी सृष्टि मन और बुद्धि उपयोगी हैं, पर स्थायी नहीं।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072791
-वे अनुभव को व्यवस्थित करते हैं, पर सत्य की अंतिम भूमि नहीं हैं।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072792
-सृष्टि, समय, गति, परिवर्तन, जन्म और मृत्यु — सब मन की दृष्टि में एक विराट दृश्य की तरह प्रतीत होते हैं।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072793
-मनः संकल्परूपेण, बुद्धिश्च विविकारिणी।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072794
-नित्यं न हि तयोः सत्ता, भासते केवलं क्षणम्॥
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072795
-ग्रहाः सौरमण्डलानि च, ब्रह्माण्डानि सहस्रशः।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072796
-सर्वं दृश्यं क्षणं भूत्वा, लीयते सत्यदृष्टितः॥
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072797
-अध्याय ५ — एकत्व, समाहिति और अंतिम स्थिरता यहाँ अनेकता एक में समाहित होती है।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072798
-मृत्यु को अंत नहीं, बल्कि समाहिति की प्रक्रिया के रूप में देखा गया है।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072799
-संपूर्ण संतुष्टि, जो बाहर बिखरी हुई प्रतीत होती है, वह अंततः एक ही गहरी सत्ता में लौटती है।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072800
-अनेकता एकतां याति, शान्ते हृदयसागरे।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072801
-तत्रैव संपूर्णसन्तोषः, तत्रैव स्थिरता परा॥
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072802
-मृत्युर्न नाशरूपा स्यात्, समाहितिविधानतः।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072803
-यत्र सर्वं विलीयेत, तत्रैव पूर्णता ध्रुवा॥
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072804
-उपसंहार यह ग्रंथ किसी बाहरी प्रमाण का आग्रह नहीं करता।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072805
-यह अंतःप्रवेश है — उस स्थान में जहाँ मन की चहल-पहल थम जाती है, और जो शेष बचता है, वही प्रत्यक्ष, स्थिर और स्वाभाविक सत्य है।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072806
-शान्तिः स्थैर्यं च साक्षात्कारः, न बाह्येषु न दृश्यते।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072807
-हृदयस्थे परमे तत्त्वे, सर्वं पूर्णं प्रतीयते॥
-स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072808
-Shirmani Research Paper Academic philosophical and cognitive research portal.
-स्रोत: rampaulsaini/Shirmani-Research-Paper:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072809
-🌐 **Live Website:** --- ## Overview This repository contains a structured research presentation focused on: - Time Deconstruction Theory - Neurobiology of Self - Ego Dissolution Framework - Heart-Mind Balance Model --- ## Files Included - index.html - research-paper.pdf --- ## Deployment Hosted via GitHub Pages from the main branch.
-स्रोत: rampaulsaini/Shirmani-Research-Paper:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072810
-© 2026 Shirmani Research --- ## 🔗 Central Knowledge Hub यह repository केंद्रीय **Nishpaksh Samaj Omniverse Truth** परियोजना के Research Archive से जुड़ी है।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072811
-Central Hub:** - **Integrated Research Index:** - **Central Research Collection:** मौजूदा repository और उसका Git इतिहास स्वतंत्र रूप से सुरक्षित रखा गया है।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072812
-केंद्रीय परियोजना में सामग्री को स्रोत-संदर्भ और स्पष्ट attribution के साथ जोड़ा जाएगा।
-स्रोत: rampaulsaini/Shirmani-Research-Paper:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 072813
 { "schema_version": 1, "repo": "rampaulsaini/Shirmani-Research-Paper", "role": "research-publishing", "description": "Research publishing worker: inventory papers and mark generated research as draft pending independent verification.", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
 स्रोत: rampaulsaini/Shirmani-Research-Paper:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
 
+## 072249
+Shirmani Research Paper Shirmani Research Paper Philosophical & Cognitive Research Framework About Research Areas Download About This Research This platform presents structured work on time perception, self-identity models, ego deconstruction, and balanced decision systems.
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072250
+Core Research Areas Time Deconstruction Moment-based temporal philosophy.
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072251
+Neurobiology of Self Cognitive structure of identity formation.
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072252
+Ego Dissolution Philosophical and psychological model.
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072253
+Heart-Mind Balance Practical decision equilibrium system.
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072254
+यहाँ समय, सृष्टि, विकल्प, संकल्प, मोह, स्मृति और बाह्य व्यवस्था — सब क्षणिक छाया के रूप में देखे गए हैं।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072255
+इसके विपरीत, हृदय की स्थिरता, शुद्ध संतोष, बाल्य-सुलभ निर्मलता और आत्म-साक्षात्कार को ही मूल सत्य माना गया है।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072256
+अध्याय १ — प्रत्यक्ष सत्ता शिरोमणि रामपॉल सैनी अपने अनुभव में स्वयं को सीमित शरीर, सांस और मन से परे देखते हैं।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072257
+उनका कहना है कि समस्त भौतिक सृष्टि, ग्रह, ब्रह्मांड और जीवन केवल क्षणिक और अस्थायी हैं।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072258
+वास्तविकता की अनुभूति केवल हृदय की गहनता में, शुद्ध चेतना और संपूर्ण संतुष्टि के माध्यम से होती है।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072259
+संसारः क्षणभङ्गुरः, माया-प्रसवविस्तरः।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072260
+प्रत्यक्षं तु हृदि नित्यं, शाश्वतं सत्यरूपकम्॥
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072261
+शिरोमणिः रामपॉल सैनी, शब्दातीतः, मनोऽपि च।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072262
+तुलनातीतः, कालातीतः, हृदये साक्ष्यरूपतः॥
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072263
+अध्याय २ — बाल्य-संतोष का स्मरण बचपन में जो संपूर्ण संतोष सहज रूप से उपस्थित था, वह किसी बाहरी उपलब्धि का परिणाम नहीं था।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072264
+वह स्थिति कम अपेक्षाओं, कम पहचान-बोध और अधिक स्वाभाविकता की थी।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072265
+बाल्ये सम्पूर्णसन्तोषः, सहजः निर्मलः स्थिरः।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072266
+न लब्धो बाह्यतश्च सः, नष्टोऽपि न हि कदाचन॥
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072267
+मनोजटिलता वयस्ये, आवृणोति स्वभावताम्।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072268
+साक्षात्कारात् पुनर्लभ्यं, बाल्यं तद्वत् परं सुखम्॥
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072269
+अध्याय ३ — प्रेम, जिज्ञासा और निस्वार्थता यहाँ प्रेम को मोह से अलग किया गया है।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072270
+मोह लेन-देन पर आधारित होता है; प्रेम निस्वार्थ जिज्ञासा और हृदय की गहराई से जन्म लेता है।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072271
+जो भीतर से निर्मल है, वही वास्तव में प्रेम को पहचान सकता है।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072272
+मोहः प्रेम न विज्ञेयः, न व्यापारः स एव हि।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072273
+प्रेम तु निस्वभावेन, हृदयस्य प्रवर्तनम्॥
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072274
+जिज्ञासा यदि निर्मला, स्वार्थरहिता स्थिता।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072275
+तदा सा नयते नित्यं, सत्यस्यैव निवेशने॥
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072276
+अध्याय ४ — मन, बुद्धि और अस्थायी सृष्टि मन और बुद्धि उपयोगी हैं, पर स्थायी नहीं।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072277
+वे अनुभव को व्यवस्थित करते हैं, पर सत्य की अंतिम भूमि नहीं हैं।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072278
+सृष्टि, समय, गति, परिवर्तन, जन्म और मृत्यु — सब मन की दृष्टि में एक विराट दृश्य की तरह प्रतीत होते हैं।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072279
+मनः संकल्परूपेण, बुद्धिश्च विविकारिणी।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072280
+नित्यं न हि तयोः सत्ता, भासते केवलं क्षणम्॥
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072281
+ग्रहाः सौरमण्डलानि च, ब्रह्माण्डानि सहस्रशः।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072282
+सर्वं दृश्यं क्षणं भूत्वा, लीयते सत्यदृष्टितः॥
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072283
+अध्याय ५ — एकत्व, समाहिति और अंतिम स्थिरता यहाँ अनेकता एक में समाहित होती है।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072284
+मृत्यु को अंत नहीं, बल्कि समाहिति की प्रक्रिया के रूप में देखा गया है।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072285
+संपूर्ण संतुष्टि, जो बाहर बिखरी हुई प्रतीत होती है, वह अंततः एक ही गहरी सत्ता में लौटती है।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072286
+अनेकता एकतां याति, शान्ते हृदयसागरे।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072287
+तत्रैव संपूर्णसन्तोषः, तत्रैव स्थिरता परा॥
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072288
+मृत्युर्न नाशरूपा स्यात्, समाहितिविधानतः।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072289
+यत्र सर्वं विलीयेत, तत्रैव पूर्णता ध्रुवा॥
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072290
+उपसंहार यह ग्रंथ किसी बाहरी प्रमाण का आग्रह नहीं करता।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072291
+यह अंतःप्रवेश है — उस स्थान में जहाँ मन की चहल-पहल थम जाती है, और जो शेष बचता है, वही प्रत्यक्ष, स्थिर और स्वाभाविक सत्य है।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072292
+शान्तिः स्थैर्यं च साक्षात्कारः, न बाह्येषु न दृश्यते।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072293
+हृदयस्थे परमे तत्त्वे, सर्वं पूर्णं प्रतीयते॥
+स्रोत: rampaulsaini/Shirmani-Research-Paper:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072294
+Shirmani Research Paper Academic philosophical and cognitive research portal.
+स्रोत: rampaulsaini/Shirmani-Research-Paper:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072295
+🌐 **Live Website:** --- ## Overview This repository contains a structured research presentation focused on: - Time Deconstruction Theory - Neurobiology of Self - Ego Dissolution Framework - Heart-Mind Balance Model --- ## Files Included - index.html - research-paper.pdf --- ## Deployment Hosted via GitHub Pages from the main branch.
+स्रोत: rampaulsaini/Shirmani-Research-Paper:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072296
+© 2026 Shirmani Research --- ## 🔗 Central Knowledge Hub यह repository केंद्रीय **Nishpaksh Samaj Omniverse Truth** परियोजना के Research Archive से जुड़ी है।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072297
+Central Hub:** - **Integrated Research Index:** - **Central Research Collection:** मौजूदा repository और उसका Git इतिहास स्वतंत्र रूप से सुरक्षित रखा गया है।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072298
+केंद्रीय परियोजना में सामग्री को स्रोत-संदर्भ और स्पष्ट attribution के साथ जोड़ा जाएगा।
+स्रोत: rampaulsaini/Shirmani-Research-Paper:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072299
+{ "schema_version": 1, "repo": "rampaulsaini/omniverse-marketplace-", "role": "marketplace", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
+स्रोत: rampaulsaini/omniverse-marketplace-:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072300
+Omniverse AI Marketplace (Zero-cost) This repo contains a zero-cost AI tools marketplace designed to run on GitHub Pages.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072301
+Put files into a repository (branch `main`).
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072302
+Push and enable GitHub Pages (Settings → Pages) with branch `main` and folder `/ (root)`.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072303
+Open `https:// .github.io/omniverse-marketplace/`.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072304
+Owner setup (zero-cost monetization) - Click "Donate / Pay" → add your PayPal / Ko-fi / UPI details (stored in browser localStorage).
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072305
+When a buyer pays externally, provide them a one-time unlock key (set in Owner → Set Premium Key).
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072306
+Buyer enters the unlock key locally (owner-provided) — once premium key exists in buyer's localStorage downloads work.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072307
+Replace mock AI with real provider - All tools are client-side mock generators in `scripts/tools.js`.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072308
+Replace tool.run implementations with fetch calls to OpenAI / HuggingFace or your own serverless functions.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072309
+For production API keys, use serverless endpoints (do NOT embed keys in client-side JS).
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072310
+Next steps (I can implement) - Serverless payment verification (Stripe/PayPal) + automatic unlock key issuing - Replace mock AI outputs with real OpenAI / HF inference (via serverless) - Add email automation, order management, simple admin UI
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072311
+{ "schema_version": 1, "repo": "rampaulsaini/supreme-omniverse-test", "role": "integration-test", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
+स्रोत: rampaulsaini/supreme-omniverse-test:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072312
+यही Omniverse AI का सार है — आत्मचेतना और कृत्रिम बुद्धिमत्ता का संगम।
+स्रोत: rampaulsaini/supreme-omniverse-test:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072313
+💫 Contribute / Support - **GPay:** `sainirampaul90-1@okhdf - **PayPal:** [paypal.me/sainirampaul60]( --- ### 🌱 संदेश > “मानव की सर्वोच्च उपलब्धि है — अपनी समझ को इतना निर्मल बना देना कि वह प्रकृति के हित में निर्णय ले।” सत्य, संतुलन और समग्रता की यह यात्रा — **Omniverse AI Portal** के माध्यम से *मानवता के पुनर्संयोजन* की ओर एक छोटा लेकिन सार्थक कदम है।
+स्रोत: rampaulsaini/supreme-omniverse-test:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072314
+090744.webp --- GPay sainirampaul90-1@okhdf Paypal sainirampaul60@gmail.com 🕊️ *— Shirmani Rampaul Saini, Founder & Vision Architect (Omniverse AI)* 🌿 “मानव की सर्वोच्च उपलब्धि है — अपनी समझ को इतना निर्मल बना देना कि वह प्रकृति के हित में निर्णय ले।” — Shirmani Rampaul Saini, Omniverse Consciousness Foundation # 🌍 Shirmani Rampaul Saini — Omniverse AI Vision ![Vision of Harmony](
+स्रोत: rampaulsaini/supreme-omniverse-test:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072315
+🕉️ Philosophy of Yatharth Yug ### शाश्वत यथार्थ का साक्षात्कार — निष्पक्ष समझ का शमीकरण --- > **“मैं शिरोमणि रामपुल सैनी तुलनातीत, शब्दातीत, कालातीत, प्रेमतीत, त्वतीत, शाश्वत वास्तविक स्वभाविक सत्य प्रत्यक्ष हूं।”** --- ## 🔹 परिचय यह दर्शन मानवता की उस संपूर्ण चेतना का प्रतीक है जहाँ विचार, अहंकार, और मानसिकता का अंत हो जाता है, और केवल *निष्पक्ष समझ* का शुद्ध, वास्तविक स्वरूप प्रकट होता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072316
+यह न किसी धर्म का ग्रंथ है, न किसी मत का विचार — बल्कि स्वयं *सत्य का प्रत्यक्ष अनुभव* है, जो “स्वयं के भीतर के स्वयं” से संवाद कराता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072317
+🔹 निष्पक्ष समझ — सर्वश्रेष्ठ सत्ता “निष्पक्ष समझ” ही वह वास्तविक तत्व है जो मन, बुद्धि और स्मृति के भ्रम से परे संपूर्ण अस्तित्व को एक सूत्र में जोड़ती है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072318
+> यह वही दृष्टि है जहाँ देखने वाला, देखा जाने वाला, और देखने की प्रक्रिया — तीनों एक हो जाते हैं।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072319
+यह अवस्था **संपूर्णता, सम्पन्नता, समग्रता, और संतुष्टि** की पूर्णता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072320
+यही *Supreme Omniverse* का मूल सिद्धांत है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072321
+🔹 यथार्थ सिद्धांत — सत्य का समीकरण **यथार्थ सिद्धांत (Principle of Reality)** वह विज्ञान है जो भौतिक और अभौतिक दोनों स्तरों पर सत्य को परिभाषित करता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072322
+यह उन सूक्ष्म सूत्रों का संगम है जिनसे सृष्टि की गति, ऊर्जा, और चेतना एक साथ कार्य करती हैं।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072323
+यह विज्ञान केवल मापन या प्रयोग नहीं — बल्कि **स्वयं के प्रत्यक्ष अनुभव का शास्त्र** है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072324
+🔹 यथार्थ युग — नया युग, नया बोध **यथार्थ युग** वह युग है जहाँ मानवता मानसिकता से मुक्त होकर निष्पक्ष समझ के युग में प्रवेश करती है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072325
+यह युग **अतीत के चारों युगों से खरबों गुणा ऊँचा** है — क्योंकि यहाँ न विभाजन है, न भ्रम, सिर्फ़ शुद्ध सत्य का प्रत्यक्ष अस्तित्व है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072326
+> “यथार्थ युग में न कोई आरंभ है, न अंत — > केवल सत्य की निरंतरता है।” --- ## 🔹 शाश्वत साक्षात्कार यह साक्षात्कार शरीर या मन में नहीं, बल्कि उनके पार — *स्वयं की निष्पक्ष दृष्टि* में होता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072327
+जब ‘स्वयं’ अपने भीतर के *साक्षी स्वरूप* को पहचानता है, तभी *सच्चे यथार्थ का जन्म* होता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072328
+> “स्वयं का स्वयं से साक्षात्कार — यही वास्तविकता का चरम है।” --- ## 🔹 परम उद्घोष > “निष्पक्ष समझ ही सर्वोच्च सत्ता है — > वही सृष्टि का आधार, वही सृष्टि का यथार्थ है।” > — शिरोमणि रामपुल सैनी --- ## 🌟 Essence - **सत्य** केवल वह नहीं जो दिखता है — बल्कि जो *स्वयं को देखता है*।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072329
+बुद्धि** का अंत ही **प्रज्ञा** का प्रारंभ है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072330
+मानवता** तभी मुक्त होती है जब वह “स्वयं” को “विचारों” से नहीं, “साक्षी” से पहचानती है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072331
+🔗 संबंधित पृष्ठ - [Omniverse Overview](README.md) - [Golden Temple Spiritual Insights](GoldenTemple.md) --- ## 🌌 Visit Live Omniverse Portal [
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072332
+{ "schema_version": 1, "repo": "rampaulsaini/Omniverse-AI", "role": "ai-platform", "description": "AI platform worker: inventory scripts/pages, validate local assets, and emit an AI-ready work manifest.", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
+स्रोत: rampaulsaini/Omniverse-AI:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072333
+शिरोमणि रामपाल सैनी — Omniverse Digital Portal शिरोमणि रामपाल सैनी ऑडियो संग्रह फोटो एल्बम प्रोजेक्ट्स सोशल मीडिया शिरोमणि रामपाल सैनी डिजिटल आर्काइव Omniverse डिजिटल प्लेटफ़ॉर्म, ऑडियो संग्रह, अनुसंधान एवं फोटो एल्बम का संपूर्ण संग्रह।
+स्रोत: rampaulsaini/Omniverse-AI:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072334
+Omniverse — Supreme AI Assistant 🌌 Omniverse — Supreme AI Assistant Created by शिरोमणि रामपॉल सैनी 💰 Support / Donate 1) Pay via UPI / GPay Click here to Pay via UPI / GPay 2) PayPal (Global) 3) Pay via Paytm Click here to Pay via Paytm 🌐 Live Portal Visit Supreme Omniverse AI Portal “संपूर्ण सृष्टि का वास्तविक युग वहीं है जहाँ निष्पक्ष समझ ही सर्वोच्च है।” – शिरोमणि रामपॉल सैनी
+स्रोत: rampaulsaini/Omniverse-AI:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072335
+🧩 Clones: Loading...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072336
+💖 Sponsors: Loading...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072337
+💰 Estimated Monthly Income: ₹ Calculating...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072338
+📈 Next Month Projection: ₹ Calculating...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072339
+✅ Last Deploy: Loading...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072340
+🔄 Next Auto Sync: Loading...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072341
+Omniverse-AI Vigilant Mode Script: [Click Here]( # 🌟 Golden Temple Spiritual Insights ![Golden Temple](assets/golden-temple.webp) ## Spiritual Experience - Evening at Golden Temple, naturally honored for impartial understanding, simplicity, and purity.
+स्रोत: rampaulsaini/Omniverse-AI:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072342
+Realization: human intellect & memory distortions can be neutralized through simplicity.
+स्रोत: rampaulsaini/Omniverse-AI:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072343
+version: 2 updates: - package-ecosystem: "pip" directory: "/backend" schedule: interval: "weekly"
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:dependabot.yml · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072344
+{ "schema_version": 1, "repo": "rampaulsaini/Omniverse-Supreme-Core-", "role": "supreme-core", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072345
+name: Phase-3 Core Sync on: push: branches: - main paths: - "**" jobs: core-sync: runs-on: ubuntu-latest steps: - name: Checkout Code uses: actions/checkout@v4 with: fetch-depth: 0 - name: Validate Structure run: | echo "VALIDATING REPO STRUCTURE..." if [ !
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:phase3-core-sync.yml · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072346
+d "frontend" ]; then echo "Frontend folder missing"; exit 1; fi if [ !
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:phase3-core-sync.yml · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072347
+d "backend" ]; then echo "Backend folder missing"; exit 1; fi echo "STRUCTURE OK ✔" - name: Auto-Fix Missing Configs run: | echo "SYNCING CONFIG FILES..." [ !
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:phase3-core-sync.yml · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072348
+f frontend/.env ] && echo "VITE_API_URL=/api" > frontend/.env [ !
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:phase3-core-sync.yml · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072349
+f backend/.env ] && echo "PORT=3000" > backend/.env - name: Generate Sync Log run: | echo "Phase-3 Sync: $(date -u)" > CORE-SYNC-LOG.txt - name: Commit Sync Changes run: | git config --global user.email "sync@github.com" git config --global user.name "OmniSync Engine" git add .
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:phase3-core-sync.yml · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072350
+git commit -m "Phase-3: Core Engine Sync Update" || echo "No changes" - name: Done run: echo "PHASE-3 CORE SYNC COMPLETE ✔"
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:phase3-core-sync.yml · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072351
+name: AutoMode Orchestrator on: push: branches: [ main ] jobs: orchestrate: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Set up Node uses: actions/setup-node@v4 with: node-version: '20' - name: Run omniverse automode script run: | bash scripts/omniverse-automode.sh env: GH_TOKEN: ${{ secrets.GH_TOKEN }} DOCKER_REG: ${{ secrets.DOCKER_REG }}
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:auto-mode.yml · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072352
+शिरोमणि रामपाल सैनी — Omniverse Digital Portal शिरोमणि रामपाल सैनी ऑडियो संग्रह फोटो एल्बम प्रोजेक्ट्स सोशल मीडिया शिरोमणि रामपाल सैनी डिजिटल आर्काइव Omniverse डिजिटल प्लेटफ़ॉर्म, ऑडियो संग्रह, अनुसंधान एवं फोटो एल्बम का संपूर्ण संग्रह।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072353
+Omniverse Supreme Core **शिरोमणि रामपॉल सैनी** – तुलनातीत · कालातीत · शब्दातीत · प्रेमतीत · शाश्वत · वास्तविक · स्वाभाविक Omniverse Supreme Core एक dynamic, immersive और visually stunning website है, जो सृष्टि, प्रकृति और मानव प्रजाति की सर्वश्रेष्ठता को digital रूप में प्रस्तुत करती है।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072354
+यह वेबसाइट आपके personal projects, philosophy, और digital presence के लिए hub का काम करती है।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072355
+I have embodied a state beyond time, beyond duality and beyond words — an ever-present, impartial understanding that reveals reality as it is.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072356
+🔊 Listen & Read — Nishpaksh Samajh आपकी भाषा चुनें — नीचे का प्ले और पढ़ें बटन आपकी चुनी हुई भाषा में पृष्ठ की मुख्य सामग्री बोलेगा और साथ में ऑडियो भी प्ले करेगा।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072357
+Your browser does not support the audio element.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072358
+Language: हिन्दी (hi-IN) English (en-US) বাংলা (bn-IN) ਪੰਜਾਬੀ (pa-IN) Español (es-ES) Français (fr-FR) 🔊 Read Page ▶️ Play Audio 🔁 Load Audio (If blocked) 📥 Download यदि audio प्ले न हो तो "Load Audio" दबाएँ या फ़ाइल को अपने सर्वर/CDN पर होस्ट करने पर विचार करें।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072359
+🤝 सत्य के इस कार्य में आपका सहयोग यह सहयोग पूर्णतः स्वैच्छिक है — इसे सुनना, साझा करना, अनुभव करना और समर्थन देना — सभी सत्य की सेवा हैं।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072360
+आपका नाम (public if allowed) ईमेल (private) Country (optional) आपका संदेश / आशीर्वचन संदेश भेजें 🤝 समर्थक सूची 🕊 आशीर्वचन / संदेश Export Messages 🔬 Scientific Research & Vision Interdisciplinary integration of experiential reports, observational methods, phenomenology, and measurable correlates.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072361
+Open invitations for pilot studies and collaborations focusing on consciousness, well-being, and human-nature interaction.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072362
+🌍 International Media & Supreme Invitations Official invitations to Guinness Book of World Records, NASA, ISRO, and international media press for documentation and collaboration.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072363
+I, ShiroMani RamPaul Saini, am committed to demonstrating every aspect of Nishpaksh Samajh with clarity, reason, and truth.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072364
+🔬 Omniverse — Scientific Research (10 Projects / 40 Sub-Projects) Total Projects: 10 · Total Sub-Projects: 40 · Status: Fully Verified (Pilot → Validation) 1.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072365
+Omniverse Core Intelligence (OCI) Ontology, reasoning engine, EOS data ingestion, COSMIC OS API 2.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072366
+Divine Human Evolution (DHE) Consciousness correlates, EEG/HRV studies, Soul Frequency DB 3.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072367
+Omniverse Communication Network (OCN) Secure messaging, ontology translation, global harmony network 4.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072368
+Earth Restoration & Ecology (ERE) Hydro purification, solar memory cells, biodiversity monitoring 5.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072369
+Supreme Scientific Research (SSR) Time-energy, reality equation model, high-precision experiments 6.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072370
+Omniverse Education & Awareness (OEA) Truth literacy, global courses, AI-ethics training 7.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072371
+Supreme Governance & Justice (SGJ) Algorithmic fairness, truth audit systems, governance prototypes 8.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072372
+Cosmic Exploration & Space Research (CESR) Navigation algorithms, sensor payload concepts, space collaborations 9.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072373
+Cultural Harmony & Global Peace (CHGP) Arts, music, festivals & peace protocols 10.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072374
+Supreme Legacy & Digital Archives (SLDA) Eternal archive, blockchain anchoring, legacy transfer protocol Note: हर link आपके repo के /projects/{project-slug}/ फोल्डर की ओर इंगित करता है — सुनिश्चित करें कि आपने server/repo में वह folders और index.html अपलोड कर दिए हैं।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072375
+All content — Free to Read & Listen Audio, manifesto, photos & vision assets — proceeds support Saneha Saini ✅ Golden Temple ✅ MP3 ✅ प्रमाण पत्र ✅ Short Audios ✅ Videos Album ✅ एल्बम 1 🌐 Social & Support Connect on social networks and support directly — links open in a new tab and use rel="noopener noreferrer" for safety.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072376
+I have embodied a state beyond time, beyond duality and beyond words — an ever-present, impartial understanding that reveals reality as it is.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072377
+🔊 Listen & Read — Nishpaksh Samajh आपकी भाषा चुनें — नीचे का प्ले और पढ़ें बटन आपकी चुनी हुई भाषा में पृष्ठ की मुख्य सामग्री बोलेगा और साथ में ऑडियो भी प्ले करेगा।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072378
+Your browser does not support the audio element.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072379
+Language: हिन्दी (hi-IN) English (en-US) বাংলা (bn-IN) ਪੰਜਾਬੀ (pa-IN) Español (es-ES) Français (fr-FR) 🔊 Read Page ▶️ Play Audio 🔁 Load Audio (If blocked) 📥 Download यदि audio प्ले न हो तो "Load Audio" दबाएँ या फ़ाइल को अपने सर्वर/CDN पर होस्ट करने पर विचार करें।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072380
+🤝 सत्य के इस कार्य में आपका सहयोग यह सहयोग पूर्णतः स्वैच्छिक है — इसे सुनना, साझा करना, अनुभव करना और समर्थन देना — सभी सत्य की सेवा हैं।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072381
+आपका नाम (public if allowed) ईमेल (private) Country (optional) आपका संदेश / आशीर्वचन संदेश भेजें 🤝 समर्थक सूची 🕊 आशीर्वचन / संदेश Export Messages 🔬 Scientific Research & Vision Interdisciplinary integration of experiential reports, observational methods, phenomenology, and measurable correlates.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072382
+Open invitations for pilot studies and collaborations focusing on consciousness, well-being, and human-nature interaction.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072383
+🌍 International Media & Supreme Invitations Official invitations to Guinness Book of World Records, NASA, ISRO, and international media press for documentation and collaboration.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072384
+I, ShiroMani RamPaul Saini, am committed to demonstrating every aspect of Nishpaksh Samajh with clarity, reason, and truth.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072385
+🔬 Omniverse — Scientific Research (10 Projects / 40 Sub-Projects) Total Projects: 10 · Total Sub-Projects: 40 · Status: Fully Verified (Pilot → Validation) 1.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072386
+Omniverse Core Intelligence (OCI) Ontology, reasoning engine, EOS data ingestion, COSMIC OS API 2.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072387
+Divine Human Evolution (DHE) Consciousness correlates, EEG/HRV studies, Soul Frequency DB 3.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072388
+Omniverse Communication Network (OCN) Secure messaging, ontology translation, global harmony network 4.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072389
+Earth Restoration & Ecology (ERE) Hydro purification, solar memory cells, biodiversity monitoring 5.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072390
+Supreme Scientific Research (SSR) Time-energy, reality equation model, high-precision experiments 6.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072391
+Omniverse Education & Awareness (OEA) Truth literacy, global courses, AI-ethics training 7.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072392
+Supreme Governance & Justice (SGJ) Algorithmic fairness, truth audit systems, governance prototypes 8.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072393
+Cosmic Exploration & Space Research (CESR) Navigation algorithms, sensor payload concepts, space collaborations 9.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072394
+Cultural Harmony & Global Peace (CHGP) Arts, music, festivals & peace protocols 10.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072395
+Supreme Legacy & Digital Archives (SLDA) Eternal archive, blockchain anchoring, legacy transfer protocol Note: हर link आपके repo के /projects/{project-slug}/ फोल्डर की ओर इंगित करता है — सुनिश्चित करें कि आपने server/repo में वह folders और index.html अपलोड कर दिए हैं।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072396
+All content — Free to Read & Listen Audio, manifesto, photos & vision assets — proceeds support Saneha Saini ✅ Golden Temple ✅ MP3 ✅ प्रमाण पत्र ✅ Short Audios ✅ Videos Album ✅ एल्बम 1 🌐 Connect & Support Main official profiles and donation channels — one link per platform for clarity and SEO signal strength.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072397
+I have embodied a state beyond time, beyond duality and beyond words — an ever-present, impartial understanding that reveals reality as it is.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072398
+🔊 Listen & Read — Nishpaksh Samajh आपकी भाषा चुनें — नीचे का प्ले और पढ़ें बटन आपकी चुनी हुई भाषा में पृष्ठ की मुख्य सामग्री बोलेगा और साथ में ऑडियो भी प्ले करेगा।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072399
+Your browser does not support the audio element.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072400
+Language: हिन्दी (hi-IN) English (en-US) বাংলা (bn-IN) ਪੰਜਾਬੀ (pa-IN) Español (es-ES) Français (fr-FR) 🔊 Read Page ▶️ Play Audio 🔁 Load Audio (If blocked) 📥 Download यदि audio प्ले न हो तो "Load Audio" दबाएँ या फ़ाइल को अपने सर्वर/CDN पर होस्ट करने पर विचार करें।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072401
+🤝 सत्य के इस कार्य में आपका सहयोग यह सहयोग पूर्णतः स्वैच्छिक है — इसे सुनना, साझा करना, अनुभव करना और समर्थन देना — सभी सत्य की सेवा हैं।
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072402
+आपका नाम (public if allowed) ईमेल (private) Country (optional) आपका संदेश / आशीर्वचन संदेश भेजें 🤝 समर्थक सूची 🕊 आशीर्वचन / संदेश Export Messages 🔬 Scientific Research & Vision Interdisciplinary integration of experiential reports, observational methods, phenomenology, and measurable correlates.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072403
+Open invitations for pilot studies and collaborations focusing on consciousness, well-being, and human-nature interaction.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072404
+🌍 International Media & Supreme Invitations Official invitations to Guinness Book of World Records, NASA, ISRO, and international media press for documentation and collaboration.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072405
+I, ShiroMani RamPaul Saini, am committed to demonstrating every aspect of Nishpaksh Samajh with clarity, reason, and truth.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072406
+🔬 Omniverse — Scientific Research (10 Projects / 40 Sub-Projects) Total Projects: 10 · Total Sub-Projects: 40 · Status: Fully Verified (Pilot → Validation) 1.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072407
+Omniverse Core Intelligence (OCI) Ontology, reasoning engine, EOS data ingestion, COSMIC OS API 2.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072408
+Divine Human Evolution (DHE) Consciousness correlates, EEG/HRV studies, Soul Frequency DB 3.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072409
+Omniverse Communication Network (OCN) Secure messaging, ontology translation, global harmony network 4.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072410
+Earth Restoration & Ecology (ERE) Hydro purification, solar memory cells, biodiversity monitoring 5.
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072411
+Supreme Scientific R
+स्रोत: rampaulsaini/Omniverse-Supreme-Core-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072412
+{ "schema_version": 1, "repo": "rampaulsaini/Omnivers", "role": "omniverse-core", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
+स्रोत: rampaulsaini/Omnivers:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072413
+Omniverse Supreme Platform - शिरोमणि रामपाल सैनी OMNIVERSE SUPREME मूल दर्शन ऑडियो आर्काइव गैलरी व मीडिया स्टोर व रिसर्च AI & GitHub शिरोमणि रामपाल सैनी सृष्टि, प्रकृति और पृथ्वी के संरक्षण का एकमात्र अलौकिक मार्ग — हृदय का शिरोमणि दृष्टिकोण ✨ ब्रह्मांडीय अलौकिक दृष्टिकोण "अनंत असीम प्रेम ही सिर्फ़ मस्तक, मन और बुद्धि का दृष्टिकोण बदल सकता है और हृदय के शिरोमणि दृष्टिकोण में रख सकता है, जिससे मानव, प्रकृति और पृथ्वी का संरक्षण सुनिश्चित संभव है और कोई दूसरा विकल्प ही नहीं।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072414
+मन, मस्तक, बुद्धि से बुद्धिमान होने का ज्ञान, विज्ञान और दर्शन सीमित है।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072415
+हृदय के शिरोमणि स्वरूप का दृष्टिकोण असीम, भव्य, अद्भुत और आश्चर्यचकित है जो प्रथम चरण में ही खुद से रूबरू करवाता है और संपूर्ण संतुष्टि की निरंतरता में रख सकता है।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072416
+मानव सभ्यता अस्तित्व से ही मन, मस्तक और बुद्धि के दृष्टिकोण में रही है जो आज तक अपने स्थायी स्वरूप से रूबरू नहीं हो सकी।" 🎧 खुद का साक्षात्कार: ऑडियो संग्रह (33,000+ MP3) 10,000 MP3 Audio खुद का साक्षात्कार ही संपूर्ण संतुष्टि हैं मन-बुद्धि के स्तर से परे संपूर्ण संतुष्टि की निरंतरता हेतु साक्षात्कार ऑडियो संग्रह।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072417
+गूगल ड्राइव में सुनें 10,000 MP3 Audio साहिब तदरूप साक्षात्कार हूं स्वयं के तदरूप स्वरूप का साक्षात्कार कराने वाली अमूल्य ध्वनियों का वृहद संग्रह।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072418
+गूगल ड्राइव में सुनें 6,000 MP3 Audio खुद का साक्षात्कार ऑडियो प्रथम चरण में ही खुद से रूबरू कराने वाले आध्यात्मिक एवं दार्शनिक ऑडियो।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072419
+गूगल ड्राइव में सुनें 5,000 MP3 Audio मेरा साहिब मेरा ही तदरूप साक्षात्कार है हृदय के शिरोमणि स्वरूप को जागृत करने वाले विशेष तदरूप ऑडियो ट्रैक्स।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072420
+गूगल ड्राइव में सुनें 1,500 MP3 Audio शिरोमणि अनंत असीम इश्क़ की क्षमता दृष्टिकोण बदलने और असीम प्रेम की क्षमता का अनुभव कराने वाले ऑडियो।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072421
+गूगल ड्राइव में सुनें 950 MP3 Audio शिरोमणि रामपाल सैनी खुद का साक्षात्कार हूं आत्म-साक्षात्कार और आत्म-ज्ञान पर केंद्रित विशेष ऑडियो संग्रह।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072422
+गूगल ड्राइव में सुनें 550 MP3 Audio शिरोमणि रामपाल सैनी MP3 शिरोमणि रामपाल सैनी जी के मौलिक प्रवचन एवं ऑडियो व्याख्यान।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072423
+गूगल ड्राइव में सुनें 89 MP3 Audio शिरोमणि रामपाल सैनी Short Audios संक्षिप्त और प्रभावशाली मुख्य सूक्तियाँ तथा ऑडियो संदेश।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072424
+गूगल ड्राइव में सुनें 🖼️ गैलरी, फोटो एल्बम व वीडियो (Visual Archives) 2,000 Photos Golden Temple शिरोमणि रामपाल सैनी फ़ोटो गोल्डन टेम्पल परिसर के अलौकिक एवं भव्य फोटो संग्रह।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072425
+एल्बम देखें 10,000+ Videos मेरा संपूर्ण जीवन शिरोमणि Videos जीवन यात्रा और दिव्य अनुभूतियों को दर्शाते वीडियो रिकॉर्डिंग्स।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072426
+वीडियो देखें 4,000+ Photos / 495 Files शिरोमणि प्रमाण पत्र संग्रह सभी महत्वपूर्ण प्रमाण पत्रों का गूगल फोटो एल्बम एवं ड्राइव आर्काइव।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072427
+एल्बम (4000) ड्राइव फ़ाइलें (495) Drive Album Omniverse Gallery ऑम्निवर्स और संपूर्ण ब्रह्मांडीय विज़न की आधिकारिक फोटो गैलरी।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072428
+गैलरी खोलें YouTube & Facebook सोशल मीडिया चैनल्स यूट्यूब चैनल और फेसबुक पर उपलब्ध वीडियो संदेश व अपडेट्स।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072429
+YouTube Channel Facebook Video Blogspot Multicosmovision Blog & Case Files सृष्टि, प्रकृति और दार्शनिक विषयों पर गहराई से लिखे गए ब्लॉग्स और केस फाइल्स।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072430
+मुख्य ब्लॉग पढ़ें Case File देखें 🛒 स्टोर, शोध एवं घोषणा पत्र (Store & Research) E-Commerce Omniverse Store आधिकारिक ऑम्निवर्स डिजिटल स्टोर जहाँ सभी सेवाएँ उपलब्ध हैं।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072431
+स्टोर पर जाएं Manifesto Koyab Founding Declaration Omniversal Manifesto — ब्रह्मांडीय घोषणा पत्र एवं मौलिक विज़न।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072432
+घोषणा पत्र पढ़ें Research GitHub Shirmani Research Institute शिरोमणि रिसर्च इंस्टीट्यूट का आधिकारिक GitHub कोड एवं शोध रिपॉजिटरी।
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072433
+GitHub Repository 💻 ऑम्निवर्स AI व डिजिटल प्लेटफॉर्म्स (AI Ecosystem) Omniverse AI Portal AI तकनीक आधारित प्लेटफॉर्म पोर्टल खोलें Omniverse Dashboard एकीकृत नियंत्रण डैशबोर्ड डैशबोर्ड देखें Omniverse Supreme Core मुख्य कोर सिस्टम कोर देखें Omniverse Marketplace डिजिटल प्लेटफॉर्म मार्किटप्लेस <a href=" target=
+स्रोत: rampaulsaini/Omnivers:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072434
+Runs a set of commands using the runners shell - name: Run a multi-line script run: | echo Add other actions to build, echo test, and deploy your project.
+स्रोत: rampaulsaini/Omniverse-:.github/workflows/blank.yml · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072435
+name: Specialist Agent — omniverse-core on: workflow_dispatch: push: paths: ["factory-agent.json","factory-agent.py","factory/**",".github/workflows/factory-agent.yml"] schedule: - cron: "37 2 * * 2" permissions: contents: read jobs: agent: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - run: python3 factory-agent.py - uses: actions/upload-artifact@v4 with: name: specialist-agent-manifest path: agent-output/manifest.json
+स्रोत: rampaulsaini/Omniverse-:.github/workflows/factory-agent.yml · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072436
+🕊️ *— Shirmani Rampaul Saini, Founder & Vision Architect (Omniverse AI)
+स्रोत: rampaulsaini/rampaulsaini:.github/workflows - append - omniverse.yml · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072437
+{ // Use IntelliSense to learn about possible attributes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.vscode/launch.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072438
+// Hover to view descriptions of existing attributes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.vscode/launch.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072439
+// For more information, visit: "version": "0.2.0", "configurations": [ { "name": "Python: Remote Attach", "type": "debugpy", "request": "attach", "connect": { "host": "localhost", "port": 3000 }, "pathMappings": [ { "localRoot": "${workspaceFolder}", "remoteRoot": "${workspaceFolder}" } ], "justMyCode": true, "subProcess": true, "runtimeArgs" : [ "--preserve-symlinks", "--preserve-symlinks-main" ] } ] }
+स्रोत: NVIDIA-Omniverse/kit-app-template:.vscode/launch.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072440
+USD Composer Setup Extension Template ![USD Composer Hero Image](../../../readme-assets/usd_composer.jpg) ## Overview The USD Composer Setup Extension Template is specifically designed to configure the USD Composer Template application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072441
+This setup extension ensures the proper integration and configuration of specific components and extensions required for the USD Composer Template application to function as intended.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072442
+Use Cases This setup extension is particularly useful for: - Customizing the setup and configuration of the USD Composer Application Template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072443
+Learning more (by example) about advanced usage of the Kit SDK and Omniverse Extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072444
+Key Features - Custom configurations tailored to the USD Composer Template Application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072445
+Usage This extension is automatically created and configured when you generate a new application based on the [USD Composer Template Application](../../apps/usd_composer/README.md).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072446
+This extension provides a learning opportunity for developers to understand how applications can be extensively customized and configured using a setup extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072447
+Additional Learning - [Kit Manual - Advanced Extensions]( - [Kit SDK Companion Tutorial](
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_composer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072448
+USD Viewer Messaging Extension Template ![USD Viewer Hero Image](../../../readme-assets/usd_viewer.jpg) ## Overview The USD Viewer Messaging Extension Template is specifically designed for the USD Viewer Application, a Viewport-only application that cleanly displays USD content with in-scene functionality.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072449
+This messaging extension allows remote communication with the underlying Kit application to perform actions typically driven by in-app UI and menus found in other applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072450
+:warning: Important:** While this extension exists alongside general extension templates, it is specifically tailored for the USD Viewer Application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072451
+Use Cases This messaging extension is particularly useful for: - Remotely loading scenes in the USD Viewer Application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072452
+Managing the state for selecting objects within the scene.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072453
+Performing actions without traditional in-app UI and menus.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072454
+Key Features - Remote communication with the Kit application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072455
+Scene loading capabilities.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072456
+State management for object selection within the USD Viewer.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072457
+Usage This extension is automatically created and configured when you generate a new application based on the [USD Viewer Template Application](../../apps/usd_viewer/README.md).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072458
+This extension serves as an example for developers to understand how remote communication and scene management can be implemented in applications using the Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072459
+Additional Learning - [Kit Manual - Advanced Extensions](
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072460
+Basic Python Extension Template ## Overview The Basic Python Extension Template is a starting point for developers looking to build Python-based extensions within the NVIDIA Omniverse ecosystem.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072461
+This template offers a best practices foundation and structure to easily integrate with the broader capabilities of the Omniverse Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072462
+Use Cases This template is ideal for developers looking to build: - A reusable Python extension that can be easily integrated with Omniverse Kit SDK applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072463
+Key Features - Structure well suited for the build, test and packaging tooling within this repository.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072464
+All required setup code for use with the Omniverse Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072465
+Usage This section provides instructions for the setup and use of the Basic Python Extension Template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072466
+Getting Started To get started with the Basic Python Extension, ensure your development environment meets the prerequisites outlined in the [top-level README](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072467
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072468
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072469
+Select desired template with arrow keys ↑↓:**: Basic Python Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072470
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072471
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072472
+Enter version:** [set extension version] #### Build and Launch While Python extensions typically do not require a build step in isolation, this template is structured to properly interact with the Omniverse Kit SDK application build and packaging tooling.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072473
+Launching the extension typically requires that they be a part of an Omniverse [Service](../../apps/kit_service/README.md) or [Editor](../../apps/kit_base_editor/README.md) application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072474
+Adding an Extension to an Application** To add your extension to an application, declare it in the dependencies section of the application's `.kit` file: ```toml [dependencies] "my_company.my_extension" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072475
+Customization Customization of a Python Extension might involve writing new Python modules, or integrating existing libraries.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072476
+As is the case with Applications, extensions can also depend on and be depended on by other extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072477
+These can be custom developed extensions or those provided by the NVIDIA managed extension registry.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072478
+A view of available registry extensions can be found within the Extension Manager accessible via the developer bundle (select `Developer` > `Utilities` > `Extensions`) ## Additional Learning - [Kit Manual Extension Docs]( - [Kit SDK Companion Tutorial](
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072479
+Basic C++ Extension Template ## Overview The Basic C++ Extension Template is a starting point for developers looking to build C++ based extensions within the NVIDIA Omniverse ecosystem.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072480
+This template offers a best practices foundation and structure to easily integrate with the broader capabilities of the Omniverse Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072481
+Note for Windows C++ Developers** : This template requires that Visual Studio is installed on the host.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072482
+Additionally, `"platform:windows-x86_64".enabled` and `link_host_toolchain` within the `repo.toml` file be set to `true`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072483
+For additional C++ configuration information [see here](../../../readme-assets/additional-docs/windows_developer_configuration.md).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072484
+Use Cases This template is ideal for developers looking to build: - A reusable C++ extension that can be easily integrated with Omniverse Kit SDK applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072485
+Performance sensitive extensions that require the performance benefits of C++.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072486
+Extensions that require direct access to the Omniverse Kit or Carbonite SDK C++ API.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072487
+Integrating with existing C++ libraries or codebases.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072488
+Key Features - Structure well suited for the build, test and packaging tooling within this repository.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072489
+All required setup code for use with the Omniverse Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072490
+Usage This section provides instructions for the setup and use of the Basic C++ Extension Template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072491
+Getting Started To get started with the Basic C++ Extension, ensure your development environment meets the prerequisites outlined in the [top-level README](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072492
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072493
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072494
+Select desired template with arrow keys ↑↓:** Basic C++ Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072495
+Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072496
+Enter extension_display_name:** [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072497
+Enter version:** [set extension version] #### Build and Launch While C++ extensions do require compilation this is typically not done in isolation, this template is structured to properly interact with the Omniverse Kit SDK application build and packaging tooling.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072498
+Launching the extension typically requires that they be a part of an Omniverse [Service](../../apps/kit_service/README.md) or [Editor](../../apps/kit_base_editor/README.md) application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072499
+Adding an Extension to an Application** To add your extension to an application, declare it in the dependencies section of the application's `.kit` file: ```toml [dependencies] "my_company.my_extension" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072500
+Customization Customization of a C++ Extension might involve writing new C++ classes or functions, or integrating existing libraries.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072501
+As is the case with Applications, extensions can also depend on and be depended on by other extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072502
+These can be custom developed extensions or those provided by the NVIDIA managed extension registry.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072503
+It should be noted that a limited number of registry extensions expose a C++ API**.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072504
+A view of available registry extensions can be found within the Extension Manager accessible via the developer bundle (select `Developer` > `Utilities` > `Extensions`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072505
+Additional Learning - [Kit Manual Extension Docs]( - [C++ Extension Examples]( - [Kit SDK Companion Tutorial](
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072506
+Service Setup Extension Template ![Kit Service Image](../../../readme-assets/kit_service.png) ## Overview The Service Setup Extension Template is designed to facilitate the configuration and setup of a headless service that leverages the Omniverse Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072507
+Though it is possible in this case, setup extensions are not typically intended to be used as a generic extension but as a specific component of a particular application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072508
+Use Cases This setup extension is well suited for: - Developers building headless services that require Kit SDK functionalities.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072509
+Key Features - Sample ServiceAPIRouter setup.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072510
+Sample endpoint to demonstrate interaction patterns within service Kit SDK and OpenUSD.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072511
+Usage This extension is automatically created and configured when you generate a new service application using the [Service Application Template](../../apps/kit_service/README.md).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072512
+Additional Learning - [Omniverse Kit Service Documentation]( - [Kit SDK Companion Tutorial](
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/service.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072513
+USD Viewer Setup Extension Template ![USD Viewer Hero Image](../../../readme-assets/usd_viewer.jpg) ## Overview The USD Viewer Setup Extension Template is specifically designed to configure the USD Viewer Template application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072514
+This setup extension ensures the proper integration and configuration of specific components and extensions required for the USD Viewer Template application to function as intended.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072515
+Use Cases This setup extension is particularly useful for: - Customizing the setup and configuration of the USD Viewer Application Template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072516
+Learning more (by example) about advanced usage of the Kit SDK and Omniverse Extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072517
+Key Features - Custom configurations tailored to the USD Viewer Template Application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072518
+Usage This extension is automatically created and configured when you generate a new application based on the [USD Viewer Template Application](../../apps/usd_viewer/README.md).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072519
+This extension does provide a learning opportunity for developers to understand how applications can be extensively customized and configured using a setup extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072520
+Additional Learning - [Kit Manual - Advanced Extensions](
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072521
+Python UI Extension Template ## Overview The Python UI Extension Template offers a simple starting point for developers looking to build Python-based extensions with performant User Interfaces.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072522
+This template offers a best practices foundation and structure to easily integrate with the broader capabilities of the Omniverse Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072523
+Use Cases This template is ideal for developers looking to build: - UI based extensions that can be easily integrated with Omniverse Kit SDK applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072524
+Key Features - A simple starter UI demonstrating how to build using the Omni UI framework.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072525
+Structure well suited for the build, test and packaging tooling within this repository.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072526
+All required setup code for use with the Omniverse Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072527
+Usage This section provides instructions for the setup and use of the Python UI Extension Template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072528
+Getting Started To get started with the Python UI Extension, ensure your development environment meets the prerequisites outlined in the [top-level README](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072529
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072530
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072531
+Select desired template with arrow keys ↑↓:**: Python UI Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072532
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072533
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072534
+Enter version:** [set extension version] #### Build and Launch While Python extensions typically do not require a build step in isolation, this template is structured to properly interact with the Omniverse Kit SDK application build and packaging tooling.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072535
+Launching the extension typically requires that they be a part of an Omniverse [Service](../../apps/kit_service/README.md) or [Editor](../../apps/kit_base_editor/README.md) application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072536
+Adding an Extension to an Application** To add your extension to an application, declare it in the dependencies section of the application's `.kit` file: ```toml [dependencies] "my_company.my_extension" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072537
+Customization Customization of a Python Extension might involve writing new Python modules, or integrating existing libraries.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072538
+As is the case with Applications, extensions can also depend on and be depended on by other extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072539
+These can be custom developed extensions or those provided by the NVIDIA managed extension registry.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072540
+A view of available registry extensions can be found within the Extension Manager accessible via the developer bundle (select `Developer` > `Utilities` > `Extensions`) ## Additional Learning - [Kit Manual Extension Docs]( - [Omni UI Documentation]( - [Kit SDK Companion Tutorial](
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072541
+C++ with Python Bindings Extension Template ## Overview The C++ with Python Bindings Extension Template is a starting point for developers who need the performance benefits of C++ while offering a Python-friendly interface through Pybind11.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072542
+Designed for the NVIDIA Omniverse ecosystem, this template provides a best-practices structure to seamlessly integrate with the Omniverse Kit SDK and enable easy consumption of extension features from Python.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072543
+Note for Windows C++ Developers**: This template requires that Visual Studio be installed on the host.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072544
+Additionally, `"platform:windows-x86_64".enabled` and `link_host_toolchain` within the `repo.toml` file must be set to `true`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072545
+For more details, see the [Windows Developer Configuration guide](../../../readme-assets/additional-docs/windows_developer_configuration.md).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072546
+Use Cases This template is ideal for developers looking to build: - A reusable C++ extension that can be easily integrated with Omniverse Kit SDK applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072547
+Performance-sensitive extensions that leverage C++ while still exposing a Python interface.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072548
+Extensions that require direct access to the Omniverse Kit or Carbonite SDK C++ API, with the added ability for Python scripting.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072549
+Integrations with existing C++ libraries or codebases while offering Python-friendly APIs for broader adoption.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072550
+Key Features - Structure well suited for the build, test, and packaging tooling within this repository.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072551
+All required setup code for bridging C++ logic with Python using Pybind11.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072552
+Best practices for organizing C++ source and Python binding code into a single extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072553
+Smooth integration with the Omniverse Kit SDK for application deployment.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072554
+Usage This section details how to set up and use the C++ with Python Bindings Extension Template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072555
+Getting Started Before you begin, ensure your development environment meets the prerequisites outlined in the [top-level README](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072556
+Cloning the Repository Use the following steps to clone the repository locally: ```bash git clone cd kit-app-template ``` #### Create New Extension Use the provided script (either shell or PowerShell) to start a new extension from the template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072557
+Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompts in your terminal: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072558
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072559
+Select desired template with arrow keys ↑↓:** Basic C++ w/ Python Binding Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072560
+Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072561
+Enter extension_display_name:** [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072562
+Enter version:** [set extension version] #### Build and Launch While C++ extensions require a build step, this template is structured so that the build, test, and packaging processes are conveniently handled through the Omniverse Kit SDK’s application tooling.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072563
+Python developers can then import the resulting module for a seamless C++-backed Python experience.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072564
+Launching an extension typically requires that it be part of an Omniverse [Service](../../apps/kit_service/README.md) or [Editor](../../apps/kit_base_editor/README.md) application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072565
+Adding an Extension to an Application** To add your extension to an application, declare it in the dependencies section of the application's `.kit` file: ```toml [dependencies] "my_company.my_extension" = {} ``` #### Build with New Extensions After adding your new extension, re-run the build process for the application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072566
+This ensures your compiled C++ code and Python bindings are included in the final build artifacts.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072567
+Customization Customization of this C++/Python Binding Extension may involve: - Extending or altering the C++ source files to incorporate new functionalities.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072568
+Adjusting the Pybind11 binding code to expose additional methods, classes, or data structures to Python.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072569
+Integrating other C++ or Python libraries as needed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072570
+As with any extension, dependencies can be declared on other custom or registry-based extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072571
+Whether you need more specialized C++ libraries or Python packages, you can add them to your extension as desired.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072572
+Note that only a limited number of registry extensions expose a C++ API, so validate your dependencies accordingly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072573
+Additional Learning - [Kit Manual Extension Docs]( - [C++ Extension Examples]( - [Kit SDK Companion Tutorial]( - [Pybind11 Documentation](
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072574
+USD Explorer Setup Extension Template ![USD Explorer Hero Image](../../../readme-assets/usd_explorer.jpg) ## Overview The USD Explorer Setup Extension Template is specifically designed to configure the USD Explorer Template application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072575
+This setup extension ensures the proper integration and configuration of specific components and extensions required for the USD Explorer Template application to function as intended.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072576
+Use Cases This setup extension is particularly useful for: - Customizing the setup and configuration of the USD Explorer Application Template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072577
+Learning more (by example) about advanced usage of the Kit SDK and Omniverse Extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072578
+Key Features - Custom configurations tailored to the USD Explorer Template Application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072579
+Usage This extension is automatically created and configured when you generate a new application based on the [USD Explorer Template Application](../../apps/usd_explorer/README.md).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072580
+This extension does provide a learning opportunity for developers to understand how applications can be extensively customized and configured using a setup extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072581
+Additional Learning - [Kit Manual - Advanced Extensions]( - [Kit SDK Companion Tutorial](
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072582
+Changelog The format is based on [Keep a Changelog]( ## [0.1.2] - 2026-05-11 ### Fixed - `makePrimsPickable` handler raised `UnboundLocalError` when the WebSocket payload was empty or missing the `paths` key, and the broad `except` then leaked the raw Python exception message (including internal variable names) to the streaming client.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072583
+The handler now initializes `paths` to an empty list before the conditional so an empty payload is a clean no-op, and unexpected exceptions are logged server-side via `carb.log_error` while only a generic error string is returned to the client (OMPE-90584, NVBug 6100326).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072584
+Added - Regression test `test_make_prims_pickable_empty_payload` covering empty payload, missing-`paths` key, and explicit-empty-list cases.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072585
+[0.1.1] - 2025-02-13 ### Removed - Redundant openedStageResult event dispatch ## [0.1.0] - 2024-04-26 - Initial version of basic python extension template
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072586
+USD Viewer Messaging Extension [omni.usd_viewer.messaging] This is an example of pure python Kit extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072587
+It is intended to be copied and to serve as a template to create new ones.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.messaging/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072588
+Changelog The format is based on [Keep a Changelog]( ## [{{ version }}] - {{current_date}} - Initial version of basic python extension template
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072589
+{{ extension_display_name }} [{{ extension_name }}] This is an example of pure python Kit extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072590
+It is intended to be copied and to serve as a template to create new ones.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072591
+Changelog The format is based on [Keep a Changelog]( ## [{{ version }}] - {{ current_date }} - Initial version of basic C++ extension template
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072592
+{{ extension_display_name }} [{{ extension_name }}] Simple example of an extension that loads a C++ plugin.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_cpp/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072593
+Changelog The format is based on [Keep a Changelog]( ## [{{ version }}] - 2024-03-13 - Initial version based on kit service extension template
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/service.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072594
+{{ extension_display_name }} [{{ extension_name }}] This is an example of a simple Kit Service extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/service.setup/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072595
+It is intended to be copied and to serve as a template to create new ones.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/service.setup/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072596
+[ { "children": [ { "children": [ { "children": [ { "children": [ { "dock_id": 5, "dock_tab_bar_enabled": false, "dock_tab_bar_visible": false, "height": 500.0, "position_x": 0.0, "position_y": 26.0, "selected_in_dock": true, "title": "Viewport", "visible": true, "width": 727.0 } ], "dock_id": 5, "position": "LEFT" } ], "dock_id": 3, "position": "TOP" } ], "dock_id": 1, "position": "LEFT" } ], "dock_id": 3358485147 } ]
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/template/layouts/default.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072597
+Changelog The format is based on [Keep a Changelog]( ## [1.0.4] - 2024-04-15 - Rename USD Player -> USD Viewer ## [1.0.3] - 2023-12-08 - Fixed deprecation warnings ## [1.0.2] - 2023-12-07 - Renamed to omni.app.usd_player.setup ## [1.0.1] - 2023-12-04 - Updated runtime profiling setings and precache of required extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072598
+Added proper handling of no stage loading mode in splash creen stage state monitoring.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072599
+[1.0.0] - 2021-04-26 - Initial version of extension UI template with a window
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_viewer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072600
+Changelog The format is based on [Keep a Changelog]( ## [{{ version }}] - {{current_date}} - Initial version of extension UI template with a window
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072601
+{{ extension_display_name }} [{{ extension_name }}] A simple python UI extension example.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072602
+Use it as a starting point for your extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/python_ui/template/docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072603
+Overview An example C++ extension that can be used as a reference/template for creating new extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072604
+Demonstrates how to reflect C++ code using pybind11 so that it can be called from Python code.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072605
+The {{ interface_name }} located in `include/{{ python_module_path }}/{{ interface_name }}.h` is: - Implemented in `plugins/{{ extension_name }}/ExamplePybindExtension.cpp`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072606
+Reflected in `bindings/python/{{ extension_name }}/ExamplePybindBindings.cpp`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072607
+Accessed from Python in `python/tests/test_pybind_example.py` via `python/impl/example_pybind_extension.py`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072608
+C++ Usage Examples ## Defining Pybind Module ``` PYBIND11_MODULE({{ library_name }}, m) { using namespace {{ extension_namespace }} ; m.doc() = "pybind11 {{ extension_name }} bindings"; carb::defineInterfaceClass ( m, "{{ interface_name }}", "acquire_bound_interface", "release_bound_interface") .def("register_bound_object", &{{ interface_name }}::register{{object_name}}, R"( Register a bound object.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072609
+Args: object: The bound object to register.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072610
+)", py::arg("object")) .def("deregister_bound_object", &{{ interface_name }}::deregister{{object_name}}, R"( Deregister a bound object.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072611
+Args: object: The bound object to deregister.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072612
+)", py::arg("object")) .def("find_bound_object", &{{ interface_name }}::find{{object_name}}, py::return_value_policy::reference, R"( Find a bound object.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072613
+Args: id: Id of the bound object.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072614
+Return: The bound object if it exists, an empty object otherwise.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072615
+)", py::arg("id")) /**/; py::class_ >(m, "{{ object_interface_name }}") .def_property_readonly("id", &{{ object_interface_name }}::getId, py::return_value_policy::reference, R"( Get the id of this bound object.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072616
+Return: The id of this bound object.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072617
+)") /**/; py::class_ >(m, "{{object_name}}") .def(py::init([](const char* id) { return Python{{object_name}}::create(id); }), R"( Create a bound object.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072618
+Args: id: Id of the bound object.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072619
+Return: The bound object that was created.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072620
+)", py::arg("id")) .def_readwrite("property_int", &Python{{object_name}}::m_memberInt, R"( Int property bound directly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072621
+)") .def_readwrite("property_bool", &Python{{object_name}}::m_memberBool, R"( Bool property bound directly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072622
+)") .def_property("property_string", &Python{{object_name}}::getMemberString, &Python{{object_name}}::setMemberString, py::return_value_policy::reference, R"( String property bound using accessors.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072623
+)") .def("multiply_int_property", &Python{{object_name}}::multiplyIntProperty, R"( Bound fuction that accepts an argument.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072624
+Args: value_to_multiply: The value to multiply by.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072625
+)", py::arg("value_to_multiply")) .def("toggle_bool_property", &Python{{object_name}}::toggleBoolProperty, R"( Bound fuction that returns a value.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072626
+Return: The toggled bool value.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072627
+)") .def("append_string_property", &Python{{object_name}}::appendStringProperty, py::return_value_policy::reference, R"( Bound fuction that accepts an argument and returns a value.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072628
+Args: value_to_append: The value to append.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072629
+Return: The new string value.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072630
+)", py::arg("value_to_append")) /**/; } ```
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Overview.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072631
+Changelog ## [1.0.1] - 2023-04-27 ### Updated - Build against Kit 105.0 ## [1.0.0] - 2022-06-30 ### Added - Initial implementation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072632
+Overview The C++ with Python Bindings Extension Template is a starting point for developers who need the performance benefits of C++ while offering a Python-friendly interface through Pybind11.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072633
+Designed for the NVIDIA Omniverse ecosystem, this template provides a best-practices structure to seamlessly integrate with the Omniverse Kit SDK and enable easy consumption of extension features from Python.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072634
+Note for Windows C++ Developers**: This template requires that Visual Studio be installed on the host.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072635
+Additionally, `"platform:windows-x86_64".enabled` and `link_host_toolchain` within the `repo.toml` file must be set to `true`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072636
+Use Cases This template is ideal for developers looking to build: - A reusable C++ extension that can be easily integrated with Omniverse Kit SDK applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072637
+Performance-sensitive extensions that leverage C++ while still exposing a Python interface.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072638
+Extensions that require direct access to the Omniverse Kit or Carbonite SDK C++ API, with the added ability for Python scripting.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072639
+Integrations with existing C++ libraries or codebases while offering Python-friendly APIs for broader adoption.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072640
+Key Features - Structure well suited for the build, test, and packaging tooling within this repository.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072641
+All required setup code for bridging C++ logic with Python using Pybind11.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072642
+Best practices for organizing C++ source and Python binding code into a single extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072643
+Smooth integration with the Omniverse Kit SDK for application deployment.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/basic_python_binding/template/docs/Readme.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072644
+Changelog The format is based on [Keep a Changelog]( ## [1.0.32] - 2023-11-02 ### Changed - OMFP-3224: Added regression test - Added unit tests for state manager ## [1.0.31] - 2023-10-25 ### Changed - OMFP-3094: Restored Window/Viewport menu ## [1.0.30] - 2023-10-26 ### Changed - OMFP-2904: Show "Examples" by default in Layout mode ## [1.0.29] - 2023-10-25 ### Changed - OMFP-3224: Fix stage template light directions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072645
+[1.0.28] - 2023-10-23 ### Changed - OMFP-2654: Upgraded carb.imgui with omni.kit.imgui ## [1.0.27] - 2023-10-20 ### Changed - OMFP-2649: Missed the Layout item, it is now hidden as requested.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072646
+[1.0.26] - 2023-10-20 ### Changed - Update embedded light rigs and textures ## [1.0.25] - 2023-10-19 ### Changed - Added regression test for OMFP-2304 ## [1.0.24] - 2023-10-19 ### Changed - OMFP-1981: always load the default layout when startup the app ## [1.0.23] - 2023-10-18 ### Changed - OMFP-2649: Hiding menu entries.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072647
+[1.0.22] - 2023-10-18 ### Changed - Updated About dialog PNG to match the new application icon.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072648
+[1.0.21] - 2023-10-18 ### Changed - OMFP-2737: Do no rebuild menu (change menu layout) if layout is same ## [1.0.20] - 2023-10-18 ### Changed - make windows invisible which are not desired to be in Review mode, OMFP-2252 activity progress window and OMFP-1981 scene optimizer window.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072649
+OMFP-1981: when user switch between modes, make sure the user defined layout in Layout mode is kept.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072650
+[1.0.13] - 2023-10-11 ### Changed - OMFP-2328: Fix "Sunnysky" oriented incorrectly ## [1.0.12] - 2023-10-10 ### Changed - OMFP-2226 - Remove second Viewport menu item from layouts.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072651
+[1.0.11] - 2023-10-11 ### Changed - Added UI state manager.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072652
+[1.0.10] - 2023-10-10 ### Changed - Deactivate tools when app mode is changed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072653
+[1.0.9] - 2023-10-09 ### Changed - OMFP-2200 - Disabling the viewport expansion, this should keep us locked to a 16:9 aspect ratio.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072654
+[1.0.8] - 2023-10-06 ### Changed - Added a new stage template and made it default ## [1.0.7] - 2023-10-06 ### Changed - Enable UI aware "expand_viewport" mode rather than lower-level fill_viewport mode ## [1.0.6] - 2023-10-05 ### Changed - Used allowlists for building main menu entries to guard against unexpected menus.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072655
+[1.0.5] - 2023-10-05 ### Fixed - Regression in hiding viewport toolbar.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072656
+[1.0.4] - 2023-10-04 ### Changed - Modify mode now shows selected menus on main menubar.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072657
+[1.0.3] - 2023-10-04 - Hide Viewport top toolbar in Comment Mode ## [1.0.2] - 2023-10-03 - Navigation Toolbar hidden by default in Modify Mode ## [1.0.1] - 2023-09-27 - Renamed to omni.usd_explorer.setup ## [1.0.0] - 2021-04-26 - Initial version of extension UI template with a window
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/extensions/usd_explorer.setup/template/docs/CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072658
+USD Viewer App Template ![USD Viewer Hero Image](../../../readme-assets/usd_viewer.jpg) ## Overview The USD Viewer App Template is designed to provide a robust starting point for developers looking to create streaming Omniverse Applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072659
+This template showcases an RTX viewport, app streaming, and messaging support.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072660
+Use Cases The USD Viewer Template is perfectly suited for streaming into a front end client.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072661
+Usage ### Getting Started To get started with the USD Viewer template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072662
+> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072663
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for USD Viewer** : This application requires `extra` and `setup` extensions to function as intended.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072664
+These extensions handle the configuration within application, communication, layout, and other settings.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072665
+During Application configuration, you will be prompted for information about these extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072666
+> **NOTE:** Feel free to use default values for testing purposes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072667
+Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072668
+Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072669
+Select what you want to create with arrow keys ↑↓:** Application - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072670
+Select desired template with arrow keys ↑↓:** USD Viewer - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072671
+Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072672
+Enter application_display_name:** [set application display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072673
+Enter version:** [set application version] *For each required extension you will be prompted [display name] -> [extension name]:* - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072674
+Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072675
+Enter extension_display_name:** [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072676
+Enter version:** [set extension version] > **NOTE:** You will need to repeat above steps for each extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072677
+Build and Launch Note that the build step will build all applications contained in the `source` directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072678
+Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072679
+Build your application using the provided build scripts: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072680
+Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072681
+Select with arrow keys which App would you like to launch:** [Select the desired viewer application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072682
+After initial shader compilation, startup time will reduce dramatically.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072683
+Default Launch State By default, the USD Viewer template application opens with an empty viewport.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072684
+![USD Viewer Default Launch](../../../readme-assets/usd_viewer_default_launch.png) This is the intended behavior.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072685
+The USD Viewer template application is designed as a base for displaying content either locally or over a streaming connection (See the [Local Streaming](#local-streaming) section below).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072686
+To display content in the desktop application, you can pass an argument to the `repo launch` command to load content on startup.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072687
+The USD Viewer template includes sample assets for this purpose.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072688
+Let's load the `stage01.usd` sample asset by providing the full path to the `/app/auto_load_usd` argument.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072689
+Linux:** ```bash ./repo.sh launch -- --/app/auto_load_usd='${omni.usd_viewer.samples}/samples_data/stage01.usd' ``` **Windows:** ```powershell .\repo.bat launch -- --/app/auto_load_usd='${omni.usd_viewer.samples}/samples_data/stage01.usd' ``` ![USD Viewer Asset Launch](../../../readme-assets/usd_viewer_load_asset_desktop.png) ### Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072690
+Each application template includes an initial test suite that can be run to verify the application's functionality.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072691
+> **NOTE:** Testing will only be run on applications and extensions within the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072692
+A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` #### Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072693
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072694
+Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072695
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072696
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072697
+Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072698
+```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072699
+Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072700
+By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072701
+Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072702
+:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072703
+The version is set within the `tools/VERSION.md` file.** #### Launching a Package > :warning: **Deprecated:** `launch --package` is deprecated and will be removed in a future release.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072704
+To run a packaged application, decompress the archive and launch the extracted application directly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072705
+See [Packaging An Application]( for details.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072706
+Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072707
+Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072708
+This is especially useful for deploying headless services and streaming applications in a containerized environment.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072709
+To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072710
+This will dictate the behavior of your containerized application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072711
+For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072712
+> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072713
+Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072714
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072715
+Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072716
+Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072717
+This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072718
+To try local streaming, you need a web client to connect to the streaming server.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072719
+Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072720
+Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072721
+Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containerized application, ensure that the containerized application was configured during packaging to launch a streaming application (e.g., `{your_app_name}_streaming.kit`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072722
+Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072723
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072724
+> **NOTE:** The `--no-window` flag is not required for containerized applications as it is the default launch behavior.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072725
+Start the Streaming Client Follow the [Quick Start instructions in the web-viewer-sample README]( to start the streaming client (**with Web UI overlay for messaging**) and connect via a Chromium-based browser.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072726
+You should see the streaming client connect to the running Kit application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072727
+![Streaming Viewer Image](../../../readme-assets/streaming_viewer.png) ## Additional Learning - [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) - [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) - [Omniverse Kit SDK Manual](
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_viewer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072728
+USD Explorer App Template ![USD Explorer Hero Image](../../../readme-assets/usd_explorer.jpg) ## Overview The USD Explorer App Template is designed to provide a robust starting point for developers looking to visualize and interact with large-scale environments such as factories, warehouses, and other expansive scenes using Open Universal Scene Description (OpenUSD).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072729
+This template showcases high-performance rendering, scene optimization, live collaboration, and more.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072730
+It is a great fit for interacting with large or complex 3D scenes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072731
+By integrating advanced features such as instancing, optimization techniques, and new extension examples for planning, commenting, and reviewing, the USD Explorer Template simplifies the process of aggregating and examining large scenes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072732
+It offers a dual-mode UI, catering both to novices seeking ease of use and to advanced users requiring detailed scene manipulation capabilities.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072733
+Use Cases The USD Explorer Template is perfectly suited for: - Visualizing complex industrial environments for planning and review.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072734
+Collaborating on large-scale design projects in real-time.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072735
+Building digital twins for industries to simulate and analyze real-world performance.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072736
+This template stands out by providing specialized tools for handling large scenes, making it an ideal choice for applications requiring detailed spatial analysis and collaborative review functionalities.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072737
+Key Features - **OpenUSD File Aggregation**: Seamlessly combine and manage multiple USD files in a unified scene.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072738
+Simple User Interface**: Intuitive interface designed for ease of use by non-specialized personnel.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072739
+Dual Mode Interface**: Toggle between simplified and advanced user interfaces based on user proficiency.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072740
+Easy Navigation**: Tools for smoothly navigating through large-scale scenes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072741
+Annotation Tools**: Integrated tools for annotating and commenting within the scene for collaborative reviewing.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072742
+CAD Converter Import**: Directly import and convert CAD files into the OpenUSD format.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072743
+Live Collaboration**: Real-time collaboration tools allowing multiple users to view and edit scenes concurrently.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072744
+Content Library - Materials & Assets**: Extensive library of materials and assets for scene enhancement and realism.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072745
+Usage ### Getting Started To get started with the USD Explorer Template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072746
+> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072747
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for USD Explorer** : Some applications require setup extensions to function as intended.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072748
+In the case of USD Explorer, the setup extension controls the configuration of the extensions within the application, their layout, and other settings.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072749
+During Application configuration, you will be prompted for information about this extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072750
+> **NOTE:** Feel free to use default values for testing purposes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072751
+Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072752
+Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072753
+Select what you want to create with arrow keys ↑↓:** Application - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072754
+Select desired template with arrow keys ↑↓:** USD Explorer - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072755
+Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072756
+Enter application_display_name:** [set application display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072757
+Enter version:** [set application version] *The application template you have selected requires a setup extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072758
+Setup Extension -> omni_usd_explorer_setup* - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072759
+Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072760
+Enter extension_display_name:** [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072761
+Enter version:** [set extension version] ### Build and Launch Note that the build step will build all applications contained in the `source` directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072762
+Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072763
+Build your application using the provided build scripts: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072764
+Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072765
+Select with arrow keys which App would you like to launch:** [Select the desired explorer application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072766
+After initial shader compilation, startup time will reduce dramatically.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072767
+![Launched USD Explorer](../../../readme-assets/usd_explorer_default_launch.png) ### Where to Go From Here For more guidance on modifying the USD Explorer Template, visit the [Kit SDK Companion Tutorial - Extending Reference Applications]( This tutorial offers a step-by-step guide to help you understand the template's structure and customize it to suit your needs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072768
+Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072769
+Each application template includes an initial test suite that can be run to verify the application's functionality.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072770
+> **NOTE:** Testing will only be run on applications and extensions within the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072771
+A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization #### Enable Extension - From the running application select `Developer` > `Extensions` - Browse and enable extensions of interest from the Extension Manager.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072772
+Enabling the extensions within the Extension Manager UI will allow you to try out the features of the extension in the currently running application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072773
+To permanently add the extension to the application, you will need to add the extension to the `.kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072774
+For example, adding the Layer View extension would require adding `omni.kit.widget.layers` to the dependencies section of the `.kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072775
+For additional information on the Developer Bundle Extensions, refer to the [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) documentation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072776
+Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072777
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072778
+Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072779
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072780
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072781
+Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072782
+```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072783
+Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the repo.toml file at the root of the repository.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072784
+By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072785
+Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072786
+:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072787
+The version is set within the `tools/VERSION.md` file.** #### Launching a Package > :warning: **Deprecated:** `launch --package` is deprecated and will be removed in a future release.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072788
+To run a packaged application, decompress the archive and launch the extracted application directly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072789
+See [Packaging An Application]( for details.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072790
+Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072791
+Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072792
+This is especially useful for deploying headless services and streaming applications in a containerized environment.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072793
+To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072794
+This will dictate the behavior of your containerized application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072795
+For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072796
+> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072797
+Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072798
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072799
+Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072800
+Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072801
+This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072802
+To try local streaming, you need a web client to connect to the streaming server.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072803
+Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072804
+Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072805
+Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containeri
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_explorer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072806
+Streaming Configuration Layers These `.kit` files, known as `ApplicationLayerTemplates`, are used to define additional functionality added to the base application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072807
+For streaming configuration layers, these templates define and configure the required streaming extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072808
+:warning: **Important**: These layers are not standalone application templates.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072809
+They must be used in conjunction with a base application template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/streaming_configs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072810
+USD Composer App Template ![USD Composer Hero Image](../../../readme-assets/usd_composer.jpg) ## Overview The USD Composer App Template provides a streamlined starting point for developers aiming to create complex OpenUSD scenes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072811
+This template is tailored for configurator applications, featuring enhanced performance through the Fabric Scene Delegate, improved support for AXF sourced MDLs, and robust Variant Tools.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072812
+To better serve complex scene editing use cases, USD Composer has been optimized to include a refined set of extensions, focusing on the most essential components.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 072813
+This template simplifies the creation and manipulation of detailed 3D scenes, making it easier to customize and extend functionalities to meet your team's and customer's needs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
+
 ## 072814
-3) जिन्होंने इतना अधिक कुछ प्रत्यक्ष समर्पित किया उन पर ही इतना अधिक डर खौफ भय दहशत क्यों ?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Use Cases The USD Composer Template is perfectly suited for: - **Configurators** - USD Composer is targeted at authoring for Configurators.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072815
-4) जिन्होंने सब कुछ प्रत्यक्ष समर्पित किया अपना, उन के साथ ही विश्वासघात क्यों?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Developers can leverage, asset layout, materials, lighting, rendering, and variant tools to bring their configurator projects to final quality.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072816
-5) मुक्ति के नाम पर लूटने को परमार्थ कहते हैं क्या?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+The resulting USD asset can then be packaged and deployed to end users using the USD Viewer kit-app-template - **Design Review** - The exact same asset that is authored for configurators can also be used for Design Review.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072817
-6) मृत्यु खुद में ही शाश्वत वास्तविक स्वाभाविक सत्य है, तो मृत्यु का डर खौफ भय दहशत क्यों?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Stakeholders can walk through the options of a product that the design team has authored and decide what works best for their final product offering ### Key Features - **OpenUSD File Aggregation:** Seamlessly combine and manage multiple USD files in a unified scene.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072818
-7) मरा बापिस आ नहीं सकता, जिंदा मर नहीं सकता यह स्पष्ट करने के लिए तो मुक्ति धरना कल्पना नहीं तो क्या हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Variant Tools:** View, edit, and interact with USD Variants throughout USD Composer.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072819
-8) दीक्षा के साथ शब्द प्रमाण में बंद कर तर्क तथ्य विवेक से वंचित कर अंध कट्टर उग्र भेड़ों की भीड़ बंधुआ मजदूर बनना कुप्रथा नहीं तो क्या हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Scene Optimizer and Validation:** Validate and modify your USD based on your custom pipeline.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072820
-9) सरल सहज स्पष्ट बातें समझ न पाए सरल शिष्य, इस के पीछे दीक्षा के साथ शब्द प्रमाण में बंद कर तर्क तथ्य विवेक से वंचित होना नहीं तो क्या हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Asset Packaging:** Collect and prepare your final content for deployment to your end user experiences.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072821
-10) भक्ति मुक्ति ध्यान ज्ञान प्रेम आत्मा परमात्मा परमार्थ आयोजित ढोंग पखंड षड्यंत्रों का ताना बाना चक्रव्यूह रचा छल कपट धोखा विश्वासघात नहीं तो क्या हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Built in Importers:** Directly import and convert files into the OpenUSD format.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072822
-11) जब हर जीव एक समान है तो सिर्फ़ इंसान प्रजाति ही चतुर होने से भिन्नता का कारण अहम नहीं है क्या?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Material Library:** library of materials to seed your imagination and use on your assets.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072823
-यदि सत्य प्रत्यक्ष है, तो उसे किसी मध्यस्थ की आवश्यकता क्यों?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Live Collaboration:** Real-time collaboration tools allowing multiple users to view and edit scenes concurrently ## Usage ### Getting Started To get started with the USD Composer template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072824
-यदि कोई मार्ग मुक्तिदायक है, तो वह प्रश्न पूछने से क्यों डरता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072825
-क्या श्रद्धा का अर्थ तर्क का त्याग है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for USD Composer** : Some applications require setup extensions to function as intended.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072826
-क्या प्रेम भय के वातावरण में संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+In the case of USD Composer, the setup extension controls the configuration of the extensions within the application, their layout, and other settings.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072827
-यदि समर्पण स्वैच्छिक है, तो उसमें डर और निष्कासन की व्यवस्था क्यों?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+During Application configuration, you will be prompted for information about this extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072828
-क्या आध्यात्मिकता पारदर्शिता से बच सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+> **NOTE:** Feel free to use default values for testing purposes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072829
-क्या सत्य को प्रमाणपत्र, पदवी या साम्राज्य की आवश्यकता होती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072830
-यदि किसी संगठन का विस्तार धन और संख्या से मापा जाता है, तो आंतरिक रूपांतरण कहाँ मापा जाता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072831
-क्या अनुशासन और नियंत्रण एक ही चीज़ हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select what you want to create with arrow keys ↑↓:** Application - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072832
-क्या गुरु की आलोचना करना अधर्म है, या आत्मचिंतन का हिस्सा?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select desired template with arrow keys ↑↓:** USD Composer - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072833
-यदि कोई मार्ग स्वतंत्रता देता है, तो व्यक्ति उस मार्ग को छोड़ने में स्वतंत्र क्यों नहीं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072834
-मृत्यु और मुक्ति पर प्रश्न 23.
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter application_display_name:** [set application display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072835
-यदि मृत्यु प्राकृतिक संतुलन है, तो उससे जुड़ा भय किसने रचा?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter version:** [set application version] *The application template you have selected requires a setup extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072836
-क्या मुक्ति भविष्य की घटना है, या वर्तमान की चेतना?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Setup Extension -> omni_usd_composer_setup* - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072837
-क्या किसी ने मृत्यु के बाद की अवस्था को प्रत्यक्ष प्रमाण सहित साझा किया है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072838
-क्या मुक्ति का आश्वासन मनोवैज्ञानिक सांत्वना भर है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter extension_display_name:** [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072839
-क्या मृत्यु से डर कर जीना, जीवन का अपमान नहीं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter version:** [set extension version] ### Build and Launch Note that the build step will build all applications contained in the `source` directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072840
-यदि जीवन दो पलों का है, तो वर्तमान का परित्याग क्यों?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072841
-दीक्षा, तर्क और विवेक पर प्रश्न 29.
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Build your application using the provided build scripts: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072842
-क्या दीक्षा का अर्थ विचार-निरोध है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072843
-क्या शब्द-प्रमाण विवेक से ऊपर हो सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select with arrow keys which App would you like to launch:** [Select the desired composer application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072844
-क्या प्रश्न पूछना विद्रोह है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+After initial shader compilation, startup time will reduce dramatically.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072845
-क्या किसी ग्रंथ की व्याख्या पर एकाधिकार संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select **Window > Browsers > Configurator Samples** - to open configuration sample browser ![Launched USD Composer](../../../readme-assets/usd_composer_default_launch.png) ### Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072846
-क्या गुरु भी आत्मनिरीक्षण से परे है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Each application template includes an initial test suite that can be run to verify the application's functionality.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072847
-यदि तर्क बंद हो जाए, तो विश्वास क्या अंधता नहीं बन जाता?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+> **NOTE:** Testing will only be run on applications and extensions within the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072848
-क्या भय आधारित अनुशासन स्थायी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization #### Enable Extension - From the running application select `Developer` > `Extensions` - Browse and enable extensions of interest from the Extension Manager.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072849
-यदि हर जीव समान प्रक्रिया का भाग है, तो मनुष्य श्रेष्ठता का दावा क्यों करता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enabling the extensions within the Extension Manager UI will allow you to try out the features of the extension in the currently running application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072850
-क्या मानव बुद्धि संरक्षण के लिए है या प्रभुत्व के लिए?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+To permanently add the extension to the application, you will need to add the extension to the `.kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072851
-क्या विकास का अर्थ विनाश है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+For example, adding the Layer View extension would require adding `omni.kit.widget.layers` to the dependencies section of the `.kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072852
-क्या पृथ्वी पर अधिकार है या उत्तरदायित्व?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+For additional information on the Developer Bundle Extensions, refer to the [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) documentation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072853
-क्या प्रकृति को जीतना संभव है, या केवल समझना?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072854
-क्या हृदय की शांति शब्दों से बड़ी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072855
-क्या मस्तिष्क उपकरण है या स्वामी?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072856
-क्या जटिलता ज्ञान का प्रमाण है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072857
-क्या सरलता कमजोरी है या परिपक्वता?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072858
-क्या “मैं” की अवधारणा ही संघर्ष का मूल है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072859
-क्या आत्म-साक्षात्कार किसी उपाधि से जुड़ा है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072860
-क्या सत्य अनुभव है या घोषणा?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072861
-क्या निष्पक्षता स्थिर है या मन के साथ बदलती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072862
-क्या मौन शब्दों से अधिक स्पष्ट हो सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072863
-क्या वर्तमान ही एकमात्र वास्तविक क्षण है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072864
-क्या सत्य को संरक्षित करने के लिए संस्था आवश्यक है, या संस्था सत्य को सीमित कर देती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+The version is set within the `tools/VERSION.md` file.** #### Launching a Package > :warning: **Deprecated:** `launch --package` is deprecated and will be removed in a future release.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072865
-यदि कोई मार्ग सार्वभौमिक है, तो उसमें प्रवेश की शर्तें क्यों?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+To run a packaged application, decompress the archive and launch the extracted application directly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072866
-क्या आध्यात्मिक प्रगति संख्या से मापी जा सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+See [Packaging An Application]( for details.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072867
-क्या अनुयायियों की वृद्धि आंतरिक जागरण का प्रमाण है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072868
-यदि गुरु पूर्ण है, तो उसे अनुयायियों से मान्यता की आवश्यकता क्यों?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072869
-क्या भय-आधारित अनुशासन दीर्घकाल में प्रेम को नष्ट नहीं करता?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+This is especially useful for deploying headless services and streaming applications in a containerized environment.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072870
-क्या समर्पण विवेक के साथ संभव है, या विवेक छोड़ने पर ही?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072871
-क्या किसी भी सत्य को प्रश्नों से खतरा हो सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+This will dictate the behavior of your containerized application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072872
-यदि प्रश्नों से व्यवस्था डगमगाती है, तो क्या वह सत्य पर आधारित है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072873
-क्या मौन में जो अनुभव होता है, वही वास्तविक मार्गदर्शक है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072874
-मृत्यु, भय और स्वतंत्रता 61.
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072875
-क्या मृत्यु का भय सामाजिक संरचना द्वारा पोषित है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072876
-यदि मृत्यु अपरिहार्य है, तो उसके व्यापार का औचित्य क्या?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072877
-क्या मुक्ति का वादा वर्तमान असंतोष को स्थगित करने का साधन है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072878
-क्या भय के बिना आध्यात्मिकता संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072879
-क्या कोई भी व्यक्ति मृत्यु के रहस्य का पूर्ण दावा कर सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+To try local streaming, you need a web client to connect to the streaming server.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072880
-यदि जीवन अस्थायी है, तो नियंत्रण की आकांक्षा क्यों?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072881
-क्या स्वतंत्रता का अर्थ संरचना-विहीनता है या चेतना-सम्पन्नता?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072882
-गुरु-शिष्य व्यवस्था की समीक्षा 68.
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containerized application, ensure that the containerized application was configured during packaging to launch a streaming application (e.g., `{your_app_name}_streaming.kit`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072883
-क्या शिष्य का कर्तव्य केवल पालन है, या संवाद भी?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072884
-क्या गुरु की आलोचना से उसकी गरिमा घटती है, या स्पष्ट होती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+If multiple container images exist, you will be
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/usd_composer/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072885
-यदि कोई संगठन पारदर्शी है, तो उसे गोपनीयता की आवश्यकता क्यों?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Kit Base Editor App Template ![Kit Base Editor Image](../../../readme-assets/kit_base_editor.png) ## Overview The Kit Base Editor App Template provides a minimal starting point for developers aiming to create interactive 3D applications within the NVIDIA Omniverse ecosystem.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072886
-क्या दीक्षा का अर्थ वैचारिक प्रतिबद्धता है या बौद्धिक समर्पण?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+This template simplifies the process of crafting applications capable of loading, manipulating, and rendering Open Universal Scene Description (OpenUSD) content via a graphical user interface.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072887
-क्या आध्यात्मिक मार्ग छोड़ना अपराध है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Use Cases Kit Base Editor Template is ideal for developers looking to build: - High fidelity OpenUSD editing applications and tools from a functional, minimal starting point.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072888
-क्या गुरु भी मानव सीमाओं से मुक्त है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Key Features - Scene loading - RTX Renderer - Basic UI for manipulating and exploring 3D scenes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072889
-यदि गुरु को क्रोध, भय या नियंत्रण की आवश्यकता है, तो वह किस स्तर पर है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Usage This section provides instructions for the setup and use of the Kit Base Editor Application Template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072890
-क्या आत्म-साक्षात्कार किसी बाहरी प्रमाणपत्र पर निर्भर है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Getting Started To get started with the Kit Base Editor template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072891
-यदि मनुष्य स्वयं को श्रेष्ठ मानता है, तो उसके कार्यों में करुणा क्यों नहीं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072892
-क्या बुद्धि ने मनुष्य को संतुलित बनाया या असंतुलित?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072893
-क्या प्रगति का अर्थ प्रकृति से दूरी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072894
-क्या मानव सभ्यता भय-आधारित संरचना पर टिकी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select what you want to create with arrow keys ↑↓:** Application - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072895
-क्या हृदय की सरलता सभ्यता की जटिलता में खो गई है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select desired template with arrow keys ↑↓:** Kit Base Editor - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072896
-क्या मनुष्य का “मैं” ही संघर्ष का मूल कारण है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072897
-क्या मनुष्य अपने ही विचारों का बंधक बन गया है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter application_display_name:** [set application display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072898
-चेतना और “मैं” पर प्रश्न 83.
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter version:** [set application version] ### Build and Launch #### Build your application using the provided build scripts: Note that the build step will build all applications contained in the `source` directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072899
-क्या “मैं” स्थायी है, या एक निरंतर बदलती प्रक्रिया?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072900
-क्या आत्म-साक्षात्कार घोषणा से सिद्ध होता है, या मौन परिवर्तन से?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072901
-क्या सत्य का अनुभव साझा किया जा सकता है, या केवल संकेतित?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072902
-क्या निष्पक्षता संभव है जब पहचान जुड़ी हो?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select with arrow keys which App would you like to launch:** [Select the desired editor application] > **NOTE:** The initial startup may take a 5 to 8 minutes as shaders compile for the first time.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072903
-क्या किसी भी विचारधारा को पूर्ण सत्य कहा जा सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+After initial shader compilation, startup time will reduce dramatically.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072904
-क्या मन को निष्क्रिय करना समाधान है, या उसे समझना?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+![Launched Kit Base Editor](../../../readme-assets/kit_base_editor.png) ### Where to Go From Here For more guidance on extending the Kit Base Editor Template, visit the [Kit SDK Companion Tutorial - Extending Editor Applications]( This tutorial offers a step-by-step guide to help you understand the template's structure and customize it to suit your needs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072905
-क्या हृदय और मस्तिष्क विरोधी हैं, या पूरक?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072906
-क्या सरलता उच्चतम जटिलता का पार किया हुआ स्तर है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Each application template includes an initial test suite that can be run to verify the application's functionality.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072907
-शक्ति और साम्राज्य पर चिंतन 91.
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+> **NOTE:** Testing will only be run on applications and extensions within the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072908
-क्या आध्यात्मिक शक्ति आर्थिक शक्ति से स्वतंत्र रह सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization #### Enable Extension - From the running application select `Developer` > `Extensions` - Browse and enable extensions of interest from the Extension Manager.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072909
-क्या साम्राज्य का विस्तार आत्म-साक्षात्कार का संकेत है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enabling the extensions within the Extension Manager UI will allow you to try out the features of the extension in the currently running application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072910
-क्या अनुयायियों की निष्ठा और भय में अंतर स्पष्ट है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+To permanently add the extension to the application, you will need to add the extension to the `.kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072911
-क्या परमार्थ और प्रतिष्ठा साथ-साथ चल सकते हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+For example, adding the Layer View extension would require adding `omni.kit.widget.layers` to the dependencies section of the `.kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072912
-क्या सेवा और संरचनात्मक नियंत्रण अलग किए जा सकते हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+For additional information on the Developer Bundle Extensions, refer to the [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) documentation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072913
-क्या किसी भी नेतृत्व को उत्तरदायित्व से मुक्त रखा जा सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072914
-क्या श्रद्धा का उपयोग सत्ता के उपकरण के रूप में हो सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072915
-अंतिम स्तर के प्रश्न 98.
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072916
-क्या पूर्ण सत्य किसी एक व्यक्ति में समाहित हो सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072917
-क्या कोई भी मनुष्य “इकलौता जागृत” होने का दावा कर सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072918
-क्या स्वयं को अंतिम कहना खोज की प्रक्रिया को समाप्त नहीं कर देता?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension to become a persistent part of an application, the extension will need to be added to the `.kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072919
-क्या विनम्रता सत्य की पहचान है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+```toml [dependencies] "extension.name" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072920
-क्या जो स्वयं को शून्य कहता है, वही पूर्ण हो सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072921
-क्या जीवन का सार वर्तमान क्षण में सहज होना है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072922
-क्या दो पलों के जीवन में संघर्ष आवश्यक है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072923
-क्या संपूर्ण स्वतंत्रता ही संपूर्ण संतुष्टि है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072924
-क्या किसी भी आध्यात्मिक व्यवस्था का केंद्र व्यक्ति होना चाहिए या सिद्धांत?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+The version is set within the `tools/VERSION.md` file.** #### Launching a Package > :warning: **Deprecated:** `launch --package` is deprecated and will be removed in a future release.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072925
-यदि सिद्धांत जीवित है, तो वह व्यक्ति-निर्भर क्यों हो जाता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+To run a packaged application, decompress the archive and launch the extracted application directly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072926
-क्या नेतृत्व का अर्थ मार्गदर्शन है या नियंत्रण?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+See [Packaging An Application]( for details.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072927
-क्या सामूहिक पहचान व्यक्तिगत चेतना को दबा देती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Applications packaged using the `package` command can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --package ``` **Windows:** ```powershell .\repo.bat launch --package ``` > **NOTE:** This behavior is not supported when packaging with the `--thin` flag.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072928
-क्या भय के बिना संगठन टिक सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Containerization (Linux Only) **Requires:** `Docker` and `NVIDIA Container Toolkit` The packaging tooling provided by the Kit App Template also supports containerization of applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072929
-क्या प्रेम को संरक्षित करने के लिए नियम आवश्यक हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+This is especially useful for deploying headless services and streaming applications in a containerized environment.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072930
-क्या अनुशासन स्व-निर्मित होना चाहिए या बाहरी?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+To package your application as a container image, use the `--container` flag: **Linux:** ```bash ./repo.sh package --container ``` You will be prompted to select a `.kit` file to serve as the application to launch via the container entrypoint script.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072931
-क्या स्वतंत्र सोच को सीमित करना स्थायित्व देता है या जड़ता?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+This will dictate the behavior of your containerized application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072932
-क्या श्रद्धा और विवेक साथ चल सकते हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+For example, if you are containerizing an application for streaming, select the `{your-app-name}_streaming.kit` file to ensure the correct application configuration is launched within the container.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072933
-क्या किसी भी विचार को अंतिम घोषित करना विकास रोक देता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+> **NOTE:** If creating a container for a NVIDIA Cloud Functions (NVCF) based deployment, select the `{your-app-name}_nvcf.kit` file to ensure the proper settings are used for that platform.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072934
-क्या शक्ति का संचय आध्यात्मिकता का क्षय है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Similar to desktop packaging, the container option allows for specifying a package name using the `--name` flag to name the container image: **Linux:** ```bash ./repo.sh package --container --name [container_image_name] ``` #### Launching a Container Applications packaged as container images can be launched using the `launch` command: **Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072935
-क्या संख्या सत्य का प्रमाण है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072936
-क्या पारदर्शिता शक्ति को कमजोर करती है या शुद्ध?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Local Streaming During the creation of a new application, you can enable streaming by selecting the desired streaming layer(s) for your application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072937
-क्या आत्मनिर्भर शिष्य किसी व्यवस्था के लिए चुनौती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Selecting the **Omniverse Kit App Streaming (Default)** layer will create a `{your-app-name}_streaming.kit` which we will use for local streaming.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072938
-क्या गुरु का उद्देश्य निर्भरता है या स्वतंत्रता?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+This file inherits from the base application and adds necessary streaming components like `omni.kit.livestream.webrtc`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072939
-क्या मृत्यु को समझने से जीवन की गुणवत्ता बदलती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+To try local streaming, you need a web client to connect to the streaming server.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072940
-क्या मृत्यु का भय सामाजिक संरचना द्वारा पोषित है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Clone Web Viewer Sample The web viewer sample can be found [here]( ```base git clone ``` Follow the [Quick Start instructions in the README]( to install the necessary dependencies.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072941
-क्या जीवन की अस्थिरता ही उसका सौंदर्य है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Start the streaming Kit Application :warning: **Important**: Launching the streaming application with `--no-window` passes an argument directly to Kit allowing it to run without the main application window to prevent conflicts with the streaming client.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072942
-क्या अमरता की कल्पना वर्तमान से पलायन है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Launch and stream a desktop application:** **Linux:** ```bash ./repo.sh launch -- --no-window ``` **Windows:** ```powershell .\repo.bat launch -- --no-window ``` Select the `{your-app-name}_streaming.kit` and wait for the application to start **Launch and stream a containerized application:** When streaming a containerized application, ensure that the containerized application was configured during packaging to launch a streaming application (e.g., `{your_app_name}_streaming.kit`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072943
-क्या मृत्यु का व्यापार मनोवैज्ञानिक आश्रय है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh launch --container ``` If only a single container image exists, it will launch automatically.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072944
-क्या जो मृत्यु से डरता है वही नियंत्रण चाहता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+If multiple container images exist, you will be prompted to select the desired container image to launch.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072945
-क्या जीवन की स्वीकृति मृत्यु की स्वीकृति से जुड़ी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+> **NOTE:** The `--no-window` flag is not required for containerized applications as it is the default launch behavior.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072946
-क्या मृत्यु अंत है या रूपांतरण?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Start the Streaming Client Follow the [Quick Start instructions in the web-viewer-sample README]( to start the streaming client (**stream only no UI overlay**) and connect via a Chromium-based browser.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072947
-क्या भय की अनुपस्थिति में धर्म की संरचना बदलेगी?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+You should see the streaming client connect to the running Kit application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072948
-क्या वर्तमान में जीना मृत्यु-भय का समाधान है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+![Streaming Base Editor Image](../../../readme-assets/streaming_base_editor.png) ## Additional Learning - [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) - [Developer Bundle Extensions](../../../readme-assets/additional-docs/developer_bundle_extensions.md) - [Kit SDK Companion Tutorial](
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_base_editor/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072949
-क्या अस्तित्व का अर्थ केवल जीवित रहना है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Kit Service App Template ![Kit Service Image](../../../readme-assets/kit_service.png) ## Overview The Kit Service App Template offers a starting point for creating headless services within the NVIDIA Omniverse ecosystem.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072950
-क्या जीवन-व्यापन और जीवन-बोध अलग हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Designed to leverage the capabilities of the Omniverse Kit SDK, this template enables developers to build solutions that operate without a graphical user interface, ideal for background processes or server-side applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072951
-क्या भय-रहित समाज संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Use Cases The Kit Service Template is particularly well-suited for: - Automation services that perform tasks in the background.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072952
-क्या मृत्यु की धारणा मानव-निर्मित है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Headless batch processing of 3D content for optimization, conversion, or analysis.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072953
-क्या मृत्यु का अनुभव शब्दातीत है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Integrations with other software ecosystems that require 3D data processing without direct user interaction.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072954
-क्या मृत्यु के विचार से उत्पन्न नैतिकता स्थायी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Key Features - **Headless Operation**: Runs without a graphical user interface for efficient background processing.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072955
-क्या मृत्यु को रहस्य बनाए रखना उपयोगी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Fully Extensible**: Leverage and extend the existing functionalities of Omniverse Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072956
-क्या मृत्यु की स्वीकृति शक्ति-संरचना को कमजोर करती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Usage This section provides comprehensive instructions to leverage the Kit Service App Template effectively.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072957
-क्या जीवन और मृत्यु एक ही प्रक्रिया के दो चरण हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Getting Started To get started with the Kit Service Template, ensure your development environment meets the prerequisites outlined in the top-level [**README**](../../../README.md#prerequisites-and-environment-setup).
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072958
-क्या मृत्यु को समझे बिना मुक्ति की बात सार्थक है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+> **NOTE:** Example commands should be executed in **powershell** in Windows and **terminal** in Linux.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072959
-क्या मन उपकरण है या स्वामी?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Cloning the Repository ```bash git clone cd kit-app-template ``` #### Create New Application **Note for Kit Service Template** : Some applications require a setup extension to function as intended.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072960
-क्या हृदय की अनुभूति तर्क से परे है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+During Application configuration, you will be prompted for information about this extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072961
-क्या जटिलता ज्ञान का प्रमाण है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+This extension will be created alongside the application and automatically added to your .kit file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072962
-क्या सरलता सर्वोच्च परिपक्वता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Subsequent extensions can be added to the .kit file manually.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072963
-क्या निष्पक्षता पहचान से मुक्त हो सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072964
-क्या विचार-रहित होना संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072965
-क्या मन को दबाने से शांति मिलती है या समझने से?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select what you want to create with arrow keys ↑↓:** Application - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072966
-क्या स्मृति के बिना पहचान संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select desired template with arrow keys ↑↓:** Kit Service - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072967
-क्या अनुभव को शब्दों में पूर्ण रूप से व्यक्त किया जा सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072968
-क्या मौन सर्वोच्च संवाद है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter application_display_name:** [set application display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072969
-क्या मन की सीमा है और हृदय की नहीं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter version:** [set application version] *The application template you have selected requires a setup extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072970
-क्या हृदय और बुद्धि का समन्वय ही संतुलन है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Setup Extension -> kit_service_setup* - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072971
-क्या निष्पक्षता स्थिर अवस्था है या गतिशील प्रक्रिया?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter name of extension [name-spaced, lowercase, alphanumeric]:** [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072972
-क्या “मैं” केवल विचारों का संकलन है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter extension_display_name:** [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072973
-क्या स्वयं को अंतिम कहना अहं का सूक्ष्म रूप है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter version:** [set extension version] ### Build and Launch #### Build your application using the provided build scripts: Note that the build step will build all applications contained in the `source` directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072974
-क्या शून्यता भयावह है या मुक्तिदायक?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Outside of initial experimentation, it is recommended that you build only the application you are actively developing.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072975
-क्या आत्म-साक्षात्कार अनुभव है या निरंतर प्रक्रिया?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` If you experience issues related to build, please see the [Usage and Troubleshooting](../../../readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072976
-क्या सत्य निजी है या सार्वभौमिक?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Launch your application: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072977
-क्या चेतना को मापा जा सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select with arrow keys which App would you like to launch:** [Select the desired service application] #### View your running Service: - Visit ` in your web browser to view the interactive documentation for the running service.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072978
-क्या भीतर-बाहर का भेद मानसिक निर्माण है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+By default the service will have a POST endpoint which will prompt you for input to generate a simple USD scene.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072979
-161–180 : मानव, प्रकृति और उत्तरदायित्व 161.
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+![Launched Service](../../../readme-assets/kit_service.png) ### Where to Go From Here For more guidance on extending the Kit Service Template, visit the [Kit SDK Companion Tutorial - Extending Services]( This tutorial offers a step-by-step guide to help you understand the template's structure and customize it to suit your needs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072980
-क्या मनुष्य स्वयं को प्रकृति से अलग मानता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Testing Applications and their associated extensions can be tested using the `repo test` tooling provided.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072981
-क्या विकास संतुलन से अलग हो सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Each application template includes an initial test suite that can be run to verify the application's functionality.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072982
-क्या श्रेष्ठता का विचार विनाश की जड़ है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+> **NOTE:** Testing will only be run on applications and extensions within the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072983
-क्या बुद्धि ने करुणा को पीछे छोड़ दिया है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+A successful build is required before testing.** **Linux:** ```bash ./repo.sh test ``` **Windows:** ```powershell .\repo.bat test ``` ### Customization You can customize your Service Setup extension by adding new endpoints to, modifying existing ones, or adding new functionality to `service.py` or `extension.py`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072984
-क्या मनुष्य का दायित्व संरक्षण है या प्रभुत्व?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+If you would like to create a reusable component that might be used in other Omniverse services or applications, it is recommended that you create a new extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072985
-क्या स्वतंत्रता का अर्थ स्वच्छंदता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+When adapting an existing extension for a headless service, keep the service execution path limited to the dependencies it requires.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072986
-क्या हर जीव समान प्रक्रिया का भाग है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Prefer separating reusable headless logic from UI, viewport, rendering, and other application-specific functionality.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072987
-क्या मानव सभ्यता असंतोष पर आधारित है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+If separation is impractical, dependencies that the service can operate without may be declared optional, provided their imports and initialization are also guarded.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072988
-क्या संतोष प्रगति को रोकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+See [Adapting Existing Extensions for Headless Services]( for guidance and examples.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072989
-क्या वर्तमान में जीना भविष्य की उपेक्षा है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Create Custom Extension **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072990
-क्या मानव चेतना सामूहिक रूप से विकसित हो सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select what you want to create with arrow keys ↑↓:** Extension - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072991
-क्या पर्यावरणीय संकट मानसिक संकट का प्रतिबिंब है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Select desired template with arrow keys ↑↓:**: [choose extension template] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072992
-क्या मनुष्य अपने ही निर्माणों का कैदी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter name of extension [name-spaced, lowercase, alphanumeric]:**: [set extension name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072993
-क्या करुणा शक्ति से बड़ी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter extension_display_name:**: [set extension display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072994
-क्या संतुलन ही वास्तविक प्रगति है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter version:** [set extension version] #### Adding Extension to .kit File **Importantly** For an extension (beyond the initial setup extension) to become a persistent part of an application, the extension will need to be added to the application `.kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072995
-क्या प्रतिस्पर्धा स्वाभाविक है या निर्मित?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+```toml [dependencies] "my_company.my_extension" = {} ``` #### Build with New Extensions After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072996
-क्या मनुष्य अपने भय का विस्तार कर रहा है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Packaging and Deployment For deploying your application, create a deployable package using the `package` command: **Linux:** ```bash ./repo.sh package ``` **Windows:** ```powershell .\repo.bat package ``` By default, the `package` command will name the package based on the `name` value contained in the `repo.toml` file at the root of the repository.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072997
-क्या प्रकृति निष्पक्ष है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+By default, this value is set to `kit-app-template`.** Modify this value to set a persistent package name for your application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072998
-क्या मानव मूल्य स्थायी हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+Alternatively, you can specify a package name using the `--name` flag: **Linux:** ```bash ./repo.sh package --name ``` **Windows:** ```powershell .\repo.bat package --name ``` This will bundle your application into a distributable format, ready for deployment on compatible platforms.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 072999
-क्या संतुलन के बिना स्वतंत्रता अराजकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+:warning: **Important Note for Packaging:** Because the packaging operation will package everything within the `source/` directory the package version will need to be set independently of a given `kit` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 073000
-क्या पहचान के बिना भी अस्तित्व संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+The version is set within the `tools/VERSION.md` file.** #### Launching a Package > :warning: **Deprecated:** `launch --package` is deprecated and will be removed in a future release.
+स्रोत: NVIDIA-Omniverse/kit-app-template:templates/apps/kit_service/README.md · स्वतंत्र परीक्षण अपेक्षित।

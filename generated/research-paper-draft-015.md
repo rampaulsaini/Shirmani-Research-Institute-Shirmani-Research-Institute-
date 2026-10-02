@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Push and enable GitHub Pages (Settings → Pages) with branch `main` and folder `/ (root)`.
+Updated streaming extensions to `omni.kit.livestream.app` and `omni.services.livestream.session` to support NVCF Streaming.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Push and enable GitHub Pages (Settings → Pages) with branch `main` and folder 
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/omniverse-marketplace-:README.md
+NVIDIA-Omniverse/kit-app-template:CHANGELOG.md
