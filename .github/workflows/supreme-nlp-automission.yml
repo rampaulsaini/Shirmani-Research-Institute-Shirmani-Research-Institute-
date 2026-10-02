@@ -54,6 +54,27 @@ jobs:
           print("SCHEMA_JSON_OK")
           PY
 
+      - name: Unit tests
+        run: python -m unittest discover -s tests -p "test_supreme_nlp_contract.py" -v
+
+      - name: Synthetic multimodal benchmark
+        run: |
+          mkdir -p generated/supreme-nlp
+          cat > generated/supreme-nlp/observations.jsonl <<'EOF'
+          {"modality":"bioelectric","feature":"signal","value":0.42,"unit":"mV","quality":0.95,"source":"synthetic-a","timestamp":"2026-10-02T00:00:00Z"}
+          {"modality":"vibration","feature":"frequency","value":12.4,"unit":"Hz","quality":0.90,"source":"synthetic-b","timestamp":"2026-10-02T00:00:01Z"}
+          EOF
+          python - <<'PY'
+          from agents.supreme_nlp import process_jsonl, validate_record_contract
+          record = process_jsonl("generated/supreme-nlp/observations.jsonl", "generated/supreme-nlp/status.json")
+          errors = validate_record_contract(record)
+          assert not errors, errors
+          assert record["result"]["status"] == "interpreted"
+          assert record["provenance"]["verification_status"] == "UNVERIFIED"
+          assert record["result"]["features"]["modalities"] >= 2
+          print("SUPREME_NLP_MULTIMODAL_CONTRACT_OK")
+          PY
+
       - name: Generate deterministic status
         run: |
           mkdir -p generated/supreme-nlp

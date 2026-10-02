@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Shirmani Supreme NLP Observation",
+  "type":"object",
+  "required":["modality","feature","value","source"],
+  "properties":{
+    "modality":{"type":"string","minLength":1},
+    "feature":{"type":"string","minLength":1},
+    "value":{"type":"number"},
+    "unit":{"type":"string"},
+    "quality":{"type":"number","minimum":0,"maximum":1},
+    "source":{"type":"string","minLength":1},
+    "timestamp":{"type":"string"},
+    "baseline_mean":{"type":["number","null"]},
+    "baseline_std":{"type":["number","null"]}
+  },
+  "additionalProperties":true
+}

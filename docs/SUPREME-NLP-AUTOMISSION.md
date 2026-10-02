@@ -40,3 +40,10 @@ pattern". That does not establish that a plant, animal or object experienced
 a human-like emotion. Establishing such a claim requires a domain-specific
 operational definition, controlled experiments, labelled data, independent
 replication and appropriate scientific review.
+
+
+## Multimodal Supreme NLP extension (2026-10-02)
+
+The continuous layer now includes a formal observation schema, multimodal regression tests and a synthetic benchmark. It converts registered observable signals into simple-language descriptions while preserving confidence, provenance, limitations and an explicit UNVERIFIED boundary.
+
+The system does not treat a signal as direct evidence of subjective experience. Stronger claims require labelled evaluation, domain calibration and independent replication.
