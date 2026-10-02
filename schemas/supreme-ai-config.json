@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "architecture": "ULTRA-MEGA-INFINITY-QUANTUM-AI-ML-NLP-AUTOMISSION",
+  "layers": [
+    "multimodal_observation",
+    "signal_normalization",
+    "ml_feature_analysis",
+    "nlp_translation",
+    "agent_reasoning",
+    "independent_verification",
+    "security_audit",
+    "continuous_automission"
+  ],
+  "quality_policy": {
+    "confidence_range": [0.0, 1.0],
+    "verification_promotion": "independent_verification_required",
+    "subjective_experience_claim_allowed": false,
+    "scheduled_source_mutation_allowed": false,
+    "external_actions": "owner_authorization_required"
+  },
+  "compute_policy": {
+    "quantum_backend": "optional_adapter",
+    "quantum_claim": "not_asserted",
+    "free_first": true,
+    "deterministic_baseline": true
+  }
+}
