@@ -4,6 +4,15 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
+  pull_request:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-practitioner-contract.md"
+      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+      - "schemas/**"
+      - "factory/supreme_nlp_contract_qc.py"
+      - "factory/supreme_nlp_runtime_gate.py"
+      - ".github/workflows/supreme-nlp-runtime-gate.yml"
   push:
     branches: [main]
     paths:
