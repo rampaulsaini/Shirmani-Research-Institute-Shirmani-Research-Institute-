@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shirmani Supreme NLP Observation",
+  "type": "object",
+  "required": [
+    "observation_id",
+    "timestamp",
+    "subject_type",
+    "signals"
+  ],
+  "properties": {
+    "observation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject_type": {
+      "type": "string",
+      "enum": [
+        "human",
+        "animal",
+        "plant",
+        "environment",
+        "inanimate",
+        "unknown"
+      ]
+    },
+    "signals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "modality",
+          "value"
+        ],
+        "properties": {
+          "modality": {
+            "type": "string"
+          },
+          "value": {},
+          "unit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "quality": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "source_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "context": {
+      "type": "object"
+    },
+    "labels": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}
