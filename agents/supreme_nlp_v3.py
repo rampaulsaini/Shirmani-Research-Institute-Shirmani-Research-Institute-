@@ -131,7 +131,7 @@ def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
         "features":{
             "mean":mean,"spread":spread,"anomaly_score":anomaly,
             "quality":quality,"modalities":modalities,"source_count":sources,
-            "independent_experiment_count":experiments,
+            "independent_experiment_count":experiments,\n            "experiment_provenance_status":"DECLARED_IDENTIFIERS_ONLY" if experiments else "MISSING_EXPERIMENT_IDENTIFIERS",
             "sample_count":len(usable),
             "baseline_z_score_mean":round(sum(z)/len(z),4) if z else None,
             "baseline_z_score_max_abs":round(max((abs(x) for x in z),default=0.0),4),
@@ -160,7 +160,7 @@ def build_record(signals, task_id):
         "result":result,
         "simple_language":simple_language(result),
         "fingerprint":sha256(result),
-        "provenance":{"generator":"agents/supreme_nlp_v3.py","verification_status":"UNVERIFIED","calibration_status":"REQUIRED"},
+        "provenance":{"generator":"agents/supreme_nlp_v3.py","verification_status":"UNVERIFIED","calibration_status":"REQUIRED","experiment_provenance_status":result.get("features",{}).get("experiment_provenance_status","MISSING_EXPERIMENT_IDENTIFIERS"),"independent_replication_verified":False},
     }
 
 def calibration_report(probabilities, labels, bins=10):
