@@ -102,7 +102,9 @@ def fuse(observations: Iterable[dict[str, Any]], request: str = "") -> dict[str,
         "features":{"mean":stats["mean"],"spread":stats["spread"],"median":stats["median"],"mad":stats["mad"],
                     "variability":variability,"outlier_ratio":outlier_ratio,"agreement":agreement,
                     "quality":quality,"modalities":len(modalities),"sources":len(sources),
-                    "diversity":diversity,"replication":replication,"confidence":confidence},
+                    "diversity":diversity,"replication":replication,"confidence":confidence,
+                    "confidence_status":"UNCALIBRATED",
+                    "score_semantics":"bounded_heuristic_score_not_calibrated_probability"},
         "interpretation":{"state":state,"evidence":[asdict(x) for x in usable],"limitations":limitations},
         "observations":[asdict(x) for x in rows],
     }
@@ -112,10 +114,10 @@ def explain_simple(result: dict[str, Any], language: str = "hi") -> str:
         return "अभी पर्याप्त गुणवत्ता वाला संकेत उपलब्ध नहीं है; इसलिए विश्वसनीय व्याख्या नहीं दी जा सकती।"
     f=result["features"]; i=result["interpretation"]
     if language=="en":
-        return (f"Observed data shows a {i['state']} pattern. Confidence={f['confidence']:.0%}, "
+        return (f"Observed data shows a {i['state']} pattern. Bounded signal score={f['confidence']:.0%}, "
                 f"agreement={f['agreement']:.0%}, modalities={f['modalities']}. "
                 "This is signal interpretation, not proof of subjective experience.")
-    return (f"प्राप्त संकेतों में '{i['state']}' जैसा पैटर्न है। विश्वास-मान {f['confidence']:.0%}, "
+    return (f"प्राप्त संकेतों में '{i['state']}' जैसा पैटर्न है। प्रारंभिक signal score {f['confidence']:.0%}, "
             f"संकेत-सहमति {f['agreement']:.0%}, स्वतंत्र modalities {f['modalities']} हैं। "
             "यह संकेतों की computational व्याख्या है; इसे प्रत्यक्ष भाव/चेतना का प्रमाण नहीं माना जाता।")
 
