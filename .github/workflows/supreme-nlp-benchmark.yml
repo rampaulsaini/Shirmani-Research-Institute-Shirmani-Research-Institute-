@@ -7,7 +7,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "agents/supreme_nlp.py"
+      - "agents/supreme_runtime.py"
       - "factory/supreme_nlp_benchmark.py"
       - "tests/supreme_nlp_benchmark_test.py"
       - "schemas/supreme-runtime-result.schema.json"
@@ -39,6 +39,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: supreme-nlp-benchmark-${{ github.run_id }}
-          path: generated/supreme-nlp/benchmark.json
+          path: generated/supreme-nlp-benchmark.json
           if-no-files-found: error
           retention-days: 14
