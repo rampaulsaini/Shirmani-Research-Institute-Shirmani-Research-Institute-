@@ -1,0 +1,42 @@
+name: SHIRMANI Supreme Neutrality Gate
+
+on:
+  push:
+    paths:
+      - "schemas/agent-governance.json"
+      - "schemas/supreme-nlp-contract.json"
+      - "schemas/supreme-neutrality-contract.json"
+      - "factory/supreme_neutrality_qc.py"
+      - ".github/workflows/supreme-neutrality-gate.yml"
+  pull_request:
+    paths:
+      - "schemas/agent-governance.json"
+      - "schemas/supreme-nlp-contract.json"
+      - "schemas/supreme-neutrality-contract.json"
+      - "factory/supreme_neutrality_qc.py"
+  workflow_dispatch:
+  schedule:
+    - cron: "11 */6 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run fail-closed neutrality QC
+        run: python3 factory/supreme_neutrality_qc.py
+      - name: Compile repository Python
+        run: |
+          python3 - <<'PY'
+          import pathlib, py_compile
+          roots = [pathlib.Path("agents"), pathlib.Path("factory")]
+          files = [p for r in roots for p in r.rglob("*.py")
+                   if "_sources" not in p.parts and "__pycache__" not in p.parts]
+          for p in files:
+              py_compile.compile(str(p), doraise=True)
+          print(f"compiled {len(files)} Python files")
+          PY
