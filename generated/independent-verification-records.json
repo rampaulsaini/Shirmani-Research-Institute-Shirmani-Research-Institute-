@@ -1,6 +1,377 @@
 {
-  "schema_version":"1.0.0",
-  "status":"QUEUE_READY",
-  "verification_summary":{"queue_records":0,"independently_verified_records":0,"independent_verified_percent":0},
-  "records":[]
+  "schema_version": "1.1.0",
+  "status": "QUEUE_READY",
+  "verification_summary": {
+    "queue_records": 10,
+    "independently_verified_records": 0,
+    "independent_verified_percent": 0,
+    "evidence_supported_records": 4,
+    "author_defined_or_proposed_records": 2,
+    "not_verified_records": 4
+  },
+  "records": [
+    {
+      "id": "IV-001",
+      "claim": "Stars and galaxies change/evolve over time.",
+      "operational_definition": "Define measurable observations and a pass/fail test before independent review.",
+      "evidence": {
+        "sources": [
+          "https://science.nasa.gov/universe/stars/",
+          "https://science.nasa.gov/universe/galaxies/evolution/"
+        ],
+        "evidence_hash": "ea69011a1df9dbc21e552983a29a7f58d9577b169b6cc1fd400afd51e4f29feb"
+      },
+      "independent_test": {
+        "protocol": "PENDING_INDEPENDENT_REVIEW",
+        "result": "PENDING",
+        "test_hash": "PENDING_TEST_HASH"
+      },
+      "reproducibility": {
+        "environment": "PENDING",
+        "reproduction_steps": [
+          "PENDING_INDEPENDENT_REVIEW"
+        ],
+        "result_match": false
+      },
+      "counter_evidence": {
+        "reviewed": false,
+        "summary": "Independent counter-evidence review has not yet been completed."
+      },
+      "audit": {
+        "audit_id": "PENDING",
+        "passed": false,
+        "timestamp": ""
+      },
+      "reviewer_decision": {
+        "decision": "PENDING"
+      },
+      "source_status": "EVIDENCE-SUPPORTED",
+      "status": "EVIDENCE-SUPPORTED"
+    },
+    {
+      "id": "IV-002",
+      "claim": "Galaxies can collide and merge and their structures evolve.",
+      "operational_definition": "Define measurable observations and a pass/fail test before independent review.",
+      "evidence": {
+        "sources": [
+          "https://science.nasa.gov/universe/galaxies/evolution/"
+        ],
+        "evidence_hash": "940ef98b5fd33ad994bd3d834bfc3aabfbd2f7bda9376f499ca7f9263afd589a"
+      },
+      "independent_test": {
+        "protocol": "PENDING_INDEPENDENT_REVIEW",
+        "result": "PENDING",
+        "test_hash": "PENDING_TEST_HASH"
+      },
+      "reproducibility": {
+        "environment": "PENDING",
+        "reproduction_steps": [
+          "PENDING_INDEPENDENT_REVIEW"
+        ],
+        "result_match": false
+      },
+      "counter_evidence": {
+        "reviewed": false,
+        "summary": "Independent counter-evidence review has not yet been completed."
+      },
+      "audit": {
+        "audit_id": "PENDING",
+        "passed": false,
+        "timestamp": ""
+      },
+      "reviewer_decision": {
+        "decision": "PENDING"
+      },
+      "source_status": "EVIDENCE-SUPPORTED",
+      "status": "EVIDENCE-SUPPORTED"
+    },
+    {
+      "id": "IV-003",
+      "claim": "Human activity affects climate, ecosystems and biodiversity.",
+      "operational_definition": "Define measurable observations and a pass/fail test before independent review.",
+      "evidence": {
+        "sources": [
+          "https://www.ipcc.ch/report/ar6/wg2/",
+          "https://www.ipcc.ch/synthesis-report/"
+        ],
+        "evidence_hash": "f03b68866a3d16bc61d6c1c92ffaa5921752514dac79f8bd6c4ebdeed822a213"
+      },
+      "independent_test": {
+        "protocol": "PENDING_INDEPENDENT_REVIEW",
+        "result": "PENDING",
+        "test_hash": "PENDING_TEST_HASH"
+      },
+      "reproducibility": {
+        "environment": "PENDING",
+        "reproduction_steps": [
+          "PENDING_INDEPENDENT_REVIEW"
+        ],
+        "result_match": false
+      },
+      "counter_evidence": {
+        "reviewed": false,
+        "summary": "Independent counter-evidence review has not yet been completed."
+      },
+      "audit": {
+        "audit_id": "PENDING",
+        "passed": false,
+        "timestamp": ""
+      },
+      "reviewer_decision": {
+        "decision": "PENDING"
+      },
+      "source_status": "EVIDENCE-SUPPORTED",
+      "status": "EVIDENCE-SUPPORTED"
+    },
+    {
+      "id": "IV-004",
+      "claim": "First-person self-knowledge and prereflective self-consciousness are established objects of philosophical analysis.",
+      "operational_definition": "Define measurable observations and a pass/fail test before independent review.",
+      "evidence": {
+        "sources": [
+          "https://plato.stanford.edu/entries/self-knowledge/",
+          "https://plato.stanford.edu/entries/self-consciousness-phenomenological/"
+        ],
+        "evidence_hash": "dafb75bc74b42db380ea4540e2d71738a88cf14c3b681b81806d231ac6cca7d8"
+      },
+      "independent_test": {
+        "protocol": "PENDING_INDEPENDENT_REVIEW",
+        "result": "PENDING",
+        "test_hash": "PENDING_TEST_HASH"
+      },
+      "reproducibility": {
+        "environment": "PENDING",
+        "reproduction_steps": [
+          "PENDING_INDEPENDENT_REVIEW"
+        ],
+        "result_match": false
+      },
+      "counter_evidence": {
+        "reviewed": false,
+        "summary": "Independent counter-evidence review has not yet been completed."
+      },
+      "audit": {
+        "audit_id": "PENDING",
+        "passed": false,
+        "timestamp": ""
+      },
+      "reviewer_decision": {
+        "decision": "PENDING"
+      },
+      "source_status": "EVIDENCE-SUPPORTED",
+      "status": "EVIDENCE-SUPPORTED"
+    },
+    {
+      "id": "IV-005",
+      "claim": "शिरोमणि is the author's construct linking purity, conscience, self-realization and continuous satisfaction.",
+      "operational_definition": "Define measurable observations and a pass/fail test before independent review.",
+      "evidence": {
+        "sources": [
+          "research/yatharth-shirmani-canonical-source-2026-09-29.md"
+        ],
+        "evidence_hash": "PENDING_EVIDENCE_HASH"
+      },
+      "independent_test": {
+        "protocol": "PENDING_INDEPENDENT_REVIEW",
+        "result": "PENDING",
+        "test_hash": "PENDING_TEST_HASH"
+      },
+      "reproducibility": {
+        "environment": "PENDING",
+        "reproduction_steps": [
+          "PENDING_INDEPENDENT_REVIEW"
+        ],
+        "result_match": false
+      },
+      "counter_evidence": {
+        "reviewed": false,
+        "summary": "Independent counter-evidence review has not yet been completed."
+      },
+      "audit": {
+        "audit_id": "PENDING",
+        "passed": false,
+        "timestamp": ""
+      },
+      "reviewer_decision": {
+        "decision": "PENDING"
+      },
+      "source_status": "AUTHOR-DEFINED",
+      "status": "AUTHOR-DEFINED"
+    },
+    {
+      "id": "IV-006",
+      "claim": "Head-viewpoint/heart-viewpoint are literal universal scientific mechanisms determining consciousness.",
+      "operational_definition": "Define measurable observations and a pass/fail test before independent review.",
+      "evidence": {
+        "sources": [],
+        "evidence_hash": "PENDING_EVIDENCE_HASH"
+      },
+      "independent_test": {
+        "protocol": "PENDING_INDEPENDENT_REVIEW",
+        "result": "PENDING",
+        "test_hash": "PENDING_TEST_HASH"
+      },
+      "reproducibility": {
+        "environment": "PENDING",
+        "reproduction_steps": [
+          "PENDING_INDEPENDENT_REVIEW"
+        ],
+        "result_match": false
+      },
+      "counter_evidence": {
+        "reviewed": false,
+        "summary": "Independent counter-evidence review has not yet been completed."
+      },
+      "audit": {
+        "audit_id": "PENDING",
+        "passed": false,
+        "timestamp": ""
+      },
+      "reviewer_decision": {
+        "decision": "PENDING"
+      },
+      "source_status": "NOT_VERIFIED",
+      "status": "NOT_VERIFIED"
+    },
+    {
+      "id": "IV-007",
+      "claim": "Neutralizing the mind/head system permanently prevents return to ordinary personality.",
+      "operational_definition": "Define measurable observations and a pass/fail test before independent review.",
+      "evidence": {
+        "sources": [],
+        "evidence_hash": "PENDING_EVIDENCE_HASH"
+      },
+      "independent_test": {
+        "protocol": "PENDING_INDEPENDENT_REVIEW",
+        "result": "PENDING",
+        "test_hash": "PENDING_TEST_HASH"
+      },
+      "reproducibility": {
+        "environment": "PENDING",
+        "reproduction_steps": [
+          "PENDING_INDEPENDENT_REVIEW"
+        ],
+        "result_match": false
+      },
+      "counter_evidence": {
+        "reviewed": false,
+        "summary": "Independent counter-evidence review has not yet been completed."
+      },
+      "audit": {
+        "audit_id": "PENDING",
+        "passed": false,
+        "timestamp": ""
+      },
+      "reviewer_decision": {
+        "decision": "PENDING"
+      },
+      "source_status": "NOT_VERIFIED",
+      "status": "NOT_VERIFIED"
+    },
+    {
+      "id": "IV-008",
+      "claim": "A subatomic universal entity/state is present throughout all living and nonliving matter.",
+      "operational_definition": "Define measurable observations and a pass/fail test before independent review.",
+      "evidence": {
+        "sources": [],
+        "evidence_hash": "PENDING_EVIDENCE_HASH"
+      },
+      "independent_test": {
+        "protocol": "PENDING_INDEPENDENT_REVIEW",
+        "result": "PENDING",
+        "test_hash": "PENDING_TEST_HASH"
+      },
+      "reproducibility": {
+        "environment": "PENDING",
+        "reproduction_steps": [
+          "PENDING_INDEPENDENT_REVIEW"
+        ],
+        "result_match": false
+      },
+      "counter_evidence": {
+        "reviewed": false,
+        "summary": "Independent counter-evidence review has not yet been completed."
+      },
+      "audit": {
+        "audit_id": "PENDING",
+        "passed": false,
+        "timestamp": ""
+      },
+      "reviewer_decision": {
+        "decision": "PENDING"
+      },
+      "source_status": "NOT_VERIFIED",
+      "status": "NOT_VERIFIED"
+    },
+    {
+      "id": "IV-009",
+      "claim": "The framework is billions/trillions of times superior to historical figures or existing knowledge systems.",
+      "operational_definition": "Define measurable observations and a pass/fail test before independent review.",
+      "evidence": {
+        "sources": [],
+        "evidence_hash": "PENDING_EVIDENCE_HASH"
+      },
+      "independent_test": {
+        "protocol": "PENDING_INDEPENDENT_REVIEW",
+        "result": "PENDING",
+        "test_hash": "PENDING_TEST_HASH"
+      },
+      "reproducibility": {
+        "environment": "PENDING",
+        "reproduction_steps": [
+          "PENDING_INDEPENDENT_REVIEW"
+        ],
+        "result_match": false
+      },
+      "counter_evidence": {
+        "reviewed": false,
+        "summary": "Independent counter-evidence review has not yet been completed."
+      },
+      "audit": {
+        "audit_id": "PENDING",
+        "passed": false,
+        "timestamp": ""
+      },
+      "reviewer_decision": {
+        "decision": "PENDING"
+      },
+      "source_status": "NOT_VERIFIED",
+      "status": "NOT_VERIFIED"
+    },
+    {
+      "id": "IV-010",
+      "claim": "Nature, Earth, human civilization and living systems should be protected.",
+      "operational_definition": "Define measurable observations and a pass/fail test before independent review.",
+      "evidence": {
+        "sources": [],
+        "evidence_hash": "PENDING_EVIDENCE_HASH"
+      },
+      "independent_test": {
+        "protocol": "PENDING_INDEPENDENT_REVIEW",
+        "result": "PENDING",
+        "test_hash": "PENDING_TEST_HASH"
+      },
+      "reproducibility": {
+        "environment": "PENDING",
+        "reproduction_steps": [
+          "PENDING_INDEPENDENT_REVIEW"
+        ],
+        "result_match": false
+      },
+      "counter_evidence": {
+        "reviewed": false,
+        "summary": "Independent counter-evidence review has not yet been completed."
+      },
+      "audit": {
+        "audit_id": "PENDING",
+        "passed": false,
+        "timestamp": ""
+      },
+      "reviewer_decision": {
+        "decision": "PENDING"
+      },
+      "source_status": "AUTHOR-PROPOSED",
+      "status": "AUTHOR-PROPOSED"
+    }
+  ]
 }
