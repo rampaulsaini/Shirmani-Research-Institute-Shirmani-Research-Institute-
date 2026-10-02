@@ -1,0 +1,33 @@
+name: SHIRMANI Supreme Nishpaksh NLP Automission Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "schemas/supreme-nishpaksh-nlp.json"
+      - "docs/SUPREME-NISHPakSH-NLP-AUTOMISSION.md"
+      - "factory/supreme_nishpaksh_nlp_qc.py"
+      - ".github/workflows/supreme-nishpaksh-nlp-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nishpaksh-nlp
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate supreme NLP contract
+        run: python3 factory/supreme_nishpaksh_nlp_qc.py
+      - name: Run existing governance QC
+        run: python3 factory/agent_governance_qc.py
