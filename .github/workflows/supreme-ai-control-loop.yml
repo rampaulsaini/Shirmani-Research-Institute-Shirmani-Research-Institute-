@@ -1,0 +1,67 @@
+name: SHIRMANI Supreme AI-ML-NLP Automission Control Loop
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-**"
+      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+      - "schemas/multimodal-signal-record.schema.json"
+      - "schemas/agent-governance.json"
+      - "factory/supreme_nlp_control_qc.py"
+      - ".github/workflows/supreme-ai-control-loop.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-ai-control-loop
+  cancel-in-progress: true
+
+jobs:
+  control-plane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Supreme NLP control-plane QC
+        run: python3 factory/supreme_nlp_control_qc.py
+      - name: Run existing Supreme NLP contract QC
+        run: python3 factory/supreme_nlp_contract_qc.py
+      - name: Verify fail-closed governance
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("schemas/agent-governance.json").read_text())
+          assert p["fail_closed"] is True
+          assert p["fabrication_prohibited"] is True
+          assert p["provenance_required_for_claims"] is True
+          assert p["authorization"]["verification_promotion"]=="independent_verification_required"
+          print("Governance gate: PASS")
+          PY
+      - name: Emit machine-readable control status
+        run: |
+          mkdir -p generated
+          python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          out={
+            "status":"READY_FOR_EVALUATION",
+            "control_loop":"Observe→Collect→Normalize→Analyze→Reason→Execute→Test→Verify→Audit→Learn→Improve",
+            "independent_verification":"required",
+            "accuracy":"measured_not_declared",
+            "generated_at":datetime.now(timezone.utc).isoformat(),
+            "workflow_run":os.getenv("GITHUB_RUN_ID")
+          }
+          Path("generated/supreme-ai-control-status.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          PY
+      - name: Upload control status
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-ai-control-status
+          path: generated/supreme-ai-control-status.json

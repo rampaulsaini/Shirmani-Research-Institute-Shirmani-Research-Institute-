@@ -1,0 +1,25 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"shirmani-multimodal-signal-record-v1",
+  "title":"SHIRMANI Multimodal Signal Record",
+  "type":"object",
+  "required":["record_id","timestamp","source_type","measurement","provenance","interpretation_boundary"],
+  "properties":{
+    "record_id":{"type":"string","minLength":1},
+    "timestamp":{"type":"string","minLength":1},
+    "source_type":{"enum":["text","speech","audio","image","video","plant","biological","environmental","iot","non_living","multimodal"]},
+    "measurement":{"type":"object"},
+    "provenance":{"type":"object","required":["source_id"]},
+    "interpretation_boundary":{
+      "type":"object",
+      "required":["measured_signal","model_inference","interpretation","confidence","unresolved_uncertainty"],
+      "properties":{
+        "measured_signal":{"type":"string"},
+        "model_inference":{"type":"string"},
+        "interpretation":{"type":"string"},
+        "confidence":{"type":["number","string"]},
+        "unresolved_uncertainty":{"type":"string"}
+      }
+    }
+  }
+}
