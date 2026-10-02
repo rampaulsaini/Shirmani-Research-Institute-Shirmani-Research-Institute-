@@ -57,6 +57,9 @@ jobs:
       - name: Run deterministic runtime AI-agent governance QC
         run: python3 factory/agent_governance_qc.py
 
+      - name: Run multimodal signal-to-NLP QC
+        run: python3 factory/multimodal_signal_qc.py
+
       - name: Build repository intelligence
         run: python3 factory/repository_intelligence.py
       - name: Build free deterministic archive
