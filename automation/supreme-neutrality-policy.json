@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "name": "SHIRMANI_SUPREME_NEUTRALITY_AUTOMISSION",
+  "purpose": "Evidence-first, fail-closed, non-coercive Automission control policy.",
+  "principles": {
+    "human_agency": true,
+    "evidence_before_claim": true,
+    "counter_evidence_required": true,
+    "uncertainty_must_be_explicit": true,
+    "source_provenance_required": true,
+    "independent_verification_required": true,
+    "fail_closed_on_missing_evidence": true,
+    "no_personal_targeting": true,
+    "no_authority_based_truth": true,
+    "no_worldview_locked_truth_labels": true
+  },
+  "source_classes": [
+    "MEASURED_DATA",
+    "REPLICATED_RESULT",
+    "INDEPENDENT_SOURCE",
+    "USER_FRAMEWORK",
+    "HYPOTHESIS",
+    "MODEL_INFERENCE",
+    "UNVERIFIED_CLAIM"
+  ],
+  "claim_policy": {
+    "MEASURED_DATA": "May be reported with provenance and measurement limits.",
+    "REPLICATED_RESULT": "May be reported as replicated evidence with experiment details.",
+    "INDEPENDENT_SOURCE": "May be cited as an external source; source authority is not proof.",
+    "USER_FRAMEWORK": "Preserve faithfully as the user's framework; never relabel it as independently verified fact.",
+    "HYPOTHESIS": "Must remain explicitly hypothetical.",
+    "MODEL_INFERENCE": "Must be marked as inference and include uncertainty.",
+    "UNVERIFIED_CLAIM": "Must not be promoted to VERIFIED."
+  },
+  "multimodal_signal_policy": {
+    "allowed": true,
+    "pipeline": [
+      "observe",
+      "timestamp",
+      "normalize",
+      "quality_check",
+      "artifact_detection",
+      "multimodal_fusion",
+      "counter_hypothesis_test",
+      "uncertainty_estimation",
+      "simple_language_explanation",
+      "independent_verification"
+    ],
+    "subjective_experience": {
+      "direct_proof_from_signal": false,
+      "operational_definition_required": true,
+      "labelled_experiment_required": true,
+      "independent_replication_required": true
+    }
+  },
+  "automission_controls": {
+    "idempotent_tasks": true,
+    "immutable_audit_log": true,
+    "production_code_mutation": false,
+    "automatic_merge": false,
+    "security_scan_before_release": true,
+    "tests_before_release": true,
+    "independent_verification_before_verified_status": true
+  },
+  "decision_states": [
+    "OBSERVED",
+    "SOURCE_BACKED",
+    "HYPOTHESIS",
+    "INFERRED",
+    "CONTESTED",
+    "INSUFFICIENT_EVIDENCE",
+    "INDEPENDENTLY_VERIFIED"
+  ],
+  "never_claim": [
+    "100% scientific certainty without validated evidence",
+    "subjective feeling from raw signal alone",
+    "quantum proof merely because a model uses quantum terminology",
+    "verification solely because an automated workflow succeeded"
+  ]
+}
