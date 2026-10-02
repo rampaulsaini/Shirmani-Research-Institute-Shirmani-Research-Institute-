@@ -34,8 +34,12 @@ jobs:
           assert isinstance(d.get("records"),list)
           print("SCHEMA_AND_REGISTRY: PASS")
           PY
+      - name: Run Supreme NLP contract tests
+        run: python tests/test_supreme_nlp_evidence_engine.py
       - name: Evaluate promotion gates
         run: python factory/independent_verification_engine.py
+      - name: Run independent verification integrity gate
+        run: python scripts/independent_verification_gate.py --registry generated/independent-verification-records.json
       - name: Enforce fail-closed VERIFIED rule
         run: |
           python - <<'PY'
