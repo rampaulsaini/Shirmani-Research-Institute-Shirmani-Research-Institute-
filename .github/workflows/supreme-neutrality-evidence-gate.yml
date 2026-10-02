@@ -1,0 +1,91 @@
+name: SHIRMANI Supreme Neutrality Evidence Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/supreme_neutrality.py"
+      - "scripts/validate_supreme_neutrality.py"
+      - "schemas/supreme-neutrality-record.schema.json"
+      - "docs/SUPREME-NEUTRALITY-EVIDENCE-GOVERNANCE.md"
+      - ".github/workflows/supreme-neutrality-evidence-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-neutrality-evidence-gate
+  cancel-in-progress: false
+
+jobs:
+  neutrality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile neutrality layer
+        run: python -m py_compile agents/supreme_neutrality.py scripts/validate_supreme_neutrality.py
+      - name: Validate schema syntax
+        run: python -m json.tool schemas/supreme-neutrality-record.schema.json >/dev/null
+      - name: Run neutrality contract
+        run: python scripts/validate_supreme_neutrality.py
+      - name: Generate fail-closed audit record
+        run: |
+          mkdir -p generated/supreme-neutrality
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.supreme_neutrality import build_neutrality_record
+          rows = [
+              {"modality":"synthetic","feature":"baseline_a","value":1.0,"quality":1.0},
+              {"modality":"synthetic","feature":"baseline_b","value":0.99,"quality":1.0},
+          ]
+          record = build_neutrality_record(rows, "automission-neutrality-cycle")
+          Path("generated/supreme-neutrality/status.json").write_text(
+              json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+          print(record["interpretation"]["simple_language"])
+          print("FINGERPRINT:", record["fingerprint"])
+          PY
+      - name: Enforce governance boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d = json.loads(Path("generated/supreme-neutrality/status.json").read_text(encoding="utf-8"))
+          g = d["governance"]
+          v = d["verification"]
+          assert g["neutrality"] is True
+          assert g["equal-treatment"] is True
+          assert g["evidence-first"] is True
+          assert g["subjective-experience-claim-allowed"] is False
+          assert g["fail_closed"] is True
+          assert v["independent_verification_required"] is True
+          assert v["status"] != "INDEPENDENTLY-VERIFIED"
+          print("SUPREME_NEUTRALITY_GATE: PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supreme-neutrality-${{ github.run_id }}
+          path: generated/supreme-neutrality/status.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Emit summary
+        run: |
+          {
+            echo "## SHIRMANI Supreme Neutrality Evidence Gate"
+            echo "- Neutrality: PASS"
+            echo "- Equal treatment: PASS"
+            echo "- Evidence-first: PASS"
+            echo "- Subjective-experience claims: BLOCKED"
+            echo "- Independent verification: REQUIRED"
+            echo "- Scheduled production mutation: BLOCKED"
+            echo "- Accuracy: measured, not declared"
+          } >> "$GITHUB_STEP_SUMMARY"
