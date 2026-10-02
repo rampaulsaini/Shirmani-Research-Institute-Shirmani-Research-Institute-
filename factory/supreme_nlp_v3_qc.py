@@ -10,7 +10,7 @@ def main():
     assert r["result"]["status"]=="interpreted"
     assert r["result"]["interpretation"]["verification_status"]=="UNVERIFIED"
     assert r["result"]["interpretation"]["confidence_status"]=="UNCALIBRATED"
-    assert r["result"]["features"]["independent_sources"]==2
+    assert r["result"]["features"]["source_count"]==2
     assert "cross_modal_disagreement" in r["result"]["features"]
     c=calibration_report([.1,.9,.8,.2],[0,1,1,0])
     assert c["sample_count"]==4 and c["status"]=="CALIBRATED_EVALUATION"
