@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Supreme Runtime Result",
+  "type": "object",
+  "required": ["status","observed_signal","inference","plain_language","provenance","uncertainty","verification_state","required_next_gate"],
+  "properties": {
+    "status": {"type":"string","enum":["UNVERIFIED","BLOCKED","REVIEW","VERIFIED"]},
+    "observed_signal": {"type":"object"},
+    "inference": {"type":["object","null"],"required":["label","evidence","confidence"],"properties":{"label":{"type":"string"},"evidence":{"type":"array","items":{"type":"string"}},"confidence":{"type":"string"},"provider":{"type":"string"},"task":{"type":"string"}},"additionalProperties":true},
+    "plain_language":{"type":"string"},
+    "provenance":{"type":"object","required":["source","signal_fingerprint","model","model_version"],"additionalProperties":true},
+    "uncertainty":{"type":"string"},
+    "verification_state":{"type":"string","enum":["REGISTERED","UNVERIFIED","REVIEW","VERIFIED","BLOCKED"]},
+    "required_next_gate":{"type":"string"},
+    "quality_errors":{"type":"array","items":{"type":"string"}}
+  },
+  "additionalProperties":true
+}
