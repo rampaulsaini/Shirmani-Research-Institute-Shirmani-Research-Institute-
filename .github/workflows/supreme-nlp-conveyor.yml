@@ -12,7 +12,7 @@ on:
       - ".github/workflows/supreme-nlp-conveyor.yml"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: shirmani-supreme-nlp
@@ -45,11 +45,12 @@ jobs:
           PY
       - name: Run Automission supervisor
         run: python agents/automission_supervisor.py
-      - name: Commit generated status
-        run: |
-          git config user.name "shirmani-supreme-nlp[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/supreme-nlp
-          git diff --cached --quiet && exit 0
-          git commit -m "chore(supreme-nlp): refresh evidence-first interpretation"
-          git push
+      - name: Upload generated NLP status
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-status-${{ github.run_id }}
+          path: |
+            generated/supreme-nlp/status.json
+            generated/supreme-nlp/automission-plan.json
+          if-no-files-found: error
+          retention-days: 14
