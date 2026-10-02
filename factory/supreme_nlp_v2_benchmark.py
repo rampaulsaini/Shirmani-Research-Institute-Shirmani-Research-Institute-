@@ -23,7 +23,7 @@ CASES=[
  ("conflict-01","good bad","neutral-or-uncertain"),
 ]
 def infer(text: str):
-    tokens=re.findall(r"[\\w\\u0900-\\u097F]+",text.lower())
+    tokens=re.findall(r"[\w\u0900-\u097F]+",text.lower())
     pos=sorted(set(tokens)&POS); neg=sorted(set(tokens)&NEG)
     if len(pos)>len(neg): return "positive-pattern",pos
     if len(neg)>len(pos): return "negative-pattern",neg
@@ -57,7 +57,7 @@ def main():
       "limitations":["tiny fixed fixture","lexical baseline only","simple adversarial probes","not representative of general language understanding","not evidence of subjective feeling, consciousness or intention"],
     }
     record["fingerprint"]=hashlib.sha256(json.dumps(record,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()).hexdigest()
-    OUT.parent.mkdir(parents=True,exist_ok=True); OUT.write_text(json.dumps(record,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    OUT.parent.mkdir(parents=True,exist_ok=True); OUT.write_text(json.dumps(record,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(record,ensure_ascii=False,indent=2))
     return 0 if status=="PASS" else 1
 if __name__=="__main__": raise SystemExit(main())
