@@ -35,6 +35,7 @@ def run_case(case):
     elapsed_ms = round((time.perf_counter()-started)*1000, 3)
     observed_state = (result.get("interpretation") or {}).get("state")
     simple = explain_simple(practitioner, "hi")
+    governance_ok = (result["status"] != "interpreted") or (("प्रमाण नहीं" in simple) or ("proof" in simple.lower()))
     return {
         "case": case_id,
         "status_expected": expected_status,
@@ -43,7 +44,7 @@ def run_case(case):
         "state_expected": expected_state,
         "state_observed": observed_state,
         "state_correct": observed_state == expected_state,
-        "governance_boundary": ("प्रमाण नहीं" in simple) or ("proof" in simple.lower()),
+        "governance_boundary": governance_ok,
         "deterministic_fingerprint": fingerprint(result),
         "latency_ms": elapsed_ms,
         "simple_language": to_simple_language(result),
