@@ -121,6 +121,8 @@ def analyze(observations: Iterable[dict[str,Any]], request="", source_type="unkn
                  "sources":sources,"quality":round(quality,4),"agreement":round(agreement,4),
                  "baseline_drift":round(drift,4),"calibration_status":calibration},
       "confidence":confidence,
+      "confidence_status":"UNCALIBRATED",
+      "score_semantics":"bounded_heuristic_score_not_calibrated_probability",
       "uncertainty":{"status":"EXPLICIT","reason":reason,"abstention_available":True},
       "limitations":limitations,
       "verification":{"status":"UNVERIFIED","independent_required":True,"promotion_allowed":False},
@@ -136,5 +138,5 @@ def to_simple_language(record, language="hi"):
         return "प्राप्त संकेतों में पर्याप्त असहमति है; इसलिए निष्कर्ष रोक दिया गया है।"
     state=record["claims"][1].split(": ",1)[-1]
     if language=="en":
-        return f"Observed {record['metrics']['usable_observations']} usable signals. Detected {state}; bounded confidence {record['confidence']:.0%}. This is signal interpretation, not proof of subjective experience."
+        return f"Observed {record['metrics']['usable_observations']} usable signals. Detected {state}; bounded signal score {record['confidence']:.0%}. This is signal interpretation, not proof of subjective experience."
     return f"{record['metrics']['usable_observations']} उपयोगी संकेतों में '{state}' जैसा computational पैटर्न मिला। bounded confidence {record['confidence']:.0%} है। यह संकेतों की व्याख्या है, प्रत्यक्ष भाव या चेतना का प्रमाण नहीं।"
