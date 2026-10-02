@@ -179,6 +179,17 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Integrity boundary:** measured signals, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
 
 
+## 🌿 Supreme NLP Multimodal Signal-to-Language
+
+- **Evidence-boundary contract:** [docs/supreme-nlp-multimodal-signal-language-contract.md](docs/supreme-nlp-multimodal-signal-language-contract.md)
+- **Machine-readable interpretation schema:** [schemas/supreme-nlp-signal-interpretation.schema.json](schemas/supreme-nlp-signal-interpretation.schema.json)
+- **Deterministic gate:** [factory/supreme_nlp_signal_interpretation_qc.py](factory/supreme_nlp_signal_interpretation_qc.py)
+- **Hardening test:** [tests/supreme_nlp_signal_interpretation.py](tests/supreme_nlp_signal_interpretation.py)
+- **Pipeline:** Raw Signal → Quality → Context → Normalization → Pattern → ML/NLP Inference → Evidence → Alternatives → Plain Language → Uncertainty → Verification → Audit.
+- **Supported instrumented signals:** audio, vibration, environmental, electrical/biopotential, chemical and multimodal sequences.
+- **Integrity rule:** measured signal, detected pattern, model inference and subjective-experience claims remain separate; workflow success never becomes scientific verification.
+- **Five-minute integration:** the multimodal gate is now included in the Supreme orchestrator and Automission health checks.
+
 ## ⚙️ Supreme NLP Evaluation Gate — 5-Minute Automission
 
 - **Evaluation contract:** [docs/supreme-nlp-evaluation-gate.md](docs/supreme-nlp-evaluation-gate.md)
