@@ -33,6 +33,9 @@ jobs:
           for p in fs: json.loads(p.read_text(encoding="utf-8"))
           print(f"JSON schemas validated: {len(fs)}")
           PY
+      - name: Run neutrality contract gate
+        run: python scripts/validate_neutrality_contract.py
+
       - name: Run unified Supreme gates
         run: python factory/supreme_system_orchestrator.py | tee supreme-orchestrator.log
       - name: Run explicit Supreme NLP regression benchmark
