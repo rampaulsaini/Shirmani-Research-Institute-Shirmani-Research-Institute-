@@ -177,3 +177,12 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Continuous gate:** [.github/workflows/supreme-nlp-contract.yml](.github/workflows/supreme-nlp-contract.yml)
 - **Pipeline:** Signal → Quality Check → Normalization → Representation → Context → Inference → Plain-Language Translation → Confidence → Evidence → Independent Verification → Audit.
 - **Integrity boundary:** measured signals, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
+
+
+## ⚙️ Supreme NLP Evaluation Gate — 5-Minute Automission
+
+- **Evaluation contract:** [docs/supreme-nlp-evaluation-gate.md](docs/supreme-nlp-evaluation-gate.md)
+- **Machine-readable schema:** [schemas/supreme-nlp-evaluation.schema.json](schemas/supreme-nlp-evaluation.schema.json)
+- **Deterministic QC:** [factory/supreme_nlp_evaluation_qc.py](factory/supreme_nlp_evaluation_qc.py)
+- **Automission cadence:** deterministic contract/evaluation gates run every 5 minutes.
+- **Accuracy rule:** measured benchmark evidence is required; workflow success is not model accuracy and confidence is not proof.
