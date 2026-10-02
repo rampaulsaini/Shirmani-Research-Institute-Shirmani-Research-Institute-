@@ -27,11 +27,16 @@ class Signal:
 
 def clip(x: float, lo=0.0, hi=1.0) -> float:
     try:
-        return max(lo, min(hi, float(x)))
+        value = float(x)
+        if not isfinite(value):
+            return lo
+        return max(lo, min(hi, value))
     except (TypeError, ValueError):
         return lo
 
 def normalize(raw: dict[str, Any]) -> Signal:
+    if not isinstance(raw, dict):
+        raise ValueError("each signal must be a mapping")
     def num(k):
         try:
             v = raw.get(k)
