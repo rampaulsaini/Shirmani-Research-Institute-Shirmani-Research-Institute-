@@ -62,3 +62,22 @@ Each cycle records model/version, dataset fingerprint, evaluation result, errors
 ## Five-minute operating loop
 
 Observe → Collect → Normalize → Analyze → Reason → Translate → Test → Verify → Audit → Learn → Improve
+
+
+## Extended operational boundary
+
+The practitioner may translate instrumented biological, plant, environmental or physical
+signals into plain language, but the translation is an inference about measured data.
+It is not, by itself, proof of subjective experience. Research claims must carry their
+source, dataset/model version, evaluation method, confidence and verification state.
+
+### Required machine-readable fields
+
+signal_id, timestamp, modality, source, preprocessing, model_version, inference,
+confidence, evidence, alternative_interpretations, verification_state, audit_id.
+
+### Release gate
+
+No production change is accepted merely because an Automission cycle succeeds.
+A release requires deterministic QC, regression status, security/dependency checks,
+provenance and the applicable human-approval gate.
