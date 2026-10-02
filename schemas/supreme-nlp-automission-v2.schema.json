@@ -1,0 +1,7 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Supreme NLP Automission V2 Record",
+  "type":"object",
+  "required":["record_id","timestamp","input","signals","interpretation","evidence","governance","metrics"],
+  "properties":{"record_id":{"type":"string"},"timestamp":{"type":"string"},"input":{"type":"object"},"signals":{"type":"array"},"interpretation":{"type":"object"},"evidence":{"type":"array"},"governance":{"type":"object"},"metrics":{"type":"object"}}
+}
