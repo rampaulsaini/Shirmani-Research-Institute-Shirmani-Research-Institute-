@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Supreme Signal to Language Result","type":"object",
+  "required":["schema_version","status","observed_signal","patterns","inference","plain_language","uncertainty","provenance","verification_state","required_next_gate","governance"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "status":{"type":"string","enum":["INSUFFICIENT_DATA","INTERPRETED","REVIEW","BLOCKED"]},
+    "observed_signal":{"type":"object","required":["record_count","modalities","independent_sources","series"]},
+    "patterns":{"type":"array","items":{"type":"object"}},
+    "inference":{"type":"object","required":["label","evidence","confidence","provider","task"],"properties":{
+      "label":{"type":"string"},"evidence":{"type":"array","items":{"type":"string"}},
+      "confidence":{"type":"number","minimum":0,"maximum":1},"provider":{"type":"string"},"task":{"type":"string"}},"additionalProperties":false},
+    "plain_language":{"type":"string","minLength":1},
+    "uncertainty":{"type":"array","minItems":1,"items":{"type":"string"}},
+    "provenance":{"type":"object","required":["source","input_fingerprint","model","model_version"],"additionalProperties":false},
+    "verification_state":{"type":"string","enum":["REGISTERED","UNVERIFIED","REVIEW","VERIFIED","BLOCKED"]},
+    "required_next_gate":{"type":"string","minLength":1},
+    "governance":{"type":"object","required":["fail_closed","subjective_experience_claim_allowed","independent_verification_required"],
+      "properties":{"fail_closed":{"const":true},"subjective_experience_claim_allowed":{"const":false},"independent_verification_required":{"const":true}},
+      "additionalProperties":false},
+    "fingerprint":{"type":"string"},"generated_at":{"type":"string"}
+  },"additionalProperties":false
+}
