@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Supreme NLP Supervisory Control Cycle",
+  "type":"object",
+  "required":["cycle_id","timestamp","repository","status","verification_state","controllers","blockers","warnings","provenance","metrics"],
+  "properties":{
+    "cycle_id":{"type":"string","minLength":1},
+    "timestamp":{"type":"string","minLength":1},
+    "repository":{"type":"string","minLength":1},
+    "status":{"type":"string","enum":["PASS","REVIEW","BLOCKED"]},
+    "verification_state":{"type":"string","enum":["UNVERIFIED","REVIEW","VERIFIED","BLOCKED"]},
+    "controllers":{"type":"object","additionalProperties":{"type":"object","required":["exit_code","declared_state"],"properties":{"exit_code":{"type":"integer"},"declared_state":{"type":"string"},"output_tail":{"type":"string"}},"additionalProperties":false}},
+    "blockers":{"type":"array","items":{"type":"string"}},
+    "warnings":{"type":"array","items":{"type":"string"}},
+    "provenance":{"type":"array","minItems":1,"items":{"type":"string"}},
+    "metrics":{"type":"object","required":["cycle_duration_seconds","controller_count","failed_controller_count"],"properties":{"cycle_duration_seconds":{"type":"number","minimum":0},"controller_count":{"type":"integer","minimum":0},"failed_controller_count":{"type":"integer","minimum":0}},"additionalProperties":false}
+  },
+  "additionalProperties":false
+}
