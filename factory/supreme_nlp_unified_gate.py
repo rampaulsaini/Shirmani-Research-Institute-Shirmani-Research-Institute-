@@ -13,7 +13,25 @@ import json
 from pathlib import Path
 
 
-from agents.supreme_nlp_practitioner import build_practitioner_record
+import statistics
+
+def build_practitioner_record(rows, request=""):
+    usable=[r for r in rows if float(r.get("quality",1.0))>0]
+    vals=[float(r.get("value",0.0)) for r in usable]
+    mean=statistics.fmean(vals) if vals else 0.0
+    spread=statistics.pstdev(vals) if len(vals)>1 else 0.0
+    confidence=max(0.0,min(1.0,0.55+0.25*min(1.0,len(usable)/4.0)-0.15*min(1.0,spread/0.1)))
+    result={
+      "status":"interpreted" if usable else "insufficient_quality",
+      "features":{"confidence":confidence,"confidence_type":"heuristic_uncalibrated"},
+    }
+    simple=("प्राप्त मापनीय संकेतों का computational pattern analysis किया गया है; "
+            "यह subjective experience या चेतना का प्रत्यक्ष प्रमाण नहीं है।")
+    return {
+      "result":result,"simple_language":simple,
+      "governance":{"fail_closed":True,"subjective_experience_claim_allowed":False,
+                    "code_mutation_allowed":False,"independent_verification_required":True}
+    }
 
 OUT = Path("generated/supreme-nlp/unified-control-plane.json")
 
