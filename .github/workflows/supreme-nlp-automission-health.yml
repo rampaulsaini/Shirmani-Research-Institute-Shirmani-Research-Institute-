@@ -31,6 +31,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Generate deterministic Automission health record
+        run: python3 factory/supreme_nlp_automission_health.py
+
       - name: Run deterministic Automission hardening tests
         run: python3 tests/supreme_nlp_automission_hardening.py
 

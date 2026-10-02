@@ -15,22 +15,96 @@
     "blockers",
     "warnings",
     "provenance",
-    "cycle_duration_seconds"
+    "cycle_duration_seconds",
+    "gate_results"
   ],
   "properties": {
-    "event_id": {"type": "string", "minLength": 1},
-    "timestamp": {"type": "string", "minLength": 1},
-    "repository": {"type": "string", "minLength": 1},
-    "contract_status": {"type": "string", "enum": ["PASS", "BLOCKED"]},
-    "schema_status": {"type": "string", "enum": ["PASS", "BLOCKED"]},
-    "governance_status": {"type": "string", "enum": ["PASS", "BLOCKED"]},
-    "graph_status": {"type": "string", "enum": ["PASS", "BLOCKED"]},
-    "regression_status": {"type": "string", "enum": ["PASS", "REVIEW", "BLOCKED"]},
-    "verification_state": {"type": "string", "enum": ["REGISTERED", "UNVERIFIED", "REVIEW", "VERIFIED", "BLOCKED"]},
-    "blockers": {"type": "array", "items": {"type": "string"}},
-    "warnings": {"type": "array", "items": {"type": "string"}},
-    "provenance": {"type": "array", "items": {"type": "string"}},
-    "cycle_duration_seconds": {"type": "number", "minimum": 0}
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repository": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contract_status": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "BLOCKED"
+      ]
+    },
+    "schema_status": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "BLOCKED"
+      ]
+    },
+    "governance_status": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "BLOCKED"
+      ]
+    },
+    "graph_status": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "BLOCKED"
+      ]
+    },
+    "regression_status": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "REVIEW",
+        "BLOCKED"
+      ]
+    },
+    "verification_state": {
+      "type": "string",
+      "enum": [
+        "REGISTERED",
+        "UNVERIFIED",
+        "REVIEW",
+        "VERIFIED",
+        "BLOCKED"
+      ]
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cycle_duration_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "gate_results": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
   },
   "additionalProperties": false
 }
