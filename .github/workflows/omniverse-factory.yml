@@ -33,6 +33,8 @@ jobs:
     if: github.event_name != 'push' || (github.ref == 'refs/heads/main' && github.actor != 'github-actions[bot]')
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      PYTHONPATH: .
     steps:
       - uses: actions/checkout@v4
       - name: Validate AI-agent governance policy
@@ -128,132 +130,9 @@ jobs:
           REVIEW_BATCH_SIZE: ${{ steps.review_cursor.outputs.review_batch_size }}
           REVIEW_OFFSET: ${{ steps.review_cursor.outputs.review_offset }}
         run: |
-          python3 factory/verification_review_packet.py \
-            --batch-size "$REVIEW_BATCH_SIZE" \
-            --offset "$REVIEW_OFFSET"
-      - name: Run verification review packet QC
-        env:
-          REVIEW_BATCH_SIZE: ${{ steps.review_cursor.outputs.review_batch_size }}
-          REVIEW_OFFSET: ${{ steps.review_cursor.outputs.review_offset }}
-        run: |
-          OFFSET_NUM=$((10#${REVIEW_OFFSET:-0}))
-          BATCH_NUM=$((10#${REVIEW_BATCH_SIZE:-1000}))
-          PACKET_PATH=$(printf "generated/verification-review-packet-%06d-%06d.json" "$((OFFSET_NUM + 1))" "$((OFFSET_NUM + BATCH_NUM))")
-          test -s "$PACKET_PATH"
-          python3 factory/verification_review_packet_qc.py --packet "$PACKET_PATH"
-      - name: Upload independent verification review packet
-        uses: actions/upload-artifact@v4
-        with:
-          name: shirmani-heart-view-review-packet
-          path: generated/verification-review-packet-*.json
-          if-no-files-found: error
-      - name: Build research evidence traceability graph
-        run: python3 factory/research_evidence_graph.py
-      - name: Run research evidence graph QC
-        run: python3 factory/research_evidence_graph_qc.py
-      - name: Build unified publication safety gate
-        run: python3 factory/publication_gate.py
-      - name: Build durable continuity manifest
-        run: python3 factory/continuity_manifest.py
-      - name: Refresh dashboard factory status
-        run: |
-          test -s generated/agent-run/factory-status.json
-          cp generated/agent-run/factory-status.json generated/factory-status.json
-      - name: Validate generated catalog
-        run: |
-          test -s generated/repository-intelligence.json
-          test -s generated/manifest.json
-          test -s generated/source-integrity-manifest.json
-          test -s generated/source-units.jsonl
-          test -s generated/canonical-knowledge.jsonl
-          test -s generated/canonical-knowledge-manifest.json
-          test -s generated/CANONICAL-RECORD-QC.json
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          report=json.loads(Path("generated/CANONICAL-RECORD-QC.json").read_text())
-          if report.get("publication_gate") != "PASS":
-              raise SystemExit("Canonical record QC is not PASS")
-          PY
-          test -s generated/canonical-index.json
-          test -s generated/verse-corpus.jsonl
-          test -s generated/factory-status.json
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          m=json.loads(Path("generated/canonical-knowledge-manifest.json").read_text())
-          if m.get("active_record_count",0) <= 0:
-              raise SystemExit("Canonical knowledge layer has no active records")
-          PY
-          test -s generated/reasoning-manifest.jsonl
-          test -s generated/claim-evidence.jsonl
-          test -s generated/provenance-ledger.jsonl
-          test -s generated/QC-REPORT.json
-          test -s generated/formulation-records.jsonl
-          test -s generated/FORMULATION-QC.json
-          test -s generated/independent-verification-queue.jsonl
-          test -s generated/VERIFICATION-QUEUE.json
-          test -s generated/VERIFICATION-QUEUE-QC.json
-          test -s generated/independent-verification-registry.jsonl
-          test -s generated/VERIFICATION-REGISTRY.json
-          test -s generated/VERIFICATION-PROMOTION-QC.json
-          test -s generated/VERIFICATION-PACKET-QC.json
-          test -s generated/PUBLICATION-GATE.json
-          test -s generated/research-evidence-graph.json
-          test -s generated/RESEARCH-EVIDENCE-GRAPH.json
-          test -s generated/RESEARCH-EVIDENCE-GRAPH-QC.json
-          test -s generated/continuity-manifest.json
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          report=json.loads(Path("generated/QC-REPORT.json").read_text())
-          queue=json.loads(Path("generated/VERIFICATION-QUEUE-QC.json").read_text())
-          packet=json.loads(Path("generated/VERIFICATION-PACKET-QC.json").read_text())
-          if queue.get("publication_gate") != "PASS":
-              raise SystemExit("Independent verification queue QC is not PASS")
-          if packet.get("publication_gate") != "PASS":
-              raise SystemExit("Verification review packet QC is not PASS")
-          if report.get("publication_gate") == "BLOCK":
-              raise SystemExit("QC publication gate is BLOCK: deterministic QC found blocking integrity errors")
-          if report.get("publication_gate") not in {"PASS", "CHECK"}:
-              raise SystemExit("QC publication gate is invalid")
-          formulation=json.loads(Path("generated/FORMULATION-QC.json").read_text())
-          if formulation.get("publication_gate") != "PASS":
-              raise SystemExit("Formulation/test QC gate is not PASS")
-          promotion=json.loads(Path("generated/VERIFICATION-PROMOTION-QC.json").read_text())
-          if promotion.get("publication_gate") == "BLOCK":
-              raise SystemExit("Verification promotion gate is BLOCK: unearned verification detected")
-          graph=json.loads(Path("generated/RESEARCH-EVIDENCE-GRAPH-QC.json").read_text())
-          if graph.get("publication_gate") != "PASS":
-              raise SystemExit("Research evidence graph QC is not PASS")
-          publication=json.loads(Path("generated/PUBLICATION-GATE.json").read_text())
-          if publication.get("publication_gate") == "BLOCK":
-              raise SystemExit("Unified publication gate is BLOCK")
-          PY
-      - name: Archive oversized generated artifacts
-        if: github.event_name != 'pull_request'
-        run: python3 factory/archive_large_artifacts.py
-      - name: Publish generated catalog through pull request
-        if: github.event_name != 'pull_request'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -e
-          git config user.name "omniverse-factory[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git reset --mixed origin/main
-          git add generated factory
-          if git diff --cached --quiet; then
-            exit 0
-          fi
-          git commit -m "chore(factory): refresh research products"
-          BRANCH="factory/generated-refresh"
-          git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
-          git branch -f "$BRANCH" HEAD
-          git push --force-with-lease origin "HEAD:$BRANCH"
-          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
-            if ! gh pr create --base main --head "$BRANCH" --title "chore(factory): publish verified generated research products" --body "Automated publication PR created after the deterministic Heart-View factory gates passed. Protected source material is not rewritten. Generated outputs remain derivatives and subject to the repository verification policy."; then
-              echo "Publication PR creation was deferred; generated outputs remain on $BRANCH."
-            fi
-          fi
+          set -euo pipefail
+          python3 factory/prepare_review_packet.py --batch-size "$REVIEW_BATCH_SIZE" --offset "$REVIEW_OFFSET"
+      - name: Run independent verification packet QC
+        run: python3 factory/review_packet_qc.py
+      - name: Publish generated artifacts
+        run: python3 factory/publish_artifacts.py
