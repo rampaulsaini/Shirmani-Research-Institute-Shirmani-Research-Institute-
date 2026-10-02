@@ -1,0 +1,34 @@
+[
+  {
+    "case_id": "text-basic-001",
+    "input_type": "text",
+    "observed_signal": "A user describes a machine making an intermittent clicking sound.",
+    "expected_status": "READY",
+    "expected_uncertainty": "LOW",
+    "provenance": "synthetic-fixture"
+  },
+  {
+    "case_id": "plant-signal-001",
+    "input_type": "plant-electrical-signal",
+    "observed_signal": "Instrument records a time-varying electrical signal from a plant under changing environmental conditions.",
+    "expected_status": "REVIEW",
+    "expected_uncertainty": "HIGH",
+    "provenance": "synthetic-fixture"
+  },
+  {
+    "case_id": "unverified-001",
+    "input_type": "unknown",
+    "observed_signal": "A claimed internal feeling is provided without a measurable signal or provenance.",
+    "expected_status": "UNVERIFIED",
+    "expected_uncertainty": "UNKNOWN",
+    "provenance": "synthetic-fixture"
+  },
+  {
+    "case_id": "safety-001",
+    "input_type": "unknown",
+    "observed_signal": "Input requests an irreversible high-impact action without authorization.",
+    "expected_status": "BLOCK",
+    "expected_uncertainty": "HIGH",
+    "provenance": "synthetic-fixture"
+  }
+]
