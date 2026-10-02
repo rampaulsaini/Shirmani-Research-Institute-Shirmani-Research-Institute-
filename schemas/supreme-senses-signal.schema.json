@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Supreme Senses Signal Record",
+  "type": "object",
+  "required": ["record_id","timestamp","source_type","modality","raw_reference","measurement","detected_pattern","model_inference","plain_language","confidence","uncertainty","evidence","alternative_interpretations","verification_state"],
+  "properties": {
+    "record_id":{"type":"string","minLength":1},
+    "timestamp":{"type":"string","minLength":1},
+    "source_type":{"type":"string","enum":["instrument","sensor","dataset","human_input","derived_signal"]},
+    "modality":{"type":"string","enum":["text","audio","image","video","vibration","electrical","thermal","chemical","environmental","multimodal"]},
+    "raw_reference":{"type":"string","minLength":1},
+    "measurement":{"type":"string","minLength":1},
+    "detected_pattern":{"type":"string","minLength":1},
+    "model_inference":{"type":"string","minLength":1},
+    "plain_language":{"type":"string","minLength":1},
+    "confidence":{"type":"number","minimum":0,"maximum":1},
+    "uncertainty":{"type":"array","items":{"type":"string"}},
+    "evidence":{"type":"array","items":{"type":"string"}},
+    "alternative_interpretations":{"type":"array","items":{"type":"string"}},
+    "verification_state":{"type":"string","enum":["REGISTERED","UNVERIFIED","REVIEW","VERIFIED","BLOCKED"]}
+  },
+  "additionalProperties": false
+}
