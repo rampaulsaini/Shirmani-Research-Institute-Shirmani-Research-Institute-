@@ -1,0 +1,46 @@
+name: SHIRMANI Supreme NLP Scientific Validation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main, supreme-nlp-scientific-validation-v3]
+    paths:
+      - "supreme-nlp/**"
+      - "tests/test_scientific_validation.py"
+      - "research/supreme-nlp-independent-scientific-validation-v3.md"
+      - ".github/workflows/supreme-nlp-scientific-validation.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-scientific-validation
+  cancel-in-progress: true
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python baseline tests
+        run: |
+          set -euo pipefail
+          python3 -m py_compile supreme-nlp/*.py
+          python3 tests/test_scientific_validation.py
+      - name: Evidence-boundary audit
+        run: |
+          set -euo pipefail
+          grep -R "subjective_experience_claim_allowed" supreme-nlp
+          grep -R "independent_verification_required" supreme-nlp
+      - name: Emit validation summary
+        run: |
+          {
+            echo "## Supreme NLP Scientific Validation"
+            echo "- Deterministic baseline: PASS"
+            echo "- Scientific promotion: fail-closed"
+            echo "- Independent replication: required"
+            echo "- Model confidence is not scientific proof"
+          } >> "$GITHUB_STEP_SUMMARY"
