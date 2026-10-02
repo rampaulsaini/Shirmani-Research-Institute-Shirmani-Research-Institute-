@@ -177,3 +177,14 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Continuous gate:** [.github/workflows/supreme-nlp-contract.yml](.github/workflows/supreme-nlp-contract.yml)
 - **Pipeline:** Signal → Quality Check → Normalization → Representation → Context → Inference → Plain-Language Translation → Confidence → Evidence → Independent Verification → Audit.
 - **Integrity boundary:** measured signals, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
+
+
+## ⚙️ Supreme NLP + Automission v2
+
+- **Operating contract:** [docs/supreme-nlp-automission-operating-contract-v2.md](docs/supreme-nlp-automission-operating-contract-v2.md)
+- **Signal record schema:** [schemas/supreme-nlp-signal-record.schema.json](schemas/supreme-nlp-signal-record.schema.json)
+- **Deterministic v2 QC:** [factory/supreme_nlp_automission_v2_qc.py](factory/supreme_nlp_automission_v2_qc.py)
+- **Five-minute gate:** [.github/workflows/supreme-nlp-automission-v2.yml](.github/workflows/supreme-nlp-automission-v2.yml)
+- **Operating principle:** measured signal → inference → plain-language interpretation → confidence → evidence → independent verification → audit.
+- **Accuracy principle:** “supreme accuracy” is a measurable target; no unverified 100% accuracy claim is generated.
+- **Biological-signal boundary:** measurable patterns may be translated into plain language, but subjective feeling/consciousness/intention is not inferred from a signal alone.
