@@ -1,0 +1,31 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Supreme NLP Multimodal Adapter Contract",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","adapter_id","input_modalities","output_contract","governance"],
+  "properties":{
+    "schema_version":{"const":"1.0"},
+    "adapter_id":{"type":"string","minLength":1},
+    "input_modalities":{"type":"array","minItems":1,"items":{"type":"string"}},
+    "output_contract":{
+      "type":"object",
+      "required":["evidence_class","confidence","uncertainty","provenance"],
+      "properties":{
+        "evidence_class":{"enum":["OBSERVED","INFERRED","CORRELATED","HYPOTHESIS","UNKNOWN"]},
+        "confidence":{"type":"number","minimum":0,"maximum":1},
+        "uncertainty":{"type":"string","minLength":1},
+        "provenance":{"type":"string","minLength":1}
+      }
+    },
+    "governance":{
+      "type":"object",
+      "required":["abstention_supported","subjective_experience_claim_allowed","independent_verification_required"],
+      "properties":{
+        "abstention_supported":{"const":true},
+        "subjective_experience_claim_allowed":{"const":false},
+        "independent_verification_required":{"const":true}
+      }
+    }
+  }
+}
