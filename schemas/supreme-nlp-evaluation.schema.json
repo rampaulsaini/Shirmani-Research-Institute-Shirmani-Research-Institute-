@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Supreme NLP Evaluation Record",
+  "type": "object",
+  "required": ["record_id","task","dataset_fingerprint","model","metric","baseline","result","confidence","provenance","verification_state"],
+  "properties": {
+    "record_id":{"type":"string","minLength":1},
+    "task":{"type":"string","minLength":1},
+    "dataset_fingerprint":{"type":"string","minLength":1},
+    "model":{"type":"object","required":["name","version"],"properties":{"name":{"type":"string","minLength":1},"version":{"type":"string","minLength":1}},"additionalProperties":false},
+    "metric":{"type":"string","minLength":1},
+    "baseline":{"type":"number"},
+    "result":{"type":"number"},
+    "confidence":{"type":"string","minLength":1},
+    "provenance":{"type":"array","items":{"type":"string"}},
+    "verification_state":{"type":"string","enum":["REGISTERED","UNVERIFIED","REVIEW","VERIFIED","BLOCKED"]},
+    "population_scope":{"type":"string"},
+    "limitations":{"type":"array","items":{"type":"string"}}
+  },
+  "additionalProperties":false
+}
