@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "generated" / "supreme-nlp-automission-health.json"
+HEALTH_SCHEMA = ROOT / "schemas/supreme-nlp-automission-health.schema.json"
 
 REQUIRED_FILES = [
     "docs/supreme-nlp-practitioner-contract.md",
@@ -38,10 +39,59 @@ def run_gate(path):
     )
     return result.returncode, (result.stdout + result.stderr).strip()
 
+HEALTH_REQUIRED = {
+    "event_id", "timestamp", "repository", "contract_status", "schema_status",
+    "governance_status", "graph_status", "regression_status",
+    "verification_state", "blockers", "warnings", "provenance",
+    "cycle_duration_seconds", "gate_results",
+}
+
+STATUS_VALUES = {
+    "contract_status": {"PASS", "BLOCKED"},
+    "schema_status": {"PASS", "BLOCKED"},
+    "governance_status": {"PASS", "BLOCKED"},
+    "graph_status": {"PASS", "BLOCKED"},
+    "regression_status": {"PASS", "REVIEW", "BLOCKED"},
+    "verification_state": {"REGISTERED", "UNVERIFIED", "REVIEW", "VERIFIED", "BLOCKED"},
+}
+
+def schema_contract_check():
+    if not HEALTH_SCHEMA.is_file():
+        return ["Health schema file is missing."]
+    try:
+        schema = json.loads(HEALTH_SCHEMA.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return ["Health schema JSON is invalid."]
+    if set(schema.get("required", [])) != HEALTH_REQUIRED:
+        return ["Health schema required keys do not match the deterministic contract."]
+    for field, allowed in STATUS_VALUES.items():
+        actual = set(schema.get("properties", {}).get(field, {}).get("enum", []))
+        if actual != allowed:
+            return [f"Health schema enum mismatch for {field}."]
+    if schema.get("additionalProperties") is not False:
+        return ["Health schema must reject undeclared properties."]
+    return []
+
+def record_contract_check(record):
+    blockers = []
+    if set(record) != HEALTH_REQUIRED:
+        blockers.append("Generated health record keys do not exactly match the health schema contract.")
+    for field, allowed in STATUS_VALUES.items():
+        if record.get(field) not in allowed:
+            blockers.append(f"Invalid {field}: {record.get(field)!r}.")
+    if not isinstance(record.get("blockers"), list) or not isinstance(record.get("warnings"), list):
+        blockers.append("blockers/warnings must be arrays.")
+    if not isinstance(record.get("provenance"), list) or not record.get("provenance"):
+        blockers.append("provenance must be a non-empty array.")
+    if not isinstance(record.get("cycle_duration_seconds"), (int, float)) or record.get("cycle_duration_seconds") < 0:
+        blockers.append("cycle_duration_seconds must be a non-negative number.")
+    return blockers
+
 def main():
     started = time.monotonic()
     blockers = []
     warnings = []
+    blockers.extend(schema_contract_check())
 
     missing = [p for p in REQUIRED_FILES if not (ROOT / p).is_file()]
     if missing:
@@ -134,6 +184,10 @@ def main():
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    record_blockers = record_contract_check(record)
+    if record_blockers:
+        print("\n".join(record_blockers))
+        raise SystemExit(1)
     print(json.dumps(record, ensure_ascii=False, indent=2))
 
     if blockers:
