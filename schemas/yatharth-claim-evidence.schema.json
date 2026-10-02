@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Yatharth Claim Evidence Record",
+  "type": "object",
+  "required": ["claim_id","claim_text","claim_class","status","evidence","independent_verification_required"],
+  "properties": {
+    "claim_id": {"type": "string", "minLength": 1},
+    "claim_text": {"type": "string", "minLength": 1},
+    "claim_class": {"type": "string", "enum": ["source_statement","empirical_claim","interpretive_claim","metaphysical_philosophical_claim","unresolved_claim"]},
+    "operational_definition": {"type": "string"},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "test_protocol": {"type": "string"},
+    "observed_result": {"type": "string"},
+    "confidence": {"type": ["number","null"], "minimum": 0, "maximum": 1},
+    "contradictory_evidence": {"type": "array", "items": {"type": "string"}},
+    "reproducibility": {"type": "string", "enum": ["untested","failed","partial","reproduced"]},
+    "status": {"type": "string", "enum": ["SUPPORTED","PARTIALLY_SUPPORTED","UNRESOLVED","NOT_SUPPORTED"]},
+    "independent_verification_required": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}
