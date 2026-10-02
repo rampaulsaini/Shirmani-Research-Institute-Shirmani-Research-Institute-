@@ -31,7 +31,7 @@ def plan(r: dict[str,Any]) -> dict[str,Any]:
     return {"state":"IMPROVEMENT_REQUIRED" if len(a)>1 else "VERIFY","actions":a,"fail_closed":True,"promotion_allowed":False,"generated_at":datetime.now(timezone.utc).isoformat()}
 def run(inp="generated/supreme-nlp/observation.json",outdir="generated/supreme-nlp"):
     out=Path(outdir); out.mkdir(parents=True,exist_ok=True); p=Path(inp)
-    if not p.exists(): payload={"status":"NO_OBSERVATION","fail_closed":True,"message":"No observation supplied; no interpretation or promotion is permitted."}
+    if not p.exists(): payload={"result":{"status":"NO_OBSERVATION","translation_boundary":{"subjective_experience_claim":"not established by this pipeline"}},"automission":{"fail_closed":True,"promotion_allowed":False,"actions":["supply observation data before interpretation"]}}
     else:
         o=json.loads(p.read_text(encoding="utf-8")); r=analyze(o); payload={"result":r,"automission":plan(r)}
     (out/"result.json").write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"); return payload
