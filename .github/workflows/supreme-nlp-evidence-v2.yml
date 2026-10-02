@@ -1,0 +1,68 @@
+name: SHIRMANI Supreme NLP Evidence Spine V2
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/supreme_nlp_evidence_v2.py"
+      - "scripts/validate_supreme_nlp_evidence_v2.py"
+      - "schemas/supreme-nlp-evidence-record.schema.json"
+      - "docs/SUPREME-NLP-EVIDENCE-SPINE-V2.md"
+      - ".github/workflows/supreme-nlp-evidence-v2.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-evidence-v2
+  cancel-in-progress: true
+
+jobs:
+  evidence-spine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile
+        run: python -m py_compile agents/supreme_nlp_evidence_v2.py scripts/validate_supreme_nlp_evidence_v2.py
+      - name: Schema syntax
+        run: python -m json.tool schemas/supreme-nlp-evidence-record.schema.json >/dev/null
+      - name: Evidence contract
+        run: python scripts/validate_supreme_nlp_evidence_v2.py
+      - name: Generate deterministic artifact
+        run: |
+          mkdir -p generated/supreme-nlp-v2
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.supreme_nlp_evidence_v2 import build_record
+          r=build_record([
+            {"modality":"synthetic","feature":"baseline_a","value":1.0,"quality":1.0,"source":"automission-smoke"},
+            {"modality":"synthetic","feature":"baseline_b","value":0.9,"quality":1.0,"source":"automission-smoke"}
+          ],"automission-cycle")
+          Path("generated/supreme-nlp-v2/status.json").write_text(json.dumps(r,ensure_ascii=False,indent=2)+"\n")
+          print(r["interpretation"]["plain_language"])
+          print("VERIFICATION:",r["verification"]["state"])
+          print("FINGERPRINT:",r["fingerprint"])
+          PY
+      - name: Fail closed on invalid verification state
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("generated/supreme-nlp-v2/status.json"))
+          assert d["verification"]["state"]=="UNVERIFIED"
+          assert d["verification"]["independent_required"] is True
+          print("FAIL_CLOSED_GOVERNANCE=PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-evidence-v2-${{ github.run_id }}
+          path: generated/supreme-nlp-v2/status.json
+          retention-days: 14

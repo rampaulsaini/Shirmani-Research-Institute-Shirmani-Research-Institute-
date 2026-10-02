@@ -1,0 +1,31 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Supreme NLP Evidence Record V2",
+  "type":"object",
+  "required":["record_id","observations","interpretation","verification","provenance"],
+  "properties":{
+    "record_id":{"type":"string","minLength":1},
+    "observations":{"type":"array","items":{"type":"object","required":["modality","feature","value"],"properties":{
+      "modality":{"type":"string"},
+      "feature":{"type":"string"},
+      "value":{},
+      "quality":{"type":"number","minimum":0,"maximum":1},
+      "source":{"type":"string"}
+    }}},
+    "interpretation":{"type":"object","required":["status","plain_language"],"properties":{
+      "status":{"enum":["NO_DATA","INSUFFICIENT","INFERENCE","HYPOTHESIS","VERIFIED"]},
+      "plain_language":{"type":"string"},
+      "confidence":{"type":"number","minimum":0,"maximum":1},
+      "limitations":{"type":"array","items":{"type":"string"}}
+    }},
+    "verification":{"type":"object","required":["independent_required","state"],"properties":{
+      "independent_required":{"type":"boolean"},
+      "state":{"enum":["UNVERIFIED","PENDING","VERIFIED","REJECTED"]}
+    }},
+    "provenance":{"type":"object","required":["source_ids","engine_version"],"properties":{
+      "source_ids":{"type":"array","items":{"type":"string"}},
+      "engine_version":{"type":"string"}
+    }}
+  },
+  "additionalProperties":false
+}
