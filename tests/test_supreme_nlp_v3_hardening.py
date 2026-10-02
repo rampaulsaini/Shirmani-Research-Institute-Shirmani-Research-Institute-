@@ -49,10 +49,19 @@ def main():
 
     # Repeated source IDs are a source count, not evidence of independent experiments.
     duplicate_sources = build_record([
-        {"modality":"a","feature":"x","value":1.0,"source":"same"},
-        {"modality":"b","feature":"y","value":1.1,"source":"same"},
+        {"modality":"a","feature":"x","value":1.0,"source":"same","experiment_id":"exp-1"},
+        {"modality":"b","feature":"y","value":1.1,"source":"same","experiment_id":"exp-1"},
     ], "duplicate-source")
     assert duplicate_sources["result"]["features"]["source_count"] == 1
+    assert duplicate_sources["result"]["features"]["independent_experiment_count"] == 1
+
+    # Distinct experiment identifiers are the explicit provenance signal.
+    independent = build_record([
+        {"modality":"a","feature":"x","value":1.0,"source":"same","experiment_id":"exp-1"},
+        {"modality":"b","feature":"x","value":1.1,"source":"same","experiment_id":"exp-2"},
+    ], "independent-experiments")
+    assert independent["result"]["features"]["source_count"] == 1
+    assert independent["result"]["features"]["independent_experiment_count"] == 2
 
     print("SUPREME_NLP_V3_HARDENING=PASS")
 
