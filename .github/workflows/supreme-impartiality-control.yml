@@ -1,0 +1,50 @@
+name: SHIRMANI Supreme Impartiality Control
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/impartiality_guard.py"
+      - "agents/supreme_nlp.py"
+      - "agents/automission_supervisor.py"
+      - "factory/supreme_system_orchestrator.py"
+      - "docs/SUPREME-IMPARTIALITY-CONTRACT.md"
+      - ".github/workflows/supreme-impartiality-control.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-impartiality-control
+  cancel-in-progress: true
+
+jobs:
+  control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile impartiality control plane
+        run: |
+          python -m py_compile agents/impartiality_guard.py agents/supreme_nlp.py agents/automission_supervisor.py factory/supreme_system_orchestrator.py factory/impartiality_governance_gate.py
+      - name: Run machine impartiality gate
+        run: python factory/impartiality_governance_gate.py
+      - name: Emit control summary
+        run: |
+          {
+            echo "## Supreme Impartiality Control"
+            echo "- Contract: impartiality-v1"
+            echo "- Evidence-first: enforced"
+            echo "- Identity-neutral evaluation: enforced"
+            echo "- Counter-evidence: required for strong claims"
+            echo "- Scheduled code mutation: blocked"
+            echo "- Independent verification: required"
+            echo "- Accuracy: measured, not declared"
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -2,7 +2,7 @@
   "$schema":"https://json-schema.org/draft/2020-12/schema",
   "title":"Supreme NLP Record",
   "type":"object",
-  "required":["schema_version","task_id","generated_at","pipeline","result","simple_language","fingerprint","provenance"],
+  "required":["schema_version","task_id","generated_at","pipeline","result","simple_language","fingerprint","provenance","governance"],
   "properties":{
     "schema_version":{"const":"supreme-nlp-v2"},
     "task_id":{"type":"string","minLength":1},
@@ -11,6 +11,23 @@
     "simple_language":{"type":"string","minLength":1},
     "fingerprint":{"type":"string","pattern":"^[a-f0-9]{64}$"},
     "provenance":{"type":"object","required":["generator","contract","verification_status"]},
+    "governance":{
+      "type":"object",
+      "required":["impartiality_contract_version","evidence_first","identity_neutral_evaluation","uncertainty_explicit","counterevidence_required_for_strong_claims","no_person_or_group_preference","independent_verification_required","accuracy_is_measured_not_declared","fail_closed","scheduled_code_mutation_allowed","subjective_experience_claim_allowed"],
+      "properties":{
+        "impartiality_contract_version":{"const":"impartiality-v1"},
+        "evidence_first":{"const":true},
+        "identity_neutral_evaluation":{"const":true},
+        "uncertainty_explicit":{"const":true},
+        "counterevidence_required_for_strong_claims":{"const":true},
+        "no_person_or_group_preference":{"const":true},
+        "independent_verification_required":{"const":true},
+        "accuracy_is_measured_not_declared":{"const":true},
+        "fail_closed":{"const":true},
+        "scheduled_code_mutation_allowed":{"const":false},
+        "subjective_experience_claim_allowed":{"const":false}
+      }
+    },
     "result":{
       "type":"object",
       "required":["status","signals"],

@@ -10,6 +10,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from agents.impartiality_guard import merge_governance
+from agents.impartiality_guard import merge_governance
 
 
 def _load(path: str) -> dict[str, Any] | None:
@@ -66,12 +68,13 @@ def inspect(status_path="generated/supreme-nlp/status.json"):
         "source_fingerprint": d.get("fingerprint"),
         "evidence_grade": f.get("evidence_grade"),
         "confidence": i.get("confidence"),
-        "governance": {
+        "governance": merge_governance({
             "fail_closed": True,
             "subjective_experience_claim_allowed": False,
             "scheduled_code_mutation_allowed": False,
             "independent_verification_required": True,
-        },
+            "accuracy_is_measured_not_declared": True,
+        }),
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
 
