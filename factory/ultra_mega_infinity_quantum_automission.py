@@ -16,9 +16,12 @@ REQUIRED = [
     "factory/supreme_nlp_contract_qc.py",
     "factory/supreme_nlp_evaluation_qc.py",
     "factory/supreme_nlp_automission_health.py",
+    "docs/supreme-multimodal-signal-to-language-contract.md",
+    "schemas/supreme-multimodal-signal-record.schema.json",
+    "factory/supreme_multimodal_signal_qc.py",
 ]
 
-STAGES = ["observe","collect","normalize","analyze","reason","execute","test","verify","audit","learn","improve"]
+STAGES = ["observe","collect","normalize","analyze","reason","execute","translate","test","verify","audit","learn","improve"]
 
 def fingerprint(paths):
     h = hashlib.sha256()
@@ -55,6 +58,7 @@ def main():
         ("contract_qc", "factory/supreme_nlp_contract_qc.py"),
         ("evaluation_qc", "factory/supreme_nlp_evaluation_qc.py"),
         ("health_qc", "factory/supreme_nlp_automission_health.py"),
+        ("multimodal_signal_qc", "factory/supreme_multimodal_signal_qc.py"),
     ]:
         if Path(path).exists():
             gates[name] = gate(path)
