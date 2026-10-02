@@ -1,0 +1,68 @@
+name: SHIRMANI Supreme Comparative Proof
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  pull_request:
+    branches: [main]
+    paths:
+      - "agents/supreme_nlp.py"
+      - "agents/supreme_nlp_multimodal.py"
+      - "agents/supreme_nlp_quality.py"
+      - "factory/supreme_comparative_proof.py"
+      - "tests/test_supreme_comparative_proof.py"
+      - ".github/workflows/supreme-comparative-proof.yml"
+  push:
+    branches: [main]
+    paths:
+      - "agents/supreme_nlp.py"
+      - "agents/supreme_nlp_multimodal.py"
+      - "agents/supreme_nlp_quality.py"
+      - "factory/supreme_comparative_proof.py"
+      - "tests/test_supreme_comparative_proof.py"
+      - ".github/workflows/supreme-comparative-proof.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-comparative-proof
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile
+        run: |
+          python -m py_compile factory/supreme_comparative_proof.py
+          python -m py_compile agents/supreme_nlp.py agents/supreme_nlp_multimodal.py agents/supreme_nlp_quality.py
+      - name: Run comparative proof
+        run: python factory/supreme_comparative_proof.py
+      - name: Run regression test
+        run: python -m unittest discover -s tests -p 'test_supreme_comparative_proof.py' -v
+      - name: Emit comparison summary
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("generated/supreme-nlp/comparative-proof.json",encoding="utf-8"))
+          m=d["comparison_metrics"]
+          print("CASE_COUNT:",m["case_count"])
+          print("GOVERNANCE_CONTRACT:",m["governance_contract_all_cases"])
+          print("CONFLICT_ABSTENTION:",m["conflict_abstention"])
+          print("NO_SIGNAL_ABSTENTION:",m["no_signal_abstention"])
+          print("ACCURACY_POLICY:",d["governance"]["accuracy_is_measured_not_declared"])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supreme-comparative-proof-${{ github.run_id }}
+          path: generated/supreme-nlp/comparative-proof.json
+          retention-days: 14
