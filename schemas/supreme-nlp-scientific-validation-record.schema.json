@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Supreme NLP Scientific Validation Record v3",
+  "type":"object",
+  "required":["claim_id","claim","operational_definition","preregistration","dataset","protocol","metrics","counter_evidence","reproducibility","independent_review"],
+  "properties":{
+    "claim_id":{"type":"string","pattern":"^SNLV3-[0-9]{3,}$"},
+    "claim":{"type":"string","minLength":1},
+    "operational_definition":{"type":"string","minLength":1},
+    "preregistration":{"type":"object","required":["protocol_id","locked_before_test"],"properties":{"protocol_id":{"type":"string"},"locked_before_test":{"type":"boolean"}}},
+    "dataset":{"type":"object","required":["dataset_id","dataset_hash","test_split_id"],"properties":{"dataset_id":{"type":"string"},"dataset_hash":{"type":"string","pattern":"^[0-9a-f]{64}$"},"test_split_id":{"type":"string"}}},
+    "protocol":{"type":"object","required":["version","primary_metric","baseline"],"properties":{"version":{"type":"string"},"primary_metric":{"type":"string"},"baseline":{"type":"string"}}},
+    "metrics":{"type":"object","required":["sample_count","result","uncertainty"],"properties":{"sample_count":{"type":"integer","minimum":1},"result":{"type":"number"},"uncertainty":{"type":"string"}}},
+    "counter_evidence":{"type":"object","required":["reviewed","summary"],"properties":{"reviewed":{"type":"boolean"},"summary":{"type":"string"}}},
+    "reproducibility":{"type":"object","required":["environment","command","result_hash"],"properties":{"environment":{"type":"string"},"command":{"type":"string"},"result_hash":{"type":"string","pattern":"^[0-9a-f]{64}$"}}},
+    "independent_review":{"type":"object","required":["status"],"properties":{"status":{"enum":["PENDING","NOT_VERIFIED","VERIFIED","CONTRADICTED"]},"reviewer_identity":{"type":"string"},"reviewer_role":{"type":"string"}}}
+  }
+}
