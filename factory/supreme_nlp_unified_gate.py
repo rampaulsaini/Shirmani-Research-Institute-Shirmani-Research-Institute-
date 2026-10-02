@@ -12,7 +12,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from agents.supreme_nlp_multimodal import analyze, to_simple_language
+from agents.supreme_sense_nlp import analyze, to_simple_language
 from agents.supreme_nlp_practitioner import build_practitioner_record
 
 OUT = Path("generated/supreme-nlp/unified-control-plane.json")
@@ -32,7 +32,7 @@ def canonical_hash(value: object) -> str:
 
 def main() -> int:
     practitioner = build_practitioner_record(ROWS, "unified-control-plane")
-    multimodal = analyze(ROWS, request="multimodal signal interpretation", source_type="synthetic")
+    multimodal = analyze(ROWS, request="multimodal signal interpretation")
     multimodal["simple_language"] = to_simple_language(multimodal)
 
     pg = practitioner["governance"]
@@ -43,7 +43,7 @@ def main() -> int:
         "practitioner_independent_verification": pg["independent_verification_required"] is True,
         "multimodal_unverified": multimodal["verification"]["status"] == "UNVERIFIED",
         "multimodal_promotion_blocked": multimodal["verification"]["promotion_allowed"] is False,
-        "multimodal_status_bounded": multimodal["status"] in {"CANDIDATE", "NO_CLAIM", "BLOCKED"},
+        "multimodal_status_bounded": multimodal["status"] in {"CANDIDATE", "NO_CLAIM"},
         "confidence_bounded": 0 <= multimodal["confidence"] <= 1,
         "simple_language_present": bool(multimodal["simple_language"].strip()),
     }
