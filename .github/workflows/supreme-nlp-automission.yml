@@ -13,6 +13,9 @@ on:
       - "schemas/supreme-nlp-record.schema.json"
       - "docs/SUPREME-NLP-ARCHITECTURE.md"
       - "factory/supreme_nlp_qc.py"
+      - "agents/supreme_nlp_orchestrator.py"
+      - "schemas/supreme-nlp-observation.schema.json"
+      - "docs/supreme-nlp-automission-v2.md"
       - ".github/workflows/supreme-nlp-automission.yml"
 
 permissions:
@@ -100,6 +103,21 @@ jobs:
           assert plan["state"] in {"MONITOR", "IMPROVEMENT_REQUIRED"}
           assert isinstance(plan["actions"], list) and plan["actions"]
           print("GENERATED_RECORD_CONTRACT_OK")
+          PY
+
+      - name: Run evidence-boundary orchestrator
+        run: |
+          python -m py_compile agents/supreme_nlp_orchestrator.py
+          python agents/supreme_nlp_orchestrator.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/supreme-nlp/result.json").read_text(encoding="utf-8"))
+          if d.get("result",{}).get("translation_boundary",{}).get("subjective_experience_claim") != "not established by this pipeline":
+              raise SystemExit("Subjective-experience boundary violated")
+          if d.get("automission",{}).get("promotion_allowed") is not False:
+              raise SystemExit("Promotion must remain fail-closed")
+          print("EVIDENCE_BOUNDARY_CONTRACT_OK")
           PY
 
       - name: Upload audit artifacts
