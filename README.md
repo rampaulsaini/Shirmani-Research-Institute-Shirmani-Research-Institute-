@@ -177,3 +177,12 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Continuous gate:** [.github/workflows/supreme-nlp-contract.yml](.github/workflows/supreme-nlp-contract.yml)
 - **Pipeline:** Signal → Quality Check → Normalization → Representation → Context → Inference → Plain-Language Translation → Confidence → Evidence → Independent Verification → Audit.
 - **Integrity boundary:** measured signals, model inference, interpretation, confidence and unresolved uncertainty remain distinct.
+
+## 🧪 Supreme NLP Evaluation & Accuracy Contract
+
+- **Evaluation contract:** [docs/supreme-nlp-evaluation-contract.md](docs/supreme-nlp-evaluation-contract.md)
+- **Deterministic evaluation QC:** [factory/supreme_nlp_evaluation_qc.py](factory/supreme_nlp_evaluation_qc.py)
+- **Continuous evaluation gate:** [.github/workflows/supreme-nlp-evaluation.yml](.github/workflows/supreme-nlp-evaluation.yml)
+- **Principle:** architecture readiness is separate from measured model performance.
+- **Accuracy:** no “fully supreme accuracy” claim is accepted without a defined task, population/dataset, metric, baseline, uncertainty and reproducible evaluation record.
+- **Signal-to-language boundary:** measurable biological/plant/environmental signals may be translated into plain language as model inferences, while subjective feeling, consciousness and intention remain unestablished unless independently supported by appropriate evidence.
