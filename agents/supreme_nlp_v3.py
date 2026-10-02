@@ -190,6 +190,16 @@ def calibration_report(probabilities, labels, bins=10):
             ece += len(idx)/len(p)*abs(acc-conf)
     return {"brier_score":round(brier,6),"expected_calibration_error":round(ece,6),"sample_count":len(p),"status":"CALIBRATED_EVALUATION"}
 
+def _binary_label(value: Any) -> int:
+    """Accept only explicit binary labels; reject truthy strings and other ambiguity."""
+    if isinstance(value, bool):
+        return int(value)
+    if isinstance(value, int) and value in (0, 1):
+        return value
+    if isinstance(value, float) and isfinite(value) and value in (0.0, 1.0):
+        return int(value)
+    raise ValueError("labels and predictions must be explicit binary values (0/1 or bool)")
+
 def classification_report(predictions, labels):
     """Compute deterministic binary precision/recall/F1 and confusion counts."""
     if len(predictions) != len(labels) or not predictions:
