@@ -46,8 +46,10 @@ def main():
         {"modality":"sensor","feature":"x","value":1.0,"quality":1.0,"source":"good"},
     ])
     hf=hardened["features"]
-    for key in ("mean","spread","median","mad","variability","outlier_ratio","agreement","confidence"):
-        assert math.isfinite(hf[key]), key
+    assert hf["groups"] == 1
+    for group in hf["group_summaries"].values():
+        for key in ("mean","spread","median","mad","quality"):
+            assert math.isfinite(group[key]), key
 
     assert fuse([])["status"]=="insufficient_quality"
     print("SUPREME_NLP_PRACTITIONER_CONTRACT_OK")
