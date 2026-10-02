@@ -170,6 +170,15 @@ This is a research architecture: it does not grant unlimited authority to any pe
 
 
 
+## 🔬 Supreme NLP Signal → Plain Language
+
+- **Signal contract:** [docs/supreme-nlp-signal-to-language-contract-2026-10-02.md](docs/supreme-nlp-signal-to-language-contract-2026-10-02.md)
+- **Machine-readable schema:** [schemas/supreme-nlp-signal-interpretation.schema.json](schemas/supreme-nlp-signal-interpretation.schema.json)
+- **Deterministic QC:** [factory/supreme_nlp_signal_contract_qc.py](factory/supreme_nlp_signal_contract_qc.py)
+- **Boundary:** measured signal, detected pattern, model inference, plain-language interpretation, uncertainty, provenance, alternatives and unresolved unknowns remain distinct.
+- **Integrity:** biological/plant/environmental signal patterns are not silently converted into claims of subjective feeling or consciousness.
+
+
 ## 🧠 SHIRMANI Supreme NLP Practitioner
 
 - **Canonical contract:** [docs/supreme-nlp-practitioner-contract.md](docs/supreme-nlp-practitioner-contract.md)
