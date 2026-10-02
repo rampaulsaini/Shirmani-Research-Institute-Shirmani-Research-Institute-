@@ -1,4 +1,8 @@
-"""Provider-neutral measurable-signal -> plain-language NLP adapter."""
+"""Provider-neutral measurable-signal -> plain-language NLP adapter.
+
+Evidence-first: observations are translated to simple language, while
+subjective experience remains an explicitly unverified hypothesis.
+"""
 from __future__ import annotations
 import hashlib, json, math
 from datetime import datetime, timezone
@@ -26,7 +30,7 @@ def load_jsonl(path:Path)->list[dict[str,Any]]:
             rows.append(value)
     return rows
 
-def numeric_series(rows):
+def numeric_series(rows:list[dict[str,Any]])->dict[str,list[float]]:
     out={}
     for row in rows:
         features=row.get("features")
@@ -37,24 +41,25 @@ def numeric_series(rows):
                 out.setdefault(str(key),[]).append(float(value))
     return out
 
-def slope(values):
+def slope(values:list[float])->float:
     if len(values)<2: return 0.0
-    xm=(len(values)-1)/2
-    ym=mean(values)
+    xm=(len(values)-1)/2; ym=mean(values)
     den=sum((i-xm)**2 for i in range(len(values)))
     return 0.0 if den==0 else sum((i-xm)*(v-ym) for i,v in enumerate(values))/den
 
-def summarize(values):
+def summarize(values:list[float])->dict[str,Any]:
     return {"sample_count":len(values),"mean":round(mean(values),8),
             "stddev":round(pstdev(values) if len(values)>1 else 0.0,8),
             "minimum":round(min(values),8),"maximum":round(max(values),8),
             "slope_per_sample":round(slope(values),8)}
 
-def direction(s,scale):
+def direction(s:float,scale:float)->str:
     threshold=max(scale*0.05,1e-12)
-    return "increasing" if s>threshold else "decreasing" if s<-threshold else "stable_or_uncertain"
+    if s>threshold: return "increasing"
+    if s<-threshold: return "decreasing"
+    return "stable_or_uncertain"
 
-def interpret(rows):
+def interpret(rows:list[dict[str,Any]])->dict[str,Any]:
     series=numeric_series(rows)
     summaries={k:summarize(v) for k,v in series.items()}
     modalities=sorted({str(r.get("modality","unknown")).strip().lower() or "unknown" for r in rows})
@@ -63,15 +68,17 @@ def interpret(rows):
     states=[str(r["features"]["state"]) for r in rows if isinstance(r.get("features"),dict) and "state" in r["features"]]
     contradiction=len(set(states))>1
     observations=[{"feature":k,"statistics":v,
-                   "pattern":direction(float(v["slope_per_sample"]),max(float(v["stddev"]),abs(float(v["mean"])),1.0))}
+                   "pattern":direction(float(v["slope_per_sample"]),
+                                        max(float(v["stddev"]),abs(float(v["mean"])),1.0))}
                    for k,v in summaries.items()]
+
     if not rows:
-        status="INSUFFICIENT_DATA"; confidence=0.0
+        status="INSUFFICIENT_DATA"; confidence=0.0; verification="UNVERIFIED"
         plain="कोई मान्य signal record उपलब्ध नहीं है; इसलिए कोई pattern interpretation नहीं बनाई गई।"
-        uncertainty=["Input data is empty or unavailable."]; verification="UNVERIFIED"
+        uncertainty=["Input data is empty or unavailable."]
     else:
         status="REVIEW" if contradiction else "INTERPRETED"
-        confidence=0.20+0.20*min(len(rows)/30,1.0)+0.15*min(len(sources)/3,1.0)+0.15*min(len(series)/3,1.0)+0.20*completeness-(0.20 if contradiction else 0)
+        confidence=0.15+0.20*min(len(rows)/30,1.0)+0.15*min(len(sources)/3,1.0)+0.15*min(len(series)/3,1.0)+0.20*completeness-(0.20 if contradiction else 0)
         confidence=round(max(0.0,min(0.90,confidence)),4)
         verification="REVIEW" if contradiction else "UNVERIFIED"
         pattern_text=", ".join(f"{x['feature']}={x['pattern']}" for x in observations) or "कोई पर्याप्त numerical pattern नहीं"
@@ -79,23 +86,35 @@ def interpret(rows):
                f"देखे गए patterns: {pattern_text}। यह measurable signal pattern का वर्णन है; "
                "इसे अपने-आप subjective feeling, consciousness या intention का प्रमाण नहीं माना जाता।")
         uncertainty=[
-            "Calibration and sensor quality are not independently established by this adapter.",
-            "A deterministic pattern is not equivalent to causal or psychological explanation.",
-            "Independent replication and task-specific evaluation are required for VERIFIED status."
+            "Sensor calibration and measurement quality require independent validation.",
+            "A deterministic pattern is not equivalent to a causal or psychological explanation.",
+            "Independent replication and task-specific benchmark results are required for VERIFIED status."
         ]
-        if contradiction: uncertainty.append("Multiple state labels were observed; interpretation requires review.")
+        if contradiction:
+            uncertainty.append("Multiple state labels were observed; interpretation requires blinded review.")
+
     result={
-        "schema_version":"1.0.0","status":status,
-        "observed_signal":{"record_count":len(rows),"modalities":modalities,"independent_sources":sources,"series":summaries},
+        "schema_version":"2.0.0","status":status,
+        "observed_signal":{"record_count":len(rows),"modalities":modalities,
+                           "independent_sources":sources,"series":summaries},
         "patterns":observations,
-        "inference":{"label":"measurable-pattern-description","evidence":["deterministic descriptive statistics","temporal slope analysis","input provenance"],
-                     "confidence":confidence,"provider":"shirmani-signal-to-language","task":"signal-pattern-to-plain-language"},
+        "inference":{
+            "label":"measurable-pattern-description",
+            "evidence":["deterministic descriptive statistics","temporal slope analysis","input provenance"],
+            "confidence":confidence,
+            "confidence_is_not_proof":True,
+            "provider":"shirmani-signal-to-language",
+            "task":"signal-pattern-to-plain-language"
+        },
         "plain_language":plain,"uncertainty":uncertainty,
-        "provenance":{"source":"generated/supreme-nlp/signal-input.jsonl","input_fingerprint":fingerprint(rows),
-                      "model":"deterministic-signal-describer","model_version":"1.0.0"},
+        "provenance":{"source":"generated/supreme-nlp/signal-input.jsonl",
+                      "input_fingerprint":fingerprint(rows),
+                      "model":"deterministic-signal-describer","model_version":"2.0.0"},
         "verification_state":verification,
-        "required_next_gate":"independent replication + task-specific benchmark",
-        "governance":{"fail_closed":True,"subjective_experience_claim_allowed":False,"independent_verification_required":True},
+        "required_next_gate":"pre-registered independent replication + task-specific benchmark + negative controls",
+        "governance":{"fail_closed":True,"abstain_on_insufficient_data":True,
+                      "subjective_experience_claim_allowed":False,
+                      "independent_verification_required":True},
         "generated_at":datetime.now(timezone.utc).isoformat()
     }
     result["fingerprint"]=fingerprint(result)
