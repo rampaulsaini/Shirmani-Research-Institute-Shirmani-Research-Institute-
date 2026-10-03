@@ -1,4 +1,5 @@
 name: SHIRMANI Verification Progress Dashboard
+
 on:
   workflow_dispatch:
   schedule:
@@ -6,16 +7,17 @@ on:
   push:
     branches: [main]
     paths:
-      - "generated/VERIFICATION-QUEUE.json"
-      - "generated/VERIFICATION-REGISTRY.json"
-      - "generated/VERIFICATION-PROMOTION-QC.json"
+      - "generated/independent-verification-records.json"
       - "factory/verification_progress_dashboard.py"
       - ".github/workflows/verification-progress-dashboard.yml"
+
 permissions:
   contents: write
+
 concurrency:
   group: shirmani-verification-progress-dashboard
   cancel-in-progress: true
+
 jobs:
   dashboard:
     runs-on: ubuntu-latest
@@ -25,27 +27,28 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-      - name: Generate fail-closed dashboard and graph
+
+      - name: Generate authoritative fail-closed dashboard
         run: python factory/verification_progress_dashboard.py
+
       - name: Validate dashboard invariants
         run: |
           python - <<'PY'
           import json
           d=json.load(open("generated/verification-progress-dashboard.json",encoding="utf-8"))
-          records=d["records"]
-          percent=d["percent"]
-          assert records["target"] == 100200
-          assert records["queued"] <= records["target"]
-          assert records["reviewed"] <= records["target"]
-          assert records["verified"] <= records["reviewed"]
-          assert records["verified"] + records["remaining_to_verified_target"] == records["target"]
-          assert 0 <= percent["independently_verified_of_target"] <= 100
-          assert 0 <= percent["remaining_of_target"] <= 100
+          r=d["records"]
+          p=d["percent"]
+          assert r["target"] == 100200
+          assert 0 <= r["verified"] <= r["reviewed"] <= r["prepared"] <= r["target"]
+          assert r["verified"] + r["remaining_to_verified_target"] == r["target"]
+          assert 0 <= p["independently_verified_of_target"] <= 100
+          assert 0 <= p["remaining_of_target"] <= 100
           assert d["automation_state"]["independent_verification_required"] is True
           assert d["automation_state"]["automission_may_declare_verified"] is False
           print("VERIFICATION_DASHBOARD_GATE: PASS")
           PY
-      - name: Publish dashboard
+
+      - name: Publish dashboard artifact
         uses: actions/upload-artifact@v4
         with:
           name: verification-progress-dashboard-${{ github.run_id }}
@@ -53,6 +56,7 @@ jobs:
             generated/verification-progress-dashboard.json
             generated/verification-progress-dashboard.md
           retention-days: 14
+
       - name: Persist authoritative dashboard
         run: |
           set -euo pipefail
@@ -65,6 +69,7 @@ jobs:
           fi
           git commit -m "ci: update authoritative verification dashboard"
           git push origin HEAD:main
+
       - name: Emit summary
         run: |
           python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
@@ -72,9 +77,9 @@ jobs:
           d=json.load(open("generated/verification-progress-dashboard.json",encoding="utf-8"))
           r=d["records"]
           p=d["percent"]
-          print("## SHIRMANI Verification Progress")
+          print("## ꙰ SHIRMANI Verification Progress")
           print(f"- Target: {r['target']}")
-          print(f"- Queued: {r['queued']} ({p['queued_of_target']}%)")
+          print(f"- Prepared: {r['prepared']} ({p['prepared_of_target']}%)")
           print(f"- Reviewed: {r['reviewed']} ({p['reviewed_of_target']}%)")
           print(f"- Independently VERIFIED: {r['verified']} ({p['independently_verified_of_target']}%)")
           print(f"- Remaining: {r['remaining_to_verified_target']} ({p['remaining_of_target']}%)")
