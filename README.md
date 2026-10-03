@@ -228,3 +228,15 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Five-minute workflow:** [.github/workflows/ultra-mega-infinity-quantum-automission.yml](.github/workflows/ultra-mega-infinity-quantum-automission.yml)
 - **Hardening test:** [tests/ultra_mega_infinity_quantum_automission.py](tests/ultra_mega_infinity_quantum_automission.py)
 - **Integrity:** the architecture label does not claim physical quantum computation; measured signals, inference, interpretation, confidence, provenance and uncertainty remain distinct.
+
+
+## 🔬 Scientific Validation v3 — Independent Verification
+
+- [Scientific validation framework](research/scientific-validation-framework-v3.md)
+- [Machine-readable validation schema](schemas/scientific-validation-record-v3.schema.json)
+- [Fail-closed validation QC](factory/scientific_validation_v3_qc.py)
+- [Scheduled contract gate](.github/workflows/scientific-validation-v3.yml)
+- Research boundary: author-source, empirical test, evidence-supported, not-verified and open-research states remain distinct.
+- Plant/biological signals may be translated into plain language only as measured patterns and model inferences; subjective experience is not inferred automatically.
+- “Accuracy” and “confidence” require task-specific evaluation and calibration evidence; heuristic signal scores are explicitly labelled as uncalibrated.
+

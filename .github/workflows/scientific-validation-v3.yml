@@ -1,0 +1,28 @@
+name: SHIRMANI Scientific Validation v3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research/scientific-validation-framework-v3.md"
+      - "schemas/scientific-validation-record-v3.schema.json"
+      - "factory/scientific_validation_v3_qc.py"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-scientific-validation-v3
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate scientific validation contract
+        run: python3 factory/scientific_validation_v3_qc.py

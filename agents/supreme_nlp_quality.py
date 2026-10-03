@@ -79,6 +79,8 @@ def evaluate(record: dict[str,Any], labels: dict[str,Any]|None=None,
     samples=int(features.get("sample_count",features.get("usable_observations",len(observations))) or 0)
     drift=_clip(features.get("drift_score",features.get("baseline_drift",0)))
     confidence=_clip(interpretation.get("confidence",record.get("confidence",0)))
+    confidence_status=str(interpretation.get("confidence_status",record.get("confidence_status","UNCALIBRATED")))
+    score_semantics=str(interpretation.get("score_semantics",record.get("score_semantics","unknown")))
     contradiction=contradiction_index(observations)
 
     checks={
@@ -89,6 +91,7 @@ def evaluate(record: dict[str,Any], labels: dict[str,Any]|None=None,
       "drift": drift <= t.max_drift,
       "contradiction": contradiction <= (1-t.min_agreement),
       "confidence_bounded": 0 <= confidence <= 1,
+      "confidence_semantics_declared": score_semantics == "bounded_heuristic_score_not_calibrated_probability" or confidence_status == "CALIBRATED",
       "fingerprint_present": bool(record.get("fingerprint") or (record.get("provenance") or {}).get("fingerprint")),
       "unverified_by_default": (record.get("verification",{}).get("status","UNVERIFIED")=="UNVERIFIED"
           or result.get("verification",{}).get("status","UNVERIFIED")=="UNVERIFIED"),
@@ -117,7 +120,9 @@ def evaluate(record: dict[str,Any], labels: dict[str,Any]|None=None,
       "metrics":{
         "quality":quality,"agreement":agreement,"independent_sources":sources,
         "sample_count":samples,"drift":drift,"contradiction_index":contradiction,
-        "confidence":confidence,
+        "signal_score":confidence,
+        "confidence_status":confidence_status,
+        "score_semantics":score_semantics,
       },
       "calibration":calibration,
       "governance":{
@@ -126,6 +131,7 @@ def evaluate(record: dict[str,Any], labels: dict[str,Any]|None=None,
         "scheduled_code_mutation_allowed":False,
         "independent_verification_required":True,
         "accuracy_is_measured_not_declared":True,
+        "calibrated_confidence_required_for_scientific_promotion":True,
       },
       "next_actions":(
         ["continue monitoring and regression tests"] if not failed else

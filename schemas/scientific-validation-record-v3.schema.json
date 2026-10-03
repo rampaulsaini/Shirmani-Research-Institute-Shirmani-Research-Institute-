@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Scientific Validation Record v3",
+  "type": "object",
+  "required": [
+    "record_id",
+    "claim_class",
+    "claim",
+    "operational_definition",
+    "protocol",
+    "dataset_fingerprint",
+    "model",
+    "metrics",
+    "uncertainty",
+    "provenance",
+    "verification_state"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim_class": {
+      "type": "string",
+      "enum": [
+        "AUTHOR_SOURCE",
+        "TESTABLE_EMPIRICAL",
+        "EVIDENCE_SUPPORTED",
+        "NOT_VERIFIED",
+        "CONTRADICTED",
+        "OPEN_RESEARCH"
+      ]
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operational_definition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "protocol": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dataset_fingerprint": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "metrics": {
+      "type": "object",
+      "minProperties": 1
+    },
+    "uncertainty": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "interval": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "counter_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "independent_replication": {
+      "type": "string"
+    },
+    "verification_state": {
+      "type": "string",
+      "enum": [
+        "REGISTERED",
+        "UNVERIFIED",
+        "REVIEW",
+        "VERIFIED",
+        "BLOCKED"
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
