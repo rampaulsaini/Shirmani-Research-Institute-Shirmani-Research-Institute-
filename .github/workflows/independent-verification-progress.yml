@@ -63,9 +63,18 @@ jobs:
           branch="automation/independent-verification-progress"
           git checkout -B "$branch"
           git commit -m "ci: update independent verification progress"
-          git push --force-with-lease origin "$branch"
 
-          if gh pr view "$branch" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+          # Refresh the remote publication branch before the lease-protected push.
+          git fetch origin "refs/heads/$branch:refs/remotes/origin/$branch" || true
+          if ! git push --force-with-lease origin "HEAD:$branch"; then
+            git fetch origin "refs/heads/$branch:refs/remotes/origin/$branch"
+            git push --force-with-lease origin "HEAD:$branch"
+          fi
+
+          # Reuse an already-open publication PR; create one only when none exists.
+          open_prs="$(gh pr list --repo "${{ github.repository }}" --base main --head "$branch" --state open --json number --jq 'length')"
+          if [ "$open_prs" -ge 1 ]; then
+            echo "Open publication PR already exists; reusing it."
             exit 0
           fi
 
