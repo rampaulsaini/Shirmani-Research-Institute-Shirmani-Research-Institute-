@@ -76,6 +76,7 @@ def main() -> int:
     report["fingerprint"] = canonical_hash(report)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({"status": report["status"], "checks": checks, "failed_checks": [k for k, v in checks.items() if not v]}, ensure_ascii=False, indent=2))
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return 0 if passed else 1
 
