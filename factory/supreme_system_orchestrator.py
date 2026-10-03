@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Unified fail-closed control plane for the SHIRMANI AI/ML/NLP Automission stack."""
 from __future__ import annotations
-import hashlib,json,subprocess
+import hashlib,json,os,subprocess,sys
 from datetime import datetime,timezone
 from pathlib import Path
 from typing import Any
 
 ROOT=Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+ENV=os.environ.copy()
+ENV["PYTHONPATH"]=str(ROOT)+os.pathsep+ENV.get("PYTHONPATH","")
 OUT=ROOT/"generated"/"supreme-orchestrator"
 OUT.mkdir(parents=True,exist_ok=True)
 
@@ -66,7 +70,7 @@ def run_gate(name:str,rel:str)->dict[str,Any]:
     if not p.exists():
         return {"name":name,"status":"BLOCK","reason":f"missing:{rel}"}
     try:
-        x=subprocess.run(["python",str(p)],cwd=ROOT,text=True,capture_output=True,timeout=180)
+        x=subprocess.run(["python",str(p)],cwd=ROOT,env=ENV,text=True,capture_output=True,timeout=180)
         return {
             "name":name,
             "status":"PASS" if x.returncode==0 else "BLOCK",
@@ -84,7 +88,7 @@ def main()->int:
     # then execute all fail-closed gates.
     seed_nlp_status()
     ensure_empty_verification_ledgers()
-    e2e=subprocess.run(["python","-m","unittest","tests/test_supreme_nlp_end_to_end.py","-v"],cwd=ROOT,text=True,capture_output=True,timeout=180)
+    e2e=subprocess.run(["python","-m","unittest","tests/test_supreme_nlp_end_to_end.py","-v"],cwd=ROOT,env=ENV,text=True,capture_output=True,timeout=180)
     e2e_gate={"name":"supreme_nlp_end_to_end","status":"PASS" if e2e.returncode==0 else "BLOCK","returncode":e2e.returncode,"stdout_tail":e2e.stdout[-2000:],"stderr_tail":e2e.stderr[-2000:]}
     gates=[run_gate(n,p) for n,p in GATES]+[e2e_gate]
 
