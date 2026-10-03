@@ -4,39 +4,75 @@ on:
   push:
     paths:
       - "research/independent-verification-protocol-2026-09-29.md"
+      - "research/independent-verification-system-v2.md"
       - "generated/independent-verification-status-2026-09-29.json"
+      - "scripts/independent_verification_gate.py"
       - ".github/workflows/independent-verification-gate.yml"
   workflow_dispatch:
   schedule:
-    - cron: "23 */6 * * *"
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: read
 
+concurrency:
+  group: independent-verification-gate
+  cancel-in-progress: true
+
 jobs:
   gate:
     runs-on: ubuntu-latest
+    timeout-minutes: 4
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Validate fail-closed registry
         run: |
           set -euo pipefail
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          d=json.loads(Path("generated/independent-verification-status-2026-09-29.json").read_text(encoding="utf-8"))
-          s=d["verification_summary"]
-          assert s["independently_verified_records"] == 0
-          assert s["independent_verified_percent"] == 0
-          assert s["verification_readiness_percent"] == 100
-          assert len(d["records"]) == s["queue_records"]
-          assert sum(1 for x in d["records"] if x["status"]=="EVIDENCE-SUPPORTED") == s["evidence_supported_records"]
-          assert all(x["status"] != "VERIFIED" for x in d["records"])
-          print("Independent verification gate: FAIL-CLOSED")
-          PY
+          python3 scripts/independent_verification_gate.py             --registry generated/independent-verification-status-2026-09-29.json
+
       - name: Validate integrity boundary
         run: |
           set -euo pipefail
           grep -q "workflow succeeding is not independent verification" research/independent-verification-protocol-2026-09-29.md
           grep -q "counter-evidence" research/independent-verification-protocol-2026-09-29.md
           grep -q "reviewer identity/role" research/independent-verification-protocol-2026-09-29.md
+          grep -q "automation success is never itself an independent verification decision" research/independent-verification-system-v2.md
+
+      - name: Emit machine-readable gate summary
+        run: |
+          set -euo pipefail
+          mkdir -p generated/automission
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          source = Path("generated/independent-verification-status-2026-09-29.json")
+          data = json.loads(source.read_text(encoding="utf-8"))
+          summary = data["verification_summary"]
+          out = {
+              "system": "SHIRMANI Independent Verification Gate",
+              "state": "FAIL_CLOSED",
+              "queue_records": summary["queue_records"],
+              "evidence_supported_records": summary["evidence_supported_records"],
+              "independently_verified_records": summary["independently_verified_records"],
+              "independent_verified_percent": summary["independent_verified_percent"],
+              "verification_readiness_percent": summary["verification_readiness_percent"],
+              "target_records": 100200,
+              "remaining_to_target": max(0, 100200 - summary["independently_verified_records"]),
+              "workflow_success_is_not_independent_verification": True
+          }
+          Path("generated/automission/independent-verification-gate-status.json").write_text(
+              json.dumps(out, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          print(json.dumps(out, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Upload gate artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-verification-gate-${{ github.run_id }}
+          path: generated/automission/independent-verification-gate-status.json
+          if-no-files-found: error
+          retention-days: 14
