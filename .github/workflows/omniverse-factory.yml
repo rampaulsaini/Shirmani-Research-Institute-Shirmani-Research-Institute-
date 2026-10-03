@@ -89,6 +89,28 @@ jobs:
         run: python3 factory/verification_registry.py
       - name: Run verification promotion gate
         run: python3 factory/verification_promotion_gate.py
+      - name: Build independent verification progress map
+        run: |
+          python3 factory/verification_progress.py \
+            --queue generated/independent-verification-queue.jsonl \
+            --registry generated/independent-verification-registry.jsonl \
+            --output generated/VERIFICATION-PROGRESS.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path("generated/VERIFICATION-PROGRESS.json").read_text())
+          if p.get("queue_registry_task_id_match") is not True:
+              raise SystemExit("Verification progress queue/registry mismatch")
+          if p.get("promotion_allowed_by_this_report") is not False:
+              raise SystemExit("Progress telemetry cannot authorize promotion")
+          print("Verification progress telemetry: PASS")
+          print(
+              "queued={queue_total} reviewed={reviewed_records} "
+              "verified={independent_verified_records} "
+              "verification_pct={verification_completion_pct}".format(**p)
+          )
+          PY
+
       - name: Determine resumable verification review cursor
         id: review_cursor
         env:
@@ -191,6 +213,7 @@ jobs:
           test -s generated/independent-verification-registry.jsonl
           test -s generated/VERIFICATION-REGISTRY.json
           test -s generated/VERIFICATION-PROMOTION-QC.json
+          test -s generated/VERIFICATION-PROGRESS.json
           test -s generated/VERIFICATION-PACKET-QC.json
           test -s generated/PUBLICATION-GATE.json
           test -s generated/research-evidence-graph.json
