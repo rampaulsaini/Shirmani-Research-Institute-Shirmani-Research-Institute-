@@ -1,0 +1,35 @@
+name: SHIRMANI Supreme NLP v3 Hardening
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "agents/supreme_nlp_v3.py"
+      - "factory/supreme_nlp_v3_qc.py"
+      - "tests/test_supreme_nlp_v3.py"
+      - "tests/test_supreme_nlp_v3_hardening.py"
+      - ".github/workflows/supreme-nlp-v3-hardening.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hardening:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONPATH: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run v3 deterministic QC
+        run: python3 factory/supreme_nlp_v3_qc.py
+      - name: Run v3 contract tests
+        run: python3 tests/test_supreme_nlp_v3.py
+      - name: Run v3 adversarial hardening tests
+        run: python3 tests/test_supreme_nlp_v3_hardening.py

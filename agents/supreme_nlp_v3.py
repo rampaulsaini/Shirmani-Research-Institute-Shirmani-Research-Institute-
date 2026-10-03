@@ -1,0 +1,278 @@
+"""Supreme NLP v3 validation layer.
+
+Observable-signal interpretation only. No fluent output is treated as proof of
+subjective experience. The layer is deterministic and exposes abstention,
+disagreement, provenance, calibration and drift diagnostics.
+"""
+from __future__ import annotations
+from dataclasses import dataclass, asdict
+from datetime import datetime, timezone
+from math import sqrt, isfinite
+from typing import Any, Iterable
+import hashlib, json
+
+VERSION = "supreme-nlp-v3"
+
+@dataclass(frozen=True)
+class Signal:
+    modality: str
+    feature: str
+    value: float
+    quality: float = 1.0
+    source: str = "unknown"
+    experiment_id: str = ""
+    unit: str = ""
+    baseline_mean: float | None = None
+    baseline_std: float | None = None
+
+def clip(x: float, lo=0.0, hi=1.0) -> float:
+    try:
+        value = float(x)
+        if not isfinite(value):
+            return lo
+        return max(lo, min(hi, value))
+    except (TypeError, ValueError):
+        return lo
+
+def normalize(raw: dict[str, Any]) -> Signal:
+    if not isinstance(raw, dict):
+        raise ValueError("each signal must be a mapping")
+    def num(k):
+        try:
+            v = raw.get(k)
+            if v is None:
+                return None
+            value = float(v)
+            return value if isfinite(value) else None
+        except (TypeError, ValueError):
+            return None
+    try: value=float(raw.get("value", 0.0))
+    except (TypeError, ValueError): value=0.0
+    if not isfinite(value): value=0.0
+    return Signal(
+        modality=str(raw.get("modality","unknown")),
+        feature=str(raw.get("feature","unknown")),
+        value=value,
+        quality=clip(raw.get("quality",1.0)),
+        source=str(raw.get("source","unknown")),
+        experiment_id=str(raw.get("experiment_id","")),
+        unit=str(raw.get("unit","")),
+        baseline_mean=num("baseline_mean"),
+        baseline_std=num("baseline_std"),
+    )
+
+def _zscores(rows):
+    out=[]
+    for s in rows:
+        if s.baseline_mean is None: continue
+        sd=abs(s.baseline_std or 0.0)
+        if sd <= 1e-12: sd=max(abs(s.baseline_mean),1.0)
+        out.append((s.value-s.baseline_mean)/sd)
+    return out
+
+def _disagreement(rows):
+    """Compare only compatible feature/unit groups in standardized space."""
+    groups={}
+    for s in rows:
+        if s.baseline_mean is None:
+            continue
+        # A missing unit cannot establish compatibility across modalities.
+        # Keep such rows out of disagreement rather than comparing raw scales.
+        if not s.unit.strip():
+            continue
+        key=(s.feature, s.unit)
+        groups.setdefault(key, {}).setdefault(s.modality, []).append(s)
+    scores=[]
+    for modality_groups in groups.values():
+        if len(modality_groups)<2:
+            continue
+        means=[]
+        for values in modality_groups.values():
+            zs=[]
+            for s in values:
+                sd=abs(s.baseline_std or 0.0)
+                if sd <= 1e-12:
+                    sd=max(abs(s.baseline_mean or 0.0),1.0)
+                zs.append((s.value-s.baseline_mean)/sd)
+            means.append(sum(zs)/len(zs))
+        center=sum(means)/len(means)
+        scale=max(sum(abs(x) for x in means)/len(means),1.0)
+        scores.append(sqrt(sum((x-center)**2 for x in means)/len(means))/scale)
+    return clip(sum(scores)/len(scores)) if scores else 0.0
+
+def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
+    rows=[normalize(x) for x in signals]
+    usable=[x for x in rows if x.quality>0]
+    if not usable:
+        return {"status":"insufficient_quality","signals":[asdict(x) for x in rows]}
+    mean=sum(x.value for x in usable)/len(usable)
+    spread=sqrt(sum((x.value-mean)**2 for x in usable)/len(usable))
+    quality=sum(x.quality for x in usable)/len(usable)
+    modalities=len({x.modality for x in usable})
+    sources=len({x.source for x in usable if x.source!="unknown"})
+    experiments=len({x.experiment_id for x in usable if x.experiment_id.strip()})
+    anomaly=clip((spread/(abs(mean)+1e-9))/3.0)
+    z=_zscores(usable)
+    disagreement=_disagreement(usable)
+    abstain=quality<.50 or anomaly>=.90 or disagreement>=.85
+    confidence=clip(.15+.30*quality+.18*(1-anomaly)+.15*clip(len(usable)/20)+.10*clip(modalities/4)+.05*clip(sources/3)+.07*(1-disagreement))
+    if abstain: confidence=min(confidence,.25)
+    state="high_variability_pattern" if anomaly>=.66 else "moderate_variability_pattern" if anomaly>=.33 else "stable_pattern"
+    return {
+        "status":"interpreted",
+        "interpretation":{
+            "state":state,
+            "confidence":round(confidence,4),
+            "confidence_status":"UNCALIBRATED",
+            "abstention":abstain,
+            "calibration_required":True,
+            "verification_status":"UNVERIFIED",
+            "limitations":[
+                "यह observable signals की model-based interpretation है, subjective feeling का direct proof नहीं।",
+                "Biological/physical claims के लिए labelled data, domain calibration और independent replication आवश्यक हैं।",
+                "Alternative explanations और sensor artefacts को नियंत्रित परीक्षणों से अलग करना आवश्यक है।"
+            ]
+        },
+        "features":{
+            "mean":mean,"spread":spread,"anomaly_score":anomaly,
+            "quality":quality,"modalities":modalities,"source_count":sources,
+            "independent_experiment_count":experiments,
+            "experiment_provenance_status":"DECLARED_IDENTIFIERS_ONLY" if experiments else "MISSING_EXPERIMENT_IDENTIFIERS",
+            "sample_count":len(usable),
+            "baseline_z_score_mean":round(sum(z)/len(z),4) if z else None,
+            "baseline_z_score_max_abs":round(max((abs(x) for x in z),default=0.0),4),
+            "cross_modal_disagreement":round(disagreement,4)
+        },
+        "signals":[asdict(x) for x in rows]
+    }
+
+def simple_language(result):
+    if result.get("status")!="interpreted":
+        return "अभी पर्याप्त गुणवत्ता वाला संकेत उपलब्ध नहीं है; इसलिए विश्वसनीय व्याख्या नहीं दी जा सकती।"
+    i=result["interpretation"]
+    if i["abstention"]:
+        return "संकेतों में पर्याप्त अनिश्चितता या modality disagreement है; प्रणाली ने सुरक्षित रूप से निष्कर्ष से विराम लिया है।"
+    return f"मिले संकेतों में '{i['state']}' जैसा observable pattern है। प्रारंभिक uncalibrated confidence {i['confidence']:.0%} है। यह किसी जीव के प्रत्यक्ष भाव या चेतना का प्रमाण नहीं है।"
+
+def sha256(value) -> str:
+    return hashlib.sha256(json.dumps(value,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+
+def build_record(signals, task_id):
+    result=summarize(signals)
+    return {
+        "schema_version":VERSION,
+        "task_id":task_id,
+        "generated_at":datetime.now(timezone.utc).isoformat(),
+        "result":result,
+        "simple_language":simple_language(result),
+        "fingerprint":sha256(result),
+        "provenance":{"generator":"agents/supreme_nlp_v3.py","verification_status":"UNVERIFIED","calibration_status":"REQUIRED","experiment_provenance_status":result.get("features",{}).get("experiment_provenance_status","MISSING_EXPERIMENT_IDENTIFIERS"),"independent_replication_verified":False},
+    }
+
+def calibration_report(probabilities, labels, bins=10):
+    """Return Brier score and ECE for labelled evaluation data."""
+    if len(probabilities)!=len(labels) or not probabilities:
+        raise ValueError("probabilities and labels must have equal non-zero length")
+    if not isinstance(bins, int) or isinstance(bins, bool) or bins <= 0:
+        raise ValueError("bins must be a positive integer")
+    try:
+        raw_p=[float(x) for x in probabilities]
+    except (TypeError, ValueError) as exc:
+        raise ValueError("probabilities must be numeric") from exc
+    if not all(isfinite(x) for x in raw_p):
+        raise ValueError("probabilities must be finite")
+    if any(x < 0.0 or x > 1.0 for x in raw_p):
+        raise ValueError("probabilities must be within [0, 1]")
+    p=raw_p
+    y=[_binary_label(x) for x in labels]
+    brier=sum((a-b)**2 for a,b in zip(p,y))/len(p)
+    ece=0.0
+    for k in range(bins):
+        lo=k/bins; hi=(k+1)/bins
+        idx=[i for i,x in enumerate(p) if (lo<=x<hi) or (k==bins-1 and x==hi)]
+        if idx:
+            acc=sum(y[i] for i in idx)/len(idx)
+            conf=sum(p[i] for i in idx)/len(idx)
+            ece += len(idx)/len(p)*abs(acc-conf)
+    return {"brier_score":round(brier,6),"expected_calibration_error":round(ece,6),"sample_count":len(p),"status":"CALIBRATED_EVALUATION"}
+
+def _binary_label(value: Any) -> int:
+    """Accept only explicit binary labels; reject truthy strings and other ambiguity."""
+    if isinstance(value, bool):
+        return int(value)
+    if isinstance(value, int) and value in (0, 1):
+        return value
+    if isinstance(value, float) and isfinite(value) and value in (0.0, 1.0):
+        return int(value)
+    raise ValueError("labels and predictions must be explicit binary values (0/1 or bool)")
+
+def _boolean_flag(value: Any) -> bool:
+    """Accept only explicit boolean abstention flags; reject truthy strings."""
+    if isinstance(value, bool):
+        return value
+    raise ValueError("abstentions must be explicit boolean values")
+
+def classification_report(predictions, labels):
+    """Compute deterministic binary precision/recall/F1 and confusion counts."""
+    if len(predictions) != len(labels) or not predictions:
+        raise ValueError("predictions and labels must have equal non-zero length")
+    p=[_binary_label(x) for x in predictions]
+    y=[_binary_label(x) for x in labels]
+    tp=sum(a==1 and b==1 for a,b in zip(p,y))
+    fp=sum(a==1 and b==0 for a,b in zip(p,y))
+    fn=sum(a==0 and b==1 for a,b in zip(p,y))
+    tn=sum(a==0 and b==0 for a,b in zip(p,y))
+    precision=tp/(tp+fp) if tp+fp else 0.0
+    recall=tp/(tp+fn) if tp+fn else 0.0
+    f1=2*precision*recall/(precision+recall) if precision+recall else 0.0
+    accuracy=(tp+tn)/len(y)
+    return {"precision":round(precision,6),"recall":round(recall,6),"f1":round(f1,6),"accuracy":round(accuracy,6),"tp":tp,"fp":fp,"fn":fn,"tn":tn,"sample_count":len(y)}
+
+def selective_risk(predictions, labels, abstentions):
+    """Measure error only on accepted predictions and expose coverage/abstention."""
+    if not (len(predictions)==len(labels)==len(abstentions)) or not predictions:
+        raise ValueError("predictions, labels and abstentions must have equal non-zero length")
+    p=[_binary_label(x) for x in predictions]
+    y=[_binary_label(x) for x in labels]
+    a=[_boolean_flag(x) for x in abstentions]
+    accepted=[i for i,x in enumerate(a) if not x]
+    errors=sum(p[i] != y[i] for i in accepted)
+    total=len(y)
+    coverage=len(accepted)/total
+    return {"selective_risk":round(errors/len(accepted),6) if accepted else 1.0,"coverage":round(coverage,6),"abstention_rate":round(1-coverage,6),"accepted_count":len(accepted),"sample_count":total}
+
+def drift_report(reference, current, threshold=2.0):
+    """Screen feature drift using absolute standardized mean shifts.
+
+    This is a screening diagnostic, not proof of distributional change. Missing
+    feature groups fail closed as INSUFFICIENT_EVIDENCE.
+    """
+    if threshold <= 0 or not isfinite(float(threshold)):
+        raise ValueError("threshold must be a positive finite number")
+    ref=[normalize(x) for x in reference]
+    cur=[normalize(x) for x in current]
+    ref_groups={}
+    cur_groups={}
+    for row in ref:
+        ref_groups.setdefault((row.feature,row.unit),[]).append(row.value)
+    for row in cur:
+        cur_groups.setdefault((row.feature,row.unit),[]).append(row.value)
+    keys=sorted(set(ref_groups)|set(cur_groups))
+    if not keys:
+        return {"status":"INSUFFICIENT_EVIDENCE","drift_detected":False,"features":{}}
+    features={}
+    drift=False
+    for key in keys:
+        rv=ref_groups.get(key,[]); cv=cur_groups.get(key,[])
+        if not rv or not cv:
+            features["|".join(key)]={"status":"INSUFFICIENT_EVIDENCE"}
+            drift=True
+            continue
+        rm=sum(rv)/len(rv); cm=sum(cv)/len(cv)
+        rs=sqrt(sum((x-rm)**2 for x in rv)/len(rv))
+        scale=max(rs,1e-12)
+        shift=abs(cm-rm)/scale
+        flagged=shift>=threshold
+        drift=drift or flagged
+        features["|".join(key)]={"reference_mean":rm,"current_mean":cm,"standardized_shift":round(shift,6),"drift":flagged}
+    return {"status":"DRIFT_DETECTED" if drift else "NO_DRIFT_DETECTED","drift_detected":drift,"threshold":float(threshold),"features":features}
