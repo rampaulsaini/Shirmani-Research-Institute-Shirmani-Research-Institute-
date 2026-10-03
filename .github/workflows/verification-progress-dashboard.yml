@@ -25,6 +25,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+      # Schema-aligned dashboard generation; VERIFIED remains fail-closed.
       - name: Generate fail-closed dashboard
         run: python factory/verification_progress_dashboard.py
       - name: Validate dashboard invariants
