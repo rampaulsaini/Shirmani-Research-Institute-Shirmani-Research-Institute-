@@ -27,131 +27,148 @@ jobs:
       - name: Verify research records
         shell: python
         run: |
-          import hashlib, json, os
+          import json
+          import os
           from pathlib import Path
           from datetime import datetime, timezone
 
-          roots = [Path("generated"), Path("evidence"), Path("research"), Path("source"), Path("docs"), Path("schemas")]
-          files = []
-          for root in roots:
-              if root.exists():
-                  files.extend(sorted(root.rglob("*.json")))
-                  files.extend(sorted(root.rglob("*.jsonl")))
-
-          records = []
-          seen = set()
-
-          def emit(obj, source):
-              if not isinstance(obj, dict):
-                  return
-              rid = obj.get("record_id") or obj.get("id") or obj.get("verification_id")
-              if not rid or rid in seen:
-                  return
-              seen.add(rid)
-              records.append((str(rid), obj, str(source)))
-
-          for path in files:
-              try:
-                  if path.suffix == ".jsonl":
-                      for line in path.read_text(encoding="utf-8").splitlines():
-                          if line.strip():
-                              try:
-                                  emit(json.loads(line), path)
-                              except Exception:
-                                  pass
-                  else:
-                      data = json.loads(path.read_text(encoding="utf-8"))
-                      if isinstance(data, list):
-                          for item in data:
-                              emit(item, path)
-                      else:
-                          emit(data, path)
-              except Exception:
-                  continue
-
-          verified, review, rejected = [], [], []
-          review_reasons = {}
-
-          for rid, obj, source in records:
-              iv = obj.get("independent_verification")
-              evidence = obj.get("evidence") or obj.get("evidence_ref") or obj.get("evidence_refs")
-              provenance = obj.get("provenance") or obj.get("source") or obj.get("source_ref")
-              status = iv.get("status") if isinstance(iv, dict) else None
-              timestamp = iv.get("timestamp") if isinstance(iv, dict) else None
-              run_ref = iv.get("run_id") if isinstance(iv, dict) else None
-              fingerprint = iv.get("sha256") if isinstance(iv, dict) else None
-
-              payload = {k:v for k,v in obj.items() if k != "independent_verification"}
-              canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
-              expected = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
-
-              if status == "REJECTED":
-                  rejected.append(rid)
-              elif status == "VERIFIED" and evidence and provenance and (timestamp or run_ref) and fingerprint == expected:
-                  verified.append(rid)
-              else:
-                  review.append(rid)
-                  reasons = []
-                  if status != "VERIFIED": reasons.append("status_not_verified")
-                  if not evidence: reasons.append("missing_evidence")
-                  if not provenance: reasons.append("missing_provenance")
-                  if not (timestamp or run_ref): reasons.append("missing_verification_timestamp_or_run")
-                  if fingerprint != expected: reasons.append("fingerprint_missing_or_mismatch")
-                  for reason in reasons:
-                      review_reasons[reason] = review_reasons.get(reason, 0) + 1
-
-          total, v = len(records), len(verified)
           target = 100200
-          pct = round((v / total) * 100, 2) if total else 0.0
-          target_pct = round((v / target) * 100, 4)
+          queue_path = Path("generated/VERIFICATION-QUEUE.json")
+          packet_paths = sorted(Path("generated").glob("verification-review-packet-*.json"))
 
-          gate_open = v > 0
+          queue_records = target
+          if queue_path.exists():
+              try:
+                  queue = json.loads(queue_path.read_text(encoding="utf-8"))
+                  queue_records = int(queue.get("records", target))
+              except Exception:
+                  pass
+
+          items = []
+          packet_errors = []
+
+          for path in packet_paths:
+              try:
+                  data = json.loads(path.read_text(encoding="utf-8"))
+                  packet_items = data.get("items", [])
+                  if not isinstance(packet_items, list):
+                      packet_errors.append(f"{path}: items is not a list")
+                      continue
+                  for item in packet_items:
+                      if isinstance(item, dict):
+                          items.append(item)
+              except Exception as exc:
+                  packet_errors.append(f"{path}: {exc}")
+
+          seen = set()
+          unique_items = []
+          for item in items:
+              task_id = item.get("task_id") or item.get("claim_id")
+              if not task_id or task_id in seen:
+                  continue
+              seen.add(task_id)
+              unique_items.append(item)
+
+          def human_review_complete(item):
+              review = item.get("review_template")
+              if not isinstance(review, dict):
+                  return False
+              evidence = review.get("evidence_references")
+              countercase = review.get("countercase_review")
+              reproduction = review.get("reproduction_or_test")
+              return (
+                  item.get("current_verification_status") == "VERIFIED"
+                  and review.get("exact_claim")
+                  and isinstance(evidence, list) and len(evidence) > 0
+                  and isinstance(countercase, dict)
+                  and countercase.get("status") not in (None, "NOT_REVIEWED")
+                  and isinstance(reproduction, dict)
+                  and reproduction.get("status") not in (None, "NOT_RUN")
+                  and review.get("reviewer")
+                  and review.get("reviewed_at")
+                  and review.get("reviewer_conclusion")
+              )
+
+          verified = [x for x in unique_items if human_review_complete(x)]
+          rejected = [x for x in unique_items if x.get("current_verification_status") == "REJECTED"]
+          reviewed = [
+              x for x in unique_items
+              if isinstance(x.get("review_template"), dict)
+              and x["review_template"].get("reviewer")
+              and x["review_template"].get("reviewed_at")
+          ]
+
+          packet_items = len(unique_items)
+          review_records = packet_items - len(verified) - len(rejected)
+          missing_from_packets = max(queue_records - packet_items, 0)
+
+          target_progress = round((len(verified) / target) * 100, 4) if target else 0.0
+          packet_coverage = round((packet_items / queue_records) * 100, 4) if queue_records else 0.0
+          review_completion = round((len(reviewed) / packet_items) * 100, 4) if packet_items else 0.0
+
           out = {
               "generated_at": datetime.now(timezone.utc).isoformat(),
-              "total_candidate_records": total,
-              "verified_records": v,
-              "review_records": len(review),
+              "queue_records": queue_records,
+              "packet_records": packet_items,
+              "verified_records": len(verified),
+              "reviewed_records": len(reviewed),
+              "review_records": review_records,
               "rejected_records": len(rejected),
-              "verified_percentage_of_records": pct,
+              "missing_from_packets": missing_from_packets,
               "target_verified_records": target,
-              "target_progress_percentage": target_pct,
-              "remaining_to_target": max(target - v, 0),
-              "independent_verification_gate_open": gate_open,
-              "review_reason_counts": review_reasons,
-              "definition": "A workflow run is not a VERIFIED record; all verification gates must pass."
+              "target_progress_percentage": target_progress,
+              "packet_coverage_percentage": packet_coverage,
+              "review_completion_percentage": review_completion,
+              "remaining_to_target": max(target - len(verified), 0),
+              "independent_verification_gate_open": len(verified) > 0,
+              "packet_integrity_errors": packet_errors,
+              "definition": (
+                  "A workflow run or prepared packet is not a VERIFIED record. "
+                  "Promotion requires a completed independent review record; "
+                  "the factory does not invent reviewer, evidence, reproduction, or verification fields."
+              )
           }
 
           progress = {
               "generated_at": out["generated_at"],
-              "candidate_records": total,
-              "verified_records": v,
-              "review_records": len(review),
+              "queue_records": queue_records,
+              "packet_records": packet_items,
+              "verified_records": len(verified),
+              "reviewed_records": len(reviewed),
               "rejected_records": len(rejected),
               "target_verified_records": target,
-              "target_progress_percentage": target_pct,
-              "remaining_to_target": max(target-v, 0),
-              "verification_rate_of_candidates": pct,
-              "review_reason_counts": review_reasons,
+              "target_progress_percentage": target_progress,
+              "packet_coverage_percentage": packet_coverage,
+              "review_completion_percentage": review_completion,
+              "remaining_to_target": max(target - len(verified), 0),
               "map": {
                   "preparation": "COMPLETE",
                   "evidence_traceability": "COMPLETE",
+                  "verification_queue": "READY",
                   "independent_verification": "IN_PROGRESS",
-                  "verified_output": "NOT_YET_ESTABLISHED"
+                  "verified_output": "ESTABLISHED" if len(verified) else "NOT_YET_ESTABLISHED"
               }
           }
 
-          Path("verification-status.json").write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
-          Path("verification-progress-map.json").write_text(json.dumps(progress, indent=2, ensure_ascii=False), encoding="utf-8")
+          Path("verification-status.json").write_text(
+              json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8"
+          )
+          Path("verification-progress-map.json").write_text(
+              json.dumps(progress, indent=2, ensure_ascii=False), encoding="utf-8"
+          )
+
           print(json.dumps(out, indent=2, ensure_ascii=False))
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as s:
               s.write("# SHIRMANI Independent Verification\n\n")
-              s.write(f"- Candidate records: **{total}**\n")
-              s.write(f"- VERIFIED records: **{v}**\n")
-              s.write(f"- REVIEW: **{len(review)}**\n")
+              s.write(f"- Queue records: **{queue_records}**\n")
+              s.write(f"- Packet records: **{packet_items}**\n")
+              s.write(f"- Independently reviewed: **{len(reviewed)}**\n")
+              s.write(f"- VERIFIED records: **{len(verified)}**\n")
               s.write(f"- REJECTED: **{len(rejected)}**\n")
               s.write(f"- Target: **{target}** VERIFIED\n")
-              s.write(f"- Target progress: **{target_pct}%**\n")
-              s.write(f"- Remaining: **{max(target-v,0)}**\n")
+              s.write(f"- Target progress: **{target_progress}%**\n")
+              s.write(f"- Packet coverage: **{packet_coverage}%**\n")
+              s.write(f"- Remaining to target: **{max(target-len(verified),0)}**\n")
 
       - name: Publish verification status
         uses: actions/upload-artifact@v4
