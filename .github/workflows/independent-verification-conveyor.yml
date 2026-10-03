@@ -32,6 +32,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Build current fail-closed verification status
+        run: python3 factory/build_independent_verification_status.py
+
       - name: Bootstrap deterministic review queue
         run: python3 factory/bootstrap_independent_verification_queue.py
 
