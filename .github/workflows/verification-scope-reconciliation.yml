@@ -1,0 +1,65 @@
+name: SHIRMANI Verification Scope Reconciliation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "generated/VERIFICATION-QUEUE.json"
+      - "generated/independent-verification-queue.jsonl"
+      - "generated/independent-verification-registry.jsonl"
+      - ".github/workflows/verification-scope-reconciliation.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-verification-scope-reconciliation
+  cancel-in-progress: true
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconcile authoritative target and concrete review scope
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          target=json.loads(Path("generated/VERIFICATION-QUEUE.json").read_text())
+          queue=Path("generated/independent-verification-queue.jsonl")
+          registry=Path("generated/independent-verification-registry.jsonl")
+          target_n=int(target["records"])
+          queue_n=sum(1 for x in queue.read_text().splitlines() if x.strip()) if queue.exists() else 0
+          registry_n=sum(1 for x in registry.read_text().splitlines() if x.strip()) if registry.exists() else 0
+          coverage=round(queue_n/target_n*100,4) if target_n else 0
+          registry_coverage=round(registry_n/queue_n*100,4) if queue_n else 0
+
+          print(f"AUTHORITATIVE_TARGET={target_n}")
+          print(f"CONCRETE_REVIEW_TASKS={queue_n}")
+          print(f"REVIEW_REGISTRY_RECORDS={registry_n}")
+          print(f"CONCRETE_SCOPE_COVERAGE={coverage}%")
+          print(f"REGISTRY_COVERAGE={registry_coverage}%")
+
+          with open("/tmp/summary.md","w") as f:
+              f.write("## SHIRMANI Verification Scope Reconciliation\n")
+              f.write(f"- Authoritative target: **{target_n:,}**\n")
+              f.write(f"- Concrete independent-review tasks: **{queue_n:,}**\n")
+              f.write(f"- Review registry records: **{registry_n:,}**\n")
+              f.write(f"- Concrete scope coverage: **{coverage:g}%**\n")
+              f.write(f"- Registry coverage of concrete queue: **{registry_coverage:g}%**\n")
+              f.write("- VERIFIED remains fail-closed; workflow activity cannot create independent verification.\n")
+
+          if queue_n != target_n:
+              print("SCOPE_RECONCILIATION: FAIL-CLOSED — concrete review scope does not match authoritative target.")
+              raise SystemExit(1)
+
+          print("SCOPE_RECONCILIATION: PASS")
+          PY
+          cat /tmp/summary.md >> "$GITHUB_STEP_SUMMARY"
