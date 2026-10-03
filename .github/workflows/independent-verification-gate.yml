@@ -8,14 +8,19 @@ on:
       - ".github/workflows/independent-verification-gate.yml"
   workflow_dispatch:
   schedule:
-    - cron: "23 */6 * * *"
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: read
 
+concurrency:
+  group: shirmani-independent-verification-gate
+  cancel-in-progress: true
+
 jobs:
   gate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Validate fail-closed registry
@@ -36,9 +41,32 @@ jobs:
           assert s["evidence_supported_records"] == evidence
           print(f"Independent verification gate: FAIL-CLOSED; verified={verified}/{len(records)} ({expected_pct}%)")
           PY
+      - name: Publish verification telemetry
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/independent-verification-status-2026-09-29.json").read_text(encoding="utf-8"))
+          s=d["verification_summary"]
+          print(f"Queue={s['queue_records']} evidence_supported={s['evidence_supported_records']} verified={s['independently_verified_records']} verified_percent={s['independent_verified_percent']}% readiness={s['verification_readiness_percent']}%")
+          print("Rule: workflow success is not independent verification.")
+          PY
+
       - name: Validate integrity boundary
         run: |
           set -euo pipefail
           grep -q "workflow succeeding is not independent verification" research/independent-verification-protocol-2026-09-29.md
           grep -q "counter-evidence" research/independent-verification-protocol-2026-09-29.md
           grep -q "reviewer identity/role" research/independent-verification-protocol-2026-09-29.md
+
+
+      - name: Upload verification registry
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-verification-registry-${{ github.run_id }}
+          path: |
+            generated/independent-verification-status-2026-09-29.json
+            research/independent-verification-protocol-2026-09-29.md
+            research/independent-verification-system-v2.md
+          if-no-files-found: error
+          retention-days: 14
