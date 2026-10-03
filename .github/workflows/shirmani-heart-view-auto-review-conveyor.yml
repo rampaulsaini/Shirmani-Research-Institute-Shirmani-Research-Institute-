@@ -72,6 +72,11 @@ jobs:
           set -euo pipefail
           python3 factory/verification_review_packet_qc.py             --packet "generated/verification-review-packet-$(printf '%06d' '${{ steps.select.outputs.start }}')-$(printf '%06d' '${{ steps.select.outputs.end }}').json"
 
+      - name: Generate independent-verification progress status
+        run: |
+          set -euo pipefail
+          python3 factory/independent_verification_status.py
+
       - name: Persist conveyor state
         run: |
           set -euo pipefail
@@ -104,7 +109,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot].noreply.github.com"
           PACKET="generated/verification-review-packet-$(printf '%06d' '${{ steps.select.outputs.start }}')-$(printf '%06d' '${{ steps.select.outputs.end }}').json"
-          git add "$PACKET" CONTINUATION-AUTO-STATE.md
+          git add "$PACKET" CONTINUATION-AUTO-STATE.md generated/independent-verification-status.json
           git commit -m "ci: auto-prepare Heart-View review ${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}"
           BRANCH="automation/heart-view-review-${{ steps.select.outputs.start }}-${{ steps.select.outputs.end }}"
           git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
