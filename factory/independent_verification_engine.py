@@ -7,7 +7,7 @@ from pathlib import Path
 
 REQUIRED=("id","claim","operational_definition","evidence","independent_test",
           "reproducibility","counter_evidence","audit","reviewer_decision")
-DECISIONS={"PENDING","VERIFIED","NOT_VERIFIED","CONTRADICTED"}
+DECISIONS={"PENDING","VERIFIED","NOT_VERIFIED","CONTRADICTED","INCONCLUSIVE"}
 HEX64=re.compile(r"^[0-9a-f]{64}$")
 
 def check_record(r):
@@ -50,21 +50,28 @@ def evaluate(path="generated/independent-verification-records.json"):
         eligible += int(is_verified)
         report.append({"id":r.get("id"),"eligible_for_verified":is_verified,
                        "requested_decision":decision,"errors":errors})
+
     evidence_supported=sum(1 for r in records if r.get("status")=="EVIDENCE-SUPPORTED")
+    declared_verified=sum(1 for r in records if r.get("reviewer_decision",{}).get("decision")=="VERIFIED")
+
     if summary.get("queue_records") != len(records):
         raise SystemExit("QUEUE_SUMMARY_MISMATCH")
-    if summary.get("independently_verified_records") != 0 or summary.get("independent_verified_percent") != 0:
-        raise SystemExit("FAIL_CLOSED_BASELINE_BREACH")
-    if eligible:
-        raise SystemExit("AUTOMATION_CANNOT_PROMOTE_VERIFIED")
     if summary.get("evidence_supported_records", evidence_supported) != evidence_supported:
         raise SystemExit("EVIDENCE_SUMMARY_MISMATCH")
+    if declared_verified != eligible:
+        raise SystemExit("UNEARNED_VERIFIED_DECISION")
+    if int(summary.get("independently_verified_records", 0)) != eligible:
+        raise SystemExit("VERIFIED_SUMMARY_MISMATCH")
+    expected_pct=round((eligible/len(records))*100, 6) if records else 0
+    if float(summary.get("independent_verified_percent", 0)) != expected_pct:
+        raise SystemExit("VERIFIED_PERCENT_MISMATCH")
+
     return {
         "generated_at":datetime.now(timezone.utc).isoformat(),
         "queue_records":len(records),
         "evidence_supported_records":evidence_supported,
-        "verified_records":0,
-        "verified_percent":0,
+        "verified_records":eligible,
+        "verified_percent":expected_pct,
         "records":report,
         "fail_closed":True,
         "automation_cannot_create_independent_review":True

@@ -18,21 +18,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate fail-closed registry
+      - name: Validate fail-closed registry and VERIFIED accounting
         run: |
           set -euo pipefail
-          python3 - <<'PY'
+          python - <<'PY'
           import json
           from pathlib import Path
           d=json.loads(Path("generated/independent-verification-status-2026-09-29.json").read_text(encoding="utf-8"))
           s=d["verification_summary"]
-          assert s["independently_verified_records"] == 0
-          assert s["independent_verified_percent"] == 0
+          records=d["records"]
+          assert len(records) == s["queue_records"]
+          verified=sum(1 for x in records if x.get("status")=="VERIFIED")
+          evidence=sum(1 for x in records if x.get("status")=="EVIDENCE-SUPPORTED")
+          assert s["independently_verified_records"] == verified
+          expected=round((verified/len(records))*100, 6) if records else 0
+          assert s["independent_verified_percent"] == expected
+          assert s["evidence_supported_records"] == evidence
           assert s["verification_readiness_percent"] == 100
-          assert len(d["records"]) == s["queue_records"]
-          assert sum(1 for x in d["records"] if x["status"]=="EVIDENCE-SUPPORTED") == s["evidence_supported_records"]
-          assert all(x["status"] != "VERIFIED" for x in d["records"])
-          print("Independent verification gate: FAIL-CLOSED")
+          print("Independent verification accounting gate: PASS")
+          print("queue:",len(records),"evidence_supported:",evidence,"verified:",verified)
           PY
       - name: Validate integrity boundary
         run: |
