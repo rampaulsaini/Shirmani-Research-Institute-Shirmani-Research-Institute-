@@ -24,9 +24,9 @@ jobs:
       - name: Compute fail-closed verification progress
         run: |
           set -euo pipefail
-          test -s generated/independent-verification-queue.jsonl.gz
-          test -s generated/independent-verification-registry.jsonl.gz
-          python3 factory/verification_progress.py             --queue generated/independent-verification-queue.jsonl.gz             --registry generated/independent-verification-registry.jsonl.gz             --output generated/independent-verification-progress.json
+          if [ -s generated/independent-verification-queue.jsonl.gz ]; then QUEUE=generated/independent-verification-queue.jsonl.gz; elif [ -s generated/independent-verification-queue.jsonl ]; then QUEUE=generated/independent-verification-queue.jsonl; else echo "Verification queue missing"; exit 1; fi
+          if [ -s generated/independent-verification-registry.jsonl.gz ]; then REGISTRY=generated/independent-verification-registry.jsonl.gz; elif [ -s generated/independent-verification-registry.jsonl ]; then REGISTRY=generated/independent-verification-registry.jsonl; else echo "Verification registry missing"; exit 1; fi
+          python3 factory/verification_progress.py             --queue "$QUEUE"             --registry "$REGISTRY"             --output generated/independent-verification-progress.json
       - name: Publish machine-readable progress
         run: |
           set -euo pipefail
