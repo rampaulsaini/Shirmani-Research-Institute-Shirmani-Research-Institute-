@@ -8,6 +8,7 @@ on:
     paths:
       - "schemas/independent-verification-record.schema.json"
       - "factory/independent_verification_engine.py"
+      - "scripts/independent_verification_gate_v2.py"
       - "generated/independent-verification-records.json"
       - ".github/workflows/independent-verification-pipeline.yml"
 permissions:
@@ -28,7 +29,6 @@ jobs:
         run: |
           python - <<'PY'
           import json
-          from pathlib import Path
           json.load(open("schemas/independent-verification-record.schema.json",encoding="utf-8"))
           d=json.load(open("generated/independent-verification-records.json",encoding="utf-8"))
           assert isinstance(d.get("records"),list)
@@ -38,8 +38,8 @@ jobs:
         run: python tests/test_supreme_nlp_evidence_engine.py
       - name: Evaluate promotion gates
         run: python factory/independent_verification_engine.py
-      - name: Run independent verification integrity gate
-        run: python scripts/independent_verification_gate.py --registry generated/independent-verification-records.json
+      - name: Run independent verification integrity gate v2
+        run: python scripts/independent_verification_gate_v2.py --registry generated/independent-verification-records.json
       - name: Enforce fail-closed VERIFIED rule
         run: |
           python - <<'PY'
@@ -56,15 +56,15 @@ jobs:
       - name: Audit summary
         run: |
           {
-            echo "## Evidence → VERIFIED Control Plane"
-            echo "- Evidence collection → independent test → reproducibility → counter-evidence → audit → explicit reviewer decision"
+            echo "## Evidence to VERIFIED Control Plane"
+            echo "- Evidence collection -> independent test -> reproducibility -> counter-evidence -> audit -> explicit reviewer decision"
             echo "- VERIFIED remains fail-closed"
             echo "- Automation cannot manufacture an independent review decision"
-            echo "- Supreme NLP contract: provenance + uncertainty + abstention + multimodal disagreement preservation"
+            echo "- Current verified count is reported from explicit reviewer decisions only"
           } >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
-          name: independent-verification-promotion-${{ github.run_id }}
+          name: independent-verification-promotion
           path: generated/independent-verification-promotion-report.json
           if-no-files-found: error
           retention-days: 14
