@@ -1,0 +1,11 @@
+{
+  "schema_version":"1.0",
+  "status":"NO_INDEPENDENTLY_VERIFIED_RECORDS",
+  "total_records":0,
+  "verification_counts":{"BLOCKED":0,"REGISTERED":0,"REVIEW":0,"UNVERIFIED":0,"VERIFIED":0},
+  "verified_records":0,"malformed_records":0,
+  "independent_verification_required":true,
+  "promotion_rule":"Only explicit VERIFIED records count; workflow success, QC PASS, provenance, or generated artifacts do not promote a record.",
+  "source":"generated/claim-evidence.jsonl",
+  "fingerprint":"initial-status-derived-from-current-empty-claim-evidence-ledger"
+}
