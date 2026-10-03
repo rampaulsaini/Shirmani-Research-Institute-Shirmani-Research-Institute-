@@ -8,6 +8,8 @@ on:
     branches: [main]
     paths:
       - "generated/independent-verification-records.json"
+      - "generated/independent-verification-queue.jsonl"
+      - "generated/independent-verification-registry.jsonl"
       - "factory/verification_progress_dashboard.py"
       - ".github/workflows/verification-progress-dashboard.yml"
 
@@ -39,7 +41,9 @@ jobs:
           r=d["records"]
           p=d["percent"]
           assert r["target"] == 100200
-          assert 0 <= r["verified"] <= r["reviewed"] <= r["prepared"] <= r["target"]
+          assert 0 <= r["verified"] <= r["reviewed"] <= r["queued"] <= r["target"]
+          assert 0 <= r["prepared"] <= r["target"]
+          assert d["integrity"]["verified_ledger_match"] is True
           assert r["verified"] + r["remaining_to_verified_target"] == r["target"]
           assert 0 <= p["independently_verified_of_target"] <= 100
           assert 0 <= p["remaining_of_target"] <= 100
