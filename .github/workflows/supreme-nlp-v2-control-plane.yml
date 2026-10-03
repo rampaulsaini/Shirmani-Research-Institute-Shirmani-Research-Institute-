@@ -58,7 +58,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: supreme-nlp-v2-control-plane-\${{ github.run_id }}
+          name: supreme-nlp-v2-control-plane-${{ github.run_id }}
           path: |
             generated/supreme-nlp-v2-benchmark.json
             generated/supreme-nlp/unified-control-plane.json
