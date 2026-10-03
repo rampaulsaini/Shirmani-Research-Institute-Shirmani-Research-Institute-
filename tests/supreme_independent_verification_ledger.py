@@ -14,7 +14,7 @@ def main():
     report = json.loads((ROOT / "generated/supreme-independent-verification-ledger.json").read_text(encoding="utf-8"))
     assert report["target_verified_records"] == 100_200
     assert report["verified_count"] >= 0
-    assert report["remaining_to_target"] == max(100_200 - report["verified_count"], 0)
+    assert report["remaining_to_target"] == max(target - report["verified_count"], 0)
     assert 0 <= report["verification_completion_percent"] <= 100
     assert report["independence_boundary"].startswith("Automation validates")
     print("SHIRMANI Supreme Independent Verification Ledger: PASS")
