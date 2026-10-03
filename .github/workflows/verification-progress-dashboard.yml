@@ -8,6 +8,8 @@ on:
     branches: [main]
     paths:
       - "generated/independent-verification-records.json"
+      - "generated/VERIFICATION-QUEUE.json"
+      - "generated/VERIFICATION-REGISTRY.json"
       - "factory/verification_progress_dashboard.py"
       - ".github/workflows/verification-progress-dashboard.yml"
 
