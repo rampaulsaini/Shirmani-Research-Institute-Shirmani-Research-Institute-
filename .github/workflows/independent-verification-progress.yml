@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+  push:
+    paths:
+      - "generated/independent-verification-status-2026-09-29.json"
+      - "generated/independent-verification-records.json"
+      - "factory/verification_progress.py"
+      - "factory/bootstrap_independent_verification_queue.py"
+      - "factory/bootstrap_verification_review_registry.py"
+      - "scripts/generate_independent_verification_progress_map.py"
+      - ".github/workflows/independent-verification-progress.yml"
 
 permissions:
   contents: write
