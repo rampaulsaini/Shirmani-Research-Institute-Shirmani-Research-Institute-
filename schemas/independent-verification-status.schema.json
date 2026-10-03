@@ -1,0 +1,13 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Independent Verification Status","type":"object",
+  "required":["schema_version","status","total_records","verification_counts","verified_records","malformed_records","independent_verification_required","promotion_rule","source","fingerprint"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "status":{"type":"string","enum":["NO_INDEPENDENTLY_VERIFIED_RECORDS","VERIFIED_RECORDS_PRESENT"]},
+    "total_records":{"type":"integer","minimum":0},
+    "verification_counts":{"type":"object","required":["BLOCKED","REGISTERED","REVIEW","UNVERIFIED","VERIFIED"],"additionalProperties":false},
+    "verified_records":{"type":"integer","minimum":0},"malformed_records":{"type":"integer","minimum":0},
+    "independent_verification_required":{"const":true},"promotion_rule":{"type":"string"},"source":{"type":"string"},"fingerprint":{"type":"string","minLength":1}
+  },"additionalProperties":false
+}
