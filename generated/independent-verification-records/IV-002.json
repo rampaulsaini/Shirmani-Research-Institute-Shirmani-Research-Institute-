@@ -1,0 +1,19 @@
+{
+  "record_id": "IV-002",
+  "source_record_id": "IV-002",
+  "claim_or_result": "Galaxies can collide and merge and their structures evolve.",
+  "verification_scope": "Check whether independent astronomy sources document galaxy collisions, mergers and structural evolution.",
+  "evidence_refs": [
+    "https://science.nasa.gov/universe/galaxies/evolution/",
+    "https://science.nasa.gov/mission/hubble/science/science-highlights/galaxy-details-and-mergers/",
+    "https://science.nasa.gov/universe/exoplanets/why-do-some-galactic-unions-lead-to-doom/"
+  ],
+  "independent_verifier": "GPT-5.6 Luna — independent source-check pass",
+  "verification_method": "Independent cross-check against NASA Science and Hubble material describing observed galaxy collisions, gravitational deformation, mergers and resulting changes.",
+  "reviewed_at": "2026-10-03T13:45:00Z",
+  "verification_state": "REVIEW",
+  "limitations": [
+    "This review establishes source support for the stated broad claim; it does not constitute a new astronomical observation or reproduce the underlying telescope observations.",
+    "Final VERIFIED promotion remains fail-closed until the repository's required independent-review decision is completed."
+  ]
+}

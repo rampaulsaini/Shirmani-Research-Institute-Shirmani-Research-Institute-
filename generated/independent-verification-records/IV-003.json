@@ -1,0 +1,19 @@
+{
+  "record_id": "IV-003",
+  "source_record_id": "IV-003",
+  "claim_or_result": "Human activity affects climate, ecosystems and biodiversity.",
+  "verification_scope": "Check whether the IPCC AR6 Working Group II independently documents relationships among human activity, climate change, ecosystems and biodiversity.",
+  "evidence_refs": [
+    "https://www.ipcc.ch/report/ar6/wg2/",
+    "https://www.ipcc.ch/report/ar6/wg2/chapter/summary-for-policymakers/",
+    "https://www.ipcc.ch/report/ar6/wg2/resources/spm-headline-statements/"
+  ],
+  "independent_verifier": "GPT-5.6 Luna — independent source-check pass",
+  "verification_method": "Independent cross-check against IPCC AR6 WGII public report and approved Summary for Policymakers materials addressing human-induced climate change, impacts on nature and people, ecosystems and biodiversity.",
+  "reviewed_at": "2026-10-03T13:45:00Z",
+  "verification_state": "REVIEW",
+  "limitations": [
+    "The claim is broad; the cited IPCC material supports documented causal and impact relationships but does not imply that every environmental change is caused by humans.",
+    "This is an AI source-check pass, not a substitute for the repository's final independent reviewer attestation."
+  ]
+}
