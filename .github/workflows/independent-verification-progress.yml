@@ -30,6 +30,9 @@ jobs:
         with:
           ref: main
           fetch-depth: 1
+      - name: Build current fail-closed verification status
+        run: python3 factory/build_independent_verification_status.py
+
       - name: Rebuild deterministic review queue and pending registry
         run: |
           set -euo pipefail
