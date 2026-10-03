@@ -1,0 +1,41 @@
+name: SHIRMANI Independent Verification Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "generated/**/*.json"
+      - "factory/supreme_independent_verification_audit.py"
+      - "tests/supreme_independent_verification_audit.py"
+      - ".github/workflows/supreme-independent-verification-audit.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-independent-verification-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run independent-verification state audit
+        run: python3 factory/supreme_independent_verification_audit.py
+      - name: Run audit hardening tests
+        run: python3 tests/supreme_independent_verification_audit.py
+      - name: Upload verification telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-independent-verification-audit-${{ github.run_id }}
+          path: generated/supreme-independent-verification-audit.json
+          if-no-files-found: error
+          retention-days: 14
