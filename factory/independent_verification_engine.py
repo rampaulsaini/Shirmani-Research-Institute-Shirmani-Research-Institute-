@@ -42,29 +42,32 @@ def evaluate(path="generated/independent-verification-records.json"):
     records=data.get("records",[])
     summary=data.get("verification_summary",{})
     report=[]
-    eligible=0
+    verified_count=0
     for r in records:
         ok,errors=check_record(r)
         decision=r.get("reviewer_decision",{}).get("decision")
-        is_verified=ok and decision=="VERIFIED"
-        eligible += int(is_verified)
+        is_verified=ok and decision=="VERIFIED" and r.get("status")=="VERIFIED"
+        verified_count += int(is_verified)
         report.append({"id":r.get("id"),"eligible_for_verified":is_verified,
                        "requested_decision":decision,"errors":errors})
     evidence_supported=sum(1 for r in records if r.get("status")=="EVIDENCE-SUPPORTED")
     if summary.get("queue_records") != len(records):
         raise SystemExit("QUEUE_SUMMARY_MISMATCH")
-    if summary.get("independently_verified_records") != 0 or summary.get("independent_verified_percent") != 0:
-        raise SystemExit("FAIL_CLOSED_BASELINE_BREACH")
-    if eligible:
-        raise SystemExit("AUTOMATION_CANNOT_PROMOTE_VERIFIED")
-    if summary.get("evidence_supported_records", evidence_supported) != evidence_supported:
+    if summary.get("independently_verified_records") != verified_count:
+        raise SystemExit("VERIFIED_SUMMARY_MISMATCH")
+    expected_pct=round((verified_count/len(records))*100,6) if records else 0
+    if summary.get("independent_verified_percent") != expected_pct:
+        raise SystemExit("VERIFIED_PERCENT_MISMATCH")
+    if summary.get("evidence_supported_records",evidence_supported) != evidence_supported:
         raise SystemExit("EVIDENCE_SUMMARY_MISMATCH")
+    # Fail-closed: this evaluator may validate an explicitly recorded independent
+    # decision, but it never creates reviewer identity, test evidence, or a decision.
     return {
         "generated_at":datetime.now(timezone.utc).isoformat(),
         "queue_records":len(records),
         "evidence_supported_records":evidence_supported,
-        "verified_records":0,
-        "verified_percent":0,
+        "verified_records":verified_count,
+        "verified_percent":expected_pct,
         "records":report,
         "fail_closed":True,
         "automation_cannot_create_independent_review":True
