@@ -59,12 +59,17 @@ jobs:
             echo "Promotion QC: NOT_READY; VERIFIED remains blocked."
           fi
 
+      - name: Generate measurable progress map
+        run: python3 scripts/generate_independent_verification_progress_map.py
+
       - name: Publish conveyor report
         uses: actions/upload-artifact@v4
         with:
           name: independent-verification-conveyor-${{ github.run_id }}
           path: |
             generated/independent-verification-conveyor-report.json
+            generated/independent-verification-progress.json
+            generated/independent-verification-progress-map.md
             generated/VERIFICATION-QUEUE-QC.json
             generated/VERIFICATION-PROMOTION-QC.json
             generated/independent-verification-queue.jsonl
