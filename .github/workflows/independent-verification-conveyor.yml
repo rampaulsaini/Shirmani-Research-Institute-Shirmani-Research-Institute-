@@ -1,4 +1,5 @@
 name: SHIRMANI Independent Verification Conveyor
+# deterministic bootstrap trigger: keep the fail-closed verification conveyor active
 
 on:
   workflow_dispatch:
