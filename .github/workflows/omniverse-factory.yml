@@ -221,6 +221,15 @@ jobs:
           promotion=json.loads(Path("generated/VERIFICATION-PROMOTION-QC.json").read_text())
           if promotion.get("publication_gate") == "BLOCK":
               raise SystemExit("Verification promotion gate is BLOCK: unearned verification detected")
+          progress=json.loads(Path("generated/VERIFICATION-PROGRESS.json").read_text())
+          if progress.get("total_records") != queue.get("records"):
+              raise SystemExit("Verification progress total does not match queue QC")
+          if progress.get("verified_records", 0) > progress.get("total_records", 0):
+              raise SystemExit("Verification progress exceeds total records")
+          if progress.get("verification_completion_pct", 0) < 0 or progress.get("verification_completion_pct", 0) > 100:
+              raise SystemExit("Verification progress percentage is invalid")
+          if progress.get("workflow_success_is_not_verification") is not True:
+              raise SystemExit("Verification progress must preserve fail-closed semantics")
           graph=json.loads(Path("generated/RESEARCH-EVIDENCE-GRAPH-QC.json").read_text())
           if graph.get("publication_gate") != "PASS":
               raise SystemExit("Research evidence graph QC is not PASS")
