@@ -13,6 +13,7 @@ on:
       - "factory/bootstrap_verification_review_registry.py"
       - "scripts/generate_independent_verification_progress_map.py"
       - ".github/workflows/independent-verification-progress.yml"
+      - "config/independent-verification-target.json"
 
 permissions:
   contents: write

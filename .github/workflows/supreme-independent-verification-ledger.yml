@@ -13,6 +13,7 @@ on:
       - "tests/supreme_independent_verification_ledger.py"
       - "generated/independent-verification-records/**"
       - ".github/workflows/supreme-independent-verification-ledger.yml"
+      - "config/independent-verification-target.json"
   pull_request:
     branches: [main]
 
