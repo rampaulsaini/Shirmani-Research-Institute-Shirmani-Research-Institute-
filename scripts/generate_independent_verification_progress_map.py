@@ -1,11 +1,22 @@
 #!/usr/bin/env python3
-"""Generate a non-deceptive independent-verification progress map."""
+"""Generate a non-deceptive independent-verification progress map.
+
+The repository currently has two deliberately distinct scales:
+1. The authoritative 100,200-record target registry.
+2. The instantiated claim/review registry currently materialized for actual review.
+
+They must never be conflated. Workflow activity and review-slot creation are
+preparation telemetry, not independent verification.
+"""
 from __future__ import annotations
 import json
-from pathlib import Path
 from datetime import datetime, timezone
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+AUTHORITATIVE_QUEUE = ROOT / "generated/VERIFICATION-QUEUE.json"
+AUTHORITATIVE_REGISTRY = ROOT / "generated/VERIFICATION-REGISTRY.json"
+PROMOTION_QC = ROOT / "generated/VERIFICATION-PROMOTION-QC.json"
 STATUS = ROOT / "generated/independent-verification-status-2026-09-29.json"
 QUEUE = ROOT / "generated/independent-verification-queue.jsonl"
 REGISTRY = ROOT / "generated/independent-verification-registry.jsonl"
@@ -17,99 +28,142 @@ def jsonl_count(path: Path) -> int:
         return 0
     return sum(1 for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
 
-def bar(pct: float, width: int = 20) -> str:
-    filled = round(width * pct / 100)
-    return "█" * filled + "░" * (width - filled)
+def jsonl_verified(path: Path) -> int:
+    if not path.exists():
+        return 0
+    n = 0
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        r = json.loads(line)
+        if (str(r.get("status","")).upper() == "REVIEWED"
+            and str(r.get("verification_status","")).upper() == "VERIFIED"
+            and r.get("independent") is True):
+            n += 1
+    return n
+
+def pct(n: int, d: int) -> float:
+    return round(100.0*n/d, 4) if d else 0.0
+
+def bar(value: float, width: int = 20) -> str:
+    filled = round(width*value/100)
+    return "█"*filled + "░"*(width-filled)
 
 def main() -> None:
-    data = json.loads(STATUS.read_text(encoding="utf-8"))
-    s = data["verification_summary"]
-    queue = jsonl_count(QUEUE)
-    registry = jsonl_count(REGISTRY)
-    total = queue or int(s["queue_records"])
-    evidence = int(s["evidence_supported_records"])
-    readiness = float(s["verification_readiness_percent"])
+    status = json.loads(STATUS.read_text(encoding="utf-8"))
+    summary = status["verification_summary"]
+    aq = json.loads(AUTHORITATIVE_QUEUE.read_text(encoding="utf-8"))
+    ar = json.loads(AUTHORITATIVE_REGISTRY.read_text(encoding="utf-8"))
+    promotion = json.loads(PROMOTION_QC.read_text(encoding="utf-8"))
 
-    # The live review registry is authoritative for progress after bootstrap.
-    # Never infer VERIFIED from workflow success or the historical status file.
-    verified = 0
-    if REGISTRY.exists():
-        for line in REGISTRY.read_text(encoding="utf-8").splitlines():
-            if not line.strip():
-                continue
-            record = json.loads(line)
-            if (
-                str(record.get("status", "")).upper() == "REVIEWED"
-                and str(record.get("verification_status", "")).upper() == "VERIFIED"
-                and record.get("independent") is True
-            ):
-                verified += 1
-    evidence_pct = round((evidence / total) * 100, 2) if total else 0
-    verified_pct = round((verified / total) * 100, 2) if total else 0
-    registry_coverage = round((registry / queue) * 100, 2) if queue else 0
+    target = int(aq["records"])
+    queued = int(ar["queued"])
+    reviewed = int(ar["reviewed"])
+    verified = int(ar["verified"])
+
+    instantiated = jsonl_count(QUEUE)
+    review_slots = jsonl_count(REGISTRY)
+    instantiated_verified = jsonl_verified(REGISTRY)
+    historical_queue = int(summary["queue_records"])
+    evidence_supported = int(summary["evidence_supported_records"])
 
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "source": "generated/independent-verification-status-2026-09-29.json",
-        "queue_records": total,
-        "evidence_supported_records": evidence,
-        "evidence_supported_percent": evidence_pct,
-        "review_readiness_percent": readiness,
-        "queue_records_generated": queue,
-        "review_registry_records": registry,
-        "review_registry_coverage_percent": registry_coverage,
-        "independently_verified_records": verified,
-        "independent_verified_percent": verified_pct,
+        "scope": "independent-verification",
+        "authoritative_target": target,
+        "authoritative": {
+            "queued": queued, "reviewed": reviewed, "verified": verified,
+            "remaining_to_target": max(target-verified,0),
+            "queued_percent": pct(queued,target),
+            "reviewed_percent": pct(reviewed,target),
+            "verified_percent": pct(verified,target),
+            "remaining_percent": pct(max(target-verified,0),target),
+            "promotion_eligible": int(promotion.get("promotion_eligible",0)),
+            "publication_gate": promotion.get("publication_gate"),
+        },
+        "instantiated_review_layer": {
+            "claim_records": instantiated,
+            "review_slots": review_slots,
+            "verified": instantiated_verified,
+            "review_slot_coverage_percent": pct(review_slots,instantiated),
+            "verified_percent_of_instantiated": pct(instantiated_verified,instantiated),
+            "evidence_supported_records": evidence_supported,
+            "evidence_supported_percent_of_historical_queue": pct(evidence_supported,historical_queue),
+        },
+        "legacy_status_reference": {
+            "historical_queue_records": historical_queue,
+            "historical_verified_records": int(summary["independently_verified_records"]),
+            "historical_verified_percent": float(summary["independent_verified_percent"]),
+        },
         "policy": {
             "workflow_activity_is_not_verification": True,
             "automission_may_prepare": True,
             "automission_may_declare_verified": False,
-            "human_or_independent_reviewer_decision_required": True
-        }
+            "independent_reviewer_decision_required": True,
+            "scales_must_not_be_conflated": True,
+        },
     }
-    OUT_JSON.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    OUT_JSON.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
-    md = """# ꙰ SHIRMANI Independent Verification Progress Map
+    tv = report["authoritative"]["verified_percent"]
+    tr = report["authoritative"]["remaining_percent"]
+    rc = report["instantiated_review_layer"]["review_slot_coverage_percent"]
+    iv = report["instantiated_review_layer"]["verified_percent_of_instantiated"]
 
-Generated: {generated}
+    md = f"""# ꙰ SHIRMANI Independent Verification Progress Map
 
-## Current measurable state
+Generated: {report["generated_at"]}
 
-| Measure | Progress |
+## Authoritative target scale
+
+| Measure | Current |
 |---|---:|
-| Verification readiness | **{readiness:g}%** |
-| Evidence-supported records | **{evidence}/{total} ({evidence_pct:g}%)** |
-| Queue generated | **{queue}/{total} ({queue_pct:g}%)** |
-| Review registry coverage | **{registry}/{queue} ({registry_coverage:g}%)** |
-| Independently VERIFIED | **{verified}/{total} ({verified_pct:g}%)** |
+| Target | **{target:,} records** |
+| Queued | **{queued:,} ({report["authoritative"]["queued_percent"]:g}%)** |
+| Reviewed | **{reviewed:,} ({report["authoritative"]["reviewed_percent"]:g}%)** |
+| Independently VERIFIED | **{verified:,} ({tv:g}%)** |
+| Remaining to target | **{target-verified:,} ({tr:g}%)** |
+| Promotion eligible | **{promotion.get("promotion_eligible",0):,}** |
+| Publication gate | **{promotion.get("publication_gate")}** |
 
-## Graph
+### Target graph
+- VERIFIED: {bar(tv)} {tv:g}%
+- Remaining: {bar(tr)} {tr:g}%
 
-- Readiness: {readiness_bar} {readiness:g}%
-- Evidence-supported: {evidence_bar} {evidence_pct:g}%
-- Review registry coverage: {registry_bar} {registry_coverage:g}%
-- Independent VERIFIED: {verified_bar} {verified_pct:g}%
+## Instantiated review layer
+
+The repository currently materializes a smaller set of concrete claim/review records.
+This preparation/review layer must not be presented as the full 100,200 target.
+
+| Measure | Current |
+|---|---:|
+| Concrete claim records | **{instantiated:,}** |
+| Review slots | **{review_slots:,} ({rc:g}% coverage)** |
+| Independently VERIFIED | **{instantiated_verified:,} ({iv:g}%)** |
+| Evidence-supported in historical 10-record status | **{evidence_supported}/{historical_queue} ({report["instantiated_review_layer"]["evidence_supported_percent_of_historical_queue"]:g}%)** |
+
+### Review-layer graph
+- Review-slot coverage: {bar(rc)} {rc:g}%
+- Independently VERIFIED: {bar(iv)} {iv:g}%
 
 ## Critical distinction
 
-**Prepared/ready is not the same as independently VERIFIED.**
+**Preparation, queue generation, review-slot generation, evidence collection and workflow success are not independent verification.**
 
-A workflow succeeding, a queue being generated, or evidence being collected does not create an independent verification decision. VERIFIED remains fail-closed until an independent reviewer records the required evidence, counter-evidence review, reproducible test/observation, reviewer identity/role, timestamp, and audit record.
+A record reaches VERIFIED only after the required independent review decision, evidence, counter-evidence review, reproducible test/observation, reviewer identity/role, timestamp and audit record satisfy the fail-closed promotion controls.
 
-## Next measurable gate
+## Operational path
 
-EVIDENCE -> INDEPENDENT TEST -> REPRODUCIBLE RESULT -> COUNTER-EVIDENCE -> AUDIT -> VERIFIED
+**Source → Normalize → Claims → Evidence → Independent Test → Reproducible Result → Counter-Evidence → Audit → VERIFIED → QC → Publication/Archive**
 
 The system may automate preparation and auditing, but it must not manufacture an independent reviewer decision.
-""".format(
-        generated=report["generated_at"], readiness=readiness, evidence=evidence, total=total,
-        evidence_pct=evidence_pct, queue=queue, queue_pct=round(queue/total*100,2) if total else 0,
-        registry=registry, registry_coverage=registry_coverage, verified=verified,
-        verified_pct=verified_pct, readiness_bar=bar(readiness), evidence_bar=bar(evidence_pct),
-        registry_bar=bar(registry_coverage), verified_bar=bar(verified_pct)
-    )
-    OUT_MD.write_text(md, encoding="utf-8")
-    print(json.dumps(report, ensure_ascii=False))
+
+## Integrity note
+
+The 100,200-record target and the currently instantiated concrete review records are intentionally reported as separate scales. This prevents a 10/10 review-slot coverage figure from being mistaken for 100% completion of the 100,200 VERIFIED target.
+"""
+    OUT_MD.write_text(md,encoding="utf-8")
+    print(json.dumps(report,ensure_ascii=False,indent=2))
 
 if __name__ == "__main__":
     main()
