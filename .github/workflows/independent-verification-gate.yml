@@ -47,7 +47,7 @@ jobs:
           assert s["independently_verified_records"] == verified
           expected_pct=round((verified/len(records))*100, 6) if records else 0
           assert s["independent_verified_percent"] == expected_pct
-          assert s["evidence_supported_records"] == evidence
+          assert s["evidence_supported_records"] == evidence\n          assert s["target_records"] == 100200\n          assert s["remaining_to_target"] == max(100200 - verified, 0)\n          assert s["target_completion_percent"] == round((verified/100200)*100, 6)
           print(f"Independent verification gate: FAIL-CLOSED; verified={verified}/{len(records)} ({expected_pct}%)")
           PY
 
