@@ -7,7 +7,9 @@ on:
   push:
     branches: [main]
     paths:
-      - "generated/independent-verification-records.json"
+      - "generated/VERIFICATION-QUEUE.json"
+      - "generated/VERIFICATION-REGISTRY.json"
+      - "generated/VERIFICATION-PROMOTION-QC.json"
       - "factory/verification_progress_dashboard.py"
       - ".github/workflows/verification-progress-dashboard.yml"
 
@@ -39,7 +41,9 @@ jobs:
           r=d["records"]
           p=d["percent"]
           assert r["target"] == 100200
-          assert 0 <= r["verified"] <= r["reviewed"] <= r["prepared"] <= r["target"]
+          assert 0 <= r["verified"] <= r["reviewed"] <= r["target"]
+          assert r["queued"] <= r["target"]
+          assert r["verified"] == r["promotion_verified"]
           assert r["verified"] + r["remaining_to_verified_target"] == r["target"]
           assert 0 <= p["independently_verified_of_target"] <= 100
           assert 0 <= p["remaining_of_target"] <= 100
@@ -71,7 +75,7 @@ jobs:
           p=d["percent"]
           print("## ꙰ SHIRMANI Verification Progress")
           print(f"- Target: {r['target']}")
-          print(f"- Prepared: {r['prepared']} ({p['prepared_of_target']}%)")
+          print(f"- Queued: {r['queued']} ({p['queued_of_target']}%)")
           print(f"- Reviewed: {r['reviewed']} ({p['reviewed_of_target']}%)")
           print(f"- Independently VERIFIED: {r['verified']} ({p['independently_verified_of_target']}%)")
           print(f"- Remaining: {r['remaining_to_verified_target']} ({p['remaining_of_target']}%)")
