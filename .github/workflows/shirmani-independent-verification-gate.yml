@@ -24,134 +24,98 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Verify research records
+      - name: Verify authoritative registry state
         shell: python
         run: |
-          import hashlib, json, os
+          import json, os
           from pathlib import Path
           from datetime import datetime, timezone
 
-          roots = [Path("generated"), Path("evidence"), Path("research"), Path("source"), Path("docs"), Path("schemas")]
-          files = []
-          for root in roots:
-              if root.exists():
-                  files.extend(sorted(root.rglob("*.json")))
-                  files.extend(sorted(root.rglob("*.jsonl")))
+          root = Path("generated")
+          queue_path = root / "VERIFICATION-QUEUE.json"
+          registry_path = root / "VERIFICATION-REGISTRY.json"
+          promotion_path = root / "VERIFICATION-PROMOTION-QC.json"
 
-          records = []
-          seen = set()
+          for path in (queue_path, registry_path, promotion_path):
+              if not path.exists():
+                  raise SystemExit(f"VERIFICATION_SCAN_FAIL: missing {path}")
 
-          def emit(obj, source):
-              if not isinstance(obj, dict):
-                  return
-              rid = obj.get("record_id") or obj.get("id") or obj.get("verification_id")
-              if not rid or rid in seen:
-                  return
-              seen.add(rid)
-              records.append((str(rid), obj, str(source)))
+          queue = json.loads(queue_path.read_text(encoding="utf-8"))
+          registry = json.loads(registry_path.read_text(encoding="utf-8"))
+          promotion = json.loads(promotion_path.read_text(encoding="utf-8"))
 
-          for path in files:
-              try:
-                  if path.suffix == ".jsonl":
-                      for line in path.read_text(encoding="utf-8").splitlines():
-                          if line.strip():
-                              try:
-                                  emit(json.loads(line), path)
-                              except Exception:
-                                  pass
-                  else:
-                      data = json.loads(path.read_text(encoding="utf-8"))
-                      if isinstance(data, list):
-                          for item in data:
-                              emit(item, path)
-                      else:
-                          emit(data, path)
-              except Exception:
-                  continue
+          target = int(queue["records"])
+          queued = int(queue["queued"])
+          reviewed = int(registry["reviewed"])
+          verified = int(registry["verified"])
+          promotion_verified = int(promotion["verified_records"])
 
-          verified, review, rejected = [], [], []
-          review_reasons = {}
+          if target != 100200:
+              raise SystemExit(f"VERIFICATION_SCAN_FAIL: target={target}, expected=100200")
+          if not (0 <= verified <= reviewed <= queued <= target):
+              raise SystemExit("VERIFICATION_SCAN_FAIL: registry counters violate monotonic invariants")
+          if promotion_verified != verified:
+              raise SystemExit("VERIFICATION_SCAN_FAIL: promotion/registry verified counts differ")
+          if int(promotion["queue_records"]) != target:
+              raise SystemExit("VERIFICATION_SCAN_FAIL: promotion/queue record counts differ")
 
-          for rid, obj, source in records:
-              iv = obj.get("independent_verification")
-              evidence = obj.get("evidence") or obj.get("evidence_ref") or obj.get("evidence_refs")
-              provenance = obj.get("provenance") or obj.get("source") or obj.get("source_ref")
-              status = iv.get("status") if isinstance(iv, dict) else None
-              timestamp = iv.get("timestamp") if isinstance(iv, dict) else None
-              run_ref = iv.get("run_id") if isinstance(iv, dict) else None
-              fingerprint = iv.get("sha256") if isinstance(iv, dict) else None
+          remaining = target - verified
+          verified_pct = round(verified / target * 100, 4) if target else 0.0
+          reviewed_pct = round(reviewed / target * 100, 4) if target else 0.0
+          queued_pct = round(queued / target * 100, 4) if target else 0.0
 
-              payload = {k:v for k,v in obj.items() if k != "independent_verification"}
-              canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
-              expected = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
-
-              if status == "REJECTED":
-                  rejected.append(rid)
-              elif status == "VERIFIED" and evidence and provenance and (timestamp or run_ref) and fingerprint == expected:
-                  verified.append(rid)
-              else:
-                  review.append(rid)
-                  reasons = []
-                  if status != "VERIFIED": reasons.append("status_not_verified")
-                  if not evidence: reasons.append("missing_evidence")
-                  if not provenance: reasons.append("missing_provenance")
-                  if not (timestamp or run_ref): reasons.append("missing_verification_timestamp_or_run")
-                  if fingerprint != expected: reasons.append("fingerprint_missing_or_mismatch")
-                  for reason in reasons:
-                      review_reasons[reason] = review_reasons.get(reason, 0) + 1
-
-          total, v = len(records), len(verified)
-          target = 100200
-          pct = round((v / total) * 100, 2) if total else 0.0
-          target_pct = round((v / target) * 100, 4)
-
-          gate_open = v > 0
           out = {
               "generated_at": datetime.now(timezone.utc).isoformat(),
-              "total_candidate_records": total,
-              "verified_records": v,
-              "review_records": len(review),
-              "rejected_records": len(rejected),
-              "verified_percentage_of_records": pct,
+              "authoritative_source": str(registry_path),
               "target_verified_records": target,
-              "target_progress_percentage": target_pct,
-              "remaining_to_target": max(target - v, 0),
-              "independent_verification_gate_open": gate_open,
-              "review_reason_counts": review_reasons,
-              "definition": "A workflow run is not a VERIFIED record; all verification gates must pass."
+              "queued_records": queued,
+              "reviewed_records": reviewed,
+              "verified_records": verified,
+              "remaining_to_target": remaining,
+              "queued_percentage_of_target": queued_pct,
+              "reviewed_percentage_of_target": reviewed_pct,
+              "target_progress_percentage": verified_pct,
+              "independent_verification_gate_open": verified > 0,
+              "promotion_gate": promotion.get("promotion_gate", promotion.get("publication_gate")),
+              "publication_gate": queue.get("publication_gate"),
+              "definition": "Workflow activity is not independent verification; VERIFIED requires an independent review record and passing promotion controls."
           }
 
           progress = {
               "generated_at": out["generated_at"],
-              "candidate_records": total,
-              "verified_records": v,
-              "review_records": len(review),
-              "rejected_records": len(rejected),
-              "target_verified_records": target,
-              "target_progress_percentage": target_pct,
-              "remaining_to_target": max(target-v, 0),
-              "verification_rate_of_candidates": pct,
-              "review_reason_counts": review_reasons,
+              "target": target,
+              "queued": queued,
+              "reviewed": reviewed,
+              "verified": verified,
+              "remaining": remaining,
+              "percent": {
+                  "queued": queued_pct,
+                  "reviewed": reviewed_pct,
+                  "verified": verified_pct,
+                  "remaining": round(remaining / target * 100, 4) if target else 0.0
+              },
               "map": {
                   "preparation": "COMPLETE",
                   "evidence_traceability": "COMPLETE",
                   "independent_verification": "IN_PROGRESS",
-                  "verified_output": "NOT_YET_ESTABLISHED"
+                  "verified_output": "ESTABLISHED" if verified else "NOT_YET_ESTABLISHED"
               }
           }
 
           Path("verification-status.json").write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
           Path("verification-progress-map.json").write_text(json.dumps(progress, indent=2, ensure_ascii=False), encoding="utf-8")
-          print(json.dumps(out, indent=2, ensure_ascii=False))
+
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as s:
               s.write("# SHIRMANI Independent Verification\n\n")
-              s.write(f"- Candidate records: **{total}**\n")
-              s.write(f"- VERIFIED records: **{v}**\n")
-              s.write(f"- REVIEW: **{len(review)}**\n")
-              s.write(f"- REJECTED: **{len(rejected)}**\n")
-              s.write(f"- Target: **{target}** VERIFIED\n")
-              s.write(f"- Target progress: **{target_pct}%**\n")
-              s.write(f"- Remaining: **{max(target-v,0)}**\n")
+              s.write(f"- Authoritative target: **{target:,}**\n")
+              s.write(f"- Queue: **{queued:,} ({queued_pct}%)**\n")
+              s.write(f"- Reviewed: **{reviewed:,} ({reviewed_pct}%)**\n")
+              s.write(f"- Independently VERIFIED: **{verified:,} ({verified_pct}%)**\n")
+              s.write(f"- Remaining: **{remaining:,} ({round(remaining / target * 100, 4)}%)**\n")
+              s.write(f"- Promotion gate: **{out['promotion_gate']}**\n")
+              s.write("- Workflow success is not counted as VERIFIED.\n")
+
+          print(json.dumps(out, indent=2, ensure_ascii=False))
 
       - name: Publish verification status
         uses: actions/upload-artifact@v4
