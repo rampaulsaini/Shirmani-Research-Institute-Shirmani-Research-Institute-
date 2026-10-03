@@ -70,6 +70,7 @@ jobs:
                   continue
 
           verified, review, rejected = [], [], []
+          review_reasons = {}
 
           for rid, obj, source in records:
               iv = obj.get("independent_verification")
@@ -90,14 +91,21 @@ jobs:
                   verified.append(rid)
               else:
                   review.append(rid)
+                  reasons = []
+                  if status != "VERIFIED": reasons.append("status_not_verified")
+                  if not evidence: reasons.append("missing_evidence")
+                  if not provenance: reasons.append("missing_provenance")
+                  if not (timestamp or run_ref): reasons.append("missing_verification_timestamp_or_run")
+                  if fingerprint != expected: reasons.append("fingerprint_missing_or_mismatch")
+                  for reason in reasons:
+                      review_reasons[reason] = review_reasons.get(reason, 0) + 1
 
           total, v = len(records), len(verified)
           target = 100200
           pct = round((v / total) * 100, 2) if total else 0.0
           target_pct = round((v / target) * 100, 4)
 
-          independently_verified = v == len(verified) and len(verified) > 0
-
+          gate_open = v > 0
           out = {
               "generated_at": datetime.now(timezone.utc).isoformat(),
               "total_candidate_records": total,
@@ -108,11 +116,32 @@ jobs:
               "target_verified_records": target,
               "target_progress_percentage": target_pct,
               "remaining_to_target": max(target - v, 0),
-              "independent_verification_gate_open": independently_verified,
+              "independent_verification_gate_open": gate_open,
+              "review_reason_counts": review_reasons,
               "definition": "A workflow run is not a VERIFIED record; all verification gates must pass."
           }
 
+          progress = {
+              "generated_at": out["generated_at"],
+              "candidate_records": total,
+              "verified_records": v,
+              "review_records": len(review),
+              "rejected_records": len(rejected),
+              "target_verified_records": target,
+              "target_progress_percentage": target_pct,
+              "remaining_to_target": max(target-v, 0),
+              "verification_rate_of_candidates": pct,
+              "review_reason_counts": review_reasons,
+              "map": {
+                  "preparation": "COMPLETE",
+                  "evidence_traceability": "COMPLETE",
+                  "independent_verification": "IN_PROGRESS",
+                  "verified_output": "NOT_YET_ESTABLISHED"
+              }
+          }
+
           Path("verification-status.json").write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
+          Path("verification-progress-map.json").write_text(json.dumps(progress, indent=2, ensure_ascii=False), encoding="utf-8")
           print(json.dumps(out, indent=2, ensure_ascii=False))
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as s:
               s.write("# SHIRMANI Independent Verification\n\n")
@@ -128,4 +157,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: shirmani-independent-verification-status
-          path: verification-status.json
+          path: |
+            verification-status.json
+            verification-progress-map.json
