@@ -52,8 +52,12 @@ def main():
     counts = {state: 0 for state in sorted(STATES)}
     blockers = []
     prepared_records = len(prepared)
+    canonical_ids = {record.get("id") for record in prepared if isinstance(record, dict) and record.get("id")}
+    if len(canonical_ids) != prepared_records:
+        blockers.append("canonical registry contains missing or duplicate record ids")
     counts["UNVERIFIED"] = prepared_records
     explicit_ledger_records = 0
+    overlaid_canonical_ids = set()
 
     if RECORD_DIR.exists():
         for path in sorted(RECORD_DIR.glob("*.json")):
@@ -67,6 +71,14 @@ def main():
             if errors:
                 blockers.extend(path.name + ": " + error for error in errors)
                 continue
+            source_record_id = record.get("source_record_id")
+            if source_record_id not in canonical_ids:
+                blockers.append(path.name + ": source_record_id is not present in canonical verification registry")
+                continue
+            if source_record_id in overlaid_canonical_ids:
+                blockers.append(path.name + ": duplicate ledger overlay for canonical record " + source_record_id)
+                continue
+            overlaid_canonical_ids.add(source_record_id)
             counts["UNVERIFIED"] = max(0, counts["UNVERIFIED"] - 1)
             counts[record["verification_state"]] += 1
 
