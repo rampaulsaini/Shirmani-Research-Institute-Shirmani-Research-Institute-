@@ -228,3 +228,15 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Five-minute workflow:** [.github/workflows/ultra-mega-infinity-quantum-automission.yml](.github/workflows/ultra-mega-infinity-quantum-automission.yml)
 - **Hardening test:** [tests/ultra_mega_infinity_quantum_automission.py](tests/ultra_mega_infinity_quantum_automission.py)
 - **Integrity:** the architecture label does not claim physical quantum computation; measured signals, inference, interpretation, confidence, provenance and uncertainty remain distinct.
+
+## 🔎 Independent Verification Ledger
+
+- **Ledger contract:** [docs/supreme-independent-verification-ledger.md](docs/supreme-independent-verification-ledger.md)
+- **Verification schema:** [schemas/supreme-independent-verification-record.schema.json](schemas/supreme-independent-verification-record.schema.json)
+- **Deterministic audit:** [factory/supreme_independent_verification_ledger.py](factory/supreme_independent_verification_ledger.py)
+- **Five-minute workflow:** [.github/workflows/supreme-independent-verification-ledger.yml](.github/workflows/supreme-independent-verification-ledger.yml)
+- **Target:** 100,200 independently verified records.
+- **Integrity:** workflow execution, QC PASS, benchmark PASS and model confidence do not promote a record to VERIFIED.
+- **Promotion boundary:** a VERIFIED record requires source identity, defined verification scope, evidence references, an identified independent verifier, a documented method, review timestamp and stated limitations.
+- **Automation boundary:** the ledger validates declared evidence and structure; it does not act as the independent verifier itself.
+
