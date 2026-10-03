@@ -39,6 +39,7 @@ jobs:
           r=d["records"]
           p=d["percent"]
           assert r["target"] == 100200
+          assert r["source_registry_records"] == r["prepared"]
           assert 0 <= r["verified"] <= r["reviewed"] <= r["prepared"] <= r["target"]
           assert r["verified"] + r["remaining_to_verified_target"] == r["target"]
           assert 0 <= p["independently_verified_of_target"] <= 100
