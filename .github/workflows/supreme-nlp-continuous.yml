@@ -6,7 +6,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "agents/supreme_nlp_agent.py"
+      - "agents/supreme_nlp.py"
       - "factory/supreme_nlp_qc.py"
       - "factory/supreme-nlp-policy.json"
       - ".github/workflows/supreme-nlp-continuous.yml"
@@ -34,14 +34,14 @@ jobs:
           assert p["subjective_state_claims_require_independent_verification"] is True
           print("SUPREME_NLP_POLICY=PASS")
           PY
-          python3 -m py_compile agents/supreme_nlp_agent.py factory/supreme_nlp_qc.py
+          python3 -m py_compile agents/supreme_nlp.py factory/supreme_nlp_qc.py
           python3 factory/supreme_nlp_qc.py
       - name: Produce deterministic status
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
-          from agents.supreme_nlp_agent import interpret
+          from agents.supreme_nlp import interpret
           result=interpret({"context":"continuous baseline","signals":[]})
           Path("generated").mkdir(exist_ok=True)
           Path("generated/supreme-nlp-status.json").write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
