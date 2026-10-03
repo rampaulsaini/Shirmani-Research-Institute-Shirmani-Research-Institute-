@@ -79,7 +79,7 @@ def _baseline_drift(rows: list[Signal]) -> float:
 def summarize(signals: Iterable[Dict[str, Any]]) -> Dict[str, Any]:
     rows = [normalize_signal(x) for x in signals]
     if not rows:
-        return {"status": "no_data", "interpretation": None, "signals": []}
+        return {"status": "no_observable_signal", "interpretation": None, "signals": []}
     usable = [s for s in rows if s.quality > 0]
     if not usable:
         return {"status": "insufficient_quality", "interpretation": None,

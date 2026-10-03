@@ -103,7 +103,7 @@ def main():
         "verified_records": verified,
         "promotion_eligible": eligible,
         "error_count": len(errors),
-        "publication_gate": "BLOCK" if errors else ("PASS" if records == eligible else "CHECK"),
+        "publication_gate": "BLOCK" if errors or records != eligible else "PASS",
         "queue_records": len(queue_tasks),
         "orphan_queue_tasks": len(orphan_tasks),
         "policy": "Only complete independent review, evidence, countercase, reproduction/test and audit records may reach VERIFIED; every review must match the exact current queue task hash."
