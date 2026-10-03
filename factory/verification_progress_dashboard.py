@@ -17,5 +17,12 @@ queue=jsonl(QUEUE); registry=jsonl(REGISTRY); counts={}
 for r in records:
     counts[r.get("status","UNKNOWN")]=counts.get(r.get("status","UNKNOWN"),0)+1
 total=len(records); evidence=counts.get("EVIDENCE-SUPPORTED",0); verified=sum(1 for r in records if r.get("status")=="VERIFIED"); readiness=status["verification_summary"].get("verification_readiness_percent",0)
-dashboard={"generated_at":datetime.now(timezone.utc).isoformat(),"method":"count-based, fail-closed; workflow success is not independent verification","records":{"total":total,"evidence_supported":evidence,"verified":verified,"not_verified":counts.get("NOT_VERIFIED",0),"author_defined_or_proposed":counts.get("AUTHOR-DEFINED",0)+counts.get("AUTHOR-PROPOSED",0)},"percent":{"evidence_supported_of_total":round(evidence/total*100,2) if total else 0,"independently_verified_of_total":round(verified/total*100,2) if total else 0,"verification_readiness":readiness},"automation_state":{"queue_records":len(queue),"review_registry_records":len(registry),"independent_verification_required":True,"automission_may_declare_verified":False},"next_gate":"independent reviewer decision + counter-evidence review + reproducible test + audit record"}
+review_status={}
+for r in registry:
+    s=r.get("status","UNKNOWN")
+    review_status[s]=review_status.get(s,0)+1
+review_slots=len(registry)
+completed_reviews=sum(v for k,v in review_status.items() if k not in {"PENDING_REVIEW","UNKNOWN"})
+dashboard={"generated_at":datetime.now(timezone.utc).isoformat(),"method":"count-based, fail-closed; workflow success is not independent verification","records":{"total":total,"evidence_supported":evidence,"verified":verified,"not_verified":counts.get("NOT_VERIFIED",0),"author_defined_or_proposed":counts.get("AUTHOR-DEFINED",0)+counts.get("AUTHOR-PROPOSED",0)},"percent":{"evidence_supported_of_total":round(evidence/total*100,2) if total else 0,"independently_verified_of_total":round(verified/total*100,2) if total else 0,"verification_readiness":readiness,"verification_gap":round((total-verified)/total*100,2) if total else 0,"review_completion":round(completed_reviews/review_slots*100,2) if review_slots else 0},"review":{"slots":review_slots,"pending":review_status.get("PENDING_REVIEW",0),"completed":completed_reviews},"automation_state":{"queue_records":len(queue),"review_registry_records":review_slots,"independent_verification_required":True,"automission_may_declare_verified":False},"next_gate":"complete independent review slots with reproducible test, counter-evidence, reviewer provenance and explicit decision"}}
+
 OUT.write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"); print(json.dumps(dashboard,ensure_ascii=False))
