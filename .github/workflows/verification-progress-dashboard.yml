@@ -40,7 +40,7 @@ jobs:
       - name: Publish dashboard
         uses: actions/upload-artifact@v4
         with:
-          name: verification-progress-dashboard-\${{ github.run_id }}
+          name: verification-progress-dashboard-${{ github.run_id }}
           path: generated/verification-progress-dashboard.json
           retention-days: 14
       - name: Emit summary
