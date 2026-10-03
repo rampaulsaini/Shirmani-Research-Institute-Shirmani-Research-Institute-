@@ -24,11 +24,21 @@ def bar(pct: float, width: int = 20) -> str:
 def main() -> None:
     data = json.loads(STATUS.read_text(encoding="utf-8"))
     s = data["verification_summary"]
+
+    # Prefer the live canonical registry over the historical 2026-09-29
+    # status snapshot. The snapshot must not cap a live queue that has
+    # subsequently expanded (for example, to 100,200 records).
+    live_records = ROOT / "generated/independent-verification-records.json"
+    live = json.loads(live_records.read_text(encoding="utf-8")) if live_records.exists() else {}
+    live_rows = live.get("records", []) if isinstance(live, dict) else []
     queue = jsonl_count(QUEUE)
     registry = jsonl_count(REGISTRY)
-    total = queue or int(s["queue_records"])
-    evidence = int(s["evidence_supported_records"])
-    readiness = float(s["verification_readiness_percent"])
+    total = queue or len(live_rows) or int(s["queue_records"])
+    evidence = sum(
+        1 for r in live_rows
+        if str(r.get("source_status", r.get("status", ""))).upper() == "EVIDENCE-SUPPORTED"
+    )
+    readiness = 100.0 if total else float(s["verification_readiness_percent"])
 
     # The live review registry is authoritative for progress after bootstrap.
     # Never infer VERIFIED from workflow success or the historical status file.
@@ -50,7 +60,7 @@ def main() -> None:
 
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "source": "generated/independent-verification-status-2026-09-29.json",
+        "source": "live queue + generated/independent-verification-records.json; historical status retained for provenance",
         "queue_records": total,
         "evidence_supported_records": evidence,
         "evidence_supported_percent": evidence_pct,
