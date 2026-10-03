@@ -1,0 +1,45 @@
+name: SHIRMANI Supreme Independent Verification Ledger
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "schemas/supreme-independent-verification-record.schema.json"
+      - "docs/supreme-independent-verification-ledger.md"
+      - "factory/supreme_independent_verification_ledger.py"
+      - "tests/supreme_independent_verification_ledger.py"
+      - "generated/independent-verification-records/**"
+      - ".github/workflows/supreme-independent-verification-ledger.yml"
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-independent-verification-ledger
+  cancel-in-progress: true
+
+jobs:
+  verification-ledger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Audit independent verification ledger
+        run: python3 factory/supreme_independent_verification_ledger.py
+      - name: Run hardening test
+        run: python3 tests/supreme_independent_verification_ledger.py
+      - name: Upload verification telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-independent-verification-ledger
+          path: generated/supreme-independent-verification-ledger.json
+          if-no-files-found: error
+          retention-days: 14
