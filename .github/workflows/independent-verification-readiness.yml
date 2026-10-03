@@ -1,0 +1,54 @@
+name: SHIRMANI Independent Verification Readiness
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "generated/claim-evidence.jsonl"
+      - "factory/independent_verification_gate.py"
+      - "schemas/independent-verification-readiness.schema.json"
+      - ".github/workflows/independent-verification-readiness.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-independent-verification-readiness
+  cancel-in-progress: true
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Build verification-readiness report
+        run: python3 factory/independent_verification_gate.py
+      - name: Validate report contract
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          schema=json.loads(Path("schemas/independent-verification-readiness.schema.json").read_text())
+          report=json.loads(Path("generated/independent-verification-readiness.json").read_text())
+          missing=set(schema["required"])-set(report)
+          if missing: raise SystemExit("Missing report fields: "+", ".join(sorted(missing)))
+          if report["independently_verified"] > report["records"]: raise SystemExit("Invalid verification count")
+          if report["independently_verified"] > 0: raise SystemExit("Automation must not self-certify independent verification")
+          print("Independent verification readiness contract: PASS")
+          PY
+      - name: Upload readiness telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-verification-readiness-${{ github.run_id }}
+          path: generated/independent-verification-readiness.json
+          if-no-files-found: error
+          retention-days: 14
