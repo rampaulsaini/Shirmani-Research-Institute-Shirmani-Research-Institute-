@@ -10,7 +10,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from agents.supreme_nlp_multimodal import analyze, to_simple_language
 from agents.supreme_nlp_practitioner import build_practitioner_record
@@ -76,7 +81,6 @@ def main() -> int:
     report["fingerprint"] = canonical_hash(report)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"status": report["status"], "checks": checks, "failed_checks": [k for k, v in checks.items() if not v]}, ensure_ascii=False, indent=2))
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return 0 if passed else 1
 
