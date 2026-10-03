@@ -1,0 +1,59 @@
+name: SHIRMANI Independent Verification Automission
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-independent-verification
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Run verification queue QC
+        run: python factory/verification_queue_qc.py
+
+      - name: Run verification promotion gate
+        run: python factory/verification_promotion_gate.py
+
+      - name: Build verification status summary
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          out = Path("generated")
+          claims = [x for x in (out / "claim-evidence.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
+          queue = [json.loads(x) for x in (out / "independent-verification-queue.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
+          registry = [json.loads(x) for x in (out / "independent-verification-registry.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
+          verified = sum(r.get("verification_status") == "VERIFIED" for r in registry)
+          not_verified = sum(r.get("verification_status") == "NOT_VERIFIED" for r in registry)
+          print(f"claims={len(claims)} queue={len(queue)} registry={len(registry)} verified={verified} not_verified={not_verified}")
+          with open("$\u007bGITHUB_STEP_SUMMARY\u007d", "a", encoding="utf-8") as f:
+              f.write("# SHIRMANI Independent Verification\\n\\n")
+              f.write(f"- Claim records: **{len(claims)}**\\n")
+              f.write(f"- Verification queue: **{len(queue)}**\\n")
+              f.write(f"- Review registry records: **{len(registry)}**\\n")
+              f.write(f"- VERIFIED records: **{verified}**\\n")
+              f.write(f"- NOT_VERIFIED records: **{not_verified}**\\n")
+              f.write("- Promotion remains fail-closed until complete independent review evidence is recorded.\\n")
+
+      - name: Upload verification reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-independent-verification-$\u007b\u007b github.run_number \u007d\u007d
+          path: |
+            generated/claim-evidence.jsonl
+            generated/independent-verification-queue.jsonl
+            generated/independent-verification-registry.jsonl
+            generated/VERIFICATION-QUEUE-QC.json
+            generated/VERIFICATION-PROMOTION-QC.json
