@@ -6,11 +6,9 @@ on:
   push:
     branches: [main]
     paths:
-      - "generated/independent-verification-status-2026-09-29.json"
-      - "generated/independent-verification-queue.jsonl"
-      - "generated/independent-verification-registry.jsonl"
-      - "factory/bootstrap_independent_verification_queue.py"
-      - "factory/bootstrap_verification_review_registry.py"
+      - "generated/VERIFICATION-QUEUE.json"
+      - "generated/VERIFICATION-REGISTRY.json"
+      - "generated/VERIFICATION-PROMOTION-QC.json"
       - "factory/verification_progress_dashboard.py"
       - ".github/workflows/verification-progress-dashboard.yml"
 permissions:
@@ -27,11 +25,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-      - name: Rebuild deterministic verification queue and review registry
-        run: |
-          set -euo pipefail
-          python factory/bootstrap_independent_verification_queue.py
-          python factory/bootstrap_verification_review_registry.py
       - name: Generate fail-closed dashboard
         run: python factory/verification_progress_dashboard.py
       - name: Validate dashboard invariants
@@ -39,7 +32,12 @@ jobs:
           python - <<'PY'
           import json
           d=json.load(open("generated/verification-progress-dashboard.json",encoding="utf-8"))
-          assert 0 <= d["percent"]["independently_verified_of_total"] <= 100
+          records=d["records"]
+          percent=d["percent"]
+          assert records["target"] == 100200
+          assert 0 <= percent["independently_verified_of_target"] <= 100
+          assert 0 <= percent["remaining_of_target"] <= 100
+          assert records["verified"] + records["remaining_to_verified_target"] == records["target"]
           assert d["automation_state"]["independent_verification_required"] is True
           assert d["automation_state"]["automission_may_declare_verified"] is False
           print("VERIFICATION_DASHBOARD_GATE: PASS")
@@ -47,7 +45,7 @@ jobs:
       - name: Publish dashboard
         uses: actions/upload-artifact@v4
         with:
-          name: verification-progress-dashboard-\${{ github.run_id }}
+          name: verification-progress-dashboard-${{ github.run_id }}
           path: generated/verification-progress-dashboard.json
           retention-days: 14
       - name: Emit summary
@@ -55,11 +53,14 @@ jobs:
           python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
           d=json.load(open("generated/verification-progress-dashboard.json",encoding="utf-8"))
+          r=d["records"]
+          p=d["percent"]
           print("## SHIRMANI Verification Progress")
-          print(f"- Total records: {d['records']['total']}")
-          print(f"- Evidence-supported: {d['records']['evidence_supported']} ({d['percent']['evidence_supported_of_total']}%)")
-          print(f"- Independently VERIFIED: {d['records']['verified']} ({d['percent']['independently_verified_of_total']}%)")
-          print(f"- Verification readiness: {d['percent']['verification_readiness']}%")
+          print(f"- Target: {r['target']}")
+          print(f"- Queued: {r['queued']} ({p['queued_of_target']}%)")
+          print(f"- Reviewed: {r['reviewed']} ({p['reviewed_of_target']}%)")
+          print(f"- Independently VERIFIED: {r['verified']} ({p['independently_verified_of_target']}%)")
+          print(f"- Remaining: {r['remaining_to_verified_target']} ({p['remaining_of_target']}%)")
           print("- Fail-closed: automation cannot declare VERIFIED")
           print(f"- Next gate: {d['next_gate']}")
           PY
