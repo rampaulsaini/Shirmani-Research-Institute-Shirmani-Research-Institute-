@@ -6,7 +6,14 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "schemas" / "supreme-independent-verification-record.schema.json"
 RECORD_DIR = ROOT / "generated" / "independent-verification-records"
 OUT = ROOT / "generated" / "supreme-independent-verification-ledger.json"
-TARGET = 100_200
+TARGET_CONFIG = ROOT / "config" / "independent-verification-target.json"
+
+def load_target():
+    data = json.loads(TARGET_CONFIG.read_text(encoding="utf-8"))
+    target = int(data["verification_target"])
+    if target <= 0:
+        raise RuntimeError("verification_target must be a positive integer.")
+    return target
 STATES = {"REGISTERED", "UNVERIFIED", "REVIEW", "VERIFIED", "BLOCKED"}
 
 REQUIRED = [
@@ -48,6 +55,7 @@ def validate_record(record, schema):
 def main():
     started = datetime.now(timezone.utc)
     schema = load_schema()
+    target = load_target()
     RECORD_DIR.mkdir(parents=True, exist_ok=True)
 
     counts = {state: 0 for state in sorted(STATES)}
@@ -68,7 +76,7 @@ def main():
         counts[record["verification_state"]] += 1
 
     verified = counts["VERIFIED"]
-    completion = round((verified / TARGET) * 100, 6)
+    completion = round((verified / target) * 100, 6)
     status = "PASS" if not blockers else "BLOCKED"
     if not blockers and verified == 0:
         status = "AWAITING_INDEPENDENT_EVIDENCE"
@@ -78,14 +86,14 @@ def main():
         "timestamp": started.isoformat(),
         "repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
         "status": status,
-        "target_verified_records": TARGET,
+        "target_verified_records": target,
         "records_seen": records_seen,
         "state_counts": counts,
         "verified_count": verified,
         "verification_completion_percent": completion,
-        "remaining_to_target": max(TARGET - verified, 0),
+        "remaining_to_target": max(target - verified, 0),
         "blockers": blockers,
-        "provenance": ["verification-record directory", "supreme-independent-verification-record.schema.json", "deterministic ledger audit"],
+        "provenance": ["verification-record directory", "supreme-independent-verification-record.schema.json", "config/independent-verification-target.json", "deterministic ledger audit"],
         "independence_boundary": "Automation validates declared evidence and structure; it does not self-attest independent verification."
     }
 
