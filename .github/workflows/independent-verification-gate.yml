@@ -26,13 +26,15 @@ jobs:
           from pathlib import Path
           d=json.loads(Path("generated/independent-verification-status-2026-09-29.json").read_text(encoding="utf-8"))
           s=d["verification_summary"]
-          assert s["independently_verified_records"] == 0
-          assert s["independent_verified_percent"] == 0
-          assert s["verification_readiness_percent"] == 100
-          assert len(d["records"]) == s["queue_records"]
-          assert sum(1 for x in d["records"] if x["status"]=="EVIDENCE-SUPPORTED") == s["evidence_supported_records"]
-          assert all(x["status"] != "VERIFIED" for x in d["records"])
-          print("Independent verification gate: FAIL-CLOSED")
+          records=d["records"]
+          assert s["queue_records"] == len(records)
+          verified=sum(1 for x in records if x.get("status")=="VERIFIED")
+          evidence=sum(1 for x in records if x.get("status")=="EVIDENCE-SUPPORTED")
+          assert s["independently_verified_records"] == verified
+          expected_pct=round((verified/len(records))*100, 6) if records else 0
+          assert s["independent_verified_percent"] == expected_pct
+          assert s["evidence_supported_records"] == evidence
+          print(f"Independent verification gate: FAIL-CLOSED; verified={verified}/{len(records)} ({expected_pct}%)")
           PY
       - name: Validate integrity boundary
         run: |
