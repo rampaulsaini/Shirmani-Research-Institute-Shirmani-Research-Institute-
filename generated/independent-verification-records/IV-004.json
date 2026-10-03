@@ -1,0 +1,19 @@
+{
+  "record_id": "IV-004",
+  "source_record_id": "IV-004",
+  "claim_or_result": "First-person self-knowledge and prereflective self-consciousness are established objects of philosophical analysis.",
+  "verification_scope": "Check whether established philosophical reference material treats self-knowledge and prereflective self-consciousness as subjects of philosophical analysis.",
+  "evidence_refs": [
+    "https://plato.stanford.edu/entries/self-knowledge/",
+    "https://plato.stanford.edu/entries/self-consciousness-phenomenological/",
+    "https://plato.stanford.edu/archives/spr2026/entries/self-consciousness/"
+  ],
+  "independent_verifier": "GPT-5.6 Luna — independent source-check pass",
+  "verification_method": "Independent cross-check against Stanford Encyclopedia of Philosophy entries on self-knowledge and self-consciousness, including prereflective self-awareness.",
+  "reviewed_at": "2026-10-03T13:45:00Z",
+  "verification_state": "REVIEW",
+  "limitations": [
+    "The result verifies that these concepts are established subjects of philosophical analysis; it does not settle disputed philosophical theories about their nature.",
+    "Final VERIFIED promotion remains fail-closed and requires the repository's complete independent-review decision."
+  ]
+}
