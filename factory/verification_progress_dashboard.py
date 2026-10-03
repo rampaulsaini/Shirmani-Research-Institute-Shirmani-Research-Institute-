@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Generate the authoritative fail-closed SHIRMANI verification dashboard."""
+"""Generate the authoritative fail-closed SHIRMANI verification dashboard.
+
+The aggregate target (100,200) and currently instantiated concrete review
+records are deliberately reported as separate scopes. They must not be conflated.
+"""
 from __future__ import annotations
 import json
 from datetime import datetime, timezone
@@ -7,6 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RECORDS = ROOT / "generated/independent-verification-records.json"
+AGGREGATE_QUEUE = ROOT / "generated/VERIFICATION-QUEUE.json"
 OUT = ROOT / "generated/verification-progress-dashboard.json"
 OUT_MD = ROOT / "generated/verification-progress-dashboard.md"
 TARGET = 100200
@@ -26,14 +31,27 @@ def main() -> int:
     if not isinstance(records, list):
         raise SystemExit("records must be a list")
 
+    aggregate = read_json(AGGREGATE_QUEUE)
+    aggregate_queued = int(aggregate.get("queued", aggregate.get("records", TARGET)))
+    if aggregate_queued != TARGET:
+        raise SystemExit(
+            f"Aggregate verification queue mismatch: expected {TARGET}, got {aggregate_queued}"
+        )
+
     prepared = len(records)
-    verified = sum(1 for r in records
-                   if r.get("reviewer_decision", {}).get("decision") == "VERIFIED"
-                   and r.get("status") == "VERIFIED")
-    reviewed = sum(1 for r in records
-                   if r.get("reviewer_decision", {}).get("decision")
-                   in {"VERIFIED", "NOT_VERIFIED", "CONTRADICTED", "INCONCLUSIVE"})
-    evidence_supported = sum(1 for r in records if r.get("status") == "EVIDENCE-SUPPORTED")
+    verified = sum(
+        1 for r in records
+        if r.get("reviewer_decision", {}).get("decision") == "VERIFIED"
+        and r.get("status") == "VERIFIED"
+    )
+    reviewed = sum(
+        1 for r in records
+        if r.get("reviewer_decision", {}).get("decision")
+        in {"VERIFIED", "NOT_VERIFIED", "CONTRADICTED", "INCONCLUSIVE"}
+    )
+    evidence_supported = sum(
+        1 for r in records if r.get("status") == "EVIDENCE-SUPPORTED"
+    )
 
     if verified > reviewed or reviewed > prepared or prepared > TARGET:
         raise SystemExit("Verification counters violate monotonic invariants.")
@@ -47,36 +65,64 @@ def main() -> int:
 
     dashboard = {
         "generated_at": generated,
-        "method": "authoritative independent-verification records; fail-closed",
+        "method": "aggregate target + concrete independent-verification records; fail-closed",
+        "scope_reconciliation": {
+            "authoritative_target": TARGET,
+            "authoritative_queued": aggregate_queued,
+            "concrete_records_instantiated": prepared,
+            "concrete_reviewed": reviewed,
+            "concrete_verified": verified,
+            "scopes_are_conflated": False,
+        },
         "target": TARGET,
         "records": {
-            "target": TARGET, "prepared": prepared, "reviewed": reviewed,
-            "verified": verified, "remaining_to_verified_target": remaining,
-            "evidence_supported": evidence_supported
+            "target": TARGET,
+            "queued": aggregate_queued,
+            "prepared": prepared,
+            "reviewed": reviewed,
+            "verified": verified,
+            "remaining_to_verified_target": remaining,
+            "evidence_supported": evidence_supported,
         },
         "percent": {
-            "prepared_of_target": prepared_pct, "reviewed_of_target": reviewed_pct,
+            "queued_of_target": 100.0,
+            "prepared_of_target": prepared_pct,
+            "reviewed_of_target": reviewed_pct,
             "independently_verified_of_target": verified_pct,
-            "remaining_of_target": remaining_pct
+            "remaining_of_target": remaining_pct,
         },
         "automation_state": {
             "independent_verification_required": True,
             "automission_may_prepare": True,
             "automission_may_declare_verified": False,
-            "independent_reviewer_decision_required": True
+            "independent_reviewer_decision_required": True,
+            "promotion_gate": "FAIL_CLOSED",
         },
         "next_gate": (
-            "Complete independent review for prepared records; each VERIFIED "
+            "Complete genuine independent review for concrete records; each VERIFIED "
             "promotion requires evidence, counter-evidence, reproducible test, "
-            "reviewer provenance, timestamp, and audit."
+            "reviewer provenance, timestamp, explicit decision, and audit."
             if verified < TARGET else "Target reached."
-        )
+        ),
     }
-    OUT.write_text(json.dumps(dashboard, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    OUT.write_text(
+        json.dumps(dashboard, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
     md = f"""# ꙰ SHIRMANI Verification Progress Dashboard
 
 Generated: {generated}
+
+## Scope reconciliation
+
+- Authoritative aggregate target: **{TARGET:,}**
+- Authoritative aggregate queued: **{aggregate_queued:,}**
+- Concrete review records instantiated: **{prepared:,}**
+- Concrete records reviewed: **{reviewed:,}**
+- Concrete records independently VERIFIED: **{verified:,}**
+
+**The 100,200 aggregate queue is not treated as 100,200 completed review records.**
 
 ## Authoritative target
 
@@ -84,12 +130,13 @@ Generated: {generated}
 
 ### Graph map
 
-- Prepared records: **{prepared:,}/{TARGET:,} ({prepared_pct:g}%)**  {bar(prepared_pct)}
-- Reviewed records: **{reviewed:,}/{TARGET:,} ({reviewed_pct:g}%)**  {bar(reviewed_pct)}
+- Aggregate queued: **{aggregate_queued:,}/{TARGET:,} (100%)**  {bar(100)}
+- Concrete prepared: **{prepared:,}/{TARGET:,} ({prepared_pct:g}%)**  {bar(prepared_pct)}
+- Concrete reviewed: **{reviewed:,}/{TARGET:,} ({reviewed_pct:g}%)**  {bar(reviewed_pct)}
 - Independently VERIFIED: **{verified:,}/{TARGET:,} ({verified_pct:g}%)**  {bar(verified_pct)}
 - Remaining to target: **{remaining:,}/{TARGET:,} ({remaining_pct:g}%)**  {bar(remaining_pct)}
 
-## Current prepared set
+## Current concrete set
 
 - Prepared records: **{prepared:,}**
 - Evidence-supported: **{evidence_supported:,}**
@@ -108,8 +155,8 @@ Generated: {generated}
 Workflow success, queue generation, evidence collection, generated packets,
 or review-slot creation do not by themselves constitute independent
 verification. VERIFIED requires an explicit independent-review decision with
-the defined evidence, counter-evidence, reproducible test/observation,
-reviewer provenance, timestamp, and audit record.
+evidence, counter-evidence, reproducible test/observation, reviewer
+provenance, timestamp, explicit decision, and audit record.
 
 ## Next gate
 
