@@ -32,14 +32,30 @@ def main():
     for r in records:
         rid = str(r["id"])
         task_id = f"{rid}-independent-review-v1"
-        if task_id in existing:
-            rows.append(existing[task_id])
-            continue
         sources = list((r.get("evidence") or {}).get("sources") or [])
+        source_status = str(r.get("source_status") or r.get("status") or "UNKNOWN")
+        if task_id in existing:
+            # Reconcile routing metadata while preserving any human review state.
+            task = dict(existing[task_id])
+            if task.get("status") not in {"REVIEWED", "VERIFIED"}:
+                task["source_ids"] = sources
+                task["source_status"] = source_status
+                task["required_evidence"] = [
+                    "precise claim text",
+                    "operational definition",
+                    "independent source or reproducible test",
+                    "counter-evidence review",
+                    "reviewer identity and role",
+                    "timestamp",
+                    "explicit decision"
+                ]
+            rows.append(task)
+            continue
         task = {
             "task_id": task_id,
             "claim_id": rid,
             "source_ids": sources,
+            "source_status": source_status,
             "verification_questions": [
                 "What observation would falsify or materially weaken this claim?",
                 "Can an independent reviewer reproduce the stated result from the cited evidence or test?",
