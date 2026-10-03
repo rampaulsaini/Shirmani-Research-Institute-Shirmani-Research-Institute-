@@ -114,7 +114,9 @@ The system may automate preparation and auditing, but it must not manufacture an
         evidence_pct=evidence_pct, queue=queue, queue_pct=round(queue/total*100,2) if total else 0,
         registry=registry, registry_coverage=registry_coverage, verified=verified,
         verified_pct=verified_pct, readiness_bar=bar(readiness), evidence_bar=bar(evidence_pct),
-        registry_bar=bar(registry_coverage), verified_bar=bar(verified_pct)
+        registry_bar=bar(registry_coverage), verified_bar=bar(verified_pct), target=target,
+        target_completion_pct=target_completion_pct, remaining_to_target=remaining_to_target,
+        target_bar=bar(target_completion_pct)
     )
     OUT_MD.write_text(md, encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False))
