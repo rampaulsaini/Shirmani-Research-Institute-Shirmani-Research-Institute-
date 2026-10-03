@@ -42,6 +42,8 @@ jobs:
         run: python3 factory/independent_verification_pipeline.py
 
       - name: Run queue QC when a queue exists
+        id: queue_qc
+        continue-on-error: true
         run: |
           set -euo pipefail
           if [ -s generated/independent-verification-queue.jsonl ] && [ -s generated/claim-evidence.jsonl ]; then
@@ -51,6 +53,8 @@ jobs:
           fi
 
       - name: Run promotion QC when a review registry exists
+        id: promotion_qc
+        continue-on-error: true
         run: |
           set -euo pipefail
           if [ -s generated/independent-verification-registry.jsonl ] && [ -s generated/independent-verification-queue.jsonl ]; then
@@ -84,5 +88,22 @@ jobs:
             echo "- Pipeline: evidence -> independent test -> reproducible result -> audit -> VERIFIED"
             echo "- Review slots are generated automatically; VERIFIED is never auto-declared"
             echo "- Current independent verification baseline remains fail-closed at 0%"
+            echo "- Queue QC outcome: ${{ steps.queue_qc.outcome }}"
+            echo "- Promotion QC outcome: ${{ steps.promotion_qc.outcome }}"
+            echo "- Diagnostics are published even when a QC gate blocks promotion"
             echo "- Continuous cycle: every 5 minutes"
           } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Enforce QC outcome after publishing diagnostics
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.queue_qc.outcome }}" != "success" ]; then
+            echo "QUEUE_QC_BLOCKED: diagnostics were published; VERIFIED remains blocked."
+            exit 1
+          fi
+          if [ "${{ steps.promotion_qc.outcome }}" != "success" ]; then
+            echo "PROMOTION_QC_BLOCKED: diagnostics were published; VERIFIED remains blocked."
+            exit 1
+          fi
+          echo "ALL_VERIFICATION_GATES: PASS"
