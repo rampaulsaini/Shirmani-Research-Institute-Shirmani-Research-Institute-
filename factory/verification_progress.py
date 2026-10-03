@@ -5,8 +5,12 @@ import argparse, gzip, json
 from collections import Counter
 from pathlib import Path
 
-def load_jsonl_gz(path: Path):
-    with gzip.open(path, "rt", encoding="utf-8") as fh:
+def load_jsonl(path: Path):
+    """Load either plain JSONL or gzip-compressed JSONL."""
+    if not path.exists():
+        return
+    opener = gzip.open if path.suffix == ".gz" else open
+    with opener(path, "rt", encoding="utf-8") as fh:
         for line_no, line in enumerate(fh, 1):
             if line.strip():
                 yield line_no, json.loads(line)
@@ -20,8 +24,8 @@ def main():
     p.add_argument("--registry", required=True)
     p.add_argument("--output", required=True)
     args=p.parse_args()
-    queue=list(load_jsonl_gz(Path(args.queue)))
-    registry=list(load_jsonl_gz(Path(args.registry)))
+    queue=list(load_jsonl(Path(args.queue)))
+    registry=list(load_jsonl(Path(args.registry)))
     q_ids={str(r.get("task_id")) for _,r in queue if r.get("task_id") is not None}
     r_ids={str(r.get("task_id")) for _,r in registry if r.get("task_id") is not None}
     verification=Counter(str(r.get("verification_status","UNKNOWN")).upper() for _,r in registry)
