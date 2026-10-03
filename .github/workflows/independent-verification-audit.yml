@@ -1,0 +1,56 @@
+name: SHIRMANI Independent Verification Audit
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "generated/**"
+      - "evidence/**"
+      - "federation/**"
+      - "research/**"
+      - "factory/independent_verification_audit.py"
+      - ".github/workflows/independent-verification-audit.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-independent-verification-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Build conservative independent verification inventory
+        run: python3 factory/independent_verification_audit.py
+      - name: Validate audit output
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d = json.loads(Path("generated/independent-verification-audit.json").read_text())
+          required = {"target_independent_verified_records","explicit_independent_verified_records","remaining_to_target","target_progress_percent","counts_by_verification_state","integrity_rule","status"}
+          missing = required - d.keys()
+          if missing: raise SystemExit("Missing audit keys: " + ", ".join(sorted(missing)))
+          if d["status"] != "MEASURED": raise SystemExit("Unexpected audit status")
+          print("Independent verification inventory: PASS")
+          print("Explicit independent VERIFIED:", d["explicit_independent_verified_records"])
+          print("Remaining to target:", d["remaining_to_target"])
+          print("Progress %:", d["target_progress_percent"])
+          PY
+      - name: Upload verification audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-verification-audit-\${{ github.run_id }}
+          path: generated/independent-verification-audit.json
+          if-no-files-found: error
+          retention-days: 14
