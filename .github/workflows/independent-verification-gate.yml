@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - "research/independent-verification-protocol-2026-09-29.md"
+      - "research/independent-verification-system-v2.md"
+      - "scripts/independent_verification_gate.py"
       - "generated/independent-verification-status-2026-09-29.json"
       - ".github/workflows/independent-verification-gate.yml"
   workflow_dispatch:
@@ -23,6 +25,13 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+
+      - name: Run canonical fail-closed verification validator
+        run: |
+          set -euo pipefail
+          python3 scripts/independent_verification_gate.py \
+            --registry generated/independent-verification-status-2026-09-29.json
+
       - name: Validate fail-closed registry
         run: |
           set -euo pipefail
@@ -41,15 +50,22 @@ jobs:
           assert s["evidence_supported_records"] == evidence
           print(f"Independent verification gate: FAIL-CLOSED; verified={verified}/{len(records)} ({expected_pct}%)")
           PY
+
       - name: Publish verification telemetry
         run: |
-          python3 - <<'PY'
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
           from pathlib import Path
           d=json.loads(Path("generated/independent-verification-status-2026-09-29.json").read_text(encoding="utf-8"))
           s=d["verification_summary"]
-          print(f"Queue={s['queue_records']} evidence_supported={s['evidence_supported_records']} verified={s['independently_verified_records']} verified_percent={s['independent_verified_percent']}% readiness={s['verification_readiness_percent']}%")
-          print("Rule: workflow success is not independent verification.")
+          print("## SHIRMANI Independent Verification")
+          print(f"- Queue: {s['queue_records']}")
+          print(f"- Evidence-supported: {s['evidence_supported_records']}")
+          print(f"- Independently VERIFIED: {s['independently_verified_records']}")
+          print(f"- Independent verification: **{s['independent_verified_percent']}%**")
+          print(f"- Verification readiness: **{s['verification_readiness_percent']}%**")
+          print("")
+          print("**Integrity rule:** workflow success is not independent verification.")
           PY
 
       - name: Validate integrity boundary
@@ -58,7 +74,7 @@ jobs:
           grep -q "workflow succeeding is not independent verification" research/independent-verification-protocol-2026-09-29.md
           grep -q "counter-evidence" research/independent-verification-protocol-2026-09-29.md
           grep -q "reviewer identity/role" research/independent-verification-protocol-2026-09-29.md
-
+          test -s scripts/independent_verification_gate.py
 
       - name: Upload verification registry
         uses: actions/upload-artifact@v4
@@ -68,5 +84,6 @@ jobs:
             generated/independent-verification-status-2026-09-29.json
             research/independent-verification-protocol-2026-09-29.md
             research/independent-verification-system-v2.md
+            scripts/independent_verification_gate.py
           if-no-files-found: error
           retention-days: 14
