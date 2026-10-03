@@ -2,8 +2,14 @@ name: SHIRMANI Independent Verification Gate
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "SHIRMANI Supreme Evidence Automission"
+      - "SHIRMANI Supreme Evidence Convergence"
+      - "SHIRMANI Supreme NLP Evaluation Gate"
+    types: [completed]
 
 permissions:
   contents: read
@@ -25,7 +31,7 @@ jobs:
           from pathlib import Path
           from datetime import datetime, timezone
 
-          roots = [Path("generated"), Path("evidence"), Path("research"), Path("source")]
+          roots = [Path("generated"), Path("evidence"), Path("research"), Path("source"), Path("docs"), Path("schemas")]
           files = []
           for root in roots:
               if root.exists():
@@ -90,6 +96,8 @@ jobs:
           pct = round((v / total) * 100, 2) if total else 0.0
           target_pct = round((v / target) * 100, 4)
 
+          independently_verified = v == len(verified) and len(verified) > 0
+
           out = {
               "generated_at": datetime.now(timezone.utc).isoformat(),
               "total_candidate_records": total,
@@ -100,6 +108,7 @@ jobs:
               "target_verified_records": target,
               "target_progress_percentage": target_pct,
               "remaining_to_target": max(target - v, 0),
+              "independent_verification_gate_open": independently_verified,
               "definition": "A workflow run is not a VERIFIED record; all verification gates must pass."
           }
 
