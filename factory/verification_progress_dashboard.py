@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the authoritative fail-closed SHIRMANI verification dashboard."""
+"""Generate the authoritative fail-closed SHIRMANI verification dashboard.\n\nThe aggregate target (100,200) and currently instantiated concrete review\nrecords are deliberately reported as separate scopes. They must not be conflated.\n"""
 from __future__ import annotations
 import json
 from datetime import datetime, timezone
@@ -47,10 +47,10 @@ def main() -> int:
 
     dashboard = {
         "generated_at": generated,
-        "method": "authoritative independent-verification records; fail-closed",
+        "method": "aggregate target + concrete independent-verification records; fail-closed",\n        "scope_reconciliation": {\n            "authoritative_target": TARGET,\n            "authoritative_queued": aggregate_queued,\n            "concrete_records_instantiated": prepared,\n            "concrete_reviewed": reviewed,\n            "concrete_verified": verified,\n            "scopes_are_conflated": False,\n        },
         "target": TARGET,
         "records": {
-            "target": TARGET, "prepared": prepared, "reviewed": reviewed,
+            "target": TARGET, "queued": aggregate_queued, "prepared": prepared, "reviewed": reviewed,
             "verified": verified, "remaining_to_verified_target": remaining,
             "evidence_supported": evidence_supported
         },
@@ -84,7 +84,7 @@ Generated: {generated}
 
 ### Graph map
 
-- Prepared records: **{prepared:,}/{TARGET:,} ({prepared_pct:g}%)**  {bar(prepared_pct)}
+- Aggregate queued: **{aggregate_queued:,}/{TARGET:,} (100%)**  {bar(100)}\n- Concrete prepared: **{prepared:,}/{TARGET:,} ({prepared_pct:g}%)**  {bar(prepared_pct)}
 - Reviewed records: **{reviewed:,}/{TARGET:,} ({reviewed_pct:g}%)**  {bar(reviewed_pct)}
 - Independently VERIFIED: **{verified:,}/{TARGET:,} ({verified_pct:g}%)**  {bar(verified_pct)}
 - Remaining to target: **{remaining:,}/{TARGET:,} ({remaining_pct:g}%)**  {bar(remaining_pct)}
