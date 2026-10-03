@@ -89,6 +89,8 @@ jobs:
         run: python3 factory/verification_registry.py
       - name: Run verification promotion gate
         run: python3 factory/verification_promotion_gate.py
+      - name: Build exact verification progress map
+        run: python3 factory/verification_progress.py
       - name: Determine resumable verification review cursor
         id: review_cursor
         env:
@@ -191,6 +193,7 @@ jobs:
           test -s generated/independent-verification-registry.jsonl
           test -s generated/VERIFICATION-REGISTRY.json
           test -s generated/VERIFICATION-PROMOTION-QC.json
+          test -s generated/VERIFICATION-PROGRESS.json
           test -s generated/VERIFICATION-PACKET-QC.json
           test -s generated/PUBLICATION-GATE.json
           test -s generated/research-evidence-graph.json
