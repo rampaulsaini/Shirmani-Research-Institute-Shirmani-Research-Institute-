@@ -35,8 +35,12 @@ def main() -> int:
                    in {"VERIFIED", "NOT_VERIFIED", "CONTRADICTED", "INCONCLUSIVE"})
     evidence_supported = sum(1 for r in records if r.get("status") == "EVIDENCE-SUPPORTED")
 
+    # The authoritative source is the records list. Never report a synthetic
+    # queued/prepared count that is larger than the actual record registry.
     if verified > reviewed or reviewed > prepared or prepared > TARGET:
         raise SystemExit("Verification counters violate monotonic invariants.")
+    if prepared != len(records):
+        raise SystemExit("PREPARED_COUNT_MISMATCH")
 
     remaining = TARGET - verified
     prepared_pct = round(prepared / TARGET * 100, 6)
@@ -52,7 +56,8 @@ def main() -> int:
         "records": {
             "target": TARGET, "prepared": prepared, "reviewed": reviewed,
             "verified": verified, "remaining_to_verified_target": remaining,
-            "evidence_supported": evidence_supported
+            "evidence_supported": evidence_supported,
+            "source_registry_records": len(records)
         },
         "percent": {
             "prepared_of_target": prepared_pct, "reviewed_of_target": reviewed_pct,
@@ -91,6 +96,7 @@ Generated: {generated}
 
 ## Current prepared set
 
+- Source registry records: **{len(records):,}**
 - Prepared records: **{prepared:,}**
 - Evidence-supported: **{evidence_supported:,}**
 - Reviewed: **{reviewed:,}**
