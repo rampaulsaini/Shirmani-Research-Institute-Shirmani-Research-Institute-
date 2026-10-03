@@ -6,14 +6,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-RECORDS = ROOT / "generated/independent-verification-records.json"
+QUEUE = ROOT / "generated/VERIFICATION-QUEUE.json"
+REGISTRY = ROOT / "generated/VERIFICATION-REGISTRY.json"
+PROMOTION = ROOT / "generated/VERIFICATION-PROMOTION-QC.json"
 OUT = ROOT / "generated/verification-progress-dashboard.json"
 OUT_MD = ROOT / "generated/verification-progress-dashboard.md"
-TARGET = 100200
 
 def read_json(path: Path) -> dict:
     if not path.exists():
-        raise SystemExit(f"Missing required status file: {path}")
+        raise SystemExit(f"Missing required authoritative status file: {path}")
     return json.loads(path.read_text(encoding="utf-8"))
 
 def bar(percent: float, width: int = 30) -> str:
@@ -21,41 +22,48 @@ def bar(percent: float, width: int = 30) -> str:
     return "█" * filled + "░" * (width - filled)
 
 def main() -> int:
-    data = read_json(RECORDS)
-    records = data.get("records", [])
-    if not isinstance(records, list):
-        raise SystemExit("records must be a list")
+    queue = read_json(QUEUE)
+    registry = read_json(REGISTRY)
+    promotion = read_json(PROMOTION)
 
-    prepared = len(records)
-    verified = sum(1 for r in records
-                   if r.get("reviewer_decision", {}).get("decision") == "VERIFIED"
-                   and r.get("status") == "VERIFIED")
-    reviewed = sum(1 for r in records
-                   if r.get("reviewer_decision", {}).get("decision")
-                   in {"VERIFIED", "NOT_VERIFIED", "CONTRADICTED", "INCONCLUSIVE"})
-    evidence_supported = sum(1 for r in records if r.get("status") == "EVIDENCE-SUPPORTED")
+    target = int(queue.get("records", 0))
+    queued = int(queue.get("queued", 0))
+    reviewed = int(registry.get("reviewed", 0))
+    verified = int(registry.get("verified", 0))
+    promotion_verified = int(promotion.get("verified_records", 0))
 
-    if verified > reviewed or reviewed > prepared or prepared > TARGET:
+    if target < 0 or queued < 0 or reviewed < 0 or verified < 0:
+        raise SystemExit("Negative verification counters are invalid.")
+    if queued > target or reviewed > target or verified > reviewed:
         raise SystemExit("Verification counters violate monotonic invariants.")
+    if verified != promotion_verified:
+        raise SystemExit(
+            f"Registry/promotion mismatch: registry verified={verified}, "
+            f"promotion verified={promotion_verified}"
+        )
 
-    remaining = TARGET - verified
-    prepared_pct = round(prepared / TARGET * 100, 6)
-    reviewed_pct = round(reviewed / TARGET * 100, 6)
-    verified_pct = round(verified / TARGET * 100, 6)
-    remaining_pct = round(remaining / TARGET * 100, 6)
+    remaining = target - verified
+    queued_pct = round(queued / target * 100, 6) if target else 0.0
+    reviewed_pct = round(reviewed / target * 100, 6) if target else 0.0
+    verified_pct = round(verified / target * 100, 6) if target else 0.0
+    remaining_pct = round(remaining / target * 100, 6) if target else 0.0
     generated = datetime.now(timezone.utc).isoformat()
 
     dashboard = {
         "generated_at": generated,
-        "method": "authoritative independent-verification records; fail-closed",
-        "target": TARGET,
+        "method": "authoritative verification queue, review registry and promotion QC; fail-closed",
+        "target": target,
         "records": {
-            "target": TARGET, "prepared": prepared, "reviewed": reviewed,
-            "verified": verified, "remaining_to_verified_target": remaining,
-            "evidence_supported": evidence_supported
+            "target": target,
+            "queued": queued,
+            "reviewed": reviewed,
+            "verified": verified,
+            "remaining_to_verified_target": remaining,
+            "promotion_verified": promotion_verified
         },
         "percent": {
-            "prepared_of_target": prepared_pct, "reviewed_of_target": reviewed_pct,
+            "queued_of_target": queued_pct,
+            "reviewed_of_target": reviewed_pct,
             "independently_verified_of_target": verified_pct,
             "remaining_of_target": remaining_pct
         },
@@ -66,10 +74,10 @@ def main() -> int:
             "independent_reviewer_decision_required": True
         },
         "next_gate": (
-            "Complete independent review for prepared records; each VERIFIED "
+            "Complete independent review for queued records; each VERIFIED "
             "promotion requires evidence, counter-evidence, reproducible test, "
             "reviewer provenance, timestamp, and audit."
-            if verified < TARGET else "Target reached."
+            if verified < target else "Target reached."
         )
     }
     OUT.write_text(json.dumps(dashboard, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -80,21 +88,22 @@ Generated: {generated}
 
 ## Authoritative target
 
-**{verified:,} / {TARGET:,} independently VERIFIED ({verified_pct:g}%)**
+**{verified:,} / {target:,} independently VERIFIED ({verified_pct:g}%)**
 
 ### Graph map
 
-- Prepared records: **{prepared:,}/{TARGET:,} ({prepared_pct:g}%)**  {bar(prepared_pct)}
-- Reviewed records: **{reviewed:,}/{TARGET:,} ({reviewed_pct:g}%)**  {bar(reviewed_pct)}
-- Independently VERIFIED: **{verified:,}/{TARGET:,} ({verified_pct:g}%)**  {bar(verified_pct)}
-- Remaining to target: **{remaining:,}/{TARGET:,} ({remaining_pct:g}%)**  {bar(remaining_pct)}
+- Verification queue: **{queued:,}/{target:,} ({queued_pct:g}%)**  {bar(queued_pct)}
+- Reviewed records: **{reviewed:,}/{target:,} ({reviewed_pct:g}%)**  {bar(reviewed_pct)}
+- Independently VERIFIED: **{verified:,}/{target:,} ({verified_pct:g}%)**  {bar(verified_pct)}
+- Remaining to target: **{remaining:,}/{target:,} ({remaining_pct:g}%)**  {bar(remaining_pct)}
 
-## Current prepared set
+## Authoritative current state
 
-- Prepared records: **{prepared:,}**
-- Evidence-supported: **{evidence_supported:,}**
+- Queue records: **{target:,}**
+- Queued: **{queued:,}**
 - Reviewed: **{reviewed:,}**
 - Independently VERIFIED: **{verified:,}**
+- Promotion-QC verified: **{promotion_verified:,}**
 
 ## Control state
 
