@@ -1,0 +1,8 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Independent Verification Readiness",
+  "type":"object",
+  "required":["event_id","timestamp","repository","input","records","eligible_for_independent_review","independently_verified","blocked_or_incomplete","verification_state","status","errors","input_sha256","rule"],
+  "properties":{"event_id":{"type":"string"},"timestamp":{"type":"string"},"repository":{"type":"string"},"input":{"type":"string"},"records":{"type":"integer","minimum":0},"eligible_for_independent_review":{"type":"integer","minimum":0},"independently_verified":{"type":"integer","minimum":0},"blocked_or_incomplete":{"type":"integer","minimum":0},"verification_state":{"enum":["VERIFIED","UNVERIFIED","UNAVAILABLE"]},"status":{"enum":["READY_FOR_INDEPENDENT_REVIEW","NO_RECORDS","BLOCKED"]},"errors":{"type":"array","items":{"type":"string"}},"input_sha256":{"type":["string","null"]},"rule":{"type":"string"}},
+  "additionalProperties":false
+}
