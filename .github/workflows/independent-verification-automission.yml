@@ -50,7 +50,7 @@ jobs:
       - name: Upload verification reports
         uses: actions/upload-artifact@v4
         with:
-          name: shirmani-independent-verification-$\u007b\u007b github.run_number \u007d\u007d
+          name: shirmani-independent-verification
           path: |
             generated/claim-evidence.jsonl
             generated/independent-verification-queue.jsonl
