@@ -12,7 +12,7 @@ on:
       - "factory/verification_progress_dashboard.py"
       - ".github/workflows/verification-progress-dashboard.yml"
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: shirmani-verification-progress-dashboard
   cancel-in-progress: true
@@ -25,8 +25,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-      # Schema-aligned dashboard generation; VERIFIED remains fail-closed.
-      - name: Generate fail-closed dashboard
+      - name: Generate fail-closed dashboard and graph
         run: python factory/verification_progress_dashboard.py
       - name: Validate dashboard invariants
         run: |
@@ -36,9 +35,12 @@ jobs:
           records=d["records"]
           percent=d["percent"]
           assert records["target"] == 100200
+          assert records["queued"] <= records["target"]
+          assert records["reviewed"] <= records["target"]
+          assert records["verified"] <= records["reviewed"]
+          assert records["verified"] + records["remaining_to_verified_target"] == records["target"]
           assert 0 <= percent["independently_verified_of_target"] <= 100
           assert 0 <= percent["remaining_of_target"] <= 100
-          assert records["verified"] + records["remaining_to_verified_target"] == records["target"]
           assert d["automation_state"]["independent_verification_required"] is True
           assert d["automation_state"]["automission_may_declare_verified"] is False
           print("VERIFICATION_DASHBOARD_GATE: PASS")
@@ -47,8 +49,22 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: verification-progress-dashboard-${{ github.run_id }}
-          path: generated/verification-progress-dashboard.json
+          path: |
+            generated/verification-progress-dashboard.json
+            generated/verification-progress-dashboard.md
           retention-days: 14
+      - name: Persist authoritative dashboard
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot].noreply.github.com"
+          git add generated/verification-progress-dashboard.json generated/verification-progress-dashboard.md
+          if git diff --cached --quiet; then
+            echo "Dashboard unchanged."
+            exit 0
+          fi
+          git commit -m "ci: update authoritative verification dashboard"
+          git push origin HEAD:main
       - name: Emit summary
         run: |
           python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
