@@ -39,7 +39,10 @@ jobs:
       - name: Compute fail-closed verification progress
         run: |
           set -euo pipefail
-          python3 factory/verification_progress.py             --queue generated/independent-verification-queue.jsonl             --registry generated/independent-verification-registry.jsonl             --output generated/independent-verification-progress.json
+          python3 factory/verification_progress.py \
+            --queue generated/independent-verification-queue.jsonl \
+            --registry generated/independent-verification-registry.jsonl \
+            --output generated/independent-verification-progress.json
 
       - name: Generate human-readable progress map
         run: python3 scripts/generate_independent_verification_progress_map.py
@@ -52,3 +55,29 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "ci: update independent verification progress"
           git push origin HEAD:main
+
+      - name: Emit progress summary
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("generated/independent-verification-progress.json").read_text(encoding="utf-8"))
+          print("INDEPENDENT_VERIFICATION_PROGRESS")
+          print(f"queue={p['queue_records']}")
+          print(f"registry={p['registry_total']}")
+          print(f"verified={p['independently_verified_records']}")
+          print(f"verified_percent={p['verification_completion_pct']}")
+          print(f"queue_registry_match_percent={p['queue_registry_match_pct']}")
+          print("policy=FAIL_CLOSED")
+          PY
+
+      - name: Upload progress artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-verification-progress-${{ github.run_id }}
+          path: |
+            generated/independent-verification-progress.json
+            generated/independent-verification-progress-map.md
+          if-no-files-found: error
+          retention-days: 14
