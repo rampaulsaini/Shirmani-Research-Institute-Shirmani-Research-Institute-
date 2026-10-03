@@ -67,8 +67,9 @@ def main():
         {"modality":"b","feature":"y","value":1.1,"source":"same","experiment_id":"exp-1"},
     ], "duplicate-source")
     assert duplicate_sources["result"]["features"]["source_count"] == 1
-    assert duplicate_sources["result"]["features"]["independent_experiment_count"] == 1
+    assert duplicate_sources["result"]["features"]["declared_unique_experiment_count"] == 1
     assert duplicate_sources["result"]["features"]["experiment_provenance_status"] == "DECLARED_IDENTIFIERS_ONLY"
+    assert duplicate_sources["result"]["features"]["independence_status"] == "NOT_ESTABLISHED"
     assert duplicate_sources["provenance"]["independent_replication_verified"] is False
 
     # Distinct experiment identifiers are the explicit provenance signal.
@@ -77,8 +78,9 @@ def main():
         {"modality":"b","feature":"x","value":1.1,"source":"same","experiment_id":"exp-2"},
     ], "independent-experiments")
     assert independent["result"]["features"]["source_count"] == 1
-    assert independent["result"]["features"]["independent_experiment_count"] == 2
+    assert independent["result"]["features"]["declared_unique_experiment_count"] == 2
     assert independent["result"]["features"]["experiment_provenance_status"] == "DECLARED_IDENTIFIERS_ONLY"
+    assert independent["result"]["features"]["independence_status"] == "NOT_ESTABLISHED"
     assert independent["provenance"]["independent_replication_verified"] is False
 
     print("SUPREME_NLP_V3_HARDENING=PASS")
