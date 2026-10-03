@@ -3,12 +3,14 @@ name: SHIRMANI Independent Verification Gate
 on:
   push:
     paths:
-      - "research/independent-verification-protocol-2026-09-29.md"
+      - "generated/claim-evidence.jsonl"
       - "generated/independent-verification-status-2026-09-29.json"
+      - "factory/independent_verification_gate.py"
+      - "research/independent-verification-protocol-2026-09-29.md"
       - ".github/workflows/independent-verification-gate.yml"
   workflow_dispatch:
   schedule:
-    - cron: "23 */6 * * *"
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: read
@@ -18,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Run deterministic readiness measurement
+        run: python3 factory/independent_verification_gate.py
       - name: Validate fail-closed registry
         run: |
           set -euo pipefail
@@ -40,3 +44,8 @@ jobs:
           grep -q "workflow succeeding is not independent verification" research/independent-verification-protocol-2026-09-29.md
           grep -q "counter-evidence" research/independent-verification-protocol-2026-09-29.md
           grep -q "reviewer identity/role" research/independent-verification-protocol-2026-09-29.md
+      - name: Upload readiness artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-verification-readiness
+          path: generated/independent-verification-readiness.json
