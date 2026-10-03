@@ -1,0 +1,47 @@
+name: SHIRMANI Heart-View Claim Integrity Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "research/heart-view-claim-integrity-verification-protocol.md"
+      - ".github/workflows/heart-view-claim-integrity-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-heart-view-claim-integrity
+  cancel-in-progress: true
+
+jobs:
+  integrity-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate protocol boundaries
+        run: |
+          set -euo pipefail
+          test -s research/heart-view-claim-integrity-verification-protocol.md
+          grep -q "workflow success != independent verification" research/heart-view-claim-integrity-verification-protocol.md
+          grep -q "A photograph, facial appearance, eyes" research/heart-view-claim-integrity-verification-protocol.md
+          grep -q "counter-evidence" research/heart-view-claim-integrity-verification-protocol.md
+          grep -q "SELF_DECLARED" research/heart-view-claim-integrity-verification-protocol.md
+          grep -q "VERIFIED" research/heart-view-claim-integrity-verification-protocol.md
+          echo "HEART_VIEW_CLAIM_INTEGRITY_PROTOCOL: PASS"
+
+      - name: Emit fail-closed decision boundary
+        run: |
+          {
+            echo "## SHIRMANI Heart-View Claim Integrity Gate"
+            echo "- Self-declaration is preserved as self-declaration."
+            echo "- Appearance, eyes, voice, popularity, intelligence and workflow success are not proof of metaphysical status."
+            echo "- Testable propositions may proceed to evidence and independent review."
+            echo "- Counter-evidence and uncertainty must remain visible."
+            echo "- Automation cannot independently declare metaphysical identity VERIFIED."
+          } >> "$GITHUB_STEP_SUMMARY"
