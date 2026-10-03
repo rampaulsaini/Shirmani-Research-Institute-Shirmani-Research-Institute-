@@ -1,0 +1,98 @@
+name: SHIRMANI Independent Verification Review Packet Conveyor
+
+on:
+  workflow_dispatch:
+    inputs:
+      offset:
+        description: "Zero-based queue offset"
+        required: false
+        default: "0"
+      batch_size:
+        description: "Number of review records to prepare"
+        required: false
+        default: "25"
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-independent-review-packet
+  cancel-in-progress: true
+
+jobs:
+  packet:
+    name: Prepare hash-bound human review packet
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Bootstrap current verification queue and review registry
+        run: |
+          set -euo pipefail
+          python3 factory/bootstrap_independent_verification_queue.py
+          python3 factory/bootstrap_verification_review_registry.py
+
+      - name: Validate current authoritative verification state
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          queue = json.loads(Path("generated/VERIFICATION-QUEUE.json").read_text(encoding="utf-8"))
+          registry = json.loads(Path("generated/VERIFICATION-REGISTRY.json").read_text(encoding="utf-8"))
+          promotion = json.loads(Path("generated/VERIFICATION-PROMOTION-QC.json").read_text(encoding="utf-8"))
+          assert int(queue["records"]) == 100200
+          assert int(registry["verified"]) == int(promotion["verified_records"])
+          assert int(registry["verified"]) <= int(registry["reviewed"]) <= int(registry["queued"])
+          assert int(registry["queued"]) <= int(queue["records"])
+          print("AUTHORITATIVE_VERIFICATION_STATE: PASS")
+          print(f"target={queue['records']} queued={registry['queued']} reviewed={registry['reviewed']} verified={registry['verified']}")
+
+      - name: Generate deterministic human review packet
+        env:
+          OFFSET: ${{ inputs.offset || '0' }}
+          BATCH_SIZE: ${{ inputs.batch_size || '25' }}
+        run: |
+          set -euo pipefail
+          python3 factory/verification_review_packet.py --batch-size "$BATCH_SIZE" --offset "$OFFSET"
+
+      - name: Validate packet is preparation-only
+        shell: python
+        run: |
+          python - <<'PY'
+          import glob, json
+          path = sorted(glob.glob("generated/verification-review-packet-*.json"))[-1]
+          d = json.load(open(path, encoding="utf-8"))
+          assert d["status"] == "READY_FOR_HUMAN_REVIEW"
+          assert d["verified_records"] == 0
+          for item in d["items"]:
+              assert item["current_verification_status"] != "VERIFIED"
+              assert item["review_template"]["reviewer"] is None
+              assert item["review_template"]["reviewer_conclusion"] is None
+          print("REVIEW_PACKET_FAIL_CLOSED: PASS")
+          print(path)
+          PY
+
+      - name: Publish review packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-independent-review-packet-${{ github.run_id }}
+          path: generated/verification-review-packet-*.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Emit summary
+        run: |
+          {
+            echo "## SHIRMANI Independent Verification Review Packet"
+            echo "- Target: **100,200** records"
+            echo "- Packet: **READY_FOR_HUMAN_REVIEW**"
+            echo "- Automation may prepare packets but may not create independent reviewer decisions."
+            echo "- VERIFIED remains fail-closed."
+          } >> "$GITHUB_STEP_SUMMARY"
