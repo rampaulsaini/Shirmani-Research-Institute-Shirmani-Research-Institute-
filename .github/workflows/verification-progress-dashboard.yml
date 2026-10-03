@@ -13,6 +13,7 @@ on:
       - ".github/workflows/verification-progress-dashboard.yml"
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-verification-progress-dashboard
   cancel-in-progress: true
@@ -53,18 +54,54 @@ jobs:
             generated/verification-progress-dashboard.json
             generated/verification-progress-dashboard.md
           retention-days: 14
-      - name: Persist authoritative dashboard
+      - name: Persist authoritative dashboard through pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          BRANCH="automation/verification-dashboard"
+          TMP_DIR="${RUNNER_TEMP}/verification-dashboard"
+          mkdir -p "$TMP_DIR"
+          cp generated/verification-progress-dashboard.json "$TMP_DIR/"
+          cp generated/verification-progress-dashboard.md "$TMP_DIR/"
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot].noreply.github.com"
+          git fetch origin main
+          git fetch origin "$BRANCH" || true
+          git switch -C "$BRANCH" origin/main
+          cp "$TMP_DIR/verification-progress-dashboard.json" generated/
+          cp "$TMP_DIR/verification-progress-dashboard.md" generated/
+
           git add generated/verification-progress-dashboard.json generated/verification-progress-dashboard.md
           if git diff --cached --quiet; then
             echo "Dashboard unchanged."
             exit 0
           fi
+
           git commit -m "ci: update authoritative verification dashboard"
-          git push origin HEAD:main
+          git push --force-with-lease origin "HEAD:$BRANCH"
+
+          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0
+      - name: Emit summary
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d=json.load(open("generated/verification-progress-dashboard.json",encoding="utf-8"))
+          r=d["records"]
+          p=d["percent"]
+          print("## SHIRMANI Verification Progress")
+          print(f"- Target: {r['target']}")
+          print(f"- Queued: {r['queued']} ({p['queued_of_target']}%)")
+          print(f"- Reviewed: {r['reviewed']} ({p['reviewed_of_target']}%)")
+          print(f"- Independently VERIFIED: {r['verified']} ({p['independently_verified_of_target']}%)")
+          print(f"- Remaining: {r['remaining_to_verified_target']} ({p['remaining_of_target']}%)")
+          print("- Fail-closed: automation cannot declare VERIFIED")
+          print(f"- Next gate: {d['next_gate']}")
+          PY
+; then
+            gh pr create               --base main               --head "$BRANCH"               --title "ci: update authoritative verification dashboard"               --body "Automated fail-closed verification progress dashboard update. Workflow success is not counted as independent verification; VERIFIED remains gated by independent review evidence."
+          fi
       - name: Emit summary
         run: |
           python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
