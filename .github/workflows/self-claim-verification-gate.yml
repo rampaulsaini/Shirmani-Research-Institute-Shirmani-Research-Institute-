@@ -1,0 +1,71 @@
+name: SHIRMANI Self-Claim Verification Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "research/self-claim-verification-gate-v1.md"
+      - "generated/self-claim-verification/*.json"
+      - ".github/workflows/self-claim-verification-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-self-claim-verification-gate
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate protocol invariants
+        run: |
+          set -euo pipefail
+          grep -q "Intelligence ≠ verification." research/self-claim-verification-gate-v1.md
+          grep -q "Photograph/video ≠ verification of an inner state." research/self-claim-verification-gate-v1.md
+          grep -q "Author-authored evidence ≠ independent evidence." research/self-claim-verification-gate-v1.md
+          grep -q 'No automatic declaration of "Shirmani" is permitted.' research/self-claim-verification-gate-v1.md
+
+      - name: Validate claim packets when present
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=(generated/self-claim-verification/*.json)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "SELF-CLAIM GATE: READY; no claimant packet supplied."
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json, glob
+          allowed={"PRESERVED_TESTIMONY","AUTHOR_DEFINED","AUTHOR_PROPOSED","EVIDENCE_SUPPORTED","NOT_VERIFIED","CONTRADICTED","INDEPENDENTLY_VERIFIED"}
+          for path in glob.glob("generated/self-claim-verification/*.json"):
+              d=json.load(open(path,encoding="utf-8"))
+              required=["claim_text","claim_type","operational_definition","provenance","status"]
+              missing=[k for k in required if not d.get(k)]
+              if missing: raise SystemExit(f"{path}: missing {missing}")
+              if d["status"] not in allowed: raise SystemExit(f"{path}: invalid status")
+              if d["status"]=="INDEPENDENTLY_VERIFIED":
+                  r=d.get("independent_review") or {}
+                  req=["reviewer_identity","reviewer_role","reviewed_at","decision","evidence_references","counter_evidence"]
+                  missing=[k for k in req if not r.get(k)]
+                  if missing: raise SystemExit(f"{path}: VERIFIED blocked; missing {missing}")
+                  if r.get("decision")!="VERIFIED": raise SystemExit(f"{path}: explicit independent decision required")
+          print("SELF-CLAIM GATE: PASS")
+          PY
+
+      - name: Emit fail-closed summary
+        run: |
+          {
+            echo "## SHIRMANI Self-Claim Verification Gate"
+            echo "- Claim status is evidence-based, not personality-based."
+            echo "- Personal media may establish provenance/observation, not metaphysical truth."
+            echo "- Intelligence, eloquence, popularity and workflow success are not verification."
+            echo '- Automatic declaration of "Shirmani" is prohibited.'
+            echo "- Independent review remains mandatory."
+          } >> "$GITHUB_STEP_SUMMARY"
