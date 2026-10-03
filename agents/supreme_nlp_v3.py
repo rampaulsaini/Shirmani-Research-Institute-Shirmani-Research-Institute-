@@ -136,8 +136,9 @@ def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
         "features":{
             "mean":mean,"spread":spread,"anomaly_score":anomaly,
             "quality":quality,"modalities":modalities,"source_count":sources,
-            "independent_experiment_count":experiments,
+            "declared_unique_experiment_count":experiments,
             "experiment_provenance_status":"DECLARED_IDENTIFIERS_ONLY" if experiments else "MISSING_EXPERIMENT_IDENTIFIERS",
+            "independence_status":"NOT_ESTABLISHED",
             "sample_count":len(usable),
             "baseline_z_score_mean":round(sum(z)/len(z),4) if z else None,
             "baseline_z_score_max_abs":round(max((abs(x) for x in z),default=0.0),4),
