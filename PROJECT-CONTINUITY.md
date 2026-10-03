@@ -147,3 +147,27 @@ A missing field is a QC failure, not an invitation to invent a value.
 - Resume logic remains output-first: durable generated outputs are used to reconstruct progress, while canonical/source records remain protected.
 
 - Follow-up fix: QC no longer applies the reasoning method-stack validator to the upstream verse corpus; strict method-stack validation remains on reasoning-manifest.jsonl. This prevents 100,000 false blocking errors while preserving reasoning QC.
+
+
+## 19. Independent-verification completion baseline — 2026-10-03
+
+The current generated verification artifacts establish the following measurable baseline:
+
+- Independent verification queue: **100,200 records queued**.
+- Queue QC: **100,200 unique tasks / 0 errors / PASS**.
+- Claim-evidence layer: **100,200 traceable records / 0 blocking errors / PASS**.
+- Formulation/test QC: **100,200 passed records / 0 errors / PASS**.
+- Research evidence graph: **100,200 claim nodes with explicit evidence nodes / 0 errors / PASS**.
+- Verification review registry: **0 reviewed / 0 verified / 0 promotion-eligible**.
+- Verification review packet QC: **1,000 items checked / 0 errors / PASS**.
+- Unified publication gate: **PASS**, while explicitly preserving the rule that deterministic QC and generated evidence are not independent proof.
+
+Therefore the completion metric must remain split into two distinct quantities:
+
+**Prepared / traceable verification work = 100,200 / 100,200 (100%)**
+
+**Independently reviewed and VERIFIED = 0 / 100,200 (0%)**
+
+The next completion step is not to manufacture VERIFIED states. It is to process the review queue through the separate human/audit gate, preserving reviewer identity, evidence, countercase, reproduction/test, audit record and exact task hash before any promotion to VERIFIED.
+
+The system must remain fail-closed: missing independent evidence remains NOT_VERIFIED/UNVERIFIED rather than being promoted automatically.
