@@ -1,0 +1,60 @@
+name: SHIRMANI Independent Review Readiness Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "generated/independent-verification-records.json"
+      - "factory/independent_review_readiness.py"
+      - ".github/workflows/independent-review-readiness.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-independent-review-readiness
+  cancel-in-progress: true
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Build fail-closed review queue
+        run: python factory/independent_review_readiness.py
+      - name: Validate readiness invariants
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("generated/independent-review-readiness.json",encoding="utf-8"))
+          assert d["review_ready"] + d["blocked"] == d["registry_records"]
+          assert d["automation_state"]["may_declare_verified"] is False
+          assert d["automation_state"]["independent_reviewer_required"] is True
+          print("INDEPENDENT_REVIEW_READINESS_GATE: PASS")
+          PY
+      - name: Publish review queue artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-review-readiness-${{ github.run_id }}
+          path: generated/independent-review-readiness.json
+          retention-days: 14
+      - name: Emit summary
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d=json.load(open("generated/independent-review-readiness.json",encoding="utf-8"))
+          print("## ꙰ SHIRMANI Independent Review Readiness")
+          print(f"- Registry records: {d['registry_records']}")
+          print(f"- Review-ready: {d['review_ready']}")
+          print(f"- Blocked: {d['blocked']}")
+          print(f"- Independently VERIFIED: {d['independently_verified']}")
+          print("- Automation may declare VERIFIED: NO")
+          print("- Independent reviewer required: YES")
+          PY
