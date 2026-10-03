@@ -35,20 +35,24 @@ jobs:
           set -euo pipefail
           python3 factory/bootstrap_independent_verification_queue.py
           python3 factory/bootstrap_verification_review_registry.py
-
       - name: Compute fail-closed verification progress
         run: |
           set -euo pipefail
-          python3 factory/verification_progress.py             --queue generated/independent-verification-queue.jsonl             --registry generated/independent-verification-registry.jsonl             --output generated/independent-verification-progress.json
-
+          python3 factory/verification_progress.py \
+            --queue generated/independent-verification-queue.jsonl \
+            --registry generated/independent-verification-registry.jsonl \
+            --output generated/independent-verification-progress.json
       - name: Generate human-readable progress map
         run: python3 scripts/generate_independent_verification_progress_map.py
-      - name: Publish machine-readable progress
+      - name: Publish generated verification state to automation branch
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot].noreply.github.com"
-          git add generated/independent-verification-progress.json generated/independent-verification-progress-map.md
-          if git diff --cached --quiet; then exit 0; fi
+          git add generated/independent-verification-queue.jsonl generated/independent-verification-registry.jsonl generated/independent-verification-progress.json generated/independent-verification-progress-map.md
+          if git diff --cached --quiet; then
+            echo "No generated verification changes."
+            exit 0
+          fi
           git commit -m "ci: update independent verification progress"
-          git push origin HEAD:main
+          git push origin HEAD:automation/independent-verification-progress-live
