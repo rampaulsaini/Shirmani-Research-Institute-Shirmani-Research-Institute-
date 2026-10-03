@@ -228,3 +228,15 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Five-minute workflow:** [.github/workflows/ultra-mega-infinity-quantum-automission.yml](.github/workflows/ultra-mega-infinity-quantum-automission.yml)
 - **Hardening test:** [tests/ultra_mega_infinity_quantum_automission.py](tests/ultra_mega_infinity_quantum_automission.py)
 - **Integrity:** the architecture label does not claim physical quantum computation; measured signals, inference, interpretation, confidence, provenance and uncertainty remain distinct.
+
+
+## 🧭 Supreme NLP Supervisory Control — Unified Five-Minute Gate
+
+- **Supervisory contract:** [docs/supreme-nlp-supervisory-control.md](docs/supreme-nlp-supervisory-control.md)
+- **Machine-readable schema:** [schemas/supreme-nlp-supervisory-control.schema.json](schemas/supreme-nlp-supervisory-control.schema.json)
+- **Deterministic supervisor:** [factory/supreme_nlp_supervisory_control.py](factory/supreme_nlp_supervisory_control.py)
+- **Hardening test:** [tests/supreme_nlp_supervisory_control.py](tests/supreme_nlp_supervisory_control.py)
+- **Five-minute workflow:** [.github/workflows/supreme-nlp-supervisory-control.yml](.github/workflows/supreme-nlp-supervisory-control.yml)
+- **Role:** reconcile Health + Benchmark + Ultra Mega Infinity Quantum controller state without upgrading verification status.
+- **Fail-closed:** any controller failure or missing required artifact blocks the supervisory cycle.
+- **Verification boundary:** a successful workflow remains operational evidence only; independent verification is never inferred automatically.
