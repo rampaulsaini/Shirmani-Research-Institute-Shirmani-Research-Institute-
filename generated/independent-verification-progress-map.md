@@ -1,32 +1,50 @@
 # ꙰ SHIRMANI Independent Verification Progress Map
 
-Generated: 2026-10-03T10:10:39.924685+00:00
+Generated: 2026-10-03T14:29:00+00:00
 
-## Current measurable state
+## Authoritative target scale
 
-| Measure | Progress |
+| Measure | Current |
 |---|---:|
-| Verification readiness | **100%** |
-| Evidence-supported records | **4/10 (40%)** |
-| Queue generated | **10/10 (100%)** |
-| Review registry coverage | **10/10 (100%)** |
-| Independently VERIFIED | **0/10 (0%)** |
+| Target | **100,200 records** |
+| Queued | **100,200 (100%)** |
+| Reviewed | **0 (0%)** |
+| Independently VERIFIED | **0 (0%)** |
+| Remaining to target | **100,200 (100%)** |
+| Promotion eligible | **0** |
+| Publication gate | **CHECK** |
 
-## Graph
+### Target graph
+- VERIFIED: ░░░░░░░░░░░░░░░░░░░░ 0%
+- Remaining: ████████████████████ 100%
 
-- Readiness: ████████████████████ 100%
-- Evidence-supported: ████████░░░░░░░░░░░░ 40%
-- Review registry coverage: ████████████████████ 100%
-- Independent VERIFIED: ░░░░░░░░░░░░░░░░░░░░ 0%
+## Instantiated review layer
+
+The repository currently materializes a smaller set of concrete claim/review records. This preparation/review layer must not be presented as the full 100,200 VERIFIED target.
+
+| Measure | Current |
+|---|---:|
+| Concrete claim records | **10** |
+| Review slots | **10 (100% coverage)** |
+| Independently VERIFIED | **0 (0%)** |
+| Evidence-supported in historical 10-record status | **4/10 (40%)** |
+
+### Review-layer graph
+- Review-slot coverage: ████████████████████ 100%
+- Independently VERIFIED: ░░░░░░░░░░░░░░░░░░░░ 0%
 
 ## Critical distinction
 
-**Prepared/ready is not the same as independently VERIFIED.**
+**Preparation, queue generation, review-slot generation, evidence collection and workflow success are not independent verification.**
 
-A workflow succeeding, a queue being generated, or evidence being collected does not create an independent verification decision. VERIFIED remains fail-closed until an independent reviewer records the required evidence, counter-evidence review, reproducible test/observation, reviewer identity/role, timestamp, and audit record.
+A record reaches VERIFIED only after the required independent review decision, evidence, counter-evidence review, reproducible test/observation, reviewer identity/role, timestamp and audit record satisfy the fail-closed promotion controls.
 
-## Next measurable gate
+## Operational path
 
-EVIDENCE -> INDEPENDENT TEST -> REPRODUCIBLE RESULT -> COUNTER-EVIDENCE -> AUDIT -> VERIFIED
+**Source → Normalize → Claims → Evidence → Independent Test → Reproducible Result → Counter-Evidence → Audit → VERIFIED → QC → Publication/Archive**
 
 The system may automate preparation and auditing, but it must not manufacture an independent reviewer decision.
+
+## Integrity note
+
+The 100,200-record target and the currently instantiated concrete review records are intentionally reported as separate scales. This prevents a 10/10 review-slot coverage figure from being mistaken for completion of the 100,200 VERIFIED target.
