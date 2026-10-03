@@ -21,18 +21,25 @@ jobs:
         with:
           ref: main
           fetch-depth: 1
+      - name: Rebuild deterministic review queue and pending registry
+        run: |
+          set -euo pipefail
+          python3 factory/bootstrap_independent_verification_queue.py
+          python3 factory/bootstrap_verification_review_registry.py
+
       - name: Compute fail-closed verification progress
         run: |
           set -euo pipefail
-          if [ -s generated/independent-verification-queue.jsonl.gz ]; then QUEUE=generated/independent-verification-queue.jsonl.gz; elif [ -s generated/independent-verification-queue.jsonl ]; then QUEUE=generated/independent-verification-queue.jsonl; else echo "Verification queue missing"; exit 1; fi
-          if [ -s generated/independent-verification-registry.jsonl.gz ]; then REGISTRY=generated/independent-verification-registry.jsonl.gz; elif [ -s generated/independent-verification-registry.jsonl ]; then REGISTRY=generated/independent-verification-registry.jsonl; else echo "Verification registry missing"; exit 1; fi
-          python3 factory/verification_progress.py             --queue "$QUEUE"             --registry "$REGISTRY"             --output generated/independent-verification-progress.json
+          python3 factory/verification_progress.py             --queue generated/independent-verification-queue.jsonl             --registry generated/independent-verification-registry.jsonl             --output generated/independent-verification-progress.json
+
+      - name: Generate human-readable progress map
+        run: python3 scripts/generate_independent_verification_progress_map.py
       - name: Publish machine-readable progress
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot].noreply.github.com"
-          git add generated/independent-verification-progress.json
+          git add generated/independent-verification-progress.json generated/independent-verification-progress-map.md
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "ci: update independent verification progress"
           git push origin HEAD:main
