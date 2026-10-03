@@ -12,7 +12,7 @@ on:
       - ".github/workflows/verification-progress-dashboard.yml"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: shirmani-verification-progress-dashboard
@@ -59,16 +59,8 @@ jobs:
 
       - name: Persist authoritative dashboard
         run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot].noreply.github.com"
-          git add generated/verification-progress-dashboard.json generated/verification-progress-dashboard.md
-          if git diff --cached --quiet; then
-            echo "Dashboard unchanged."
-            exit 0
-          fi
-          git commit -m "ci: update authoritative verification dashboard"
-          git push origin HEAD:main
+          echo "Dashboard persistence is intentionally artifact-only because main is protected and changes must be made through a pull request."
+          echo "The generated dashboard remains authoritative for this run via the uploaded artifact and job summary."
 
       - name: Emit summary
         run: |
