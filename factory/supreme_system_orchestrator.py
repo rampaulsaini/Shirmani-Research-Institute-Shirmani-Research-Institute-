@@ -53,17 +53,32 @@ def seed_nlp_status() -> None:
     target.parent.mkdir(parents=True,exist_ok=True)
     target.write_text(json.dumps(record,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
-def ensure_empty_verification_ledgers() -> None:
-    """Keep the initial verification state explicit: zero claims and zero VERIFIED records."""
-    for name in (
-        "claim-evidence.jsonl",
-        "independent-verification-queue.jsonl",
-        "independent-verification-registry.jsonl",
-    ):
-        p=ROOT/"generated"/name
-        p.parent.mkdir(parents=True,exist_ok=True)
-        if not p.exists():
-            p.write_text("",encoding="utf-8")
+def prepare_verification_ledgers() -> None:
+    """Synchronize deterministic review inputs before dependent verification gates.
+
+    This step may create or refresh pending review slots and their queue-task
+    hashes, but it never creates a VERIFIED decision. Keeping the bootstrap
+    immediately upstream of the promotion gate prevents stale review hashes
+    from being reported as integrity failures on scheduled cycles.
+    """
+    steps = (
+        ROOT/"factory"/"bootstrap_independent_verification_queue.py",
+        ROOT/"factory"/"bootstrap_verification_review_registry.py",
+    )
+    for script in steps:
+        x = subprocess.run(
+            ["python", str(script)],
+            cwd=ROOT,
+            env=ENV,
+            text=True,
+            capture_output=True,
+            timeout=180,
+        )
+        if x.returncode != 0:
+            raise RuntimeError(
+                f"verification bootstrap failed: {script.name}: "
+                f"{x.stdout[-1000:]} {x.stderr[-1000:]}"
+            )
 
 def run_gate(name:str,rel:str)->dict[str,Any]:
     p=ROOT/rel
@@ -87,7 +102,7 @@ def main()->int:
     # Dependency order: create deterministic evidence/status inputs first,
     # then execute all fail-closed gates.
     seed_nlp_status()
-    ensure_empty_verification_ledgers()
+    prepare_verification_ledgers()
     e2e=subprocess.run(["python","-m","unittest","tests/test_supreme_nlp_end_to_end.py","-v"],cwd=ROOT,env=ENV,text=True,capture_output=True,timeout=180)
     e2e_gate={"name":"supreme_nlp_end_to_end","status":"PASS" if e2e.returncode==0 else "BLOCK","returncode":e2e.returncode,"stdout_tail":e2e.stdout[-2000:],"stderr_tail":e2e.stderr[-2000:]}
     gates=[run_gate(n,p) for n,p in GATES]+[e2e_gate]
