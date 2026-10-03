@@ -10,7 +10,10 @@
     "not_verified_records": 4,
     "independently_verified_records": 0,
     "independent_verified_percent": 0,
-    "verification_readiness_percent": 100
+    "verification_readiness_percent": 100,
+    "target_records": 100200,
+    "remaining_to_target": 100200,
+    "target_completion_percent": 0
   },
   "integrity_note": "0% independently verified is preserved until an actual independent review decision exists. Evidence-supported does not equal verification of the complete framework.",
   "records": [
