@@ -1,0 +1,58 @@
+name: SHIRMANI Verification Progress Dashboard
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "generated/independent-verification-status-2026-09-29.json"
+      - "generated/independent-verification-queue.jsonl"
+      - "generated/independent-verification-registry.jsonl"
+      - "factory/verification_progress_dashboard.py"
+      - ".github/workflows/verification-progress-dashboard.yml"
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-verification-progress-dashboard
+  cancel-in-progress: true
+jobs:
+  dashboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Generate fail-closed dashboard
+        run: python factory/verification_progress_dashboard.py
+      - name: Validate dashboard invariants
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("generated/verification-progress-dashboard.json",encoding="utf-8"))
+          assert 0 <= d["percent"]["independently_verified_of_total"] <= 100
+          assert d["automation_state"]["independent_verification_required"] is True
+          assert d["automation_state"]["automission_may_declare_verified"] is False
+          print("VERIFICATION_DASHBOARD_GATE: PASS")
+          PY
+      - name: Publish dashboard
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-progress-dashboard-\${{ github.run_id }}
+          path: generated/verification-progress-dashboard.json
+          retention-days: 14
+      - name: Emit summary
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d=json.load(open("generated/verification-progress-dashboard.json",encoding="utf-8"))
+          print("## SHIRMANI Verification Progress")
+          print(f"- Total records: {d['records']['total']}")
+          print(f"- Evidence-supported: {d['records']['evidence_supported']} ({d['percent']['evidence_supported_of_total']}%)")
+          print(f"- Independently VERIFIED: {d['records']['verified']} ({d['percent']['independently_verified_of_total']}%)")
+          print(f"- Verification readiness: {d['percent']['verification_readiness']}%")
+          print("- Fail-closed: automation cannot declare VERIFIED")
+          print(f"- Next gate: {d['next_gate']}")
+          PY
