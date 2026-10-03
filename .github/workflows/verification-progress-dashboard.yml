@@ -4,11 +4,14 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
     paths:
       - "generated/independent-verification-records.json"
       - "factory/verification_progress_dashboard.py"
+      - "scripts/generate_independent_verification_progress_map.py"
       - ".github/workflows/verification-progress-dashboard.yml"
 
 permissions:
