@@ -26,10 +26,24 @@ def main() -> None:
     s = data["verification_summary"]
     queue = jsonl_count(QUEUE)
     registry = jsonl_count(REGISTRY)
-    total = int(s["queue_records"])
+    total = queue or int(s["queue_records"])
     evidence = int(s["evidence_supported_records"])
-    verified = int(s["independently_verified_records"])
     readiness = float(s["verification_readiness_percent"])
+
+    # The live review registry is authoritative for progress after bootstrap.
+    # Never infer VERIFIED from workflow success or the historical status file.
+    verified = 0
+    if REGISTRY.exists():
+        for line in REGISTRY.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            record = json.loads(line)
+            if (
+                str(record.get("status", "")).upper() == "REVIEWED"
+                and str(record.get("verification_status", "")).upper() == "VERIFIED"
+                and record.get("independent") is True
+            ):
+                verified += 1
     evidence_pct = round((evidence / total) * 100, 2) if total else 0
     verified_pct = round((verified / total) * 100, 2) if total else 0
     registry_coverage = round((registry / queue) * 100, 2) if queue else 0
