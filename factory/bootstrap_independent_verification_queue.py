@@ -18,13 +18,26 @@ def sha256_obj(obj):
 def main():
     data = json.loads(SRC.read_text(encoding="utf-8"))
     records = data.get("records", [])
+    # Preserve task timestamps and hashes across five-minute cycles so an
+    # existing review remains bound to the same immutable task.
+    existing = {}
+    if OUT.exists():
+        for line in OUT.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                task = json.loads(line)
+                existing[str(task.get("task_id", ""))] = task
+
     now = datetime.now(timezone.utc).isoformat()
     rows = []
     for r in records:
         rid = str(r["id"])
+        task_id = f"{rid}-independent-review-v1"
+        if task_id in existing:
+            rows.append(existing[task_id])
+            continue
         sources = list((r.get("evidence") or {}).get("sources") or [])
         task = {
-            "task_id": f"{rid}-independent-review-v1",
+            "task_id": task_id,
             "claim_id": rid,
             "source_ids": sources,
             "verification_questions": [
