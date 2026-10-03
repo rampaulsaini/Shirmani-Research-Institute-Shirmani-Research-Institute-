@@ -1,0 +1,18 @@
+{
+  "record_id": "IV-001",
+  "source_record_id": "IV-001",
+  "claim_or_result": "Stars and galaxies change/evolve over time.",
+  "verification_scope": "Check whether independent authoritative astronomy sources document stellar and galactic formation/evolution over cosmic time.",
+  "evidence_refs": [
+    "https://science.nasa.gov/universe/galaxies/evolution/",
+    "https://science.nasa.gov/astrophysics/science-questions/how-did-universe-originate-and-evolve-produce-galaxies-stars-and-planets-we-see-today/"
+  ],
+  "independent_verifier": "GPT-5.6 Luna — independent source-check pass",
+  "verification_method": "Independent cross-check against NASA Science public material describing stars, galaxies, their formation and evolution over cosmic time; no author-authored repository text was used as the sole verification basis.",
+  "reviewed_at": "2026-10-03T13:45:00Z",
+  "verification_state": "REVIEW",
+  "limitations": [
+    "This is an independent source-check/review pass, not a final human attestation.",
+    "The broad claim is supported by the cited sources, but the repository's formal VERIFIED promotion gate still requires its complete review record and applicable independent reviewer decision."
+  ]
+}
