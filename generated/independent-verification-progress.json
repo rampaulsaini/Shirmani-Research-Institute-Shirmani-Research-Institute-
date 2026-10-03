@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-10-03T10:10:39.924685+00:00",
+  "source": "generated/independent-verification-status-2026-09-29.json",
+  "queue_records": 10,
+  "evidence_supported_records": 4,
+  "evidence_supported_percent": 40.0,
+  "review_readiness_percent": 100.0,
+  "queue_records_generated": 10,
+  "review_registry_records": 10,
+  "review_registry_coverage_percent": 100.0,
+  "independently_verified_records": 0,
+  "independent_verified_percent": 0.0,
+  "policy": {
+    "workflow_activity_is_not_verification": true,
+    "automission_may_prepare": true,
+    "automission_may_declare_verified": false,
+    "human_or_independent_reviewer_decision_required": true
+  }
+}
