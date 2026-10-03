@@ -1,0 +1,49 @@
+name: SHIRMANI Independent Verification Readiness Audit
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "generated/claim-evidence.jsonl"
+      - "factory/verification_readiness.py"
+      - ".github/workflows/shirmani-independent-verification-readiness.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-verification-readiness
+  cancel-in-progress: true
+
+jobs:
+  verification-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run fail-closed verification readiness audit
+        run: python factory/verification_readiness.py
+      - name: Publish verification readiness artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-verification-readiness
+          path: generated/automission/verification-readiness.json
+      - name: Write summary
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open("generated/automission/verification-readiness.json", encoding="utf-8"))
+          print("## SHIRMANI Verification Readiness")
+          print(f"- Records scanned: {r['records_scanned']}")
+          print(f"- Independently verified records: {r['independently_verified_records']}")
+          print(f"- Not independently verified: {r['not_independently_verified_records']}")
+          print(f"- Gate: {r['publication_gate']}")
+          print("- Rule: workflow success does not equal scientific verification.")
+          PY
