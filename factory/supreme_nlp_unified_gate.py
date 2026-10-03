@@ -10,7 +10,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from agents.supreme_nlp_multimodal import analyze, to_simple_language
 from agents.supreme_nlp_practitioner import build_practitioner_record
