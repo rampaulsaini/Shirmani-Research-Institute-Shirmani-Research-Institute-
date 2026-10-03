@@ -1,4 +1,14 @@
 """Quality gate for the Supreme NLP v2 control layer."""
+from pathlib import Path
+import sys
+
+# When a script under factory/ is executed directly, Python places factory/
+# first on sys.path. Explicitly expose the repository root so the local
+# agents package is imported deterministically on GitHub Actions runners.
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 from agents.supreme_nlp import build_record
 
 def main():
