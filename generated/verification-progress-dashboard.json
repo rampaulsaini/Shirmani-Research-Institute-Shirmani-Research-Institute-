@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-10-03T10:35:00+00:00",
+  "method": "authoritative aggregate queue + fail-closed promotion state",
+  "records": {
+    "target": 100200,
+    "queued": 100200,
+    "reviewed": 0,
+    "verified": 0,
+    "remaining_to_verified_target": 100200
+  },
+  "percent": {
+    "queued_of_target": 100.0,
+    "reviewed_of_target": 0.0,
+    "independently_verified_of_target": 0.0,
+    "remaining_of_target": 100.0
+  },
+  "automation_state": {
+    "independent_verification_required": true,
+    "automission_may_declare_verified": false,
+    "promotion_gate": "CHECK",
+    "publication_gate": "CHECK"
+  },
+  "next_gate": "Independent review records with evidence, counter-evidence, reproducible test and audit must be completed before VERIFIED promotion."
+}
