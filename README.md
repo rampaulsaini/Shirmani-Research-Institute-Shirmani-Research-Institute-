@@ -228,3 +228,16 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Five-minute workflow:** [.github/workflows/ultra-mega-infinity-quantum-automission.yml](.github/workflows/ultra-mega-infinity-quantum-automission.yml)
 - **Hardening test:** [tests/ultra_mega_infinity_quantum_automission.py](tests/ultra_mega_infinity_quantum_automission.py)
 - **Integrity:** the architecture label does not claim physical quantum computation; measured signals, inference, interpretation, confidence, provenance and uncertainty remain distinct.
+
+
+## 🔬 Production-Grade Scientific Validation & Independent Verification — 2026-10-02
+
+- **Validation protocol:** [docs/production-grade-scientific-validation-2026-10-02.md](docs/production-grade-scientific-validation-2026-10-02.md)
+- **Scientific evidence map:** [research/scientific-evidence-map-2026-10-02.md](research/scientific-evidence-map-2026-10-02.md)
+- **Independent verification schema:** [schemas/independent-scientific-verification.schema.json](schemas/independent-scientific-verification.schema.json)
+- **Fail-closed verification gate:** [factory/independent_scientific_verification_gate.py](factory/independent_scientific_verification_gate.py)
+- **Five-minute verification workflow:** [.github/workflows/independent-scientific-verification.yml](.github/workflows/independent-scientific-verification.yml)
+- **Two NLP layers:** Evidence/Reasoning NLP + Multimodal Signal-to-Language NLP, with cross-checking and separate uncertainty boundaries.
+- **VERIFIED boundary:** independent verifier + independent replication + evidence references + preregistration + raw-data reference + dataset/material fingerprint + analysis fingerprint + method + limitations are required.
+- **Scientific integrity:** measurable plant/biological/environmental signals can be researched and translated into plain language, but signal patterns are not automatically treated as subjective feeling or consciousness.
+- **Current verification state:** empty registry means **0 VERIFIED records**; the system does not fabricate verification.
