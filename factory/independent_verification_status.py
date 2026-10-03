@@ -30,7 +30,7 @@ def main() -> None:
     for record in read_jsonl_gz(registry_path):
         registry_total += 1
         value = str(record.get("verification_status", "")).strip().upper()
-        if value == "VERIFIED": verified += 1
+        if value in {"VERIFIED", "INDEPENDENTLY_VERIFIED"}: verified += 1
         elif value in {"REVIEW", "UNDER_REVIEW"}: review += 1
         elif value in {"UNVERIFIED", "NOT_VERIFIED", "PENDING", "READY_FOR_HUMAN_REVIEW"}: unverified += 1
         elif value == "BLOCKED": blocked += 1
@@ -57,6 +57,7 @@ def main() -> None:
         "registry_total": registry_total,
         "prepared_review_records": prepared_records,
         "verified_records": verified,
+        "verified_status_values": ["VERIFIED", "INDEPENDENTLY_VERIFIED"],
         "review_records": review,
         "unverified_records": unverified,
         "blocked_records": blocked,
