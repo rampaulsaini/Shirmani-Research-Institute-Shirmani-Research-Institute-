@@ -16,15 +16,35 @@ def task_hash(task):
     return hashlib.sha256(json.dumps(task, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
 
 def main():
+    # Preserve existing review decisions. The five-minute automation cycle may
+    # add missing review slots, but it must never erase an independent review
+    # that has already been recorded.
+    existing = {}
+    if OUT.exists():
+        for line in OUT.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            record = json.loads(line)
+            task_id = str(record.get("task_id", ""))
+            if task_id:
+                existing[task_id] = record
+
     rows = []
     now = datetime.now(timezone.utc).isoformat()
     for line in QUEUE.read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
         task = json.loads(line)
+        task_id = str(task["task_id"])
+        if task_id in existing:
+            record = existing[task_id]
+            record.setdefault("audit", {})["record_hash"] = task_hash(task)
+            rows.append(record)
+            continue
+
         rows.append({
-            "review_id": "REVIEW-" + str(task["task_id"]),
-            "task_id": task["task_id"],
+            "review_id": "REVIEW-" + task_id,
+            "task_id": task_id,
             "claim_id": task["claim_id"],
             "status": "PENDING_REVIEW",
             "verification_status": "NOT_VERIFIED",
