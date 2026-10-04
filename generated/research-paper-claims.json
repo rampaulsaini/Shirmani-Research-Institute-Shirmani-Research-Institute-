@@ -73,5 +73,11 @@
         "independent validation"
       ]
     }
-  ]
+  ],
+  "intake_record": "federation/research-paper-source-intake.json",
+  "evidence_intake_status": "REGISTERED_FOR_EVIDENCE_INTAKE",
+  "promotion_policy": {
+    "allowed": false,
+    "reason": "Claims require independent verification before promotion."
+  }
 }
