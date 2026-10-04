@@ -40,6 +40,22 @@ def main():
     finally:
         gate.build_record = original_build
 
+    # Provenance-only tampering must also invalidate the record fingerprint.
+    try:
+        def forged_provenance(signals, task_id):
+            record = original_build(signals, task_id)
+            record["provenance"]["independent_replication_verified"] = True
+            return record
+
+        gate.build_record = forged_provenance
+        assert gate.main() == 1
+        provenance_forged = json.loads(gate.OUT.read_text(encoding="utf-8"))
+        assert provenance_forged["status"] == "BLOCK"
+        assert provenance_forged["promotion_allowed"] is False
+        assert provenance_forged["checks"]["v3_fingerprint_valid"] is False
+    finally:
+        gate.build_record = original_build
+
     # A real UNVERIFIED record remains blocked even when its fingerprint is valid.
     assert gate.main() == 0
     restored = json.loads(gate.OUT.read_text(encoding="utf-8"))
@@ -54,7 +70,7 @@ def main():
             interpretation = record["result"]["interpretation"]
             interpretation["verification_status"] = "VERIFIED"
             record["provenance"]["independent_replication_verified"] = True
-            record["fingerprint"] = gate.record_fingerprint(record["result"])
+            record["fingerprint"] = gate.record_fingerprint(record)
             return record
 
         gate.build_record = uncalibrated_verified_record
