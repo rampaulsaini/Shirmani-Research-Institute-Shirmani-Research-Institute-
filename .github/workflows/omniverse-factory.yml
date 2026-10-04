@@ -77,6 +77,10 @@ jobs:
         run: python3 factory/reasoning_pipeline.py
       - name: Run Research Paper reasoning pipeline regression test
         run: python3 tests/test_research_paper_reasoning_pipeline.py
+      - name: Bridge Research Paper claims into claim-evidence pipeline
+        run: python3 factory/research_paper_claim_adapter.py
+      - name: Run Research Paper claim adapter regression test
+        run: python3 tests/test_research_paper_claim_adapter.py
       - name: Run Supreme NLP multimodal integrity smoke gate
         run: python3 factory/supreme_nlp_qc.py
       - name: Run Supreme NLP v3 calibration and abstention gate
