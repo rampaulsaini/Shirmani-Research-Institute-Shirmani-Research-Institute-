@@ -18,4 +18,4 @@ print(f"Research Paper claim adapter contract: PASS ({len(claims['claims'])} cla
 
 assert "PREFIX = \"claim:research-paper:\"" in adapter.read_text(encoding="utf-8")
 
-# Every emitted claim must carry traceability metadata without implying proof.\nassert "AUTHOR_DECLARATION" in adapter.read_text(encoding="utf-8")\n
+# Every emitted claim must carry traceability metadata without implying proof.\nassert "AUTHOR_DECLARATION" in adapter.read_text(encoding="utf-8")
