@@ -187,6 +187,21 @@ jobs:
           name: shirmani-heart-view-review-packet
           path: generated/verification-review-packet-*.json
           if-no-files-found: error
+      - name: Build Research Paper verification intake
+        run: python3 factory/research_paper_verification_intake.py
+      - name: Validate Research Paper verification intake
+        run: |
+          test -s generated/research-paper-verification-intake.jsonl
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          claims=json.loads(Path("generated/research-paper-claims.json").read_text())["claims"]
+          rows=[json.loads(x) for x in Path("generated/research-paper-verification-intake.jsonl").read_text().splitlines() if x.strip()]
+          assert len(rows)==len(claims)
+          assert all(r["verification_status"]=="UNVERIFIED" for r in rows)
+          assert all(r["promotion_allowed"] is False for r in rows)
+          assert {r["claim_id"] for r in rows} == {c["id"] for c in claims}
+          PY
       - name: Build research evidence traceability graph
         run: python3 factory/research_evidence_graph.py
       - name: Run research evidence graph QC
