@@ -84,7 +84,27 @@ jobs:
       - name: Run Supreme NLP v3 adversarial hardening tests
         run: python3 tests/test_supreme_nlp_v3_hardening.py
       - name: Run Supreme NLP unified promotion-boundary gate
+        run: python3 factory/supreme_nlp_unified_gate.py
+      - name: Run Supreme NLP unified gate regression tests
         run: python3 tests/test_supreme_nlp_unified_gate.py
+      - name: Validate unified NLP control-plane report
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("generated/supreme-nlp/unified-control-plane.json").read_text(encoding="utf-8"))
+          if report.get("status") != "PASS":
+              raise SystemExit("Unified NLP control-plane gate is not PASS")
+          if report.get("promotion_allowed") is not False:
+              raise SystemExit("Unified NLP gate must remain non-promoting without independent evidence")
+          checks = report.get("checks", {})
+          if checks.get("v3_unverified_safe_state") is not True:
+              raise SystemExit("Unified NLP v3 is not in the expected fail-closed UNVERIFIED state")
+          if checks.get("v3_promotion_boundary_consistent") is not True:
+              raise SystemExit("Unified NLP promotion boundary is inconsistent")
+          if checks.get("v3_fingerprint_valid") is not True:
+              raise SystemExit("Unified NLP v3 fingerprint validation failed")
+          PY
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
       - name: Build deterministic formulation/test records
