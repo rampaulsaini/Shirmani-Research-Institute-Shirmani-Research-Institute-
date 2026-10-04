@@ -53,12 +53,16 @@
     "A ledger entry is not income.",
     "Evidence must be separately reviewable.",
     "Identity changes, allocation rules, disputes and settlements require human review.",
-    "No automatic minting, payment or financial execution."
+    "No automatic minting, payment or financial execution.",
+    "Contribution verification alone never authorizes production YTH issuance.",
+    "YTH allocation must use a unique idempotency key and auditable allocation record."
   ],
   "integrations": {
     "employment": "future_verified_work_reference",
     "income": "future_authorized_income_record_only",
     "yatharth_mudra": "design_reference_only",
-    "value_exchange_dashboard": "dashboard_index"
+    "value_exchange_dashboard": "dashboard_index",
+    "yatharth_mudra_protocol": "federation/yatharth-mudra-protocol.json",
+    "issuance_rule": "A verified contribution may become an allocation candidate only under the YTH PoVC protocol; ledger verification never itself mints YTH."
   }
 }\n
