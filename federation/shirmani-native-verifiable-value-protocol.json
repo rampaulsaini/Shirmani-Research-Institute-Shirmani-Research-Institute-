@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "protocol_name": "Shirmani Native Verifiable Value & Asset Protocol",
+  "status": "DESIGN_TESTNET_FIRST",
+  "principle": "Platform-native provenance and verification are the source-of-truth layer; blockchain/NFT is optional external anchoring or settlement, not the primary truth layer.",
+  "layers": [
+    "IDENTITY",
+    "PROVENANCE",
+    "EVIDENCE",
+    "VERIFICATION",
+    "CONTRIBUTION",
+    "ALLOCATION",
+    "ASSET",
+    "SETTLEMENT",
+    "GOVERNANCE",
+    "ARCHIVE"
+  ],
+  "native_ledger": {
+    "model": "append_only_hash_chained_event_ledger",
+    "event_identity": [
+      "event_id",
+      "previous_event_hash",
+      "payload_hash",
+      "created_at"
+    ],
+    "integrity": "SHA-256 hash chain with deterministic canonical serialization",
+    "external_anchor": "optional Merkle root / blockchain timestamp anchor",
+    "source_of_truth": "platform ledger plus independently reproducible manifests",
+    "duplicate_protection": "event_idempotency_key + contribution_id + allocation_id",
+    "replay_protection": true
+  },
+  "asset_model": {
+    "certificates": "unique verifiable research/work/credential records",
+    "fungible_value": "optional YTH settlement layer only after production gates",
+    "nft_compatibility": "optional ERC-721/ERC-1155 or equivalent adapter",
+    "portability": "assets can be exported with provenance proofs without making the external chain authoritative"
+  },
+  "yth": {
+    "symbol": "YTH",
+    "role": "bounded settlement/value layer inside the broader protocol",
+    "max_supply": 1000000000,
+    "decimals": 8,
+    "minting_now": false,
+    "mining_now": false,
+    "deployment_now": false,
+    "public_sale": false
+  },
+  "issuance_gate": {
+    "default": "BLOCK",
+    "required": [
+      "verified contribution",
+      "independent evidence review where applicable",
+      "deterministic allocation",
+      "anti-duplication",
+      "supply-cap check",
+      "dispute window/control",
+      "human governance authorization",
+      "security controls",
+      "on-chain confirmation if external settlement is enabled"
+    ],
+    "blocked_states": [
+      "REGISTERED",
+      "EVIDENCE_PENDING",
+      "UNVERIFIED",
+      "DISPUTED",
+      "REJECTED"
+    ]
+  },
+  "security": {
+    "least_privilege": true,
+    "separate_keys": [
+      "governance",
+      "mint_authorization",
+      "deployment",
+      "treasury",
+      "emergency"
+    ],
+    "multisig_or_equivalent": true,
+    "timelock": true,
+    "pause_recovery": true,
+    "signed_release_manifests": true,
+    "independent_security_audit_required": true,
+    "testnet_before_mainnet": true
+  },
+  "boundaries": {
+    "blockchain_is_optional": true,
+    "nft_is_not_proof_of_truth": true,
+    "workflow_pass_is_not_scientific_verification": true,
+    "generated_ledger_is_not_guaranteed_income": true,
+    "yth_has_no_guaranteed_monetary_value": true
+  },
+  "roadmap": [
+    "SPECIFICATION",
+    "DETERMINISTIC_LOCAL_LEDGER",
+    "THREAT_MODEL",
+    "TESTNET",
+    "INDEPENDENT_SECURITY_AUDIT",
+    "CONTROLLED_PILOT",
+    "LEGAL_ACCOUNTING_REVIEW",
+    "MAINNET_DECISION"
+  ]
+}
