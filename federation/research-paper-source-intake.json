@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "record_type": "research_paper_source_intake",
+  "source_id": "SRP-SOURCE-001",
+  "repository": "rampaulsaini/Shirmani-Research-Paper",
+  "ref": "main",
+  "public_entrypoint": "https://rampaulsaini.github.io/Shirmani-Research-Paper/",
+  "source_files": [
+    "index.html",
+    "research-paper.pdf"
+  ],
+  "intake_status": "REGISTERED",
+  "author_status": "AUTHOR_DECLARED",
+  "verification_status": "UNVERIFIED",
+  "independent_verification_required": true,
+  "claim_registry": "generated/research-paper-claims.json",
+  "evidence_boundary": "Repository presence, authorship declarations, publication metadata, and automated traceability are not independent scientific verification.",
+  "intake_categories": [
+    "governance",
+    "education",
+    "philosophy",
+    "human_welfare",
+    "systems",
+    "self_identity",
+    "time_perception",
+    "ego_deconstruction",
+    "heart_mind_balance"
+  ],
+  "downstream_flow": [
+    "SOURCE",
+    "CLAIM",
+    "EVIDENCE",
+    "FORMULATION_TEST",
+    "INDEPENDENT_VERIFICATION",
+    "QC",
+    "PUBLICATION",
+    "ARCHIVE"
+  ]
+}
