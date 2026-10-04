@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "generated_at": "2026-10-04T11:55:00Z",
+  "state": "NOT_VERIFIED",
+  "queue_total": 100200,
+  "queued_records": 100200,
+  "prepared_review_records": 100200,
+  "prepared_percent": 100,
+  "reviewed_records": 0,
+  "verified_records": 0,
+  "verified_percent_of_queue": 0,
+  "promotion_eligible": 0,
+  "packet_qc_checked_items": 1000,
+  "queue_qc_error_count": 0,
+  "registry_qc_error_count": 0,
+  "promotion_qc_error_count": 0,
+  "policy": "No task may be auto-promoted to VERIFIED. VERIFIED requires independent review, evidence, countercase, reproduction/test and audit records matching the current task hash.",
+  "source_artifacts": [
+    "generated/VERIFICATION-QUEUE.json",
+    "generated/VERIFICATION-QUEUE-QC.json",
+    "generated/VERIFICATION-REGISTRY.json",
+    "generated/VERIFICATION-PROMOTION-QC.json",
+    "generated/VERIFICATION-PACKET-QC.json"
+  ],
+  "integrity_note": "Prepared/queued is not reviewed; reviewed is not VERIFIED; deterministic QC is not independent scientific verification."
+}
