@@ -1,24 +1,27 @@
 {
-  "generated_at": "2026-10-03T10:35:00+00:00",
-  "method": "authoritative aggregate queue + fail-closed promotion state",
+  "generated_at": "2026-10-04T12:48:36+00:00",
+  "method": "authoritative independent-verification records; fail-closed",
+  "target": 100200,
   "records": {
     "target": 100200,
-    "queued": 100200,
+    "prepared": 10,
     "reviewed": 0,
     "verified": 0,
-    "remaining_to_verified_target": 100200
+    "remaining_to_verified_target": 100200,
+    "evidence_supported": 4,
+    "source_registry_records": 10
   },
   "percent": {
-    "queued_of_target": 100.0,
-    "reviewed_of_target": 0.0,
-    "independently_verified_of_target": 0.0,
-    "remaining_of_target": 100.0
+    "prepared_of_target": 0.00998,
+    "reviewed_of_target": 0,
+    "independently_verified_of_target": 0,
+    "remaining_of_target": 100
   },
   "automation_state": {
     "independent_verification_required": true,
+    "automission_may_prepare": true,
     "automission_may_declare_verified": false,
-    "promotion_gate": "CHECK",
-    "publication_gate": "CHECK"
+    "independent_reviewer_decision_required": true
   },
-  "next_gate": "Independent review records with evidence, counter-evidence, reproducible test and audit must be completed before VERIFIED promotion."
+  "next_gate": "Complete independent review for prepared records; each VERIFIED promotion requires evidence, counter-evidence, reproducible test, reviewer provenance, timestamp, and audit."
 }
