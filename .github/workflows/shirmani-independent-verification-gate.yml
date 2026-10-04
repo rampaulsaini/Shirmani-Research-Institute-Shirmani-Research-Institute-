@@ -109,25 +109,15 @@ jobs:
           Path("verification-progress-map.json").write_text(json.dumps(progress, indent=2, ensure_ascii=False), encoding="utf-8")
 
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as s:
-              s.write("# SHIRMANI Independent Verification
-
-")
-              s.write(f"- Independent verification milestone: **{target:,}**
-")
-              s.write(f"- Upstream queue: **{queue_total:,}**
-")
-              s.write(f"- Queue: **{queued:,} ({queued_pct}%)**
-")
-              s.write(f"- Reviewed: **{reviewed:,} ({reviewed_pct}%)**
-")
-              s.write(f"- Independently VERIFIED: **{verified:,} ({verified_pct}%)**
-")
-              s.write(f"- Remaining: **{remaining:,} ({round(remaining / target * 100, 4)}%)**
-")
-              s.write(f"- Promotion gate: **{out['promotion_gate']}**
-")
-              s.write("- Workflow success is not counted as VERIFIED.
-")
+              s.write("# SHIRMANI Independent Verification\n\n")
+              s.write(f"- Independent verification milestone: **{target:,}**\n")
+              s.write(f"- Upstream queue: **{queue_total:,}**\n")
+              s.write(f"- Queue: **{queued:,} ({queued_pct}%)**\n")
+              s.write(f"- Reviewed: **{reviewed:,} ({reviewed_pct}%)**\n")
+              s.write(f"- Independently VERIFIED: **{verified:,} ({verified_pct}%)**\n")
+              s.write(f"- Remaining: **{remaining:,} ({round(remaining / target * 100, 4)}%)**\n")
+              s.write(f"- Promotion gate: **{out['promotion_gate']}**\n")
+              s.write("- Workflow success is not counted as VERIFIED.\n")
 
           print(json.dumps(out, indent=2, ensure_ascii=False))
 
