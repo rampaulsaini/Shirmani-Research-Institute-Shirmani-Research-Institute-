@@ -25,6 +25,12 @@ jobs:
       - name: Run verification promotion gate
         run: python factory/verification_promotion_gate.py
 
+      - name: Audit verification scope integrity
+        run: python scripts/audit_independent_verification_scope.py
+
+      - name: Generate independent verification progress map
+        run: python scripts/generate_independent_verification_progress_map.py
+
       - name: Build verification status summary
         shell: python
         run: |
@@ -57,3 +63,6 @@ jobs:
             generated/independent-verification-registry.jsonl
             generated/VERIFICATION-QUEUE-QC.json
             generated/VERIFICATION-PROMOTION-QC.json
+            generated/INDEPENDENT-VERIFICATION-SCOPE-INTEGRITY.json
+            generated/independent-verification-progress.json
+            generated/independent-verification-progress-map.md
