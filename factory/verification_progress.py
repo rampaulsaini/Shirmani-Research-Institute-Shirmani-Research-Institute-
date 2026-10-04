@@ -76,7 +76,8 @@ def main() -> int:
         "reviewed_records": reviewed,
         "independent_verified_records": verified,
         "remaining_review_records": max(len(queue) - reviewed, 0),
-        "remaining_verification_records": max(TARGET - verified, 0),\n        "upstream_queue_remaining_records": max(len(queue) - verified, 0),
+        "remaining_verification_records": max(TARGET - verified, 0),
+        "upstream_queue_remaining_records": max(len(queue) - verified, 0),
         "review_completion_pct": pct(reviewed, len(queue)),
         "verification_completion_pct": pct(verified, len(queue)),
         "target_completion_pct": pct(verified, TARGET),
@@ -105,7 +106,8 @@ def main() -> int:
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
-        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+        json.dumps(report, ensure_ascii=False, indent=2) + "
+",
         encoding="utf-8",
     )
     print(json.dumps(report, ensure_ascii=False))
