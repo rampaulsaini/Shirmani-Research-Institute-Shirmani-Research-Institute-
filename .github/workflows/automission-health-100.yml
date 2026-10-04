@@ -1,0 +1,114 @@
+name: SHIRMANI Automission 100% Self-Healing Health
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: shirmani-automission-100-health
+  cancel-in-progress: false
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Audit and recover critical Automission workflows
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          workflows=(
+            "supreme-nlp-v2-control-plane.yml"
+            "supreme-nlp-operational-health.yml"
+            "supreme-nlp-quality-gate.yml"
+            "supreme-nlp-runtime.yml"
+            "supreme-nlp-conveyor.yml"
+            "independent-verification-automission.yml"
+            "independent-verification-conveyor.yml"
+            "independent-verification-gate.yml"
+            "independent-verification-pipeline.yml"
+            "independent-verification-progress.yml"
+            "omniverse-factory.yml"
+            "ultra-mega-infinity-quantum-automission.yml"
+          )
+          mkdir -p generated
+          total=0; healthy=0; recovery=0; blocked=0
+          {
+            echo "# SHIRMANI Automission 100% Health"
+            echo
+            echo "| Workflow | Latest conclusion | Action |"
+            echo "|---|---|---|"
+          } > generated/automission-health-100.md
+
+          for workflow in "${workflows[@]}"; do
+            total=$((total+1))
+            run_json="$(gh run list --workflow "$workflow" --limit 1 --json databaseId,status,conclusion,url 2>/dev/null || echo '[]')"
+            run_id="$(jq -r '.[0].databaseId // empty' <<<"$run_json")"
+            status="$(jq -r '.[0].status // "NO_RUN"' <<<"$run_json")"
+            conclusion="$(jq -r '.[0].conclusion // "NO_CONCLUSION"' <<<"$run_json")"
+            action="PASS"
+            if [[ "$conclusion" == "success" ]]; then
+              healthy=$((healthy+1))
+            elif [[ -n "$run_id" && "$status" == "completed" && "$conclusion" =~ ^(failure|cancelled|timed_out|startup_failure)$ ]]; then
+              if gh run rerun "$run_id" --failed >/dev/null 2>&1; then
+                recovery=$((recovery+1)); action="RECOVERY_REQUESTED"
+              else
+                blocked=$((blocked+1)); action="RECOVERY_BLOCKED"
+              fi
+            elif [[ "$status" == "in_progress" || "$status" == "queued" || "$status" == "waiting" ]]; then
+              action="RUNNING"
+            else
+              blocked=$((blocked+1)); action="NO_HEALTHY_RUN"
+            fi
+            echo "| `$workflow` | $conclusion | $action |" >> generated/automission-health-100.md
+          done
+
+          score=$((healthy * 100 / total))
+          cat > generated/automission-health-100.json <<EOF
+          {
+            "schema_version": "1.0.0",
+            "generated_at_utc": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "critical_workflows": $total,
+            "healthy_latest_runs": $healthy,
+            "recovery_requested": $recovery,
+            "blocked_or_missing": $blocked,
+            "health_percent": $score,
+            "target_percent": 100,
+            "policy": "100% means every critical workflow has a latest completed successful run; failed runs trigger automatic failed-job recovery.",
+            "verification_boundary": "Operational health is distinct from independent research verification."
+          }
+          EOF
+
+          {
+            echo
+            echo "**Operational health: $score%**"
+            echo "- Critical workflows: $total"
+            echo "- Latest healthy: $healthy"
+            echo "- Recovery requested: $recovery"
+            echo "- Blocked/missing: $blocked"
+            echo "- Target: 100%"
+          } >> generated/automission-health-100.md
+
+          cat generated/automission-health-100.json
+          if [[ "$blocked" -gt 0 ]]; then
+            echo "Automission health is below 100% after recovery attempts."
+            exit 1
+          fi
+
+      - name: Publish health telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-automission-health-100
+          path: |
+            generated/automission-health-100.json
+            generated/automission-health-100.md
+          retention-days: 14
