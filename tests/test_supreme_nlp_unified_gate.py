@@ -17,7 +17,7 @@ def main():
     assert report["v3"]["independent_replication_verified"] is False
     assert report["governance"]["promotion_requires_independent_evidence"] is True
     assert report["governance"]["declared_experiment_identifiers_are_not_replication"] is True
-    assert report["fingerprint"]
+    assert report["fingerprint"] == gate.report_fingerprint(report)
 
     # A forged verification claim changes the result after its original
     # fingerprint was computed. The gate must fail closed on integrity mismatch
