@@ -32,5 +32,19 @@
     "REGISTERED": "inventory entry only",
     "CONNECTED": "dispatch and receipt evidence exists",
     "VERIFIED": "independent verification evidence exists"
+  },
+  "research_paper_integration": {
+    "repository": "rampaulsaini/Shirmani-Research-Paper",
+    "role": "PRIMARY_RESEARCH_PAPER",
+    "public_entrypoint": "https://rampaulsaini.github.io/Shirmani-Research-Paper/",
+    "main_platform_entrypoint": "index.html#shirmani-research-paper",
+    "connection_status": "CONNECTED",
+    "connection_basis": [
+      "main platform public menu entry",
+      "main platform research entry panel",
+      "research paper backlink to main platform"
+    ],
+    "evidence_boundary": "Repository linkage and publication presence are operational/publication facts; they do not establish scientific truth or independent verification.",
+    "verification_status": "UNVERIFIED"
   }
 }
