@@ -69,7 +69,7 @@ jobs:
             else
               blocked=$((blocked+1)); action="NO_HEALTHY_RUN"
             fi
-            printf '| `%s` | %s | %s |\n' "$workflow" "$conclusion" "$action" >> generated/automission-health-100.md
+            printf "| \`%s\` | %s | %s |\\n" "$workflow" "$conclusion" "$action" >> generated/automission-health-100.md
           done
 
           score=$((healthy * 100 / total))
