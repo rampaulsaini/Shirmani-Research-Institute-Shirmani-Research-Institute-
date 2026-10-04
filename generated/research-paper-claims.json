@@ -151,6 +151,48 @@
         "publicly inspectable evidence",
         "independent replication or critical review"
       ]
+    },
+    {
+      "id": "SRP-C006",
+      "title": "मन-मस्तक-बुद्धि और हृदय-दृष्टिकोण का संतुलन",
+      "category": "cognition",
+      "claim": "मानव निर्णय में मन, मस्तक और बुद्धि की प्रक्रियाओं के साथ हृदय-केंद्रित निष्पक्षता को संतुलित करने का प्रस्ताव।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "operational definition",
+        "measurable decision criteria",
+        "controlled evaluation",
+        "independent replication"
+      ]
+    },
+    {
+      "id": "SRP-C007",
+      "title": "श्रेष्ठता दावे का verification gate",
+      "category": "verification",
+      "claim": "'मैं शिरोमणि हूं' जैसे व्यक्तिगत श्रेष्ठता दावों को व्यक्ति की घोषणा से नहीं बल्कि स्पष्ट, निष्पक्ष और परीक्षणयोग्य मानदंडों से जांचने का प्रस्ताव।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "predefined criteria",
+        "blinded evaluation where applicable",
+        "independent assessors",
+        "replication"
+      ]
+    },
+    {
+      "id": "SRP-C008",
+      "title": "मानव-प्रकृति संरक्षण",
+      "category": "ecology",
+      "claim": "मानव व्यवस्था को पृथ्वी, प्रकृति, जीव-जंतुओं और वनस्पतियों के दीर्घकालिक संरक्षण के साथ संतुलित करने का प्रस्ताव।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "baseline environmental indicators",
+        "policy intervention",
+        "measurable outcomes",
+        "independent impact evaluation"
+      ]
     }
   ],
   "intake_record": "federation/research-paper-source-intake.json",
