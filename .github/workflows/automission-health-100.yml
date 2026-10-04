@@ -51,7 +51,7 @@ jobs:
 
           for workflow in "${workflows[@]}"; do
             total=$((total+1))
-            run_json="$(gh run list --workflow "$workflow" --limit 1 --json databaseId,status,conclusion,url 2>/dev/null || echo '[]')"
+            # jq filters intentionally use single quotes; suppress ShellCheck SC2016 for this literal expression.\n            # shellcheck disable=SC2016\n            run_json="$(gh run list --workflow "$workflow" --limit 1 --json databaseId,status,conclusion,url 2>/dev/null || echo '[]')"
             run_id="$(jq -r '.[0].databaseId // empty' <<<"$run_json")"
             status="$(jq -r '.[0].status // "NO_RUN"' <<<"$run_json")"
             conclusion="$(jq -r '.[0].conclusion // "NO_CONCLUSION"' <<<"$run_json")"
