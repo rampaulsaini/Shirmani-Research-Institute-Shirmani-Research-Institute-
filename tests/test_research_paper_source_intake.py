@@ -16,4 +16,5 @@ assert source["downstream_flow"] == [
     "INDEPENDENT_VERIFICATION","QC","PUBLICATION","ARCHIVE"
 ]
 assert all(c["verification_status"] == "UNVERIFIED" for c in claims["claims"])
+assert all(c["status"] == "AUTHOR_PROPOSITION" for c in claims["claims"])
 print("Research Paper source intake: PASS (fail-closed)")
