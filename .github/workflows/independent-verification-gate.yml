@@ -1,4 +1,4 @@
-name: SHIRMANI Independent Verification Gate
+name: SHIRMANI Independent Verification Canonical Gate
 
 on:
   push:
