@@ -62,8 +62,9 @@ jobs:
 
           remaining = max(target - verified, 0)
           verified_pct = round(verified / target * 100, 4) if target else 0.0
-          reviewed_pct = round(reviewed / target * 100, 4) if target else 0.0
-          queued_pct = round(queued / target * 100, 4) if target else 0.0
+          reviewed_queue_pct = round(reviewed / queue_total * 100, 4) if queue_total else 0.0
+          queued_pct = round(queued / queue_total * 100, 4) if queue_total else 0.0
+          reviewed_target_pct = round(min(reviewed, target) / target * 100, 4) if target else 0.0
 
           out = {
               "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -75,8 +76,9 @@ jobs:
               "verified_records": verified,
               "remaining_to_target": remaining,
               "upstream_queue_remaining": max(queue_total - verified, 0),
-              "queued_percentage_of_target": queued_pct,
-              "reviewed_percentage_of_target": reviewed_pct,
+              "queued_percentage_of_queue": queued_pct,
+              "reviewed_percentage_of_queue": reviewed_queue_pct,
+              "reviewed_percentage_of_verification_milestone": reviewed_target_pct,
               "target_progress_percentage": verified_pct,
               "independent_verification_gate_open": verified > 0,
               "promotion_gate": promotion.get("promotion_gate", promotion.get("publication_gate")),
@@ -113,7 +115,7 @@ jobs:
               s.write(f"- Independent verification milestone: **{target:,}**\n")
               s.write(f"- Upstream queue: **{queue_total:,}**\n")
               s.write(f"- Queue: **{queued:,} ({queued_pct}%)**\n")
-              s.write(f"- Reviewed: **{reviewed:,} ({reviewed_pct}%)**\n")
+              s.write(f"- Reviewed: **{reviewed:,} ({reviewed_queue_pct}% of upstream queue; {reviewed_target_pct}% of 50 milestone)\n")
               s.write(f"- Independently VERIFIED: **{verified:,} ({verified_pct}%)**\n")
               s.write(f"- Remaining: **{remaining:,} ({round(remaining / target * 100, 4)}%)**\n")
               s.write(f"- Promotion gate: **{out['promotion_gate']}**\n")
