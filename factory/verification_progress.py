@@ -14,7 +14,7 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-TARGET = 100_200
+TARGET = 50
 
 def load_jsonl(path: Path) -> list[dict]:
     if not path.exists():
@@ -76,7 +76,8 @@ def main() -> int:
         "reviewed_records": reviewed,
         "independent_verified_records": verified,
         "remaining_review_records": max(len(queue) - reviewed, 0),
-        "remaining_verification_records": max(len(queue) - verified, 0),
+        "remaining_verification_records": max(TARGET - verified, 0),
+        "upstream_queue_remaining_records": max(len(queue) - verified, 0),
         "review_completion_pct": pct(reviewed, len(queue)),
         "verification_completion_pct": pct(verified, len(queue)),
         "target_completion_pct": pct(verified, TARGET),

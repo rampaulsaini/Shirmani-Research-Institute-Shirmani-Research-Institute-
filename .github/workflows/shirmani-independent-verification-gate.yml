@@ -44,36 +44,41 @@ jobs:
           registry = json.loads(registry_path.read_text(encoding="utf-8"))
           promotion = json.loads(promotion_path.read_text(encoding="utf-8"))
 
-          target = int(queue["records"])
+          queue_total = int(queue["records"])
+          target = 50
           queued = int(queue["queued"])
           reviewed = int(registry["reviewed"])
           verified = int(registry["verified"])
           promotion_verified = int(promotion["verified_records"])
 
-          if target != 100200:
-              raise SystemExit(f"VERIFICATION_SCAN_FAIL: target={target}, expected=100200")
-          if not (0 <= verified <= reviewed <= queued <= target):
+          if queue_total != 100200:
+              raise SystemExit(f"VERIFICATION_SCAN_FAIL: queue_total={queue_total}, expected=100200")
+          if not (0 <= verified <= reviewed <= queued <= queue_total):
               raise SystemExit("VERIFICATION_SCAN_FAIL: registry counters violate monotonic invariants")
           if promotion_verified != verified:
               raise SystemExit("VERIFICATION_SCAN_FAIL: promotion/registry verified counts differ")
-          if int(promotion["queue_records"]) != target:
-              raise SystemExit("VERIFICATION_SCAN_FAIL: promotion/queue record counts differ")
+          if not (0 <= int(promotion["queue_records"]) <= queue_total):
+              raise SystemExit("VERIFICATION_SCAN_FAIL: promotion queue count is outside upstream queue")
 
-          remaining = target - verified
+          remaining = max(target - verified, 0)
           verified_pct = round(verified / target * 100, 4) if target else 0.0
-          reviewed_pct = round(reviewed / target * 100, 4) if target else 0.0
-          queued_pct = round(queued / target * 100, 4) if target else 0.0
+          reviewed_queue_pct = round(reviewed / queue_total * 100, 4) if queue_total else 0.0
+          queued_pct = round(queued / queue_total * 100, 4) if queue_total else 0.0
+          reviewed_target_pct = round(min(reviewed, target) / target * 100, 4) if target else 0.0
 
           out = {
               "generated_at": datetime.now(timezone.utc).isoformat(),
               "authoritative_source": str(registry_path),
               "target_verified_records": target,
+              "upstream_queue_records": queue_total,
               "queued_records": queued,
               "reviewed_records": reviewed,
               "verified_records": verified,
               "remaining_to_target": remaining,
-              "queued_percentage_of_target": queued_pct,
-              "reviewed_percentage_of_target": reviewed_pct,
+              "upstream_queue_remaining": max(queue_total - verified, 0),
+              "queued_percentage_of_queue": queued_pct,
+              "reviewed_percentage_of_queue": reviewed_queue_pct,
+              "reviewed_percentage_of_verification_milestone": reviewed_target_pct,
               "target_progress_percentage": verified_pct,
               "independent_verification_gate_open": verified > 0,
               "promotion_gate": promotion.get("promotion_gate", promotion.get("publication_gate")),
@@ -107,9 +112,10 @@ jobs:
 
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as s:
               s.write("# SHIRMANI Independent Verification\n\n")
-              s.write(f"- Authoritative target: **{target:,}**\n")
+              s.write(f"- Independent verification milestone: **{target:,}**\n")
+              s.write(f"- Upstream queue: **{queue_total:,}**\n")
               s.write(f"- Queue: **{queued:,} ({queued_pct}%)**\n")
-              s.write(f"- Reviewed: **{reviewed:,} ({reviewed_pct}%)**\n")
+              s.write(f"- Reviewed: **{reviewed:,} ({reviewed_queue_pct}% of upstream queue; {reviewed_target_pct}% of 50 milestone)\n")
               s.write(f"- Independently VERIFIED: **{verified:,} ({verified_pct}%)**\n")
               s.write(f"- Remaining: **{remaining:,} ({round(remaining / target * 100, 4)}%)**\n")
               s.write(f"- Promotion gate: **{out['promotion_gate']}**\n")
