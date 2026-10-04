@@ -1,0 +1,23 @@
+name: Research Paper Verification Intake
+on:
+  push:
+    branches: [supreme-nlp-v3-validation]
+    paths:
+      - "generated/research-paper-claims.json"
+      - "factory/research_paper_verification_intake.py"
+      - "tests/test_research_paper_verification_intake.py"
+  pull_request:
+    paths:
+      - "generated/research-paper-claims.json"
+      - "factory/research_paper_verification_intake.py"
+      - "tests/test_research_paper_verification_intake.py"
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate Research Paper verification intake
+        run: python3 tests/test_research_paper_verification_intake.py
