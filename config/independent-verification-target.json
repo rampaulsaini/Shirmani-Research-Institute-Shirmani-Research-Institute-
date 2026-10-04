@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0",
-  "verification_target": 50,
-  "name": "SHIRMANI Independent Verification Gate 50",
-  "policy": "The target is a milestone for independently VERIFIED records; concrete claim/review records remain separately measured.",
+  "schema_version": "1.1",
+  "verification_target": 100200,
+  "name": "SHIRMANI Independent Verification Gate 100200",
+  "policy": "The target is the milestone for independently VERIFIED records; concrete claim/review records remain separately measured.",
   "fail_closed": true
 }
