@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "record_type": "research_paper_verification_intake_spec",
+  "source": "generated/research-paper-claims.json",
+  "intake_record": "federation/research-paper-source-intake.json",
+  "task_policy": "Each registered proposition requires an independent verification task before promotion.",
+  "promotion_policy": "QUEUED or UNVERIFIED records must never be promoted as verified evidence.",
+  "required_fields": ["task_id","claim_id","status","verification_status","independent","evidence_required"],
+  "expected_status": "QUEUED",
+  "verification_status": "UNVERIFIED",
+  "independent": true,
+  "downstream_target": "generated/independent-verification-queue.jsonl"
+}
