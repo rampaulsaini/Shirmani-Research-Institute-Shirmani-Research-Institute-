@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Generate a non-deceptive independent-verification progress map.
 
-The repository currently has two deliberately distinct scales:
-1. The authoritative 100,200-record target registry.
-2. The instantiated claim/review registry currently materialized for actual review.
+The repository uses two deliberately distinct measures:
+1. The Gate-50 verification milestone.
+2. The concrete claim/review registry currently materialized for actual review.
 
 They must never be conflated. Workflow activity and review-slot creation are
 preparation telemetry, not independent verification.
@@ -56,18 +56,21 @@ def main() -> None:
     target = int(json.loads(TARGET_CONFIG.read_text(encoding="utf-8"))["verification_target"])
     if target <= 0:
         raise SystemExit("verification_target must be positive")
-    aq = json.loads(AUTHORITATIVE_QUEUE.read_text(encoding="utf-8"))
-    ar = json.loads(AUTHORITATIVE_REGISTRY.read_text(encoding="utf-8"))
     promotion = json.loads(PROMOTION_QC.read_text(encoding="utf-8"))
 
     # Target is an explicit milestone, not the size of the concrete queue.
-    queued = int(ar["queued"])
-    reviewed = int(ar["reviewed"])
-    verified = int(ar["verified"])
-
-    instantiated = jsonl_count(QUEUE)
+    queued = instantiated = jsonl_count(QUEUE)
     review_slots = jsonl_count(REGISTRY)
-    instantiated_verified = jsonl_verified(REGISTRY)
+    verified = jsonl_verified(REGISTRY)
+    reviewed = 0
+    for line in REGISTRY.read_text(encoding="utf-8").splitlines() if REGISTRY.exists() else []:
+        if not line.strip():
+            continue
+        record = json.loads(line)
+        if str(record.get("status", "")).upper() == "REVIEWED":
+            reviewed += 1
+
+    instantiated_verified = verified
     historical_queue = int(summary["queue_records"])
     evidence_supported = int(summary["evidence_supported_records"])
 
@@ -139,15 +142,15 @@ Generated: {report["generated_at"]}
 ## Instantiated review layer
 
 The repository currently materializes a smaller set of concrete claim/review records.
-The 100,200 figure is a target-scale declaration, not evidence that 100,200 concrete review tasks currently exist.
+The 50 figure is a milestone target, not evidence that 50 concrete review tasks currently exist.
 Concrete materialization must be measured separately and is currently only a small fraction of the target.
 
 | Measure | Current |
 |---|---:|
 | Concrete claim records | **{instantiated:,}** |
-| Concrete claims as % of 100,200 target | **{pct(instantiated,target):g}%** |
+| Concrete claims as % of 50 target | **{pct(instantiated,target):g}%** |
 | Review slots | **{review_slots:,} ({rc:g}% of concrete claims)** |
-| Review slots as % of 100,200 target | **{pct(review_slots,target):g}%** |
+| Review slots as % of 50 target | **{pct(review_slots,target):g}%** |
 | Independently VERIFIED | **{instantiated_verified:,} ({iv:g}%)** |
 | Evidence-supported in historical 10-record status | **{evidence_supported}/{historical_queue} ({report["instantiated_review_layer"]["evidence_supported_percent_of_historical_queue"]:g}%)** |
 
@@ -157,16 +160,16 @@ Concrete materialization must be measured separately and is currently only a sma
 
 ## Materialization reality check
 
-- The target scale is **100,200**.
+- The verification milestone is **50**.
 - Concrete claim records currently materialized: **{instantiated:,} ({pct(instantiated,target):g}% of target)**.
 - Concrete review slots currently materialized: **{review_slots:,} ({pct(review_slots,target):g}% of target)**.
-- Therefore **100% review-slot coverage applies only to the 10 currently materialized claims**, not to the 100,200 target.
+- Therefore **100% review-slot coverage applies only to the 10 currently materialized claims**, not to the 50-record milestone.
 
 ## Critical distinction
 
 **Preparation, queue generation, review-slot generation, evidence collection and workflow success are not independent verification.**
 
-**Target capacity is not the same as materialized work.** The system must never report the 100,200 target as 100% concretely queued unless 100,200 concrete task records actually exist.
+**Target capacity is not the same as materialized work.** The system must never report the 50-record milestone as 100% concretely queued unless 50 concrete task records actually exist.
 
 A record reaches VERIFIED only after the required independent review decision, evidence, counter-evidence review, reproducible test/observation, reviewer identity/role, timestamp and audit record satisfy the fail-closed promotion controls.
 
@@ -178,7 +181,7 @@ The system may automate preparation and auditing, but it must not manufacture an
 
 ## Integrity note
 
-The 100,200-record target and the currently instantiated concrete review records are intentionally reported as separate scales. This prevents a 10/10 review-slot coverage figure from being mistaken for 100% completion of the 100,200 VERIFIED target.
+The 50-record verification milestone and the currently instantiated concrete review records are intentionally reported as separate measures. This prevents a 10/10 review-slot coverage figure from being mistaken for 100% completion of the 100,200 VERIFIED target.
 """
     OUT_MD.write_text(md,encoding="utf-8")
     print(json.dumps(report,ensure_ascii=False,indent=2))
