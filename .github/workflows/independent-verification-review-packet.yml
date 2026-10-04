@@ -33,39 +33,99 @@ jobs:
       - name: Validate current verification queue
         run: python factory/verification_queue_qc.py
 
+      - name: Select next pending review batch
+        id: select
+        env:
+          BATCH_SIZE: ${{ inputs.batch_size || '10' }}
+        shell: python
+        run: |
+          import json, os
+          from pathlib import Path
+
+          batch_size = int(os.environ["BATCH_SIZE"])
+          queue = [
+              json.loads(line)
+              for line in Path("generated/independent-verification-queue.jsonl").read_text(encoding="utf-8").splitlines()
+              if line.strip()
+          ]
+          registry = {
+              str(row["task_id"]): row
+              for row in (
+                  json.loads(line)
+                  for line in Path("generated/independent-verification-registry.jsonl").read_text(encoding="utf-8").splitlines()
+                  if line.strip()
+              )
+          }
+
+          offset = next(
+              (i for i, task in enumerate(queue)
+               if registry.get(str(task["task_id"]), {}).get("status") != "REVIEWED"),
+              -1,
+          )
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"offset={offset}\n")
+              out.write(f"pending={'true' if offset >= 0 else 'false'}\n")
+
+          print(f"NEXT_PENDING_OFFSET={offset}")
+          print(f"BATCH_SIZE={batch_size}")
+
       - name: Build deterministic human-review packet
+        if: steps.select.outputs.pending == 'true'
+        env:
+          BATCH_SIZE: ${{ inputs.batch_size || '10' }}
+          OFFSET: ${{ steps.select.outputs.offset }}
         run: |
           python factory/verification_review_packet.py \
-            --batch-size "${{ inputs.batch_size || '10' }}" \
-            --offset 0
+            --batch-size "$BATCH_SIZE" \
+            --offset "$OFFSET"
+          python - <<'PY'
+          import shutil
+          from pathlib import Path
+          packets = sorted(
+              Path("generated").glob("verification-review-packet-*.json"),
+              key=lambda p: p.stat().st_mtime,
+          )
+          if not packets:
+              raise SystemExit("No review packet generated")
+          shutil.copy2(packets[-1], "generated/current-review-packet.json")
+          print(f"CURRENT_PACKET={packets[-1].name}")
+          PY
 
       - name: Validate fail-closed promotion boundary
         run: python factory/verification_promotion_gate.py
 
       - name: Emit review status
+        env:
+          PENDING: ${{ steps.select.outputs.pending }}
+          OFFSET: ${{ steps.select.outputs.offset }}
         run: |
-          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo "## ꙰ SHIRMANI Independent Verification Review Packet"
+            echo "- Next pending offset: **$OFFSET**"
+            if [ "$PENDING" = "true" ]; then
+              python - <<'PY'
           import json
-          from pathlib import Path
-          packets=sorted(Path("generated").glob("verification-review-packet-*.json"))
-          if not packets:
-              raise SystemExit("No review packet generated")
-          d=json.loads(packets[-1].read_text(encoding="utf-8"))
-          print("## ꙰ SHIRMANI Independent Verification Review Packet")
-          print(f"- Packet: **{packets[-1].name}**")
+          d=json.load(open("generated/current-review-packet.json",encoding="utf-8"))
+          print(f"- Packet: **{d['packet_range'][0]}–{d['packet_range'][1]}**")
           print(f"- Review slots: **{d['records']}**")
           print(f"- Status: **{d['status']}**")
-          print("- Verification performed by automation: **NO**")
-          print("- VERIFIED promotion by automation: **BLOCKED**")
-          print("- Required next action: independent reviewer completes the packet.")
           PY
+            else
+              echo "- Status: **NO_PENDING_REVIEW_SLOTS**"
+            fi
+            echo "- Verification performed by automation: **NO**"
+            echo "- VERIFIED promotion by automation: **BLOCKED**"
+            echo "- Required action: independent reviewer completes pending review slots."
+          } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Upload review packet
+      - name: Upload current review packet
+        if: steps.select.outputs.pending == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: shirmani-independent-review-packet-${{ github.run_id }}
           path: |
-            generated/verification-review-packet-*.json
+            generated/current-review-packet.json
             generated/VERIFICATION-QUEUE-QC.json
             generated/VERIFICATION-PROMOTION-QC.json
           if-no-files-found: error
