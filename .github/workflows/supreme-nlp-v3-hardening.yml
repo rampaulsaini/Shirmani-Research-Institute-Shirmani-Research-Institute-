@@ -48,3 +48,5 @@ jobs:
         run: python3 tests/test_research_paper_claim_registry.py
       - name: Run research paper source intake regression test
         run: python3 tests/test_research_paper_source_intake.py
+      - name: Run Research Paper verification intake regression test
+        run: python3 tests/test_research_paper_verification_intake.py
