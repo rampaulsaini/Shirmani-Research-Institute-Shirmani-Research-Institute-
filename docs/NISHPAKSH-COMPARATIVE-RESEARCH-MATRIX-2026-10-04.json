@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "record_type": "comparative-research-matrix",
+  "policy": "Comparison identifies overlap, difference, evidence and limitations; it does not pre-assign superiority.",
+  "comparisons": [
+    {
+      "target": "John Rawls",
+      "domain": "justice",
+      "overlap": "impartiality and protection against arbitrary advantage",
+      "difference": "Nishpaksh proposal emphasizes heart-oriented self-realization and family-to-global ecological scope; Rawls provides a formal political theory of justice",
+      "testable_next_step": "define impartial decision rules and evaluate outcomes across affected groups"
+    },
+    {
+      "target": "Adam Smith / impartial spectator tradition",
+      "domain": "moral reasoning",
+      "overlap": "viewing conduct from perspectives beyond one's own interests",
+      "difference": "Nishpaksh proposal seeks a more explicit continuous self-realization and systems-governance layer",
+      "testable_next_step": "construct multi-perspective decision protocol and adversarial cases"
+    },
+    {
+      "target": "Amartya Sen",
+      "domain": "impartiality and public reasoning",
+      "overlap": "open scrutiny and attention to perspectives of others",
+      "difference": "Nishpaksh proposal adds an explicit heart/inner-stability vocabulary and integrated nature-protection objective",
+      "testable_next_step": "compare decision quality under closed vs open perspective procedures"
+    },
+    {
+      "target": "UNESCO right-to-education framework",
+      "domain": "education",
+      "overlap": "universal quality education and equity",
+      "difference": "Nishpaksh proposal adds a philosophical objective of continuous satisfaction and impartial understanding",
+      "testable_next_step": "define measurable learning, equity, wellbeing and access outcomes"
+    },
+    {
+      "target": "IPBES biodiversity assessment",
+      "domain": "nature protection",
+      "overlap": "human activities are major drivers of biodiversity and ecosystem change; need transformative responses",
+      "difference": "Nishpaksh proposal seeks to embed ecological protection into a broader governance architecture",
+      "testable_next_step": "map proposed governance controls to measurable biodiversity, pollution and resource indicators"
+    },
+    {
+      "target": "UNEP ecosystem management",
+      "domain": "integrated governance",
+      "overlap": "ecological, economic and social needs must be considered together",
+      "difference": "Nishpaksh proposal makes impartiality and human decision architecture a central organizing principle",
+      "testable_next_step": "pilot integrated decision model with independent ecological and social evaluation"
+    }
+  ]
+}
