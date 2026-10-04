@@ -30,3 +30,8 @@ def test_registry_is_not_promoted_without_independent_review():
         verification = record.get("verification", {})
         assert verification.get("status") == "NOT_VERIFIED"
         assert verification.get("independent") is False
+
+
+if __name__ == "__main__":
+    test_registry_is_not_promoted_without_independent_review()
+    print("independent verification gate regression: PASS")
