@@ -1,4 +1,4 @@
-name: SHIRMANI Independent Verification Gate
+name: SHIRMANI Independent Verification Runtime Gate
 
 on:
   schedule:
@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: shirmani-independent-verification-gate
+  group: shirmani-independent-verification-runtime-gate
   cancel-in-progress: true
 
 jobs:
