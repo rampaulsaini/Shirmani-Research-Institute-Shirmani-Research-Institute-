@@ -41,17 +41,12 @@ def main():
         source_id = str(intake["source_id"])
         add_node(nodes, "source:" + source_id, "SOURCE",
                  repository=intake.get("repository"),
+                 path="index.html",
                  ref=intake.get("ref"),
                  entrypoint=intake.get("public_entrypoint"),
                  intake_status=intake.get("intake_status"),
                  verification_status=intake.get("verification_status"),
                  independent_verification_required=intake.get("independent_verification_required"))
-
-
-    intake_path = ROOT / "federation" / "research-paper-source-intake.json"
-    if intake_path.exists():
-        intake = json.loads(intake_path.read_text(encoding="utf-8"))
-        add_node(nodes, "source:" + str(intake["source_id"]), "SOURCE", repository=intake.get("repository"), path="index.html", ref=intake.get("ref"))
 
     for s in sources:
         sid = "source:" + str(s["id"])
@@ -74,6 +69,12 @@ def main():
             aid = "artifact:" + parts[1] + ":" + parts[2]
             if aid in nodes:
                 edges.append({"from": cid, "to": aid, "relation": "DERIVED_FROM"})
+
+        # Preserve direct claim-to-source traceability for external intake records.
+        for sid in c.get("source_traceability", {}).get("source_ids", []):
+            source_node = "source:" + str(sid)
+            if source_node in nodes:
+                edges.append({"from": cid, "to": source_node, "relation": "TRACEABLE_TO"})
 
         evidence_rows = c.get("evidence") or []
         for idx, ev in enumerate(evidence_rows):
