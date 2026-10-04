@@ -1,0 +1,67 @@
+name: SHIRMANI 100 Percent Verification Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_run:
+    workflows:
+      - "SHIRMANI Supreme Independent Verification Ledger"
+      - "SHIRMANI Independent Verification Record Scan"
+      - "SHIRMANI Verification Progress Dashboard"
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-100-percent-verification-automission
+  cancel-in-progress: true
+
+jobs:
+  automated-verification:
+    name: 100% Automated Verification Coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run complete mechanical verification pass
+        run: python3 factory/automated_verification_runner.py
+      - name: Enforce fail-closed verification policy
+        run: |
+          python3 - <<'PY'
+          import json
+          d=json.load(open("generated/automated-verification-candidates.json",encoding="utf-8"))
+          assert d["policy"]["automation_coverage"] == "100% of defined mechanical verification checks"
+          assert d["policy"]["final_verdict"] == "independent reviewer required"
+          assert d["policy"]["automation_may_declare_verified"] is False
+          assert d["policy"]["fail_closed"] is True
+          print("100_PERCENT_VERIFICATION_AUTOMISSION_GATE: PASS")
+          print("Mechanical verification coverage: 100%")
+          print("Final independent verdict: NOT AUTOMATED")
+          PY
+      - name: Emit verification map
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d=json.load(open("generated/automated-verification-candidates.json",encoding="utf-8"))
+          print("# ꙰ SHIRMANI 100% Verification Automission")
+          print(f"- Mechanical verification coverage: **{d['policy']['automation_coverage']}**")
+          print(f"- Records scanned: **{d['source_records']}**")
+          print(f"- Mechanically ready: **{d['mechanically_ready']} ({d['mechanically_ready_percent']}%)**")
+          print(f"- Final VERIFIED records: **{d['final_verified_count']}**")
+          print("- Final verdict: **independent reviewer required**")
+          print("- Fail-closed: **ENFORCED**")
+          PY
+      - name: Publish automated verification evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-100-percent-verification-\${{ github.run_id }}
+          path: generated/automated-verification-candidates.json
+          if-no-files-found: error
+          retention-days: 14
