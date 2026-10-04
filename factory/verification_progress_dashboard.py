@@ -29,6 +29,7 @@ def bar(percent: float, width: int = 30) -> str:
 
 def main() -> int:
     data = read_json(RECORDS)
+    TARGET = target_value()
     records = data.get("records", [])
     if not isinstance(records, list):
         raise SystemExit("records must be a list")
