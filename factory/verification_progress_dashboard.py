@@ -6,84 +6,112 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-RECORDS = ROOT / "generated/independent-verification-records.json"
-TARGET_CONFIG = ROOT / "config/independent-verification-target.json"
-OUT = ROOT / "generated/verification-progress-dashboard.json"
-OUT_MD = ROOT / "generated/verification-progress-dashboard.md"
-
-def target_value() -> int:
-    data = read_json(TARGET_CONFIG)
-    target = int(data["verification_target"])
-    if target <= 0:
-        raise SystemExit("verification_target must be positive")
-    return target
+RECORD_DIR = ROOT / "generated" / "independent-verification-records"
+SCHEMA_PATH = ROOT / "schemas" / "supreme-independent-verification-record.schema.json"
+TARGET_CONFIG = ROOT / "config" / "independent-verification-target.json"
+OUT = ROOT / "generated" / "verification-progress-dashboard.json"
+OUT_MD = ROOT / "generated" / "verification-progress-dashboard.md"
+STATES = {"REGISTERED", "UNVERIFIED", "REVIEW", "VERIFIED", "BLOCKED"}
 
 def read_json(path: Path) -> dict:
     if not path.exists():
         raise SystemExit(f"Missing required status file: {path}")
     return json.loads(path.read_text(encoding="utf-8"))
 
+def target_value() -> int:
+    target = int(read_json(TARGET_CONFIG)["verification_target"])
+    if target <= 0:
+        raise SystemExit("verification_target must be positive")
+    return target
+
 def bar(percent: float, width: int = 30) -> str:
     filled = round(width * percent / 100)
     return "█" * filled + "░" * (width - filled)
 
+def load_records() -> tuple[list[dict], list[str]]:
+    schema = read_json(SCHEMA_PATH)
+    required = set(schema["required"])
+    records = []
+    errors = []
+    RECORD_DIR.mkdir(parents=True, exist_ok=True)
+    for path in sorted(RECORD_DIR.glob("*.json")):
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            errors.append(f"{path.name}: invalid JSON: {exc}")
+            continue
+        if set(record) != required:
+            errors.append(f"{path.name}: record keys do not exactly match schema")
+            continue
+        if record.get("verification_state") not in STATES:
+            errors.append(f"{path.name}: invalid verification_state")
+            continue
+        if not isinstance(record.get("evidence_refs"), list) or not record["evidence_refs"]:
+            errors.append(f"{path.name}: evidence_refs must be non-empty")
+            continue
+        records.append(record)
+    return records, errors
+
 def main() -> int:
-    data = read_json(RECORDS)
-    TARGET = target_value()
-    records = data.get("records", [])
-    if not isinstance(records, list):
-        raise SystemExit("records must be a list")
+    target = target_value()
+    records, errors = load_records()
+    if errors:
+        raise SystemExit("Verification dashboard BLOCKED:\n" + "\n".join(errors))
 
     prepared = len(records)
-    verified = sum(1 for r in records
-                   if r.get("reviewer_decision", {}).get("decision") == "VERIFIED"
-                   and r.get("status") == "VERIFIED")
-    reviewed = sum(1 for r in records
-                   if r.get("reviewer_decision", {}).get("decision")
-                   in {"VERIFIED", "NOT_VERIFIED", "CONTRADICTED", "INCONCLUSIVE"})
-    evidence_supported = sum(1 for r in records if r.get("status") == "EVIDENCE-SUPPORTED")
+    counts = {state: sum(r["verification_state"] == state for r in records) for state in STATES}
+    reviewed = counts["REVIEW"] + counts["VERIFIED"]
+    verified = counts["VERIFIED"]
+    evidence_backed = sum(bool(r["evidence_refs"]) for r in records)
 
-    # The authoritative source is the records list. Never report a synthetic
-    # queued/prepared count that is larger than the actual record registry.
-    if verified > reviewed or reviewed > prepared or prepared > TARGET:
+    if verified > reviewed or reviewed > prepared:
         raise SystemExit("Verification counters violate monotonic invariants.")
-    if prepared != len(records):
-        raise SystemExit("PREPARED_COUNT_MISMATCH")
+    if prepared > target:
+        raise SystemExit(
+            "Prepared canonical verification records exceed the configured milestone; "
+            "the milestone target is not the same thing as the upstream queue size."
+        )
 
-    remaining = TARGET - verified
-    prepared_pct = round(prepared / TARGET * 100, 6)
-    reviewed_pct = round(reviewed / TARGET * 100, 6)
-    verified_pct = round(verified / TARGET * 100, 6)
-    remaining_pct = round(remaining / TARGET * 100, 6)
+    remaining = target - verified
+    prepared_pct = round(prepared / target * 100, 6)
+    reviewed_pct = round(reviewed / target * 100, 6)
+    verified_pct = round(verified / target * 100, 6)
+    remaining_pct = round(remaining / target * 100, 6)
     generated = datetime.now(timezone.utc).isoformat()
 
     dashboard = {
         "generated_at": generated,
-        "method": "authoritative independent-verification records; fail-closed",
-        "target": TARGET,
+        "method": "canonical independent-verification-record directory; fail-closed",
+        "target": target,
         "records": {
-            "target": TARGET, "prepared": prepared, "reviewed": reviewed,
-            "verified": verified, "remaining_to_verified_target": remaining,
-            "evidence_supported": evidence_supported,
-            "source_registry_records": len(records)
+            "target": target,
+            "prepared": prepared,
+            "reviewed": reviewed,
+            "verified": verified,
+            "remaining_to_verified_target": remaining,
+            "evidence_supported": evidence_backed,
+            "source_registry_records": prepared,
+            "state_counts": counts,
         },
         "percent": {
-            "prepared_of_target": prepared_pct, "reviewed_of_target": reviewed_pct,
+            "prepared_of_target": prepared_pct,
+            "reviewed_of_target": reviewed_pct,
             "independently_verified_of_target": verified_pct,
-            "remaining_of_target": remaining_pct
+            "remaining_of_target": remaining_pct,
         },
         "automation_state": {
             "independent_verification_required": True,
             "automission_may_prepare": True,
             "automission_may_declare_verified": False,
-            "independent_reviewer_decision_required": True
+            "independent_reviewer_decision_required": True,
+            "fail_closed": True,
         },
         "next_gate": (
-            "Complete independent review for prepared records; each VERIFIED "
-            "promotion requires evidence, counter-evidence, reproducible test, "
-            "reviewer provenance, timestamp, and audit."
-            if verified < TARGET else "Target reached."
-        )
+            "Complete independent review for REVIEW records; VERIFIED promotion requires "
+            "evidence, counter-evidence, reproducible test/observation, reviewer provenance, "
+            "timestamp and audit."
+            if verified < target else "Target reached."
+        ),
     }
     OUT.write_text(json.dumps(dashboard, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -93,22 +121,22 @@ Generated: {generated}
 
 ## Authoritative target
 
-**{verified:,} / {TARGET:,} independently VERIFIED ({verified_pct:g}%)**
+**{verified:,} / {target:,} independently VERIFIED ({verified_pct:g}%)**
 
 ### Graph map
 
-- Prepared records: **{prepared:,}/{TARGET:,} ({prepared_pct:g}%)**  {bar(prepared_pct)}
-- Reviewed records: **{reviewed:,}/{TARGET:,} ({reviewed_pct:g}%)**  {bar(reviewed_pct)}
-- Independently VERIFIED: **{verified:,}/{TARGET:,} ({verified_pct:g}%)**  {bar(verified_pct)}
-- Remaining to target: **{remaining:,}/{TARGET:,} ({remaining_pct:g}%)**  {bar(remaining_pct)}
+- Canonical prepared records: **{prepared:,}/{target:,} ({prepared_pct:g}%)**  {bar(prepared_pct)}
+- Reviewed records: **{reviewed:,}/{target:,} ({reviewed_pct:g}%)**  {bar(reviewed_pct)}
+- Independently VERIFIED: **{verified:,}/{target:,} ({verified_pct:g}%)**  {bar(verified_pct)}
+- Remaining to target: **{remaining:,}/{target:,} ({remaining_pct:g}%)**  {bar(remaining_pct)}
 
-## Current prepared set
+## Canonical verification states
 
-- Source registry records: **{len(records):,}**
-- Prepared records: **{prepared:,}**
-- Evidence-supported: **{evidence_supported:,}**
-- Reviewed: **{reviewed:,}**
-- Independently VERIFIED: **{verified:,}**
+- REGISTERED: **{counts["REGISTERED"]}**
+- UNVERIFIED: **{counts["UNVERIFIED"]}**
+- REVIEW: **{counts["REVIEW"]}**
+- VERIFIED: **{counts["VERIFIED"]}**
+- BLOCKED: **{counts["BLOCKED"]}**
 
 ## Control state
 
@@ -119,11 +147,10 @@ Generated: {generated}
 
 ## Integrity rule
 
-Workflow success, queue generation, evidence collection, generated packets,
-or review-slot creation do not by themselves constitute independent
-verification. VERIFIED requires an explicit independent-review decision with
-the defined evidence, counter-evidence, reproducible test/observation,
-reviewer provenance, timestamp, and audit record.
+Workflow success, upstream queue size, generated packets, evidence collection,
+or review-slot creation do not by themselves constitute independent verification.
+VERIFIED requires the repository's independent-review decision and its complete
+promotion controls.
 
 ## Next gate
 
