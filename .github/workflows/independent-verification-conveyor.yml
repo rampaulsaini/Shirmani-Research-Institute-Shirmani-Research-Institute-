@@ -5,6 +5,10 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
+  workflow_run:
+    workflows:
+      - "SHIRMANI Verification Progress Audit"
+    types: [completed]
   push:
     branches: [main, supreme-verification-v2]
     paths:
@@ -86,4 +90,5 @@ jobs:
             echo "- Review slots are generated automatically; VERIFIED is never auto-declared"
             echo "- Current independent verification baseline remains fail-closed at 0%"
             echo "- Continuous cycle: every 5 minutes"
+            echo "- Audit completion also triggers a fresh conveyor cycle"
           } >> "$GITHUB_STEP_SUMMARY"
