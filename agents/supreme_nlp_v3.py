@@ -175,17 +175,28 @@ def simple_language(result):
 def sha256(value) -> str:
     return hashlib.sha256(json.dumps(value,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
 
+def record_integrity_payload(record: dict[str, Any]) -> dict[str, Any]:
+    """Return immutable record fields covered by the fingerprint."""
+    return {
+        "schema_version": record["schema_version"],
+        "task_id": record["task_id"],
+        "result": record["result"],
+        "provenance": record["provenance"],
+    }
+
 def build_record(signals, task_id):
     result=summarize(signals)
-    return {
+    record = {
         "schema_version":VERSION,
         "task_id":task_id,
         "generated_at":datetime.now(timezone.utc).isoformat(),
         "result":result,
         "simple_language":simple_language(result),
-        "fingerprint":sha256(result),
+        "fingerprint":sha256(record_integrity_payload(record)),
         "provenance":{"generator":"agents/supreme_nlp_v3.py","verification_status":"UNVERIFIED","calibration_status":"REQUIRED","experiment_provenance_status":result.get("features",{}).get("experiment_provenance_status","MISSING_EXPERIMENT_IDENTIFIERS"),"independent_replication_verified":False},
     }
+    record["fingerprint"] = sha256(record_integrity_payload(record))
+    return record
 
 def calibration_report(probabilities, labels, bins=10):
     """Return Brier score and ECE for labelled evaluation data."""
