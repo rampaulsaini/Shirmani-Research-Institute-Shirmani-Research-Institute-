@@ -66,7 +66,7 @@ def main() -> int:
     report = {
         "schema_version": "2.0",
         "status": "PASS" if passed else "BLOCK",
-        "promotion_allowed": False,
+        "promotion_allowed": not promotion_blocked,
         "checks": checks,
         "practitioner": {
             "status": practitioner["result"]["status"],
@@ -82,7 +82,7 @@ def main() -> int:
             "abstention": interpretation.get("abstention"),
             "calibration_required": interpretation.get("calibration_required"),
             "experiment_provenance_status": v3["features"].get("experiment_provenance_status"),
-            "independent_experiment_count": v3["features"].get("independent_experiment_count"),
+            "independent_experiment_count": v3["features"].get("declared_unique_experiment_count", 0),
             "independent_replication_verified": v3_record["provenance"].get("independent_replication_verified"),
             "fingerprint": v3_record["fingerprint"],
             "simple_language": v3_record["simple_language"],
