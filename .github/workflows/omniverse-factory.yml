@@ -104,6 +104,12 @@ jobs:
               raise SystemExit("Unified NLP promotion boundary is inconsistent")
           if checks.get("v3_fingerprint_valid") is not True:
               raise SystemExit("Unified NLP v3 fingerprint validation failed")
+          # Consume the gate's evidence-derived decision; never invent a
+          # separate promotion state in the factory workflow.
+          verification_ready = checks.get("v3_verification_ready") is True
+          promotion_allowed = report.get("promotion_allowed") is True
+          if promotion_allowed != verification_ready:
+              raise SystemExit("Unified NLP promotion state is inconsistent with verification readiness")
           PY
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
