@@ -1,0 +1,8 @@
+{
+  "counter_name": "SHIRMANI Micro Progress Counter",
+  "version": 1,
+  "micro_cycles": 0,
+  "last_cycle_utc": null,
+  "purpose": "Independent micro-level activity counter for measurable Automission progress.",
+  "verification_note": "A cycle count is activity evidence, not independent research verification."
+}
