@@ -3,9 +3,9 @@
 
 The unified gate consumes the current v3 validation contract instead of an
 obsolete multimodal module name. It checks governance boundaries, deterministic
-output shape, explicit abstention/verification state, and the non-promotion
-boundary. A passing gate is operational evidence only; it is not independent
-scientific verification.
+output shape, explicit abstention/verification state, record integrity, and
+the non-promotion boundary. A passing gate is operational evidence only; it is
+not independent scientific verification.
 """
 from __future__ import annotations
 
@@ -31,6 +31,13 @@ def canonical_hash(value: object) -> str:
     ).hexdigest()
 
 
+def record_fingerprint(value: object) -> str:
+    """Match agents.supreme_nlp_v3.sha256() semantics for result integrity."""
+    return hashlib.sha256(
+        json.dumps(value, sort_keys=True, ensure_ascii=False).encode()
+    ).hexdigest()
+
+
 def main() -> int:
     practitioner = build_practitioner_record(ROWS, "unified-control-plane")
     v3_record = build_record(ROWS, "unified-control-plane-v3")
@@ -45,6 +52,7 @@ def main() -> int:
         verification_status == "VERIFIED"
         and independent_replication_verified is True
     )
+    fingerprint_valid = v3_record.get("fingerprint") == record_fingerprint(v3)
 
     checks = {
         "practitioner_fail_closed": pg["fail_closed"] is True,
@@ -58,15 +66,16 @@ def main() -> int:
         "v3_experiment_provenance_declared": v3["features"].get("experiment_provenance_status") in {"DECLARED_IDENTIFIERS_ONLY", "MISSING_EXPERIMENT_IDENTIFIERS"},
         "v3_independent_replication_unverified": v3_record["provenance"].get("independent_replication_verified") is False,
         "v3_promotion_blocked": promotion_blocked,
+        "v3_fingerprint_valid": fingerprint_valid,
         "simple_language_present": bool(v3_record["simple_language"].strip()),
         "fingerprint_present": bool(v3_record["fingerprint"].strip()),
     }
     passed = all(checks.values())
 
     report = {
-        "schema_version": "2.0",
+        "schema_version": "2.1",
         "status": "PASS" if passed else "BLOCK",
-        "promotion_allowed": not promotion_blocked,
+        "promotion_allowed": not promotion_blocked if passed else False,
         "checks": checks,
         "practitioner": {
             "status": practitioner["result"]["status"],
@@ -85,6 +94,7 @@ def main() -> int:
             "independent_experiment_count": v3["features"].get("declared_unique_experiment_count", 0),
             "independent_replication_verified": v3_record["provenance"].get("independent_replication_verified"),
             "fingerprint": v3_record["fingerprint"],
+            "fingerprint_valid": fingerprint_valid,
             "simple_language": v3_record["simple_language"],
         },
         "governance": {
