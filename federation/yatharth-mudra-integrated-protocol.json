@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "protocol_name": "Yatharth Mudra Integrated Value Protocol",
+  "protocol_symbol": "YTH",
+  "status": "DESIGN_INTEGRATED_TESTNET_GATE",
+  "purpose": "Integrate the existing YTH concept with the Shirmani Value Exchange, Contribution Ledger, evidence and verification architecture without creating unverified monetary value.",
+  "existing_yth_parameters": {
+    "max_supply": 1000000000,
+    "decimals": 8,
+    "initial_supply": 0
+  },
+  "architecture": {
+    "source": "creator-authored YTH specification",
+    "contribution": "verified contribution/work/value record",
+    "evidence": "independently reviewable evidence references",
+    "verification": "human and/or independent verification gate",
+    "allocation": "bounded deterministic allocation rule",
+    "mint_authorization": "future on-chain role, disabled until production gates pass",
+    "settlement": "authorized transfer/exchange layer",
+    "audit": "immutable transaction and provenance records"
+  },
+  "issuance_policy": {
+    "minting_enabled_now": false,
+    "mining_enabled_now": false,
+    "automatic_minting": false,
+    "automatic_deployment": false,
+    "public_sale": false,
+    "price_guarantee": false,
+    "investment_claim": false,
+    "legal_tender_claim": false,
+    "mint_requires": [
+      "VERIFIED contribution",
+      "approved allocation record",
+      "anti-duplication check",
+      "supply-cap check",
+      "human/governance authorization",
+      "on-chain transaction confirmation"
+    ],
+    "no_mint_states": [
+      "REGISTERED",
+      "EVIDENCE_PENDING",
+      "UNVERIFIED",
+      "DISPUTED",
+      "REJECTED"
+    ]
+  },
+  "security": {
+    "access_control_required": true,
+    "multisig_or_equivalent_required": true,
+    "timelock_for_critical_admin_changes": true,
+    "pause_or_emergency_control_required": true,
+    "replay_and_duplicate_protection_required": true,
+    "independent_security_audit_required": true,
+    "testnet_before_mainnet": true
+  },
+  "integration": {
+    "value_exchange_spec": "federation/shiromani-value-exchange-spec.json",
+    "contribution_ledger": "federation/contribution-ledger.schema.json",
+    "yth_status": "federation/yatharth-mudra-public-status.json",
+    "research_claims": "generated/research-paper-claims.json",
+    "research_source_intake": "federation/research-paper-source-intake.json"
+  },
+  "missing_before_live_mint": [
+    "audited smart-contract implementation",
+    "selected network and chain policy",
+    "wallet/account identity model",
+    "verified contribution-to-allocation formula",
+    "governance and mint authorization keys",
+    "multisig/timelock configuration",
+    "testnet deployment and end-to-end tests",
+    "independent security audit",
+    "legal/accounting review",
+    "public transaction/provenance explorer",
+    "recovery/dispute/abuse controls"
+  ],
+  "evidence_boundary": "A protocol specification, CI pass, generated ledger, or successful testnet transaction does not by itself establish monetary value, legal status, scientific truth, or investment merit."
+}
