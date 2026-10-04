@@ -139,6 +139,31 @@ def make_record(kind, artifact_id, text, source_ids, extra=None):
         **(extra or {}),
     }
 
+def research_paper_records():
+    registry = OUT / "research-paper-claims.json"
+    intake = ROOT / "federation" / "research-paper-source-intake.json"
+    if not registry.exists() or not intake.exists():
+        return []
+    data = json.loads(registry.read_text(encoding="utf-8"))
+    source = json.loads(intake.read_text(encoding="utf-8"))
+    rows = []
+    for claim in data.get("claims", []):
+        rows.append({
+            "id": "claim:research-paper:" + str(claim["id"]),
+            "claim": claim["claim"],
+            "definitions": ["Author proposition; operational meaning requires human review."],
+            "source": [{"type": "SOURCE_RECORD", "locator": source["public_entrypoint"], "source_id": source["source_id"]}],
+            "evidence": [{"kind": "AUTHOR_PROPOSITION", "status": "NOT_VERIFIED", "detail": "Publication is not independent proof."}],
+            "formulation": {"method": "Research Paper proposition intake", "result_status": "NOT_VERIFIED"},
+            "countercases": claim.get("evidence_required", []),
+            "source_traceability": {"status": "PASS", "source_ids": [source["source_id"]], "resolved": True},
+            "verification": {"status": "NOT_VERIFIED", "method": "Independent verification required.", "independent": False},
+            "verification_questions": claim.get("evidence_required", []),
+            "conclusion": "No independently verified conclusion is asserted by the factory.",
+            "provenance": {"source_repository": source["repository"], "source_ref": source["ref"], "generator": "factory/reasoning_pipeline.py", "claim_status": claim["status"], "verification_status": claim["verification_status"]}
+        })
+    return rows
+
 def enrich():
     OUT.mkdir(parents=True, exist_ok=True)
     records = []
@@ -155,6 +180,7 @@ def enrich():
         text = path.read_text(encoding="utf-8")
         records.append(make_record(kind, path.stem, text, source_ids_from_text(text, source_index),
                                    {"path": str(path.relative_to(ROOT)), "status": "draft"}))
+    records.extend(research_paper_records())
     manifest = OUT / "reasoning-manifest.jsonl"
     manifest.write_text("\n".join(json.dumps(r, ensure_ascii=False) for r in records) +
                         ("\n" if records else ""), encoding="utf-8")
