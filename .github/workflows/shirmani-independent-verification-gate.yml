@@ -1,4 +1,4 @@
-name: SHIRMANI Independent Verification Record Scan
+name: SHIRMANI Independent Verification Gate
 
 on:
   schedule:
@@ -14,113 +14,27 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: shirmani-independent-verification-gate
+  cancel-in-progress: true
+
 jobs:
   verify:
     name: Independent Verification Gate
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          fetch-depth: 1
-
-      - name: Verify authoritative registry state
-        shell: python
-        run: |
-          import json, os
-          from pathlib import Path
-          from datetime import datetime, timezone
-
-          root = Path("generated")
-          queue_path = root / "VERIFICATION-QUEUE.json"
-          registry_path = root / "VERIFICATION-REGISTRY.json"
-          promotion_path = root / "VERIFICATION-PROMOTION-QC.json"
-
-          for path in (queue_path, registry_path, promotion_path):
-              if not path.exists():
-                  raise SystemExit(f"VERIFICATION_SCAN_FAIL: missing {path}")
-
-          queue = json.loads(queue_path.read_text(encoding="utf-8"))
-          registry = json.loads(registry_path.read_text(encoding="utf-8"))
-          promotion = json.loads(promotion_path.read_text(encoding="utf-8"))
-
-          target = int(queue["records"])
-          queued = int(queue["queued"])
-          reviewed = int(registry["reviewed"])
-          verified = int(registry["verified"])
-          promotion_verified = int(promotion["verified_records"])
-
-          if target != 100200:
-              raise SystemExit(f"VERIFICATION_SCAN_FAIL: target={target}, expected=100200")
-          if not (0 <= verified <= reviewed <= queued <= target):
-              raise SystemExit("VERIFICATION_SCAN_FAIL: registry counters violate monotonic invariants")
-          if promotion_verified != verified:
-              raise SystemExit("VERIFICATION_SCAN_FAIL: promotion/registry verified counts differ")
-          if int(promotion["queue_records"]) != target:
-              raise SystemExit("VERIFICATION_SCAN_FAIL: promotion/queue record counts differ")
-
-          remaining = target - verified
-          verified_pct = round(verified / target * 100, 4) if target else 0.0
-          reviewed_pct = round(reviewed / target * 100, 4) if target else 0.0
-          queued_pct = round(queued / target * 100, 4) if target else 0.0
-
-          out = {
-              "generated_at": datetime.now(timezone.utc).isoformat(),
-              "authoritative_source": str(registry_path),
-              "target_verified_records": target,
-              "queued_records": queued,
-              "reviewed_records": reviewed,
-              "verified_records": verified,
-              "remaining_to_target": remaining,
-              "queued_percentage_of_target": queued_pct,
-              "reviewed_percentage_of_target": reviewed_pct,
-              "target_progress_percentage": verified_pct,
-              "independent_verification_gate_open": verified > 0,
-              "promotion_gate": promotion.get("promotion_gate", promotion.get("publication_gate")),
-              "publication_gate": queue.get("publication_gate"),
-              "definition": "Workflow activity is not independent verification; VERIFIED requires an independent review record and passing promotion controls."
-          }
-
-          progress = {
-              "generated_at": out["generated_at"],
-              "target": target,
-              "queued": queued,
-              "reviewed": reviewed,
-              "verified": verified,
-              "remaining": remaining,
-              "percent": {
-                  "queued": queued_pct,
-                  "reviewed": reviewed_pct,
-                  "verified": verified_pct,
-                  "remaining": round(remaining / target * 100, 4) if target else 0.0
-              },
-              "map": {
-                  "preparation": "COMPLETE",
-                  "evidence_traceability": "COMPLETE",
-                  "independent_verification": "IN_PROGRESS",
-                  "verified_output": "ESTABLISHED" if verified else "NOT_YET_ESTABLISHED"
-              }
-          }
-
-          Path("verification-status.json").write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
-          Path("verification-progress-map.json").write_text(json.dumps(progress, indent=2, ensure_ascii=False), encoding="utf-8")
-
-          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as s:
-              s.write("# SHIRMANI Independent Verification\n\n")
-              s.write(f"- Authoritative target: **{target:,}**\n")
-              s.write(f"- Queue: **{queued:,} ({queued_pct}%)**\n")
-              s.write(f"- Reviewed: **{reviewed:,} ({reviewed_pct}%)**\n")
-              s.write(f"- Independently VERIFIED: **{verified:,} ({verified_pct}%)**\n")
-              s.write(f"- Remaining: **{remaining:,} ({round(remaining / target * 100, 4)}%)**\n")
-              s.write(f"- Promotion gate: **{out['promotion_gate']}**\n")
-              s.write("- Workflow success is not counted as VERIFIED.\n")
-
-          print(json.dumps(out, indent=2, ensure_ascii=False))
-
-      - name: Publish verification status
+          python-version: "3.x"
+      - name: Build deterministic verification status
+        run: python3 factory/independent_verification_gate.py
+      - name: Publish verification telemetry
         uses: actions/upload-artifact@v4
         with:
-          name: shirmani-independent-verification-status
-          path: |
-            verification-status.json
-            verification-progress-map.json
+          name: shirmani-independent-verification-${{ github.run_id }}
+          path: generated/independent-verification-status.json
+          if-no-files-found: error
+          retention-days: 14
