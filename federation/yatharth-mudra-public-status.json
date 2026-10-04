@@ -23,5 +23,12 @@
     "place": "Amritsar, Punjab, India",
     "verification_status": "CREATOR_DECLARED_NOT_INDEPENDENTLY_VERIFIED"
   },
-  "safety_note": "Not launched, not mainnet-deployed, not for public sale, no guaranteed value or investment status."
+  "safety_note": "Not launched, not mainnet-deployed, not for public sale, no guaranteed value or investment status.",
+  "protocol_integration": {
+    "spec": "federation/yatharth-mudra-integrated-protocol.json",
+    "status": "DESIGN_INTEGRATED_TESTNET_GATE",
+    "live_minting": false,
+    "live_mining": false,
+    "production_gates_required": true
+  }
 }
