@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-10-03T18:49:43.499568+00:00",
+  "generated_at": "2026-10-04T17:31:59.325499+00:00",
   "scope": "independent-verification",
-  "authoritative_target": 100200,
+  "authoritative_target": 50,
   "authoritative": {
-    "queued": 100200,
+    "queued": 10,
     "reviewed": 0,
     "verified": 0,
-    "remaining_to_target": 100200,
-    "queued_percent": 100.0,
+    "remaining_to_target": 50,
+    "queued_percent": 20.0,
     "reviewed_percent": 0.0,
     "verified_percent": 0.0,
     "remaining_percent": 100.0,
@@ -16,6 +16,8 @@
   },
   "instantiated_review_layer": {
     "claim_records": 10,
+    "materialized_coverage_of_authoritative_target_percent": 20.0,
+    "materialized_review_slots_of_authoritative_target_percent": 20.0,
     "review_slots": 10,
     "verified": 0,
     "review_slot_coverage_percent": 100.0,
