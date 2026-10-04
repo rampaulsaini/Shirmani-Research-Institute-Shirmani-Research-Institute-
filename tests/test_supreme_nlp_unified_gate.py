@@ -10,7 +10,8 @@ def main():
     report = json.loads(gate.OUT.read_text(encoding="utf-8"))
     assert report["status"] == "PASS"
     assert report["promotion_allowed"] is False
-    assert report["checks"]["v3_promotion_blocked"] is True
+    assert report["checks"]["v3_unverified_safe_state"] is True
+    assert report["checks"]["v3_promotion_boundary_consistent"] is True
     assert report["checks"]["v3_fingerprint_valid"] is True
     assert report["v3"]["verification_status"] == "UNVERIFIED"
     assert report["v3"]["independent_replication_verified"] is False
@@ -34,7 +35,7 @@ def main():
         forged = json.loads(gate.OUT.read_text(encoding="utf-8"))
         assert forged["status"] == "BLOCK"
         assert forged["promotion_allowed"] is False
-        assert forged["checks"]["v3_promotion_blocked"] is False
+        assert forged["checks"]["v3_promotion_boundary_consistent"] is False
         assert forged["checks"]["v3_fingerprint_valid"] is False
     finally:
         gate.build_record = original_build
@@ -45,6 +46,31 @@ def main():
     assert restored["status"] == "PASS"
     assert restored["promotion_allowed"] is False
     assert restored["checks"]["v3_fingerprint_valid"] is True
+
+    # The same gate must also support the opposite, evidence-backed state.
+    # Promotion is allowed only when verification, replication and calibration
+    # are all explicitly present and the record fingerprint is valid.
+    try:
+        def verified_record(signals, task_id):
+            record = original_build(signals, task_id)
+            interpretation = record["result"]["interpretation"]
+            interpretation["verification_status"] = "VERIFIED"
+            interpretation["confidence_status"] = "CALIBRATED"
+            interpretation["calibration_required"] = False
+            record["provenance"]["independent_replication_verified"] = True
+            record["fingerprint"] = gate.record_fingerprint(record["result"])
+            return record
+
+        gate.build_record = verified_record
+        assert gate.main() == 0
+        promoted = json.loads(gate.OUT.read_text(encoding="utf-8"))
+        assert promoted["status"] == "PASS"
+        assert promoted["promotion_allowed"] is True
+        assert promoted["checks"]["v3_verification_ready"] is True
+        assert promoted["checks"]["v3_promotion_boundary_consistent"] is True
+        assert promoted["checks"]["v3_fingerprint_valid"] is True
+    finally:
+        gate.build_record = original_build
 
 
 if __name__ == "__main__":
