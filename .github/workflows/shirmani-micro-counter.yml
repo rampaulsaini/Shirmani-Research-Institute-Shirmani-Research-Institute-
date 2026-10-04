@@ -1,0 +1,41 @@
+name: SHIRMANI Micro Counter
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  counter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calculate live counters
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          runs_json="$(gh api -H "Accept: application/vnd.github+json" "/repos/$REPO/actions/runs?per_page=100")"
+          total_runs="$(printf '%s' "$runs_json" | jq '[.workflow_runs[]] | length')"
+          completed_runs="$(printf '%s' "$runs_json" | jq '[.workflow_runs[] | select(.status=="completed")] | length')"
+          successful_runs="$(printf '%s' "$runs_json" | jq '[.workflow_runs[] | select(.conclusion=="success")] | length')"
+          failed_runs="$(printf '%s' "$runs_json" | jq '[.workflow_runs[] | select(.conclusion=="failure")] | length')"
+          in_progress_runs="$(printf '%s' "$runs_json" | jq '[.workflow_runs[] | select(.status=="in_progress")] | length')"
+          {
+            echo "## ꙰ SHIRMANI Micro Counter"
+            echo ""
+            echo "| Metric | Count |"
+            echo "|---|---:|"
+            echo "| Workflow runs observed (latest 100) | $total_runs |"
+            echo "| Completed | $completed_runs |"
+            echo "| Successful | $successful_runs |"
+            echo "| Failed | $failed_runs |"
+            echo "| In progress | $in_progress_runs |"
+            echo ""
+            echo "> Execution activity is measured separately from independent verification."
+            echo "> A workflow run is NOT itself a VERIFIED record."
+          } >> "$GITHUB_STEP_SUMMARY"
