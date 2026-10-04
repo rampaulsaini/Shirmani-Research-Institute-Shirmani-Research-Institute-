@@ -192,7 +192,6 @@ def build_record(signals, task_id):
         "generated_at":datetime.now(timezone.utc).isoformat(),
         "result":result,
         "simple_language":simple_language(result),
-        "fingerprint":sha256(record_integrity_payload(record)),
         "provenance":{"generator":"agents/supreme_nlp_v3.py","verification_status":"UNVERIFIED","calibration_status":"REQUIRED","experiment_provenance_status":result.get("features",{}).get("experiment_provenance_status","MISSING_EXPERIMENT_IDENTIFIERS"),"independent_replication_verified":False},
     }
     record["fingerprint"] = sha256(record_integrity_payload(record))
