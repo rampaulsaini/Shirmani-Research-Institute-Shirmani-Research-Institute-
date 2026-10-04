@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "framework": "Nishpaksh Samaj / Shamikaran Yatharth Siddhant / Yatharth Yug",
+  "automation_policy": {
+    "biometric_inference": false,
+    "biometric_templates": false,
+    "auto_identity_verified": false
+  },
+  "records": [
+    {
+      "id": "PP-001",
+      "claim_class": "AUTHORSHIP_PROVENANCE",
+      "claim": "The canonical Yatharth/Shirmani source is published under the repository author account and can be checked against repository history and hashes.",
+      "provenance_scope": "source/publication provenance only",
+      "status": "PENDING_INDEPENDENT_REVIEW",
+      "evidence": ["repository history", "commit references", "canonical source hashes"]
+    },
+    {
+      "id": "PP-002",
+      "claim_class": "USER_SUPPLIED_MEDIA_PROVENANCE",
+      "claim": "User-supplied photographs, eyes/face images, voice or conversation material may be attached as provenance material when explicitly supplied by the user.",
+      "provenance_scope": "source/publication provenance only",
+      "status": "PENDING_INDEPENDENT_REVIEW",
+      "evidence": [],
+      "limitation": "Media consistency must not be converted into biometric identity inference."
+    },
+    {
+      "id": "PP-003",
+      "claim_class": "IDENTITY_CLAIM",
+      "claim": "A person saying “मैं शिरोमणि हूँ” is an identity claim that requires independent provenance review and must not be auto-verified.",
+      "provenance_scope": "source/publication provenance only",
+      "status": "NOT_VERIFIED",
+      "evidence": []
+    }
+  ]
+}
