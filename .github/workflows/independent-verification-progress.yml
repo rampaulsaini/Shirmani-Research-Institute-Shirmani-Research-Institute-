@@ -63,7 +63,8 @@ jobs:
           branch="automation/independent-verification-progress"
           git checkout -B "$branch"
           git commit -m "ci: update independent verification progress"
-          git push --force-with-lease origin "$branch"
+          git fetch origin "+refs/heads/$branch:refs/remotes/origin/$branch" || true
+          git push --force origin "HEAD:$branch"
 
           if gh pr view "$branch" --repo "${{ github.repository }}" >/dev/null 2>&1; then
             exit 0
