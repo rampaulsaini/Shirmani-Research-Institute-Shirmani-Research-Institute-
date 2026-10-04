@@ -29,7 +29,9 @@ def fingerprint(paths):
     return h.hexdigest()
 
 def gate(path):
-    r = subprocess.run([sys.executable, str(ROOT / path)], cwd=ROOT, text=True, capture_output=True, check=False)
+    env = dict(__import__("os").environ)
+    env["PYTHONPATH"] = str(ROOT) + (":" + env["PYTHONPATH"] if env.get("PYTHONPATH") else "")
+    r = subprocess.run([sys.executable, str(ROOT / path)], cwd=ROOT, env=env, text=True, capture_output=True, check=False)
     return {"exit_code": r.returncode, "output": (r.stdout + r.stderr)[-1200:]}
 
 def main():
