@@ -24,7 +24,8 @@ REQUIRED_VERIFICATION_FIELDS = (
     "decision",
 )
 
-ALLOWED_DECISIONS = {"VERIFIED", "NOT_VERIFIED", "CONTRADICTED", "INCONCLUSIVE"}\nTARGET_RECORDS = 100200
+ALLOWED_DECISIONS = {"VERIFIED", "NOT_VERIFIED", "CONTRADICTED", "INCONCLUSIVE"}
+TARGET_RECORDS = 50
 
 
 def sha256_file(path: Path) -> str:
@@ -80,6 +81,15 @@ def main() -> None:
     if summary["evidence_supported_records"] != len(evidence):
         fail("evidence_supported_records is inconsistent with registry")
 
+    if summary.get("target_records") != TARGET_RECORDS:
+        fail("target_records does not match the configured target")
+    expected_remaining = max(TARGET_RECORDS - len(verified), 0)
+    if summary.get("remaining_to_target") != expected_remaining:
+        fail("remaining_to_target is inconsistent with the configured target")
+    expected_target_pct = round((len(verified) / TARGET_RECORDS) * 100, 6)
+    if summary.get("target_completion_percent") != expected_target_pct:
+        fail("target_completion_percent is inconsistent with the configured target")
+
     ids = [r.get("id") for r in records]
     if len(ids) != len(set(ids)):
         fail("duplicate record id")
@@ -88,7 +98,7 @@ def main() -> None:
         validate_record(record)
 
     print("Independent verification gate: PASS")
-    print(f"queue={len(records)} evidence_supported={len(evidence)} verified={len(verified)}")
+    print(f"target={TARGET_RECORDS} queue={len(records)} evidence_supported={len(evidence)} verified={len(verified)}")
     print(f"registry_sha256={sha256_file(path)}")
     print("No workflow success is treated as independent verification.")
 
