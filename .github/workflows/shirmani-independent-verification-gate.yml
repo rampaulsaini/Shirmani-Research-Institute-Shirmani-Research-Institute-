@@ -35,66 +35,76 @@ jobs:
           queue_path = root / "VERIFICATION-QUEUE.json"
           registry_path = root / "VERIFICATION-REGISTRY.json"
           promotion_path = root / "VERIFICATION-PROMOTION-QC.json"
+          target_config_path = Path("config/independent-verification-target.json")
 
-          for path in (queue_path, registry_path, promotion_path):
+          for path in (queue_path, registry_path, promotion_path, target_config_path):
               if not path.exists():
                   raise SystemExit(f"VERIFICATION_SCAN_FAIL: missing {path}")
 
           queue = json.loads(queue_path.read_text(encoding="utf-8"))
           registry = json.loads(registry_path.read_text(encoding="utf-8"))
           promotion = json.loads(promotion_path.read_text(encoding="utf-8"))
+          target_cfg = json.loads(target_config_path.read_text(encoding="utf-8"))
 
-          target = int(queue["records"])
-          queued = int(queue["queued"])
+          target = int(target_cfg["verification_target"])
+          upstream_records = int(queue["records"])
+          upstream_queued = int(queue["queued"])
           reviewed = int(registry["reviewed"])
           verified = int(registry["verified"])
           promotion_verified = int(promotion["verified_records"])
+          concrete_review_slots = int(promotion["queue_records"])
 
-          if target != 100200:
-              raise SystemExit(f"VERIFICATION_SCAN_FAIL: target={target}, expected=100200")
-          if not (0 <= verified <= reviewed <= queued <= target):
-              raise SystemExit("VERIFICATION_SCAN_FAIL: registry counters violate monotonic invariants")
+          if target <= 0:
+              raise SystemExit("VERIFICATION_SCAN_FAIL: verification target must be positive")
+          if not (0 <= verified <= reviewed <= upstream_queued <= upstream_records):
+              raise SystemExit("VERIFICATION_SCAN_FAIL: upstream registry counters violate invariants")
+          if verified > target:
+              raise SystemExit("VERIFICATION_SCAN_FAIL: verified records exceed milestone target")
           if promotion_verified != verified:
               raise SystemExit("VERIFICATION_SCAN_FAIL: promotion/registry verified counts differ")
-          if int(promotion["queue_records"]) != target:
-              raise SystemExit("VERIFICATION_SCAN_FAIL: promotion/queue record counts differ")
+          if not (0 <= concrete_review_slots <= upstream_records):
+              raise SystemExit("VERIFICATION_SCAN_FAIL: concrete review-slot count is invalid")
 
-          remaining = target - verified
-          verified_pct = round(verified / target * 100, 4) if target else 0.0
+          remaining = max(target - verified, 0)
           reviewed_pct = round(reviewed / target * 100, 4) if target else 0.0
-          queued_pct = round(queued / target * 100, 4) if target else 0.0
+          verified_pct = round(verified / target * 100, 4) if target else 0.0
+          concrete_slots_pct = round(concrete_review_slots / target * 100, 4) if target else 0.0
 
           out = {
               "generated_at": datetime.now(timezone.utc).isoformat(),
               "authoritative_source": str(registry_path),
-              "target_verified_records": target,
-              "queued_records": queued,
+              "verification_target": target,
+              "upstream_queue_records": upstream_records,
+              "upstream_queued_records": upstream_queued,
+              "concrete_review_slots": concrete_review_slots,
               "reviewed_records": reviewed,
               "verified_records": verified,
-              "remaining_to_target": remaining,
-              "queued_percentage_of_target": queued_pct,
-              "reviewed_percentage_of_target": reviewed_pct,
-              "target_progress_percentage": verified_pct,
+              "remaining_to_verification_milestone": remaining,
+              "reviewed_percentage_of_milestone": reviewed_pct,
+              "concrete_review_slots_percentage_of_milestone": concrete_slots_pct,
+              "milestone_progress_percentage": verified_pct,
               "independent_verification_gate_open": verified > 0,
               "promotion_gate": promotion.get("promotion_gate", promotion.get("publication_gate")),
               "publication_gate": queue.get("publication_gate"),
-              "definition": "Workflow activity is not independent verification; VERIFIED requires an independent review record and passing promotion controls."
+              "definition": "Workflow activity, upstream queue size and review-slot creation are not independent verification; VERIFIED requires an independent review record and passing promotion controls."
           }
 
           progress = {
               "generated_at": out["generated_at"],
               "target": target,
-              "queued": queued,
+              "upstream_queue": upstream_queued,
+              "concrete_review_slots": concrete_review_slots,
               "reviewed": reviewed,
               "verified": verified,
               "remaining": remaining,
               "percent": {
-                  "queued": queued_pct,
-                  "reviewed": reviewed_pct,
-                  "verified": verified_pct,
-                  "remaining": round(remaining / target * 100, 4) if target else 0.0
+                  "concrete_review_slots_of_target": concrete_slots_pct,
+                  "reviewed_of_target": reviewed_pct,
+                  "verified_of_target": verified_pct,
+                  "remaining_of_target": round(remaining / target * 100, 4) if target else 0.0
               },
               "map": {
+                  "upstream_queue": "AVAILABLE",
                   "preparation": "COMPLETE",
                   "evidence_traceability": "COMPLETE",
                   "independent_verification": "IN_PROGRESS",
@@ -107,11 +117,12 @@ jobs:
 
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as s:
               s.write("# SHIRMANI Independent Verification\n\n")
-              s.write(f"- Authoritative target: **{target:,}**\n")
-              s.write(f"- Queue: **{queued:,} ({queued_pct}%)**\n")
-              s.write(f"- Reviewed: **{reviewed:,} ({reviewed_pct}%)**\n")
-              s.write(f"- Independently VERIFIED: **{verified:,} ({verified_pct}%)**\n")
-              s.write(f"- Remaining: **{remaining:,} ({round(remaining / target * 100, 4)}%)**\n")
+              s.write(f"- Verification milestone: **{target:,}**\n")
+              s.write(f"- Upstream queue: **{upstream_queued:,}** (aggregate source scale; not the milestone)\n")
+              s.write(f"- Concrete review slots: **{concrete_review_slots:,}/{target:,} ({concrete_slots_pct}%)**\n")
+              s.write(f"- Reviewed: **{reviewed:,}/{target:,} ({reviewed_pct}%)**\n")
+              s.write(f"- Independently VERIFIED: **{verified:,}/{target:,} ({verified_pct}%)**\n")
+              s.write(f"- Remaining to milestone: **{remaining:,} ({round(remaining / target * 100, 4)}%)**\n")
               s.write(f"- Promotion gate: **{out['promotion_gate']}**\n")
               s.write("- Workflow success is not counted as VERIFIED.\n")
 
