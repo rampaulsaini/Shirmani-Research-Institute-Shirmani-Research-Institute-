@@ -9,6 +9,19 @@ def main():
     ]
     r = build_record(heterogeneous, "heterogeneous-units")
     assert r["result"]["features"]["cross_modal_disagreement"] == 0.0
+    assert r["result"]["features"]["anomaly_comparability_status"] == "INSUFFICIENT_EVIDENCE"
+    assert r["result"]["interpretation"]["abstention"] is True
+    assert r["result"]["features"]["anomaly_score"] == 0.0
+
+    # Comparable signals retain anomaly detection; high within-group
+    # variability must still trigger abstention.
+    comparable = build_record([
+        {"modality":"sensor-a","feature":"signal","value":100.0,"unit":"u","source":"a"},
+        {"modality":"sensor-b","feature":"signal","value":-100.0,"unit":"u","source":"b"},
+    ], "comparable-high-variance")
+    assert comparable["result"]["features"]["anomaly_comparability_status"] == "COMPARABLE_GROUPS"
+    assert comparable["result"]["features"]["anomaly_score"] >= 0.90
+    assert comparable["result"]["interpretation"]["abstention"] is True
 
     # Calibration rejects an invalid bin count instead of silently accepting it.
     try:
