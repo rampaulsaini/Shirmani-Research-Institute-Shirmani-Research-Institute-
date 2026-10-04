@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: shirmani-micro-progress-counter
@@ -59,6 +60,27 @@ jobs:
           target = int(target_cfg.get("verification_target", 0))
           reviewed = int(registry.get("reviewed", 0))
           verified = int(registry.get("verified", 0))
+          # Query GitHub Actions separately from the verification registry.
+          # This counter measures workflow activity only; it never promotes anything to VERIFIED.
+          import os, urllib.request
+          api = f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/actions/runs"
+          headers = {
+              "Accept": "application/vnd.github+json",
+              "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
+              "X-GitHub-Api-Version": "2022-11-28",
+          }
+          def run_count(params=""):
+              req = urllib.request.Request(api + params, headers=headers)
+              with urllib.request.urlopen(req, timeout=20) as resp:
+                  return int(json.load(resp).get("total_count", 0))
+
+          workflow_runs_total = run_count("?per_page=1")
+          workflow_runs_completed = run_count("?status=completed&per_page=1")
+          data["workflow_activity"] = {
+              "workflow_runs_total": workflow_runs_total,
+              "workflow_runs_completed": workflow_runs_completed,
+              "definition": "GitHub Actions run activity only; never counted as independent verification."
+          }
           data["verification"] = {
               "target": target,
               "reviewed": reviewed,
@@ -80,6 +102,8 @@ jobs:
           print(f"VERIFICATION_REVIEWED={reviewed}")
           print(f"VERIFICATION_VERIFIED={verified}")
           print(f"VERIFICATION_REMAINING={max(target - verified, 0)}")
+          print(f"WORKFLOW_RUNS_TOTAL={workflow_runs_total}")
+          print(f"WORKFLOW_RUNS_COMPLETED={workflow_runs_completed}")
           PY
 
       - name: Write cycle receipt
@@ -95,6 +119,8 @@ jobs:
               "# SHIRMANI Micro Progress Counter\n\n"
               f"- Workflow micro cycles: {d['micro_cycles']}\n"
               f"- Last cycle (UTC): {d['last_cycle_utc']}\n"
+              f"- Workflow runs observed (GitHub Actions): {d.get('workflow_activity', {}).get('workflow_runs_total', 0):,}\n"
+              f"- Workflow runs completed: {d.get('workflow_activity', {}).get('workflow_runs_completed', 0):,}\n"
               f"- Verification target: {d.get('verification', {}).get('target', 0):,}\n"
               f"- Independently reviewed: {d.get('verification', {}).get('reviewed', 0):,}\n"
               f"- Independently VERIFIED: {d.get('verification', {}).get('verified', 0):,}\n"
