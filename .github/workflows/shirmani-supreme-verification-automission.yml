@@ -1,0 +1,108 @@
+name: SHIRMANI Supreme Verification Automission
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "SHIRMANI Supreme Total AI-ML-NLP Automission"
+      - "SHIRMANI Supreme Evidence Automission"
+      - "SHIRMANI Supreme Evidence Convergence"
+      - "SHIRMANI Supreme Independent Verification Ledger"
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-verification-automission
+  cancel-in-progress: true
+
+jobs:
+  verification-automission:
+    name: 100% Automated Verification Control Plane
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate verification target
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("config/independent-verification-target.json").read_text(encoding="utf-8"))
+          assert int(d["verification_target"]) > 0 and d.get("fail_closed") is True
+          print("VERIFICATION_TARGET:", d["verification_target"])
+          print("FAIL_CLOSED: PASS")
+          PY
+      - name: Run independent verification ledger audit
+        run: python factory/supreme_independent_verification_ledger.py
+      - name: Run authoritative progress dashboard
+        run: python factory/verification_progress_dashboard.py
+      - name: Run independent verification gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          q=json.loads(Path("generated/VERIFICATION-QUEUE.json").read_text())
+          r=json.loads(Path("generated/VERIFICATION-REGISTRY.json").read_text())
+          p=json.loads(Path("generated/VERIFICATION-PROMOTION-QC.json").read_text())
+          t=int(json.loads(Path("config/independent-verification-target.json").read_text())["verification_target"])
+          records,queued=int(q["records"]),int(q["queued"])
+          reviewed,verified=int(r["reviewed"]),int(r["verified"])
+          assert 0 <= verified <= reviewed <= queued <= records <= t
+          assert int(p["verified_records"]) == verified
+          remaining=t-verified
+          pct=round(verified/t*100,6)
+          print(f"Target={t}")
+          print(f"Prepared/queued={queued}")
+          print(f"Reviewed={reviewed}")
+          print(f"Independently VERIFIED={verified} ({pct}%)")
+          print(f"Remaining={remaining}")
+          print("Verification orchestration=100% Automission")
+          print("Independent declaration=FAIL-CLOSED")
+          Path("verification-automission-summary.md").write_text(
+            "# ꙰ SHIRMANI Supreme Verification Automission\n\n"
+            f"- Target: **{t:,}**\n"
+            f"- Prepared/queued: **{queued:,}**\n"
+            f"- Reviewed: **{reviewed:,}**\n"
+            f"- Independently VERIFIED: **{verified:,} ({pct}%)**\n"
+            f"- Remaining: **{remaining:,}**\n"
+            "- Verification orchestration: **100% Automission**\n"
+            "- Fail-closed independence boundary: **ENFORCED**\n"
+            "- Workflow success is **not** counted as independent verification.\n",
+            encoding="utf-8")
+          PY
+      - name: Validate fail-closed policy
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("generated/verification-progress-dashboard.json").read_text())["automation_state"]
+          assert a["independent_verification_required"] is True
+          assert a["automission_may_prepare"] is True
+          assert a["automission_may_declare_verified"] is False
+          assert a["independent_reviewer_decision_required"] is True
+          print("FAIL_CLOSED_VERIFICATION_POLICY: PASS")
+          PY
+      - name: Publish verification artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-supreme-verification-automission-${{ github.run_id }}
+          path: |
+            generated/supreme-independent-verification-ledger.json
+            generated/verification-progress-dashboard.json
+            generated/verification-progress-dashboard.md
+            verification-automission-summary.md
+          if-no-files-found: error
+          retention-days: 14
+      - name: Emit summary
+        run: cat verification-automission-summary.md >> "${{ github.step_summary }}"
