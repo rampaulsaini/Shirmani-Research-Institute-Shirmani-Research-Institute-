@@ -11,6 +11,7 @@ on:
       - "SHIRMANI Supreme Evidence Convergence"
       - "SHIRMANI Supreme Independent Verification Ledger"
       - "SHIRMANI Verification Progress Dashboard"
+      - "SHIRMANI Supreme Continuous Improvement"
     types: [completed]
 
 permissions:
@@ -133,6 +134,18 @@ jobs:
               s.write("- Workflow success is not counted as VERIFIED.\n")
 
           print(json.dumps(out, indent=2, ensure_ascii=False))
+
+      - name: Run 100% Automission verification controller
+        shell: bash
+        run: |
+          python factory/verification_automission_controller.py
+
+      - name: Publish 100% Automission controller report
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-100-percent-verification-automission
+          path: generated/verification-automission-report.json
+          retention-days: 14
 
       - name: Run record-level independent verification contract
         shell: bash
