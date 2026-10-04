@@ -1,0 +1,72 @@
+name: SHIRMANI Independent Verification Review Packets
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Number of pending review slots to package"
+        required: false
+        default: "10"
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-independent-verification-review-packets
+  cancel-in-progress: true
+
+jobs:
+  review-packet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate current verification queue
+        run: python factory/verification_queue_qc.py
+
+      - name: Build deterministic human-review packet
+        run: |
+          python factory/verification_review_packet.py \
+            --batch-size "${{ inputs.batch_size || '10' }}" \
+            --offset 0
+
+      - name: Validate fail-closed promotion boundary
+        run: python factory/verification_promotion_gate.py
+
+      - name: Emit review status
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          packets=sorted(Path("generated").glob("verification-review-packet-*.json"))
+          if not packets:
+              raise SystemExit("No review packet generated")
+          d=json.loads(packets[-1].read_text(encoding="utf-8"))
+          print("## ꙰ SHIRMANI Independent Verification Review Packet")
+          print(f"- Packet: **{packets[-1].name}**")
+          print(f"- Review slots: **{d['records']}**")
+          print(f"- Status: **{d['status']}**")
+          print("- Verification performed by automation: **NO**")
+          print("- VERIFIED promotion by automation: **BLOCKED**")
+          print("- Required next action: independent reviewer completes the packet.")
+          PY
+
+      - name: Upload review packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-independent-review-packet-${{ github.run_id }}
+          path: |
+            generated/verification-review-packet-*.json
+            generated/VERIFICATION-QUEUE-QC.json
+            generated/VERIFICATION-PROMOTION-QC.json
+          if-no-files-found: error
+          retention-days: 14
