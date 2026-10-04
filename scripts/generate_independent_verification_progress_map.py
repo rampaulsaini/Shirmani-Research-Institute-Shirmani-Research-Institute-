@@ -83,6 +83,8 @@ def main() -> None:
         },
         "instantiated_review_layer": {
             "claim_records": instantiated,
+            "materialized_coverage_of_authoritative_target_percent": pct(instantiated,target),
+            "materialized_review_slots_of_authoritative_target_percent": pct(review_slots,target),
             "review_slots": review_slots,
             "verified": instantiated_verified,
             "review_slot_coverage_percent": pct(review_slots,instantiated),
@@ -133,12 +135,15 @@ Generated: {report["generated_at"]}
 ## Instantiated review layer
 
 The repository currently materializes a smaller set of concrete claim/review records.
-This preparation/review layer must not be presented as the full 100,200 target.
+The 100,200 figure is a target-scale declaration, not evidence that 100,200 concrete review tasks currently exist.
+Concrete materialization must be measured separately and is currently only a small fraction of the target.
 
 | Measure | Current |
 |---|---:|
 | Concrete claim records | **{instantiated:,}** |
-| Review slots | **{review_slots:,} ({rc:g}% coverage)** |
+| Concrete claims as % of 100,200 target | **{pct(instantiated,target):g}%** |
+| Review slots | **{review_slots:,} ({rc:g}% of concrete claims)** |
+| Review slots as % of 100,200 target | **{pct(review_slots,target):g}%** |
 | Independently VERIFIED | **{instantiated_verified:,} ({iv:g}%)** |
 | Evidence-supported in historical 10-record status | **{evidence_supported}/{historical_queue} ({report["instantiated_review_layer"]["evidence_supported_percent_of_historical_queue"]:g}%)** |
 
@@ -146,9 +151,18 @@ This preparation/review layer must not be presented as the full 100,200 target.
 - Review-slot coverage: {bar(rc)} {rc:g}%
 - Independently VERIFIED: {bar(iv)} {iv:g}%
 
+## Materialization reality check
+
+- The target scale is **100,200**.
+- Concrete claim records currently materialized: **{instantiated:,} ({pct(instantiated,target):g}% of target)**.
+- Concrete review slots currently materialized: **{review_slots:,} ({pct(review_slots,target):g}% of target)**.
+- Therefore **100% review-slot coverage applies only to the 10 currently materialized claims**, not to the 100,200 target.
+
 ## Critical distinction
 
 **Preparation, queue generation, review-slot generation, evidence collection and workflow success are not independent verification.**
+
+**Target capacity is not the same as materialized work.** The system must never report the 100,200 target as 100% concretely queued unless 100,200 concrete task records actually exist.
 
 A record reaches VERIFIED only after the required independent review decision, evidence, counter-evidence review, reproducible test/observation, reviewer identity/role, timestamp and audit record satisfy the fail-closed promotion controls.
 
