@@ -38,6 +38,13 @@ def record_fingerprint(value: object) -> str:
     ).hexdigest()
 
 
+def report_fingerprint(value: dict) -> str:
+    """Hash the report excluding its own fingerprint for tamper detection."""
+    payload = dict(value)
+    payload.pop("fingerprint", None)
+    return canonical_hash(payload)
+
+
 def main() -> int:
     practitioner = build_practitioner_record(ROWS, "unified-control-plane")
     v3_record = build_record(ROWS, "unified-control-plane-v3")
@@ -117,7 +124,7 @@ def main() -> int:
             "declared_experiment_identifiers_are_not_replication": True,
         },
     }
-    report["fingerprint"] = canonical_hash(report)
+    report["fingerprint"] = report_fingerprint(report)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False, indent=2))
