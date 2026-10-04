@@ -16,6 +16,7 @@ for c in registry["claims"]:
         v=r.get("verification") or {}
         if v.get("status") not in ("NOT_VERIFIED","UNVERIFIED") or v.get("independent") is not False:
             raise SystemExit("Unsafe Research Paper verification state: "+cid)
+        r["evidence"] = r.get("evidence") or [{"kind":"AUTHOR_DECLARATION","status":"SOURCE_TRACE","detail":"Author-declared proposition; traceability metadata only."}]
     else:
         by_id[cid]={"id":cid,"claim":c["claim"],"claim_category":c["category"],
           "artifact_type":"RESEARCH_PAPER","artifact_id":c["id"],
