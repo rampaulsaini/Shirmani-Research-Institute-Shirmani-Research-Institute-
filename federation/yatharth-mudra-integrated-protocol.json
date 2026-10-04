@@ -17,7 +17,9 @@
     "allocation": "bounded deterministic allocation rule",
     "mint_authorization": "future on-chain role, disabled until production gates pass",
     "settlement": "authorized transfer/exchange layer",
-    "audit": "immutable transaction and provenance records"
+    "audit": "immutable transaction and provenance records",
+    "platform_native_protocol": "federation/shirmani-native-verifiable-value-protocol.json",
+    "source_of_truth": "platform-native append-only provenance ledger; blockchain is optional external anchor/settlement"
   },
   "issuance_policy": {
     "minting_enabled_now": false,
@@ -71,7 +73,8 @@
     "independent security audit",
     "legal/accounting review",
     "public transaction/provenance explorer",
-    "recovery/dispute/abuse controls"
+    "recovery/dispute/abuse controls",
+    "platform-native ledger threat model and recovery drill"
   ],
   "evidence_boundary": "A protocol specification, CI pass, generated ledger, or successful testnet transaction does not by itself establish monetary value, legal status, scientific truth, or investment merit."
 }
