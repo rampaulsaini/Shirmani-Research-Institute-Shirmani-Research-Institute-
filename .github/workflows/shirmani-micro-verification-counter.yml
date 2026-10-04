@@ -1,0 +1,46 @@
+name: SHIRMANI Micro Verification Counter
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "generated/VERIFICATION-REGISTRY.json"
+      - "generated/VERIFICATION-PROMOTION-QC.json"
+      - "generated/independent-verification-records.json"
+      - "config/independent-verification-target.json"
+      - "factory/micro_verification_counter.py"
+      - ".github/workflows/shirmani-micro-verification-counter.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-micro-verification-counter
+  cancel-in-progress: true
+
+jobs:
+  counter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Generate micro counter
+        run: python3 factory/micro_verification_counter.py
+      - name: Validate fail-closed counter
+        run: python3 -c "import json; d=json.load(open('generated/micro-verification-counter.json')); m=d['micro_counter']; assert m['verified']<=m['reviewed']<=m['prepared']<=d['target']; assert m['verified']+m['remaining_to_target']==d['target']; print('MICRO_COUNTER_GATE: PASS')"
+      - name: Publish micro counter
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-micro-verification-counter-${{ github.run_id }}
+          path: |
+            generated/micro-verification-counter.json
+            generated/micro-verification-counter.md
+          retention-days: 14
+      - name: Emit micro counter to job summary
+        run: cat generated/micro-verification-counter.md >> "$GITHUB_STEP_SUMMARY"
