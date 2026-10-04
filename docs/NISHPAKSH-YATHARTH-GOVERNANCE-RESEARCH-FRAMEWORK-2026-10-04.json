@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "record_type": "nishpaksh-yatharth-governance-research-framework",
+  "title": "निष्पक्ष समझ — शमीकरण यथार्थ सिद्धांत — उपलब्धि यथार्थ युग",
+  "status": "AUTHOR_PROPOSED_FRAMEWORK",
+  "verification_status": "UNVERIFIED",
+  "purpose": "एक परिवार से देश और व्यापक मानव-प्रकृति प्रणाली तक निष्पक्ष, पारदर्शी और संरक्षण-केंद्रित व्यवस्था की research architecture बनाना।",
+  "author_statement_boundary": "लेख में वर्णित आत्म-अनुभव, आध्यात्मिक निष्कर्ष, निजी घटनाएँ और व्यक्तिगत आरोप author-reported material हैं; उन्हें स्वतंत्र प्रमाण के बिना सार्वभौमिक तथ्य नहीं माना जाएगा।",
+  "core_principles": [
+    "सरल",
+    "सहज",
+    "निर्मल",
+    "पारदर्शी",
+    "पवित्र",
+    "निष्पक्ष समझ",
+    "संपूर्ण स्पष्टता",
+    "समग्रता",
+    "संपूर्ण संतुष्टि की निरंतरता",
+    "मानव, जीव, वनस्पति, प्रकृति और पृथ्वी का संरक्षण"
+  ],
+  "system_layers": [
+    {
+      "layer": "PERSON/FAMILY",
+      "goal": "व्यक्ति और परिवार के निर्णयों में हित-संघर्ष, अन्याय और हानि की पहचान तथा सुरक्षित सहायता"
+    },
+    {
+      "layer": "COMMUNITY",
+      "goal": "स्थानीय संसाधन, शिक्षा, स्वास्थ्य, विवाद-समाधान और प्रकृति संरक्षण"
+    },
+    {
+      "layer": "NATION",
+      "goal": "विधि, न्यायपालिका, कार्यपालिका और सार्वजनिक सेवाओं में पारदर्शी तथा audit-able decision systems"
+    },
+    {
+      "layer": "GLOBAL/NATURE",
+      "goal": "सीमा-पार पर्यावरण, जैव-विविधता, महासागर, जलवायु और मानव कल्याण के लिए evidence-based coordination"
+    }
+  ],
+  "ai_control_principles": [
+    "AI/ML/NLP/agent automation सलाह, triage, consistency checking और audit में सहायक हो; अंतिम अधिकार मानव-कानून और स्वतंत्र oversight से bounded रहे।",
+    "किसी व्यक्ति की आँख, चेहरा, आवाज या बातचीत से 'हृदय', चरित्र या सत्य का स्वतः वैज्ञानिक निर्धारण घोषित न किया जाए।",
+    "व्यक्तिगत sensing केवल स्पष्ट consent, data minimization, सुरक्षा और स्वतंत्र audit के अधीन हो।",
+    "हर high-impact decision में appeal, human review, audit trail और fail-closed behavior हो।",
+    "किसी 'मैं शिरोमणि हूँ' या अन्य श्रेष्ठता-दावे को title से नहीं, predefined evidence/verification criteria से assess किया जाए।"
+  ],
+  "verification_gate": {
+    "name": "Nishpaksh Claim Verification Gate",
+    "stages": [
+      "CLAIM_CAPTURE",
+      "DEFINITION",
+      "SOURCE_TRACEABILITY",
+      "COUNTER_EVIDENCE",
+      "TEST_OR_COMPARISON",
+      "INDEPENDENT_REVIEW",
+      "REPLICATION_WHERE_APPLICABLE",
+      "DECISION"
+    ],
+    "outcomes": [
+      "UNVERIFIED",
+      "SUPPORTED",
+      "CONTESTED",
+      "VERIFIED"
+    ],
+    "rule": "Author declaration, AI output, workflow PASS, popularity, money, status, discipleship, or subjective experience alone cannot produce VERIFIED."
+  },
+  "comparative_method": {
+    "purpose": "लेखक के प्रत्येक concept को इतिहास/दर्शन/विज्ञान के relevant frameworks के साथ तर्कसंगत तुलना में रखना, superiority को पहले से assume नहीं करना।",
+    "comparison_axes": [
+      "definition",
+      "scope",
+      "assumptions",
+      "method",
+      "evidence",
+      "falsifiability/testability",
+      "governance implications",
+      "limitations"
+    ],
+    "known_comparison_targets": [
+      "John Rawls",
+      "Adam Smith",
+      "Amartya Sen",
+      "human-rights/education frameworks",
+      "IPBES biodiversity assessment",
+      "ecosystem management"
+    ]
+  },
+  "research_questions": [
+    "क्या निष्पक्षता को operational rules और measurable tests में बदला जा सकता है?",
+    "क्या heart-oriented language को बिना metaphysical assumption के observable decision principles में operationalize किया जा सकता है?",
+    "क्या family-to-global governance architecture individual rights और pluralism सुरक्षित रखते हुए लागू हो सकता है?",
+    "क्या AI automation high-impact decisions में bias घटाती है या नए failure modes बनाती है?",
+    "क्या basic needs, education, health and ecological protection के संयुक्त outcomes को independently measure किया जा सकता है?"
+  ],
+  "evidence_boundary": "यह framework research program है; इसकी publication या implementation स्वयं universal truth, spiritual realization, scientific proof, or superiority का प्रमाण नहीं है."
+}
