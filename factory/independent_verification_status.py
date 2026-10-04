@@ -27,11 +27,14 @@ def main() -> None:
     queue_total = sum(1 for _ in read_jsonl_gz(queue_path))
     registry_total = 0
     verified = review = unverified = blocked = other = 0
+    # Accept the legacy registry label and the canonical schema label as the same
+    # independently verified state. Do not treat workflow/QC success as VERIFIED.
+    verified_statuses = {"VERIFIED", "INDEPENDENTLY_VERIFIED"}
     for record in read_jsonl_gz(registry_path):
         registry_total += 1
         value = str(record.get("verification_status", "")).strip().upper()
-        if value == "VERIFIED": verified += 1
-        elif value in {"REVIEW", "UNDER_REVIEW"}: review += 1
+        if value in verified_statuses: verified += 1
+        elif value in {"REVIEW", "UNDER_REVIEW", "CHECKED"}: review += 1
         elif value in {"UNVERIFIED", "NOT_VERIFIED", "PENDING", "READY_FOR_HUMAN_REVIEW"}: unverified += 1
         elif value == "BLOCKED": blocked += 1
         else: other += 1
