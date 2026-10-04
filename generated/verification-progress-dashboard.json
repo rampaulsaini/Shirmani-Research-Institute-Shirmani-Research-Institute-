@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-10-04T12:48:36+00:00",
+  "generated_at": "2026-10-04T18:56:13.535Z",
   "method": "authoritative independent-verification records; fail-closed",
-  "target": 100200,
+  "target": 50,
   "records": {
-    "target": 100200,
+    "target": 50,
     "prepared": 10,
     "reviewed": 0,
     "verified": 0,
-    "remaining_to_verified_target": 100200,
+    "remaining_to_verified_target": 50,
     "evidence_supported": 4,
     "source_registry_records": 10
   },
   "percent": {
-    "prepared_of_target": 0.00998,
+    "prepared_of_target": 20,
     "reviewed_of_target": 0,
     "independently_verified_of_target": 0,
     "remaining_of_target": 100
