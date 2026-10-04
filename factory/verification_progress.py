@@ -106,8 +106,7 @@ def main() -> int:
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
-        json.dumps(report, ensure_ascii=False, indent=2) + "
-",
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
     print(json.dumps(report, ensure_ascii=False))
