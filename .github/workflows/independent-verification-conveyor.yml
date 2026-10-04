@@ -15,6 +15,7 @@ on:
       - "factory/independent_verification_pipeline.py"
       - "factory/bootstrap_independent_verification_queue.py"
       - "factory/bootstrap_verification_review_registry.py"
+      - "factory/build_independent_review_packets.py"
       - ".github/workflows/independent-verification-conveyor.yml"
       - "research/independent-verification-protocol-2026-09-29.md"
 
@@ -38,6 +39,9 @@ jobs:
 
       - name: Bootstrap pending review slots
         run: python3 factory/bootstrap_verification_review_registry.py
+
+      - name: Build deterministic independent-review packets
+        run: python3 factory/build_independent_review_packets.py
 
       - name: Run fail-closed verification conveyor
         run: python3 factory/independent_verification_pipeline.py
@@ -75,6 +79,7 @@ jobs:
             generated/VERIFICATION-PROMOTION-QC.json
             generated/independent-verification-queue.jsonl
             generated/independent-verification-registry.jsonl
+            generated/independent-review-packets.json
           if-no-files-found: ignore
           retention-days: 14
 
@@ -85,5 +90,6 @@ jobs:
             echo "- Pipeline: evidence -> independent test -> reproducible result -> audit -> VERIFIED"
             echo "- Review slots are generated automatically; VERIFIED is never auto-declared"
             echo "- Current independent verification baseline remains fail-closed at 0%"
+            echo "- Review packets are generated for claims that have a defined independent test plan"
             echo "- Continuous cycle: every 5 minutes"
           } >> "$GITHUB_STEP_SUMMARY"
