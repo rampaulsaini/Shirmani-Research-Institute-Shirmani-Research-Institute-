@@ -20,7 +20,7 @@ permissions:
 
 concurrency:
   group: shirmani-independent-verification-progress
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   audit:
