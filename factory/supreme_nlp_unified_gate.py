@@ -88,7 +88,7 @@ def main() -> int:
         "v3_unverified_safe_state": unverified_safe_state,
         "v3_verification_ready": verification_ready,
         "v3_experiment_provenance_declared": v3["features"].get("experiment_provenance_status") in {"DECLARED_IDENTIFIERS_ONLY", "MISSING_EXPERIMENT_IDENTIFIERS"},
-        "v3_promotion_boundary_consistent": (promotion_blocked and unverified_safe_state) or ((not promotion_blocked) and verification_ready),
+        "v3_promotion_boundary_consistent": (promotion_blocked and not verification_ready) or ((not promotion_blocked) and verification_ready),
         "v3_fingerprint_valid": fingerprint_valid,
         "simple_language_present": bool(v3_record["simple_language"].strip()),
         "fingerprint_present": bool(v3_record["fingerprint"].strip()),
