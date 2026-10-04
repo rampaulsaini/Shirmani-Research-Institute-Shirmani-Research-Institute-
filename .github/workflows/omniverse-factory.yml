@@ -83,6 +83,8 @@ jobs:
         run: python3 tests/test_supreme_nlp_v3.py
       - name: Run Supreme NLP v3 adversarial hardening tests
         run: python3 tests/test_supreme_nlp_v3_hardening.py
+      - name: Run Supreme NLP unified promotion-boundary gate
+        run: python3 tests/test_supreme_nlp_unified_gate.py
       - name: Run deterministic QC
         run: python3 factory/quality_control.py
       - name: Build deterministic formulation/test records
