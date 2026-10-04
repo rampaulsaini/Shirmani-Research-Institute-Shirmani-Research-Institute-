@@ -14,13 +14,11 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-TARGET = 100_200
-
 def load_jsonl(path: Path) -> list[dict]:
     if not path.exists():
         raise SystemExit(f"missing required file: {path}")
     rows = []
-    for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+    for line_no, line in enumerate(path.read_text(encoding="utf-8"), 1):
         if line.strip():
             try:
                 rows.append(json.loads(line))
@@ -39,12 +37,20 @@ def main() -> int:
     parser.add_argument("--queue", required=True)
     parser.add_argument("--registry", required=True)
     parser.add_argument("--output", required=True)
+    parser.add_argument("--target-config", default="config/independent-verification-target.json")
     args = parser.parse_args()
 
     queue_path = Path(args.queue)
     registry_path = Path(args.registry)
+    target_config_path = Path(args.target_config)
     queue = load_jsonl(queue_path)
     registry = load_jsonl(registry_path)
+    if not target_config_path.exists():
+        raise SystemExit(f"missing required file: {target_config_path}")
+    target_cfg = json.loads(target_config_path.read_text(encoding="utf-8"))
+    target = int(target_cfg["verification_target"])
+    if target <= 0:
+        raise SystemExit("verification_target must be positive")
 
     queue_ids = [str(r.get("task_id", "")) for r in queue]
     registry_ids = [str(r.get("task_id", "")) for r in registry]
@@ -66,20 +72,22 @@ def main() -> int:
         and r.get("independent") is True
         for r in registry
     )
+    if verified > reviewed:
+        raise SystemExit("verified records cannot exceed reviewed records")
 
     report = {
-        "schema_version": 2,
+        "schema_version": 3,
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "target_records": TARGET,
+        "verification_milestone": target,
         "queue_total": len(queue),
         "registry_total": len(registry),
         "reviewed_records": reviewed,
         "independent_verified_records": verified,
+        "remaining_to_milestone": max(target - verified, 0),
         "remaining_review_records": max(len(queue) - reviewed, 0),
-        "remaining_verification_records": max(len(queue) - verified, 0),
-        "review_completion_pct": pct(reviewed, len(queue)),
-        "verification_completion_pct": pct(verified, len(queue)),
-        "target_completion_pct": pct(verified, TARGET),
+        "review_completion_pct_of_queue": pct(reviewed, len(queue)),
+        "verification_completion_pct_of_queue": pct(verified, len(queue)),
+        "milestone_completion_pct": pct(verified, target),
         "verification_status_counts": dict(sorted(verification.items())),
         "registry_status_counts": dict(sorted(status.items())),
         "queue_registry_task_id_match": True,
