@@ -38,7 +38,8 @@ jobs:
           d=json.load(open("generated/verification-progress-dashboard.json",encoding="utf-8"))
           r=d["records"]
           p=d["percent"]
-          assert r["target"] == 100200
+          cfg=json.load(open("config/independent-verification-target.json",encoding="utf-8"))
+          assert r["target"] == cfg["verification_target"]
           assert r["source_registry_records"] == r["prepared"]
           assert 0 <= r["verified"] <= r["reviewed"] <= r["prepared"] <= r["target"]
           assert r["verified"] + r["remaining_to_verified_target"] == r["target"]
