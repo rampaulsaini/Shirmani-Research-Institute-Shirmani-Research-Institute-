@@ -1,0 +1,52 @@
+name: SHIRMANI Autonomous Verification Auditor
+
+on:
+  schedule:
+    - cron: "2-59/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-autonomous-verification-auditor
+  cancel-in-progress: true
+
+jobs:
+  autonomous-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run autonomous verification audit
+        run: python3 factory/autonomous_verification_auditor.py
+      - name: Enforce fail-closed boundary
+        run: |
+          python3 - <<'PY'
+          import json
+          d=json.load(open("generated/AUTONOMOUS-VERIFICATION-AUDIT.json",encoding="utf-8"))
+          assert d["policy"]["workflow_success_is_not_verification"] is True
+          assert d["policy"]["machine_candidate_is_not_VERIFIED"] is True
+          assert d["policy"]["human_independent_decision_required_for_VERIFIED"] is True
+          print("AUTONOMOUS AUDIT: PASS — no automatic VERIFIED promotion")
+          print("Machine candidates:", d["machine_verification_candidates"])
+          print("Human independently VERIFIED:", d["human_independent_verified"])
+          PY
+      - name: Publish autonomous audit summary
+        run: |
+          {
+            echo "## ꙰ SHIRMANI Autonomous Verification Auditor"
+            echo "- Runs independently of author/chat presence."
+            echo "- Checks source reachability, reproduction readiness, counter-evidence state and reviewer boundary."
+            echo "- Machine candidate != VERIFIED."
+            echo "- VERIFIED remains fail-closed until an independent decision exists."
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload autonomous verification audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-autonomous-verification-\${{ github.run_id }}
+          path: generated/AUTONOMOUS-VERIFICATION-AUDIT.json
+          retention-days: 14
