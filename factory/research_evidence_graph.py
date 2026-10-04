@@ -32,6 +32,11 @@ def main():
 
     nodes, edges = {}, []
 
+    intake_path = ROOT / "federation" / "research-paper-source-intake.json"
+    if intake_path.exists():
+        intake = json.loads(intake_path.read_text(encoding="utf-8"))
+        add_node(nodes, "source:" + str(intake["source_id"]), "SOURCE", repository=intake.get("repository"), path="index.html", ref=intake.get("ref"))
+
     for s in sources:
         sid = "source:" + str(s["id"])
         add_node(nodes, sid, "SOURCE", repository=s.get("repository"), path=s.get("path"))
