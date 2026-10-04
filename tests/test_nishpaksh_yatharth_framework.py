@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
+"""Fail-closed checks for the Nishpaksh/Yatharth research framework."""
 import json
 from pathlib import Path
 
-claims=json.loads(Path("generated/research-paper-claims.json").read_text(encoding="utf-8"))
-html=Path("index.html").read_text(encoding="utf-8")
+spec=json.loads(Path("docs/NISHPAKSH-YATHARTH-GOVERNANCE-RESEARCH-FRAMEWORK-2026-10-04.json").read_text(encoding="utf-8"))
+matrix=json.loads(Path("docs/NISHPAKSH-COMPARATIVE-RESEARCH-MATRIX-2026-10-04.json").read_text(encoding="utf-8"))
 
-ids={c["id"] for c in claims["claims"]}
-for expected in ["SRP-C001","SRP-C002","SRP-C003","SRP-C004","SRP-C005","SRP-C006","SRP-C007","SRP-C008"]:
-    assert expected in ids
-assert 'id="nishpaksh-yatharth-framework"' in html
-assert "श्रेष्ठता Verification Gate" in html
-assert "Research Boundary" in html
-assert all(c["verification_status"] == "UNVERIFIED" for c in claims["claims"])
-print(f"Nishpaksh Yatharth framework: PASS ({len(claims['claims'])} unverified propositions)")
+assert spec["status"]=="AUTHOR_PROPOSED_FRAMEWORK"
+assert spec["verification_status"]=="UNVERIFIED"
+assert "author-reported material" in spec["author_statement_boundary"]
+assert spec["verification_gate"]["outcomes"] == ["UNVERIFIED","SUPPORTED","CONTESTED","VERIFIED"]
+assert "Author declaration" in spec["verification_gate"]["rule"]
+assert len(spec["system_layers"]) >= 4
+assert len(spec["research_questions"]) >= 4
+assert len(matrix["comparisons"]) >= 5
+assert "does not pre-assign superiority" in matrix["policy"]
+
+print(f"Nishpaksh framework: PASS ({len(spec['core_principles'])} principles, {len(matrix['comparisons'])} comparison targets)")
