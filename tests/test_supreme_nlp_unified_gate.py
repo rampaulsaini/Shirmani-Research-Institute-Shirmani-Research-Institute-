@@ -47,6 +47,46 @@ def main():
     assert restored["promotion_allowed"] is False
     assert restored["checks"]["v3_fingerprint_valid"] is True
 
+    # Verification alone is not sufficient: calibration must also be complete.
+    try:
+        def uncalibrated_verified_record(signals, task_id):
+            record = original_build(signals, task_id)
+            interpretation = record["result"]["interpretation"]
+            interpretation["verification_status"] = "VERIFIED"
+            record["provenance"]["independent_replication_verified"] = True
+            record["fingerprint"] = gate.record_fingerprint(record["result"])
+            return record
+
+        gate.build_record = uncalibrated_verified_record
+        assert gate.main() == 0
+        blocked = json.loads(gate.OUT.read_text(encoding="utf-8"))
+        assert blocked["status"] == "PASS"
+        assert blocked["promotion_allowed"] is False
+        assert blocked["checks"]["v3_verification_ready"] is False
+        assert blocked["checks"]["v3_promotion_boundary_consistent"] is True
+    finally:
+        gate.build_record = original_build
+
+    # Calibration alone is also insufficient: verification and replication are required.
+    try:
+        def calibrated_unverified_record(signals, task_id):
+            record = original_build(signals, task_id)
+            interpretation = record["result"]["interpretation"]
+            interpretation["confidence_status"] = "CALIBRATED"
+            interpretation["calibration_required"] = False
+            record["fingerprint"] = gate.record_fingerprint(record["result"])
+            return record
+
+        gate.build_record = calibrated_unverified_record
+        assert gate.main() == 0
+        blocked = json.loads(gate.OUT.read_text(encoding="utf-8"))
+        assert blocked["status"] == "PASS"
+        assert blocked["promotion_allowed"] is False
+        assert blocked["checks"]["v3_verification_ready"] is False
+        assert blocked["checks"]["v3_promotion_boundary_consistent"] is True
+    finally:
+        gate.build_record = original_build
+
     # The same gate must also support the opposite, evidence-backed state.
     # Promotion is allowed only when verification, replication and calibration
     # are all explicitly present and the record fingerprint is valid.
