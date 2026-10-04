@@ -103,5 +103,9 @@
     "independent audit where applicable",
     "human governance",
     "public evidence record"
-  ]
+  ],
+  "integrations": {
+    "yatharth_mudra_protocol": "federation/yatharth-mudra-protocol.json",
+    "issuance_boundary": "PoVC allocation is design/testnet-simulation only; no production minting authorized."
+  }
 }
