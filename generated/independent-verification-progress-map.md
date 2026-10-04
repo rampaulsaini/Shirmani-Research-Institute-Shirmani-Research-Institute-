@@ -1,38 +1,31 @@
 # ꙰ SHIRMANI Independent Verification Progress Map
 
-Generated: 2026-10-03T18:49:43.499568+00:00
+Generated: 2026-10-04
 
-## Authoritative target scale
+## Verification milestone
 
 | Measure | Current |
 |---|---:|
-| Target | **100,200 records** |
-| Queued | **100,200 (100%)** |
-| Reviewed | **0 (0%)** |
-| Independently VERIFIED | **0 (0%)** |
-| Remaining to target | **100,200 (100%)** |
+| Independent verification milestone | **50 records** |
+| Upstream aggregate queue | **100,200 records** |
+| Concrete review slots | **10 / 50 (20%)** |
+| Reviewed | **0 / 50 (0%)** |
+| Independently VERIFIED | **0 / 50 (0%)** |
+| Remaining to milestone | **50 / 50 (100%)** |
 | Promotion eligible | **0** |
 | Publication gate | **CHECK** |
 
-### Target graph
-- VERIFIED: ░░░░░░░░░░░░░░░░░░░░ 0%
+### Milestone graph
+- Concrete review slots: ████░░░░░░░░░░░░░░░░ 20%
+- Reviewed: ░░░░░░░░░░░░░░░░░░░░ 0%
+- Independently VERIFIED: ░░░░░░░░░░░░░░░░░░░░ 0%
 - Remaining: ████████████████████ 100%
 
-## Instantiated review layer
+## Scale separation
 
-The repository currently materializes a smaller set of concrete claim/review records.
-This preparation/review layer must not be presented as the full 100,200 target.
+The **100,200** figure is the upstream aggregate verification queue. It is not the independent-verification milestone denominator.
 
-| Measure | Current |
-|---|---:|
-| Concrete claim records | **10** |
-| Review slots | **10 (100% coverage)** |
-| Independently VERIFIED | **0 (0%)** |
-| Evidence-supported in historical 10-record status | **4/10 (40%)** |
-
-### Review-layer graph
-- Review-slot coverage: ████████████████████ 100%
-- Independently VERIFIED: ░░░░░░░░░░░░░░░░░░░░ 0%
+The current concrete review layer contains **10 review slots**, representing **20% of the 50-record milestone capacity**. No record is reviewed or VERIFIED yet.
 
 ## Critical distinction
 
@@ -48,4 +41,4 @@ The system may automate preparation and auditing, but it must not manufacture an
 
 ## Integrity note
 
-The 100,200-record target and the currently instantiated concrete review records are intentionally reported as separate scales. This prevents a 10/10 review-slot coverage figure from being mistaken for 100% completion of the 100,200 VERIFIED target.
+The milestone, upstream queue and concrete review layer are deliberately reported as separate measures. This prevents 100,200 upstream tasks or 10/10 local review-slot coverage from being misrepresented as independent verification.

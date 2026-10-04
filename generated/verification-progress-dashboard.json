@@ -1,21 +1,22 @@
 {
-  "generated_at": "2026-10-04T12:48:36+00:00",
-  "method": "authoritative independent-verification records; fail-closed",
-  "target": 100200,
+  "generated_at": "2026-10-04T00:00:00+05:30",
+  "method": "authoritative independent-verification records; fail-closed; Gate-50 milestone",
+  "target": 50,
+  "upstream_queue_records": 100200,
   "records": {
-    "target": 100200,
+    "target": 50,
     "prepared": 10,
     "reviewed": 0,
     "verified": 0,
-    "remaining_to_verified_target": 100200,
+    "remaining_to_verified_target": 50,
     "evidence_supported": 4,
     "source_registry_records": 10
   },
   "percent": {
-    "prepared_of_target": 0.00998,
-    "reviewed_of_target": 0,
-    "independently_verified_of_target": 0,
-    "remaining_of_target": 100
+    "prepared_of_target": 20.0,
+    "reviewed_of_target": 0.0,
+    "independently_verified_of_target": 0.0,
+    "remaining_of_target": 100.0
   },
   "automation_state": {
     "independent_verification_required": true,
@@ -23,5 +24,5 @@
     "automission_may_declare_verified": false,
     "independent_reviewer_decision_required": true
   },
-  "next_gate": "Complete independent review for prepared records; each VERIFIED promotion requires evidence, counter-evidence, reproducible test, reviewer provenance, timestamp, and audit."
+  "next_gate": "Complete independent review for the prepared records; each VERIFIED promotion requires evidence, counter-evidence, reproducible test, reviewer provenance, timestamp, and audit."
 }

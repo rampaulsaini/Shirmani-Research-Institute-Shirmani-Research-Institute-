@@ -1,34 +1,22 @@
 {
-  "generated_at": "2026-10-03T18:49:43.499568+00:00",
+  "generated_at": "2026-10-04T00:00:00+05:30",
   "scope": "independent-verification",
-  "authoritative_target": 100200,
+  "verification_milestone": 50,
+  "upstream_queue_records": 100200,
   "authoritative": {
-    "queued": 100200,
+    "concrete_review_slots": 10,
     "reviewed": 0,
     "verified": 0,
-    "remaining_to_target": 100200,
-    "queued_percent": 100.0,
-    "reviewed_percent": 0.0,
-    "verified_percent": 0.0,
-    "remaining_percent": 100.0,
+    "remaining_to_milestone": 50,
+    "concrete_review_slots_of_milestone_percent": 20.0,
+    "reviewed_of_milestone_percent": 0.0,
+    "verified_of_milestone_percent": 0.0,
+    "remaining_of_milestone_percent": 100.0,
     "promotion_eligible": 0,
     "publication_gate": "CHECK"
   },
-  "instantiated_review_layer": {
-    "claim_records": 10,
-    "review_slots": 10,
-    "verified": 0,
-    "review_slot_coverage_percent": 100.0,
-    "verified_percent_of_instantiated": 0.0,
-    "evidence_supported_records": 4,
-    "evidence_supported_percent_of_historical_queue": 40.0
-  },
-  "legacy_status_reference": {
-    "historical_queue_records": 10,
-    "historical_verified_records": 0,
-    "historical_verified_percent": 0.0
-  },
   "policy": {
+    "upstream_queue_is_not_verification_milestone": true,
     "workflow_activity_is_not_verification": true,
     "automission_may_prepare": true,
     "automission_may_declare_verified": false,
