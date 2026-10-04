@@ -1,0 +1,34 @@
+name: SHIRMANI Independent Verification Status Gate
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "generated/independent-verification-records.json"
+      - "scripts/independent_verification_gate.py"
+      - "tests/independent_verification_gate.py"
+      - ".github/workflows/independent-verification-status-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-independent-verification-status-gate
+  cancel-in-progress: true
+
+jobs:
+  verify-status-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run fail-closed verification gate
+        run: python3 scripts/independent_verification_gate.py --registry generated/independent-verification-records.json
+      - name: Run normalization regression tests
+        run: python3 tests/independent_verification_gate.py
