@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: "3.x"
       - name: Run fail-closed regression test
-        run: python3 -m pytest -q tests/test_independent_verification_gate.py
+        run: python3 tests/test_independent_verification_gate.py
       - name: Build deterministic verification status
         run: python3 factory/independent_verification_gate.py
       - name: Publish verification telemetry
