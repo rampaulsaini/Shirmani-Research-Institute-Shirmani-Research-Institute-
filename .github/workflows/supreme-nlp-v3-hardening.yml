@@ -12,6 +12,7 @@ on:
       - "tests/test_shirmani_research_paper_integration.py"
       - "automation/repository-network-registry-2026-10-01.json"
       - "generated/research-paper-claims.json"
+      - "federation/research-paper-source-intake.json"
       - "tests/test_research_paper_claim_registry.py"
       - "factory/supreme_nlp_unified_gate.py"
       - ".github/workflows/supreme-nlp-v3-hardening.yml"
@@ -45,3 +46,5 @@ jobs:
         run: python3 tests/test_shirmani_research_paper_integration.py
       - name: Run research paper claim registry regression test
         run: python3 tests/test_research_paper_claim_registry.py
+      - name: Run research paper source intake regression test
+        run: python3 tests/test_research_paper_source_intake.py
