@@ -53,6 +53,21 @@ Hosted via GitHub Pages.
 
 ---
 
+## 🌍 Primary Goal — Yatharth / Nishpaksh Understanding Research
+
+The platform's primary public research goal is now surfaced at the top-level interface: to organize the author-proposed **निष्पक्ष समझ • शमीकरण • यथार्थ सिद्धांत • उपलब्धि • यथार्थ युग** viewpoint into a traceable research program covering justice, higher education, essential living conditions, nature/earth/life protection, and integration from household → community → country → international scale.
+
+- **Research Paper repository:** https://github.com/rampaulsaini/Shirmani-Research-Paper
+- **Research Paper live site:** https://rampaulsaini.github.io/Shirmani-Research-Paper/
+- **Primary public entry:** [index.html](index.html#primary-yatharth-goal)
+- **Canonical author-source:** [research/yatharth-shirmani-author-source-2026-10-01.md](research/yatharth-shirmani-author-source-2026-10-01.md)
+- **Comparison / evidence system:** [research/yatharth-comparison-matrix-2026-09-29.md](research/yatharth-comparison-matrix-2026-09-29.md)
+
+The six public research pillars are: **(0) यथार्थ न्याय प्रणाली, (1) सर्वोत्तम उच्च शिक्षा, (2) निष्पक्ष समझ की शिक्षा, (3) रोटी-कपड़ा-मकान तथा प्रकृति/जीव/वनस्पति संरक्षण, (4) घर से वैश्विक स्तर तक एकीकृत व्यवस्था, (5) प्रत्यक्ष समक्ष research, testing and verification.** These are a research/programmatic framework, not an assertion that the proposed outcomes have already been scientifically proven.
+
+**Integrity boundary:** author statements, philosophical proposals, generated content, workflow/QC success and independent scientific evidence remain separate states. Claims such as universal superiority, complete civilizational transformation or already-proven preservation outcomes require explicit definitions, sources, reproducible tests and independent verification before they can be marked VERIFIED.
+
+
 ## Research Integrity & Public Navigation
 
 यह Research Institute तीन अलग-अलग परतों को स्पष्ट रूप से अलग रखता है: **सामग्री (content), संचालन/ऑटोमेशन (operations), और प्रमाण/सत्यापन (evidence & verification)**। किसी generated page, workflow success, QC result या archive record को अपने-आप स्वतंत्र वैज्ञानिक सत्यापन नहीं माना जाता।
