@@ -9,6 +9,7 @@ data = json.loads(p.read_text(encoding="utf-8"))
 assert data["source_repository"] == "rampaulsaini/Shirmani-Research-Paper"
 assert data["default_verification_status"] == "UNVERIFIED"
 assert data["claims"]
+assert any(c["id"] == "SRP-C006" and c["category"] == "metaphysical_philosophy" for c in data["claims"])
 
 required = {"id","title","category","claim","status","verification_status","evidence_required"}
 for claim in data["claims"]:
