@@ -30,3 +30,12 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+# Principal-goal placement regression
+index = Path("index.html").read_text(encoding="utf-8")
+assert 'id="principal-goal"' in index
+assert "सर्व भौमिक सत्य" in index
+assert "निष्पक्ष समझ" in index
+assert "शमीकरण यथार्थ सिद्धांत" in index
+assert "घर → देश → अंतर्राष्ट्रीय" in index
+assert "लेखक-प्रस्तावित दार्शनिक/अनुभवात्मक propositions" in index
