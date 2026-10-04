@@ -52,12 +52,34 @@ jobs:
           data["micro_cycles"] = int(data.get("micro_cycles", 0)) + 1
           data["last_cycle_utc"] = datetime.now(timezone.utc).isoformat()
 
+          registry_path = "generated/VERIFICATION-REGISTRY.json"
+          target_path = "config/independent-verification-target.json"
+          registry = json.loads(open(registry_path, encoding="utf-8").read()) if __import__("os").path.exists(registry_path) else {}
+          target_cfg = json.loads(open(target_path, encoding="utf-8").read()) if __import__("os").path.exists(target_path) else {}
+          target = int(target_cfg.get("verification_target", 0))
+          reviewed = int(registry.get("reviewed", 0))
+          verified = int(registry.get("verified", 0))
+          data["verification"] = {
+              "target": target,
+              "reviewed": reviewed,
+              "verified": verified,
+              "remaining": max(target - verified, 0),
+              "reviewed_percent": round(reviewed / target * 100, 4) if target else 0.0,
+              "verified_percent": round(verified / target * 100, 4) if target else 0.0,
+              "definition": "Separate verification metric. Workflow execution is never counted as VERIFIED."
+          }
+
           with open(path, "w", encoding="utf-8") as f:
               json.dump(data, f, indent=2, ensure_ascii=False)
               f.write("\n")
 
           print(f"MICRO_COUNTER={data['micro_cycles']}")
           print(f"LAST_CYCLE_UTC={data['last_cycle_utc']}")
+          print(f"WORKFLOW_MICRO_CYCLES={data['micro_cycles']}")
+          print(f"VERIFICATION_TARGET={target}")
+          print(f"VERIFICATION_REVIEWED={reviewed}")
+          print(f"VERIFICATION_VERIFIED={verified}")
+          print(f"VERIFICATION_REMAINING={max(target - verified, 0)}")
           PY
 
       - name: Write cycle receipt
@@ -71,9 +93,15 @@ jobs:
           d=json.loads(Path("automation/micro-progress-counter.json").read_text())
           Path("automation/MICRO-COUNTER.md").write_text(
               "# SHIRMANI Micro Progress Counter\n\n"
-              f"- Micro cycle: {d['micro_cycles']}\n"
+              f"- Workflow micro cycles: {d['micro_cycles']}\n"
               f"- Last cycle (UTC): {d['last_cycle_utc']}\n"
-              "- Purpose: visible proof that this dedicated counter workflow executed.\n"
+              f"- Verification target: {d.get('verification', {}).get('target', 0):,}\n"
+              f"- Independently reviewed: {d.get('verification', {}).get('reviewed', 0):,}\n"
+              f"- Independently VERIFIED: {d.get('verification', {}).get('verified', 0):,}\n"
+              f"- Verification remaining: {d.get('verification', {}).get('remaining', 0):,}\n"
+              f"- Reviewed % of target: {d.get('verification', {}).get('reviewed_percent', 0)}%\n"
+              f"- VERIFIED % of target: {d.get('verification', {}).get('verified_percent', 0)}%\n"
+              "- Separation rule: workflow execution count and independent verification count are measured separately.\n"
               "- Important: execution count is not the same as independent VERIFIED research records.\n",
               encoding="utf-8"
           )
