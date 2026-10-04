@@ -8,6 +8,7 @@ data = json.loads(p.read_text(encoding="utf-8"))
 
 assert data["source_repository"] == "rampaulsaini/Shirmani-Research-Paper"
 assert data["default_verification_status"] == "UNVERIFIED"
+assert len(data["claims"]) >= 10
 assert data["claims"]
 assert any(c["id"] == "SRP-C006" and c["category"] == "metaphysical_philosophy" for c in data["claims"])
 
@@ -17,5 +18,7 @@ for claim in data["claims"]:
     assert claim["status"] == "AUTHOR_PROPOSITION"
     assert claim["verification_status"] == "UNVERIFIED"
     assert claim["evidence_required"]
+    assert claim["status"] != "VERIFIED"
+    assert claim["verification_status"] != "VERIFIED"
 
 print(f"Research Paper claims: PASS ({len(data['claims'])} fail-closed propositions)")
