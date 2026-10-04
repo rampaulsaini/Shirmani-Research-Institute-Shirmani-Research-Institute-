@@ -1,0 +1,87 @@
+{
+  "schema_version": "2.0.0",
+  "protocol_name": "Yatharth Mudra — Verified Contribution Protocol",
+  "symbol": "YTH",
+  "status": "DESIGN_TESTNET_SIMULATION_READY_NOT_DEPLOYED",
+  "purpose": "A contribution-, evidence-, verification- and utility-linked issuance architecture. It is not a live monetary system and does not authorize mainnet minting.",
+  "supply": {
+    "max": 1000000000,
+    "decimals": 8,
+    "initial_supply": 0,
+    "production_minting_enabled": false
+  },
+  "issuance_model": {
+    "name": "Proof of Verified Contribution (PoVC)",
+    "mining_model": "No proof-of-work mining. New issuance, if ever authorized, is an allocation event backed by independently reviewable contribution evidence.",
+    "required_sequence": [
+      "CONTRIBUTION_REGISTERED",
+      "EVIDENCE_REVIEWED",
+      "CONTRIBUTION_VERIFIED",
+      "ALLOCATION_RULE_MATCHED",
+      "HUMAN_APPROVAL",
+      "ISSUANCE_AUTHORIZED",
+      "AUDIT_RECORDED"
+    ],
+    "prohibited_shortcuts": [
+      "unverified_claim",
+      "workflow_success",
+      "QC_pass",
+      "AI_score_only",
+      "self_approval",
+      "duplicate_contribution",
+      "reused_evidence"
+    ]
+  },
+  "anti_abuse": {
+    "idempotency_key_required": true,
+    "unique_contribution_id_required": true,
+    "evidence_fingerprint_required": true,
+    "duplicate_evidence_rejected": true,
+    "double_issuance_rejected": true,
+    "immutable_event_chain_required": true,
+    "dispute_freeze_supported": true,
+    "revocation_or_correction_requires_governance": true
+  },
+  "allocation": {
+    "source_layers": [
+      "verified_work",
+      "verified_skill",
+      "verified_knowledge",
+      "verified_service",
+      "verified_creative_work",
+      "verified_product",
+      "verified_social_utility"
+    ],
+    "monetary_value_not_implied": true,
+    "deterministic_rule_version_required": true,
+    "human_governance_required": true
+  },
+  "testnet": {
+    "enabled_as_simulation_only": true,
+    "real_money": false,
+    "real_token_transfer": false,
+    "real_wallet_deployment": false,
+    "simulated_issuance_must_be_marked": true,
+    "resettable_ledger": true
+  },
+  "production_gates": [
+    "legal_and_regulatory_review",
+    "accounting_and_tax_model",
+    "independent_smart_contract_security_audit",
+    "cryptographic_key_management",
+    "wallet_and_access_recovery",
+    "anti_sybil_and_anti_collusion_controls",
+    "independent_verification",
+    "human_governance",
+    "public_supply_and_issuance_ledger",
+    "incident_response_and_rollback_policy"
+  ],
+  "integrations": {
+    "shirmani_value_exchange": "DESIGN_CONNECTED",
+    "contribution_ledger": "DESIGN_CONNECTED",
+    "evidence_graph": "DESIGN_INPUT",
+    "independent_verification_queue": "REQUIRED_BEFORE_PRODUCTION",
+    "yatharth_mudra_public_status": "SOURCE_OF_TRUTH_FOR_PUBLIC_NON_DEPLOYMENT_STATUS"
+  },
+  "boundary": "This protocol specification does not constitute deployment, financial issuance, investment offering, legal tender, guaranteed value, or independent scientific verification."
+}
