@@ -3,10 +3,12 @@ name: SHIRMANI Independent Verification Canonical Gate
 on:
   push:
     paths:
+      - "generated/independent-verification-queue.jsonl"
+      - "generated/independent-verification-registry.jsonl"
+      - "factory/verification_promotion_gate.py"
+      - "factory/bootstrap_independent_verification_queue.py"
+      - "factory/bootstrap_verification_review_registry.py"
       - "research/independent-verification-protocol-2026-09-29.md"
-      - "research/independent-verification-system-v2.md"
-      - "scripts/independent_verification_gate.py"
-      - "generated/independent-verification-status-2026-09-29.json"
       - ".github/workflows/independent-verification-gate.yml"
   workflow_dispatch:
   schedule:
@@ -26,29 +28,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run canonical fail-closed verification validator
+      - name: Rebuild deterministic review queue and pending registry
         run: |
           set -euo pipefail
-          python3 scripts/independent_verification_gate.py \
-            --registry generated/independent-verification-status-2026-09-29.json
+          python3 factory/bootstrap_independent_verification_queue.py
+          python3 factory/bootstrap_verification_review_registry.py
 
-      - name: Validate fail-closed registry
+      - name: Run canonical fail-closed promotion gate
+        run: |
+          set -euo pipefail
+          python3 factory/verification_promotion_gate.py
+
+      - name: Validate canonical promotion telemetry
         run: |
           set -euo pipefail
           python3 - <<'PY'
           import json
           from pathlib import Path
-          d=json.loads(Path("generated/independent-verification-status-2026-09-29.json").read_text(encoding="utf-8"))
-          s=d["verification_summary"]
-          records=d["records"]
-          assert s["queue_records"] == len(records)
-          verified=sum(1 for x in records if x.get("status")=="VERIFIED")
-          evidence=sum(1 for x in records if x.get("status")=="EVIDENCE-SUPPORTED")
-          assert s["independently_verified_records"] == verified
-          expected_pct=round((verified/len(records))*100, 6) if records else 0
-          assert s["independent_verified_percent"] == expected_pct
-          assert s["evidence_supported_records"] == evidence
-          print(f"Independent verification gate: FAIL-CLOSED; verified={verified}/{len(records)} ({expected_pct}%)")
+          d=json.loads(Path("generated/VERIFICATION-PROMOTION-QC.json").read_text(encoding="utf-8"))
+          assert d["records"] == d["queue_records"]
+          assert d["orphan_queue_tasks"] == 0
+          assert d["error_count"] == 0
+          assert d["verified_records"] >= 0
+          assert d["promotion_eligible"] >= d["verified_records"]
+          assert d["publication_gate"] in {"CHECK", "PASS"}
+          print(
+              "Canonical gate: PASS "
+              f"queue={d['queue_records']} verified={d['verified_records']} "
+              f"eligible={d['promotion_eligible']} publication_gate={d['publication_gate']}"
+          )
           PY
 
       - name: Publish verification telemetry
@@ -56,16 +64,14 @@ jobs:
           python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
           from pathlib import Path
-          d=json.loads(Path("generated/independent-verification-status-2026-09-29.json").read_text(encoding="utf-8"))
-          s=d["verification_summary"]
+          d=json.loads(Path("generated/VERIFICATION-PROMOTION-QC.json").read_text(encoding="utf-8"))
           print("## SHIRMANI Independent Verification")
-          print(f"- Queue: {s['queue_records']}")
-          print(f"- Evidence-supported: {s['evidence_supported_records']}")
-          print(f"- Independently VERIFIED: {s['independently_verified_records']}")
-          print(f"- Independent verification: **{s['independent_verified_percent']}%**")
-          print(f"- Verification readiness: **{s['verification_readiness_percent']}%**")
+          print(f"- Canonical queue: {d['queue_records']}")
+          print(f"- Independently VERIFIED: {d['verified_records']}")
+          print(f"- Promotion eligible: {d['promotion_eligible']}")
+          print(f"- Publication gate: **{d['publication_gate']}**")
           print("")
-          print("**Integrity rule:** workflow success is not independent verification.")
+          print("**Integrity rule:** workflow success, queue generation and evidence support are not independent verification.")
           PY
 
       - name: Validate integrity boundary
@@ -74,16 +80,16 @@ jobs:
           grep -q "workflow succeeding is not independent verification" research/independent-verification-protocol-2026-09-29.md
           grep -q "counter-evidence" research/independent-verification-protocol-2026-09-29.md
           grep -q "reviewer identity/role" research/independent-verification-protocol-2026-09-29.md
-          test -s scripts/independent_verification_gate.py
+          test -s factory/verification_promotion_gate.py
 
-      - name: Upload verification registry
+      - name: Upload canonical verification telemetry
         uses: actions/upload-artifact@v4
         with:
-          name: independent-verification-registry-${{ github.run_id }}
+          name: independent-verification-canonical-gate-${{ github.run_id }}
           path: |
-            generated/independent-verification-status-2026-09-29.json
-            research/independent-verification-protocol-2026-09-29.md
-            research/independent-verification-system-v2.md
-            scripts/independent_verification_gate.py
+            generated/independent-verification-queue.jsonl
+            generated/independent-verification-registry.jsonl
+            generated/VERIFICATION-QUEUE-QC.json
+            generated/VERIFICATION-PROMOTION-QC.json
           if-no-files-found: error
           retention-days: 14
