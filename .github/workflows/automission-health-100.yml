@@ -66,6 +66,13 @@ jobs:
               fi
             elif [[ "$status" == "in_progress" || "$status" == "queued" || "$status" == "waiting" ]]; then
               action="RUNNING"
+            elif [[ -z "$run_id" ]]; then
+              # Bootstrap critical workflows that have never produced a run.
+              if gh workflow run "$workflow" --ref main >/dev/null 2>&1; then
+                recovery=$((recovery+1)); action="BOOTSTRAP_DISPATCHED"
+              else
+                blocked=$((blocked+1)); action="BOOTSTRAP_BLOCKED"
+              fi
             else
               blocked=$((blocked+1)); action="NO_HEALTHY_RUN"
             fi
