@@ -13,6 +13,7 @@ on:
       - "automation/repository-network-registry-2026-10-01.json"
       - "generated/research-paper-claims.json"
       - "federation/research-paper-source-intake.json"
+      - "factory/research_paper_intake.py"
       - "federation/research-paper-evidence-intake-spec.json"
       - "tests/test_research_paper_evidence_intake_spec.py"
       - "tests/test_research_paper_claim_registry.py"
@@ -50,6 +51,8 @@ jobs:
         run: python3 tests/test_research_paper_claim_registry.py
       - name: Run research paper source intake regression test
         run: python3 tests/test_research_paper_source_intake.py
+      - name: Build Research Paper verification intake queue
+        run: python3 factory/research_paper_intake.py
       - name: Run research paper claim/evidence pipeline regression test
         run: python3 tests/test_research_paper_claim_evidence_pipeline.py
       - name: Run research paper evidence intake contract test
