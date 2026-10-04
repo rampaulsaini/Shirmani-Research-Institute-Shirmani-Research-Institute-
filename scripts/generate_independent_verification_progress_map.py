@@ -18,6 +18,7 @@ AUTHORITATIVE_QUEUE = ROOT / "generated/VERIFICATION-QUEUE.json"
 AUTHORITATIVE_REGISTRY = ROOT / "generated/VERIFICATION-REGISTRY.json"
 PROMOTION_QC = ROOT / "generated/VERIFICATION-PROMOTION-QC.json"
 STATUS = ROOT / "generated/independent-verification-status-2026-09-29.json"
+TARGET_CONFIG = ROOT / "config/independent-verification-target.json"
 QUEUE = ROOT / "generated/independent-verification-queue.jsonl"
 REGISTRY = ROOT / "generated/independent-verification-registry.jsonl"
 OUT_JSON = ROOT / "generated/independent-verification-progress.json"
@@ -52,11 +53,14 @@ def bar(value: float, width: int = 20) -> str:
 def main() -> None:
     status = json.loads(STATUS.read_text(encoding="utf-8"))
     summary = status["verification_summary"]
+    target = int(json.loads(TARGET_CONFIG.read_text(encoding="utf-8"))["verification_target"])
+    if target <= 0:
+        raise SystemExit("verification_target must be positive")
     aq = json.loads(AUTHORITATIVE_QUEUE.read_text(encoding="utf-8"))
     ar = json.loads(AUTHORITATIVE_REGISTRY.read_text(encoding="utf-8"))
     promotion = json.loads(PROMOTION_QC.read_text(encoding="utf-8"))
 
-    target = int(aq["records"])
+    # Target is an explicit milestone, not the size of the concrete queue.
     queued = int(ar["queued"])
     reviewed = int(ar["reviewed"])
     verified = int(ar["verified"])
