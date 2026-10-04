@@ -32,6 +32,22 @@ def main():
 
     nodes, edges = {}, []
 
+    # Research Paper is an external/public source intake record. Register it
+    # explicitly so its claim nodes have a real SOURCE anchor even when the
+    # generated source inventory does not contain the external repository.
+    intake_path = ROOT / "federation" / "research-paper-source-intake.json"
+    if intake_path.exists():
+        intake = json.loads(intake_path.read_text(encoding="utf-8"))
+        source_id = str(intake["source_id"])
+        add_node(nodes, "source:" + source_id, "SOURCE",
+                 repository=intake.get("repository"),
+                 ref=intake.get("ref"),
+                 entrypoint=intake.get("public_entrypoint"),
+                 intake_status=intake.get("intake_status"),
+                 verification_status=intake.get("verification_status"),
+                 independent_verification_required=intake.get("independent_verification_required"))
+
+
     intake_path = ROOT / "federation" / "research-paper-source-intake.json"
     if intake_path.exists():
         intake = json.loads(intake_path.read_text(encoding="utf-8"))
