@@ -21,7 +21,7 @@ for c in registry["claims"]:
           "artifact_type":"RESEARCH_PAPER","artifact_id":c["id"],
           "source_traceability":{"source_ids":[intake["source_id"]],"repository":intake["repository"],
           "ref":intake["ref"],"entrypoint":intake["public_entrypoint"]},
-          "evidence":[],"verification":{"status":"NOT_VERIFIED","independent":False,
+          "evidence":[{"kind":"AUTHOR_DECLARATION","status":"SOURCE_TRACE","detail":"Author-declared proposition; traceability metadata only."}],"verification":{"status":"NOT_VERIFIED","independent":False,
           "independent_verification_required":True,"independent_replication":False},
           "verification_questions":c["evidence_required"],
           "provenance":"AUTHOR_DECLARED_RESEARCH_PAPER"}
