@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "record_type": "research_claim_registry",
+  "source_repository": "rampaulsaini/Shirmani-Research-Paper",
+  "source_entrypoint": "https://rampaulsaini.github.io/Shirmani-Research-Paper/",
+  "policy": "Author propositions are preserved as research claims. Presence in this registry does not establish historical, scientific, universal, or independent verification.",
+  "default_verification_status": "UNVERIFIED",
+  "claims": [
+    {
+      "id": "SRP-C001",
+      "title": "यथार्थ न्याय प्रणाली",
+      "category": "governance",
+      "claim": "एक ऐसी न्याय व्यवस्था की परिकल्पना जिसमें निष्पक्ष समझ को आधार बनाया जाए।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "primary historical/source records",
+        "operational specification",
+        "independent comparative evaluation"
+      ]
+    },
+    {
+      "id": "SRP-C002",
+      "title": "सर्वोत्तम उच्च शिक्षा",
+      "category": "education",
+      "claim": "एक उच्च-स्तरीय शिक्षा व्यवस्था की परिकल्पना जो निष्पक्ष समझ और यथार्थ सिद्धांत पर आधारित हो।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "curriculum specification",
+        "learning outcomes",
+        "independent educational evaluation"
+      ]
+    },
+    {
+      "id": "SRP-C003",
+      "title": "निष्पक्ष समझ आधारित सार्वभौमिक शिक्षा",
+      "category": "philosophy",
+      "claim": "निष्पक्ष समझ, शमीकरण और यथार्थ सिद्धांत को सार्वभौमिक सत्य/प्रत्यक्ष शिक्षा के रूप में प्रस्तुत करने का प्रस्ताव।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "precise definitions",
+        "testable propositions",
+        "independent philosophical/scientific review"
+      ]
+    },
+    {
+      "id": "SRP-C004",
+      "title": "मूल जीवन-सुविधा और संरक्षण",
+      "category": "human_welfare",
+      "claim": "हर व्यक्ति के लिए रोटी, कपड़ा और मकान तथा मानव, प्रकृति, जीव और वनस्पति के संरक्षण हेतु व्यवस्था की परिकल्पना।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "policy specification",
+        "resource model",
+        "measurable outcomes",
+        "independent impact evaluation"
+      ]
+    },
+    {
+      "id": "SRP-C005",
+      "title": "घर से अंतर्राष्ट्रीय स्तर तक एकीकृत तंत्र",
+      "category": "systems",
+      "claim": "घर से देश और अंतर्राष्ट्रीय स्तर तक निष्पक्ष समझ आधारित एकीकृत व्यवस्था की परिकल्पना।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "system architecture",
+        "governance model",
+        "interoperability specification",
+        "independent validation"
+      ]
+    }
+  ]
+}
