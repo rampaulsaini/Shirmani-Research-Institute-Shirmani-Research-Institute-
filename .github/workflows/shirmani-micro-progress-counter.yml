@@ -1,0 +1,94 @@
+name: SHIRMANI Micro Progress Counter
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-micro-progress-counter
+  cancel-in-progress: false
+
+jobs:
+  micro-counter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Increment micro counter
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p automation
+          state="automation/micro-progress-counter.json"
+
+          if [ ! -f "$state" ]; then
+            cat > "$state" <<'EOF'
+          {
+            "counter_name": "SHIRMANI Micro Progress Counter",
+            "version": 1,
+            "micro_cycles": 0,
+            "last_cycle_utc": null,
+            "purpose": "Independent micro-level activity counter for measurable Automission progress.",
+            "verification_note": "A cycle count is activity evidence, not independent research verification."
+          }
+          EOF
+          fi
+
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+
+          path = "automation/micro-progress-counter.json"
+          with open(path, "r", encoding="utf-8") as f:
+              data = json.load(f)
+
+          data["micro_cycles"] = int(data.get("micro_cycles", 0)) + 1
+          data["last_cycle_utc"] = datetime.now(timezone.utc).isoformat()
+
+          with open(path, "w", encoding="utf-8") as f:
+              json.dump(data, f, indent=2, ensure_ascii=False)
+              f.write("\n")
+
+          print(f"MICRO_COUNTER={data['micro_cycles']}")
+          print(f"LAST_CYCLE_UTC={data['last_cycle_utc']}")
+          PY
+
+      - name: Write cycle receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p automation
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("automation/micro-progress-counter.json").read_text())
+          Path("automation/MICRO-COUNTER.md").write_text(
+              "# SHIRMANI Micro Progress Counter\n\n"
+              f"- Micro cycle: {d['micro_cycles']}\n"
+              f"- Last cycle (UTC): {d['last_cycle_utc']}\n"
+              "- Purpose: visible proof that this dedicated counter workflow executed.\n"
+              "- Important: execution count is not the same as independent VERIFIED research records.\n",
+              encoding="utf-8"
+          )
+          PY
+
+      - name: Commit counter receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Micro Counter"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/micro-progress-counter.json automation/MICRO-COUNTER.md
+          if git diff --cached --quiet; then
+            echo "No counter change detected."
+            exit 0
+          fi
+          git commit -m "chore: advance SHIRMANI micro progress counter"
+          git push
