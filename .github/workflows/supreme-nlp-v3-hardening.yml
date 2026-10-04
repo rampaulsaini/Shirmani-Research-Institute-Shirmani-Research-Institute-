@@ -11,6 +11,8 @@ on:
       - "tests/test_supreme_nlp_unified_gate.py"
       - "tests/test_shirmani_research_paper_integration.py"
       - "automation/repository-network-registry-2026-10-01.json"
+      - "generated/research-paper-claims.json"
+      - "tests/test_research_paper_claim_registry.py"
       - "factory/supreme_nlp_unified_gate.py"
       - ".github/workflows/supreme-nlp-v3-hardening.yml"
   workflow_dispatch:
@@ -41,3 +43,5 @@ jobs:
         run: python3 tests/test_supreme_nlp_unified_gate.py
       - name: Run Shirmani Research Paper integration regression test
         run: python3 tests/test_shirmani_research_paper_integration.py
+      - name: Run research paper claim registry regression test
+        run: python3 tests/test_research_paper_claim_registry.py
