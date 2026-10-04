@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
   workflow_run:
     workflows:
+      - "SHIRMANI Supreme Total AI-ML-NLP Automission"
       - "SHIRMANI Supreme Evidence Automission"
       - "SHIRMANI Supreme Evidence Convergence"
-      - "SHIRMANI Supreme NLP Evaluation Gate"
     types: [completed]
 
 permissions:
