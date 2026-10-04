@@ -181,7 +181,7 @@ The system may automate preparation and auditing, but it must not manufacture an
 
 ## Integrity note
 
-The 50-record verification milestone and the currently instantiated concrete review records are intentionally reported as separate measures. This prevents a 10/10 review-slot coverage figure from being mistaken for 100% completion of the 100,200 VERIFIED target.
+The 50-record verification milestone and the currently instantiated concrete review records are intentionally reported as separate measures. This prevents a 10/10 review-slot coverage figure from being mistaken for 100% completion of the 50-record VERIFIED milestone.
 """
     OUT_MD.write_text(md,encoding="utf-8")
     print(json.dumps(report,ensure_ascii=False,indent=2))
