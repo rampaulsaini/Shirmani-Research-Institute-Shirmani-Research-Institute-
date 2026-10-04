@@ -4,6 +4,16 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+  pull_request:
+    paths:
+      - "generated/**"
+      - "evidence/**"
+      - "verification/**"
+      - "research/**"
+      - "docs/**"
+      - "source/**"
+      - "schemas/**"
+      - ".github/workflows/shirmani-independent-verification-100-automission.yml"
 
 permissions:
   contents: read
@@ -27,7 +37,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 <<'PY'
-          import hashlib, json, os, pathlib, re, datetime
+          import hashlib, json, pathlib, re, datetime
 
           root = pathlib.Path(".")
           scan_roots = [
@@ -60,7 +70,7 @@ jobs:
               except Exception:
                   return ""
 
-          def checks(path, text):
+          def checks(text):
               return {
                   "non_empty": bool(text.strip()),
                   "has_provenance": bool(re.search(r"(?i)(provenance|source_id|source|citation|reference|evidence)", text)),
@@ -72,7 +82,7 @@ jobs:
 
           for path in sorted(files):
               text = read_text(path)
-              c = checks(path, text)
+              c = checks(text)
               if not any(c.values()):
                   continue
               candidates += 1
