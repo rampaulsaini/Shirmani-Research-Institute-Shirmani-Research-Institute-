@@ -1,0 +1,20 @@
+{
+  "state": "IMPROVEMENT_REQUIRED",
+  "actions": [
+    "collect higher-quality signals before interpretation",
+    "add an independent modality where scientifically appropriate",
+    "obtain an independent source or replication",
+    "increase sample count before making a stronger claim",
+    "attach explicit limitations and provenance"
+  ],
+  "source_fingerprint": "ace45c1aed497b6d6a75fef60ca8ad2aed4ce7f4ab919bcca9532643533d3dd1",
+  "evidence_grade": null,
+  "confidence": null,
+  "governance": {
+    "fail_closed": true,
+    "subjective_experience_claim_allowed": false,
+    "scheduled_code_mutation_allowed": false,
+    "independent_verification_required": true
+  },
+  "generated_at": "2026-10-04T17:06:49.800990+00:00"
+}

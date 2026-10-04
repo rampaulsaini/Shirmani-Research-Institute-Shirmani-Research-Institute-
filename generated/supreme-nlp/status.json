@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "status": "insufficient_data",
+  "features": {
+    "modalities": 0,
+    "independent_sources": 0,
+    "sample_count": 0,
+    "agreement": 0.0,
+    "evidence_grade": "D",
+    "drift_score": 0.0
+  },
+  "interpretation": {
+    "text": "No valid multimodal observations were supplied.",
+    "confidence": 0.0,
+    "limitations": [
+      "Measured signal patterns are observations, not direct proof of subjective experience.",
+      "Interpretation depends on calibration, sampling quality, model validity and context.",
+      "Independent replication is required before VERIFIED status."
+    ]
+  },
+  "governance": {
+    "fail_closed": true,
+    "independent_verification_required": true,
+    "subjective_experience_claim_allowed": false
+  },
+  "fingerprint": "ace45c1aed497b6d6a75fef60ca8ad2aed4ce7f4ab919bcca9532643533d3dd1",
+  "generated_at": "2026-10-04T17:06:49.720822+00:00"
+}
