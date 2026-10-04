@@ -86,6 +86,71 @@
         "distinction between metaphysical interpretation and empirical claim",
         "independent experimental or theoretical evaluation"
       ]
+    },
+    {
+      "id": "SRP-C006",
+      "title": "सजीव-निर्जीव ऊर्जा का एकीकरण",
+      "category": "metaphysics_and_energy",
+      "claim": "सजीव और निर्जीव में बिखरी ऊर्जा के एकीकरण से महा-ऊर्जा भंडार बनने की दार्शनिक परिकल्पना।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "operational definition of energy and integration",
+        "measurable conservation/accounting model",
+        "independent physical evaluation"
+      ]
+    },
+    {
+      "id": "SRP-C007",
+      "title": "अनंत सूक्ष्म अक्ष और स्थायी ठहराव",
+      "category": "metaphysics",
+      "claim": "अपनी ऊर्जा से अनंत सृष्टियों और अनंत सूक्ष्म अक्ष की असीम गहराई में स्थायी ठहराव के समाहित होने की दार्शनिक परिकल्पना।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "formal definitions",
+        "mathematical model if applicable",
+        "independent theoretical analysis"
+      ]
+    },
+    {
+      "id": "SRP-C008",
+      "title": "मन-मस्तक-बुद्धि का भ्रम मॉडल",
+      "category": "consciousness",
+      "claim": "स्वयं के अतिरिक्त सब कुछ देखने-मेहसूस करने का अनुभव मन, मस्तक और बुद्धि की अस्थायी प्रकृति से उत्पन्न भ्रम के रूप में व्याख्यायित किया गया है।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "precise phenomenological definition",
+        "alternative hypotheses",
+        "independent cognitive/neuroscientific evaluation"
+      ]
+    },
+    {
+      "id": "SRP-C009",
+      "title": "अस्तित्व और होने का एहसास",
+      "category": "ontology",
+      "claim": "हर सजीव और निर्जीव में 'होने का एहसास' को अस्तित्व की शर्त के रूप में प्रस्तुत करने की दार्शनिक परिकल्पना।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "definition of experience/sentience",
+        "criteria distinguishing living/nonliving systems",
+        "independent philosophical and empirical assessment"
+      ]
+    },
+    {
+      "id": "SRP-C010",
+      "title": "सर्व भौमिक सत्य — प्रत्यक्ष समक्ष",
+      "category": "foundational_philosophy",
+      "claim": "उपरोक्त propositions को 'सर्व भौमिक सत्य' और 'प्रत्यक्ष समक्ष' के व्यापक दार्शनिक निष्कर्ष के रूप में प्रस्तुत किया गया है।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "formal proposition set",
+        "publicly inspectable evidence",
+        "independent replication or critical review"
+      ]
     }
   ],
   "intake_record": "federation/research-paper-source-intake.json",
