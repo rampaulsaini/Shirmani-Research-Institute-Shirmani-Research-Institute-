@@ -90,7 +90,7 @@ def main():
             interpretation = record["result"]["interpretation"]
             interpretation["confidence_status"] = "CALIBRATED"
             interpretation["calibration_required"] = False
-            record["fingerprint"] = gate.record_fingerprint(record["result"])
+            record["fingerprint"] = gate.record_fingerprint(record)
             return record
 
         gate.build_record = calibrated_unverified_record
@@ -114,7 +114,7 @@ def main():
             interpretation["confidence_status"] = "CALIBRATED"
             interpretation["calibration_required"] = False
             record["provenance"]["independent_replication_verified"] = True
-            record["fingerprint"] = gate.record_fingerprint(record["result"])
+            record["fingerprint"] = gate.record_fingerprint(record)
             return record
 
         gate.build_record = verified_record
