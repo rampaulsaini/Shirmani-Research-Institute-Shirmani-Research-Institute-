@@ -7,9 +7,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RECORDS = ROOT / "generated/independent-verification-records.json"
+TARGET_CONFIG = ROOT / "config/independent-verification-target.json"
 OUT = ROOT / "generated/verification-progress-dashboard.json"
 OUT_MD = ROOT / "generated/verification-progress-dashboard.md"
-TARGET = 100200
+
+def target_value() -> int:
+    data = read_json(TARGET_CONFIG)
+    target = int(data["verification_target"])
+    if target <= 0:
+        raise SystemExit("verification_target must be positive")
+    return target
 
 def read_json(path: Path) -> dict:
     if not path.exists():
@@ -22,6 +29,7 @@ def bar(percent: float, width: int = 30) -> str:
 
 def main() -> int:
     data = read_json(RECORDS)
+    TARGET = target_value()
     records = data.get("records", [])
     if not isinstance(records, list):
         raise SystemExit("records must be a list")

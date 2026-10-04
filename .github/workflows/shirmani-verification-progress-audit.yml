@@ -36,7 +36,8 @@ jobs:
           promotion_path = Path("generated/VERIFICATION-PROMOTION-QC.json")
           publication_path = Path("generated/PUBLICATION-GATE.json")
 
-          for p in (queue_path, registry_path, promotion_path, publication_path):
+          target_config_path = Path("config/independent-verification-target.json")
+          for p in (queue_path, registry_path, promotion_path, publication_path, target_config_path):
               if not p.exists():
                   raise SystemExit(f"Missing required status file: {p}")
 
@@ -45,7 +46,8 @@ jobs:
           promotion = json.loads(promotion_path.read_text(encoding="utf-8"))
           publication = json.loads(publication_path.read_text(encoding="utf-8"))
 
-          target = int(queue.get("records", 0))
+          target_cfg = json.loads(target_config_path.read_text(encoding="utf-8"))
+          target = int(target_cfg["verification_target"])
           queued = int(queue.get("queued", 0))
           reviewed = int(registry.get("reviewed", 0))
           verified = int(registry.get("verified", 0))

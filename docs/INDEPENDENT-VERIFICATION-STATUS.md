@@ -6,19 +6,19 @@ Generated from the repository's authoritative verification artifacts on 2026-10-
 
 | Measure | Current | Target |
 |---|---:|---:|
-| Verification queue | 100,200 | 100,200 |
-| Review slots | 100,200 | 100,200 |
-| Reviewed | 0 | 100,200 |
-| Independently VERIFIED | 0 | 100,200 |
-| Promotion eligible | 0 | 100,200 |
+| Verification milestone | 50 | 50 |
+| Concrete review slots | 10 | 50 |
+| Reviewed | 0 | 50 |
+| Independently VERIFIED | 0 | 50 |
+| Promotion eligible | 0 | 50 |
 
 ### Progress
 
-- Queue preparation: **100%**
-- Review-slot preparation: **100%**
+- Concrete queue preparation: **10/10 (100%)**
+- Concrete review-slot preparation: **10/10 (100%)**
 - Reviewed: **0%**
 - Independently VERIFIED: **0%**
-- Remaining to VERIFIED target: **100,200 / 100,200 (100%)**
+- Remaining to VERIFIED milestone: **50 / 50 (100%)**
 
 ```text
 QUEUE / REVIEW PREPARATION  ████████████████████ 100%
@@ -28,14 +28,14 @@ INDEPENDENTLY VERIFIED      ░░░░░░░░░░░░░░░░░�
 
 ## Existing concrete review layer
 
-The repository also contains a deliberately smaller 10-record claim/review layer:
+The repository currently contains a concrete 10-record claim/review layer against the Gate-50 milestone:
 
 - Queue records: **10/10**
 - Evidence-supported: **4/10 (40%)**
 - Review registry coverage: **10/10 (100%)**
 - Independently VERIFIED: **0/10 (0%)**
 
-This 10-record layer must **not** be conflated with the authoritative 100,200-record target.
+This 10-record layer must **not** be conflated with the 50-record verification milestone.
 
 ## Fail-closed rule
 
