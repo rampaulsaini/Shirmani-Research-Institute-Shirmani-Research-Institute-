@@ -72,6 +72,20 @@
         "interoperability specification",
         "independent validation"
       ]
+    },
+    {
+      "id": "SRP-C006",
+      "title": "एकीकृत ऊर्जा और सूक्ष्म-अक्ष प्रस्ताव",
+      "category": "metaphysical_philosophy",
+      "claim": "प्रस्तावित दृष्टिकोण के अनुसार संजीव और निर्जीव में बिखरी ऊर्जा के एकीकरण से 'महा ऊर्जा' का भंडार और अपनी ऊर्जा से अनंत सृष्टियों की व्याख्या की जाती है; आगे यह प्रतिपादित किया जाता है कि अनुभवित बाह्य जगत मन, मस्तक और बुद्धि की अस्थायी प्रकृति से उत्पन्न भ्रम हो सकता है।",
+      "status": "AUTHOR_PROPOSITION",
+      "verification_status": "UNVERIFIED",
+      "evidence_required": [
+        "precise operational definition of energy and integration",
+        "testable physical predictions with units and boundary conditions",
+        "distinction between metaphysical interpretation and empirical claim",
+        "independent experimental or theoretical evaluation"
+      ]
     }
   ],
   "intake_record": "federation/research-paper-source-intake.json",
