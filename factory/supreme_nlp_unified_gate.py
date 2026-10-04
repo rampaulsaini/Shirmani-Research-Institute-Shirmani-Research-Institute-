@@ -38,6 +38,14 @@ def main() -> int:
     interpretation = v3.get("interpretation") or {}
 
     pg = practitioner["governance"]
+    # Promotion must be derived from the record itself, never hard-coded.
+    verification_status = interpretation.get("verification_status")
+    independent_replication_verified = v3_record["provenance"].get("independent_replication_verified")
+    promotion_blocked = not (
+        verification_status == "VERIFIED"
+        and independent_replication_verified is True
+    )
+
     checks = {
         "practitioner_fail_closed": pg["fail_closed"] is True,
         "practitioner_no_subjective_claim": pg["subjective_experience_claim_allowed"] is False,
@@ -49,7 +57,7 @@ def main() -> int:
         "v3_calibration_required": interpretation["calibration_required"] is True,
         "v3_experiment_provenance_declared": v3["features"].get("experiment_provenance_status") in {"DECLARED_IDENTIFIERS_ONLY", "MISSING_EXPERIMENT_IDENTIFIERS"},
         "v3_independent_replication_unverified": v3_record["provenance"].get("independent_replication_verified") is False,
-        "v3_promotion_blocked": True,
+        "v3_promotion_blocked": promotion_blocked,
         "simple_language_present": bool(v3_record["simple_language"].strip()),
         "fingerprint_present": bool(v3_record["fingerprint"].strip()),
     }
