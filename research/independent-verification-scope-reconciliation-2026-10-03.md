@@ -4,18 +4,18 @@ Generated as an explicit scope boundary for the independent-verification system.
 
 ## Current authoritative state
 
-- Aggregate verification target: **100,200**
+- Verification milestone target: **50**
 - Concrete claim records currently present in `generated/independent-verification-records.json`: **10**
 - Concrete review-registry coverage: **10/10**
 - Independently VERIFIED concrete records: **0/10**
-- Independently VERIFIED against aggregate target: **0/100,200**
+- Independently VERIFIED against Gate-50 milestone: **0/50**
 - Evidence-supported concrete records: **4/10**
 
 ## Interpretation
 
-The aggregate target and the concrete claim registry are different denominators.
+The Gate-50 milestone and the concrete claim registry are different denominators.
 
-**100,200 must not be represented as 100,200 concrete reviewable claims unless an authoritative source actually enumerates those 100,200 tasks.** The current bootstrap process derives review tasks from the concrete claim registry, so it can deterministically create review tasks for the current 10 records but cannot legitimately invent the remaining 100,190 claims.
+**50 is a verification milestone, not evidence that 50 concrete reviewable claims already exist.** The current bootstrap process derives review tasks from the concrete claim registry, so it can deterministically create review tasks for the current 10 records but must not invent additional claims merely to reach the milestone.
 
 Likewise, the current 10-record review set must not be presented as completion of the aggregate 100,200 target.
 
