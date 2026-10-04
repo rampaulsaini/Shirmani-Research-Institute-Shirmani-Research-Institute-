@@ -35,7 +35,7 @@ jobs:
           print("SUPREME_NLP_POLICY=PASS")
           PY
           python3 -m py_compile agents/supreme_nlp_agent.py factory/supreme_nlp_qc.py
-          python3 factory/supreme_nlp_qc.py
+          PYTHONPATH=. python3 factory/supreme_nlp_qc.py
       - name: Produce deterministic status
         run: |
           python3 - <<'PY'
