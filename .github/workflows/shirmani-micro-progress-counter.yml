@@ -5,8 +5,10 @@ on:
     - cron: "*/5 * * * *"
   workflow_dispatch:
 
+# Measurement-only: do not mutate protected main.
+# github.run_number is the immutable micro-cycle counter for this workflow.
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: shirmani-micro-progress-counter
@@ -15,108 +17,100 @@ concurrency:
 jobs:
   micro-counter:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - name: Checkout
+      - name: Checkout authoritative state
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      - name: Increment micro counter
-        shell: bash
+      - name: Compute micro counter and verification state
+        shell: python
+        env:
+          MICRO_CYCLE: ${{ github.run_number }}
         run: |
-          set -euo pipefail
-          mkdir -p automation
-          state="automation/micro-progress-counter.json"
-
-          if [ ! -f "$state" ]; then
-            cat > "$state" <<'EOF'
-          {
-            "counter_name": "SHIRMANI Micro Progress Counter",
-            "version": 1,
-            "micro_cycles": 0,
-            "last_cycle_utc": null,
-            "purpose": "Independent micro-level activity counter for measurable Automission progress.",
-            "verification_note": "A cycle count is activity evidence, not independent research verification."
-          }
-          EOF
-          fi
-
-          python3 - <<'PY'
           import json
+          import os
+          from pathlib import Path
           from datetime import datetime, timezone
 
-          path = "automation/micro-progress-counter.json"
-          with open(path, "r", encoding="utf-8") as f:
-              data = json.load(f)
+          registry_path = Path("generated/VERIFICATION-REGISTRY.json")
+          target_path = Path("config/independent-verification-target.json")
+          registry = json.loads(registry_path.read_text(encoding="utf-8")) if registry_path.exists() else {}
+          target_cfg = json.loads(target_path.read_text(encoding="utf-8")) if target_path.exists() else {}
 
-          data["micro_cycles"] = int(data.get("micro_cycles", 0)) + 1
-          data["last_cycle_utc"] = datetime.now(timezone.utc).isoformat()
-
-          registry_path = "generated/VERIFICATION-REGISTRY.json"
-          target_path = "config/independent-verification-target.json"
-          registry = json.loads(open(registry_path, encoding="utf-8").read()) if __import__("os").path.exists(registry_path) else {}
-          target_cfg = json.loads(open(target_path, encoding="utf-8").read()) if __import__("os").path.exists(target_path) else {}
           target = int(target_cfg.get("verification_target", 0))
+          records = int(registry.get("records", 0))
+          queued = int(registry.get("queued", 0))
           reviewed = int(registry.get("reviewed", 0))
           verified = int(registry.get("verified", 0))
-          data["verification"] = {
-              "target": target,
-              "reviewed": reviewed,
-              "verified": verified,
-              "remaining": max(target - verified, 0),
-              "reviewed_percent": round(reviewed / target * 100, 4) if target else 0.0,
-              "verified_percent": round(verified / target * 100, 4) if target else 0.0,
-              "definition": "Separate verification metric. Workflow execution is never counted as VERIFIED."
+
+          if target <= 0:
+              raise SystemExit("MICRO_COUNTER_FAIL: verification target must be positive")
+          if not (0 <= verified <= reviewed <= queued <= records):
+              raise SystemExit("MICRO_COUNTER_FAIL: registry counters violate invariants")
+          if verified > target:
+              raise SystemExit("MICRO_COUNTER_FAIL: verified records exceed target")
+
+          remaining = max(target - verified, 0)
+          reviewed_pct = round(reviewed / target * 100, 4)
+          verified_pct = round(verified / target * 100, 4)
+
+          state = {
+              "counter_name": "SHIRMANI Micro Progress Counter",
+              "version": 2,
+              "micro_cycle": int(os.environ["MICRO_CYCLE"]),
+              "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+              "verification": {
+                  "target": target,
+                  "records": records,
+                  "queued": queued,
+                  "reviewed": reviewed,
+                  "verified": verified,
+                  "remaining": remaining,
+                  "reviewed_percent": reviewed_pct,
+                  "verified_percent": verified_pct
+              },
+              "separation_rule": "Workflow execution is activity evidence only; VERIFIED requires the independent verification gate.",
+              "main_mutation": False
           }
 
-          with open(path, "w", encoding="utf-8") as f:
-              json.dump(data, f, indent=2, ensure_ascii=False)
-              f.write("\n")
+          Path("micro-progress-counter.json").write_text(
+              json.dumps(state, indent=2, ensure_ascii=False) + "\\n",
+              encoding="utf-8"
+          )
 
-          print(f"MICRO_COUNTER={data['micro_cycles']}")
-          print(f"LAST_CYCLE_UTC={data['last_cycle_utc']}")
-          print(f"WORKFLOW_MICRO_CYCLES={data['micro_cycles']}")
+          print(f"MICRO_CYCLE={state['micro_cycle']}")
           print(f"VERIFICATION_TARGET={target}")
           print(f"VERIFICATION_REVIEWED={reviewed}")
           print(f"VERIFICATION_VERIFIED={verified}")
-          print(f"VERIFICATION_REMAINING={max(target - verified, 0)}")
-          PY
+          print(f"VERIFICATION_REMAINING={remaining}")
+          print(f"VERIFIED_PERCENT={verified_pct}%")
 
-      - name: Write cycle receipt
+      - name: Publish micro counter artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-micro-progress-counter-${{ github.run_number }}
+          path: micro-progress-counter.json
+          retention-days: 14
+
+      - name: Emit micro progress summary
         shell: bash
         run: |
-          set -euo pipefail
-          mkdir -p automation
-          python3 - <<'PY'
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
-          from pathlib import Path
-          d=json.loads(Path("automation/micro-progress-counter.json").read_text())
-          Path("automation/MICRO-COUNTER.md").write_text(
-              "# SHIRMANI Micro Progress Counter\n\n"
-              f"- Workflow micro cycles: {d['micro_cycles']}\n"
-              f"- Last cycle (UTC): {d['last_cycle_utc']}\n"
-              f"- Verification target: {d.get('verification', {}).get('target', 0):,}\n"
-              f"- Independently reviewed: {d.get('verification', {}).get('reviewed', 0):,}\n"
-              f"- Independently VERIFIED: {d.get('verification', {}).get('verified', 0):,}\n"
-              f"- Verification remaining: {d.get('verification', {}).get('remaining', 0):,}\n"
-              f"- Reviewed % of target: {d.get('verification', {}).get('reviewed_percent', 0)}%\n"
-              f"- VERIFIED % of target: {d.get('verification', {}).get('verified_percent', 0)}%\n"
-              "- Separation rule: workflow execution count and independent verification count are measured separately.\n"
-              "- Important: execution count is not the same as independent VERIFIED research records.\n",
-              encoding="utf-8"
-          )
+          d=json.load(open("micro-progress-counter.json",encoding="utf-8"))
+          v=d["verification"]
+          print("# ꙰ SHIRMANI Micro Progress Counter")
+          print()
+          print(f"- Micro cycle: **{d['micro_cycle']}**")
+          print(f"- Verification target: **{v['target']:,}**")
+          print(f"- Registry records: **{v['records']:,}**")
+          print(f"- Queued: **{v['queued']:,}**")
+          print(f"- Independently reviewed: **{v['reviewed']:,} ({v['reviewed_percent']}%)**")
+          print(f"- Independently VERIFIED: **{v['verified']:,} ({v['verified_percent']}%)**")
+          print(f"- Remaining to VERIFIED milestone: **{v['remaining']:,}**")
+          print()
+          print("**Separation:** workflow activity and independent verification are measured separately.")
+          print("**Fail-closed:** a workflow run can never increase the VERIFIED count.")
           PY
-
-      - name: Commit counter receipt
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "SHIRMANI Micro Counter"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add automation/micro-progress-counter.json automation/MICRO-COUNTER.md
-          if git diff --cached --quiet; then
-            echo "No counter change detected."
-            exit 0
-          fi
-          git commit -m "chore: advance SHIRMANI micro progress counter"
-          git push
