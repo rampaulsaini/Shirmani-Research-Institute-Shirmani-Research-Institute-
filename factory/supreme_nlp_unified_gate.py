@@ -31,10 +31,16 @@ def canonical_hash(value: object) -> str:
     ).hexdigest()
 
 
-def record_fingerprint(value: object) -> str:
-    """Match agents.supreme_nlp_v3.sha256() semantics for result integrity."""
+def record_fingerprint(record: dict) -> str:
+    """Match the v3 record fingerprint semantics, including provenance."""
+    payload = {
+        "schema_version": record["schema_version"],
+        "task_id": record["task_id"],
+        "result": record["result"],
+        "provenance": record["provenance"],
+    }
     return hashlib.sha256(
-        json.dumps(value, sort_keys=True, ensure_ascii=False).encode()
+        json.dumps(payload, sort_keys=True, ensure_ascii=False).encode()
     ).hexdigest()
 
 
@@ -59,7 +65,7 @@ def main() -> int:
         verification_status == "VERIFIED"
         and independent_replication_verified is True
     )
-    fingerprint_valid = v3_record.get("fingerprint") == record_fingerprint(v3)
+    fingerprint_valid = v3_record.get("fingerprint") == record_fingerprint(v3_record)
     verification_ready = (
         verification_status == "VERIFIED"
         and independent_replication_verified is True
