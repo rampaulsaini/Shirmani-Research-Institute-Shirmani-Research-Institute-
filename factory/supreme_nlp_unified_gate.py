@@ -53,6 +53,18 @@ def main() -> int:
         and independent_replication_verified is True
     )
     fingerprint_valid = v3_record.get("fingerprint") == record_fingerprint(v3)
+    verification_ready = (
+        verification_status == "VERIFIED"
+        and independent_replication_verified is True
+        and interpretation.get("confidence_status") == "CALIBRATED"
+        and interpretation.get("calibration_required") is False
+    )
+    unverified_safe_state = (
+        verification_status == "UNVERIFIED"
+        and independent_replication_verified is False
+        and interpretation.get("confidence_status") == "UNCALIBRATED"
+        and interpretation.get("calibration_required") is True
+    )
 
     checks = {
         "practitioner_fail_closed": pg["fail_closed"] is True,
@@ -60,12 +72,10 @@ def main() -> int:
         "practitioner_no_code_mutation": pg["code_mutation_allowed"] is False,
         "practitioner_independent_verification": pg["independent_verification_required"] is True,
         "v3_status_interpreted": v3["status"] == "interpreted",
-        "v3_unverified": interpretation["verification_status"] == "UNVERIFIED",
-        "v3_confidence_uncalibrated": interpretation["confidence_status"] == "UNCALIBRATED",
-        "v3_calibration_required": interpretation["calibration_required"] is True,
+        "v3_unverified_safe_state": unverified_safe_state,
+        "v3_verification_ready": verification_ready,
         "v3_experiment_provenance_declared": v3["features"].get("experiment_provenance_status") in {"DECLARED_IDENTIFIERS_ONLY", "MISSING_EXPERIMENT_IDENTIFIERS"},
-        "v3_independent_replication_unverified": v3_record["provenance"].get("independent_replication_verified") is False,
-        "v3_promotion_blocked": promotion_blocked,
+        "v3_promotion_boundary_consistent": (promotion_blocked and unverified_safe_state) or ((not promotion_blocked) and verification_ready),
         "v3_fingerprint_valid": fingerprint_valid,
         "simple_language_present": bool(v3_record["simple_language"].strip()),
         "fingerprint_present": bool(v3_record["fingerprint"].strip()),
