@@ -70,6 +70,22 @@ def _zscores(rows):
         out.append((s.value-s.baseline_mean)/sd)
     return out
 
+def _anomaly(rows):
+    """Estimate variability only within feature/unit-compatible groups."""
+    groups={}
+    for s in rows:
+        groups.setdefault((s.feature, s.unit), []).append(s)
+    scores=[]
+    for values in groups.values():
+        if len(values)<2:
+            continue
+        mean=sum(s.value for s in values)/len(values)
+        spread=sqrt(sum((s.value-mean)**2 for s in values)/len(values))
+        scores.append(clip((spread/(abs(mean)+1e-9))/3.0))
+    if scores:
+        return max(scores), False
+    return 0.0, len(rows)>1
+
 def _disagreement(rows):
     """Compare only compatible feature/unit groups in standardized space."""
     groups={}
@@ -111,10 +127,10 @@ def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
     modalities=len({x.modality for x in usable})
     sources=len({x.source for x in usable if x.source!="unknown"})
     experiments=len({x.experiment_id for x in usable if x.experiment_id.strip()})
-    anomaly=clip((spread/(abs(mean)+1e-9))/3.0)
+    anomaly, comparability_insufficient=_anomaly(usable)
     z=_zscores(usable)
     disagreement=_disagreement(usable)
-    abstain=quality<.50 or anomaly>=.90 or disagreement>=.85
+    abstain=quality<.50 or comparability_insufficient or anomaly>=.90 or disagreement>=.85
     confidence=clip(.15+.30*quality+.18*(1-anomaly)+.15*clip(len(usable)/20)+.10*clip(modalities/4)+.05*clip(sources/3)+.07*(1-disagreement))
     if abstain: confidence=min(confidence,.25)
     state="high_variability_pattern" if anomaly>=.66 else "moderate_variability_pattern" if anomaly>=.33 else "stable_pattern"
@@ -135,6 +151,7 @@ def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
         },
         "features":{
             "mean":mean,"spread":spread,"anomaly_score":anomaly,
+            "anomaly_comparability_status":"INSUFFICIENT_EVIDENCE" if comparability_insufficient else "COMPARABLE_GROUPS",
             "quality":quality,"modalities":modalities,"source_count":sources,
             "declared_unique_experiment_count":experiments,
             "experiment_provenance_status":"DECLARED_IDENTIFIERS_ONLY" if experiments else "MISSING_EXPERIMENT_IDENTIFIERS",
