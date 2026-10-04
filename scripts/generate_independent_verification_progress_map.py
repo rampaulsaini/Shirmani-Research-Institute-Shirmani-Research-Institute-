@@ -73,6 +73,7 @@ def main() -> None:
         "authoritative_target": target,
         "authoritative": {
             "registered_target_capacity": target,
+            "target_capacity_is_not_instantiated_queue": True,
             "queued": queued, "reviewed": reviewed, "verified": verified,
             "remaining_to_target": max(target-verified,0),
             "queued_percent": pct(queued,target),
@@ -85,6 +86,7 @@ def main() -> None:
         },
         "instantiated_review_layer": {
             "claim_records": instantiated,
+            "instantiated_queue_records": instantiated,
             "review_slots": review_slots,
             "verified": instantiated_verified,
             "review_slot_coverage_percent": pct(review_slots,instantiated),
@@ -137,7 +139,7 @@ Generated: {report["generated_at"]}
 ## Instantiated review layer
 
 The repository currently materializes a smaller set of concrete claim/review records.
-The 100,200 figure is a target/registry-capacity declaration; it must not be presented as 100,200 completed or instantiated review tasks.
+The 100,200 figure is a target/registry-capacity declaration; it must not be presented as 100,200 completed or instantiated review tasks. The machine-readable report explicitly marks target capacity as distinct from the instantiated queue.
 
 | Measure | Current |
 |---|---:|
