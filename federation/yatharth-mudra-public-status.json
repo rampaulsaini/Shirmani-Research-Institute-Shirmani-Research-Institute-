@@ -29,6 +29,8 @@
     "status": "DESIGN_INTEGRATED_TESTNET_GATE",
     "live_minting": false,
     "live_mining": false,
-    "production_gates_required": true
+    "production_gates_required": true,
+    "native_value_protocol": "federation/shirmani-native-verifiable-value-protocol.json",
+    "architecture_status": "INTEGRATED_DESIGN_FAIL_CLOSED"
   }
 }
