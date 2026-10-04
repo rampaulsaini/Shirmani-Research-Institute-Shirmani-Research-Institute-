@@ -40,6 +40,11 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--batch-size", type=int, default=25)
     parser.add_argument("--offset", type=int, default=0)
+    parser.add_argument(
+        "--pending-first",
+        action="store_true",
+        help="Select the first batch of review slots that are not yet REVIEWED.",
+    )
     args = parser.parse_args()
 
     if args.batch_size < 1 or args.batch_size > 1000:
@@ -51,12 +56,28 @@ def main() -> None:
     registry = load_jsonl(GENERATED / "independent-verification-registry.jsonl")
     registry_by_task = {str(r.get("task_id")): r for r in registry}
 
-    selected = queue[args.offset : args.offset + args.batch_size]
-    if not selected:
-        raise SystemExit("requested review packet is empty")
+    if args.pending_first:
+        pending = [
+            (ordinal, task)
+            for ordinal, task in enumerate(queue, start=1)
+            if registry_by_task[str(task.get("task_id", ""))].get("status") != "REVIEWED"
+        ]
+        selected_pairs = pending[: args.batch_size]
+    else:
+        selected_pairs = [
+            (ordinal, task)
+            for ordinal, task in enumerate(
+                queue[args.offset : args.offset + args.batch_size],
+                start=args.offset + 1,
+            )
+        ]
 
+    if not selected_pairs:
+        raise SystemExit("no pending review slots remain")
+
+    selected = [task for _, task in selected_pairs]
     packet = []
-    for ordinal, task in enumerate(selected, start=args.offset + 1):
+    for ordinal, task in selected_pairs:
         task_id = str(task.get("task_id", ""))
         if not task_id:
             raise SystemExit(f"queue record {ordinal} has no task_id")
@@ -102,16 +123,22 @@ def main() -> None:
             }
         )
 
+    first_ordinal = selected_pairs[0][0]
+    last_ordinal = selected_pairs[-1][0]
     packet_path = GENERATED / (
-        f"verification-review-packet-{args.offset + 1:06d}-"
-        f"{args.offset + len(selected):06d}.json"
+        f"verification-review-packet-{first_ordinal:06d}-"
+        f"{last_ordinal:06d}.json"
     )
     packet_path.write_text(
         json.dumps(
             {
                 "version": 1,
-                "packet_range": [args.offset + 1, args.offset + len(selected)],
+                "packet_range": [first_ordinal, last_ordinal],
                 "records": len(packet),
+                "selection_mode": "PENDING_FIRST" if args.pending_first else "OFFSET",
+                "pending_slots_before_packet": sum(
+                    1 for r in registry if r.get("status") != "REVIEWED"
+                ),
                 "source": "generated/independent-verification-queue.jsonl",
                 "registry": "generated/independent-verification-registry.jsonl",
                 "status": "READY_FOR_HUMAN_REVIEW",
@@ -129,7 +156,8 @@ def main() -> None:
             {
                 "packet": packet_path.relative_to(ROOT).as_posix(),
                 "records": len(packet),
-                "range": [args.offset + 1, args.offset + len(selected)],
+                "range": [first_ordinal, last_ordinal],
+                "selection_mode": "PENDING_FIRST" if args.pending_first else "OFFSET",
                 "status": "READY_FOR_HUMAN_REVIEW",
                 "verification_status": "NOT_PERFORMED",
             },

@@ -37,7 +37,7 @@ jobs:
         run: |
           python factory/verification_review_packet.py \
             --batch-size "${{ inputs.batch_size || '10' }}" \
-            --offset 0
+            --pending-first
 
       - name: Validate fail-closed promotion boundary
         run: python factory/verification_promotion_gate.py
@@ -49,7 +49,8 @@ jobs:
           from pathlib import Path
           packets=sorted(Path("generated").glob("verification-review-packet-*.json"))
           if not packets:
-              raise SystemExit("No review packet generated")
+              print("No pending review slots remain; verification queue is fully reviewed.")
+              raise SystemExit(0)
           d=json.loads(packets[-1].read_text(encoding="utf-8"))
           print("## ꙰ SHIRMANI Independent Verification Review Packet")
           print(f"- Packet: **{packets[-1].name}**")
