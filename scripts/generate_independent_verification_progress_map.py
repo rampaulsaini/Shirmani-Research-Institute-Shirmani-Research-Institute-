@@ -72,9 +72,11 @@ def main() -> None:
         "scope": "independent-verification",
         "authoritative_target": target,
         "authoritative": {
+            "registered_target_capacity": target,
             "queued": queued, "reviewed": reviewed, "verified": verified,
             "remaining_to_target": max(target-verified,0),
             "queued_percent": pct(queued,target),
+            "registered_target_capacity_percent": 100.0,
             "reviewed_percent": pct(reviewed,target),
             "verified_percent": pct(verified,target),
             "remaining_percent": pct(max(target-verified,0),target),
@@ -119,7 +121,9 @@ Generated: {report["generated_at"]}
 | Measure | Current |
 |---|---:|
 | Target | **{target:,} records** |
-| Queued | **{queued:,} ({report["authoritative"]["queued_percent"]:g}%)** |
+| Registered target capacity | **{target:,} (100%)** |
+| Instantiated review queue | **{instantiated:,} ({pct(instantiated,target):g}% of target)** |
+| Legacy/authoritative queue metadata | **{queued:,} ({report["authoritative"]["queued_percent"]:g}% of target)** |
 | Reviewed | **{reviewed:,} ({report["authoritative"]["reviewed_percent"]:g}%)** |
 | Independently VERIFIED | **{verified:,} ({tv:g}%)** |
 | Remaining to target | **{target-verified:,} ({tr:g}%)** |
@@ -133,11 +137,12 @@ Generated: {report["generated_at"]}
 ## Instantiated review layer
 
 The repository currently materializes a smaller set of concrete claim/review records.
-This preparation/review layer must not be presented as the full 100,200 target.
+The 100,200 figure is a target/registry-capacity declaration; it must not be presented as 100,200 completed or instantiated review tasks.
 
 | Measure | Current |
 |---|---:|
 | Concrete claim records | **{instantiated:,}** |
+| Target coverage by concrete records | **{pct(instantiated,target):g}%** |
 | Review slots | **{review_slots:,} ({rc:g}% coverage)** |
 | Independently VERIFIED | **{instantiated_verified:,} ({iv:g}%)** |
 | Evidence-supported in historical 10-record status | **{evidence_supported}/{historical_queue} ({report["instantiated_review_layer"]["evidence_supported_percent_of_historical_queue"]:g}%)** |
