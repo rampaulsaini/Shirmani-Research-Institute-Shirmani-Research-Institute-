@@ -13,7 +13,7 @@ OUT = ROOT / "generated"
 INTAKE = ROOT / "federation" / "research-paper-source-intake.json"
 REGISTRY = OUT / "research-paper-claims.json"
 TARGET = OUT / "claim-evidence.jsonl"
-PREFIX = "srp:"
+PREFIX = "claim:research-paper:"
 
 def digest(value):
     return hashlib.sha256(value.encode("utf-8")).hexdigest()[:24]
@@ -24,7 +24,7 @@ def main():
     if intake["verification_status"] != "UNVERIFIED":
         raise SystemExit("Research Paper intake must remain UNVERIFIED")
     rows = [json.loads(x) for x in TARGET.read_text(encoding="utf-8").splitlines() if x.strip()] if TARGET.exists() else []
-    rows = [r for r in rows if not str(r.get("id", "")).startswith(PREFIX)]
+    rows = [r for r in rows if not (str(r.get("id", "")).startswith(PREFIX) or str(r.get("id", "")).startswith("srp:"))]
     for claim in registry["claims"]:
         cid = PREFIX + claim["id"]
         rows.append({
