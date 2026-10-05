@@ -302,8 +302,16 @@ def drift_report(reference, current, threshold=2.0):
     ref_groups={}
     cur_groups={}
     for row in ref:
+        # Missing units cannot establish a safe feature comparison. Keep them
+        # as explicit fail-closed groups instead of treating "" as a unit.
+        if not row.unit.strip():
+            ref_groups.setdefault((row.feature,"<MISSING_UNIT>"),[]).append(row.value)
+            continue
         ref_groups.setdefault((row.feature,row.unit),[]).append(row.value)
     for row in cur:
+        if not row.unit.strip():
+            cur_groups.setdefault((row.feature,"<MISSING_UNIT>"),[]).append(row.value)
+            continue
         cur_groups.setdefault((row.feature,row.unit),[]).append(row.value)
     keys=sorted(set(ref_groups)|set(cur_groups))
     if not keys:
