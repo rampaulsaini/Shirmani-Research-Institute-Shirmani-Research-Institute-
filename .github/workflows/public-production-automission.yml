@@ -7,43 +7,45 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+
 permissions:
-  contents: write
-  pull-requests: write
-  actions: write
+  contents: read
+  pages: write
+  id-token: write
+
 concurrency:
-  group: public-production-automission
-  cancel-in-progress: true
+  group: shirmani-public-production-pages
+  cancel-in-progress: false
+
 jobs:
-  materialize:
+  produce-and-publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
+
       - name: Self-heal production queue
         run: python3 factory/public_production_queue_self_heal.py
+
+      - name: Build public module inventory
+        run: python3 factory/public_module_inventory.py
+
       - name: Materialize public production status
         run: python3 factory/public_production_materializer.py
-      - name: Publish generated status through PR
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          git config user.name "shirmani-automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/production-work-queue.jsonl generated/production-results.jsonl generated/public-production-index.html generated/public-production-by-module.html generated/public-production-module-index.json generated/public-production-catalog.json generated/multi-layer-production-status.json generated/public-production/
-          if git diff --cached --quiet; then
-            echo "No generated production changes."
-            exit 0
-          fi
-          BRANCH="automation/public-production-publish"
-          git checkout -B "$BRANCH"
-          git commit -m "chore(automission): materialize public production status"
-          git push --force-with-lease origin "HEAD:$BRANCH"
-          PR_NUMBER="$(gh pr list --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --state open --json number --jq '.[0].number // empty')"
-          if [ -z "$PR_NUMBER" ]; then
-            PR_NUMBER="$(gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --title "chore(automission): publish public production status" --body "Automated source-bound production outputs. Publication is performed through the repository PR gate; independent verification remains downstream.")"
-          fi
-          gh pr merge "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --squash --delete-branch
-          gh workflow run github-pages.yml --repo "$GITHUB_REPOSITORY" --ref main
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload generated production site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - name: Deploy generated production site
+        id: deployment
+        uses: actions/deploy-pages@v4
