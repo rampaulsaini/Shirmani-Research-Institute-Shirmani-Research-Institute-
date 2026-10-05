@@ -36,8 +36,16 @@ jobs:
       - name: Discover rotating multi-layer production work
         run: python3 factory/production_queue_builder.py
 
+      - name: Install production packaging dependency
+        run: python3 -m pip install --disable-pip-version-check "qrcode>=8,<9"
+
       - name: Materialize concrete public production
         run: python3 factory/public_production_materializer.py
+
+      - name: Build concrete product modules
+        env:
+          PRODUCTION_BATCH_NO: "100200"
+        run: python3 factory/product_production_gate.py
 
       - name: Publish production telemetry
         run: |
@@ -62,6 +70,14 @@ jobs:
               "catalog": "generated/public-production-catalog.json",
               "module_index": "generated/public-production-by-module.html",
               "production_stream": "generated/production-results.jsonl"
+          }
+          d["concrete_product_production"] = {
+              "batch_no": "100200",
+              "sequence_start": ".001",
+              "package_manifest": "generated/product-production/CURRENT-BATCH.json",
+              "dispatch_default": "NO",
+              "qc_and_gate_codes": True,
+              "qr_payloads": True
           }
           d["principle"] = "Automission is the continuous production engine; verification is a downstream quality/evidence layer."
           d["integrity"] = {
