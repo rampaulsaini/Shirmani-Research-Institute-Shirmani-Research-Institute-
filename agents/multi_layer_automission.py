@@ -41,7 +41,9 @@ def choose_next_action(signals=None):
     return {"selection_mode":"quantum-inspired-deterministic","quantum_hardware_used":False,"quantum_advantage_claimed":False,
             "winner":scored[0],"ranked_lanes":scored,
             "governance":{"fail_closed":True,"independent_verification_required":True,
-                          "scheduled_code_mutation_allowed":False,"automated_verified_promotion_allowed":False}}
+                          "scheduled_code_mutation_allowed":False,"automated_verified_promotion_allowed":False,
+                          "verification_basis":"verified_result_record_only",
+                          "verification_mode":"result_outcome_review_not_direct_automation"}}
 
 def _fingerprint_payload(cycle):
     return {k: v for k, v in cycle.items() if k != "cycle_fingerprint"}
@@ -53,14 +55,14 @@ def fingerprint_cycle(cycle):
     ).hexdigest()
 
 
-def hmac_compare(left, right):
+def constant_time_compare(left, right):
     import hmac
     return hmac.compare_digest(str(left), str(right))
 
 
 def verify_cycle_fingerprint(cycle):
     expected = cycle.get("cycle_fingerprint") if isinstance(cycle, dict) else None
-    return bool(expected) and hmac_compare(expected, fingerprint_cycle(cycle))
+    return bool(expected) and constant_time_compare(expected, fingerprint_cycle(cycle))
 
 
 def build_cycle(signals=None, executed_lane=None):
