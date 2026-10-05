@@ -15,15 +15,32 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 def load_jsonl(path: Path) -> list[dict]:
+    """Accept canonical JSONL plus legacy single-object/array serialization."""
     if not path.exists():
         raise SystemExit(f"missing required file: {path}")
+    raw = path.read_text(encoding="utf-8").strip()
+    if not raw:
+        return []
+    try:
+        parsed = json.loads(raw)
+        if isinstance(parsed, list):
+            if not all(isinstance(x, dict) for x in parsed):
+                raise SystemExit(f"invalid JSON collection at {path}: expected objects")
+            return parsed
+        if isinstance(parsed, dict):
+            return [parsed]
+    except json.JSONDecodeError:
+        pass
     rows = []
-    for line_no, line in enumerate(path.read_text(encoding="utf-8"), 1):
+    for line_no, line in enumerate(raw.splitlines(), 1):
         if line.strip():
             try:
-                rows.append(json.loads(line))
+                item = json.loads(line)
             except json.JSONDecodeError as exc:
                 raise SystemExit(f"invalid JSON at {path}:{line_no}: {exc}")
+            if not isinstance(item, dict):
+                raise SystemExit(f"invalid record at {path}:{line_no}: expected object")
+            rows.append(item)
     return rows
 
 def sha256_file(path: Path) -> str:

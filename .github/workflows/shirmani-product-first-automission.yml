@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
@@ -36,6 +36,16 @@ jobs:
           print("Target units:",p["target_units"])
           print("Completion:",p["completion_pct"],"%")
           PY
+      - name: Publish product production queue
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-product-production-queue
+          path: |
+            generated/PRODUCT-CATALOG.json
+            generated/PRODUCT-PRODUCTION-QUEUE.jsonl
+            generated/PRODUCT-PIPELINE.md
+          if-no-files-found: error
+
       - name: Publish product-first generated state
         env:
           GH_TOKEN: ${{ github.token }}
