@@ -26,6 +26,9 @@ jobs:
       - name: Run multi-layer production dispatcher
         run: python3 factory/multi_layer_production.py
 
+      - name: Materialize concrete production results
+        run: python3 factory/public_production_materializer.py
+
       - name: Run existing product worker
         run: python3 factory/batch_worker.py --batch-size 1000
 
@@ -34,6 +37,8 @@ jobs:
         run: |
           set -euo pipefail
           test -f generated/multi-layer-production-status.json
+          test -f generated/production-results.jsonl
+          test -f generated/public-production-index.html
           python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
           from pathlib import Path
@@ -41,6 +46,7 @@ jobs:
           print("## SHIRMANI Multi-Layer Production")
           print(f"- Modules discovered: **{p['discovered_modules']:,}**")
           print(f"- Tasks this cycle: **{p['last_cycle_tasks']:,}**")
+          print(f"- Concrete production results: **{p.get('last_cycle_concrete_results', 0):,}**")
           print(f"- Total queued work units: **{p['total_queued_tasks']:,}**")
           print(f"- Lanes: **{len(p['lanes'])}**")
           print("")
@@ -61,6 +67,8 @@ jobs:
             generated/MULTI-LAYER-PRODUCTION.md
             generated/multi-layer-production-state.json
             generated/production-work-queue.jsonl
+            generated/production-results.jsonl
+            generated/public-production-index.html
           retention-days: 30
 
       - name: Configure GitHub Pages
