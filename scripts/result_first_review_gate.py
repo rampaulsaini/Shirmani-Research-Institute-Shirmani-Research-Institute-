@@ -29,7 +29,7 @@ ALLOWED_RESULT_STATUSES = {
     "failed",
     "abstained",
 }
-REQUIRED_FIELDS = ("result_id", "task_id", "result_status", "result")
+REQUIRED_FIELDS = ("result_id", "task_id", "result_status", "result", "result_artifact_ref")
 REQUIRED_PROVENANCE_FIELDS = (
     "generator",
     "verification_status",
@@ -81,6 +81,7 @@ def integrity_payload(record: dict[str, Any]) -> dict[str, Any]:
         "result_id": record["result_id"],
         "task_id": record["task_id"],
         "result_status": record["result_status"],
+        "result_artifact_ref": record["result_artifact_ref"],
         "result": record["result"],
         "provenance": record["provenance"],
     }
@@ -100,7 +101,7 @@ def verify_integrity(record: dict[str, Any]) -> bool:
 def validate_result(record: dict[str, Any]) -> dict[str, Any]:
     checks: dict[str, bool] = {}
     checks["required_fields"] = (
-        all(non_empty_string(record.get(k)) for k in ("result_id", "task_id", "result_status"))
+        all(non_empty_string(record.get(k)) for k in ("result_id", "task_id", "result_status", "result_artifact_ref"))
         and isinstance(record.get("result"), dict)
     )
     checks["result_status_allowed"] = str(record.get("result_status", "")) in ALLOWED_RESULT_STATUSES
