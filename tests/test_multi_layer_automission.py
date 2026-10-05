@@ -1,4 +1,9 @@
-from agents.multi_layer_automission import LANES, build_cycle, choose_next_action
+from agents.multi_layer_automission import (
+    LANES,
+    build_cycle,
+    choose_next_action,
+    review_result_outcome,
+)
 
 def test_all_layers_present():
     assert {"practitioner","ml","nlp","evidence","automission","quantum-mechanism"} <= {x.name for x in LANES}
@@ -53,3 +58,30 @@ def test_valid_control_signals_allow_orchestration():
     assert decision["control_input_valid"] is True
     assert decision["invalid_control_signals"] == []
     assert decision["governance"]["orchestration_execution_allowed"] is True
+
+
+def test_result_outcome_review_is_distinct_from_verification():
+    expected = {"status": "PASS", "score": 0.91, "test_count": 12}
+    observed = {"status": "PASS", "score": 0.91, "test_count": 12}
+    review = review_result_outcome(expected, observed)
+    assert review["status"] == "RESULT_OUTCOME_MATCH"
+    assert review["matched"] is True
+    assert review["verification_status"] == "RESULT_OUTCOME_CHECKED"
+    assert review["independent_verification_established"] is False
+    assert review["scientific_truth_established"] is False
+
+
+def test_result_outcome_mismatch_is_explicit():
+    review = review_result_outcome({"status": "PASS"}, {"status": "FAIL"})
+    assert review["status"] == "RESULT_OUTCOME_MISMATCH"
+    assert review["matched"] is False
+    assert review["independent_verification_established"] is False
+
+
+def test_result_outcome_rejects_non_mapping_inputs():
+    try:
+        review_result_outcome({"status": "PASS"}, ["PASS"])
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("result outcome review must reject non-mapping inputs")
