@@ -8,9 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
-  actions: write
+  contents: read
 
 concurrency:
   group: shirmani-public-module-production
@@ -32,25 +30,3 @@ jobs:
             generated/public-module-inventory.json
             generated/public-module-production-map.html
           retention-days: 30
-      - name: Publish module map through PR
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          git config user.name "SHIRMANI Public Module Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/public-module-inventory.json generated/public-module-production-map.html
-          if git diff --cached --quiet; then
-            echo "No module-map changes to publish."
-            exit 0
-          fi
-          BRANCH="automation/public-module-map-publish"
-          git checkout -B "$BRANCH"
-          git commit -m "chore(automission): publish public module production map"
-          git push --force-with-lease origin "HEAD:$BRANCH"
-          PR_NUMBER="$(gh pr list --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --state open --json number --jq '.[0].number // empty')"
-          if [ -z "$PR_NUMBER" ]; then
-            PR_NUMBER="$(gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --title "chore(automission): publish public module production map" --body "Automated repository module inventory and production map. Publication is performed through the repository PR gate.")"
-          fi
-          gh pr merge "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --squash --delete-branch
-          gh workflow run github-pages.yml --repo "$GITHUB_REPOSITORY" --ref main
