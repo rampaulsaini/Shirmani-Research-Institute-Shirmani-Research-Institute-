@@ -13,7 +13,7 @@ h1,h2{color:#d4af37}.hero,.card{background:rgba(255,255,255,.05);border:1px soli
 <div class="card"><div class="metric">500</div><div class="muted">configured work units / cycle in dispatcher</div></div>
 <div class="card"><div class="metric">9</div><div class="muted">production lanes in dispatcher</div></div>
 <div class="card"><div class="metric">10</div><div class="muted">supreme production streams</div></div></div></section>
-<h2>Production Lanes</h2><div class="card"><span class="tag">Research</span><span class="tag">AI / ML / NLP</span><span class="tag">Content</span><span class="tag">Platform</span><span class="tag">Economic</span><span class="tag">Social Media</span><span class="tag">Federation</span><span class="tag">Security / Quality</span><span class="tag">Automation</span></div>
+<h2>Production Lanes</h2><div class="card" id="lanes">Loading current lane telemetry…</div>
 <h2>Visible Production Outputs</h2><div class="grid">
 <div class="card"><h3>Live Status</h3><p>Current cycle, module discovery, queue and lane telemetry.</p><a href="generated/multi-layer-production-status.json">Open status JSON</a></div>
 <div class="card"><h3>Production Results</h3><p>Concrete production records emitted by the materializer.</p><a href="generated/production-results.jsonl">Open result stream</a></div>
@@ -24,4 +24,19 @@ h1,h2{color:#d4af37}.hero,.card{background:rgba(255,255,255,.05);border:1px soli
 <h2>Production → Result → Quality</h2><div class="card"><p><strong>Source → Normalize → Multi-Layer Production → Concrete Artifact → Public Publication → QC / Evidence → Downstream Verification → Audit / Archive</strong></p><p class="muted">A production record is not automatically an independently verified claim. The platform therefore expands production without falsely converting activity into verification.</p></div>
 <h2>AI / ML / NLP + Quantum Boundary</h2><div class="card"><p>AI/ML/NLP routing is production-oriented and deterministic-first, with optional hosted-model routes when configured. “Quantum-ready” means the orchestration can accept a quantum backend; this repository does not claim that quantum hardware is currently executing the work.</p></div>
 <h2>Continuity</h2><div class="card"><p>Every scheduled cycle should create concrete, provenance-linked work rather than stopping after a single verification task. The public dashboard is intended to make that production visible.</p></div>
-</main></body></html>
+
+</main>
+<script>
+async function load(){
+try{
+const r=await fetch('generated/multi-layer-production-status.json?ts='+Date.now()); if(!r.ok) throw Error();
+const p=await r.json();
+document.getElementById('modules').textContent=Number(p.discovered_modules||0).toLocaleString();
+document.getElementById('cycle').textContent=Number(p.last_cycle_tasks||0).toLocaleString();
+document.getElementById('results').textContent=Number(p.last_cycle_concrete_results||p.production_outputs?.concrete_results_this_cycle||0).toLocaleString();
+document.getElementById('scheduled').textContent=Number(p.scheduled_work_units||0).toLocaleString();
+const lanes=p.lane_counts_last_cycle||{}; document.getElementById('lanes').innerHTML=Object.entries(lanes).sort().map(([k,n])=>'<span class="tag">'+k+' · '+Number(n).toLocaleString()+' tasks</span>').join('')||'No current lane telemetry published.';
+}catch(e){document.getElementById('lanes').textContent='Current telemetry unavailable; no live value is invented.'}
+}
+load();setInterval(load,30000);
+</script></body></html>
