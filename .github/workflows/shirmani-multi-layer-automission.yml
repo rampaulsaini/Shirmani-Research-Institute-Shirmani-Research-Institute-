@@ -69,7 +69,7 @@ jobs:
         with:
           pattern: multi-layer-automission-*-${{ github.run_number }}
           path: lane-records
-          merge-multiple: true
+          merge-multiple: false
       - name: Validate lane convergence and fingerprints
         run: |
           python - <<'PY'
