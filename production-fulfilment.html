@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Production Fulfilment</title>
+<style>
+body{margin:0;background:#080b12;color:#f4f7fb;font-family:system-ui,-apple-system,"Noto Sans Devanagari",sans-serif;line-height:1.6}
+main{max-width:1100px;margin:auto;padding:24px 16px 80px}h1,h2{color:#e7c45f}.hero,.card{background:#111722;border:1px solid #334155;border-radius:18px;padding:20px;margin:14px 0}.hero{border:2px solid #e7c45f}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}.tag{color:#67e8f9;font-weight:900}.muted{color:#aeb8c8}
+label{display:block;margin-top:10px;font-weight:800}input,textarea,select{width:100%;box-sizing:border-box;margin-top:5px;padding:10px;border-radius:9px;border:1px solid #475569;background:#0b111a;color:#fff}textarea{min-height:85px}
+button,.btn{display:inline-block;margin:8px 6px 0 0;padding:10px 14px;border:0;border-radius:10px;background:#e7c45f;color:#111;font-weight:900;text-decoration:none;cursor:pointer}.outline{background:#182333;color:#e7c45f;border:1px solid #475569}
+pre{white-space:pre-wrap;overflow:auto;background:#070a0f;padding:12px;border-radius:9px}.truth{border-left:4px solid #7ee2a8;padding:12px;background:#0b1a15}
+</style></head><body><main>
+<section class="hero"><span class="tag">REAL OUTPUT → ORDER → DELIVERY → EVIDENCE</span>
+<h1>꙰ SHIRMANI Production Fulfilment</h1>
+<p>यह surface showroom से आगे जाकर वास्तविक उपयोग/order को structured record में बदलता है। यह payment processor या backend order database होने का दावा नहीं करता।</p>
+<p><a class="btn" href="products.html">Product Catalog</a><a class="btn outline" href="products/production-product-suite.html">Functional Suite</a><a class="btn outline" href="production-reality.html">Reality Gate</a></p></section>
+<section class="card"><h2>1. ग्राहक / उपयोग अनुरोध</h2>
+<div class="grid"><div><label>Product / Service<input id="product" placeholder="उत्पाद या सेवा"></label><label>Name / organization<input id="buyer" placeholder="नाम"></label><label>Contact<input id="contact" placeholder="ईमेल / WhatsApp / अन्य संपर्क"></label></div>
+<div><label>Requested deliverable<textarea id="deliverable" placeholder="क्या चाहिए?"></textarea></label><label>Delivery format<select id="format"><option>digital-file</option><option>audio</option><option>research-report</option><option>service-delivery</option><option>other</option></select></label><label>Notes<textarea id="notes"></textarea></label></div></div>
+<button onclick="make()">Create order-intent</button><button class="outline" onclick="downloadRecord()">Download record</button>
+<pre id="out">अभी कोई record नहीं।</pre></section>
+<section class="card"><h2>2. Evidence lifecycle</h2><div class="truth"><strong>ORDER_INTENT → OWNER_ACCEPTED → PAYMENT_EVIDENCE → DELIVERY_EVIDENCE → CUSTOMER_CONFIRMATION → SETTLEMENT → AUDIT</strong><br>किसी एक stage को पूरा मानने से अगली stage अपने-आप पूरी नहीं मानी जाएगी।</div></section>
+<section class="card"><h2>3. Production truth</h2><p class="muted">Catalog entry = offer. Generated artifact = production output. Order-intent = demand signal. Payment evidence = transaction evidence. Delivery evidence = fulfilment evidence. इनमें से किसी को स्वतंत्र verification या sale का विकल्प नहीं बनाया जाएगा।</p></section>
+</main>
+<script>
+let record=null;const v=id=>document.getElementById(id).value.trim();
+function make(){record={schema_version:"1.0",type:"SHIRMANI_ORDER_INTENT",created_at:new Date().toISOString(),product:v("product"),buyer:v("buyer"),contact:v("contact"),requested_deliverable:v("deliverable"),delivery_format:v("format"),notes:v("notes"),status:"ORDER_INTENT",payment_status:"NOT_RECORDED",delivery_status:"NOT_DELIVERED",evidence_required:["payment","delivery","customer-confirmation","settlement"]};document.getElementById("out").textContent=JSON.stringify(record,null,2)}
+function downloadRecord(){if(!record)make();const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:"application/json"}));a.download="shirmani-order-intent.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+</script></body></html>
