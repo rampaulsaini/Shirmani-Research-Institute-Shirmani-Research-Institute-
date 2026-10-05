@@ -73,18 +73,23 @@ def _zscores(rows):
 def _anomaly(rows):
     """Estimate variability only within feature/unit-compatible groups."""
     groups={}
+    comparable_group_count=0
     for s in rows:
+        # Missing units cannot establish a safe comparability group.
+        if not s.unit.strip():
+            continue
         groups.setdefault((s.feature, s.unit), []).append(s)
     scores=[]
     for values in groups.values():
         if len(values)<2:
             continue
+        comparable_group_count += 1
         mean=sum(s.value for s in values)/len(values)
         spread=sqrt(sum((s.value-mean)**2 for s in values)/len(values))
         scores.append(clip((spread/(abs(mean)+1e-9))/3.0))
     if scores:
         return max(scores), False
-    return 0.0, len(rows)>1
+    return 0.0, len(rows)>1 and comparable_group_count==0
 
 def _disagreement(rows):
     """Compare only compatible feature/unit groups in standardized space."""
@@ -275,7 +280,11 @@ def drift_report(reference, current, threshold=2.0):
     This is a screening diagnostic, not proof of distributional change. Missing
     feature groups fail closed as INSUFFICIENT_EVIDENCE.
     """
-    if threshold <= 0 or not isfinite(float(threshold)):
+    try:
+        threshold_value=float(threshold)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("threshold must be a positive finite number") from exc
+    if not isfinite(threshold_value) or threshold_value <= 0:
         raise ValueError("threshold must be a positive finite number")
     ref=[normalize(x) for x in reference]
     cur=[normalize(x) for x in current]
@@ -303,4 +312,4 @@ def drift_report(reference, current, threshold=2.0):
         flagged=shift>=threshold
         drift=drift or flagged
         features["|".join(key)]={"reference_mean":rm,"current_mean":cm,"standardized_shift":round(shift,6),"drift":flagged}
-    return {"status":"DRIFT_DETECTED" if drift else "NO_DRIFT_DETECTED","drift_detected":drift,"threshold":float(threshold),"features":features}
+    return {"status":"DRIFT_DETECTED" if drift else "NO_DRIFT_DETECTED","drift_detected":drift,"threshold":threshold_value,"features":features}
