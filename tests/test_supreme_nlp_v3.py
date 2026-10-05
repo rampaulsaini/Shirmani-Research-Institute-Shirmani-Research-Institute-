@@ -92,6 +92,62 @@ def main():
         else:
             raise AssertionError("invalid drift thresholds must be rejected")
 
+
+    # Adversarial numeric inputs must fail closed rather than become trusted zeros.
+    bad_numeric = build_record([
+        {"modality":"sensor","feature":"signal","value":float("nan"),"quality":1.0,"source":"nan"},
+        {"modality":"sensor","feature":"signal","value":float("inf"),"quality":1.0,"source":"inf"},
+    ],"invalid-numeric")
+    assert bad_numeric["result"]["status"] == "insufficient_quality"
+
+    # Cross-modal disagreement must not compare incomparable feature/unit groups.
+    incomparable = build_record([
+        {"modality":"camera","feature":"intensity","value":100.0,"quality":1.0,"source":"cam","unit":"lux","baseline_mean":90.0,"baseline_std":5.0},
+        {"modality":"microphone","feature":"intensity","value":0.01,"quality":1.0,"source":"mic","unit":"normalized","baseline_mean":0.01,"baseline_std":0.001},
+    ],"incomparable")
+    assert incomparable["result"]["features"]["cross_modal_disagreement"] == 0.0
+    assert incomparable["result"]["interpretation"]["verification_status"] == "UNVERIFIED"
+
+    # Missing-unit multi-signal inputs must abstain on comparability.
+    missing_units = build_record([
+        {"modality":"camera","feature":"signal","value":10.0,"quality":1.0,"source":"cam"},
+        {"modality":"microphone","feature":"signal","value":0.1,"quality":1.0,"source":"mic"},
+    ],"missing-units")
+    assert missing_units["result"]["features"]["anomaly_comparability_status"] == "INSUFFICIENT_EVIDENCE"
+    assert missing_units["result"]["interpretation"]["abstention"] is True
+
+    # Calibration contracts reject empty data, invalid bins, and invalid probabilities.
+    for bad_bins in (0, -1, 1.5, True):
+        try:
+            calibration_report([0.5], [1], bad_bins)
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("invalid calibration bins must be rejected")
+    try:
+        calibration_report([], [], 10)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("empty calibration data must be rejected")
+    for bad_probability in (-0.1, 1.1, float("nan"), float("inf")):
+        try:
+            calibration_report([bad_probability], [1])
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("invalid probabilities must be rejected")
+
+    # Fingerprint integrity is distinct from scientific verification.
+    assert r["provenance"]["independent_replication_verified"] is False
+    from agents.supreme_nlp_v3 import verify_record_integrity
+    assert verify_record_integrity(r) is True
+    tampered = dict(r)
+    tampered["result"] = dict(r["result"])
+    tampered["result"]["features"] = dict(r["result"]["features"])
+    tampered["result"]["features"]["sample_count"] = 999
+    assert verify_record_integrity(tampered) is False
+
     print("SUPREME_NLP_V3_CONTRACT=PASS")
 
 
