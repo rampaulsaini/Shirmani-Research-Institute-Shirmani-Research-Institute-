@@ -1,0 +1,28 @@
+name: SHIRMANI Product-First Automission
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+permissions:
+  contents: read
+jobs:
+  product-factory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build product-first status
+        run: |
+          python - <<'PY'
+          import json, pathlib, datetime
+          data=json.loads(pathlib.Path("factory/product-catalog.json").read_text(encoding="utf-8"))
+          offers=[x for lane in data["lanes"] for x in lane["offers"]]
+          out={"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"mode":"PRODUCT_FIRST","lanes":len(data["lanes"]),"offers":len(offers),"stages":data["build_stages"],"orchestration":data["orchestration"],"verification_position":"DOWNSTREAM_OF_PRODUCT_OUTPUT"}
+          pathlib.Path("generated").mkdir(exist_ok=True)
+          pathlib.Path("generated/product-factory-status.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - name: Upload product factory status
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-product-factory-status
+          path: generated/product-factory-status.json
