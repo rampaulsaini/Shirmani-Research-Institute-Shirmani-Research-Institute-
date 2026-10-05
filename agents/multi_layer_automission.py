@@ -30,7 +30,6 @@ def _score(lane, signals):
         raw = float(signals.get(lane.name, 0.0))
     except (TypeError, ValueError):
         raw = 0.0
-    # Invalid/non-finite control pressure must never steer orchestration.
     pressure = max(0.0, min(1.0, raw)) if isfinite(raw) else 0.0
     return round(lane.priority*(0.5+0.5*pressure),6)
 
@@ -59,29 +58,24 @@ def choose_next_action(signals=None):
 def _fingerprint_payload(cycle):
     return {k: v for k, v in cycle.items() if k != "cycle_fingerprint"}
 
-
 def fingerprint_cycle(cycle):
     return hashlib.sha256(
         json.dumps(_fingerprint_payload(cycle), sort_keys=True, ensure_ascii=False).encode()
     ).hexdigest()
 
-
 def constant_time_compare(left, right):
     import hmac
     return hmac.compare_digest(str(left), str(right))
 
-
 def verify_cycle_fingerprint(cycle):
     expected = cycle.get("cycle_fingerprint") if isinstance(cycle, dict) else None
     return bool(expected) and constant_time_compare(expected, fingerprint_cycle(cycle))
-
 
 def result_outcome_fingerprint(result):
     """Hash an observed result without converting it into a scientific verdict."""
     return hashlib.sha256(
         json.dumps(result, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
     ).hexdigest()
-
 
 def review_result_outcome(expected_result, observed_result):
     """Check whether an observed result matches an explicit expected result.
@@ -104,10 +98,35 @@ def review_result_outcome(expected_result, observed_result):
         "scientific_truth_established": False,
     }
 
+def build_result_outcome(lane, test_path, runner, exit_code):
+    """Create a result record from the actual lane test process outcome."""
+    if not isinstance(lane, str) or not lane:
+        raise ValueError("lane must be a non-empty string")
+    if not isinstance(test_path, str) or not test_path:
+        raise ValueError("test_path must be a non-empty string")
+    if runner not in {"pytest", "python"}:
+        raise ValueError("runner must be pytest or python")
+    if not isinstance(exit_code, int):
+        raise ValueError("exit_code must be an integer")
+    status = "PASS" if exit_code == 0 else "FAIL"
+    return {
+        "lane": lane,
+        "test_path": test_path,
+        "runner": runner,
+        "exit_code": exit_code,
+        "status": status,
+        "outcome_fingerprint": result_outcome_fingerprint({
+            "lane": lane, "test_path": test_path, "runner": runner,
+            "exit_code": exit_code, "status": status,
+        }),
+        "verification_status": "RESULT_OUTCOME_CHECKED",
+        "independent_verification_established": False,
+        "scientific_truth_established": False,
+    }
 
 def build_cycle(signals=None, executed_lane=None):
     decision=choose_next_action(signals)
-    cycle={"controller":"SHIRMANI Multi-Layer AI ML NLP Practitioner Automission","version":2,
+    cycle={"controller":"SHIRMANI Multi-Layer AI ML NLP Practitioner Automission","version":3,
            "generated_at_utc":datetime.now(timezone.utc).isoformat(),
            "architecture":["Observe","Collect","Clean","AI/ML/NLP Evaluate","Reason","Evidence","Independent Verify","QC","Automission","Continuous Improve"],
            "decision":decision}
