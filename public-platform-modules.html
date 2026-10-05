@@ -1,24 +1,32 @@
 <!doctype html>
 <html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Yatharth Public Platform — Module Map</title>
+<title>Yatharth Public Platform — Module & Production Map</title>
 <style>
 body{margin:0;background:#071018;color:#eef5f8;font-family:system-ui,sans-serif;line-height:1.55}
-main{max-width:1180px;margin:auto;padding:24px 16px 70px}h1,h2{color:#ffd84a}
-.note{color:#cbd7dc}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
-.card{display:block;border:1px solid #38505d;border-radius:16px;padding:16px;background:#ffffff08;color:inherit;text-decoration:none}
+main{max-width:1180px;margin:auto;padding:24px 16px 70px}h1,h2{color:#ffd84a}.note{color:#cbd7dc}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}.card{display:block;border:1px solid #38505d;border-radius:16px;padding:16px;background:#ffffff08;color:inherit;text-decoration:none}
 .card:hover{border-color:#ffd84a;transform:translateY(-2px)}strong{display:block;color:#ffe06a}.status{display:inline-block;margin-top:8px;padding:3px 9px;border-radius:999px;border:1px solid #49616d;color:#6de9ff;font-size:.78rem}
-a.back{color:#6de9ff}
+.metric{font-size:1.7rem;font-weight:900;color:#ffd84a}.production{border-color:#287f8c;background:#08232b}.muted{color:#aebbc2}a.back{color:#6de9ff}
 </style></head><body><main>
-<h1>यथार्थ सार्वजनिक मंच — Module Map</h1>
-<p class="note">यह page सभी प्रमुख public entry points को एक machine-readable registry से पढ़ता है। Architecture, deployment और independent verification अलग अवस्थाएँ हैं।</p>
-<div id="summary" class="card">Registry पढ़ी जा रही है…</div><section><h2>मुख्य modules</h2><div id="grid" class="grid"></div></section>
-<section class="card"><h2>सत्य-सीमा</h2><p>AI output, workflow success, publication या software status अपने-आप किसी दार्शनिक, वैज्ञानिक, ऐतिहासिक या metaphysical claim को independently verified नहीं बनाते।</p><p><strong>Independent verified claims:</strong> <span id="verified">0</span></p></section>
+<h1>यथार्थ सार्वजनिक मंच — Module & Production Map</h1>
+<p class="note">Public modules और वास्तविक production telemetry एक ही दृश्य में। Module/file की मौजूदगी अपने-आप execution या independent verification का प्रमाण नहीं है।</p>
+<section class="grid">
+<div class="card production"><div class="metric" id="modules">—</div><strong>Production modules</strong><span class="muted">latest published telemetry</span></div>
+<div class="card production"><div class="metric" id="results">—</div><strong>Concrete results / cycle</strong><span class="muted">production output, not verification</span></div>
+<div class="card production"><div class="metric" id="tasks">—</div><strong>Tasks / cycle</strong><span class="muted">multi-layer production workload</span></div>
+<div class="card production"><div class="metric" id="queue">—</div><strong>Queued work units</strong><span class="muted">continuous production queue</span></div>
+</section>
+<div id="production-status" class="card">Production telemetry पढ़ी जा रही है…</div>
+<section class="card"><h2>मुख्य modules</h2><div id="summary">Registry पढ़ी जा रही है…</div></section>
+<section><h2>Module navigation</h2><div id="grid" class="grid"></div></section>
+<section class="card"><h2>Production outputs</h2>
+<p><a class="back" href="public-production-command-center.html">🚀 Production Command Center</a> · <a class="back" href="production-dashboard.html">Live Production Dashboard</a> · <a class="back" href="generated/public-module-production-map.html">Generated Module Production Map</a> · <a class="back" href="generated/public-production-by-module.html">Module-wise Production Results</a></p></section>
+<section class="card"><h2>सत्य-सीमा</h2>
+<p>AI output, workflow success, publication या software status अपने-आप किसी दार्शनिक, वैज्ञानिक, ऐतिहासिक या metaphysical claim को independently verified नहीं बनाते। Production पहले है; verification परिणाम की downstream quality/promotion layer है।</p>
+<p><strong>Independent verified claims:</strong> <span id="verified">0</span></p></section>
 <p><a class="back" href="index.html">← मुख्य मंच</a> · <a class="back" href="yatharth-status.html">Public Status</a></p>
 <script>
-(async()=>{try{
-const r=await fetch('docs/yatharth-system/public-module-registry.json',{cache:'no-store'});if(!r.ok)throw Error();
-const d=await r.json();document.getElementById('verified').textContent=d.verification?.independent_verified_claims??0;
-document.getElementById('summary').innerHTML='<strong>'+d.navigation.length+' public module entries</strong><span class="status">'+d.truth_rule+'</span>';
-for(const m of d.navigation){const a=document.createElement('a');a.className='card';a.href=m.href;a.innerHTML='<strong>'+m.label+'</strong><span class="status">'+m.status+'</span>';document.getElementById('grid').appendChild(a)}
-}catch(e){document.getElementById('summary').textContent='STATUS_UNAVAILABLE';}})();
+async function load(){try{const r=await fetch('generated/multi-layer-production-status.json?ts='+Date.now());if(!r.ok)throw Error();const d=await r.json();modules.textContent=(d.production_outputs?.production_modules??d.discovered_modules??0).toLocaleString();results.textContent=(d.last_cycle_concrete_results??d.production_outputs?.concrete_results_this_cycle??0).toLocaleString();tasks.textContent=(d.last_cycle_tasks??0).toLocaleString();queue.textContent=(d.total_queued_tasks??0).toLocaleString();document.getElementById('production-status').innerHTML='<strong>LIVE PRODUCTION TELEMETRY</strong> · '+(d.observed_at||'current')+' · verification downstream';}catch(e){document.getElementById('production-status').textContent='PRODUCTION_TELEMETRY_UNAVAILABLE — no values invented';}}
+async function modulesLoad(){try{const r=await fetch('docs/yatharth-system/public-module-registry.json?ts='+Date.now());if(!r.ok)throw Error();const d=await r.json();document.getElementById('verified').textContent=d.verification?.independent_verified_claims??0;document.getElementById('summary').innerHTML='<strong>'+d.navigation.length+' public module entries</strong><span class="status">'+d.truth_rule+'</span>';for(const m of d.navigation){const a=document.createElement('a');a.className='card';a.href=m.href;a.innerHTML='<strong>'+m.label+'</strong><span class="status">'+m.status+'</span>';document.getElementById('grid').appendChild(a)}}catch(e){document.getElementById('summary').textContent='MODULE_REGISTRY_UNAVAILABLE';}}
+load();modulesLoad();setInterval(load,30000);
 </script></main></body></html>
