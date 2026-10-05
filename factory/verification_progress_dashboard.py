@@ -53,6 +53,13 @@ def validate_preparation_status(prep: dict, target: int) -> int:
     reviewed = prep["reviewed_records"]
     verified = prep["verified_records"]
 
+    if any(prep[field] != 0 for field in (
+        "queue_qc_error_count", "registry_qc_error_count", "promotion_qc_error_count"
+    )):
+        raise SystemExit("PREPARATION_STATUS_QC_ERRORS_PRESENT")
+    if prep["packet_qc_checked_items"] > prepared:
+        raise SystemExit("PREPARATION_STATUS_PACKET_QC_EXCEEDS_PREPARED")
+
     if not (prepared <= queued <= queue_total <= target):
         raise SystemExit("PREPARATION_STATUS_QUEUE_INVARIANT_FAILED")
     if not (verified <= reviewed <= prepared):
