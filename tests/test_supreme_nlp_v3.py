@@ -1,5 +1,6 @@
 from agents.supreme_nlp_v3 import (
     build_record,
+    validate_result_boundary,
     calibration_report,
     classification_report,
     selective_risk,
@@ -159,6 +160,13 @@ def main():
     tampered["result"]["features"] = dict(r["result"]["features"])
     tampered["result"]["features"]["sample_count"] = 999
     assert verify_record_integrity(tampered) is False
+    assert validate_result_boundary(r)["status"] == "PASS"
+    assert validate_result_boundary(r)["scientific_verification_granted"] is False
+    boundary_tampered = dict(r)
+    boundary_tampered["provenance"] = dict(r["provenance"])
+    boundary_tampered["provenance"]["independent_replication_verified"] = True
+    assert validate_result_boundary(boundary_tampered)["status"] == "FAIL"
+    assert validate_result_boundary(boundary_tampered)["scientific_verification_granted"] is False
 
     print("SUPREME_NLP_V3_CONTRACT=PASS")
 
