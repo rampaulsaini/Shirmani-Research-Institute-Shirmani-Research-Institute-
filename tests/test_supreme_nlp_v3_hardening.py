@@ -67,12 +67,14 @@ def main():
     assert features["baseline_z_score_max_abs"] == 1.0
     assert features["cross_modal_disagreement"] == 0.0
 
-    # Missing units are never treated as compatible for cross-modal comparison.
+    # Missing units are never treated as comparable anomaly groups.
     missing_units = build_record([
         {"modality":"a","feature":"x","value":1.0,"baseline_mean":0.0,"baseline_std":1.0},
         {"modality":"b","feature":"x","value":100.0,"baseline_mean":0.0,"baseline_std":1.0},
     ], "missing-unit")
     assert missing_units["result"]["features"]["cross_modal_disagreement"] == 0.0
+    assert missing_units["result"]["features"]["anomaly_comparability_status"] == "INSUFFICIENT_EVIDENCE"
+    assert missing_units["result"]["interpretation"]["abstention"] is True
 
     # Repeated source IDs are a source count, not evidence of independent experiments.
     duplicate_sources = build_record([
@@ -95,6 +97,15 @@ def main():
     assert independent["result"]["features"]["experiment_provenance_status"] == "DECLARED_IDENTIFIERS_ONLY"
     assert independent["result"]["features"]["independence_status"] == "NOT_ESTABLISHED"
     assert independent["provenance"]["independent_replication_verified"] is False
+
+    # Drift thresholds must reject type-confused values rather than leaking a TypeError.
+    try:
+        from agents.supreme_nlp_v3 import drift_report
+        drift_report([{"feature":"x","unit":"u","value":1}], [{"feature":"x","unit":"u","value":1}], "invalid")
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("non-numeric drift thresholds must raise ValueError")
 
     print("SUPREME_NLP_V3_HARDENING=PASS")
 
