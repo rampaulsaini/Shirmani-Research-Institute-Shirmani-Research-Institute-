@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-10-05T10:17:54.760867+00:00",
+  "engine": "SHIRMANI Multi-Layer Production Dispatcher",
+  "mode": "production-first",
+  "discovered_modules": 278,
+  "cycle_capacity": 500,
+  "last_cycle_tasks": 278,
+  "new_tasks_added": 278,
+  "total_queued_tasks": 278,
+  "lanes": [
+    "ai-ml-nlp",
+    "automation",
+    "content",
+    "economic",
+    "federation",
+    "platform",
+    "research",
+    "security-quality",
+    "social-media"
+  ],
+  "lane_counts_last_cycle": {
+    "platform": 53,
+    "automation": 116,
+    "federation": 14,
+    "research": 15,
+    "security-quality": 17,
+    "ai-ml-nlp": 43,
+    "content": 9,
+    "social-media": 4,
+    "economic": 7
+  },
+  "production_outputs": {
+    "verses": 0,
+    "reasoning_records": 0,
+    "claim_evidence_records": 10,
+    "provenance_records": 100200,
+    "audio_prompts": 10000,
+    "books": 100,
+    "research_paper_drafts": 100,
+    "certificates": 1000,
+    "verification_queue": 100200,
+    "verified_records": 0
+  },
+  "routing": {
+    "ai_ml_nlp": "deterministic-first; optional NVIDIA/deep-learning route when configured",
+    "quantum": "quantum-ready orchestration; no unsupported claim of quantum hardware execution",
+    "verification": "downstream result-quality/promotion layer"
+  },
+  "truth_boundary": "Generated production output is not automatically independently verified."
+}
