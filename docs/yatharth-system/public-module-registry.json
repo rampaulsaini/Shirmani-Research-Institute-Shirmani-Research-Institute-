@@ -1,32 +1,259 @@
 {
-  "schema_version":"1.0.0",
-  "last_reviewed":"2026-09-30",
-  "truth_rule":"architecture_is_not_deployment",
-  "navigation":[
-    {"id":"yatharth","label":"यथार्थ","href":"nishpaksh-samaj.html","status":"LIVE_ENTRY"},
-    {"id":"research","label":"Research","href":"research/","status":"RESEARCH"},
-    {"id":"verification","label":"Verification & Trust","href":"yatharth-status.html","status":"REVIEW_REQUIRED"},
-    {"id":"ai","label":"AI / ML / NLP","href":"#ai-operations","status":"BETA"},
-    {"id":"automission","label":"Automission","href":"federation-dashboard.html","status":"BETA"},
-    {"id":"music","label":"Yatharth AI Music","href":"https://rampaulsaini.github.io/yatharth-music-ai/","status":"ARCHITECTURE"},
-    {"id":"media","label":"Music & Media","href":"#live-media","status":"ARCHITECTURE"},
-    {"id":"employment","label":"Employment","href":"employment.html","status":"ARCHITECTURE"},
-    {"id":"freelancing","label":"Freelancing","href":"#income-workbench","status":"ARCHITECTURE"},
-    {"id":"business","label":"Business & Marketing","href":"economic-marketing-command-center.html","status":"ARCHITECTURE"},
-    {"id":"store","label":"Digital Store","href":"https://rampaulsaini.github.io/my-omniverse-store/","status":"ARCHITECTURE"},
-    {"id":"economy","label":"Yatharth Economy","href":"#economic-vision","status":"RESEARCH"},
-    {"id":"governance","label":"Governance / Justice","href":"docs/public-platform/governance-control-plane.md","status":"BETA"},
-    {"id":"nature","label":"Nature & Humanity","href":"docs/public-platform/governance-control-plane.md","status":"RESEARCH"},
-    {"id":"education","label":"Education","href":"#education","status":"ARCHITECTURE"},
-    {"id":"community","label":"Community","href":"social-platform.html","status":"ARCHITECTURE"},
-    {"id":"dashboard","label":"Public Dashboard","href":"yatharth-status.html","status":"LIVE"}
+  "schema_version": "1.1.0",
+  "last_reviewed": "2026-10-05",
+  "purpose": "Public module registry for the production-first Shirmani Research Institute platform.",
+  "truth_rule": "PUBLISHED/OPERATIONAL labels describe platform state; they do not create independent verification.",
+  "navigation": [
+    {
+      "id": "yatharth",
+      "label": "यथार्थ",
+      "href": "nishpaksh-samaj.html",
+      "status": "PUBLISHED",
+      "lane": "platform"
+    },
+    {
+      "id": "research",
+      "label": "Research",
+      "href": "research.html",
+      "status": "PUBLISHED",
+      "lane": "research"
+    },
+    {
+      "id": "research-papers",
+      "label": "Research Papers",
+      "href": "publications.html",
+      "status": "PUBLISHED",
+      "lane": "research"
+    },
+    {
+      "id": "ai-ml-nlp",
+      "label": "AI / ML / NLP Automission",
+      "href": "public-production-command-center.html",
+      "status": "PUBLISHED",
+      "lane": "ai-ml-nlp"
+    },
+    {
+      "id": "supreme-production",
+      "label": "Supreme Production",
+      "href": "production-dashboard.html",
+      "status": "PUBLISHED",
+      "lane": "automation"
+    },
+    {
+      "id": "production-results",
+      "label": "Public Production Results",
+      "href": "generated/public-production-index.html",
+      "status": "PUBLISHED",
+      "lane": "platform"
+    },
+    {
+      "id": "platform-console",
+      "label": "Public Platform Console",
+      "href": "public-platform-console.html",
+      "status": "PUBLISHED",
+      "lane": "platform"
+    },
+    {
+      "id": "platform-hub",
+      "label": "Public Platform Hub",
+      "href": "public-platform-hub.html",
+      "status": "PUBLISHED",
+      "lane": "platform"
+    },
+    {
+      "id": "modules",
+      "label": "Public Platform Modules",
+      "href": "public-platform-modules.html",
+      "status": "PUBLISHED",
+      "lane": "platform"
+    },
+    {
+      "id": "status",
+      "label": "Public Platform Status",
+      "href": "public-platform-status.html",
+      "status": "PUBLISHED",
+      "lane": "platform"
+    },
+    {
+      "id": "factory",
+      "label": "Factory Dashboard",
+      "href": "factory-dashboard.html",
+      "status": "PUBLISHED",
+      "lane": "automation"
+    },
+    {
+      "id": "federation",
+      "label": "Federation Dashboard",
+      "href": "federation-dashboard.html",
+      "status": "PUBLISHED",
+      "lane": "federation"
+    },
+    {
+      "id": "repositories",
+      "label": "Repositories",
+      "href": "repositories.html",
+      "status": "PUBLISHED",
+      "lane": "federation"
+    },
+    {
+      "id": "architecture",
+      "label": "AI / NLP / Automission Architecture",
+      "href": "docs/SUPREME-AI-ML-NLP-ARCHITECTURE.md",
+      "status": "PUBLISHED",
+      "lane": "ai-ml-nlp"
+    },
+    {
+      "id": "heart-view",
+      "label": "Heart-View Supreme Reasoning Layer",
+      "href": "SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md",
+      "status": "PUBLISHED",
+      "lane": "research"
+    },
+    {
+      "id": "employment",
+      "label": "Employment & Work Hub",
+      "href": "employment.html",
+      "status": "PUBLISHED",
+      "lane": "economic"
+    },
+    {
+      "id": "income",
+      "label": "Income Hub",
+      "href": "income-hub.html",
+      "status": "PUBLISHED",
+      "lane": "economic"
+    },
+    {
+      "id": "income-command",
+      "label": "Income Command Center",
+      "href": "income-command-center.html",
+      "status": "PUBLISHED",
+      "lane": "economic"
+    },
+    {
+      "id": "income-showcase",
+      "label": "Public Income Showcase",
+      "href": "public-income-showcase.html",
+      "status": "PUBLISHED",
+      "lane": "economic"
+    },
+    {
+      "id": "economic-marketing",
+      "label": "Economic Marketing Command Center",
+      "href": "economic-marketing-command-center.html",
+      "status": "PUBLISHED",
+      "lane": "economic"
+    },
+    {
+      "id": "work-execution",
+      "label": "Work Execution & Fulfilment",
+      "href": "work-execution-fulfilment-tracking.html",
+      "status": "DESIGNED",
+      "lane": "economic"
+    },
+    {
+      "id": "verified-work",
+      "label": "Verified Work",
+      "href": "verified-work.html",
+      "status": "DESIGNED",
+      "lane": "economic"
+    },
+    {
+      "id": "contribution-ledger",
+      "label": "Contribution Ledger",
+      "href": "contribution-ledger.html",
+      "status": "PUBLISHED",
+      "lane": "economic"
+    },
+    {
+      "id": "music",
+      "label": "Yatharth AI Music",
+      "href": "https://rampaulsaini.github.io/yatharth-music-ai/",
+      "status": "EXTERNAL",
+      "lane": "content"
+    },
+    {
+      "id": "store",
+      "label": "Digital Store",
+      "href": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "status": "EXTERNAL",
+      "lane": "economic"
+    },
+    {
+      "id": "social",
+      "label": "Social Platform",
+      "href": "social-platform.html",
+      "status": "PUBLISHED",
+      "lane": "social-media"
+    },
+    {
+      "id": "media",
+      "label": "Media",
+      "href": "media.html",
+      "status": "PUBLISHED",
+      "lane": "social-media"
+    },
+    {
+      "id": "identity",
+      "label": "Global Identity Passport",
+      "href": "global-identity-passport.html",
+      "status": "PUBLISHED",
+      "lane": "platform"
+    },
+    {
+      "id": "public-identity",
+      "label": "Public Identity",
+      "href": "public-identity.html",
+      "status": "PUBLISHED",
+      "lane": "platform"
+    },
+    {
+      "id": "yatharth-status",
+      "label": "Yatharth Status",
+      "href": "yatharth-status.html",
+      "status": "PUBLISHED",
+      "lane": "platform"
+    },
+    {
+      "id": "provenance",
+      "label": "Source / Provenance",
+      "href": "citations.html",
+      "status": "PUBLISHED",
+      "lane": "research"
+    }
   ],
-  "status_rules":{
-    "LIVE_ENTRY":"public entry exists; does not imply every downstream capability is live",
-    "ARCHITECTURE":"specified, not established as deployed",
-    "BETA":"implemented or integrated with explicit limitations",
-    "RESEARCH":"research/evidence layer",
-    "REVIEW_REQUIRED":"human review gate required"
+  "production": {
+    "principle": "Production-first; verification is downstream result-quality/promotion.",
+    "lanes": [
+      "research",
+      "ai-ml-nlp",
+      "content",
+      "platform",
+      "economic",
+      "social-media",
+      "federation",
+      "security-quality",
+      "automation"
+    ],
+    "public_result_surfaces": [
+      {
+        "label": "Public Production Command Center",
+        "href": "public-production-command-center.html"
+      },
+      {
+        "label": "Production Dashboard",
+        "href": "production-dashboard.html"
+      },
+      {
+        "label": "Public Production Results",
+        "href": "generated/public-production-index.html"
+      }
+    ]
   },
-  "verification":{"independent_verified_claims":0,"change_rule":"only qualifying independent human review may increase this value"}
+  "verification": {
+    "independent_verified_claims": 0,
+    "change_rule": "Only qualifying independent review may increase this value.",
+    "queue_state": "DOWNSTREAM",
+    "prepared_records": 100200
+  }
 }
