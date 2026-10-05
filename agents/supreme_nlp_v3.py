@@ -318,17 +318,24 @@ def drift_report(reference, current, threshold=2.0):
         return {"status":"INSUFFICIENT_EVIDENCE","drift_detected":False,"features":{}}
     features={}
     drift=False
+    insufficient_evidence=False
     for key in keys:
         rv=ref_groups.get(key,[]); cv=cur_groups.get(key,[])
         if not rv or not cv:
             features["|".join(key)]={"status":"INSUFFICIENT_EVIDENCE"}
-            drift=True
+            insufficient_evidence=True
             continue
         rm=sum(rv)/len(rv); cm=sum(cv)/len(cv)
         rs=sqrt(sum((x-rm)**2 for x in rv)/len(rv))
         scale=max(rs,1e-12)
         shift=abs(cm-rm)/scale
-        flagged=shift>=threshold
+        flagged=shift>=threshold_value
         drift=drift or flagged
         features["|".join(key)]={"reference_mean":rm,"current_mean":cm,"standardized_shift":round(shift,6),"drift":flagged}
-    return {"status":"DRIFT_DETECTED" if drift else "NO_DRIFT_DETECTED","drift_detected":drift,"threshold":threshold_value,"features":features}
+    if drift:
+        status="DRIFT_DETECTED"
+    elif insufficient_evidence:
+        status="INSUFFICIENT_EVIDENCE"
+    else:
+        status="NO_DRIFT_DETECTED"
+    return {"status":status,"drift_detected":drift,"insufficient_evidence":insufficient_evidence,"threshold":threshold_value,"features":features}
