@@ -37,13 +37,35 @@ def choose_next_action(signals=None):
             "governance":{"fail_closed":True,"independent_verification_required":True,
                           "scheduled_code_mutation_allowed":False,"automated_verified_promotion_allowed":False}}
 
-def build_cycle(signals=None):
+def _fingerprint_payload(cycle):
+    return {k: v for k, v in cycle.items() if k != "cycle_fingerprint"}
+
+
+def fingerprint_cycle(cycle):
+    return hashlib.sha256(
+        json.dumps(_fingerprint_payload(cycle), sort_keys=True, ensure_ascii=False).encode()
+    ).hexdigest()
+
+
+def hmac_compare(left, right):
+    import hmac
+    return hmac.compare_digest(str(left), str(right))
+
+
+def verify_cycle_fingerprint(cycle):
+    expected = cycle.get("cycle_fingerprint") if isinstance(cycle, dict) else None
+    return bool(expected) and hmac_compare(expected, fingerprint_cycle(cycle))
+
+
+def build_cycle(signals=None, executed_lane=None):
     decision=choose_next_action(signals)
-    cycle={"controller":"SHIRMANI Multi-Layer AI ML NLP Practitioner Automission","version":1,
+    cycle={"controller":"SHIRMANI Multi-Layer AI ML NLP Practitioner Automission","version":2,
            "generated_at_utc":datetime.now(timezone.utc).isoformat(),
            "architecture":["Observe","Collect","Clean","AI/ML/NLP Evaluate","Reason","Evidence","Independent Verify","QC","Automission","Continuous Improve"],
            "decision":decision}
-    cycle["cycle_fingerprint"]=hashlib.sha256(json.dumps(cycle,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+    if executed_lane is not None:
+        cycle["executed_lane"] = str(executed_lane)
+    cycle["cycle_fingerprint"]=fingerprint_cycle(cycle)
     return cycle
 
 def write_cycle(path="generated/multi-layer-automission/cycle.json"):
