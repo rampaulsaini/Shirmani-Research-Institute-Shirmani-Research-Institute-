@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "shirmani-public-product-catalog",
+  "status": "CATALOG_READY",
+  "integrity": "No invented sales, orders, customers, payments or verification states.",
+  "products": [
+    {"product_id":"audio-self-interview-complete-satisfaction","title_hi":"खुद का साक्षात्कार ही संपूर्ण संतुष्टि","type":"audio","price_inr":10000,"currency":"INR","listing_state":"READY_FOR_LISTING","verification_state":"NOT_VERIFIED","delivery":"digital_audio","source_reference":"creator-supplied product concept"},
+    {"product_id":"audio-shirmani-infinite-boundless-ishq","title_hi":"शिरोमणि अनंत असीम इश्क की क्षमता","type":"audio","price_inr":1500,"currency":"INR","listing_state":"READY_FOR_LISTING","verification_state":"NOT_VERIFIED","delivery":"digital_audio","source_reference":"creator-supplied product concept"},
+    {"product_id":"certificate-shirmani","title_hi":"प्रमाण पत्र","type":"digital_certificate","price_inr":495,"currency":"INR","listing_state":"READY_FOR_LISTING","verification_state":"NOT_VERIFIED","delivery":"digital_file","source_reference":"creator-supplied product concept"},
+    {"product_id":"short-audios-shirmani","title_hi":"Short Audios","type":"audio_bundle","price_inr":89,"currency":"INR","listing_state":"READY_FOR_LISTING","verification_state":"NOT_VERIFIED","delivery":"digital_audio","source_reference":"creator-supplied product concept"}
+  ],
+  "pipeline":["PRODUCT_SPEC","ASSET_PREPARATION","QUALITY_CHECK","LISTING","DISCOVERY","ORDER","DELIVERY","CUSTOMER_FEEDBACK","IMPROVEMENT","EVIDENCE","VERIFICATION"]
+}
