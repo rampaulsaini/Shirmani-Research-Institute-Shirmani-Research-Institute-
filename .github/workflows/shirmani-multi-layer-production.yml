@@ -1,0 +1,47 @@
+name: SHIRMANI Multi-Layer Production Automission
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: shirmani-multi-layer-production
+  cancel-in-progress: false
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run multi-layer production dispatcher
+        run: python3 factory/multi_layer_production.py
+      - name: Run existing product worker
+        run: python3 factory/batch_worker.py --batch-size 1000
+      - name: Publish visible production artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git config user.name "shirmani-production[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated factory
+          if git diff --cached --quiet; then
+            echo "No production artifact changes."
+            exit 0
+          fi
+          git commit -m "chore(production): expand multi-layer platform output"
+          BRANCH="automation/multi-layer-production-output"
+          git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
+          git branch -f "$BRANCH" HEAD
+          git push --force-with-lease origin "HEAD:$BRANCH"
+          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
+            gh pr create --base main --head "$BRANCH"               --title "chore(production): expand multi-layer platform output"               --body "Production-first automation: expands module work routing and visible output telemetry. Independent verification remains downstream and is not used as a substitute for production."
+          fi
