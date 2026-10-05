@@ -309,8 +309,37 @@ def drift_report(reference, current, threshold=2.0):
         raise ValueError("threshold must be a positive finite number") from exc
     if not isfinite(threshold_value) or threshold_value <= 0:
         raise ValueError("threshold must be a positive finite number")
-    ref=[normalize(x) for x in reference]
-    cur=[normalize(x) for x in current]
+    def normalize_observations(items, label):
+        rows = []
+        invalid = []
+        for index, raw in enumerate(items):
+            if not isinstance(raw, dict):
+                raise ValueError(f"{label}[{index}] must be a mapping")
+            raw_value = raw.get("value")
+            try:
+                value = float(raw_value)
+            except (TypeError, ValueError):
+                invalid.append(index)
+                continue
+            if not isfinite(value):
+                invalid.append(index)
+                continue
+            rows.append(normalize(raw))
+        if invalid:
+            return None, {
+                "status": "INSUFFICIENT_EVIDENCE",
+                "drift_detected": False,
+                "insufficient_evidence": True,
+                "reason": "NON_FINITE_OR_INVALID_OBSERVATION",
+                "invalid_indices": invalid,
+                "source_set": label,
+            }
+        return rows, None
+
+    ref, ref_error = normalize_observations(reference, "reference")
+    cur, cur_error = normalize_observations(current, "current")
+    if ref_error or cur_error:
+        return ref_error or cur_error
     ref_groups={}
     cur_groups={}
     for row in ref:
