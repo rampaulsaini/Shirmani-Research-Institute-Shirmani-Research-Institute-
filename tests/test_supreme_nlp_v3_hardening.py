@@ -23,6 +23,33 @@ def main():
     assert comparable["result"]["features"]["anomaly_score"] >= 0.90
     assert comparable["result"]["interpretation"]["abstention"] is True
 
+    # Cross-modal disagreement must use standardized values rather than raw
+    # magnitudes, so equal z-scores agree even when baseline means differ.
+    standardized_agreement = build_record([
+        {"modality":"a","feature":"signal","value":11.0,"unit":"u","source":"a","baseline_mean":10.0,"baseline_std":1.0},
+        {"modality":"b","feature":"signal","value":102.0,"unit":"u","source":"b","baseline_mean":100.0,"baseline_std":2.0},
+    ], "standardized-agreement")
+    assert standardized_agreement["result"]["features"]["cross_modal_disagreement"] == 0.0
+
+    # Opposite standardized effects in a comparable feature/unit group must
+    # trigger strong disagreement and therefore fail closed.
+    standardized_disagreement = build_record([
+        {"modality":"a","feature":"signal","value":11.0,"unit":"u","source":"a","baseline_mean":10.0,"baseline_std":1.0},
+        {"modality":"b","feature":"signal","value":98.0,"unit":"u","source":"b","baseline_mean":100.0,"baseline_std":1.0},
+    ], "standardized-disagreement")
+    assert standardized_disagreement["result"]["features"]["cross_modal_disagreement"] >= 0.85
+    assert standardized_disagreement["result"]["interpretation"]["abstention"] is True
+
+    # Same feature with different units is not silently compared as if the
+    # units were interchangeable; the result must remain fail-closed.
+    mixed_units = build_record([
+        {"modality":"a","feature":"signal","value":1.0,"unit":"m","source":"a","baseline_mean":0.0,"baseline_std":1.0},
+        {"modality":"b","feature":"signal","value":100.0,"unit":"cm","source":"b","baseline_mean":0.0,"baseline_std":1.0},
+    ], "mixed-units")
+    assert mixed_units["result"]["features"]["cross_modal_disagreement"] == 0.0
+    assert mixed_units["result"]["features"]["anomaly_comparability_status"] == "INSUFFICIENT_EVIDENCE"
+    assert mixed_units["result"]["interpretation"]["abstention"] is True
+
     # Calibration rejects an invalid bin count instead of silently accepting it.
     try:
         calibration_report([0.2], [0], bins=0)
