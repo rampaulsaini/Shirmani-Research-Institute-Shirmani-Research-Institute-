@@ -107,6 +107,16 @@ def main():
     else:
         raise AssertionError("non-numeric drift thresholds must raise ValueError")
 
+    # Record fingerprints must detect tampering and fail closed on malformed records.
+    from agents.supreme_nlp_v3 import verify_record_integrity
+    record = build_record([{"modality":"sensor","feature":"x","value":1.0}], "integrity")
+    assert verify_record_integrity(record) is True
+    tampered = dict(record)
+    tampered["result"] = dict(record["result"])
+    tampered["result"]["status"] = "tampered"
+    assert verify_record_integrity(tampered) is False
+    assert verify_record_integrity({"fingerprint": ""}) is False
+
     print("SUPREME_NLP_V3_HARDENING=PASS")
 
 if __name__ == "__main__":
