@@ -86,3 +86,18 @@ def test_record_counts_must_match_authoritative_registry():
 def test_record_counts_reject_stale_or_inflated_status(reviewed, verified, error):
     with pytest.raises(SystemExit, match=error):
         validate_record_counts(valid_status(), reviewed, verified)
+
+
+def test_status_rejects_any_qc_error():
+    for field in ("queue_qc_error_count", "registry_qc_error_count", "promotion_qc_error_count"):
+        data = valid_status()
+        data[field] = 1
+        with pytest.raises(SystemExit, match="PREPARATION_STATUS_QC_ERRORS_PRESENT"):
+            validate_preparation_status(data, 1000)
+
+
+def test_status_rejects_packet_qc_count_above_prepared():
+    data = valid_status()
+    data["packet_qc_checked_items"] = 601
+    with pytest.raises(SystemExit, match="PREPARATION_STATUS_PACKET_QC_EXCEEDS_PREPARED"):
+        validate_preparation_status(data, 1000)
