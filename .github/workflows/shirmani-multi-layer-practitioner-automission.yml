@@ -1,0 +1,150 @@
+name: SHIRMANI Multi-Layer AI-ML-NLP Practitioner Automission
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: shirmani-multi-layer-practitioner-automission
+  cancel-in-progress: false
+
+jobs:
+  practitioner-lanes:
+    name: \${{ matrix.lane }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        lane:
+          - AI-ML-NLP Quality
+          - Research Factory Integrity
+          - Evidence Registry
+          - Verification Readiness
+          - Heart-View Continuity
+          - Yatharth Status
+
+    steps:
+      - name: Checkout canonical source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run lane
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "\${{ matrix.lane }}" in
+            "AI-ML-NLP Quality")
+              python3 -m py_compile factory/supreme_ai_ml_nlp_engine.py
+              python3 -m py_compile factory/supreme_quality_controller.py
+              python3 -m unittest discover -s tests -p 'test_supreme_ai_ml_nlp.py' -v
+              python3 factory/supreme_quality_controller.py
+              test -s generated/supreme-quality-report.json
+              ;;
+            "Research Factory Integrity")
+              test -s FACTORY.md
+              test -d agents
+              test -d factory
+              test -d generated
+              python3 -m compileall -q agents factory
+              ;;
+            "Evidence Registry")
+              test -s generated/independent-verification-queue.jsonl.gz
+              test -s generated/independent-verification-registry.jsonl.gz
+              python3 factory/verification_registry_qc.py
+              ;;
+            "Verification Readiness")
+              python3 factory/verification_queue_qc.py
+              python3 factory/verification_review_packet_qc.py --help >/dev/null
+              python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("generated/independent-verification-status-2026-09-29.json")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          s=d["verification_summary"]
+          assert s["verification_readiness_percent"] == 100
+          assert s["independently_verified_records"] == 0
+          assert all(r["status"] != "VERIFIED" for r in d["records"])
+          print("READY:", s["queue_records"], "records; VERIFIED:", s["independently_verified_records"])
+          PY
+              ;;
+            "Heart-View Continuity")
+              test -s SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
+              test -s CONTINUATION-AUTO-STATE.md
+              grep -q "Preserve first. Reason second." SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
+              ;;
+            "Yatharth Status")
+              python3 scripts/validate_yatharth_status.py
+              ;;
+          esac
+
+      - name: Emit lane result
+        if: always()
+        run: |
+          mkdir -p automission-lane-results
+          cat > "automission-lane-results/\${{ matrix.lane }}.json" <<EOF
+          {
+            "lane": "\${{ matrix.lane }}",
+            "run_id": "\${{ github.run_id }}",
+            "status": "\${{ job.status }}",
+            "principle": "produce continuously; verify resulting outputs; never promote by workflow success alone"
+          }
+          EOF
+
+      - name: Upload lane result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: automission-lane-\${{ strategy.job-index }}
+          path: automission-lane-results/
+          retention-days: 14
+
+  convergence:
+    name: Multi-Layer Convergence
+    needs: practitioner-lanes
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout canonical source
+        uses: actions/checkout@v4
+
+      - name: Build machine-readable convergence map
+        run: |
+          set -euo pipefail
+          mkdir -p generated
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/independent-verification-status-2026-09-29.json").read_text(encoding="utf-8"))
+          s=d["verification_summary"]
+          out={
+            "mechanism":"multi-layer-practitioner-automission",
+            "mode":"quantum-inspired ensemble orchestration (classical deterministic execution)",
+            "production_policy":"all lanes continue independently; verification evaluates produced results",
+            "verification_policy":"fail-closed",
+            "queue_records":s["queue_records"],
+            "evidence_supported_records":s["evidence_supported_records"],
+            "verification_readiness_percent":s["verification_readiness_percent"],
+            "independently_verified_records":s["independently_verified_records"],
+            "independent_verified_percent":s["independent_verified_percent"],
+            "next_action":"CONTINUE_PRODUCTION_AND_VERIFY_RESULTS",
+            "no_direct_verification_promotion":True
+          }
+          Path("generated/multi-layer-automission-convergence.json").write_text(
+            json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Upload convergence map
+        uses: actions/upload-artifact@v4
+        with:
+          name: multi-layer-automission-convergence
+          path: generated/multi-layer-automission-convergence.json
+          retention-days: 14
