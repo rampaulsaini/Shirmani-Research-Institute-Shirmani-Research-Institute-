@@ -9,7 +9,7 @@ from dataclasses import dataclass, asdict
 from datetime import datetime, timezone
 from math import sqrt, isfinite
 from typing import Any, Iterable
-import hashlib, json
+import hashlib, hmac, json
 
 VERSION = "supreme-nlp-v3"
 
@@ -188,6 +188,17 @@ def record_integrity_payload(record: dict[str, Any]) -> dict[str, Any]:
         "result": record["result"],
         "provenance": record["provenance"],
     }
+
+def verify_record_integrity(record: dict[str, Any]) -> bool:
+    """Verify a v3 record fingerprint without treating it as scientific proof."""
+    try:
+        expected = record.get("fingerprint", "")
+        if not isinstance(expected, str) or not expected:
+            return False
+        actual = sha256(record_integrity_payload(record))
+        return hmac.compare_digest(expected, actual)
+    except (KeyError, TypeError, ValueError):
+        return False
 
 def build_record(signals, task_id):
     result=summarize(signals)
