@@ -14,7 +14,7 @@ def reality_state(o):
     if asset_path and (ROOT/asset_path).exists():
         return "ASSET_READY"
     if evidence in {"VERIFIED_IN_REPOSITORY","GENERATED_CERTIFICATES_EXIST"}:
-        return "EVIDENCE_READY"
+        return "EVIDENCE_DECLARED_ASSET_UNLOCATED"
     if o.get("delivery") in {"creative-service","service"}:
         return "SERVICE_INQUIRY"
     if evidence == "NOT_IN_REPOSITORY":
@@ -23,7 +23,7 @@ def reality_state(o):
 
 for o in offers:
     o["reality_state"]=reality_state(o)
-    o["production_claim"]="CONCRETE_DELIVERABLE" if o["reality_state"] in {"ASSET_READY","EVIDENCE_READY"} else "PUBLIC_OFFER_ONLY"
+    o["production_claim"]="CONCRETE_DELIVERABLE" if o["reality_state"]=="ASSET_READY" else "PUBLIC_OFFER_ONLY"
 
 counts={}
 for o in offers:
@@ -54,14 +54,14 @@ cards=[]
 for o in offers:
     paid="price_inr" in o
     state=o["reality_state"]
-    if state in {"ASSET_READY","EVIDENCE_READY"}:
+    if state=="ASSET_READY":
         status="PRODUCTION READY · ASSET EVIDENCED"
     elif state=="SERVICE_INQUIRY":
         status="SERVICE OFFER · INQUIRY REQUIRED"
     else:
         status="OFFER ONLY · DELIVERY ASSET MISSING"
     cta=o.get("store") or o.get("destination") or "https://wa.me/918082935186"
-    label="Open delivery/order path" if state in {"ASSET_READY","EVIDENCE_READY"} else ("Service inquiry" if state=="SERVICE_INQUIRY" else "Order path / prepare asset")
+    label="Open delivery/order path" if state=="ASSET_READY" else ("Service inquiry" if state=="SERVICE_INQUIRY" else "Order path / add asset")
     price=(f"₹{o['price_inr']:,}" + (" · "+o["price_note"] if o.get("price_note") else "")) if paid else "Service"
     cards.append(f'<article class="card"><div class="tag">{html.escape(o["lane"])}</div><h2>{html.escape(o["name"])}</h2><div class="price">{price}</div><p>Reality state: <b>{html.escape(state)}</b></p><p class="status">{html.escape(status)}</p><a class="btn" href="{html.escape(cta)}" target="_blank" rel="noopener">{html.escape(label)}</a></article>')
 
