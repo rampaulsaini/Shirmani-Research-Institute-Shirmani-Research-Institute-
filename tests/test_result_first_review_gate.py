@@ -5,6 +5,7 @@ def make_result():
     record = {
         "result_id": "result-001",
         "task_id": "task-001",
+        "result_artifact_ref": "generated/results/result-001.json",
         "result_status": "interpreted",
         "result": {
             "state": "stable_pattern",
@@ -75,11 +76,17 @@ def main():
 
 
     # Empty stable identifiers are not review-ready.
-    for field in ("result_id", "task_id", "result_status"):
+    for field in ("result_id", "task_id", "result_status", "result_artifact_ref"):
         invalid_id = dict(record)
         invalid_id[field] = "   "
         invalid_id["fingerprint"] = canonical_sha256(integrity_payload(invalid_id))
         assert validate_result(invalid_id)["status"] == "FAIL"
+
+    # A result object without a concrete artifact reference is not review-ready.
+    missing_artifact_ref = dict(record)
+    missing_artifact_ref.pop("result_artifact_ref")
+    missing_artifact_ref["fingerprint"] = ""
+    assert validate_result(missing_artifact_ref)["status"] == "FAIL"
 
     # Verification shortcuts are rejected recursively, including inside result payloads.
     nested = dict(record)
