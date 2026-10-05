@@ -1,15 +1,14 @@
 name: SHIRMANI Multi-Layer Production Automission
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: shirmani-multi-layer-production
@@ -19,29 +18,63 @@ jobs:
   production:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    environment:
+      name: github-pages
     steps:
       - uses: actions/checkout@v4
+
       - name: Run multi-layer production dispatcher
         run: python3 factory/multi_layer_production.py
+
       - name: Run existing product worker
         run: python3 factory/batch_worker.py --batch-size 1000
-      - name: Publish visible production artifacts
-        env:
-          GH_TOKEN: ${{ github.token }}
+
+      - name: Publish visible production result in Actions
+        shell: bash
         run: |
           set -euo pipefail
-          git config user.name "shirmani-production[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated factory
-          if git diff --cached --quiet; then
-            echo "No production artifact changes."
-            exit 0
-          fi
-          git commit -m "chore(production): expand multi-layer platform output"
-          BRANCH="automation/multi-layer-production-output"
-          git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
-          git branch -f "$BRANCH" HEAD
-          git push --force-with-lease origin "HEAD:$BRANCH"
-          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
-            gh pr create --base main --head "$BRANCH"               --title "chore(production): expand multi-layer platform output"               --body "Production-first automation: expands module work routing and visible output telemetry. Independent verification remains downstream and is not used as a substitute for production."
-          fi
+          test -f generated/multi-layer-production-status.json
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          p=json.loads(Path("generated/multi-layer-production-status.json").read_text(encoding="utf-8"))
+          print("## SHIRMANI Multi-Layer Production")
+          print(f"- Modules discovered: **{p['discovered_modules']:,}**")
+          print(f"- Tasks this cycle: **{p['last_cycle_tasks']:,}**")
+          print(f"- Total queued work units: **{p['total_queued_tasks']:,}**")
+          print(f"- Lanes: **{len(p['lanes'])}**")
+          print("")
+          print("### Production outputs")
+          for k,v in p["production_outputs"].items():
+              print(f"- {k}: **{v:,}**")
+          print("")
+          print("Independent verification remains a downstream result-quality/promotion layer.")
+          print("Quantum execution is not claimed unless a real quantum backend is configured.")
+          PY
+
+      - name: Upload production telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-multi-layer-production-telemetry
+          path: |
+            generated/multi-layer-production-status.json
+            generated/MULTI-LAYER-PRODUCTION.md
+            generated/multi-layer-production-state.json
+            generated/production-work-queue.jsonl
+          retention-days: 30
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload live platform
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - name: Deploy live production dashboard
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Report live platform URL
+        run: |
+          echo "Live production dashboard: ${{ steps.deployment.outputs.page_url }}"
