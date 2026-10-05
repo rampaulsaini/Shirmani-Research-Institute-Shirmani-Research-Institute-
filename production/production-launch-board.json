@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-10-05",
+  "principle": "Production evidence over workflow count.",
+  "summary": {
+    "registered_offers": 15,
+    "repository_asset_verified": 1,
+    "external_delivery_paths_declared": 8,
+    "service_inquiry_routes": 7,
+    "verified_sales": 0,
+    "verified_payments": 0,
+    "independent_scientific_verifications": 0
+  },
+  "completion_rule": "REGISTERED is not DELIVERED; DELIVERED is not PAID; PAID is not independently verified.",
+  "items": [
+    {"id":"RESEARCH-001","name":"Shirmani Research Paper — PDF Edition","lane":"research","state":"DELIVERY_ASSET_VERIFIED","evidence":"research-paper.pdf","commercial_state":"FREE_PUBLIC"},
+    {"id":"P001","name":"खुद का साक्षात्कार ही संपूर्ण संतुष्टि","lane":"digital-audio","state":"EXTERNAL_DELIVERY_DECLARED","evidence":"production/live-products.html","commercial_state":"ORDER_PATH_DECLARED"},
+    {"id":"P002","name":"शिरोमणि अनंत असीम इश्क की क्षमता","lane":"digital-audio","state":"EXTERNAL_DELIVERY_DECLARED","evidence":"production/live-products.html","commercial_state":"ORDER_PATH_DECLARED"},
+    {"id":"P003","name":"साहिब तदरूप साक्षात्कार","lane":"digital-audio","state":"EXTERNAL_DELIVERY_DECLARED","evidence":"production/live-products.html","commercial_state":"ORDER_PATH_DECLARED"},
+    {"id":"P004","name":"खुद का साक्षात्कार ऑडियो","lane":"digital-audio","state":"EXTERNAL_DELIVERY_DECLARED","evidence":"production/live-products.html","commercial_state":"ORDER_PATH_DECLARED"},
+    {"id":"P005","name":"मेरा साहिब मेरा ही तदरूप साक्षात्कार","lane":"digital-audio","state":"EXTERNAL_DELIVERY_DECLARED","evidence":"production/live-products.html","commercial_state":"ORDER_PATH_DECLARED"},
+    {"id":"P006","name":"Short Audios Collection","lane":"digital-audio","state":"EXTERNAL_DELIVERY_DECLARED","evidence":"production/live-products.html","commercial_state":"ORDER_PATH_DECLARED"},
+    {"id":"P007","name":"प्रमाण पत्र","lane":"digital-assets","state":"EXTERNAL_DELIVERY_DECLARED","evidence":"production/live-products.html","commercial_state":"ORDER_PATH_DECLARED"},
+    {"id":"P008","name":"Short / Creator Assets","lane":"digital-assets","state":"EXTERNAL_DELIVERY_DECLARED","evidence":"production/live-products.html","commercial_state":"ORDER_PATH_DECLARED"},
+    {"id":"S001","name":"AI-assisted music production","lane":"service","state":"INQUIRY_READY","evidence":"products.html","commercial_state":"QUOTE_REQUIRED"},
+    {"id":"S002","name":"Audio / podcast production","lane":"service","state":"INQUIRY_READY","evidence":"products.html","commercial_state":"QUOTE_REQUIRED"},
+    {"id":"S003","name":"Voice / narration packaging","lane":"service","state":"INQUIRY_READY","evidence":"products.html","commercial_state":"QUOTE_REQUIRED"},
+    {"id":"S004","name":"Research & Evidence Support","lane":"service","state":"INQUIRY_READY","evidence":"products.html","commercial_state":"QUOTE_REQUIRED"},
+    {"id":"S005","name":"AI Workflow & Automation","lane":"service","state":"INQUIRY_READY","evidence":"products.html","commercial_state":"QUOTE_REQUIRED"},
+    {"id":"S006","name":"Digital Publishing","lane":"service","state":"INQUIRY_READY","evidence":"products.html","commercial_state":"QUOTE_REQUIRED"},
+    {"id":"S007","name":"AI Marketing Assets","lane":"service","state":"INQUIRY_READY","evidence":"products.html","commercial_state":"QUOTE_REQUIRED"}
+  ],
+  "next_gates": [
+    "Attach/verify each paid digital asset at its declared delivery destination.",
+    "Connect one authorized payment provider or checkout route.",
+    "Record first real order and delivery evidence.",
+    "Only then mark a product SOLD/DELIVERED.",
+    "Keep scientific verification separate from commercial production."
+  ]
+}
