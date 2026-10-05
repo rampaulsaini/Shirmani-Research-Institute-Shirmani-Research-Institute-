@@ -59,17 +59,34 @@ jobs:
         run: python -m pip install --disable-pip-version-check pytest
       - name: Compile controller
         run: python -m py_compile agents/multi_layer_automission.py
-      - name: Run lane-specific tests
+      - name: Run lane-specific tests and record actual outcome
         env:
           TEST_PATH: ${{ matrix.test_path }}
           RUNNER: ${{ matrix.runner }}
+          LANE: ${{ matrix.layer }}
         run: |
+          set +e
           test -f "$TEST_PATH"
-          if [ "$RUNNER" = "python" ]; then
+          precheck=$?
+          if [ "$precheck" -ne 0 ]; then
+            exit_code=$precheck
+          elif [ "$RUNNER" = "python" ]; then
             python "$TEST_PATH"
+            exit_code=$?
           else
             python -m pytest -q "$TEST_PATH"
+            exit_code=$?
           fi
+          mkdir -p lane-output
+          python - "$LANE" "$TEST_PATH" "$RUNNER" "$exit_code" > lane-output/test-result.json <<'PY'
+          import json, sys
+          from agents.multi_layer_automission import build_result_outcome
+          lane, test_path, runner, raw_exit = sys.argv[1:5]
+          record = build_result_outcome(lane, test_path, runner, int(raw_exit))
+          print(json.dumps(record, ensure_ascii=False, indent=2))
+          PY
+          cat lane-output/test-result.json
+          exit "$exit_code"
       - name: Emit lane record
         env:
           LANE: ${{ matrix.layer }}
@@ -80,12 +97,20 @@ jobs:
           python - <<'PY'
           import json, os
           from pathlib import Path
-          from agents.multi_layer_automission import build_cycle, verify_cycle_fingerprint
+          from agents.multi_layer_automission import build_cycle, verify_cycle_fingerprint, review_result_outcome
           cycle=build_cycle({os.environ["LANE"]:1.0}, executed_lane=os.environ["LANE"])
           cycle["lane_contract"]={"focus":os.environ["FOCUS"],"test_path":os.environ["TEST_PATH"],"runner":os.environ["RUNNER"]}
+          observed=json.loads(Path("lane-output/test-result.json").read_text(encoding="utf-8"))
+          expected={k: observed[k] for k in ("lane","test_path","runner","exit_code","status")}
+          outcome=review_result_outcome(expected, observed)
+          assert outcome["matched"] is True
+          assert observed["exit_code"] == 0
+          assert observed["status"] == "PASS"
+          cycle["result_outcome"]=observed
+          cycle["result_outcome_review"]=outcome
           cycle["cycle_fingerprint"]=__import__("agents.multi_layer_automission",fromlist=["fingerprint_cycle"]).fingerprint_cycle(cycle)
           assert verify_cycle_fingerprint(cycle)
-          out=Path("lane-output"); out.mkdir(exist_ok=True)
+          out=Path("lane-output")
           (out/"cycle.json").write_text(json.dumps(cycle,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(cycle["decision"]["winner"],ensure_ascii=False))
           PY
@@ -110,17 +135,22 @@ jobs:
           pattern: multi-layer-automission-*-${{ github.run_number }}
           path: lane-records
           merge-multiple: false
-      - name: Validate lane convergence and fingerprints
+      - name: Validate lane convergence, outcomes, and fingerprints
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          from agents.multi_layer_automission import verify_cycle_fingerprint, LANES
+          from agents.multi_layer_automission import verify_cycle_fingerprint, LANES, review_result_outcome
           expected = {lane.name for lane in LANES}
           rows = [json.loads(p.read_text(encoding="utf-8")) for p in Path("lane-records").rglob("cycle.json")]
           assert len(rows) == len(expected), f"expected {len(expected)} lane records, got {len(rows)}"
           assert {r.get("executed_lane") for r in rows} == expected
           assert all(verify_cycle_fingerprint(r) for r in rows)
+          assert all(r["result_outcome"]["exit_code"] == 0 for r in rows)
+          assert all(r["result_outcome"]["status"] == "PASS" for r in rows)
+          assert all(r["result_outcome_review"]["matched"] is True for r in rows)
+          assert all(r["result_outcome_review"]["independent_verification_established"] is False for r in rows)
+          assert all(r["result_outcome_review"]["scientific_truth_established"] is False for r in rows)
           assert all(r["decision"]["governance"]["fail_closed"] is True for r in rows)
           assert all(r["decision"]["governance"]["automated_verified_promotion_allowed"] is False for r in rows)
           assert all(r["decision"]["governance"]["scheduled_code_mutation_allowed"] is False for r in rows)
@@ -137,7 +167,7 @@ jobs:
           assert all(r["lane_contract"]["focus"] == expected_focus[r["executed_lane"]] for r in rows)
           assert all(r["lane_contract"]["test_path"] for r in rows)
           assert {r["lane_contract"]["runner"] for r in rows} == {"pytest", "python"}
-          print("MULTI_LAYER_CONVERGENCE=PASS")
+          print("MULTI_LAYER_RESULT_OUTCOME_CONVERGENCE=PASS")
           PY
       - name: Emit governance summary
         run: |
@@ -145,6 +175,8 @@ jobs:
             echo "# Multi-Layer Automission"
             echo
             echo "- 6 orchestration lanes executed."
+            echo "- Each lane is bound to its actual test-process exit result."
+            echo "- Result outcome review is separate from scientific/independent verification."
             echo "- Selection: quantum-inspired deterministic scoring."
             echo "- Quantum hardware used: **No**."
             echo "- Automated VERIFIED promotion: **Blocked**."
