@@ -29,21 +29,27 @@ jobs:
           - layer: practitioner
             test_path: tests/test_supreme_ai.py
             focus: practitioner-core
+            runner: pytest
           - layer: ml
-            test_path: tests/test_supreme_nlp_v3.py
+            test_path: tests/test_supreme_ai_ml_nlp.py
             focus: ml-validation
+            runner: pytest
           - layer: nlp
             test_path: tests/test_supreme_nlp_end_to_end.py
             focus: nlp-end-to-end
+            runner: pytest
           - layer: evidence
             test_path: tests/supreme_independent_verification_ledger.py
             focus: independent-evidence-ledger
+            runner: python
           - layer: automission
             test_path: tests/supreme_nlp_automission_hardening.py
             focus: automission-hardening
+            runner: python
           - layer: quantum-mechanism
             test_path: tests/test_multi_layer_automission.py
             focus: deterministic-orchestration
+            runner: pytest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -54,7 +60,14 @@ jobs:
       - name: Run lane-specific tests
         env:
           TEST_PATH: ${{ matrix.test_path }}
-        run: python -m pytest -q "$TEST_PATH"
+          RUNNER: ${{ matrix.runner }}
+          RUNNER: ${{ matrix.runner }}
+        run: |
+          if [ "$RUNNER" = "python" ]; then
+            python "$TEST_PATH"
+          else
+            python -m pytest -q "$TEST_PATH"
+          fi
       - name: Emit lane record
         env:
           LANE: ${{ matrix.layer }}
@@ -66,7 +79,7 @@ jobs:
           from pathlib import Path
           from agents.multi_layer_automission import build_cycle, verify_cycle_fingerprint
           cycle=build_cycle({os.environ["LANE"]:1.0}, executed_lane=os.environ["LANE"])
-          cycle["lane_contract"]={"focus":os.environ["FOCUS"],"test_path":os.environ["TEST_PATH"]}
+          cycle["lane_contract"]={"focus":os.environ["FOCUS"],"test_path":os.environ["TEST_PATH"],"runner":os.environ["RUNNER"]}
           cycle["cycle_fingerprint"]=__import__("agents.multi_layer_automission",fromlist=["fingerprint_cycle"]).fingerprint_cycle(cycle)
           assert verify_cycle_fingerprint(cycle)
           out=Path("lane-output"); out.mkdir(exist_ok=True)
@@ -120,6 +133,7 @@ jobs:
           assert {r["lane_contract"]["focus"] for r in rows} == set(expected_focus.values())
           assert all(r["lane_contract"]["focus"] == expected_focus[r["executed_lane"]] for r in rows)
           assert all(r["lane_contract"]["test_path"] for r in rows)
+          assert {r["lane_contract"]["runner"] for r in rows} == {"pytest", "python"}
           print("MULTI_LAYER_CONVERGENCE=PASS")
           PY
       - name: Emit governance summary
