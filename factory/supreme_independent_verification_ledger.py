@@ -53,34 +53,42 @@ def validate_record(record, schema):
             errors.append("VERIFIED record requires evidence_refs")
     return errors
 
-def main():
-    started = datetime.now(timezone.utc)
-    schema = load_schema()
-    target = target_value()
-    RECORD_DIR.mkdir(parents=True, exist_ok=True)
-
+def scan_records(record_dir, schema):
     counts = {state: 0 for state in sorted(STATES)}
     blockers = []
     records_seen = 0
     record_ids = set()
 
-    for path in sorted(RECORD_DIR.glob("*.json")):
+    for path in sorted(record_dir.glob("*.json")):
         records_seen += 1
         try:
             record = json.loads(path.read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
             blockers.append(path.name + ": invalid JSON: " + str(exc))
             continue
+
         record_id = record.get("record_id") if isinstance(record, dict) else None
         if record_id in record_ids:
             blockers.append(path.name + ": duplicate record_id: " + str(record_id))
         elif record_id:
             record_ids.add(record_id)
+
         errors = validate_record(record, schema)
         if errors:
             blockers.extend(path.name + ": " + error for error in errors)
             continue
         counts[record["verification_state"]] += 1
+
+    return counts, blockers, records_seen
+
+
+def main():
+    started = datetime.now(timezone.utc)
+    schema = load_schema()
+    target = target_value()
+    RECORD_DIR.mkdir(parents=True, exist_ok=True)
+
+    counts, blockers, records_seen = scan_records(RECORD_DIR, schema)
 
     verified = counts["VERIFIED"]
     if verified > target:
