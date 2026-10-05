@@ -35,6 +35,28 @@ FORBIDDEN_VERIFICATION_FLAGS = {
     "independently_verified",
     "scientific_verification_granted",
 }
+REQUIRED_PROVENANCE_FIELDS = (
+    "generator",
+    "verification_status",
+    "independent_replication_verified",
+)
+
+
+def has_true_verification_flag(value: Any) -> bool:
+    """Reject verification shortcuts at any nesting depth."""
+    if isinstance(value, dict):
+        return any(
+            (key in FORBIDDEN_VERIFICATION_FLAGS and value[key] is True)
+            or has_true_verification_flag(child)
+            for key, child in value.items()
+        )
+    if isinstance(value, list):
+        return any(has_true_verification_flag(item) for item in value)
+    return False
+
+
+def non_empty_string(value: Any) -> bool:
+    return isinstance(value, str) and bool(value.strip())
 
 
 def canonical_sha256(value: Any) -> str:
@@ -67,19 +89,24 @@ def verify_integrity(record: dict[str, Any]) -> bool:
 
 def validate_result(record: dict[str, Any]) -> dict[str, Any]:
     checks: dict[str, bool] = {}
-    checks["required_fields"] = all(record.get(k) is not None for k in REQUIRED_FIELDS)
+    checks["required_fields"] = (
+        all(non_empty_string(record.get(k)) for k in ("result_id", "task_id", "result_status"))
+        and isinstance(record.get("result"), dict)
+    )
     checks["result_status_allowed"] = str(record.get("result_status", "")) in ALLOWED_RESULT_STATUSES
     checks["result_object_present"] = isinstance(record.get("result"), dict)
     provenance = record.get("provenance")
-    checks["provenance_present"] = isinstance(provenance, dict) and bool(provenance)
+    checks["provenance_present"] = (
+        isinstance(provenance, dict)
+        and non_empty_string(provenance.get("generator"))
+        and non_empty_string(provenance.get("verification_status"))
+        and isinstance(provenance.get("independent_replication_verified"), bool)
+    )
     checks["integrity"] = verify_integrity(record)
 
     # Explicitly reject attempts to turn this post-result gate into a direct
     # verification shortcut.
-    checks["no_direct_verification_shortcut"] = not any(
-        key in record and record.get(key) is True
-        for key in FORBIDDEN_VERIFICATION_FLAGS
-    )
+    checks["no_direct_verification_shortcut"] = not has_true_verification_flag(record)
     if isinstance(provenance, dict):
         checks["provenance_not_verified"] = (
             provenance.get("verification_status") == "UNVERIFIED"
