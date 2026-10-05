@@ -1,0 +1,59 @@
+name: SHIRMANI Production Persistence & Truth Gate
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "SHIRMANI Multi-Layer Production Automission"
+      - "SHIRMANI Real Product Catalog Production"
+    types: [completed]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-production-persistence
+  cancel-in-progress: false
+
+jobs:
+  persist:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Materialize production records
+        run: |
+          python3 factory/multi_layer_production.py
+          python3 factory/public_production_materializer.py
+          python3 factory/production_truth_gate.py
+      - name: Publish persistent production state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/production-work-queue.jsonl generated/production-results.jsonl generated/public-production-catalog.json generated/public-production-module-index.json generated/public-production-by-module.html generated/PRODUCTION-TRUTH.json generated/multi-layer-production-status.json generated/MULTI-LAYER-PRODUCTION.md
+          if git diff --cached --quiet; then
+            echo "No persistent production-state changes."
+            exit 0
+          fi
+          git commit -m "chore(production): persist concrete production state and truth gate"
+          git push origin HEAD:main
+      - name: Emit production truth summary
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          p=json.load(open("generated/PRODUCTION-TRUTH.json", encoding="utf-8"))
+          print("# SHIRMANI Production Truth Gate")
+          print(f"- Registered offers: **{p['offers_registered']}**")
+          print(f"- Persistent production records: **{p['persistent_production_records']}**")
+          print(f"- Independently VERIFIED: **{p['independent_verified_records']}**")
+          print("- Sales claimed: **0 unless transaction evidence exists**")
+          print("- Customer deliveries claimed: **0 unless delivery evidence exists**")
+          print(f"- Production records gate: **{p['gates']['production_records']}**")
+          print(f"- Verification gate: **{p['gates']['independent_verification']}**")
+          PY

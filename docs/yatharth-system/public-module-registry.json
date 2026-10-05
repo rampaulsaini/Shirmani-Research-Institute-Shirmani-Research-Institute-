@@ -220,6 +220,20 @@
       "href": "citations.html",
       "status": "PUBLISHED",
       "lane": "research"
+    },
+    {
+      "id": "production-fulfilment",
+      "label": "Production Fulfilment",
+      "href": "production-fulfilment.html",
+      "status": "PUBLISHED",
+      "lane": "economic"
+    },
+    {
+      "id": "production-truth",
+      "label": "Production Truth Gate",
+      "href": "generated/PRODUCTION-TRUTH.json",
+      "status": "AUTOMATED",
+      "lane": "security-quality"
     }
   ],
   "production": {
@@ -247,6 +261,14 @@
       {
         "label": "Public Production Results",
         "href": "generated/public-production-index.html"
+      },
+      {
+        "label": "Production Fulfilment",
+        "href": "production-fulfilment.html"
+      },
+      {
+        "label": "Production Truth Gate",
+        "href": "generated/PRODUCTION-TRUTH.json"
       }
     ]
   },
