@@ -212,6 +212,29 @@ def verify_record_integrity(record: dict[str, Any]) -> bool:
     except (KeyError, TypeError, ValueError):
         return False
 
+def validate_result_boundary(record: dict[str, Any]) -> dict[str, Any]:
+    """Validate a produced result artifact without granting scientific verification.
+
+    This is a post-result integrity/contract gate: it checks required fields,
+    fingerprint integrity, and fail-closed verification semantics. It never
+    promotes UNVERIFIED records to VERIFIED.
+    """
+    checks = {
+        "record_integrity": verify_record_integrity(record),
+        "schema_present": record.get("schema_version") == VERSION,
+        "task_id_present": isinstance(record.get("task_id"), str) and bool(record.get("task_id").strip()),
+        "verification_fail_closed": (
+            record.get("result", {}).get("interpretation", {}).get("verification_status") == "UNVERIFIED"
+            and record.get("provenance", {}).get("verification_status") == "UNVERIFIED"
+            and record.get("provenance", {}).get("independent_replication_verified") is False
+        ),
+    }
+    return {
+        "status": "PASS" if all(checks.values()) else "FAIL",
+        "checks": checks,
+        "scientific_verification_granted": False,
+    }
+
 def build_record(signals, task_id):
     result=summarize(signals)
     record = {
