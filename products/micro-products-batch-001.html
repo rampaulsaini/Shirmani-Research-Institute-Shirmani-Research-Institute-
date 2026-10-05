@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Functional Micro Products — Batch 001</title>
+<style>
+body{margin:0;background:#09111b;color:#eef2f7;font-family:system-ui,sans-serif;line-height:1.5}main{max-width:1200px;margin:auto;padding:20px}
+.hero,.card{background:#111a26;border:1px solid #334155;border-radius:16px;padding:18px;margin:12px 0}.hero{border:2px solid #d9b85a}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+h1,h2{color:#e8c968}input,textarea,select{width:100%;box-sizing:border-box;padding:9px;margin:5px 0;background:#08101a;color:#fff;border:1px solid #475569;border-radius:7px}textarea{min-height:80px}
+button{padding:9px 12px;margin:4px 3px 4px 0;border:1px solid #d9b85a;border-radius:7px;background:#192538;color:#fff;cursor:pointer}pre{white-space:pre-wrap;background:#060a10;padding:10px;border-radius:7px;min-height:25px}
+small{color:#aab6c5}.tag{color:#67e8f9;font-weight:800}
+</style></head><body><main>
+<section class="hero"><div class="tag">PRODUCT-FIRST · FUNCTIONAL STATIC PRODUCTS · BATCH 001</div>
+<h1>꙰ SHIRMANI Micro Digital Products</h1>
+<p>यहाँ workflow cards नहीं, browser में चलने वाले वास्तविक छोटे digital utilities हैं। यह पहला production batch है; आगे इसी factory pattern से हजारों अलग utilities बनाई जा सकती हैं।</p>
+<p><a href="../index.html">Main Hub</a> · <a href="index.html">Product Factory</a></p></section>
+<div class="grid">
+<section class="card"><small>MP001 · UTILITIES</small><h2>Smart Calculator</h2><input id="c1" placeholder="1250*0.18+499"><button onclick="calc()">Calculate</button><pre id="o1"></pre></section>
+<section class="card"><small>MP002 · UTILITIES</small><h2>Percentage</h2><input id="p1" type="number" placeholder="Amount"><input id="p2" type="number" placeholder="%"><button onclick="pct()">Calculate</button><pre id="o2"></pre></section>
+<section class="card"><small>MP003 · WRITING</small><h2>Word & Character Counter</h2><textarea id="w"></textarea><button onclick="countText()">Count</button><pre id="o3"></pre></section>
+<section class="card"><small>MP004 · WRITING</small><h2>Text Cleaner</h2><textarea id="cl"></textarea><button onclick="clean()">Clean</button><button onclick="copy('o4')">Copy</button><pre id="o4"></pre></section>
+<section class="card"><small>MP005 · SEO</small><h2>Slug Generator</h2><input id="sl" placeholder="My New Digital Product"><button onclick="slug()">Generate</button><pre id="o5"></pre></section>
+<section class="card"><small>MP006 · DEVELOPER</small><h2>JSON Formatter</h2><textarea id="js"></textarea><button onclick="fmt()">Format</button><pre id="o6"></pre></section>
+<section class="card"><small>MP007 · DEVELOPER</small><h2>Base64 Encoder / Decoder</h2><textarea id="b"></textarea><select id="bm"><option>encode</option><option>decode</option></select><button onclick="b64()">Run</button><pre id="o7"></pre></section>
+<section class="card"><small>MP008 · EDUCATION</small><h2>Study Planner</h2><input id="sub" placeholder="Math,Physics,English"><input id="hrs" type="number" value="2" placeholder="hours/day"><input id="days" type="number" value="7"><button onclick="study()">Build Plan</button><pre id="o8"></pre></section>
+<section class="card"><small>MP009 · PRODUCTIVITY</small><h2>Focus Timer</h2><input id="mins" type="number" value="25"><button onclick="startTimer()">Start</button><button onclick="stopTimer()">Stop</button><h2 id="timer">25:00</h2></section>
+<section class="card"><small>MP010 · BUSINESS</small><h2>Quote Builder</h2><input id="client" placeholder="Client"><textarea id="scope" placeholder="Deliverables"></textarea><input id="price" type="number" placeholder="Amount"><button onclick="quote()">Build Quote</button><div id="o10"></div></section>
+<section class="card"><small>MP011 · UTILITIES</small><h2>Date Difference</h2><input id="da" type="date"><input id="db" type="date"><button onclick="dateDiff()">Calculate</button><pre id="o11"></pre></section>
+<section class="card"><small>MP012 · DESIGN</small><h2>Color Palette Maker</h2><input id="hex" value="#3366ff"><button onclick="palette()">Generate</button><div id="o12"></div></section>
+</div>
+<section class="hero"><strong>Production truth:</strong> these are functional static browser tools. A functional product is not automatically a sale, payment, delivery, accreditation, court authority, currency deployment, or independent verification.</section>
+<script>
+const $=id=>document.getElementById(id),v=id=>$(id).value.trim(),out=(id,x)=>$(id).textContent=typeof x==="string"?x:JSON.stringify(x,null,2);
+function calc(){let s=v("c1");if(!/^[0-9+\-*/().% \t]+$/.test(s))return out("o1","Only basic arithmetic is allowed.");try{out("o1",String(Function("return ("+s+")")()))}catch(e){out("o1","Invalid expression.")}}
+function pct(){let a=+v("p1"),p=+v("p2");out("o2",{percentage:a*p/100,increase:a*(1+p/100),decrease:a*(1-p/100)})}
+function countText(){let s=v("w"),words=s?s.split(/\s+/).length:0;out("o3",{words,characters:s.length,characters_without_spaces:s.replace(/\s/g,"").length,lines:s?s.split(/\n/).length:0})}
+function clean(){out("o4",v("cl").replace(/[ \t]+/g," ").split(/\n/).map(x=>x.trim()).filter(Boolean).join("\n"))}
+function slug(){out("o5",v("sl").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,""))}
+function fmt(){try{out("o6",JSON.stringify(JSON.parse(v("js")),null,2))}catch(e){out("o6","Invalid JSON: "+e.message)}}
+function b64(){try{out("o7",v("bm")==="encode"?btoa(unescape(encodeURIComponent(v("b")))):decodeURIComponent(escape(atob(v("b")))))}catch(e){out("o7","Invalid input.")}}
+function study(){let s=v("sub").split(",").map(x=>x.trim()).filter(Boolean),h=+v("hrs"),d=+v("days"),x=s.length?h/s.length:0;out("o8",s.map(subject=>({subject,daily_hours:+x.toFixed(2),days:d,total_hours:+(x*d).toFixed(2)})))}
+let ti=null,sec=1500;function startTimer(){sec=(+v("mins")||25)*60;clearInterval(ti);tick();ti=setInterval(tick,1000)}function tick(){$("timer").textContent=Math.floor(sec/60)+":"+String(sec%60).padStart(2,"0");if(sec<=0)stopTimer();else sec--}function stopTimer(){clearInterval(ti)}
+function esc(x){return String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function quote(){$("o10").innerHTML="<h3>Quotation Draft</h3><p>Client: "+esc(v("client"))+"</p><p>"+esc(v("scope")).replace(/\n/g,"<br>")+"</p><strong>₹"+(+v("price")||0).toFixed(2)+"</strong><p>Draft only; no payment is implied.</p>"}
+function dateDiff(){let a=new Date(v("da")),b=new Date(v("db"));if(isNaN(a)||isNaN(b))return out("o11","Choose both dates.");out("o11",Math.abs(Math.round((b-a)/86400000))+" days")}
+function palette(){let h=v("hex").replace("#","");if(!/^[0-9a-fA-F]{6}$/.test(h))return $("o12").textContent="Use #RRGGBB";let r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4),16),a=[];for(let i=-2;i<=2;i++){let f=1+i*.18,c=[r*f,g*f,b*f].map(x=>Math.max(0,Math.min(255,Math.round(x))));a.push("#"+c.map(x=>x.toString(16).padStart(2,"0")).join(""))}$("o12").innerHTML=a.map(c=>"<span style='display:inline-block;padding:35px 12px;background:"+c+"'>"+c+"</span>").join(" ")}
+function copy(id){navigator.clipboard?.writeText($(id).textContent)}
+</script></main></body></html>

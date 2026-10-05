@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "batch": "001",
+  "principle": "FUNCTIONAL_PRODUCT_OUTPUT_FIRST",
+  "product_count": 12,
+  "route": "products/micro-products-batch-001.html",
+  "products": [
+    {
+      "id": "MP001",
+      "name": "Smart Calculator",
+      "category": "utilities",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    },
+    {
+      "id": "MP002",
+      "name": "Percentage",
+      "category": "utilities",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    },
+    {
+      "id": "MP003",
+      "name": "Word & Character Counter",
+      "category": "writing",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    },
+    {
+      "id": "MP004",
+      "name": "Text Cleaner",
+      "category": "writing",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    },
+    {
+      "id": "MP005",
+      "name": "Slug Generator",
+      "category": "seo",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    },
+    {
+      "id": "MP006",
+      "name": "JSON Formatter",
+      "category": "developer",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    },
+    {
+      "id": "MP007",
+      "name": "Base64 Encoder / Decoder",
+      "category": "developer",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    },
+    {
+      "id": "MP008",
+      "name": "Study Planner",
+      "category": "education",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    },
+    {
+      "id": "MP009",
+      "name": "Focus Timer",
+      "category": "productivity",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    },
+    {
+      "id": "MP010",
+      "name": "Quote Builder",
+      "category": "business",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    },
+    {
+      "id": "MP011",
+      "name": "Date Difference",
+      "category": "utilities",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    },
+    {
+      "id": "MP012",
+      "name": "Color Palette Maker",
+      "category": "design",
+      "status": "FUNCTIONAL_STATIC_PRODUCT"
+    }
+  ],
+  "gates": {
+    "sale": "NOT_CLAIMED",
+    "payment": "NOT_CLAIMED",
+    "delivery": "NOT_CLAIMED",
+    "independent_verification": "DOWNSTREAM"
+  },
+  "next": "Generate additional distinct product batches from a data-driven factory; do not count workflow runs as products."
+}
