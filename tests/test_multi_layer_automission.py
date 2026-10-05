@@ -39,3 +39,17 @@ def test_verification_is_result_outcome_review_not_direct_automation():
     assert g["verification_basis"] == "verified_result_record_only"
     assert g["verification_mode"] == "result_outcome_review_not_direct_automation"
     assert g["automated_verified_promotion_allowed"] is False
+
+
+def test_invalid_control_signal_is_reported_and_blocks_execution():
+    decision = choose_next_action({"ml": float("nan"), "nlp": "not-a-number"})
+    assert decision["control_input_valid"] is False
+    assert decision["invalid_control_signals"] == ["ml", "nlp"]
+    assert decision["governance"]["orchestration_execution_allowed"] is False
+
+
+def test_valid_control_signals_allow_orchestration():
+    decision = choose_next_action({"ml": 0.5, "nlp": 1.0})
+    assert decision["control_input_valid"] is True
+    assert decision["invalid_control_signals"] == []
+    assert decision["governance"]["orchestration_execution_allowed"] is True
