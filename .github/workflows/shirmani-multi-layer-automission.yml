@@ -98,8 +98,8 @@ jobs:
           python - <<'PY'
           import json, os
           from pathlib import Path
-          from agents.multi_layer_automission import build_cycle, verify_cycle_fingerprint, review_result_outcome
-          cycle=build_cycle({os.environ["LANE"]:1.0}, executed_lane=os.environ["LANE"])
+          from agents.multi_layer_automission import build_cycle, verify_cycle_fingerprint, review_result_outcome, validate_lane_contract
+          validate_lane_contract(os.environ["LANE"], os.environ["FOCUS"], os.environ["TEST_PATH"], os.environ["RUNNER"])\n          cycle=build_cycle({os.environ["LANE"]:1.0}, executed_lane=os.environ["LANE"])
           cycle["lane_contract"]={"focus":os.environ["FOCUS"],"test_path":os.environ["TEST_PATH"],"runner":os.environ["RUNNER"]}
           observed=json.loads(Path("lane-output/test-result.json").read_text(encoding="utf-8"))
           expected={k: observed[k] for k in ("lane","test_path","runner","exit_code","status")}
@@ -143,7 +143,7 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          from agents.multi_layer_automission import verify_cycle_fingerprint, LANES, review_result_outcome
+          from agents.multi_layer_automission import verify_cycle_fingerprint, LANES, LANE_CONTRACTS, review_result_outcome, validate_lane_contract
           expected = {lane.name for lane in LANES}
           rows = [json.loads(p.read_text(encoding="utf-8")) for p in Path("lane-records").rglob("cycle.json")]
           assert len(rows) == len(expected), f"expected {len(expected)} lane records, got {len(rows)}"
@@ -168,7 +168,7 @@ jobs:
           }
           assert {r["lane_contract"]["focus"] for r in rows} == set(expected_focus.values())
           assert all(r["lane_contract"]["focus"] == expected_focus[r["executed_lane"]] for r in rows)
-          assert all(r["lane_contract"]["test_path"] for r in rows)
+          assert all(r["lane_contract"]["test_path"] for r in rows)\n          assert all(validate_lane_contract(r["executed_lane"], r["lane_contract"]["focus"], r["lane_contract"]["test_path"], r["lane_contract"]["runner"]) for r in rows)
           assert {r["lane_contract"]["runner"] for r in rows} == {"pytest", "python"}
           print("MULTI_LAYER_RESULT_OUTCOME_CONVERGENCE=PASS")
           PY
