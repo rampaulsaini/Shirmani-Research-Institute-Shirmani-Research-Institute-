@@ -96,7 +96,7 @@ def test_failed_lane_result_record_never_looks_verified():
     assert record["verification_status"] == "RESULT_OUTCOME_CHECKED"
     assert record["independent_verification_established"] is False
 
-def test_result_record_rejects_invalid_runner():
+def test_lane_contract_matches_declared_matrix():\n    from agents.multi_layer_automission import LANE_CONTRACTS, validate_lane_contract\n    for lane, contract in LANE_CONTRACTS.items():\n        assert validate_lane_contract(lane, contract["focus"], "tests/test.py", contract["runner"]) is True\n\ndef test_lane_contract_rejects_mismatched_focus_or_runner():\n    from agents.multi_layer_automission import validate_lane_contract\n    for focus, runner in (("wrong-focus", "pytest"), ("ml-validation", "python")):\n        try:\n            validate_lane_contract("ml", focus, "tests/test.py", runner)\n        except ValueError:\n            pass\n        else:\n            raise AssertionError("lane contract mismatch must be rejected")\n\ndef test_result_record_rejects_invalid_runner():
     try:
         build_result_outcome("ml", "tests/test.py", "shell", 0)
     except ValueError:
