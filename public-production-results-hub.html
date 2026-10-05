@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Production Results Hub</title>
+<style>
+body{margin:0;background:#070b12;color:#eef2f7;font-family:system-ui,sans-serif;line-height:1.55}
+main{max-width:1250px;margin:auto;padding:22px 16px 70px}
+h1,h2{color:#d4af37}.hero,.card{background:#111827;border:1px solid #334155;border-radius:16px;padding:18px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.big{font-size:2rem;font-weight:800}.muted{color:#aeb8c5}a{color:#67e8f9;text-decoration:none}
+.lane{padding:12px;border:1px solid #334155;border-radius:12px;background:#0d1522}
+.good{color:#6ee7b7}.warn{color:#fbbf24}.bar{height:10px;background:#1e293b;border-radius:99px;overflow:hidden}.fill{height:100%;background:#67e8f9}
+</style>
+</head>
+<body><main>
+<section class="hero">
+<h1>꙰ SHIRMANI Public Production Results Hub</h1>
+<p><strong>Production-first Automission:</strong> repository modules को वास्तविक, source-bound production artifacts में बदलना; verification उन परिणामों की downstream quality/evidence layer है।</p>
+<p><a href="production-command-center.html">⚡ Command Center</a> · <a href="public-production-live.html">📡 Live Telemetry</a> · <a href="factory-dashboard.html">🏭 Factory</a> · <a href="index.html">🏠 Main Hub</a></p>
+</section>
+<section class="grid">
+<div class="card"><h2>Production Modules</h2><div class="big" id="modules">—</div><div class="muted">latest materialized module index</div></div>
+<div class="card"><h2>Concrete Results / Cycle</h2><div class="big" id="results">—</div><div class="muted">source-bound production records</div></div>
+<div class="card"><h2>Production Lanes</h2><div class="big" id="lanesCount">—</div><div class="muted">active lanes in latest catalog</div></div>
+<div class="card"><h2>Verification</h2><div class="big warn">DOWNSTREAM</div><div class="muted">production is not independent verification</div></div>
+</section>
+<section class="card"><h2>📊 Latest Production Distribution</h2><div id="laneGrid" class="grid">Loading…</div></section>
+<section class="card"><h2>🔁 Continuous Production Loop</h2><p>Discover modules → route work → produce concrete artifact → persist → publish → measure → QC/evidence → downstream verification → audit → next cycle.</p><p class="good">Production result visibility is enabled from repository telemetry.</p></section>
+<section class="card"><h2>📁 Public Artifacts</h2>
+<p><a href="generated/public-production-catalog.json">Production Catalog</a> ·
+<a href="generated/public-production-module-index.json">Module Index JSON</a> ·
+<a href="generated/public-production-by-module.html">Module-wise Production</a> ·
+<a href="generated/production-results.jsonl">Production Result Stream</a> ·
+<a href="generated/production-work-queue.jsonl">Production Work Queue</a> ·
+<a href="generated/multi-layer-production-status.json">Multi-layer Telemetry</a></p>
+</section>
+<section class="card"><h2>🛡️ Integrity Boundary</h2>
+<p><strong>PRODUCED ≠ VERIFIED.</strong> A production record means a concrete repository-bound artifact was materialized. It does not by itself establish scientific truth, commercial sale, payment, or independent validation.</p>
+</section>
+<script>
+async function get(p){const r=await fetch(p+'?ts='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error(r.status);return r.json()}
+async function refresh(){
+ try{
+  const [s,c,m]=await Promise.all([
+   get('generated/multi-layer-production-status.json'),
+   get('generated/public-production-catalog.json'),
+   get('generated/public-production-module-index.json')
+  ]);
+  const n=Number(m.module_count||0), results=Number(c.cycle_results||s.last_cycle_concrete_results||0);
+  document.getElementById('modules').textContent=n.toLocaleString();
+  document.getElementById('results').textContent=results.toLocaleString();
+  const lanes=c.lanes||{}; const entries=Object.entries(lanes);
+  document.getElementById('lanesCount').textContent=entries.length;
+  const max=Math.max(1,...entries.map(([,v])=>Number(v)||0));
+  document.getElementById('laneGrid').innerHTML=entries.sort((a,b)=>b[1]-a[1]).map(([k,v])=>
+   '<div class="lane"><strong>'+k+'</strong><div>'+Number(v).toLocaleString()+' results</div><div class="bar"><div class="fill" style="width:'+((Number(v)/max)*100).toFixed(1)+'%"></div></div></div>'
+  ).join('');
+ }catch(e){
+  document.getElementById('laneGrid').textContent='PUBLIC_TELEMETRY_UNAVAILABLE: '+e;
+ }
+}
+refresh();setInterval(refresh,30000);
+</script>
+</main></body></html>
