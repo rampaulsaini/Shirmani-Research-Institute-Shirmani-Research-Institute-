@@ -42,9 +42,9 @@ jobs:
           python - <<'PY'
           import json, os
           from pathlib import Path
-          from agents.multi_layer_automission import build_cycle
-          cycle=build_cycle({os.environ["LANE"]:1.0})
-          cycle["executed_lane"]=os.environ["LANE"]
+          from agents.multi_layer_automission import build_cycle, verify_cycle_fingerprint
+          cycle=build_cycle({os.environ["LANE"]:1.0}, executed_lane=os.environ["LANE"])
+          assert verify_cycle_fingerprint(cycle)
           out=Path("lane-output"); out.mkdir(exist_ok=True)
           (out/"cycle.json").write_text(json.dumps(cycle,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(cycle["decision"]["winner"],ensure_ascii=False))
@@ -60,6 +60,29 @@ jobs:
     needs: lane
     runs-on: ubuntu-latest
     steps:
+      - name: Download all lane records
+        uses: actions/download-artifact@v4
+        with:
+          pattern: multi-layer-automission-*-${{ github.run_number }}
+          path: lane-records
+          merge-multiple: true
+      - name: Validate lane convergence and fingerprints
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.multi_layer_automission import verify_cycle_fingerprint, LANES
+          expected = {lane.name for lane in LANES}
+          rows = [json.loads(p.read_text(encoding="utf-8")) for p in Path("lane-records").rglob("cycle.json")]
+          assert len(rows) == len(expected), f"expected {len(expected)} lane records, got {len(rows)}"
+          assert {r.get("executed_lane") for r in rows} == expected
+          assert all(verify_cycle_fingerprint(r) for r in rows)
+          assert all(r["decision"]["governance"]["fail_closed"] is True for r in rows)
+          assert all(r["decision"]["governance"]["automated_verified_promotion_allowed"] is False for r in rows)
+          assert all(r["decision"]["governance"]["scheduled_code_mutation_allowed"] is False for r in rows)
+          assert all(r["decision"]["quantum_hardware_used"] is False for r in rows)
+          print("MULTI_LAYER_CONVERGENCE=PASS")
+          PY
       - name: Emit governance summary
         run: |
           {
