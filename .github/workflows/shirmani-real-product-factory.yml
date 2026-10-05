@@ -24,7 +24,7 @@ jobs:
           import json
           from pathlib import Path
           p=json.loads(Path('generated/1000-digital-products.json').read_text())
-          assert p['product_count']==1008 and len(p['products'])==1008
+          assert p['product_count']==1016 and len(p['products'])==1016
           assert Path('products/production-launch-center.html').exists()
           assert all(x['status']=='RUNNABLE_STATIC_MVP' for x in p['products'])
           print('REAL_PRODUCT_FACTORY PASS',p['product_count'])
