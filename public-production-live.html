@@ -22,13 +22,29 @@ pre{white-space:pre-wrap;overflow:auto;color:#cbd5e1}.ok{color:#6ee7b7}
 <section class="card"><h2>Public Artifacts</h2><p><a href="generated/public-production-catalog.json">Production Catalog</a> · <a href="generated/public-production-by-module.html">Module-wise Production</a> · <a href="generated/production-results.jsonl">Production Stream</a> · <a href="generated/multi-layer-production-status.json">Telemetry JSON</a></p></section>
 <section class="card"><h2>Integrity Boundary</h2><p class="ok">PRODUCED ≠ INDEPENDENTLY VERIFIED.</p><p>Production output is public and source-bound. Scientific, factual or high-impact claims still require their appropriate evidence and verification process.</p></section>
 <script>
-async function j(p){const r=await fetch(p+"?ts="+Date.now());if(!r.ok)throw Error(r.status);return r.json()}
-async function refresh(){try{const [q,s]=await Promise.all([j("generated/production-queue-status.json"),j("generated/multi-layer-production-status.json")]);
-document.getElementById("modules").textContent=(q.discovered_modules||0).toLocaleString();
-document.getElementById("tasks").textContent=(q.selected_tasks||0).toLocaleString();
-document.getElementById("results").textContent=(s.last_cycle_concrete_results||s.production_outputs?.concrete_results_this_cycle||0).toLocaleString();
-document.getElementById("lanes").textContent=JSON.stringify(q.lanes||{},null,2);
-document.getElementById("cycle").textContent=JSON.stringify({cycle:q.cycle,generated_at:q.generated_at,mode:s.mode,driver:s.production_driver},null,2);
-}catch(e){document.getElementById("cycle").textContent="PUBLIC_TELEMETRY_UNAVAILABLE: "+e}}
+async function j(p){const r=await fetch(p+"?ts="+Date.now(),{cache:"no-store"});if(!r.ok)throw Error(r.status);return r.json()}
+async function refresh(){
+ try{
+  const [s,c,m]=await Promise.all([
+   j("generated/multi-layer-production-status.json"),
+   j("generated/public-production-catalog.json"),
+   j("generated/public-production-module-index.json")
+  ]);
+  document.getElementById("modules").textContent=(m.module_count||0).toLocaleString();
+  document.getElementById("tasks").textContent=(s.production?.processed_batch||s.last_cycle_concrete_results||0).toLocaleString();
+  document.getElementById("results").textContent=(s.last_cycle_concrete_results||c.cycle_results||0).toLocaleString();
+  document.getElementById("lanes").textContent=JSON.stringify(c.lanes||{},null,2);
+  document.getElementById("cycle").textContent=JSON.stringify({
+    observed_at:s.observed_at,
+    generated_at:c.generated_at,
+    cycle_results:c.cycle_results,
+    production_modules:m.production_modules,
+    mode:s.mode,
+    verification:s.verification
+  },null,2);
+ }catch(e){
+  document.getElementById("cycle").textContent="PUBLIC_TELEMETRY_UNAVAILABLE: "+e
+ }
+}
 refresh();setInterval(refresh,30000);
 </script></main></body></html>
