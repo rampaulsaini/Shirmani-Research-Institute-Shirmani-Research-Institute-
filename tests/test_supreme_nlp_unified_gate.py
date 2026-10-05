@@ -1,6 +1,7 @@
 import json
 
 from factory import supreme_nlp_unified_gate as gate
+from agents.supreme_nlp_v3 import record_integrity_payload, sha256
 
 
 def main():
@@ -70,7 +71,7 @@ def main():
             interpretation = record["result"]["interpretation"]
             interpretation["verification_status"] = "VERIFIED"
             record["provenance"]["independent_replication_verified"] = True
-            record["fingerprint"] = gate.record_fingerprint(record)
+            record["fingerprint"] = sha256(record_integrity_payload(record))
             return record
 
         gate.build_record = uncalibrated_verified_record
