@@ -3,7 +3,7 @@
   "generated_at": "2026-10-05",
   "title": "SHIRMANI 1000+ Digital Product Factory",
   "principle": "Every catalog entry maps to a runnable browser engine; a catalog entry is not a sale or external hosted service.",
-  "product_count": 1000,
+  "product_count": 1016,
   "engine_count": 25,
   "families": [
     "Counting & Math",
@@ -10030,6 +10030,166 @@
       "engine": "nature",
       "status": "RUNNABLE_STATIC_MVP",
       "access": "products/1000-digital-product-factory.html?id=SP-1000",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1001",
+      "name": "SHIRMANI Universal Accessibility Auditor",
+      "family": "Supreme Extension",
+      "engine": "access",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1001",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1002",
+      "name": "SHIRMANI Inclusive Reading Assistant",
+      "family": "Supreme Extension",
+      "engine": "access",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1002",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1003",
+      "name": "SHIRMANI Color Contrast Studio",
+      "family": "Supreme Extension",
+      "engine": "access",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1003",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1004",
+      "name": "SHIRMANI Keyboard Navigation Lab",
+      "family": "Supreme Extension",
+      "engine": "access",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1004",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1005",
+      "name": "SHIRMANI SVG Icon Maker",
+      "family": "Supreme Extension",
+      "engine": "draw",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1005",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1006",
+      "name": "SHIRMANI Poster Composer",
+      "family": "Supreme Extension",
+      "engine": "draw",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1006",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1007",
+      "name": "SHIRMANI Storyboard Maker",
+      "family": "Supreme Extension",
+      "engine": "creator",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1007",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1008",
+      "name": "SHIRMANI Cartoon Scene Builder",
+      "family": "Supreme Extension",
+      "engine": "creator",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1008",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1009",
+      "name": "SHIRMANI Game Level Designer",
+      "family": "Supreme Extension",
+      "engine": "game",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1009",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1010",
+      "name": "SHIRMANI Game Scoreboard",
+      "family": "Supreme Extension",
+      "engine": "game",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1010",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1011",
+      "name": "SHIRMANI Dataset Profiler",
+      "family": "Supreme Extension",
+      "engine": "data",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1011",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1012",
+      "name": "SHIRMANI Spreadsheet Formula Lab",
+      "family": "Supreme Extension",
+      "engine": "data",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1012",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1013",
+      "name": "SHIRMANI SEO Keyword Cluster",
+      "family": "Supreme Extension",
+      "engine": "seo",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1013",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1014",
+      "name": "SHIRMANI Sitemap Builder",
+      "family": "Supreme Extension",
+      "engine": "seo",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1014",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1015",
+      "name": "SHIRMANI Quantum Circuit Notebook",
+      "family": "Supreme Extension",
+      "engine": "quantum",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1015",
+      "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
+      "commercial_status": "NOT_SOLD"
+    },
+    {
+      "id": "SP-1016",
+      "name": "SHIRMANI Product Packaging Designer",
+      "family": "Supreme Extension",
+      "engine": "commerce",
+      "status": "RUNNABLE_STATIC_MVP",
+      "access": "products/1000-digital-product-factory.html?id=SP-1016",
       "verification": "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY",
       "commercial_status": "NOT_SOLD"
     }
