@@ -119,8 +119,7 @@ jobs:
           cycle["cycle_fingerprint"]=__import__("agents.multi_layer_automission",fromlist=["fingerprint_cycle"]).fingerprint_cycle(cycle)
           assert verify_cycle_fingerprint(cycle)
           out=Path("lane-output")
-          (out/"cycle.json").write_text(json.dumps(cycle,ensure_ascii=False,indent=2)+"
-",encoding="utf-8")
+          (out/"cycle.json").write_text(json.dumps(cycle,ensure_ascii=False,indent=2)+ "\n",encoding="utf-8")
           print(json.dumps(cycle["decision"]["winner"],ensure_ascii=False))
           PY
       - name: Upload lane artifact
