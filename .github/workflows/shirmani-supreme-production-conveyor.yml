@@ -1,0 +1,58 @@
+name: SHIRMANI Supreme Production Conveyor
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Production tasks per cycle (100-5000)"
+        required: false
+        default: "1000"
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-supreme-production-conveyor
+  cancel-in-progress: false
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Run production-first multi-layer conveyor
+        env:
+          INPUT_BATCH_SIZE: ${{ inputs.batch_size }}
+        run: |
+          set -euo pipefail
+          batch="${INPUT_BATCH_SIZE:-1000}"
+          [[ "$batch" =~ ^[0-9]+$ ]] || batch=1000
+          [ "$batch" -lt 100 ] && batch=100
+          [ "$batch" -gt 5000 ] && batch=5000
+          python3 factory/supreme_production_conveyor.py --batch-size "$batch"
+      - name: Validate public result status
+        run: |
+          python3 - <<'PY'
+          import json
+          p=json.load(open("generated/production-status.json",encoding="utf-8"))
+          assert p["mode"]=="SUPREME_PRODUCTION_FIRST"
+          assert p["verification_boundary"]=="DOWNSTREAM_ONLY"
+          assert p["production_processed"] <= p["production_target"]
+          print("PRODUCTION:",p["production_processed"],"/",p["production_target"])
+          print("REMAINING:",p["production_remaining"])
+          PY
+      - name: Publish production results
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/production-status.json generated/production-conveyor-state.json generated/production-task-queue.jsonl.gz generated/production-batches generated/reasoning-manifest.jsonl generated/formulation-records.jsonl generated/claim-evidence.jsonl generated/provenance-ledger.jsonl generated/canonical-knowledge.jsonl generated/canonical-index.json generated/research-queue.jsonl generated/evidence-index.jsonl generated/product-queue.jsonl generated/product-catalog.json generated/multilingual-plan.json generated/pages-index.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "automission: publish production conveyor results"
+          git push
