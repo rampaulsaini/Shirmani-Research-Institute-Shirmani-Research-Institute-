@@ -59,7 +59,7 @@ jobs:
 
       - name: Validate verification boundary
         run: |
-          test -f .github/workflows/independent-verification-gate.yml
+          test -f .github/workflows/shirmani-independent-verification-gate.yml
           test -f research/independent-verification-protocol-2026-09-29.md
           grep -q "workflow succeeding is not independent verification" research/independent-verification-protocol-2026-09-29.md
           grep -q "counter-evidence" research/independent-verification-protocol-2026-09-29.md
