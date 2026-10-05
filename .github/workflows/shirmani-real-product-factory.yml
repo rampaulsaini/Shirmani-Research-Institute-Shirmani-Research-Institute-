@@ -2,31 +2,37 @@ name: SHIRMANI Real Product Factory
 on:
   push:
     branches: [main]
-    paths: ["products/**","factory/real_product_factory.py",".github/workflows/shirmani-real-product-factory.yml"]
-  schedule: [{cron: "*/15 * * * *"}]
+    paths: ["factory/real_product_factory.py",".github/workflows/shirmani-real-product-factory.yml"]
+  schedule:
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 permissions: {contents: write}
+concurrency: {group: shirmani-real-product-factory, cancel-in-progress: false}
 jobs:
   produce:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.x"}
-      - run: python3 factory/real_product_factory.py
-      - run: |
+      - name: Generate persistent product catalog
+        run: python3 factory/real_product_factory.py
+      - name: Validate product catalog
+        run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
-          p=json.loads(Path('generated/real-product-factory-status.json').read_text())
-          assert p['runnable_products']==1008
-          assert Path('products/index.html').exists() and Path('products/app.html').exists()
-          print('REAL_PRODUCT_FACTORY PASS',p['runnable_products'])
+          p=json.loads(Path('generated/1000-digital-products.json').read_text())
+          assert p['product_count']==1016 and len(p['products'])==1016
+          assert Path('products/production-launch-center.html').exists()
+          assert all(x['status']=='RUNNABLE_STATIC_MVP' for x in p['products'])
+          print('REAL_PRODUCT_FACTORY PASS',p['product_count'])
           PY
-      - run: |
+      - name: Persist production state
+        run: |
           git config user.name 'SHIRMANI Real Product Factory'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add generated/real-product-factory-status.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'chore(products): persist real product factory state'
+          git add generated/1000-digital-products.json generated/real-product-factory-status.json
+          git diff --cached --quiet || git commit -m 'chore(products): persist runnable product catalog'
           git push origin HEAD:main
