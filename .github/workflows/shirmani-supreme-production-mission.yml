@@ -1,0 +1,30 @@
+name: SHIRMANI Supreme Multi-Lane Production Mission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-supreme-production
+  cancel-in-progress: false
+
+jobs:
+  production-sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run deterministic multi-lane production sweep
+        run: python3 scripts/production_sweep.py
+      - name: Publish production results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/production generated/agent-runtime.json generated/agent-status.json
+          git diff --cached --quiet || git commit -m "chore: publish supreme multi-lane production results"
+          git push
