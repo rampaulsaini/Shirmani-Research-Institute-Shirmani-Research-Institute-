@@ -88,6 +88,7 @@ jobs:
           cat lane-output/test-result.json
           exit "$exit_code"
       - name: Emit lane record
+        if: ${{ always() }}
         env:
           LANE: ${{ matrix.layer }}
           FOCUS: ${{ matrix.focus }}
@@ -115,6 +116,7 @@ jobs:
           print(json.dumps(cycle["decision"]["winner"],ensure_ascii=False))
           PY
       - name: Upload lane artifact
+        if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: multi-layer-automission-${{ matrix.layer }}-${{ github.run_number }}
@@ -122,6 +124,7 @@ jobs:
           retention-days: 14
 
   aggregate:
+    if: ${{ always() }}
     needs: lane
     runs-on: ubuntu-latest
     steps:
