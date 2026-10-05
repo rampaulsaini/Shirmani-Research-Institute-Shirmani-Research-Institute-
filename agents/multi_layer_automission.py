@@ -164,8 +164,7 @@ def build_cycle(signals=None, executed_lane=None):
 
 def write_cycle(path="generated/multi-layer-automission/cycle.json"):
     result=build_cycle(); target=Path(path); target.parent.mkdir(parents=True,exist_ok=True)
-    target.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"
-",encoding="utf-8"); return result
+    target.write_text(json.dumps(result,ensure_ascii=False,indent=2)+ "\n",encoding="utf-8"); return result
 
 if __name__=="__main__":
     print(json.dumps(write_cycle(),ensure_ascii=False,indent=2))
