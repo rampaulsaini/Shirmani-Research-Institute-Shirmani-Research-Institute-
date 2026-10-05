@@ -32,9 +32,9 @@ def modules():
         out.append({
           "module":str(p.relative_to(ROOT)),
           "bytes":p.stat().st_size,
-          "links":len(re.findall(r"<a\\b[^>]*href=",s,re.I)),
-          "scripts":len(re.findall(r"<script\\b",s,re.I)),
-          "forms":len(re.findall(r"<form\\b",s,re.I)),
+          "links":len(re.findall(r"<a\b[^>]*href=",s,re.I)),
+          "scripts":len(re.findall(r"<script\b",s,re.I)),
+          "forms":len(re.findall(r"<form\b",s,re.I)),
           "expansion_markers":markers,
           "production_status":"EXPAND" if markers else "ACTIVE"
         })
