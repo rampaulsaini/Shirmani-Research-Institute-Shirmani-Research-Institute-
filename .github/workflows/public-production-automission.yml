@@ -1,0 +1,27 @@
+name: SHIRMANI Public Production Automission
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: public-production-automission
+  cancel-in-progress: true
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Materialize public production status
+        run: python3 factory/public_production_materializer.py
+      - name: Publish generated status
+        run: |
+          git config user.name "shirmani-automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/public-production-status.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(automission): materialize public production status"
+          git push
