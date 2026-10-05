@@ -64,6 +64,15 @@ def validate_preparation_status(prep: dict, target: int) -> int:
         raise SystemExit("PREPARATION_STATUS_VERIFIED_PERCENT_MISMATCH")
     return prepared
 
+def validate_record_counts(prep: dict, reviewed: int, verified: int) -> None:
+    """Ensure generated preparation metadata cannot override actual review records."""
+    if prep.get("reviewed_records") != reviewed:
+        raise SystemExit("PREPARATION_STATUS_REVIEWED_COUNT_STALE_OR_INFLATED")
+    if prep.get("verified_records") != verified:
+        raise SystemExit("PREPARATION_STATUS_VERIFIED_COUNT_STALE_OR_INFLATED")
+    if verified > reviewed:
+        raise SystemExit("ACTUAL_RECORD_REVIEW_INVARIANT_FAILED")
+
 def main() -> int:
     data = read_json(RECORDS)
     prep = read_json(PREPARATION_STATUS)
@@ -82,6 +91,7 @@ def main() -> int:
                    if r.get("reviewer_decision", {}).get("decision")
                    in {"VERIFIED", "NOT_VERIFIED", "CONTRADICTED", "INCONCLUSIVE"})
     evidence_supported = sum(1 for r in records if r.get("status") == "EVIDENCE-SUPPORTED")
+    validate_record_counts(prep, reviewed, verified)
 
     # The authoritative source is the records list. Never report a synthetic
     # queued/prepared count that is larger than the actual record registry.
