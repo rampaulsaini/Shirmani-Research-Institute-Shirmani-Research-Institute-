@@ -22,14 +22,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build public module production map
         run: python3 factory/public_module_inventory.py
-      - name: Publish changed production map
-        run: |
-          git config user.name "shirmani-production-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/public-module-inventory.json generated/public-module-production-map.html
-          if git diff --cached --quiet; then
-            echo "No production-map changes."
-            exit 0
-          fi
-          git commit -m "chore(production): refresh public module production map"
-          git push
+      - name: Publish module map as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-public-module-production-map
+          path: |
+            generated/public-module-inventory.json
+            generated/public-module-production-map.html
+          retention-days: 30
