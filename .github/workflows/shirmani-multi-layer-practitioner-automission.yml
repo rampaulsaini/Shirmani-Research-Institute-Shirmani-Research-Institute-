@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   practitioner-lanes:
-    name: \${{ matrix.lane }}
+    name: ${{ matrix.lane }}
     runs-on: ubuntu-latest
     timeout-minutes: 8
     strategy:
@@ -39,7 +39,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          case "\${{ matrix.lane }}" in
+          case "${{ matrix.lane }}" in
             "AI-ML-NLP Quality")
               python3 -m py_compile factory/supreme_ai_ml_nlp_engine.py
               python3 -m py_compile factory/supreme_quality_controller.py
@@ -88,11 +88,11 @@ jobs:
         if: always()
         run: |
           mkdir -p automission-lane-results
-          cat > "automission-lane-results/\${{ matrix.lane }}.json" <<EOF
+          cat > "automission-lane-results/${{ matrix.lane }}.json" <<EOF
           {
-            "lane": "\${{ matrix.lane }}",
-            "run_id": "\${{ github.run_id }}",
-            "status": "\${{ job.status }}",
+            "lane": "${{ matrix.lane }}",
+            "run_id": "${{ github.run_id }}",
+            "status": "${{ job.status }}",
             "principle": "produce continuously; verify resulting outputs; never promote by workflow success alone"
           }
           EOF
@@ -101,7 +101,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: automission-lane-\${{ strategy.job-index }}
+          name: automission-lane-${{ strategy.job-index }}
           path: automission-lane-results/
           retention-days: 14
 
