@@ -2,7 +2,7 @@ name: SHIRMANI Real Product Factory
 on:
   push:
     branches: [main]
-    paths: ["factory/real_product_factory.py",".github/workflows/shirmani-real-product-factory.yml"]
+    paths: ["factory/real_product_factory.py","factory/concrete_product_modules.py",".github/workflows/shirmani-real-product-factory.yml"]
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
@@ -26,13 +26,13 @@ jobs:
           p=json.loads(Path('generated/1000-digital-products.json').read_text())
           assert p['product_count']==1016 and len(p['products'])==1016
           assert Path('products/production-launch-center.html').exists()
-          assert all(x['status']=='RUNNABLE_STATIC_MVP' for x in p['products'])
+          assert all(x['status']=='READY_FOR_QC' for x in p['products'])\n          assert all(x.get('module','').startswith('products/modules/') for x in p['products'])\n          assert Path('generated/PRODUCT-PASSPORTS.jsonl').exists()\n          assert len(list(Path('products/modules').glob('*.html'))) == 25
           print('REAL_PRODUCT_FACTORY PASS',p['product_count'])
           PY
       - name: Persist production state
         run: |
           git config user.name 'SHIRMANI Real Product Factory'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add generated/1000-digital-products.json generated/real-product-factory-status.json
+          git add generated/1000-digital-products.json generated/real-product-factory-status.json generated/PRODUCT-PASSPORTS.jsonl products/modules
           git diff --cached --quiet || git commit -m 'chore(products): persist runnable product catalog'
           git push origin HEAD:main
