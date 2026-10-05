@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "purpose": "REAL_FIRST_COMMERCIAL_MVP_REGISTRY",
+  "truth_boundary": "A product is commercially ready only when its implementation, public page, price, delivery path and test evidence exist. Listing alone is not a sale.",
+  "pricing_policy": {
+    "currency": "INR",
+    "target_position": "affordable",
+    "target_discount_percent": 20,
+    "rule": "20% less is a target only; a comparable market/reference price must be recorded before publishing it as a factual discount."
+  },
+  "products": [
+    {"id":"MVP-001","name":"Word & Character Counter","category":"Digital Utility","page":"products/micro/word-counter.html","price_inr":49,"delivery":"instant-browser-use","test":"manual-browser"},
+    {"id":"MVP-002","name":"Percentage Calculator","category":"Counting & Math","page":"products/micro/percentage-calculator.html","price_inr":49,"delivery":"instant-browser-use","test":"manual-browser"},
+    {"id":"MVP-003","name":"Length Unit Converter","category":"Counting & Math","page":"products/micro/unit-converter.html","price_inr":49,"delivery":"instant-browser-use","test":"manual-browser"},
+    {"id":"MVP-004","name":"JSON Formatter & Validator","category":"Developer Utility","page":"products/micro/json-formatter.html","price_inr":99,"delivery":"instant-browser-use","test":"manual-browser"},
+    {"id":"MVP-005","name":"Color Palette Generator","category":"Creative Utility","page":"products/micro/color-palette-generator.html","price_inr":79,"delivery":"instant-browser-use","test":"manual-browser"},
+    {"id":"MVP-006","name":"Simple Digital Drawing Board","category":"Drawing & Sketching","page":"products/micro/drawing-board.html","price_inr":99,"delivery":"instant-browser-use","test":"manual-browser"},
+    {"id":"MVP-007","name":"Markdown Preview","category":"Writing Utility","page":"products/micro/markdown-preview.html","price_inr":79,"delivery":"instant-browser-use","test":"manual-browser"},
+    {"id":"MVP-008","name":"SEO Meta Draft Generator","category":"SEO","page":"products/micro/seo-meta-generator.html","price_inr":99,"delivery":"instant-browser-use","test":"manual-browser"},
+    {"id":"MVP-009","name":"Learning Pack Builder","category":"Education","page":"education-lab.html","price_inr":149,"delivery":"browser-json-export","test":"manual-browser"},
+    {"id":"MVP-010","name":"Study Planner","category":"Education","page":"products/production-launch-center.html","price_inr":99,"delivery":"browser-use","test":"manual-browser"},
+    {"id":"MVP-011","name":"Quiz Builder","category":"Education","page":"products/production-launch-center.html","price_inr":99,"delivery":"browser-use","test":"manual-browser"},
+    {"id":"MVP-012","name":"Research Evidence Record","category":"Research","page":"products/research-evidence-support.html","price_inr":199,"delivery":"inquiry-or-browser-record","test":"manual-review"},
+    {"id":"MVP-013","name":"Research Question Builder","category":"Research","page":"products/production-launch-center.html","price_inr":99,"delivery":"browser-use","test":"manual-browser"},
+    {"id":"MVP-014","name":"SEO Content Starter Pack","category":"SEO","page":"products/ai-marketing-assets.html","price_inr":299,"delivery":"inquiry-delivery","test":"manual-review"},
+    {"id":"MVP-015","name":"AI Workflow Blueprint","category":"AI Automation","page":"products/ai-workflow-automation.html","price_inr":499,"delivery":"inquiry-delivery","test":"manual-review"},
+    {"id":"MVP-016","name":"Digital Publishing Starter Pack","category":"Publishing","page":"products/digital-publishing.html","price_inr":399,"delivery":"inquiry-delivery","test":"manual-review"},
+    {"id":"MVP-017","name":"Creative Production Brief Pack","category":"Creative","page":"products/creative-production.html","price_inr":299,"delivery":"inquiry-delivery","test":"manual-review"},
+    {"id":"MVP-018","name":"Research & Evidence Support Starter","category":"Research Service","page":"products/research-evidence-support.html","price_inr":499,"delivery":"inquiry-delivery","test":"manual-review"},
+    {"id":"MVP-019","name":"Legal Case Organizer","category":"Legal Information Utility","page":"products/legal-case-organizer.html","price_inr":199,"delivery":"browser-export","test":"manual-browser"},
+    {"id":"MVP-020","name":"Heart-View Product Brief Builder","category":"Creator Utility","page":"products/heart-view-product-brief.html","price_inr":149,"delivery":"browser-export","test":"manual-browser"}
+  ],
+  "commercial_status": "MVP_CATALOG_NOT_SOLD",
+  "sales_count_verified": 0,
+  "payment_count_verified": 0,
+  "independent_verification_count": 0
+}
