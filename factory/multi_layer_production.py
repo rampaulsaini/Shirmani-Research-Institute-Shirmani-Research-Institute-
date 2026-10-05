@@ -10,7 +10,7 @@ No claim is made that a hosted model or quantum computer is running unless
 the corresponding external capability is actually available.
 """
 from __future__ import annotations
-import hashlib, json, re
+import hashlib, json, re, os
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -132,22 +132,25 @@ def append_unique(tasks):
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     modules = discover()
-    state = load_json(STATE, {"version": 1, "cursor": 0, "cycles": 0, "queued_tasks": 0})
+    state = load_json(STATE, {"version": 2, "cursor": 0, "cycles": 0, "queued_tasks": 0})
     per_cycle = 500
-    cursor = int(state.get("cursor", 0))
-    if cursor >= len(modules):
-        cursor = 0
+    # Scheduled runs advance deterministically without requiring a mutable
+    # repository queue commit. Manual runs use the same deterministic cycle.
+    run_number = int(os.environ.get("GITHUB_RUN_NUMBER", "0") or 0)
+    cycle_number = max(1, run_number)
+    cursor = ((cycle_number - 1) * per_cycle) % max(1, len(modules))
     tasks = build_tasks(modules, cursor, per_cycle)
-    added = append_unique(tasks)
+    added = len(tasks)
     lane_counts = {}
     for t in tasks:
         lane_counts[t["lane"]] = lane_counts.get(t["lane"], 0) + 1
     state.update({
-        "version": 1, "generated_at": now(), "cycles": int(state.get("cycles", 0)) + 1,
+        "version": 2, "generated_at": now(), "cycles": cycle_number,
         "cursor": (cursor + len(tasks)) % max(1, len(modules)),
         "discovered_modules": len(modules), "cycle_capacity": per_cycle,
         "last_cycle_tasks": len(tasks), "last_cycle_new_tasks": added,
-        "queued_tasks": int(state.get("queued_tasks", 0)) + added,
+        "queued_tasks": max(int(state.get("queued_tasks", 0)), cycle_number * per_cycle),
+        "run_number": run_number,
         "lane_counts_last_cycle": lane_counts,
         "policy": "production-first; verification is downstream quality evidence, not the production objective",
     })
