@@ -186,6 +186,51 @@ def main():
     assert verify_record_integrity(tampered) is False
     assert verify_record_integrity({"fingerprint": ""}) is False
 
+
+    # Calibration labels must be explicit binary values; truthy strings and
+    # non-binary numerics are ambiguous and must fail closed.
+    for bad_label in ("1", 2, -1, 0.5, None):
+        try:
+            calibration_report([0.5], [bad_label])
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("ambiguous labels must be rejected")
+
+    # Calibration also rejects an empty evaluation set and mismatched lengths.
+    for probabilities, labels in (([], []), ([0.5], []), ([], [0])):
+        try:
+            calibration_report(probabilities, labels)
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("empty or mismatched calibration inputs must be rejected")
+
+    # A feature present in only one population is not a valid drift comparison.
+    from agents.supreme_nlp_v3 import drift_report
+    missing_feature = drift_report(
+        [{"feature":"x","unit":"u","value":1.0}],
+        [{"feature":"y","unit":"u","value":2.0}],
+    )
+    assert missing_feature["status"] == "INSUFFICIENT_EVIDENCE"
+    assert missing_feature["drift_detected"] is False
+    assert missing_feature["insufficient_evidence"] is True
+    assert missing_feature["features"]["x|u"]["status"] == "INSUFFICIENT_EVIDENCE"
+    assert missing_feature["features"]["y|u"]["status"] == "INSUFFICIENT_EVIDENCE"
+
+    # Non-finite thresholds must be rejected just like non-numeric thresholds.
+    for bad_threshold in (float("nan"), float("inf"), 0, -1):
+        try:
+            drift_report(
+                [{"feature":"x","unit":"u","value":1.0}],
+                [{"feature":"x","unit":"u","value":2.0}],
+                bad_threshold,
+            )
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("invalid drift thresholds must be rejected")
+
     print("SUPREME_NLP_V3_HARDENING=PASS")
 
 if __name__ == "__main__":
