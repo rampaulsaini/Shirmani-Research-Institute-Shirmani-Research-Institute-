@@ -29,6 +29,8 @@ def main():
     formulations = read_jsonl(OUT / "formulation-records.jsonl")
     tasks = read_jsonl(OUT / "independent-verification-queue.jsonl")
     reviews = read_jsonl(OUT / "independent-verification-registry.jsonl")
+    rp_intake_path = OUT / "research-paper-verification-intake.jsonl"
+    rp_intake = read_jsonl(rp_intake_path) if rp_intake_path.exists() else []
 
     nodes, edges = {}, []
 
@@ -102,6 +104,15 @@ def main():
         cid = str(t["claim_id"])
         if cid in nodes:
             edges.append({"from": tid, "to": cid, "relation": "REVIEWS"})
+
+    for t in rp_intake:
+        tid = str(t["task_id"])
+        add_node(nodes, tid, "VERIFICATION_TASK", status=t.get("status"),
+                 verification_status=t.get("verification_status"), independent=t.get("independent"),
+                 promotion_allowed=t.get("promotion_allowed"))
+        cid = str(t["claim_id"])
+        add_node(nodes, cid, "CLAIM", verification_status="UNVERIFIED", source_repository=t.get("source_repository"))
+        edges.append({"from": tid, "to": cid, "relation": "REVIEWS"})
 
     for r in reviews:
         rid = str(r["review_id"])
