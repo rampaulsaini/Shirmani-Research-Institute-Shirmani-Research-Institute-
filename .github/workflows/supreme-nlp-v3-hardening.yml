@@ -67,8 +67,6 @@ jobs:
         run: python3 tests/test_research_paper_source_intake.py
       - name: Run research paper verification intake regression test
         run: python3 tests/test_research_paper_verification_intake.py
-      - name: Run Research Paper verification intake regression test
-        run: python3 tests/test_research_paper_verification_intake.py
       - name: Run Nishpaksh Yatharth framework regression test
         run: python3 tests/test_nishpaksh_yatharth_framework.py
       - name: Run platform-native value protocol regression test
