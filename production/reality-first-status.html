@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="hi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Production Reality Dashboard</title>
+<style>
+body{margin:0;background:#080b11;color:#eef2f7;font-family:system-ui,sans-serif;line-height:1.6}
+main{max-width:1050px;margin:auto;padding:24px 16px 70px}h1,h2{color:#d4af37}
+.card{background:#111827;border:1px solid #334155;border-radius:16px;padding:20px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.big{font-size:2.2rem;font-weight:900}.good{color:#6ee7b7}.warn{color:#fbbf24}.muted{color:#aeb8c8}
+.bar{height:12px;background:#1e293b;border-radius:99px;overflow:hidden}.fill{height:100%;background:#67e8f9}
+a{color:#67e8f9}
+</style></head>
+<body><main>
+<section class="card"><h1>꙰ SHIRMANI Production Reality Dashboard</h1>
+<p><strong>मुख्य नियम:</strong> ढांचा, workflow run, catalog entry और production deliverable चार अलग अवस्थाएँ हैं। इस dashboard का उद्देश्य “showroom” और “actual deliverable” के बीच का अंतर छिपाना नहीं, बल्कि उसे मापना है।</p>
+<p><a href="../products.html">Real Product Catalog</a> · <a href="../production-command-center.html">Command Center</a> · <a href="../public-production-results-hub.html">Production Results</a> · <a href="../index.html">Main Hub</a></p></section>
+
+<section class="grid">
+<div class="card"><h2>Registered Offers</h2><div id="offers" class="big">—</div></div>
+<div class="card"><h2>Concrete Deliverables</h2><div id="ready" class="big good">—</div></div>
+<div class="card"><h2>Offer / Asset Gap</h2><div id="gap" class="big warn">—</div></div>
+<div class="card"><h2>Production Ratio</h2><div id="ratio" class="big">—</div></div>
+</section>
+
+<section class="card"><h2>Production Reality</h2>
+<p>केवल वह item “CONCRETE DELIVERABLE” है जिसके लिए repository में वास्तविक asset या स्पष्ट evidence-backed delivery path उपलब्ध है। केवल price, button, WhatsApp link या catalog record पर्याप्त नहीं है।</p>
+<div class="bar"><div id="fill" class="fill" style="width:0%"></div></div>
+<p id="detail" class="muted">Loading current machine-readable status…</p></section>
+
+<section class="card"><h2>अगला काम</h2>
+<ol>
+<li>हर offer के लिए वास्तविक deliverable asset या verified external delivery path जोड़ना।</li>
+<li>हर service के लिए scope, sample output, turnaround और lawful payment/delivery path स्पष्ट करना।</li>
+<li>फिर product → order → delivery → evidence → settlement → audit को वास्तविक transaction evidence से जोड़ना।</li>
+<li>Research, education, justice, currency और अन्य public modules को अलग-अलग executable MVPs में बदलना—सिर्फ navigation cards में नहीं।</li>
+</ol></section>
+<script>
+async function load(){
+ try{
+  const r=await fetch('../generated/product-reality-status.json?ts='+Date.now(),{cache:'no-store'});
+  const d=await r.json();
+  const n=Number(d.offer_count||0), ready=Number(d.concrete_deliverable_count||0), gap=n-ready, pct=n?ready/n*100:0;
+  document.getElementById('offers').textContent=n;
+  document.getElementById('ready').textContent=ready;
+  document.getElementById('gap').textContent=gap;
+  document.getElementById('ratio').textContent=pct.toFixed(1)+'%';
+  document.getElementById('fill').style.width=pct.toFixed(1)+'%';
+  document.getElementById('detail').textContent='Current source-derived status: '+JSON.stringify(d.reality_counts||{});
+ }catch(e){document.getElementById('detail').textContent='Telemetry unavailable: '+e}
+}
+load();setInterval(load,30000);
+</script>
+</main></body></html>
