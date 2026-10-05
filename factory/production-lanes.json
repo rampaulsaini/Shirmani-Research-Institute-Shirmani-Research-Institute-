@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "purpose": "Product-first multi-layer production routing; verification is downstream.",
+  "lanes": [
+    {"id":"research","discipline":"research","actions":["research_question","source_synthesis","evidence_map"],"output_contract":"research-work-item"},
+    {"id":"ai","discipline":"AI","actions":["agent_task","reasoning_task","model_comparison"],"output_contract":"ai-work-item"},
+    {"id":"ml","discipline":"ML","actions":["experiment_design","feature_task","evaluation_task"],"output_contract":"ml-work-item"},
+    {"id":"nlp","discipline":"NLP","actions":["language_task","semantic_task","translation_task"],"output_contract":"nlp-work-item"},
+    {"id":"practitioner","discipline":"practitioner","actions":["tutorial_task","implementation_task","practice_task"],"output_contract":"practitioner-work-item"},
+    {"id":"creative","discipline":"creative","actions":["script_task","music_task","visual_task"],"output_contract":"creative-work-item"},
+    {"id":"publishing","discipline":"publishing","actions":["article_task","book_task","catalog_task"],"output_contract":"publication-work-item"},
+    {"id":"marketing","discipline":"marketing","actions":["content_task","campaign_task","distribution_task"],"output_contract":"marketing-work-item"},
+    {"id":"economic","discipline":"economic","actions":["product_task","pricing_task","store_task"],"output_contract":"economic-work-item"},
+    {"id":"security","discipline":"security","actions":["security_task","integrity_task","resilience_task"],"output_contract":"security-work-item"},
+    {"id":"platform","discipline":"platform","actions":["module_task","integration_task","dashboard_task"],"output_contract":"platform-work-item"},
+    {"id":"continuity","discipline":"continuity","actions":["state_task","handoff_task","recovery_task"],"output_contract":"continuity-work-item"}
+  ],
+  "cursor": 0
+}
