@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Product Production Board</title>
+<style>
+body{margin:0;background:#070b12;color:#eef2f7;font-family:system-ui,sans-serif;line-height:1.55}main{max-width:1250px;margin:auto;padding:22px 16px 70px}
+h1,h2{color:#d4af37}.hero,.card{background:#111827;border:1px solid #334155;border-radius:16px;padding:18px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}.good{color:#6ee7b7}.warn{color:#fbbf24}.bad{color:#fb7185}.muted{color:#aeb8c5}.btn{display:inline-block;margin-top:8px;padding:9px 12px;border-radius:9px;background:#d4af37;color:#111;text-decoration:none;font-weight:800}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:9px;border-bottom:1px solid #334155;vertical-align:top}code{color:#67e8f9}
+</style></head><body><main>
+<section class="hero"><h1>꙰ SHIRMANI Product Production Board</h1>
+<p><strong>Production is measured separately from workflow activity.</strong> Every registered offer must pass: product record → source asset → packaging → public product surface → order/inquiry → delivery evidence → audit.</p>
+<p class="muted">A catalog record, workflow run, or page publication is never treated as a completed sale or completed delivery.</p>
+<p><a class="btn" href="products.html">Real Product Catalog</a> <a class="btn" href="public-production-results-hub.html">Production Results Hub</a> <a class="btn" href="index.html">Main Hub</a></p></section>
+<section class="card"><h2>Execution rule</h2>
+<p><b>Paid digital products:</b> source asset must exist before PRODUCT_READY. <b>Services:</b> inquiry path may be READY_FOR_INQUIRY without claiming completed service. <b>Sales:</b> only payment/provider evidence establishes a sale.</p></section>
+<section class="card"><h2>Live status</h2><div id="status">Loading…</div></section>
+<section class="card"><h2>Offer-level production queue</h2><div id="offers">Loading…</div></section>
+<script>
+async function load(){try{const r=await fetch('generated/product-production-status.json?ts='+Date.now(),{cache:'no-store'});const d=await r.json();
+document.getElementById('status').innerHTML='<div class="grid">'+
+[['Total offers',d.total_offers,''],['Production-ready',d.production_ready,'good'],['Ready for inquiry',d.ready_for_inquiry,'good'],['Blocked by missing source asset',d.blocked_asset,'bad'],['Sales completed',d.sales_completed,'warn']].map(x=>'<div class="card"><h2>'+x[0]+'</h2><div style="font-size:2rem;font-weight:800" class="'+x[2]+'">'+x[1]+'</div></div>').join('')+'</div>';
+document.getElementById('offers').innerHTML='<table><tr><th>ID</th><th>Offer</th><th>Lane</th><th>Status</th><th>Next required action</th></tr>'+
+d.offers.map(o=>'<tr><td><code>'+o.id+'</code></td><td>'+o.name+'</td><td>'+o.lane+'</td><td class="'+(o.status.includes('BLOCKED')?'bad':o.status.includes('READY')?'good':'warn')+'"><b>'+o.status+'</b></td><td>'+o.next_action+'</td></tr>').join('')+'</table>';
+}catch(e){document.getElementById('status').innerHTML='<span class="bad">STATUS_UNAVAILABLE: '+e+'</span>'}}
+load();setInterval(load,30000);
+</script></main></body></html>
