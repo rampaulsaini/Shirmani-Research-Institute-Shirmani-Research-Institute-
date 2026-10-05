@@ -61,7 +61,6 @@ jobs:
         env:
           TEST_PATH: ${{ matrix.test_path }}
           RUNNER: ${{ matrix.runner }}
-          RUNNER: ${{ matrix.runner }}
         run: |
           if [ "$RUNNER" = "python" ]; then
             python "$TEST_PATH"
@@ -73,6 +72,7 @@ jobs:
           LANE: ${{ matrix.layer }}
           FOCUS: ${{ matrix.focus }}
           TEST_PATH: ${{ matrix.test_path }}
+          RUNNER: ${{ matrix.runner }}
         run: |
           python - <<'PY'
           import json, os
