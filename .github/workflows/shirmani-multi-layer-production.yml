@@ -1,6 +1,8 @@
 name: SHIRMANI Multi-Layer Production Automission
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
