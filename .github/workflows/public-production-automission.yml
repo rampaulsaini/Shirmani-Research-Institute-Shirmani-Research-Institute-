@@ -1,5 +1,9 @@
 name: SHIRMANI Public Production Automission
 on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "generated/**"
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
