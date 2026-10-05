@@ -8,7 +8,7 @@ on:
       batch_size:
         description: "Production work units for this cycle"
         required: false
-        default: "120"
+        default: "500"
 
 permissions:
   contents: write
@@ -20,7 +20,7 @@ concurrency:
 jobs:
   produce:
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 6
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
           if [ -n "${{ github.event.inputs.batch_size }}" ]; then
             echo "PRODUCTION_BATCH_SIZE=${{ github.event.inputs.batch_size }}" >> "$GITHUB_ENV"
           else
-            echo "PRODUCTION_BATCH_SIZE=120" >> "$GITHUB_ENV"
+            echo "PRODUCTION_BATCH_SIZE=500" >> "$GITHUB_ENV"
           fi
 
       - name: Discover rotating multi-layer production work
