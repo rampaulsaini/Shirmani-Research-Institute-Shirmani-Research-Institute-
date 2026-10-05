@@ -159,6 +159,19 @@ def main():
     else:
         raise AssertionError("non-numeric drift thresholds must raise ValueError")
 
+    # Drift must fail closed when an observed value is NaN/Inf or otherwise non-numeric;
+    # normalization must never turn an invalid observation into a trusted zero.
+    from agents.supreme_nlp_v3 import drift_report
+    for bad in (float("nan"), float("inf"), "not-a-number"):
+        invalid_drift = drift_report(
+            [{"feature":"signal","unit":"u","value":1.0}],
+            [{"feature":"signal","unit":"u","value":bad}],
+        )
+        assert invalid_drift["status"] == "INSUFFICIENT_EVIDENCE"
+        assert invalid_drift["drift_detected"] is False
+        assert invalid_drift["insufficient_evidence"] is True
+        assert invalid_drift["reason"] == "NON_FINITE_OR_INVALID_OBSERVATION"
+
     # Record fingerprints must detect tampering and fail closed on malformed records.
     from agents.supreme_nlp_v3 import verify_record_integrity
     record = build_record([{"modality":"sensor","feature":"x","value":1.0}], "integrity")
