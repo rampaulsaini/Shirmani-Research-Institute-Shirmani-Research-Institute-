@@ -1,4 +1,4 @@
-from agents.supreme_nlp_v3 import build_record, calibration_report
+from agents.supreme_nlp_v3 import build_record, calibration_report, validate_result_boundary
 
 def main():
     signals=[
@@ -12,6 +12,9 @@ def main():
     assert r["result"]["interpretation"]["confidence_status"]=="UNCALIBRATED"
     assert r["result"]["features"]["source_count"]==2
     assert "cross_modal_disagreement" in r["result"]["features"]
+    boundary = validate_result_boundary(r)
+    assert boundary["status"] == "PASS"
+    assert boundary["scientific_verification_granted"] is False
     c=calibration_report([.1,.9,.8,.2],[0,1,1,0])
     assert c["sample_count"]==4 and c["status"]=="CALIBRATED_EVALUATION"
     print("SUPREME_NLP_V3_QC=PASS")
