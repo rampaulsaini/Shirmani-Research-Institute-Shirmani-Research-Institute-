@@ -1,8 +1,10 @@
-# SHIRMANI HEART-VIEW — AUTO REVIEW CONVEYOR
-- Queue total: 100200
-- Prepared this run: 10951–11950
-- Packet status: READY_FOR_HUMAN_REVIEW
-- Packet QC: PASS
-- Human verification: NOT PERFORMED
-- VERIFIED promotion: 0
-Preserve first. Reason second. Verify third. Transform only as a traceable derivative.
+# SHIRMANI HEART-VIEW — CONTINUOUS PRODUCTION-FIRST AUTO STATE
+- Operating principle: Automission is the continuous production engine; verification is downstream result-quality/evidence/promotion.
+- Production cadence: 5-minute multi-layer cycle.
+- Default production batch: 500 work units/cycle.
+- Production lanes: research, ai-ml-nlp, content, platform, economic, social-media, federation, security-quality, automation.
+- Public visibility requirement: every completed cycle must publish queue status, concrete production results, module-wise production map and telemetry.
+- Independent verification remains separate and must never be manufactured from workflow success.
+- Quantum boundary: quantum-inspired/deterministic orchestration may be used; no active quantum hardware execution is claimed without an actual configured backend.
+- Continuity: do not stop after one module or one verification task; rotate through the repository's modules and keep producing source-bound artifacts.
+Preserve first. Produce continuously. Reason second. Verify produced results downstream. Transform only as a traceable derivative.
