@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "mode": "PRODUCT_EXECUTION_STATUS",
+  "generated_at": "2026-10-05T15:00:00Z",
+  "principle": "Workflow activity is not product production; catalog is not sale.",
+  "total_offers": 15,
+  "production_ready": 0,
+  "ready_for_inquiry": 7,
+  "blocked_asset": 8,
+  "sales_completed": 0,
+  "sales_evidence_source": null,
+  "offers": [
+    {"id":"P001","name":"खुद का साक्षात्कार ही संपूर्ण संतुष्टि","lane":"digital-audio","status":"BLOCKED_ASSET_MISSING","asset_present":false,"next_action":"Provide or materialize the source product asset; do not claim delivery."},
+    {"id":"P002","name":"शिरोमणि अनंत असीम इश्क की क्षमता","lane":"digital-audio","status":"BLOCKED_ASSET_MISSING","asset_present":false,"next_action":"Provide or materialize the source product asset; do not claim delivery."},
+    {"id":"P003","name":"साहिब तदरूप साक्षात्कार","lane":"digital-audio","status":"BLOCKED_ASSET_MISSING","asset_present":false,"next_action":"Provide or materialize the source product asset; do not claim delivery."},
+    {"id":"P004","name":"खुद का साक्षात्कार ऑडियो","lane":"digital-audio","status":"BLOCKED_ASSET_MISSING","asset_present":false,"next_action":"Provide or materialize the source product asset; do not claim delivery."},
+    {"id":"P005","name":"मेरा साहिब मेरा ही तदरूप साक्षात्कार","lane":"digital-audio","status":"BLOCKED_ASSET_MISSING","asset_present":false,"next_action":"Provide or materialize the source product asset; do not claim delivery."},
+    {"id":"P006","name":"Short Audios Collection","lane":"digital-audio","status":"BLOCKED_ASSET_MISSING","asset_present":false,"next_action":"Provide or materialize the source product asset; do not claim delivery."},
+    {"id":"P007","name":"प्रमाण पत्र","lane":"digital-assets","status":"BLOCKED_ASSET_MISSING","asset_present":false,"next_action":"Provide or materialize the source product asset; do not claim delivery."},
+    {"id":"P008","name":"Short / Creator Assets","lane":"digital-assets","status":"BLOCKED_ASSET_MISSING","asset_present":false,"next_action":"Provide or materialize the source product asset; do not claim delivery."},
+    {"id":"S001","name":"AI-assisted music production","lane":"creative-production","status":"READY_FOR_INQUIRY","asset_present":false,"next_action":"Receive customer brief, execute service, persist delivery evidence, then audit."},
+    {"id":"S002","name":"Audio / podcast production","lane":"creative-production","status":"READY_FOR_INQUIRY","asset_present":false,"next_action":"Receive customer brief, execute service, persist delivery evidence, then audit."},
+    {"id":"S003","name":"Voice / narration packaging","lane":"creative-production","status":"READY_FOR_INQUIRY","asset_present":false,"next_action":"Receive customer brief, execute service, persist delivery evidence, then audit."},
+    {"id":"S004","name":"Research & Evidence Support","lane":"research-digital-services","status":"READY_FOR_INQUIRY","asset_present":false,"next_action":"Receive customer brief, execute service, persist delivery evidence, then audit."},
+    {"id":"S005","name":"AI Workflow & Automation","lane":"research-digital-services","status":"READY_FOR_INQUIRY","asset_present":false,"next_action":"Receive customer brief, execute service, persist delivery evidence, then audit."},
+    {"id":"S006","name":"Digital Publishing","lane":"research-digital-services","status":"READY_FOR_INQUIRY","asset_present":false,"next_action":"Receive customer brief, execute service, persist delivery evidence, then audit."},
+    {"id":"S007","name":"AI Marketing Assets","lane":"research-digital-services","status":"READY_FOR_INQUIRY","asset_present":false,"next_action":"Receive customer brief, execute service, persist delivery evidence, then audit."}
+  ]
+}
