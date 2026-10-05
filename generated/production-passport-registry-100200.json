@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "batch_no": "100200",
+  "unit_sequence_starts_at": ".001",
+  "purpose": "production passport and QC/dispatch gate registry",
+  "records": [
+    {
+      "id": "SHR-001",
+      "unit_no": "100200.001",
+      "name": "SHIRMANI Real Product Laboratory",
+      "asset": "products/real-product-laboratory.html",
+      "type": "browser-digital-product",
+      "qc_code": "QC-8D1C499D76F2",
+      "gate_no": "GATE-001"
+    },
+    {
+      "id": "SHR-002",
+      "unit_no": "100200.002",
+      "name": "SHIRMANI Functional Production Suite",
+      "asset": "products/production-product-suite.html",
+      "type": "browser-digital-product",
+      "qc_code": "QC-46B757D092DA",
+      "gate_no": "GATE-001"
+    },
+    {
+      "id": "SHR-003",
+      "unit_no": "100200.003",
+      "name": "SHIRMANI 1000+ Digital Product Factory",
+      "asset": "products/1000-digital-product-factory.html",
+      "type": "browser-digital-product",
+      "qc_code": "QC-3F11FAF3C699",
+      "gate_no": "GATE-001"
+    },
+    {
+      "id": "SHR-004",
+      "unit_no": "100200.004",
+      "name": "SHIRMANI Research Paper — PDF Edition",
+      "asset": "research-paper.pdf",
+      "type": "digital-document",
+      "qc_code": "QC-EFA0548F2091",
+      "gate_no": "GATE-001"
+    },
+    {
+      "id": "SHR-005",
+      "unit_no": "100200.005",
+      "name": "SHIRMANI Micro Digital Product Collection",
+      "asset": "products/micro-digital-products.html",
+      "type": "browser-digital-product",
+      "qc_code": "QC-82DEF74DF474",
+      "gate_no": "GATE-001"
+    }
+  ],
+  "rules": [
+    "Batch number is production numbering, not scientific verification.",
+    "QC code is an internal deterministic production-QC identifier.",
+    "GATE-001 means the product asset passed the current repository-side production gate.",
+    "NOT-DISPATCHED means no customer dispatch evidence is recorded.",
+    "Catalog/workflow activity is not a sale, payment, delivery, or independent scientific verification."
+  ]
+}
