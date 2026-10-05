@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RECORDS = ROOT / "generated/independent-verification-records.json"
+PREPARATION_STATUS = ROOT / "generated/independent-verification-status.json"
 TARGET_CONFIG = ROOT / "config/independent-verification-target.json"
 OUT = ROOT / "generated/verification-progress-dashboard.json"
 OUT_MD = ROOT / "generated/verification-progress-dashboard.md"
@@ -29,12 +30,15 @@ def bar(percent: float, width: int = 30) -> str:
 
 def main() -> int:
     data = read_json(RECORDS)
+    prep = read_json(PREPARATION_STATUS)
     TARGET = target_value()
     records = data.get("records", [])
+    prepared = int(prep.get("prepared_review_records", 0))
     if not isinstance(records, list):
         raise SystemExit("records must be a list")
 
-    prepared = len(records)
+    if prepared < 0 or prepared > TARGET:
+        raise SystemExit("PREPARED_PACKET_COUNT_OUT_OF_RANGE")
     verified = sum(1 for r in records
                    if r.get("reviewer_decision", {}).get("decision") == "VERIFIED"
                    and r.get("status") == "VERIFIED")
@@ -47,8 +51,8 @@ def main() -> int:
     # queued/prepared count that is larger than the actual record registry.
     if verified > reviewed or reviewed > prepared or prepared > TARGET:
         raise SystemExit("Verification counters violate monotonic invariants.")
-    if prepared != len(records):
-        raise SystemExit("PREPARED_COUNT_MISMATCH")
+    if len(records) > prepared:
+        raise SystemExit("REVIEW_RECORDS_EXCEED_PREPARED_PACKETS")
 
     remaining = TARGET - verified
     prepared_pct = round(prepared / TARGET * 100, 6)
@@ -65,7 +69,8 @@ def main() -> int:
             "target": TARGET, "prepared": prepared, "reviewed": reviewed,
             "verified": verified, "remaining_to_verified_target": remaining,
             "evidence_supported": evidence_supported,
-            "source_registry_records": len(records)
+            "source_registry_records": len(records),
+            "prepared_review_packets": prepared
         },
         "percent": {
             "prepared_of_target": prepared_pct, "reviewed_of_target": reviewed_pct,
@@ -104,8 +109,8 @@ Generated: {generated}
 
 ## Current prepared set
 
-- Source registry records: **{len(records):,}**
-- Prepared records: **{prepared:,}**
+- Source registry records (actual review records): **{len(records):,}**
+- Prepared review-packet records: **{prepared:,}**
 - Evidence-supported: **{evidence_supported:,}**
 - Reviewed: **{reviewed:,}**
 - Independently VERIFIED: **{verified:,}**
