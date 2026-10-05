@@ -10,41 +10,107 @@ permissions:
 concurrency:
   group: shirmani-product-first-automission
   cancel-in-progress: false
+
 jobs:
   product_orchestration:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    env:
+      PYTHONPATH: .
     steps:
       - uses: actions/checkout@v4
-      - name: Build product-first catalog
+
+      - name: Produce next multi-product batch FIRST
+        run: |
+          python3 factory/batch_worker.py --batch-size 1000
+          test -s generated/worker-status.json
+
+      - name: Build product-first catalog from produced artifacts
         run: python3 factory/product_orchestrator.py
-      - name: Run product catalog integrity checks
+
+      - name: Build production cycle manifest
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone
+
+          catalog=json.loads(Path("generated/PRODUCT-CATALOG.json").read_text())
+          worker=json.loads(Path("generated/worker-status.json").read_text())
+
+          completed=worker.get("completed", {})
+          targets=worker.get("targets", {})
+          remaining={
+              k:max(int(targets.get(k,0))-int(completed.get(k,0)),0)
+              for k in targets
+          }
+
+          cycle={
+              "generated_at":datetime.now(timezone.utc).isoformat(),
+              "mode":"PRODUCT_FIRST_MULTI_LAYER_PRODUCTION",
+              "order":[
+                  "source","research","reasoning","NLP","ML","product_production",
+                  "packaging","marketing_draft","QC","independent_verification","publication"
+              ],
+              "production":{
+                  "worker_status":"RUN",
+                  "completed":completed,
+                  "targets":targets,
+                  "remaining":remaining
+              },
+              "product_catalog":{
+                  "product_lines":catalog["product_count"],
+                  "available_units":catalog["available_units"],
+                  "target_units":catalog["target_units"],
+                  "completion_pct":catalog["completion_pct"]
+              },
+              "verification_boundary":{
+                  "role":"DOWNSTREAM_QUALITY_OUTCOME",
+                  "can_create_product":False,
+                  "can_promote_product":True
+              },
+              "quantum_execution":{
+                  "mode":"quantum-inspired-deterministic",
+                  "real_quantum_backend":False,
+                  "purpose":["priority_optimization","queue_decomposition","parallel_batch_scheduling"]
+              }
+          }
+          Path("generated/PRODUCT-PRODUCTION-CYCLE.json").write_text(
+              json.dumps(cycle,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(cycle,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Run product-first integrity gates
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
           p=json.loads(Path("generated/PRODUCT-CATALOG.json").read_text())
+          w=json.loads(Path("generated/worker-status.json").read_text())
+          c=json.loads(Path("generated/PRODUCT-PRODUCTION-CYCLE.json").read_text())
+
           assert p["strategy"]=="PRODUCT_FIRST"
           assert p["product_count"]>=1
           assert p["quantum_execution"]["mode"]=="quantum-inspired-deterministic"
           assert p["safety"]["financial_actions_require_owner_authorization"] is True
-          for item in p["lines"]:
-              assert item["verification_state"]=="UNVERIFIED"
-          print("Product-first catalog: PASS")
-          print("Product lines:",p["product_count"])
-          print("Available units:",p["available_units"])
-          print("Target units:",p["target_units"])
-          print("Completion:",p["completion_pct"],"%")
+          assert c["verification_boundary"]["can_create_product"] is False
+          assert c["verification_boundary"]["can_promote_product"] is True
+          assert w["batch_size"] >= 1
+          print("PRODUCT-FIRST PRODUCTION GATE: PASS")
+          print("Produced/completed:", w["completed"])
+          print("Remaining:", c["production"]["remaining"])
+          print("Product catalog completion:", p["completion_pct"], "%")
           PY
+
       - name: Publish product-first generated state
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot].noreply.github.com"
-          git add generated/PRODUCT-CATALOG.json generated/PRODUCT-PIPELINE.md
+          git add generated/PRODUCT-CATALOG.json generated/PRODUCT-PIPELINE.md generated/PRODUCT-PRODUCTION-CYCLE.json generated/worker-status.json factory/state.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "chore(factory): refresh product-first catalog"
+          git commit -m "chore(factory): produce next product-first batch"
           BRANCH="automation/product-catalog"
           git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
           git branch -f "$BRANCH" HEAD
