@@ -151,6 +151,41 @@ def main():
         else:
             raise AssertionError("invalid probabilities must be rejected")
 
+    # Drift diagnostics must reject malformed observed values instead of
+    # normalizing them into trusted zeroes. Missing/invalid measurements are
+    # insufficient evidence, never positive drift evidence.
+    malformed_drift = drift_report(
+        reference,
+        [{"feature":"latency","unit":"ms","value":float("nan")}],
+    )
+    assert malformed_drift["status"] == "INSUFFICIENT_EVIDENCE"
+    assert malformed_drift["drift_detected"] is False
+    assert malformed_drift["insufficient_evidence"] is True
+
+    # Explicit binary contracts also reject non-binary numeric labels and
+    # predictions; truthiness must never silently change evaluation outcomes.
+    for bad_value in (0.5, -1, 2, float("nan"), float("inf")):
+        try:
+            classification_report([bad_value], [0])
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("non-binary classification predictions must be rejected")
+        try:
+            calibration_report([0.5], [bad_value])
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("non-binary calibration labels must be rejected")
+
+    # A result fingerprint proves artifact integrity only. It cannot convert
+    # a missing verification record into a scientific verification claim.
+    incomplete_provenance = dict(r)
+    incomplete_provenance["provenance"] = dict(r["provenance"])
+    incomplete_provenance["provenance"].pop("independent_replication_verified")
+    assert validate_result_boundary(incomplete_provenance)["status"] == "FAIL"
+    assert validate_result_boundary(incomplete_provenance)["scientific_verification_granted"] is False
+
     # Fingerprint integrity is distinct from scientific verification.
     assert r["provenance"]["independent_replication_verified"] is False
     from agents.supreme_nlp_v3 import verify_record_integrity
