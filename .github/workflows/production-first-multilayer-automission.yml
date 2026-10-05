@@ -1,0 +1,85 @@
+name: SHIRMANI Production-First Multi-Layer Automission
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Production work units for this cycle"
+        required: false
+        default: "120"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-production-first
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure production batch
+        run: |
+          if [ -n "${{ github.event.inputs.batch_size }}" ]; then
+            echo "PRODUCTION_BATCH_SIZE=${{ github.event.inputs.batch_size }}" >> "$GITHUB_ENV"
+          else
+            echo "PRODUCTION_BATCH_SIZE=120" >> "$GITHUB_ENV"
+          fi
+
+      - name: Discover rotating multi-layer production work
+        run: python3 factory/production_queue_builder.py
+
+      - name: Materialize concrete public production
+        run: python3 factory/public_production_materializer.py
+
+      - name: Publish production telemetry
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("generated/multi-layer-production-status.json")
+          d = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+          q = json.loads(Path("generated/production-queue-status.json").read_text(encoding="utf-8"))
+          d["production_driver"] = {
+              "workflow": "SHIRMANI Production-First Multi-Layer Automission",
+              "cadence": "5-minute scheduled cycle",
+              "cycle": q["cycle"],
+              "discovered_modules": q["discovered_modules"],
+              "selected_tasks": q["selected_tasks"],
+              "batch_size": q["batch_size"],
+              "lanes": q["lanes"],
+              "mode": "CONTINUOUS_MULTI_LAYER"
+          }
+          d["public_visibility"] = {
+              "queue_status": "generated/production-queue-status.json",
+              "catalog": "generated/public-production-catalog.json",
+              "module_index": "generated/public-production-by-module.html",
+              "production_stream": "generated/production-results.jsonl"
+          }
+          d["principle"] = "Automission is the continuous production engine; verification is a downstream quality/evidence layer."
+          d["integrity"] = {
+              "production_counts_are_source_derived": True,
+              "fabricated_execution_claim": False,
+              "independent_verification_claim": False
+          }
+          p.write_text(json.dumps(d, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+
+      - name: Commit public production results
+        run: |
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/
+          if git diff --cached --quiet; then
+            echo "No production artifact changes to commit."
+          else
+            git commit -m "chore: publish multi-layer production cycle"
+            git push
+          fi
