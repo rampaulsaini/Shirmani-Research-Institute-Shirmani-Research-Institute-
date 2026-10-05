@@ -30,3 +30,14 @@ jobs:
             generated/public-module-inventory.json
             generated/public-module-production-map.html
           retention-days: 30
+      - name: Publish module map to the public repository
+        run: |
+          git config user.name "SHIRMANI Public Module Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/public-module-inventory.json generated/public-module-production-map.html
+          if git diff --cached --quiet; then
+            echo "No module-map changes to commit."
+          else
+            git commit -m "chore(automission): publish public module production map"
+            git push
+          fi
