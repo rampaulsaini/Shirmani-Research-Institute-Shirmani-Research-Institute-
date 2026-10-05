@@ -198,6 +198,38 @@
           "asset_evidence": "VERIFIED_IN_REPOSITORY"
         }
       ]
+    },
+    {
+      "id": "justice-information-tools",
+      "priority": 6,
+      "offers": [
+        {
+          "id": "J001",
+          "name": "Justice Case Navigator",
+          "delivery": "browser-tool",
+          "asset_path": "products/justice-case-navigator.html",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY",
+          "commercial_state": "NOT_CONFIGURED",
+          "verification_state": "NOT_VERIFIED",
+          "safety_boundary": "information/preparation only; no legal decision or outcome guarantee"
+        }
+      ]
+    },
+    {
+      "id": "education-tools",
+      "priority": 7,
+      "offers": [
+        {
+          "id": "E001",
+          "name": "Learning Path Builder",
+          "delivery": "browser-tool",
+          "asset_path": "products/learning-path-builder.html",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY",
+          "commercial_state": "NOT_CONFIGURED",
+          "verification_state": "NOT_VERIFIED",
+          "safety_boundary": "education planning only; no admission/employment guarantee"
+        }
+      ]
     }
   ],
   "build_stages": [
@@ -210,7 +242,8 @@
     "DELIVERY_PATH",
     "READY_FOR_REVIEW",
     "EVIDENCE",
-    "VERIFICATION"
+    "VERIFICATION",
+    "MVP_RUNTIME_TEST"
   ],
   "reality_states": [
     "ASSET_VERIFIED",
@@ -235,6 +268,7 @@
     "quantum_mode": "quantum-inspired",
     "quantum_note": "Actual quantum execution is not claimed without a real supported backend.",
     "free_first": true,
-    "human_approval_for_paid_or_external_actions": true
+    "human_approval_for_paid_or_external_actions": true,
+    "production_rule": "A product is production-real only when a runnable asset exists; sale/delivery/verification are separate states."
   }
 }
