@@ -1,0 +1,72 @@
+name: SHIRMANI Production Reality Gate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "factory/real_product_factory.py"
+      - "factory/production-reality-manifest.json"
+      - "products/micro/**"
+      - "products/supreme-production-center.html"
+      - ".github/workflows/shirmani-production-reality-gate.yml"
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-production-reality-gate
+  cancel-in-progress: false
+jobs:
+  reality_gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Generate catalog
+        run: python3 factory/real_product_factory.py
+      - name: Enforce production reality
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("generated/1000-digital-products.json").read_text())
+          assert p["product_count"] == 1016
+          assert len(p["products"]) == 1016
+          assert all(x["status"] == "RUNNABLE_STATIC_MVP" for x in p["products"])
+          micro = [
+            "products/micro/word-counter.html",
+            "products/micro/percentage-calculator.html",
+            "products/micro/unit-converter.html",
+            "products/micro/json-formatter.html",
+            "products/micro/color-palette-generator.html",
+            "products/micro/drawing-board.html",
+            "products/micro/markdown-preview.html",
+            "products/micro/seo-meta-generator.html",
+          ]
+          missing=[x for x in micro if not Path(x).exists()]
+          assert not missing, missing
+          assert Path("products/supreme-production-center.html").exists()
+          for x in p["products"]:
+              assert x["commercial_status"] == "NOT_SOLD"
+          report={
+            "catalog_products":1016,
+            "runnable_static_mvp":1016,
+            "standalone_micro_products":len(micro),
+            "commercially_sold":0,
+            "independently_verified_catalog_products":0,
+            "status":"PRODUCTION_ASSETS_PRESENT_COMMERCIAL_SALE_NOT_ENABLED",
+            "truth_boundary":"Runnable assets are not automatically sold, independently verified, accredited or externally hosted services."
+          }
+          Path("generated/production-reality-status.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          PY
+      - name: Persist reality status
+        run: |
+          git config user.name "SHIRMANI Production Reality Gate"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/1000-digital-products.json generated/real-product-factory-status.json generated/production-reality-status.json
+          git diff --cached --quiet || git commit -m "chore(production): persist reality-gate status"
+          git push origin HEAD:main
