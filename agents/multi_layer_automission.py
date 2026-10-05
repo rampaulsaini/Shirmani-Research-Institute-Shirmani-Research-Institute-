@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 import hashlib, json
 from pathlib import Path
+from math import isfinite
 
 @dataclass(frozen=True)
 class Lane:
@@ -25,7 +26,12 @@ LANES = (
 )
 
 def _score(lane, signals):
-    pressure=max(0.0,min(1.0,float(signals.get(lane.name,0.0))))
+    try:
+        raw = float(signals.get(lane.name, 0.0))
+    except (TypeError, ValueError):
+        raw = 0.0
+    # Invalid/non-finite control pressure must never steer orchestration.
+    pressure = max(0.0, min(1.0, raw)) if isfinite(raw) else 0.0
     return round(lane.priority*(0.5+0.5*pressure),6)
 
 def choose_next_action(signals=None):
