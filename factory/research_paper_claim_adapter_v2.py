@@ -29,8 +29,8 @@ for c in registry["claims"]:
 source_units = OUT/"source-units.jsonl"
 source_rows = [json.loads(x) for x in source_units.read_text(encoding="utf-8").splitlines() if x.strip()] if source_units.exists() else []
 required_sources = [
-    (intake["source_id"], "index.html"),
-    (intake["source_id"] + ":PDF", "research-paper.pdf"),
+    (str(intake["source_id"]), "index.html"),
+    (str(intake["source_id"]) + ":PDF", "research-paper.pdf"),
 ]
 for source_id, source_path in required_sources:
     if not any(str(x.get("id")) == source_id for x in source_rows):
