@@ -1,0 +1,15 @@
+{
+  "version":1,
+  "status":"CONCRETE_REPOSITORY_DELIVERABLES",
+  "products":[
+    {"id":"P101","path":"products/deliverables/P101-seo-launch-checklist.md","type":"checklist","price_inr":49},
+    {"id":"P102","path":"products/deliverables/P102-content-calendar-generator.html","type":"micro-tool","price_inr":99},
+    {"id":"P103","path":"products/deliverables/P103-research-evidence-worksheet.md","type":"worksheet","price_inr":49},
+    {"id":"P104","path":"products/deliverables/P104-study-planner.md","type":"education-tool","price_inr":49},
+    {"id":"P105","path":"products/deliverables/P105-pricing-calculator.html","type":"micro-tool","price_inr":49},
+    {"id":"P106","path":"products/deliverables/P106-sketch-grid.html","type":"creative-tool","price_inr":99},
+    {"id":"P107","path":"products/deliverables/P107-ai-product-prompt-pack.md","type":"prompt-pack","price_inr":99},
+    {"id":"P108","path":"products/deliverables/P108-accessibility-checklist.md","type":"checklist","price_inr":49}
+  ],
+  "truth_boundary":"Artifact production is evidenced here; sales, payments, customer delivery and independent verification require separate evidence."
+}
