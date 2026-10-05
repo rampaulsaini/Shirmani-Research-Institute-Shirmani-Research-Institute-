@@ -1,0 +1,20 @@
+name: SHIRMANI Product Catalog Automission
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "products/**"
+      - "factory/product_catalog_qc.py"
+      - ".github/workflows/product-catalog-automission.yml"
+permissions:
+  contents: read
+jobs:
+  product-qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Product catalog QC
+        run: python factory/product_catalog_qc.py
