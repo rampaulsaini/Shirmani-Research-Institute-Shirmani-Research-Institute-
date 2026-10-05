@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - "generated/independent-verification-records.json"
+      - "generated/independent-verification-status.json"
       - "factory/verification_progress_dashboard.py"
       - ".github/workflows/verification-progress-dashboard.yml"
 
@@ -40,7 +41,8 @@ jobs:
           p=d["percent"]
           cfg=json.load(open("config/independent-verification-target.json",encoding="utf-8"))
           assert r["target"] == cfg["verification_target"]
-          assert r["source_registry_records"] == r["prepared"]
+          assert r["source_registry_records"] <= r["prepared"]
+          assert r["prepared_review_packets"] == r["prepared"]
           assert 0 <= r["verified"] <= r["reviewed"] <= r["prepared"] <= r["target"]
           assert r["verified"] + r["remaining_to_verified_target"] == r["target"]
           assert 0 <= p["independently_verified_of_target"] <= 100

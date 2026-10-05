@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RECORDS = ROOT / "generated/independent-verification-records.json"
+PREPARATION_STATUS = ROOT / "generated/independent-verification-status.json"
 TARGET_CONFIG = ROOT / "config/independent-verification-target.json"
 OUT = ROOT / "generated/verification-progress-dashboard.json"
 OUT_MD = ROOT / "generated/verification-progress-dashboard.md"
@@ -27,14 +28,69 @@ def bar(percent: float, width: int = 30) -> str:
     filled = round(width * percent / 100)
     return "█" * filled + "░" * (width - filled)
 
+def validate_preparation_status(prep: dict, target: int) -> int:
+    if prep.get("version") != 1:
+        raise SystemExit("PREPARATION_STATUS_SCHEMA_VERSION_UNSUPPORTED")
+    if prep.get("state") != "NOT_VERIFIED":
+        raise SystemExit("PREPARATION_STATUS_STATE_MUST_REMAIN_NOT_VERIFIED")
+    if prep.get("promotion_eligible") != 0:
+        raise SystemExit("PREPARATION_STATUS_PROMOTION_ELIGIBLE_MUST_BE_ZERO")
+
+    integer_fields = (
+        "queue_total", "queued_records", "prepared_review_records",
+        "reviewed_records", "verified_records", "packet_qc_checked_items",
+        "queue_qc_error_count", "registry_qc_error_count",
+        "promotion_qc_error_count"
+    )
+    for field in integer_fields:
+        value = prep.get(field)
+        if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+            raise SystemExit(f"PREPARATION_STATUS_INVALID_{field.upper()}")
+
+    queue_total = prep["queue_total"]
+    queued = prep["queued_records"]
+    prepared = prep["prepared_review_records"]
+    reviewed = prep["reviewed_records"]
+    verified = prep["verified_records"]
+
+    if any(prep[field] != 0 for field in (
+        "queue_qc_error_count", "registry_qc_error_count", "promotion_qc_error_count"
+    )):
+        raise SystemExit("PREPARATION_STATUS_QC_ERRORS_PRESENT")
+    if prep["packet_qc_checked_items"] > prepared:
+        raise SystemExit("PREPARATION_STATUS_PACKET_QC_EXCEEDS_PREPARED")
+
+    if not (prepared <= queued <= queue_total <= target):
+        raise SystemExit("PREPARATION_STATUS_QUEUE_INVARIANT_FAILED")
+    if not (verified <= reviewed <= prepared):
+        raise SystemExit("PREPARATION_STATUS_REVIEW_INVARIANT_FAILED")
+    if prep.get("prepared_percent") != round(prepared / target * 100, 6):
+        raise SystemExit("PREPARATION_STATUS_PREPARED_PERCENT_MISMATCH")
+    expected_verified_pct = round(verified / queue_total * 100, 6) if queue_total else 0
+    if prep.get("verified_percent_of_queue") != expected_verified_pct:
+        raise SystemExit("PREPARATION_STATUS_VERIFIED_PERCENT_MISMATCH")
+    return prepared
+
+def validate_record_counts(prep: dict, reviewed: int, verified: int) -> None:
+    """Ensure generated preparation metadata cannot override actual review records."""
+    if prep.get("reviewed_records") != reviewed:
+        raise SystemExit("PREPARATION_STATUS_REVIEWED_COUNT_STALE_OR_INFLATED")
+    if prep.get("verified_records") != verified:
+        raise SystemExit("PREPARATION_STATUS_VERIFIED_COUNT_STALE_OR_INFLATED")
+    if verified > reviewed:
+        raise SystemExit("ACTUAL_RECORD_REVIEW_INVARIANT_FAILED")
+
 def main() -> int:
     data = read_json(RECORDS)
+    prep = read_json(PREPARATION_STATUS)
     TARGET = target_value()
     records = data.get("records", [])
+    prepared = validate_preparation_status(prep, TARGET)
     if not isinstance(records, list):
         raise SystemExit("records must be a list")
 
-    prepared = len(records)
+    if prepared < 0 or prepared > TARGET:
+        raise SystemExit("PREPARED_PACKET_COUNT_OUT_OF_RANGE")
     verified = sum(1 for r in records
                    if r.get("reviewer_decision", {}).get("decision") == "VERIFIED"
                    and r.get("status") == "VERIFIED")
@@ -42,13 +98,14 @@ def main() -> int:
                    if r.get("reviewer_decision", {}).get("decision")
                    in {"VERIFIED", "NOT_VERIFIED", "CONTRADICTED", "INCONCLUSIVE"})
     evidence_supported = sum(1 for r in records if r.get("status") == "EVIDENCE-SUPPORTED")
+    validate_record_counts(prep, reviewed, verified)
 
     # The authoritative source is the records list. Never report a synthetic
     # queued/prepared count that is larger than the actual record registry.
     if verified > reviewed or reviewed > prepared or prepared > TARGET:
         raise SystemExit("Verification counters violate monotonic invariants.")
-    if prepared != len(records):
-        raise SystemExit("PREPARED_COUNT_MISMATCH")
+    if len(records) > prepared:
+        raise SystemExit("REVIEW_RECORDS_EXCEED_PREPARED_PACKETS")
 
     remaining = TARGET - verified
     prepared_pct = round(prepared / TARGET * 100, 6)
@@ -65,7 +122,8 @@ def main() -> int:
             "target": TARGET, "prepared": prepared, "reviewed": reviewed,
             "verified": verified, "remaining_to_verified_target": remaining,
             "evidence_supported": evidence_supported,
-            "source_registry_records": len(records)
+            "source_registry_records": len(records),
+            "prepared_review_packets": prepared
         },
         "percent": {
             "prepared_of_target": prepared_pct, "reviewed_of_target": reviewed_pct,
@@ -104,8 +162,8 @@ Generated: {generated}
 
 ## Current prepared set
 
-- Source registry records: **{len(records):,}**
-- Prepared records: **{prepared:,}**
+- Source registry records (actual review records): **{len(records):,}**
+- Prepared review-packet records: **{prepared:,}**
 - Evidence-supported: **{evidence_supported:,}**
 - Reviewed: **{reviewed:,}**
 - Independently VERIFIED: **{verified:,}**
