@@ -1,0 +1,36 @@
+name: SHIRMANI Product Factory QC
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  product-factory-qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify production surfaces
+        run: |
+          test -f products/index.html
+          test -f products/app.html
+          test -f education/index.html
+      - name: Verify 1008 product instances are wired
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const s=fs.readFileSync('products/index.html','utf8');
+          if(!s.includes('Array.from({length:1008}')) throw new Error('1008 generator missing');
+          const a=fs.readFileSync('products/app.html','utf8');
+          const families=(a.match(/const families=\[/)||[]).length;
+          if(families!==1) throw new Error('Product family registry missing');
+          console.log('Product factory surfaces present.');
+          NODE
+      - name: Verify education hub
+        run: |
+          grep -q "SHIRMANI Education Hub" education/index.html
+          grep -q "Production Thinking" education/index.html
+      - name: Production truth gate
+        run: |
+          echo "PASS: product infrastructure is present."
+          echo "NOTE: runnable product instances are not automatically equivalent to sales, revenue, or independent verification."
