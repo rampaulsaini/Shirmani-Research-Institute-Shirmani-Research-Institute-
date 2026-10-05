@@ -60,6 +60,7 @@ jobs:
             generated/multi-layer-production-status.json
             generated/MULTI-LAYER-PRODUCTION.md
             generated/multi-layer-production-state.json
+            generated/production-work-queue.jsonl
           retention-days: 30
 
       - name: Configure GitHub Pages
