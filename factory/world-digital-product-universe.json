@@ -1,0 +1,308 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Scalable world digital-product universe for SHIRMANI production routing",
+  "principle": "Cover product families systematically; each family maps to an artifact, delivery path, quality state and commercial state.",
+  "note": "Taxonomy and production registry; not a claim that every listed global product already exists or is commercially live.",
+  "verticals": [
+    [
+      "education",
+      "courses",
+      "assessments",
+      "certificates",
+      "tutoring",
+      "research labs",
+      "university portals"
+    ],
+    [
+      "research",
+      "evidence packs",
+      "literature maps",
+      "data reports",
+      "citation tools",
+      "research workflows"
+    ],
+    [
+      "ai-ml-nlp",
+      "AI assistants",
+      "domain models",
+      "evaluation kits",
+      "prompt systems",
+      "agent workflows",
+      "NLP tools"
+    ],
+    [
+      "software",
+      "web apps",
+      "mobile apps",
+      "developer tools",
+      "APIs",
+      "SaaS",
+      "automation"
+    ],
+    [
+      "creative-media",
+      "audio",
+      "music",
+      "video",
+      "podcasts",
+      "graphics",
+      "templates"
+    ],
+    [
+      "publishing",
+      "ebooks",
+      "reports",
+      "newsletters",
+      "journals",
+      "documentation",
+      "translation"
+    ],
+    [
+      "business",
+      "CRM",
+      "operations",
+      "analytics",
+      "strategy kits",
+      "business templates",
+      "workflow services"
+    ],
+    [
+      "commerce",
+      "digital stores",
+      "marketplaces",
+      "catalogs",
+      "order systems",
+      "delivery systems"
+    ],
+    [
+      "finance",
+      "budgeting",
+      "accounting tools",
+      "financial education",
+      "market analytics",
+      "currency utilities"
+    ],
+    [
+      "legal",
+      "document organization",
+      "casework tools",
+      "evidence ledgers",
+      "compliance checklists",
+      "legal information"
+    ],
+    [
+      "health",
+      "wellness education",
+      "habit tools",
+      "appointment workflows",
+      "health information organization"
+    ],
+    [
+      "government",
+      "public information",
+      "forms",
+      "service directories",
+      "open-data dashboards",
+      "citizen workflows"
+    ],
+    [
+      "justice",
+      "case information",
+      "evidence organization",
+      "court-document workflows",
+      "public legal information"
+    ],
+    [
+      "employment",
+      "resumes",
+      "portfolio tools",
+      "job-search kits",
+      "skills assessments",
+      "freelance services"
+    ],
+    [
+      "marketing",
+      "copy",
+      "SEO assets",
+      "campaign kits",
+      "analytics",
+      "brand systems",
+      "social packages"
+    ],
+    [
+      "security",
+      "security checklists",
+      "audit tools",
+      "provenance tools",
+      "incident documentation",
+      "privacy education"
+    ],
+    [
+      "productivity",
+      "notes",
+      "planning",
+      "task management",
+      "knowledge systems",
+      "document automation"
+    ],
+    [
+      "language",
+      "translation",
+      "transcription",
+      "language learning",
+      "terminology systems",
+      "multilingual publishing"
+    ],
+    [
+      "science",
+      "educational simulators",
+      "data tools",
+      "lab documentation",
+      "visualizations",
+      "research software"
+    ],
+    [
+      "engineering",
+      "calculators",
+      "design checklists",
+      "project workflows",
+      "documentation"
+    ],
+    [
+      "architecture",
+      "design documentation",
+      "space-planning tools",
+      "presentation kits",
+      "project records"
+    ],
+    [
+      "culture",
+      "archives",
+      "digital exhibits",
+      "heritage publications",
+      "storytelling",
+      "language preservation"
+    ],
+    [
+      "music",
+      "composition tools",
+      "music education",
+      "production kits",
+      "audio libraries",
+      "artist services"
+    ],
+    [
+      "film",
+      "screenwriting",
+      "production planning",
+      "editing templates",
+      "distribution metadata"
+    ],
+    [
+      "gaming",
+      "game assets",
+      "design documents",
+      "tools",
+      "education",
+      "community products"
+    ],
+    [
+      "social",
+      "community tools",
+      "creator systems",
+      "moderation workflows",
+      "publication systems"
+    ],
+    [
+      "real-estate",
+      "property information",
+      "comparison tools",
+      "document checklists",
+      "marketing packages"
+    ],
+    [
+      "travel",
+      "guides",
+      "itineraries",
+      "language kits",
+      "booking-information tools",
+      "local content"
+    ],
+    [
+      "environment",
+      "education",
+      "monitoring dashboards",
+      "sustainability reports",
+      "resource-planning tools"
+    ],
+    [
+      "agriculture",
+      "farm education",
+      "planning tools",
+      "market information",
+      "record systems"
+    ],
+    [
+      "industry",
+      "operations tools",
+      "quality systems",
+      "training",
+      "documentation",
+      "analytics"
+    ],
+    [
+      "logistics",
+      "route planning",
+      "inventory tools",
+      "tracking information",
+      "workflow automation"
+    ],
+    [
+      "energy",
+      "education",
+      "usage dashboards",
+      "planning tools",
+      "sustainability reporting"
+    ],
+    [
+      "currency",
+      "conversion",
+      "rate information",
+      "financial education",
+      "pricing utilities"
+    ],
+    [
+      "identity",
+      "profiles",
+      "portfolios",
+      "creator pages",
+      "professional records"
+    ],
+    [
+      "knowledge-marketplace",
+      "digital books",
+      "templates",
+      "courses",
+      "services",
+      "licenses",
+      "APIs"
+    ]
+  ],
+  "production_states": [
+    "IDEA",
+    "SPECIFIED",
+    "PRODUCED",
+    "QUALITY_CHECKED",
+    "DELIVERY_READY",
+    "LIVE",
+    "MEASURED"
+  ],
+  "commercial_states": [
+    "FREE",
+    "INQUIRY",
+    "EXTERNAL_CHECKOUT",
+    "PAID_LIVE",
+    "LICENSED"
+  ],
+  "verification_rule": "LIVE, PAID_LIVE and LICENSED require evidence beyond repository generation."
+}
