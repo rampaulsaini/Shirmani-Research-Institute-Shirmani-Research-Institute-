@@ -108,6 +108,16 @@ def main():
     assert report["status"] == "FAIL"
     assert report["checks"]["no_direct_verification_shortcut"] is False
 
+    # Truthy verification shortcuts are rejected even when they are not booleans.
+    for value in ("true", "verified", 1, ["verified"], {"state": "verified"}):
+        truthy_flag = dict(record)
+        truthy_flag["result"] = dict(record["result"])
+        truthy_flag["result"]["verified"] = value
+        truthy_flag["fingerprint"] = canonical_sha256(integrity_payload(truthy_flag))
+        report = validate_result(truthy_flag)
+        assert report["status"] == "FAIL"
+        assert report["checks"]["no_direct_verification_shortcut"] is False
+
     # Provenance must have a stable minimum shape.
     malformed_provenance = dict(record)
     malformed_provenance["provenance"] = {"generator": "test"}
