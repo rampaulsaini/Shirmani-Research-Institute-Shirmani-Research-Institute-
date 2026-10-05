@@ -10,9 +10,9 @@ public={"schema_version":1,"mode":"REAL_PRODUCT_CATALOG","principle":"A product 
 cards=[]
 for o in offers:
     paid="price_inr" in o
-    status="CATALOG_READY / EXTERNAL_CHECKOUT" if paid else "SERVICE_READY / INQUIRY_REQUIRED"
-    cta=o.get("store") or o.get("destination") or "https://wa.me/918082935186"
-    label="Store / order path" if paid else "Service inquiry"
+    status=("ASSET_VERIFIED / EXTERNAL_CHECKOUT" if o.get("asset_path") else "CATALOG_READY / EXTERNAL_CHECKOUT") if paid else "SERVICE_READY / INQUIRY_REQUIRED"
+    cta=o.get("asset_path") or o.get("store") or o.get("destination") or "https://wa.me/918082935186"
+    label=("Download artifact" if o.get("asset_path") else "Store / order path") if paid else "Service inquiry"
     price=(f"₹{o['price_inr']:,}" + (" · "+o["price_note"] if o.get("price_note") else "")) if paid else "Service"
     cards.append(f'<article class="card"><div class="tag">{html.escape(o["lane"])}</div><h2>{html.escape(o["name"])}</h2><div class="price">{price}</div><p>Delivery: <b>{html.escape(o.get("delivery",""))}</b></p><p class="status">{status}</p><a class="btn" href="{html.escape(cta)}" target="_blank" rel="noopener">{label}</a></article>')
 page=f'''<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI — Real Product Catalog</title><meta name="description" content="SHIRMANI real product and service catalog generated from the repository product registry."><style>
