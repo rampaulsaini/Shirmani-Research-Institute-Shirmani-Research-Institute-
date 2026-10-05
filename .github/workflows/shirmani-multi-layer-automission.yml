@@ -99,10 +99,17 @@ jobs:
           import json, os
           from pathlib import Path
           from agents.multi_layer_automission import build_cycle, verify_cycle_fingerprint, review_result_outcome, validate_lane_contract
-          validate_lane_contract(os.environ["LANE"], os.environ["FOCUS"], os.environ["TEST_PATH"], os.environ["RUNNER"])\n          cycle=build_cycle({os.environ["LANE"]:1.0}, executed_lane=os.environ["LANE"])
+          validate_lane_contract(os.environ["LANE"], os.environ["FOCUS"], os.environ["TEST_PATH"], os.environ["RUNNER"])
+          cycle=build_cycle({os.environ["LANE"]:1.0}, executed_lane=os.environ["LANE"])
           cycle["lane_contract"]={"focus":os.environ["FOCUS"],"test_path":os.environ["TEST_PATH"],"runner":os.environ["RUNNER"]}
           observed=json.loads(Path("lane-output/test-result.json").read_text(encoding="utf-8"))
-          expected={k: observed[k] for k in ("lane","test_path","runner","exit_code","status")}
+          expected={
+              "lane": os.environ["LANE"],
+              "test_path": os.environ["TEST_PATH"],
+              "runner": os.environ["RUNNER"],
+              "exit_code": 0,
+              "status": "PASS",
+          }
           outcome=review_result_outcome(expected, observed)
           assert outcome["matched"] is True
           assert observed["exit_code"] == 0
@@ -112,7 +119,8 @@ jobs:
           cycle["cycle_fingerprint"]=__import__("agents.multi_layer_automission",fromlist=["fingerprint_cycle"]).fingerprint_cycle(cycle)
           assert verify_cycle_fingerprint(cycle)
           out=Path("lane-output")
-          (out/"cycle.json").write_text(json.dumps(cycle,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          (out/"cycle.json").write_text(json.dumps(cycle,ensure_ascii=False,indent=2)+"
+",encoding="utf-8")
           print(json.dumps(cycle["decision"]["winner"],ensure_ascii=False))
           PY
       - name: Upload lane artifact
@@ -168,7 +176,8 @@ jobs:
           }
           assert {r["lane_contract"]["focus"] for r in rows} == set(expected_focus.values())
           assert all(r["lane_contract"]["focus"] == expected_focus[r["executed_lane"]] for r in rows)
-          assert all(r["lane_contract"]["test_path"] for r in rows)\n          assert all(validate_lane_contract(r["executed_lane"], r["lane_contract"]["focus"], r["lane_contract"]["test_path"], r["lane_contract"]["runner"]) for r in rows)
+          assert all(r["lane_contract"]["test_path"] for r in rows)
+          assert all(validate_lane_contract(r["executed_lane"], r["lane_contract"]["focus"], r["lane_contract"]["test_path"], r["lane_contract"]["runner"]) for r in rows)
           assert {r["lane_contract"]["runner"] for r in rows} == {"pytest", "python"}
           print("MULTI_LAYER_RESULT_OUTCOME_CONVERGENCE=PASS")
           PY
