@@ -3,26 +3,78 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "*/10 * * * *"
+
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: shirmani-product-production
+  cancel-in-progress: false
+
 jobs:
   product-factory:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONPATH: .
     steps:
       - uses: actions/checkout@v4
-      - name: Build product-first status
+
+      - name: Produce the next multi-product batch
+        run: python3 factory/batch_worker.py --batch-size 1000
+
+      - name: Build product-first catalog from produced assets
+        run: python3 factory/product_orchestrator.py
+
+      - name: Enforce production-first contract
         run: |
-          python - <<'PY'
-          import json, pathlib, datetime
-          data=json.loads(pathlib.Path("factory/product-catalog.json").read_text(encoding="utf-8"))
-          offers=[x for lane in data["lanes"] for x in lane["offers"]]
-          out={"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"mode":"PRODUCT_FIRST","lanes":len(data["lanes"]),"offers":len(offers),"stages":data["build_stages"],"orchestration":data["orchestration"],"verification_position":"DOWNSTREAM_OF_PRODUCT_OUTPUT"}
-          pathlib.Path("generated").mkdir(exist_ok=True)
-          pathlib.Path("generated/product-factory-status.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-          print(json.dumps(out,ensure_ascii=False,indent=2))
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("generated/PRODUCT-CATALOG.json").read_text(encoding="utf-8"))
+          assert p["strategy"]=="PRODUCT_FIRST"
+          assert p["product_count"]>=1
+          assert p["quantum_execution"]["mode"]=="quantum-inspired-deterministic"
+          assert p["safety"]["verification_does_not_create_the_product"] is True
+          status=json.loads(Path("generated/worker-status.json").read_text(encoding="utf-8"))
+          completed=status.get("completed", {})
+          produced=sum(int(v) for v in completed.values())
+          print("PRODUCT-FIRST PRODUCTION: PASS")
+          print("Product lines:", p["product_count"])
+          print("Available units:", p["available_units"])
+          print("Target units:", p["target_units"])
+          print("Catalog completion:", p["completion_pct"], "%")
+          print("Cumulative produced/completed units:", produced)
+          print("Verification remains downstream of production.")
           PY
-      - name: Upload product factory status
+
+      - name: Upload production outputs
         uses: actions/upload-artifact@v4
         with:
-          name: shirmani-product-factory-status
-          path: generated/product-factory-status.json
+          name: shirmani-product-production-${{ github.run_id }}
+          path: |
+            generated/PRODUCT-CATALOG.json
+            generated/PRODUCT-PIPELINE.md
+            generated/worker-status.json
+            generated/verse-corpus.jsonl
+            generated/audio-prompts.jsonl
+            generated/research-paper-draft-*.md
+            generated/book-*.md
+            generated/certificates/*.md
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Publish production telemetry
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git config user.name "product-factory[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/PRODUCT-CATALOG.json generated/PRODUCT-PIPELINE.md generated/worker-status.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore(product-factory): advance production telemetry"
+          BRANCH="automation/product-production"
+          git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
+          git branch -f "$BRANCH" HEAD
+          git push --force-with-lease origin "HEAD:$BRANCH"
