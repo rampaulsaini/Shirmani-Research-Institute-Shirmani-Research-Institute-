@@ -72,6 +72,30 @@ def main():
     forged_provenance["fingerprint"] = canonical_sha256(integrity_payload(forged_provenance))
     assert validate_result(forged_provenance)["status"] == "FAIL"
 
+
+
+    # Empty stable identifiers are not review-ready.
+    for field in ("result_id", "task_id", "result_status"):
+        invalid_id = dict(record)
+        invalid_id[field] = "   "
+        invalid_id["fingerprint"] = canonical_sha256(integrity_payload(invalid_id))
+        assert validate_result(invalid_id)["status"] == "FAIL"
+
+    # Verification shortcuts are rejected recursively, including inside result payloads.
+    nested = dict(record)
+    nested["result"] = dict(record["result"])
+    nested["result"]["verified"] = True
+    nested["fingerprint"] = canonical_sha256(integrity_payload(nested))
+    report = validate_result(nested)
+    assert report["status"] == "FAIL"
+    assert report["checks"]["no_direct_verification_shortcut"] is False
+
+    # Provenance must have a stable minimum shape.
+    malformed_provenance = dict(record)
+    malformed_provenance["provenance"] = {"generator": "test"}
+    malformed_provenance["fingerprint"] = canonical_sha256(integrity_payload(malformed_provenance))
+    assert validate_result(malformed_provenance)["status"] == "FAIL"
+
     print("RESULT_FIRST_REVIEW_GATE=PASS")
 
 
