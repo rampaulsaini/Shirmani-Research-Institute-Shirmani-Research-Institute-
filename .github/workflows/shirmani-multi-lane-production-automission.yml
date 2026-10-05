@@ -1,0 +1,103 @@
+name: SHIRMANI Multi-Lane Production Automission
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Rows per production lane"
+        required: false
+        default: "250"
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-production-conveyor
+  cancel-in-progress: false
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        lane:
+          - research
+          - reasoning
+          - multilingual
+          - creative
+          - audio
+          - product
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run production lane
+        env:
+          LANE: ${{ matrix.lane }}
+          BATCH_SIZE: ${{ inputs.batch_size || '250' }}
+        run: |
+          set -euo pipefail
+          mkdir -p "production-runs/${LANE}"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          from datetime import datetime, timezone
+          lane=os.environ["LANE"]
+          n=max(1,int(os.environ.get("BATCH_SIZE","250")))
+          src=Path("generated/source-units.jsonl")
+          rows=[json.loads(x) for x in src.read_text(encoding="utf-8").splitlines() if x.strip()] if src.exists() else []
+          out=Path("production-runs")/lane
+          selected=rows[:n]
+          records=[]
+          for i,r in enumerate(selected,1):
+              records.append({
+                "production_id":f"{lane}-{i:06d}",
+                "lane":lane,
+                "source_id":r.get("id"),
+                "repository":r.get("repository"),
+                "path":r.get("path"),
+                "status":"PRODUCED_DRAFT",
+                "generated_at":datetime.now(timezone.utc).isoformat(),
+                "next_stage":"quality_qc_then_downstream_verification"
+              })
+          (out/"production-ledger.jsonl").write_text(
+            "".join(json.dumps(x,ensure_ascii=False)+"\n" for x in records),
+            encoding="utf-8")
+          (out/"summary.json").write_text(json.dumps({
+            "lane":lane,"requested":n,"produced":len(records),
+            "status":"PRODUCED_DRAFT",
+            "principle":"production first; verification downstream"
+          },ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          PY
+      - name: Publish lane artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-production-${{ matrix.lane }}-${{ github.run_id }}
+          path: production-runs/${{ matrix.lane }}
+          retention-days: 14
+
+  surface:
+    needs: production
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Refresh public production surface
+        run: python3 factory/production_surface.py
+      - name: Commit production telemetry
+        run: |
+          set -e
+          git config user.name "shirmani-production[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/PRODUCTION-SURFACE.json generated/PRODUCTION-SURFACE.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore(automission): refresh production surface"
+          git push
