@@ -1,0 +1,45 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI Real Product Laboratory</title><style>body{margin:0;background:#071018;color:#eef5f8;font-family:system-ui,sans-serif;line-height:1.5}main{max-width:1200px;margin:auto;padding:18px 14px 70px}h1,h2,h3{color:#ffd84a}.hero,.card{background:#101923;border:1px solid #354858;border-radius:16px;padding:16px;margin:12px 0}.hero{border:2px solid #ffd84a}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}.tool{background:#0b141e;border:1px solid #304657;border-radius:12px;padding:13px}input,textarea,select{width:100%;box-sizing:border-box;padding:8px;margin:4px 0 8px;background:#081019;color:#fff;border:1px solid #405466;border-radius:8px}button,a.btn{padding:8px 11px;border:0;border-radius:8px;background:#ffd84a;color:#101010;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;margin:3px}pre{white-space:pre-wrap;overflow:auto;background:#050a0f;padding:9px;border-radius:8px}.tag{display:inline-block;border:1px solid #5ee7ff;border-radius:99px;padding:3px 8px;color:#5ee7ff;font-size:.72rem}.ok{color:#6ee7b7}.warn{color:#f6c453}canvas{max-width:100%;background:#fff}</style></head><body><main>
+<section class="hero"><span class="tag">REAL PRODUCT MVP • 15 DISTINCT ENGINES</span><h1>꙰ SHIRMANI Real Product Laboratory</h1><p>यह catalog-only page नहीं है। नीचे अलग-अलग browser-executable engines वास्तविक input लेकर deterministic output देते हैं। अभी यह MVP है; external AI, payment, accreditation और cloud backend का दावा नहीं है।</p><a class="btn" href="../index.html">Main Hub</a><a class="btn" href="../global-education-platform.html">Education</a><a class="btn" href="../products.html">Catalog</a></section>
+<section class="card"><h2>🧮 Math & Data</h2><div class="grid">
+<div class="tool"><h3>01 Calculator</h3><input id="a" type="number" value="25"><input id="b" type="number" value="4"><select id="op"><option>+</option><option>-</option><option>*</option><option>/</option><option>%</option><option>^</option></select><button onclick="calc()">Run</button><pre id="o1">Ready</pre></div>
+<div class="tool"><h3>02 Percentage</h3><input id="v" type="number" value="87"><input id="t" type="number" value="100"><button onclick="pct()">Run</button><pre id="o2">Ready</pre></div>
+<div class="tool"><h3>03 Ratio</h3><input id="r1" type="number" value="98"><input id="r2" type="number" value="87"><button onclick="ratio()">Run</button><pre id="o3">Ready</pre></div>
+<div class="tool"><h3>04 JSON Inspector</h3><textarea id="jx">{"name":"SHIRMANI","status":"MVP"}</textarea><button onclick="jsonx()">Run</button><pre id="o4">Ready</pre></div>
+<div class="tool"><h3>05 CSV Inspector</h3><textarea id="cx">name,score
+A,98
+B,87</textarea><button onclick="csvx()">Run</button><pre id="o5">Ready</pre></div>
+<div class="tool"><h3>06 Word Frequency</h3><textarea id="wx">heart truth heart understanding truth</textarea><button onclick="freq()">Run</button><pre id="o6">Ready</pre></div>
+</div></section>
+<section class="card"><h2>✍️ Text, SEO & Creator</h2><div class="grid">
+<div class="tool"><h3>07 Text Metrics</h3><textarea id="tx">निष्पक्ष समझ सरल शब्दों में सीखना है।</textarea><button onclick="textx()">Run</button><pre id="o7">Ready</pre></div>
+<div class="tool"><h3>08 SEO Pack</h3><input id="st" value="SHIRMANI Digital Product"><textarea id="sd">सरल उपयोगी digital learning product.</textarea><button onclick="seo()">Run</button><pre id="o8">Ready</pre></div>
+<div class="tool"><h3>09 Prompt Pack</h3><textarea id="pb">एक learning product बनाना है।</textarea><button onclick="promptx()">Run</button><pre id="o9">Ready</pre></div>
+<div class="tool"><h3>10 Drawing Board</h3><canvas id="cv" width="480" height="220"></canvas><br><button onclick="clearcv()">Clear</button><button onclick="savecv()">Save PNG</button></div>
+</div></section>
+<section class="card"><h2>🎓 Education & Research</h2><div class="grid">
+<div class="tool"><h3>11 Learning Pack</h3><input id="lt" value="AI/ML/NLP"><select id="ll"><option>Foundation</option><option>School</option><option>College</option><option>University</option><option>Professional</option><option>Vocational</option><option>Research</option></select><textarea id="lg">Concept → example → practice → self-check → revision</textarea><button onclick="learn()">Run</button><pre id="o11">Ready</pre></div>
+<div class="tool"><h3>12 Quiz Maker</h3><input id="qt" value="Computer Science"><input id="qq" value="Algorithm क्या है?"><input id="qa" value="क्रमबद्ध समस्या-समाधान चरण।"><button onclick="quiz()">Run</button><pre id="o12">Ready</pre></div>
+<div class="tool"><h3>13 Evidence Record</h3><input id="cl" value="Testable claim"><input id="src" value="Source"><textarea id="ev">Observed evidence</textarea><textarea id="ce">Counter-evidence / limitation</textarea><button onclick="evx()">Run</button><pre id="o13">Ready</pre></div>
+<div class="tool"><h3>14 Research Question</h3><input id="rq" value="AI education"><button onclick="rqx()">Run</button><pre id="o14">Ready</pre></div>
+<div class="tool"><h3>15 Study Plan</h3><input id="sub" value="AI/ML/NLP"><input id="days" type="number" value="7"><button onclick="study()">Run</button><pre id="o15">Ready</pre></div>
+</div></section>
+<section class="hero"><h2>Production truth</h2><p class="ok"><strong>15 distinct browser MVP engines are implemented here.</strong></p><p class="warn">यह 1016 independent commercial products, sales, accreditation, external AI inference या independent verification का दावा नहीं है। अगला चरण: dedicated product pages, automated tests, packaging, pricing, delivery evidence और independent review.</p></section>
+</main><script>
+const $=i=>document.getElementById(i),v=i=>$(i).value.trim(),out=(i,x)=>$(i).textContent=JSON.stringify(x,null,2);
+function calc(){let a=+v("a"),b=+v("b"),o=v("op"),r=o==="+"?a+b:o==="-"?a-b:o==="*"?a*b:o==="/"?(b?a/b:"DIV0"):o==="%"?a%b:a**b;out("o1",{a,b,op:o,result:r})}
+function pct(){let x=+v("v"),t=+v("t");out("o2",{value:x,total:t,percent:t?x/t*100:0,remaining:t-x})}
+function gcd(a,b){while(b)[a,b]=[b,a%b];return Math.abs(a)}
+function ratio(){let a=+v("r1"),b=+v("r2"),g=gcd(a,b);out("o3",{input:[a,b],simplified:[a/g,b/g]})}
+function jsonx(){try{out("o4",{valid:true,data:JSON.parse(v("jx"))})}catch(e){out("o4",{valid:false,error:e.message})}}
+function csvx(){let r=v("cx").split(/\n/).filter(Boolean).map(x=>x.split(","));out("o5",{rows:r.length-1,columns:r[0]?.length||0,headers:r[0]||[],preview:r.slice(1)})}
+function freq(){let m={};(v("wx").toLowerCase().match(/[\p{L}\p{N}_-]+/gu)||[]).forEach(w=>m[w]=(m[w]||0)+1);out("o6",m)}
+function textx(){let t=v("tx");out("o7",{characters:t.length,words:(t.match(/\S+/g)||[]).length,lines:t.split(/\n/).length})}
+function seo(){let t=v("st"),d=v("sd"),s=t.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");out("o8",{title:t,description:d.slice(0,160),slug:s})}
+function promptx(){out("o9",{brief:v("pb"),stages:["objective","context","constraints","inputs","output","quality-check","human-review"]})}
+let c=$("cv"),x=c.getContext("2d"),down=false;c.onpointerdown=e=>{down=true;x.beginPath();x.moveTo(e.offsetX,e.offsetY)};c.onpointerup=()=>down=false;c.onpointerleave=()=>down=false;c.onpointermove=e=>{if(down){x.lineTo(e.offsetX,e.offsetY);x.stroke()}};function clearcv(){x.clearRect(0,0,c.width,c.height)}function savecv(){let a=document.createElement("a");a.href=c.toDataURL();a.download="shirmani-drawing.png";a.click()}
+function learn(){out("o11",{product:"SHIRMANI_LEARNING_PRODUCT",topic:v("lt"),level:v("ll"),modules:["objective","concept","example","practice","self-check","feedback","revision","portfolio"],goal:v("lg"),accreditation:"NOT_CLAIMED",status:"DRAFT_FOR_REVIEW"})}
+function quiz(){out("o12",{topic:v("qt"),question:v("qq"),answer:v("qa"),status:"DRAFT"})}
+function evx(){out("o13",{claim:v("cl"),source:v("src"),evidence:v("ev"),counter_evidence:v("ce"),verification:"NOT_INDEPENDENTLY_VERIFIED"})}
+function rqx(){let q=v("rq");out("o14",{question:q,methods:["define","source","compare","test","limitations"],hypothesis:"Measure an observable difference for "+q})}
+function study(){let n=Math.max(1,+v("days")||1),a=[];for(let i=1;i<=n;i++)a.push({day:i,focus:v("sub"),activity:i===n?"review + self-test":"concept + practice"});out("o15",a)}
+</script></body></html>
