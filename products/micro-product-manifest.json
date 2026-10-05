@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "status": "WORKING_ASSET",
+  "created": "2026-10-05",
+  "products": [
+    {
+      "id": "M001",
+      "name": "Word & Character Counter",
+      "path": "products/micro/word-counter.html",
+      "type": "browser-tool"
+    },
+    {
+      "id": "M002",
+      "name": "Percentage Calculator",
+      "path": "products/micro/percentage-calculator.html",
+      "type": "browser-tool"
+    },
+    {
+      "id": "M003",
+      "name": "Length Unit Converter",
+      "path": "products/micro/unit-converter.html",
+      "type": "browser-tool"
+    },
+    {
+      "id": "M004",
+      "name": "JSON Formatter & Validator",
+      "path": "products/micro/json-formatter.html",
+      "type": "browser-tool"
+    },
+    {
+      "id": "M005",
+      "name": "Color Palette Generator",
+      "path": "products/micro/color-palette-generator.html",
+      "type": "browser-tool"
+    },
+    {
+      "id": "M006",
+      "name": "Simple Digital Drawing Board",
+      "path": "products/micro/drawing-board.html",
+      "type": "browser-tool"
+    },
+    {
+      "id": "M007",
+      "name": "Markdown Preview",
+      "path": "products/micro/markdown-preview.html",
+      "type": "browser-tool"
+    },
+    {
+      "id": "M008",
+      "name": "SEO Meta Draft Generator",
+      "path": "products/micro/seo-meta-generator.html",
+      "type": "browser-tool"
+    }
+  ],
+  "integrity": "These are runnable repository assets. This manifest does not claim sales, revenue, external customer use, scientific verification, or completion of the 1000+ product target."
+}
