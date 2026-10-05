@@ -87,7 +87,10 @@ def review_result_outcome(expected_result, observed_result):
         raise ValueError("expected_result and observed_result must be mappings")
     expected_hash = result_outcome_fingerprint(expected_result)
     observed_hash = result_outcome_fingerprint(observed_result)
-    matched = constant_time_compare(expected_hash, observed_hash)
+    if not all(key in observed_result and observed_result[key] == value for key, value in expected_result.items()):
+        matched = False
+    else:
+        matched = True
     return {
         "status": "RESULT_OUTCOME_MATCH" if matched else "RESULT_OUTCOME_MISMATCH",
         "matched": matched,
@@ -98,7 +101,31 @@ def review_result_outcome(expected_result, observed_result):
         "scientific_truth_established": False,
     }
 
-LANE_CONTRACTS = {\n    "practitioner": {"focus": "practitioner-core", "runner": "pytest"},\n    "ml": {"focus": "ml-validation", "runner": "pytest"},\n    "nlp": {"focus": "nlp-end-to-end", "runner": "pytest"},\n    "evidence": {"focus": "independent-evidence-ledger", "runner": "python"},\n    "automission": {"focus": "automission-hardening", "runner": "python"},\n    "quantum-mechanism": {"focus": "deterministic-orchestration", "runner": "pytest"},\n}\n\ndef validate_lane_contract(lane, focus, test_path, runner):\n    """Validate that an executed lane matches its declared contract."""\n    if lane not in LANE_CONTRACTS:\n        raise ValueError("unknown lane")\n    if not isinstance(focus, str) or not focus:\n        raise ValueError("focus must be a non-empty string")\n    if not isinstance(test_path, str) or not test_path:\n        raise ValueError("test_path must be a non-empty string")\n    if runner not in {"pytest", "python"}:\n        raise ValueError("runner must be pytest or python")\n    expected = LANE_CONTRACTS[lane]\n    if focus != expected["focus"] or runner != expected["runner"]:\n        raise ValueError("lane contract mismatch")\n    return True\n\ndef build_result_outcome(lane, test_path, runner, exit_code):
+LANE_CONTRACTS = {
+    "practitioner": {"focus": "practitioner-core", "runner": "pytest"},
+    "ml": {"focus": "ml-validation", "runner": "pytest"},
+    "nlp": {"focus": "nlp-end-to-end", "runner": "pytest"},
+    "evidence": {"focus": "independent-evidence-ledger", "runner": "python"},
+    "automission": {"focus": "automission-hardening", "runner": "python"},
+    "quantum-mechanism": {"focus": "deterministic-orchestration", "runner": "pytest"},
+}
+
+def validate_lane_contract(lane, focus, test_path, runner):
+    """Validate that an executed lane matches its declared contract."""
+    if lane not in LANE_CONTRACTS:
+        raise ValueError("unknown lane")
+    if not isinstance(focus, str) or not focus:
+        raise ValueError("focus must be a non-empty string")
+    if not isinstance(test_path, str) or not test_path:
+        raise ValueError("test_path must be a non-empty string")
+    if runner not in {"pytest", "python"}:
+        raise ValueError("runner must be pytest or python")
+    expected = LANE_CONTRACTS[lane]
+    if focus != expected["focus"] or runner != expected["runner"]:
+        raise ValueError("lane contract mismatch")
+    return True
+
+def build_result_outcome(lane, test_path, runner, exit_code):
     """Create a result record from the actual lane test process outcome."""
     if not isinstance(lane, str) or not lane:
         raise ValueError("lane must be a non-empty string")
@@ -137,7 +164,8 @@ def build_cycle(signals=None, executed_lane=None):
 
 def write_cycle(path="generated/multi-layer-automission/cycle.json"):
     result=build_cycle(); target=Path(path); target.parent.mkdir(parents=True,exist_ok=True)
-    target.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"); return result
+    target.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"
+",encoding="utf-8"); return result
 
 if __name__=="__main__":
     print(json.dumps(write_cycle(),ensure_ascii=False,indent=2))
