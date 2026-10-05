@@ -46,14 +46,26 @@ def normalize(raw: dict[str, Any]) -> Signal:
             return value if isfinite(value) else None
         except (TypeError, ValueError):
             return None
-    try: value=float(raw.get("value", 0.0))
-    except (TypeError, ValueError): value=0.0
-    if not isfinite(value): value=0.0
+    invalid_value = False
+    try:
+        value=float(raw.get("value", 0.0))
+    except (TypeError, ValueError):
+        value=0.0
+        invalid_value = "value" in raw
+    if not isfinite(value):
+        value=0.0
+        invalid_value = True
+    quality=clip(raw.get("quality",1.0))
+    # Invalid observed values are never allowed to become trusted zero-valued
+    # signals. Preserve the finite normalized value for auditability, but mark
+    # the signal unusable so downstream summaries fail closed.
+    if invalid_value:
+        quality=0.0
     return Signal(
         modality=str(raw.get("modality","unknown")),
         feature=str(raw.get("feature","unknown")),
         value=value,
-        quality=clip(raw.get("quality",1.0)),
+        quality=quality,
         source=str(raw.get("source","unknown")),
         experiment_id=str(raw.get("experiment_id","")),
         unit=str(raw.get("unit","")),
