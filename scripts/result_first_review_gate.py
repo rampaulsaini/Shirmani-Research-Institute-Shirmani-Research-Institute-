@@ -35,21 +35,26 @@ FORBIDDEN_VERIFICATION_FLAGS = {
     "independently_verified",
     "scientific_verification_granted",
 }
-REQUIRED_PROVENANCE_FIELDS = (
-    "generator",
-    "verification_status",
-    "independent_replication_verified",
-)
+VERIFIED_STATUS_KEYS = {"verification_status", "verification_state", "result_status"}
+VERIFIED_STATUS_VALUES = {"VERIFIED", "SCIENTIFICALLY_VERIFIED", "INDEPENDENTLY_VERIFIED"}
 
 
 def has_true_verification_flag(value: Any) -> bool:
     """Reject verification shortcuts at any nesting depth."""
     if isinstance(value, dict):
-        return any(
-            (key in FORBIDDEN_VERIFICATION_FLAGS and value[key] is True)
-            or has_true_verification_flag(child)
-            for key, child in value.items()
-        )
+        for key, child in value.items():
+            normalized_key = key.strip().lower() if isinstance(key, str) else key
+            if normalized_key in FORBIDDEN_VERIFICATION_FLAGS and child is True:
+                return True
+            if (
+                normalized_key in VERIFIED_STATUS_KEYS
+                and isinstance(child, str)
+                and child.strip().upper() in VERIFIED_STATUS_VALUES
+            ):
+                return True
+            if has_true_verification_flag(child):
+                return True
+        return False
     if isinstance(value, list):
         return any(has_true_verification_flag(item) for item in value)
     return False
@@ -105,7 +110,7 @@ def validate_result(record: dict[str, Any]) -> dict[str, Any]:
     checks["integrity"] = verify_integrity(record)
 
     # Explicitly reject attempts to turn this post-result gate into a direct
-    # verification shortcut.
+    # verification shortcut, including nested status claims.
     checks["no_direct_verification_shortcut"] = not has_true_verification_flag(record)
     if isinstance(provenance, dict):
         checks["provenance_not_verified"] = (
