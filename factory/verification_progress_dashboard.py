@@ -28,12 +28,48 @@ def bar(percent: float, width: int = 30) -> str:
     filled = round(width * percent / 100)
     return "█" * filled + "░" * (width - filled)
 
+def validate_preparation_status(prep: dict, target: int) -> int:
+    if prep.get("version") != 1:
+        raise SystemExit("PREPARATION_STATUS_SCHEMA_VERSION_UNSUPPORTED")
+    if prep.get("state") != "NOT_VERIFIED":
+        raise SystemExit("PREPARATION_STATUS_STATE_MUST_REMAIN_NOT_VERIFIED")
+    if prep.get("promotion_eligible") != 0:
+        raise SystemExit("PREPARATION_STATUS_PROMOTION_ELIGIBLE_MUST_BE_ZERO")
+
+    integer_fields = (
+        "queue_total", "queued_records", "prepared_review_records",
+        "reviewed_records", "verified_records", "packet_qc_checked_items",
+        "queue_qc_error_count", "registry_qc_error_count",
+        "promotion_qc_error_count"
+    )
+    for field in integer_fields:
+        value = prep.get(field)
+        if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+            raise SystemExit(f"PREPARATION_STATUS_INVALID_{field.upper()}")
+
+    queue_total = prep["queue_total"]
+    queued = prep["queued_records"]
+    prepared = prep["prepared_review_records"]
+    reviewed = prep["reviewed_records"]
+    verified = prep["verified_records"]
+
+    if not (prepared <= queued <= queue_total <= target):
+        raise SystemExit("PREPARATION_STATUS_QUEUE_INVARIANT_FAILED")
+    if not (verified <= reviewed <= prepared):
+        raise SystemExit("PREPARATION_STATUS_REVIEW_INVARIANT_FAILED")
+    if prep.get("prepared_percent") != round(prepared / target * 100, 6):
+        raise SystemExit("PREPARATION_STATUS_PREPARED_PERCENT_MISMATCH")
+    expected_verified_pct = round(verified / queue_total * 100, 6) if queue_total else 0
+    if prep.get("verified_percent_of_queue") != expected_verified_pct:
+        raise SystemExit("PREPARATION_STATUS_VERIFIED_PERCENT_MISMATCH")
+    return prepared
+
 def main() -> int:
     data = read_json(RECORDS)
     prep = read_json(PREPARATION_STATUS)
     TARGET = target_value()
     records = data.get("records", [])
-    prepared = int(prep.get("prepared_review_records", 0))
+    prepared = validate_preparation_status(prep, TARGET)
     if not isinstance(records, list):
         raise SystemExit("records must be a list")
 
