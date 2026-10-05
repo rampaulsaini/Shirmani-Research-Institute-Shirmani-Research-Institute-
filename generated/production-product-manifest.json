@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "updated_at": "2026-10-05",
+  "rule": "Workflow activity is not product output.",
+  "products": [
+    {
+      "id": "claim-evidence",
+      "lane": "research",
+      "status": "LIVE_STATIC_APP",
+      "route": "products/production-product-suite.html"
+    },
+    {
+      "id": "learning-module",
+      "lane": "education",
+      "status": "LIVE_STATIC_APP",
+      "route": "products/production-product-suite.html"
+    },
+    {
+      "id": "justice-matrix",
+      "lane": "justice-research",
+      "status": "LIVE_STATIC_APP",
+      "route": "products/production-product-suite.html"
+    },
+    {
+      "id": "service-offer",
+      "lane": "employment",
+      "status": "LIVE_STATIC_APP",
+      "route": "products/production-product-suite.html"
+    },
+    {
+      "id": "order-intent",
+      "lane": "commerce",
+      "status": "LIVE_STATIC_APP",
+      "route": "products/production-product-suite.html"
+    },
+    {
+      "id": "contribution-ledger",
+      "lane": "economic",
+      "status": "LIVE_STATIC_APP",
+      "route": "products/production-product-suite.html"
+    },
+    {
+      "id": "audio-brief",
+      "lane": "creative",
+      "status": "LIVE_STATIC_APP",
+      "route": "products/production-product-suite.html"
+    },
+    {
+      "id": "launch-brief",
+      "lane": "marketing",
+      "status": "LIVE_STATIC_APP",
+      "route": "products/production-product-suite.html"
+    }
+  ],
+  "boundaries": {
+    "sales": "NOT_CLAIMED",
+    "payment_settlement": "NOT_CLAIMED",
+    "university_accreditation": "NOT_CLAIMED",
+    "court_authority": "NOT_CLAIMED",
+    "currency_deployment": "NOT_DEPLOYED",
+    "independent_verification": "NOT_VERIFIED"
+  }
+}
