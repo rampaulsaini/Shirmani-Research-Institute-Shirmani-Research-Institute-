@@ -1,0 +1,49 @@
+name: SHIRMANI Result-First Review Gate
+
+on:
+  pull_request:
+    paths:
+      - "scripts/result_first_review_gate.py"
+      - "tests/test_result_first_review_gate.py"
+      - "research/result-first-verification.md"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/result_first_review_gate.py"
+      - "tests/test_result_first_review_gate.py"
+      - "research/result-first-verification.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: result-first-review-gate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  result-first-contract:
+    name: Result artifact contract
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run result-first contract tests
+        run: python tests/test_result_first_review_gate.py
+
+      - name: Enforce verification boundary
+        shell: python
+        run: |
+          from pathlib import Path
+          text = Path("scripts/result_first_review_gate.py").read_text(encoding="utf-8")
+          required = [
+              "READY_FOR_INDEPENDENT_REVIEW",
+              "scientific_verification_granted",
+              "independent_replication_verified",
+              "no_direct_verification_shortcut",
+          ]
+          missing = [item for item in required if item not in text]
+          if missing:
+              raise SystemExit(f"RESULT_FIRST_BOUNDARY_FAIL: missing {missing}")
+          print("RESULT_FIRST_BOUNDARY=PASS")
