@@ -3,32 +3,254 @@
   "principle": "PRODUCT_FIRST_WITH_REALITY_GATE",
   "description": "Product creation precedes verification, but an offer cannot be called delivery-ready unless a real deliverable asset or an explicitly configured external delivery path is evidenced.",
   "lanes": [
-    {"id":"digital-audio","priority":1,"offers":[
-      {"id":"P001","name":"खुद का साक्षात्कार ही संपूर्ण संतुष्टि","price_inr":10000,"delivery":"digital-audio","store":"https://rampaulsaini.github.io/my-omniverse-store/","asset_evidence":"NOT_IN_REPOSITORY"},
-      {"id":"P002","name":"शिरोमणि अनंत असीम इश्क की क्षमता","price_inr":1500,"delivery":"digital-audio","store":"https://rampaulsaini.github.io/my-omniverse-store/","asset_evidence":"NOT_IN_REPOSITORY"},
-      {"id":"P003","name":"साहिब तदरूप साक्षात्कार","price_inr":10000,"delivery":"digital-audio","store":"https://rampaulsaini.github.io/my-omniverse-store/","asset_evidence":"NOT_IN_REPOSITORY"},
-      {"id":"P004","name":"खुद का साक्षात्कार ऑडियो","price_inr":6000,"delivery":"digital-audio","store":"https://rampaulsaini.github.io/my-omniverse-store/","asset_evidence":"NOT_IN_REPOSITORY"},
-      {"id":"P005","name":"मेरा साहिब मेरा ही तदरूप साक्षात्कार","price_inr":5000,"delivery":"digital-audio","store":"https://rampaulsaini.github.io/my-omniverse-store/","asset_evidence":"NOT_IN_REPOSITORY"},
-      {"id":"P006","name":"Short Audios Collection","price_inr":89,"delivery":"digital-audio","store":"https://rampaulsaini.github.io/my-omniverse-store/","asset_evidence":"NOT_IN_REPOSITORY"}
-    ]},
-    {"id":"digital-assets","priority":2,"offers":[
-      {"id":"P007","name":"प्रमाण पत्र","price_inr":495,"delivery":"digital-asset","store":"https://rampaulsaini.github.io/my-omniverse-store/","asset_evidence":"GENERATED_CERTIFICATES_EXIST"},
-      {"id":"P008","name":"Short / Creator Assets","price_inr":950,"price_note":"from","delivery":"creator-assets","store":"https://rampaulsaini.github.io/my-omniverse-store/","asset_evidence":"NOT_IN_REPOSITORY"},
-      {"id":"P009","name":"Shirmani Research Paper — PDF Edition","price_inr":0,"delivery":"downloadable-pdf","asset_path":"research-paper.pdf","store":"research-paper.html","asset_evidence":"VERIFIED_IN_REPOSITORY"}
-    ]},
-    {"id":"creative-production","priority":3,"offers":[
-      {"id":"S001","name":"AI-assisted music production","delivery":"creative-service","destination":"https://rampaulsaini.github.io/yatharth-music-ai/"},
-      {"id":"S002","name":"Audio / podcast production","delivery":"creative-service"},
-      {"id":"S003","name":"Voice / narration packaging","delivery":"creative-service"}
-    ]},
-    {"id":"research-digital-services","priority":4,"offers":[
-      {"id":"S004","name":"Research & Evidence Support","delivery":"service"},
-      {"id":"S005","name":"AI Workflow & Automation","delivery":"service"},
-      {"id":"S006","name":"Digital Publishing","delivery":"service"},
-      {"id":"S007","name":"AI Marketing Assets","delivery":"service"}
-    ]}
+    {
+      "id": "digital-audio",
+      "priority": 1,
+      "offers": [
+        {
+          "id": "P001",
+          "name": "खुद का साक्षात्कार ही संपूर्ण संतुष्टि",
+          "price_inr": 10000,
+          "delivery": "digital-audio",
+          "store": "https://rampaulsaini.github.io/my-omniverse-store/",
+          "asset_evidence": "NOT_IN_REPOSITORY"
+        },
+        {
+          "id": "P002",
+          "name": "शिरोमणि अनंत असीम इश्क की क्षमता",
+          "price_inr": 1500,
+          "delivery": "digital-audio",
+          "store": "https://rampaulsaini.github.io/my-omniverse-store/",
+          "asset_evidence": "NOT_IN_REPOSITORY"
+        },
+        {
+          "id": "P003",
+          "name": "साहिब तदरूप साक्षात्कार",
+          "price_inr": 10000,
+          "delivery": "digital-audio",
+          "store": "https://rampaulsaini.github.io/my-omniverse-store/",
+          "asset_evidence": "NOT_IN_REPOSITORY"
+        },
+        {
+          "id": "P004",
+          "name": "खुद का साक्षात्कार ऑडियो",
+          "price_inr": 6000,
+          "delivery": "digital-audio",
+          "store": "https://rampaulsaini.github.io/my-omniverse-store/",
+          "asset_evidence": "NOT_IN_REPOSITORY"
+        },
+        {
+          "id": "P005",
+          "name": "मेरा साहिब मेरा ही तदरूप साक्षात्कार",
+          "price_inr": 5000,
+          "delivery": "digital-audio",
+          "store": "https://rampaulsaini.github.io/my-omniverse-store/",
+          "asset_evidence": "NOT_IN_REPOSITORY"
+        },
+        {
+          "id": "P006",
+          "name": "Short Audios Collection",
+          "price_inr": 89,
+          "delivery": "digital-audio",
+          "store": "https://rampaulsaini.github.io/my-omniverse-store/",
+          "asset_evidence": "NOT_IN_REPOSITORY"
+        }
+      ]
+    },
+    {
+      "id": "digital-assets",
+      "priority": 2,
+      "offers": [
+        {
+          "id": "P007",
+          "name": "प्रमाण पत्र",
+          "price_inr": 495,
+          "delivery": "digital-asset",
+          "store": "https://rampaulsaini.github.io/my-omniverse-store/",
+          "asset_evidence": "GENERATED_CERTIFICATES_EXIST"
+        },
+        {
+          "id": "P008",
+          "name": "Short / Creator Assets",
+          "price_inr": 950,
+          "price_note": "from",
+          "delivery": "creator-assets",
+          "store": "https://rampaulsaini.github.io/my-omniverse-store/",
+          "asset_evidence": "NOT_IN_REPOSITORY"
+        },
+        {
+          "id": "P009",
+          "name": "Shirmani Research Paper — PDF Edition",
+          "price_inr": 0,
+          "delivery": "downloadable-pdf",
+          "asset_path": "research-paper.pdf",
+          "store": "research-paper.html",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY"
+        }
+      ]
+    },
+    {
+      "id": "creative-production",
+      "priority": 3,
+      "offers": [
+        {
+          "id": "S001",
+          "name": "AI-assisted music production",
+          "delivery": "creative-service",
+          "destination": "https://rampaulsaini.github.io/yatharth-music-ai/"
+        },
+        {
+          "id": "S002",
+          "name": "Audio / podcast production",
+          "delivery": "creative-service"
+        },
+        {
+          "id": "S003",
+          "name": "Voice / narration packaging",
+          "delivery": "creative-service"
+        }
+      ]
+    },
+    {
+      "id": "research-digital-services",
+      "priority": 4,
+      "offers": [
+        {
+          "id": "S004",
+          "name": "Research & Evidence Support",
+          "delivery": "service"
+        },
+        {
+          "id": "S005",
+          "name": "AI Workflow & Automation",
+          "delivery": "service"
+        },
+        {
+          "id": "S006",
+          "name": "Digital Publishing",
+          "delivery": "service"
+        },
+        {
+          "id": "S007",
+          "name": "AI Marketing Assets",
+          "delivery": "service"
+        },
+        {
+          "id": "P010",
+          "name": "Research & Evidence Toolkit",
+          "price_inr": 495,
+          "delivery": "downloadable-toolkit",
+          "asset_path": "products/production/research-evidence-toolkit.md",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY"
+        },
+        {
+          "id": "P011",
+          "name": "AI Workflow Starter Kit",
+          "price_inr": 995,
+          "delivery": "downloadable-toolkit",
+          "asset_path": "products/production/ai-workflow-starter-kit.md",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY"
+        },
+        {
+          "id": "P012",
+          "name": "Yatharth AI Content Pack",
+          "price_inr": 495,
+          "delivery": "downloadable-content-pack",
+          "asset_path": "products/production/yatharth-ai-content-pack.md",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY"
+        },
+        {
+          "id": "P013",
+          "name": "Multilingual Publishing Kit",
+          "price_inr": 495,
+          "delivery": "downloadable-toolkit",
+          "asset_path": "products/production/multilingual-publishing-kit.md",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY"
+        },
+        {
+          "id": "P014",
+          "name": "Digital University Course Blueprint",
+          "price_inr": 995,
+          "delivery": "downloadable-course-blueprint",
+          "asset_path": "products/production/digital-university-course-blueprint.md",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY"
+        },
+        {
+          "id": "P015",
+          "name": "Justice & Evidence Casework Toolkit",
+          "price_inr": 995,
+          "delivery": "downloadable-toolkit",
+          "asset_path": "products/production/justice-evidence-casework-toolkit.md",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY"
+        },
+        {
+          "id": "P016",
+          "name": "Creator Audio Production Kit",
+          "price_inr": 495,
+          "delivery": "downloadable-toolkit",
+          "asset_path": "products/production/creator-audio-production-kit.md",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY"
+        },
+        {
+          "id": "P017",
+          "name": "Digital Product Launch Kit",
+          "price_inr": 995,
+          "delivery": "downloadable-toolkit",
+          "asset_path": "products/production/digital-product-launch-kit.md",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY"
+        }
+      ]
+    },
+    {
+      "id": "ai-models",
+      "priority": 5,
+      "offers": [
+        {
+          "id": "M001",
+          "name": "SHIRMANI Yatharth AI — Model Specification",
+          "price_inr": 0,
+          "delivery": "model-architecture-specification",
+          "asset_path": "models/shirmani-yatharth-ai-model-spec.md",
+          "asset_evidence": "VERIFIED_IN_REPOSITORY"
+        }
+      ]
+    }
   ],
-  "build_stages":["SOURCE_ASSET","PRODUCT_RECORD","PACKAGING","PRODUCT_PAGE","CREATIVE_BRIEF","SEO_METADATA","DELIVERY_PATH","READY_FOR_REVIEW","EVIDENCE","VERIFICATION"],
-  "reality_states":["ASSET_VERIFIED","EXTERNAL_PATH_UNVERIFIED","ASSET_MISSING","SERVICE_INQUIRY","NOT_VERIFIED"],
-  "orchestration":{"mode":"multi-layer","layers":["product","creative","nlp","ml","marketing","delivery","evidence","verification","audit"],"quantum_mode":"quantum-inspired","quantum_note":"Actual quantum execution is not claimed without a real supported backend.","free_first":true,"human_approval_for_paid_or_external_actions":true}
+  "build_stages": [
+    "SOURCE_ASSET",
+    "PRODUCT_RECORD",
+    "PACKAGING",
+    "PRODUCT_PAGE",
+    "CREATIVE_BRIEF",
+    "SEO_METADATA",
+    "DELIVERY_PATH",
+    "READY_FOR_REVIEW",
+    "EVIDENCE",
+    "VERIFICATION"
+  ],
+  "reality_states": [
+    "ASSET_VERIFIED",
+    "EXTERNAL_PATH_UNVERIFIED",
+    "ASSET_MISSING",
+    "SERVICE_INQUIRY",
+    "NOT_VERIFIED"
+  ],
+  "orchestration": {
+    "mode": "multi-layer",
+    "layers": [
+      "product",
+      "creative",
+      "nlp",
+      "ml",
+      "marketing",
+      "delivery",
+      "evidence",
+      "verification",
+      "audit"
+    ],
+    "quantum_mode": "quantum-inspired",
+    "quantum_note": "Actual quantum execution is not claimed without a real supported backend.",
+    "free_first": true,
+    "human_approval_for_paid_or_external_actions": true
+  }
 }
