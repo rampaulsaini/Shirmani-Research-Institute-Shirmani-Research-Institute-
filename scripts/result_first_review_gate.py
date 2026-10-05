@@ -30,6 +30,11 @@ ALLOWED_RESULT_STATUSES = {
     "abstained",
 }
 REQUIRED_FIELDS = ("result_id", "task_id", "result_status", "result")
+REQUIRED_PROVENANCE_FIELDS = (
+    "generator",
+    "verification_status",
+    "independent_replication_verified",
+)
 FORBIDDEN_VERIFICATION_FLAGS = {
     "verified",
     "independently_verified",
