@@ -1,0 +1,63 @@
+name: SHIRMANI Quantum-Inspired Multi-Layer Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "factory/quantum_inspired_multilayer_scheduler.py"
+      - "config/independent-verification-target.json"
+      - "generated/independent-verification-status.json"
+      - "generated/verification-progress-dashboard.json"
+      - ".github/workflows/shirmani-quantum-inspired-multilayer-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-quantum-inspired-multilayer
+  cancel-in-progress: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Build deterministic multi-lane priority plan
+        run: python factory/quantum_inspired_multilayer_scheduler.py
+      - name: Enforce fail-closed verification boundary
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("generated/quantum-inspired-multilayer-plan.json",encoding="utf-8"))
+          assert d["fail_closed"] is True
+          assert d["quantum_hardware_used"] is False
+          assert d["quantum_ai_claim"] is False
+          assert "workflow activity never equals VERIFIED" in d["verification_policy"]
+          assert len(d["lanes"]) >= 7
+          print("QUANTUM_INSPIRED_MULTILAYER_GATE: PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: quantum-inspired-multilayer-plan-${{ github.run_id }}
+          path: generated/quantum-inspired-multilayer-plan.json
+          retention-days: 14
+      - name: Emit multi-lane summary
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d=json.load(open("generated/quantum-inspired-multilayer-plan.json",encoding="utf-8"))
+          print("## ꙰ SHIRMANI Quantum-Inspired Multi-Layer Automission")
+          print("- Multi-lane planning: **ACTIVE**")
+          print("- Fail-closed verification: **ENFORCED**")
+          print("- Quantum hardware claim: **NONE**")
+          print("- Independent verification remains result-based.")
+          for x in d["lanes"]:
+              print(f"- {x['lane']}: priority {x['priority_score']}")
+          PY
