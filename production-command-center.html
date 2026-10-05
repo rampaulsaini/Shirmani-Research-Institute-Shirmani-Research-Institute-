@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Supreme Production Command Center</title>
+<style>
+body{font-family:system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.card{border:1px solid #ccc;border-radius:12px;padding:16px}
+.bar{height:12px;background:#ddd;border-radius:8px;overflow:hidden}.fill{height:100%;background:#333}
+small{color:#666}pre{white-space:pre-wrap}
+</style></head><body>
+<h1>꙰ SHIRMANI Supreme Production Command Center</h1>
+<p><b>Production first.</b> Verification is a downstream evidence/quality state.</p>
+<div id="summary" class="grid"></div><h2>Production lanes</h2><div id="lanes" class="grid"></div>
+<h2>Latest deterministic results</h2><pre id="runs">Loading...</pre>
+<script>
+fetch('generated/production/production-status.json?ts='+Date.now()).then(r=>r.json()).then(s=>{
+const i=s.inventory||{}, total=Math.max(1,i.total_files||1);
+document.getElementById('summary').innerHTML=[
+['Files',i.total_files],['Workflows',i.workflows],['Factory agents',i.factory_agents],
+['Queue tasks',i.queue_tasks],['JSON checked',i.json_checked],['JSON failures',i.json_failures]
+].map(x=>'<div class="card"><small>'+x[0]+'</small><h2>'+x[1]+'</h2></div>').join('');
+const lanes=s.lanes||{};
+document.getElementById('lanes').innerHTML=Object.entries(lanes).map(([k,v])=>
+'<div class="card"><b>'+k+'</b><h2>'+v+'</h2><div class="bar"><div class="fill" style="width:'+Math.min(100,Math.round(v/total*100))+'%"></div></div></div>').join('');
+document.getElementById('runs').textContent=JSON.stringify(s.deterministic_runs||[],null,2);
+}).catch(e=>document.getElementById('runs').textContent='Production status not generated yet: '+e);
+</script></body></html>
