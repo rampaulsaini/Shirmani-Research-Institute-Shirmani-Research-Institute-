@@ -59,5 +59,30 @@
     "production_counts_are_source_derived": true,
     "fabricated_execution_claim": false,
     "independent_verification_claim": false
-  }
+  },
+  "last_cycle_concrete_results": 500,
+  "production_outputs": {
+    "concrete_results_this_cycle": 500,
+    "lane_artifacts": {
+      "ai-ml-nlp": 191,
+      "automation": 54,
+      "content": 1,
+      "economic": 16,
+      "federation": 18,
+      "platform": 107,
+      "research": 37,
+      "security-quality": 76
+    },
+    "public_catalog": "generated/public-production-catalog.json",
+    "verification": "downstream",
+    "production_modules": 500,
+    "module_index": "generated/public-production-by-module.html"
+  },
+  "artifacts": [
+    "generated/production-results.jsonl",
+    "generated/production-work-queue.jsonl",
+    "generated/public-production-catalog.json",
+    "generated/public-production-module-index.json",
+    "generated/public-production-by-module.html"
+  ]
 }
