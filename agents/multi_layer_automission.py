@@ -36,14 +36,25 @@ def _score(lane, signals):
 
 def choose_next_action(signals=None):
     signals=signals or {}
+    invalid_signals=[]
+    for name, value in signals.items():
+        try:
+            numeric=float(value)
+        except (TypeError, ValueError):
+            invalid_signals.append(name)
+            continue
+        if not isfinite(numeric):
+            invalid_signals.append(name)
     scored=[{"lane":l.name,"layer":l.layer,"score":_score(l,signals),"checks":list(l.checks)} for l in LANES]
     scored.sort(key=lambda x:(-x["score"],x["lane"]))
     return {"selection_mode":"quantum-inspired-deterministic","quantum_hardware_used":False,"quantum_advantage_claimed":False,
             "winner":scored[0],"ranked_lanes":scored,
+            "control_input_valid":not invalid_signals,"invalid_control_signals":sorted(invalid_signals),
             "governance":{"fail_closed":True,"independent_verification_required":True,
                           "scheduled_code_mutation_allowed":False,"automated_verified_promotion_allowed":False,
                           "verification_basis":"verified_result_record_only",
-                          "verification_mode":"result_outcome_review_not_direct_automation"}}
+                          "verification_mode":"result_outcome_review_not_direct_automation",
+                          "orchestration_execution_allowed":not invalid_signals}}
 
 def _fingerprint_payload(cycle):
     return {k: v for k, v in cycle.items() if k != "cycle_fingerprint"}
