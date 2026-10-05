@@ -78,6 +78,10 @@ def main():
 
     verified = counts["VERIFIED"]
     completion = round((verified / target) * 100, 6)
+    # Verification is applied to recorded results/outcomes and their evidence
+    # packages. The ledger never treats the workflow itself as the object of
+    # verification and never promotes a result to VERIFIED by automation.
+    verification_focus = "RESULT_OUTCOME_EVIDENCE"
     status = "PASS" if not blockers else "BLOCKED"
     if not blockers and verified == 0:
         status = "AWAITING_INDEPENDENT_EVIDENCE"
@@ -93,9 +97,11 @@ def main():
         "verified_count": verified,
         "verification_completion_percent": completion,
         "remaining_to_target": max(target - verified, 0),
+        "verification_focus": verification_focus,
+        "verification_subject_rule": "Assess recorded result/outcome + evidence package; do not treat workflow execution itself as verification.",
         "blockers": blockers,
         "provenance": ["verification-record directory", "supreme-independent-verification-record.schema.json", "deterministic ledger audit"],
-        "independence_boundary": "Automation validates declared evidence and structure; it does not self-attest independent verification."
+        "independence_boundary": "Automation validates declared evidence and structure; it does not self-attest independent verification or promote a result to VERIFIED."
     }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
