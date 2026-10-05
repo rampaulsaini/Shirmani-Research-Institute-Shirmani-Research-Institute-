@@ -141,6 +141,23 @@ def main():
     assert missing_unit_drift["insufficient_evidence"] is True
     assert missing_unit_drift["features"]["signal|<MISSING_UNIT>"]["status"] == "INSUFFICIENT_EVIDENCE"
 
+    # Drift must fail closed on malformed observed values rather than
+    # allowing normalize() to turn them into trusted zeros.
+    for bad in (float("nan"), float("inf"), "not-a-number"):
+        invalid_drift = drift_report(
+            [{"feature":"x","unit":"u","value":bad}],
+            [{"feature":"x","unit":"u","value":1.0}],
+        )
+        assert invalid_drift["status"] == "INSUFFICIENT_EVIDENCE"
+        assert invalid_drift["drift_detected"] is False
+        assert invalid_drift["insufficient_evidence"] is True
+        reverse_invalid_drift = drift_report(
+            [{"feature":"x","unit":"u","value":1.0}],
+            [{"feature":"x","unit":"u","value":bad}],
+        )
+        assert reverse_invalid_drift["status"] == "INSUFFICIENT_EVIDENCE"
+        assert reverse_invalid_drift["drift_detected"] is False
+
     # Numeric thresholds supplied as strings are normalized before comparison.
     numeric_string_threshold = drift_report(
         [{"feature":"x","unit":"u","value":0.0}],
