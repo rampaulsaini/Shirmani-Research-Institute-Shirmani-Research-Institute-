@@ -132,9 +132,19 @@ def main():
         [{"feature":"signal","value":1.0}],
         [{"feature":"signal","value":2.0}],
     )
-    assert missing_unit_drift["status"] == "DRIFT_DETECTED"
-    assert missing_unit_drift["drift_detected"] is True
+    assert missing_unit_drift["status"] == "INSUFFICIENT_EVIDENCE"
+    assert missing_unit_drift["drift_detected"] is False
+    assert missing_unit_drift["insufficient_evidence"] is True
     assert missing_unit_drift["features"]["signal|<MISSING_UNIT>"]["status"] == "INSUFFICIENT_EVIDENCE"
+
+    # Numeric thresholds supplied as strings are normalized before comparison.
+    numeric_string_threshold = drift_report(
+        [{"feature":"x","unit":"u","value":0.0}],
+        [{"feature":"x","unit":"u","value":3.0}],
+        "2.0",
+    )
+    assert numeric_string_threshold["drift_detected"] is True
+    assert numeric_string_threshold["threshold"] == 2.0
 
     # Drift thresholds must reject type-confused values rather than leaking a TypeError.
     try:
