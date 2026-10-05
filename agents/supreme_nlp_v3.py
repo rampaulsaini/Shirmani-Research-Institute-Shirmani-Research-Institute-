@@ -219,14 +219,27 @@ def validate_result_boundary(record: dict[str, Any]) -> dict[str, Any]:
     fingerprint integrity, and fail-closed verification semantics. It never
     promotes UNVERIFIED records to VERIFIED.
     """
+    result = record.get("result")
+    interpretation = result.get("interpretation") if isinstance(result, dict) else None
+    provenance = record.get("provenance")
     checks = {
         "record_integrity": verify_record_integrity(record),
         "schema_present": record.get("schema_version") == VERSION,
         "task_id_present": isinstance(record.get("task_id"), str) and bool(record.get("task_id").strip()),
+        # Verification is evaluated only after a concrete result artifact exists.
+        # A direct verification flag, workflow success, or generated packet cannot
+        # substitute for a result-level record and its fail-closed provenance.
+        "result_artifact_present": (
+            isinstance(result, dict)
+            and result.get("status") in {"interpreted", "insufficient_quality"}
+            and isinstance(interpretation, dict)
+        ),
         "verification_fail_closed": (
-            record.get("result", {}).get("interpretation", {}).get("verification_status") == "UNVERIFIED"
-            and record.get("provenance", {}).get("verification_status") == "UNVERIFIED"
-            and record.get("provenance", {}).get("independent_replication_verified") is False
+            isinstance(interpretation, dict)
+            and interpretation.get("verification_status") == "UNVERIFIED"
+            and isinstance(provenance, dict)
+            and provenance.get("verification_status") == "UNVERIFIED"
+            and provenance.get("independent_replication_verified") is False
         ),
     }
     return {
