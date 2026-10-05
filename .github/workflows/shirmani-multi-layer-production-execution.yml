@@ -1,0 +1,47 @@
+name: SHIRMANI Multi-Layer Production Execution
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: shirmani-multi-layer-production-execution
+  cancel-in-progress: false
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Execute routed production work
+        run: |
+          python3 factory/multi_layer_production.py
+          python3 factory/multi_layer_production_executor.py
+
+      - name: Publish visible production result
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git config user.name "shirmani-production[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated factory
+          if git diff --cached --quiet; then
+            echo "No new production result to publish."
+            exit 0
+          fi
+          git commit -m "chore(production): publish multi-layer execution results"
+          BRANCH="automation/multi-layer-production-execution"
+          git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
+          git branch -f "$BRANCH" HEAD
+          git push --force-with-lease origin "HEAD:$BRANCH"
+          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
+            gh pr create               --base main               --head "$BRANCH"               --title "chore(production): publish multi-layer execution results"               --body "Production-first execution results. This publishes durable work-product records and keeps independent verification as a downstream quality/promotion layer."
+          fi
