@@ -1,6 +1,6 @@
 import pytest
 
-from factory.verification_progress_dashboard import validate_preparation_status
+from factory.verification_progress_dashboard import validate_preparation_status, validate_record_counts
 
 
 def valid_status():
@@ -69,3 +69,20 @@ def test_status_rejects_verified_percent_mismatch():
     data["verified_percent_of_queue"] = 99.0
     with pytest.raises(SystemExit, match="PREPARATION_STATUS_VERIFIED_PERCENT_MISMATCH"):
         validate_preparation_status(data, 1000)
+
+
+def test_record_counts_must_match_authoritative_registry():
+    data = valid_status()
+    validate_record_counts(data, reviewed=120, verified=20)
+
+
+@pytest.mark.parametrize(
+    "reviewed,verified,error",
+    [
+        (119, 20, "PREPARATION_STATUS_REVIEWED_COUNT_STALE_OR_INFLATED"),
+        (120, 19, "PREPARATION_STATUS_VERIFIED_COUNT_STALE_OR_INFLATED"),
+    ],
+)
+def test_record_counts_reject_stale_or_inflated_status(reviewed, verified, error):
+    with pytest.raises(SystemExit, match=error):
+        validate_record_counts(valid_status(), reviewed, verified)
