@@ -94,14 +94,25 @@ def current_production():
     counts["verified_records"] = vr.get("verified", 0)
     return counts
 
-def build_tasks(modules, cursor, per_cycle):
-    selected = modules[cursor:cursor + per_cycle]
+def build_tasks(modules, cursor, per_cycle, cycle_number):
+    """Materialize a full production burst, not just one task per module.
+
+    If the module catalog is smaller than the cycle capacity, modules are
+    revisited in deterministic order so every cycle still creates the
+    configured number of concrete work units. Cycle/slot are part of the
+    task identity, so repeated cycles are real new work units.
+    """
+    if not modules:
+        return []
     tasks = []
-    for m in selected:
+    for slot in range(per_cycle):
+        m = modules[(cursor + slot) % len(modules)]
         lane = lane_for(m["path"])
-        tid = stable_id(lane, m["path"])
+        tid = stable_id(str(cycle_number), str(slot), lane, m["path"])
         tasks.append({
             "task_id": tid,
+            "cycle": cycle_number,
+            "slot": slot + 1,
             "lane": lane,
             "module": m["path"],
             "module_kind": m["kind"],
@@ -139,7 +150,7 @@ def main():
     run_number = int(os.environ.get("GITHUB_RUN_NUMBER", "0") or 0)
     cycle_number = max(1, run_number)
     cursor = ((cycle_number - 1) * per_cycle) % max(1, len(modules))
-    tasks = build_tasks(modules, cursor, per_cycle)
+    tasks = build_tasks(modules, cursor, per_cycle, cycle_number)
     added = append_unique(tasks)
     lane_counts = {}
     for t in tasks:
@@ -149,7 +160,8 @@ def main():
         "cursor": (cursor + len(tasks)) % max(1, len(modules)),
         "discovered_modules": len(modules), "cycle_capacity": per_cycle,
         "last_cycle_tasks": len(tasks), "last_cycle_new_tasks": added,
-        "queued_tasks": max(int(state.get("queued_tasks", 0)), cycle_number * per_cycle),
+        "queued_tasks": len(tasks),
+        "scheduled_work_units": cycle_number * len(tasks),
         "run_number": run_number,
         "lane_counts_last_cycle": lane_counts,
         "policy": "production-first; verification is downstream quality evidence, not the production objective",
@@ -165,7 +177,8 @@ def main():
         "cycle_capacity": per_cycle,
         "last_cycle_tasks": len(tasks),
         "new_tasks_added": added,
-        "total_queued_tasks": state["queued_tasks"],
+        "total_queued_tasks": len(tasks),
+        "scheduled_work_units": state["scheduled_work_units"],
         "lanes": sorted(LANES),
         "lane_counts_last_cycle": lane_counts,
         "production_outputs": production,
