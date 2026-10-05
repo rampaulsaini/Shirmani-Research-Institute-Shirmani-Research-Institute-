@@ -67,9 +67,13 @@ def main():
         else:
             raise AssertionError("invalid probabilities must be rejected")
 
-    # Non-finite signal values are normalized into a safe finite representation.
-    safe = build_record([{"modality":"sensor","feature":"x","value":float("nan")}], "nan")
-    assert safe["result"]["signals"][0]["value"] == 0.0
+    # Non-finite/invalid signal values are normalized for auditability but
+    # must become unusable rather than trusted zero-valued observations.
+    for bad in (float("nan"), float("inf"), "not-a-number"):
+        safe = build_record([{"modality":"sensor","feature":"x","value":bad}], "invalid-value")
+        assert safe["result"]["signals"][0]["value"] == 0.0
+        assert safe["result"]["signals"][0]["quality"] == 0.0
+        assert safe["result"]["status"] == "insufficient_quality"
 
     # Non-finite quality must fail closed instead of becoming a perfect-quality signal.
     quality_safe = build_record([
