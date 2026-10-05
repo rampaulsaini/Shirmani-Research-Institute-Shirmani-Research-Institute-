@@ -76,6 +76,35 @@ def verify_cycle_fingerprint(cycle):
     return bool(expected) and constant_time_compare(expected, fingerprint_cycle(cycle))
 
 
+def result_outcome_fingerprint(result):
+    """Hash an observed result without converting it into a scientific verdict."""
+    return hashlib.sha256(
+        json.dumps(result, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
+    ).hexdigest()
+
+
+def review_result_outcome(expected_result, observed_result):
+    """Check whether an observed result matches an explicit expected result.
+
+    This verifies the outcome record only. It never establishes scientific truth,
+    independent replication, or VERIFIED status.
+    """
+    if not isinstance(expected_result, dict) or not isinstance(observed_result, dict):
+        raise ValueError("expected_result and observed_result must be mappings")
+    expected_hash = result_outcome_fingerprint(expected_result)
+    observed_hash = result_outcome_fingerprint(observed_result)
+    matched = constant_time_compare(expected_hash, observed_hash)
+    return {
+        "status": "RESULT_OUTCOME_MATCH" if matched else "RESULT_OUTCOME_MISMATCH",
+        "matched": matched,
+        "expected_result_fingerprint": expected_hash,
+        "observed_result_fingerprint": observed_hash,
+        "verification_status": "RESULT_OUTCOME_CHECKED",
+        "independent_verification_established": False,
+        "scientific_truth_established": False,
+    }
+
+
 def build_cycle(signals=None, executed_lane=None):
     decision=choose_next_action(signals)
     cycle={"controller":"SHIRMANI Multi-Layer AI ML NLP Practitioner Automission","version":2,
