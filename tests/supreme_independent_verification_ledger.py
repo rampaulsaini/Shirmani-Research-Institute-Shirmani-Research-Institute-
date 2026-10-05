@@ -17,6 +17,9 @@ def main():
     assert report["remaining_to_target"] == max(100_200 - report["verified_count"], 0)
     assert 0 <= report["verification_completion_percent"] <= 100
     assert report["independence_boundary"].startswith("Automation validates")
+    assert report["verification_focus"] == "RESULT_OUTCOME_EVIDENCE"
+    assert "workflow execution itself" in report["verification_subject_rule"]
+    assert "promote a result to VERIFIED" in report["independence_boundary"]
     print("SHIRMANI Supreme Independent Verification Ledger: PASS")
 
 if __name__ == "__main__":
