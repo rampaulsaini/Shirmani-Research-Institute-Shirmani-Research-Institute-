@@ -340,6 +340,20 @@ def drift_report(reference, current, threshold=2.0):
     cur, cur_error = normalize_observations(current, "current")
     if ref_error or cur_error:
         return ref_error or cur_error
+    if not ref or not cur:
+        return {
+            "status": "INSUFFICIENT_EVIDENCE",
+            "drift_detected": False,
+            "insufficient_evidence": True,
+            "reason": "EMPTY_REFERENCE_OR_CURRENT",
+        }
+    if any(not row.unit.strip() for row in ref) or any(not row.unit.strip() for row in cur):
+        return {
+            "status": "INSUFFICIENT_EVIDENCE",
+            "drift_detected": False,
+            "insufficient_evidence": True,
+            "reason": "MISSING_UNIT",
+        }
     ref_groups={}
     cur_groups={}
     for row in ref:
