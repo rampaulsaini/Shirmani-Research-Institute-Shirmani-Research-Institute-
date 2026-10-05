@@ -125,6 +125,17 @@ def main():
     assert independent["result"]["features"]["independence_status"] == "NOT_ESTABLISHED"
     assert independent["provenance"]["independent_replication_verified"] is False
 
+    # Drift must fail closed when the feature unit is missing instead of
+    # silently comparing values in the empty-string unit bucket.
+    from agents.supreme_nlp_v3 import drift_report
+    missing_unit_drift = drift_report(
+        [{"feature":"signal","value":1.0}],
+        [{"feature":"signal","value":2.0}],
+    )
+    assert missing_unit_drift["status"] == "DRIFT_DETECTED"
+    assert missing_unit_drift["drift_detected"] is True
+    assert missing_unit_drift["features"]["signal|<MISSING_UNIT>"]["status"] == "INSUFFICIENT_EVIDENCE"
+
     # Drift thresholds must reject type-confused values rather than leaking a TypeError.
     try:
         from agents.supreme_nlp_v3 import drift_report
