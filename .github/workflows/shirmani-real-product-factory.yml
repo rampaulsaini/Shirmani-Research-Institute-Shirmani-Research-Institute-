@@ -1,0 +1,32 @@
+name: SHIRMANI Real Product Factory
+on:
+  push:
+    branches: [main]
+    paths: ["products/**","factory/real_product_factory.py",".github/workflows/shirmani-real-product-factory.yml"]
+  schedule: [{cron: "*/15 * * * *"}]
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
+      - run: python3 factory/real_product_factory.py
+      - run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('generated/real-product-factory-status.json').read_text())
+          assert p['runnable_products']==1008
+          assert Path('products/index.html').exists() and Path('products/app.html').exists()
+          print('REAL_PRODUCT_FACTORY PASS',p['runnable_products'])
+          PY
+      - run: |
+          git config user.name 'SHIRMANI Real Product Factory'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add generated/real-product-factory-status.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore(products): persist real product factory state'
+          git push origin HEAD:main
