@@ -25,6 +25,13 @@ REQUIRED_VERIFICATION_FIELDS = (
 )
 VERIFIED_STATES = {"VERIFIED", "INDEPENDENTLY_VERIFIED"}
 ALLOWED_DECISIONS = {"VERIFIED", "NOT_VERIFIED", "CONTRADICTED", "INCONCLUSIVE"}
+PLACEHOLDER_VALUES = {
+    "PENDING",
+    "PENDING_REVIEW",
+    "NOT_RUN",
+    "UNKNOWN",
+    "UNAVAILABLE",
+}
 
 
 def sha256_file(path: Path) -> str:
@@ -54,6 +61,17 @@ def validate_record(record: dict[str, Any]) -> None:
             fail(f"{rid}: invalid decision")
         if record.get("decision") != "VERIFIED":
             fail(f"{rid}: independent verification state requires decision VERIFIED")
+
+        # VERIFIED is a statement about the observed/tested result, not about
+        # workflow completion. A placeholder result therefore cannot promote.
+        result = record.get("result")
+        if isinstance(result, str) and result.strip().upper() in PLACEHOLDER_VALUES:
+            fail(f"{rid}: VERIFIED result must be a concrete observed/tested result")
+        if result is None or result == "":
+            fail(f"{rid}: VERIFIED result must be present and concrete")
+        observation = record.get("test_or_observation")
+        if isinstance(observation, str) and observation.strip().upper() in PLACEHOLDER_VALUES:
+            fail(f"{rid}: VERIFIED test_or_observation cannot be a placeholder")
 
 
 def main() -> None:
