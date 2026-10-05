@@ -28,6 +28,9 @@ jobs:
       - name: Run multi-layer production dispatcher
         run: python3 factory/multi_layer_production.py
 
+      - name: Build public module production inventory
+        run: python3 factory/public_module_inventory.py
+
       - name: Materialize concrete production results
         run: python3 factory/public_production_materializer.py
 
@@ -53,8 +56,13 @@ jobs:
           print(f"- Lanes: **{len(p['lanes'])}**")
           print("")
           print("### Production outputs")
+          import json as _json
           for k,v in p["production_outputs"].items():
-              print(f"- {k}: **{v:,}**")
+              if isinstance(v, (int, float)):
+                  rendered=f"{v:,}"
+              else:
+                  rendered=_json.dumps(v, ensure_ascii=False)
+              print(f"- {k}: **{rendered}**")
           print("")
           print("Independent verification remains a downstream result-quality/promotion layer.")
           print("Quantum execution is not claimed unless a real quantum backend is configured.")
@@ -71,6 +79,8 @@ jobs:
             generated/production-work-queue.jsonl
             generated/production-results.jsonl
             generated/public-production-index.html
+            generated/public-module-inventory.json
+            generated/public-module-production-map.html
           retention-days: 30
 
       - name: Configure GitHub Pages
