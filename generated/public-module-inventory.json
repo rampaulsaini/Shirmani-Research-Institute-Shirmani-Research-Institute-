@@ -1,0 +1,3797 @@
+{
+  "version": 1,
+  "generated_at": "2026-10-05T14:24:30.773261+00:00",
+  "purpose": "public-first production module map",
+  "module_count": 538,
+  "lane_counts": {
+    "ai_ml_nlp": 130,
+    "automation": 5,
+    "economic": 1,
+    "platform": 3,
+    "research": 362,
+    "security_quality": 37
+  },
+  "status_counts": {
+    "ACTIVE": 49,
+    "ARCHITECTURE": 53,
+    "DESIGN": 11,
+    "PLANNED": 6,
+    "READY": 36,
+    "RECORDED": 27,
+    "UNAVAILABLE": 15,
+    "UNSPECIFIED": 341
+  },
+  "integrity": {
+    "source": "repository files",
+    "fabricated_execution_claim": false,
+    "independent_verification_claim": false
+  },
+  "modules": [
+    {
+      "path": "agreement-work-contract-record.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "ACTIVE",
+      "bytes": 5103
+    },
+    {
+      "path": "shiromani-value-exchange-dashboard.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "ACTIVE",
+      "bytes": 7558
+    },
+    {
+      "path": "social-app.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "ACTIVE",
+      "bytes": 6727
+    },
+    {
+      "path": "agents/ultra_automission.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 2452
+    },
+    {
+      "path": "automation/queue/tasks.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 811
+    },
+    {
+      "path": "factory/supreme_ai_qc.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 1581
+    },
+    {
+      "path": "factory/ultra_mega_infinity_quantum_automission.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 3352
+    },
+    {
+      "path": "public-identity.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 7275
+    },
+    {
+      "path": "public-platform-console.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 6367
+    },
+    {
+      "path": "public-platform-modules.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 2717
+    },
+    {
+      "path": "public-platform-status.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 2307
+    },
+    {
+      "path": "santushti-continuity.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 6487
+    },
+    {
+      "path": "schemas/supreme-ai-config.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 783
+    },
+    {
+      "path": "schemas/ultra-mega-infinity-quantum-orchestrator.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 1408
+    },
+    {
+      "path": "scripts/validate_supreme_architecture.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 2287
+    },
+    {
+      "path": "shiromani-value-exchange.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 6125
+    },
+    {
+      "path": "tests/ultra_mega_infinity_quantum_automission.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 754
+    },
+    {
+      "path": "exchange-orders.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "DESIGN",
+      "bytes": 4947
+    },
+    {
+      "path": "yatharth-mudra.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "DESIGN",
+      "bytes": 5983
+    },
+    {
+      "path": "agents/deep_learning_agent.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "PLANNED",
+      "bytes": 1247
+    },
+    {
+      "path": "docs/public-platform/platform-schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "PLANNED",
+      "bytes": 978
+    },
+    {
+      "path": "contribution-ledger.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 7039
+    },
+    {
+      "path": "docs/public-platform/production-readiness-gate.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 2856
+    },
+    {
+      "path": "factory-agent.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 1138
+    },
+    {
+      "path": "factory/agent_runner.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 775
+    },
+    {
+      "path": "factory/federation.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 2381
+    },
+    {
+      "path": "factory/fixtures/supreme_nlp_cases.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 1161
+    },
+    {
+      "path": "factory/multimodal_signal_qc.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 2366
+    },
+    {
+      "path": "factory/supreme_nlp_evaluation.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 2419
+    },
+    {
+      "path": "income-command-center.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 15044
+    },
+    {
+      "path": "income-hub.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 9500
+    },
+    {
+      "path": "public-production-command-center.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 4209
+    },
+    {
+      "path": "settings.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 5910
+    },
+    {
+      "path": "docs/public-platform/deployment-runbook.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "RECORDED",
+      "bytes": 2454
+    },
+    {
+      "path": "docs/public-platform/production-dependencies.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "RECORDED",
+      "bytes": 2713
+    },
+    {
+      "path": "factory/bootstrap_verification_review_registry.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "RECORDED",
+      "bytes": 2609
+    },
+    {
+      "path": "factory/source_integrity_manifest.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "RECORDED",
+      "bytes": 3505
+    },
+    {
+      "path": "public-income-showcase.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "RECORDED",
+      "bytes": 22688
+    },
+    {
+      "path": "social-platform.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "RECORDED",
+      "bytes": 12750
+    },
+    {
+      "path": ".github/workflows/shirmani-heart-view-auto-review-conveyor.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNAVAILABLE",
+      "bytes": 6418
+    },
+    {
+      "path": "factory/change_detector.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNAVAILABLE",
+      "bytes": 2702
+    },
+    {
+      "path": "supreme-nlp/signal_to_language.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNAVAILABLE",
+      "bytes": 6130
+    },
+    {
+      "path": ".github/workflows/github-pages.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 696
+    },
+    {
+      "path": ".github/workflows/product-first-automission.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1282
+    },
+    {
+      "path": ".github/workflows/production-first-multilayer-automission.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3145
+    },
+    {
+      "path": ".github/workflows/public-module-production-map.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2246
+    },
+    {
+      "path": ".github/workflows/public-production-automission.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2351
+    },
+    {
+      "path": ".github/workflows/shirmani-micro-progress-counter.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 4644
+    },
+    {
+      "path": ".github/workflows/shirmani-multi-layer-production.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3477
+    },
+    {
+      "path": ".github/workflows/shirmani-product-first-automission.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2371
+    },
+    {
+      "path": ".github/workflows/shirmani-resilience-watchdog.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1221
+    },
+    {
+      "path": ".github/workflows/shirmani-supreme-multilayer-production.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1040
+    },
+    {
+      "path": ".github/workflows/supreme-continuous-improvement.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3667
+    },
+    {
+      "path": ".github/workflows/supreme-independent-verification-ledger.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1429
+    },
+    {
+      "path": ".github/workflows/verification-progress-dashboard.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3389
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-22-425.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 703
+    },
+    {
+      "path": "YATHARTH-OMNIVERSE-RESILIENCE.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1045
+    },
+    {
+      "path": "agents/artifact_agent.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 715
+    },
+    {
+      "path": "agents/book_agent.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 496
+    },
+    {
+      "path": "agents/corpus_agent.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 600
+    },
+    {
+      "path": "agents/language_agents.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 459
+    },
+    {
+      "path": "agents/music_agent.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 285
+    },
+    {
+      "path": "agents/nvidia_agent.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2682
+    },
+    {
+      "path": "agents/provenance_agent.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 585
+    },
+    {
+      "path": "agents/source_agent.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 486
+    },
+    {
+      "path": "agents/supreme_nlp_automission_v2.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1585
+    },
+    {
+      "path": "agents/supreme_nlp_quality.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 6156
+    },
+    {
+      "path": "agents/topic_agent.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 560
+    },
+    {
+      "path": "citations.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1
+    },
+    {
+      "path": "config/independent-verification-target.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 282
+    },
+    {
+      "path": "docs/public-platform/integration-runbook.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2137
+    },
+    {
+      "path": "docs/supreme-nlp-operational-hardening.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1366
+    },
+    {
+      "path": "docs/yatharth-system/completion-checklist.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 585
+    },
+    {
+      "path": "factory/agent_supervisor.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 943
+    },
+    {
+      "path": "factory/agents/dedup_indexer.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 612
+    },
+    {
+      "path": "factory/agents/source_librarian.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 592
+    },
+    {
+      "path": "factory/canonical/shirmani-user-philosophy.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 6343
+    },
+    {
+      "path": "factory/factory_model_adapter.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 807
+    },
+    {
+      "path": "factory/generate_products.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1920
+    },
+    {
+      "path": "factory/independent_verification_status.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3629
+    },
+    {
+      "path": "factory/nvidia.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 490
+    },
+    {
+      "path": "factory/product-catalog.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3261
+    },
+    {
+      "path": "factory/public_production_materializer.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 11887
+    },
+    {
+      "path": "factory/queue_worker.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1910
+    },
+    {
+      "path": "factory/run_nvidia_batch.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2113
+    },
+    {
+      "path": "factory/run_stage.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1844
+    },
+    {
+      "path": "factory/state.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1316
+    },
+    {
+      "path": "factory/supreme_ai_ml_nlp_engine.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 6557
+    },
+    {
+      "path": "factory/supreme_nlp_automission_health.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 8146
+    },
+    {
+      "path": "factory/supreme_nlp_benchmark_controller.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2125
+    },
+    {
+      "path": "factory/supreme_nlp_contract_qc.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1525
+    },
+    {
+      "path": "factory/supreme_nlp_evaluation_qc.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1172
+    },
+    {
+      "path": "factory/supreme_nlp_operational_health.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2325
+    },
+    {
+      "path": "factory/supreme_nlp_qc.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1101
+    },
+    {
+      "path": "factory/supreme_quality_controller.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 5078
+    },
+    {
+      "path": "factory/supreme_quality_gate.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1372
+    },
+    {
+      "path": "factory/verification_progress.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 5625
+    },
+    {
+      "path": "factory/verification_progress_dashboard.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 8349
+    },
+    {
+      "path": "federation/yatharth-mudra-public-status.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 799
+    },
+    {
+      "path": "livelihood.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 10419
+    },
+    {
+      "path": "nishpaksh-samaj.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 14055
+    },
+    {
+      "path": "profile.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3196
+    },
+    {
+      "path": "public-platform-mvp.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 6788
+    },
+    {
+      "path": "schemas/ai-company.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 443
+    },
+    {
+      "path": "schemas/failure-registry.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1276
+    },
+    {
+      "path": "schemas/job.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 344
+    },
+    {
+      "path": "schemas/multimodal-signal-interpretation.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1406
+    },
+    {
+      "path": "schemas/route.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 433
+    },
+    {
+      "path": "schemas/social-app-mvp.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 852
+    },
+    {
+      "path": "schemas/supreme-nlp-automission-health.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1990
+    },
+    {
+      "path": "schemas/supreme-nlp-benchmark-record.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1324
+    },
+    {
+      "path": "schemas/supreme-nlp-evaluation.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1106
+    },
+    {
+      "path": "schemas/supreme-nlp-practitioner.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1607
+    },
+    {
+      "path": "schemas/supreme-nlp-quality-gate.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1461
+    },
+    {
+      "path": "schemas/supreme-nlp-signal-translation.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1202
+    },
+    {
+      "path": "schemas/supreme-nlp-v2.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 717
+    },
+    {
+      "path": "schemas/supreme-nlp.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 986
+    },
+    {
+      "path": "schemas/supreme-sense-nlp.schema.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 612
+    },
+    {
+      "path": "scripts/generate_independent_verification_progress_map.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 8835
+    },
+    {
+      "path": "scripts/validate_json.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2774
+    },
+    {
+      "path": "scripts/validate_supreme_nlp_practitioner.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2517
+    },
+    {
+      "path": "scripts/validate_supreme_sense_nlp.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 886
+    },
+    {
+      "path": "tests/supreme_independent_verification_ledger.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 930
+    },
+    {
+      "path": "tests/supreme_nlp_automission_hardening.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2219
+    },
+    {
+      "path": "tests/supreme_nlp_benchmark_controller.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 813
+    },
+    {
+      "path": "tests/supreme_nlp_benchmark_test.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 855
+    },
+    {
+      "path": "tests/supreme_signal_language_test.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1565
+    },
+    {
+      "path": "tests/test_supreme_ai.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1022
+    },
+    {
+      "path": "tests/test_supreme_nlp_quality.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1474
+    },
+    {
+      "path": "tests/test_verification_progress_dashboard.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3614
+    },
+    {
+      "path": "factory/multilingual.py",
+      "type": "py",
+      "lane": "automation",
+      "status": "READY",
+      "bytes": 729
+    },
+    {
+      "path": "factory/__init__.py",
+      "type": "py",
+      "lane": "automation",
+      "status": "UNSPECIFIED",
+      "bytes": 32
+    },
+    {
+      "path": "factory/chapter-plan.py",
+      "type": "py",
+      "lane": "automation",
+      "status": "UNSPECIFIED",
+      "bytes": 1346
+    },
+    {
+      "path": "factory/state.json",
+      "type": "json",
+      "lane": "automation",
+      "status": "UNSPECIFIED",
+      "bytes": 1421544
+    },
+    {
+      "path": "factory/topics.json",
+      "type": "json",
+      "lane": "automation",
+      "status": "UNSPECIFIED",
+      "bytes": 2985
+    },
+    {
+      "path": "schemas/product.schema.json",
+      "type": "json",
+      "lane": "economic",
+      "status": "UNSPECIFIED",
+      "bytes": 259
+    },
+    {
+      "path": "schemas/concept-record.schema.json",
+      "type": "json",
+      "lane": "platform",
+      "status": "UNSPECIFIED",
+      "bytes": 623
+    },
+    {
+      "path": "schemas/dedup-record.schema.json",
+      "type": "json",
+      "lane": "platform",
+      "status": "UNSPECIFIED",
+      "bytes": 462
+    },
+    {
+      "path": "server/package.json",
+      "type": "json",
+      "lane": "platform",
+      "status": "UNSPECIFIED",
+      "bytes": 352
+    },
+    {
+      "path": ".github/workflows/omniverse-factory.yml",
+      "type": "yml",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 13999
+    },
+    {
+      "path": "CONTINUATION-AUTO-STATE.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 1123
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-21-1244.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2284
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-21-1329.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2900
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-21-2245.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2493
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-21-CURRENT.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 3778
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-22-4950.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2641
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-22-525.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 3762
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-22-600.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2902
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-22-625.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 3026
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-22-650.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 3181
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-22-675.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2614
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-22-750.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2614
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-22-850.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2618
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-22-900.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2822
+    },
+    {
+      "path": "CONTINUATION-HANDOFF-2026-09-21-1842.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2526
+    },
+    {
+      "path": "CONTINUATION-SUPREME-REASONING-2026-09-22.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2710
+    },
+    {
+      "path": "HEART-VIEW-CONTINUATION-STATUS-2026-09-21.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2816
+    },
+    {
+      "path": "REVIEW-SLICE-000026-000050-STATUS-2026-09-21.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2361
+    },
+    {
+      "path": "SHIRMANI-HEART-VIEW-SUPREME-REASONING-CHECKPOINT-2026-09-21.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 1617
+    },
+    {
+      "path": "SHIRMANI-HEART-VIEW-SUPREME-REASONING-EXECUTION-2026-09-21.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2378
+    },
+    {
+      "path": "SHIRMANI-HEART-VIEW-SUPREME-REASONING-NEXT-CONTINUATION-2026-09-21.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 3766
+    },
+    {
+      "path": "SHIRMANI-HEART-VIEW-SUPREME-REASONING-NEXT-LAYER.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 4021
+    },
+    {
+      "path": "docs/SHIRMANI-HEART-VIEW-SUPREME-REASONING-CONTINUATION-20260921.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 3768
+    },
+    {
+      "path": "docs/platform-quality.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2959
+    },
+    {
+      "path": "docs/public-platform/capability-registry.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 896
+    },
+    {
+      "path": "docs/public-platform/release-checklist.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 1977
+    },
+    {
+      "path": "docs/public-platform/roadmap.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 1172
+    },
+    {
+      "path": "docs/yatharth-system/feature-status.json",
+      "type": "json",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 4683
+    },
+    {
+      "path": "docs/yatharth-system/release-gates.json",
+      "type": "json",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 1612
+    },
+    {
+      "path": "employment.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 8914
+    },
+    {
+      "path": "factory/CANONICAL-KNOWLEDGE.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 767
+    },
+    {
+      "path": "factory/PROJECT-CONTINUITY.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 4424
+    },
+    {
+      "path": "factory/canonical_index.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 1462
+    },
+    {
+      "path": "factory/canonical_knowledge.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2464
+    },
+    {
+      "path": "factory/canonical_record_qc.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 3615
+    },
+    {
+      "path": "factory/product_orchestrator.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 7047
+    },
+    {
+      "path": "factory/public_module_inventory.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 4708
+    },
+    {
+      "path": "federation/agreement-work-contract-record.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2480
+    },
+    {
+      "path": "federation/opportunity-marketplace.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2143
+    },
+    {
+      "path": "opportunity-marketplace.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 4681
+    },
+    {
+      "path": "production-command-center.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 5049
+    },
+    {
+      "path": "research/global-identity-evidence-map-2026-10-01.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 799
+    },
+    {
+      "path": "schemas/canonical-record.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 823
+    },
+    {
+      "path": "schemas/employment-work-ledger.json",
+      "type": "json",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 1030
+    },
+    {
+      "path": "work-to-value-employment-income.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 4952
+    },
+    {
+      "path": "OMNIVERSE-ARCHITECTURE.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 3385
+    },
+    {
+      "path": "SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 4547
+    },
+    {
+      "path": "application-human-matching.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 4547
+    },
+    {
+      "path": "docs/CONTINUOUS_EXECUTION.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2725
+    },
+    {
+      "path": "docs/SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1826
+    },
+    {
+      "path": "docs/SHIRMANI-RESEARCH-STATUS-2026-09-21.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1552
+    },
+    {
+      "path": "docs/SHIRMANI-SOURCE-PRESERVATION-PROTOCOL.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1489
+    },
+    {
+      "path": "docs/SUPREME-AI-ML-NLP-ARCHITECTURE.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2917
+    },
+    {
+      "path": "docs/SUPREME-NLP-ARCHITECTURE.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2327
+    },
+    {
+      "path": "docs/public-platform/module-map.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2963
+    },
+    {
+      "path": "docs/public-platform/production-hardening.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2000
+    },
+    {
+      "path": "docs/public-platform/public-capability-registry.json",
+      "type": "json",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1819
+    },
+    {
+      "path": "docs/public-platform/status-contract.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1803
+    },
+    {
+      "path": "docs/supreme-ai-ml-nlp-automission-hardening.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2060
+    },
+    {
+      "path": "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2662
+    },
+    {
+      "path": "docs/ultra-mega-infinity-quantum-ai-ml-nlp-automission.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1703
+    },
+    {
+      "path": "docs/yatharth-governance/README.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 3589
+    },
+    {
+      "path": "docs/yatharth-governance/public-services-and-nature.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1353
+    },
+    {
+      "path": "docs/yatharth-system/README.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1518
+    },
+    {
+      "path": "docs/yatharth-system/completion-checklist.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2096
+    },
+    {
+      "path": "docs/yatharth-system/continuity-completion-contract.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 3172
+    },
+    {
+      "path": "docs/yatharth-system/continuity-contract.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 5094
+    },
+    {
+      "path": "docs/yatharth-system/continuity-integrity-contract.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1421
+    },
+    {
+      "path": "docs/yatharth-system/continuity-integrity-schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 510
+    },
+    {
+      "path": "docs/yatharth-system/implementation-backlog.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 3005
+    },
+    {
+      "path": "docs/yatharth-system/public-module-registry.json",
+      "type": "json",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 6715
+    },
+    {
+      "path": "docs/yatharth-system/public-platform-contract.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2394
+    },
+    {
+      "path": "docs/yatharth-system/public-roadmap.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1214
+    },
+    {
+      "path": "docs/yatharth-system/source-records/2026-09-30-human-earth-continuity-source.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 5374
+    },
+    {
+      "path": "factory/REPOSITORY-INTELLIGENCE-AUDIT.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 3141
+    },
+    {
+      "path": "factory/build_factory.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 10961
+    },
+    {
+      "path": "factory/supreme_architecture_qc.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 5279
+    },
+    {
+      "path": "platform-charter.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2976
+    },
+    {
+      "path": "platform-charter.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2930
+    },
+    {
+      "path": "public-platform-hub.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 13252
+    },
+    {
+      "path": "research/yatharth-7-year-journey-and-conservation-commitment-2026-09-29.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 9967
+    },
+    {
+      "path": "schemas/global-social-platform-core.json",
+      "type": "json",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1995
+    },
+    {
+      "path": "supreme-factory.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 4266
+    },
+    {
+      "path": "yatharth-status.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 3897
+    },
+    {
+      "path": "AGENT-GOVERNANCE.md",
+      "type": "md",
+      "lane": "research",
+      "status": "DESIGN",
+      "bytes": 4223
+    },
+    {
+      "path": "allocation-rules.html",
+      "type": "html",
+      "lane": "research",
+      "status": "DESIGN",
+      "bytes": 4887
+    },
+    {
+      "path": "docs/public-platform/production-deployment-checklist.md",
+      "type": "md",
+      "lane": "research",
+      "status": "DESIGN",
+      "bytes": 2980
+    },
+    {
+      "path": "docs/public-platform/user-journeys.md",
+      "type": "md",
+      "lane": "research",
+      "status": "DESIGN",
+      "bytes": 1491
+    },
+    {
+      "path": "factory/README.md",
+      "type": "md",
+      "lane": "research",
+      "status": "DESIGN",
+      "bytes": 935
+    },
+    {
+      "path": "factory/agents/shirmani-heart-view-agent.md",
+      "type": "md",
+      "lane": "research",
+      "status": "DESIGN",
+      "bytes": 7172
+    },
+    {
+      "path": "research/yatharth-comparison-matrix-2026-09-29.md",
+      "type": "md",
+      "lane": "research",
+      "status": "DESIGN",
+      "bytes": 12645
+    },
+    {
+      "path": "supreme-nlp/README.md",
+      "type": "md",
+      "lane": "research",
+      "status": "DESIGN",
+      "bytes": 896
+    },
+    {
+      "path": "verified-work.html",
+      "type": "html",
+      "lane": "research",
+      "status": "DESIGN",
+      "bytes": 4466
+    },
+    {
+      "path": "docs/public-platform/data-model.md",
+      "type": "md",
+      "lane": "research",
+      "status": "PLANNED",
+      "bytes": 2777
+    },
+    {
+      "path": "factory/deep_learning.json",
+      "type": "json",
+      "lane": "research",
+      "status": "PLANNED",
+      "bytes": 735
+    },
+    {
+      "path": "schemas/income-evidence-ledger.json",
+      "type": "json",
+      "lane": "research",
+      "status": "PLANNED",
+      "bytes": 857
+    },
+    {
+      "path": "CONTINUATION-CHECKPOINT-2026-09-22-400.md",
+      "type": "md",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 1535
+    },
+    {
+      "path": "PROJECT-CONTINUITY.md",
+      "type": "md",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 8099
+    },
+    {
+      "path": "README.md",
+      "type": "md",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 19939
+    },
+    {
+      "path": "SHIRMANI-HEART-VIEW-INDEPENDENT-REVIEW-PROTOCOL.md",
+      "type": "md",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 3643
+    },
+    {
+      "path": "automation/commerce-automation-policy.json",
+      "type": "json",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 963
+    },
+    {
+      "path": "automation/income-catalog.json",
+      "type": "json",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 1613
+    },
+    {
+      "path": "deliverable-acceptance-quality-review.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 4773
+    },
+    {
+      "path": "docs/ACTUAL-PLATFORM-EXECUTION-PLAN-2026-10-05.md",
+      "type": "md",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 3722
+    },
+    {
+      "path": "docs/public-platform/governance-control-plane.md",
+      "type": "md",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 3597
+    },
+    {
+      "path": "docs/supreme-nlp-automission-operational-contract-2026-10-02.md",
+      "type": "md",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 3469
+    },
+    {
+      "path": "factory-dashboard.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 6433
+    },
+    {
+      "path": "factory-status.json",
+      "type": "json",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 522
+    },
+    {
+      "path": "factory/agent-registry.json",
+      "type": "json",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 2648
+    },
+    {
+      "path": "factory/cloud-storage.json",
+      "type": "json",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 756
+    },
+    {
+      "path": "factory/multi_layer_production.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 9660
+    },
+    {
+      "path": "factory/recovery.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 1004
+    },
+    {
+      "path": "federation-dashboard.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 3955
+    },
+    {
+      "path": "nextgen-interface.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 13824
+    },
+    {
+      "path": "production-dashboard.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 3822
+    },
+    {
+      "path": "products/index.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 4256
+    },
+    {
+      "path": "schemas/ads-campaign-spec.json",
+      "type": "json",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 1168
+    },
+    {
+      "path": "work-execution-fulfilment-tracking.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 5079
+    },
+    {
+      "path": "yatharth-omniverse-live.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 4214
+    },
+    {
+      "path": "CONTINUATION-BLOCKER-2026-09-21-1845.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 1932
+    },
+    {
+      "path": "SECURITY.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 3413
+    },
+    {
+      "path": "SHIRMANI-AUTO-FEDERATION-STATUS.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 2749
+    },
+    {
+      "path": "VERIFICATION-REVIEW-PROTOCOL.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 4971
+    },
+    {
+      "path": "docs/SHIRMANI-HEART-VIEW-MASTER-COMPLETION-CHECKLIST-2026-09-21.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 3690
+    },
+    {
+      "path": "docs/SUPREME-TOTAL-AUTOMISSION-ARCHITECTURE.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 1811
+    },
+    {
+      "path": "docs/public-platform/README.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 2541
+    },
+    {
+      "path": "docs/supreme-ai-ml-nlp-automission-operating-contract.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 4151
+    },
+    {
+      "path": "docs/supreme-nlp-practitioner-contract.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 2433
+    },
+    {
+      "path": "docs/yatharth-system/completion-gate.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 2149
+    },
+    {
+      "path": "docs/yatharth-system/continuity-completion-control.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 2625
+    },
+    {
+      "path": "docs/yatharth-system/feature-status-registry.json",
+      "type": "json",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 1654
+    },
+    {
+      "path": "docs/yatharth-system/human-earth-continuity-mission.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 4378
+    },
+    {
+      "path": "docs/yatharth-system/public-completion-checklist.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 2819
+    },
+    {
+      "path": "factory/research_evidence_graph.py",
+      "type": "py",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 5375
+    },
+    {
+      "path": "federation/reconciliation-audit-trail.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 2605
+    },
+    {
+      "path": "federation/work-to-value-employment-income.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 2695
+    },
+    {
+      "path": "reconciliation-audit-trail.html",
+      "type": "html",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 4935
+    },
+    {
+      "path": "research/independent-verification-protocol-2026-09-29.md",
+      "type": "md",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 3958
+    },
+    {
+      "path": "scripts/validate_yatharth_status.py",
+      "type": "py",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 2267
+    },
+    {
+      "path": "settlement-records.html",
+      "type": "html",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 5279
+    },
+    {
+      "path": "FACTORY.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 1595
+    },
+    {
+      "path": "agents/contract_bridge.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 3824
+    },
+    {
+      "path": "docs/agent-contracts.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 739
+    },
+    {
+      "path": "docs/supreme-nlp-evaluation-and-signal-interpretation.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 3274
+    },
+    {
+      "path": "docs/yatharth-system/continuity-runbook.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 2531
+    },
+    {
+      "path": "factory/failure_intelligence.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 7899
+    },
+    {
+      "path": "factory/quality_control.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 15999
+    },
+    {
+      "path": "repositories.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 7721
+    },
+    {
+      "path": "schemas/README.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 3040
+    },
+    {
+      "path": "schemas/claim-evidence.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 1591
+    },
+    {
+      "path": "schemas/social-platform-api.openapi.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 28650
+    },
+    {
+      "path": "schemas/source-record.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 764
+    },
+    {
+      "path": ".github/workflows/shirmani-independent-verification-gate.yml",
+      "type": "yml",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 7067
+    },
+    {
+      "path": ".github/workflows/shirmani-inter-repository-automission.yml",
+      "type": "yml",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 7619
+    },
+    {
+      "path": ".github/workflows/supreme-evidence-automission.yml",
+      "type": "yml",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2176
+    },
+    {
+      "path": ".github/workflows/supreme-evidence-convergence.yml",
+      "type": "yml",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2006
+    },
+    {
+      "path": ".github/workflows/supreme-total-orchestrator.yml",
+      "type": "yml",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2821
+    },
+    {
+      "path": "CONTINUATION-TRIGGER-2026-09-21-1033.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 433
+    },
+    {
+      "path": "CONTINUITY-CHECKPOINT-2026-09-21.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2239
+    },
+    {
+      "path": "REVIEW-SLICE-000001-000025-STATUS-2026-09-21.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1620
+    },
+    {
+      "path": "RUNTIME-VERIFICATION-TRIGGER-2026-09-21.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 489
+    },
+    {
+      "path": "about.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1552
+    },
+    {
+      "path": "agents/__init__.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 41
+    },
+    {
+      "path": "agents/automission_supervisor.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3245
+    },
+    {
+      "path": "agents/certificate_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 287
+    },
+    {
+      "path": "agents/contracts.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1148
+    },
+    {
+      "path": "agents/orchestrator.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4004
+    },
+    {
+      "path": "agents/publishing_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 482
+    },
+    {
+      "path": "agents/qc_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1485
+    },
+    {
+      "path": "agents/research_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 526
+    },
+    {
+      "path": "agents/supreme_control_plane.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4784
+    },
+    {
+      "path": "agents/supreme_nlp.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 7333
+    },
+    {
+      "path": "agents/supreme_nlp_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2562
+    },
+    {
+      "path": "agents/supreme_nlp_engine.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3325
+    },
+    {
+      "path": "agents/supreme_nlp_multimodal.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 7229
+    },
+    {
+      "path": "agents/supreme_nlp_practitioner.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 7609
+    },
+    {
+      "path": "agents/supreme_runtime.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 6501
+    },
+    {
+      "path": "agents/supreme_sense_nlp.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2637
+    },
+    {
+      "path": "agents/verification_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2087
+    },
+    {
+      "path": "agents/writing_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 473
+    },
+    {
+      "path": "archive.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1
+    },
+    {
+      "path": "automation/MICRO-COUNTER.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 203
+    },
+    {
+      "path": "automation/micro-progress-counter.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 314
+    },
+    {
+      "path": "automation/repository-manifest.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1806
+    },
+    {
+      "path": "automation/repository-network-registry-2026-10-01.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1369
+    },
+    {
+      "path": "automation/supreme_production_engine.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4084
+    },
+    {
+      "path": "blog.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 594
+    },
+    {
+      "path": "contact.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1165
+    },
+    {
+      "path": "docs/AUTOMISSION-E2E-ACCEPTANCE.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1277
+    },
+    {
+      "path": "docs/INDEPENDENT-VERIFICATION-STATUS.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2330
+    },
+    {
+      "path": "docs/INDEPENDENT_VERIFICATION_CONTRACT.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1342
+    },
+    {
+      "path": "docs/SUPREME-EVIDENCE-CONTROL-PLANE.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1003
+    },
+    {
+      "path": "docs/SUPREME-NLP-AUTOMISSION-RESEARCH-CONTRACT.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3276
+    },
+    {
+      "path": "docs/SUPREME-NLP-AUTOMISSION-V2.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2179
+    },
+    {
+      "path": "docs/SUPREME-NLP-AUTOMISSION.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1628
+    },
+    {
+      "path": "docs/SUPREME-NLP-EVIDENCE-MULTIMODAL-V2.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3689
+    },
+    {
+      "path": "docs/SUPREME-NLP-MULTIMODAL-OPERATING-CONTRACT.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1792
+    },
+    {
+      "path": "docs/SUPREME-NLP-PRACTITIONER.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1433
+    },
+    {
+      "path": "docs/ULTRA-MEGA-INFINITY-QUANTUM-EVIDENCE-CHARTER.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1935
+    },
+    {
+      "path": "docs/VERIFICATION-REVIEW-PACKETS.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1420
+    },
+    {
+      "path": "docs/VERIFIED_CONTINUITY_CHECKPOINT_2026-09-21.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1624
+    },
+    {
+      "path": "docs/YATHARTH-MUSIC-INTEGRATION.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2349
+    },
+    {
+      "path": "docs/agent-architecture.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 724
+    },
+    {
+      "path": "docs/independent-verification-conveyor.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2172
+    },
+    {
+      "path": "docs/job-queue.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 579
+    },
+    {
+      "path": "docs/provenance.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 274
+    },
+    {
+      "path": "docs/public-platform/ai-native-control-plane.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 967
+    },
+    {
+      "path": "docs/public-platform/api-module-plan.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1519
+    },
+    {
+      "path": "docs/public-platform/automission-agent-contract.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1494
+    },
+    {
+      "path": "docs/runtime-verification-checkpoint-20260921.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 558
+    },
+    {
+      "path": "docs/second-generation-architecture.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1266
+    },
+    {
+      "path": "docs/supreme-ai-ml-nlp-automission-evolution-protocol.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3914
+    },
+    {
+      "path": "docs/supreme-ai-ml-nlp-automission-quality-contract-2026-10-01.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1811
+    },
+    {
+      "path": "docs/supreme-continuous-improvement.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1252
+    },
+    {
+      "path": "docs/supreme-evidence-automission-operating-contract-2026-10-02.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3232
+    },
+    {
+      "path": "docs/supreme-independent-verification-ledger.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1598
+    },
+    {
+      "path": "docs/supreme-nlp-benchmark-and-self-improvement.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2531
+    },
+    {
+      "path": "docs/supreme-nlp-evaluation-gate.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1444
+    },
+    {
+      "path": "docs/supreme-nlp-practitioner-runtime.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1374
+    },
+    {
+      "path": "docs/supreme-nlp-unified-control-plane-2026-10-02.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2433
+    },
+    {
+      "path": "docs/supreme-nlp-v2-control-plane-2026-10-02.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1638
+    },
+    {
+      "path": "docs/yatharth-governance/ai-control-contract.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1812
+    },
+    {
+      "path": "docs/yatharth-governance/constitutional-supreme-control.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1145
+    },
+    {
+      "path": "docs/yatharth-system/continuity-checklist.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2940
+    },
+    {
+      "path": "docs/yatharth-system/module-contracts.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1446
+    },
+    {
+      "path": "docs/yatharth-system/public-navigation-spec.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1024
+    },
+    {
+      "path": "economic-marketing-command-center.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2392
+    },
+    {
+      "path": "factory-agent.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 367
+    },
+    {
+      "path": "factory/AGENTS.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 920
+    },
+    {
+      "path": "factory/AGENT_ORCHESTRATOR.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1098
+    },
+    {
+      "path": "factory/HUMAN-CIVILIZATION-SANJEEVANI.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5990
+    },
+    {
+      "path": "factory/ORCHESTRATION.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1106
+    },
+    {
+      "path": "factory/agent_config.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1647
+    },
+    {
+      "path": "factory/agent_governance_qc.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4086
+    },
+    {
+      "path": "factory/agents.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1775
+    },
+    {
+      "path": "factory/agents/concept_mapper.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 781
+    },
+    {
+      "path": "factory/agents/evidence_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 589
+    },
+    {
+      "path": "factory/agents/product_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2462
+    },
+    {
+      "path": "factory/agents/provenance_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1330
+    },
+    {
+      "path": "factory/agents/qc_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 903
+    },
+    {
+      "path": "factory/agents/research_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 570
+    },
+    {
+      "path": "factory/agents/shirmani_reasoning_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2959
+    },
+    {
+      "path": "factory/agents/verification_agent.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 579
+    },
+    {
+      "path": "factory/ai-companies.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2108
+    },
+    {
+      "path": "factory/ai-generation.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 423
+    },
+    {
+      "path": "factory/archive_large_artifacts.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4244
+    },
+    {
+      "path": "factory/artifact-manifest.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 839
+    },
+    {
+      "path": "factory/batch_worker.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 14732
+    },
+    {
+      "path": "factory/bootstrap_independent_verification_queue.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3613
+    },
+    {
+      "path": "factory/capability-map.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 757
+    },
+    {
+      "path": "factory/company-manifests.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1342
+    },
+    {
+      "path": "factory/continuity_manifest.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2824
+    },
+    {
+      "path": "factory/formulation_qc.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3274
+    },
+    {
+      "path": "factory/formulation_records.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3790
+    },
+    {
+      "path": "factory/independent_verification_engine.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4149
+    },
+    {
+      "path": "factory/independent_verification_pipeline.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5780
+    },
+    {
+      "path": "factory/job_queue.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1125
+    },
+    {
+      "path": "factory/job_router.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1368
+    },
+    {
+      "path": "factory/knowledge-schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 651
+    },
+    {
+      "path": "factory/live_dashboard.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 335
+    },
+    {
+      "path": "factory/model-registry.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 681
+    },
+    {
+      "path": "factory/nvidia-routing.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 854
+    },
+    {
+      "path": "factory/product_matrix.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 696
+    },
+    {
+      "path": "factory/production_queue_builder.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3480
+    },
+    {
+      "path": "factory/public_production_queue_self_heal.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2720
+    },
+    {
+      "path": "factory/publication_gate.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2536
+    },
+    {
+      "path": "factory/publish_index.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 700
+    },
+    {
+      "path": "factory/publisher.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 942
+    },
+    {
+      "path": "factory/queues.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 948
+    },
+    {
+      "path": "factory/reasoning_pipeline.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 8276
+    },
+    {
+      "path": "factory/repos.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1493
+    },
+    {
+      "path": "factory/repository-intelligence.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5024
+    },
+    {
+      "path": "factory/repository_intelligence.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2186
+    },
+    {
+      "path": "factory/research_evidence_graph_qc.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2655
+    },
+    {
+      "path": "factory/run_report.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1193
+    },
+    {
+      "path": "factory/shirmani-framework.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4057
+    },
+    {
+      "path": "factory/source-registry.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1082
+    },
+    {
+      "path": "factory/source-registry.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1021
+    },
+    {
+      "path": "factory/supreme-nlp-policy.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 696
+    },
+    {
+      "path": "factory/supreme_claim_integrity_qc.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2009
+    },
+    {
+      "path": "factory/supreme_independent_verification_ledger.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4526
+    },
+    {
+      "path": "factory/supreme_nlp_benchmark.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3345
+    },
+    {
+      "path": "factory/supreme_nlp_evidence_engine.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5497
+    },
+    {
+      "path": "factory/supreme_nlp_practitioner.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3856
+    },
+    {
+      "path": "factory/supreme_nlp_unified_gate.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3706
+    },
+    {
+      "path": "factory/supreme_nlp_v2_benchmark.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3877
+    },
+    {
+      "path": "factory/supreme_system_orchestrator.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 6069
+    },
+    {
+      "path": "factory/test_supreme_nlp_practitioner.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1352
+    },
+    {
+      "path": "factory/validate_factory.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2987
+    },
+    {
+      "path": "factory/verification_promotion_gate.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5718
+    },
+    {
+      "path": "factory/verification_promotion_qc.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2490
+    },
+    {
+      "path": "factory/verification_queue.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2801
+    },
+    {
+      "path": "factory/verification_queue_qc.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3133
+    },
+    {
+      "path": "factory/verification_readiness.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3110
+    },
+    {
+      "path": "factory/verification_registry.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4255
+    },
+    {
+      "path": "factory/verification_registry_qc.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3135
+    },
+    {
+      "path": "factory/verification_review_packet.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5114
+    },
+    {
+      "path": "factory/verification_review_packet_qc.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5789
+    },
+    {
+      "path": "federation/allocation-rules.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1818
+    },
+    {
+      "path": "federation/application-human-matching.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2374
+    },
+    {
+      "path": "federation/contribution-ledger.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1796
+    },
+    {
+      "path": "federation/deliverable-acceptance-quality-review.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2216
+    },
+    {
+      "path": "federation/exchange-orders.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2397
+    },
+    {
+      "path": "federation/settlement-records.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2819
+    },
+    {
+      "path": "federation/shiromani-value-exchange-dashboard.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 984
+    },
+    {
+      "path": "federation/shiromani-value-exchange-spec.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3011
+    },
+    {
+      "path": "federation/verified-work.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1344
+    },
+    {
+      "path": "federation/work-execution-fulfilment-tracking.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2283
+    },
+    {
+      "path": "federation/yatharth-creative-studio.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 840
+    },
+    {
+      "path": "global-identity-passport.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4300
+    },
+    {
+      "path": "index.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 102786
+    },
+    {
+      "path": "media.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1326
+    },
+    {
+      "path": "public-production-live.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3629
+    },
+    {
+      "path": "publications.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1178
+    },
+    {
+      "path": "research.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1166
+    },
+    {
+      "path": "research/global-identity-evidence-charter-2026-10-01.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2320
+    },
+    {
+      "path": "research/independent-verification-scope-reconciliation-2026-10-03.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1968
+    },
+    {
+      "path": "research/independent-verification-system-v2.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2339
+    },
+    {
+      "path": "research/shirmani-comparative-analysis-system.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5373
+    },
+    {
+      "path": "research/shirmani-comparative-framework-2026-09-29.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 12524
+    },
+    {
+      "path": "research/yatharth-drishtikon-author-archive-2026-09-29.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 19061
+    },
+    {
+      "path": "research/yatharth-shirmani-author-source-2026-10-01.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4079
+    },
+    {
+      "path": "research/yatharth-shirmani-canonical-source-2026-09-29.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 10921
+    },
+    {
+      "path": "research/yatharth-shirmani-latest-source-extension-2026-09-29.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 8316
+    },
+    {
+      "path": "research/yatharth-shirmani-source-addendum-2026-09-29.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 10952
+    },
+    {
+      "path": "schemas/agent-governance.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 844
+    },
+    {
+      "path": "schemas/claim-record.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3279
+    },
+    {
+      "path": "schemas/claim.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 293
+    },
+    {
+      "path": "schemas/factory-status.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1109
+    },
+    {
+      "path": "schemas/income-products.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5785
+    },
+    {
+      "path": "schemas/independent-verification-record.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1723
+    },
+    {
+      "path": "schemas/public-platform-record.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 878
+    },
+    {
+      "path": "schemas/supreme-independent-verification-record.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1043
+    },
+    {
+      "path": "schemas/supreme-nlp-adapter-contract.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1251
+    },
+    {
+      "path": "schemas/supreme-nlp-contract.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1306
+    },
+    {
+      "path": "schemas/supreme-nlp-evidence-v2.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 940
+    },
+    {
+      "path": "schemas/supreme-nlp-record.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2274
+    },
+    {
+      "path": "schemas/supreme-nlp-result.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1553
+    },
+    {
+      "path": "schemas/supreme-nlp-signal-record.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1316
+    },
+    {
+      "path": "schemas/supreme-runtime-result.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1176
+    },
+    {
+      "path": "schemas/supreme-signal-language.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1843
+    },
+    {
+      "path": "schemas/verification-report.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1169
+    },
+    {
+      "path": "schemas/yatharth-comparison.schema.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1082
+    },
+    {
+      "path": "scripts/audit_independent_verification_scope.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3080
+    },
+    {
+      "path": "scripts/cross_layer_consistency.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1507
+    },
+    {
+      "path": "scripts/independent_verification_gate.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3704
+    },
+    {
+      "path": "scripts/normalize_records.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1297
+    },
+    {
+      "path": "scripts/sync-central-factory-status.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 6409
+    },
+    {
+      "path": "scripts/validate_automission_supervisor.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1572
+    },
+    {
+      "path": "scripts/validate_supreme_nlp.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1508
+    },
+    {
+      "path": "scripts/validate_supreme_nlp_multimodal.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1414
+    },
+    {
+      "path": "server/README.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1014
+    },
+    {
+      "path": "source/user-directives/2026-09-20-shirmani-heart-view-request.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1113
+    },
+    {
+      "path": "supreme-nlp/engine.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3908
+    },
+    {
+      "path": "tests/independent_verification_gate.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1481
+    },
+    {
+      "path": "tests/supreme_runtime_contract.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2026
+    },
+    {
+      "path": "tests/test_supreme_ai_ml_nlp.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1869
+    },
+    {
+      "path": "tests/test_supreme_control_plane.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1429
+    },
+    {
+      "path": "tests/test_supreme_nlp_end_to_end.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4640
+    },
+    {
+      "path": "tests/test_supreme_nlp_evidence_engine.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1405
+    },
+    {
+      "path": "tests/test_supreme_nlp_multimodal.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1678
+    },
+    {
+      "path": "docs/yatharth-system/feature-status.schema.json",
+      "type": "json",
+      "lane": "security_quality",
+      "status": "PLANNED",
+      "bytes": 1074
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000026-000050-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 445
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000051-000075-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 445
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000076-000100-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 446
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000101-000125-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000126-000150-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000151-000175-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000176-000200-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000201-000225-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000226-000250-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000251-000275-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000276-000300-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000301-000325-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000326-000350-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000351-000375-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000376-000400-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000401-000425-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000426-000450-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000451-000475-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000476-000500-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000501-000525-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000526-000550-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000551-000575-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000576-000600-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000601-000625-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000626-000650-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000651-000675-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000676-000700-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000726-000750-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000751-000775-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000776-000800-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000801-000825-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000826-000850-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000851-000875-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000876-000900-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "CONTINUATION-REVIEW-SLICE-000926-000950-QC.md",
+      "type": "md",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 447
+    },
+    {
+      "path": "factory/cloud_sync.py",
+      "type": "py",
+      "lane": "security_quality",
+      "status": "UNSPECIFIED",
+      "bytes": 1738
+    }
+  ]
+}
