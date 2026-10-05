@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "REAL_PRODUCT_CATALOG",
+  "principle": "A product record is not a completed sale; checkout/delivery must remain explicit.",
+  "offer_count": 15,
+  "source": "factory/product-catalog.json"
+}
