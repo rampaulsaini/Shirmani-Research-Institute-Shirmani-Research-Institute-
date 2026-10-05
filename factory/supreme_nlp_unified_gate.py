@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 
 from agents.supreme_nlp_practitioner import build_practitioner_record
-from agents.supreme_nlp_v3 import build_record
+from agents.supreme_nlp_v3 import build_record, verify_record_integrity
 
 OUT = Path("generated/supreme-nlp/unified-control-plane.json")
 
@@ -28,19 +28,6 @@ ROWS = [
 def canonical_hash(value: object) -> str:
     return hashlib.sha256(
         json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
-    ).hexdigest()
-
-
-def record_fingerprint(record: dict) -> str:
-    """Match the v3 record fingerprint semantics, including provenance."""
-    payload = {
-        "schema_version": record["schema_version"],
-        "task_id": record["task_id"],
-        "result": record["result"],
-        "provenance": record["provenance"],
-    }
-    return hashlib.sha256(
-        json.dumps(payload, sort_keys=True, ensure_ascii=False).encode()
     ).hexdigest()
 
 
@@ -65,7 +52,7 @@ def main() -> int:
         verification_status == "VERIFIED"
         and independent_replication_verified is True
     )
-    fingerprint_valid = v3_record.get("fingerprint") == record_fingerprint(v3_record)
+    fingerprint_valid = verify_record_integrity(v3_record)
     verification_ready = (
         verification_status == "VERIFIED"
         and independent_replication_verified is True
