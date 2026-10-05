@@ -1,0 +1,104 @@
+name: SHIRMANI Multi-Layer Parallel Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - "tests/**"
+      - "automation/**"
+      - ".github/workflows/shirmani-multi-layer-parallel-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-multi-layer-parallel-automission
+  cancel-in-progress: true
+
+jobs:
+  parallel-layers:
+    name: "Layer: ${{ matrix.layer }}"
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - layer: architecture-qc
+            command: |
+              python -m py_compile factory/supreme_architecture_qc.py agents/automission_supervisor.py agents/supreme_nlp_practitioner.py
+              python factory/supreme_architecture_qc.py
+          - layer: nlp-regression
+            command: |
+              python -m py_compile factory/supreme_nlp_benchmark.py agents/supreme_nlp_practitioner.py
+              python factory/supreme_nlp_benchmark.py
+          - layer: product-first
+            command: |
+              python -m py_compile factory/product_orchestrator.py
+              python factory/product_orchestrator.py
+          - layer: continuous-improvement
+            command: |
+              python -m py_compile factory/supreme_quality_gate.py agents/automission_supervisor.py
+              python agents/automission_supervisor.py
+          - layer: e2e-nlp
+            command: |
+              python -m unittest tests/test_supreme_nlp_end_to_end.py -v
+          - layer: schema-integrity
+            command: |
+              python - <<'PY'
+              import json
+              from pathlib import Path
+              files=list(Path("schemas").rglob("*.json"))
+              for p in files:
+                  json.loads(p.read_text(encoding="utf-8"))
+              print(f"SCHEMA_INTEGRITY_PASS={len(files)}")
+              PY
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Execute layer
+        run: ${{ matrix.command }}
+      - name: Emit layer result
+        if: always()
+        run: |
+          {
+            echo "## Layer result"
+            echo "- Layer: **${{ matrix.layer }}**"
+            echo "- Run: **${{ github.run_number }}**"
+            echo "- Verification: downstream; this layer never creates VERIFIED state"
+            echo "- Scheduling profile: **quantum-inspired deterministic**"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  convergence:
+    name: Converge multi-layer results
+    if: always()
+    needs: [parallel-layers]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Convergence summary
+        shell: bash
+        run: |
+          {
+            echo "# ꙰ SHIRMANI Multi-Layer Automission Convergence"
+            echo
+            echo "Multiple execution lanes were scheduled independently with fail-fast disabled."
+            echo
+            echo "- Architecture QC"
+            echo "- NLP regression"
+            echo "- Product-first production"
+            echo "- Continuous improvement"
+            echo "- End-to-end NLP"
+            echo "- Schema integrity"
+            echo
+            echo "**Rule:** execution evidence is not independent verification."
+            echo "**Rule:** VERIFIED state can only be established by the independent verification pipeline."
+            echo "**Rule:** the current quantum mechanism is deterministic/quantum-inspired; no real quantum advantage is claimed."
+          } >> "$GITHUB_STEP_SUMMARY"
