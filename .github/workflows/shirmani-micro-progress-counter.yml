@@ -35,8 +35,12 @@ jobs:
           from datetime import datetime, timezone
 
           registry_path = Path("generated/VERIFICATION-REGISTRY.json")
+          promotion_path = Path("generated/VERIFICATION-PROMOTION-QC.json")
+          record_path = Path("generated/independent-verification-records.json")
           target_path = Path("config/independent-verification-target.json")
           registry = json.loads(registry_path.read_text(encoding="utf-8")) if registry_path.exists() else {}
+          promotion = json.loads(promotion_path.read_text(encoding="utf-8")) if promotion_path.exists() else {}
+          record_registry = json.loads(record_path.read_text(encoding="utf-8")) if record_path.exists() else {}
           target_cfg = json.loads(target_path.read_text(encoding="utf-8")) if target_path.exists() else {}
 
           target = int(target_cfg.get("verification_target", 0))
@@ -44,6 +48,9 @@ jobs:
           queued = int(registry.get("queued", 0))
           reviewed = int(registry.get("reviewed", 0))
           verified = int(registry.get("verified", 0))
+          concrete_review_slots = int(promotion.get("queue_records", 0))
+          concrete_verified = int(record_registry.get("verification_summary", {}).get("independently_verified_records", 0))
+          concrete_queue_records = int(record_registry.get("verification_summary", {}).get("queue_records", 0))
 
           if target <= 0:
               raise SystemExit("MICRO_COUNTER_FAIL: verification target must be positive")
@@ -55,6 +62,11 @@ jobs:
           remaining = max(target - verified, 0)
           reviewed_pct = round(reviewed / target * 100, 4)
           verified_pct = round(verified / target * 100, 4)
+          concrete_slots_pct = round(concrete_review_slots / target * 100, 6)
+          concrete_verified_pct = round(concrete_verified / target * 100, 6)
+
+          if not (0 <= concrete_verified <= concrete_queue_records <= concrete_review_slots <= records):
+              raise SystemExit("MICRO_COUNTER_FAIL: concrete verification counters violate invariants")
 
           state = {
               "counter_name": "SHIRMANI Micro Progress Counter",
@@ -69,7 +81,12 @@ jobs:
                   "verified": verified,
                   "remaining": remaining,
                   "reviewed_percent": reviewed_pct,
-                  "verified_percent": verified_pct
+                  "verified_percent": verified_pct,
+                  "concrete_review_slots": concrete_review_slots,
+                  "concrete_review_slots_percent_of_target": concrete_slots_pct,
+                  "record_level_queue": concrete_queue_records,
+                  "record_level_verified": concrete_verified,
+                  "record_level_verified_percent_of_target": concrete_verified_pct
               },
               "separation_rule": "Workflow execution is activity evidence only; VERIFIED requires the independent verification gate.",
               "main_mutation": False
@@ -86,6 +103,11 @@ jobs:
           print(f"VERIFICATION_VERIFIED={verified}")
           print(f"VERIFICATION_REMAINING={remaining}")
           print(f"VERIFIED_PERCENT={verified_pct}%")
+          print(f"CONCRETE_REVIEW_SLOTS={concrete_review_slots}")
+          print(f"CONCRETE_REVIEW_SLOTS_PERCENT={concrete_slots_pct}%")
+          print(f"RECORD_LEVEL_QUEUE={concrete_queue_records}")
+          print(f"RECORD_LEVEL_VERIFIED={concrete_verified}")
+          print(f"RECORD_LEVEL_VERIFIED_PERCENT={concrete_verified_pct}%")
 
       - name: Publish micro counter artifact
         uses: actions/upload-artifact@v4
