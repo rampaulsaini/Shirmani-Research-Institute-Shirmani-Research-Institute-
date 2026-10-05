@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "name": "SHIRMANI Product First Multi Lane Plan",
+  "cadence_minutes": 5,
+  "priority_rule": "product_output_before_downstream_verification",
+  "lanes": [
+    {"id":"digital-products","priority":1,"outputs":["audio","ebooks","research-guides","digital-utilities"]},
+    {"id":"creative-media","priority":2,"outputs":["music","shorts","podcast","video","voice-products"]},
+    {"id":"professional-services","priority":3,"outputs":["research-assistance","content-production","language-services","automation-services"]},
+    {"id":"marketplace","priority":4,"outputs":["listings","service-offers","commission-ready-catalog"]},
+    {"id":"research","priority":5,"outputs":["papers","comparison-packs","knowledge-packs"]},
+    {"id":"growth","priority":6,"outputs":["SEO","social-variants","creator-distribution","analytics"]},
+    {"id":"evidence","priority":7,"outputs":["provenance","QC","verification-packets","audit-trails"]}
+  ],
+  "pipeline":["discover","deduplicate","package","preview","destination","publish-ready","market-ready","measure","improve","downstream-verify"],
+  "integrity":{"external-publication_claimed":false,"earned-income_claimed":false,"independent-verification_claimed":false},
+  "note":"Quantum is treated only as a future orchestration concept; no quantum hardware or capability is claimed."
+}
