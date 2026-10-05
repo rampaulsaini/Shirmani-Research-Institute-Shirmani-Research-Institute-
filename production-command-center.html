@@ -1,0 +1,24 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI Supreme Production Command Center</title>
+<style>
+body{margin:0;background:#0b0e13;color:#eef2f7;font-family:system-ui;line-height:1.55}main{max-width:1180px;margin:auto;padding:24px}h1{font-size:clamp(1.7rem,4vw,2.8rem)}.sub{color:#aeb8c5}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:22px 0}.card{background:#141922;border:1px solid #2a3340;border-radius:16px;padding:18px}.v{font-size:1.7rem;font-weight:800}.l{color:#aeb8c5}.bar{height:14px;background:#252d38;border-radius:99px;overflow:hidden}.fill{height:100%;background:#71e3aa;width:0}pre{white-space:pre-wrap;overflow:auto;background:#10151c;padding:16px;border-radius:12px}a{color:#8ec5ff}.pill{display:inline-block;border:1px solid #3b4655;border-radius:999px;padding:5px 9px;margin:3px;color:#cbd5e1}
+</style></head><body><main>
+<h1>꙰ SHIRMANI Supreme Production Command Center</h1>
+<p class="sub">Production-first AI / ML / NLP / Practitioner Automission. <b>Automission produces work; verification evaluates produced work downstream.</b></p>
+<div class="grid">
+<div class="card"><div class="l">Production Queue</div><div class="v" id="q">—</div></div>
+<div class="card"><div class="l">Produced</div><div class="v" id="p">—</div></div>
+<div class="card"><div class="l">Remaining</div><div class="v" id="r">—</div></div>
+<div class="card"><div class="l">Production %</div><div class="v" id="pc">—</div></div>
+<div class="card"><div class="l">HTML Modules</div><div class="v" id="h">—</div></div>
+<div class="card"><div class="l">Workflows</div><div class="v" id="w">—</div></div>
+<div class="card"><div class="l">Python Modules</div><div class="v" id="py">—</div></div>
+<div class="card"><div class="l">Research Records</div><div class="v" id="rr">—</div></div>
+</div><div class="bar"><div class="fill" id="fill"></div></div>
+<h2>Multi-layer production map</h2><p><b>Source → Research → NLP → ML Signals → Reasoning → Content → Product → Audio/Music → Translation → Marketing → Knowledge → Archive → Publishing → Continuous Improvement</b></p>
+<div id="stages"></div>
+<h2>Actual production inventory</h2><pre id="inv">Loading…</pre>
+<h2>Boundary</h2><p>Production output is public-status evidence of generated work, not independent scientific verification. VERIFIED remains a downstream evidence/review state. Quantum execution is not claimed unless an actual quantum backend is connected.</p>
+<p><a href="supreme-factory.html">Research Factory</a> · <a href="factory-dashboard.html">Factory Dashboard</a> · <a href="archive.html">Archive</a> · <a href="citations.html">Citations</a> · <a href="index.html">Main Hub</a></p>
+<script>
+async function load(){try{const r=await fetch('generated/production-status.json?ts='+Date.now());if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json(),i=d.inventory||{};q.textContent=(d.production_target||0).toLocaleString();p.textContent=(d.production_processed||0).toLocaleString();rr.textContent=(i.research_records||0).toLocaleString();document.getElementById('r').textContent=(d.production_remaining||0).toLocaleString();pc.textContent=(d.production_completion_percent||0)+'%';fill.style.width=Math.min(100,d.production_completion_percent||0)+'%';h.textContent=i.html_modules||0;w.textContent=i.workflow_definitions||0;py.textContent=i.python_modules||0;inv.textContent=JSON.stringify(i,null,2);stages.innerHTML=(d.stages||[]).map(x=>'<span class="pill">'+x.stage+' · '+(x.returncode===0?'PASS':'CHECK')+'</span>').join('')}catch(e){inv.textContent='Production telemetry not yet published: '+e.message}}load();setInterval(load,30000)
+</script></main></body></html>
