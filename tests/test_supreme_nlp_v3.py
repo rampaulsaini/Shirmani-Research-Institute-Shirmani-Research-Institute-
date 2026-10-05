@@ -85,6 +85,22 @@ def main():
     assert missing["status"] == "INSUFFICIENT_EVIDENCE"
     assert missing["features"]["latency|ms"]["status"] == "INSUFFICIENT_EVIDENCE"
 
+    # Missing/blank units must never be treated as a comparable scale.
+    missing_unit_drift = drift_report(
+        [{"feature":"latency","value":10.0}],
+        [{"feature":"latency","value":20.0}],
+    )
+    assert missing_unit_drift["status"] == "INSUFFICIENT_EVIDENCE"
+    assert missing_unit_drift["reason"] == "MISSING_UNIT"
+    assert missing_unit_drift["drift_detected"] is False
+
+    # Empty reference/current observations are insufficient evidence, not no-drift.
+    for ref, cur in (([], reference), (reference, []), ([], [])):
+        empty_drift = drift_report(ref, cur)
+        assert empty_drift["status"] == "INSUFFICIENT_EVIDENCE"
+        assert empty_drift["reason"] == "EMPTY_REFERENCE_OR_CURRENT"
+        assert empty_drift["drift_detected"] is False
+
     # Invalid drift thresholds must fail closed instead of accepting NaN/zero.
     for bad in (0, -1, float("nan"), float("inf")):
         try:
