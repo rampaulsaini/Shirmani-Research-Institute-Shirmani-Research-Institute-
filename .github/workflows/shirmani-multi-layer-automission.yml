@@ -1,0 +1,74 @@
+name: SHIRMANI Multi-Layer AI ML NLP Practitioner Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/multi_layer_automission.py"
+      - "tests/test_multi_layer_automission.py"
+      - ".github/workflows/shirmani-multi-layer-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-multi-layer-automission
+  cancel-in-progress: true
+
+jobs:
+  lane:
+    name: ${{ matrix.layer }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        layer: [practitioner, ml, nlp, evidence, automission, quantum-mechanism]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile controller
+        run: python -m py_compile agents/multi_layer_automission.py
+      - name: Run controller tests
+        run: python -m pytest -q tests/test_multi_layer_automission.py
+      - name: Emit lane record
+        env:
+          LANE: ${{ matrix.layer }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          from agents.multi_layer_automission import build_cycle
+          cycle=build_cycle({os.environ["LANE"]:1.0})
+          cycle["executed_lane"]=os.environ["LANE"]
+          out=Path("lane-output"); out.mkdir(exist_ok=True)
+          (out/"cycle.json").write_text(json.dumps(cycle,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(cycle["decision"]["winner"],ensure_ascii=False))
+          PY
+      - name: Upload lane artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: multi-layer-automission-${{ matrix.layer }}-${{ github.run_number }}
+          path: lane-output/cycle.json
+          retention-days: 14
+
+  aggregate:
+    needs: lane
+    runs-on: ubuntu-latest
+    steps:
+      - name: Emit governance summary
+        run: |
+          {
+            echo "# Multi-Layer Automission"
+            echo
+            echo "- 6 orchestration lanes executed."
+            echo "- Selection: quantum-inspired deterministic scoring."
+            echo "- Quantum hardware used: **No**."
+            echo "- Automated VERIFIED promotion: **Blocked**."
+            echo "- Scheduled production-code mutation: **Blocked**."
+            echo "- Independent verification remains a separate evidence process."
+          } >> "$GITHUB_STEP_SUMMARY"
