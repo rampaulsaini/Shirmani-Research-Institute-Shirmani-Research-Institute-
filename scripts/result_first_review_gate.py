@@ -44,7 +44,7 @@ def has_true_verification_flag(value: Any) -> bool:
     if isinstance(value, dict):
         for key, child in value.items():
             normalized_key = key.strip().lower() if isinstance(key, str) else key
-            if normalized_key in FORBIDDEN_VERIFICATION_FLAGS and child is True:
+            if normalized_key in FORBIDDEN_VERIFICATION_FLAGS and child not in (False, None, "", 0, [], {}):
                 return True
             if (
                 normalized_key in VERIFIED_STATUS_KEYS
@@ -103,6 +103,7 @@ def validate_result(record: dict[str, Any]) -> dict[str, Any]:
     provenance = record.get("provenance")
     checks["provenance_present"] = (
         isinstance(provenance, dict)
+        and all(field in provenance for field in REQUIRED_PROVENANCE_FIELDS)
         and non_empty_string(provenance.get("generator"))
         and non_empty_string(provenance.get("verification_status"))
         and isinstance(provenance.get("independent_replication_verified"), bool)
