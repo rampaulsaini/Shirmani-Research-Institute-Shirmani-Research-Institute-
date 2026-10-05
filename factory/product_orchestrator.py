@@ -31,6 +31,23 @@ def product_lines():
 
 def main():
     lines=product_lines()
+    catalog_path=ROOT/"factory"/"product-catalog.json"
+    catalog=json.loads(catalog_path.read_text(encoding="utf-8"))
+    production_queue=[]
+    for lane in catalog.get("lanes", []):
+        for offer in lane.get("offers", []):
+            production_queue.append({
+                "product_id": offer.get("id"),
+                "name": offer.get("name"),
+                "lane": lane.get("id"),
+                "priority": lane.get("priority", 999),
+                "price_inr": offer.get("price_inr"),
+                "delivery": offer.get("delivery"),
+                "destination": offer.get("store") or offer.get("destination"),
+                "status": "PRODUCTION_QUEUED",
+                "verification_state": "DOWNSTREAM_PENDING",
+                "next_stage": "PACKAGING"
+            })
     for p in lines:
         p["completion_pct"]=round(min(100,p["count"]/p["target"]*100),2) if p["target"] else 0
         p["asset_state"]="AVAILABLE" if p["count"] else "MISSING"
@@ -40,10 +57,17 @@ def main():
         p["independent_verification_required"]=True
     total_target=sum(p["target"] for p in lines)
     total_count=sum(min(p["count"],p["target"]) for p in lines)
+    queue_path=OUT/"PRODUCT-PRODUCTION-QUEUE.jsonl"
+    queue_path.write_text(
+        "\n".join(json.dumps(x,ensure_ascii=False) for x in production_queue)+"\n",
+        encoding="utf-8"
+    )
     c={"version":1,"generated_at":datetime.now(timezone.utc).isoformat(),"strategy":"PRODUCT_FIRST",
        "principle":"Build useful products first; verification is a downstream quality outcome.",
        "quantum_execution":{"mode":"quantum-inspired-deterministic","purpose":"queue prioritization, decomposition and scheduling","real_quantum_backend":False,"future_backend_allowed":True},
-       "product_count":len(lines),"target_units":total_target,"available_units":total_count,
+       "product_count":len(lines),"catalog_offer_count":len(production_queue),
+       "production_queue_count":len(production_queue),
+       "target_units":total_target,"available_units":total_count,
        "completion_pct":round(total_count/total_target*100,2) if total_target else 0,"lines":lines,
        "safety":{"generated_output_is_not_automatic_truth":True,"verification_does_not_create_the_product":True,"financial_actions_require_owner_authorization":True}}
     (OUT/"PRODUCT-CATALOG.json").write_text(json.dumps(c,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
@@ -54,6 +78,8 @@ def main():
     md += ["","## Multi-layer execution","Source → Research → Reasoning → Product → Packaging → Marketing Draft → QC → Independent Verification → Publication.",
            "","## Quantum mechanism boundary","The current repository uses a deterministic/quantum-inspired orchestration profile. No real quantum hardware or quantum advantage is claimed until an actual backend is configured and exercised.",
            "","## Commercial boundary","Catalog generation is enabled. Payments, financial transactions and irreversible commercial actions remain disabled until explicitly authorized and integrated."]
+    md += ["",f"## Active production queue: {len(production_queue)} catalog offers",
+           "Each offer enters production before downstream verification. Queue states are never presented as VERIFIED."]
     (OUT/"PRODUCT-PIPELINE.md").write_text("\n".join(md)+"\n",encoding="utf-8")
     print(json.dumps({"strategy":c["strategy"],"product_lines":len(lines),"available_units":total_count,"target_units":total_target,"completion_pct":c["completion_pct"]},ensure_ascii=False))
 if __name__=="__main__": main()
