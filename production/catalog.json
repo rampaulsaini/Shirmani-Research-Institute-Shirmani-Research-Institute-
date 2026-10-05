@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "mode": "production-first",
+  "purpose": "Turn prepared public surfaces into measurable product production.",
+  "source_store": "https://rampaulsaini.github.io/my-omniverse-store/production-catalog.html",
+  "products": [
+    {"id":"audio-self-interview","name":"खुद का साक्षात्कार ही संपूर्ण संतुष्टि","price_inr":10000,"state":"CATALOG_LIVE","payment":"UPI_OR_PAYPAL","delivery":"WHATSAPP_MANUAL_FULFILMENT"},
+    {"id":"audio-ishq-capacity","name":"शिरोमणि अनंत असीम इश्क की क्षमता","price_inr":1500,"state":"CATALOG_LIVE","payment":"UPI_OR_PAYPAL","delivery":"WHATSAPP_MANUAL_FULFILMENT"},
+    {"id":"certificate","name":"प्रमाण पत्र","price_inr":495,"state":"CATALOG_LIVE","payment":"UPI_OR_PAYPAL","delivery":"WHATSAPP_MANUAL_FULFILMENT"},
+    {"id":"short-audios","name":"Short Audios / Clips","price_inr":89,"state":"CATALOG_LIVE","payment":"UPI_OR_PAYPAL","delivery":"WHATSAPP_MANUAL_FULFILMENT"}
+  ],
+  "not_claimed": ["automated_checkout","payment_webhook","automatic_delivery","inventory_locking","verified_paid_order_database"]
+}
