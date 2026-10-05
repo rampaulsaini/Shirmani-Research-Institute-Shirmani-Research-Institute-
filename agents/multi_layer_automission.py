@@ -98,7 +98,7 @@ def review_result_outcome(expected_result, observed_result):
         "scientific_truth_established": False,
     }
 
-def build_result_outcome(lane, test_path, runner, exit_code):
+LANE_CONTRACTS = {\n    "practitioner": {"focus": "practitioner-core", "runner": "pytest"},\n    "ml": {"focus": "ml-validation", "runner": "pytest"},\n    "nlp": {"focus": "nlp-end-to-end", "runner": "pytest"},\n    "evidence": {"focus": "independent-evidence-ledger", "runner": "python"},\n    "automission": {"focus": "automission-hardening", "runner": "python"},\n    "quantum-mechanism": {"focus": "deterministic-orchestration", "runner": "pytest"},\n}\n\ndef validate_lane_contract(lane, focus, test_path, runner):\n    """Validate that an executed lane matches its declared contract."""\n    if lane not in LANE_CONTRACTS:\n        raise ValueError("unknown lane")\n    if not isinstance(focus, str) or not focus:\n        raise ValueError("focus must be a non-empty string")\n    if not isinstance(test_path, str) or not test_path:\n        raise ValueError("test_path must be a non-empty string")\n    if runner not in {"pytest", "python"}:\n        raise ValueError("runner must be pytest or python")\n    expected = LANE_CONTRACTS[lane]\n    if focus != expected["focus"] or runner != expected["runner"]:\n        raise ValueError("lane contract mismatch")\n    return True\n\ndef build_result_outcome(lane, test_path, runner, exit_code):
     """Create a result record from the actual lane test process outcome."""
     if not isinstance(lane, str) or not lane:
         raise ValueError("lane must be a non-empty string")
