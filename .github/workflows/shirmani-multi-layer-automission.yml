@@ -55,6 +55,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+      - name: Install test runner
+        run: python -m pip install --disable-pip-version-check pytest
       - name: Compile controller
         run: python -m py_compile agents/multi_layer_automission.py
       - name: Run lane-specific tests
