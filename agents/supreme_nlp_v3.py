@@ -345,6 +345,28 @@ def drift_report(reference, current, threshold=2.0):
         raise ValueError("threshold must be a positive finite number") from exc
     if not isfinite(threshold_value) or threshold_value <= 0:
         raise ValueError("threshold must be a positive finite number")
+    # Drift diagnostics must never consume normalize()'s audit-friendly zero
+    # fallback for malformed observations. Validate the raw observed values
+    # first so NaN/Inf/non-numeric data becomes explicit insufficient evidence.
+    def _valid_drift_input(rows):
+        for raw in rows:
+            if not isinstance(raw, dict):
+                return False
+            try:
+                value = float(raw.get("value"))
+            except (TypeError, ValueError):
+                return False
+            if not isfinite(value):
+                return False
+        return True
+    if not _valid_drift_input(reference) or not _valid_drift_input(current):
+        return {
+            "status": "INSUFFICIENT_EVIDENCE",
+            "drift_detected": False,
+            "insufficient_evidence": True,
+            "threshold": threshold_value,
+            "features": {},
+        }
     ref=[normalize(x) for x in reference]
     cur=[normalize(x) for x in current]
     ref_groups={}
