@@ -23,3 +23,17 @@ The repository has a large automation architecture, but workflow execution is no
 source → package → public product/service page → inquiry/order → actual delivery asset → delivery evidence → settlement (if applicable) → audit
 
 The automation layer must create or update concrete deliverables, not merely generate status files. No fabricated sales, customer orders, payments, reviewer actions, or verification results are permitted.
+## Concrete product-production gate — batch 100200
+
+The production-first Automission now includes a concrete packaging stage after source-bound production work. Batch **100200** is treated as a production batch identifier, while product numbering starts at **.001** and advances sequentially through the persisted production counter.
+
+Each produced module carries:
+- product ID and batch/product number;
+- deterministic QC code and QC gate number;
+- deterministic verification-record code (identifier only, not a completed verification claim);
+- QR payload containing the production/gate state;
+- explicit **DISPATCH: NO** default;
+- explicit NOT_SOLD / NOT_DISPATCHED commercial-delivery state.
+
+The production package is materialized under `generated/product-production/batch-100200/`. The truth boundary remains: **PRODUCED ≠ VERIFIED ≠ SOLD ≠ DISPATCHED**.
+
