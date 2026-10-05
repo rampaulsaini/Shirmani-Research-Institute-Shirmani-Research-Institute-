@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "purpose": "Production reality gate: distinguish runnable product engines from sellable and deliverable products.",
+  "catalog_target": 1016,
+  "commercial_rule": "No item is marked SOLD until a real deliverable, delivery path, price and owner-authorized payment path are evidenced.",
+  "pricing_rule": "A 20-percent-below-market target may be used only after a current benchmark is recorded; never fabricate a market benchmark.",
+  "legal_rule": "Legal products provide organization, issue spotting, evidence preparation and educational information; they do not promise court outcomes or replace a qualified lawyer or court.",
+  "education_rule": "Education products may teach and assess skills, but no accreditation is claimed unless an authorized accreditation path exists.",
+  "quantum_rule": "Quantum-inspired or classical simulation is not presented as real quantum hardware or quantum advantage.",
+  "first_release": {
+    "micro_products": [
+      "products/micro/word-counter.html",
+      "products/micro/percentage-calculator.html",
+      "products/micro/unit-converter.html",
+      "products/micro/json-formatter.html",
+      "products/micro/color-palette-generator.html",
+      "products/micro/drawing-board.html",
+      "products/micro/markdown-preview.html",
+      "products/micro/seo-meta-generator.html"
+    ],
+    "new_product_center": "products/supreme-production-center.html"
+  }
+}
