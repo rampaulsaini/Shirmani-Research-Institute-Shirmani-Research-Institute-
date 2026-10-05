@@ -31,3 +31,11 @@ def test_invalid_signal_fails_closed_to_bounded_range():
         decision = choose_next_action({"ml": value})
         assert 0.0 <= decision["winner"]["score"] <= 1.1
         assert decision["governance"]["fail_closed"] is True
+
+
+def test_verification_is_result_outcome_review_not_direct_automation():
+    d = build_cycle()["decision"]
+    g = d["governance"]
+    assert g["verification_basis"] == "verified_result_record_only"
+    assert g["verification_mode"] == "result_outcome_review_not_direct_automation"
+    assert g["automated_verified_promotion_allowed"] is False
