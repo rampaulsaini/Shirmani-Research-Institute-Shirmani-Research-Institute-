@@ -19,6 +19,9 @@ jobs:
       - name: Checkout canonical source
         uses: actions/checkout@v4
 
+      - name: Run result-first contract tests
+        run: python3 -m unittest tests/test_result_first_orchestrator.py -v
+
       - name: Run result-first orchestration
         run: python3 factory/result_first_orchestrator.py
 
