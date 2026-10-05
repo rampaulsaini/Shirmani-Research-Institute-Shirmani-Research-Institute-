@@ -140,7 +140,7 @@ def main():
     cycle_number = max(1, run_number)
     cursor = ((cycle_number - 1) * per_cycle) % max(1, len(modules))
     tasks = build_tasks(modules, cursor, per_cycle)
-    added = len(tasks)
+    added = append_unique(tasks)
     lane_counts = {}
     for t in tasks:
         lane_counts[t["lane"]] = lane_counts.get(t["lane"], 0) + 1
