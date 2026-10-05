@@ -80,7 +80,9 @@ def main():
     d=drift_report(reference,current)
     assert d["status"] == "NO_DRIFT_DETECTED"
     missing=drift_report(reference,[{"feature":"other","unit":"ms","value":10}])
-    assert missing["drift_detected"] is True
+    # Missing feature groups are insufficient evidence, not positive drift proof.
+    assert missing["drift_detected"] is False
+    assert missing["status"] == "INSUFFICIENT_EVIDENCE"
     assert missing["features"]["latency|ms"]["status"] == "INSUFFICIENT_EVIDENCE"
 
     # Invalid drift thresholds must fail closed instead of accepting NaN/zero.
@@ -107,6 +109,16 @@ def main():
     ],"incomparable")
     assert incomparable["result"]["features"]["cross_modal_disagreement"] == 0.0
     assert incomparable["result"]["interpretation"]["verification_status"] == "UNVERIFIED"
+
+    # Distinct source strings and declared experiment IDs are not independent replication proof.
+    provenance = build_record([
+        {"modality":"sensor","feature":"signal","value":1.0,"quality":1.0,"source":"lab-A","experiment_id":"exp-1","unit":"u"},
+        {"modality":"sensor","feature":"signal","value":1.1,"quality":1.0,"source":"lab-B","experiment_id":"exp-1","unit":"u"},
+    ],"provenance-boundary")
+    assert provenance["result"]["features"]["source_count"] == 2
+    assert provenance["result"]["features"]["declared_unique_experiment_count"] == 1
+    assert provenance["result"]["features"]["independence_status"] == "NOT_ESTABLISHED"
+    assert provenance["provenance"]["independent_replication_verified"] is False
 
     # Missing-unit multi-signal inputs must abstain on comparability.
     missing_units = build_record([
