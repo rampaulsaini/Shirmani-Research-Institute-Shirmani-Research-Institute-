@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "purpose": "LIVE_PRODUCT_REGISTRY",
+  "truth_boundary": "LIVE_OFFER is a public offer with explicit price and order/delivery route; it does not claim a completed sale or payment.",
+  "products": [
+    {"id":"P001","name":"खुद का साक्षात्कार ही संपूर्ण संतुष्टि","price_inr":10000,"offer_url":"https://rampaulsaini.github.io/my-omniverse-store/","delivery_url":"https://drive.google.com/drive/folders/18iPsn9Rjc7E0jNwvIx_h5MwQrhqyYt1Y","order_url":"https://wa.me/?text=P001%20Order","status":"LIVE_OFFER"},
+    {"id":"P002","name":"शिरोमणि अनंत असीम इश्क की क्षमता","price_inr":1500,"offer_url":"https://rampaulsaini.github.io/my-omniverse-store/","delivery_url":"https://drive.google.com/drive/folders/1lV-8sFU0vLOQVX3HyXznHbHpcRF9Kojc","order_url":"https://wa.me/?text=P002%20Order","status":"LIVE_OFFER"},
+    {"id":"P003","name":"साहिब तदरूप साक्षात्कार","price_inr":10000,"offer_url":"https://rampaulsaini.github.io/my-omniverse-store/","delivery_url":"https://drive.google.com/drive/folders/18iPsn9Rjc7E0jNwvIx_h5MwQrhqyYt1Y","order_url":"https://wa.me/?text=P003%20Order","status":"LIVE_OFFER"},
+    {"id":"P004","name":"खुद का साक्षात्कार ऑडियो","price_inr":6000,"offer_url":"https://rampaulsaini.github.io/my-omniverse-store/","delivery_url":"https://drive.google.com/drive/folders/18iPsn9Rjc7E0jNwvIx_h5MwQrhqyYt1Y","order_url":"https://wa.me/?text=P004%20Order","status":"LIVE_OFFER"},
+    {"id":"P005","name":"मेरा साहिब मेरा ही तदरूप साक्षात्कार","price_inr":5000,"offer_url":"https://rampaulsaini.github.io/my-omniverse-store/","delivery_url":"https://drive.google.com/drive/folders/18iPsn9Rjc7E0jNwvIx_h5MwQrhqyYt1Y","order_url":"https://wa.me/?text=P005%20Order","status":"LIVE_OFFER"},
+    {"id":"P006","name":"Short Audios Collection","price_inr":89,"offer_url":"https://rampaulsaini.github.io/my-omniverse-store/","delivery_url":"https://drive.google.com/drive/folders/1Ap2N-90wM9R75ffOQAiXczZwNu8dTc7u","order_url":"https://wa.me/?text=P006%20Order","status":"LIVE_OFFER"},
+    {"id":"P007","name":"प्रमाण पत्र","price_inr":495,"offer_url":"https://rampaulsaini.github.io/my-omniverse-store/","delivery_url":"https://drive.google.com/drive/folders/1sZEJhlZWFHP7O1kZEINnqFCNgqhOa8XC","order_url":"https://wa.me/?text=P007%20Order","status":"LIVE_OFFER"},
+    {"id":"P008","name":"Short / Creator Assets","price_inr":950,"price_note":"from","offer_url":"https://rampaulsaini.github.io/my-omniverse-store/","delivery_url":"https://drive.google.com/drive/folders/1Ap2N-90wM9R75ffOQAiXczZwNu8dTc7u","order_url":"https://wa.me/?text=P008%20Order","status":"LIVE_OFFER"}
+  ],
+  "services": [
+    {"id":"S001","name":"AI-assisted music production","route":"https://rampaulsaini.github.io/yatharth-music-ai/","status":"SERVICE_OFFER"},
+    {"id":"S002","name":"Audio / podcast production","route":"../employment.html","status":"SERVICE_OFFER"},
+    {"id":"S003","name":"Voice / narration packaging","route":"../employment.html","status":"SERVICE_OFFER"},
+    {"id":"S004","name":"Research & Evidence Support","route":"../employment.html","status":"SERVICE_OFFER"},
+    {"id":"S005","name":"AI Workflow & Automation","route":"../employment.html","status":"SERVICE_OFFER"},
+    {"id":"S006","name":"Digital Publishing","route":"../employment.html","status":"SERVICE_OFFER"},
+    {"id":"S007","name":"AI Marketing Assets","route":"../economic-marketing-command-center.html","status":"SERVICE_OFFER"}
+  ]
+}
