@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 GEN=ROOT/"generated"; QUEUE=GEN/"production-work-queue.jsonl"
 RESULTS=GEN/"production-results.jsonl"; DASHBOARD=GEN/"public-production-index.html"
+MODULE_INDEX=GEN/"public-production-by-module.html"; MODULE_JSON=GEN/"public-production-module-index.json"
 ARTIFACT_DIR=GEN/"public-production"
 
 def now(): return datetime.now(timezone.utc).isoformat()
@@ -76,9 +77,20 @@ def main():
     RESULTS.write_text("".join(json.dumps(r,ensure_ascii=False)+"\n" for r in results),encoding="utf-8")
     for lane,items in rows.items():
         (ARTIFACT_DIR/f"{lane}.jsonl").write_text("".join(json.dumps(r,ensure_ascii=False)+"\n" for r in items),encoding="utf-8")
+    module_stats=defaultdict(lambda: {"lane":"","module_kind":"","outputs":0,"latest_cycle":0,"latest_status":"PRODUCED"})
+    for r in results:
+        s=module_stats[r["module"]]; s["lane"]=r["lane"]; s["module_kind"]=r["module_kind"]; s["outputs"]+=1
+        s["latest_cycle"]=max(s["latest_cycle"], int(r["cycle"])); s["latest_status"]=r["status"]
+    module_payload={"generated_at":now(),"principle":"Every discovered module receives production work; verification remains downstream.","module_count":len(module_stats),"production_modules":len(module_stats),"modules":dict(sorted(module_stats.items())),"integrity":{"source_bound":True,"independent_verification_claim":False}}
+    MODULE_JSON.write_text(json.dumps(module_payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    module_table=[]
+    for m,s in sorted(module_stats.items()):
+        module_table.append("<tr><td>"+html.escape(m)+"</td><td>"+html.escape(s["lane"])+"</td><td>"+html.escape(s["module_kind"])+"</td><td>"+str(s["outputs"])+"</td><td>"+str(s["latest_cycle"])+"</td><td>PRODUCED</td></tr>")
+    module_page="<!doctype html><html lang=\"hi\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>SHIRMANI Module-wise Production</title><style>body{margin:0;background:#0b0d14;color:#f5f5f5;font-family:system-ui,sans-serif;line-height:1.5}main{max-width:1300px;margin:auto;padding:24px}h1,h2{color:#d4af37}.hero,.card{background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.25);border-radius:14px;padding:18px;margin:12px 0}table{width:100%;border-collapse:collapse}th,td{padding:8px;border-bottom:1px solid #293241;text-align:left}th{color:#d4af37}a{color:#67e8f9}.ok{color:#6ee7b7}</style></head><body><main><section class=\"hero\"><h1>꙰ SHIRMANI — Module-wise Production</h1><p><strong>Production-first visibility:</strong> each discovered module receives concrete production work. Verification remains downstream.</p><div class=\"card\"><b>"+str(len(module_stats))+"</b> modules · <b>"+str(len(results))+"</b> concrete results · <b>"+str(len(counts))+"</b> lanes</div><p><a href=\"public-production-index.html\">Production Results</a> · <a href=\"public-production-module-index.json\">Machine-readable index</a> · <a href=\"../public-platform-modules.html\">Public Module Map</a> · <a href=\"../index.html\">Main Hub</a></p></section><section class=\"card\"><table><thead><tr><th>Module</th><th>Lane</th><th>Kind</th><th>Outputs</th><th>Latest cycle</th><th>Status</th></tr></thead><tbody>"+"" .join(module_table)+"</tbody></table></section><section class=\"hero\"><b>Integrity:</b> PRODUCED means a repository-bound production artifact was materialized. It is not independent verification.</section></main></body></html>"
+    MODULE_INDEX.write_text(module_page,encoding="utf-8")
     catalog={"generated_at":now(),"principle":"Production first; verification downstream.",
              "cycle_results":len(results),"lanes":dict(sorted(counts.items())),
-             "artifacts":[f"generated/public-production/{x}.jsonl" for x in sorted(rows)],
+             "artifacts":[f"generated/public-production/{x}.jsonl" for x in sorted(rows)] + ["generated/public-production-module-index.json","generated/public-production-by-module.html"],
              "integrity":{"generated_output_is_concrete":True,"source_bound":True,"independent_verification_claim":False}}
     (GEN/"public-production-catalog.json").write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     status_path=GEN/"multi-layer-production-status.json"
@@ -88,7 +100,9 @@ def main():
     status["production_outputs"]["lane_artifacts"]=dict(sorted(counts.items()))
     status["production_outputs"]["public_catalog"]="generated/public-production-catalog.json"
     status["production_outputs"]["verification"]="downstream"
-    status["artifacts"]=["generated/production-results.jsonl","generated/production-work-queue.jsonl","generated/public-production-catalog.json"]
+    status["artifacts"]=["generated/production-results.jsonl","generated/production-work-queue.jsonl","generated/public-production-catalog.json","generated/public-production-module-index.json","generated/public-production-by-module.html"]
+    status["production_outputs"]["production_modules"]=len(module_stats)
+    status["production_outputs"]["module_index"]="generated/public-production-by-module.html"
     status_path.write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     cards=[]
     for r in results[:120]:
