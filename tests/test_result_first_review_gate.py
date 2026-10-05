@@ -90,6 +90,24 @@ def main():
     assert report["status"] == "FAIL"
     assert report["checks"]["no_direct_verification_shortcut"] is False
 
+    # A nested status claim must not bypass the direct-flag protection.
+    nested_status = dict(record)
+    nested_status["result"] = dict(record["result"])
+    nested_status["result"]["verification_status"] = "VERIFIED"
+    nested_status["fingerprint"] = canonical_sha256(integrity_payload(nested_status))
+    report = validate_result(nested_status)
+    assert report["status"] == "FAIL"
+    assert report["checks"]["no_direct_verification_shortcut"] is False
+
+    # Verification shortcut keys are rejected case-insensitively.
+    case_variant = dict(record)
+    case_variant["result"] = dict(record["result"])
+    case_variant["result"]["VERIFIED"] = True
+    case_variant["fingerprint"] = canonical_sha256(integrity_payload(case_variant))
+    report = validate_result(case_variant)
+    assert report["status"] == "FAIL"
+    assert report["checks"]["no_direct_verification_shortcut"] is False
+
     # Provenance must have a stable minimum shape.
     malformed_provenance = dict(record)
     malformed_provenance["provenance"] = {"generator": "test"}
