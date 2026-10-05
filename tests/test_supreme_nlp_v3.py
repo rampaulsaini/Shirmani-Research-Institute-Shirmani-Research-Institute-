@@ -161,7 +161,26 @@ def main():
     tampered["result"]["features"]["sample_count"] = 999
     assert verify_record_integrity(tampered) is False
     assert validate_result_boundary(r)["status"] == "PASS"
+    assert validate_result_boundary(r)["checks"]["result_artifact_present"] is True
     assert validate_result_boundary(r)["scientific_verification_granted"] is False
+
+    # Verification must be tied to a concrete result artifact. A crafted
+    # fingerprint plus direct verification-looking metadata is insufficient.
+    resultless = {
+        "schema_version": "supreme-nlp-v3",
+        "task_id": "resultless",
+        "result": {},
+        "provenance": {
+            "verification_status": "UNVERIFIED",
+            "independent_replication_verified": False,
+        },
+    }
+    from agents.supreme_nlp_v3 import sha256, record_integrity_payload
+    resultless["fingerprint"] = sha256(record_integrity_payload(resultless))
+    resultless_boundary = validate_result_boundary(resultless)
+    assert resultless_boundary["status"] == "FAIL"
+    assert resultless_boundary["checks"]["result_artifact_present"] is False
+    assert resultless_boundary["scientific_verification_granted"] is False
     boundary_tampered = dict(r)
     boundary_tampered["provenance"] = dict(r["provenance"])
     boundary_tampered["provenance"]["independent_replication_verified"] = True
