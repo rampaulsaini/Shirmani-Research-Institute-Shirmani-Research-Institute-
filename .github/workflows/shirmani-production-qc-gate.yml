@@ -1,0 +1,41 @@
+name: SHIRMANI Production QC & Dispatch Gate
+on:
+  push:
+    branches: [main]
+    paths:
+      - "products/micro/**"
+      - "products/production-control/**"
+      - ".github/workflows/shirmani-production-qc-gate.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+permissions:
+  contents: read
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check concrete product assets
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("products/production-control/production-registry.json").read_text())
+          assert d["numbering"]["first"] == "100200.001"
+          assert len(d["products"]) >= 1
+          for p in d["products"]:
+              path=Path(p["path"])
+              assert path.is_file() and path.stat().st_size > 0, p["id"]
+              assert p["dispatch"] == "NO", p["id"]
+              assert p["qc_verification_code"].startswith("QC-"+p["id"]+"-"), p["id"]
+              assert p["batch_no"].startswith("100200."), p["id"]
+          print("Concrete product assets:", len(d["products"]))
+          print("Dispatch gate: NO until authorized release")
+          PY
+      - name: Publish QC manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-production-qc-manifest
+          path: products/production-control/production-registry.json
