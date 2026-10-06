@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-10-06T07:52:34.679140+00:00",
+  "cycle": 5970910,
+  "discovered_modules": 1659,
+  "selected_tasks": 500,
+  "batch_size": 500,
+  "lanes": {
+    "ai-ml-nlp": 371,
+    "content": 40,
+    "platform": 38,
+    "security-quality": 39,
+    "research": 6,
+    "economic": 4,
+    "federation": 2
+  },
+  "principle": "Production first; verification downstream.",
+  "integrity": {
+    "source_bound": true,
+    "independent_verification_claim": false
+  }
+}
