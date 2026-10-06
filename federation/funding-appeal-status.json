@@ -1,0 +1,14 @@
+{
+  "status": "OPEN_APPEAL",
+  "currency": "INR",
+  "publicly_recorded_funds_received": 0,
+  "publicly_recorded_supporters": 0,
+  "publicly_recorded_expenditure": 0,
+  "funding_target": null,
+  "target_status": "NOT_YET_DECLARED",
+  "completion_estimate_percent": 72,
+  "completion_estimate_basis": "Engineering maturity estimate across architecture, automation, research/archive, AI/ML/NLP, evidence/verification, public interface and production readiness; not an official GitHub metric.",
+  "last_updated": "2026-10-06",
+  "verification_rule": "Funds, supporters and expenditure are counted only when a corresponding public record is deliberately added. No amount is claimed merely because an appeal exists.",
+  "note": "This counter is a public transparency surface, not a bank balance or payment processor."
+}
