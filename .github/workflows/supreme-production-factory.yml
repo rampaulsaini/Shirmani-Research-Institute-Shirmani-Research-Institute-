@@ -1,0 +1,33 @@
+name: SHIRMANI Supreme Production Factory
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "factory/public_production_materializer.py"
+      - "generated/production-work-queue.jsonl"
+      - "generated/1000-digital-products.json"
+      - "showroom.html"
+      - "showroom-product.html"
+permissions:
+  contents: write
+concurrency:
+  group: supreme-production-factory
+  cancel-in-progress: true
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run production materializer
+        run: python factory/public_production_materializer.py
+      - name: Publish production results
+        run: |
+          git config user.name "SHIRMANI Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/public-production-catalog.json generated/public-production-module-index.json generated/public-production-by-module.html generated/public-production/ generated/multi-layer-production-status.json generated/production-results.jsonl
+          git diff --cached --quiet || git commit -m "automission: publish production results"
+          git push
