@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-06T06:38:47.718Z",
+  "architecture": [
+    "INSTITUTE",
+    "FACTORY",
+    "QC",
+    "SHOWROOM_SALE"
+  ],
+  "production_first": true,
+  "verification_is_downstream": true,
+  "batch": "2026-10-06-25-engine",
+  "product_count": 1016,
+  "produced_count": 25,
+  "remaining_count": 991,
+  "products": [
+    {
+      "id": "SP-0001",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0001",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0001",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0041",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0041",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0041",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0081",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0081",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0081",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0121",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0121",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0121",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0161",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0161",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0161",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0201",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0201",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0201",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0241",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0241",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0241",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0281",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0281",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0281",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0321",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0321",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0321",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0361",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0361",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0361",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0401",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0401",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0401",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0441",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0441",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0441",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0481",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0481",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0481",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0521",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0521",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0521",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0561",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0561",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0561",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0601",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0601",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0601",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0641",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0641",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0641",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0681",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0681",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0681",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0721",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0721",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0721",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0761",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0761",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0761",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0801",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0801",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0801",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0841",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0841",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0841",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0881",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0881",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0881",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0921",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0921",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0921",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    },
+    {
+      "id": "SP-0961",
+      "production_state": "PRODUCED",
+      "sale_state": "READY_FOR_ORDER",
+      "artifact_url": "products/concrete-production-batch-2026-10-06.html?id=SP-0961",
+      "production_batch": "2026-10-06-25-engine",
+      "produced_at": "2026-10-06T00:00:00Z",
+      "qc_code": "QC-PROD-SP-0961",
+      "gate_no": "GATE-PRODUCTION",
+      "dispatch_no": "NO"
+    }
+  ]
+}
