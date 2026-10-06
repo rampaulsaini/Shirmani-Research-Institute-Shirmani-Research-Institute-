@@ -31,7 +31,7 @@ jobs:
           python3 factory/multi_layer_production.py
           python3 factory/public_production_materializer.py
           python3 factory/production_truth_gate.py
-      - name: Publish persistent production state through PR
+      - name: Publish persistent production state
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -54,7 +54,11 @@ jobs:
           git push --force-with-lease origin HEAD:"$branch"
 
           if gh pr list --base main --head "$branch" --state open --json number --jq 'length' | grep -q '^0$'; then
-            gh pr create               --base main               --head "$branch"               --title "chore(production): persist concrete production state"               --body "Automission-generated production state. This PR preserves concrete production records, QC/truth telemetry and module outputs. It does not claim sales, delivery, payment or independent verification."
+            if gh pr create --base main --head "$branch" --title "chore(production): persist concrete production state" --body "Automission-generated production state. This PR preserves concrete production records, QC/truth telemetry and module outputs. It does not claim sales, delivery, payment or independent verification."; then
+              echo "Production-state PR created."
+            else
+              echo "::warning::Repository policy prevents GitHub Actions from creating/approving pull requests. Production state was successfully persisted to $branch; the PR handoff remains pending."
+            fi
           else
             echo "Existing production-state PR updated."
           fi
