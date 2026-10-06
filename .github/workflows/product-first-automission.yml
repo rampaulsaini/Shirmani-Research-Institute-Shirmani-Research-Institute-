@@ -1,8 +1,7 @@
-name: SHIRMANI Product-First Automission
+name: SHIRMANI Product-First Automission [Manual Fallback]
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/10 * * * *"
+  # Manual fallback: canonical production is handled by public-production-automission.yml.
 permissions:
   contents: read
 jobs:

@@ -1,9 +1,8 @@
-name: SHIRMANI Production-First Multi-Layer Automission
+name: SHIRMANI Production-First Multi-Layer Automission [Manual Fallback]
 on:
   push:
     branches: [main, production-first/continuous-product-expansion]
-  schedule:
-    - cron: "*/5 * * * *"
+  # Manual fallback: canonical production is handled by public-production-automission.yml.
   workflow_dispatch:
     inputs:
       batch_size:
