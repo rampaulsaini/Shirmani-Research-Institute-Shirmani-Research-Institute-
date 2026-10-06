@@ -26,6 +26,8 @@ jobs:
         run: |
           echo "PRODUCT_TARGET=$PRODUCT_TARGET" >> "$GITHUB_ENV"
           echo "CONCRETE_PRODUCT_BATCH_SIZE=$CONCRETE_PRODUCT_BATCH_SIZE" >> "$GITHUB_ENV"
+      - name: Expand source catalog to production target
+        run: python3 factory/expand_product_catalog.py
       - name: Produce next concrete public batch
         run: python3 factory/continuous_product_batch.py
       - name: Audit concrete production truth
@@ -35,7 +37,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -e
-          if git diff --quiet -- products/concrete generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json; then
+          if git diff --quiet -- generated/1000-digital-products.json products/concrete generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json; then
             echo "No production delta."
             exit 0
           fi
@@ -43,8 +45,10 @@ jobs:
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$BRANCH"
-          git add products/concrete generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json
-          git commit -m "auto(production): materialize next concrete product batch"
+          git add generated/1000-digital-products.json products/concrete generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json
+          git commit -m "auto(production): expand catalog and materialize next concrete batch"
           git push --set-upstream origin "$BRANCH"
-          echo "Production branch ready: $BRANCH"
+          gh pr create --base main --head "$BRANCH" --title "Automission: publish next concrete product batch" --body "Automated production batch: catalog expansion + concrete product assets. Production is source-bound; QC/gate/dispatch remain downstream states."
+          gh pr merge --auto --squash "$BRANCH" || echo "Auto-merge unavailable; PR remains open for repository policy/review."
+          echo "Production PR ready: $BRANCH"
           echo "Production remains source-bound; QC/gate/dispatch are downstream."
