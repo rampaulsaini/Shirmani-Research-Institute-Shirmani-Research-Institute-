@@ -35,11 +35,17 @@ jobs:
               body=x.get("body") or ""
               product=""
               rating=None
-              for line in body.splitlines():
-                  if line.startswith("Product ID:"):
-                      product=line.split(":",1)[1].strip()
-                  if line.startswith("Rating:"):
-                      try: rating=int(line.split(":",1)[1].strip().split("/")[0])
+              lines=body.splitlines()
+              for i,line in enumerate(lines):
+                  clean=line.strip().lower()
+                  if clean.startswith("product id:") or clean == "### product id":
+                      if clean.startswith("product id:"):
+                          product=line.split(":",1)[1].strip()
+                      elif i+1 < len(lines):
+                          product=lines[i+1].strip()
+                  if clean.startswith("rating:") or clean == "### rating":
+                      raw=line.split(":",1)[1].strip() if clean.startswith("rating:") else (lines[i+1].strip() if i+1 < len(lines) else "")
+                      try: rating=int(raw.split("/",1)[0].strip().split()[0])
                       except Exception: pass
               reviews.append({"issue":x["number"],"title":x["title"],"product_id":product,"rating":rating,"body":body,"url":x["html_url"],"updated_at":x["updated_at"]})
           out={"generated_at":datetime.now(timezone.utc).isoformat(),"review_count":len(reviews),"reviews":reviews,"purpose":"Customer reviews are production-quality improvement inputs, not scientific verification.","next_stage":"factory quality improvement backlog"}
