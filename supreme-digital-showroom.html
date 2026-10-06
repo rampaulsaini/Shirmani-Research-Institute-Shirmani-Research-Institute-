@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Supreme Digital Showroom</title>
+<style>
+:root{--bg:#070912;--card:#101522;--line:#2b3445;--gold:#d4af37;--cyan:#67e8f9;--green:#6ee7b7;--muted:#aeb6c4}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#1b2030,#070912 55%);color:#f7f7f7;font-family:system-ui,sans-serif;line-height:1.5}
+main{max-width:1400px;margin:auto;padding:22px}.hero{padding:34px 22px;border:1px solid rgba(212,175,55,.5);border-radius:24px;text-align:center;background:rgba(255,255,255,.04);box-shadow:0 20px 70px #0008}
+h1,h2{color:var(--gold)}h1{font-size:clamp(2rem,5vw,4rem);margin:5px}.subtitle{max-width:950px;margin:10px auto;color:var(--muted)}
+.fees,.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.fee,.product{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}.fee strong{font-size:1.8rem;color:var(--gold)}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}.controls input,.controls select{background:#0d111b;color:white;border:1px solid var(--line);padding:12px;border-radius:10px;min-width:190px}
+.product{display:flex;flex-direction:column;gap:8px}.product h3{margin:0;color:#fff}.meta{color:var(--cyan);font-size:.85rem}.desc{color:var(--muted);min-height:48px}.price{font-size:1.35rem;color:var(--gold);font-weight:800}.offer{color:var(--green);font-weight:700}
+.pass{font-size:.78rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}.gate{display:inline-block;border:1px solid #765f18;color:var(--gold);border-radius:999px;padding:3px 8px;margin-right:5px}
+.note{padding:14px;border-left:3px solid var(--cyan);background:#0b101a;color:var(--muted)}
+a{color:var(--cyan)}button{cursor:pointer;background:var(--gold);color:#070912;border:0;border-radius:10px;padding:10px 14px;font-weight:800}
+</style></head><body><main>
+<section class="hero"><div>꙰ SHIRMANI RESEARCH INSTITUTE</div><h1>Supreme Digital Showroom</h1>
+<p class="subtitle">Institute → Factory → QC/Product Passport → Public Showroom. उपलब्ध concrete production को category, description, offer और production status के साथ public view में लाने की production-first surface.</p>
+<p><a href="public-production-command-center.html">Production Command Center</a> · <a href="generated/public-production-index.html">Current Production Results</a></p></section>
+<h2>Showroom Entry — अलग सेवा</h2><div class="fees">
+<div class="fee"><div>Minute Pass</div><strong>₹99 / 10 min</strong><p class="subtitle">छोटा digital exploration session</p></div>
+<div class="fee"><div>Hour Pass</div><strong>₹499 / hour</strong><p class="subtitle">विस्तृत showroom experience</p></div>
+<div class="fee"><div>Deep Experience</div><strong>₹1,999 / 5 hours</strong><p class="subtitle">लंबा guided exploration</p></div></div>
+<p class="note">ये interface में प्रस्तावित display prices हैं; payment/booking अभी सक्रिय नहीं है। Commercial launch से पहले payment, refund, tax, consumer terms और security controls जोड़ने होंगे।</p>
+<h2>Public Product Marketplace</h2><div class="controls"><input id="search" placeholder="Product / module खोजें…" oninput="render()"><select id="lane" onchange="render()"><option value="">सभी categories</option><option>AI-ML-NLP</option><option>Automation</option><option>Content</option><option>Economic</option><option>Federation</option><option>Platform</option><option>Research</option><option>Security-Quality</option></select></div>
+<div id="count" class="meta"></div><section id="products" class="grid"></section>
+<h2>Product Passport / QC Gate</h2><p class="note">हर वास्तविक dispatchable product के लिए Product ID, version, provenance, QC gate/code, dispatch state, price, offer और publication timestamp रखा जाना चाहिए। QC PASS downstream quality gate है; यह अपने-आप independent scientific verification नहीं है।</p>
+</main>
+<script>
+let data=[];
+const fallback=[["AI-ML-NLP","AI-ML-NLP Production Collection"],["Automation","Automission Production Collection"],["Content","Digital Content Collection"],["Economic","Digital Economic Collection"],["Federation","Federation Production Collection"],["Platform","Platform Module Collection"],["Research","Research Production Collection"],["Security-Quality","Security & Quality Collection"]];
+function render(){const q=document.getElementById("search").value.toLowerCase(),lane=document.getElementById("lane").value.toLowerCase();const out=data.filter(x=>(!q||(x.name+" "+x.desc).toLowerCase().includes(q))&&(!lane||x.lane.toLowerCase()===lane));document.getElementById("count").textContent=out.length+" showroom cards visible";document.getElementById("products").innerHTML=out.map(x=>`<article class="product"><div class="meta">${x.lane}</div><h3>${x.name}</h3><div class="desc">${x.desc}</div><div class="price">${x.price}</div><div class="offer">✦ ${x.offer}</div><div><span class="gate">QC GATE</span><span class="gate">DISPATCH: NO</span></div><div class="pass">Product passport: ${x.passport} · Status: ${x.status}</div><button onclick="location.href='generated/public-production-index.html'">देखें</button></article>`).join("")}
+fetch("generated/public-production-catalog.json?ts="+Date.now()).then(r=>r.json()).then(c=>{data=Object.entries(c.lanes||{}).map(([lane,n])=>({lane:lane.replaceAll("-","-").toUpperCase(),name:(fallback.find(x=>x[0].toLowerCase()===lane.toLowerCase())||[lane,lane+" Production Collection"])[1],desc:"Concrete source-bound production collection; individual production records remain the authoritative product-level detail.",price:"Catalog",offer:n+" recorded outputs in latest cycle",passport:"individual record pending",status:"PRODUCED"}));render()}).catch(()=>{data=fallback.map(x=>({lane:x[0],name:x[1],desc:"Production collection; catalog telemetry unavailable in this view.",price:"Catalog",offer:"See production results",passport:"pending",status:"RECORDED"}));render()});
+</script></body></html>
