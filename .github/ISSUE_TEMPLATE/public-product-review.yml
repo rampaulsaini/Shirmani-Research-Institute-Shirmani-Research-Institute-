@@ -1,0 +1,45 @@
+name: Public Product Review
+description: Product experience, quality, usefulness, defects and improvement request
+title: "[PRODUCT REVIEW] "
+labels:
+  - product-review
+body:
+  - type: input
+    id: product_id
+    attributes:
+      label: Product ID
+      description: Enter the public product ID shown in the showroom.
+      placeholder: SP-0001
+    validations:
+      required: true
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Rating
+      options:
+        - "5 — Excellent"
+        - "4 — Very good"
+        - "3 — Good / needs improvement"
+        - "2 — Poor"
+        - "1 — Unusable"
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: Customer experience
+      description: What worked well and what did not?
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Improvement request
+      description: What should the production system improve next?
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Public review
+      options:
+        - label: I understand this review may be used as a public quality-improvement signal.
+          required: true
