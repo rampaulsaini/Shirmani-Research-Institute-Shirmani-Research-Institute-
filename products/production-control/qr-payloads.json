@@ -1,0 +1,16 @@
+{
+  "version":1,
+  "purpose":"QR-ready production trace payloads",
+  "batch":"100200",
+  "note":"Each payload contains product, batch, QC trace code and gate. Dispatch remains NO until authorized release.",
+  "payloads":[
+    {"product":"M001","batch":"100200.001","qc":"QC-M001-12055F5FA0","gate":"GATE-001","dispatch":"NO","verify":"verifier.html?product=M001&batch=100200.001&qc=QC-M001-12055F5FA0"},
+    {"product":"M002","batch":"100200.002","qc":"QC-M002-3BBC4E3B91","gate":"GATE-002","dispatch":"NO","verify":"verifier.html?product=M002&batch=100200.002&qc=QC-M002-3BBC4E3B91"},
+    {"product":"M003","batch":"100200.003","qc":"QC-M003-A08DC5E9F1","gate":"GATE-003","dispatch":"NO","verify":"verifier.html?product=M003&batch=100200.003&qc=QC-M003-A08DC5E9F1"},
+    {"product":"M004","batch":"100200.004","qc":"QC-M004-2C4924F14D","gate":"GATE-004","dispatch":"NO","verify":"verifier.html?product=M004&batch=100200.004&qc=QC-M004-2C4924F14D"},
+    {"product":"M005","batch":"100200.005","qc":"QC-M005-A9579D2987","gate":"GATE-005","dispatch":"NO","verify":"verifier.html?product=M005&batch=100200.005&qc=QC-M005-A9579D2987"},
+    {"product":"M006","batch":"100200.006","qc":"QC-M006-9715E88A51","gate":"GATE-006","dispatch":"NO","verify":"verifier.html?product=M006&batch=100200.006&qc=QC-M006-9715E88A51"},
+    {"product":"M007","batch":"100200.007","qc":"QC-M007-6C0D1B020B","gate":"GATE-007","dispatch":"NO","verify":"verifier.html?product=M007&batch=100200.007&qc=QC-M007-6C0D1B020B"},
+    {"product":"M008","batch":"100200.008","qc":"QC-M008-2C75D2CD8B","gate":"GATE-008","dispatch":"NO","verify":"verifier.html?product=M008&batch=100200.008&qc=QC-M008-2C75D2CD8B"}
+  ]
+}

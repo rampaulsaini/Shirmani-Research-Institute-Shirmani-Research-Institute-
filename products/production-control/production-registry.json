@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "generated_at": "2026-10-06",
+  "numbering": {
+    "batch": "100200",
+    "format": "100200.NNN",
+    "first": "100200.001",
+    "note": "Batch numbering only; not a verification count."
+  },
+  "dispatch_policy": "DISPATCH=NO until QC gate is passed and an authorized release changes the dispatch state.",
+  "qc_policy": "QC code is a deterministic trace code derived from product identity plus the current Git blob SHA; it is not proof of external scientific verification.",
+  "products": [
+    {"id":"M001","name":"Word & Character Counter","path":"products/micro/word-counter.html","batch_no":"100200.001","qc_verification_code":"QC-M001-12055F5FA0","gate_no":"GATE-001","dispatch":"NO","production_state":"ASSET_PRESENT","git_blob_sha":"12055f5fa0e9b3ceb4329a8f2f67e3b09f742636"},
+    {"id":"M002","name":"Percentage Calculator","path":"products/micro/percentage-calculator.html","batch_no":"100200.002","qc_verification_code":"QC-M002-3BBC4E3B91","gate_no":"GATE-002","dispatch":"NO","production_state":"ASSET_PRESENT","git_blob_sha":"3bbc4e3b91fed32ec5898f2dded2c4dfd7f7898f"},
+    {"id":"M003","name":"Length Unit Converter","path":"products/micro/unit-converter.html","batch_no":"100200.003","qc_verification_code":"QC-M003-A08DC5E9F1","gate_no":"GATE-003","dispatch":"NO","production_state":"ASSET_PRESENT","git_blob_sha":"a08dc5e9f19bff51f727662b21d903af0591e924"},
+    {"id":"M004","name":"JSON Formatter & Validator","path":"products/micro/json-formatter.html","batch_no":"100200.004","qc_verification_code":"QC-M004-2C4924F14D","gate_no":"GATE-004","dispatch":"NO","production_state":"ASSET_PRESENT","git_blob_sha":"2c4924f14d1c0f6b3f779f5162e3d16e0c54301e"},
+    {"id":"M005","name":"Color Palette Generator","path":"products/micro/color-palette-generator.html","batch_no":"100200.005","qc_verification_code":"QC-M005-A9579D2987","gate_no":"GATE-005","dispatch":"NO","production_state":"ASSET_PRESENT","git_blob_sha":"a9579d2987a9d321076f737363491c4f3d6e7a5a"},
+    {"id":"M006","name":"Simple Digital Drawing Board","path":"products/micro/drawing-board.html","batch_no":"100200.006","qc_verification_code":"QC-M006-9715E88A51","gate_no":"GATE-006","dispatch":"NO","production_state":"ASSET_PRESENT","git_blob_sha":"9715e88a515d581014f417de22b95cfb8f8811a1"},
+    {"id":"M007","name":"Markdown Preview","path":"products/micro/markdown-preview.html","batch_no":"100200.007","qc_verification_code":"QC-M007-6C0D1B020B","gate_no":"GATE-007","dispatch":"NO","production_state":"ASSET_PRESENT","git_blob_sha":"6c0d1b020b46ba02c0ec5a065e4763bcf53bbb3"},
+    {"id":"M008","name":"SEO Meta Draft Generator","path":"products/micro/seo-meta-generator.html","batch_no":"100200.008","qc_verification_code":"QC-M008-2C75D2CD8B","gate_no":"GATE-008","dispatch":"NO","production_state":"ASSET_PRESENT","git_blob_sha":"2c75d2cd8b0b3231e225f72f3de4951b2e265847"}
+  ]
+}
