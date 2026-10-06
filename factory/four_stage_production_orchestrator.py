@@ -31,7 +31,8 @@ def main() -> None:
     factory_steps=[]; factory_failed=False
     for path in STEPS[1:8]:
         r=run(path); factory_steps.append(r)
-        if r["exit_code"]!=0: factory_failed=True; break
+        if r["exit_code"]!=0: factory_failed=True
+    # Resilient production: one lane failure does not suppress later production lanes.
     report["stages"].append({"stage":2,"name":"FACTORY_PRODUCTION","status":"PASS" if not factory_failed and stage1["exit_code"]==0 else "FAIL","steps":factory_steps,"catalog":read_json("real-product-factory-status.json"),"asset_status":read_json("concrete-product-asset-status.json"),"module_engine":read_json("production-engine-status.json")})
 
     qc_run=run(STEPS[-1]); qc=read_json("product-qc-gate.json")
@@ -47,6 +48,25 @@ def main() -> None:
 
     report["production_contract"]={"stage_1_institute":"continuous module/product discovery","stage_2_factory":"continuous concrete product and module production","stage_3_qc":"deterministic product structure/asset/passport gate","stage_4_showroom":"public catalog with product, description, price, offer, QR/passport, time-based showroom entry and dispatch state","dispatch":"NO by default until explicit downstream release","verification":"downstream result-quality/promotion layer, not the production objective","schedule":"every 5 minutes","continuity_without_chat":True,"quantum_boundary":"quantum-inspired orchestration only unless a real quantum backend is configured"}
 
+    module_status=read_json("production-engine-status.json")
+    asset_status=read_json("concrete-product-asset-status.json")
+    throughput={
+        "generated_at": started,
+        "cycle_mode": "CONTINUOUS_FOUR_STAGE_PRODUCTION",
+        "chat_required_for_continuity": False,
+        "stages": [{"stage":x["stage"],"name":x["name"],"status":x["status"]} for x in report["stages"]],
+        "institute_modules_discovered": report["stages"][0].get("modules_discovered",0),
+        "catalog_products": catalog.get("product_count",0),
+        "concrete_product_assets": asset_status.get("concrete_product_assets",asset_status.get("product_assets",0)),
+        "module_products_this_cycle": module_status.get("concrete_module_products_this_cycle",0),
+        "module_products_total": module_status.get("total_materialized_module_products",0),
+        "qc_passed": qc.get("qc_passed",0),
+        "dispatch_released": 0,
+        "verification": "DOWNSTREAM",
+        "production_priority": "MULTI-LAYER CONTINUOUS OUTPUT",
+        "schedule": "5-minute GitHub Actions cycle"
+    }
+    (GEN/"production-throughput.json").write_text(json.dumps(throughput,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     (GEN/"four-stage-production-status.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     public={"generated_at":report["generated_at"],"stages":[{"stage":s["stage"],"name":s["name"],"status":s["status"]} for s in report["stages"]],"products":{"catalog":catalog.get("product_count",0),"produced":registry.get("produced_count",registry.get("total_materialized_module_products",catalog.get("product_count",0))),"qc_passed":qc.get("qc_passed",0),"dispatch":0},"showroom":"supreme-showroom.html","entry_fees":"generated/showroom-entry-fees.json","principle":"Production → QC gate → Showroom → downstream verification"}
     (GEN/"production-release-map.json").write_text(json.dumps(public,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
