@@ -19,11 +19,15 @@ concurrency:
 jobs:
   production:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
+    environment:
     environment:
       name: github-pages
     steps:
       - uses: actions/checkout@v4
+
+      - name: Four-stage concrete product production
+        run: python3 factory/four_stage_production_orchestrator.py
 
       - name: Run multi-layer production dispatcher
         run: python3 factory/multi_layer_production.py
@@ -31,11 +35,14 @@ jobs:
       - name: Build public module production inventory
         run: python3 factory/public_module_inventory.py
 
-      - name: Materialize concrete production results
+      - name: Materialize concrete multi-layer production results
         run: python3 factory/public_production_materializer.py
 
-      - name: Run existing product worker
+      - name: Run product worker for content production
         run: python3 factory/batch_worker.py --batch-size 1000
+
+      - name: Build module product outputs
+        run: python3 factory/supreme_production_engine.py
 
       - name: Publish visible production result in Actions
         shell: bash
