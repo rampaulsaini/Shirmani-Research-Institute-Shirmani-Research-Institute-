@@ -1,5 +1,4 @@
 name: SHIRMANI Production-First Multi-Layer Automission
-
 on:
   push:
     branches: [main, production-first/continuous-product-expansion]
@@ -11,22 +10,21 @@ on:
         description: "Concrete production work units for this cycle"
         required: false
         default: "500"
-
 permissions:
   contents: write
-
 concurrency:
   group: shirmani-production-first
   cancel-in-progress: false
-
 jobs:
   produce:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Configure production batch
         run: |
           if [ -n "${{ github.event.inputs.batch_size }}" ]; then
@@ -34,58 +32,33 @@ jobs:
           else
             echo "PRODUCTION_BATCH_SIZE=500" >> "$GITHUB_ENV"
           fi
-
-      - name: Build concrete product catalog and passports
-        run: python3 factory/real_product_factory.py
-
-      - name: Materialize one concrete browser asset for every catalog product
-        run: python3 factory/materialize_all_product_assets.py
-
-      - name: Build concrete browser production modules
-        run: python3 factory/concrete_product_modules.py
-
-      - name: Expand catalog into product-specific production assets
-        run: python3 factory/product_asset_expander.py
-
-      - name: Discover rotating multi-layer production work
-        run: python3 factory/production_queue_builder.py
-
-      - name: Materialize concrete module production outputs
-        run: python3 factory/supreme_production_engine.py
-
-      - name: Materialize public production
-        run: python3 factory/public_production_materializer.py
-
-      - name: Publish production telemetry
+      - name: Four-stage continuous production controller
+        run: python3 factory/four_stage_production_orchestrator.py
+      - name: Publish four-stage telemetry
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
-          p=Path("generated/multi-layer-production-status.json")
-          d=json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
-          q=json.loads(Path("generated/production-queue-status.json").read_text(encoding="utf-8"))
-          e=json.loads(Path("generated/production-engine-status.json").read_text(encoding="utf-8"))
-          rf=json.loads(Path("generated/real-product-factory-status.json").read_text(encoding="utf-8"))
-          ca=json.loads(Path("generated/concrete-product-asset-status.json").read_text(encoding="utf-8"))
-          d["production_driver"]={"workflow":"SHIRMANI Production-First Multi-Layer Automission","cadence":"5-minute scheduled cycle","cycle":q["cycle"],"discovered_modules":q["discovered_modules"],"selected_tasks":q["selected_tasks"],"batch_size":q["batch_size"],"lanes":q["lanes"],"mode":"CONTINUOUS_MULTI_LAYER"}
-          d["product_factory"]={"concrete_product_mvp":rf["concrete_product_mvp"],"families":rf["families"],"catalog":rf["catalog"],"passports":rf["passports"],"qc_gate":rf["qc_gate"],"dispatch":rf["dispatch"]}
-          pa=json.loads(Path("generated/product-production-assets.json").read_text(encoding="utf-8"))
-          d["concrete_production"]={"module_products_this_cycle":e["concrete_module_products_this_cycle"],"total_materialized_module_products":e["total_materialized_module_products"],"registry":"generated/module-product-registry.json","product_directory":"generated/module-products/","product_specific_assets":pa["product_count"],"new_product_assets_this_cycle":pa["created_this_cycle"],"product_asset_index":"generated/product-production-assets.json"}
-          d["concrete_product_assets"]={"catalog_products":ca["product_assets"],"asset_directory":ca["asset_directory"],"state":ca["state"],"dispatch":ca["dispatch"]}
-          d["public_visibility"]={"queue_status":"generated/production-queue-status.json","catalog":"generated/public-production-catalog.json","module_index":"generated/public-production-by-module.html","production_stream":"generated/production-results.jsonl","module_product_registry":"generated/module-product-registry.json","product_catalog":"generated/1000-digital-products.json","product_passports":"generated/PRODUCT-PASSPORTS.jsonl","showroom":"products.html","product_assets":"products/production/"}
-          d["principle"]="Automission is the continuous production engine; QC/gate/dispatch and independent verification are downstream result-quality and promotion layers."
-          d["integrity"]={"production_counts_are_source_derived":True,"fabricated_execution_claim":False,"independent_verification_claim":False}
-          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          s=json.loads(Path("generated/four-stage-production-status.json").read_text(encoding="utf-8"))
+          q=json.loads(Path("generated/product-qc-gate.json").read_text(encoding="utf-8"))
+          print("## SHIRMANI Four-Stage Production")
+          print("- Stage 1 Institute Discovery: **"+s["stages"][0]["status"]+"**")
+          print("- Stage 2 Factory Production: **"+s["stages"][1]["status"]+"**")
+          print("- Stage 3 Product QC Gate: **"+s["stages"][2]["status"]+"**")
+          print("- Stage 4 Public Showroom: **"+s["stages"][3]["status"]+"**")
+          print("- Products: **"+str(q["product_count"])+"**")
+          print("- QC passed: **"+str(q["qc_passed"])+"**")
+          print("- Dispatch default: **NO**")
+          print("- Independent verification: downstream result-quality layer")
           PY
-
-      - name: Commit public production results
+      - name: Commit production results
         run: |
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/ products/production/
+          git add generated/ products/production/ supreme-production-showroom.html
           if git diff --cached --quiet; then
             echo "No production artifact changes to commit."
           else
-            git commit -m "chore: materialize concrete product-first production"
+            git commit -m "automission: four-stage production cycle"
             git push
           fi
