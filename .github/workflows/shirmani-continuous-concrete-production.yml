@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-continuous-concrete-production
   cancel-in-progress: false
@@ -18,14 +19,22 @@ jobs:
           fetch-depth: 1
       - name: Produce next concrete public batch
         run: python3 factory/continuous_product_batch.py
-      - name: Publish concrete production
+      - name: Publish concrete production through PR
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          git config user.name "SHIRMANI Production Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add products/production generated/concrete-production-overlay.json generated/continuous-production-batch-status.json
-          if git diff --cached --quiet; then
+          set -e
+          if git diff --quiet -- products/production generated/concrete-production-overlay.json generated/continuous-production-batch-status.json; then
             echo "No production delta."
             exit 0
           fi
+          BRANCH="automation/concrete-production-${GITHUB_RUN_ID}"
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add products/production generated/concrete-production-overlay.json generated/continuous-production-batch-status.json
           git commit -m "auto(production): materialize next concrete product batch"
-          git push
+          git push --set-upstream origin "$BRANCH"
+          PR_URL=$(gh pr create --base main --head "$BRANCH" --title "auto(production): concrete product batch ${GITHUB_RUN_NUMBER}" --body "Automated production batch: concrete public product artifacts first; QC/dispatch remain downstream.")
+          echo "$PR_URL"
+          gh pr merge "$BRANCH" --auto --squash --delete-branch || echo "Auto-merge unavailable; PR remains open for repository gates."
