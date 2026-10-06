@@ -1,5 +1,7 @@
 name: SHIRMANI Continuous Concrete Product Production
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
@@ -12,18 +14,18 @@ concurrency:
 jobs:
   produce:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Configure deterministic concrete production batch
-        run: echo "CONCRETE_PRODUCT_BATCH_SIZE=250" >> "$GITHUB_ENV"
+      - name: Configure full-catalog concrete production batch
+        run: echo "CONCRETE_PRODUCT_BATCH_SIZE=1016" >> "$GITHUB_ENV"
       - name: Produce next concrete public batch
         run: python3 factory/continuous_product_batch.py
       - name: Audit concrete production truth
         run: python3 factory/concrete_product_truth.py
-      - name: Publish concrete production through PR
+      - name: Publish full-catalog concrete production through PR
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
