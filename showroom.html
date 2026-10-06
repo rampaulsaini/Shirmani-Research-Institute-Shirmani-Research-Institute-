@@ -65,8 +65,8 @@ function render(){
  grid.innerHTML=rows.map(p=>{
    const f=(p.family||"").toLowerCase(), r=p._production;
    const produced=!!r || production.has(p.id);
-   const price=produced?Number(r.offer_price_inr||r.price_inr||0):Number(p.offer_price_inr||p.price_inr||0);
-   const offer=produced?(r.offer||p.offer||"Launch offer"):(p.offer||"Production offer");
+   const price=prod?Number(p.offer_price_inr||p.price_inr||0):(r?Number(r.offer_price_inr||r.price_inr||0):Number(p.offer_price_inr||p.price_inr||0));
+   const offer=prod?(p.offer||"Launch offer"):(r?(r.offer||p.offer||"Launch offer"):(p.offer||"Production offer"));
    const prod=production.get(p.id);
    const qc=prod?(prod.qc_code||"QC-ARTIFACT"):(produced?(r?.qc_code||"QC-PENDING"):"QC-PENDING");
    const gate=prod?"CONCRETE_PUBLIC":(produced?(r?.gate_no||"GATE-PENDING"):"GATE-PENDING");
