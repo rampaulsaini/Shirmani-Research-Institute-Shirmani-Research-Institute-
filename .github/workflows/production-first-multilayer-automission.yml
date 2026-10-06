@@ -35,6 +35,8 @@ jobs:
           fi
       - name: Four-stage continuous production controller
         run: python3 factory/four_stage_production_orchestrator.py
+      - name: Materialize every catalog entry as a concrete product asset
+        run: python3 factory/concrete_product_materializer.py
       - name: Publish four-stage telemetry
         run: |
           python3 - <<'PY'
