@@ -11,20 +11,23 @@ concurrency:
 jobs:
   produce:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run multi-layer production
+
+      - name: Run multi-layer production and concrete product factory
         run: python automation/supreme_production_engine.py
+
       - name: Publish production results
         run: |
           git config user.name "SHIRMANI Supreme Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/supreme-production production-dashboard.html
-          git diff --cached --quiet || git commit -m "automission: publish multi-layer production results"
+          git add generated/supreme-production production-dashboard.html generated/1000-digital-products.json generated/PRODUCT-PASSPORTS.jsonl generated/real-product-factory-status.json products/production
+          git diff --cached --quiet || git commit -m "automission: publish concrete product production"
           git push
+
       - name: Print production totals
         run: cat generated/supreme-production/production-status.json
