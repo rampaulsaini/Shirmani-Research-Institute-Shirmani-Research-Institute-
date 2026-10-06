@@ -13,6 +13,17 @@ def main():
     assert r["result"]["interpretation"]["abstention"] is True
     assert r["result"]["features"]["anomaly_score"] == 0.0
 
+    # Heterogeneous feature/unit groups must never expose a pooled mean or
+    # spread that mixes incomparable physical scales.
+    heterogeneous_aggregate = build_record([
+        {"modality":"electrical","feature":"voltage","value":1000.0,"unit":"mV","source":"a"},
+        {"modality":"thermal","feature":"temperature","value":37.0,"unit":"C","source":"b"},
+    ], "heterogeneous-aggregate")
+    hfeatures = heterogeneous_aggregate["result"]["features"]
+    assert hfeatures["mean"] is None
+    assert hfeatures["spread"] is None
+    assert hfeatures["aggregate_comparability_status"] == "INSUFFICIENT_EVIDENCE"
+
     # Comparable signals retain anomaly detection; high within-group
     # variability must still trigger abstention.
     comparable = build_record([
