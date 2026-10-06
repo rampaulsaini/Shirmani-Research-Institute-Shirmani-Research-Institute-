@@ -15,7 +15,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0001|GATE-001|QC-PENDING|NO|1499"
     },
     {
       "product_id": "SHR-PROD-0002",
@@ -30,7 +32,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0002|GATE-001|QC-PENDING|NO|1999"
     },
     {
       "product_id": "SHR-PROD-0003",
@@ -45,7 +49,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0003|GATE-001|QC-PENDING|NO|999"
     },
     {
       "product_id": "SHR-PROD-0004",
@@ -60,7 +66,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0004|GATE-001|QC-PENDING|NO|1299"
     },
     {
       "product_id": "SHR-PROD-0005",
@@ -75,7 +83,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0005|GATE-001|QC-PENDING|NO|799"
     },
     {
       "product_id": "SHR-PROD-0006",
@@ -90,7 +100,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0006|GATE-001|QC-PENDING|NO|699"
     },
     {
       "product_id": "SHR-PROD-0007",
@@ -105,7 +117,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0007|GATE-001|QC-PENDING|NO|2499"
     },
     {
       "product_id": "SHR-PROD-0008",
@@ -120,7 +134,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0008|GATE-001|QC-PENDING|NO|1799"
     },
     {
       "product_id": "SHR-PROD-0009",
@@ -135,7 +151,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0009|GATE-001|QC-PENDING|NO|999"
     },
     {
       "product_id": "SHR-PROD-0010",
@@ -150,7 +168,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0010|GATE-001|QC-PENDING|NO|899"
     },
     {
       "product_id": "SHR-PROD-0011",
@@ -165,7 +185,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0011|GATE-001|QC-PENDING|NO|1299"
     },
     {
       "product_id": "SHR-PROD-0012",
@@ -180,7 +202,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0012|GATE-001|QC-PENDING|NO|699"
     },
     {
       "product_id": "SHR-PROD-0013",
@@ -195,7 +219,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0013|GATE-001|QC-PENDING|NO|599"
     },
     {
       "product_id": "SHR-PROD-0014",
@@ -210,7 +236,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0014|GATE-001|QC-PENDING|NO|899"
     },
     {
       "product_id": "SHR-PROD-0015",
@@ -225,7 +253,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0015|GATE-001|QC-PENDING|NO|749"
     },
     {
       "product_id": "SHR-PROD-0016",
@@ -240,7 +270,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0016|GATE-001|QC-PENDING|NO|699"
     },
     {
       "product_id": "SHR-PROD-0017",
@@ -255,7 +287,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0017|GATE-001|QC-PENDING|NO|899"
     },
     {
       "product_id": "SHR-PROD-0018",
@@ -270,7 +304,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0018|GATE-001|QC-PENDING|NO|799"
     },
     {
       "product_id": "SHR-PROD-0019",
@@ -285,7 +321,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0019|GATE-001|QC-PENDING|NO|599"
     },
     {
       "product_id": "SHR-PROD-0020",
@@ -300,7 +338,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0020|GATE-001|QC-PENDING|NO|749"
     },
     {
       "product_id": "SHR-PROD-0021",
@@ -315,7 +355,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0021|GATE-001|QC-PENDING|NO|999"
     },
     {
       "product_id": "SHR-PROD-0022",
@@ -330,7 +372,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0022|GATE-001|QC-PENDING|NO|1599"
     },
     {
       "product_id": "SHR-PROD-0023",
@@ -345,7 +389,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0023|GATE-001|QC-PENDING|NO|899"
     },
     {
       "product_id": "SHR-PROD-0024",
@@ -360,7 +406,9 @@
       "release": "PRODUCTION_READY",
       "factory_batch": "SEED-001",
       "deliverable_type": "DIGITAL_PRODUCT",
-      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/"
+      "purchase_url": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "gate_no": "GATE-001",
+      "qr_payload": "SHIRMANI|SHR-PROD-0024|GATE-001|QC-PENDING|NO|1999"
     }
   ]
 }
