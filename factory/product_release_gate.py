@@ -20,7 +20,7 @@ for n, engine in enumerate(manifest["actual_engine_inventory"], 1):
     source = f"{product_id}|{engine['engine_id']}|{engine['module']}|{engine['entrypoint']}|{batch_no}"
     qc_code = "QC-" + hashlib.sha256(source.encode()).hexdigest()[:12].upper()
     gate_no = f"GATE-{n:03d}"
-    dispatch_no = f"DISPATCH-{n:03d}"
+    dispatch_no = f"DISPATCH-PENDING-{n:03d}"
     qr_payload = f"SHIRMANI|{product_id}|{batch_no}|{qc_code}|{gate_no}|{dispatch_no}"
     records.append({
         "product_id": product_id,
