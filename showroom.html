@@ -85,6 +85,7 @@ async function load(){
  reviewStatus=rs||{};
  document.getElementById("total").textContent=products.length.toLocaleString("en-IN");
  document.getElementById("public").textContent=overlay.size.toLocaleString("en-IN");
+ document.getElementById("shown").insertAdjacentHTML("afterend","<div class='muted'>Concrete production source: "+overlay.size.toLocaleString("en-IN")+" produced / "+Math.max(0,products.length-overlay.size).toLocaleString("en-IN")+" remaining.</div>");
  document.getElementById("external").textContent=products.filter(p=>!overlay.has(p.id)).length.toLocaleString("en-IN");
  document.getElementById("categories").textContent=Number((d.families||[]).length||new Set(products.map(p=>p.family)).size).toLocaleString("en-IN");
  document.getElementById("reviewCount").textContent=Number(reviewStatus.review_count||0).toLocaleString("en-IN");
