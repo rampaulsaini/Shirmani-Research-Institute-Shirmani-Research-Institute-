@@ -1,0 +1,8 @@
+{
+  "product_assets": 1016,
+  "asset_directory": "products/production/",
+  "showroom": "products.html",
+  "state": "READY_FOR_QC",
+  "dispatch": "NO",
+  "principle": "Every catalog identity has a concrete browser product asset; QC/dispatch remain downstream."
+}
