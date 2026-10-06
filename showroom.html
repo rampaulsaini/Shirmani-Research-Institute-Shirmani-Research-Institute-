@@ -34,7 +34,8 @@
 <div class="stat"><div class="metric" id="external">—</div><div class="muted">External catalogue routes</div></div>
 <div class="stat"><div class="metric" id="categories">—</div><div class="muted">Product categories</div></div>
 </section>
-<div class="note"><strong>Production principle:</strong> जितना काम automation से वास्तविक artifact बनकर platform पर दिखाई देता है, वही production progress है। Independent verification अलग downstream quality state है; उसे production का substitute नहीं बनाया गया है।</div>
+<div class="note"><strong>Production principle:</strong> workflow run को product नहीं माना गया है। Public production में source-bound work results और runnable customer-facing artifacts अलग दिखाई देते हैं। Independent verification downstream quality state है; उसे production का substitute नहीं बनाया गया है।</div>
+<section class="note" id="production-map"><strong>Current production map:</strong> 500 concrete production results across 8 lanes are published in the repository production catalog. ये results अभी मुख्यतः source-bound work cards हैं; इन्हें स्वतः 500 commercial products नहीं माना गया है.<br><br><a class="btn" href="generated/public-production-by-module.html">500-module production map देखें</a> <a class="btn" href="public-production-results-hub.html">Production Results Hub</a></section>
 <section id="products"><h2>Public Product Rack</h2><div class="toolbar"><div class="filters"><input id="search" placeholder="Product खोजें…" aria-label="Product search"><button class="active" data-cat="all">सभी</button><button data-cat="featured">Featured</button><button data-cat="research">Research</button><button data-cat="ai">AI / ML / NLP</button><button data-cat="creator">Creator</button><button data-cat="education">Education</button><button data-cat="nature">Nature</button><button data-cat="commerce">Commerce</button></div></div><div id="grid" class="grid"></div></section>
 <div class="note"><strong>Customer feedback → quality improvement:</strong> product page पर review/rating को improvement input माना जाएगा। Review स्वयं scientific verification नहीं है।</div>
 </main>
@@ -73,11 +74,14 @@ function render(){
 }
 async function load(){
  const d=await fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
+ const pcat=await fetch("generated/public-production-catalog.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({cycle_results:0,lanes:{}}));
  products=d.products||[];
  document.getElementById("total").textContent=products.length.toLocaleString("en-IN");
  document.getElementById("engines").textContent=Number(d.engine_count||new Set(products.map(p=>p.engine)).size).toLocaleString("en-IN");
- document.getElementById("families").textContent=Number((d.families||[]).length||new Set(products.map(p=>p.family)).size).toLocaleString("en-IN");
- document.getElementById("public").textContent=products.filter(p=>p.status==="RUNNABLE_STATIC_MVP").length.toLocaleString("en-IN");
+ document.getElementById("categories").textContent=Number((d.families||[]).length||new Set(products.map(p=>p.family)).size).toLocaleString("en-IN");
+ document.getElementById("public").textContent=Number(pcat.cycle_results||0).toLocaleString("en-IN");
+ document.getElementById("external").textContent=Object.keys(pcat.lanes||{}).length.toLocaleString("en-IN");
+ document.getElementById("shown").textContent=products.length.toLocaleString("en-IN")+" products shown";
  render();
 }
 document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filters button").forEach(x=>x.classList.remove("active"));b.classList.add("active");cat=b.dataset.cat;render()});
