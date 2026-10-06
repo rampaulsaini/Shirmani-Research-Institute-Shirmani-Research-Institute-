@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "status": "PUBLIC_FUNDING_APPEAL",
+  "currency": "INR",
+  "phase": "Phase 1 — public platform, production, verification and infrastructure",
+  "target_inr": 500000,
+  "received_inr": 0,
+  "pledged_inr": 0,
+  "disbursed_inr": 0,
+  "progress_percent": 0,
+  "target_note": "Proposed Phase-1 target; may be revised after a transparent budget review.",
+  "accounting_note": "Only published/recorded amounts should be shown here. No payment-processor balance is inferred.",
+  "project_completion": {
+    "overall_planning_estimate_percent": 72,
+    "engineering_platform_percent": 72,
+    "independent_verification_percent": 0,
+    "concrete_production_percent": 50,
+    "commercial_settlement_infrastructure_percent": 35
+  },
+  "verified_snapshot": {
+    "verification_queue_total": 100200,
+    "prepared_review_records": 100200,
+    "prepared_percent": 100,
+    "reviewed_records": 0,
+    "verified_records": 0,
+    "verified_percent_of_queue": 0
+  },
+  "funding_use_proposal": [
+    {
+      "category": "Engineering & product development",
+      "percent": 30
+    },
+    {
+      "category": "Research, testing & independent review",
+      "percent": 25
+    },
+    {
+      "category": "Infrastructure, security, backup & monitoring",
+      "percent": 20
+    },
+    {
+      "category": "Public access, media & accessibility",
+      "percent": 10
+    },
+    {
+      "category": "Customer/product operations",
+      "percent": 10
+    },
+    {
+      "category": "Accounting, legal & administration",
+      "percent": 5
+    }
+  ],
+  "updated_at": "2026-10-06",
+  "integrity": "Funding progress and scientific verification are separate metrics."
+}
