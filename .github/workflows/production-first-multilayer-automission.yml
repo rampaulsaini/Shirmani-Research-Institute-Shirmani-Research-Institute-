@@ -34,6 +34,10 @@ jobs:
           fi
       - name: Four-stage continuous production controller
         run: python3 factory/four_stage_production_orchestrator.py
+      - name: Produce public result batch
+        env:
+          PUBLIC_PRODUCTION_BATCH: 100
+        run: python3 factory/public_production_conveyor.py
       - name: Publish four-stage telemetry
         run: |
           python3 - <<'PY'
@@ -55,7 +59,7 @@ jobs:
         run: |
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/ products/production/ supreme-production-showroom.html
+          git add generated/ products/production/ supreme-production-showroom.html generated/public-production-command-center.html generated/public-production-by-module.html factory/public_production_conveyor.py
           if git diff --cached --quiet; then
             echo "No production artifact changes to commit."
           else
