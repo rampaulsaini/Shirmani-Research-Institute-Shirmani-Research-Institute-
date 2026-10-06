@@ -9,6 +9,9 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 
 ## Public Production Showroom
 
+- **Production Hub (clear “what is this?” map):** [production-hub.html](production-hub.html)
+- **Current production state:** 1,016/1,016 concrete product assets · 1,016/1,016 deterministic QC pass · dispatch/sales/independent verification remain separate downstream states.
+
 - **Showroom:** [showroom.html](showroom.html)
 - **Product registry:** [showroom-products.json](showroom-products.json)
 - **Production specification:** [SHOWROOM-PRODUCTION.md](SHOWROOM-PRODUCTION.md)
