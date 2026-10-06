@@ -50,6 +50,6 @@ jobs:
         run: |
           git config user.name "SHIRMANI Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/public-review-quality-queue.json
+          git add generated/public-review-quality-queue.json generated/public-review-research-input.md
           git diff --cached --quiet || git commit -m "automission: update public review quality queue"
           git push
