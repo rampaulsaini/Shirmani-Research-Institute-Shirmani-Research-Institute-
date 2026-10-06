@@ -17,7 +17,7 @@ def main():
     assert report["verified_count"] >= 0
     assert report["remaining_to_target"] == max(100_200 - report["verified_count"], 0)
     assert 0 <= report["verification_completion_percent"] <= 100
-    assert report["independence_boundary"].startswith("Automation validates result artifacts")
+    assert report["independence_boundary"].startswith("Automation validates declared result artifacts")
 
     from factory.supreme_independent_verification_ledger import load_schema, validate_record
 
