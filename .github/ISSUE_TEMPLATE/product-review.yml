@@ -1,0 +1,34 @@
+name: Product Review
+description: Public product experience review used for continuous product-quality improvement
+title: "Product Review: SP-"
+labels: ["product-review"]
+body:
+  - type: input
+    id: product_id
+    attributes:
+      label: Product ID
+      description: Enter the exact product ID shown in the showroom, e.g. SP-0001
+      placeholder: SP-0001
+    validations:
+      required: true
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Overall rating
+      options: ["5","4","3","2","1"]
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: Product experience
+      description: What worked well, what was useful, and what should improve?
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Improvement request
+      description: Specific feature, quality, usability, content or performance improvement.
+    validations:
+      required: false
