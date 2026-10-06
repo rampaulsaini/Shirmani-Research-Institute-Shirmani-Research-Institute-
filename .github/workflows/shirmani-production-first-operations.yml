@@ -1,0 +1,25 @@
+name: SHIRMANI Production-First Operations Automission
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+concurrency:
+  group: shirmani-production-first-operations
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  production-operations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - name: Build production operations state
+        run: python3 scripts/production_first_cycle.py
+      - name: Publish state
+        run: |
+          git config user.name "shirmani-production-automission"
+          git config user.email "actions@users.noreply.github.com"
+          git add generated/production-operations-status.json
+          if git diff --cached --quiet; then echo "No change"; else git commit -m "chore: refresh production-first operations state"; git push; fi
