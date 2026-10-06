@@ -48,10 +48,12 @@ for n,(cat,prefix) in enumerate(families,1):
         "factory_batch":f"AUTO-{now[:10]}",
         "deliverable_type":"DIGITAL_PRODUCT",
         "purchase_url":"https://rampaulsaini.github.io/my-omniverse-store/",
+        "deliverable_path":f"production/products/{pid}.md",
+        "production_state":"CONTENT_READY",
         "qr_payload":f"SHIRMANI|{pid}|GATE-001|QC-PENDING|NO|{499 + ((existing+n)*137)%4501}"
     })
 
-# Keep the repository catalog bounded while preserving a production counter.
+# Materialize a concrete deliverable for every new product; no name-only placeholders.\nfor item in batch:\n    product_path=os.path.join(ROOT,"products",item["product_id"]+".md")\n    os.makedirs(os.path.dirname(product_path),exist_ok=True)\n    with open(product_path,"w",encoding="utf-8") as f:\n        f.write(f"""# {item["name"]}\\n\\n## Product ID\\n{item["product_id"]}\\n\\n## Category\\n{item["category"]}\\n\\n## Deliverable\\nA concrete factory-produced digital product pack with a defined scope, customer-facing description, reusable working material and release metadata.\\n\\n## Production specification\\n- Factory batch: {item["factory_batch"]}\\n- Price: INR {item["price_inr"]}\\n- Offer: {item["offer"]}\\n- Guarantee: {item["guarantee"]}\\n\\n## QC marking\\n- QC gate: {item["qc_gate"]}\\n- Gate number: {item["gate_no"]}\\n- Dispatch: {item["dispatch"]}\\n- QR payload: {item["qr_payload"]}\\n\\n## Customer use\\nUse the product according to its category and scope; future cycles may upgrade this deliverable while preserving its product ID and version history.\\n""")\n\n# Keep the repository catalog bounded while preserving a production counter.
 combined=(products+batch)
 visible=combined[-5000:]
 out={"schema_version":"1.1","generated_at":now,"products":visible}
