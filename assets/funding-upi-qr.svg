@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45mm" height="45mm" version="1.1" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">
+<rect width="45" height="45" fill="#fff"/>
+<path fill="#000" d="M4 4h9v9H4zM6 6v5h5V6zM8 8h1v1H8zM32 4h9v9h-9zM34 6v5h5V6zM36 8h1v1h-1zM4 32h9v9H4zM6 34v5h5v-5zM8 36h1v1H8zM16 4h3v3h-3zM21 4h2v2h-2zM26 4h2v4h-2zM15 9h3v2h-3zM20 8h3v3h-3zM25 10h3v3h-3zM30 9h2v4h-2zM15 14h4v3h-4zM21 14h2v2h-2zM25 15h5v2h-5zM33 15h3v3h-3zM38 15h3v3h-3zM4 16h3v2H4zM9 16h4v3H9zM4 21h3v3H4zM9 20h2v4H9zM14 19h4v3h-4zM20 18h2v5h-2zM24 20h4v2h-4zM30 19h3v4h-3zM35 20h2v3h-2zM40 20h1v4h-1zM15 25h3v2h-3zM20 24h4v3h-4zM26 25h2v4h-2zM31 25h4v3h-4zM37 25h4v2h-4zM14 30h3v3h-3zM19 29h2v5h-2zM23 30h4v2h-4zM29 29h2v4h-2zM34 30h3v3h-3zM39 29h2v4h-2zM16 35h4v2h-4zM22 34h3v3h-3zM27 35h2v4h-2zM32 34h4v3h-4zM37 36h4v3h-4z"/>
+</svg>
