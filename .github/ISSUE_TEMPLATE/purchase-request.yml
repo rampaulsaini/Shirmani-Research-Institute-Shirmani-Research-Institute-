@@ -1,0 +1,30 @@
+name: Purchase / Access Request
+description: Customer request for a SHIRMANI digital product or paid experience.
+title: "Purchase / Access request — "
+labels: ["purchase-request"]
+body:
+  - type: input
+    id: product_id
+    attributes:
+      label: Product ID
+      placeholder: SP-0001
+    validations:
+      required: true
+  - type: input
+    id: product
+    attributes:
+      label: Product name
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: Request
+      description: Tell us what you want to purchase/access.
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Preferred contact
+      description: Never enter passwords, card numbers, OTPs or other payment credentials here.

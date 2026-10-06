@@ -37,7 +37,7 @@
 <div class="note"><strong>Production principle:</strong> जितना काम automation से वास्तविक artifact बनकर platform पर दिखाई देता है, वही production progress है। Independent verification अलग downstream quality state है; उसे production का substitute नहीं बनाया गया है।</div>
 <section id="products"><h2>Public Product Rack</h2><div class="toolbar"><div class="filters"><input id="search" placeholder="Product खोजें…" aria-label="Product search"><button class="active" data-cat="all">सभी</button><button data-cat="featured">Featured</button><button data-cat="research">Research</button><button data-cat="ai">AI / ML / NLP</button><button data-cat="creator">Creator</button><button data-cat="education">Education</button><button data-cat="nature">Nature</button><button data-cat="commerce">Commerce</button></div></div><div id="grid" class="grid"></div></section>
 <div class="note"><strong>Customer feedback → quality improvement:</strong> product page पर review/rating को improvement input माना जाएगा। Review स्वयं scientific verification नहीं है।</div>
-</main>
+<section class="note" id="customer-reviews"><h2>⭐ Customer Reviews → Production Quality Improvement</h2><p>Customer reviews, ratings और सुधार-सुझाव production quality improvement input हैं। वे independent scientific verification का विकल्प नहीं हैं।</p><a class="btn primary" href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/issues/new?template=product-review.yml" target="_blank" rel="noopener">Public Review / Rating दें →</a> <a class="btn" href="generated/public-review-quality-queue.json">Quality Queue देखें</a></section></main>
 <footer><div class="wrap">© 2026 Shirmani Research Institute · <a href="index.html">Institute Home</a></div></footer>
 <script>
 const grid=document.getElementById("grid"),search=document.getElementById("search");let cat="all",products=[];
@@ -75,8 +75,8 @@ async function load(){
  const d=await fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
  products=d.products||[];
  document.getElementById("total").textContent=products.length.toLocaleString("en-IN");
- document.getElementById("engines").textContent=Number(d.engine_count||new Set(products.map(p=>p.engine)).size).toLocaleString("en-IN");
- document.getElementById("families").textContent=Number((d.families||[]).length||new Set(products.map(p=>p.family)).size).toLocaleString("en-IN");
+ document.getElementById("external").textContent=products.filter(p=>p.status!=="RUNNABLE_STATIC_MVP").length.toLocaleString("en-IN");
+ document.getElementById("categories").textContent=Number((d.families||[]).length||new Set(products.map(p=>p.family)).size).toLocaleString("en-IN");
  document.getElementById("public").textContent=products.filter(p=>p.status==="RUNNABLE_STATIC_MVP").length.toLocaleString("en-IN");
  render();
 }
