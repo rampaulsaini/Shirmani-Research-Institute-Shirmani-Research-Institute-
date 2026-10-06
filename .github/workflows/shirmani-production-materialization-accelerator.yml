@@ -1,0 +1,47 @@
+name: SHIRMANI Production Materialization Accelerator
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-production-materialization
+  cancel-in-progress: false
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Discover and materialize concrete products
+        run: |
+          python3 factory/public_module_inventory.py
+          python3 factory/real_product_factory.py
+          python3 factory/materialize_all_product_assets.py
+          python3 factory/concrete_product_modules.py
+          python3 factory/product_asset_expander.py
+          python3 factory/production_queue_builder.py
+          python3 factory/public_production_materializer.py
+          python3 factory/product_qc_gate.py
+      - name: Publish concrete production
+        run: |
+          git config user.name "SHIRMANI Production Materialization Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated products
+          if git diff --cached --quiet; then
+            echo "No production delta"
+          else
+            git commit -m "chore(production): materialize concrete product modules and assets"
+            git push origin HEAD:main
+          fi
+      - name: Report production surface
+        run: |
+          echo "Production materialization completed."
+          test -d products/production
+          test -d products/modules
+          find products/production -type f | wc -l
+          find products/modules -type f | wc -l
