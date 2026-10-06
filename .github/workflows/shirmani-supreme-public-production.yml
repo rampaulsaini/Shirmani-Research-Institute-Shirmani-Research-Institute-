@@ -20,8 +20,7 @@ jobs:
       - name: Institute → Factory — materialize all catalog products
         run: |
           python3 factory/real_product_factory.py
-          python3 factory/concrete_product_modules.py
-          python3 factory/product_asset_expander.py
+          python3 factory/incremental_public_production.py
       - name: Public production synchronization
         run: python3 factory/supreme_public_production_sync.py
       - name: Product QC gate
