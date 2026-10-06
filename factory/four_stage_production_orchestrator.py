@@ -69,6 +69,24 @@ def main() -> None:
     (GEN/"production-throughput.json").write_text(json.dumps(throughput,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     (GEN/"four-stage-production-status.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     public={"generated_at":report["generated_at"],"stages":[{"stage":s["stage"],"name":s["name"],"status":s["status"]} for s in report["stages"]],"products":{"catalog":catalog.get("product_count",0),"produced":registry.get("produced_count",registry.get("total_materialized_module_products",catalog.get("product_count",0))),"qc_passed":qc.get("qc_passed",0),"dispatch":0},"showroom":"supreme-showroom.html","entry_fees":"generated/showroom-entry-fees.json","principle":"Production → QC gate → Showroom → downstream verification"}
+    # Keep public showroom telemetry bound to concrete production data.
+    production_status = {
+        "schema_version": 1,
+        "generated_at": report["generated_at"],
+        "source": "generated/production-registry.json",
+        "catalog_products": catalog.get("product_count", 0),
+        "produced": registry.get("produced_count", registry.get("total_materialized_module_products", catalog.get("product_count", 0))),
+        "qc_ready": qc.get("qc_passed", 0),
+        "dispatch_yes": sum(1 for p in registry.get("products", []) if p.get("dispatch_no") == "YES"),
+        "dispatch_default": "NO",
+        "engine_count": registry.get("engine_count", 0),
+        "family_count": registry.get("family_count", 0),
+        "production_first": True,
+        "verification_position": "DOWNSTREAM",
+        "showroom": "supreme-showroom.html",
+        "chat_required_for_continuity": False
+    }
+    (GEN/"production-status.json").write_text(json.dumps(production_status,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     (GEN/"production-release-map.json").write_text(json.dumps(public,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(report,ensure_ascii=False))
     if any(s["status"]=="FAIL" for s in report["stages"]): raise SystemExit(1)
