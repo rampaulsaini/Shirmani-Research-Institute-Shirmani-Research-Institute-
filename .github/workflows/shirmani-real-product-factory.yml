@@ -18,7 +18,9 @@ concurrency:
 jobs:
   produce:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
+    env:
+      PRODUCT_TARGET: "5000"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -33,25 +35,27 @@ jobs:
       - name: Production QC structure check
         run: |
           python3 - <<'PY'
-          import json
+          import json, os
           from pathlib import Path
+          target=int(os.environ["PRODUCT_TARGET"])
           p=json.loads(Path("generated/1000-digital-products.json").read_text(encoding="utf-8"))
-          assert p["product_count"] == 1016
-          assert len(p["products"]) == 1016
+          assert p["product_count"] == target
+          assert len(p["products"]) == target
           assert len(p["family_definitions"]) == 25
           assert all(x["status"] == "READY_FOR_QC" for x in p["products"])
           assert all(Path(x["asset"]).exists() for x in p["products"])
           assert all(Path(x["module"]).exists() for x in p["products"])
           assert Path("generated/PRODUCT-PASSPORTS.jsonl").exists()
-          assert len(list(Path("products/production").glob("*.html"))) == 1016
+          assert len(list(Path("products/production").glob("*.html"))) == target
           assert len(list(Path("products/modules").glob("*.html"))) == 25
           assert Path("production-dashboard.html").exists()
           print("PRODUCTION PASS")
-          print("products:",len(p["products"]))
+          print("products:",len(p["products"]),"/",target)
           print("concrete assets:",len(list(Path("products/production").glob("*.html"))))
           print("modules:",len(list(Path("products/modules").glob("*.html"))))
           print("QC gate: READY_FOR_QC")
           print("dispatch: NO")
+          print("verification: DOWNSTREAM")
           PY
       - name: Publish production results to platform
         run: |
@@ -61,7 +65,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No production delta"
           else
-            git commit -m 'chore(products): continuously materialize concrete production'
+            git commit -m 'chore(products): continuously materialize concrete production at scale'
             git push origin HEAD:main
           fi
       - name: Publish production summary
@@ -69,10 +73,11 @@ jobs:
           {
             echo "## SHIRMANI Production"
             echo "- Institute discovery: active"
-            echo "- Factory: 1,016 concrete product assets"
+            echo "- Factory target: 5,000 concrete product assets"
             echo "- Modules: 25 executable family modules"
             echo "- QC state: READY_FOR_QC"
             echo "- Dispatch: NO"
+            echo "- Verification: downstream"
             echo "- Public showroom: production-dashboard.html + products/production-launch-center.html"
             echo "- Cycle: every 5 minutes"
           } >> "$GITHUB_STEP_SUMMARY"
