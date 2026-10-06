@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-06T17:59:10.079Z",
+  "mode": "PRODUCTION_FIRST",
+  "pipeline": [
+    "INSTITUTE_RESEARCH",
+    "FACTORY_PRODUCTION",
+    "QC_GATE",
+    "PUBLIC_SHOWROOM_SALE"
+  ],
+  "production": {
+    "catalog_products": 1016,
+    "produced_public": 1016,
+    "pricing_published": 1016,
+    "sold_evidence": 0,
+    "next_scale_target": 5000,
+    "remaining_to_scale_target": 3984
+  },
+  "customer_loop": [
+    "DISCOVER",
+    "BUILD",
+    "QC/GATE",
+    "SHOW",
+    "USE",
+    "REVIEW/RATE",
+    "IMPROVE",
+    "BUILD_AGAIN"
+  ],
+  "verification_boundary": "Independent verification is downstream and is not a substitute for production.",
+  "next_work_units": [
+    {
+      "product_id": "SP-0001",
+      "name": "SHIRMANI Starter Counting & Math 0001",
+      "family": "Counting & Math",
+      "engine": "calculator",
+      "priority": 4,
+      "action": "DEPTH_UPGRADE",
+      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
+      "public_route": "products/concrete/SP-0001.html"
+    },
+    {
+      "product_id": "SP-0002",
+      "name": "SHIRMANI Quick Text & Language 0002",
+      "family": "Text & Language",
+      "engine": "text",
+      "priority": 4,
+      "action": "DEPTH_UPGRADE",
+      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
+      "public_route": "products/concrete/SP-0002.html"
+    },
+    {
+      "product_id": "SP-0003",
+      "name": "SHIRMANI Pro SEO & Web 0003",
+      "family": "SEO & Web",
+      "engine": "seo",
+      "priority": 4,
+      "action": "DEPTH_UPGRADE",
+      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
+      "public_route": "products/concrete/SP-0003.html"
+    },
+    {
+      "product_id": "SP-0004",
+      "name": "SHIRMANI Studio Data Tools 0004",
+      "family": "Data Tools",
+      "engine": "data",
+      "priority": 4,
+      "action": "DEPTH_UPGRADE",
+      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
+      "public_route": "products/concrete/SP-0004.html"
+    }
+  ],
+  "summary": {
+    "families": 25,
+    "priority_units": 0
+  }
+}
