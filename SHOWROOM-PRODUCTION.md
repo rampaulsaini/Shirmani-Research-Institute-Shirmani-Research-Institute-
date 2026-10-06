@@ -14,9 +14,17 @@ Automation exists to produce useful work. Workflow execution is not itself a pro
 The showroom exposes four existing catalogue entries and links them to the existing public store. Catalogue prices should be reconciled with the actual checkout/payment flow before being treated as final transactional prices.
 
 ## Next production work
-- create real artifact URLs and product detail pages;
+- keep every PRODUCED product linked directly to its concrete public artifact and product detail/passport page;
 - attach QR codes to immutable product IDs and QC records;
 - add review/rating capture and a quality-improvement queue;
 - build automated factory jobs that generate product artifacts;
 - add inventory/dispatch state and secure checkout;
 - expand categories only as real products are produced.
+
+
+## 2026-10-06 production-first implementation
+
+- Concrete production is treated as the primary progress signal; independent verification remains downstream.
+- The public showroom should expose the concrete artifact first, with QC/Gate/Dispatch metadata and a separate passport/review route.
+- Public payment routes are restricted to the configured Paytm/UPI VPA and PayPal address shown on the funding surface.
+- Customer reviews and ratings feed quality-improvement work; they are not scientific verification.
