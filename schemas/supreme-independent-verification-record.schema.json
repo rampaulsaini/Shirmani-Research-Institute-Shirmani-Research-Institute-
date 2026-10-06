@@ -13,7 +13,15 @@
     "verification_method":{"type":"string","minLength":1},
     "reviewed_at":{"type":"string","minLength":1},
     "verification_state":{"type":"string","enum":["REGISTERED","UNVERIFIED","REVIEW","VERIFIED","BLOCKED"]},
-    "limitations":{"type":"array","items":{"type":"string"}}
+    "limitations":{"type":"array","items":{"type":"string"}},
+    "result_artifact_ref":{"type":"string","minLength":1},
+    "result_artifact_sha256":{"type":"string","pattern":"^[0-9a-fA-F]{64}$"}
   },
+  "allOf":[
+    {
+      "if":{"properties":{"verification_state":{"const":"VERIFIED"}}},
+      "then":{"required":["result_artifact_ref","result_artifact_sha256"]}
+    }
+  ],
   "additionalProperties":false
 }

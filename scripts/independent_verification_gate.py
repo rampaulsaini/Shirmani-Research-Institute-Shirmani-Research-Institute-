@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """Fail-closed independent verification gate.
 
-This tool never decides whether a claim is true. It enforces the evidence,
-provenance, reproducibility and reviewer requirements before an independent
-review decision may promote a record to an independent-verification state.
+This tool never decides whether a claim is true. It enforces evidence,
+provenance, reproducibility, a concrete result artifact, and reviewer
+requirements before an independent review decision may promote a record.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -55,6 +56,22 @@ def validate_record(record: dict[str, Any]) -> None:
         if record.get("decision") != "VERIFIED":
             fail(f"{rid}: independent verification state requires decision VERIFIED")
 
+        artifact = record.get("result_artifact")
+        if not isinstance(artifact, dict):
+            fail(f"{rid}: VERIFIED record requires result_artifact")
+        artifact_ref = artifact.get("ref")
+        artifact_sha = artifact.get("sha256")
+        if not isinstance(artifact_ref, str) or not artifact_ref.strip():
+            fail(f"{rid}: result_artifact.ref is required")
+        if not isinstance(artifact_sha, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", artifact_sha):
+            fail(f"{rid}: result_artifact.sha256 must be a 64-character SHA-256")
+
+        result = record.get("result")
+        if isinstance(result, dict):
+            if not result.get("status") or not result.get("outcome"):
+                fail(f"{rid}: structured result must include status and outcome")
+        elif not isinstance(result, str) or not result.strip():
+            fail(f"{rid}: result must be a non-empty artifact-backed result")
 
 def main() -> None:
     ap = argparse.ArgumentParser()
