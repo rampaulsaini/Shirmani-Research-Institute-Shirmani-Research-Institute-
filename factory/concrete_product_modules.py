@@ -72,6 +72,6 @@ def main():
             target.write_text(page(p),encoding="utf-8")
             f.write(json.dumps({k:p.get(k) for k in ["id","name","category","engine","module","asset","price_inr","offer_price_inr","offer","description","guarantee","packing","qc_code","gate_no","dispatch_no","status","qr_payload"]},ensure_ascii=False)+"\n")
             created+=1
-    status={"strategy":"CONCRETE_PRODUCT_ASSET_PRODUCTION","catalog_products":len(catalog["products"]),"concrete_product_assets":created,"family_modules":len(catalog["family_definitions"]),"public_showroom":"products.html","product_launch_center":"products/production-launch-center.html","passport":"generated/PRODUCT-PASSPORTS.jsonl","state":"READY_FOR_QC","dispatch":"NO","verification":"DOWNSTREAM"}
+    status={"strategy":"CONCRETE_PRODUCT_ASSET_PRODUCTION","concrete_product_mvp":len(catalog["products"]),"catalog_products":len(catalog["products"]),"concrete_product_assets":created,"family_modules":len(catalog["family_definitions"]),"public_showroom":"products.html","product_launch_center":"products/production-launch-center.html","passport":"generated/PRODUCT-PASSPORTS.jsonl","state":"READY_FOR_QC","dispatch":"NO","verification":"DOWNSTREAM"}
     (OUT/"real-product-factory-status.json").write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 if __name__=="__main__": main()
