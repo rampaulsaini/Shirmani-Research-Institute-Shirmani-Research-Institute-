@@ -1,0 +1,43 @@
+name: SHIRMANI Production Throughput Controller
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-production-throughput
+  cancel-in-progress: false
+jobs:
+  production:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run concrete four-stage production
+        run: python3 factory/four_stage_production_orchestrator.py
+      - name: Build production throughput report
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("generated/production-registry.json").read_text())
+          s=json.loads(Path("generated/four-stage-production-status.json").read_text())
+          report={"generated_at":s.get("generated_at"),"production_first":True,"catalog_products":r.get("product_count",0),"produced_products":r.get("produced_count",0),"qc_passed":next((x.get("qc",{}).get("qc_passed",0) for x in s.get("stages",[]) if x.get("stage")==3),0),"dispatch_released":0,"architecture":["INSTITUTE","FACTORY","QC","SHOWROOM_SALE"],"verification":"DOWNSTREAM_RESULT_LAYER"}
+          Path("generated/production-throughput-status.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
+          print(json.dumps(report,ensure_ascii=False))
+          PY
+      - name: Publish production telemetry
+        run: |
+          git config user.name "SHIRMANI Production Throughput Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/production-throughput-status.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore(production): publish throughput telemetry"
+          git push
