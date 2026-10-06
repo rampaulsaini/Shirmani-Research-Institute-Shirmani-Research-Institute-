@@ -1,0 +1,55 @@
+name: SHIRMANI Public Reviews → Quality Improvement
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  issues:
+    types: [opened, edited, labeled]
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: read
+concurrency:
+  group: public-review-quality-loop
+  cancel-in-progress: true
+jobs:
+  process-reviews:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build public review quality queue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json, os, subprocess
+          from datetime import datetime, timezone
+          repo=os.environ["GITHUB_REPOSITORY"]
+          raw=subprocess.check_output(["gh","api",f"repos/{repo}/issues?state=all&per_page=100"],text=True)
+          issues=json.loads(raw)
+          reviews=[]
+          for x in issues:
+              labels={l["name"] for l in x.get("labels",[])}
+              if "product-review" not in labels or x.get("pull_request"):
+                  continue
+              body=x.get("body") or ""
+              product=""
+              rating=None
+              for line in body.splitlines():
+                  if line.startswith("Product ID:"):
+                      product=line.split(":",1)[1].strip()
+                  if line.startswith("Rating:"):
+                      try: rating=int(line.split(":",1)[1].strip().split("/")[0])
+                      except Exception: pass
+              reviews.append({"issue":x["number"],"title":x["title"],"product_id":product,"rating":rating,"body":body,"url":x["html_url"],"updated_at":x["updated_at"]})
+          out={"generated_at":datetime.now(timezone.utc).isoformat(),"review_count":len(reviews),"reviews":reviews,"purpose":"Customer reviews are production-quality improvement inputs, not scientific verification.","next_stage":"factory quality improvement backlog"}
+          os.makedirs("generated",exist_ok=True)
+          with open("generated/public-review-quality-queue.json","w",encoding="utf-8") as f: json.dump(out,f,ensure_ascii=False,indent=2); f.write("\n")
+          PY
+      - name: Commit quality queue
+        run: |
+          git config user.name "SHIRMANI Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/public-review-quality-queue.json
+          git diff --cached --quiet || git commit -m "automission: update public review quality queue"
+          git push
