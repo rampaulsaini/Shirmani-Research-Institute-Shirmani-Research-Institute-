@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Supreme Digital Marketplace</title>
+<style>
+body{margin:0;background:#070b12;color:#eef5f8;font:15px system-ui;line-height:1.5}main{max-width:1300px;margin:auto;padding:18px 14px 80px}
+.hero,.card{background:#101923;border:1px solid #354858;border-radius:18px;padding:18px;margin:12px 0}.hero{border:2px solid #d4af37}
+h1,h2{color:#d4af37}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}.metric{background:#081019;border-radius:12px;padding:13px}.big{font-size:1.7rem;font-weight:900;color:#ffd84a}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px}input,select{width:100%;box-sizing:border-box;padding:10px;background:#081019;color:#fff;border:1px solid #405466;border-radius:9px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.tag{display:inline-block;padding:4px 8px;border:1px solid #38d9ff;border-radius:99px;color:#62e7ff;font-size:.72rem}
+.price{font-size:1.3rem;color:#ffd84a;font-weight:900}.offer{color:#6ee7b7;font-weight:800}.meta{color:#aebdca;font-size:.82rem}
+.passport{display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:.76rem}.passport b{color:#f4d35e}
+.btn{display:inline-block;background:#ffd84a;color:#101010;padding:9px 12px;border-radius:9px;text-decoration:none;font-weight:900;margin:4px 3px 0 0}
+.qr{background:#fff;padding:5px;width:150px;min-height:150px;margin-top:8px}
+.note{color:#aebdc7}.ok{color:#6ee7b7}
+@media(max-width:800px){.filters{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+</style></head><body><main>
+<section class="hero">
+<h1>꙰ SHIRMANI Supreme Digital Marketplace</h1>
+<h2>Institute → Factory → QC Gate → Public Showroom → Sale</h2>
+<p>यह public showroom repository में बने executable product engines को अलग-अलग audience, mode और format के साथ व्यवस्थित करके विशाल product catalogue बनाता है। हर listing में description, rate, offer, guarantee, prime packing, QC code, Gate No., QR passport और Dispatch state रहता है।</p>
+<div class="metrics">
+<div class="metric"><div class="big" id="baseCount">—</div>concrete product engines</div>
+<div class="metric"><div class="big" id="configCount">—</div>scalable product configurations</div>
+<div class="metric"><div class="big">20</div>audience categories</div>
+<div class="metric"><div class="big">10</div>production modes</div>
+</div>
+<p><a class="btn" href="index.html">Main Hub</a><a class="btn" href="supreme-production-showroom.html">Production Showroom</a><a class="btn" href="public-production-command-center.html">Production Command Center</a></p>
+</section>
+<section class="card"><div class="filters"><input id="q" placeholder="Product / category / engine / audience…" oninput="render()"><select id="cat" onchange="render()"><option value="">All categories</option></select><select id="aud" onchange="render()"><option value="">All audiences</option></select></div></section>
+<section id="stats" class="card">Loading product production catalogue…</section>
+<section id="grid" class="grid"></section>
+<section class="hero"><h2>Product lifecycle</h2><p class="ok"><b>Institute discovery → Factory production → Concrete executable asset → QC passport → Public showroom → Sale/order path → delivery → downstream result verification</b></p><p class="note">Dispatch is deliberately <b>NO</b> until the downstream dispatch gate. A catalogue listing is not a claim that a sale or delivery has already happened. Payment/checkout remains an explicit provider layer.</p></section>
+<script>
+let C={products:[]}, audiences=["Personal","Student","Teacher","Creator","Researcher","Developer","Business","Publisher","Marketing","Professional","Enterprise","Family","Public","Laboratory","Education","Media","Commerce","Engineering","Knowledge"];
+const $=x=>document.getElementById(x);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+function show(p,i){const audience=audiences[i%audiences.length], price=Number(p.price_inr||199), offer=Number(p.offer_price_inr||Math.max(49,Math.round(price*.8))), qc=p.qc_code||("QC-"+String(i+1).padStart(8,"0")), gate=p.gate_no||("GATE-"+String(i+1).padStart(8,"0"));return {id:p.id+"-"+audience.toUpperCase().replace(/[^A-Z]+/g,"-"),name:p.name+" — "+audience+" Edition",category:p.category,engine:p.engine,audience,price,offer,qc,gate,asset:p.asset}}
+function render(){let q=$("q").value.toLowerCase(),cat=$("cat").value,aud=$("aud").value;let a=C.products.flatMap((p,i)=>audiences.map((x,j)=>show(p,i+j))).filter(p=>(!cat||p.category===cat)&&(!aud||p.audience===aud)&&(!q||JSON.stringify(p).toLowerCase().includes(q)));let visible=a.slice(0,240);$("stats").innerHTML="<b>"+a.length.toLocaleString()+"</b> matching product configurations · "+visible.length+" visible now";$("grid").innerHTML=visible.map((p,i)=>'<article class="card"><span class="tag">'+esc(p.category)+'</span> <span class="tag">'+esc(p.audience)+'</span><h3>'+esc(p.name)+'</h3><p class="meta">'+esc(p.id)+' · '+esc(p.engine)+'</p><p>Executable digital product edition with reusable engine, product passport and controlled dispatch.</p><div class="price">₹'+p.offer.toLocaleString("en-IN")+' <span class="meta">base ₹'+p.price.toLocaleString("en-IN")+'</span></div><div class="offer">LAUNCH -20%</div><p class="meta">Guarantee: 7-day digital quality correction · Packing: SHIRMANI SUPREME DIGITAL PRIME PACK</p><div class="passport"><div>QC <b>'+esc(p.qc)+'</b></div><div>Gate <b>'+esc(p.gate)+'</b></div><div>Dispatch <b>NO</b></div><div>State <b>CATALOG READY</b></div></div><div class="qr"><img loading="lazy" width="150" height="150" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href+"#"+p.id+"|QC:"+p.qc+"|GATE:"+p.gate+"|DISPATCH:NO|PRICE:"+p.offer)+'" alt="QR passport"></div><a class="btn" href="'+esc(p.asset||"supreme-production-showroom.html")+'">Open product engine</a><a class="btn" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener">Store</a></article>').join("")||"<article class=card>No matching product.</article>"}
+fetch("generated/1000-digital-products.json?ts="+Date.now()).then(r=>r.json()).then(c=>{C=c;$("baseCount").textContent=Number(c.product_count||c.products.length).toLocaleString();$("configCount").textContent=(Number(c.product_count||c.products.length)*audiences.length).toLocaleString();for(const p of c.products){let o=document.createElement("option");o.value=p.category;o.textContent=p.category;if(![...$("cat").options].some(x=>x.value===o.value))$("cat").append(o)}for(const x of audiences){let o=document.createElement("option");o.value=x;o.textContent=x;$("aud").append(o)}render()}).catch(e=>$("stats").textContent="Catalogue unavailable: "+e);
+</script></main></body></html>
