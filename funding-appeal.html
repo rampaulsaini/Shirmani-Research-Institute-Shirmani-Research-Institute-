@@ -126,17 +126,5 @@
   qr.setAttribute("data-vpa",vpa);
 })();
 </script>
-<script>
-(async function(){
-  const box=document.getElementById("upi-box"), qr=document.getElementById("upi-qr");
-  try{
-    const c=await fetch("generated/funding-upi.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
-    if(!c.enabled || !c.vpa){ box.innerHTML="<strong>UPI QR अभी सक्रिय नहीं है।</strong>"; return; }
-    const uri="upi://pay?pa="+encodeURIComponent(c.vpa)+"&pn="+encodeURIComponent(c.payee_name||"Shirmani Research Institute")+(c.note?"&tn="+encodeURIComponent(c.note):"")+(c.currency?"&cu="+encodeURIComponent(c.currency):"");
-    box.innerHTML="<strong>Configured UPI:</strong> "+String(c.vpa).replace(/[<>&"]/g,"")+" · Paytm/UPI only";
-    qr.innerHTML="";
-    if(window.QRCode) new QRCode(qr,{text:uri,width:220,height:220});
-  }catch(e){box.textContent="UPI configuration unavailable; no payment address has been invented."; }
-})();
-</script>
+
 </body></html>
