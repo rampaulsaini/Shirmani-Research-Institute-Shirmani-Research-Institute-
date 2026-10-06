@@ -2,7 +2,7 @@
 import json,html
 from pathlib import Path
 from datetime import datetime,timezone
-ROOT=Path(__file__).resolve().parents[1]; GEN=ROOT/"generated"; OUT=ROOT/"products/production"; BATCH=int(__import__("os").environ.get("CONCRETE_PRODUCT_BATCH_SIZE","250"))
+ROOT=Path(__file__).resolve().parents[1]; GEN=ROOT/"generated"; OUT=ROOT/"products/concrete"; BATCH=int(__import__("os").environ.get("CONCRETE_PRODUCT_BATCH_SIZE","250"))
 def now(): return datetime.now(timezone.utc).isoformat()
 def esc(x): return html.escape(str(x or ""),quote=True)
 def page(p):
@@ -13,12 +13,23 @@ def main():
     catalog=json.loads((GEN/"1000-digital-products.json").read_text())
     op=GEN/"concrete-production-overlay.json"
     old=json.loads(op.read_text()) if op.exists() else {"products":[]}
-    done={x["id"]:x for x in old.get("products",[])}
-    pending=[p for p in catalog["products"] if p["id"] not in done][:BATCH]
+    previous={x["id"]:x for x in old.get("products",[])}
+    done={}
+    pending=[]
+    for p in catalog["products"]:
+        asset=OUT/(p["id"]+".html")
+        if asset.is_file() and asset.stat().st_size >= 100:
+            done[p["id"]]=previous.get(p["id"],{"id":p["id"]})
+        else:
+            pending.append(p)
+    pending=pending[:BATCH]
     batch="BATCH-"+datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"); ts=now(); OUT.mkdir(parents=True,exist_ok=True)
     for p in pending:
-        (OUT/(p["id"].lower()+".html")).write_text(page(p))
-        done[p["id"]]={"id":p["id"],"production_state":"PRODUCED","sale_state":"READY_FOR_ORDER","artifact_url":"products/production/"+p["id"].lower()+".html","production_batch":batch,"produced_at":ts,"qc_code":"QC-PROD-"+p["id"],"gate_no":"GATE-PRODUCTION","dispatch_no":"NO"}
+        (OUT/(p["id"]+".html")).write_text(page(p))
+        done[p["id"]]={"id":p["id"],"production_state":"PRODUCED","sale_state":"READY_FOR_ORDER","artifact_url":"products/concrete/"+p["id"]+".html","production_batch":batch,"produced_at":ts,"qc_code":"QC-PROD-"+p["id"],"gate_no":"GATE-PRODUCTION","dispatch_no":"NO"}
+    for p in catalog["products"]:
+        if p["id"] in done:
+            done[p["id"]]["artifact_url"]="products/concrete/"+p["id"]+".html"
     ordered=sorted(done.values(),key=lambda x:int(x["id"].split("-")[-1]))
     op.write_text(json.dumps({"schema_version":1,"generated_at":ts,"architecture":["INSTITUTE","FACTORY","QC","SHOWROOM_SALE"],"production_first":True,"verification_is_downstream":True,"batch":batch,"product_count":len(catalog["products"]),"produced_count":len(ordered),"remaining_count":len(catalog["products"])-len(ordered),"batch_size":len(pending),"products":ordered},ensure_ascii=False,indent=2)+"\n")
     (GEN/"continuous-production-batch-status.json").write_text(json.dumps({"generated_at":ts,"batch":batch,"catalog_products":len(catalog["products"]),"produced_total":len(ordered),"produced_this_cycle":len(pending),"remaining":len(catalog["products"])-len(ordered),"dispatch_released":0,"verification":"DOWNSTREAM"},ensure_ascii=False,indent=2)+"\n")

@@ -21,12 +21,14 @@ jobs:
         run: echo "CONCRETE_PRODUCT_BATCH_SIZE=250" >> "$GITHUB_ENV"
       - name: Produce next concrete public batch
         run: python3 factory/continuous_product_batch.py
+      - name: Audit concrete production truth
+        run: python3 factory/concrete_product_truth.py
       - name: Publish concrete production through PR
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -e
-          if git diff --quiet -- products/production generated/concrete-production-overlay.json generated/continuous-production-batch-status.json; then
+          if git diff --quiet -- products/concrete generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json; then
             echo "No production delta."
             exit 0
           fi
@@ -34,7 +36,7 @@ jobs:
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$BRANCH"
-          git add products/production generated/concrete-production-overlay.json generated/continuous-production-batch-status.json
+          git add products/concrete generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json
           git commit -m "auto(production): materialize next concrete product batch"
           git push --set-upstream origin "$BRANCH"
           PR_URL=$(gh pr create --base main --head "$BRANCH" --title "auto(production): concrete product batch ${GITHUB_RUN_NUMBER}" --body "Automated production batch: concrete public product artifacts first; QC/dispatch remain downstream.")
