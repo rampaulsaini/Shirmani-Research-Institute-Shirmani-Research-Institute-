@@ -1,5 +1,9 @@
 name: SHIRMANI Production Factory — Multi-Layer Continuous
 on:
+  push:
+    paths:
+      - "factory/production_materializer.py"
+      - ".github/workflows/shirmani-production-factory.yml"
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
