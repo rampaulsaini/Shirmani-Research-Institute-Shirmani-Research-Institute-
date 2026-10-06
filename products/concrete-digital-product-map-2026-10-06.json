@@ -1,0 +1,218 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-06",
+  "purpose": "Separate concrete customer-facing products/services from the 1,016 runnable factory catalog modes.",
+  "factory_catalog": {
+    "entries": 1016,
+    "engines": 25,
+    "status": "RUNNABLE_STATIC_MVP",
+    "meaning": "catalog modes, not 1,016 independently produced/sold artifacts"
+  },
+  "concrete_map": {
+    "count": 25,
+    "rule": "Each entry resolves to an existing public artifact or explicitly labelled service/external delivery route.",
+    "sales_claim": false
+  },
+  "products": [
+    {
+      "id": "SRI-P001",
+      "name": "खुद का साक्षात्कार ही संपूर्ण संतुष्टि",
+      "type": "Digital Audio",
+      "price": "₹10,000",
+      "route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "status": "CATALOG_EXTERNAL"
+    },
+    {
+      "id": "SRI-P002",
+      "name": "शिरोमणि अनंत असीम इश्क की क्षमता",
+      "type": "Digital Audio",
+      "price": "₹1,500",
+      "route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "status": "CATALOG_EXTERNAL"
+    },
+    {
+      "id": "SRI-P003",
+      "name": "साहिब तदरूप साक्षात्कार",
+      "type": "Digital Audio",
+      "price": "₹10,000",
+      "route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "status": "CATALOG_EXTERNAL"
+    },
+    {
+      "id": "SRI-P004",
+      "name": "खुद का साक्षात्कार ऑडियो",
+      "type": "Digital Audio",
+      "price": "₹6,000",
+      "route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "status": "CATALOG_EXTERNAL"
+    },
+    {
+      "id": "SRI-P005",
+      "name": "मेरा साहिब मेरा ही तदरूप साक्षात्कार",
+      "type": "Digital Audio",
+      "price": "₹5,000",
+      "route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "status": "CATALOG_EXTERNAL"
+    },
+    {
+      "id": "SRI-P006",
+      "name": "Short Audios Collection",
+      "type": "Digital Audio",
+      "price": "₹89",
+      "route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "status": "CATALOG_EXTERNAL"
+    },
+    {
+      "id": "SRI-P007",
+      "name": "प्रमाण पत्र",
+      "type": "Digital Asset",
+      "price": "₹495",
+      "route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "status": "CATALOG_EXTERNAL"
+    },
+    {
+      "id": "SRI-P008",
+      "name": "Short / Creator Assets",
+      "type": "Creator Asset",
+      "price": "₹950 से",
+      "route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "status": "CATALOG_EXTERNAL"
+    },
+    {
+      "id": "SRI-P009",
+      "name": "Research Paper — PDF Edition",
+      "type": "Research PDF",
+      "price": "Free",
+      "route": "research-paper.html",
+      "status": "PRODUCED_PUBLIC"
+    },
+    {
+      "id": "SRI-P010",
+      "name": "Word & Character Counter",
+      "type": "Browser Tool",
+      "price": "Free",
+      "route": "products/micro/word-counter.html",
+      "status": "PRODUCED_PUBLIC"
+    },
+    {
+      "id": "SRI-P011",
+      "name": "Percentage Calculator",
+      "type": "Browser Tool",
+      "price": "Free",
+      "route": "products/micro/percentage-calculator.html",
+      "status": "PRODUCED_PUBLIC"
+    },
+    {
+      "id": "SRI-P012",
+      "name": "Length Unit Converter",
+      "type": "Browser Tool",
+      "price": "Free",
+      "route": "products/micro/unit-converter.html",
+      "status": "PRODUCED_PUBLIC"
+    },
+    {
+      "id": "SRI-P013",
+      "name": "JSON Formatter & Validator",
+      "type": "Browser Tool",
+      "price": "Free",
+      "route": "products/micro/json-formatter.html",
+      "status": "PRODUCED_PUBLIC"
+    },
+    {
+      "id": "SRI-P014",
+      "name": "Color Palette Generator",
+      "type": "Browser Tool",
+      "price": "Free",
+      "route": "products/micro/color-palette-generator.html",
+      "status": "PRODUCED_PUBLIC"
+    },
+    {
+      "id": "SRI-P015",
+      "name": "Simple Digital Drawing Board",
+      "type": "Browser Tool",
+      "price": "Free",
+      "route": "products/micro/drawing-board.html",
+      "status": "PRODUCED_PUBLIC"
+    },
+    {
+      "id": "SRI-P016",
+      "name": "Markdown Preview",
+      "type": "Browser Tool",
+      "price": "Free",
+      "route": "products/micro/markdown-preview.html",
+      "status": "PRODUCED_PUBLIC"
+    },
+    {
+      "id": "SRI-P017",
+      "name": "SEO Meta Draft Generator",
+      "type": "Browser Tool",
+      "price": "Free",
+      "route": "products/micro/seo-meta-generator.html",
+      "status": "PRODUCED_PUBLIC"
+    },
+    {
+      "id": "SRI-P018",
+      "name": "Research & Evidence Support",
+      "type": "Digital Service",
+      "price": "Inquiry",
+      "route": "products/research-evidence-support.html",
+      "status": "SERVICE_READY"
+    },
+    {
+      "id": "SRI-P019",
+      "name": "AI Workflow & Automation",
+      "type": "Digital Service",
+      "price": "Inquiry",
+      "route": "products/ai-workflow-automation.html",
+      "status": "SERVICE_READY"
+    },
+    {
+      "id": "SRI-P020",
+      "name": "Digital Publishing",
+      "type": "Digital Service",
+      "price": "Inquiry",
+      "route": "products/digital-publishing.html",
+      "status": "SERVICE_READY"
+    },
+    {
+      "id": "SRI-P021",
+      "name": "AI Marketing Assets",
+      "type": "Digital Service",
+      "price": "Inquiry",
+      "route": "products/ai-marketing-assets.html",
+      "status": "SERVICE_READY"
+    },
+    {
+      "id": "SRI-P022",
+      "name": "Creative Production",
+      "type": "Digital Service",
+      "price": "Inquiry",
+      "route": "products/creative-production.html",
+      "status": "SERVICE_READY"
+    },
+    {
+      "id": "SRI-P023",
+      "name": "AI-assisted Music Production",
+      "type": "Creative Service",
+      "price": "Inquiry",
+      "route": "https://rampaulsaini.github.io/yatharth-music-ai/",
+      "status": "SERVICE_READY"
+    },
+    {
+      "id": "SRI-P024",
+      "name": "Audio / Podcast Production",
+      "type": "Creative Service",
+      "price": "Inquiry",
+      "route": "public-income-showcase.html",
+      "status": "SERVICE_READY"
+    },
+    {
+      "id": "SRI-P025",
+      "name": "Voice / Narration Packaging",
+      "type": "Creative Service",
+      "price": "Inquiry",
+      "route": "employment.html",
+      "status": "SERVICE_READY"
+    }
+  ]
+}
