@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-06",
+  "production_rule": "artifact-first",
+  "products": [
+    {"id":"SRI-PREMIUM-001","name":"Research Evidence & Verification Toolkit","price_inr":999,"artifact":"products/digital/research-evidence-verification-toolkit.md","status":"PRODUCED"},
+    {"id":"SRI-PREMIUM-002","name":"AI-ML-NLP Automission Production Blueprint","price_inr":1499,"artifact":"products/digital/ai-ml-nlp-automission-production-blueprint.md","status":"PRODUCED"},
+    {"id":"SRI-PREMIUM-003","name":"Digital Product Factory Blueprint","price_inr":1999,"artifact":"products/digital/digital-product-factory-blueprint.md","status":"PRODUCED"},
+    {"id":"SRI-PREMIUM-004","name":"निष्पक्ष समझ • शमीकरण • यथार्थ सिद्धांत — Research Starter","price_inr":1499,"artifact":"products/digital/yatharth-research-starter.md","status":"PRODUCED"}
+  ],
+  "commercial_state":"READY_FOR_ORDER",
+  "payment_state":"NOT_VERIFIED",
+  "delivery_state":"MANUAL_OR_EXTERNAL_ROUTE",
+  "scientific_verification":"NOT_APPLICABLE_AS_PRODUCT_RELEASE_CRITERION"
+}
