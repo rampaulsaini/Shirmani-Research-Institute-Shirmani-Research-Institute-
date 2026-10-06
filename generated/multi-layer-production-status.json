@@ -64,14 +64,13 @@
   "production_outputs": {
     "concrete_results_this_cycle": 500,
     "lane_artifacts": {
-      "ai-ml-nlp": 419,
-      "content": 26,
-      "economic": 1,
-      "federation": 2,
-      "platform": 22,
-      "research": 4,
-      "security-quality": 23,
-      "social-media": 3
+      "ai-ml-nlp": 424,
+      "content": 18,
+      "economic": 3,
+      "federation": 3,
+      "platform": 27,
+      "research": 2,
+      "security-quality": 23
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
