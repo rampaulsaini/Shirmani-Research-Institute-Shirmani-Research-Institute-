@@ -1,14 +1,18 @@
-name: Product Review
-description: Customer rating, experience and improvement feedback for a SHIRMANI public product.
-title: "Customer Review — "
-labels: ["product-review", "quality-improvement"]
+name: "Public Product Review"
+description: "Product quality, usability, value and improvement feedback"
+title: "[Review] "
+labels: ["customer-review"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        सार्वजनिक product review दें। यह feedback production quality improvement signal बनेगा।
   - type: input
-    id: product_id
+    id: product
     attributes:
       label: Product ID
-      description: Enter the Product ID shown on the showroom/product page.
-      placeholder: SP-0001
+      description: "उदाहरण: SP-0001"
+      placeholder: "SP-0001"
     validations:
       required: true
   - type: dropdown
@@ -24,20 +28,19 @@ body:
     validations:
       required: true
   - type: textarea
-    id: review
+    id: quality
     attributes:
-      label: Customer review
-      description: What worked, what should improve, and what would make the product better?
-      placeholder: Product इस्तेमाल करने का वास्तविक अनुभव लिखें।
+      label: Product quality review
+      description: "क्या अच्छा है और कहाँ सुधार चाहिए?"
     validations:
       required: true
   - type: textarea
     id: improvement
     attributes:
-      label: Quality improvement suggestion
-      description: Concrete feature, usability, quality or content improvement.
-  - type: input
-    id: source
+      label: Improvement request
+      description: "अगले version में क्या बेहतर होना चाहिए?"
+  - type: textarea
+    id: usage
     attributes:
-      label: Product page
-      placeholder: https://rampaulsaini.github.io/.../showroom-product.html?id=SP-0001
+      label: Usage result
+      description: "आपने product को किस काम में इस्तेमाल किया?"
