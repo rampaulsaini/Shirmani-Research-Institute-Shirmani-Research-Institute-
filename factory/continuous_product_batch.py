@@ -19,7 +19,11 @@ def main():
     for p in catalog["products"]:
         asset=OUT/(p["id"]+".html")
         if asset.is_file() and asset.stat().st_size >= 100:
-            done[p["id"]]=previous.get(p["id"],{"id":p["id"]})
+            prior=previous.get(p["id"])
+            if prior and prior.get("production_state")=="PRODUCED":
+                done[p["id"]]=prior
+            else:
+                done[p["id"]]={"id":p["id"],"production_state":"PRODUCED","sale_state":"READY_FOR_ORDER","artifact_url":"products/concrete/"+p["id"]+".html","production_batch":"EXISTING-ASSET-SYNC","produced_at":now(),"qc_code":"QC-PROD-"+p["id"],"gate_no":"GATE-PRODUCTION","dispatch_no":"NO"}
         else:
             pending.append(p)
     pending=pending[:BATCH]
