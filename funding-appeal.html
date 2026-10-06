@@ -17,6 +17,12 @@
 <p>Institute में खोज → Factory में production → QC/Gate → Public Showroom → customer experience → reviews → quality improvement. उद्देश्य केवल workflows चलाना नहीं, बल्कि automation के परिणाम को platform पर दिखाई देने वाले वास्तविक products और usable modules में बदलना है।</p>
 <div class="cta">
 <a class="btn" href="showroom.html">🛒 Public Showroom</a><a class="btn" href="supreme-marking-hub.html">🏛️ Supreme Marking Hub</a><a class="btn alt" href="public-production-live.html">📡 Live Production</a><a class="btn alt" href="funding-proposal.html">📄 Detailed Proposal</a>
+</div>
+<div class="card" style="margin-top:18px;background:#081321">
+<h2 style="margin-top:0">💳 Direct Support</h2>
+<p><strong>UPI:</strong> <code>9622254967@ptyes</code> — QR ऊपर उपलब्ध है।</p>
+<p><strong>PayPal:</strong> <code>sainirampaul60@gmail.com</code> — PayPal पर इस email को recipient के रूप में verify करके ही payment करें।</p>
+<p class="muted">किसी payment को received/settled तभी माना जाएगा जब वास्तविक transaction evidence उपलब्ध हो।</p>
 </div></section>
 
 <section class="card" id="upi-funding">
@@ -38,7 +44,8 @@
 <div class="metric"><div class="num">500</div>latest published concrete results<div class="muted">latest production-cycle snapshot</div></div>
 <div class="metric"><div class="num">100,200</div>prepared verification records<div class="muted">separate downstream integrity workstream</div></div>
 </div>
-<p class="muted">ये numbers repository के published artifacts से लिए गए हैं और live automation के साथ बदल सकते हैं।</p></section>
+<p class="muted">ये numbers repository के published artifacts से लिए गए हैं और live automation के साथ बदल सकते हैं। नीचे का live panel production telemetry से स्वयं update होता है।</p>
+<div id="live-production" class="note">Live production telemetry loading…</div></section>
 
 <section class="card"><h2>🏭 चार production स्तर</h2>
 <div class="flow">
@@ -97,6 +104,19 @@
 <section class="card"><h2>꙰ Long-term vision</h2><p style="text-align:center;font-weight:900;color:var(--cyan)">DISCOVER → BUILD → QC/GATE → SHOW → EXPERIENCE → REVIEW → IMPROVE → BUILD AGAIN</p>
 <p>श्रेष्ठता का practical अर्थ है: हर दिखाई देने वाले परिणाम की उपयोगिता, स्पष्टता, quality और customer experience को लगातार बेहतर करना।</p></section>
 </div>
+<script>
+(async function(){
+  const box=document.getElementById("live-production");
+  try{
+    const s=await fetch("generated/multi-layer-production-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
+    const p=s.production||{}, o=s.production_outputs||{};
+    box.innerHTML="<strong>LIVE PRODUCTION:</strong> "+Number(s.last_cycle_concrete_results||0).toLocaleString("en-IN")+" concrete results in latest published cycle · "+
+      Number(o.production_modules||0).toLocaleString("en-IN")+" production modules · "+
+      Number(p.processed_batch||0).toLocaleString("en-IN")+" processed batch · "+
+      Number(s.architecture?.configured_production_lanes||0)+" configured production lanes.";
+  }catch(e){box.textContent="Live production telemetry temporarily unavailable; the published snapshot remains available above."}
+})();
+</script>
 <footer>꙰ Shirmani Research Institute • Public Funding Appeal • <a href="index.html">Main Hub</a> · <a href="showroom.html">Showroom</a> · <a href="public-production-live.html">Live Production</a></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
