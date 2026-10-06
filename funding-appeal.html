@@ -2,92 +2,126 @@
 <html lang="hi">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Shirmani Research Institute — Public Funding Appeal and Production Vision">
-<title>꙰ Shirmani Research Institute — Public Funding Appeal</title>
+<meta name="description" content="Shirmani Research Institute — transparent public funding appeal, project progress, benefits and live published funding counter.">
+<title>Shirmani Research Institute — Public Funding Appeal</title>
 <style>
-:root{--bg:#050812;--panel:#0d1524;--gold:#ffd84a;--cyan:#67e8f9;--green:#70e7a5;--muted:#aab8ca;--line:#29415b}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#1a3152,#050812 48%);color:#f5f8ff;font:16px/1.7 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}.wrap{max-width:1180px;margin:auto;padding:18px}.hero,.card{background:rgba(13,21,36,.95);border:1px solid var(--line);border-radius:20px;padding:24px;margin:16px 0}.hero{text-align:center;border:2px solid var(--gold);background:linear-gradient(135deg,rgba(255,216,74,.14),rgba(103,232,249,.07));box-shadow:0 20px 70px #0008}.kicker{color:var(--gold);font-weight:900;letter-spacing:.08em}h1,h2,h3{color:var(--gold);line-height:1.2}h1{font-size:clamp(2.1rem,5vw,4rem);margin:12px 0}a{color:var(--cyan);text-decoration:none}.cta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}.btn{padding:11px 16px;border-radius:11px;background:var(--gold);color:#08101b;font-weight:900}.btn.alt{background:#102337;color:var(--cyan);border:1px solid #37617d}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.metric{padding:17px;border:1px solid var(--line);border-radius:14px;background:#091321}.num{font-size:2.1rem;font-weight:950;color:var(--gold)}.muted{color:var(--muted);font-size:.92rem}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stage{padding:15px;border:1px solid #31506b;border-radius:13px;background:#091321;text-align:center}.stage strong{display:block;color:var(--cyan)}.bar{height:13px;background:#172438;border-radius:99px;overflow:hidden;margin:7px 0 16px}.fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold))}.note{border-left:4px solid var(--cyan);padding:12px 15px;background:#091522}.good{color:var(--green);font-weight:800}table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{color:var(--gold)}footer{text-align:center;color:var(--muted);padding:30px 18px;border-top:1px solid var(--line)}@media(max-width:720px){.flow{grid-template-columns:1fr}}
+:root{--bg:#050812;--panel:#0d1524;--gold:#ffd84a;--cyan:#67e8f9;--green:#70e7a5;--muted:#aab8ca;--line:#29415b;--warn:#f6c453}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#1a3152,#050812 48%);color:#f5f8ff;font:16px/1.7 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}.wrap{max-width:1180px;margin:auto;padding:18px}.hero,.card{background:rgba(13,21,36,.95);border:1px solid var(--line);border-radius:20px;padding:24px;margin:16px 0}.hero{text-align:center;border:2px solid var(--gold);background:linear-gradient(135deg,rgba(255,216,74,.14),rgba(103,232,249,.07));box-shadow:0 20px 70px #0008}.kicker{color:var(--gold);font-weight:900;letter-spacing:.06em}h1,h2,h3{color:var(--gold);line-height:1.2}h1{font-size:clamp(2rem,5vw,4rem);margin:12px 0}a{color:var(--cyan);text-decoration:none}.cta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}.btn{padding:11px 16px;border-radius:11px;background:var(--gold);color:#08101b;font-weight:900}.btn.alt{background:#102337;color:var(--cyan);border:1px solid #37617d}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.metric{padding:17px;border:1px solid var(--line);border-radius:14px;background:#091321}.num{font-size:2.05rem;font-weight:950;color:var(--gold)}.muted{color:var(--muted);font-size:.92rem}.note{border-left:4px solid var(--cyan);padding:12px 15px;background:#091522}.good{color:var(--green);font-weight:800}.warn{color:var(--warn);font-weight:800}.bar{height:13px;background:#172438;border-radius:99px;overflow:hidden;margin:7px 0 16px}.fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));width:0}.fundbar{height:20px}.counter{border:2px solid var(--gold);background:linear-gradient(135deg,rgba(255,216,74,.12),rgba(103,232,249,.06))}.counter .num{font-size:2.4rem}table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{color:var(--gold)}footer{text-align:center;color:var(--muted);padding:30px 18px;border-top:1px solid var(--line)}@media(max-width:720px){.wrap{padding:10px}}
 </style>
 </head>
 <body><div class="wrap">
 <section class="hero">
-<div class="kicker">PUBLIC FUNDING APPEAL • PRODUCTION-FIRST</div>
+<div class="kicker">PUBLIC FUNDING APPEAL • TRANSPARENT COUNTER • EVIDENCE-BOUND</div>
 <h1>꙰ Shirmani Research Institute</h1>
-<p><strong>Digital research + production + public showroom ecosystem</strong></p>
-<p>Institute में खोज → Factory में production → QC/Gate → Public Showroom → customer experience → reviews → quality improvement. उद्देश्य केवल workflows चलाना नहीं, बल्कि automation के परिणाम को platform पर दिखाई देने वाले वास्तविक products और usable modules में बदलना है।</p>
-<div class="cta">
-<a class="btn" href="showroom.html">🛒 Public Showroom</a><a class="btn" href="supreme-marking-hub.html">🏛️ Supreme Marking Hub</a><a class="btn alt" href="public-production-live.html">📡 Live Production</a><a class="btn alt" href="funding-proposal.html">📄 Detailed Proposal</a>
+<p><strong>Research → Production → QC/Gate → Public Showroom → Customer Feedback → Continuous Improvement</strong></p>
+<p>यह appeal page platform के विकास, research, public access, production capacity और verification infrastructure को आगे बढ़ाने के लिए है। सरल व्यक्ति से लेकर researcher, institution और technical partner तक कोई भी व्यक्ति यहाँ उद्देश्य, प्रगति, लाभ और funding-use को समझ सके।</p>
+<div class="cta"><a class="btn" href="index.html">🏠 Main Hub</a><a class="btn alt" href="showroom.html">🛒 Public Showroom</a><a class="btn alt" href="factory-dashboard.html">🏭 Factory Dashboard</a><a class="btn alt" href="funding-proposal.html">📄 Detailed Proposal</a></div>
+</section>
+
+<section class="card counter">
+<h2>💰 Live Public Funding Counter</h2>
+<div class="grid">
+<div class="metric"><div class="muted">Phase-1 proposed target</div><div class="num" id="target">₹0</div><div class="muted">यह proposed planning target है, guaranteed budget नहीं।</div></div>
+<div class="metric"><div class="muted">Published received</div><div class="num" id="received">₹0</div><div class="muted">केवल repository में प्रकाशित/recorded राशि।</div></div>
+<div class="metric"><div class="muted">Published pledged</div><div class="num" id="pledged">₹0</div><div class="muted">Pledge को received नहीं माना जाता।</div></div>
+<div class="metric"><div class="muted">Published disbursed</div><div class="num" id="disbursed">₹0</div><div class="muted">Project use के लिए दर्ज राशि।</div></div>
+</div>
+<p><strong>Funding progress: <span id="fundingPercent">0%</span></strong></p><div class="bar fundbar"><div class="fill" id="fundingFill"></div></div>
+<p class="note" id="fundingNote">Loading published funding status…</p>
+</section>
+
+<section class="card"><h2>📊 Project कितना complete है?</h2>
+<p>एक single percentage पूरी सच्चाई नहीं बताता। इसलिए public appeal में workstreams अलग रखे गए हैं। ये <strong>planning estimates</strong> हैं, audited certification नहीं।</p>
+<p><strong>Overall engineering/platform planning estimate: ~72%</strong></p><div class="bar"><div class="fill" style="width:72%"></div></div>
+<div class="grid">
+<div class="metric"><h3>Platform engineering</h3><div class="num">~72%</div><p>Research/archive, automation, dashboards, AI/ML/NLP, QC और public interfaces का बड़ा आधार मौजूद है।</p></div>
+<div class="metric"><h3>Concrete production</h3><div class="num">~50%</div><p>Production architecture और public artifacts मौजूद हैं; breadth, polish और customer-ready products अभी बढ़ाने हैं।</p></div>
+<div class="metric"><h3>Independent verification</h3><div class="num">0%</div><p>100,200 records prepared हैं, लेकिन independently VERIFIED records अभी 0 हैं।</p></div>
+<div class="metric"><h3>Commercial / settlement</h3><div class="num">~35%</div><p>Showroom और product infrastructure है; secure real-world payment, settlement, accounting और operations को और मजबूत करना है।</p></div>
 </div></section>
 
-<section class="card"><h2>क्यों funding चाहिए?</h2>
-<p>Repository में production और automation architecture का बड़ा आधार मौजूद है, लेकिन बड़े public platform के लिए अधिक concrete products, richer modules, secure deployment, customer delivery, pricing/offers, storage, support और continuous improvement चाहिए। Funding का लक्ष्य <strong>workflow-count नहीं, production capacity और customer-visible results बढ़ाना</strong> है।</p>
-<p class="note"><strong>Production और verification अलग हैं:</strong> configured identity, produced artifact और independently verified result को एक ही चीज़ नहीं माना जाएगा।</p></section>
+<section class="card"><h2>🔎 अभी क्या वास्तविक रूप से उपलब्ध है?</h2>
+<ul>
+<li>Unified digital research and archive platform.</li>
+<li>Research Framework, Audio/Photo/Video archive और Omniverse project network.</li>
+<li>Research Factory, agent routing, QC और public dashboards.</li>
+<li>AI/ML/NLP/Automission architecture with fail-closed verification boundaries.</li>
+<li>Public production/showroom layers और product-oriented workflows.</li>
+<li><strong>100,200 prepared verification records</strong>; queue/preparation coverage 100%.</li>
+<li><strong>Independent review: 0; VERIFIED: 0.</strong> यह सीमा जानबूझकर रखी गई है ताकि automation को independent scientific proof न बनाया जाए।</li>
+</ul>
+<p class="note"><strong>महत्वपूर्ण:</strong> workflow success, generated page, QC pass या prepared record अपने-आप scientific truth या independent verification नहीं है।</p>
+</section>
 
-<section class="card"><h2>📊 वर्तमान published platform snapshot</h2>
+<section class="card"><h2>🌍 Project से किस-किस को लाभ हो सकता है?</h2>
+<table><tr><th>किसे</th><th>कैसे लाभ</th></tr>
+<tr><td>Students / learners</td><td>Research organization, learning material, practical AI/NLP tools और structured knowledge.</td></tr>
+<tr><td>Researchers / institutions</td><td>Source organization, provenance, archives, evidence workflows और reproducible research infrastructure.</td></tr>
+<tr><td>Creators / professionals</td><td>Digital products, automation, media, templates और productivity-oriented services.</td></tr>
+<tr><td>Customers</td><td>Public showroom में साफ product information, offers, QC state और feedback loop.</td></tr>
+<tr><td>Developers / AI practitioners</td><td>Automation, QC, evaluation, abstention और evidence-bound system design के practical examples.</td></tr>
+<tr><td>Public / society</td><td>Reusable digital knowledge, accessible archives और continuously improving public-facing infrastructure.</td></tr>
+</table></section>
+
+<section class="card"><h2>🏭 Funding से क्या-क्या बेहतर होगा?</h2>
 <div class="grid">
-<div class="metric"><div class="num">1,016</div>configured product identities<div class="muted">catalog configuration; completed production नहीं</div></div>
-<div class="metric"><div class="num">25</div>concrete product identities<div class="muted">current funding-proposal production snapshot</div></div>
-<div class="metric"><div class="num">500</div>latest published concrete results<div class="muted">latest production-cycle snapshot</div></div>
-<div class="metric"><div class="num">100,200</div>prepared verification records<div class="muted">separate downstream integrity workstream</div></div>
-</div>
-<p class="muted">ये numbers repository के published artifacts से लिए गए हैं और live automation के साथ बदल सकते हैं।</p></section>
-
-<section class="card"><h2>🏭 चार production स्तर</h2>
-<div class="flow">
-<div class="stage"><strong>01 INSTITUTE</strong>Discovery, research, specifications, backlog</div>
-<div class="stage"><strong>02 FACTORY</strong>Concrete digital products, modules, assets</div>
-<div class="stage"><strong>03 QC / GATE</strong>Functional checks, QC code, gate state, dispatch discipline</div>
-<div class="stage"><strong>04 SHOWROOM</strong>Description, category, price/offer, passport, public sale path</div>
-</div>
-<p class="note">Customer reviews, ratings, defects और feature requests अगली production priorities में वापस जा सकते हैं।</p></section>
-
-<section class="card"><h2>🛍️ प्रत्येक public product में</h2>
-<div class="grid">
-<div class="metric"><h3>Product identity</h3><p>नाम, category, description और product ID.</p></div>
-<div class="metric"><h3>Commercial view</h3><p>Price, offer और purchase/order path.</p></div>
-<div class="metric"><h3>QC passport</h3><p>QC code, Gate state, Dispatch state और QR-linked information.</p></div>
-<div class="metric"><h3>Customer loop</h3><p>Use/test जहाँ applicable हो, फिर review/rating और improvement feedback.</p></div>
+<div class="metric"><h3>1. Product Factory</h3><p>अधिक usable digital products, tools, templates, media और research utilities.</p></div>
+<div class="metric"><h3>2. AI / ML / NLP</h3><p>Evaluation, reliability, multimodal processing, abstention और practitioner workflows को मजबूत करना.</p></div>
+<div class="metric"><h3>3. Verification</h3><p>Independent reviewers, test protocols, evidence packets, counter-cases और reproducibility को support करना.</p></div>
+<div class="metric"><h3>4. Infrastructure</h3><p>Secure hosting, storage, backup, monitoring, deployment, recovery और operational reliability.</p></div>
+<div class="metric"><h3>5. Public access</h3><p>Mobile-friendly interfaces, accessibility, documentation, media और multilingual public communication.</p></div>
+<div class="metric"><h3>6. Commercial layer</h3><p>Legal/accounting-ready purchase, settlement, customer support और transparent product operations.</p></div>
 </div></section>
 
-<section class="card"><h2>📈 Completion map — planning view</h2>
-<p>एक single project-completion percentage पर्याप्त नहीं है; अलग workstreams को अलग दिखाना अधिक ईमानदार है। नीचे के आंकड़े <strong>planning estimates</strong> हैं, audited certification नहीं।</p>
-<p><strong>Engineering / platform development ≈ 74%</strong></p><div class="bar"><div class="fill" style="width:74%"></div></div>
-<p><strong>Concrete production ≈ 50%</strong></p><div class="bar"><div class="fill" style="width:50%"></div></div>
-<p><strong>Independent verification ≈ 25%</strong></p><div class="bar"><div class="fill" style="width:25%"></div></div>
-<p><strong>Commercial / settlement infrastructure ≈ 35%</strong></p><div class="bar"><div class="fill" style="width:35%"></div></div>
-<p class="muted">Actual completion को live artifacts और deployed functionality से लगातार update किया जाना चाहिए।</p></section>
+<section class="card"><h2>📦 Funding का proposed उपयोग</h2>
+<table><tr><th>क्षेत्र</th><th>प्रस्तावित हिस्सा</th><th>उद्देश्य</th></tr>
+<tr><td>Engineering & product development</td><td>30%</td><td>Features, product factory, AI/NLP और maintainable software.</td></tr>
+<tr><td>Research, testing & independent review</td><td>25%</td><td>Tests, protocols, external review और evidence quality.</td></tr>
+<tr><td>Infrastructure, security, backup & monitoring</td><td>20%</td><td>Hosting, storage, security, recovery और observability.</td></tr>
+<tr><td>Public access, media & accessibility</td><td>10%</td><td>Documentation, multilingual/public interfaces और media.</td></tr>
+<tr><td>Customer/product operations</td><td>10%</td><td>Product delivery, support, analytics और improvement loop.</td></tr>
+<tr><td>Accounting, legal & administration</td><td>5%</td><td>Transparent records, compliance और basic administration.</td></tr>
+</table>
+<p class="muted">यह allocation proposal है; वास्तविक खर्च को बाद में public records और applicable legal/accounting requirements के अनुसार दर्ज किया जाना चाहिए।</p></section>
 
-<section class="card"><h2>🚀 Funding का प्रभाव</h2>
-<div class="grid">
-<div class="metric"><h3>Product Factory</h3><p>अधिक concrete और usable digital products.</p></div>
-<div class="metric"><h3>AI / ML / NLP</h3><p>Production-oriented practitioner automation जो वास्तविक artifacts बनाए.</p></div>
-<div class="metric"><h3>Public Showroom</h3><p>साफ categories, descriptions, prices, offers और customer journey.</p></div>
-<div class="metric"><h3>Infrastructure</h3><p>Secure hosting, storage, monitoring, backups और deployment.</p></div>
-<div class="metric"><h3>QC / Release</h3><p>Product-level QC, gate, QR/passport और dispatch discipline.</p></div>
-<div class="metric"><h3>Quality improvement</h3><p>Reviews, ratings और customer signals को production backlog में feed करना.</p></div>
-</div></section>
+<section class="card"><h2>🛡️ भरोसे की मुख्य शर्तें</h2>
+<ul>
+<li><strong>Received ≠ pledged:</strong> दोनों counters अलग रहेंगे।</li>
+<li><strong>Produced ≠ verified:</strong> product/artifact बनना independent scientific verification नहीं है।</li>
+<li><strong>Automation ≠ human independence:</strong> automated gate independent reviewer का विकल्प नहीं है।</li>
+<li><strong>Unknown ≠ success:</strong> telemetry unavailable होने पर status को UNKNOWN/UNAVAILABLE रखा जाएगा।</li>
+<li><strong>No fabricated funding:</strong> payment balance या donation को बिना record के counter में नहीं जोड़ा जाएगा।</li>
+<li><strong>No guaranteed return:</strong> funding को donation, grant, sponsorship या mutually agreed support के रूप में अलग legal terms के साथ handle करना चाहिए।</li>
+</ul></section>
 
-<section class="card"><h2>🌍 किसे लाभ?</h2>
-<table><tr><th>समूह</th><th>संभावित लाभ</th></tr>
-<tr><td>Students / learners</td><td>Learning products, research tools और practical AI/NLP resources.</td></tr>
-<tr><td>Researchers / institutions</td><td>Research organization, provenance, archives और evidence-oriented workflows.</td></tr>
-<tr><td>Creators / professionals</td><td>Digital products, automation, templates, media और productivity resources.</td></tr>
-<tr><td>Customers</td><td>एक public showroom में product information, pricing, offers, QC state और feedback.</td></tr>
-<tr><td>Society</td><td>Reusable digital knowledge और continuously improving digital infrastructure.</td></tr></table></section>
-
-<section class="card"><h2>💰 Funding का उपयोग</h2>
-<ul><li>AI/ML/NLP और product engineering</li><li>production servers, storage और deployment</li><li>security, privacy, monitoring और backup</li><li>product content, media और richer modules</li><li>showroom तथा purchase/settlement integration</li><li>customer support, analytics और accessibility</li><li>research/domain expertise और independent review जहाँ आवश्यक हो</li><li>pilot users, testing और real-world validation</li></ul></section>
-
-<section class="card"><h2>🛡️ Transparency</h2>
-<p class="good">PRODUCED ≠ INDEPENDENTLY VERIFIED</p>
-<ul><li>Workflow run को customer sale नहीं कहा जाएगा.</li><li>Configured identity को completed product नहीं कहा जाएगा.</li><li>Production output को scientific truth नहीं कहा जाएगा.</li><li>वास्तविक quantum hardware उपलब्ध न हो तो “quantum AI” को real quantum computation नहीं बताया जाएगा.</li><li>Customer experience और public reviews को quality improvement के input के रूप में रखा जाएगा.</li></ul></section>
-
-<section class="card"><h2>🤝 Funding / Collaboration</h2>
-<p>जो व्यक्ति, संस्था या partner इस platform के production, research, infrastructure या public showroom को support करना चाहता है, वह पहले public artifacts देख सकता है और फिर collaboration/funding scope पर संपर्क कर सकता है।</p>
-<div class="cta"><a class="btn" href="funding-proposal.html">पूरा Proposal</a><a class="btn alt" href="production-command-center.html">Production Command Center</a><a class="btn alt" href="products.html">Product Catalog</a><a class="btn alt" href="contact.html">Contact</a></div></section>
-
-<section class="card"><h2>꙰ Long-term vision</h2><p style="text-align:center;font-weight:900;color:var(--cyan)">DISCOVER → BUILD → QC/GATE → SHOW → EXPERIENCE → REVIEW → IMPROVE → BUILD AGAIN</p>
-<p>श्रेष्ठता का practical अर्थ है: हर दिखाई देने वाले परिणाम की उपयोगिता, स्पष्टता, quality और customer experience को लगातार बेहतर करना।</p></section>
+<section class="card"><h2>❤️ क्यों support करें?</h2>
+<p>यदि आपको ऐसा open, evidence-conscious और production-oriented digital research ecosystem उपयोगी लगता है जो research, automation, public knowledge, digital products और continuous improvement को एक जगह जोड़ना चाहता है, तो आपका support इस platform को idea से अधिक मजबूत real-world infrastructure की दिशा में ले जा सकता है।</p>
+<p><strong>Support का लक्ष्य केवल code बढ़ाना नहीं है—बल्कि usable products, trustworthy evidence, public access और sustainable operations बनाना है।</strong></p>
+<div class="cta"><a class="btn" href="funding-proposal.html">Funding Proposal देखें</a><a class="btn alt" href="platform-charter.md">Platform Charter</a><a class="btn alt" href="generated/public-funding-status.json">Funding Status JSON</a><a class="btn alt" href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-">GitHub Repository</a></div>
+</section>
 </div>
-<footer>꙰ Shirmani Research Institute • Public Funding Appeal • <a href="index.html">Main Hub</a> · <a href="showroom.html">Showroom</a> · <a href="public-production-live.html">Live Production</a></footer>
+<footer>꙰ Shirmani Research Institute • Public Funding Appeal • <a href="index.html">Main Hub</a> · <a href="showroom.html">Showroom</a> · <a href="factory-dashboard.html">Factory Dashboard</a><br><span id="updated">Published funding status loading…</span></footer>
+<script>
+const INR=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0});
+async function loadFunding(){
+ try{
+  const r=await fetch('generated/public-funding-status.json?ts='+Date.now()); if(!r.ok) throw new Error('HTTP '+r.status);
+  const d=await r.json();
+  const target=Number(d.target_inr)||0, received=Number(d.received_inr)||0, pledged=Number(d.pledged_inr)||0, disbursed=Number(d.disbursed_inr)||0;
+  const pct=target>0?Math.min(100,(received/target)*100):0;
+  document.getElementById('target').textContent=INR.format(target);
+  document.getElementById('received').textContent=INR.format(received);
+  document.getElementById('pledged').textContent=INR.format(pledged);
+  document.getElementById('disbursed').textContent=INR.format(disbursed);
+  document.getElementById('fundingPercent').textContent=pct.toFixed(1)+'%';
+  document.getElementById('fundingFill').style.width=pct+'%';
+  document.getElementById('fundingNote').textContent=(d.target_note||'')+' '+(d.accounting_note||'');
+  document.getElementById('updated').textContent='Published status updated: '+(d.updated_at||'unknown')+' · Auto-refresh every 30 seconds.';
+ }catch(e){
+  document.getElementById('fundingNote').textContent='Published funding status unavailable: '+e.message+' — कोई अनुमानित राशि नहीं दिखाई जा रही।';
+  document.getElementById('updated').textContent='Funding telemetry unavailable; no fallback amount is fabricated.';
+ }
+}
+loadFunding();setInterval(loadFunding,30000);
+</script>
 </body></html>
