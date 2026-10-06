@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "enabled": false,
-  "vpa": "",
+  "enabled": true,
+  "vpa": "9622254967@ptyes",
   "payee_name": "Shirmani Research Institute",
   "currency": "INR",
-  "note": "Public funding support",
+  "note": "Shirmani Research Institute public funding support",
   "security": {
     "never_invent_vpa": true,
     "financial_actions_require_owner_control": true
