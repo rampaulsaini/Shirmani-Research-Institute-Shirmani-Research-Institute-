@@ -1,0 +1,46 @@
+name: "Product Review & Quality Feedback"
+description: "किसी वास्तविक SHIRMANI product को इस्तेमाल करने के बाद rating और quality feedback दें।"
+title: "[PRODUCT REVIEW] "
+labels: ["product-review"]
+body:
+  - type: input
+    id: product_id
+    attributes:
+      label: Product ID
+      description: "जिस product को आपने इस्तेमाल किया उसका exact Product ID लिखें।"
+      placeholder: "SP-0001"
+    validations:
+      required: true
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Overall Rating
+      options: ["5","4","3","2","1"]
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: इस्तेमाल का परिणाम
+      description: "Product ने आपके लिए वास्तव में क्या किया?"
+    validations:
+      required: true
+  - type: textarea
+    id: quality
+    attributes:
+      label: Quality Improvement
+      description: "क्या बेहतर होना चाहिए? bug, कमी, कठिनाई या उपयोगी सुझाव लिखें।"
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence / Reproduction
+      description: "यदि संभव हो तो input, output, screenshot/link या reproducible steps दें।"
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Public review
+      options:
+        - label: "मैं समझता/समझती हूँ कि यह review public repository record का हिस्सा बन सकता है।"
+          required: true
