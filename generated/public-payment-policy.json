@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "title": "SHIRMANI Public Payment Policy",
+  "status": "PUBLIC",
+  "rule": "All platform support, product and service payments must use only the configured Paytm UPI VPA or PayPal recipient.",
+  "methods": [
+    {"method":"Paytm UPI","vpa":"9622254967@ptyes","currency":"INR","qr_source":"generated/funding-upi.json","instruction":"Before paying, verify the payee name and amount in the payment app."},
+    {"method":"PayPal","recipient":"sainirampaul60@gmail.com","instruction":"Open PayPal and verify the recipient email before sending."}
+  ],
+  "safety": {"no_card_details_on_public_pages":true,"no_passwords_or_credentials":true,"payment_received_only_with_transaction_evidence":true,"no_invented_checkout_url":true}
+}
