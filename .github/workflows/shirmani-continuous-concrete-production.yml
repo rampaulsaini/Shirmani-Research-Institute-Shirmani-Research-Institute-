@@ -19,12 +19,38 @@ jobs:
           fetch-depth: 1
       - name: Produce next concrete public batch
         run: python3 factory/continuous_product_batch.py
+      - name: Synchronize canonical public production status
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone
+          g=Path("generated")
+          catalog=json.loads((g/"1000-digital-products.json").read_text())
+          overlay=json.loads((g/"concrete-production-overlay.json").read_text())
+          produced=len(overlay.get("products",[]))
+          status={
+            "generated_at":datetime.now(timezone.utc).isoformat(),
+            "architecture":["INSTITUTE","FACTORY","QC","SHOWROOM_SALE"],
+            "product_count":int(catalog.get("product_count",len(catalog.get("products",[])))),
+            "produced":produced,
+            "remaining":max(0,int(catalog.get("product_count",0))-produced),
+            "qc_ready":produced,
+            "offered":produced,
+            "dispatch_no":produced,
+            "dispatch_yes":0,
+            "verification_scope":"DOWNSTREAM_PRODUCT_RESULT",
+            "source_of_truth":"generated/concrete-production-overlay.json"
+          }
+          (g/"production-status.json").write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n")
+          print(json.dumps(status,ensure_ascii=False))
+          PY
       - name: Publish concrete production through PR
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -e
-          if git diff --quiet -- products/production generated/concrete-production-overlay.json generated/continuous-production-batch-status.json; then
+          if git diff --quiet -- products/production generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/production-status.json; then
             echo "No production delta."
             exit 0
           fi
@@ -32,9 +58,9 @@ jobs:
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$BRANCH"
-          git add products/production generated/concrete-production-overlay.json generated/continuous-production-batch-status.json
+          git add products/production generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/production-status.json
           git commit -m "auto(production): materialize next concrete product batch"
           git push --set-upstream origin "$BRANCH"
-          PR_URL=$(gh pr create --base main --head "$BRANCH" --title "auto(production): concrete product batch ${GITHUB_RUN_NUMBER}" --body "Automated production batch: concrete public product artifacts first; QC/dispatch remain downstream.")
+          PR_URL=$(gh pr create --base main --head "$BRANCH" --title "auto(production): concrete product batch ${GITHUB_RUN_NUMBER}" --body "Automated production batch: concrete public product artifacts first; canonical production status follows the concrete overlay; QC/dispatch remain downstream.")
           echo "$PR_URL"
           gh pr merge "$BRANCH" --auto --squash --delete-branch || echo "Auto-merge unavailable; PR remains open for repository gates."
