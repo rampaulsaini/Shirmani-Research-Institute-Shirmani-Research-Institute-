@@ -6,6 +6,7 @@ on:
       - "factory/real_product_factory.py"
       - "factory/concrete_product_modules.py"
       - "factory/production_dashboard.py"
+      - "factory/production_truth_report.py"
       - ".github/workflows/shirmani-real-product-factory.yml"
   schedule:
     - cron: "*/5 * * * *"
@@ -53,11 +54,13 @@ jobs:
           print("QC gate: READY_FOR_QC")
           print("dispatch: NO")
           PY
+      - name: Build canonical production truth report
+        run: python3 factory/production_truth_report.py
       - name: Publish production results to platform
         run: |
           git config user.name 'SHIRMANI Real Product Factory'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add generated/1000-digital-products.json generated/real-product-factory-status.json generated/PRODUCT-PASSPORTS.jsonl products/modules products/production production-dashboard.html
+          git add generated/1000-digital-products.json generated/real-product-factory-status.json generated/PRODUCT-PASSPORTS.jsonl generated/SHIRMANI-PRODUCTION-TRUTH.md products/modules products/production production-dashboard.html
           if git diff --cached --quiet; then
             echo "No production delta"
           else
