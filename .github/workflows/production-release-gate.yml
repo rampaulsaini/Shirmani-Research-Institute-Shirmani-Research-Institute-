@@ -1,0 +1,37 @@
+name: SHIRMANI Production Release Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  production-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic production release gate
+        run: python3 factory/product_release_gate.py
+      - name: Validate generated registry
+        run: python3 - <<'PY'
+import json
+from pathlib import Path
+p=Path("generated/PRODUCTION-RELEASE-REGISTRY.json")
+d=json.loads(p.read_text())
+assert d["status"] == "PASS", d
+assert d["independent_product_engines"] >= 1
+for r in d["records"]:
+    for k in ("product_id","batch_no","qc_code","gate_no","dispatch_no","qr_payload","status"):
+        assert r.get(k), (r["product_id"], k)
+print("Production release gate PASS:", d["independent_product_engines"])
+PY
+      - name: Commit production registry
+        run: |
+          git config user.name "shirmani-production-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add generated/PRODUCTION-RELEASE-REGISTRY.json
+          git diff --cached --quiet || git commit -m "Update production release registry"
+          git push
