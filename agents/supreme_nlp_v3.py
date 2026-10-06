@@ -404,14 +404,20 @@ def drift_report(reference, current, threshold=2.0):
     insufficient_evidence=False
     for key in keys:
         rv=ref_groups.get(key,[]); cv=cur_groups.get(key,[])
-        if not rv or not cv:
+        # A one-sample population cannot support a variance-based standardized
+        # shift. Do not turn a zero/undefined reference variance into an
+        # artificially enormous drift score.
+        if len(rv) < 2 or len(cv) < 2:
             features["|".join(key)]={"status":"INSUFFICIENT_EVIDENCE"}
             insufficient_evidence=True
             continue
         rm=sum(rv)/len(rv); cm=sum(cv)/len(cv)
         rs=sqrt(sum((x-rm)**2 for x in rv)/len(rv))
-        scale=max(rs,1e-12)
-        shift=abs(cm-rm)/scale
+        if rs <= 1e-12:
+            features["|".join(key)]={"status":"INSUFFICIENT_EVIDENCE"}
+            insufficient_evidence=True
+            continue
+        shift=abs(cm-rm)/rs
         flagged=shift>=threshold_value
         drift=drift or flagged
         features["|".join(key)]={"reference_mean":rm,"current_mean":cm,"standardized_shift":round(shift,6),"drift":flagged}
