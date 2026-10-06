@@ -9,6 +9,10 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 
 - **Production-First Public Map:** [production-first-public-map.html](production-first-public-map.html) — four-stage Institute → Factory → QC/Gate → Showroom map with current published production telemetry.
 
+## Production Mission Control
+
+- **Production Mission Control:** [production-mission-control.html](production-mission-control.html) — production-first public map for Institute → Factory → QC/Gate → Showroom/Sale, customer feedback and funding.
+
 ## Public Production Showroom
 
 - **Production Hub (clear “what is this?” map):** [production-hub.html](production-hub.html)
