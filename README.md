@@ -7,6 +7,12 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 
 ---
 
+## Public Production Showroom
+
+- **Showroom:** [showroom.html](showroom.html)
+- **Product registry:** [showroom-products.json](showroom-products.json)
+- **Production specification:** [SHOWROOM-PRODUCTION.md](SHOWROOM-PRODUCTION.md)
+
 ## Platform Includes
 
 - Research Framework
