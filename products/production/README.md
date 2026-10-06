@@ -1,0 +1,1 @@
+# Concrete Production Rack\n\nThis directory is populated by the SHIRMANI Supreme Production Factory.\n\nEach generated product page is a customer-visible production artifact linked from the public showroom and backed by the machine-readable production manifest.\n

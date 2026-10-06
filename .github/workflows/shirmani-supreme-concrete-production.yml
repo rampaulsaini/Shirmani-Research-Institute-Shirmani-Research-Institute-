@@ -1,0 +1,28 @@
+name: SHIRMANI Supreme Concrete Production Factory
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-supreme-concrete-production
+  cancel-in-progress: false
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - name: Materialize next production batch
+        env: {PRODUCTION_BATCH_SIZE: "100", PRODUCTION_TARGET: "5000"}
+        run: python3 factory/production_expansion.py
+      - name: Publish production output
+        run: |
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/production generated/production-manifest.json generated/production-progress.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "production: materialize next concrete showroom batch"
+          git push
