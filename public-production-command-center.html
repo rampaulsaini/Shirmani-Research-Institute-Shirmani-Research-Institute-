@@ -13,6 +13,12 @@ h1,h2{color:#d4af37}.hero,.card{background:rgba(255,255,255,.05);border:1px soli
 <div class="card"><div class="metric">500</div><div class="muted">configured work units / cycle in dispatcher</div></div>
 <div class="card"><div class="metric">9</div><div class="muted">production lanes in dispatcher</div></div>
 <div class="card"><div class="metric">10</div><div class="muted">supreme production streams</div></div></div></section>
+<section class="card" id="four-stage"><h2>Four-Stage Production Map</h2><div class="grid">
+<div class="card"><h3>01 Institute Discovery</h3><div class="metric" id="s1">—</div><p class="muted">Repository/module/product discovery</p></div>
+<div class="card"><h3>02 Factory Production</h3><div class="metric" id="s2">—</div><p class="muted">Concrete product assets + modules</p></div>
+<div class="card"><h3>03 Product QC Gate</h3><div class="metric" id="s3">—</div><p class="muted">QC passport, QR, gate and dispatch control</p></div>
+<div class="card"><h3>04 Public Showroom</h3><div class="metric" id="s4">—</div><p class="muted">Description · price · offer · product view</p></div>
+</div><p id="four-note" class="muted">Production telemetry loading…</p></section>
 <h2>Production Lanes</h2><div class="card"><span class="tag">Research</span><span class="tag">AI / ML / NLP</span><span class="tag">Content</span><span class="tag">Platform</span><span class="tag">Economic</span><span class="tag">Social Media</span><span class="tag">Federation</span><span class="tag">Security / Quality</span><span class="tag">Automation</span></div>
 <h2>Visible Production Outputs</h2><div class="grid">
 <div class="card"><h3>Live Status</h3><p>Current cycle, module discovery, queue and lane telemetry.</p><a href="generated/multi-layer-production-status.json">Open status JSON</a></div>
@@ -24,4 +30,14 @@ h1,h2{color:#d4af37}.hero,.card{background:rgba(255,255,255,.05);border:1px soli
 <h2>Production → Result → Quality</h2><div class="card"><p><strong>Source → Normalize → Multi-Layer Production → Concrete Artifact → Public Publication → QC / Evidence → Downstream Verification → Audit / Archive</strong></p><p class="muted">A production record is not automatically an independently verified claim. The platform therefore expands production without falsely converting activity into verification.</p></div>
 <h2>AI / ML / NLP + Quantum Boundary</h2><div class="card"><p>AI/ML/NLP routing is production-oriented and deterministic-first, with optional hosted-model routes when configured. “Quantum-ready” means the orchestration can accept a quantum backend; this repository does not claim that quantum hardware is currently executing the work.</p></div>
 <h2>Continuity</h2><div class="card"><p>Every scheduled cycle should create concrete, provenance-linked work rather than stopping after a single verification task. The public dashboard is intended to make that production visible.</p></div>
-</main></body></html>
+<script>
+async function loadFourStage(){
+ try{
+  const d=await fetch("generated/four-stage-production-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
+  const s=d.stages||[]; for(const x of s){const el=document.getElementById("s"+x.stage);if(el)el.textContent=x.status}
+  const p=s[3]||{}; document.getElementById("four-note").textContent=(p.catalog_products||0).toLocaleString()+" catalog products · "+(p.produced_products||0).toLocaleString()+" produced · "+(p.qc_passed||0).toLocaleString()+" QC passed · Dispatch default NO";
+  document.getElementById("release").textContent=JSON.stringify({generated_at:d.generated_at,stages:s.map(x=>({stage:x.stage,name:x.name,status:x.status})),production_contract:d.production_contract},null,2);
+ }catch(e){document.getElementById("four-note").textContent="Four-stage production telemetry unavailable: "+e.message;document.getElementById("release").textContent="Unavailable";}
+}
+loadFourStage();setInterval(loadFourStage,30000);
+</script></main></body></html>
