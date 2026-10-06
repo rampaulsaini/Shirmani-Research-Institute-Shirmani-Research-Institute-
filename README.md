@@ -12,6 +12,7 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 - **Showroom:** [showroom.html](showroom.html)
 - **Product registry:** [showroom-products.json](showroom-products.json)
 - **Production specification:** [SHOWROOM-PRODUCTION.md](SHOWROOM-PRODUCTION.md)
+- **Funding / payment:** [funding-appeal.html](funding-appeal.html) — public payment routes are Paytm/UPI and PayPal only.
 
 ## Platform Includes
 
