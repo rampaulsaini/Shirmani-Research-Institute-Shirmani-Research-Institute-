@@ -15,17 +15,22 @@ jobs:
   produce:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      PRODUCT_TARGET: "5000"
+      CONCRETE_PRODUCT_BATCH_SIZE: "500"
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Configure full-catalog concrete production batch
-        run: echo "CONCRETE_PRODUCT_BATCH_SIZE=1016" >> "$GITHUB_ENV"
+      - name: Configure production scale
+        run: |
+          echo "PRODUCT_TARGET=$PRODUCT_TARGET" >> "$GITHUB_ENV"
+          echo "CONCRETE_PRODUCT_BATCH_SIZE=$CONCRETE_PRODUCT_BATCH_SIZE" >> "$GITHUB_ENV"
       - name: Produce next concrete public batch
         run: python3 factory/continuous_product_batch.py
       - name: Audit concrete production truth
         run: python3 factory/concrete_product_truth.py
-      - name: Publish full-catalog concrete production through PR
+      - name: Publish full-catalog concrete production through branch
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -42,4 +47,4 @@ jobs:
           git commit -m "auto(production): materialize next concrete product batch"
           git push --set-upstream origin "$BRANCH"
           echo "Production branch ready: $BRANCH"
-          echo "Repository policy prevents GitHub Actions from creating/approving pull requests; concrete production artifacts remain available on the branch."
+          echo "Production remains source-bound; QC/gate/dispatch are downstream."
