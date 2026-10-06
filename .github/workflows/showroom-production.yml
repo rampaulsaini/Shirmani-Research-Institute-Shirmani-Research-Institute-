@@ -1,0 +1,24 @@
+name: Showroom Production Publisher
+on:
+  push:
+    paths: ['showroom-products.json','showroom-product.html','scripts/showroom-production-check.py','.github/workflows/showroom-production.yml']
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  production-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate production catalogue
+        run: python3 scripts/showroom-production-check.py
+      - name: Report production surface
+        run: |
+          python3 - <<'PY'
+          import json
+          d=json.load(open("showroom-products.json",encoding="utf-8"))
+          print("PUBLIC PRODUCTION RECORDS:",len(d.get("products",[])))
+          for p in d.get("products",[]): print(p["id"],p.get("status"),p.get("store_url"))
+          PY
