@@ -206,6 +206,14 @@ def main():
     assert verify_record_integrity(tampered) is False
     assert verify_record_integrity({"fingerprint": ""}) is False
 
+    # The fingerprint must cover record-level presentation/audit fields too;
+    # otherwise an attacker could alter the timestamp or explanation while
+    # preserving a valid fingerprint.
+    for field, value in (("generated_at", "2099-01-01T00:00:00+00:00"), ("simple_language", "tampered explanation")):
+        altered = dict(record)
+        altered[field] = value
+        assert verify_record_integrity(altered) is False
+
 
     # Calibration labels must be explicit binary values; truthy strings and
     # non-binary numerics are ambiguous and must fail closed.
