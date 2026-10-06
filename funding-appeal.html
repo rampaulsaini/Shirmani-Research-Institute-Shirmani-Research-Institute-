@@ -19,6 +19,14 @@
 <a class="btn" href="showroom.html">🛒 Public Showroom</a><a class="btn" href="supreme-marking-hub.html">🏛️ Supreme Marking Hub</a><a class="btn alt" href="public-production-live.html">📡 Live Production</a><a class="btn alt" href="funding-proposal.html">📄 Detailed Proposal</a>
 </div></section>
 
+<section class="card" id="upi-funding">
+<h2>📲 Funding UPI — QR से सीधे समर्थन</h2>
+<p>यह public funding surface UPI QR को सीधे दिखाता है। वास्तविक UPI ID/VPA repository में सुरक्षित रूप से configure होने तक कोई अनुमानित payment address नहीं दिखाया जाएगा।</p>
+<div id="upi-box" class="note">UPI configuration loading…</div>
+<div id="upi-qr" style="margin:16px 0"></div>
+<p class="muted">QR में केवल configured UPI payment URI होगा। Payment, settlement और financial actions अलग transaction layer हैं।</p>
+</section>
+
 <section class="card"><h2>क्यों funding चाहिए?</h2>
 <p>Repository में production और automation architecture का बड़ा आधार मौजूद है, लेकिन बड़े public platform के लिए अधिक concrete products, richer modules, secure deployment, customer delivery, pricing/offers, storage, support और continuous improvement चाहिए। Funding का लक्ष्य <strong>workflow-count नहीं, production capacity और customer-visible results बढ़ाना</strong> है।</p>
 <p class="note"><strong>Production और verification अलग हैं:</strong> configured identity, produced artifact और independently verified result को एक ही चीज़ नहीं माना जाएगा।</p></section>
@@ -90,4 +98,21 @@
 <p>श्रेष्ठता का practical अर्थ है: हर दिखाई देने वाले परिणाम की उपयोगिता, स्पष्टता, quality और customer experience को लगातार बेहतर करना।</p></section>
 </div>
 <footer>꙰ Shirmani Research Institute • Public Funding Appeal • <a href="index.html">Main Hub</a> · <a href="showroom.html">Showroom</a> · <a href="public-production-live.html">Live Production</a></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(async function(){
+  const box=document.getElementById("upi-box"), qr=document.getElementById("upi-qr");
+  try{
+    const c=await fetch("generated/funding-upi.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
+    if(!c.enabled || !c.vpa){
+      box.innerHTML="<strong>UPI QR अभी सक्रिय नहीं है।</strong><br>Funding payment address configure होने के बाद यही public page स्वतः QR दिखाएगा।";
+      return;
+    }
+    const uri="upi://pay?pa="+encodeURIComponent(c.vpa)+"&pn="+encodeURIComponent(c.payee_name||"Shirmani Research Institute")+(c.note?"&tn="+encodeURIComponent(c.note):"")+(c.currency?"&cu="+encodeURIComponent(c.currency):"");
+    box.innerHTML="<strong>UPI ID:</strong> "+String(c.vpa).replace(/[<>&"]/g,"");
+    qr.innerHTML="";
+    if(window.QRCode) new QRCode(qr,{text:uri,width:220,height:220});
+  }catch(e){box.textContent="UPI configuration unavailable; no payment address has been invented."; }
+})();
+</script>
 </body></html>

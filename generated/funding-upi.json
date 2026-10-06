@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "enabled": false,
+  "vpa": "",
+  "payee_name": "Shirmani Research Institute",
+  "currency": "INR",
+  "note": "Public funding support",
+  "security": {
+    "never_invent_vpa": true,
+    "financial_actions_require_owner_control": true
+  }
+}
