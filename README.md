@@ -1,5 +1,12 @@
 # Shirmani Research Institute
 
+
+## 💰 Public Funding Appeal
+
+Project को आगे बढ़ाने के लिए public funding/support page उपलब्ध है: [funding-appeal.html](funding-appeal.html)
+
+यह page वर्तमान engineering maturity (अनुमानित **≈72%**), project की प्रमुख खूबियाँ, संभावित लाभ, funds के उपयोग की प्राथमिकताएँ, remaining work और evidence/verification boundaries को सरल भाषा में समझाता है। यह कोई audited financial, scientific या commercial certification नहीं है; guaranteed return/income का दावा नहीं किया जाता। Payment details, legal/tax status और compliance information केवल सत्यापित रूप में प्रकाशित की जानी चाहिए।
+
 Unified digital research and archive platform.
 
 🌐 **Live Website:**  
