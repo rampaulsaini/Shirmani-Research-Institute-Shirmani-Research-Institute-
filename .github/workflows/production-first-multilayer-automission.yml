@@ -1,7 +1,5 @@
 name: SHIRMANI Production-First Multi-Layer Automission
 on:
-  push:
-    branches: [main, production-first/continuous-product-expansion]
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
@@ -11,17 +9,22 @@ on:
         required: false
         default: "500"
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  issues: read
+  pages: write
+  id-token: write
 concurrency:
   group: shirmani-production-first
   cancel-in-progress: false
 jobs:
-  produce:
+  produce-and-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
+      - name: Checkout main production source
         uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
@@ -33,41 +36,50 @@ jobs:
           else
             echo "PRODUCTION_BATCH_SIZE=500" >> "$GITHUB_ENV"
           fi
-      - name: Four-stage continuous production controller
+      - name: Institute → Factory → QC → Showroom production
         run: python3 factory/four_stage_production_orchestrator.py
-      - name: Publish four-stage telemetry
+      - name: Public review → quality improvement signal
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 factory/public_review_quality.py
+      - name: Prepare public production site
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+          cp -a supreme-production-showroom.html _site/index.html
+          for f in supreme-marking-hub.html supreme-factory.html production-dashboard.html product-passport.html products.html public-platform-modules.html public-production-index.html public-production-by-module.html; do
+            [ -f "$f" ] && cp "$f" "_site/$f"
+          done
+          cp -a generated _site/generated
+          cp -a products _site/products
+          cp -a assets _site/assets 2>/dev/null || true
+          for f in index.html research-paper.html research-paper.pdf; do [ -f "$f" ] && cp "$f" "_site/$f"; done
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload production showroom artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: "_site"
+      - name: Deploy production showroom
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Production telemetry
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
-          s=json.loads(Path("generated/four-stage-production-status.json").read_text(encoding="utf-8"))
-          q=json.loads(Path("generated/product-qc-gate.json").read_text(encoding="utf-8"))
-          print("## SHIRMANI Four-Stage Production")
-          print("- Stage 1 Institute Discovery: **"+s["stages"][0]["status"]+"**")
-          print("- Stage 2 Factory Production: **"+s["stages"][1]["status"]+"**")
-          print("- Stage 3 Product QC Gate: **"+s["stages"][2]["status"]+"**")
-          print("- Stage 4 Public Showroom: **"+s["stages"][3]["status"]+"**")
-          print("- Products: **"+str(q["product_count"])+"**")
-          print("- QC passed: **"+str(q["qc_passed"])+"**")
-          print("- Dispatch default: **NO**")
-          print("- Independent verification: downstream result-quality layer")
+          s=json.loads(Path("generated/four-stage-production-status.json").read_text())
+          t=json.loads(Path("generated/production-throughput.json").read_text())
+          r=json.loads(Path("generated/public-review-quality.json").read_text())
+          print("Institute:",s["stages"][0]["status"])
+          print("Factory:",s["stages"][1]["status"])
+          print("QC:",s["stages"][2]["status"])
+          print("Showroom:",s["stages"][3]["status"])
+          print("Catalog:",t.get("catalog_products",0))
+          print("Concrete product assets:",t.get("concrete_product_assets",0))
+          print("Module products:",t.get("module_products_total",0))
+          print("Public reviews:",r.get("review_count",0))
+          print("Dispatch released: 0")
+          print("Verification: downstream result-quality layer")
           PY
-      - name: Publish production results through PR
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          git config user.name "SHIRMANI Production Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/ products/production/ supreme-production-showroom.html
-          if git diff --cached --quiet; then
-            echo "No production artifact changes to publish."
-            exit 0
-          fi
-          BRANCH="automation/production-first-${GITHUB_RUN_ID}"
-          git switch -c "$BRANCH"
-          git commit -m "automission: four-stage production cycle"
-          git push --set-upstream origin "$BRANCH"
-          PR_URL=$(gh pr create --base main --head "$BRANCH" --title "automission: four-stage production cycle" --body "Automated production publication: Institute → Factory → QC → Showroom. Production results are published through the repository PR gate; verification remains downstream.")
-          echo "Production PR: $PR_URL"
-          gh pr merge "$BRANCH" --auto --squash --delete-branch || echo "Auto-merge unavailable; PR remains open for the repository gate."
