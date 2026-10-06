@@ -16,7 +16,7 @@
 <p><strong>Digital research + production + public showroom ecosystem</strong></p>
 <p>Institute में खोज → Factory में production → QC/Gate → Public Showroom → customer experience → reviews → quality improvement. उद्देश्य केवल workflows चलाना नहीं, बल्कि automation के परिणाम को platform पर दिखाई देने वाले वास्तविक products और usable modules में बदलना है।</p>
 <div class="cta">
-<a class="btn" href="showroom.html">🛒 Public Showroom</a><a class="btn" href="supreme-marking-hub.html">🏛️ Supreme Marking Hub</a><a class="btn alt" href="public-production-live.html">📡 Live Production</a><a class="btn alt" href="funding-proposal.html">📄 Detailed Proposal</a>
+<a class="btn" href="showroom.html">🛒 Public Showroom</a><a class="btn" href="supreme-marking-hub.html">🏛️ Supreme Marking Hub</a><a class="btn alt" href="public-production-live.html">📡 Live Production</a><a class="btn alt" href="funding-proposal.html">📄 Detailed Proposal</a><a class="btn alt" href="https://www.paypal.com/" target="_blank" rel="noopener">💳 PayPal</a>
 </div></section>
 
 <section class="card" id="upi-funding">
@@ -35,7 +35,7 @@
 <div class="grid">
 <div class="metric"><div class="num">1,016</div>configured product identities<div class="muted">catalog configuration; completed production नहीं</div></div>
 <div class="metric"><div class="num">25</div>concrete product identities<div class="muted">current funding-proposal production snapshot</div></div>
-<div class="metric"><div class="num">500</div>latest published concrete results<div class="muted">latest production-cycle snapshot</div></div>
+<div class="metric"><div class="num" id="live-produced">25</div>concrete products currently surfaced<div class="muted">live production overlay</div></div>
 <div class="metric"><div class="num">100,200</div>prepared verification records<div class="muted">separate downstream integrity workstream</div></div>
 </div>
 <p class="muted">ये numbers repository के published artifacts से लिए गए हैं और live automation के साथ बदल सकते हैं। नीचे का live snapshot catalogue और concrete-production overlay से स्वतः पढ़ा जाता है।</p>
@@ -62,7 +62,7 @@
 <p>एक single project-completion percentage पर्याप्त नहीं है; अलग workstreams को अलग दिखाना अधिक ईमानदार है। नीचे के आंकड़े <strong>planning estimates</strong> हैं, audited certification नहीं।</p>
 <p><strong>Engineering / platform development ≈ 74%</strong></p><div class="bar"><div class="fill" style="width:74%"></div></div>
 <p><strong>Concrete production ≈ 50%</strong></p><div class="bar"><div class="fill" style="width:50%"></div></div>
-<p><strong>Independent verification ≈ 25%</strong></p><div class="bar"><div class="fill" style="width:25%"></div></div>
+<p><strong>Independent verification: 0% VERIFIED</strong></p><div class="bar"><div class="fill" style="width:0%"></div></div>
 <p><strong>Commercial / settlement infrastructure ≈ 35%</strong></p><div class="bar"><div class="fill" style="width:35%"></div></div>
 <p class="muted">Actual completion को live artifacts और deployed functionality से लगातार update किया जाना चाहिए।</p></section>
 
@@ -124,7 +124,7 @@
       fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
       fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({products:[]}))
     ]);
-    const total=Number(c.product_count||c.products?.length||0), produced=Number(o.produced_count||o.products?.length||0);
+    const total=Number(c.product_count||c.products?.length||0), produced=Number(o.produced_count||o.products?.length||0); document.getElementById("live-produced").textContent=produced.toLocaleString("en-IN");
     el.innerHTML="<strong>LIVE PRODUCTION:</strong> "+produced.toLocaleString("en-IN")+" concrete products currently surfaced from "+total.toLocaleString("en-IN")+" catalog identities · "+Math.max(0,total-produced).toLocaleString("en-IN")+" remain in the production queue.";
   }catch(e){el.textContent="Live production snapshot unavailable; no number has been invented."}
 })();
