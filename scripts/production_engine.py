@@ -8,7 +8,8 @@ OUT=os.path.join(ROOT,"generated","catalog.json")
 STATUS=os.path.join(ROOT,"generated","production_status.json")
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 
-with open(CATALOG,encoding="utf-8") as f:
+input_catalog = OUT if os.path.exists(OUT) else CATALOG
+with open(input_catalog,encoding="utf-8") as f:
     data=json.load(f)
 
 products=data.get("products",[])
