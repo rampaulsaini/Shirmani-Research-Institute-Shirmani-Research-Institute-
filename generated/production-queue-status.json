@@ -1,18 +1,17 @@
 {
-  "generated_at": "2026-10-06T12:42:23.988711+00:00",
-  "cycle": 5970968,
+  "generated_at": "2026-10-06T12:47:14.913363+00:00",
+  "cycle": 5970969,
   "discovered_modules": 2694,
   "selected_tasks": 500,
   "batch_size": 500,
   "lanes": {
-    "ai-ml-nlp": 419,
-    "federation": 2,
-    "platform": 22,
+    "ai-ml-nlp": 417,
     "content": 26,
-    "social-media": 3,
-    "security-quality": 23,
-    "research": 4,
-    "economic": 1
+    "platform": 26,
+    "security-quality": 26,
+    "economic": 2,
+    "research": 2,
+    "federation": 1
   },
   "principle": "Production first; verification downstream.",
   "integrity": {

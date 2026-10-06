@@ -1,3507 +1,3507 @@
 {
-  "generated_at": "2026-10-06T12:42:24.492532+00:00",
+  "generated_at": "2026-10-06T12:47:15.402542+00:00",
   "principle": "Every discovered module receives production work; verification remains downstream.",
   "module_count": 500,
   "production_modules": 500,
   "modules": {
-    "CONTINUATION-CHECKPOINT-2026-09-21-2245.md": {
+    "AGENT-GOVERNANCE.md": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "CONTINUATION-CHECKPOINT-2026-09-22-525.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "CONTINUATION-CHECKPOINT-2026-09-22-425.md": {
+    "CONTINUATION-CHECKPOINT-2026-09-22-600.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "CONTINUATION-REVIEW-SLICE-000101-000125-QC.md": {
-      "lane": "security-quality",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "CONTINUATION-REVIEW-SLICE-000676-000700-QC.md": {
-      "lane": "security-quality",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "CONTINUATION-REVIEW-SLICE-000726-000750-QC.md": {
-      "lane": "security-quality",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "CONTINUATION-TRIGGER-2026-09-21-1033.md": {
+    "CONTINUATION-CHECKPOINT-2026-09-22-650.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md": {
+    "CONTINUATION-CHECKPOINT-2026-09-22-850.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "agents/automission_supervisor.py": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "py",
+    "CONTINUATION-CHECKPOINT-2026-09-22-900.md": {
+      "lane": "content",
+      "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "agents/nvidia_agent.py": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "agents/orchestrator.py": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "agents/supreme_nlp.py": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "agents/supreme_nlp_quality.py": {
+    "CONTINUATION-REVIEW-SLICE-000076-000100-QC.md": {
       "lane": "security-quality",
-      "module_kind": "py",
+      "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "agreement-work-contract-record.html": {
+    "CONTINUATION-REVIEW-SLICE-000251-000275-QC.md": {
+      "lane": "security-quality",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "CONTINUATION-REVIEW-SLICE-000276-000300-QC.md": {
+      "lane": "security-quality",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "CONTINUATION-REVIEW-SLICE-000301-000325-QC.md": {
+      "lane": "security-quality",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "CONTINUATION-REVIEW-SLICE-000376-000400-QC.md": {
+      "lane": "security-quality",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "CONTINUATION-REVIEW-SLICE-000426-000450-QC.md": {
+      "lane": "security-quality",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "CONTINUATION-REVIEW-SLICE-000451-000475-QC.md": {
+      "lane": "security-quality",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "CONTINUATION-REVIEW-SLICE-000776-000800-QC.md": {
+      "lane": "security-quality",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "CONTINUATION-REVIEW-SLICE-000851-000875-QC.md": {
+      "lane": "security-quality",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "CONTINUATION-SUPREME-REASONING-2026-09-22.md": {
+      "lane": "content",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "CONTINUITY-CHECKPOINT-2026-09-21.md": {
+      "lane": "content",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "OMNIVERSE-ARCHITECTURE.md": {
+      "lane": "content",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "README.md": {
+      "lane": "content",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "REVIEW-SLICE-000026-000050-STATUS-2026-09-21.md": {
+      "lane": "content",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "YATHARTH-OMNIVERSE-RESILIENCE.md": {
+      "lane": "content",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "agents/certificate_agent.py": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "agents/contract_bridge.py": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "agents/language_agents.py": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "agents/source_agent.py": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "agents/supreme_nlp_agent.py": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "automation/income-catalog.json": {
+      "lane": "economic",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "contribution-ledger.html": {
       "lane": "ai-ml-nlp",
       "module_kind": "html",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "automation/queue/tasks.json": {
-      "lane": "platform",
-      "module_kind": "json",
+    "docs/REAL-PRODUCT-EXECUTION-2026-10-05.md": {
+      "lane": "content",
+      "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "automation/repository-manifest.json": {
+    "docs/SUPREME-EVIDENCE-CONTROL-PLANE.md": {
+      "lane": "research",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "docs/SUPREME-NLP-ARCHITECTURE.md": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "docs/SUPREME-TOTAL-AUTOMISSION-ARCHITECTURE.md": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "docs/ULTRA-MEGA-INFINITY-QUANTUM-EVIDENCE-CHARTER.md": {
+      "lane": "research",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "docs/YATHARTH-MUSIC-INTEGRATION.md": {
       "lane": "federation",
-      "module_kind": "json",
+      "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "citations.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
+    "docs/concrete-production-truth.md": {
+      "lane": "content",
+      "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "config/independent-verification-target.json": {
+    "docs/public-platform/production-hardening.md": {
+      "lane": "content",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "docs/public-platform/public-capability-registry.json": {
       "lane": "platform",
       "module_kind": "json",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "digital-product-reality-map.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/AUTOMISSION-E2E-ACCEPTANCE.md": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/SHIRMANI-HEART-VIEW-MASTER-COMPLETION-CHECKLIST-2026-09-21.md": {
+    "docs/public-platform/roadmap.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "docs/SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md": {
+    "docs/runtime-verification-checkpoint-20260921.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "docs/SUPREME-AI-ML-NLP-ARCHITECTURE.md": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/SUPREME-NLP-AUTOMISSION-RESEARCH-CONTRACT.md": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/SUPREME-NLP-AUTOMISSION.md": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/agent-contracts.md": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/four-stage-production-contract.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/independent-verification-conveyor.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/public-platform/platform-schema.json": {
+    "docs/supreme-ai-ml-nlp-automission-quality-contract-2026-10-01.md": {
       "lane": "security-quality",
-      "module_kind": "json",
+      "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "docs/public-platform/production-deployment-checklist.md": {
+    "docs/supreme-continuous-improvement.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "docs/public-platform/production-readiness-gate.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/public-platform/release-checklist.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/public-platform/status-contract.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/public-platform/user-journeys.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/supreme-ai-ml-nlp-automission-evolution-protocol.md": {
+    "docs/supreme-nlp-benchmark-and-self-improvement.md": {
       "lane": "ai-ml-nlp",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "docs/supreme-evidence-automission-operating-contract-2026-10-02.md": {
+    "docs/supreme-nlp-v2-control-plane-2026-10-02.md": {
       "lane": "ai-ml-nlp",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "docs/supreme-nlp-evaluation-gate.md": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/supreme-nlp-practitioner-runtime.md": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/supreme-nlp-unified-control-plane-2026-10-02.md": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/yatharth-system/continuity-checklist.md": {
+    "docs/yatharth-system/completion-gate.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "docs/yatharth-system/continuity-completion-contract.md": {
+    "docs/yatharth-system/implementation-backlog.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "docs/yatharth-system/continuity-integrity-contract.md": {
+    "docs/yatharth-system/public-completion-checklist.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "docs/yatharth-system/continuity-runbook.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "docs/yatharth-system/source-records/2026-09-30-human-earth-continuity-source.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "employment.html": {
+    "economic-marketing-command-center.html": {
       "lane": "economic",
       "module_kind": "html",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "factory/CANONICAL-KNOWLEDGE.md": {
+    "education-suite.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "exchange-orders.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory-dashboard.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory-status.json": {
+      "lane": "platform",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/HUMAN-CIVILIZATION-SANJEEVANI.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "factory/agents/qc_agent.py": {
-      "lane": "security-quality",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/bootstrap_verification_review_registry.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/canonical_index.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/capability-map.json": {
-      "lane": "platform",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/multimodal_signal_qc.py": {
-      "lane": "security-quality",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/product_asset_expander.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/product_matrix.json": {
-      "lane": "platform",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/product_qc_gate.py": {
-      "lane": "security-quality",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/production_materializer.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/production_reality_gate.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/production_truth_gate.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/public_module_inventory.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/public_production_queue_self_heal.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/publisher.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/research_evidence_graph.py": {
-      "lane": "research",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/run_nvidia_batch.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/run_stage.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/source-registry.json": {
-      "lane": "platform",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/supreme-nlp-policy.json": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/supreme_ai_ml_nlp_engine.py": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/supreme_nlp_contract_qc.py": {
-      "lane": "security-quality",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/supreme_nlp_evaluation_qc.py": {
-      "lane": "security-quality",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/supreme_nlp_qc.py": {
-      "lane": "security-quality",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/validate_factory.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/verification_progress_dashboard.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "factory/verification_readiness.py": {
-      "lane": "platform",
-      "module_kind": "py",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "federation-dashboard.html": {
-      "lane": "federation",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "federation/exchange-orders.schema.json": {
-      "lane": "security-quality",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "federation/opportunity-marketplace.schema.json": {
-      "lane": "security-quality",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "federation/settlement-records.schema.json": {
-      "lane": "security-quality",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "funding-appeal.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "justice-lab.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "media.html": {
-      "lane": "social-media",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "production-activation.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "production-reality.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "production/README.md": {
+    "factory/ORCHESTRATION.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "production/production-launch-board.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
+    "factory/artifact-manifest.schema.json": {
+      "lane": "security-quality",
+      "module_kind": "json",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "production/products/SHR-PROD-0008.md": {
+    "factory/canonical/shirmani-user-philosophy.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "production/products/SHR-PROD-0012.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "production/products/SHR-PROD-0015.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "production/products/SHR-PROD-0018.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "production/products/SHR-PROD-0022.md": {
-      "lane": "content",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0004.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0007.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0018.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0022.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0024.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0029.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0031.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0033.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0036.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0042.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0045.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0049.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0051.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0060.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0064.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0069.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0072.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0081.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0089.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0090.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0094.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0107.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0110.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0115.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0117.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0124.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0126.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0128.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0129.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0130.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0137.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0142.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0149.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0153.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0165.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0172.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0178.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0182.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0189.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0192.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0209.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0217.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0243.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0247.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0256.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0264.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0266.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0272.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0278.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0291.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0293.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0296.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0297.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0298.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0299.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0305.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0314.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0318.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0323.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0330.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0335.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0338.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0339.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0342.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0353.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0358.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0362.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0365.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0366.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0383.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0390.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0406.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0425.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0426.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0434.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0435.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0437.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0439.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0444.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0449.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0452.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0455.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0459.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0463.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0467.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0470.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0474.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0475.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0496.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0511.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0516.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0525.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0526.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0531.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0532.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0533.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0551.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0552.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0561.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0564.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0566.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0567.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0574.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0577.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0588.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0591.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0609.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0614.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0617.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0619.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0621.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0630.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0635.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0637.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0638.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0639.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0652.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0657.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0659.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0667.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0669.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0674.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0678.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0682.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0688.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0695.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0697.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0710.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0727.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0734.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0735.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0744.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0747.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0749.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0755.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0764.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0767.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0769.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0775.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0776.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0780.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0792.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0798.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0804.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0815.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0846.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0847.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0850.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0859.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0861.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0865.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0866.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0868.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0879.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0883.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0890.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0891.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0895.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0901.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0906.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0908.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0909.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0919.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0920.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0922.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0924.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0933.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0937.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0938.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0941.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0948.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0954.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0960.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0964.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0966.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0975.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0977.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0979.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0987.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-0993.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-1005.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-1006.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-1008.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/concrete/SP-1009.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/micro-product-manifest.json": {
-      "lane": "platform",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/micro/drawing-board.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/micro/json-formatter.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/micro/percentage-calculator.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/micro/word-counter.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/modules/calculator.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/modules/media.html": {
-      "lane": "social-media",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/modules/nlp.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/modules/pixel.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/modules/quality.html": {
-      "lane": "security-quality",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/modules/quiz.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0012.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0014.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0020.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0023.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0025.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0030.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0031.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0033.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0048.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0050.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0054.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0058.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0059.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0060.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0061.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0064.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0077.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0078.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0084.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0085.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0086.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0090.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0105.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0122.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0127.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0130.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0133.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0137.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0152.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0157.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0161.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0184.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0188.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0190.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0200.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0206.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0213.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0224.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0228.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0232.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0236.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0242.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0245.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0248.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0255.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0261.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0267.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0274.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0280.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0281.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0289.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0290.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0291.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0292.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0306.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0311.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0314.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0326.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0332.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0341.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0366.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0381.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0382.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0396.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0399.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0402.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0404.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0405.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0418.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0432.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0436.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0438.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0444.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0445.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0448.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0458.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0461.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0465.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0466.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0473.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0476.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0484.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0494.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0501.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0502.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0506.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0508.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0514.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0516.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0517.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0520.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0522.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0525.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0531.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0537.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0538.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0540.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0541.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0548.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0555.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0557.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0566.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0567.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0584.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0585.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0591.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0597.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0598.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0601.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0602.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0608.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0610.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0613.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0614.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0620.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0621.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0625.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0628.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0630.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0641.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0644.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0650.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0653.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0667.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0668.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0669.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0671.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0674.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0677.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0678.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0680.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0685.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0686.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0694.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0703.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0711.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0720.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0721.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0725.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0727.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0728.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0731.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0732.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0734.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0735.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0756.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0758.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0767.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0770.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0773.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0776.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0777.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0780.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0782.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0796.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0799.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0814.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0821.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0822.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0830.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0832.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0844.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0845.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0849.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0854.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0857.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0866.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0876.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0879.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0882.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0885.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0891.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0896.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0899.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0901.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0907.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0911.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0914.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0917.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0922.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0924.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0925.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0941.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0943.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0948.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0951.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0975.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0987.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0989.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-0992.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-1005.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-1011.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-1013.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "products/production/sp-1014.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "public-platform-mvp.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "public-production-results-hub.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "research-paper.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "research/independent-verification-system-v2.md": {
-      "lane": "research",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "research/shirmani-comparative-analysis-system.md": {
-      "lane": "research",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "research/yatharth-shirmani-author-source-2026-10-01.md": {
-      "lane": "research",
-      "module_kind": "md",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "schemas/source-record.schema.json": {
-      "lane": "security-quality",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "schemas/supreme-independent-verification-record.schema.json": {
-      "lane": "security-quality",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "schemas/supreme-nlp-practitioner.schema.json": {
-      "lane": "security-quality",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "schemas/supreme-nlp-quality-gate.schema.json": {
-      "lane": "security-quality",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "schemas/supreme-nlp-record.schema.json": {
-      "lane": "security-quality",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "schemas/supreme-nlp-result.schema.json": {
-      "lane": "security-quality",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "schemas/supreme-signal-language.schema.json": {
-      "lane": "security-quality",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "schemas/yatharth-comparison.schema.json": {
-      "lane": "security-quality",
-      "module_kind": "json",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "scripts/build_showroom.py": {
+    "factory/canonical_knowledge.py": {
       "lane": "platform",
       "module_kind": "py",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "scripts/validate_yatharth_status.py": {
+    "factory/canonical_record_qc.py": {
+      "lane": "security-quality",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/company-manifests.json": {
+      "lane": "platform",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/concrete_product_modules.py": {
       "lane": "platform",
       "module_kind": "py",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "server/README.md": {
+    "factory/continuity_manifest.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/continuous_product_batch.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/failure_intelligence.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/formulation_qc.py": {
+      "lane": "security-quality",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/generate_products.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/incremental_public_production.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/independent_verification_engine.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/independent_verification_pipeline.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/product_reality_audit.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/real_product_factory.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/run_report.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/state.json": {
+      "lane": "platform",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/supreme_nlp_v2_benchmark.py": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/supreme_product_production_engine.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/supreme_production_engine.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/supreme_public_production_sync.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/supreme_system_orchestrator.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/verification_registry_qc.py": {
+      "lane": "security-quality",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/verification_review_packet.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "factory/verification_review_packet_qc.py": {
+      "lane": "security-quality",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "federation/reconciliation-audit-trail.schema.json": {
+      "lane": "security-quality",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "federation/verified-work.schema.json": {
+      "lane": "security-quality",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "global-identity-passport.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "production-flagship-products.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "production-floor.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "production/production-audit-2026-10-05.md": {
       "lane": "content",
       "module_kind": "md",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "shiromani-value-exchange-dashboard.html": {
+    "production/products/SHR-PROD-0017.md": {
+      "lane": "content",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "production/products/SHR-PROD-0020.md": {
+      "lane": "content",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete-production-batch-2026-10-06-batch-300.html": {
       "lane": "ai-ml-nlp",
       "module_kind": "html",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "shiromani-value-exchange.html": {
+    "products/concrete-production-batch-2026-10-06.html": {
       "lane": "ai-ml-nlp",
       "module_kind": "html",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "social-app.html": {
-      "lane": "social-media",
+    "products/concrete/SP-0002.html": {
+      "lane": "ai-ml-nlp",
       "module_kind": "html",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "supreme-nlp/signal_to_language.py": {
+    "products/concrete/SP-0003.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0005.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0009.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0013.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0017.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0019.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0020.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0038.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0040.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0052.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0059.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0063.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0066.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0078.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0085.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0087.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0091.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0092.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0100.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0105.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0112.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0121.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0122.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0131.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0143.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0150.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0154.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0155.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0156.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0161.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0168.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0170.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0173.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0180.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0190.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0193.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0197.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0203.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0206.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0208.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0216.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0218.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0221.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0225.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0227.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0235.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0239.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0251.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0253.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0263.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0269.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0277.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0285.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0286.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0289.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0292.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0300.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0301.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0302.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0303.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0311.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0321.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0324.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0329.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0333.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0334.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0340.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0344.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0346.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0347.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0349.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0368.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0371.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0372.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0374.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0376.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0392.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0393.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0394.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0396.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0397.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0400.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0423.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0424.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0431.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0433.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0438.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0441.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0443.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0445.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0451.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0457.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0461.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0464.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0469.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0472.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0473.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0477.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0478.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0480.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0481.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0482.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0485.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0491.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0498.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0500.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0506.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0510.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0517.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0523.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0537.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0538.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0539.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0553.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0557.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0560.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0568.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0569.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0570.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0572.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0575.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0579.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0583.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0590.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0592.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0594.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0595.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0597.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0599.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0600.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0601.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0602.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0615.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0616.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0626.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0627.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0628.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0631.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0632.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0636.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0643.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0644.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0651.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0653.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0654.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0656.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0664.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0675.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0677.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0681.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0689.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0694.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0699.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0703.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0713.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0715.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0719.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0722.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0723.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0728.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0730.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0737.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0753.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0754.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0758.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0760.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0763.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0768.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0771.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0781.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0783.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0788.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0789.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0797.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0799.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0807.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0808.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0809.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0814.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0817.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0818.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0820.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0821.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0829.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0832.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0841.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0848.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0855.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0862.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0874.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0876.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0885.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0889.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0899.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0900.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0917.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0929.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0931.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0932.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0935.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0936.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0939.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0959.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0963.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0971.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0973.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0991.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-0998.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-1007.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-1012.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/concrete/SP-1013.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/index.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/micro/markdown-preview.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/modules/access.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/modules/productivity.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/modules/seo.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production-launch-center.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0001.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0004.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0009.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0011.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0018.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0028.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0029.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0045.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0057.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0065.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0070.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0074.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0079.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0080.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0083.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0101.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0108.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0114.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0118.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0123.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0125.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0129.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0136.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0142.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0162.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0167.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0169.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0174.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0175.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0180.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0182.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0186.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0191.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0194.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0209.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0223.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0230.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0237.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0238.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0250.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0260.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0268.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0286.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0295.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0301.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0310.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0317.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0322.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0339.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0344.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0348.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0349.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0353.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0386.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0391.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0406.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0419.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0423.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0427.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0428.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0434.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0435.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0439.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0440.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0446.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0449.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0452.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0467.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0468.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0469.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0481.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0492.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0493.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0530.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0536.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0542.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0546.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0549.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0559.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0561.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0564.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0571.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0572.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0573.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0579.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0582.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0583.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0587.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0588.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0592.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0605.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0609.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0616.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0618.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0619.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0632.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0633.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0640.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0643.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0645.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0646.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0655.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0662.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0665.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0666.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0673.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0679.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0682.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0683.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0692.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0697.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0698.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0701.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0702.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0709.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0717.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0722.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0729.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0741.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0753.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0754.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0757.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0763.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0775.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0783.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0788.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0792.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0793.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0800.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0802.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0803.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0805.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0817.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0820.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0829.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0833.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0836.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0839.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0853.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0869.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0870.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0872.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0874.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0881.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0884.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0887.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0888.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0898.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0900.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0904.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0923.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0926.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0931.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0936.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0937.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0938.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0960.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0963.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0964.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0966.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0968.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0972.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0974.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0985.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-0986.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-1001.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-1002.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-1006.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-1008.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/production/sp-1015.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "products/research-evidence-support.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "public-platform-console.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "reconciliation-audit-trail.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "schemas/README.md": {
+      "lane": "security-quality",
+      "module_kind": "md",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "schemas/ai-company.schema.json": {
+      "lane": "security-quality",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "schemas/canonical-record.schema.json": {
+      "lane": "security-quality",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "schemas/claim-record.schema.json": {
+      "lane": "security-quality",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "schemas/employment-work-ledger.json": {
+      "lane": "security-quality",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "schemas/job.schema.json": {
+      "lane": "security-quality",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "schemas/product.schema.json": {
+      "lane": "security-quality",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "schemas/supreme-nlp-benchmark-record.schema.json": {
+      "lane": "security-quality",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "schemas/supreme-nlp-signal-translation.schema.json": {
+      "lane": "security-quality",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "scripts/normalize_records.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "scripts/production_engine.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "scripts/sync-central-factory-status.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "settings.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "showroom-experience.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "showroom-products.json": {
+      "lane": "platform",
+      "module_kind": "json",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "tests/test_supreme_ai.py": {
+      "lane": "platform",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "tests/test_supreme_ai_ml_nlp.py": {
       "lane": "ai-ml-nlp",
       "module_kind": "py",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     },
-    "supreme-production-showroom.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "supreme-showroom.html": {
-      "lane": "ai-ml-nlp",
-      "module_kind": "html",
-      "outputs": 1,
-      "latest_cycle": 5970968,
-      "latest_status": "PRODUCED"
-    },
-    "tests/supreme_nlp_benchmark_test.py": {
+    "tests/test_supreme_nlp_end_to_end.py": {
       "lane": "ai-ml-nlp",
       "module_kind": "py",
       "outputs": 1,
-      "latest_cycle": 5970968,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "tests/test_supreme_nlp_multimodal.py": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "py",
+      "outputs": 1,
+      "latest_cycle": 5970969,
+      "latest_status": "PRODUCED"
+    },
+    "yatharth-omniverse-live.html": {
+      "lane": "ai-ml-nlp",
+      "module_kind": "html",
+      "outputs": 1,
+      "latest_cycle": 5970969,
       "latest_status": "PRODUCED"
     }
   },
