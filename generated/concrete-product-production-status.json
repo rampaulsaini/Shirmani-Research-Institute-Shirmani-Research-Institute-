@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-06T17:55:00+05:30",
+  "catalog_products": 1016,
+  "engine_count": 25,
+  "engine_to_catalog_ratio_percent": 2.46,
+  "overlay_claimed_products": 300,
+  "concrete_product_assets_verified": 0,
+  "remaining_individual_assets": 1016,
+  "important_note": "The existing overlay claims 300 PRODUCED products, but the repository currently has no products/concrete/ directory. Therefore 300 is an overlay/batch claim, not 300 individually verified repository assets.",
+  "production_truth_rule": "Count as concrete only when products/concrete/<PRODUCT-ID>.html exists.",
+  "next_action": "Materialize and commit individual product assets through a PR, then update the count only from repository evidence."
+}
