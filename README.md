@@ -7,6 +7,13 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 
 ---
 
+## ❤️ Public Appeal & Funding
+
+- **Appeal page:** [appeal.html](appeal.html)
+- **Verified support ledger/status:** [federation/funding-appeal-status.json](federation/funding-appeal-status.json)
+- **Transparency:** the public counter increases only from reconciled/published support records; no payment amount, donor count or financial return is invented.
+- **Development estimate:** approximately **72% engineering maturity / 28% remaining**, a project-health estimate rather than scientific certification.
+
 ## Public Production Showroom
 
 - **Showroom:** [showroom.html](showroom.html)
