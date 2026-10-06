@@ -1,25 +1,26 @@
 {
   "version": 1,
-  "generated_at": "2026-10-05T14:24:30.773261+00:00",
+  "generated_at": "2026-10-06T12:41:56.747074+00:00",
   "purpose": "public-first production module map",
-  "module_count": 538,
+  "module_count": 676,
   "lane_counts": {
-    "ai_ml_nlp": 130,
+    "ai_ml_nlp": 204,
     "automation": 5,
-    "economic": 1,
+    "content": 8,
+    "economic": 2,
     "platform": 3,
-    "research": 362,
+    "research": 417,
     "security_quality": 37
   },
   "status_counts": {
-    "ACTIVE": 49,
-    "ARCHITECTURE": 53,
-    "DESIGN": 11,
+    "ACTIVE": 55,
+    "ARCHITECTURE": 66,
+    "DESIGN": 14,
     "PLANNED": 6,
-    "READY": 36,
-    "RECORDED": 27,
-    "UNAVAILABLE": 15,
-    "UNSPECIFIED": 341
+    "READY": 69,
+    "RECORDED": 28,
+    "UNAVAILABLE": 22,
+    "UNSPECIFIED": 416
   },
   "integrity": {
     "source": "repository files",
@@ -28,11 +29,39 @@
   },
   "modules": [
     {
+      "path": ".github/workflows/shirmani-production-multi-layer-automission.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "ACTIVE",
+      "bytes": 1602
+    },
+    {
+      "path": ".github/workflows/shirmani-real-product-factory.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "ACTIVE",
+      "bytes": 3407
+    },
+    {
       "path": "agreement-work-contract-record.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "ACTIVE",
       "bytes": 5103
+    },
+    {
+      "path": "factory/production_truth_gate.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ACTIVE",
+      "bytes": 2456
+    },
+    {
+      "path": "production-first-mvp.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "ACTIVE",
+      "bytes": 8098
     },
     {
       "path": "shiromani-value-exchange-dashboard.html",
@@ -49,6 +78,20 @@
       "bytes": 6727
     },
     {
+      "path": ".github/workflows/public-production-automission.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 2573
+    },
+    {
+      "path": ".github/workflows/shirmani-production-factory.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 1933
+    },
+    {
       "path": "agents/ultra_automission.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -63,6 +106,20 @@
       "bytes": 811
     },
     {
+      "path": "factory/incremental_public_production.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 3414
+    },
+    {
+      "path": "factory/product_catalog_materializer.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 3804
+    },
+    {
       "path": "factory/supreme_ai_qc.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -70,11 +127,32 @@
       "bytes": 1581
     },
     {
+      "path": "factory/supreme_public_production_sync.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 2871
+    },
+    {
       "path": "factory/ultra_mega_infinity_quantum_automission.py",
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "ARCHITECTURE",
       "bytes": 3352
+    },
+    {
+      "path": "global-education-platform.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 11068
+    },
+    {
+      "path": "production/products/SHR-PROD-0018.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 430
     },
     {
       "path": "public-identity.html",
@@ -154,6 +232,13 @@
       "bytes": 4947
     },
     {
+      "path": "products/micro-digital-products.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "DESIGN",
+      "bytes": 3666
+    },
+    {
       "path": "yatharth-mudra.html",
       "type": "html",
       "lane": "ai_ml_nlp",
@@ -182,6 +267,13 @@
       "bytes": 7039
     },
     {
+      "path": "digital-product-reality-map.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 5612
+    },
+    {
       "path": "docs/public-platform/production-readiness-gate.md",
       "type": "md",
       "lane": "ai_ml_nlp",
@@ -203,6 +295,13 @@
       "bytes": 775
     },
     {
+      "path": "factory/continuous_product_batch.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 5231
+    },
+    {
       "path": "factory/federation.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -217,11 +316,32 @@
       "bytes": 1161
     },
     {
+      "path": "factory/four_stage_production_orchestrator.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 6144
+    },
+    {
       "path": "factory/multimodal_signal_qc.py",
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "READY",
       "bytes": 2366
+    },
+    {
+      "path": "factory/production_dashboard.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 3736
+    },
+    {
+      "path": "factory/production_materializer.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 8240
     },
     {
       "path": "factory/supreme_nlp_evaluation.py",
@@ -245,11 +365,95 @@
       "bytes": 9500
     },
     {
+      "path": "product-passport.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 4990
+    },
+    {
+      "path": "production-activation.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 7681
+    },
+    {
+      "path": "production/catalog.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 20114
+    },
+    {
+      "path": "production/products/SHR-PROD-0008.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 412
+    },
+    {
+      "path": "production/showroom/index.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 17482
+    },
+    {
+      "path": "products/1000-digital-product-factory.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 10454
+    },
+    {
+      "path": "products/ai-marketing-assets.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 1459
+    },
+    {
+      "path": "products/ai-workflow-automation.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 1656
+    },
+    {
+      "path": "products/creative-production.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 1656
+    },
+    {
+      "path": "products/digital-publishing.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 1490
+    },
+    {
+      "path": "products/production-launch-center.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 8851
+    },
+    {
+      "path": "products/real-product-laboratory.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 8766
+    },
+    {
       "path": "public-production-command-center.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "READY",
-      "bytes": 4209
+      "bytes": 5987
     },
     {
       "path": "settings.html",
@@ -257,6 +461,20 @@
       "lane": "ai_ml_nlp",
       "status": "READY",
       "bytes": 5910
+    },
+    {
+      "path": "supreme-showroom.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 13180
+    },
+    {
+      "path": "docs/PRODUCTION-TRUTH-MAP.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "RECORDED",
+      "bytes": 1832
     },
     {
       "path": "docs/public-platform/deployment-runbook.md",
@@ -301,6 +519,27 @@
       "bytes": 12750
     },
     {
+      "path": ".github/workflows/production-first-multilayer-automission.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNAVAILABLE",
+      "bytes": 3531
+    },
+    {
+      "path": ".github/workflows/shirmani-continuous-concrete-production.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNAVAILABLE",
+      "bytes": 2253
+    },
+    {
+      "path": ".github/workflows/shirmani-four-stage-production.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNAVAILABLE",
+      "bytes": 2174
+    },
+    {
       "path": ".github/workflows/shirmani-heart-view-auto-review-conveyor.yml",
       "type": "yml",
       "lane": "ai_ml_nlp",
@@ -315,11 +554,39 @@
       "bytes": 2702
     },
     {
+      "path": "showroom-product.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNAVAILABLE",
+      "bytes": 6503
+    },
+    {
       "path": "supreme-nlp/signal_to_language.py",
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "UNAVAILABLE",
       "bytes": 6130
+    },
+    {
+      "path": "supreme-production-showroom.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNAVAILABLE",
+      "bytes": 7028
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/product-review.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1294
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/purchase-request.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 786
     },
     {
       "path": ".github/workflows/github-pages.yml",
@@ -336,25 +603,39 @@
       "bytes": 1282
     },
     {
-      "path": ".github/workflows/production-first-multilayer-automission.yml",
+      "path": ".github/workflows/product-reality-control.yml",
       "type": "yml",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 3145
+      "bytes": 1148
     },
     {
       "path": ".github/workflows/public-module-production-map.yml",
       "type": "yml",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 2246
+      "bytes": 785
     },
     {
-      "path": ".github/workflows/public-production-automission.yml",
+      "path": ".github/workflows/public-review-quality-automission.yml",
       "type": "yml",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 2351
+      "bytes": 2650
+    },
+    {
+      "path": ".github/workflows/public-reviews-quality-loop.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 5630
+    },
+    {
+      "path": ".github/workflows/real-product-catalog.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1036
     },
     {
       "path": ".github/workflows/shirmani-micro-progress-counter.yml",
@@ -378,6 +659,13 @@
       "bytes": 2371
     },
     {
+      "path": ".github/workflows/shirmani-production-persistence.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3275
+    },
+    {
       "path": ".github/workflows/shirmani-resilience-watchdog.yml",
       "type": "yml",
       "lane": "ai_ml_nlp",
@@ -392,6 +680,20 @@
       "bytes": 1040
     },
     {
+      "path": ".github/workflows/shirmani-supreme-public-production.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1703
+    },
+    {
+      "path": ".github/workflows/showroom-production.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 832
+    },
+    {
       "path": ".github/workflows/supreme-continuous-improvement.yml",
       "type": "yml",
       "lane": "ai_ml_nlp",
@@ -404,6 +706,20 @@
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
       "bytes": 1429
+    },
+    {
+      "path": ".github/workflows/supreme-product-production-automission.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 962
+    },
+    {
+      "path": ".github/workflows/supreme-production-factory.yml",
+      "type": "yml",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1243
     },
     {
       "path": ".github/workflows/verification-progress-dashboard.yml",
@@ -539,6 +855,13 @@
       "bytes": 585
     },
     {
+      "path": "education-suite.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 5682
+    },
+    {
       "path": "factory/agent_supervisor.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -565,6 +888,13 @@
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
       "bytes": 6343
+    },
+    {
+      "path": "factory/concrete_product_truth.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2870
     },
     {
       "path": "factory/factory_model_adapter.py",
@@ -595,18 +925,32 @@
       "bytes": 490
     },
     {
-      "path": "factory/product-catalog.json",
-      "type": "json",
+      "path": "factory/product_asset_expander.py",
+      "type": "py",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 3261
+      "bytes": 4960
+    },
+    {
+      "path": "factory/product_reality_audit.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 2661
     },
     {
       "path": "factory/public_production_materializer.py",
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 11887
+      "bytes": 12630
+    },
+    {
+      "path": "factory/public_showroom.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1473
     },
     {
       "path": "factory/queue_worker.py",
@@ -721,6 +1065,13 @@
       "bytes": 799
     },
     {
+      "path": "justice-suite.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 6299
+    },
+    {
       "path": "livelihood.html",
       "type": "html",
       "lane": "ai_ml_nlp",
@@ -735,6 +1086,139 @@
       "bytes": 14055
     },
     {
+      "path": "production/live-product-registry.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3719
+    },
+    {
+      "path": "production/live-products.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 5115
+    },
+    {
+      "path": "production/products/SHR-PROD-0002.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 577
+    },
+    {
+      "path": "production/products/SHR-PROD-0003.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 454
+    },
+    {
+      "path": "production/products/SHR-PROD-0007.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 478
+    },
+    {
+      "path": "production/products/SHR-PROD-0009.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 529
+    },
+    {
+      "path": "production/products/SHR-PROD-0022.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 320
+    },
+    {
+      "path": "production/products/SHR-PROD-0024.md",
+      "type": "md",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 347
+    },
+    {
+      "path": "products/app.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 5592
+    },
+    {
+      "path": "products/concrete-production-batch-2026-10-06-batch-100.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 19239
+    },
+    {
+      "path": "products/concrete-production-batch-2026-10-06-batch-50.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 11402
+    },
+    {
+      "path": "products/concrete-production-batch-2026-10-06.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 10881
+    },
+    {
+      "path": "products/micro-product-manifest.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1544
+    },
+    {
+      "path": "products/micro/drawing-board.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1844
+    },
+    {
+      "path": "products/micro/markdown-preview.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1658
+    },
+    {
+      "path": "products/micro/seo-meta-generator.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1609
+    },
+    {
+      "path": "products/micro/unit-converter.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1688
+    },
+    {
+      "path": "products/micro/word-counter.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1664
+    },
+    {
+      "path": "products/production-product-suite.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 8403
+    },
+    {
       "path": "profile.html",
       "type": "html",
       "lane": "ai_ml_nlp",
@@ -747,6 +1231,13 @@
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
       "bytes": 6788
+    },
+    {
+      "path": "public-reviews-quality.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 6091
     },
     {
       "path": "schemas/ai-company.schema.json",
@@ -854,11 +1345,25 @@
       "bytes": 612
     },
     {
+      "path": "scripts/build_showroom.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3391
+    },
+    {
       "path": "scripts/generate_independent_verification_progress_map.py",
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
       "bytes": 8835
+    },
+    {
+      "path": "scripts/showroom-production-check.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 842
     },
     {
       "path": "scripts/validate_json.py",
@@ -880,6 +1385,20 @@
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
       "bytes": 886
+    },
+    {
+      "path": "showroom-experience.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3519
+    },
+    {
+      "path": "supreme-marking-hub.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 7509
     },
     {
       "path": "tests/supreme_independent_verification_ledger.py",
@@ -973,6 +1492,69 @@
       "bytes": 2985
     },
     {
+      "path": "production/products/SHR-PROD-0023.md",
+      "type": "md",
+      "lane": "content",
+      "status": "DESIGN",
+      "bytes": 298
+    },
+    {
+      "path": "production/products/SHR-PROD-0010.md",
+      "type": "md",
+      "lane": "content",
+      "status": "READY",
+      "bytes": 490
+    },
+    {
+      "path": "production/products/SHR-PROD-0021.md",
+      "type": "md",
+      "lane": "content",
+      "status": "READY",
+      "bytes": 336
+    },
+    {
+      "path": "production/products/SHR-PROD-0011.md",
+      "type": "md",
+      "lane": "content",
+      "status": "UNSPECIFIED",
+      "bytes": 389
+    },
+    {
+      "path": "production/products/SHR-PROD-0015.md",
+      "type": "md",
+      "lane": "content",
+      "status": "UNSPECIFIED",
+      "bytes": 396
+    },
+    {
+      "path": "production/products/SHR-PROD-0016.md",
+      "type": "md",
+      "lane": "content",
+      "status": "UNSPECIFIED",
+      "bytes": 386
+    },
+    {
+      "path": "production/products/SHR-PROD-0017.md",
+      "type": "md",
+      "lane": "content",
+      "status": "UNSPECIFIED",
+      "bytes": 410
+    },
+    {
+      "path": "production/products/SHR-PROD-0019.md",
+      "type": "md",
+      "lane": "content",
+      "status": "UNSPECIFIED",
+      "bytes": 471
+    },
+    {
+      "path": "factory/product_qc_gate.py",
+      "type": "py",
+      "lane": "economic",
+      "status": "UNSPECIFIED",
+      "bytes": 2446
+    },
+    {
       "path": "schemas/product.schema.json",
       "type": "json",
       "lane": "economic",
@@ -1012,7 +1594,7 @@
       "type": "md",
       "lane": "research",
       "status": "ACTIVE",
-      "bytes": 1123
+      "bytes": 1559
     },
     {
       "path": "CONTINUATION-CHECKPOINT-2026-09-21-1244.md",
@@ -1288,11 +1870,11 @@
       "bytes": 4681
     },
     {
-      "path": "production-command-center.html",
+      "path": "public-production-results-hub.html",
       "type": "html",
       "lane": "research",
       "status": "ACTIVE",
-      "bytes": 5049
+      "bytes": 4784
     },
     {
       "path": "research/global-identity-evidence-map-2026-10-01.md",
@@ -1314,6 +1896,20 @@
       "lane": "research",
       "status": "ACTIVE",
       "bytes": 1030
+    },
+    {
+      "path": "scripts/production_factory.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 6091
+    },
+    {
+      "path": "showroom.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 13961
     },
     {
       "path": "work-to-value-employment-income.html",
@@ -1384,6 +1980,13 @@
       "lane": "research",
       "status": "ARCHITECTURE",
       "bytes": 2327
+    },
+    {
+      "path": "docs/four-stage-production-contract.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1395
     },
     {
       "path": "docs/public-platform/module-map.md",
@@ -1502,7 +2105,7 @@
       "type": "json",
       "lane": "research",
       "status": "ARCHITECTURE",
-      "bytes": 6715
+      "bytes": 7312
     },
     {
       "path": "docs/yatharth-system/public-platform-contract.md",
@@ -1540,11 +2143,25 @@
       "bytes": 10961
     },
     {
+      "path": "factory/production_reality_gate.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 2029
+    },
+    {
       "path": "factory/supreme_architecture_qc.py",
       "type": "py",
       "lane": "research",
       "status": "ARCHITECTURE",
       "bytes": 5279
+    },
+    {
+      "path": "funding-appeal.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 16922
     },
     {
       "path": "platform-charter.html",
@@ -1559,6 +2176,27 @@
       "lane": "research",
       "status": "ARCHITECTURE",
       "bytes": 2930
+    },
+    {
+      "path": "production-command-center.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 5645
+    },
+    {
+      "path": "production-reality.html",
+      "type": "html",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 3035
+    },
+    {
+      "path": "production/PRODUCTION-LAUNCH-STATE.md",
+      "type": "md",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 1541
     },
     {
       "path": "public-platform-hub.html",
@@ -1638,6 +2276,13 @@
       "bytes": 7172
     },
     {
+      "path": "production-ledger.json",
+      "type": "json",
+      "lane": "research",
+      "status": "DESIGN",
+      "bytes": 1792
+    },
+    {
       "path": "research/yatharth-comparison-matrix-2026-09-29.md",
       "type": "md",
       "lane": "research",
@@ -1687,6 +2332,13 @@
       "bytes": 1535
     },
     {
+      "path": "PRODUCT-REALITY-CONTROL.md",
+      "type": "md",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 592
+    },
+    {
       "path": "PROJECT-CONTINUITY.md",
       "type": "md",
       "lane": "research",
@@ -1698,7 +2350,7 @@
       "type": "md",
       "lane": "research",
       "status": "READY",
-      "bytes": 19939
+      "bytes": 21331
     },
     {
       "path": "SHIRMANI-HEART-VIEW-INDEPENDENT-REVIEW-PROTOCOL.md",
@@ -1778,11 +2430,46 @@
       "bytes": 756
     },
     {
+      "path": "factory/concrete_product_materializer.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 6238
+    },
+    {
+      "path": "factory/concrete_product_modules.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 9974
+    },
+    {
+      "path": "factory/digital_product_reality_map.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 5447
+    },
+    {
+      "path": "factory/materialize_all_product_assets.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 5806
+    },
+    {
       "path": "factory/multi_layer_production.py",
       "type": "py",
       "lane": "research",
       "status": "READY",
       "bytes": 9660
+    },
+    {
+      "path": "factory/product-catalog.json",
+      "type": "json",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 7398
     },
     {
       "path": "factory/recovery.py",
@@ -1792,11 +2479,25 @@
       "bytes": 1004
     },
     {
+      "path": "factory/supreme_production_engine.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 7675
+    },
+    {
       "path": "federation-dashboard.html",
       "type": "html",
       "lane": "research",
       "status": "READY",
       "bytes": 3955
+    },
+    {
+      "path": "funding-proposal.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 8058
     },
     {
       "path": "nextgen-interface.html",
@@ -1813,11 +2514,46 @@
       "bytes": 3822
     },
     {
-      "path": "products/index.html",
+      "path": "production-reality-control-center.html",
       "type": "html",
       "lane": "research",
       "status": "READY",
-      "bytes": 4256
+      "bytes": 2380
+    },
+    {
+      "path": "production-truth.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 5031
+    },
+    {
+      "path": "production/production-audit-2026-10-05.md",
+      "type": "md",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 3084
+    },
+    {
+      "path": "production/production-launch-board.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 3870
+    },
+    {
+      "path": "products.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 10244
+    },
+    {
+      "path": "products/research-evidence-support.html",
+      "type": "html",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 1676
     },
     {
       "path": "schemas/ads-campaign-spec.json",
@@ -2002,6 +2738,13 @@
       "bytes": 3824
     },
     {
+      "path": "concrete-production-truth.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 3142
+    },
+    {
       "path": "docs/agent-contracts.md",
       "type": "md",
       "lane": "research",
@@ -2037,6 +2780,13 @@
       "bytes": 15999
     },
     {
+      "path": "production-floor.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNAVAILABLE",
+      "bytes": 3521
+    },
+    {
       "path": "repositories.html",
       "type": "html",
       "lane": "research",
@@ -2070,6 +2820,13 @@
       "lane": "research",
       "status": "UNAVAILABLE",
       "bytes": 764
+    },
+    {
+      "path": ".github/workflows/production-reality-gate.yml",
+      "type": "yml",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 685
     },
     {
       "path": ".github/workflows/shirmani-independent-verification-gate.yml",
@@ -2121,6 +2878,13 @@
       "bytes": 2239
     },
     {
+      "path": "PUBLIC-PRODUCTION-MATERIALIZATION.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1774
+    },
+    {
       "path": "REVIEW-SLICE-000001-000025-STATUS-2026-09-21.md",
       "type": "md",
       "lane": "research",
@@ -2133,6 +2897,13 @@
       "lane": "research",
       "status": "UNSPECIFIED",
       "bytes": 489
+    },
+    {
+      "path": "SHOWROOM-PRODUCTION.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1309
     },
     {
       "path": "about.html",
@@ -2345,6 +3116,13 @@
       "bytes": 1342
     },
     {
+      "path": "docs/REAL-PRODUCT-EXECUTION-2026-10-05.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1120
+    },
+    {
       "path": "docs/SUPREME-EVIDENCE-CONTROL-PLANE.md",
       "type": "md",
       "lane": "research",
@@ -2427,6 +3205,13 @@
       "lane": "research",
       "status": "UNSPECIFIED",
       "bytes": 724
+    },
+    {
+      "path": "docs/concrete-production-truth.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1580
     },
     {
       "path": "docs/independent-verification-conveyor.md",
@@ -2595,6 +3380,13 @@
       "lane": "research",
       "status": "UNSPECIFIED",
       "bytes": 2392
+    },
+    {
+      "path": "education-lab.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2456
     },
     {
       "path": "factory-agent.json",
@@ -2891,6 +3683,13 @@
       "bytes": 948
     },
     {
+      "path": "factory/real_product_factory.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5447
+    },
+    {
       "path": "factory/reasoning_pipeline.py",
       "type": "py",
       "lane": "research",
@@ -3008,6 +3807,13 @@
       "lane": "research",
       "status": "UNSPECIFIED",
       "bytes": 3877
+    },
+    {
+      "path": "factory/supreme_product_production_engine.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5251
     },
     {
       "path": "factory/supreme_system_orchestrator.py",
@@ -3182,7 +3988,14 @@
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 102786
+      "bytes": 106845
+    },
+    {
+      "path": "justice-lab.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3193
     },
     {
       "path": "media.html",
@@ -3192,11 +4005,144 @@
       "bytes": 1326
     },
     {
+      "path": "production-flagship-products.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3429
+    },
+    {
+      "path": "production-fulfilment.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4696
+    },
+    {
+      "path": "production-marketplace.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 9506
+    },
+    {
+      "path": "production/README.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1584
+    },
+    {
+      "path": "production/generated/production_status.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 542
+    },
+    {
+      "path": "production/production-launch-board.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4003
+    },
+    {
+      "path": "production/products/SHR-PROD-0001.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 703
+    },
+    {
+      "path": "production/products/SHR-PROD-0004.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 445
+    },
+    {
+      "path": "production/products/SHR-PROD-0005.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 381
+    },
+    {
+      "path": "production/products/SHR-PROD-0006.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 464
+    },
+    {
+      "path": "production/products/SHR-PROD-0012.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 464
+    },
+    {
+      "path": "production/products/SHR-PROD-0013.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 337
+    },
+    {
+      "path": "production/products/SHR-PROD-0014.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 332
+    },
+    {
+      "path": "production/products/SHR-PROD-0020.md",
+      "type": "md",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 292
+    },
+    {
+      "path": "products/concrete-production-batch-2026-10-06-batch-300.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 37539
+    },
+    {
+      "path": "products/index.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2244
+    },
+    {
+      "path": "products/micro/color-palette-generator.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1566
+    },
+    {
+      "path": "products/micro/json-formatter.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1427
+    },
+    {
+      "path": "products/micro/percentage-calculator.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1429
+    },
+    {
       "path": "public-production-live.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 3629
+      "bytes": 3860
     },
     {
       "path": "publications.html",
@@ -3204,6 +4150,13 @@
       "lane": "research",
       "status": "UNSPECIFIED",
       "bytes": 1178
+    },
+    {
+      "path": "research-paper.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2413
     },
     {
       "path": "research.html",
@@ -3437,6 +4390,13 @@
       "bytes": 1297
     },
     {
+      "path": "scripts/production_engine.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 4061
+    },
+    {
       "path": "scripts/sync-central-factory-status.py",
       "type": "py",
       "lane": "research",
@@ -3470,6 +4430,13 @@
       "lane": "research",
       "status": "UNSPECIFIED",
       "bytes": 1014
+    },
+    {
+      "path": "showroom-products.json",
+      "type": "json",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 6296
     },
     {
       "path": "source/user-directives/2026-09-20-shirmani-heart-view-request.md",
