@@ -17,6 +17,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
+      - name: Configure deterministic concrete production batch
+        run: echo "CONCRETE_PRODUCT_BATCH_SIZE=250" >> "$GITHUB_ENV"
       - name: Produce next concrete public batch
         run: python3 factory/continuous_product_batch.py
       - name: Publish concrete production through PR
