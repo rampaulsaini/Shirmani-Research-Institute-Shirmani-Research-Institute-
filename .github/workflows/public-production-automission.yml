@@ -52,7 +52,7 @@ jobs:
           catalog = json.loads(Path("generated/1000-digital-products.json").read_text(encoding="utf-8"))
           status = json.loads(Path("generated/concrete-product-asset-status.json").read_text(encoding="utf-8"))
           target = int(catalog["product_count"])
-          produced = int(status["concrete_product_assets"])
+          produced = int(status.get("concrete_product_assets", status.get("product_assets", 0)))
           assert target == 1016, f"expected canonical catalog size 1016, got {target}"
           assert produced == target, f"concrete assets {produced}/{target}"
           print(f"CONCRETE_PRODUCT_PRODUCTION: {produced}/{target} (100%)")
