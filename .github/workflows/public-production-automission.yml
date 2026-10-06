@@ -20,10 +20,12 @@ concurrency:
 jobs:
   produce-and-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      PRODUCT_TARGET: "5000"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,30 +37,27 @@ jobs:
       - name: Build public module inventory
         run: python3 factory/public_module_inventory.py
 
-      # Canonical concrete-product production path:
-      # 1016 catalog identities -> 1016 product assets -> public Pages deployment.
-      # This removes the ambiguity between "25 engines" and actual product outputs.
-      - name: Generate canonical 1016-product catalog
+      - name: Generate expanded concrete-product catalog
         run: python3 factory/real_product_factory.py
 
-      - name: Materialize concrete product assets
+      - name: Materialize expanded concrete product assets
         run: python3 factory/materialize_all_product_assets.py
 
       - name: Validate concrete product production
         run: |
           python3 - <<'PY'
-          import json
+          import json, os
           from pathlib import Path
           catalog = json.loads(Path("generated/1000-digital-products.json").read_text(encoding="utf-8"))
           status = json.loads(Path("generated/concrete-product-asset-status.json").read_text(encoding="utf-8"))
-          target = int(catalog["product_count"])
+          target = int(os.environ["PRODUCT_TARGET"])
           produced = int(status.get("concrete_product_assets", status.get("product_assets", 0)))
-          assert target == 1016, f"expected canonical catalog size 1016, got {target}"
+          assert target >= 1016
+          assert catalog["product_count"] == target, f"catalog {catalog['product_count']}/{target}"
           assert produced == target, f"concrete assets {produced}/{target}"
           print(f"CONCRETE_PRODUCT_PRODUCTION: {produced}/{target} (100%)")
           print(f"ENGINE_COUNT: {len(catalog['family_definitions'])}")
-          print("IMPORTANT: engine count is architecture reuse; product count is concrete catalog output.")
-          PY
+          print("PRODUCTION PRINCIPLE: product output first; verification remains downstream.")
 
       - name: Materialize public production status
         run: python3 factory/public_production_materializer.py

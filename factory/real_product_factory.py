@@ -1,5 +1,5 @@
 from pathlib import Path
-import hashlib, json
+import hashlib, json, os
 from datetime import datetime, timezone
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -11,16 +11,17 @@ OBJECTIVES={e:f"produce reusable {f} work with a concrete browser-executable res
 def code(prefix,value): return prefix+hashlib.sha256(value.encode()).hexdigest()[:12].upper()
 def main():
  OUT.mkdir(parents=True,exist_ok=True); products=[]; passports=[]
- for i in range(1,1017):
+ target=max(1016,int(os.getenv("PRODUCT_TARGET","1016")))
+ for i in range(1,target+1):
   engine,family=FAMILIES[(i-1)%len(FAMILIES)]; pid=f"SP-{i:04d}"; name=f"SHIRMANI {PREFIX[(i-1)%len(PREFIX)]} {family} {i:04d}"
   qc=code("QC-",pid+"|SHIRMANI-PRODUCTION-QC"); gate=f"GATE-{i:04d}"; module=f"products/modules/{engine}.html"; asset=f"products/production/{pid.lower()}.html"
   price=BASE_PRICE[family]; offer_price=max(49,round(price*.80)); description=f"{name}: {OBJECTIVES[engine]}. Clean production package with product passport, QC gate and dispatch control."
   guarantee="7-day digital quality correction window"; packing="SUPREME DIGITAL PRIME PACK"; qr=f"{pid}|{asset}|QC:{qc}|GATE:{gate}|DISPATCH:NO|PRICE:{offer_price}"
   products.append({"id":pid,"name":name,"family":family,"category":family,"engine":engine,"module":module,"asset":asset,"objective":OBJECTIVES[engine],"description":description,"product_index":i,"price_inr":price,"offer_price_inr":offer_price,"offer":"LAUNCH -20%","currency":"INR","commercial_status":"CATALOG_READY","status":"CONCRETE_PRODUCT_ASSET","access":f"products/production-launch-center.html?id={pid}","asset_url":asset,"qc_code":qc,"gate_no":gate,"dispatch_no":"NO","guarantee":guarantee,"packing":packing,"qr_payload":qr,"verification":"DOWNSTREAM_QC_GATE"})
   passports.append({"product_id":pid,"name":name,"category":family,"engine":engine,"module":module,"asset":asset,"price_inr":price,"offer_price_inr":offer_price,"offer":"LAUNCH -20%","description":description,"guarantee":guarantee,"packing":packing,"qc_code":qc,"gate_no":gate,"dispatch_no":"NO","status":"READY_FOR_QC","qr_payload":qr})
- payload={"schema_version":4,"generated_at":datetime.now(timezone.utc).isoformat(),"title":"SHIRMANI 1016 Digital Product Factory","principle":"Production first: every catalog identity maps to a concrete product asset, category, price, offer, description, QC passport, gate and dispatch state.","product_count":len(products),"family_count":len(FAMILIES),"families":[x[1] for x in FAMILIES],"family_definitions":[{"id":e,"label":f,"base_price_inr":BASE_PRICE[f]} for e,f in FAMILIES],"products":products,"commercial_policy":{"launch_offer":"20% below family base price","dispatch_default":"NO until QC/dispatch gate","guarantee":"7-day digital quality correction window","packing":"SUPREME DIGITAL PRIME PACK"},"production_status":{"configured_products":len(products),"concrete_product_assets_target":len(products),"ready_for_qc":len(products),"dispatch":0},"truth_boundary":"QC/gate/dispatch and independent verification remain downstream of production."}
+ payload={"schema_version":5,"generated_at":datetime.now(timezone.utc).isoformat(),"title":f"SHIRMANI {target} Digital Product Factory","principle":"Production first: every catalog identity maps to a concrete product asset, category, price, offer, description, QC passport, gate and dispatch state.","product_count":len(products),"family_count":len(FAMILIES),"families":[x[1] for x in FAMILIES],"family_definitions":[{"id":e,"label":f,"base_price_inr":BASE_PRICE[f]} for e,f in FAMILIES],"products":products,"commercial_policy":{"launch_offer":"20% below family base price","dispatch_default":"NO until QC/dispatch gate","guarantee":"7-day digital quality correction window","packing":"SUPREME DIGITAL PRIME PACK"},"production_status":{"configured_products":len(products),"concrete_product_assets_target":len(products),"ready_for_qc":len(products),"dispatch":0},"truth_boundary":"QC/gate/dispatch and independent verification remain downstream of production."}
  (OUT/"1000-digital-products.json").write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  with (OUT/"PRODUCT-PASSPORTS.jsonl").open("w",encoding="utf-8") as f:
   for row in passports:f.write(json.dumps(row,ensure_ascii=False)+"\n")
- (OUT/"real-product-factory-status.json").write_text(json.dumps({"strategy":"CONCRETE_PRODUCT_FIRST","target_products":len(products),"concrete_product_mvp":len(products),"families":len(FAMILIES),"concrete_product_asset_target":len(products),"catalog":"generated/1000-digital-products.json","passports":"generated/PRODUCT-PASSPORTS.jsonl","public_product_center":"products/production-launch-center.html","qc_gate":"READY_FOR_QC","dispatch":0,"verification_status":"DOWNSTREAM","commercial_metadata":"PRICE_OFFER_DESCRIPTION_GUARANTEE_PACKING_QR"},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+ (OUT/"real-product-factory-status.json").write_text(json.dumps({"strategy":"CONCRETE_PRODUCT_FIRST","target_products":len(products),"concrete_product_mvp":len(products),"families":len(FAMILIES),"concrete_product_asset_target":len(products),"catalog":"generated/1000-digital-products.json","passports":"generated/PRODUCT-PASSPORTS.jsonl","public_product_center":"products/production-launch-center.html","qc_gate":"READY_FOR_QC","dispatch":0,"verification_status":"DOWNSTREAM","commercial_metadata":"PRICE_OFFER_DESCRIPTION_GUARANTEE_PACKING_QR","expansion_mode":"ENV_PRODUCT_TARGET"},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 if __name__=="__main__": main()
