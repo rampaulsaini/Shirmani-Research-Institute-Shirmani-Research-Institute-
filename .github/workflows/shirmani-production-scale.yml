@@ -56,7 +56,6 @@ jobs:
           git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
           git branch -f "$BRANCH" HEAD
           git push --force-with-lease origin "HEAD:$BRANCH"
-          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0
-; then
+          if [ "$(gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length')" = "0" ]; then
             gh pr create --base main --head "$BRANCH" --title "chore(production): publish next public product batch" --body "Automated production batch. Concrete product artifacts and public showroom metadata are generated first; downstream QC/verification remain separate."
           fi
