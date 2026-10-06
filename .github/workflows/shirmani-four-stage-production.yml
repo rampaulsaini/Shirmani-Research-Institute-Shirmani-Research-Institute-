@@ -36,4 +36,6 @@ jobs:
           fi
           git commit -m "chore(production): advance four-stage showroom production"
           git push --set-upstream origin "$BRANCH"
-          gh pr create --base main --head "$BRANCH" --title "chore(production): advance four-stage showroom production" --body "Automated production cycle: Institute discovery → concrete factory production → deterministic QC gate → public showroom state. Verification remains downstream."
+          PR_URL=$(gh pr create --base main --head "$BRANCH" --title "chore(production): advance four-stage showroom production" --body "Automated production cycle: Institute discovery → concrete factory production → deterministic QC gate → public showroom state. Verification remains downstream.")
+          echo "$PR_URL"
+          gh pr merge "$BRANCH" --auto --squash --delete-branch || echo "Auto-merge unavailable; PR remains open for the repository gate."
