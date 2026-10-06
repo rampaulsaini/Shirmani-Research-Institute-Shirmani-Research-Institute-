@@ -1,0 +1,43 @@
+name: SHIRMANI Production-First Supreme Multi-Layer Automission
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-production-first-supreme-loop
+  cancel-in-progress: false
+jobs:
+  production-loop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run Institute → Factory → Public Production loop
+        run: python3 factory/production-first-supreme-loop.py
+      - name: Publish production telemetry
+        run: |
+          git config user.name "SHIRMANI Production-First Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/production-first-loop-status.json generated/1000-digital-products.json generated/real-product-factory-status.json generated/PRODUCT-PASSPORTS.jsonl generated/public-production/ generated/public-production-catalog.json generated/public-production-module-index.json generated/public-production-by-module.html production-dashboard.html
+          if git diff --cached --quiet; then
+            echo "No production delta"
+          else
+            git commit -m "automission: production-first supreme loop"
+            git push origin HEAD:main
+          fi
+      - name: Publish production summary
+        run: |
+          {
+            echo "## SHIRMANI Production-First Supreme Loop"
+            echo "- Cadence: every 5 minutes"
+            echo "- Pipeline: Institute → Factory → QC/Gate → Public Showroom/Sale"
+            echo "- Production is primary; verification remains downstream"
+            echo "- Dispatch remains NO until explicit downstream release"
+          } >> "$GITHUB_STEP_SUMMARY"
