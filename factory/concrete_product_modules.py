@@ -1,23 +1,77 @@
 from pathlib import Path
-import json,hashlib,html
-from datetime import datetime,timezone
-ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/"generated"; MOD=ROOT/"products/modules"
-F=[("calculator","Counting & Math"),("text","Text & Language"),("seo","SEO & Web"),("data","Data Tools"),("draw","Sketch & Drawing"),("pixel","Painting & Pixel Art"),("game","Mini Games"),("quiz","Education"),("research","Research"),("productivity","Productivity"),("media","Audio & Media"),("commerce","Commerce"),("access","Accessibility"),("visual","Visualization"),("quality","Security & Quality"),("ai","AI Prompt Tools"),("nlp","ML/NLP Tools"),("quantum","Quantum-Inspired"),("engineering","Engineering"),("knowledge","Knowledge"),("time","Calendar & Time"),("files","Files & Formats"),("marketing","Marketing"),("creator","Creator Tools"),("nature","Nature & Earth")]
-def qc(pid): return "QC-"+hashlib.sha256((pid+"|SHIRMANI-QC").encode()).hexdigest()[:12].upper()
-T='''<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI FAMILY Production Module</title><style>body{margin:0;background:#071018;color:#eef5f8;font:16px system-ui;line-height:1.5}main{max-width:1050px;margin:auto;padding:20px}.c{background:#101923;border:1px solid #354858;border-radius:16px;padding:18px;margin:12px 0}h1,h2{color:#ffd84a}input,textarea,select{width:100%;box-sizing:border-box;padding:10px;margin:5px 0 10px;background:#081019;color:#fff;border:1px solid #405466;border-radius:8px}button{padding:10px 14px;border:0;border-radius:8px;background:#ffd84a;font-weight:800}.tag{color:#5ee7ff}pre{white-space:pre-wrap;background:#060b10;padding:12px}#qr{background:#fff;padding:8px;display:inline-block}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><main><section class=c><span class=tag>PRODUCTION MODULE • ENGINE</span><h1>꙰ SHIRMANI FAMILY</h1><p>Concrete executable browser module: <b id=pid></b></p><b>READY_FOR_QC</b></section><section class=c><h2>Product Passport</h2><p>QC: <b id=qc></b> · Gate: <b id=gate></b> · Dispatch: <b>NO</b></p><div id=qr></div><pre id=pass></pre></section><section class=c><h2>Working Module</h2><div id=tool></div><pre id=out>Ready.</pre></section><script>
-const id=new URLSearchParams(location.search).get("id")||"UNASSIGNED",family="FAMILY",engine="ENGINE";function h(s){let x=2166136261;for(let c of s){x^=c.charCodeAt(0);x=Math.imul(x,16777619)}return(x>>>0).toString(16).toUpperCase().slice(0,12)}const qc="QC-"+h(id+"|SHIRMANI-QC"),gate="GATE-"+String(id.replace(/\D/g,"")||"0001").padStart(4,"0");function v(i){return document.getElementById(i)?.value||""}function o(x){out.textContent=JSON.stringify(x,null,2)}
-pid.textContent=id;document.getElementById("qc").textContent=qc;document.getElementById("gate").textContent=gate;const passport={product_id:id,family,engine,qc_code:qc,gate_no:gate,dispatch_no:"NO",status:"READY_FOR_QC"};pass.textContent=JSON.stringify(passport,null,2);if(window.QRCode)new QRCode(qr,{text:location.href+"#"+JSON.stringify(passport),width:150,height:150});
-const t=document.getElementById("tool");if(["calculator","engineering"].includes(engine))t.innerHTML='<input id=a type=number value=10><input id=b type=number value=5><select id=op><option>+</option><option>-</option><option>*</option><option>/</option></select><button onclick=calc()>Run</button>';else if(["text","nlp"].includes(engine))t.innerHTML='<textarea id=tx rows=7></textarea><button onclick=textx()>Analyze</button>';else if(["research","quality"].includes(engine))t.innerHTML='<input id=claim placeholder=Claim><input id=source placeholder=Source><textarea id=ev placeholder=Evidence></textarea><button onclick=research()>QC Record</button>';else if(["seo","marketing"].includes(engine))t.innerHTML='<input id=title placeholder=Title><textarea id=desc placeholder=Description></textarea><button onclick=seo()>SEO</button>';else if(["data","files"].includes(engine))t.innerHTML='<textarea id=data rows=8></textarea><button onclick=datax()>Inspect</button>';else if(engine=="game")t.innerHTML='<button onclick=game()>New Game</button><div id=board></div>';else if(["ai","creator","media","commerce"].includes(engine))t.innerHTML='<textarea id=brief rows=7 placeholder=Brief></textarea><button onclick=pack()>Package</button>';else t.innerHTML='<textarea id=note rows=7></textarea><button onclick=record()>Create</button>';
-function calc(){let a=+v("a"),b=+v("b"),z=v("op");o({type:"CALCULATION",product_id:id,result:z=="+"?a+b:z=="-"?a-b:z=="*"?a*b:b?a/b:"DIV0",qc_code:qc})}function textx(){let x=v("tx");o({type:"TEXT_ANALYSIS",product_id:id,characters:x.length,words:x.trim()?x.trim().split(/\s+/).length:0})}function research(){o({type:"QC_EVIDENCE_RECORD",product_id:id,claim:v("claim"),source:v("source"),evidence:v("ev"),qc_code:qc,gate_no:gate,dispatch_no:"NO"})}function seo(){o({type:"SEO_PACK",product_id:id,title:v("title"),description:v("desc").slice(0,160)})}function datax(){let x=v("data");try{o({type:"JSON",product_id:id,value:JSON.parse(x)})}catch(e){o({type:"CSV",product_id:id,rows:x.split(/\n/).filter(Boolean).length})}}function pack(){o({type:"PRODUCTION_PACKAGE",product_id:id,brief:v("brief"),stages:["output","QC","dispatch"],qc_code:qc,gate_no:gate,dispatch_no:"NO"})}function record(){o({type:"STRUCTURED_RECORD",product_id:id,input:v("note"),status:"DRAFT"})}function game(){board.innerHTML=["","","","","","","","",""].map((_,i)=>'<button onclick="this.textContent=this.textContent?this.textContent:(i%2?"O":"X")" style="width:60px;height:60px;margin:3px"></button>').join("")}</script></main>'''
+import json, html
+from datetime import datetime, timezone
+
+ROOT=Path(__file__).resolve().parents[1]
+OUT=ROOT/"generated"
+MOD=ROOT/"products/modules"
+PROD=ROOT/"products/production"
+
+ENGINE_GROUPS={
+ "calculator":"calculator","engineering":"calculator",
+ "text":"text","nlp":"text","knowledge":"text",
+ "seo":"seo","marketing":"seo",
+ "data":"data","files":"data",
+ "draw":"visual","pixel":"visual","visual":"visual",
+ "game":"game","quiz":"planner","productivity":"planner","time":"planner",
+ "research":"research","quality":"research",
+ "ai":"package","creator":"package","media":"package","commerce":"package",
+ "quantum":"quantum","access":"planner","nature":"package"
+}
+
+def page(p):
+    e=p["engine"]; g=ENGINE_GROUPS.get(e,"package")
+    pid=p["id"]
+    data=json.dumps({k:p.get(k) for k in ["id","name","category","engine","price_inr","offer_price_inr","offer","description","guarantee","packing","qc_code","gate_no","dispatch_no","asset"]},ensure_ascii=False)
+    tool={
+      "calculator":'<input id="a" type="number" value="10"><input id="b" type="number" value="5"><select id="op"><option>+</option><option>-</option><option>*</option><option>/</option><option>%</option></select><button onclick="runCalc()">Run calculator</button>',
+      "text":'<textarea id="tx" rows="8" placeholder="Enter text / language material"></textarea><button onclick="runText()">Analyze NLP</button>',
+      "seo":'<input id="st" placeholder="Title"><textarea id="sd" rows="5" placeholder="Description"></textarea><button onclick="runSeo()">Build SEO package</button>',
+      "data":'<textarea id="jx" rows="8" placeholder="JSON or CSV"></textarea><button onclick="runData()">Inspect data</button>',
+      "visual":'<textarea id="vb" rows="7" placeholder="Visual brief"></textarea><button onclick="runVisual()">Build visual specification</button>',
+      "game":'<button onclick="newGame()">New game</button><div id="board"></div>',
+      "planner":'<input id="topic" placeholder="Topic / task"><textarea id="notes" rows="6"></textarea><button onclick="runPlan()">Build plan</button>',
+      "research":'<input id="claim" placeholder="Research question / claim"><input id="source" placeholder="Source"><textarea id="evidence" rows="6" placeholder="Evidence"></textarea><button onclick="runResearch()">Build research/QC record</button>',
+      "package":'<textarea id="brief" rows="8" placeholder="Production brief"></textarea><button onclick="runPackage()">Build production package</button>',
+      "quantum":'<select id="gate"><option>H</option><option>X</option><option>Z</option><option>CNOT</option></select><button onclick="runQuantum()">Run quantum-inspired classical simulation</button>'
+    }[g]
+    script=f"""
+const P={data};
+const out=x=>document.getElementById('out').textContent=JSON.stringify(x,null,2);
+const passport=()=>({{product_id:P.id,qc_code:P.qc_code,gate_no:P.gate_no,dispatch_no:P.dispatch_no,price_inr:P.price_inr,offer_price_inr:P.offer_price_inr}});
+function runCalc(){{let a=+aEl.value,b=+bEl.value,o=op.value;let r=o==='+'?a+b:o==='-'?a-b:o==='*'?a*b:o==='/'?(b?a/b:'DIV0'):a%b;out({{type:'CALCULATION',...passport(),a,b,operation:o,result:r,status:'PRODUCED'}})}}
+function runText(){{let t=tx.value;out({{type:'NLP_ANALYSIS',...passport(),characters:t.length,words:(t.match(/\\S+/g)||[]).length,lines:t.split(/\\n/).length,status:'PRODUCED'}})}}
+function runSeo(){{out({{type:'SEO_PACKAGE',...passport(),title:st.value,description:sd.value.slice(0,160),status:'PRODUCED'}})}}
+function runData(){{let x=jx.value;try{{out({{type:'JSON_INSPECTION',...passport(),valid:true,data:JSON.parse(x),status:'PRODUCED'}})}}catch(e){{out({{type:'DATA_INSPECTION',...passport(),valid:false,rows:x.split(/\\n/).filter(Boolean).length,status:'PRODUCED'}})}}}}
+function runVisual(){{out({{type:'VISUAL_PRODUCTION_SPEC',...passport(),brief:vb.value,stages:['concept','layout','asset-list','export-spec'],status:'PRODUCED'}})}}
+function runPlan(){{out({{type:'PRODUCTIVITY_OUTPUT',...passport(),topic:topic.value,notes:notes.value,stages:['objective','steps','output','QC','archive'],status:'PRODUCED'}})}}
+function runResearch(){{out({{type:'RESEARCH_QC_RECORD',...passport(),claim:claim.value,source:source.value,evidence:evidence.value,verification:'DOWNSTREAM',status:'PRODUCED'}})}}
+function runPackage(){{out({{type:'PRODUCTION_PACKAGE',...passport(),brief:brief.value,stages:['produce','package','QC','gate','dispatch'],status:'PRODUCED'}})}}
+function runQuantum(){{out({{type:'QUANTUM_INSPIRED_CLASSICAL_SIMULATION',...passport(),gate:gate.value,hardware:'NONE',status:'PRODUCED'}})}}
+let B=[];
+function newGame(){{B=Array(9).fill('');board.innerHTML=B.map((_,i)=>'<button style="width:70px;height:70px;font-size:25px" onclick="move('+i+')"></button>').join('')}}
+function move(i){{if(B[i])return;B[i]='X';let e=B.findIndex(x=>!x);if(e>=0)B[e]='O';[...board.children].forEach((b,j)=>b.textContent=B[j]);out({{type:'GAME_OUTPUT',...passport(),board:B,status:'PRODUCED'}})}}
+const aEl=document.getElementById('a'),bEl=document.getElementById('b'),op=document.getElementById('op');
+"""
+    return f"""<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(p['name'])}</title><meta name="description" content="{html.escape(p['description'])}"><style>body{{margin:0;background:#070b12;color:#eef5f8;font:16px system-ui;line-height:1.5}}main{{max-width:1050px;margin:auto;padding:20px 14px 70px}}section{{background:#101923;border:1px solid #354858;border-radius:18px;padding:18px;margin:12px 0}}h1,h2{{color:#ffd84a}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:9px}}.metric{{background:#081019;padding:12px;border-radius:10px}}.price{{font-size:1.5rem;font-weight:900;color:#ffd84a}}.offer{{color:#6ee7b7;font-weight:800}}input,textarea,select{{width:100%;box-sizing:border-box;padding:10px;margin:5px 0 10px;background:#081019;color:#fff;border:1px solid #405466;border-radius:8px}}button,a{{padding:10px 13px;border:0;border-radius:8px;background:#ffd84a;color:#101010;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}}pre{{white-space:pre-wrap;background:#060b10;padding:12px;border-radius:8px;overflow:auto}}.tag{{color:#5ee7ff}}</style></head><body><main>
+<section><span class="tag">SHIRMANI DIGITAL PRODUCT • {html.escape(p['category'])}</span><h1>꙰ {html.escape(p['name'])}</h1><p>{html.escape(p['description'])}</p><div class="grid"><div class="metric"><small>Product ID</small><br><b>{pid}</b></div><div class="metric"><small>Engine</small><br><b>{html.escape(e)}</b></div><div class="metric"><small>Base price</small><br><b>₹{p['price_inr']}</b></div><div class="metric"><small>Offer price</small><br><b>₹{p['offer_price_inr']}</b><br><span class="offer">{html.escape(p['offer'])}</span></div></div></section>
+<section><h2>QC Passport / QR Gate</h2><div class="grid"><div class="metric">QC Code<br><b>{p['qc_code']}</b></div><div class="metric">Gate No.<br><b>{p['gate_no']}</b></div><div class="metric">Dispatch<br><b>{p['dispatch_no']}</b></div><div class="metric">Packing<br><b>{html.escape(p['packing'])}</b></div></div><p>Guarantee: {html.escape(p['guarantee'])}</p><div id="qr"></div></section>
+<section><h2>Working Production Module</h2>{tool}<pre id="out">Ready for production.</pre></section>
+<section><h2>Commercial / Sale State</h2><p><b>CATALOG READY</b> · Price ₹{p['offer_price_inr']} · Offer {html.escape(p['offer'])} · Dispatch remains <b>NO</b> until downstream QC/dispatch gate.</p><a href="../production-launch-center.html?id={pid}">Open Production Launch Center</a> <a href="../../products.html">All Products / Showroom</a></section>
+</main><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script>new QRCode(document.getElementById('qr'),{{text:location.href+'|{html.escape(p['qc_code'])}|{html.escape(p['gate_no'])}|DISPATCH:NO|PRICE:{p['offer_price_inr']}',width:150,height:150}});{script}</script></body></html>"""
+
 def main():
- OUT.mkdir(exist_ok=True);MOD.mkdir(parents=True,exist_ok=True)
- for e,f in F:(MOD/(e+".html")).write_text(T.replace("FAMILY",html.escape(f)).replace("ENGINE",e),encoding="utf-8")
- src=json.loads((OUT/"1000-digital-products.json").read_text())
- for p in src["products"]:
-  e=p["engine"];m=f"products/modules/{e}.html";p.update(status="READY_FOR_QC",access=m+"?id="+p["id"],module=m,qc_code=qc(p["id"]),gate_no="GATE-"+p["id"].split("-")[1],dispatch_no="NO",verification="QC_GATE_PENDING")
- src["schema_version"]=2;src["principle"]="Each catalog product maps to a concrete browser production module; QC and dispatch are explicit gates."
- (OUT/"1000-digital-products.json").write_text(json.dumps(src,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
- with (OUT/"PRODUCT-PASSPORTS.jsonl").open("w",encoding="utf-8") as f:
-  for p in src["products"]: f.write(json.dumps({"product_id":p["id"],"module":p["module"],"qc_code":p["qc_code"],"gate_no":p["gate_no"],"dispatch_no":"NO","status":"READY_FOR_QC","qr_payload":p["access"]+"|"+p["qc_code"]+"|"+p["gate_no"]+"|DISPATCH:NO"},ensure_ascii=False)+"\n")
- (OUT/"real-product-factory-status.json").write_text(json.dumps({"strategy":"CONCRETE_MODULE_PRODUCTION","target_products":1016,"catalog_products":len(src["products"]),"concrete_modules":len(F),"passports":"generated/PRODUCT-PASSPORTS.jsonl","verification_status":"QC_GATE_PENDING","dispatch_policy":"NO until explicit dispatch event"},indent=2)+"\n")
-if __name__=="__main__":main()
+    OUT.mkdir(exist_ok=True); MOD.mkdir(parents=True,exist_ok=True); PROD.mkdir(parents=True,exist_ok=True)
+    catalog=json.loads((OUT/"1000-digital-products.json").read_text(encoding="utf-8"))
+    for engine,family in [(x["id"],x["label"]) for x in catalog["family_definitions"]]:
+        (MOD/(engine+".html")).write_text("<!doctype html><meta charset='utf-8'><meta http-equiv='refresh' content='0;url=../production-launch-center.html'>",encoding="utf-8")
+    created=0
+    with (OUT/"PRODUCT-PASSPORTS.jsonl").open("w",encoding="utf-8") as f:
+        for p in catalog["products"]:
+            target=PROD/(p["id"].lower()+".html")
+            target.write_text(page(p),encoding="utf-8")
+            f.write(json.dumps({k:p.get(k) for k in ["id","name","category","engine","module","asset","price_inr","offer_price_inr","offer","description","guarantee","packing","qc_code","gate_no","dispatch_no","status","qr_payload"]},ensure_ascii=False)+"\n")
+            created+=1
+    status={"strategy":"CONCRETE_PRODUCT_ASSET_PRODUCTION","catalog_products":len(catalog["products"]),"concrete_product_assets":created,"family_modules":len(catalog["family_definitions"]),"public_showroom":"products.html","product_launch_center":"products/production-launch-center.html","passport":"generated/PRODUCT-PASSPORTS.jsonl","state":"READY_FOR_QC","dispatch":"NO","verification":"DOWNSTREAM"}
+    (OUT/"real-product-factory-status.json").write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+if __name__=="__main__": main()
