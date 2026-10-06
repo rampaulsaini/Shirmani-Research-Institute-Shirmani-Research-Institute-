@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       batch_size:
-        description: "Production work units for this cycle"
+        description: "Concrete production work units for this cycle"
         required: false
         default: "500"
 
@@ -20,7 +20,7 @@ concurrency:
 jobs:
   produce:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,7 +36,10 @@ jobs:
       - name: Discover rotating multi-layer production work
         run: python3 factory/production_queue_builder.py
 
-      - name: Materialize concrete public production
+      - name: Materialize concrete module products
+        run: python3 factory/supreme_production_engine.py
+
+      - name: Materialize public production
         run: python3 factory/public_production_materializer.py
 
       - name: Publish production telemetry
@@ -44,32 +47,16 @@ jobs:
           python3 - <<'PY'
           import json
           from pathlib import Path
-          p = Path("generated/multi-layer-production-status.json")
-          d = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
-          q = json.loads(Path("generated/production-queue-status.json").read_text(encoding="utf-8"))
-          d["production_driver"] = {
-              "workflow": "SHIRMANI Production-First Multi-Layer Automission",
-              "cadence": "5-minute scheduled cycle",
-              "cycle": q["cycle"],
-              "discovered_modules": q["discovered_modules"],
-              "selected_tasks": q["selected_tasks"],
-              "batch_size": q["batch_size"],
-              "lanes": q["lanes"],
-              "mode": "CONTINUOUS_MULTI_LAYER"
-          }
-          d["public_visibility"] = {
-              "queue_status": "generated/production-queue-status.json",
-              "catalog": "generated/public-production-catalog.json",
-              "module_index": "generated/public-production-by-module.html",
-              "production_stream": "generated/production-results.jsonl"
-          }
-          d["principle"] = "Automission is the continuous production engine; verification is a downstream quality/evidence layer."
-          d["integrity"] = {
-              "production_counts_are_source_derived": True,
-              "fabricated_execution_claim": False,
-              "independent_verification_claim": False
-          }
-          p.write_text(json.dumps(d, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          p=Path("generated/multi-layer-production-status.json")
+          d=json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+          q=json.loads(Path("generated/production-queue-status.json").read_text(encoding="utf-8"))
+          e=json.loads(Path("generated/production-engine-status.json").read_text(encoding="utf-8"))
+          d["production_driver"]={"workflow":"SHIRMANI Production-First Multi-Layer Automission","cadence":"5-minute scheduled cycle","cycle":q["cycle"],"discovered_modules":q["discovered_modules"],"selected_tasks":q["selected_tasks"],"batch_size":q["batch_size"],"lanes":q["lanes"],"mode":"CONTINUOUS_MULTI_LAYER"}
+          d["concrete_production"]={"module_products_this_cycle":e["concrete_module_products_this_cycle"],"total_materialized_module_products":e["total_materialized_module_products"],"registry":"generated/module-product-registry.json","product_directory":"generated/module-products/"}
+          d["public_visibility"]={"queue_status":"generated/production-queue-status.json","catalog":"generated/public-production-catalog.json","module_index":"generated/public-production-by-module.html","production_stream":"generated/production-results.jsonl","module_product_registry":"generated/module-product-registry.json"}
+          d["principle"]="Automission is the continuous production engine; QC/verification is downstream result-quality and promotion."
+          d["integrity"]={"production_counts_are_source_derived":True,"fabricated_execution_claim":False,"independent_verification_claim":False}
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           PY
 
       - name: Commit public production results
@@ -80,6 +67,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No production artifact changes to commit."
           else
-            git commit -m "chore: publish multi-layer production cycle"
+            git commit -m "chore: materialize concrete multi-layer module products"
             git push
           fi
