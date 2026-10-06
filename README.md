@@ -250,3 +250,17 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Five-minute workflow:** [.github/workflows/ultra-mega-infinity-quantum-automission.yml](.github/workflows/ultra-mega-infinity-quantum-automission.yml)
 - **Hardening test:** [tests/ultra_mega_infinity_quantum_automission.py](tests/ultra_mega_infinity_quantum_automission.py)
 - **Integrity:** the architecture label does not claim physical quantum computation; measured signals, inference, interpretation, confidence, provenance and uncertainty remain distinct.
+
+## ⚡ Canonical Concrete Digital-Product Production — 2026-10-06
+
+The canonical public-production path now distinguishes **architecture engines** from **concrete products**:
+
+- **1,016** catalog product identities are the production target.
+- **25** reusable browser engines are implementation primitives, not the product count.
+- The canonical 5-minute public-production workflow materializes the 1,016 catalog identities into concrete browser product assets before GitHub Pages deployment.
+- The production gate fails closed if the canonical catalog is not 1,016 or the concrete asset count does not equal the catalog count.
+- Product production state is separate from sales, payment, dispatch and independent verification.
+
+**Canonical flow:** 1,016 catalog identities → concrete product assets → QC/metadata → public deployment → commercial dispatch gate → downstream verification.
+
+This is intended to eliminate the previous ambiguity where a 25-engine architecture could be mistaken for only 25 produced products.
