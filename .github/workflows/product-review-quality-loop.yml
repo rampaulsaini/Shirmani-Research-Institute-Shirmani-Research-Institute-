@@ -1,0 +1,76 @@
+name: SHIRMANI Product Review → Quality Improvement Loop
+on:
+  issues:
+    types: [opened, edited, labeled]
+permissions:
+  contents: write
+  issues: read
+concurrency:
+  group: shirmani-product-review-quality-loop
+  cancel-in-progress: false
+jobs:
+  capture-review:
+    if: contains(github.event.issue.labels.*.name, 'product-review') || startsWith(github.event.issue.title, '[PRODUCT REVIEW]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Capture public product review
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          from datetime import datetime, timezone
+          from pathlib import Path
+          body = os.environ.get("ISSUE_BODY", "")
+          def field(label):
+              m = re.search(rf"### {re.escape(label)}\s*\n+(.+?)(?=\n### |\Z)", body, re.S)
+              return m.group(1).strip() if m else ""
+          record = {
+              "schema_version": 1,
+              "captured_at": datetime.now(timezone.utc).isoformat(),
+              "source": "public-github-product-review",
+              "issue_number": int(os.environ["ISSUE_NUMBER"]),
+              "issue_url": os.environ["ISSUE_URL"],
+              "author": os.environ["ISSUE_AUTHOR"],
+              "title": os.environ["ISSUE_TITLE"],
+              "product_id": field("Product ID"),
+              "rating": field("Overall Rating"),
+              "result": field("इस्तेमाल का परिणाम"),
+              "quality_improvement": field("Quality Improvement"),
+              "evidence": field("Evidence / Reproduction"),
+              "state": "REVIEW_CAPTURED",
+              "verification": "NOT_APPLICABLE_TO_REVIEW_CAPTURE",
+              "next_action": "FEED_INTO_PRODUCT_QUALITY_BACKLOG"
+          }
+          if not record["product_id"] or not record["rating"] or not record["result"] or not record["quality_improvement"]:
+              raise SystemExit("Required product review fields are missing.")
+          out = Path("generated")
+          out.mkdir(exist_ok=True)
+          p = out / "public-product-review-queue.jsonl"
+          with p.open("a", encoding="utf-8") as f:
+              f.write(json.dumps(record, ensure_ascii=False) + "\n")
+          summary = {
+              "generated_at": record["captured_at"],
+              "latest_issue": record["issue_number"],
+              "latest_product_id": record["product_id"],
+              "latest_rating": record["rating"],
+              "review_state": record["state"],
+              "quality_backlog": True,
+              "verification_boundary": "A customer review is feedback evidence, not proof of scientific truth."
+          }
+          (out / "public-product-review-status.json").write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+          PY
+      - name: Commit review quality input
+        run: |
+          git config user.name "SHIRMANI Product Quality Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/public-product-review-queue.jsonl generated/public-product-review-status.json
+          git diff --cached --quiet || git commit -m "quality: capture public product review"
+          git push
