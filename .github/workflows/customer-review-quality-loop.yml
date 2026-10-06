@@ -1,0 +1,44 @@
+name: SHIRMANI Customer Review Quality Loop
+on:
+  issues:
+    types: [opened, edited, labeled]
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: read
+jobs:
+  aggregate:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.labels.*.name, 'customer-review') || contains(github.event.issue.title, '[CUSTOMER REVIEW]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aggregate public customer feedback
+        env: {EVENT_PATH: ${{ github.event_path }}}
+        shell: python
+        run: |
+          import json,os,re
+          from pathlib import Path
+          e=json.loads(Path(os.environ["EVENT_PATH"]).read_text()); root=Path("generated"); root.mkdir(exist_ok=True)
+          ledger=root/"customer-review-ledger.jsonl"; issue=e.get("issue",{}); body=issue.get("body","") or ""
+          labels=[x.get("name","") for x in issue.get("labels",[])]
+          def f(n):
+              m=re.search(r"###\s+"+re.escape(n)+r"\s*\n+([^#]+)",body,re.I); return m.group(1).strip() if m else ""
+          lines=ledger.read_text(encoding="utf-8").splitlines() if ledger.exists() else []
+          ids={json.loads(x).get("issue_number") for x in lines if x.strip()}
+          if issue and e.get("action") in {"opened","edited"} and ("customer-review" in labels or "[CUSTOMER REVIEW]" in issue.get("title","")) and issue.get("number") not in ids:
+              rec={"issue_number":issue.get("number"),"updated_at":issue.get("updated_at"),"product":f("Product ID or product name"),"rating":f("Rating"),"experience":f("Customer experience"),"improvement":f("Improvement suggestion"),"version":f("Product version"),"source":"github-public-review"}
+              with ledger.open("a",encoding="utf-8") as z:z.write(json.dumps(rec,ensure_ascii=False)+"\n")
+          recs=[]
+          if ledger.exists():
+              for x in ledger.read_text(encoding="utf-8").splitlines():
+                  try:recs.append(json.loads(x))
+                  except:pass
+          ratings=[int(x["rating"]) for x in recs if str(x.get("rating","")).isdigit() and 1<=int(x["rating"])<=5]
+          d={"generated_at":__import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),"review_count":len(recs),"average_rating":round(sum(ratings)/len(ratings),2) if ratings else None,"products_with_feedback":len({x.get("product") for x in recs if x.get("product")}),"improvement_actions":sum(1 for x in recs if x.get("improvement")),"principle":"Customer reviews are production-quality signals, not independent scientific verification."}
+          (root/"customer-quality-dashboard.json").write_text(json.dumps(d,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+      - run: |
+          git config user.name "SHIRMANI Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/customer-review-ledger.jsonl generated/customer-quality-dashboard.json
+          git diff --cached --quiet || git commit -m "chore: update customer quality telemetry"
+          git push
