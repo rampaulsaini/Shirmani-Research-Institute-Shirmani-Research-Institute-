@@ -4,14 +4,18 @@ on:
     - cron: "*/5 * * * *"
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 concurrency:
-  group: shirmani-supreme-public-production
+  group: shirmani-public-production-pages
   cancel-in-progress: false
 jobs:
   production:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    environment:
+      name: github-pages
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,9 +30,23 @@ jobs:
       - name: Product QC gate
         run: python3 factory/product_qc_gate.py
       - name: Publish showroom production telemetry
-        run: |
-          python3 factory/production_dashboard.py
-          git config user.name "SHIRMANI Supreme Production"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/1000-digital-products.json generated/PRODUCT-PASSPORTS.jsonl generated/real-product-factory-status.json generated/concrete-production-overlay.json generated/production-registry.json generated/production-status.json generated/product-qc-gate.json generated/product-production-assets.json products/production products/modules production-dashboard.html supreme-showroom.html supreme-production-showroom.html
-          if git diff --cached --quiet; then echo "No production delta."; else git commit -m "automission: publish concrete public product production"; git push origin HEAD:main; fi
+        run: python3 factory/production_dashboard.py
+      - name: Upload showroom telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-supreme-public-production
+          path: |
+            generated/1000-digital-products.json
+            generated/PRODUCT-PASSPORTS.jsonl
+            generated/real-product-factory-status.json
+            generated/concrete-production-overlay.json
+            generated/production-registry.json
+            generated/production-status.json
+            generated/product-qc-gate.json
+            generated/product-production-assets.json
+            products/production
+            products/modules
+            production-dashboard.html
+            supreme-showroom.html
+            supreme-production-showroom.html
+          retention-days: 14
