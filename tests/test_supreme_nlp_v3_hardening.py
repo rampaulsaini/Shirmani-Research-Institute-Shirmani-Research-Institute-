@@ -197,6 +197,26 @@ def main():
         raise AssertionError("non-numeric drift thresholds must raise ValueError")
 
     # Record fingerprints must detect tampering and fail closed on malformed records.
+    from agents.supreme_nlp_v3 import verify_record_integrity, validate_result_boundary, sha256, record_integrity_payload
+    boundary = validate_result_boundary(record)
+    assert boundary["status"] == "PASS"
+    assert boundary["scientific_verification_granted"] is False
+
+    # Even if someone can recompute the fingerprint, changing the verification
+    # state must not cross the scientific-promotion boundary.
+    forged = dict(record)
+    forged["result"] = dict(record["result"])
+    forged["result"]["interpretation"] = dict(record["result"]["interpretation"])
+    forged["result"]["interpretation"]["verification_status"] = "VERIFIED"
+    forged["provenance"] = dict(record["provenance"])
+    forged["provenance"]["verification_status"] = "VERIFIED"
+    forged["provenance"]["independent_replication_verified"] = True
+    forged["fingerprint"] = sha256(record_integrity_payload(forged))
+    forged_boundary = validate_result_boundary(forged)
+    assert forged_boundary["status"] == "FAIL"
+    assert forged_boundary["checks"]["verification_fail_closed"] is False
+    assert forged_boundary["scientific_verification_granted"] is False
+
     from agents.supreme_nlp_v3 import verify_record_integrity
     record = build_record([{"modality":"sensor","feature":"x","value":1.0}], "integrity")
     assert verify_record_integrity(record) is True
