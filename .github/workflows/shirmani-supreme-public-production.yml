@@ -1,0 +1,35 @@
+name: SHIRMANI Supreme Public Production — Continuous
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-supreme-public-production
+  cancel-in-progress: false
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Institute → Factory — materialize all catalog products
+        run: |
+          python3 factory/real_product_factory.py
+          python3 factory/concrete_product_modules.py
+          python3 factory/product_asset_expander.py
+      - name: Public production synchronization
+        run: python3 factory/supreme_public_production_sync.py
+      - name: Product QC gate
+        run: python3 factory/product_qc_gate.py
+      - name: Publish showroom production telemetry
+        run: |
+          python3 factory/production_dashboard.py
+          git config user.name "SHIRMANI Supreme Production"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/1000-digital-products.json generated/PRODUCT-PASSPORTS.jsonl generated/real-product-factory-status.json generated/concrete-production-overlay.json generated/production-registry.json generated/production-status.json generated/product-qc-gate.json generated/product-production-assets.json products/production products/modules production-dashboard.html supreme-showroom.html supreme-production-showroom.html
+          if git diff --cached --quiet; then echo "No production delta."; else git commit -m "automission: publish concrete public product production"; git push origin HEAD:main; fi
