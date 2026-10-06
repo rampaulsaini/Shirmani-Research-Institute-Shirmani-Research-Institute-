@@ -1,0 +1,28 @@
+name: SHIRMANI Supreme Production Factory
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-production-factory
+  cancel-in-progress: false
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build production catalog
+        run: python3 scripts/build_production_catalog.py
+      - name: Record production state
+        run: |
+          mkdir -p generated/production-runs
+          printf '%s\n' "{\"timestamp\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"workflow\":\"SHIRMANI Supreme Production Factory\",\"status\":\"PRODUCED_AND_CATALOGED\"}" > generated/production-runs/latest.json
+      - name: Commit production output
+        run: |
+          git config user.name "SHIRMANI Supreme Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/production_catalog.json generated/showroom_catalog.json generated/production-runs/latest.json
+          git diff --cached --quiet && echo "No production delta" || (git commit -m "auto: produce and refresh showroom catalog" && git push)
