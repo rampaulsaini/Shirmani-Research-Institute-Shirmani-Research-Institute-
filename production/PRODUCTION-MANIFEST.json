@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "purpose": "Production-first inventory for real browser products; catalog configurations are not counted as independent finished products.",
+  "batch_model": {"batch_target": 100200, "sequence_format": ".001", "meaning": "production batch/capacity identifier, not verification count"},
+  "status_definitions": {
+    "ENGINE_READY": "distinct runnable engine exists",
+    "MODULE_READY": "product module has dedicated entrypoint and functional test",
+    "QC_READY": "deterministic QC passed",
+    "RELEASE_READY": "release record contains QC code, gate number, dispatch number and QR payload",
+    "DISPATCHED": "owner-approved dispatch record exists",
+    "SOLD": "commercial transaction evidence exists"
+  },
+  "required_release_fields": ["product_id","product_name","engine_id","module_path","version","batch_no","qc_code","gate_no","dispatch_no","qr_payload","status","created_at"],
+  "actual_engine_inventory": [
+    {"engine_id":"ENG-001","name":"Calculator","module":"calculator","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-002","name":"Percentage","module":"percentage","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-003","name":"Ratio","module":"ratio","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-004","name":"JSON Formatter","module":"json","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-005","name":"CSV Inspector","module":"csv","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-006","name":"Word Frequency","module":"frequency","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-007","name":"Text Metrics","module":"text-metrics","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-008","name":"SEO Pack","module":"seo","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-009","name":"Prompt Pack","module":"prompt-pack","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-010","name":"Drawing Board","module":"drawing","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-011","name":"Learning Pack","module":"learning","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-012","name":"Quiz Maker","module":"quiz","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-013","name":"Evidence Record","module":"evidence","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-014","name":"Research Question","module":"research-question","entrypoint":"products/real-product-laboratory.html"},
+    {"engine_id":"ENG-015","name":"Study Plan","module":"study-plan","entrypoint":"products/real-product-laboratory.html"}
+  ],
+  "truth_boundary": "Workflow execution proves automation execution only. A product becomes RELEASE_READY only after its module, deterministic QC and release metadata are present."
+}
