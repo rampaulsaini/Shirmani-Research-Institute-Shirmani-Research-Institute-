@@ -2,7 +2,7 @@
 import json,html
 from pathlib import Path
 from datetime import datetime,timezone
-ROOT=Path(__file__).resolve().parents[1]; GEN=ROOT/"generated"; OUT=ROOT/"products/production"; BATCH=100
+ROOT=Path(__file__).resolve().parents[1]; GEN=ROOT/"generated"; OUT=ROOT/"products/production"; BATCH=int(__import__("os").environ.get("CONCRETE_PRODUCT_BATCH_SIZE","250"))
 def now(): return datetime.now(timezone.utc).isoformat()
 def esc(x): return html.escape(str(x or ""),quote=True)
 def page(p):
