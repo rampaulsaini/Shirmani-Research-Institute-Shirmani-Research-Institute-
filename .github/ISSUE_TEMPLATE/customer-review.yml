@@ -1,0 +1,25 @@
+name: Customer Review
+description: Public product rating, experience and improvement feedback
+title: "[CUSTOMER REVIEW] "
+labels: ["customer-review","production-feedback"]
+body:
+  - type: input
+    id: product
+    attributes: {label: Product ID or product name, placeholder: SRI-TOOL-001}
+    validations: {required: true}
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Rating
+      options: ["5","4","3","2","1"]
+    validations: {required: true}
+  - type: textarea
+    id: experience
+    attributes: {label: Customer experience}
+    validations: {required: true}
+  - type: textarea
+    id: improvement
+    attributes: {label: Improvement suggestion}
+  - type: input
+    id: version
+    attributes: {label: Product version}
