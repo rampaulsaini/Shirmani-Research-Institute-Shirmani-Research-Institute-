@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-10-06T12:47:55.531383+00:00",
+  "truth_model": "OBSERVABLE_PRODUCTION_ONLY",
+  "offers_registered": 15,
+  "digital_offers": 8,
+  "service_offers": 7,
+  "persistent_production_records": 1000,
+  "independent_verified_records": 0,
+  "sales_claimed": 0,
+  "delivered_customer_orders_claimed": 0,
+  "institutional_accreditation_claimed": false,
+  "court_authority_claimed": false,
+  "currency_contract_deployed_claimed": false,
+  "gates": {
+    "catalog": "READY",
+    "production_records": "ACTIVE",
+    "commercial_transaction": "EVIDENCE_REQUIRED",
+    "delivery": "EVIDENCE_REQUIRED",
+    "independent_verification": "DOWNSTREAM"
+  },
+  "rule": "A workflow run, catalog entry, generated card or public page is not a sale, delivery, accreditation, court authority, currency deployment or independent verification."
+}
