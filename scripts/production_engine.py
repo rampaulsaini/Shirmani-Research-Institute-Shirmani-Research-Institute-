@@ -41,11 +41,13 @@ for n,(cat,prefix) in enumerate(families,1):
         "offer":"Dynamic factory offer: 10% launch discount",
         "guarantee":"Digital delivery + QC gate record",
         "qc_gate":"QC-PENDING",
+        "gate_no":"GATE-001",
         "dispatch":"NO",
         "release":"PRODUCTION_READY",
         "factory_batch":f"AUTO-{now[:10]}",
         "deliverable_type":"DIGITAL_PRODUCT",
-        "purchase_url":"https://rampaulsaini.github.io/my-omniverse-store/"
+        "purchase_url":"https://rampaulsaini.github.io/my-omniverse-store/",
+        "qr_payload":f"SHIRMANI|{pid}|GATE-001|QC-PENDING|NO|{499 + ((existing+n)*137)%4501}"
     })
 
 # Keep the repository catalog bounded while preserving a production counter.
