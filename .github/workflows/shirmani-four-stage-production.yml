@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-four-stage-production
   cancel-in-progress: false
@@ -15,13 +16,24 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Institute → Factory → QC → Showroom
         run: python3 factory/four_stage_production_orchestrator.py
-      - name: Publish production state
+      - name: Publish production state through PR
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          set -e
+          BRANCH="automation/production-cycle-${GITHUB_RUN_ID}"
           git config user.name "shirmani-production[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/1000-digital-products.json generated/PRODUCT-PASSPORTS.jsonl generated/real-product-factory-status.json generated/concrete-product-asset-status.json generated/product-qc-gate.json generated/four-stage-production-status.json generated/production-release-map.json generated/public-showroom-status.json generated/showroom-entry-fees.json products/production supreme-showroom.html docs/four-stage-production-contract.md
-          if git diff --cached --quiet; then exit 0; fi
+          git switch -c "$BRANCH"
+          git add generated/1000-digital-products.json generated/PRODUCT-PASSPORTS.jsonl generated/real-product-factory-status.json generated/concrete-product-asset-status.json generated/product-qc-gate.json generated/four-stage-production-status.json generated/production-release-map.json generated/public-showroom-status.json generated/showroom-entry-fees.json generated/production-throughput.json products/production supreme-showroom.html docs/four-stage-production-contract.md
+          if git diff --cached --quiet; then
+            echo "No production delta."
+            exit 0
+          fi
           git commit -m "chore(production): advance four-stage showroom production"
-          git push
+          git push --set-upstream origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" --title "chore(production): advance four-stage showroom production" --body "Automated production cycle: Institute discovery → concrete factory production → deterministic QC gate → public showroom state. Verification remains downstream."
