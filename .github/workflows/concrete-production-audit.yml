@@ -1,0 +1,69 @@
+name: SHIRMANI Concrete Production Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: concrete-production-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate production contract
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          p = Path("production/concrete-production-progress.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+
+          assert data["target"] == 1016
+          assert data["reported_baseline_production"] == 25
+          assert data["reported_remaining"] == 991
+          assert abs(data["reported_baseline_percentage"] - (25 / 1016 * 100)) < 1e-9
+          assert data["integrity"]["no_fabricated_products"] is True
+          assert data["integrity"]["workflow_success_is_not_product"] is True
+
+          print("Production contract: PASS")
+          print("Reported baseline: 25 / 1016 = %.4f%%" % (25 / 1016 * 100))
+          print("Planning gap: 991")
+
+      - name: Validate showroom catalog
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          p = Path("showroom-products.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          products = data.get("products", [])
+
+          produced = [
+              x for x in products
+              if x.get("status") in {"PRODUCED_PUBLIC", "PRODUCED_INTERNAL"}
+          ]
+
+          for item in produced:
+              assert item.get("id")
+              assert item.get("artifact_url") or item.get("asset_path")
+
+          print("Catalog entries:", len(products))
+          print("Repository-produced entries:", len(produced))
+          print("Catalog integrity: PASS")
+
+      - name: Check verification boundary
+        shell: bash
+        run: |
+          echo "Production and independent verification remain separate states."
+          echo "No automatic promotion to VERIFIED is permitted by this audit."
