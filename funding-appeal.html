@@ -38,7 +38,8 @@
 <div class="metric"><div class="num">500</div>latest published concrete results<div class="muted">latest production-cycle snapshot</div></div>
 <div class="metric"><div class="num">100,200</div>prepared verification records<div class="muted">separate downstream integrity workstream</div></div>
 </div>
-<p class="muted">ये numbers repository के published artifacts से लिए गए हैं और live automation के साथ बदल सकते हैं।</p></section>
+<p class="muted">ये numbers repository के published artifacts से लिए गए हैं और live automation के साथ बदल सकते हैं। नीचे का live snapshot catalogue और concrete-production overlay से स्वतः पढ़ा जाता है।</p>
+<div id="live-production-snapshot" class="note">Live production snapshot loading…</div></section>
 
 <section class="card"><h2>🏭 चार production स्तर</h2>
 <div class="flow">
@@ -113,6 +114,19 @@
     qr.innerHTML="";
     if(window.QRCode) new QRCode(qr,{text:uri,width:220,height:220});
   }catch(e){box.textContent="UPI configuration unavailable; no payment address has been invented."; }
+})();
+</script>
+<script>
+(async function(){
+  const el=document.getElementById("live-production-snapshot");
+  try{
+    const [c,o]=await Promise.all([
+      fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+      fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({products:[]}))
+    ]);
+    const total=Number(c.product_count||c.products?.length||0), produced=Number(o.produced_count||o.products?.length||0);
+    el.innerHTML="<strong>LIVE PRODUCTION:</strong> "+produced.toLocaleString("en-IN")+" concrete products currently surfaced from "+total.toLocaleString("en-IN")+" catalog identities · "+Math.max(0,total-produced).toLocaleString("en-IN")+" remain in the production queue.";
+  }catch(e){el.textContent="Live production snapshot unavailable; no number has been invented."}
 })();
 </script>
 </body></html>

@@ -4,9 +4,10 @@
   "vpa": "",
   "payee_name": "Shirmani Research Institute",
   "currency": "INR",
-  "note": "Public funding support",
+  "note": "Public funding for SHIRMANI production, research and digital showroom",
   "security": {
     "never_invent_vpa": true,
     "financial_actions_require_owner_control": true
-  }
+  },
+  "configuration_note": "Provide the real UPI VPA and explicitly enable only when ready for public payment."
 }
