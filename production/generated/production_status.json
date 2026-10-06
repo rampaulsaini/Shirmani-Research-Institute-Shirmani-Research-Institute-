@@ -1,0 +1,17 @@
+{
+  "platform": "SHIRMANI Research Institute",
+  "mode": "production-first",
+  "pipeline": [
+    "INSTITUTE_DISCOVERY",
+    "FACTORY_PRODUCTION",
+    "QC_GATE",
+    "PUBLIC_SHOWROOM"
+  ],
+  "automation_interval_minutes": 5,
+  "seed_products": 24,
+  "production_target": "continuous multi-category digital product expansion",
+  "qc_role": "release gate after production",
+  "showroom_role": "public catalog and final sale presentation",
+  "purchase_destination": "https://rampaulsaini.github.io/my-omniverse-store/",
+  "generated_at": "AUTO"
+}
