@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Supreme Public Showroom</title>
+<meta name="description" content="SHIRMANI public showroom — concrete digital products, published prices/offers, QC passport and customer review path.">
+<style>
+:root{--bg:#050810;--panel:#0d1420;--line:#30445a;--gold:#f2cf58;--cyan:#55e7ff;--green:#79e2a2;--text:#f5f7fb;--muted:#aeb9c8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#1b2940,#050810 48%);color:var(--text);font:15px system-ui,sans-serif;line-height:1.55}main{max-width:1450px;margin:auto;padding:18px 14px 80px}h1,h2,h3{color:var(--gold)}a{color:var(--cyan);text-decoration:none}.hero,.panel,.card{background:rgba(13,20,32,.95);border:1px solid var(--line);border-radius:18px;padding:18px;margin:12px 0}.hero{border:2px solid var(--gold);text-align:center;padding:28px}.hero h1{font-size:clamp(30px,5vw,62px);margin:8px 0}.flow,.metrics,.grid{display:grid;gap:12px}.flow{grid-template-columns:repeat(4,1fr)}.metrics{grid-template-columns:repeat(auto-fit,minmax(155px,1fr))}.grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}.stage,.metric{background:#081019;border:1px solid #26394d;border-radius:13px;padding:14px}.metric b{display:block;font-size:1.8rem;color:var(--gold)}.toolbar{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px}input,select{width:100%;padding:11px;border-radius:10px;border:1px solid #38536c;background:#07101a;color:#fff}.card{display:flex;flex-direction:column;gap:7px}.tag{color:var(--cyan);font-size:.76rem;font-weight:900}.price{font-size:1.45rem;font-weight:950;color:var(--gold)}.offer{color:var(--green);font-weight:900}.passport{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;font-size:.78rem}.passport span{padding:8px;border-radius:8px;background:#070d15}.btn{display:inline-block;padding:10px 13px;border-radius:10px;background:var(--gold);color:#111;font-weight:950}.btn.alt{background:#152536;color:var(--cyan);border:1px solid #35536c}.muted{color:var(--muted)}.notice{border-left:4px solid var(--cyan);padding:13px;background:#07131b;color:var(--muted)}@media(max-width:850px){.flow,.toolbar{grid-template-columns:1fr}.passport{grid-template-columns:1fr 1fr}}
+</style></head><body><main>
+<section class="hero">
+<div class="tag">SUPREME PUBLIC SHOWROOM · PRODUCTION-FIRST</div>
+<h1>꙰ SHIRMANI Supreme Public Showroom</h1>
+<p><strong>Institute → Factory → QC Gate → Public Showroom → Order / Delivery</strong></p>
+<p>यह public-facing अंतिम presentation layer है। ग्राहक product खोज सकता है, category चुन सकता है, description पढ़ सकता है, प्रकाशित rate/offer देख सकता है, concrete artifact खोल सकता है और Product Passport/QC information देख सकता है।</p>
+<div class="flow">
+<div class="stage"><b>01 Institute</b><br><span class="muted">Discovery & specification</span></div>
+<div class="stage"><b>02 Factory</b><br><span class="muted">Concrete browser artifact</span></div>
+<div class="stage"><b>03 QC Gate</b><br><span class="muted">QC · Gate · Dispatch</span></div>
+<div class="stage"><b>04 Showroom</b><br><span class="muted">Public product & offer</span></div>
+</div>
+<div class="metrics">
+<div class="metric">Catalog products<b id="count">—</b></div><div class="metric">Concrete produced<b id="produced">—</b></div>
+<div class="metric">QC passed<b id="qc">—</b></div><div class="metric">Dispatch released<b id="dispatch">—</b></div><div class="metric">Categories<b id="families">—</b></div>
+</div><p id="telemetry" class="muted">Live production telemetry loading…</p>
+</section>
+
+<section class="panel"><h2>✨ Product Quality & Customer Experience</h2>
+<div class="notice">Product quality को वास्तविक उपयोग और customer reviews/ratings से लगातार improve करने की public feedback loop रखी गई है। Review quality-improvement input है; वह अपने-आप sale या independent scientific verification का प्रमाण नहीं है।</div>
+<p><a class="btn" href="customer-reviews.html">⭐ Customer Reviews</a> <a class="btn alt" href="supreme-marking-hub.html">🏆 Supreme Marking Hub</a> <a class="btn alt" href="public-production-results-hub.html">📊 Production Results</a> <a class="btn alt" href="factory-dashboard.html">🏭 Factory</a></p></section>
+
+<section class="panel"><h2>🔎 Product Marketplace</h2>
+<div class="toolbar"><input id="q" placeholder="नाम / ID / category / engine खोजें…"><select id="family"><option value="">सभी categories</option></select><select id="price"><option value="">सभी rates</option><option value="low">₹500 तक</option><option value="mid">₹501–₹1,000</option><option value="high">₹1,001+</option></select><select id="sort"><option value="id">Product ID</option><option value="low">Rate low → high</option><option value="high">Rate high → low</option><option value="name">Name</option></select></div>
+<p id="summary" class="muted"></p><div id="grid" class="grid"></div><div id="pager" style="margin-top:16px;text-align:center"></div>
+</section>
+
+<section class="panel"><h2>🌟 Showroom Entry Experience</h2><p class="muted">Showroom-entry experience product purchase से अलग है। Repository में configured fee हो तो वही दिखाई जाएगी; बिना configured price के कोई राशि नहीं गढ़ी जाती।</p><div id="entry" class="grid"><div class="card">Entry pricing configuration पढ़ी जा रही है…</div></div></section>
+
+<section class="panel"><h2>💳 Order / Payment Boundary</h2><p>Product price और offer catalog से सीधे पढ़े जाते हैं। वास्तविक payment, dispatch, delivery और settlement अलग transaction states हैं।</p><p><a class="btn" href="products.html">🛒 Full Product Catalog</a> <a class="btn alt" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener">🌐 Digital Store</a> <a class="btn alt" href="product-passport.html">🧾 Product Passport</a></p></section>
+
+<section class="panel"><h2>⚙️ Continuous Production</h2><p><strong>5-minute production cycle:</strong> scheduled automation का मुख्य उद्देश्य concrete work और customer-visible outputs बनाना है। QC/gate/verification produced result की अलग downstream layers हैं।</p><div class="notice"><strong>Truth boundary:</strong> RUN ≠ PRODUCT · PRODUCED ≠ SOLD · QC PASS ≠ PAYMENT · QC PASS ≠ INDEPENDENT VERIFICATION.</div></section>
+<footer class="muted" style="text-align:center;padding:25px">SHIRMANI Research Institute · Supreme Public Showroom · Production → QC → Showroom → Sale</footer>
+</main>
+<script>
+let catalog=null,overlay=new Map(),page=1;const pageSize=48,$=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+async function get(p){const r=await fetch(p+"?ts="+Date.now(),{cache:"no-store"});if(!r.ok)throw Error(r.status);return r.json()}
+async function load(){
+ const [c,q,e,ov]=await Promise.all([get("generated/1000-digital-products.json"),get("generated/product-qc-gate.json"),get("generated/showroom-entry-fees.json").catch(()=>null),get("generated/concrete-production-overlay.json").catch(()=>({products:[]}))]);
+ catalog=c;(ov.products||[]).forEach(p=>overlay.set(p.id,p));
+ $("count").textContent=Number(c.product_count||c.products.length).toLocaleString("en-IN");$("produced").textContent=Number(q.produced_count||0).toLocaleString("en-IN");$("qc").textContent=Number(q.qc_passed||0).toLocaleString("en-IN");$("dispatch").textContent=Number(q.dispatch_released||0).toLocaleString("en-IN");$("families").textContent=Number(c.family_count||c.families.length).toLocaleString("en-IN");
+ $("telemetry").textContent="Catalog: "+(c.generated_at||"—")+" · deterministic Product QC: "+Number(q.pass_percent||0).toFixed(0)+"%";
+ (c.family_definitions||[]).forEach(x=>{let o=document.createElement("option");o.value=x.id;o.textContent=x.label;$("family").append(o)});renderEntry(e);render();
+}
+function renderEntry(e){let rows=e?.durations||[];$("entry").innerHTML=rows.length?rows.map(x=>'<article class="card"><h3>'+esc(x.label)+'</h3><div class="price">'+(x.price_inr==null?"Rate not configured":"₹"+Number(x.price_inr).toLocaleString("en-IN"))+'</div><p class="muted">'+esc(x.description||"Premium showroom access")+'</p><a class="btn alt" href="production-activation.html?entry_minutes='+encodeURIComponent(x.minutes)+'">Entry / Inquiry</a></article>').join(""):'<div class="card">Entry pricing configuration unavailable.</div>'}
+function products(){let q=($("q").value||"").toLowerCase(),f=$("family").value,pc=$("price").value,s=$("sort").value;let a=(catalog.products||[]).filter(p=>{let n=Number(p.offer_price_inr||0);return(!q||JSON.stringify(p).toLowerCase().includes(q))&&(!f||p.family===f)&&(!pc||(pc==="low"&&n<=500)||(pc==="mid"&&n>500&&n<=1000)||(pc==="high"&&n>1000))});a.sort((x,y)=>s==="low"?Number(x.offer_price_inr||0)-Number(y.offer_price_inr||0):s==="high"?Number(y.offer_price_inr||0)-Number(x.offer_price_inr||0):s==="name"?x.name.localeCompare(y.name):x.product_index-y.product_index);return a}
+function card(p){let x=overlay.get(p.id)||p,produced=p.production_state==="PRODUCED"||x.production_state==="PRODUCED",price=p.price_inr,offer=p.offer_price_inr,url=produced?(p.artifact_url||x.artifact_url||("products/concrete/"+p.id+".html")):("products/1000-digital-product-factory.html?id="+encodeURIComponent(p.id));return '<article class="card"><span class="tag">'+esc(p.family)+' · '+esc(p.engine)+'</span><h3>'+esc(p.name)+'</h3><p class="muted">'+esc(p.id)+' · <b style="color:'+(produced?"#79e2a2":"#f2cf58")+'">'+(produced?"CONCRETE PRODUCED":"QUEUED")+'</b></p><p>'+esc(p.description)+'</p><div class="price">'+(price!=null?"₹"+Number(price).toLocaleString("en-IN"):"Price pending")+(offer!=null&&offer!==price?' <span class="muted" style="font-size:.8rem;text-decoration:line-through">₹'+Number(price).toLocaleString("en-IN")+"</span>":"")+'</div><div class="offer">'+esc(p.offer||"Public launch offer")+(offer!=null&&offer!==price?" · ₹"+Number(offer).toLocaleString("en-IN"):"")+'</div><div class="passport"><span>QC<br><b>'+esc(p.qc_code||"PENDING")+'</b></span><span>Gate<br><b>'+esc(p.gate_no||"PENDING")+'</b></span><span>Dispatch<br><b>'+esc(p.dispatch_no||"NO")+'</b></span></div><p><a class="btn" href="'+esc(url)+'">Open Product</a> <a class="btn alt" href="product-passport.html?id='+encodeURIComponent(p.id)+'">Passport</a></p></article>'}
+function render(){let a=products(),pages=Math.max(1,Math.ceil(a.length/pageSize)),shown=a.slice((page-1)*pageSize,page*pageSize);if(page>pages)page=pages;shown=a.slice((page-1)*pageSize,page*pageSize);$("summary").textContent=a.length.toLocaleString("en-IN")+" matching products · "+Number(catalog.product_count||0).toLocaleString("en-IN")+" total";$("grid").innerHTML=shown.map(card).join("")||'<div class="card">No products match.</div>';$("pager").innerHTML='<button class="btn alt" '+(page<=1?"disabled":"")+' onclick="page--;render()">← Previous</button> <b style="margin:0 12px">Page '+page+' / '+pages+'</b> <button class="btn alt" '+(page>=pages?"disabled":"")+' onclick="page++;render()">Next →</button>'}
+["q","family","price","sort"].forEach(id=>$(id).addEventListener(id==="q"?"input":"change",()=>{page=1;render()}));load().catch(e=>{$("telemetry").textContent="Showroom telemetry unavailable: "+e.message;$("grid").innerHTML='<div class="card">Showroom data unavailable.</div>'});
+</script></body></html>
