@@ -1,0 +1,11 @@
+{
+  "schema_version":"1.0",
+  "pipeline":["INSTITUTE_RESEARCH","FACTORY_PRODUCTION","QC_GATE","PUBLIC_SHOWROOM"],
+  "rule":"A workflow run is not a product. A public product must resolve to an actual artifact or delivery route.",
+  "products":[
+    {"id":"SRI-AUD-001","category":"audio","name":"खुद का साक्षात्कार ही संपूर्ण संतुष्टि","price_inr":10000,"status":"CATALOG","store_url":"https://rampaulsaini.github.io/my-omniverse-store/"},
+    {"id":"SRI-AUD-002","category":"audio","name":"शिरोमणि अनंत असीम इश्क की क्षमता","price_inr":1500,"status":"CATALOG","store_url":"https://rampaulsaini.github.io/my-omniverse-store/"},
+    {"id":"SRI-CERT-001","category":"certificate","name":"प्रमाण पत्र","price_inr":495,"status":"CATALOG","store_url":"https://rampaulsaini.github.io/my-omniverse-store/"},
+    {"id":"SRI-SHORT-001","category":"short","name":"Short Audios / Clips","price_inr":89,"status":"CATALOG","store_url":"https://rampaulsaini.github.io/my-omniverse-store/"}
+  ]
+}
