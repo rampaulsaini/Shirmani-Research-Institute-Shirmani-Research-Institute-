@@ -38,6 +38,9 @@ jobs:
       - name: Build concrete product catalog and passports
         run: python3 factory/real_product_factory.py
 
+      - name: Materialize one concrete browser asset for every catalog product
+        run: python3 factory/materialize_all_product_assets.py
+
       - name: Build concrete browser production modules
         run: python3 factory/concrete_product_modules.py
 
@@ -63,11 +66,13 @@ jobs:
           q=json.loads(Path("generated/production-queue-status.json").read_text(encoding="utf-8"))
           e=json.loads(Path("generated/production-engine-status.json").read_text(encoding="utf-8"))
           rf=json.loads(Path("generated/real-product-factory-status.json").read_text(encoding="utf-8"))
+          ca=json.loads(Path("generated/concrete-product-asset-status.json").read_text(encoding="utf-8"))
           d["production_driver"]={"workflow":"SHIRMANI Production-First Multi-Layer Automission","cadence":"5-minute scheduled cycle","cycle":q["cycle"],"discovered_modules":q["discovered_modules"],"selected_tasks":q["selected_tasks"],"batch_size":q["batch_size"],"lanes":q["lanes"],"mode":"CONTINUOUS_MULTI_LAYER"}
           d["product_factory"]={"concrete_product_mvp":rf["concrete_product_mvp"],"families":rf["families"],"catalog":rf["catalog"],"passports":rf["passports"],"qc_gate":rf["qc_gate"],"dispatch":rf["dispatch"]}
           pa=json.loads(Path("generated/product-production-assets.json").read_text(encoding="utf-8"))
           d["concrete_production"]={"module_products_this_cycle":e["concrete_module_products_this_cycle"],"total_materialized_module_products":e["total_materialized_module_products"],"registry":"generated/module-product-registry.json","product_directory":"generated/module-products/","product_specific_assets":pa["product_count"],"new_product_assets_this_cycle":pa["created_this_cycle"],"product_asset_index":"generated/product-production-assets.json"}
-          d["public_visibility"]={"queue_status":"generated/production-queue-status.json","catalog":"generated/public-production-catalog.json","module_index":"generated/public-production-by-module.html","production_stream":"generated/production-results.jsonl","module_product_registry":"generated/module-product-registry.json","product_catalog":"generated/1000-digital-products.json","product_passports":"generated/PRODUCT-PASSPORTS.jsonl"}
+          d["concrete_product_assets"]={"catalog_products":ca["product_assets"],"asset_directory":ca["asset_directory"],"state":ca["state"],"dispatch":ca["dispatch"]}
+          d["public_visibility"]={"queue_status":"generated/production-queue-status.json","catalog":"generated/public-production-catalog.json","module_index":"generated/public-production-by-module.html","production_stream":"generated/production-results.jsonl","module_product_registry":"generated/module-product-registry.json","product_catalog":"generated/1000-digital-products.json","product_passports":"generated/PRODUCT-PASSPORTS.jsonl","showroom":"products.html","product_assets":"products/production/"}
           d["principle"]="Automission is the continuous production engine; QC/gate/dispatch and independent verification are downstream result-quality and promotion layers."
           d["integrity"]={"production_counts_are_source_derived":True,"fabricated_execution_claim":False,"independent_verification_claim":False}
           p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
