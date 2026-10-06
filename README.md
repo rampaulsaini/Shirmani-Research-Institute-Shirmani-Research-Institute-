@@ -32,6 +32,15 @@ Hosted via GitHub Pages.
 
 ---
 
+## 💛 Public Funding Appeal
+
+- **Funding page:** [funding-appeal.html](funding-appeal.html)
+- **Current engineering maturity estimate:** **~72% overall** (internal development estimate, not a certification).
+- **Purpose:** voluntary project support for research, documentation, independent verification, infrastructure, security, public accessibility and long-term maintenance.
+- **Transparency:** no guaranteed financial return, token profit, legal-tender value or guaranteed scientific outcome is promised. Design/specification is not presented as a live product, and workflow success is not presented as independent scientific verification.
+
+---
+
 ## 🪙 Yatharth Mudra — Public Status
 
 - **Public page:** [yatharth-mudra.html](yatharth-mudra.html)
