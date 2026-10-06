@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Public Product Reviews & Quality Improvement</title>
+<style>
+body{margin:0;background:#071019;color:#eef5f8;font:16px system-ui,-apple-system,"Noto Sans Devanagari",sans-serif;line-height:1.55}
+main{max-width:1050px;margin:auto;padding:24px 16px 70px}.hero,.card{background:#101c27;border:1px solid #355064;border-radius:18px;padding:20px;margin:14px 0}.hero{border:2px solid #ffd84a}
+h1,h2{color:#ffd84a}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.metric{font-size:2rem;font-weight:900;color:#ffd84a}.muted{color:#aebdc7}.ok{color:#71e6a5}
+input,textarea,select{width:100%;box-sizing:border-box;padding:11px;border-radius:9px;background:#071019;color:#fff;border:1px solid #40586b;margin:5px 0 10px}
+.btn{display:inline-block;padding:10px 13px;border-radius:10px;background:#ffd84a;color:#111;text-decoration:none;font-weight:900;border:0;cursor:pointer}
+.btn.alt{background:#172a39;color:#68e7ff;border:1px solid #3f6175}.flow{padding:14px;border-left:4px solid #68e7ff;background:#07161f}
+</style></head><body><main>
+<section class="hero"><h1>꙰ Public Product Review → Quality Improvement</h1>
+<p><strong>ग्राहक का वास्तविक अनुभव production quality का input है।</strong> Review, rating, usability feedback, defect report और feature request को अलग-अलग दर्ज किया जाएगा और future production cycles के लिए quality-improvement input बनाया जाएगा।</p>
+<p class="flow">PRODUCT → USE → CUSTOMER REVIEW/RATING → QUALITY SIGNAL → PRODUCTION IMPROVEMENT → NEW VERSION</p>
+<p class="muted">Review स्वयं scientific verification नहीं है। यह product/customer-quality feedback है।</p></section>
+<section class="card"><h2>Public Review भेजें</h2>
+<label>Product ID</label><input id="pid" placeholder="जैसे SP-0001">
+<label>Rating</label><select id="rating"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+<label>Review / अनुभव</label><textarea id="review" rows="7" placeholder="आपने क्या इस्तेमाल किया, क्या अच्छा लगा, क्या सुधार चाहिए?"></textarea>
+<label>Suggested improvement</label><textarea id="improve" rows="4" placeholder="अगले version में क्या बेहतर होना चाहिए?"></textarea>
+<button class="btn" onclick="submitReview()">Public Review दर्ज करने का पृष्ठ खोलें</button>
+<p id="msg" class="muted"></p></section>
+<section class="grid"><div class="card"><div id="reviews" class="metric">—</div><div class="muted">public review records</div></div><div class="card"><div id="ratings" class="metric">—</div><div class="muted">average rating</div></div><div class="card"><div id="products" class="metric">—</div><div class="muted">products receiving feedback</div></div></section>
+<section class="card"><h2>Quality Improvement Rules</h2><ol><li>Customer review को product evidence से जोड़ा जाएगा।</li><li>Repeated defects को higher production priority मिलेगी।</li><li>Useful feature requests अगले production queue में जा सकती हैं।</li><li>Ratings को खरीदी/बिक्री का fabricated प्रमाण नहीं माना जाएगा।</li><li>किसी product को बेहतर बताने से पहले वास्तविक product version उपलब्ध होना चाहिए।</li><li>Public review और independent research verification अलग layers हैं।</li></ol>
+<p><a class="btn alt" href="supreme-marking-hub.html">Showroom</a> <a class="btn alt" href="production-dashboard.html">Production Dashboard</a> <a class="btn alt" href="funding-proposal.html">Funding Proposal</a></p></section>
+<section class="card"><h2>Automission feedback loop</h2><p class="ok">Scheduled automation customer-feedback records को future quality/production priorities में वापस पढ़ सकती है।</p><p class="muted">GitHub scheduled workflows का न्यूनतम supported interval 5 मिनट है; इसलिए continuous review-ingestion cycle 5-minute cadence पर चल सकती है।</p></section>
+<script>
+function submitReview(){const id=document.getElementById('pid').value.trim()||'UNKNOWN';const rating=document.getElementById('rating').value;const review=document.getElementById('review').value.trim();const improve=document.getElementById('improve').value.trim();if(!review){document.getElementById('msg').textContent='कृपया review लिखें।';return}const title=encodeURIComponent('[PUBLIC REVIEW] '+id+' — '+rating+'/5');const body=encodeURIComponent('Product ID: '+id+'\nRating: '+rating+'/5\n\nReview:\n'+review+'\n\nSuggested improvement:\n'+improve+'\n\nSource: SHIRMANI Public Product Review interface');window.open('https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/issues/new?title='+title+'&body='+body,'_blank','noopener');document.getElementById('msg').textContent='GitHub public review form खोला गया है। Submit के बाद review persistent public record बनेगा।'}
+async function load(){try{const s=await fetch('generated/public-review-quality-status.json?ts='+Date.now()).then(r=>r.json());document.getElementById('reviews').textContent=(s.review_count||0).toLocaleString();document.getElementById('ratings').textContent=s.average_rating==null?'—':Number(s.average_rating).toFixed(2)+'/5';document.getElementById('products').textContent=(s.products_with_feedback||0).toLocaleString()}catch(e){}}load();
+</script></main></body></html>
