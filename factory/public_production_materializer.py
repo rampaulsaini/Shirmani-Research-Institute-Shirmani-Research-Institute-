@@ -22,9 +22,26 @@ def load_tasks():
     if not QUEUE.exists(): return []
     out=[]
     for line in QUEUE.read_text(encoding="utf-8",errors="ignore").splitlines():
-        if line.strip():
-            try: out.append(json.loads(line))
-            except json.JSONDecodeError: pass
+        if not line.strip():
+            continue
+        try:
+            task=json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        # Backward-compatible queue handling: older work units may not have
+        # the current "module" key. Never let one legacy record abort the
+        # entire production cycle.
+        module=task.get("module") or task.get("path") or task.get("module_path")
+        if not module:
+            continue
+        task["module"]=module
+        task.setdefault("module_kind","legacy")
+        task.setdefault("lane","automation")
+        task.setdefault("cycle",0)
+        task.setdefault("slot",0)
+        task.setdefault("task_id",digest(json.dumps(task,sort_keys=True))[:20])
+        task.setdefault("objective",f"Produce a concrete, provenance-linked output for {module}")
+        out.append(task)
     return out
 def title(text,fallback):
     return (re.sub(r"\\s+"," ",text or "").strip()[:110] or fallback).strip()
