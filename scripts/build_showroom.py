@@ -16,14 +16,14 @@ for p in products:
       <h2>{html.escape(p['name'])}</h2>
       <p>{html.escape(p['description'])}</p>
       <div class="meta"><b>₹{p['price_inr']:,}</b> · {html.escape(p['offer'])}</div>
-      <div class="qc">QC: {html.escape(p.get('qc_gate','QC-PENDING'))} · Dispatch: {html.escape(p.get('dispatch','NO'))}</div>
+      <div class="qc">QC: {html.escape(p.get('qc_gate','QC-PENDING'))} · Gate: {html.escape(p.get('gate_no','GATE-001'))} · Dispatch: {html.escape(p.get('dispatch','NO'))}</div>\n      <div class="qr" data-qr="{html.escape(p.get('qr_payload',''))}"></div>
       <p class="small">Guarantee: {html.escape(p.get('guarantee','Digital delivery'))}</p>
       <a class="buy" href="{html.escape(p.get('purchase_url','#'))}" target="_blank" rel="noopener">View / Purchase</a>
     </article>""")
 
 page=f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SHIRMANI Supreme Marking Hub — Public Showroom</title>
+<title>꙰ SHIRMANI Supreme Marking Hub — Public Showroom</title>\n<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <style>
 body{{margin:0;font-family:system-ui,sans-serif;background:#07111f;color:#eef4ff}}
 header{{padding:42px 6%;background:linear-gradient(135deg,#101f38,#182d4d)}}
@@ -45,6 +45,6 @@ select{{padding:12px;border-radius:10px}} .grid{{padding:30px 6%;display:grid;gr
 const cards=[...document.querySelectorAll('.card')], select=document.querySelector('#cat');
 const cats=[...new Set(cards.map(x=>x.dataset.category))].sort();
 cats.forEach(c=>{{const o=document.createElement('option');o.textContent=c;select.appendChild(o)}});
-select.onchange=()=>cards.forEach(c=>c.style.display=(select.value==='All'||c.dataset.category===select.value)?'block':'none');
+document.querySelectorAll('.qr').forEach(e=>new QRCode(e,{text:e.dataset.qr,width:128,height:128}));\nselect.onchange=()=>cards.forEach(c=>c.style.display=(select.value==='All'||c.dataset.category===select.value)?'block':'none');
 </script></body></html>"""
 open(out,"w",encoding="utf-8").write(page)
