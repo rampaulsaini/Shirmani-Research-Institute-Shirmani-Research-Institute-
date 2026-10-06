@@ -23,13 +23,14 @@ table{width:100%;border-collapse:collapse}td,th{padding:9px;border-bottom:1px so
 </section>
 <section class="card"><h2>वर्तमान published production</h2>
 <div class="grid">
-<div><div class="metric">1,016</div><div class="muted">concrete public products</div></div>
-<div><div class="metric">1,000 / 1,016</div><div class="muted">materialized production overlay</div></div>
-<div><div class="metric">25</div><div class="muted">product families</div></div>
-<div><div class="metric">9</div><div class="muted">configured production lanes</div></div>
-<div><div class="metric">500</div><div class="muted">concrete results in latest published cycle</div></div>
-<div><div class="metric">0</div><div class="muted">remaining in current 1,016-product concrete batch</div></div>
-</div></section>
+<div><div id="metricProducts" class="metric">—</div><div class="muted">concrete public products</div></div>
+<div><div id="metricOverlay" class="metric">—</div><div class="muted">materialized production overlay</div></div>
+<div><div id="metricFamilies" class="metric">25</div><div class="muted">product families</div></div>
+<div><div id="metricLanes" class="metric">9</div><div class="muted">configured production lanes</div></div>
+<div><div id="metricCycle" class="metric">—</div><div class="muted">concrete results in latest published cycle</div></div>
+<div><div id="metricRemaining" class="metric">—</div><div class="muted">remaining in current concrete batch</div></div>
+</div>
+<p id="productionFreshness" class="muted">Source telemetry loading…</p></section>
 <section class="card"><h2>चार स्तर — काम कहाँ जाता है?</h2>
 <div class="grid">
 <div class="stage"><b>01 · INSTITUTE</b><h3>खोज / Research</h3><p>Research ideas, source material, specifications, concepts, backlog और product opportunities.</p></div>
@@ -50,4 +51,22 @@ table{width:100%;border-collapse:collapse}td,th{padding:9px;border-bottom:1px so
 <section class="card"><h2>Funding से production में क्या बढ़ेगा?</h2><div class="grid"><div class="stage"><b>PRODUCT FACTORY</b><p>और अधिक concrete, usable digital products और modules.</p></div><div class="stage"><b>SHOWROOM</b><p>बेहतर product presentation, categories, descriptions, offers और customer journey.</p></div><div class="stage"><b>INFRASTRUCTURE</b><p>Hosting, storage, backup, security, monitoring और deployment capacity.</p></div><div class="stage"><b>QUALITY LOOP</b><p>Customer feedback से defect fixing, usability improvement और product iteration.</p></div></div></section>
 <section class="card"><h2>Live source records</h2><p class="muted">यह page repository के published production manifests और telemetry को human-readable रूप में प्रस्तुत करता है।</p><p><a class="btn" href="generated/concrete-production-overlay.json">Concrete Production Overlay</a><a class="btn" href="generated/multi-layer-production-status.json">Multi-Layer Status</a><a class="btn" href="generated/1000-digital-products.json">Product Registry</a></p></section>
 <footer class="muted">꙰ SHIRMANI Research Institute · Production-first public map</footer>
-</main></body></html>
+<script>
+(async function(){
+ const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
+ try{
+  const [overlay,status]=await Promise.all([
+   fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+   fetch("generated/multi-layer-production-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json())
+  ]);
+  const count=Number(overlay.produced_count||0), batch=Number(overlay.product_count||0), remaining=Number(overlay.remaining_count||Math.max(0,batch-count));
+  set("metricProducts",count.toLocaleString("en-IN"));
+  set("metricOverlay",count.toLocaleString("en-IN")+" / "+batch.toLocaleString("en-IN"));
+  set("metricCycle",Number(status.last_cycle_concrete_results||status.production_outputs?.concrete_results_this_cycle||0).toLocaleString("en-IN"));
+  set("metricRemaining",remaining.toLocaleString("en-IN"));
+  set("productionFreshness","Generated "+(overlay.generated_at||status.observed_at||"source telemetry")+" · production state is source-derived; verification remains downstream.");
+ }catch(e){
+  set("productionFreshness","Live production telemetry unavailable; no production value is inferred.");
+ }
+})();
+</script></main></body></html>
