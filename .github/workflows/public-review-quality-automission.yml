@@ -1,0 +1,50 @@
+name: SHIRMANI Public Review → Quality Improvement Automission
+on:
+  schedule:
+    - cron: "2/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: read
+concurrency:
+  group: shirmani-public-review-quality
+  cancel-in-progress: false
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aggregate public product reviews
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          repo=os.environ["GITHUB_REPOSITORY"]
+          raw=subprocess.check_output(["gh","api","repos/"+repo+"/issues","-f","state=all","-f","per_page=100"], text=True)
+          issues=json.loads(raw)
+          rows=[]
+          for x in issues:
+            title=x.get("title","")
+            if not title.startswith("[PUBLIC REVIEW]"): continue
+            body=x.get("body") or ""
+            rating=None; pid="UNKNOWN"
+            for line in body.splitlines():
+              if line.startswith("Product ID:"): pid=line.split(":",1)[1].strip()
+              if line.startswith("Rating:"):
+                try: rating=float(line.split(":",1)[1].split("/",1)[0].strip())
+                except: pass
+            rows.append({"issue":x["number"],"product_id":pid,"rating":rating,"title":title,"url":x["html_url"]})
+          ratings=[r["rating"] for r in rows if r["rating"] is not None and 1<=r["rating"]<=5]
+          products=sorted(set(r["product_id"] for r in rows if r["product_id"]!="UNKNOWN"))
+          out={"generated_at":__import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),"review_count":len(rows),"average_rating":round(sum(ratings)/len(ratings),2) if ratings else None,"products_with_feedback":len(products),"quality_signal":"CUSTOMER_FEEDBACK","independent_verification":False,"reviews":rows[-500:],"production_use":"Customer reviews are downstream quality-improvement inputs; they are not scientific verification."}
+          Path("generated/public-review-quality-status.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          PY
+      - name: Publish review-quality telemetry
+        run: |
+          git config user.name "SHIRMANI Review Quality Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/public-review-quality-status.json
+          if git diff --cached --quiet; then echo "No review-quality delta."; else git commit -m "automission: publish public review quality signals"; git push; fi
