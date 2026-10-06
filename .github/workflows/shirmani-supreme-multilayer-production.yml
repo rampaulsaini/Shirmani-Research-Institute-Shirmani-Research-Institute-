@@ -1,7 +1,6 @@
-name: SHIRMANI Supreme Multi-Layer Production Automission
+name: SHIRMANI Supreme Multi-Layer Production Automission [Manual Fallback]
 on:
-  schedule:
-    - cron: "*/5 * * * *"
+  # Manual fallback: canonical production is handled by public-production-automission.yml.
   workflow_dispatch:
 permissions:
   contents: write
