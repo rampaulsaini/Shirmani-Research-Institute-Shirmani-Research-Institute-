@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "program": "SHIRMANI Concrete Production",
+  "target": 1016,
+  "reported_baseline_production": 25,
+  "reported_baseline_percentage": 2.4606299213,
+  "reported_remaining": 991,
+  "integrity": {
+    "baseline_status": "USER_REPORTED",
+    "repo_verified_production_is_tracked_separately": true,
+    "workflow_success_is_not_product": true,
+    "verification_is_separate_from_production": true,
+    "no_fabricated_products": true
+  },
+  "production_state_model": [
+    "PLANNED",
+    "IN_FACTORY",
+    "QC_PENDING",
+    "PRODUCED",
+    "PUBLISHED",
+    "VERIFIED",
+    "BLOCKED",
+    "ARCHIVED"
+  ],
+  "next_objective": "Convert real planned work into traceable artifacts with immutable IDs, QC metadata, provenance, and publication/verification state.",
+  "target_gap_from_reported_baseline": 991
+}
