@@ -41,10 +41,12 @@ def main() -> None:
     showroom = "supreme-showroom.html"
     showroom_exists=(ROOT/showroom).exists()
     catalog=read_json("1000-digital-products.json")
-    registry=read_json("production-registry.json")
+    overlay=read_json("concrete-production-overlay.json")
+    produced_products=int(overlay.get("produced_count",0) or len(overlay.get("products",[]) or []))
+    remaining_products=max(0,catalog.get("product_count",0)-produced_products)
     production_ok=not factory_failed and stage1["exit_code"]==0
     qc_ok=qc_run["exit_code"]==0
-    report["stages"].append({"stage":4,"name":"PUBLIC_SHOWROOM","status":"READY" if showroom_exists and production_ok and qc_ok else "BLOCKED","showroom":showroom if showroom_exists else None,"catalog_products":catalog.get("product_count",0),"produced_products":registry.get("produced_count",registry.get("total_materialized_module_products",catalog.get("product_count",0))),"qc_passed":qc.get("qc_passed",0),"dispatch_default":"NO","public_sale_claim":False,"entry_fee_config":"generated/showroom-entry-fees.json"})
+    report["stages"].append({"stage":4,"name":"PUBLIC_SHOWROOM","status":"READY" if showroom_exists and production_ok and qc_ok else "BLOCKED","showroom":showroom if showroom_exists else None,"catalog_products":catalog.get("product_count",0),"produced_products":produced_products,"remaining_products":remaining_products,"qc_passed":qc.get("qc_passed",0),"dispatch_default":"NO","public_sale_claim":False,"entry_fee_config":"generated/showroom-entry-fees.json"})
 
     report["production_contract"]={"stage_1_institute":"continuous module/product discovery","stage_2_factory":"continuous concrete product and module production","stage_3_qc":"deterministic product structure/asset/passport gate","stage_4_showroom":"public catalog with product, description, price, offer, QR/passport, time-based showroom entry and dispatch state","dispatch":"NO by default until explicit downstream release","verification":"downstream result-quality/promotion layer, not the production objective","schedule":"every 5 minutes","continuity_without_chat":True,"quantum_boundary":"quantum-inspired orchestration only unless a real quantum backend is configured"}
 
@@ -60,6 +62,8 @@ def main() -> None:
         "concrete_product_assets": asset_status.get("concrete_product_assets",asset_status.get("product_assets",0)),
         "module_products_this_cycle": module_status.get("concrete_module_products_this_cycle",0),
         "module_products_total": module_status.get("total_materialized_module_products",0),
+        "concrete_overlay_produced": produced_products,
+        "concrete_overlay_remaining": remaining_products,
         "qc_passed": qc.get("qc_passed",0),
         "dispatch_released": 0,
         "verification": "DOWNSTREAM",
@@ -68,7 +72,7 @@ def main() -> None:
     }
     (GEN/"production-throughput.json").write_text(json.dumps(throughput,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     (GEN/"four-stage-production-status.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    public={"generated_at":report["generated_at"],"stages":[{"stage":s["stage"],"name":s["name"],"status":s["status"]} for s in report["stages"]],"products":{"catalog":catalog.get("product_count",0),"produced":registry.get("produced_count",registry.get("total_materialized_module_products",catalog.get("product_count",0))),"qc_passed":qc.get("qc_passed",0),"dispatch":0},"showroom":"supreme-showroom.html","entry_fees":"generated/showroom-entry-fees.json","principle":"Production → QC gate → Showroom → downstream verification"}
+    public={"generated_at":report["generated_at"],"stages":[{"stage":s["stage"],"name":s["name"],"status":s["status"]} for s in report["stages"]],"products":{"catalog":catalog.get("product_count",0),"produced":produced_products,"remaining":remaining_products,"qc_passed":qc.get("qc_passed",0),"dispatch":0},"showroom":"supreme-showroom.html","entry_fees":"generated/showroom-entry-fees.json","principle":"Production → QC gate → Showroom → downstream verification"}
     (GEN/"production-release-map.json").write_text(json.dumps(public,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(report,ensure_ascii=False))
     if any(s["status"]=="FAIL" for s in report["stages"]): raise SystemExit(1)
