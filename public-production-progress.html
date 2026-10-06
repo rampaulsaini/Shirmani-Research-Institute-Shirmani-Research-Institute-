@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Public Production Progress</title>
+<style>
+body{margin:0;background:#070b12;color:#f5f7fb;font:16px/1.7 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}.wrap{max-width:1180px;margin:auto;padding:20px}.hero,.card{background:#101722;border:1px solid #2b3a4c;border-radius:18px;padding:20px;margin:14px 0}.hero{border:2px solid #e8c65b}h1,h2{color:#e8c65b}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.metric{font-size:2rem;font-weight:950;color:#e8c65b}.muted{color:#aeb9c7}.ok{color:#75e0a6;font-weight:800}.warn{color:#f2c15b;font-weight:800}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stage{background:#09111b;border:1px solid #2b3a4c;border-radius:12px;padding:14px}.stage b{color:#62e6ff}.bar{height:13px;background:#172438;border-radius:99px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#62e6ff,#e8c65b)}a{color:#62e6ff;text-decoration:none}.btn{display:inline-block;background:#e8c65b;color:#111;padding:10px 14px;border-radius:10px;font-weight:900;margin:4px}@media(max-width:760px){.flow{grid-template-columns:1fr}}
+</style></head><body><main class="wrap">
+<section class="hero"><div class="muted">PUBLIC PRODUCTION STATUS · LIVE TELEMETRY</div><h1>꙰ SHIRMANI Production Progress Map</h1>
+<p>यह page automation run-count को completion नहीं मानता। Production progress वास्तविक customer-visible artifacts, modules, QC state और public interface पर आधारित है।</p>
+<p><a class="btn" href="showroom.html">Showroom</a><a class="btn" href="production-hub.html">Production Hub</a><a class="btn" href="funding-appeal.html">Funding</a></p></section>
+<section class="card"><h2>चार स्तर</h2><div class="flow">
+<div class="stage"><b>01 · INSTITUTE</b><h3>खोज</h3><p class="muted">Research, ideas, specifications, modules और product concepts.</p><strong class="ok">CONNECTED</strong></div>
+<div class="stage"><b>02 · FACTORY</b><h3>निर्माण</h3><p class="muted">Concrete digital artifacts और product assets.</p><strong id="factory">LOADING</strong></div>
+<div class="stage"><b>03 · QC GATE</b><h3>Quality</h3><p class="muted">Deterministic QC, product metadata, gate/dispatch state.</p><strong id="qc">LOADING</strong></div>
+<div class="stage"><b>04 · SHOWROOM</b><h3>Public Sale Layer</h3><p class="muted">Description, price, offer, product view और payment routes.</p><strong class="ok">LIVE</strong></div>
+</div></section>
+<section class="card"><h2>वर्तमान measurable production</h2><div class="grid">
+<div><div class="metric" id="target">—</div><div class="muted">Catalog identities</div></div>
+<div><div class="metric" id="produced">—</div><div class="muted">Concrete products</div></div>
+<div><div class="metric" id="qcp">—</div><div class="muted">Deterministic QC pass</div></div>
+<div><div class="metric" id="lanes">—</div><div class="muted">Configured production lanes</div></div>
+</div></section>
+<section class="card"><h2>Production completion</h2><p><strong>Concrete product materialization:</strong> <span id="prodPct">—</span></p><div class="bar"><div class="fill" id="prodBar" style="width:0%"></div></div>
+<p><strong>Deterministic QC:</strong> <span id="qcPct">—</span></p><div class="bar"><div class="fill" id="qcBar" style="width:0%"></div></div>
+<p class="muted">Commercial fulfilment, payment settlement, customer delivery and independent scientific verification are downstream states; they are not silently counted as complete merely because production exists.</p></section>
+<section class="card"><h2>अगला production focus</h2><ol><li>Generic engine instances को meaningful product-specific content, templates, demos और use cases से deepen करना.</li><li>Product detail → order/request → payment evidence → fulfilment → delivery evidence flow मजबूत करना.</li><li>Customer reviews/ratings को quality-improvement queue में बदलना.</li><li>Public showroom में categories, prices, offers और product states को continuously refresh करना.</li><li>Institute → Factory → QC → Showroom loop को multi-lane Automission से लगातार feed करना.</li></ol></section>
+<section class="card"><h2>ईमानदार progress rule</h2><p class="warn">एक single “overall % complete” तभी meaningful होगा जब सभी workstreams के weights तय हों। इसलिए यह page measurable workstream percentages दिखाता है, मनमाना combined percentage नहीं।</p></section>
+<script>
+async function load(){
+ try{
+  const [p,q,s]=await Promise.all([
+   fetch("generated/concrete-product-production-status.json?ts="+Date.now()).then(r=>r.json()),
+   fetch("generated/product-qc-gate.json?ts="+Date.now()).then(r=>r.json()),
+   fetch("generated/multi-layer-production-status.json?ts="+Date.now()).then(r=>r.json())
+  ]);
+  const t=Number(p.target||0), n=Number(p.concrete_produced||0), qp=Number(q.qc_passed||0), lanes=Number(s.architecture?.configured_production_lanes||0);
+  const pp=t?Math.min(100,n/t*100):0, qcp=n?Math.min(100,qp/n*100):0;
+  document.getElementById("target").textContent=t.toLocaleString("en-IN");
+  document.getElementById("produced").textContent=n.toLocaleString("en-IN");
+  document.getElementById("qcp").textContent=qp.toLocaleString("en-IN")+"/"+n.toLocaleString("en-IN");
+  document.getElementById("lanes").textContent=lanes.toLocaleString("en-IN");
+  document.getElementById("factory").textContent=pp.toFixed(1)+"% MATERIALIZED";
+  document.getElementById("qc").textContent=qcp.toFixed(1)+"% PASS";
+  document.getElementById("prodPct").textContent=pp.toFixed(1)+"%";
+  document.getElementById("qcPct").textContent=qcp.toFixed(1)+"%";
+  document.getElementById("prodBar").style.width=pp+"%";
+  document.getElementById("qcBar").style.width=qcp+"%";
+ }catch(e){document.getElementById("factory").textContent="TELEMETRY UNAVAILABLE";document.getElementById("qc").textContent="TELEMETRY UNAVAILABLE";}
+}
+load();setInterval(load,30000);
+</script></main></body></html>
