@@ -28,7 +28,7 @@
 <section class="card" id="upi-funding">
 <h2>📲 Funding UPI — QR से सीधे समर्थन</h2>
 <p>यह public funding surface UPI QR को सीधे दिखाता है। वास्तविक UPI ID/VPA repository में सुरक्षित रूप से configure होने तक कोई अनुमानित payment address नहीं दिखाया जाएगा।</p>
-<div class="grid" style="align-items:center"><div class="metric"><h3>Paytm / UPI</h3><div class="num" style="font-size:1.15rem;word-break:break-all">9622254967@ptyes</div><p>इसी VPA पर public funding support भेजें। Payment app में payee name स्वयं verify करें।</p></div><div class="metric"><h3>QR Code</h3><div id="upi-qr" style="min-height:220px;display:grid;place-items:center"></div><p class="muted">QR इसी UPI VPA को खोलता है।</p></div><div class="metric"><h3>PayPal</h3><div class="num" style="font-size:1.05rem;word-break:break-all">sainirampaul60@gmail.com</div><p>PayPal पर recipient email verify करके payment करें।</p></div></div><div id="upi-box" class="note"><strong>दो ही public payment routes:</strong> Paytm/UPI और PayPal। कोई अन्य payment address इस platform द्वारा अधिकृत नहीं है।</div>
+<div class="grid" style="align-items:center"><div class="metric"><h3>Paytm / UPI</h3><div class="num" style="font-size:1.15rem;word-break:break-all">9622254967@ptyes</div><p>इसी VPA पर public funding support भेजें। Payment app में payee name स्वयं verify करें।</p></div><div class="metric"><h3>QR Code</h3><div id="upi-qr" style="min-height:220px;display:grid;place-items:center"><img src="assets/funding-upi-qr.png" alt="Paytm UPI funding QR code" width="220" height="220" style="max-width:100%;height:auto;image-rendering:auto"></div><p class="muted">QR इसी UPI VPA को खोलता है।</p></div><div class="metric"><h3>PayPal</h3><div class="num" style="font-size:1.05rem;word-break:break-all">sainirampaul60@gmail.com</div><p>PayPal पर recipient email verify करके payment करें।</p></div></div><div id="upi-box" class="note"><strong>दो ही public payment routes:</strong> Paytm/UPI और PayPal। कोई अन्य payment address इस platform द्वारा अधिकृत नहीं है।</div>
 <p class="muted"><strong>सुरक्षा:</strong> payment करने से पहले अपने UPI app में payee name/UPI ID और amount स्वयं verify करें। यह page payment success या settlement का स्वतः प्रमाण नहीं देता।</p>
 </section>
 
@@ -117,7 +117,15 @@
 })();
 </script>
 <footer>꙰ Shirmani Research Institute • Public Funding Appeal • <a href="index.html">Main Hub</a> · <a href="showroom.html">Showroom</a> · <a href="public-production-live.html">Live Production</a></footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+  const box=document.getElementById("upi-box");
+  const qr=document.getElementById("upi-qr");
+  const vpa="9622254967@ptyes";
+  box.innerHTML="<strong>Configured UPI:</strong> "+vpa+" · Paytm/UPI only";
+  qr.setAttribute("data-vpa",vpa);
+})();
+</script>
 <script>
 (async function(){
   const box=document.getElementById("upi-box"), qr=document.getElementById("upi-qr");
