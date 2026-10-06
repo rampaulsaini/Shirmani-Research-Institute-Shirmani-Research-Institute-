@@ -5,57 +5,126 @@ on:
   issues:
     types: [opened, edited, labeled]
   workflow_dispatch:
+
 permissions:
   contents: write
   issues: read
+
 concurrency:
   group: public-review-quality-loop
   cancel-in-progress: true
+
 jobs:
   process-reviews:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Build public review quality queue
+
+      - name: Build public review quality queue and status
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
-          import json, os, subprocess
+          import json, os, re, subprocess
+          from collections import Counter
           from datetime import datetime, timezone
+
           repo=os.environ["GITHUB_REPOSITORY"]
           raw=subprocess.check_output(["gh","api",f"repos/{repo}/issues?state=all&per_page=100"],text=True)
           issues=json.loads(raw)
           reviews=[]
-          for x in issues:
-              labels={l["name"] for l in x.get("labels",[])}
-              if "product-review" not in labels or x.get("pull_request"):
-                  continue
-              body=x.get("body") or ""
-              product=""
-              rating=None
-              lines=body.splitlines()
+
+          def field(lines, names):
               for i,line in enumerate(lines):
                   clean=line.strip().lower()
-                  if clean.startswith("product id:") or clean == "### product id":
-                      if clean.startswith("product id:"):
-                          product=line.split(":",1)[1].strip()
-                      elif i+1 < len(lines):
-                          product=lines[i+1].strip()
-                  if clean.startswith("rating:") or clean == "### rating":
-                      raw=line.split(":",1)[1].strip() if clean.startswith("rating:") else (lines[i+1].strip() if i+1 < len(lines) else "")
-                      try: rating=int(raw.split("/",1)[0].strip().split()[0])
-                      except Exception: pass
-              reviews.append({"issue":x["number"],"title":x["title"],"product_id":product,"rating":rating,"body":body,"url":x["html_url"],"updated_at":x["updated_at"]})
-          out={"generated_at":datetime.now(timezone.utc).isoformat(),"review_count":len(reviews),"reviews":reviews,"purpose":"Customer reviews are production-quality improvement inputs, not scientific verification.","next_stage":"factory quality improvement backlog"}
+                  for name in names:
+                      if clean.startswith(name+":"):
+                          return line.split(":",1)[1].strip()
+                      if clean == name:
+                          return lines[i+1].strip() if i+1 < len(lines) else ""
+              return ""
+
+          for x in issues:
+              if x.get("pull_request"):
+                  continue
+              labels={l["name"].lower() for l in x.get("labels",[])}
+              title=(x.get("title") or "").lower()
+              if not ({"product-review","quality-improvement"} & labels or "[public review]" in title or "customer review" in title):
+                  continue
+
+              body=x.get("body") or ""
+              lines=body.splitlines()
+              product=field(lines, ["product id","### product id"])
+              rating_raw=field(lines, ["rating","### rating"])
+              if not rating_raw:
+                  m=re.search(r"rating[^0-9]*([1-5])", body, re.I)
+                  rating_raw=m.group(1) if m else ""
+              try:
+                  rating=int(str(rating_raw).split("/",1)[0].strip().split()[0])
+                  if rating < 1 or rating > 5: rating=None
+              except Exception:
+                  rating=None
+
+              review_text=field(lines, ["review","customer review","### customer review"])
+              improvement=field(lines, ["suggested improvement","quality improvement suggestion","### quality improvement suggestion"])
+
+              reviews.append({
+                  "issue":x["number"], "title":x["title"], "product_id":product,
+                  "rating":rating, "review":review_text, "improvement":improvement,
+                  "body":body, "url":x["html_url"], "updated_at":x["updated_at"]
+              })
+
+          ratings=[r["rating"] for r in reviews if isinstance(r.get("rating"),int)]
+          by_product=Counter(r["product_id"] for r in reviews if r.get("product_id"))
+          avg=round(sum(ratings)/len(ratings),2) if ratings else None
+          stamp=datetime.now(timezone.utc).isoformat()
+
+          status={
+              "generated_at":stamp,
+              "review_count":len(reviews),
+              "rating_count":len(ratings),
+              "average_rating":avg,
+              "products_with_feedback":len(by_product),
+              "product_feedback_counts":dict(sorted(by_product.items())),
+              "purpose":"Customer reviews are production-quality improvement inputs, not scientific verification.",
+              "verification":"NOT_A_SCIENTIFIC_VERIFICATION_LAYER"
+          }
+          queue={
+              "generated_at":stamp,
+              "review_count":len(reviews),
+              "reviews":reviews,
+              "purpose":"Customer reviews are production-quality improvement inputs, not scientific verification.",
+              "next_stage":"factory quality improvement backlog"
+          }
+
           os.makedirs("generated",exist_ok=True)
-          with open("generated/public-review-quality-queue.json","w",encoding="utf-8") as f: json.dump(out,f,ensure_ascii=False,indent=2); f.write("\n")
+          for path,data in [
+              ("generated/public-review-quality-status.json",status),
+              ("generated/public-review-quality-queue.json",queue)
+          ]:
+              with open(path,"w",encoding="utf-8") as f:
+                  json.dump(data,f,ensure_ascii=False,indent=2); f.write("\n")
+
+          md=[
+              "# Public Review → Production Quality Improvement Input","",
+              f"- Generated: {stamp}",f"- Reviews: {len(reviews)}",
+              f"- Ratings: {len(ratings)}",f"- Average rating: {avg if avg is not None else '—'}",
+              f"- Products with feedback: {len(by_product)}","",
+              "## Rule",
+              "Public reviews, ratings, defects and improvement suggestions are production-quality inputs. They are not independent scientific verification.","",
+              "## Product priorities"
+          ]
+          for pid,count in sorted(by_product.items(), key=lambda x:(-x[1],x[0])):
+              md.append(f"- {pid}: {count} review(s)")
+          with open("generated/public-review-research-input.md","w",encoding="utf-8") as f:
+              f.write("\n".join(md)+"\n")
           PY
-      - name: Commit quality queue
+
+      - name: Commit quality queue and public status
         run: |
           git config user.name "SHIRMANI Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/public-review-quality-queue.json generated/public-review-research-input.md
-          git diff --cached --quiet || git commit -m "automission: update public review quality queue"
+          git add generated/public-review-quality-queue.json generated/public-review-quality-status.json generated/public-review-research-input.md
+          git diff --cached --quiet || git commit -m "automission: publish public review quality signals"
           git push
