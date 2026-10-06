@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "status": "accepting_support",
+  "currency": "INR",
+  "target_inr": null,
+  "verified_received_inr": 0,
+  "verified_supporter_count": 0,
+  "last_updated": "2026-10-06",
+  "source": "public funding appeal ledger",
+  "verification_rule": "Only independently reconciled payment records may increase verified_received_inr or verified_supporter_count.",
+  "note": "No live payment processor is connected yet. Zero means no verified funding record has been published here; it is not a claim that no one has paid elsewhere."
+}
