@@ -178,6 +178,15 @@ def main():
     assert numeric_string_threshold["drift_detected"] is True
     assert numeric_string_threshold["threshold"] == 2.0
 
+    # A single observation per population cannot establish variance-based drift.
+    single_sample_drift = drift_report(
+        [{"feature":"x","unit":"u","value":1.0}],
+        [{"feature":"x","unit":"u","value":3.0}],
+    )
+    assert single_sample_drift["status"] == "INSUFFICIENT_EVIDENCE"
+    assert single_sample_drift["drift_detected"] is False
+    assert single_sample_drift["insufficient_evidence"] is True
+
     # Drift thresholds must reject type-confused values rather than leaking a TypeError.
     try:
         from agents.supreme_nlp_v3 import drift_report
