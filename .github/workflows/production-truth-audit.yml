@@ -1,0 +1,40 @@
+name: SHIRMANI Production Truth Audit
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "products/concrete/**"
+      - "factory/production_truth_audit.py"
+      - ".github/workflows/production-truth-audit.yml"
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Count concrete production assets
+        run: |
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          files=sorted(Path("products/concrete").glob("SP-*.html"))
+          ids=[int(re.search(r"SP-(\d+)\.html$",p.name).group(1)) for p in files]
+          out={"repository":"rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-","concrete_product_assets":len(files),"first_asset":min(ids) if ids else None,"last_asset":max(ids) if ids else None,"dispatch_evidence":0,"sale_or_settlement_evidence":0,"independent_verified":0}
+          Path("generated").mkdir(exist_ok=True)
+          Path("generated/production-truth.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - name: Publish production truth
+        run: |
+          git config user.name "SHIRMANI Production Truth Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/production-truth.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: refresh production truth"
+          git push
