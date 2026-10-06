@@ -10,9 +10,9 @@ h1,h2{color:#d4af37}.hero,.card{background:rgba(255,255,255,.05);border:1px soli
 <p><strong>Production-first Automission:</strong> वास्तविक platform work को अनेक lanes और layers में लगातार produce करना; verification को परिणाम की downstream quality/promotion layer रखना।</p>
 <div class="grid">
 <div class="card"><div class="metric">5 min</div><div class="muted">Multi-layer production schedule</div></div>
-<div class="card"><div class="metric">500</div><div class="muted">configured work units / cycle in dispatcher</div></div>
-<div class="card"><div class="metric">9</div><div class="muted">production lanes in dispatcher</div></div>
-<div class="card"><div class="metric">10</div><div class="muted">supreme production streams</div></div></div></section>
+<div class="card"><div class="metric" id="catalog">—</div><div class="muted">catalog identities</div></div>
+<div class="card"><div class="metric" id="produced">—</div><div class="muted">concrete products</div></div>
+<div class="card"><div class="metric" id="qc">—</div><div class="muted">deterministic QC pass</div></div></div></section>
 <section class="card" id="four-stage"><h2>Four-Stage Production Map</h2><div class="grid">
 <div class="card"><h3>01 Institute Discovery</h3><div class="metric" id="s1">—</div><p class="muted">Repository/module/product discovery</p></div>
 <div class="card"><h3>02 Factory Production</h3><div class="metric" id="s2">—</div><p class="muted">Concrete product assets + modules</p></div>
@@ -30,14 +30,4 @@ h1,h2{color:#d4af37}.hero,.card{background:rgba(255,255,255,.05);border:1px soli
 <h2>Production → Result → Quality</h2><div class="card"><p><strong>Source → Normalize → Multi-Layer Production → Concrete Artifact → Public Publication → QC / Evidence → Downstream Verification → Audit / Archive</strong></p><p class="muted">A production record is not automatically an independently verified claim. The platform therefore expands production without falsely converting activity into verification.</p></div>
 <h2>AI / ML / NLP + Quantum Boundary</h2><div class="card"><p>AI/ML/NLP routing is production-oriented and deterministic-first, with optional hosted-model routes when configured. “Quantum-ready” means the orchestration can accept a quantum backend; this repository does not claim that quantum hardware is currently executing the work.</p></div>
 <h2>Continuity</h2><div class="card"><p>Every scheduled cycle should create concrete, provenance-linked work rather than stopping after a single verification task. The public dashboard is intended to make that production visible.</p></div>
-<script>
-async function loadFourStage(){
- try{
-  const d=await fetch("generated/four-stage-production-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
-  const s=d.stages||[]; for(const x of s){const el=document.getElementById("s"+x.stage);if(el)el.textContent=x.status}
-  const p=s[3]||{}; document.getElementById("four-note").textContent=(p.catalog_products||0).toLocaleString()+" catalog products · "+(p.produced_products||0).toLocaleString()+" produced · "+(p.qc_passed||0).toLocaleString()+" QC passed · Dispatch default NO";
-  document.getElementById("release").textContent=JSON.stringify({generated_at:d.generated_at,stages:s.map(x=>({stage:x.stage,name:x.name,status:x.status})),production_contract:d.production_contract},null,2);
- }catch(e){document.getElementById("four-note").textContent="Four-stage production telemetry unavailable: "+e.message;document.getElementById("release").textContent="Unavailable";}
-}
-loadFourStage();setInterval(loadFourStage,30000);
-</script></main></body></html>
+<script>async function loadFourStage(){try{const[p,q]=await Promise.all([fetch("generated/concrete-product-production-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),fetch("generated/product-qc-gate.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json())]);const t=Number(p.target||0),n=Number(p.concrete_produced||0),qc=Number(q.qc_passed||0);document.getElementById("catalog").textContent=t.toLocaleString("en-IN");document.getElementById("produced").textContent=n.toLocaleString("en-IN");document.getElementById("qc").textContent=qc.toLocaleString("en-IN")+"/"+Number(q.produced_count||n).toLocaleString("en-IN");document.getElementById("s1").textContent="CONNECTED";document.getElementById("s2").textContent=n===t?"100% COMPLETE":"IN PROGRESS";document.getElementById("s3").textContent=qc===n?"100% PASS":"CHECK";document.getElementById("s4").textContent="LIVE";document.getElementById("four-note").textContent=t.toLocaleString("en-IN")+" catalog products · "+n.toLocaleString("en-IN")+" concrete products · "+qc.toLocaleString("en-IN")+" QC passed · Dispatch default NO";}catch(e){document.getElementById("four-note").textContent="Live production telemetry unavailable: "+e.message;}}loadFourStage();setInterval(loadFourStage,30000);</script></main></body></html>
