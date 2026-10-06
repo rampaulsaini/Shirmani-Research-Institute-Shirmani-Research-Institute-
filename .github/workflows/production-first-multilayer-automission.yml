@@ -34,6 +34,8 @@ jobs:
           fi
       - name: Four-stage continuous production controller
         run: python3 factory/four_stage_production_orchestrator.py
+      - name: Reconcile concrete products into priced showroom registry
+        run: python3 factory/production_reconciliation.py
       - name: Publish four-stage telemetry
         run: |
           python3 - <<'PY'
