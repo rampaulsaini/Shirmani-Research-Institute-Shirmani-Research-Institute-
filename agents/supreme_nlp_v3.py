@@ -138,8 +138,19 @@ def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
     usable=[x for x in rows if x.quality>0]
     if not usable:
         return {"status":"insufficient_quality","signals":[asdict(x) for x in rows]}
-    mean=sum(x.value for x in usable)/len(usable)
-    spread=sqrt(sum((x.value-mean)**2 for x in usable)/len(usable))
+    comparable_keys={(x.feature, x.unit) for x in usable if x.unit.strip()}
+    aggregate_comparable = len(comparable_keys) == 1 and len(comparable_keys) == len({(x.feature, x.unit) for x in usable})
+    if aggregate_comparable:
+        mean=sum(x.value for x in usable)/len(usable)
+        spread=sqrt(sum((x.value-mean)**2 for x in usable)/len(usable))
+        aggregate_status="COMPARABLE_GROUP"
+    else:
+        # Never publish a pooled mean/spread across heterogeneous feature/unit
+        # groups. The record remains interpretable, but the aggregate is
+        # explicitly unavailable rather than numerically misleading.
+        mean=None
+        spread=None
+        aggregate_status="INSUFFICIENT_EVIDENCE"
     quality=sum(x.quality for x in usable)/len(usable)
     modalities=len({x.modality for x in usable})
     sources=len({x.source for x in usable if x.source!="unknown"})
@@ -167,7 +178,9 @@ def summarize(signals: Iterable[dict[str,Any]]) -> dict[str,Any]:
             ]
         },
         "features":{
-            "mean":mean,"spread":spread,"anomaly_score":anomaly,
+            "mean":mean,"spread":spread,
+            "aggregate_comparability_status":aggregate_status,
+            "anomaly_score":anomaly,
             "anomaly_comparability_status":"INSUFFICIENT_EVIDENCE" if comparability_insufficient else "COMPARABLE_GROUPS",
             "quality":quality,"modalities":modalities,"source_count":sources,
             "declared_unique_experiment_count":experiments,
