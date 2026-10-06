@@ -41,6 +41,5 @@ jobs:
           git add products/concrete generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json
           git commit -m "auto(production): materialize next concrete product batch"
           git push --set-upstream origin "$BRANCH"
-          PR_URL=$(gh pr create --base main --head "$BRANCH" --title "auto(production): concrete product batch ${GITHUB_RUN_NUMBER}" --body "Automated production batch: concrete public product artifacts first; QC/dispatch remain downstream.")
-          echo "$PR_URL"
-          gh pr merge "$BRANCH" --auto --squash --delete-branch || echo "Auto-merge unavailable; PR remains open for repository gates."
+          echo "Production branch ready: $BRANCH"
+          echo "Repository policy prevents GitHub Actions from creating/approving pull requests; concrete production artifacts remain available on the branch."

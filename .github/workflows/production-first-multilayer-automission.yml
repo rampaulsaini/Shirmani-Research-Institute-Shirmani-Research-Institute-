@@ -71,6 +71,5 @@ jobs:
           git switch -c "$BRANCH"
           git commit -m "automission: four-stage production cycle"
           git push --set-upstream origin "$BRANCH"
-          PR_URL=$(gh pr create --base main --head "$BRANCH" --title "automission: four-stage production cycle" --body "Automated production publication: Institute → Factory → QC → Showroom. Production results are published through the repository PR gate; verification remains downstream.")
-          echo "Production PR: $PR_URL"
-          gh pr merge "$BRANCH" --auto --squash --delete-branch || echo "Auto-merge unavailable; PR remains open for the repository gate."
+          echo "Production branch ready: $BRANCH"
+          echo "Repository policy currently prevents GitHub Actions from creating/approving pull requests; the production artifacts remain on the branch for the PR gate."
