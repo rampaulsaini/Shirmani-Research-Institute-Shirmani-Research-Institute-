@@ -1,0 +1,31 @@
+name: SHIRMANI Public Review Quality Automission
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  quality-loop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh public quality ledger
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,pathlib,datetime
+          p=pathlib.Path("generated/public-reviews.json")
+          d=json.loads(p.read_text()) if p.exists() else {"reviews":[]}
+          d["generated_at"]=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          d["review_count"]=len(d.get("reviews",[]))
+          d["improvement_signals"]=sum(1 for r in d.get("reviews",[]) if r.get("improvement"))
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+"\n")
+          PY
+      - name: Commit quality-loop state
+        run: |
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/public-reviews.json
+          git diff --cached --quiet || git commit -m "chore: refresh public review quality ledger"
+          git push
