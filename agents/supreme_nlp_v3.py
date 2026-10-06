@@ -210,7 +210,9 @@ def record_integrity_payload(record: dict[str, Any]) -> dict[str, Any]:
     return {
         "schema_version": record["schema_version"],
         "task_id": record["task_id"],
+        "generated_at": record["generated_at"],
         "result": record["result"],
+        "simple_language": record["simple_language"],
         "provenance": record["provenance"],
     }
 
