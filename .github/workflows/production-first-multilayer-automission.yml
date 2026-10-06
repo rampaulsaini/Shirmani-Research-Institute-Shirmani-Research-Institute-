@@ -1,7 +1,5 @@
 name: SHIRMANI Production-First Multi-Layer Automission
 on:
-  push:
-    branches: [main, production-first/continuous-product-expansion]
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
@@ -32,6 +30,8 @@ jobs:
           else
             echo "PRODUCTION_BATCH_SIZE=500" >> "$GITHUB_ENV"
           fi
+      - name: Multi-layer production dispatcher
+        run: python3 factory/multi_layer_production.py
       - name: Four-stage continuous production controller
         run: python3 factory/four_stage_production_orchestrator.py
       - name: Publish four-stage telemetry
