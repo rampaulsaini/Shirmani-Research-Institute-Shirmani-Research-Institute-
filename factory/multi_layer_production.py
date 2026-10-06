@@ -144,7 +144,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     modules = discover()
     state = load_json(STATE, {"version": 2, "cursor": 0, "cycles": 0, "queued_tasks": 0})
-    per_cycle = 500
+    per_cycle = 1000
     # Scheduled runs advance deterministically without requiring a mutable
     # repository queue commit. Manual runs use the same deterministic cycle.
     run_number = int(os.environ.get("GITHUB_RUN_NUMBER", "0") or 0)
