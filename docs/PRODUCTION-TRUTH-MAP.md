@@ -1,45 +1,87 @@
-# ꙰ SHIRMANI Production Truth Map
+# ꙰ SHIRMANI Production Truth Map — 2026-10-06
 
-Current repository-derived production ledger. This separates configuration, catalog identities, concrete product assets, QC, dispatch and independent verification.
+This map separates **catalog identity, concrete product production, deterministic QC, dispatch, sale/settlement, and independent verification**.
+
+## Current production state
+
+| Layer | Current | Target | Progress | Truth state |
+|---|---:|---:|---:|---|
+| Product engines | 25 | 25 | 100% | CONFIGURED |
+| Digital-product catalog | 1,016 | 1,016 | 100% | COMPLETE |
+| Concrete browser product assets | 1,016 | 1,016 | **100%** | COMPLETE |
+| Deterministic product QC | 1,016 | 1,016 | **100%** | PASS |
+| Dispatch | 0 | produced products | **0%** | NOT RELEASED |
+| Confirmed sales | 0 evidenced | actual sales | **0% evidenced** | NOT CLAIMED |
+| Settlement / reconciliation | 0 evidenced | actual settlements | **0% evidenced** | NOT CLAIMED |
+| Independent verification | 0 | 100,200 | **0%** | DOWNSTREAM |
+| Public showroom | 1 | 1 | 100% | READY |
+
+## Latest production evidence
+
+The latest generated production status records:
+
+1. **Institute discovery:** 1,692 modules discovered.
+2. **Factory production:** 1,016 concrete product assets exist; the latest cycle selected 500 work units.
+3. **Product QC gate:** 1,016/1,016 passed deterministic QC; 0 failed.
+4. **Public showroom:** 1,016 products are exposed in the production/showroom layer.
+
+These are production facts, not claims of sales, payment, scientific truth, or independent verification.
+
+## Digital product lifecycle
+
+```text
+DISCOVER
+   ↓
+CATALOG IDENTITY
+   ↓
+CONCRETE BROWSER PRODUCT
+   ↓
+PRODUCT PASSPORT / QR
+   ↓
+DETERMINISTIC QC
+   ↓
+PUBLIC SHOWROOM
+   ↓
+DISPATCH / DELIVERY
+   ↓
+DELIVERY EVIDENCE
+   ↓
+SETTLEMENT / RECONCILIATION
+   ↓
+INDEPENDENT REVIEW (where applicable)
+```
 
 ## Current map
 
-| Layer | Completed / configured | Target | Progress |
-|---|---:|---:|---:|
-| Product engines | 25 | 25 | 100% |
-| Digital-product catalog | 1,016 | 1,016 | 100% |
-| Concrete product overlay | 200 | 1,016 | 19.69% |
-| Remaining concrete products | 816 | 1,016 | 80.31% |
-| Independent verification | 0 | 100,200 | 0% |
-| Dispatch | 0 | produced products | 0% |
-| Latest public production cycle | 500 results | cycle target | recorded |
+```text
+CATALOG                 ████████████████████ 100%
+CONCRETE PRODUCTS       ████████████████████ 100%
+DETERMINISTIC QC        ████████████████████ 100%
+PUBLIC SHOWROOM         ████████████████████ 100%
 
-## Important correction
+DISPATCH                ░░░░░░░░░░░░░░░░░░░░   0%
+SALE EVIDENCE           ░░░░░░░░░░░░░░░░░░░░   0% evidenced
+SETTLEMENT              ░░░░░░░░░░░░░░░░░░░░   0% evidenced
+INDEPENDENT VERIFIED    ░░░░░░░░░░░░░░░░░░░░   0%
+```
 
-**25 / 1,016 = 2.46%** is mathematically correct, but the repository currently uses 25 as the **engine count**, not the number of completed products. The concrete-production overlay currently records **200 produced products**.
+## Truth boundaries
 
-Therefore the meaningful product-production figure is:
+- **RUN ≠ PRODUCT**
+- **CATALOG ≠ PRODUCED**
+- **PRODUCED ≠ SOLD**
+- **QC PASS ≠ SALE**
+- **QC PASS ≠ INDEPENDENT VERIFICATION**
+- **DISPATCH ≠ PAYMENT**
+- **CATALOG PRICE ≠ REVENUE**
+- **AUTOMATION ≠ EXTERNAL SERVICE**
 
-**200 / 1,016 = 19.69% concrete production**
+## Next production priority
 
-with **816 products remaining** in that overlay.
+The bottleneck is no longer catalog generation. The next production loop is:
 
-## Production flow
+**product → public offer → delivery path → delivery evidence → authorized settlement/reconciliation → audit**
 
-Institute → Factory → Concrete Artifact → QC Gate → Showroom → Dispatch → Independent Verification
+Research claims continue through the separate fail-closed independent-review gate; automation must not manufacture VERIFIED.
 
-A workflow run is not a product. A catalog identity is not automatically a concrete product. A produced artifact is not independently verified.
-
-## Next Automission objective
-
-Every cycle should select unproduced IDs, materialize the actual artifact, attach product passport/QC/gate/dispatch metadata, run deterministic QC, update the production ledger, and route eligible results to downstream independent verification.
-
-## Truth rules
-
-- RUN ≠ PRODUCT
-- CATALOG ≠ PRODUCED
-- PRODUCED ≠ VERIFIED
-- QC PASS ≠ INDEPENDENT VERIFICATION
-- DISPATCH NO ≠ SALE
-
-This map exists to make production measurable without inflating progress.
+Scale the catalog only when this end-to-end product loop remains healthy.
