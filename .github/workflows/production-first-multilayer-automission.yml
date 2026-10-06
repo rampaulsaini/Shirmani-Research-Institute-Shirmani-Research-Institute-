@@ -1,6 +1,8 @@
 name: SHIRMANI Production-First Multi-Layer Automission
 
 on:
+  push:
+    branches: [main, production-first/continuous-product-expansion]
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
@@ -39,6 +41,9 @@ jobs:
       - name: Build concrete browser production modules
         run: python3 factory/concrete_product_modules.py
 
+      - name: Expand catalog into product-specific production assets
+        run: python3 factory/product_asset_expander.py
+
       - name: Discover rotating multi-layer production work
         run: python3 factory/production_queue_builder.py
 
@@ -60,7 +65,8 @@ jobs:
           rf=json.loads(Path("generated/real-product-factory-status.json").read_text(encoding="utf-8"))
           d["production_driver"]={"workflow":"SHIRMANI Production-First Multi-Layer Automission","cadence":"5-minute scheduled cycle","cycle":q["cycle"],"discovered_modules":q["discovered_modules"],"selected_tasks":q["selected_tasks"],"batch_size":q["batch_size"],"lanes":q["lanes"],"mode":"CONTINUOUS_MULTI_LAYER"}
           d["product_factory"]={"concrete_product_mvp":rf["concrete_product_mvp"],"families":rf["families"],"catalog":rf["catalog"],"passports":rf["passports"],"qc_gate":rf["qc_gate"],"dispatch":rf["dispatch"]}
-          d["concrete_production"]={"module_products_this_cycle":e["concrete_module_products_this_cycle"],"total_materialized_module_products":e["total_materialized_module_products"],"registry":"generated/module-product-registry.json","product_directory":"generated/module-products/"}
+          pa=json.loads(Path("generated/product-production-assets.json").read_text(encoding="utf-8"))
+          d["concrete_production"]={"module_products_this_cycle":e["concrete_module_products_this_cycle"],"total_materialized_module_products":e["total_materialized_module_products"],"registry":"generated/module-product-registry.json","product_directory":"generated/module-products/","product_specific_assets":pa["product_count"],"new_product_assets_this_cycle":pa["created_this_cycle"],"product_asset_index":"generated/product-production-assets.json"}
           d["public_visibility"]={"queue_status":"generated/production-queue-status.json","catalog":"generated/public-production-catalog.json","module_index":"generated/public-production-by-module.html","production_stream":"generated/production-results.jsonl","module_product_registry":"generated/module-product-registry.json","product_catalog":"generated/1000-digital-products.json","product_passports":"generated/PRODUCT-PASSPORTS.jsonl"}
           d["principle"]="Automission is the continuous production engine; QC/gate/dispatch and independent verification are downstream result-quality and promotion layers."
           d["integrity"]={"production_counts_are_source_derived":True,"fabricated_execution_claim":False,"independent_verification_claim":False}
@@ -71,7 +77,7 @@ jobs:
         run: |
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/
+          git add generated/ products/production/
           if git diff --cached --quiet; then
             echo "No production artifact changes to commit."
           else
