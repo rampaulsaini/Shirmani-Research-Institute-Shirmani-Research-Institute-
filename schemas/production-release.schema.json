@@ -1,0 +1,20 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Production Release",
+  "type":"object",
+  "required":["product_id","product_name","engine_id","module_path","version","batch_no","qc_code","gate_no","dispatch_no","qr_payload","status","created_at"],
+  "properties":{
+    "product_id":{"type":"string"},
+    "product_name":{"type":"string"},
+    "engine_id":{"type":"string"},
+    "module_path":{"type":"string"},
+    "version":{"type":"string"},
+    "batch_no":{"type":"string","pattern":"^100200\\.\\d{3}$"},
+    "qc_code":{"type":"string"},
+    "gate_no":{"type":"string"},
+    "dispatch_no":{"type":"string"},
+    "qr_payload":{"type":"string"},
+    "status":{"enum":["ENGINE_READY","MODULE_READY","QC_READY","RELEASE_READY","DISPATCHED","SOLD","CHECK"]},
+    "created_at":{"type":"string"}
+  }
+}
