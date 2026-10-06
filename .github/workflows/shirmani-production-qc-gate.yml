@@ -1,7 +1,7 @@
 name: SHIRMANI Production QC & Dispatch Gate
 on:
   push:
-    branches: [main]
+    branches: [main, production-first-qc-gate]
     paths:
       - "products/micro/**"
       - "products/production-control/**"
