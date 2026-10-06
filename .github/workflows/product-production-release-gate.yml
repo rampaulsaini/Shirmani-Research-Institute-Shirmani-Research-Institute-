@@ -1,0 +1,44 @@
+name: SHIRMANI Product Production Release Gate
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      batch_no:
+        description: "Production batch number; sequence begins at .001"
+        required: false
+        default: "100200"
+  push:
+    branches: [main]
+    paths:
+      - "factory/product-catalog.json"
+      - "factory/product_release_gate.py"
+      - "products/**"
+permissions:
+  contents: read
+jobs:
+  release-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build production release manifest
+        env:
+          PRODUCTION_BATCH_NO: ${{ github.event.inputs.batch_no || '100200' }}
+        run: python3 factory/product_release_gate.py
+      - name: Check production truth
+        run: |
+          python3 - <<'PY'
+          import json
+          p=json.load(open("generated/production-release-manifest-100200.json",encoding="utf-8"))
+          states={}
+          for x in p["products"]:
+              states[x["production_state"]]=states.get(x["production_state"],0)+1
+          print("BATCH",p["batch_no"])
+          print("STATES",states)
+          print("RULE: workflow activity is not delivery evidence")
+          PY
+      - name: Upload release manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-production-release-manifest-100200
+          path: generated/production-release-manifest-100200.json
