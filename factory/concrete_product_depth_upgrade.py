@@ -13,7 +13,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 CATALOG=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/concrete"
-BATCH=int(os.environ.get("CONCRETE_DEPTH_BATCH_SIZE","500"))
+BATCH=int(os.environ.get("CONCRETE_DEPTH_BATCH_SIZE","1000"))
 VERSION="ENGINE_MODULE_V2"
 
 def esc(x):
