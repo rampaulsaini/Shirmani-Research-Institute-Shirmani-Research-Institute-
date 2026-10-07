@@ -100,6 +100,27 @@ def main():
             "production_cycle":cycle,"verification_scope":"DOWNSTREAM_PRODUCT_RESULT",
             "next_work":"continue multi-lane product artifact production; verification follows produced results"}
     (OUT/"production-status.json").write_text(json.dumps(status,ensure_ascii=False,indent=2),encoding="utf-8")
+    live={
+        "schema_version":1,
+        "generated_at":stamp,
+        "production_first":True,
+        "catalog_identities":len(products),
+        "concrete_repository_assets":len(produced),
+        "current_catalog_pending":len(products)-len(produced),
+        "five_thousand_scale_target":max(5000,len(products)),
+        "remaining_to_scale_target":max(0,max(5000,len(products))-len(produced)),
+        "concrete_materialization_percent_of_catalog":round((len(produced)/len(products))*100,2) if products else 0,
+        "concrete_materialization_percent_of_scale_target":round((len(produced)/max(5000,len(products)))*100,2) if products else 0,
+        "module_products_generated":len(rows),
+        "dispatch_released":0,
+        "sales_claimed":0,
+        "payment_claimed":0,
+        "independent_verification_claimed":0,
+        "state":"PRODUCTION_IN_PROGRESS",
+        "rule":"Concrete repository-bound artifacts are production evidence; workflow execution is not counted as a product."
+    }
+    (OUT/"live-production-state.json").write_text(json.dumps(live,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+
     print(json.dumps(status,ensure_ascii=False))
 
 if __name__=="__main__": main()
