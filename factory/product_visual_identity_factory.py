@@ -32,7 +32,7 @@ def main():
     if not CAT.exists(): raise SystemExit("generated/1000-digital-products.json missing")
     products=json.loads(CAT.read_text(encoding="utf-8")).get("products",[])
     OUT.mkdir(parents=True,exist_ok=True); rows=[]; created=existing=0
-    try: batch=max(1,min(5000,int(os.environ.get("VISUAL_BATCH","5000")))
+    try: batch=max(1,min(5000,int(os.environ.get("VISUAL_BATCH","5000"))))
     except ValueError: batch=250
     missing=[p for p in products if not (OUT/(str(p["id"]).lower()+".svg")).exists()]
     selected=set(id(x) for x in missing[:batch])
