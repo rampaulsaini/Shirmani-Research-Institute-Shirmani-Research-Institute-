@@ -15,7 +15,9 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: shirmani-production-persistence
+  # This workflow and SHIRMANI Continuous Concrete Product Production both
+  # write automation/production-state. They must share one serialization lock.
+  group: shirmani-production-state-writer
   cancel-in-progress: false
 
 jobs:
