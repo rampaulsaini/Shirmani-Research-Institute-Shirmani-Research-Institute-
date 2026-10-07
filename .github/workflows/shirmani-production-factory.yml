@@ -42,9 +42,7 @@ jobs:
           print("PRODUCTION PASS:",s["batch_produced"],"new artifacts; total produced:",s["produced"],"remaining:",s["remaining"])
           PY
 
-      - name: Publish production results through PR
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Publish production results directly to main
         run: |
           set -euo pipefail
           git config user.name "shirmani-production[bot]"
@@ -55,14 +53,5 @@ jobs:
             exit 0
           fi
 
-          BRANCH="automation/production-factory-batch"
-          git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
-          git switch -C "$BRANCH"
           git commit -m "chore(production): publish concrete product batch"
-          git push --force origin "HEAD:$BRANCH"
-
-          if [ "$(gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length')" = "0" ]; then
-            gh pr create               --base main               --head "$BRANCH"               --title "chore(production): publish concrete product batch"               --body "Automated production batch. Concrete repository-bound product artifacts and public production metadata are generated first. QC, dispatch, sales and independent research verification remain separate downstream states."
-          else
-            echo "Existing production PR updated: $BRANCH"
-          fi
+          git push origin HEAD:main
