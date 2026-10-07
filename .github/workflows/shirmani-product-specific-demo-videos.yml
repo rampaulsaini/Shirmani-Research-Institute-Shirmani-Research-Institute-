@@ -19,7 +19,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
   group: shirmani-product-specific-demo-videos
@@ -39,22 +38,31 @@ jobs:
         env:
                     PRODUCT_DEMO_BATCH: ${{ github.event.inputs.batch_size || '50' }}
         run: python3 factory/product_specific_demo_video_factory.py
-      - name: Publish customer-facing demo media through PR
-        id: publish_media
-        uses: peter-evans/create-pull-request@v7
-        with:
-          commit-message: "feat(showroom): publish product-specific demo video batch"
-          title: "Automission: publish product-specific demo video batch"
-          body: |
-            Automated production batch for customer-facing product demos.
-            Includes product-specific MP4 assets and manifest routes.
-            Demo readiness is production output, not scientific verification.
-          branch: "automission/product-demo-media"
-          delete-branch: true
-          add-paths: |
-            products/demos/products
-            generated/product-specific-demo-video-manifest.json
-
+      - name: Publish demo media to canonical production-state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Product Demo Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin automation/production-state
+          rm -rf /tmp/shirmani-media-publish
+          git worktree add --detach /tmp/shirmani-media-publish FETCH_HEAD
+          mkdir -p /tmp/shirmani-media-publish/products/demos/products /tmp/shirmani-media-publish/products/demos/vip /tmp/shirmani-media-publish/generated
+          cp -a products/demos/products/. /tmp/shirmani-media-publish/products/demos/products/
+          if [ -d products/demos/vip ]; then cp -a products/demos/vip/. /tmp/shirmani-media-publish/products/demos/vip/; fi
+          cp generated/product-specific-demo-video-manifest.json /tmp/shirmani-media-publish/generated/
+          cd /tmp/shirmani-media-publish
+          git config user.name "SHIRMANI Product Demo Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/demos generated/product-specific-demo-video-manifest.json
+          if git diff --cached --quiet; then
+            echo "No new demo media."
+            exit 0
+          fi
+          git commit -m "automission: publish product-specific demo media batch"
+          remote_sha="$(git rev-parse FETCH_HEAD)"
+          git push --force-with-lease="refs/heads/automation/production-state:$remote_sha" origin HEAD:automation/production-state
+          echo "Demo media batch published to canonical production-state."
       - name: Auto-merge published production media
         if: steps.publish_media.outputs.pull-request-number != ''
         env:
