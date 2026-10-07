@@ -1,6 +1,58 @@
 {
-  "schema_version": 1,
-  "generated_at": "2026-10-07T06:40:11.323Z",
-  "principle": "Potential-fit institutions are not confirmed demand; official websites are listed only when explicitly sourced.",
-  "institutions": []
+  "schema_version": 2,
+  "generated_at": "2026-10-07T06:40:11+00:00",
+  "principle": "Potential-fit institutions are not confirmed customers or current users. Official websites are listed from public institutional sources; outreach/usage requires explicit evidence or consent.",
+  "discovery_mode": "official-source-seeded global opportunity map",
+  "institutions": [
+    {
+      "id": "OPP-UNESCO-001",
+      "name": "UNESCO",
+      "country_scope": "Global",
+      "sector": "Education / science / culture",
+      "demand_status": "POTENTIAL_FIT_NOT_CONFIRMED",
+      "use_case": "Public research, education, knowledge and accessibility-oriented digital tools; structured research artifacts and learning utilities.",
+      "official_website": "https://www.unesco.org/",
+      "source_basis": "UNESCO publicly describes work spanning education, science, culture, communication/information and global data/knowledge access."
+    },
+    {
+      "id": "OPP-MIT-001",
+      "name": "MIT",
+      "country_scope": "United States / Global research",
+      "sector": "Higher education / research",
+      "demand_status": "POTENTIAL_FIT_NOT_CONFIRMED",
+      "use_case": "Research, education, developer and browser-based analytical/productivity tools.",
+      "official_website": "https://www.mit.edu/",
+      "source_basis": "MIT public site presents research and education as core activities."
+    },
+    {
+      "id": "OPP-W3C-001",
+      "name": "World Wide Web Consortium (W3C)",
+      "country_scope": "Global",
+      "sector": "Web standards / accessibility / interoperability",
+      "demand_status": "POTENTIAL_FIT_NOT_CONFIRMED",
+      "use_case": "Web tooling, accessibility-oriented utilities, standards demonstrations and interoperable browser products.",
+      "official_website": "https://www.w3.org/",
+      "source_basis": "W3C develops web standards and emphasizes accessibility, privacy, security and interoperability."
+    },
+    {
+      "id": "OPP-WMF-001",
+      "name": "Wikimedia Foundation",
+      "country_scope": "Global",
+      "sector": "Knowledge / open web",
+      "demand_status": "POTENTIAL_FIT_NOT_CONFIRMED",
+      "use_case": "Knowledge tooling, content utilities, structured data and public-facing digital research products.",
+      "official_website": "https://wikimediafoundation.org/",
+      "source_basis": "Wikimedia Foundation publicly describes its role supporting the technology and policies behind free knowledge and Wikipedia."
+    },
+    {
+      "id": "OPP-NVIDIA-001",
+      "name": "NVIDIA",
+      "country_scope": "Global",
+      "sector": "AI / developer / 3D / compute",
+      "demand_status": "POTENTIAL_FIT_NOT_CONFIRMED",
+      "use_case": "AI/ML/NLP developer utilities, visualization/3D workflows and browser-facing AI product demonstrations.",
+      "official_website": "https://www.nvidia.com/",
+      "source_basis": "NVIDIA publicly lists AI, developer tools, 3D/Omniverse and cloud services."
+    }
+  ]
 }
