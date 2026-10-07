@@ -8,6 +8,8 @@ on:
     workflows:
       - "SHIRMANI Multi-Layer Production Automission"
       - "SHIRMANI Real Product Catalog Production"
+      - "SHIRMANI Continuous Concrete Product Production"
+      - "SHIRMANI Supreme Production Factory"
     types: [completed]
 
 permissions:
