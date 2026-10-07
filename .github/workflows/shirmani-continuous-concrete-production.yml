@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 20
     env:
       PRODUCT_TARGET: "5000"
-      CONCRETE_PRODUCT_BATCH_SIZE: "500"
+      CONCRETE_PRODUCT_BATCH_SIZE: "1000"
     steps:
       - uses: actions/checkout@v4
         with:
