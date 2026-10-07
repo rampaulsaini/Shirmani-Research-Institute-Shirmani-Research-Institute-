@@ -34,7 +34,43 @@
 <p id="scaleSummary" class="muted" style="margin-bottom:0">Production telemetry loading…</p>
 <p><a class="btn primary" href="production-dashboard.html">Production Dashboard →</a> <a class="btn" href="generated/concrete-product-production-status.json">Production Status JSON</a> <a class="btn" href="#customer-reviews">Customer Reviews → Quality Improvement</a></p>
 </section>
-<section class="note" id="showroom-payment-qr"><p style="text-align:center;font-weight:900;color:#6ee7a8">📲 QR PAYMENT — LIVE PUBLIC ENTRY</p><h2>💳 Public Payment — Paytm / UPI + PayPal</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;align-items:center"><div><p><strong>Paytm / UPI:</strong> <code>9622254967@ptyes</code></p><p><strong>PayPal:</strong> <code>sainirampaul60@gmail.com</code></p><p>Payment से पहले अपने app में payee और amount verify करें।</p><p><a class="btn" href="https://paypal.me/sainirampaul60" target="_blank" rel="noopener">PayPal से भुगतान / समर्थन</a></p></div><div style="text-align:center"><a href="upi://pay?pa=9622254967@ptyes&pn=Shirmani%20Research%20Institute&cu=INR" aria-label="Open Paytm UPI payment"><img id="funding-upi-qr" src="assets/funding-upi-qr.svg?v=20261006" alt="Paytm UPI funding QR code for 9622254967@ptyes" width="210" height="210" style="background:#fff;padding:10px;border-radius:12px;display:inline-block;object-fit:contain"></a><div><small>Scan or tap for Paytm/UPI funding · <strong>9622254967@ptyes</strong></small></div></div></div></section><section><h2>चार-स्तरीय production mechanism</h2><div class="pipeline">
+<section class="note" id="showroom-payment-qr"><p style="text-align:center;font-weight:900;color:#6ee7a8">📲 QR PAYMENT — LIVE PUBLIC ENTRY</p><h2>💳 Public Payment — Paytm / UPI + PayPal</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;align-items:center"><div><p><strong>Paytm / UPI:</strong> <code>9622254967@ptyes</code></p><p><strong>PayPal:</strong> <code>sainirampaul60@gmail.com</code></p><p>Payment से पहले अपने app में payee और amount verify करें।</p><p><a class="btn" href="https://paypal.me/sainirampaul60" target="_blank" rel="noopener">PayPal से भुगतान / समर्थन</a></p></div><div style="text-align:center"><a href="upi://pay?pa=9622254967@ptyes&pn=Shirmani%20Research%20Institute&cu=INR" aria-label="Open Paytm UPI payment"><img id="funding-upi-qr" src="assets/funding-upi-qr.svg?v=20261006" alt="Paytm UPI funding QR code for 9622254967@ptyes" width="210" height="210" style="background:#fff;padding:10px;border-radius:12px;display:inline-block;object-fit:contain"></a><div><small>Scan or tap for Paytm/UPI funding · <strong>9622254967@ptyes</strong></small></div></div></div></section><section class="note" id="production-frontier" style="border:2px solid #64d9ff;background:linear-gradient(135deg,#0d1a29,#0b111b)">
+<h2>⚡ LIVE PRODUCTION FRONTIER — वास्तविक काम का परिणाम</h2>
+<p class="muted">यह panel केवल repository में प्रकाशित concrete production state से पढ़ता है। Workflow run को product नहीं गिना जाता।</p>
+<div class="stats">
+<div class="stat"><div class="metric" id="frontConcrete">—</div><div class="muted">Concrete products</div></div>
+<div class="stat"><div class="metric" id="frontTarget">—</div><div class="muted">5,000 scale target</div></div>
+<div class="stat"><div class="metric" id="frontRemaining">—</div><div class="muted">Production remaining</div></div>
+<div class="stat"><div class="metric" id="frontModules">—</div><div class="muted">Production modules</div></div>
+<div class="stat"><div class="metric" id="frontCycle">—</div><div class="muted">Latest cycle concrete results</div></div>
+<div class="stat"><div class="metric" id="frontQueue">—</div><div class="muted">Scheduled work units</div></div>
+</div>
+<div style="height:16px;background:#0b1019;border:1px solid #273244;border-radius:999px;overflow:hidden"><div id="frontBar" style="width:0%;height:100%;background:linear-gradient(90deg,#64d9ff,#e5c35b)"></div></div>
+<p id="frontSummary" class="muted">Live production state loading…</p>
+<p><a class="btn primary" href="production-first-public-map.html">Production-First Public Map →</a> <a class="btn" href="production-mission-control.html">Mission Control →</a> <a class="btn" href="generated/public-production-by-module.html">Module Production →</a></p>
+</section>
+<script>
+(async function(){
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
+  try{
+    const [p,s]=await Promise.all([
+      fetch("generated/live-production-state.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+      fetch("generated/multi-layer-production-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json())
+    ]);
+    const produced=Number(p.concrete_repository_assets||0), target=Number(p.five_thousand_scale_target||5000);
+    const remaining=Number(p.remaining_to_scale_target||Math.max(0,target-produced));
+    const modules=Number(p.module_products_generated||s.production_outputs?.production_modules||0);
+    const cycle=Number(s.last_cycle_concrete_results||s.production_outputs?.concrete_results_this_cycle||0);
+    const queued=Number(s.scheduled_work_units||0);
+    const pct=Number(p.concrete_materialization_percent_of_scale_target||0);
+    set("frontConcrete",produced.toLocaleString("en-IN")); set("frontTarget",target.toLocaleString("en-IN"));
+    set("frontRemaining",remaining.toLocaleString("en-IN")); set("frontModules",modules.toLocaleString("en-IN"));
+    set("frontCycle",cycle.toLocaleString("en-IN")); set("frontQueue",queued.toLocaleString("en-IN"));
+    const bar=document.getElementById("frontBar"); if(bar) bar.style.width=Math.min(100,Math.max(0,pct))+"%";
+    set("frontSummary","Published concrete materialization: "+produced.toLocaleString("en-IN")+" / "+target.toLocaleString("en-IN")+" ("+pct.toFixed(2)+"%). Remaining production: "+remaining.toLocaleString("en-IN")+"; latest cycle: "+cycle.toLocaleString("en-IN")+" concrete results. Verification remains downstream.");
+  }catch(e){set("frontSummary","Live production telemetry unavailable; no production value is inferred.");}
+})();
+</script><section><h2>चार-स्तरीय production mechanism</h2><div class="pipeline">
 <div class="stage"><b>01 · INSTITUTE</b><h3>खोज / Research</h3><p>Sources, ideas, modules और product concepts discover होते हैं।</p></div>
 <div class="stage"><b>02 · FACTORY</b><h3>Real Production</h3><p>Actual browser tools, documents, audio, research और अन्य digital artifacts बनते हैं।</p></div>
 <div class="stage"><b>03 · QC GATE</b><h3>Quality / Dispatch</h3><p>Product ID, version, QC state और dispatch state record होते हैं।</p></div>
