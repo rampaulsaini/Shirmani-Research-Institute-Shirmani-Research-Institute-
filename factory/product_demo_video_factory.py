@@ -94,7 +94,7 @@ def main():
         "generated_at":datetime.now(timezone.utc).isoformat(),
         "product_count":len(products),
         "interactive_demo_count":len(rows),
-        "real_mp4_count":len(rows),
+        "real_mp4_count":len(engine_assets),
         "vip_screenshot_count":len(rows),
         "visual_route_count":len(rows),
         "engine_demo_count":len(engine_assets),
