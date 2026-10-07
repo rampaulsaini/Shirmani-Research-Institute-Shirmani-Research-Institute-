@@ -67,6 +67,14 @@ jobs:
         run: python3 factory/expand_product_catalog.py
       - name: Produce next concrete public batch
         run: python3 factory/continuous_product_batch.py
+      - name: Materialize unique 4K product identity visuals
+        env:
+          VISUAL_BATCH: "5000"
+        run: python3 factory/product_visual_identity_factory.py
+      - name: Materialize per-product QR long-description assets
+        env:
+          QR_BATCH: "1000"
+        run: python3 factory/product_qr_asset_factory.py
       - name: Upgrade concrete products to engine-specific modules
         env:
           CONCRETE_DEPTH_BATCH_SIZE: "500"
@@ -115,6 +123,8 @@ jobs:
             generated/concrete-product-truth.json
             generated/concrete-product-production-status.json
             generated/concrete-product-depth-status.json
+            generated/product-visual-assets.json
+            generated/product-qr-assets.json
       - name: Publish concrete production state to canonical production branch
         shell: bash
         run: |
@@ -125,7 +135,7 @@ jobs:
           git fetch origin automation/production-state
           git switch -C automation/production-state FETCH_HEAD
           git stash pop >/dev/null 2>&1 || true
-          git add generated/live-production-state.json generated/concrete-product-asset-status.json generated/concrete-product-truth.json generated/concrete-production-overlay.json generated/concrete-product-production-status.json generated/concrete-product-depth-status.json generated/continuous-production-batch-status.json generated/1000-digital-products.json products/concrete
+          git add generated/live-production-state.json generated/concrete-product-asset-status.json generated/concrete-product-truth.json generated/concrete-production-overlay.json generated/concrete-product-production-status.json generated/concrete-product-depth-status.json generated/continuous-production-batch-status.json generated/1000-digital-products.json generated/product-visual-assets.json generated/product-qr-assets.json products/concrete products/visuals
           if git diff --cached --quiet; then
             echo "No concrete production delta to publish."
             exit 0
