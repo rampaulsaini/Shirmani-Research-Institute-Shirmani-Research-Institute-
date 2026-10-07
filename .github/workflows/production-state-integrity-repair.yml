@@ -73,6 +73,20 @@ jobs:
           python3 factory/public_module_inventory.py
           python3 factory/real_product_factory.py
           python3 factory/materialize_all_product_assets.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("."); gen=root/"generated"
+          cat=json.loads((gen/"1000-digital-products.json").read_text(encoding="utf-8"))
+          rows=[]
+          for p in cat.get("products",[]):
+              asset=root/str(p.get("asset",""))
+              if asset.is_file():
+                  rows.append({**p,"production_state":"PRODUCED","status":"READY_FOR_QC"})
+          overlay={"schema_version":1,"production_first":True,"product_count":len(cat.get("products",[])),"produced_count":len(rows),"products":rows}
+          (gen/"concrete-production-overlay.json").write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          print("CONCRETE_PRODUCTION_OVERLAY",len(rows))
+          PY
           python3 factory/product_qc_gate.py
           VISUAL_BATCH=5000 python3 factory/product_visual_identity_factory_v2.py
           QR_BATCH=5000 python3 factory/product_qr_asset_factory.py
