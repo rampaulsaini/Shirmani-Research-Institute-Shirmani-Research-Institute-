@@ -1,12 +1,15 @@
 {
-  "schema_version": 1,
-  "generated_at": "2026-10-07T14:44:05.813Z",
+  "schema_version": 2,
+  "generated_at": "2026-10-07T00:00:00Z",
   "catalog_count": 5000,
+  "interactive_demo_count": 5000,
   "real_mp4_count": 0,
+  "vip_screenshot_count": 0,
   "remaining_real_mp4": 5000,
+  "remaining_vip_screenshots": 5000,
   "created_this_cycle": 0,
   "batch_size": 10,
   "mode": "PRODUCT_SPECIFIC_LIGHTWEIGHT_MP4",
-  "truth_boundary": "Demo media demonstrates product usage flow; it is not scientific verification.",
+  "truth_boundary": "Demo media demonstrates product usage flow; it is not independent scientific verification.",
   "products": []
 }
