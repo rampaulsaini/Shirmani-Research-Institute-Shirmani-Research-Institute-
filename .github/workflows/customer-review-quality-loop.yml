@@ -7,7 +7,8 @@ permissions:
   contents: write
   issues: read
 concurrency:
-  group: shirmani-customer-review-quality-loop
+  # Serialize review persistence with other main-branch generated-state writers.
+  group: shirmani-main-generated-writer
   cancel-in-progress: false
 jobs:
   aggregate:
@@ -74,6 +75,11 @@ jobs:
           set -euo pipefail
           git config user.name "SHIRMANI Customer Quality Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Rebase onto the newest main BEFORE committing, then retry only the push.
+          # The shared concurrency group prevents this writer from racing sibling
+          # generated-state writers while the retry loop handles transient ref changes.
+          git fetch origin main
+          git reset --hard origin/main
           git add generated/customer-review-event.json generated/customer-review-history.jsonl generated/customer-quality-dashboard.json generated/public-review-quality-queue.json
           if git diff --cached --quiet; then
             echo "No customer quality delta"
@@ -81,12 +87,12 @@ jobs:
           fi
           git commit -m "chore(quality): persist customer review production signal"
           for attempt in 1 2 3 4 5; do
-            git fetch origin main
-            git rebase origin/main || { git rebase --abort || true; git reset --hard origin/main; git fetch origin main; git rebase origin/main; }
             if git push origin HEAD:main; then
               echo "Customer review quality telemetry published on main."
               exit 0
             fi
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; git reset --hard origin/main; git fetch origin main; git rebase origin/main; }
             sleep $((attempt * 2))
           done
           echo "::error::Customer review telemetry could not publish after retries."
