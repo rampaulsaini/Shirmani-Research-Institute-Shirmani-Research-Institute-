@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-10-07T10:30:00+05:30",
+  "products": [
+    {
+      "id": "SP-1517",
+      "name": "SHIRMANI Supreme Text & Language 1517",
+      "category": "Text & Language",
+      "engine": "nlp",
+      "module": "products/production/sp-1517.html",
+      "asset": "products/production/sp-1517.html",
+      "price_inr": 149,
+      "offer_price_inr": 119,
+      "offer": "LAUNCH -20%",
+      "description": "Smart browser tool for refining text, counting language signals, cleaning spaces, and generating reusable copy.",
+      "long_description": "SHIRMANI Supreme Text & Language 1517 is a self-contained browser product for practical text and language work. Paste text, clean repeated spaces, inspect words, characters and lines, and generate a reusable refined-text output. It runs locally in the browser and does not claim external AI execution.",
+      "guarantee": "7-day digital quality correction window",
+      "packing": "SUPREME DIGITAL PRIME PACK",
+      "qc_code": "QC-SP1517-4K",
+      "gate_no": "GATE-1517",
+      "dispatch_no": "NO",
+      "status": "PRODUCED_PUBLIC",
+      "artifact_url": "products/production/sp-1517.html",
+      "visual_url": "assets/product-visuals.js",
+      "passport_url": "product-passport.html?id=SP-1517"
+    }
+  ]
+}
