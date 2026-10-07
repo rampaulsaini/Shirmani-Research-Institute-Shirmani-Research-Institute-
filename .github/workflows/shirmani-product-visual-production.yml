@@ -28,7 +28,14 @@ jobs:
           git add products/visuals
           if git diff --cached --quiet; then
             echo "No visual production changes."
-          else
-            git commit -m "prod: materialize SHIRMANI 4K product visuals"
-            git push
+            exit 0
           fi
+          git commit -m "prod: materialize SHIRMANI 4K product visuals"
+          git fetch origin automation/production-state
+          git diff --binary HEAD^ -- products/visuals > /tmp/materialized-visuals.patch || true
+          git checkout -B production-state origin/automation/production-state
+          if [ -s /tmp/materialized-visuals.patch ]; then git apply /tmp/materialized-visuals.patch; fi
+          git add products/visuals
+          git diff --cached --quiet && exit 0
+          git commit -m "automission: publish materialized 4K visual state"
+          git push origin HEAD:automation/production-state
