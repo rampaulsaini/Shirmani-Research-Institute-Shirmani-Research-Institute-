@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "purpose": "Production-first demo walkthrough standard",
+  "rule": "Every public product identity receives a customer-facing demo route. Real MP4/WebM assets take priority when present; otherwise the route renders a product-specific browser walkthrough.",
+  "required_sections": ["what_is_it","where_to_use","how_to_use","customer_output","product_details","review_improvement"],
+  "product_example": "SP-0002",
+  "video_asset_status": "Browser walkthrough enabled; binary video assets can be attached per product without changing the public route."
+}
