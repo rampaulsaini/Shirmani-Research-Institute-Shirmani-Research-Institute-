@@ -11,7 +11,7 @@ import hashlib, json
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"generated"/"production-work-queue.jsonl"
-MAX_TASKS=500
+MAX_TASKS=1000
 SKIP={".git","__pycache__","_sources","generated"}
 ALLOWED={".html",".md",".yml",".yaml",".py",".json",".jsonl"}
 LANES={
