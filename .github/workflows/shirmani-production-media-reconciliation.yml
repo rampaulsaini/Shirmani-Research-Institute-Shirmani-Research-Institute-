@@ -16,8 +16,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Reconcile concrete products to media queues
         run: python3 factory/product_media_reconciler.py
-      - name: Build 150,000-scale shard index
-        run: python3 factory/sharded_catalog_index.py
+      - name: Build scalable catalogue shard index
+        run: python3 factory/catalog_shard_index.py
       - name: Publish reconciliation state
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
@@ -27,4 +27,4 @@ jobs:
             generated/catalog-shards/**
           commit_user_name: "SHIRMANI Automission"
           commit_user_email: "actions@users.noreply.github.com"
-          commit_author: "SHIRMANI Automission <SHIRMANI Automission <actions@users.noreply.github.com>>"
+          commit_author: "SHIRMANI Automission <actions@users.noreply.github.com>"
