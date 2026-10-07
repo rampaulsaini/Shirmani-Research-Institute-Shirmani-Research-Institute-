@@ -59,6 +59,11 @@ jobs:
           status.update({"observed_at":now,"last_cycle_concrete_results":len(created),"scheduled_work_units":batch,"production_outputs":po})
           mp.write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n")
           print(f"created={len(created)} produced_total={total} remaining={max(0,target-total)}")
+      - name: Upgrade new concrete pages to engine-specific modules
+        env:
+          CONCRETE_DEPTH_BATCH_SIZE: "500"
+        run: python3 factory/concrete_product_depth_upgrade.py
+
       - name: Publish production result
         shell: bash
         run: |
