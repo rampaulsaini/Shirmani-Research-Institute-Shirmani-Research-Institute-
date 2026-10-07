@@ -1,0 +1,25 @@
+name: SHIRMANI Production-First Conveyor
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+permissions:
+  contents: write
+concurrency:
+  group: production-first-conveyor
+  cancel-in-progress: true
+jobs:
+  production-conveyor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build production queue and public telemetry
+        run: python scripts/production_first_conveyor.py
+      - name: Publish production telemetry
+        run: |
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/production-first-conveyor.json generated/production-first-state.json
+          git diff --cached --quiet || git commit -m "chore: update production-first conveyor telemetry"
+          git push
