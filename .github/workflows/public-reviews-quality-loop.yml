@@ -26,13 +26,29 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
-          import json, os, re, subprocess
+          import json, os, re, urllib.request
           from collections import Counter
           from datetime import datetime, timezone
 
           repo=os.environ["GITHUB_REPOSITORY"]
-          raw=subprocess.check_output(["gh","api",f"repos/{repo}/issues?state=all&per_page=100"],text=True)
-          issues=json.loads(raw)
+          url=f"https://api.github.com/repos/{repo}/issues?state=all&per_page=100"
+          req=urllib.request.Request(url,headers={"Accept":"application/vnd.github+json","User-Agent":"shirmani-public-reviews-quality"})
+          try:
+              with urllib.request.urlopen(req,timeout=20) as response:
+                  issues=json.load(response)
+          except Exception as exc:
+              stamp=datetime.now(timezone.utc).isoformat()
+              os.makedirs("generated",exist_ok=True)
+              status={"generated_at":stamp,"review_count":0,"rating_count":0,"average_rating":None,
+                      "products_with_feedback":0,"purpose":"Customer reviews are production-quality improvement inputs, not scientific verification.",
+                      "verification":"NOT_A_SCIENTIFIC_VERIFICATION_LAYER","source_state":"UNAVAILABLE","source_error":type(exc).__name__}
+              with open("generated/public-review-quality-status.json","w",encoding="utf-8") as f:
+                  json.dump(status,f,ensure_ascii=False,indent=2); f.write("\n")
+              with open("generated/public-review-quality-queue.json","w",encoding="utf-8") as f:
+                  json.dump({"generated_at":stamp,"review_count":0,"reviews":[],"purpose":status["purpose"],"next_stage":"retry public review source"},f,ensure_ascii=False,indent=2); f.write("\n")
+              with open("generated/public-review-research-input.md","w",encoding="utf-8") as f:
+                  f.write("# Public Review → Production Quality Improvement Input\n\n- Source state: UNAVAILABLE\n- No review values inferred.\n")
+              raise SystemExit(0)
           reviews=[]
 
           def field(lines, names):
