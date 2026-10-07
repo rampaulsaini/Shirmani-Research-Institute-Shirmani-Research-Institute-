@@ -44,5 +44,15 @@ state = {
         "keep QC, dispatch, sales and research verification as separate downstream states",
     ],
 }
+existing = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else None
+# Do not create a commit when the production-derived values have not changed.
+# The timestamp is telemetry, not a reason to manufacture production work.
+if existing:
+    comparable_existing = dict(existing)
+    comparable_state = dict(state)
+    comparable_existing.pop("generated_at", None)
+    comparable_state.pop("generated_at", None)
+    if comparable_existing == comparable_state:
+        state = existing
 state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(state, ensure_ascii=False))
