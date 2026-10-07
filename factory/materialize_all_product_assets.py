@@ -22,16 +22,16 @@ def visual_svg(p):
     import hashlib
     h=hashlib.sha256(str(p.get("id","")).encode()).hexdigest()
     c1="#"+h[0:6]; c2="#"+h[6:12]; accent="#"+h[12:18]
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-label="{name} product visual">
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-label="{name} product visual">
 <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{c1}"/><stop offset="1" stop-color="{c2}"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-opacity=".35"/></filter></defs>
-<rect width="1200" height="650" fill="#060b12"/><rect x="35" y="35" width="1130" height="580" rx="42" fill="url(#g)" opacity=".96" filter="url(#s)"/>
+<rect width="3840" height="2160" fill="#060b12"/><rect x="35" y="35" width="1130" height="580" rx="42" fill="url(#g)" opacity=".96" filter="url(#s)"/>
 <circle cx="1010" cy="145" r="90" fill="{accent}" opacity=".25"/><circle cx="1080" cy="225" r="145" fill="#fff" opacity=".08"/>
 <path d="M90 510 C280 410 330 590 510 470 S800 420 1100 505" fill="none" stroke="#fff" stroke-width="5" opacity=".28"/>
-<text x="90" y="105" fill="#fff" font-family="system-ui,sans-serif" font-size="28" font-weight="800">꙰ SHIRMANI DIGITAL PRODUCT</text>
-<text x="90" y="205" fill="#fff" font-family="system-ui,sans-serif" font-size="54" font-weight="900">{name}</text>
-<text x="90" y="265" fill="#fff" font-family="system-ui,sans-serif" font-size="25" opacity=".9">{family} · {engine}</text>
-<rect x="90" y="325" width="330" height="64" rx="32" fill="#060b12" opacity=".72"/><text x="125" y="367" fill="#fff" font-family="system-ui,sans-serif" font-size="24" font-weight="800">{pid}</text>
-<text x="90" y="565" fill="#fff" font-family="system-ui,sans-serif" font-size="22" opacity=".9">PRODUCT IDENTITY · PRIME DIGITAL PACK</text>
+<text x="90" y="105" fill="#fff" font-family="system-ui,sans-serif" font-size="88" font-weight="800">꙰ SHIRMANI DIGITAL PRODUCT</text>
+<text x="90" y="205" fill="#fff" font-family="system-ui,sans-serif" font-size="160" font-weight="900">{name}</text>
+<text x="90" y="265" fill="#fff" font-family="system-ui,sans-serif" font-size="64" opacity=".9">{family} · {engine}</text>
+<rect x="90" y="325" width="330" height="64" rx="32" fill="#060b12" opacity=".72"/><text x="125" y="367" fill="#fff" font-family="system-ui,sans-serif" font-size="62" font-weight="800">{pid}</text>
+<text x="90" y="1860" fill="#fff" font-family="system-ui,sans-serif" font-size="52" opacity=".9">PRODUCT IDENTITY · PRIME DIGITAL PACK</text>
 </svg>"""
 
 def make(p):
