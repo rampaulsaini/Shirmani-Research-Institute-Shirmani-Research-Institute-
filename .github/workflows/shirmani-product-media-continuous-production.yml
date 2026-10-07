@@ -31,6 +31,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Produce next product QR batch
+        env:
+          QR_BATCH: "250"
+        run: python3 factory/product_qr_asset_factory.py
+
       - name: Produce next 4K visual batch
         env:
           VISUAL_BATCH: "250"
@@ -58,7 +63,7 @@ jobs:
         run: |
           git config user.name "SHIRMANI Product Media Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/product-visual-assets-v2.json generated/product-specific-demo-video-manifest.json generated/product-vip-screenshot-manifest.json products/visuals products/demos/products products/vip-screenshots
+          git add generated/product-qr-assets.json generated/product-visual-assets-v2.json generated/product-specific-demo-video-manifest.json generated/product-vip-screenshot-manifest.json products/visuals products/demos/products products/vip-screenshots
           git diff --cached --quiet || git commit -m "automission: produce next product media batch"
           git push
 
