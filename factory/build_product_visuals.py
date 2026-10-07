@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate scalable product identity masters from the concrete product passport registry."""
-import json,html,pathlib,re,hashlib,urllib.parse
+import json,html,pathlib,re,hashlib,urllib.parse,base64,io
+import qrcode
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 CATALOG=ROOT/"showroom-products.json"
 PASSPORTS=ROOT/"generated/PRODUCT-PASSPORTS.jsonl"
@@ -25,6 +26,8 @@ for p in items:
     artifact=p.get("asset") or p.get("artifact_url") or p.get("store_url") or ""
     public_url=urllib.parse.urljoin(BASE,artifact)
     digest=hashlib.sha256((pid+"|"+name).encode()).hexdigest(); accent="#"+digest[:6]
+    qr=qrcode.QRCode(version=None,box_size=10,border=2); qr.add_data(public_url); qr.make(fit=True)
+    qr_bytes=io.BytesIO(); qr.make_image().save(qr_bytes,format="PNG"); qr_b64=base64.b64encode(qr_bytes.getvalue()).decode()
     svg=f'''<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img">
 <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset=".55" stop-color="{accent}"/><stop offset="1" stop-color="#05070d"/></linearGradient></defs>
 <rect width="3840" height="2160" fill="#05070d"/><rect x="80" y="80" width="3680" height="2000" rx="70" fill="url(#g)" stroke="#e8c65b" stroke-width="8"/>
@@ -39,9 +42,7 @@ for p in items:
 <text x="660" y="1260" font-family="sans-serif" font-size="54" fill="#fff">QC · {esc(qc)}   GATE · {esc(gate)}   DISPATCH · {esc(p.get("dispatch_no","NO"))}</text>
 <text x="660" y="1430" font-family="sans-serif" font-size="82" font-weight="950" fill="#e8c65b">OPEN PRODUCT →</text>
 <text x="660" y="1760" font-family="sans-serif" font-size="50" fill="#fff">Short description + identity on visual · QR route to full product description</text>
-<rect x="2880" y="1300" width="540" height="540" rx="24" fill="#fff"/>
-<text x="3150" y="1570" text-anchor="middle" font-family="sans-serif" font-size="42" font-weight="900" fill="#111">QR ROUTE</text>
-<text x="3150" y="1635" text-anchor="middle" font-family="sans-serif" font-size="25" fill="#111">product page</text>
+<rect x="2880" y="1300" width="540" height="540" rx="24" fill="#fff"/><image x="2900" y="1320" width="500" height="500" href="data:image/png;base64,{qr_b64}"/>
 <text x="2920" y="1910" font-family="sans-serif" font-size="40" fill="#d9e3ef">Author mark · शिरोमणि रामपॉल सैनी</text>
 <text x="2920" y="1975" font-family="sans-serif" font-size="34" fill="#d9e3ef">3840×2160 vector master · resolution independent</text></svg>'''
     (OUT/(slug(pid)+".svg")).write_text(svg,encoding="utf-8")
