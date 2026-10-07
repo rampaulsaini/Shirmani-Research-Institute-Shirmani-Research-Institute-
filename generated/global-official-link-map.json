@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Official-link mapping and lawful outreach queue for the Global Product & Usage Directory",
+  "policy": "Map only official public pages. Do not imply endorsement, partnership, contact, procurement, or adoption unless independently established.",
+  "outreach_status": "QUEUE_ONLY",
+  "categories": [
+    {
+      "category": "AI_ACCELERATION",
+      "name": "NVIDIA Developer",
+      "official_url": "https://developer.nvidia.com/",
+      "relevant_pages": [
+        "https://developer.nvidia.com/cuda",
+        "https://developer.nvidia.com/TensorRT",
+        "https://developer.nvidia.com/nim",
+        "https://docs.nvidia.com/nemo/"
+      ],
+      "contact_mode": "official website / developer program"
+    },
+    {
+      "category": "CODE_PLATFORM",
+      "name": "GitHub",
+      "official_url": "https://github.com/",
+      "relevant_pages": [
+        "https://docs.github.com/",
+        "https://docs.github.com/en/actions"
+      ],
+      "contact_mode": "official platform / support / marketplace"
+    },
+    {
+      "category": "GOVERNMENT_INDIA",
+      "name": "Government of India",
+      "official_url": "https://www.india.gov.in/",
+      "relevant_pages": [
+        "https://www.india.gov.in/"
+      ],
+      "contact_mode": "official government portal"
+    },
+    {
+      "category": "SPACE_SCIENCE",
+      "name": "ISRO",
+      "official_url": "https://www.isro.gov.in/",
+      "relevant_pages": [
+        "https://www.isro.gov.in/",
+        "https://www.isro.gov.in/profile.html"
+      ],
+      "contact_mode": "official website / opportunities / tenders"
+    },
+    {
+      "category": "SCIENCE_TECHNOLOGY",
+      "name": "Department of Science & Technology, India",
+      "official_url": "https://dst.gov.in/",
+      "relevant_pages": [
+        "https://dst.gov.in/"
+      ],
+      "contact_mode": "official government website"
+    },
+    {
+      "category": "RESEARCH_DEFENCE",
+      "name": "DRDO",
+      "official_url": "https://drdo.gov.in/drdo/en",
+      "relevant_pages": [
+        "https://drdo.gov.in/drdo/en",
+        "https://drdo.gov.in/drdo/en/basic-page"
+      ],
+      "contact_mode": "official website / industry partner / technology development channels"
+    }
+  ],
+  "product_mapping_contract": {
+    "product_id": "required",
+    "product_category": "required",
+    "relevant_official_targets": "array",
+    "official_url": "required",
+    "use_case_fit": "required",
+    "public_demo_url": "required",
+    "product_passport_url": "required",
+    "outreach_state": [
+      "NOT_STARTED",
+      "QUEUED",
+      "SENT_WITH_AUTHORIZATION",
+      "REPLIED",
+      "DECLINED",
+      "PARTNERSHIP_CONFIRMED"
+    ],
+    "last_outreach_at": null,
+    "evidence_url": null
+  }
+}
