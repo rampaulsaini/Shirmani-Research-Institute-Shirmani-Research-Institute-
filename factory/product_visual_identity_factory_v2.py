@@ -7,7 +7,7 @@ import hashlib, html, json, os
 from urllib.parse import quote
 
 ROOT=Path(__file__).resolve().parents[1]
-CAT=ROOT/"generated/1000-digital-products.json"
+CAT_CANDIDATES=[ROOT/"generated/concrete-production-overlay.json",ROOT/"generated/1000-digital-products.json"]
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
 VERSION="2026-10-07-production-visual-v10-local-logo-short-description-qr"
@@ -50,8 +50,23 @@ def make(p):
 <text x="520" y="1780" fill="#e7c85b" opacity=".92" font-family="system-ui,sans-serif" font-size="32" font-weight="700">QC · {esc(qc)} · GATE · {esc(gate)} · DISPATCH · {esc(dispatch)}</text>
 </svg>'''
 
+def load_products():
+    """Use the strongest non-empty concrete production registry available."""
+    for source in CAT_CANDIDATES:
+        if not source.exists(): continue
+        try: data=json.loads(source.read_text(encoding="utf-8"))
+        except Exception: continue
+        products=data.get("products",[])
+        if products:
+            normalized=[]
+            for p in products:
+                pid=str(p.get("id") or p.get("product_id") or "").strip()
+                if pid: normalized.append({**p,"id":pid})
+            if normalized: return normalized,str(source.relative_to(ROOT))
+    raise SystemExit("No non-empty concrete production catalogue is available; refusing zero-product visual production.")
+
 def main():
-    products=json.loads(CAT.read_text(encoding="utf-8")).get("products",[])
+    products,catalog_source=load_products()
     OUT.mkdir(parents=True,exist_ok=True)
     previous={}
     if MAN.exists():
@@ -85,6 +100,7 @@ def main():
     MAN.write_text(json.dumps({"version":2,"visual_version":VERSION if current==len(products) else "IN_PROGRESS",
         "target_visual_version":VERSION,"generated_at":datetime.now(timezone.utc).isoformat(),
         "target":len(products),"visual_assets":ready,"current_version_assets":current,
+        "catalog_source":catalog_source,
         "changed_this_cycle":changed,"remaining":remaining,
         "logo":LOGO,"english_identity_line":IDENTITY,"short_description_on_visual":True,
         "qr_upper_right":True,"qr_purpose":"long description / product details","visual_contract":{"logo_photo":True,"logo_position":"upper-left","english_identity":"Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present","short_description":"on-image","qr_position":"upper-right","qr_target":"product passport / long description","canvas":"3840x2160 16:9 4K-ready"},"products":rows},
