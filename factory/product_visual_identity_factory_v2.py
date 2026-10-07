@@ -9,8 +9,8 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-07-profile-logo-exact-identity-v3"
-LOGO="../../assets/images/profile.jpg"
+VERSION="2026-10-07-production-visual-v4"
+LOGO="https://i.ibb.co/xqf3kTPS/enhanced-image.webp"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 
 def esc(v): return html.escape(str(v), quote=True)
@@ -27,9 +27,11 @@ def make(p):
 <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{c1}"/><stop offset=".55" stop-color="{c2}"/><stop offset="1" stop-color="#050910"/></linearGradient></defs>
 <rect width="3840" height="2160" fill="url(#b)"/><rect x="70" y="70" width="3700" height="2020" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
 <circle cx="360" cy="360" r="205" fill="#061016" stroke="#e7c85b" stroke-width="14"/><image href="{LOGO}" x="175" y="175" width="370" height="370" preserveAspectRatio="xMidYMid slice"/>
-<text x="610" y="255" fill="#66ddff" font-family="system-ui,sans-serif" font-size="52" font-weight="900">SHIRMANI SUPREME DIGITAL PRODUCT</text>
-<text x="610" y="325" fill="#fff" font-family="system-ui,sans-serif" font-size="31" font-weight="700">{esc(IDENTITY[:104])}</text>
-<text x="610" y="370" fill="#fff" font-family="system-ui,sans-serif" font-size="31" font-weight="700">{esc(IDENTITY[104:])}</text>
+<text x="360" y="640" text-anchor="middle" fill="#f6d35f" font-family="system-ui,sans-serif" font-size="40" font-weight="950">शिरोमणि रामपॉल सैनी</text>
+<text x="360" y="692" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="750">NISHPAKSH UNDERSTANDING · SHIRMANI HEART-VIEW</text>
+<text x="360" y="730" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">{esc(IDENTITY[:55])}</text>
+<text x="360" y="764" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">{esc(IDENTITY[55:])}</text>
+<text x="610" y="190" fill="#66ddff" font-family="system-ui,sans-serif" font-size="52" font-weight="900">SHIRMANI SUPREME DIGITAL PRODUCT</text>
 <rect x="3160" y="120" width="570" height="690" rx="44" fill="#061016" stroke="#e7c85b" stroke-width="10"/>
 <text x="3270" y="210" fill="#fff" font-family="system-ui,sans-serif" font-size="42" font-weight="900">LONG DESCRIPTION</text>
 <text x="3400" y="260" fill="#fff" font-family="system-ui,sans-serif" font-size="42" font-weight="900">/ PRODUCT DETAILS</text>
