@@ -1,151 +1,23 @@
 {
-<<<<<<< Updated upstream
-  "schema_version": 2,
-  "generated_at": "2026-10-07T05:35:26.222904+00:00",
-=======
-  "schema_version": 1,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  "generated_at": "2026-10-07T05:47:33.629815+00:00",
->>>>>>> Stashed changes
-=======
-  "generated_at": "2026-10-07T05:50:24.928271+00:00",
->>>>>>> Stashed changes
-=======
-  "generated_at": "2026-10-07T05:53:33.267486+00:00",
->>>>>>> Stashed changes
-=======
-  "generated_at": "2026-10-07T05:58:14.653143+00:00",
->>>>>>> Stashed changes
-=======
-  "generated_at": "2026-10-07T06:04:18.338774+00:00",
->>>>>>> Stashed changes
-=======
-  "generated_at": "2026-10-07T06:15:57.349720+00:00",
->>>>>>> Stashed changes
-=======
-  "generated_at": "2026-10-07T06:25:25.783508+00:00",
->>>>>>> Stashed changes
-=======
-  "generated_at": "2026-10-07T06:41:34.065162+00:00",
->>>>>>> Stashed changes
-=======
-  "generated_at": "2026-10-07T06:52:24.643025+00:00",
->>>>>>> Stashed changes
-=======
-  "generated_at": "2026-10-07T07:35:54.581082+00:00",
->>>>>>> Stashed changes
+  "schema_version": 3,
+  "generated_at": "2026-10-07T12:50:58.674325+00:00",
   "production_first": true,
   "catalog_identities": 5000,
   "concrete_repository_assets": 5000,
+  "production_browser_assets": 5000,
+  "public_4k_visual_assets": 5000,
+  "product_qr_assets": 5000,
   "current_catalog_pending": 0,
   "five_thousand_scale_target": 5000,
   "remaining_to_scale_target": 0,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  "concrete_materialization_percent_of_catalog": 100,
-  "concrete_materialization_percent_of_scale_target": 100,
-=======
   "concrete_materialization_percent_of_catalog": 100.0,
   "concrete_materialization_percent_of_scale_target": 100.0,
->>>>>>> Stashed changes
-=======
-  "concrete_materialization_percent_of_catalog": 100.0,
-  "concrete_materialization_percent_of_scale_target": 100.0,
->>>>>>> Stashed changes
-=======
-  "concrete_materialization_percent_of_catalog": 100.0,
-  "concrete_materialization_percent_of_scale_target": 100.0,
->>>>>>> Stashed changes
-=======
-  "concrete_materialization_percent_of_catalog": 100.0,
-  "concrete_materialization_percent_of_scale_target": 100.0,
->>>>>>> Stashed changes
-=======
-  "concrete_materialization_percent_of_catalog": 100.0,
-  "concrete_materialization_percent_of_scale_target": 100.0,
->>>>>>> Stashed changes
-=======
-  "concrete_materialization_percent_of_catalog": 100.0,
-  "concrete_materialization_percent_of_scale_target": 100.0,
->>>>>>> Stashed changes
-=======
-  "concrete_materialization_percent_of_catalog": 100.0,
-  "concrete_materialization_percent_of_scale_target": 100.0,
->>>>>>> Stashed changes
-=======
-  "concrete_materialization_percent_of_catalog": 100.0,
-  "concrete_materialization_percent_of_scale_target": 100.0,
->>>>>>> Stashed changes
-=======
-  "concrete_materialization_percent_of_catalog": 100.0,
-  "concrete_materialization_percent_of_scale_target": 100.0,
->>>>>>> Stashed changes
-=======
-  "concrete_materialization_percent_of_catalog": 100.0,
-  "concrete_materialization_percent_of_scale_target": 100.0,
->>>>>>> Stashed changes
   "module_products_generated": 5000,
   "dispatch_released": 0,
   "sales_claimed": 0,
   "payment_claimed": 0,
   "independent_verification_claimed": 0,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
   "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG",
   "qc_state": "READY_FOR_QC",
-  "truth_boundary": "Produced assets are production outputs; QC/gate/dispatch and independent verification remain downstream states."
-=======
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
->>>>>>> Stashed changes
-=======
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
->>>>>>> Stashed changes
-=======
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
->>>>>>> Stashed changes
-=======
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
->>>>>>> Stashed changes
-=======
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
->>>>>>> Stashed changes
-=======
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
->>>>>>> Stashed changes
-=======
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
->>>>>>> Stashed changes
-=======
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
->>>>>>> Stashed changes
-=======
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
->>>>>>> Stashed changes
-=======
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
->>>>>>> Stashed changes
-}
+  "truth_boundary": "Produced artifacts, QC, dispatch and independent verification are distinct states."
+}\n
