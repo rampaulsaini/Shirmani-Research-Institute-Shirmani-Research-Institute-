@@ -11,6 +11,7 @@ on:
       - '.github/workflows/product-media-production.yml'
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-product-media-production
   cancel-in-progress: false
@@ -45,10 +46,31 @@ jobs:
           os.makedirs('generated',exist_ok=True)
           with open(out,'w',encoding='utf-8') as f: json.dump(payload,f,ensure_ascii=False,indent=2)
           print(f"products={len(rows)} real_mp4={payload['real_mp4_count']} interactive_demo={payload['interactive_demo_count']}")
-      - name: Publish media manifest
+      - name: Publish media manifest through pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name 'shirmani-product-automission[bot]'
           git config user.email 'shirmani-product-automission@users.noreply.github.com'
           git add generated/product-media-production-manifest.json
-          git diff --cached --quiet || git commit -m 'auto: publish product media production manifest'
-          git push
+          if git diff --cached --quiet; then
+            echo "No media manifest delta."
+            exit 0
+          fi
+          git commit -m 'auto: publish product media production manifest'
+          branch="automation/product-media-manifest"
+          git fetch origin main
+          git checkout -B "$branch"
+          git push --force-with-lease origin HEAD:"$branch"
+          existing="$(gh pr list --base main --head "$branch" --state open --json number --jq '.[0].number // empty')"
+          if [ -z "$existing" ]; then
+            gh pr create --base main --head "$branch" --title "auto: publish product media production manifest" --body "Automission update: publish the customer-facing product media manifest generated from the production catalog. Real MP4 assets are tracked separately; interactive demo routes are not misrepresented as MP4 files."
+          else
+            echo "Existing media manifest PR #$existing updated."
+          fi
+          pr="$(gh pr list --base main --head "$branch" --state open --json number --jq '.[0].number // empty')"
+          if [ -n "$pr" ]; then
+            gh pr merge "$pr" --squash --admin --delete-branch
+          fi
