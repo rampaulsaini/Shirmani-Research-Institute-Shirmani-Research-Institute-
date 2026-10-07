@@ -11,11 +11,11 @@ on:
       demo_batch:
         description: "Product-specific MP4 demos per cycle"
         required: false
-        default: "25"
+        default: "5"
       vip_batch:
         description: "VIP screenshots per cycle"
         required: false
-        default: "50"
+        default: "10"
 permissions:
   contents: write
 concurrency:
@@ -27,8 +27,8 @@ jobs:
     timeout-minutes: 30
     env:
       VISUAL_BATCH: ${{ github.event.inputs.visual_batch || '500' }}
-      PRODUCT_DEMO_BATCH: ${{ github.event.inputs.demo_batch || '25' }}
-      VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.vip_batch || '50' }}
+      PRODUCT_DEMO_BATCH: ${{ github.event.inputs.demo_batch || '5' }}
+      VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.vip_batch || '10' }}
       QR_BATCH: "500"
     steps:
       - uses: actions/checkout@v4
@@ -70,6 +70,21 @@ jobs:
           CATALOG_CAPACITY: "150000"
           CATALOG_SHARD_SIZE: "1000"
         run: python3 factory/build_sharded_catalog.py
+      - name: Assert customer-facing media production path
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f generated/1000-digital-products.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/1000-digital-products.json").read_text(encoding="utf-8"))
+          n=len(d.get("products", []))
+          if n < 1016:
+              raise SystemExit(f"Production catalog unexpectedly small: {n}")
+          print(f"Customer-facing media production catalog: {n} products")
+          print("Demo MP4 and VIP screenshot production are downstream customer-visible assets.")
+          PY
       - name: Publish media and production telemetry
         run: |
           python3 - <<'PY'
