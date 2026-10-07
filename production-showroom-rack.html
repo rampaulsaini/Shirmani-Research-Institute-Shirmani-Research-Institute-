@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Supreme Live Production Rack</title>
+<meta name="description" content="Live production-first public rack for SHIRMANI digital products.">
+<style>
+:root{--bg:#050a10;--p:#0c1520;--g:#f0cf5a;--c:#61e5ff;--ok:#72e6aa;--m:#aebdca;--l:#294052;--t:#f6f9fc}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#1a3048,#050a10 52%);color:var(--t);font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:1500px;margin:auto;padding:16px}.hero,.card,.stat{background:rgba(12,21,32,.96);border:1px solid var(--l);border-radius:20px}
+.hero{padding:24px;text-align:center;border-color:#f0cf5a88;box-shadow:0 18px 60px #0009}.logo{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--g);box-shadow:0 0 24px #f0cf5a66}
+h1{margin:12px 0 5px;color:var(--g);font-size:clamp(2rem,5vw,4rem)}h2{color:var(--g)}.identity{font-weight:800}.sub{color:var(--c);font-weight:800}
+.note{color:var(--m);padding:14px;border-left:3px solid var(--c);background:#08121c;border-radius:10px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.stat{padding:14px}.stat b{display:block;font-size:1.6rem;color:var(--g)}
+.toolbar{position:sticky;top:0;z-index:50;background:#050a10ee;backdrop-filter:blur(12px);padding:12px 0;border-bottom:1px solid var(--l)}.controls{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:9px}.controls input,.controls select,.controls button{width:100%;padding:11px;border:1px solid var(--l);border-radius:10px;background:var(--p);color:var(--t)}.controls button{background:var(--g);color:#111;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin:18px 0}.card{overflow:hidden;display:flex;flex-direction:column}.visual{aspect-ratio:16/9;background:#070d15;position:relative;overflow:hidden}.visual img{width:100%;height:100%;object-fit:cover;display:block}.badge{position:absolute;left:10px;bottom:10px;background:#000c;border:1px solid #f0cf5a99;color:var(--g);padding:5px 8px;border-radius:8px;font-size:.7rem;font-weight:900}
+.body{padding:15px;display:flex;flex-direction:column;gap:8px;flex:1}.id{color:var(--c);font-weight:900;font-size:.78rem}.title{font-size:1.1rem;font-weight:900}.desc{color:var(--m);min-height:48px}.price{font-size:1.45rem;color:var(--g);font-weight:950}.offer{color:var(--ok);font-weight:900}.meta{display:grid;grid-template-columns:1fr 1fr;gap:6px}.meta div{padding:7px;border-radius:8px;background:#07101a;border:1px solid var(--l);font-size:.75rem}.meta span{display:block;color:var(--m)}.qrrow{display:grid;grid-template-columns:82px 1fr;gap:10px;align-items:center;padding:9px;border:1px solid var(--l);border-radius:10px;background:#07101a}.qr{width:76px;height:76px;background:#fff;padding:3px}.actions{display:flex;gap:7px;margin-top:auto}.actions a{flex:1;text-align:center;padding:10px;border-radius:9px;text-decoration:none;background:var(--g);color:#111;font-weight:900}.actions a.secondary{background:#101b27;color:#fff;border:1px solid var(--l)}
+.pagination{display:flex;justify-content:center;gap:8px;align-items:center;margin:25px 0}.pagination button{padding:10px 15px;border:1px solid var(--l);border-radius:9px;background:var(--p);color:#fff;cursor:pointer}.pagination button:disabled{opacity:.4}
+@media(max-width:800px){.controls{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}}@media(max-width:520px){.controls{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+</style></head>
+<body><main class="wrap">
+<section class="hero">
+<img class="logo" src="https://avatars.githubusercontent.com/u/206398967?v=4" alt="SHIRMANI logo">
+<div class="sub">꙰ SHIRMANI SUPREME DIGITAL PRODUCT</div>
+<h1>LIVE PRODUCTION SHOWROOM RACK</h1>
+<p class="identity">Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present</p>
+<p class="note">Production-first public interface: concrete products are loaded from the repository catalogue. Short description stays on the card; the product page carries the long description and working module. Each product keeps its own identity, price, offer and QR route.</p>
+</section>
+<section class="stats"><div class="stat">Concrete production<b id="produced">—</b></div><div class="stat">Scale target<b id="target">—</b></div><div class="stat">Materialization<b id="pct">—</b></div><div class="stat">Production modules<b id="modules">—</b></div></section>
+<section class="toolbar"><div class="controls"><input id="search" placeholder="Search product name, ID, family or engine"><select id="family"><option value="">All families</option></select><select id="sort"><option value="id">Product ID</option><option value="price-low">Price: low → high</option><option value="price-high">Price: high → low</option><option value="name">Name</option></select><button id="reset">Reset</button></div></section>
+<section id="grid" class="grid"></section>
+<div class="pagination"><button id="prev">← Previous</button><strong id="pageInfo">Loading…</strong><button id="next">Next →</button></div>
+<section class="note"><h2>Four-stage production</h2><p><b>Institute → Factory → QC Gate → Public Showroom/Sale.</b> Automation is used primarily for production at scale. QC, dispatch and independent verification remain separate downstream states.</p></section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const SIZE=48,$=x=>document.getElementById(x);let all=[],filtered=[],page=1;
+function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]))}
+function money(n){return "₹"+Number(n||0).toLocaleString("en-IN")}
+function url(p){return "products/concrete/"+String(p.id).toLowerCase()+".html"}
+function render(){
+ const q=$("search").value.toLowerCase().trim(),f=$("family").value,s=$("sort").value;
+ filtered=all.filter(p=>(!q||[p.id,p.name,p.family,p.engine,p.category].join(" ").toLowerCase().includes(q))&&(!f||p.family===f));
+ filtered.sort((a,b)=>s==="price-low"?Number(a.offer_price_inr||a.price_inr)-Number(b.offer_price_inr||b.price_inr):s==="price-high"?Number(b.offer_price_inr||b.price_inr)-Number(a.offer_price_inr||a.price_inr):s==="name"?String(a.name).localeCompare(String(b.name)):String(a.id).localeCompare(String(b.id),undefined,{numeric:true}));
+ const pages=Math.max(1,Math.ceil(filtered.length/SIZE));if(page>pages)page=pages;const items=filtered.slice((page-1)*SIZE,page*SIZE);
+ $("grid").innerHTML=items.map(card).join("")||'<div class="note">No matching product found.</div>';
+ $("pageInfo").textContent="Page "+page+" / "+pages+" · "+filtered.length.toLocaleString("en-IN")+" matching";$("prev").disabled=page===1;$("next").disabled=page>=pages;
+ items.forEach(p=>{const e=$("qr-"+p.id);if(e)try{new QRCode(e,{text:location.origin+location.pathname.replace(/[^/]*$/,"")+url(p)+"|PRODUCT:"+p.id+"|QC:"+p.qc_code+"|GATE:"+p.gate_no+"|DISPATCH:NO",width:76,height:76})}catch(x){}});
+}
+function card(p){return '<article class="card"><div class="visual"><img src="products/visuals/'+p.id.toLowerCase()+'.svg" alt="'+esc(p.name)+' — unique 4K product identity" loading="lazy" onerror="this.style.display=\'none\'"><span class="badge">4K · UNIQUE PRODUCT IDENTITY</span></div><div class="body"><div class="id">'+esc(p.id)+' · '+esc(p.family)+'</div><div class="title">'+esc(p.name)+'</div><div class="desc">'+esc(p.description||"Concrete SHIRMANI digital product.")+'</div><div class="price">'+money(p.offer_price_inr??p.price_inr)+'</div><div class="offer">'+esc(p.offer||"PUBLIC PRODUCT OFFER")+'</div><div class="meta"><div><span>Engine</span><b>'+esc(p.engine)+'</b></div><div><span>QC</span><b>'+esc(p.qc_code||"QC-PENDING")+'</b></div><div><span>Gate</span><b>'+esc(p.gate_no||"GATE-PENDING")+'</b></div><div><span>Dispatch</span><b>NO</b></div></div><div class="qrrow"><div class="qr" id="qr-'+esc(p.id)+'"></div><div><b>Long description / product page</b><br><small>Scan to open the complete product route.</small></div></div><div class="actions"><a href="'+url(p)+'">Open / Use</a><a class="secondary" href="'+url(p)+'">Long description</a></div></div></article>'}
+async function boot(){try{const [c,s]=await Promise.all([fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),fetch("generated/live-production-state.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json())]);all=c.products||[];$("produced").textContent=Number(s.concrete_repository_assets||0).toLocaleString("en-IN");$("target").textContent=Number(s.five_thousand_scale_target||5000).toLocaleString("en-IN");$("pct").textContent=Number(s.concrete_materialization_percent_of_scale_target||0).toFixed(2)+"%";$("modules").textContent=Number(s.module_products_generated||0).toLocaleString("en-IN");[...new Set(all.map(p=>p.family).filter(Boolean))].sort().forEach(f=>{let o=document.createElement("option");o.value=f;o.textContent=f;$("family").appendChild(o)});render()}catch(e){$("grid").innerHTML='<div class="note">Live production catalogue unavailable; no product count is inferred.</div>'}}
+["search","family","sort"].forEach(id=>$(id).addEventListener("input",()=>{page=1;render()}));$("reset").onclick=()=>{$("search").value="";$("family").value="";$("sort").value="id";page=1;render()};$("prev").onclick=()=>{if(page>1){page--;render();scrollTo({top:300,behavior:"smooth"})}};$("next").onclick=()=>{page++;render();scrollTo({top:300,behavior:"smooth"})};boot();
+</script></body></html>
