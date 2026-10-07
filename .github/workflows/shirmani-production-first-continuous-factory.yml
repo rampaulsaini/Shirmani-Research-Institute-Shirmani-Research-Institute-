@@ -57,7 +57,7 @@ jobs:
           po=status.get("production_outputs") if isinstance(status.get("production_outputs"),dict) else {}
           po.update({"production_modules":total,"concrete_results_this_cycle":len(created)})
           status.update({"observed_at":now,"last_cycle_concrete_results":len(created),"scheduled_work_units":batch,"production_outputs":po})
-          mp.write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\\n")
+          mp.write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n")
           print(f"created={len(created)} produced_total={total} remaining={max(0,target-total)}")
       - name: Publish production result
         shell: bash
@@ -68,6 +68,18 @@ jobs:
           git add products/concrete generated/concrete-production-overlay.json generated/live-production-state.json generated/multi-layer-production-status.json
           git diff --cached --quiet && exit 0
           git commit -m "feat(production): materialize next concrete product batch"
-          git fetch origin main
-          git rebase origin/main
-          git push origin HEAD:main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                echo "Production batch published on attempt=$attempt."
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            echo "Main moved or push was rejected; retrying attempt=$attempt"
+            sleep $((attempt * 2))
+          done
+          echo "::warning::Production batch could not publish after retries; run output remains in this workflow workspace."
+          exit 0
