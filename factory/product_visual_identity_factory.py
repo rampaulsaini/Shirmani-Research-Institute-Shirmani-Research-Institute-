@@ -9,8 +9,8 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets.json"
-STYLE_VERSION="SHIRMANI-V3-LOGO-ID-QR"
-LOGO_URL="https://avatars.githubusercontent.com/u/206398967?v=4"
+STYLE_VERSION="2026-10-07-production-visual-v8-persistent-logo-qr"
+LOGO_URL="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/assets/shirmani-perspective-logo.svg"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 SHOWROOM_BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
 

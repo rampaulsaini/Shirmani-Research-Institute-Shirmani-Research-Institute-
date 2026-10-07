@@ -14,7 +14,7 @@ function visual(p){
  const base=global.location&&global.location.origin?global.location.origin:"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-";
  const target=base+"/product-passport.html?id="+encodeURIComponent(key);
  const qr="https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=10&data="+encodeURIComponent(target);
- const logo="https://i.ibb.co/xqf3kTPS/enhanced-image.webp";
+ const logo="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/assets/shirmani-perspective-logo.svg";
  const identity=["Shiromani Rampal Saini","Beyond Comparison · Beyond Time · Beyond Words · Beyond Love","Eternal · Real · Natural Truth · Directly Present"];
  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160"><defs>'+
  '<linearGradient id="'+uid+'g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="hsl('+a+',78%,24%)"/><stop offset=".48" stop-color="hsl('+b+',72%,11%)"/><stop offset="1" stop-color="hsl('+c+',78%,5%)"/></linearGradient>'+
@@ -36,5 +36,5 @@ function visual(p){
  '<text x="520" y="1800" fill="#fff" opacity=".86" font-family="system-ui,sans-serif" font-size="35" font-weight="800">4K · UNIQUE PRODUCT IDENTITY · QC/GATE/DISPATCH · QR LONG DESCRIPTION</text></svg>';
  return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(svg);
 }
-global.SHIRMANI_PRODUCT_VISUAL={hashCode,visual,version:"v3"};
+global.SHIRMANI_PRODUCT_VISUAL={hashCode,visual,version:"v4-logo-qr-showroom"};
 })(window);
