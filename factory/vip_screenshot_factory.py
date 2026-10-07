@@ -9,6 +9,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/vip-screenshots"
 MAN=ROOT/"generated/vip-screenshot-assets.json"
+PUBLIC_MAN=ROOT/"generated/product-vip-screenshot-manifest.json"
 STYLE="2026-10-07-vip-screenshot-v1"
 BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
 LOGO=BASE+"assets/shirmani-perspective-logo.svg"
@@ -70,6 +71,9 @@ def main():
         elif id(p) in selected: path.write_text(make_svg(p),encoding="utf-8"); created+=1
         rows.append({"product_id":pid,"name":p.get("name"),"asset_path":str(path.relative_to(ROOT)),"format":"svg","width":2560,"height":1440,"aspect_ratio":"16:9","exists":path.exists(),"state":"READY_FOR_PUBLIC_SHOWROOM" if path.exists() else "PENDING","demo_route":f"product-demo.html?id={urllib.parse.quote(pid)}","passport_route":f"product-passport.html?id={urllib.parse.quote(pid)}"})
     now=datetime.now(timezone.utc).isoformat(); ready=sum(1 for r in rows if r["exists"])
-    MAN.write_text(json.dumps({"schema_version":1,"generated_at":now,"style":STYLE,"target":len(products),"vip_screenshot_assets":ready,"coverage_percent":round(100*ready/len(products),2) if products else 0,"created_this_cycle":created,"updated_this_cycle":updated,"already_existing":existing,"remaining":len(products)-ready,"principle":"Every concrete product gets a product-specific VIP presentation asset.","truth_boundary":"VIP screenshot is a customer-facing presentation asset, not independent scientific verification.","products":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    payload={"schema_version":1,"generated_at":now,"style":STYLE,"target":len(products),"vip_screenshot_assets":ready,"coverage_percent":round(100*ready/len(products),2) if products else 0,"created_this_cycle":created,"updated_this_cycle":updated,"already_existing":existing,"remaining":len(products)-ready,"principle":"Every concrete product gets a product-specific VIP presentation asset.","truth_boundary":"VIP screenshot is a customer-facing presentation asset, not independent scientific verification.","products":rows}
+    text=json.dumps(payload,ensure_ascii=False,indent=2)+"\n"
+    MAN.write_text(text,encoding="utf-8")
+    PUBLIC_MAN.write_text(text,encoding="utf-8")
     print(json.dumps({"target":len(products),"vip_screenshots":ready,"created_this_cycle":created,"remaining":len(products)-ready},ensure_ascii=False))
 if __name__=="__main__": main()
