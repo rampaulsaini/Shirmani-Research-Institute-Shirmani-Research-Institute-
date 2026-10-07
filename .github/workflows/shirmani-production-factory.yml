@@ -36,16 +36,24 @@ jobs:
           print("PRODUCTION PASS:",s["batch_produced"],"new artifacts; total produced:",s["produced"],"remaining:",s["remaining"])
           PY
 
-      - name: Publish production results directly to main
+      - name: Publish production results through governed PR
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          git config user.name "shirmani-production[bot]"
+          git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add generated/production-registry.json generated/production-work-queue.jsonl generated/production-status.json generated/products
           if git diff --cached --quiet; then
             echo "No production delta"
             exit 0
           fi
-
+          BRANCH="automation/manual-production-${GITHUB_RUN_ID}"
+          git switch -c "$BRANCH"
           git commit -m "chore(production): publish concrete product batch"
-          git push origin HEAD:main
+          git push --set-upstream origin "$BRANCH"
+          if gh pr create --base main --head "$BRANCH"             --title "chore(production): publish concrete product batch"             --body "Automated production batch. Concrete product artifacts are generated first; QC, dispatch, sales and independent verification remain separate downstream states."; then
+            echo "Governed production PR created: $BRANCH"
+          else
+            echo "::warning::PR creation was unavailable; production branch remains available for governed review: $BRANCH"
+          fi
