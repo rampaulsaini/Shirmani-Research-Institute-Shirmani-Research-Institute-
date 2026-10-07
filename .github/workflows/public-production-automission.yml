@@ -147,6 +147,24 @@ jobs:
               "production_input":True
           }
           (root/"customer-quality-dashboard.json").write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+"\n")
+          queue=[]
+          for rec in records:
+              if rec.get("improvement") or rec.get("rating"):
+                  queue.append({
+                      "issue_number":rec.get("issue_number"),
+                      "product":rec.get("product"),
+                      "rating":rec.get("rating"),
+                      "improvement":rec.get("improvement"),
+                      "version":rec.get("version"),
+                      "source":"github-public-review",
+                      "action":"production-quality-improvement"
+                  })
+          (root/"public-review-quality-queue.json").write_text(json.dumps({
+              "generated_at":dashboard["generated_at"],
+              "queue_count":len(queue),
+              "items":queue,
+              "principle":"Customer reviews and ratings drive product-quality improvement; they are not independent scientific verification."
+          },ensure_ascii=False,indent=2)+"\n")
           print(json.dumps(dashboard,ensure_ascii=False))
           PY
 

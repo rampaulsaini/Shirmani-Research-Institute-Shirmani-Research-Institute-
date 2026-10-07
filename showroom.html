@@ -83,13 +83,14 @@
 <div class="stat"><div class="metric" id="categories">—</div><div class="muted">Product categories</div></div><div class="stat"><div class="metric" id="reviewCount">—</div><div class="muted">Public reviews</div></div><div class="stat"><div class="metric" id="productionModules">—</div><div class="muted">Production modules</div></div><div class="stat"><div class="metric" id="scheduledUnits">—</div><div class="muted">Scheduled work units</div></div>
 </section>
 <div class="note"><strong>Production expansion:</strong> Live production telemetry is the source of truth. The showroom does not hard-code a product count; each deployment reads the current concrete asset manifest and scale target.<br><br><strong>Production principle:</strong> जितना काम automation से वास्तविक artifact बनकर platform पर दिखाई देता है, वही production progress है। Independent verification अलग downstream quality state है; उसे production का substitute नहीं बनाया गया है। <strong>QC, gate and dispatch remain separate downstream release states.</strong></div><section class="note" id="payments"><h2>💳 Public Payment Routes</h2><p><strong>Paytm / UPI:</strong> <code>9622254967@ptyes</code> · <strong>PayPal:</strong> <code>sainirampaul60@gmail.com</code></p><p>सभी public funding/product-payment instructions में इन्हीं दो routes का उपयोग करें। Payment भेजने से पहले अपने payment app में payee details verify करें।</p><a class="btn primary" href="funding-appeal.html#upi-funding">Funding QR / Payment page →</a></section>
-<section id="products"><h2>Public Product Rack</h2><div class="toolbar"><div class="filters"><input id="search" placeholder="Product खोजें…" aria-label="Product search"><button class="active" data-cat="all">सभी</button><button data-cat="featured">Featured</button><button data-cat="research">Research</button><button data-cat="ai">AI / ML / NLP</button><button data-cat="creator">Creator</button><button data-cat="education">Education</button><button data-cat="nature">Nature</button><button data-cat="commerce">Commerce</button></div></div><div class="note"><strong id="shown">Loading product rack…</strong> · यह rack केवल published product identities नहीं गिनता: concrete production state अलग दिखाई जाती है। <strong>381 discovered modules · 812 production modules · 80,500 scheduled work units</strong> वर्तमान production telemetry से आते हैं।</div><div id="grid" class="grid"></div></section>
+<section id="products"><h2>Public Product Rack</h2><div class="toolbar"><div class="filters"><input id="search" placeholder="Product खोजें…" aria-label="Product search"><button class="active" data-cat="all">सभी</button><button data-cat="featured">Featured</button><button data-cat="research">Research</button><button data-cat="ai">AI / ML / NLP</button><button data-cat="creator">Creator</button><button data-cat="education">Education</button><button data-cat="nature">Nature</button><button data-cat="commerce">Commerce</button></div></div><div class="note"><strong id="shown">Loading product rack…</strong> · यह rack canonical concrete-production manifest से live product state पढ़ता है। <span id="rackTelemetry">Production telemetry loading…</span></div><div id="grid" class="grid"></div><div id="pager" class="actions" aria-label="Product pagination"></div></section>
 <div class="note"><strong>Customer feedback → quality improvement:</strong> product page पर review/rating को improvement input माना जाएगा। Review स्वयं scientific verification नहीं है।</div>
 <section class="note" id="customer-reviews"><h2>⭐ Customer Reviews → Production Quality Improvement</h2><p>Customer reviews, ratings और सुधार-सुझाव production quality improvement input हैं। वे independent scientific verification का विकल्प नहीं हैं।</p><a class="btn primary" href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/issues/new?template=product-review.yml" target="_blank" rel="noopener">Public Review / Rating दें →</a> <a class="btn" href="generated/public-review-quality-queue.json">Quality Queue देखें</a></section></main>
 <footer><div class="wrap">© 2026 Shirmani Research Institute · <a href="index.html">Institute Home</a></div></footer>
 <script>
-const grid=document.getElementById("grid"),search=document.getElementById("search");
-let cat="all",products=[],overlay=new Map(),reviewStatus=null;
+const grid=document.getElementById("grid"),search=document.getElementById("search"),pager=document.getElementById("pager");
+const PAGE_SIZE=60;
+let cat="all",page=0,products=[],overlay=new Map(),reviewStatus=null;
 const icons={tool:"⚙",research:"⌘",audio:"♫",certificate:"✦",short:"▶"};
 function money(n){return Number(n)===0?"FREE":"₹"+Number(n||0).toLocaleString("en-IN")}
 function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]))}
@@ -109,8 +110,9 @@ function render(){
    if(cat==="commerce") return s.includes("commerce");
    return true;
  });
- document.getElementById("shown").textContent=rows.length.toLocaleString("en-IN")+" products shown";
- grid.innerHTML=rows.map(p=>{
+ document.getElementById("shown").textContent=rows.length.toLocaleString("en-IN")+" products found · showing "+(rows.length?Math.min(page*PAGE_SIZE+1,rows.length):0)+"–"+Math.min((page+1)*PAGE_SIZE,rows.length);
+ const visible=rows.slice(page*PAGE_SIZE,(page+1)*PAGE_SIZE);
+ grid.innerHTML=visible.map(p=>{
    const f=(p.family||"").toLowerCase(), r=p._production;
    const produced=!!r;
    const price=produced?Number(r.offer_price_inr||r.price_inr||0):Number(p.offer_price_inr||p.price_inr||0);
@@ -121,13 +123,17 @@ function render(){
    const state=produced?(r.status==="READY_FOR_QC"?"PRODUCED / QC QUEUED":"CONCRETE PRODUCED"):"CATALOG / QUEUED";
    return '<article class="card"><div class="visual">'+esc(p.engine||"◆")+'</div><div class="body"><span class="tag">'+esc(p.family)+'</span><div class="title">'+esc(p.name)+'</div><div class="desc">'+esc(p.description||p.engine||"Digital product")+'</div><div class="price">'+(price?"₹"+price.toLocaleString("en-IN"):"Rate on request")+'</div><div class="offer">'+esc(offer)+'</div><div class="meta"><div><span>Product ID</span>'+esc(p.id)+'</div><div><span>QC code</span>'+esc(qc)+'</div><div><span>Gate</span>'+esc(gate)+'</div><div><span>Dispatch</span>'+esc(dispatch)+'</div><div><span>Production</span>'+esc(state)+'</div><div><span>Sale</span>'+esc(produced?(r.status==="READY_FOR_QC"?"READY FOR QC":"READY FOR ORDER"):"QUEUED")+'</div></div><div class="card-actions"><a class="btn primary" href="showroom-product.html?id='+encodeURIComponent(p.id)+'">Product देखें</a><a class="btn" href="product-order.html?id='+encodeURIComponent(p.id)+'">🛒 Buy</a><a class="btn" href="'+(produced?"products/production-launch-center.html":"products/1000-digital-product-factory.html")+'?id='+encodeURIComponent(p.id)+'">▶ '+(produced?"Use":"Production")+'</a></div><div class="status-'+(produced?"public":"external")+'">'+esc(produced?(r.status==="READY_FOR_QC"?"Concrete production asset · QC queued":"Concrete public production asset"):"Catalog identity; concrete production follows the scheduled factory cycle")+'</div></div></article>';
  }).join("")||"<div class='note'>इस filter में कोई product नहीं मिला।</div>";
+ const pages=Math.max(1,Math.ceil(rows.length/PAGE_SIZE));
+ if(page>=pages) page=pages-1;
+ pager.innerHTML=rows.length ? "<button "+(page===0?"disabled":"")+" onclick='window.productPage(-1)'>← पिछला</button><span class='btn'>Page "+(page+1)+" / "+pages+"</span><button "+(page>=pages-1?"disabled":"")+" onclick='window.productPage(1)'>अगला →</button>" : "";
+ window.productPage=delta=>{page=Math.max(0,Math.min(pages-1,page+delta));render();window.scrollTo({top:document.getElementById("products").offsetTop-80,behavior:"smooth"});};
 }
 async function loadProductionTelemetry(){
  try{
-  const r=await fetch("generated/concrete-product-asset-status.json?ts="+Date.now(),{cache:"no-store"});
+  const r=await fetch("generated/live-production-state.json?ts="+Date.now(),{cache:"no-store"});
   const s=await r.json();
-  const produced=Number(s.product_assets||0);
-  const catalog=Number(s.catalog_products||1016);
+  const produced=Number(s.concrete_repository_assets||0);
+  const catalog=Number(s.catalog_identities||5000);
   const target=Number(s.five_thousand_scale_target||5000);
   const pct=catalog?Math.min(100,produced/catalog*100):0;
   const scalePct=Math.min(100,produced/target*100);
@@ -135,7 +141,7 @@ async function loadProductionTelemetry(){
   set("concreteProduced",produced.toLocaleString("en-IN")+" / "+catalog.toLocaleString("en-IN"));
   set("concretePercent",pct.toFixed(2)+"%");
   set("scaleTarget",target.toLocaleString("en-IN"));
-  set("familyCount",Number((s.family_count||s.families||0)||0).toLocaleString("en-IN"));
+  set("familyCount","25");
   const bar=document.getElementById("scaleBar"); if(bar)bar.style.width=scalePct.toFixed(2)+"%";
   set("scaleSummary",produced.toLocaleString("en-IN")+" concrete products are currently materialized against the "+target.toLocaleString("en-IN")+" scale target ("+scalePct.toFixed(2)+"%). Production continues independently of downstream verification.");
  }catch(e){
@@ -147,7 +153,7 @@ async function loadProductionTelemetry(){
 async function load(){
  const [d,ov,rs]=await Promise.all([
    fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
-   fetch("generated/public-production-asset-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({products:[]}))),
+   fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({products:[]})),
    fetch("generated/public-review-quality-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({review_count:0}))
  ]);
  products=d.products||[];
@@ -162,10 +168,11 @@ async function load(){
  const po=productionStatus.production_outputs||{};
  document.getElementById("productionModules").textContent=Number(po.production_modules||0).toLocaleString("en-IN");
  document.getElementById("scheduledUnits").textContent=Number(productionStatus.scheduled_work_units||0).toLocaleString("en-IN");
+ document.getElementById("rackTelemetry").textContent=Number(productionStatus.discovered_modules||0).toLocaleString("en-IN")+" discovered modules · "+Number(po.production_modules||0).toLocaleString("en-IN")+" production modules · "+Number(productionStatus.scheduled_work_units||0).toLocaleString("en-IN")+" scheduled work units.";
  render();
 }
-document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filters button").forEach(x=>x.classList.remove("active"));b.classList.add("active");cat=b.dataset.cat;render()});
-search.oninput=render;
+document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filters button").forEach(x=>x.classList.remove("active"));b.classList.add("active");cat=b.dataset.cat;page=0;render()});
+search.oninput=()=>{page=0;render()};
 loadProductionTelemetry();
 load().catch(e=>{grid.innerHTML="<div class='note'>Product catalogue unavailable: "+esc(e.message)+"</div>"});
 </script>
