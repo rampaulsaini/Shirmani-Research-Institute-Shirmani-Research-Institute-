@@ -51,8 +51,28 @@ jobs:
           Path("generated/public-review-quality-status.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           PY
       - name: Publish review-quality telemetry
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "SHIRMANI Review Quality Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add generated/public-review-quality-status.json
-          if git diff --cached --quiet; then echo "No review-quality delta."; else git commit -m "automission: publish public review quality signals"; git push; fi
+          if git diff --cached --quiet; then
+            echo "No review-quality delta."
+            exit 0
+          fi
+          git commit -m "automission: publish public review quality signals"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                echo "Review-quality telemetry published."
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            echo "Main moved during review-quality publication; retrying attempt=$attempt"
+            sleep $((attempt * 2))
+          done
+          echo "::warning::Review-quality telemetry publication deferred after retries."
