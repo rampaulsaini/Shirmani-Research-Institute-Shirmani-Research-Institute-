@@ -1,0 +1,11 @@
+{
+  "schema_version":1,
+  "generated_at":"2026-10-07",
+  "purpose":"Official platform reference mapping for product discovery and lawful outreach preparation.",
+  "entries":[
+    {"platform":"GitHub","official_url":"https://github.com/","reference_url":"https://github.com/features/actions","use":"repository hosting, Actions automation, public product/source delivery","outreach_status":"NOT_SENT"},
+    {"platform":"NVIDIA Developer","official_url":"https://developer.nvidia.com/","reference_url":"https://developer.nvidia.com/platforms-and-tools","use":"AI/ML, accelerated computing, simulation and developer tooling reference","outreach_status":"NOT_SENT"},
+    {"platform":"NVIDIA Developer Tools Catalog","official_url":"https://developer.nvidia.com/developer-tools-catalog","reference_url":"https://developer.nvidia.com/developer-tools-catalog","use":"official developer-tool discovery and category mapping","outreach_status":"NOT_SENT"}
+  ],
+  "rule":"Reference mapping does not imply endorsement, partnership, integration, purchase, or contact. Outbound contact is recorded only after an authorized channel actually executes it."
+}

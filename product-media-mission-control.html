@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Product Media Mission Control</title>
+<style>
+:root{--bg:#050a10;--p:#0d1722;--g:#f0cf5a;--c:#67e8f9;--ok:#72e6aa;--m:#aebaca;--l:#304457}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -8%,#17324b,#050a10 58%);color:#f5f7fb;font:16px/1.6 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+main{max-width:1400px;margin:auto;padding:18px}.hero,.panel{background:rgba(13,23,34,.97);border:1px solid var(--l);border-radius:20px;padding:22px;margin:14px 0}.hero{border:2px solid var(--g);text-align:center}
+h1,h2{color:var(--g)}h1{font-size:clamp(2rem,5vw,4rem);margin:0}.muted{color:var(--m)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.metric{padding:18px;background:#07111b;border:1px solid var(--l);border-radius:14px}.num{font-size:2.1rem;font-weight:950;color:var(--g)}
+.bar{height:20px;background:#07111b;border:1px solid var(--l);border-radius:99px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--g),var(--c))}
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--g);color:#111;text-decoration:none;font-weight:900;margin:4px}.alt{background:#102638;color:var(--c)}
+table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid var(--l);text-align:left}th{color:var(--g)}
+</style></head><body><main>
+<section class="hero"><div>꙰ SHIRMANI RESEARCH INSTITUTE · PRODUCTION-FIRST</div><h1>PRODUCT MEDIA MISSION CONTROL</h1>
+<p>हर product की अपनी पहचान → visual → VIP screenshot → demo → usage guide → long passport → showroom.</p>
+<a class="btn" href="showroom.html">Public Showroom</a><a class="btn alt" href="supreme-public-production-showroom.html">Concrete Product Rack</a><a class="btn alt" href="production-completion-map.html">Production Map</a></section>
+<section class="panel"><h2>📊 Live production media state</h2><div class="grid">
+<div class="metric"><div id="catalog" class="num">—</div><div>Catalogue identities</div></div>
+<div class="metric"><div id="concrete" class="num">—</div><div>Concrete products</div></div>
+<div class="metric"><div id="vip" class="num">—</div><div>VIP screenshots</div></div>
+<div class="metric"><div id="mp4" class="num">—</div><div>Real product MP4s</div></div>
+<div class="metric"><div id="remain" class="num">—</div><div>Concrete remaining to 5,000</div></div>
+<div class="metric"><div id="queue" class="num">—</div><div>Scheduled work units</div></div>
+</div><div class="bar"><div id="fill" class="fill"></div></div><p id="status" class="muted">Loading live telemetry…</p></section>
+<section class="panel"><h2>🎬 Customer media contract</h2>
+<table><tr><th>Asset</th><th>Purpose</th><th>Public state</th></tr>
+<tr><td>4K visual</td><td>मुख्य product पहचान</td><td>Product-specific</td></tr>
+<tr><td>VIP screenshot</td><td>तुरंत समझने/देखने का premium view</td><td>Product-specific</td></tr>
+<tr><td>Demo route</td><td>क्या है / कैसे करें / कहाँ उपयोग करें</td><td>Per-product route</td></tr>
+<tr><td>MP4</td><td>real demonstration media</td><td>Bounded continuous production</td></tr>
+<tr><td>QR / Passport</td><td>long description, usage and product details</td><td>Per-product route</td></tr>
+<tr><td>Review / Rating</td><td>quality improvement input</td><td>Continuous improvement</td></tr>
+</table></section>
+<section class="panel"><h2>🌍 Scale map</h2><div class="grid">
+<div class="metric"><div class="num">5,000</div><div>Current concrete production target</div></div>
+<div class="metric"><div class="num">150,000</div><div>Long-term catalogue expansion target</div></div>
+<div class="metric"><div class="num">5 min</div><div>Automission media cycle</div></div>
+<div class="metric"><div class="num">4 levels</div><div>Institute → Factory → QC/Gate → Showroom</div></div>
+</div><p class="muted">150,000 expansion को भविष्य का scale target माना जाता है; उसे पहले से produced नहीं माना जाता।</p></section>
+<section class="panel"><h2>🔗 Official platform reference routes</h2>
+<p><a class="btn alt" href="https://github.com/features/actions" target="_blank" rel="noopener">GitHub Actions</a>
+<a class="btn alt" href="https://developer.nvidia.com/platforms-and-tools" target="_blank" rel="noopener">NVIDIA Platforms & Tools</a>
+<a class="btn alt" href="https://developer.nvidia.com/developer-tools-catalog" target="_blank" rel="noopener">NVIDIA Developer Tools Catalog</a></p>
+<p class="muted">ये official reference mappings हैं। किसी organisation को contact/partnered होने का दावा तभी किया जाएगा जब authorized outbound action वास्तव में executed हो।</p></section>
+<section class="panel"><h2>⭐ Production → Customer → Improvement</h2><p><b>देखें → Demo चलाएँ → इस्तेमाल करें → Review/Rating दें → सुधार queue → अगला production cycle → बेहतर product.</b></p>
+<p class="muted">यह production-first loop है। Independent scientific verification को production output से अलग downstream state रखा गया है।</p></section>
+</main>
+<script>
+(async()=>{
+ const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
+ const n=v=>Number(v||0).toLocaleString("en-IN");
+ try{
+  const [p,m,d]=await Promise.all([
+   fetch("generated/live-production-state.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+   fetch("generated/multi-layer-production-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+   fetch("generated/product-specific-demo-video-manifest.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({}))
+  ]);
+  const catalog=Number(p.catalog_identities||5000),concrete=Number(p.concrete_repository_assets||0),target=Number(p.five_thousand_scale_target||5000);
+  const vipData=await fetch("generated/vip-screenshot-production-manifest.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({vip_screenshot_count:0}));
+  set("catalog",n(catalog));set("concrete",n(concrete));set("vip",n(vipData.vip_screenshot_count));set("mp4",n(d.real_mp4_count));set("remain",n(Math.max(0,target-concrete)));set("queue",n(m.scheduled_work_units));
+  const pct=Math.min(100,concrete/target*100);document.getElementById("fill").style.width=pct+"%";
+  set("status","Concrete production "+pct.toFixed(2)+"% of the 5,000 target · media lanes continue on scheduled cycles · generated "+(p.generated_at||"—"));
+ }catch(e){set("status","Live telemetry unavailable; no value is inferred.")}
+})();
+</script></body></html>

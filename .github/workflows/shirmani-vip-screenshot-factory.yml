@@ -1,0 +1,46 @@
+name: SHIRMANI VIP Screenshot Production Factory
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "VIP screenshots per production cycle"
+        required: false
+        default: "250"
+  push:
+    branches: [main]
+    paths:
+      - "factory/vip_screenshot_factory.py"
+      - "generated/1000-digital-products.json"
+      - "generated/public-production-catalog.json"
+      - "generated/concrete-production-overlay.json"
+      - ".github/workflows/shirmani-vip-screenshot-factory.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-vip-screenshot-production
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Produce next VIP screenshot batch
+        env:
+          VIP_BATCH: ${{ github.event.inputs.batch_size || '250' }}
+        run: python3 factory/vip_screenshot_factory.py
+      - name: Publish production assets
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "feat(showroom): publish next VIP product screenshot batch"
+          file_pattern: "products/demos/vip generated/vip-screenshot-production-manifest.json"
+          commit_user_name: "SHIRMANI Automission"
+          commit_user_email: "actions@users.noreply.github.com"
+          commit_author: "SHIRMANI Automission <actions@users.noreply.github.com>"

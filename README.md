@@ -265,6 +265,14 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Hardening test:** [tests/ultra_mega_infinity_quantum_automission.py](tests/ultra_mega_infinity_quantum_automission.py)
 - **Integrity:** the architecture label does not claim physical quantum computation; measured signals, inference, interpretation, confidence, provenance and uncertainty remain distinct.
 
+## 💎 Product Media Mission Control — 2026-10-07
+
+- **Public mission control:** [product-media-mission-control.html](product-media-mission-control.html) — live product-media production state, 5,000 concrete target, VIP screenshot coverage, MP4 coverage and customer quality loop.
+- **VIP screenshot factory:** [factory/vip_screenshot_factory.py](factory/vip_screenshot_factory.py) — bounded product-specific screenshot production.
+- **VIP automation:** [.github/workflows/shirmani-vip-screenshot-factory.yml](.github/workflows/shirmani-vip-screenshot-factory.yml) — scheduled every 5 minutes.
+- **Production contract:** [docs/showroom/product-media-production-contract-v1.md](docs/showroom/product-media-production-contract-v1.md).
+- **Official platform reference mapping:** [generated/official-platform-mapping.json](generated/official-platform-mapping.json).
+
 ## 🎬 Product Demo Media — Production-First
 
 Every current catalog identity has a public `product-demo.html?id=...` route. The customer-facing demo is always available through a deterministic browser animation; a bounded Automission also produces a lightweight **product-specific MP4** for each catalog identity and publishes it under `products/demos/products/`.
