@@ -21,15 +21,15 @@ footer{padding:35px 0 60px;text-align:center;color:var(--muted)}@media(max-width
 <div class="actions"><a class="btn primary" href="showroom.html">🛒 Public Showroom</a><a class="btn" href="supreme-marking-hub.html">🏛️ Supreme Marking Hub</a><a class="btn" href="public-production-live.html">📡 Live Production</a><a class="btn" href="production-command-center.html">⚙️ Production Command</a><a class="btn" href="funding-appeal.html">🤝 Funding</a></div></section>
 
 <section class="panel"><h2>📊 अभी platform पर क्या वास्तविक रूप से दिखाई देता है?</h2>
-<div class="grid"><div class="metric"><div class="num">1,016 / 1,016</div><div>current concrete product batch</div><div class="muted">repository-published production manifest</div></div>
-<div class="metric"><div class="num">25</div><div>product families</div><div class="muted">multiple digital categories</div></div>
-<div class="metric"><div class="num">9</div><div>production lanes</div><div class="muted">research, AI/ML/NLP, platform, content, economic आदि</div></div>
-<div class="metric"><div class="num">5,000</div><div>next automated catalog target</div><div class="muted">current workflow configuration</div></div></div>
-<div class="note"><strong>महत्वपूर्ण:</strong> 1,016 current batch का अर्थ concrete repository-bound product assets हैं। Commercial sales/settlement को तब तक completed नहीं कहा जाता जब तक वास्तविक transaction evidence न हो।</div></section>
+<div class="grid"><div class="metric"><div id="m-produced" class="num">—</div><div>concrete product assets</div><div class="muted">repository-published production manifest</div></div>
+<div class="metric"><div id="m-families" class="num">—</div><div>product families</div><div class="muted">current production registry</div></div>
+<div class="metric"><div id="m-lanes" class="num">—</div><div>production lanes</div><div class="muted">current configured production lanes</div></div>
+<div class="metric"><div id="m-target" class="num">—</div><div>next automated catalog target</div><div class="muted">live production state</div></div></div>
+<div class="note"><strong>महत्वपूर्ण:</strong> ये आँकड़े repository के live production-state manifests से पढ़े जाते हैं। Commercial sales/settlement को तब तक completed नहीं कहा जाता जब तक वास्तविक transaction evidence न हो।</div></section>
 
 <section class="panel"><h2>🏭 चार-स्तरीय production mechanism</h2><div class="flow">
 <div class="stage"><strong>01 · INSTITUTE</strong><h3>खोज</h3><p>Research, concepts, sources, product ideas, specifications और backlog.</p><div class="state">ACTIVE</div></div>
-<div class="stage"><strong>02 · FACTORY</strong><h3>निर्माण</h3><p>Concrete digital products, modules, pages, tools और production assets.</p><div class="state">1,016 MATERIALIZED</div></div>
+<div class="stage"><strong>02 · FACTORY</strong><h3>निर्माण</h3><p>Concrete digital products, modules, pages, tools और production assets.</p><div id="factory-state" class="state">LIVE STATE LOADING</div></div>
 <div class="stage"><strong>03 · QC / GATE</strong><h3>Release discipline</h3><p>Product identity, version, QC code, gate और dispatch state.</p><div class="state">PUBLISHED QC STATE</div></div>
 <div class="stage"><strong>04 · SHOWROOM / SALE</strong><h3>Customer</h3><p>Description, category, price, offer, use/order path और customer feedback.</p><div class="state">PUBLIC</div></div></div>
 <p class="note">Production पहले है। Customer reviews/ratings usability और product-quality improvement के inputs हैं; वे scientific verification का विकल्प नहीं हैं।</p></section>
@@ -41,12 +41,12 @@ footer{padding:35px 0 60px;text-align:center;color:var(--muted)}@media(max-width
 
 <section class="panel"><h2>📈 Completion map — production-first</h2><table>
 <tr><th>Workstream</th><th>Current state</th><th>शेष</th></tr>
-<tr><td>Current concrete production batch</td><td class="green">1,016 / 1,016 = 100%</td><td>Next expansion</td></tr>
-<tr><td>Product-family modules</td><td class="green">25 families published</td><td>More depth / richer modules</td></tr>
-<tr><td>Production lanes</td><td class="green">9 configured lanes</td><td>Scale throughput</td></tr>
+<tr><td>Concrete production</td><td id="map-produced" class="green">Loading…</td><td id="map-remaining">—</td></tr>
+<tr><td>Product-family modules</td><td id="map-families" class="green">Loading…</td><td>More depth / richer modules</td></tr>
+<tr><td>Production lanes</td><td id="map-lanes" class="green">Loading…</td><td>Scale throughput</td></tr>
 <tr><td>Public showroom</td><td class="green">Public interface active</td><td>More products + richer customer experience</td></tr>
 <tr><td>Commercial settlement</td><td class="cyan">Payment routes configured</td><td>Actual customer transactions / settlement evidence</td></tr>
-<tr><td>Next concrete target</td><td class="cyan">5,000 configured</td><td>3,984 additional products to reach target</td></tr></table></section>
+<tr><td>Next concrete target</td><td id="map-target" class="cyan">Loading…</td><td id="map-target-remaining">—</td></tr></table></section>
 
 <section class="panel" id="payments"><h2>💳 Public funding / payment</h2><div class="paygrid">
 <div class="pay"><h3>Paytm / UPI</h3><div class="code">9622254967@ptyes</div><p class="muted">QR scan करें या tap करके UPI app खोलें। Payment से पहले अपने app में payee और amount स्वयं verify करें.</p><a class="btn primary" href="upi://pay?pa=9622254967@ptyes&pn=Shirmani%20Research%20Institute&cu=INR">📲 UPI App खोलें</a></div>
@@ -60,4 +60,31 @@ footer{padding:35px 0 60px;text-align:center;color:var(--muted)}@media(max-width
 
 <section class="panel"><h2>🌍 सर्वोच्च practical principle</h2><p class="cyan">DISCOVER → BUILD → QC/GATE → SHOW → EXPERIENCE → REVIEW → IMPROVE → BUILD AGAIN</p><p>यह portal workflow-count को अंतिम उपलब्धि नहीं मानता। अंतिम customer-facing परिणाम वास्तविक, उपयोगी, स्पष्ट, साफ-सुथरे और लगातार सुधरते digital products हैं।</p></section>
 <footer>꙰ Shirmani Research Institute · Supreme Public Production Portal · <a href="index.html">Main Institute</a> · <a href="showroom.html">Showroom</a> · <a href="funding-appeal.html">Funding</a></footer>
+<script>
+(async function(){
+  const fmt=n=>Number(n||0).toLocaleString("en-IN");
+  try{
+    const [s,o]=await Promise.all([
+      fetch("generated/live-production-state.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+      fetch("generated/production-operations-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json())
+    ]);
+    const produced=Number(s.concrete_repository_assets||0), catalog=Number(s.catalog_identities||0), target=Number(s.five_thousand_scale_target||5000);
+    const remaining=Math.max(0,catalog-produced), scaleRemaining=Math.max(0,target-produced);
+    const families=Number(o.summary?.families||0), lanes=Number(o.production?.production_lanes||o.summary?.production_lanes||9);
+    document.getElementById("m-produced").textContent=fmt(produced)+" / "+fmt(catalog);
+    document.getElementById("m-families").textContent=fmt(families);
+    document.getElementById("m-lanes").textContent=fmt(lanes);
+    document.getElementById("m-target").textContent=fmt(target);
+    document.getElementById("factory-state").textContent=(s.state||"PRODUCTION_IN_PROGRESS").replaceAll("_"," ");
+    document.getElementById("map-produced").textContent=fmt(produced)+" / "+fmt(catalog)+" = "+(catalog?((produced/catalog)*100).toFixed(2):"0")+"%";
+    document.getElementById("map-remaining").textContent=fmt(remaining)+" catalog products not yet concrete";
+    document.getElementById("map-families").textContent=fmt(families)+" families";
+    document.getElementById("map-lanes").textContent=fmt(lanes)+" configured lanes";
+    document.getElementById("map-target").textContent=fmt(target)+" configured";
+    document.getElementById("map-target-remaining").textContent=fmt(scaleRemaining)+" additional assets to reach target";
+  }catch(e){
+    document.getElementById("factory-state").textContent="TELEMETRY UNAVAILABLE";
+  }
+})();
+</script>
 </main></body></html>

@@ -6,6 +6,7 @@ on:
 permissions:
   contents: write
   issues: read
+  pull-requests: write
 concurrency:
   group: shirmani-customer-review-quality-loop
   cancel-in-progress: false
@@ -15,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Persist customer feedback as production-quality input
         env:
           EVENT_PATH: ${{ github.event_path }}
@@ -34,20 +37,49 @@ jobs:
           log=root/"customer-review-log.jsonl"
           with log.open("a",encoding="utf-8") as fh: fh.write(json.dumps(rec,ensure_ascii=False,separators=(",",":"))+"\n")
           records=[]
-          if log.exists():
-              for line in log.read_text(encoding="utf-8").splitlines():
-                  if line.strip():
-                      try: records.append(json.loads(line))
-                      except json.JSONDecodeError: pass
-          dashboard={"generated_at":datetime.now(timezone.utc).isoformat(),"review_count":len(records),"rated_count":sum(bool(r.get("rating")) for r in records),"improvement_suggestions":sum(bool(r.get("improvement")) for r in records),"principle":"Customer reviews are production-quality signals and continuous-improvement inputs, not independent scientific verification.","delivery":"Persisted in the repository so future production cycles can consume the feedback."}
+          for line in log.read_text(encoding="utf-8").splitlines():
+              if line.strip():
+                  try: records.append(json.loads(line))
+                  except json.JSONDecodeError: pass
+          dashboard={"generated_at":datetime.now(timezone.utc).isoformat(),"review_count":len(records),"rated_count":sum(bool(r.get("rating")) for r in records),"improvement_suggestions":sum(bool(r.get("improvement")) for r in records),"principle":"Customer reviews are production-quality signals and continuous-improvement inputs, not independent scientific verification.","delivery":"Persisted through an automated pull request so protected main remains governed."}
           (root/"customer-quality-dashboard.json").write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           (root/"public-review-quality-status.json").write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-      - name: Publish review telemetry
+      - name: Publish review telemetry through governed PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          REPOSITORY: ${{ github.repository }}
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "SHIRMANI Customer Quality Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "${ISSUE_NUMBER:-}" ]; then
+            BRANCH="automation/customer-review-${ISSUE_NUMBER}"
+          else
+            BRANCH="automation/customer-review-manual-${GITHUB_RUN_ID}"
+          fi
+          git fetch origin main
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch origin "$BRANCH"
+            git checkout -B "$BRANCH" "origin/$BRANCH"
+            git rebase origin/main || { git rebase --abort; git merge --no-edit origin/main; }
+          else
+            git checkout -B "$BRANCH" origin/main
+          fi
           git add generated/customer-review-log.jsonl generated/customer-quality-dashboard.json generated/public-review-quality-status.json
-          if git diff --cached --quiet; then echo "No review delta."; else git commit -m "automission: persist customer review quality signals"; git push origin HEAD:main; fi
+          if git diff --cached --quiet; then
+            echo "No review delta."
+            exit 0
+          fi
+          git commit -m "automission: persist customer review quality signals"
+          git push --force-with-lease origin "$BRANCH:$BRANCH"
+          existing_pr="$(gh pr list --repo "$REPOSITORY" --head "$BRANCH" --base main --state open --json number --jq '.[0].number // empty')"
+          if [ -z "$existing_pr" ]; then
+            gh pr create --repo "$REPOSITORY" --base main --head "$BRANCH"               --title "automission: customer review quality update"               --body "Automated production-quality input from customer review telemetry. Main remains protected; merge follows repository governance."
+          else
+            echo "Existing review PR #$existing_pr updated."
+          fi
       - name: Publish review artifact
         uses: actions/upload-artifact@v4
         with:
