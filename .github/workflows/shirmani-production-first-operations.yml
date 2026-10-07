@@ -8,6 +8,7 @@ concurrency:
   cancel-in-progress: true
 permissions:
   contents: write
+  pull-requests: write
 jobs:
   production-operations:
     runs-on: ubuntu-latest
@@ -28,5 +29,12 @@ jobs:
           git commit -m "chore(production): refresh production-first operations state"
           git push --set-upstream origin "$BRANCH"
           if command -v gh >/dev/null 2>&1; then
-            gh pr create --base main --head "$BRANCH"               --title "chore(production): refresh production-first operations state"               --body "Automated production operations telemetry. Governed through the repository PR gate."
+            export GH_TOKEN="${{ github.token }}"
+            if gh pr view "$BRANCH" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+              echo "PR already exists for $BRANCH"
+            elif gh pr create --base main --head "$BRANCH" --title "chore(production): refresh production-first operations state" --body "Automated production operations telemetry. Governed through the repository PR gate."; then
+              echo "Production operations PR created."
+            else
+              echo "PR creation unavailable; branch telemetry was published successfully."
+            fi
           fi
