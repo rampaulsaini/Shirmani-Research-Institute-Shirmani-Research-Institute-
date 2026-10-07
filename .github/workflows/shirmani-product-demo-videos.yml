@@ -1,0 +1,39 @@
+name: SHIRMANI Product Demo Video Production
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "factory/generate_product_demo_videos.py"
+      - "generated/1000-digital-products.json"
+      - "product-demo.html"
+      - ".github/workflows/shirmani-product-demo-videos.yml"
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-product-demo-videos
+  cancel-in-progress: false
+jobs:
+  demos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Generate engine demo videos
+        run: python3 factory/generate_product_demo_videos.py
+      - name: Publish demo assets
+        run: |
+          git config user.name "SHIRMANI Demo Video Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/demos
+          if git diff --cached --quiet; then echo "Demo video assets already current."; else git commit -m "automission: publish product engine demo videos"; git push origin HEAD:main; fi
+      - name: Demo production summary
+        run: |
+          echo "## SHIRMANI Product Demo Videos" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Customer route: product-demo.html?id=PRODUCT_ID" >> "$GITHUB_STEP_SUMMARY"
+          echo "- One reproducible demo video per executable product engine" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Interactive usage guide remains available if a video asset is pending" >> "$GITHUB_STEP_SUMMARY"
