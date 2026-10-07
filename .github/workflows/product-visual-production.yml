@@ -1,5 +1,11 @@
 name: SHIRMANI Product Visual Production
 on:
+  push:
+    branches: [main]
+    paths:
+      - "factory/product_visual_identity_factory.py"
+      - "generated/1000-digital-products.json"
+      - ".github/workflows/product-visual-production.yml"
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
