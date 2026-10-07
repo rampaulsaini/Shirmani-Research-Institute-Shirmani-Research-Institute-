@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-07",
+  "production_target": 5000,
+  "long_term_catalog_target": 150000,
+  "required_per_product": [
+    "unique_product_identity",
+    "4K_visual",
+    "SHIRMANI_Heart_View_logo_mark",
+    "English_identity_line",
+    "short_description_on_visual",
+    "long_description_QR",
+    "product_passport",
+    "product_specific_demo_video",
+    "usage_steps",
+    "VIP_screenshot",
+    "price_or_explicit_price_pending_state",
+    "offer_state",
+    "QC_code",
+    "gate_number",
+    "dispatch_state",
+    "customer_review_route"
+  ],
+  "truth_boundary": "Production media and customer-facing presentation are outputs. They are not independent scientific verification.",
+  "continuity": "Scheduled GitHub Actions continue without a new chat message, subject to Actions availability, permissions, quotas and workflow health.",
+  "demo_video_standard": "Product-specific MP4/WebM demonstrating the actual usage flow; fallback browser walkthrough remains visible until a real video asset exists.",
+  "visual_standard": "Product-specific 16:9 4K-ready visual with logo/identity, short description and QR route to long details.",
+  "vip_standard": "Product-specific public presentation screenshot/passport asset.",
+  "customer_loop": [
+    "DISCOVER",
+    "BUILD",
+    "QC/GATE",
+    "SHOW",
+    "USE",
+    "REVIEW/RATE",
+    "IMPROVE",
+    "BUILD_AGAIN"
+  ]
+}
