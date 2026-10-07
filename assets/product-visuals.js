@@ -1,4 +1,4 @@
-/* SHIRMANI Supreme Product Visual Engine v5 — logo-first, product-first, QR upper-right */
+/* SHIRMANI Supreme Product Visual Engine v6 — logo-first, product-first, QR upper-right, impartial-understanding identity */
 (function(global){
 "use strict";
 function hashCode(s){let h=2166136261;for(let i=0;i<String(s).length;i++){h^=String(s).charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
@@ -15,7 +15,7 @@ function visual(p){
  const target=base+"/product-passport.html?id="+encodeURIComponent(key);
  const qr="https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=10&data="+encodeURIComponent(target);
  const logo=base+"/assets/shirmani-perspective-logo.svg";
- const identity="Shiromani Rampal Saini · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present";
+ const identity="Shiromani Rampal Saini · Impartial Understanding · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present";
  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160"><defs>'+
  '<linearGradient id="'+uid+'g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="hsl('+a+',78%,24%)"/><stop offset=".48" stop-color="hsl('+b+',72%,11%)"/><stop offset="1" stop-color="hsl('+c+',78%,5%)"/></linearGradient>'+
  '<radialGradient id="'+uid+'r"><stop stop-color="#fff" stop-opacity=".28"/><stop offset=".42" stop-color="#67e8f9" stop-opacity=".08"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>'+
@@ -38,5 +38,5 @@ function visual(p){
  '<text x="520" y="1860" fill="#fff" opacity=".86" font-family="system-ui,sans-serif" font-size="35" font-weight="800">3840×2160 4K MASTER · UNIQUE PRODUCT IDENTITY · DEMO VIDEO · QC/GATE/DISPATCH · LONG-PASSPORT QR</text></svg>';
  return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(svg);
 }
-global.SHIRMANI_PRODUCT_VISUAL={hashCode,visual,version:"v6-logo-first-qr-upper-right"};
+global.SHIRMANI_PRODUCT_VISUAL={hashCode,visual,version:"v6-logo-first-qr-upper-right-impartial-understanding"};
 })(window);
