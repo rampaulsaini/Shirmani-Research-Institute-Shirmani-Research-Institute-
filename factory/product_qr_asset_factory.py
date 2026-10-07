@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals/qr"
 MAN=ROOT/"generated/product-qr-assets.json"
-BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/products/concrete/"
+BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/product-passport.html?id="
 
 def make_qr(payload:str)->str:
     qr=qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M,box_size=5,border=2)
@@ -31,7 +31,7 @@ def main():
     created=0; rows=[]
     for p in products:
         pid=str(p["id"]); path=OUT/(pid.lower()+".svg")
-        url=BASE+pid+".html"
+        url=BASE+pid
         if not path.exists() and id(p) in selected:
             path.write_text(make_qr(url),encoding="utf-8"); created+=1
         rows.append({"product_id":pid,"qr_asset_path":str(path.relative_to(ROOT)),

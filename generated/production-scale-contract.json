@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-07",
+  "name": "SHIRMANI Supreme Production Scale Contract",
+  "strategic_target_products": 150000,
+  "operational_target_products": 5000,
+  "production_batch_size": 500,
+  "cadence": "every 5 minutes",
+  "continuity_without_chat": true,
+  "stages": [
+    "INSTITUTE_DISCOVERY",
+    "FACTORY_PRODUCTION",
+    "PRODUCT_QC_GATE",
+    "PUBLIC_SHOWROOM"
+  ],
+  "actuals_source_of_truth": [
+    "generated/live-production-state.json",
+    "generated/concrete-product-production-status.json",
+    "generated/production-status.json",
+    "generated/four-stage-production-status.json",
+    "generated/public-production-catalog.json",
+    "products/production/",
+    "products/concrete/",
+    "products/visuals/"
+  ],
+  "rules": [
+    "RUN is not a product.",
+    "A product is public only when a concrete customer-visible artifact exists.",
+    "QC is a production release gate; independent verification remains downstream.",
+    "Never convert planned, discovered, or visual-only identities into produced-product claims.",
+    "Scale targets are targets, not completed production.",
+    "Quantum language remains quantum-inspired unless a real quantum backend is configured."
+  ],
+  "public_goal": "Make production throughput, concrete artifacts, showroom readiness, and remaining work visible without requiring chat continuity."
+}
