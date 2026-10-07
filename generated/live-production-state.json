@@ -1,25 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-07",
+  "generated_at": "2026-10-07T00:24:57.257439+00:00",
   "production_first": true,
-  "catalog_identities": 1016,
-  "concrete_repository_assets": 1016,
-  "current_catalog_pending": 0,
+  "catalog_identities": 5000,
+  "concrete_repository_assets": 1516,
+  "current_catalog_pending": 3484,
   "five_thousand_scale_target": 5000,
-  "remaining_to_scale_target": 3984,
-  "concrete_materialization_percent_of_catalog": 100,
-  "concrete_materialization_percent_of_scale_target": 20.32,
-  "module_products_generated": 1016,
+  "remaining_to_scale_target": 3484,
+  "concrete_materialization_percent_of_catalog": 30.32,
+  "concrete_materialization_percent_of_scale_target": 30.32,
+  "module_products_generated": 1516,
   "dispatch_released": 0,
   "sales_claimed": 0,
   "payment_claimed": 0,
   "independent_verification_claimed": 0,
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG",
-  "rule": "Concrete repository-bound artifacts are production evidence; workflow execution is not counted as a product.",
-  "next_work": [
-    "continue expansion toward 5,000 concrete products",
-    "deepen product-specific modules and demos",
-    "feed public customer reviews into the quality backlog",
-    "keep QC, dispatch, sales and research verification as separate downstream states"
-  ]
+  "state": "PRODUCTION_IN_PROGRESS"
 }

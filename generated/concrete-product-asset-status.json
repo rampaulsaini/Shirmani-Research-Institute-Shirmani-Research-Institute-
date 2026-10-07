@@ -1,8 +1,11 @@
 {
-  "product_assets": 1016,
-  "asset_directory": "products/production/",
-  "showroom": "products.html",
-  "state": "READY_FOR_QC",
+  "generated_at": "2026-10-07T00:24:57.257318+00:00",
+  "product_assets": 1516,
+  "catalog_products": 5000,
+  "materialization_percent": 30.32,
+  "asset_directory": "products/concrete/",
+  "showroom": "showroom.html",
+  "state": "IN_PROGRESS",
   "dispatch": "NO",
-  "principle": "Every catalog identity has a concrete browser product asset; QC/dispatch remain downstream."
+  "principle": "Concrete repository-bound assets are production evidence; QC, dispatch and independent verification remain downstream."
 }
