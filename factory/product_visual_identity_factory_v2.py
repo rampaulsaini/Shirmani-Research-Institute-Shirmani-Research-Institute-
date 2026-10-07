@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-07-production-visual-v4"
+VERSION="2026-10-07-production-visual-v5"
 LOGO="https://i.ibb.co/xqf3kTPS/enhanced-image.webp"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 
@@ -53,23 +53,38 @@ def main():
     if MAN.exists():
         try: previous=json.loads(MAN.read_text(encoding="utf-8"))
         except Exception: pass
-    refresh=previous.get("visual_version")!=VERSION
+    previous_rows={str(r.get("product_id")):r for r in previous.get("products",[]) if isinstance(r,dict)}
     batch=max(1,min(5000,int(os.environ.get("VISUAL_BATCH","500"))))
-    todo=[p for p in products if refresh or not (OUT/(str(p["id"]).lower()+".svg")).exists()]
+    # Refresh is version-aware per product. A partial batch must not falsely mark
+    # the whole catalogue as upgraded; later cycles continue until every product is current.
+    todo=[p for p in products if (
+        not (OUT/(str(p["id"]).lower()+".svg")).exists()
+        or previous_rows.get(str(p["id"]),{}).get("visual_version")!=VERSION
+    )]
     chosen={id(p) for p in todo[:batch]}
     rows=[]; changed=0
     for p in products:
-        path=OUT/(str(p["id"]).lower()+".svg")
+        pid=str(p["id"])
+        path=OUT/(pid.lower()+".svg")
         if id(p) in chosen:
             path.write_text(make(p),encoding="utf-8"); changed+=1
-        rows.append({"product_id":p["id"],"asset_path":str(path.relative_to(ROOT)),"exists":path.exists(),
-                     "visual_version":VERSION,"qr_asset_path":f"products/visuals/qr/{str(p['id']).lower()}.svg",
-                     "short_description_on_visual":True,"qr_upper_right":True})
-    ready=sum(x["exists"] for x in rows)
-    MAN.write_text(json.dumps({"version":2,"visual_version":VERSION,"generated_at":datetime.now(timezone.utc).isoformat(),
-        "target":len(products),"visual_assets":ready,"changed_this_cycle":changed,"remaining":len(products)-ready,
+            product_version=VERSION
+        else:
+            product_version=previous_rows.get(pid,{}).get("visual_version","LEGACY")
+        rows.append({"product_id":pid,"asset_path":str(path.relative_to(ROOT)),"exists":path.exists(),
+                     "visual_version":product_version,"qr_asset_path":f"products/visuals/qr/{pid.lower()}.svg",
+                     "short_description_on_visual":True,"qr_upper_right":True,
+                     "logo_photo":True,"english_identity_line":IDENTITY})
+    ready=sum(1 for x in rows if x["exists"])
+    current=sum(1 for x in rows if x["exists"] and x["visual_version"]==VERSION)
+    remaining=len(products)-current
+    MAN.write_text(json.dumps({"version":2,"visual_version":VERSION if current==len(products) else "IN_PROGRESS",
+        "target_visual_version":VERSION,"generated_at":datetime.now(timezone.utc).isoformat(),
+        "target":len(products),"visual_assets":ready,"current_version_assets":current,
+        "changed_this_cycle":changed,"remaining":remaining,
         "logo":LOGO,"english_identity_line":IDENTITY,"short_description_on_visual":True,
         "qr_upper_right":True,"qr_purpose":"long description / product details","products":rows},
         ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print(json.dumps({"target":len(products),"visual_assets":ready,"changed_this_cycle":changed,"remaining":len(products)-ready}))
+    print(json.dumps({"target":len(products),"visual_assets":ready,"current_version_assets":current,
+                      "changed_this_cycle":changed,"remaining":remaining}))
 if __name__=="__main__": main()
