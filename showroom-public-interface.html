@@ -18,7 +18,7 @@
 </div>
 <div class="metrics">
 <div class="metric">Commercial catalog<b id="count">—</b></div><div class="metric">Concrete produced<b id="produced">—</b></div>
-<div class="metric">Production target<b id="target">—</b></div><div class="metric">QC passed<b id="qc">—</b></div><div class="metric">Dispatch released<b id="dispatch">—</b></div><div class="metric">Categories<b id="families">—</b></div><div class="metric">4K visual masters<b id="visuals">—</b></div>
+<div class="metric">Production target<b id="target">—</b></div><div class="metric">QC passed<b id="qc">—</b></div><div class="metric">Dispatch released<b id="dispatch">—</b></div><div class="metric">Categories<b id="families">—</b></div><div class="metric">4K visual masters<b id="visuals">—</b></div><div class="metric">Demo routes<b id="demos">—</b></div><div class="metric">Real MP4 demos<b id="mp4">—</b></div>
 </div><p id="telemetry" class="muted">Live production telemetry loading…</p>
 <div class="notice"><strong>Production reality:</strong> concrete production और commercial catalog अलग counters हैं। अभी बने हुए concrete artifacts की संख्या production status से, जबकि price/description/order metadata commercial catalog से पढ़े जाते हैं। इसलिए कोई संख्या बिना source record के sale या delivery नहीं मानी जाती।</div>
 </section>
@@ -31,7 +31,7 @@
 
 <section class="panel"><h2>🔎 Product Marketplace</h2>
 <div class="toolbar"><input id="q" placeholder="नाम / ID / category / engine खोजें…"><select id="family"><option value="">सभी categories</option></select><select id="price"><option value="">सभी rates</option><option value="low">₹500 तक</option><option value="mid">₹501–₹1,000</option><option value="high">₹1,001+</option></select><select id="sort"><option value="id">Product ID</option><option value="low">Rate low → high</option><option value="high">Rate high → low</option><option value="name">Name</option></select></div>
-<p id="summary" class="muted"></p><div id="grid" class="grid"></div><div id="pager" style="margin-top:16px;text-align:center"></div>
+<p id="summary" class="muted"></p><div class="notice"><strong>Demo contract:</strong> हर public product के लिए customer-facing interactive demo route उपलब्ध कराया जाता है। वास्तविक MP4 मौजूद हो तो वही दिखाया जाता है; MP4 उपलब्ध न होने पर उसे fabricated video नहीं कहा जाता।</div><div id="grid" class="grid"></div><div id="pager" style="margin-top:16px;text-align:center"></div>
 </section>
 
 <section class="panel"><h2>🌟 Showroom Entry Experience</h2><p class="muted">Showroom-entry experience product purchase से अलग है। Repository में configured fee हो तो वही दिखाई जाएगी; बिना configured price के कोई राशि नहीं गढ़ी जाती।</p><div id="entry" class="grid"><div class="card">Entry pricing configuration पढ़ी जा रही है…</div></div></section>
@@ -42,16 +42,16 @@
 <footer class="muted" style="text-align:center;padding:25px">SHIRMANI Research Institute · Supreme Public Showroom · Production → QC → Showroom → Sale</footer>
 </main>
 <script>
-let products=[],page=1,visualReady=0;const pageSize=48,$=id=>document.getElementById(id);
+let products=[],page=1,visualReady=0,mediaManifest=null;const pageSize=48,$=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m])),money=n=>n==null?"Price pending":"₹"+Number(n).toLocaleString("en-IN");
 async function get(p){const r=await fetch(p+"?ts="+Date.now(),{cache:"no-store"});if(!r.ok)throw Error(r.status);return r.json()}
 async function jsonl(p){const r=await fetch(p+"?ts="+Date.now(),{cache:"no-store"});if(!r.ok)throw Error(r.status);return (await r.text()).split(/\n/).filter(Boolean).map(x=>JSON.parse(x))}
 async function load(){
- const [state,ov,pass,fees,visualManifest]=await Promise.all([get("generated/live-production-state.json"),get("generated/concrete-production-overlay.json"),jsonl("generated/PRODUCT-PASSPORTS.jsonl"),get("generated/showroom-entry-fees.json").catch(()=>null),get("generated/product-visual-assets-v2.json").catch(()=>null)]);
+ const [state,ov,pass,fees,visualManifest]=await Promise.all([get("generated/live-production-state.json"),get("generated/concrete-production-overlay.json"),jsonl("generated/PRODUCT-PASSPORTS.jsonl"),get("generated/showroom-entry-fees.json").catch(()=>null),get("generated/product-visual-assets-v2.json").catch(()=>null)]);mediaManifest=await get("generated/product-media-production-manifest.json").catch(()=>null);
  const pm=new Map(pass.map(p=>[p.id,p]));
  products=(ov.products||[]).filter(p=>p.production_state==="PRODUCED").map(p=>({...pm.get(p.id),...p}));
  const produced=Number(state.concrete_repository_assets||products.length),target=Number(state.five_thousand_scale_target||5000),remaining=Number(state.remaining_to_scale_target||Math.max(0,target-produced));
- visualReady=Number(visualManifest?.visual_assets||visualManifest?.current_version_assets||0);$("count").textContent=products.length.toLocaleString("en-IN");$("produced").textContent=produced.toLocaleString("en-IN");$("target").textContent=target.toLocaleString("en-IN");$("qc").textContent=products.length.toLocaleString("en-IN");$("visuals").textContent=visualReady.toLocaleString("en-IN");$("dispatch").textContent=products.filter(p=>p.dispatch_no&&p.dispatch_no!=="NO").length.toLocaleString("en-IN");$("families").textContent=new Set(products.map(p=>p.category||p.family).filter(Boolean)).size.toLocaleString("en-IN");
+ visualReady=Number(visualManifest?.visual_assets||visualManifest?.current_version_assets||0);$("demos").textContent=Number(mediaManifest?.interactive_demo_count||0).toLocaleString("en-IN");$("mp4").textContent=Number(mediaManifest?.real_mp4_count||0).toLocaleString("en-IN");$("count").textContent=products.length.toLocaleString("en-IN");$("produced").textContent=produced.toLocaleString("en-IN");$("target").textContent=target.toLocaleString("en-IN");$("qc").textContent=products.length.toLocaleString("en-IN");$("visuals").textContent=visualReady.toLocaleString("en-IN");$("dispatch").textContent=products.filter(p=>p.dispatch_no&&p.dispatch_no!=="NO").length.toLocaleString("en-IN");$("families").textContent=new Set(products.map(p=>p.category||p.family).filter(Boolean)).size.toLocaleString("en-IN");
  $("telemetry").textContent="Concrete production "+produced.toLocaleString("en-IN")+" / "+target.toLocaleString("en-IN")+" ("+Number(state.concrete_materialization_percent_of_scale_target||0).toFixed(2)+"%) · remaining "+remaining.toLocaleString("en-IN")+" · public 4K visual masters "+visualReady.toLocaleString("en-IN")+"/"+target.toLocaleString("en-IN");
  $("prodMapProduced").textContent=produced.toLocaleString("en-IN");$("prodMapCatalog").textContent=products.length.toLocaleString("en-IN");$("prodMapQc").textContent=products.length.toLocaleString("en-IN");$("prodMapRemaining").textContent=remaining.toLocaleString("en-IN");
  const fam=[...new Set(products.map(p=>p.category||p.family).filter(Boolean))].sort();$("family").innerHTML='<option value="">सभी categories</option>'+fam.map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join("");renderEntry(fees);render();
