@@ -121,19 +121,50 @@ jobs:
           set -euo pipefail
           git config user.name "SHIRMANI Concrete Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git stash push --include-untracked -- generated products >/dev/null 2>&1 || true
+
+          # Never use stash-pop across the persistent production branch.
+          # Stash reapplication could leave conflict markers in generated state
+          # when another production writer advanced automation/production-state.
+          mkdir -p /tmp/shirmani-production-snapshot
+          cp -a generated /tmp/shirmani-production-snapshot/
+          cp -a products /tmp/shirmani-production-snapshot/
+
           git fetch origin automation/production-state
-          git switch -C automation/production-state FETCH_HEAD
-          git stash pop >/dev/null 2>&1 || true
+          remote_sha="$(git rev-parse FETCH_HEAD)"
+          git switch -C automation/production-state "$remote_sha"
+
+          rm -rf generated products
+          cp -a /tmp/shirmani-production-snapshot/generated .
+          cp -a /tmp/shirmani-production-snapshot/products .
+
+          # Generated state must be valid JSON and must never contain merge markers.
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          files = [
+              "generated/live-production-state.json",
+              "generated/concrete-product-asset-status.json",
+              "generated/concrete-product-production-status.json",
+              "generated/concrete-product-depth-status.json",
+              "generated/continuous-production-batch-status.json",
+          ]
+          for name in files:
+              p=Path(name)
+              text=p.read_text(encoding="utf-8")
+              assert "<<<<<<<" not in text and "=======" not in text and ">>>>>>>" not in text, f"merge marker in {name}"
+              json.loads(text)
+          print("Production state validation: clean JSON, no merge markers.")
+          PY
+
           git add generated/live-production-state.json generated/concrete-product-asset-status.json generated/concrete-product-truth.json generated/concrete-production-overlay.json generated/concrete-product-production-status.json generated/concrete-product-depth-status.json generated/continuous-production-batch-status.json generated/1000-digital-products.json products/concrete
           if git diff --cached --quiet; then
             echo "No concrete production delta to publish."
             exit 0
           fi
           git commit -m "chore(production): publish concrete product batch"
-          remote_sha="$(git rev-parse FETCH_HEAD)"
           git push --force-with-lease="refs/heads/automation/production-state:${remote_sha}" origin HEAD:automation/production-state
           echo "Concrete production state published to canonical production-state."
+
       - name: Production publication handoff
         run: |
           echo "Concrete production completed in this run."
