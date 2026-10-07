@@ -30,6 +30,8 @@ jobs:
         run: python3 factory/real_product_factory.py
       - name: Factory — materialize every concrete product
         run: python3 factory/concrete_product_modules.py
+      - name: Build persistent 4K product visual identities
+        run: python3 factory/product_visual_identity_factory.py
       - name: Build public production dashboard
         run: python3 factory/production_dashboard.py
       - name: Production QC structure check
@@ -61,7 +63,7 @@ jobs:
         run: |
           git config user.name 'SHIRMANI Real Product Factory'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add generated/1000-digital-products.json generated/real-product-factory-status.json generated/PRODUCT-PASSPORTS.jsonl products/modules products/production production-dashboard.html
+          git add generated/1000-digital-products.json generated/real-product-factory-status.json generated/PRODUCT-PASSPORTS.jsonl generated/product-visual-assets.json products/modules products/production products/visuals production-dashboard.html
           if git diff --cached --quiet; then
             echo "No production delta"
           else
