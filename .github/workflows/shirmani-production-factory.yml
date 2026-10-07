@@ -59,7 +59,7 @@ jobs:
           git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
           git switch -C "$BRANCH"
           git commit -m "chore(production): publish concrete product batch"
-          git push --force-with-lease origin "HEAD:$BRANCH"
+          git push --force origin "HEAD:$BRANCH"
 
           if [ "$(gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length')" = "0" ]; then
             gh pr create               --base main               --head "$BRANCH"               --title "chore(production): publish concrete product batch"               --body "Automated production batch. Concrete repository-bound product artifacts and public production metadata are generated first. QC, dispatch, sales and independent research verification remain separate downstream states."
