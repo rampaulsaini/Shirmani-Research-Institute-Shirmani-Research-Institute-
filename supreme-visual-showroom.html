@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Supreme Visual Showroom — 1516 Product Visuals</title>
+<style>
+body{margin:0;background:#050810;color:#f5f7fb;font:16px system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+main{max-width:1500px;margin:auto;padding:18px 14px 80px}.hero,.panel{background:#0d1420;border:1px solid #34465b;border-radius:20px;padding:20px;margin:14px 0}
+.hero{border:2px solid #f2cf58}.hero h1,h2{color:#f2cf58}.muted{color:#aeb9c8}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}.metric{background:#070d15;border:1px solid #27384a;border-radius:12px;padding:14px}.num{font-size:1.8rem;font-weight:950;color:#f2cf58}
+.toolbar{display:grid;grid-template-columns:2fr 1fr;gap:9px}input,select{width:100%;box-sizing:border-box;padding:11px;border-radius:10px;background:#070d15;color:#fff;border:1px solid #3c5269}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.card{background:#0d1420;border:1px solid #34465b;border-radius:16px;padding:10px}.card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:11px;background:#050810}.tag{color:#55e7ff;font-size:.75rem;font-weight:900}.card h3{margin:8px 0;color:#f2cf58;font-size:1rem}.btn{display:inline-block;padding:9px 12px;border-radius:9px;background:#f2cf58;color:#111;text-decoration:none;font-weight:900}
+@media(max-width:700px){.toolbar{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<section class="hero">
+<span class="tag">SUPREME MARKING HUB · 4K PUBLIC VISUAL LAYER</span>
+<h1>꙰ SHIRMANI Supreme Visual Showroom</h1>
+<p>1516 concrete-product visual identities को एक public visual layer में देखें। Visual presentation production identity है; यह अपने-आप scientific verification नहीं है।</p>
+<div class="metrics">
+<div class="metric"><div class="num">1,516</div><div class="muted">4K-ready visual identities</div></div>
+<div class="metric"><div class="num">1,516</div><div class="muted">concrete product identities</div></div>
+<div class="metric"><div class="num">100%</div><div class="muted">visual coverage manifest</div></div>
+</div>
+<p><a class="btn" href="supreme-showroom.html">← Main Supreme Showroom</a></p>
+</section>
+<section class="panel">
+<h2>🔎 Visual Finder</h2>
+<div class="toolbar">
+<input id="q" placeholder="Product ID या नाम खोजें…" oninput="render()">
+<select id="range" onchange="render()"><option value="all">सभी 1516 visuals</option><option value="1-500">SP-0001 → SP-0500</option><option value="501-1000">SP-0501 → SP-1000</option><option value="1001-1516">SP-1001 → SP-1516</option></select>
+</div>
+<p id="summary" class="muted"></p><div id="grid" class="grid"></div>
+</section>
+</main>
+<script>
+const TOTAL=1516,grid=document.getElementById("grid"),summary=document.getElementById("summary"),q=document.getElementById("q"),range=document.getElementById("range");
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+function render(){
+ let query=q.value.trim().toLowerCase(), selected=range.value, start=1,end=TOTAL;
+ if(selected!=="all"){[start,end]=selected.split("-").map(Number)}
+ let ids=[];
+ for(let i=start;i<=end;i++){let id="SP-"+String(i).padStart(4,"0");if(!query||id.toLowerCase().includes(query)||("SHIRMANI Supreme Digital Product "+id).toLowerCase().includes(query))ids.push(i)}
+ summary.textContent=ids.length.toLocaleString("en-IN")+" visuals shown · "+TOTAL.toLocaleString("en-IN")+" total visual identities";
+ grid.innerHTML=ids.slice(0,120).map(i=>{
+   const id="SP-"+String(i).padStart(4,"0");
+   return '<article class="card"><img loading="lazy" src="products/visuals/'+id.toLowerCase()+'.svg" alt="'+esc(id)+' unique 4K product visual"><span class="tag">'+esc(id)+' · 4K READY</span><h3>SHIRMANI Supreme Digital Product '+esc(id)+'</h3><a class="btn" href="supreme-showroom.html?id='+encodeURIComponent(id)+'">Open showroom</a> <a class="btn" href="products/concrete/'+id+'.html">Open product</a></article>'
+ }).join("")||"<p class='muted'>कोई visual नहीं मिला।</p>";
+}
+render();
+</script>
+</body></html>
