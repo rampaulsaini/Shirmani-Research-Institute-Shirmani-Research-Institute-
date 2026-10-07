@@ -1,0 +1,33 @@
+name: SHIRMANI Product Media Factory
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+concurrency:
+  group: shirmani-product-media-factory
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  media-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+      - name: Install media tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick ffmpeg
+      - name: Produce MP4 + VIP screenshot batch
+        env:
+          MEDIA_BATCH: "10"
+        run: python3 factory/product_media_factory.py
+      - name: Commit production media
+        run: |
+          git config user.name "SHIRMANI Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add factory/product_media_factory.py generated/product-specific-demo-video-manifest.json products/demos products/vip-screenshots
+          git diff --cached --quiet || git commit -m "production: materialize product demo media batch"
+          git push
