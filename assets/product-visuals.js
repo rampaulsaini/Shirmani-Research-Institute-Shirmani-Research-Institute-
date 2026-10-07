@@ -34,7 +34,8 @@ function visual(p){
  '<rect x="300" y="1290" width="690" height="158" rx="79" fill="#03060d" opacity=".78" stroke="#e7c85b" stroke-opacity=".48" stroke-width="5"/>'+
  '<text x="370" y="1393" fill="#fff" font-family="system-ui,sans-serif" font-size="66" font-weight="900">'+price+'</text>'+
  '<text x="300" y="1815" fill="#f7f9fc" font-family="system-ui,sans-serif" font-size="48" font-weight="700" opacity=".9">4K · UNIQUE PRODUCT IDENTITY · SHORT DESCRIPTION · QR LONG DESCRIPTION</text>'+
- '<text x="300" y="1895" fill="#66ddff" font-family="system-ui,sans-serif" font-size="38" font-weight="800" opacity=".85">IDENTITY KEY · '+uid+' · QC / GATE / SHOWROOM READY</text></svg>';
+'<text x="300" y="1895" fill="#66ddff" font-family="system-ui,sans-serif" font-size="38" font-weight="800" opacity=".85">IDENTITY KEY · '+uid+' · QC / GATE / SHOWROOM READY</text>'+
+'<rect x="3040" y="730" width="540" height="650" rx="30" fill="#fff" opacity=".97"/><image href="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/products/visuals/qr/'+encodeURIComponent(String(p.id||"product").toLowerCase())+'.svg" x="3090" y="780" width="440" height="440" preserveAspectRatio="xMidYMid meet"/><text x="3310" y="1285" text-anchor="middle" fill="#111" font-family="system-ui,sans-serif" font-size="32" font-weight="900">SCAN · LONG DESCRIPTION</text></svg>';
  return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(svg);
 }
 global.SHIRMANI_PRODUCT_VISUAL={hashCode,visual};
