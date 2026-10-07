@@ -43,6 +43,64 @@ jobs:
       - name: Materialize expanded concrete product assets
         run: python3 factory/materialize_all_product_assets.py
 
+      - name: Aggregate public customer reviews into production quality signals
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, subprocess
+          from pathlib import Path
+          raw=subprocess.check_output([
+              "gh","api","--paginate",
+              f"repos/{os.environ['GITHUB_REPOSITORY']}/issues?state=all&per_page=100"
+          ], text=True)
+          issues=[]
+          for chunk in raw.splitlines():
+              if not chunk.strip():
+                  continue
+              try:
+                  data=json.loads(chunk)
+                  issues.extend(data if isinstance(data,list) else [data])
+              except Exception:
+                  pass
+          records=[]
+          for issue in issues:
+              if "pull_request" in issue:
+                  continue
+              labels={x.get("name","") for x in issue.get("labels",[])}
+              title=issue.get("title","") or ""
+              if "customer-review" not in labels and "[CUSTOMER REVIEW]" not in title:
+                  continue
+              body=issue.get("body","") or ""
+              def field(name):
+                  m=re.search(r"###\s+"+re.escape(name)+r"\s*\n+([^#]+)",body,re.I)
+                  return m.group(1).strip() if m else ""
+              records.append({
+                  "issue_number":issue.get("number"),
+                  "updated_at":issue.get("updated_at"),
+                  "product":field("Product ID or product name"),
+                  "rating":field("Rating"),
+                  "experience":field("Customer experience"),
+                  "improvement":field("Improvement suggestion"),
+                  "version":field("Product version"),
+                  "source":"github-public-review"
+              })
+          root=Path("generated"); root.mkdir(exist_ok=True)
+          (root/"customer-review-ledger.json").write_text(json.dumps(records,ensure_ascii=False,indent=2)+"\n")
+          ratings=[int(x["rating"]) for x in records if str(x.get("rating","")).isdigit() and 1<=int(x["rating"])<=5]
+          dashboard={
+              "generated_at":__import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
+              "review_count":len(records),
+              "average_rating":round(sum(ratings)/len(ratings),2) if ratings else None,
+              "products_with_feedback":len({x.get("product") for x in records if x.get("product")}),
+              "improvement_actions":sum(1 for x in records if x.get("improvement")),
+              "principle":"Customer reviews are production-quality signals, not independent scientific verification.",
+              "production_input":True
+          }
+          (root/"customer-quality-dashboard.json").write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+"\n")
+          print(json.dumps(dashboard,ensure_ascii=False))
+          PY
+
       - name: Validate concrete product production
         run: |
           python3 - <<'PY'

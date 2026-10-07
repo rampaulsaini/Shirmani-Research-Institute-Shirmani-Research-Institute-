@@ -6,8 +6,7 @@ on:
     - cron: "*/5 * * * *"
   workflow_dispatch:
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 concurrency:
   group: shirmani-continuous-concrete-production
   cancel-in-progress: false
@@ -36,23 +35,26 @@ jobs:
         run: python3 factory/concrete_product_depth_upgrade.py
       - name: Audit concrete production truth
         run: python3 factory/concrete_product_truth.py
-      - name: Publish full-catalog concrete production through branch
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Publish production evidence artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-concrete-production-${ github.run_number }}
+          retention-days: 7
+          path: |
+            generated/1000-digital-products.json
+            generated/concrete-production-overlay.json
+            generated/continuous-production-batch-status.json
+            generated/concrete-product-truth.json
+            generated/concrete-product-production-status.json
+            generated/concrete-product-depth-status.json
+      - name: Report production state
         run: |
-          set -e
-          if git diff --quiet -- generated/1000-digital-products.json products/concrete generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json generated/concrete-product-depth-status.json; then
-            echo "No production delta."
-            exit 0
-          fi
-          BRANCH="automation/concrete-production-${GITHUB_RUN_ID}"
-          git config user.name "SHIRMANI Production Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git switch -c "$BRANCH"
-          git add generated/1000-digital-products.json products/concrete generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json generated/concrete-product-depth-status.json
-          git commit -m "auto(production): expand catalog and materialize next concrete batch"
-          git push --set-upstream origin "$BRANCH"
-          gh pr create --base main --head "$BRANCH" --title "Automission: publish next concrete product batch" --body "Automated production batch: catalog expansion + concrete product assets. Production is source-bound; QC/gate/dispatch remain downstream states."
-          gh pr merge --auto --squash "$BRANCH" || echo "Auto-merge unavailable; PR remains open for repository policy/review."
-          echo "Production PR ready: $BRANCH"
-          echo "Production remains source-bound; QC/gate/dispatch are downstream."
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path("generated/concrete-product-asset-status.json").read_text())
+          print("CONCRETE_PRODUCT_ASSETS:", s.get("product_assets", s.get("concrete_product_assets", 0)))
+          print("PRODUCTION_TARGET:", 5000)
+          print("DELIVERY: GitHub Pages public production workflow")
+          print("QC/DISPATCH: downstream states")
+          PY
