@@ -25,6 +25,17 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - name: Load persistent production-state catalog when available
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin automation/production-state >/dev/null 2>&1; then
+            git fetch origin automation/production-state
+            git checkout FETCH_HEAD -- generated products
+            echo "PRODUCTION_STATE_SOURCE=automation/production-state"
+          else
+            echo "PRODUCTION_STATE_SOURCE=main"
+          fi
       - name: Build 150,000-scale shard architecture
         shell: python
         run: |
