@@ -13,9 +13,12 @@ function hashCode(s){let h=2166136261;for(let i=0;i<String(s).length;i++){h^=Str
 function visualData(p){return SHIRMANI_PRODUCT_VISUAL.visual(p)}
 const id=new URLSearchParams(location.search).get("id")||"";let product=null,rating=0;const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 async function load(){
- const d=await fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
- const i=Math.max(0,(d.products||[]).findIndex(x=>x.id===id));
- product=(d.products||[])[i]||null;
+ const [d,ad]=await Promise.all([
+   fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+   fetch("generated/production-additions.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({products:[]}))
+ ]);
+ const all=[...(d.products||[]),...(ad.products||[])];
+ product=all.find(x=>x.id===id)||null;
  if(!product){document.getElementById("product").innerHTML="<h1>Product unavailable</h1>";return}
  document.title=product.name+" — Shirmani";
  const f=(product.family||"").toLowerCase();

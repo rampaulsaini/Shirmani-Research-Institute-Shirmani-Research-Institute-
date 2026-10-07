@@ -155,13 +155,18 @@ async function loadProductionTelemetry(){
  }
 }
 async function load(){
- const [d,ov,rs]=await Promise.all([
+ const [d,ov,rs,ad]=await Promise.all([
    fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
    fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({products:[]})),
-   fetch("generated/public-review-quality-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({review_count:0}))
+   fetch("generated/public-review-quality-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({review_count:0})),
+   fetch("generated/production-additions.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({products:[]}))
  ]);
- products=d.products||[];
+ products=[...(d.products||[])];
  (ov.products||[]).forEach(p=>overlay.set(p.id,p));
+ (ad.products||[]).forEach(p=>{
+   if(!products.some(x=>x.id===p.id)) products.push(p);
+   overlay.set(p.id,{...p,production_state:"PRODUCED",status:"PRODUCED_PUBLIC",sale_state:"READY_FOR_ORDER"});
+ });
  reviewStatus=rs||{};
  document.getElementById("total").textContent=products.length.toLocaleString("en-IN");
  document.getElementById("public").textContent=overlay.size.toLocaleString("en-IN");
