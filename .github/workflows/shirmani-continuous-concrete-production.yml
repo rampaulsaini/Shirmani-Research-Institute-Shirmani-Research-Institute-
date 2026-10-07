@@ -11,7 +11,7 @@ permissions:
   id-token: write
 concurrency:
   group: shirmani-continuous-concrete-production
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   produce:
     runs-on: ubuntu-latest
@@ -99,7 +99,7 @@ jobs:
             echo "No production delta"
           else
             git commit -m "chore(production): persist concrete product batch"
-            git push origin HEAD:automation/production-state
+            git push --force-with-lease origin HEAD:automation/production-state
             echo "PRODUCTION_STATE_PERSISTENCE=SUCCESS"
           fi
       - name: Configure GitHub Pages
