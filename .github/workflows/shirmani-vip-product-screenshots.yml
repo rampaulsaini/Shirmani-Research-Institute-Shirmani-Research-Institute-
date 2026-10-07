@@ -1,0 +1,66 @@
+name: SHIRMANI VIP Product Screenshot Factory
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "VIP product screenshots per cycle"
+        required: false
+        default: "25"
+  push:
+    branches: [main]
+    paths:
+      - "factory/product_vip_screenshot_factory.py"
+      - "product-passport.html"
+      - "generated/1000-digital-products.json"
+      - ".github/workflows/shirmani-vip-product-screenshots.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: shirmani-vip-product-screenshots
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium
+      - name: Start local showroom server
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/shirmani-showroom-server.log 2>&1 &
+          echo $! >/tmp/shirmani-showroom-server.pid
+      - name: Produce next bounded VIP screenshot batch
+        env:
+          VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.batch_size || '25' }}
+          SHOWROOM_BASE: http://127.0.0.1:8765
+        run: python3 factory/product_vip_screenshot_factory.py
+      - name: Publish VIP screenshots through PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "feat(showroom): publish VIP product screenshot batch"
+          title: "Automission: publish VIP product screenshot batch"
+          body: |
+            Continuous customer-facing presentation production.
+            Each concrete product receives a real browser screenshot of its Product Passport,
+            plus the existing unique 4K visual and demo route.
+            Presentation media is not scientific verification.
+          branch: "automission/vip-product-screenshots"
+          delete-branch: true
+          add-paths: |
+            products/vip-screenshots
+            generated/product-vip-screenshot-manifest.json
