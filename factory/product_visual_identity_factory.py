@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets.json"
-STYLE_VERSION="2026-10-07-production-visual-v8-persistent-logo-qr"
+STYLE_VERSION="2026-10-07-production-visual-v9-local-qr-logo"
 LOGO_URL="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/assets/shirmani-perspective-logo.svg"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 SHOWROOM_BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
@@ -24,7 +24,10 @@ def visual(p):
     price=int(p.get("offer_price_inr",p.get("price_inr",0)) or 0)
     import urllib.parse
     long_url=SHOWROOM_BASE+"product-passport.html?id="+urllib.parse.quote(pid)
-    qr="https://api.qrserver.com/v1/create-qr-code/?size=430x430&margin=10&data="+urllib.parse.quote(long_url,safe="")
+    # QR is materialized as a repository-bound SVG by product_qr_asset_factory.py.
+    # Keeping the visual linked to that local asset removes a third-party image
+    # dependency from the customer-facing showroom.
+    qr_rel="qr/"+pid.lower()+".svg"
     title_size=132 if len(name)<=30 else 108
     return f'''<!-- {STYLE_VERSION} -->
 <svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
@@ -34,7 +37,7 @@ def visual(p):
 <circle cx="300" cy="310" r="205" fill="#061016" stroke="#e7c85b" stroke-width="12"/><image href="{LOGO_URL}" x="105" y="115" width="390" height="390" preserveAspectRatio="xMidYMid slice"/>
 <text x="570" y="160" fill="#e7c85b" font-family="system-ui,sans-serif" font-size="72" font-weight="950">✦ SHIRMANI SUPREME DIGITAL PRODUCT</text>
 <text x="570" y="245" fill="#ffffff" font-family="system-ui,sans-serif" font-size="34" font-weight="800">{esc(IDENTITY[:104])}</text><text x="570" y="295" fill="#ffffff" font-family="system-ui,sans-serif" font-size="34" font-weight="800">{esc(IDENTITY[104:])}</text>
-<rect x="2920" y="105" width="720" height="790" rx="48" fill="#061016" stroke="#e7c85b" stroke-width="9" filter="url(#shadow)"/><text x="3060" y="205" fill="#ffffff" font-family="system-ui,sans-serif" font-size="48" font-weight="950">LONG DESCRIPTION</text><text x="3230" y="265" fill="#ffffff" font-family="system-ui,sans-serif" font-size="48" font-weight="950">/ PRODUCT DETAILS</text><rect x="3050" y="330" width="470" height="470" fill="#fff"/><image href="{qr}" x="3060" y="340" width="450" height="450" preserveAspectRatio="none"/><text x="3070" y="850" fill="#52d8ff" font-family="system-ui,sans-serif" font-size="31" font-weight="900">SCAN FOR LONG DESCRIPTION</text>
+<rect x="2920" y="105" width="720" height="790" rx="48" fill="#061016" stroke="#e7c85b" stroke-width="9" filter="url(#shadow)"/><text x="3060" y="205" fill="#ffffff" font-family="system-ui,sans-serif" font-size="48" font-weight="950">LONG DESCRIPTION</text><text x="3230" y="265" fill="#ffffff" font-family="system-ui,sans-serif" font-size="48" font-weight="950">/ PRODUCT DETAILS</text><rect x="3050" y="330" width="470" height="470" fill="#fff"/><image href="{qr_rel}" x="3060" y="340" width="450" height="450" preserveAspectRatio="none"/><text x="3070" y="850" fill="#52d8ff" font-family="system-ui,sans-serif" font-size="31" font-weight="900">SCAN FOR LONG DESCRIPTION</text>
 <path d="M160 1740 C900 1320 1350 1970 1980 1540 S3020 1290 3710 1690" fill="none" stroke="url(#wave)" stroke-width="24" opacity=".82"/>
 <text x="520" y="760" fill="#64d9ff" font-family="system-ui,sans-serif" font-size="72" font-weight="950" letter-spacing="10">PRODUCT IDENTITY</text><text x="520" y="940" fill="#ffffff" font-family="system-ui,sans-serif" font-size="{title_size}" font-weight="950">{esc(name)}</text><text x="520" y="1050" fill="#6ee7a8" font-family="system-ui,sans-serif" font-size="58" font-weight="850">{esc(family)} · {esc(engine)}</text>
 <rect x="520" y="1125" width="660" height="112" rx="56" fill="#050910" stroke="#e5c35b" stroke-width="6"/><text x="585" y="1203" fill="#e5c35b" font-family="system-ui,sans-serif" font-size="64" font-weight="950">{esc(pid)}</text>
@@ -56,8 +59,8 @@ def main():
             path.write_text(visual(p),encoding="utf-8"); updated+=1
         elif path.exists(): existing+=1
         elif id(p) in selected: path.write_text(visual(p),encoding="utf-8"); created+=1
-        rows.append({"product_id":pid,"name":p.get("name"),"family":p.get("family"),"engine":p.get("engine"),"asset_path":str(path.relative_to(ROOT)),"format":"svg","width":3840,"height":2160,"aspect_ratio":"16:9","exists":path.exists(),"state":"READY_FOR_PUBLIC_SHOWROOM" if path.exists() else "PENDING_VISUAL_ASSET"})
+        rows.append({"product_id":pid,"name":p.get("name"),"family":p.get("family"),"engine":p.get("engine"),"asset_path":str(path.relative_to(ROOT)),"qr_asset_path":f"products/visuals/qr/{pid.lower()}.svg","qr_target":SHOWROOM_BASE+"product-passport.html?id="+urllib.parse.quote(pid),"format":"svg","width":3840,"height":2160,"aspect_ratio":"16:9","logo_asset_path":"assets/shirmani-perspective-logo.svg","english_identity_line":IDENTITY,"short_description_on_visual":True,"qr_upper_right":True,"exists":path.exists(),"state":"READY_FOR_PUBLIC_SHOWROOM" if path.exists() else "PENDING_VISUAL_ASSET"})
     now=datetime.now(timezone.utc).isoformat()
-    MAN.write_text(json.dumps({"version":1,"generated_at":now,"target":len(products),"visual_assets":sum(1 for x in rows if x["exists"]),"created_this_cycle":created,"updated_this_cycle":updated,"already_existing":existing,"style_version":STYLE_VERSION,"batch_size":batch,"remaining_visual_assets":sum(1 for x in rows if not x["exists"]),"state":"READY_FOR_PUBLIC_SHOWROOM","note":"4K-ready vector visual identity assets; raster/AI-photographic variants can be added later without changing product IDs. Public-ready count requires the asset file to exist.","products":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    MAN.write_text(json.dumps({"version":1,"generated_at":now,"target":len(products),"visual_assets":sum(1 for x in rows if x["exists"]),"created_this_cycle":created,"updated_this_cycle":updated,"already_existing":existing,"style_version":STYLE_VERSION,"batch_size":batch,"remaining_visual_assets":sum(1 for x in rows if not x["exists"]),"state":"READY_FOR_PUBLIC_SHOWROOM","note":"4K-ready vector visual identity assets; repository-bound logo and per-product QR are part of the public presentation contract. Raster/AI-photographic variants can be added later without changing product IDs.","products":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"target":len(products),"visual_assets":len(rows),"created_this_cycle":created},ensure_ascii=False))
 if __name__=="__main__": main()
