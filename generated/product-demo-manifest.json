@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "products": {
+    "SP-0002": {
+      "mode": "browser_walkthrough",
+      "video_url": null,
+      "note": "Scalable demo route is live; attach a product-specific MP4/WebM asset here to switch the public page to a real video player."
+    }
+  }
+}
