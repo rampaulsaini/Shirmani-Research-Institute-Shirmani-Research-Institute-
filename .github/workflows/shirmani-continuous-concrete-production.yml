@@ -99,12 +99,25 @@ jobs:
             echo "No production delta"
           else
             git commit -m "chore(production): persist concrete product batch"
-            for attempt in 1 2 3 4 5; do
+            for attempt in 1 2 3 4 5 6 7; do
               git fetch origin automation/production-state || true
               remote_sha="$(git rev-parse FETCH_HEAD 2>/dev/null || true)"
-              if [ -n "$remote_sha" ] && git push --force-with-lease="refs/heads/automation/production-state:$remote_sha" origin HEAD:automation/production-state; then
-                echo "PRODUCTION_STATE_PERSISTENCE=SUCCESS attempt=$attempt"
-                exit 0
+              if [ -z "$remote_sha" ]; then
+                echo "Production state branch is not readable yet; retrying attempt=$attempt"
+                sleep $((attempt * 2))
+                continue
+              fi
+              # Rebase this production delta onto the newest persistent state so concurrent
+              # production cycles do not overwrite each other's product batches.
+              if git rebase "$remote_sha"; then
+                rebased_sha="$(git rev-parse HEAD)"
+                if git push --force-with-lease="refs/heads/automation/production-state:$remote_sha" origin "$rebased_sha:automation/production-state"; then
+                  echo "PRODUCTION_STATE_PERSISTENCE=SUCCESS attempt=$attempt"
+                  exit 0
+                fi
+              else
+                git rebase --abort || true
+                echo "Production state rebase conflict; retrying from refreshed state attempt=$attempt"
               fi
               echo "Production state branch moved during push; retrying attempt=$attempt"
               sleep $((attempt * 2))
