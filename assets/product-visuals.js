@@ -35,7 +35,7 @@ function visual(p){
  descLines.map((x,i)=>'<text x="520" y="'+(1400+i*58)+'" fill="#dce7f2" font-family="system-ui,sans-serif" font-size="39" font-weight="650">'+x+'</text>').join('')+
  '<rect x="520" y="1600" width="730" height="125" rx="62" fill="#03060d" stroke="#e7c85b" stroke-width="5"/><text x="590" y="1685" fill="#fff" font-family="system-ui,sans-serif" font-size="62" font-weight="900">'+price+'</text>'+
  '<rect x="2920" y="105" width="720" height="790" rx="48" fill="#061016" stroke="#e7c85b" stroke-width="10"/><text x="3060" y="205" fill="#fff" font-family="system-ui,sans-serif" font-size="46" font-weight="950">LONG DESCRIPTION</text><text x="3230" y="265" fill="#fff" font-family="system-ui,sans-serif" font-size="46" font-weight="950">/ PRODUCT DETAILS</text><rect x="3050" y="330" width="470" height="470" fill="#fff"/><image href="'+qr+'" x="3060" y="340" width="450" height="450"/><text x="3070" y="850" fill="#66ddff" font-family="system-ui,sans-serif" font-size="28" font-weight="900">SCAN FOR LONG DESCRIPTION</text>'+
- '<text x="520" y="1860" fill="#fff" opacity=".86" font-family="system-ui,sans-serif" font-size="35" font-weight="800">4K · UNIQUE PRODUCT IDENTITY · DEMO VIDEO · QC/GATE/DISPATCH · LONG-PASSPORT QR</text></svg>';
+ '<text x="520" y="1860" fill="#fff" opacity=".86" font-family="system-ui,sans-serif" font-size="35" font-weight="800">3840×2160 4K MASTER · UNIQUE PRODUCT IDENTITY · DEMO VIDEO · QC/GATE/DISPATCH · LONG-PASSPORT QR</text></svg>';
  return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(svg);
 }
 global.SHIRMANI_PRODUCT_VISUAL={hashCode,visual,version:"v6-logo-first-qr-upper-right"};
