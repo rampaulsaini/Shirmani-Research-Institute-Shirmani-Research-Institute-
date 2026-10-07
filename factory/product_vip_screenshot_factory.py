@@ -4,10 +4,12 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from pathlib import Path
 import json, os, re
-ROOT=Path(__file__).resolve().parents[1]; CAT=ROOT/"generated/1000-digital-products.json"; OUT=ROOT/"products/vip-screenshots"; MAN=ROOT/"generated/product-vip-screenshot-manifest.json"; BASE=os.environ.get("SHOWROOM_BASE","http://127.0.0.1:8765")
+ROOT=Path(__file__).resolve().parents[1]; CAT=ROOT/"generated/canonical-5000-product-catalog.json"; OUT=ROOT/"products/vip-screenshots"; MAN=ROOT/"generated/product-vip-screenshot-manifest.json"; BASE=os.environ.get("SHOWROOM_BASE","http://127.0.0.1:8765")
 def slug(v): return re.sub(r"[^a-z0-9_-]+","-",str(v).lower()).strip("-") or "product"
 def main():
     from playwright.sync_api import sync_playwright
+    from factory.canonical_product_catalog import write_catalog
+    write_catalog(CAT)
     products=json.loads(CAT.read_text(encoding="utf-8")).get("products",[])
     if not products: raise SystemExit("Empty production catalog; refusing to publish an empty screenshot manifest.")
     OUT.mkdir(parents=True,exist_ok=True); batch=max(1,min(100,int(os.environ.get("VIP_SCREENSHOT_BATCH","25"))))
