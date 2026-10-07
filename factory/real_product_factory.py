@@ -11,7 +11,7 @@ OBJECTIVES={e:f"produce reusable {f} work with a concrete browser-executable res
 def code(prefix,value): return prefix+hashlib.sha256(value.encode()).hexdigest()[:12].upper()
 def main():
  OUT.mkdir(parents=True,exist_ok=True); products=[]; passports=[]
- target=max(1016,int(os.getenv("PRODUCT_TARGET","1016")))
+ target=max(5000,int(os.getenv("PRODUCT_TARGET","5000")))
  for i in range(1,target+1):
   engine,family=FAMILIES[(i-1)%len(FAMILIES)]; pid=f"SP-{i:04d}"; name=f"SHIRMANI {PREFIX[(i-1)%len(PREFIX)]} {family} {i:04d}"
   qc=code("QC-",pid+"|SHIRMANI-PRODUCTION-QC"); gate=f"GATE-{i:04d}"; module=f"products/modules/{engine}.html"; asset=f"products/production/{pid.lower()}.html"
