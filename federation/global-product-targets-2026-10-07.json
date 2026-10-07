@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-07",
+  "scale_target": 150000,
+  "targets": [
+    {
+      "name": "NVIDIA",
+      "official_url": "https://www.nvidia.com/en-in/ai/",
+      "segment": "AI/cloud",
+      "status": "DISCOVERY_SEED"
+    },
+    {
+      "name": "Microsoft AI",
+      "official_url": "https://www.microsoft.com/en-in/ai",
+      "segment": "AI/cloud",
+      "status": "DISCOVERY_SEED"
+    },
+    {
+      "name": "Microsoft Azure AI",
+      "official_url": "https://azure.microsoft.com/en-us/products/category/ai",
+      "segment": "AI/cloud",
+      "status": "DISCOVERY_SEED"
+    },
+    {
+      "name": "Google Cloud AI",
+      "official_url": "https://cloud.google.com/products/ai",
+      "segment": "AI/cloud",
+      "status": "DISCOVERY_SEED"
+    },
+    {
+      "name": "AWS AI",
+      "official_url": "https://aws.amazon.com/ai/services/",
+      "segment": "AI/cloud",
+      "status": "DISCOVERY_SEED"
+    },
+    {
+      "name": "IBM watsonx",
+      "official_url": "https://www.ibm.com/products/watsonx",
+      "segment": "AI/enterprise",
+      "status": "DISCOVERY_SEED"
+    },
+    {
+      "name": "MeitY",
+      "official_url": "https://www.meity.gov.in/",
+      "segment": "Government/India",
+      "status": "DISCOVERY_SEED"
+    },
+    {
+      "name": "IndiaAI / MeitY AI",
+      "official_url": "https://www.meity.gov.in/india-ai",
+      "segment": "Government/India",
+      "status": "DISCOVERY_SEED"
+    },
+    {
+      "name": "ISRO",
+      "official_url": "https://www.isro.gov.in/",
+      "segment": "Space/science",
+      "status": "DISCOVERY_SEED"
+    },
+    {
+      "name": "NASA",
+      "official_url": "https://www.nasa.gov/",
+      "segment": "Science",
+      "status": "DISCOVERY_SEED"
+    },
+    {
+      "name": "CERN",
+      "official_url": "https://home.cern/",
+      "segment": "Science",
+      "status": "DISCOVERY_SEED"
+    }
+  ]
+}
