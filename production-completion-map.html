@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Production Completion Map</title>
+<meta name="description" content="Live production-first completion map: Institute → Factory → QC/Gate → Showroom/Sale.">
+<style>
+:root{--bg:#050910;--panel:#0d1722;--gold:#f0cf5a;--cyan:#67e8f9;--green:#72e6aa;--muted:#aebaca;--line:#304457}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -8%,#193049,#050910 52%);color:#f4f7fb;font:15px/1.6 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+main{max-width:1350px;margin:auto;padding:18px}.hero,.panel{background:rgba(13,23,34,.97);border:1px solid var(--line);border-radius:20px;padding:20px;margin:14px 0}.hero{border:2px solid var(--gold);text-align:center}h1,h2{color:var(--gold)}h1{font-size:clamp(2rem,5vw,4rem);margin:0 0 8px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.metric{padding:17px;background:#07111b;border:1px solid var(--line);border-radius:14px}.num{font-size:2rem;font-weight:950;color:var(--gold)}.cyan{color:var(--cyan)}.green{color:var(--green)}.bar{height:18px;background:#07111b;border:1px solid var(--line);border-radius:99px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--cyan));width:0}.lane{padding:15px;background:#07111b;border:1px solid var(--line);border-radius:14px}.lane b{color:var(--cyan)}.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--gold);color:#111;text-decoration:none;font-weight:900;margin:4px}.alt{background:#102638;color:var(--cyan);border:1px solid #36566d}.note{border-left:4px solid var(--gold);padding:13px 15px;background:#091520}table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--gold)}
+</style></head><body><main>
+<section class="hero"><div class="cyan">꙰ SHIRMANI RESEARCH INSTITUTE · PRODUCTION-FIRST</div><h1>LIVE PRODUCTION COMPLETION MAP</h1>
+<p>काम का परिणाम पहले: <b>Institute → Factory → QC/Gate → Showroom/Sale → Customer Experience → Improvement</b></p>
+<p class="muted">यह page repository के published production manifests से live state पढ़ता है। Workflow run को product नहीं गिना जाता। Verification production का substitute नहीं है।</p>
+<div><a class="btn" href="showroom.html">🛍️ Public Showroom</a><a class="btn alt" href="supreme-public-production-showroom.html">Concrete Rack</a><a class="btn alt" href="production-mission-control.html">Mission Control</a></div></section>
+
+<section class="panel"><h2>📊 अभी तक कितना वास्तविक production हुआ?</h2><div class="grid">
+<div class="metric"><div id="produced" class="num">—</div><b>Concrete product artifacts</b><p class="muted">repository-bound customer-visible production</p></div>
+<div class="metric"><div id="target" class="num">—</div><b>Current scale target</b><p class="muted">5,000 concrete products</p></div>
+<div class="metric"><div id="remaining" class="num">—</div><b>Remaining</b><p class="muted">to current target</p></div>
+<div class="metric"><div id="pct" class="num green">—</div><b>Materialization</b><p class="muted">concrete / target</p></div>
+<div class="metric"><div id="modules" class="num">—</div><b>Production modules</b><p class="muted">generated module outputs</p></div>
+<div class="metric"><div id="cycle" class="num">—</div><b>Latest cycle</b><p class="muted">concrete results</p></div>
+<div class="metric"><div id="queue" class="num">—</div><b>Scheduled work units</b><p class="muted">multi-layer queue</p></div>
+<div class="metric"><div id="visuals" class="num">—</div><b>4K visual coverage</b><p class="muted">visual identities / concrete products</p></div>
+</div><div class="bar"><div id="bar" class="fill"></div></div><p id="fresh" class="muted">Loading live production telemetry…</p></section>
+
+<section class="panel"><h2>🏭 Multi-layer work lanes</h2><div class="grid">
+<div class="lane"><b>AI / ML / NLP</b><p id="ai">—</p></div><div class="lane"><b>Automation</b><p id="automation">—</p></div><div class="lane"><b>Platform</b><p id="platform">—</p></div><div class="lane"><b>Research</b><p id="research">—</p></div><div class="lane"><b>Security / Quality</b><p id="security">—</p></div><div class="lane"><b>Content / Economic / Federation / Social</b><p id="other">—</p></div>
+</div></section>
+
+<section class="panel"><h2>🧭 Four-stage public production map</h2><table><tr><th>Stage</th><th>काम</th><th>Public result</th></tr>
+<tr><td><b>01 · INSTITUTE</b></td><td>खोज, specifications, concepts, backlog</td><td>production queue / product opportunity</td></tr>
+<tr><td><b>02 · FACTORY</b></td><td>वास्तविक digital artifact बनाना</td><td>HTML/tools/content/assets</td></tr>
+<tr><td><b>03 · QC / GATE</b></td><td>product ID, QC code, gate, dispatch state</td><td>product passport / release metadata</td></tr>
+<tr><td><b>04 · SHOWROOM / SALE</b></td><td>visual, short description, QR long description, price/offer, order route</td><td>customer-facing product rack</td></tr>
+</table></section>
+
+<section class="panel"><h2>⭐ Customer quality loop</h2><p><b>देखें → इस्तेमाल करें → review/rating दें → सुधार queue → अगला production cycle → बेहतर product</b></p><p class="muted">Public reviews और ratings quality-improvement inputs हैं। Independent scientific verification को production output के साथ मिलाया नहीं जाता।</p><a class="btn" href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/issues/new?template=product-review.yml">Public Review / Rating →</a></section>
+
+<section class="panel"><h2>⚡ Production priority</h2><div class="note"><b>मुख्य bottleneck:</b> current published state में 5,000 scale target के मुकाबले जितने concrete artifacts बाकी हैं, उन्हें वास्तविक customer-visible products में बदलना। New automation का मूल्य तभी है जब उसका परिणाम repository/showroom में concrete artifact के रूप में दिखाई दे।</div></section>
+
+<script>
+(async function(){
+ const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
+ const n=v=>Number(v||0).toLocaleString("en-IN");
+ try{
+  const [p,s,v]=await Promise.all([
+   fetch("generated/live-production-state.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+   fetch("generated/multi-layer-production-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+   fetch("products/visuals/manifest.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json())
+  ]);
+  const produced=Number(p.concrete_repository_assets||0),target=Number(p.five_thousand_scale_target||5000),remaining=Number(p.remaining_to_scale_target||Math.max(0,target-produced)),pct=Number(p.concrete_materialization_percent_of_scale_target||0);
+  set("produced",n(produced));set("target",n(target));set("remaining",n(remaining));set("pct",pct.toFixed(2)+"%");set("modules",n(p.module_products_generated||s.production_outputs?.production_modules));set("cycle",n(s.last_cycle_concrete_results||s.production_outputs?.concrete_results_this_cycle));set("queue",n(s.scheduled_work_units));set("visuals",n(v.total_visuals)+" / "+n(produced));
+  document.getElementById("bar").style.width=Math.min(100,Math.max(0,pct))+"%";
+  set("fresh","Generated "+(p.generated_at||s.generated_at||"live")+" · published concrete production is "+n(produced)+"/"+n(target)+"; "+n(remaining)+" remain.");
+  const lanes=s.production_outputs?.lane_artifacts||{};set("ai",n(lanes["ai-ml-nlp"])+" published lane artifacts");set("automation",n(lanes.automation)+" published lane artifacts");set("platform",n(lanes.platform)+" published lane artifacts");set("research",n(lanes.research)+" published lane artifacts");set("security",n(lanes["security-quality"])+" published lane artifacts");set("other",n(lanes.content||0)+" content · "+n(lanes.economic||0)+" economic · "+n(lanes.federation||0)+" federation · "+n(lanes["social-media"]||0)+" social-media");
+ }catch(e){set("fresh","Live production telemetry unavailable; no value is inferred.");}
+})();
+</script></main></body></html>

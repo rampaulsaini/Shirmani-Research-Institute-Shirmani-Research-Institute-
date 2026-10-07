@@ -12,6 +12,8 @@ function visual(p){
  const engine=esc(String(p.engine||"SUPREME").slice(0,28));
  const desc=esc(String(p.short_description||p.description||"Unique customer-facing digital product").replace(/\s+/g," ").slice(0,92));
  const price=esc(money(p.offer_price_inr??p.price_inr??0));
+ const qrTarget=(global.location&&global.location.origin?global.location.origin:"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-")+"/product-passport.html?id="+encodeURIComponent(key);
+ const qrSrc=esc("https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=10&data="+encodeURIComponent(qrTarget));
  const titleSize=rawTitle.length>38?112:rawTitle.length>28?138:168;
  const emblemX=3020+(h%240), emblemY=1380+((h>>>12)%180);
  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-label="'+title+' — SHIRMANI unique 4K product visual"><defs>'+
@@ -26,6 +28,11 @@ function visual(p){
  '<path d="M260 1580 C820 1210 1180 1880 1710 1430 S2820 1180 3560 1550" fill="none" stroke="#72e6aa" stroke-opacity=".18" stroke-width="12"/>'+
  '<circle cx="'+emblemX+'" cy="'+emblemY+'" r="285" fill="none" stroke="#e7c85b" stroke-opacity=".42" stroke-width="12"/><circle cx="'+emblemX+'" cy="'+emblemY+'" r="195" fill="none" stroke="#66ddff" stroke-opacity=".28" stroke-width="8"/>'+
  '<path d="M'+(emblemX-150)+' '+emblemY+'h300M'+emblemX+' '+(emblemY-150)+'v300" stroke="#fff" stroke-opacity=".16" stroke-width="6"/>'+
+ '<rect x="3020" y="420" width="560" height="690" rx="42" fill="#061016" stroke="#e7c85b" stroke-opacity=".72" stroke-width="7"/>'+
+ '<text x="3140" y="515" fill="#f7f9fc" font-family="system-ui,sans-serif" font-size="42" font-weight="900">LONG DESCRIPTION</text>'+
+ '<text x="3220" y="565" fill="#f7f9fc" font-family="system-ui,sans-serif" font-size="42" font-weight="900">/ PRODUCT DETAILS</text>'+
+ '<rect x="3085" y="610" width="430" height="430" fill="#fff"/><image href="'+qrSrc+'" x="3090" y="615" width="420" height="420" preserveAspectRatio="none"/>'+
+ '<text x="3135" y="1080" fill="#66ddff" font-family="system-ui,sans-serif" font-size="31" font-weight="900">SCAN FOR LONG DESCRIPTION</text>'+
  '<text x="300" y="420" fill="#66ddff" font-family="system-ui,sans-serif" font-size="86" font-weight="900">꙰ SHIRMANI SUPREME DIGITAL PRODUCT</text>'+
  '<text x="300" y="790" fill="#f7f9fc" font-family="system-ui,sans-serif" font-size="'+titleSize+'" font-weight="900">'+title+'</text>'+
  '<text x="300" y="970" fill="#72e6aa" font-family="system-ui,sans-serif" font-size="70" font-weight="900">'+id+'</text>'+
