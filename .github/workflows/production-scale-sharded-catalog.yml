@@ -1,0 +1,59 @@
+name: SHIRMANI Production Scale — Sharded Catalogue & Public Directory
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "generated/1000-digital-products.json"
+      - "generated/PRODUCT-PRODUCTION-CONTRACT.json"
+      - ".github/workflows/production-scale-sharded-catalog.yml"
+      - "global-product-usage-directory.html"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-sharded-catalog-production
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build 150,000-scale shard architecture
+        shell: python
+        run: |
+          import json, math
+          from pathlib import Path
+          from datetime import datetime, timezone
+          root=Path(".")
+          data=json.loads((root/"generated/1000-digital-products.json").read_text(encoding="utf-8"))
+          products=data.get("products", [])
+          shard_size=1000
+          target_capacity=150000
+          out=root/"generated/catalog-shards"
+          out.mkdir(parents=True, exist_ok=True)
+          for old in out.glob("catalog-*.json"): old.unlink()
+          shard_count=max(1, math.ceil(len(products)/shard_size))
+          for i in range(shard_count):
+              rows=products[i*shard_size:(i+1)*shard_size]
+              payload={"shard_id":f"catalog-{i+1:04d}","capacity":shard_size,"materialized_count":len(rows),"catalogue_capacity_total":target_capacity,"products":rows}
+              (out/f"catalog-{i+1:04d}.json").write_text(json.dumps(payload,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
+          manifest={"generated_at_utc":datetime.now(timezone.utc).isoformat(),"materialized_products":len(products),"shard_size":shard_size,"materialized_shards":shard_count,"catalogue_capacity":target_capacity,"remaining_capacity":max(0,target_capacity-len(products)),"directory_contract":"global-product-usage-directory.html","source":"generated/1000-digital-products.json"}
+          (root/"generated/catalog-shard-manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(manifest,ensure_ascii=False))
+      - name: Publish sharded catalogue state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Sharded Catalogue Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/catalog-shards generated/catalog-shard-manifest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "feat(catalog): maintain 150000-scale sharded product directory"
+          git push origin HEAD:main
