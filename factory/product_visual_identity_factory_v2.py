@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-07-production-visual-v6"
+VERSION="2026-10-07-production-visual-v7"
 LOGO="https://i.ibb.co/xqf3kTPS/enhanced-image.webp"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 
@@ -56,7 +56,7 @@ def main():
         try: previous=json.loads(MAN.read_text(encoding="utf-8"))
         except Exception: pass
     previous_rows={str(r.get("product_id")):r for r in previous.get("products",[]) if isinstance(r,dict)}
-    batch=max(1,min(5000,int(os.environ.get("VISUAL_BATCH","5000"))))
+    batch=max(1,min(5000,int(os.environ.get("VISUAL_BATCH","1000"))))
     # Refresh is version-aware per product. A partial batch must not falsely mark
     # the whole catalogue as upgraded; later cycles continue until every product is current.
     todo=[p for p in products if (
@@ -85,7 +85,7 @@ def main():
         "target":len(products),"visual_assets":ready,"current_version_assets":current,
         "changed_this_cycle":changed,"remaining":remaining,
         "logo":LOGO,"english_identity_line":IDENTITY,"short_description_on_visual":True,
-        "qr_upper_right":True,"qr_purpose":"long description / product details","products":rows},
+        "qr_upper_right":True,"qr_purpose":"long description / product details","visual_contract":{"logo_photo":True,"logo_position":"upper-left","english_identity":"Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present","short_description":"on-image","qr_position":"upper-right","qr_target":"product passport / long description","canvas":"3840x2160 16:9 4K-ready"},"products":rows},
         ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"target":len(products),"visual_assets":ready,"current_version_assets":current,
                       "changed_this_cycle":changed,"remaining":remaining}))
