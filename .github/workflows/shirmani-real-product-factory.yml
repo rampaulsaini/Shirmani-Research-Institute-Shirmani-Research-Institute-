@@ -5,6 +5,8 @@ on:
     paths:
       - "factory/real_product_factory.py"
       - "factory/concrete_product_modules.py"
+      - "factory/product_visual_identity_factory.py"
+      - "factory/vip_screenshot_factory.py"
       - "factory/production_dashboard.py"
       - ".github/workflows/shirmani-real-product-factory.yml"
   schedule:
@@ -32,6 +34,11 @@ jobs:
         run: python3 factory/concrete_product_modules.py
       - name: Build persistent 4K product visual identities
         run: python3 factory/product_visual_identity_factory.py
+      - name: Build product-specific VIP screenshot assets
+        env:
+          VIP_SCREENSHOT_BATCH: "5000"
+          VIP_REBUILD: "1"
+        run: python3 factory/vip_screenshot_factory.py
       - name: Build public production dashboard
         run: python3 factory/production_dashboard.py
       - name: Production QC structure check
@@ -50,11 +57,17 @@ jobs:
           assert Path("generated/PRODUCT-PASSPORTS.jsonl").exists()
           assert len(list(Path("products/production").glob("*.html"))) == target
           assert len(list(Path("products/modules").glob("*.html"))) == 25
+          vip=Path("generated/vip-screenshot-assets.json")
+          assert vip.exists()
+          vip_state=json.loads(vip.read_text(encoding="utf-8"))
+          assert vip_state["vip_screenshot_assets"] == target
+          assert vip_state["coverage_percent"] == 100
           assert Path("production-dashboard.html").exists()
           print("PRODUCTION PASS")
           print("products:",len(p["products"]),"/",target)
           print("concrete assets:",len(list(Path("products/production").glob("*.html"))))
           print("modules:",len(list(Path("products/modules").glob("*.html"))))
+          print("VIP screenshots:",vip_state["vip_screenshot_assets"],"/",target)
           print("QC gate: READY_FOR_QC")
           print("dispatch: NO")
           print("verification: DOWNSTREAM")
@@ -63,11 +76,11 @@ jobs:
         run: |
           git config user.name 'SHIRMANI Real Product Factory'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add generated/1000-digital-products.json generated/real-product-factory-status.json generated/PRODUCT-PASSPORTS.jsonl generated/product-visual-assets.json products/modules products/production products/visuals production-dashboard.html
+          git add generated/1000-digital-products.json generated/real-product-factory-status.json generated/PRODUCT-PASSPORTS.jsonl generated/product-visual-assets.json generated/vip-screenshot-assets.json products/modules products/production products/visuals products/vip-screenshots production-dashboard.html
           if git diff --cached --quiet; then
             echo "No production delta"
           else
-            git commit -m 'chore(products): continuously materialize concrete production at scale'
+            git commit -m 'chore(products): continuously materialize concrete production and VIP media'
             git push origin HEAD:main
           fi
       - name: Publish production summary
@@ -77,6 +90,8 @@ jobs:
             echo "- Institute discovery: active"
             echo "- Factory target: 5,000 concrete product assets"
             echo "- Modules: 25 executable family modules"
+            echo "- 4K visual identity: product-specific"
+            echo "- VIP screenshot: product-specific, QR + short description + usage/demo routes"
             echo "- QC state: READY_FOR_QC"
             echo "- Dispatch: NO"
             echo "- Verification: downstream"
