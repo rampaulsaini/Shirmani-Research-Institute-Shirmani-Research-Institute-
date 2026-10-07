@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T04:42:46.716205+00:00",
+  "generated_at": "2026-10-07T04:43:26.370371+00:00",
   "engine": "SHIRMANI Multi-Layer Production Dispatcher",
   "mode": "production-first",
   "discovered_modules": 382,
@@ -7,7 +7,7 @@
   "last_cycle_tasks": 500,
   "new_tasks_added": 500,
   "total_queued_tasks": 500,
-  "scheduled_work_units": 115000,
+  "scheduled_work_units": 116500,
   "lanes": [
     "ai-ml-nlp",
     "automation",
@@ -20,15 +20,15 @@
     "social-media"
   ],
   "lane_counts_last_cycle": {
-    "automation": 210,
-    "platform": 132,
+    "federation": 22,
+    "automation": 221,
+    "economic": 11,
+    "platform": 117,
+    "social-media": 6,
+    "content": 14,
     "research": 24,
     "ai-ml-nlp": 65,
-    "federation": 24,
-    "content": 13,
-    "security-quality": 20,
-    "social-media": 4,
-    "economic": 8
+    "security-quality": 20
   },
   "production_outputs": {
     "verses": 0,
@@ -41,17 +41,17 @@
     "certificates": 1000,
     "verification_queue": 100200,
     "verified_records": 0,
-    "concrete_results_this_cycle": 25500,
+    "concrete_results_this_cycle": 26000,
     "lane_artifacts": {
-      "ai-ml-nlp": 3222,
-      "automation": 11671,
-      "content": 616,
-      "economic": 527,
-      "federation": 914,
-      "platform": 5960,
-      "research": 1052,
-      "security-quality": 1273,
-      "social-media": 265
+      "ai-ml-nlp": 3287,
+      "automation": 11892,
+      "content": 630,
+      "economic": 538,
+      "federation": 936,
+      "platform": 6077,
+      "research": 1076,
+      "security-quality": 1293,
+      "social-media": 271
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
@@ -64,7 +64,7 @@
     "verification": "downstream result-quality/promotion layer"
   },
   "truth_boundary": "Generated production output is not automatically independently verified.",
-  "last_cycle_concrete_results": 25500,
+  "last_cycle_concrete_results": 26000,
   "artifacts": [
     "generated/production-results.jsonl",
     "generated/production-work-queue.jsonl",
