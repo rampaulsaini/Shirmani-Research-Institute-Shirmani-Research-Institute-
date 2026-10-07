@@ -9,8 +9,8 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-07-logo-qr-v2"
-LOGO="https://avatars.githubusercontent.com/u/206398967?v=4"
+VERSION="2026-10-07-profile-logo-exact-identity-v3"
+LOGO="../../assets/images/profile.jpg"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 
 def esc(v): return html.escape(str(v), quote=True)
