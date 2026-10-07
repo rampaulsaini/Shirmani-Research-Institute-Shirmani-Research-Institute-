@@ -1,0 +1,33 @@
+name: SHIRMANI Showroom Visual Production Publisher
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: showroom-visual-production
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Build visual production manifest
+        run: python3 scripts/build_showroom_visual_manifest.py
+
+      - name: Publish customer-visible manifest
+        run: |
+          git config user.name "SHIRMANI Showroom Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/showroom-visual-manifest.json generated/showroom-visual-manifest.md
+          git diff --cached --quiet || git commit -m "chore: publish showroom visual production state"
+          git push
