@@ -13,16 +13,21 @@ function hashCode(s){let h=2166136261;for(let i=0;i<String(s).length;i++){h^=Str
 function visualData(p){return SHIRMANI_PRODUCT_VISUAL.visual(p)}
 const id=new URLSearchParams(location.search).get("id")||"";let product=null,rating=0;const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 async function load(){
- const d=await fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
- const i=Math.max(0,(d.products||[]).findIndex(x=>x.id===id));
- product=(d.products||[])[i]||null;
+ const loadCatalog=async()=>{
+  for(const src of ["generated/1000-digital-products.json","showroom-products.json","generated/product-catalog-public.json"]){
+    try{const d=await fetch(src+"?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()); const items=d.products||d.offers||[]; if(items.length) return items;}catch(e){}
+  } return [];
+ };
+ const items=await loadCatalog();
+ const i=Math.max(0,items.findIndex(x=>x.id===id));
+ product=items[i]||null;
  if(!product){document.getElementById("product").innerHTML="<h1>Product unavailable</h1>";return}
  document.title=product.name+" — Shirmani";
  const f=(product.family||"").toLowerCase();
  const price=Number(product.offer_price_inr||product.price_inr||0);
  const offer=product.offer||"PUBLIC LAUNCH PRICE";
  const q=product.qc_code||"QC-PENDING",g=product.gate_no||"GATE-PENDING";
- document.getElementById("product").innerHTML='<div class="product-visual"><img src="'+(product.image_url||visualData(product))+'" alt="'+esc(product.name)+' — product visual"></div><div class="status">'+esc(product.family)+' · '+esc(product.engine)+'</div><h1>'+esc(product.name)+'</h1><p class="lead">Runnable public digital product mode from the SHIRMANI factory catalogue. यह browser-executable product है; external AI, payment और cloud-service deployment अलग infrastructure हैं।</p><div class="price">'+money(price)+'</div><p class="offer">'+offer+'</p><p><a class="btn" href="products/1000-digital-product-factory.html?id='+encodeURIComponent(product.id)+'">▶ Product इस्तेमाल करें</a> <a class="btn" href="product-order.html?id='+encodeURIComponent(product.id)+'">🛒 Buy / Order</a></p><p class="warning">Payment route is configured for Paytm/UPI and PayPal; dispatch remains separate until payment and fulfilment evidence exist.</p>';
+ document.getElementById("product").innerHTML='<div class="product-visual"><img src="'+("products/visuals/"+encodeURIComponent(String(product.id)).toLowerCase()+".svg")+'" onerror="this.onerror=null;this.src=visualData(product)" alt="'+esc(product.name)+' — 4K product visual"></div><div class="status">'+esc(product.family)+' · '+esc(product.engine)+'</div><h1>'+esc(product.name)+'</h1><p class="lead">Runnable public digital product mode from the SHIRMANI factory catalogue. यह browser-executable product है; external AI, payment और cloud-service deployment अलग infrastructure हैं।</p><div class="price">'+money(price)+'</div><p class="offer">'+offer+'</p><p><a class="btn" href="products/1000-digital-product-factory.html?id='+encodeURIComponent(product.id)+'">▶ Product इस्तेमाल करें</a> <a class="btn" href="product-order.html?id='+encodeURIComponent(product.id)+'">🛒 Buy / Order</a></p><p class="warning">Payment route is configured for Paytm/UPI and PayPal; dispatch remains separate until payment and fulfilment evidence exist.</p>';
  document.getElementById("passport").innerHTML=[["Product ID",product.id],["Family",product.family],["Engine",product.engine],["Production",product.status],["QC code",q],["Gate",g],["Dispatch","NO"],["Commercial","NOT_CONNECTED"]].map(x=>'<div class="kv"><small>'+esc(x[0])+'</small><code>'+esc(x[1])+'</code></div>').join("");
  const qrText=location.origin+location.pathname+"?id="+encodeURIComponent(product.id)+"|PRODUCT:"+product.id+"|QC:"+q+"|GATE:"+g+"|DISPATCH:NO";const box=document.querySelector("#qr").parentElement;document.getElementById("qr").remove();box.insertAdjacentHTML("afterbegin",'<div id="productQrCode"></div>');new QRCode(document.getElementById("productQrCode"),{text:qrText,width:220,height:220});box.insertAdjacentHTML("afterend","<p class=\"status\">यह Product Passport QR है: Product ID + QC code + Gate + Dispatch state. Payment/support QR अलग public payment surface पर है।</p>");
  document.getElementById("stars").innerHTML=[1,2,3,4,5].map(n=>'<button data-n="'+n+'" aria-label="'+n+' stars">★</button>').join("");
