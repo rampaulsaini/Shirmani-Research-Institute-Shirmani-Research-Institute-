@@ -7,7 +7,7 @@ import hashlib, html, json, os
 from urllib.parse import quote
 
 ROOT=Path(__file__).resolve().parents[1]
-CAT=ROOT/"generated/1000-digital-products.json"
+CAT=ROOT/"generated/canonical-5000-product-catalog.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
 VERSION="2026-10-07-production-visual-v10-local-logo-short-description-qr"
@@ -51,6 +51,8 @@ def make(p):
 </svg>'''
 
 def main():
+    from factory.canonical_product_catalog import write_catalog
+    write_catalog(CAT)
     products=json.loads(CAT.read_text(encoding="utf-8")).get("products",[])
     OUT.mkdir(parents=True,exist_ok=True)
     previous={}
