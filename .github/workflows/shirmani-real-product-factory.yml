@@ -32,6 +32,10 @@ jobs:
         run: python3 factory/concrete_product_modules.py
       - name: Build persistent 4K product visual identities
         run: python3 factory/product_visual_identity_factory.py
+      - name: Build repository-bound QR assets for every product
+        run: |
+          python3 -m pip install --disable-pip-version-check "qrcode>=8,<9"
+          QR_BATCH=5000 python3 factory/product_qr_asset_factory.py
       - name: Build public production dashboard
         run: python3 factory/production_dashboard.py
       - name: Production QC structure check
@@ -63,7 +67,7 @@ jobs:
         run: |
           git config user.name 'SHIRMANI Real Product Factory'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add generated/1000-digital-products.json generated/real-product-factory-status.json generated/PRODUCT-PASSPORTS.jsonl generated/product-visual-assets.json products/modules products/production products/visuals production-dashboard.html
+          git add generated/1000-digital-products.json generated/real-product-factory-status.json generated/PRODUCT-PASSPORTS.jsonl generated/product-visual-assets.json generated/product-qr-assets.json products/modules products/production products/visuals products/visuals/qr production-dashboard.html
           if git diff --cached --quiet; then
             echo "No production delta"
           else
