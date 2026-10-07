@@ -24,7 +24,7 @@ def make_qr(payload:str)->str:
 def main():
     products=json.loads(CAT.read_text(encoding="utf-8")).get("products",[])
     OUT.mkdir(parents=True,exist_ok=True)
-    try: batch=max(1,min(1000,int(os.environ.get("QR_BATCH","250"))))
+    try: batch=max(1,min(5000,int(os.environ.get("QR_BATCH","250"))))
     except ValueError: batch=250
     missing=[p for p in products if not (OUT/(str(p["id"]).lower()+".svg")).exists()]
     selected={id(p) for p in missing[:batch]}
