@@ -55,23 +55,23 @@ jobs:
           git config user.email "shirmani-production@users.noreply.github.com"
           git add generated factory/production_scale.py
           git add products/concrete products/production || true
-          if git diff --cached --quiet; then echo "No new production output."; exit 0; fi
-          git commit -m "chore(production): materialize next public product batch"
-          git fetch origin main
-          git rebase origin/main || true
-          if git push origin HEAD:main; then
-            echo "Production batch published directly to main."
+          if git diff --cached --quiet; then
+            echo "No new production output."
             exit 0
           fi
-          echo "::warning::Direct main publication was rejected; falling back to governed production PR."
-          BRANCH="production/auto-batch"
-          git branch -f "$BRANCH" HEAD
-          git push --force-with-lease origin "HEAD:$BRANCH"
-          existing_pr="$(gh pr list --base main --head "$BRANCH" --state open --json number --jq '.[0].number // empty')"
-          if [ -z "$existing_pr" ]; then
-            gh pr create --base main --head "$BRANCH" --title "chore(production): publish next public product batch" --body "Automated production batch. Concrete product artifacts and public showroom metadata are generated first; downstream QC/verification remain separate."
-          fi
-          pr="$(gh pr list --base main --head "$BRANCH" --state open --json number --jq '.[0].number // empty')"
-          if [ -n "$pr" ]; then
-            gh pr merge "$pr" --auto --squash || echo "::warning::Auto-merge could not be enabled; production PR remains open."
-          fi
+          git commit -m "chore(production): materialize next public product batch"
+          for attempt in 1 2 3 4 5 6 7; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                echo "Production batch published directly to main on attempt=$attempt."
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            echo "Main moved or publication was rejected; retrying attempt=$attempt"
+            sleep $((attempt * 2))
+          done
+          echo "::warning::Direct main publication unavailable after retries; generated batch remains in this run workspace."
+          exit 0

@@ -80,4 +80,18 @@ jobs:
             exit 0
           fi
           git commit -m "chore(quality): persist customer review production signal"
-          git push origin HEAD:main
+          git fetch origin main
+          for attempt in 1 2 3 4 5; do
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                echo "Customer review quality telemetry published on main."
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            echo "Main moved during customer-review publication; retrying attempt=$attempt"
+            git fetch origin main
+            sleep $((attempt * 2))
+          done
+          echo "::warning::Customer review telemetry could not publish after retries; workflow result remains non-fatal."
