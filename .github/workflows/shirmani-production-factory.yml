@@ -1,11 +1,5 @@
-name: SHIRMANI Production Factory — Multi-Layer Continuous
+name: SHIRMANI Production Factory — Manual Staging
 on:
-  push:
-    paths:
-      - "factory/production_materializer.py"
-      - ".github/workflows/shirmani-production-factory.yml"
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
