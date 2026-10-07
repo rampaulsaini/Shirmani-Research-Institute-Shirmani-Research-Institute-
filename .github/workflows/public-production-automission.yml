@@ -41,10 +41,18 @@ jobs:
             git archive FETCH_HEAD generated products/concrete products/visuals | tar -x -C /tmp/shirmani-production-state
             cp -a /tmp/shirmani-production-state/generated/. generated/
             mkdir -p products/concrete
-            cp -a /tmp/shirmani-production-state/products/concrete/. products/concrete/
+            if [ -d /tmp/shirmani-production-state/products/concrete ]; then cp -a /tmp/shirmani-production-state/products/concrete/. products/concrete/; fi
             if [ -d /tmp/shirmani-production-state/products/visuals ]; then
               mkdir -p products/visuals
               cp -a /tmp/shirmani-production-state/products/visuals/. products/visuals/
+            fi
+            if [ -d /tmp/shirmani-production-state/products/demos ]; then
+              mkdir -p products/demos
+              cp -a /tmp/shirmani-production-state/products/demos/. products/demos/
+            fi
+            if [ -d /tmp/shirmani-production-state/products/vip-screenshots ]; then
+              mkdir -p products/vip-screenshots
+              cp -a /tmp/shirmani-production-state/products/vip-screenshots/. products/vip-screenshots/
             fi
             echo "PUBLIC_BUILD_SOURCE=automation/production-state" >> "$GITHUB_ENV"
             echo "Canonical production-state overlay loaded for public build."
