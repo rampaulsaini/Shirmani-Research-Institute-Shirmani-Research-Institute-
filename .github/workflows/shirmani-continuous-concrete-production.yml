@@ -52,7 +52,11 @@ jobs:
           git add generated/1000-digital-products.json products/concrete generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json generated/concrete-product-depth-status.json
           git commit -m "auto(production): expand catalog and materialize next concrete batch"
           git push --set-upstream origin "$BRANCH"
-          gh pr create --base main --head "$BRANCH" --title "Automission: publish next concrete product batch" --body "Automated production batch: catalog expansion + concrete product assets. Production is source-bound; QC/gate/dispatch remain downstream states."
+          if gh pr create --base main --head "$BRANCH" --title "Automission: publish next concrete product batch" --body "Automated production batch: catalog expansion + concrete product assets. Production is source-bound; QC/gate/dispatch remain downstream states."; then
+            echo "Production PR created."
+          else
+            echo "::warning::PR creation is unavailable under the current repository policy. The generated production branch is preserved for the persistence lane."
+          fi
           gh pr merge --auto --squash "$BRANCH" || echo "Auto-merge unavailable; PR remains open for repository policy/review."
           echo "Production PR ready: $BRANCH"
           echo "Production remains source-bound; QC/gate/dispatch are downstream."
