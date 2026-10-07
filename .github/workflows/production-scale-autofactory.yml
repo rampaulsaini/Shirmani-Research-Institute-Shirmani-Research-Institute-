@@ -10,6 +10,7 @@ on:
       - ".github/workflows/production-scale-autofactory.yml"
       - "factory/materialize_all_product_assets.py"
       - "factory/product_visual_identity_factory_v2.py"
+      - "factory/canonical_product_catalog.py"
       - "generated/1000-digital-products.json"
 permissions:
   contents: write
@@ -33,7 +34,7 @@ jobs:
           git fetch origin automation/production-state
           git fetch origin main
           git checkout -B automation/production-state origin/automation/production-state
-          git checkout origin/main -- factory/incremental_product_production.py factory/materialize_all_product_assets.py factory/product_visual_identity_factory_v2.py
+          git checkout origin/main -- factory/incremental_product_production.py factory/materialize_all_product_assets.py factory/product_visual_identity_factory_v2.py factory/canonical_product_catalog.py
       - name: Materialize next concrete product batch
         run: python3 factory/incremental_product_production.py
       - name: Publish production state

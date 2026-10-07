@@ -277,16 +277,17 @@ Every current catalog identity has a public `product-demo.html?id=...` route. Th
 - **Continuity:** scheduled production does not require an active chat session.
 - **Boundary:** demo media demonstrates usage/presentation; it is not independent scientific verification.
 
-## ⚡ Canonical Concrete Digital-Product Production — 2026-10-06
+## ⚡ Canonical Concrete Digital-Product Production — 2026-10-07
 
-The canonical public-production path now distinguishes **architecture engines** from **concrete products**:
+The canonical public-production path distinguishes **catalog identities**, **architecture engines**, and **concrete products**:
 
-- **1,016** catalog product identities are the production target.
+- **5,000** catalog product identities are the current concrete-production scale target.
 - **25** reusable browser engines are implementation primitives, not the product count.
-- The canonical 5-minute public-production workflow materializes the 1,016 catalog identities into concrete browser product assets before GitHub Pages deployment.
-- The production gate fails closed if the canonical catalog is not 1,016 or the concrete asset count does not equal the catalog count.
-- Product production state is separate from sales, payment, dispatch and independent verification.
+- The current published production state records **1,516 concrete products / 5,000 target (30.32%)**, with **3,484** remaining to the current scale target.
+- The canonical 5-minute production conveyor materializes the next bounded batch of catalog identities into concrete browser product assets.
+- Catalog identity is never counted as concrete production until a real repository artifact exists.
+- Product production remains separate from sales, payment, dispatch and independent verification.
 
-**Canonical flow:** 1,016 catalog identities → concrete product assets → QC/metadata → public deployment → commercial dispatch gate → downstream verification.
+**Canonical flow:** 5,000 catalog identities → concrete product assets → product visual + short description + QR long passport + demo + VIP presentation → QC/metadata → public showroom → commercial dispatch gate → downstream verification.
 
-This is intended to eliminate the previous ambiguity where a 25-engine architecture could be mistaken for only 25 produced products.
+This removes the previous ambiguity where a smaller seed registry or a 25-engine architecture could be mistaken for the full production target.
