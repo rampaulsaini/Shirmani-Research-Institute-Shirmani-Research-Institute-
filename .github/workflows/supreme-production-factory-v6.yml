@@ -1,0 +1,27 @@
+name: SHIRMANI Supreme Production Factory v6
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+concurrency:
+  group: shirmani-production-write
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - name: Materialize next customer-visible batch
+        run: python3 factory/supreme_production_factory_v6.py
+      - name: Publish production result
+        run: |
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/concrete products/visuals generated
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "production: materialize next customer-visible batch"
+          git push
