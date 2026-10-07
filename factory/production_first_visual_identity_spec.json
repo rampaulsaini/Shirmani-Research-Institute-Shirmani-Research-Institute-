@@ -1,0 +1,9 @@
+{
+  "schema_version":"1.0",
+  "name":"SHIRMANI Production-First Visual Identity Standard",
+  "purpose":"हर concrete digital product को public showroom में अलग, साफ, scalable और commercially understandable identity देना।",
+  "layers":["INSTITUTE_DISCOVERY","FACTORY_PRODUCT_PACKAGE","QC_DISPATCH_GATE","SHOWROOM_PUBLIC_SALE"],
+  "visual":{"source":"deterministic vector identity from product id + family + engine","display":"responsive 16:10","scaling":"vector-first; no forced raster upscaling","short_description":"visual/card पर","long_description":"QR route पर","identity":"unique product id + finalized public name + family + engine"},
+  "commercial":{"required_before_sale":["real product route","real description","real price","offer state","dispatch route","customer feedback route"],"not_allowed":"नाम मात्र को sold/production-complete घोषित करना"},
+  "feedback":{"inputs":["public reviews","ratings","usage feedback","commits","production telemetry"],"purpose":"अगली production iteration की quality, usability, presentation और offer सुधारना"}
+}
