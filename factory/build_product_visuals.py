@@ -46,7 +46,8 @@ for p in items:
 <text x="660" y="1260" font-family="sans-serif" font-size="54" fill="#fff">QC · {esc(qc)}   GATE · {esc(gate)}   DISPATCH · {esc(p.get("dispatch_no","NO"))}</text>
 <text x="660" y="1430" font-family="sans-serif" font-size="82" font-weight="950" fill="#e8c65b">OPEN PRODUCT →</text>
 <text x="660" y="1760" font-family="sans-serif" font-size="50" fill="#fff">Short description + identity on visual · QR route to full product description</text>
-<rect x="2880" y="1300" width="540" height="540" rx="24" fill="#fff"/><image x="2900" y="1320" width="500" height="500" href="data:image/png;base64,{qr_b64}"/>
+<rect x="2920" y="105" width="720" height="790" rx="48" fill="#061016" stroke="#e8c65b" stroke-width="9"/><text x="3060" y="205" fill="#fff" font-family="sans-serif" font-size="48" font-weight="900">LONG DESCRIPTION</text><text x="3230" y="265" fill="#fff" font-family="sans-serif" font-size="48" font-weight="900">/ PRODUCT DETAILS</text><rect x="3050" y="330" width="470" height="470" fill="#fff"/><image x="3060" y="340" width="450" height="450" href="data:image/png;base64,{qr_b64}"/><text x="3070" y="850" fill="#62e6ff" font-family="sans-serif" font-size="31" font-weight="900">SCAN FOR LONG DESCRIPTION</text>
+<text x="660" y="1760" font-family="sans-serif" font-size="50" fill="#fff">Short description + identity on visual · QR route to full product description · DEMO VIDEO</text>
 <text x="2920" y="1910" font-family="sans-serif" font-size="40" fill="#d9e3ef">Author mark · शिरोमणि रामपॉल सैनी</text>
 <text x="2920" y="1975" font-family="sans-serif" font-size="34" fill="#d9e3ef">3840×2160 vector master · resolution independent</text></svg>'''
     (OUT/(slug(pid)+".svg")).write_text(svg,encoding="utf-8")
