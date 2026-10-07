@@ -10,8 +10,8 @@ permissions:
   pages: write
   id-token: write
 concurrency:
-  group: shirmani-continuous-concrete-production
-  cancel-in-progress: true
+  group: shirmani-production-state-writer
+  cancel-in-progress: false
 jobs:
   produce:
     runs-on: ubuntu-latest
@@ -89,7 +89,7 @@ jobs:
             generated/concrete-product-truth.json
             generated/concrete-product-production-status.json
             generated/concrete-product-depth-status.json
-      - name: Persist production results
+      - name: Persist production results without rebase conflicts
         run: |
           set -euo pipefail
           git config user.name "SHIRMANI Production Automission"
@@ -97,34 +97,36 @@ jobs:
           git add generated/1000-digital-products.json generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json generated/concrete-product-depth-status.json generated/concrete-product-asset-status.json generated/live-production-state.json products/concrete
           if git diff --cached --quiet; then
             echo "No production delta"
-          else
-            git commit -m "chore(production): persist concrete product batch"
-            for attempt in 1 2 3 4 5 6 7; do
-              git fetch origin automation/production-state || true
-              remote_sha="$(git rev-parse FETCH_HEAD 2>/dev/null || true)"
-              if [ -z "$remote_sha" ]; then
-                echo "Production state branch is not readable yet; retrying attempt=$attempt"
-                sleep $((attempt * 2))
-                continue
-              fi
-              # Rebase this production delta onto the newest persistent state so concurrent
-              # production cycles do not overwrite each other's product batches.
-              if git rebase "$remote_sha"; then
-                rebased_sha="$(git rev-parse HEAD)"
-                if git push --force-with-lease="refs/heads/automation/production-state:$remote_sha" origin "$rebased_sha:automation/production-state"; then
-                  echo "PRODUCTION_STATE_PERSISTENCE=SUCCESS attempt=$attempt"
-                  exit 0
-                fi
-              else
-                git rebase --abort || true
-                echo "Production state rebase conflict; retrying from refreshed state attempt=$attempt"
-              fi
-              echo "Production state branch moved during push; retrying attempt=$attempt"
-              sleep $((attempt * 2))
-            done
-            echo "::error::Unable to persist production state after 5 attempts"
-            exit 1
+            exit 0
           fi
+          mkdir -p /tmp/shirmani-production-snapshot
+          git archive --format=tar HEAD generated products | tar -x -C /tmp/shirmani-production-snapshot
+          git diff --cached --binary > /tmp/shirmani-production.patch
+          for attempt in 1 2 3 4 5 6 7; do
+            git fetch origin automation/production-state || true
+            remote_sha="$(git rev-parse FETCH_HEAD 2>/dev/null || true)"
+            if [ -z "$remote_sha" ]; then
+              echo "Production state branch is not readable yet; retrying attempt=$attempt"
+              sleep $((attempt * 2))
+              continue
+            fi
+            git reset --hard "$remote_sha"
+            git clean -fd
+            if git apply --index /tmp/shirmani-production.patch; then
+              git commit -m "chore(production): persist concrete product batch"
+              new_sha="$(git rev-parse HEAD)"
+              if git push --force-with-lease="refs/heads/automation/production-state:$remote_sha" origin "$new_sha:automation/production-state"; then
+                echo "PRODUCTION_STATE_PERSISTENCE=SUCCESS attempt=$attempt"
+                exit 0
+              fi
+            else
+              git reset --hard "$remote_sha"
+              echo "Production delta no longer applies cleanly; regenerating from refreshed state attempt=$attempt"
+            fi
+            sleep $((attempt * 2))
+          done
+          echo "::error::Unable to persist production state after 7 conflict-safe attempts"
+          exit 1
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
