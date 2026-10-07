@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 SRC=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"generated"
-ART=OUT/"products"
+ART=ROOT/"products"/"concrete"
 STATE=OUT/"production-state.json"
 BATCH=100200
 
@@ -61,7 +61,7 @@ def main():
                     "production_state":"PRODUCED","qc_state":"READY","sale_state":"OFFERED",
                     "price_inr":base,"offer_price_inr":offer,"offer":"Launch offer",
                     "guarantee":"30-day product-access/defect support policy; subject to final commercial terms",
-                    "packing":"SUPREME_DIGITAL_PRIME","artifact_url":f"generated/products/{pid}.html",
+                    "packing":"SUPREME_DIGITAL_PRIME","artifact_url":f"products/concrete/{pid}.html",
                     "passport_url":f"product-passport.html?id={pid}","showroom_url":f"supreme-marking-hub.html?id={pid}",
                     "production_url":f"products/1000-digital-product-factory.html?id={pid}","generated_at":stamp})
         (ART/f"{pid}.html").write_text(build_artifact(p,row),encoding="utf-8")
