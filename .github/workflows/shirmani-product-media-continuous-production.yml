@@ -1,0 +1,68 @@
+name: SHIRMANI Product Media Continuous Production
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "factory/product_visual_identity_factory_v2.py"
+      - "factory/product_specific_demo_video_factory.py"
+      - "factory/product_vip_screenshot_factory.py"
+      - "generated/1000-digital-products.json"
+      - ".github/workflows/shirmani-product-media-continuous-production.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-product-media-continuous-production
+  cancel-in-progress: false
+
+jobs:
+  media:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Produce next 4K visual batch
+        env:
+          VISUAL_BATCH: "250"
+        run: python3 factory/product_visual_identity_factory_v2.py
+
+      - name: Produce next product-specific MP4 demo batch
+        env:
+          PRODUCT_DEMO_BATCH: "10"
+        run: python3 factory/product_specific_demo_video_factory.py
+
+      - name: Install browser tooling for VIP presentation
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Produce next VIP screenshot batch
+        env:
+          VIP_SCREENSHOT_BATCH: "25"
+          SHOWROOM_BASE: "http://127.0.0.1:8765"
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/showroom.log 2>&1 &
+          python3 factory/product_vip_screenshot_factory.py
+
+      - name: Publish media manifests and bounded assets
+        run: |
+          git config user.name "SHIRMANI Product Media Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/product-visual-assets-v2.json generated/product-specific-demo-video-manifest.json generated/product-vip-screenshot-manifest.json products/visuals products/demos/products products/vip-screenshots
+          git diff --cached --quiet || git commit -m "automission: produce next product media batch"
+          git push
+
+      - name: Production summary
+        run: |
+          echo "Product media lane: visual + QR + demo + VIP screenshot."
+          echo "Production is customer-facing output; verification remains downstream."
