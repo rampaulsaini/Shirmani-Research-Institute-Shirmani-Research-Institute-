@@ -29,7 +29,7 @@ def make(p):
     qr="https://api.qrserver.com/v1/create-qr-code/?size=430x430&margin=10&data="+quote(qr_target,safe="")
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
 <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{c1}"/><stop offset=".55" stop-color="{c2}"/><stop offset="1" stop-color="#050910"/></linearGradient></defs>
-<rect width="3840" height="2160" fill="url(#b)"/><rect x="70" y="70" width="3700" height="2020" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
+<rect width="3840" height="2160" fill="url(#b)"/><title>{esc(name)} — {esc(pid)}</title><desc>{esc(IDENTITY)} · Short description on image · QR for long product description · 3840×2160 4K-ready product identity.</desc><rect x="70" y="70" width="3700" height="2020" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
 <circle cx="360" cy="360" r="205" fill="#061016" stroke="#e7c85b" stroke-width="14"/><image href="{LOGO}" x="175" y="175" width="370" height="370" preserveAspectRatio="xMidYMid slice"/>
 <text x="360" y="640" text-anchor="middle" fill="#f6d35f" font-family="system-ui,sans-serif" font-size="40" font-weight="950">Shiromani Rampal Saini</text>
 <text x="360" y="692" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="750">SHIRMANI HEART-VIEW · IMPARTIAL UNDERSTANDING</text>
