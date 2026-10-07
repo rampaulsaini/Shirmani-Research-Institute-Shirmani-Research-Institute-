@@ -8,7 +8,7 @@ on:
       batch_size:
         description: "Product-specific MP4s per cycle"
         required: false
-        default: "10"
+        default: "50"
   push:
     branches: [main]
     paths:
@@ -28,7 +28,7 @@ concurrency:
 jobs:
   produce:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -37,7 +37,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Produce next bounded product-specific video batch
         env:
-          PRODUCT_DEMO_BATCH: \${{ github.event.inputs.batch_size || '10' }}
+          PRODUCT_DEMO_BATCH: \${{ github.event.inputs.batch_size || '50' }}
         run: python3 factory/product_specific_demo_video_factory.py
       - name: Publish customer-facing demo media through PR
         uses: peter-evans/create-pull-request@v7
