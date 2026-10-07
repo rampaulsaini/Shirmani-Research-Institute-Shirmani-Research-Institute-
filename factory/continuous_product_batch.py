@@ -2,7 +2,7 @@
 import json,html
 from pathlib import Path
 from datetime import datetime,timezone
-ROOT=Path(__file__).resolve().parents[1]; GEN=ROOT/"generated"; OUT=ROOT/"products/concrete"; BATCH=int(__import__("os").environ.get("CONCRETE_PRODUCT_BATCH_SIZE","250"))
+ROOT=Path(__file__).resolve().parents[1]; GEN=ROOT/"generated"; OUT=ROOT/"products/concrete"; OS=__import__("os"); BATCH=int(OS.environ.get("CONCRETE_PRODUCT_BATCH_SIZE","250")); FORCE_REBUILD=OS.environ.get("CONCRETE_PRODUCT_REBUILD","0")=="1"
 def now(): return datetime.now(timezone.utc).isoformat()
 def esc(x): return html.escape(str(x or ""),quote=True)
 def page(p):
@@ -26,7 +26,10 @@ def main():
                 done[p["id"]]={"id":p["id"],"production_state":"PRODUCED","sale_state":"READY_FOR_ORDER","artifact_url":"products/concrete/"+p["id"]+".html","production_batch":"EXISTING-ASSET-SYNC","produced_at":now(),"qc_code":"QC-PROD-"+p["id"],"gate_no":"GATE-PRODUCTION","dispatch_no":"NO"}
         else:
             pending.append(p)
-    pending=pending[:BATCH]
+    if FORCE_REBUILD:
+        pending=catalog["products"][:BATCH]
+    else:
+        pending=pending[:BATCH]
     batch="BATCH-"+datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"); ts=now(); OUT.mkdir(parents=True,exist_ok=True)
     for p in pending:
         (OUT/(p["id"]+".html")).write_text(page(p))
