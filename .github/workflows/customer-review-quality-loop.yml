@@ -4,7 +4,7 @@ on:
     types: [opened, edited, labeled]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   issues: read
 concurrency:
   group: shirmani-customer-review-quality-loop
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Build customer quality signal
+      - name: Build persistent customer quality signal
         env:
           EVENT_PATH: ${{ github.event_path }}
         shell: python
@@ -25,30 +25,59 @@ jobs:
           import json, os, re
           from datetime import datetime, timezone
           from pathlib import Path
-          e=json.loads(Path(os.environ["EVENT_PATH"]).read_text())
           root=Path("generated"); root.mkdir(exist_ok=True)
-          issue=e.get("issue",{}) or {}
+          issue={}
+          event_path=Path(os.environ["EVENT_PATH"])
+          if event_path.exists():
+              issue=json.loads(event_path.read_text()).get("issue",{}) or {}
           body=issue.get("body","") or ""
-          def f(n):
-              m=re.search(r"###\s+"+re.escape(n)+r"\s*\n+([^#]+)",body,re.I)
+          def field(name):
+              m=re.search(r"###\s+"+re.escape(name)+r"\s*\n+([^#]+)",body,re.I)
               return m.group(1).strip() if m else ""
+          rating_text=field("Rating")
+          m=re.search(r"(?:^\D*)?([1-5])(?:\s*/\s*5)?(?:\D|$)",rating_text)
+          rating=int(m.group(1)) if m else None
           rec={"issue_number":issue.get("number"),"updated_at":issue.get("updated_at"),
-               "product":f("Product ID or product name"),"rating":f("Rating"),
-               "experience":f("Customer experience"),"improvement":f("Improvement suggestion"),
-               "version":f("Product version"),"source":"github-public-review",
+               "product":field("Product ID or product name"),"rating":rating,"rating_raw":rating_text,
+               "experience":field("Customer experience"),"improvement":field("Improvement suggestion"),
+               "version":field("Product version"),"source":"github-public-review",
                "captured_at":datetime.now(timezone.utc).isoformat()}
           (root/"customer-review-event.json").write_text(json.dumps(rec,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-          queue={"generated_at":datetime.now(timezone.utc).isoformat(),
-                 "input_type":"customer_review","production_quality_signal":True,
-                 "independent_verification":False,"records":[rec],
-                 "next_actions":["triage feedback","prioritize product improvement","feed next production cycle"]}
+          history=root/"customer-review-history.jsonl"
+          existing=history.read_text(encoding="utf-8") if history.exists() else ""
+          marker=json.dumps({"issue_number":rec["issue_number"],"updated_at":rec["updated_at"]},ensure_ascii=False)
+          if rec["issue_number"] is not None and rec["updated_at"] and not (str(rec["issue_number"]) in existing and str(rec["updated_at"]) in existing):
+              with history.open("a",encoding="utf-8") as f: f.write(json.dumps(rec,ensure_ascii=False)+"\n")
+          records=[]
+          if history.exists():
+              for line in history.read_text(encoding="utf-8").splitlines():
+                  try: records.append(json.loads(line))
+                  except Exception: pass
+          ratings=[x["rating"] for x in records if isinstance(x.get("rating"),int) and 1<=x["rating"]<=5]
+          products=sorted({str(x.get("product")).strip() for x in records if x.get("product")})
+          improvements=[x for x in records if x.get("improvement")]
+          dashboard={"generated_at":datetime.now(timezone.utc).isoformat(),"review_count":len(records),
+                     "average_rating":round(sum(ratings)/len(ratings),2) if ratings else None,
+                     "products_with_feedback":len(products),"improvement_actions":len(improvements),
+                     "quality_signal":"CUSTOMER_FEEDBACK","independent_verification":False,
+                     "next_production_input":"prioritize product improvements from customer experience and suggestions",
+                     "history":"generated/customer-review-history.jsonl"}
+          (root/"customer-quality-dashboard.json").write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          queue={"generated_at":datetime.now(timezone.utc).isoformat(),"input_type":"customer_review",
+                 "production_quality_signal":True,"independent_verification":False,"records":[rec],
+                 "next_actions":["triage feedback","prioritize product improvement","feed next production cycle","publish updated quality telemetry"]}
           (root/"public-review-quality-queue.json").write_text(json.dumps(queue,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-          print(json.dumps(queue,ensure_ascii=False))
-      - name: Publish review signal artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: shirmani-customer-review-${{ github.run_number }}
-          retention-days: 30
-          path: |
-            generated/customer-review-event.json
-            generated/public-review-quality-queue.json
+          print(json.dumps(dashboard,ensure_ascii=False))
+      - name: Persist customer quality telemetry
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Customer Quality Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/customer-review-event.json generated/customer-review-history.jsonl generated/customer-quality-dashboard.json generated/public-review-quality-queue.json
+          if git diff --cached --quiet; then
+            echo "No customer quality delta"
+            exit 0
+          fi
+          git commit -m "chore(quality): persist customer review production signal"
+          git push origin HEAD:main
