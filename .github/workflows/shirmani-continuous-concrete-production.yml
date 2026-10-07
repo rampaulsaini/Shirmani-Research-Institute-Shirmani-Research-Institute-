@@ -70,6 +70,7 @@ jobs:
       - name: Materialize unique 4K product identity visuals
         env:
           VISUAL_BATCH: "5000"
+          VISUAL_REBUILD: "1"
         run: python3 factory/product_visual_identity_factory.py
       - name: Materialize per-product QR long-description assets
         env:
@@ -111,6 +112,8 @@ jobs:
           print(f"PRODUCTION: {produced}/{target}")
           PY
 
+      - name: Publish public production operations telemetry
+        run: python3 factory/production_operations_status.py
       - name: Publish production evidence artifact
         uses: actions/upload-artifact@v4
         with:
@@ -125,6 +128,7 @@ jobs:
             generated/concrete-product-depth-status.json
             generated/product-visual-assets.json
             generated/product-qr-assets.json
+            generated/production-operations-status.json
       - name: Publish concrete production state to canonical production branch
         shell: bash
         run: |
@@ -135,7 +139,7 @@ jobs:
           git fetch origin automation/production-state
           git switch -C automation/production-state FETCH_HEAD
           git stash pop >/dev/null 2>&1 || true
-          git add generated/live-production-state.json generated/concrete-product-asset-status.json generated/concrete-product-truth.json generated/concrete-production-overlay.json generated/concrete-product-production-status.json generated/concrete-product-depth-status.json generated/continuous-production-batch-status.json generated/1000-digital-products.json generated/product-visual-assets.json generated/product-qr-assets.json products/concrete products/visuals
+          git add generated/live-production-state.json generated/concrete-product-asset-status.json generated/concrete-product-truth.json generated/concrete-production-overlay.json generated/concrete-product-production-status.json generated/concrete-product-depth-status.json generated/continuous-production-batch-status.json generated/1000-digital-products.json generated/product-visual-assets.json generated/product-qr-assets.json generated/production-operations-status.json products/concrete products/visuals
           if git diff --cached --quiet; then
             echo "No concrete production delta to publish."
             exit 0
