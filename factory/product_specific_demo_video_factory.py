@@ -64,7 +64,7 @@ def make_video(product,path):
 
 def load_catalog():
     """Resolve the strongest available production catalog instead of silently producing zero demos."""
-    candidates=[ROOT/"generated/1000-digital-products.json",ROOT/"generated/production-registry.json",ROOT/"generated/concrete-production-overlay.json"]
+    candidates=[ROOT/"generated/concrete-production-overlay.json",ROOT/"generated/1000-digital-products.json",ROOT/"generated/production-registry.json"]
     for source in candidates:
         if not source.exists(): continue
         try: data=json.loads(source.read_text(encoding="utf-8"))
@@ -92,7 +92,7 @@ def make_vip_screenshot(product,path):
 
 def main():
     products,catalog_source=load_catalog()
-    try: batch=max(1,min(50,int(os.environ.get("PRODUCT_DEMO_BATCH","10"))))
+    try: batch=max(1,min(50,int(os.environ.get("PRODUCT_DEMO_BATCH","25"))))
     except ValueError: batch=10
     OUT.mkdir(parents=True,exist_ok=True)
     VIP.mkdir(parents=True,exist_ok=True)
@@ -108,7 +108,7 @@ def main():
             "vip_screenshot_asset":f"products/demos/vip/{pid.lower()}.svg","visual_asset":f"products/visuals/{pid.lower()}.svg","long_description_route":f"product-passport.html?id={pid}","usage_steps":ENGINE_STEPS.get(str(p.get("engine","")).lower(),["Open product","Enter task/input","Run product module","Inspect result","Reuse output"]),"animated_fallback":True,"identity":"PRODUCT_SPECIFIC"})
     real=sum(x["real_mp4"] for x in rows)
     if not rows: raise SystemExit("Resolved catalog is empty; refusing to overwrite the public demo manifest.")
-    manifest_payload={"schema_version":2,"generated_at":datetime.now(timezone.utc).isoformat(),"catalog_source":catalog_source,"catalog_count":len(products),"real_mp4_count":real,"remaining_real_mp4":len(products)-real,"vip_screenshot_count":sum(1 for x in rows if (ROOT/x["vip_screenshot_asset"]).exists()),"remaining_vip_screenshots":len(products)-sum(1 for x in rows if (ROOT/x["vip_screenshot_asset"]).exists()),"created_this_cycle":len(selected),"batch_size":batch,"mode":"PRODUCT_SPECIFIC_LIGHTWEIGHT_MP4","media_standard":{"demo_video_required":True,"visual_required":True,"vip_screenshot_route_required":True,"short_description_on_visual":True,"long_description_qr":True},"truth_boundary":"Demo media demonstrates product usage flow; it is not scientific verification.","products":rows}
+    manifest_payload={"schema_version":2,"generated_at":datetime.now(timezone.utc).isoformat(),"catalog_source":catalog_source,"catalog_count":len(products),"real_mp4_count":real,"remaining_real_mp4":len(products)-real,"vip_screenshot_count":sum(1 for x in rows if (ROOT/x["vip_screenshot_asset"]).exists()),"remaining_vip_screenshots":len(products)-sum(1 for x in rows if (ROOT/x["vip_screenshot_asset"]).exists()),"created_this_cycle":len(selected),"batch_size":batch,"concrete_catalog_priority":True,"mode":"PRODUCT_SPECIFIC_LIGHTWEIGHT_MP4","media_standard":{"demo_video_required":True,"visual_required":True,"vip_screenshot_route_required":True,"short_description_on_visual":True,"long_description_qr":True},"truth_boundary":"Demo media demonstrates product usage flow; it is not scientific verification.","products":rows}
     MAN.write_text(json.dumps(manifest_payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     PUBLIC_MAN.write_text(json.dumps(manifest_payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"catalog_source":catalog_source,"catalog_count":len(products),"real_mp4_count":real,"created_this_cycle":len(selected),"remaining":len(products)-real},ensure_ascii=False))
