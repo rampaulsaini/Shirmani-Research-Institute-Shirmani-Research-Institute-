@@ -45,6 +45,6 @@ select{{padding:12px;border-radius:10px}} .grid{{padding:30px 6%;display:grid;gr
 const cards=[...document.querySelectorAll('.card')], select=document.querySelector('#cat');
 const cats=[...new Set(cards.map(x=>x.dataset.category))].sort();
 cats.forEach(c=>{{const o=document.createElement('option');o.textContent=c;select.appendChild(o)}});
-document.querySelectorAll('.qr').forEach(e=>new QRCode(e,{text:e.dataset.qr,width:128,height:128}));\nselect.onchange=()=>cards.forEach(c=>c.style.display=(select.value==='All'||c.dataset.category===select.value)?'block':'none');
+document.querySelectorAll('.qr').forEach(e=>new QRCode(e,{{text:e.dataset.qr,width:128,height:128}}));\nselect.onchange=()=>cards.forEach(c=>c.style.display=(select.value==='All'||c.dataset.category===select.value)?'block':'none');
 </script></body></html>"""
 open(out,"w",encoding="utf-8").write(page)
