@@ -10,8 +10,8 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-07-production-visual-v7"
-LOGO="https://i.ibb.co/xqf3kTPS/enhanced-image.webp"
+VERSION="2026-10-07-production-visual-v8-persistent-logo-qr"
+LOGO="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/assets/shirmani-perspective-logo.svg"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 
 def esc(v): return html.escape(str(v), quote=True)
