@@ -14,7 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CATALOG=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/concrete"
 BATCH=int(os.environ.get("CONCRETE_DEPTH_BATCH_SIZE","1000"))
-VERSION="ENGINE_MODULE_V2"
+VERSION="ENGINE_MODULE_V3"
 
 def esc(x):
     return html.escape(str(x or ""), quote=True)
@@ -54,8 +54,9 @@ def page(p):
 <style>body{{margin:0;background:#060b12;color:#f4f7fb;font:16px/1.6 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}}main{{max-width:1100px;margin:auto;padding:18px 14px 70px}}section{{background:#101923;border:1px solid #34485b;border-radius:18px;padding:18px;margin:12px 0}}h1,h2{{color:#f2cf58}}.m{{display:inline-block;background:#081019;border:1px solid #2f4254;padding:10px 13px;margin:4px;border-radius:10px}}input,textarea,select{{width:100%;box-sizing:border-box;background:#081019;color:#fff;padding:10px;border:1px solid #405466;border-radius:9px;margin:5px 0}}button,a{{padding:10px 13px;background:#f2cf58;color:#111;border:0;border-radius:9px;font-weight:900;text-decoration:none;display:inline-block;margin:4px;cursor:pointer}}pre{{white-space:pre-wrap;background:#05090e;padding:12px;border-radius:10px;overflow:auto}}.muted{{color:#aeb9c8}}.ok{{color:#72e6aa}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}}</style></head><body><main>
 <section><h1>꙰ {name}</h1><p class="muted">{description}</p><div class="m">ID<br><b>{pid}</b></div><div class="m">Category<br><b>{fam}</b></div><div class="m">Engine<br><b>{eng}</b></div><div class="m">Offer price<br><b>₹{price:,}</b></div><div class="m">Offer<br><b>{esc(p.get("offer") or "PUBLIC LAUNCH PRICE")}</b></div></section>
 <section><h2>QC / Gate / Dispatch</h2><div class="grid"><div class="m">QC<br><b>{qc}</b></div><div class="m">Gate<br><b>{gate}</b></div><div class="m">Dispatch<br><b>NO</b></div></div><p class="muted">Dispatch is deliberately separate from production. No sale or delivery is claimed without transaction evidence.</p></section>
-<section><h2>Working Product Module</h2><p class="muted">यह वास्तविक browser-side production module है। परिणाम customer use के लिए तुरंत दिखाई देता है; external AI/cloud execution का दावा नहीं किया गया है।</p>{ui}<pre id="out">Ready.</pre></section>
-<section><a href="../../showroom.html?id={pid}">Showroom</a><a href="../../product-passport.html?id={pid}">Passport</a><a href="../../product-order.html?id={pid}">Order</a></section>
+<section><h2>What you get</h2><div class="grid"><div class="m"><b>Concrete module</b><br>Browser में तुरंत उपयोग योग्य</div><div class="m"><b>Product passport</b><br>ID, engine, QC और gate</div><div class="m"><b>Public offer</b><br>Price + current offer</div><div class="m"><b>Continuous improvement</b><br>Customer feedback → next production</div></div><p class="muted">{description}</p></section>
+<section><h2>Working Product Module</h2><p class="muted">यह वास्तविक browser-side production module है। परिणाम customer use के लिए तुरंत दिखाई देता है; external AI/cloud execution या unsupported AI/quantum execution का दावा नहीं किया गया है।</p>{ui}<pre id="out">Ready.</pre></section>
+<section><h2>Customer experience → quality improvement</h2><p class="muted">उपयोग, review, rating और improvement suggestion customer-facing quality signals हैं। इन्हें research verification नहीं माना जाता; इनका उपयोग अगले product improvement cycle को बेहतर बनाने के लिए होता है।</p><a href="../../customer-reviews.html?id={pid}">⭐ Review / Improvement</a><a href="../../showroom.html?id={pid}">🛍️ Showroom</a><a href="../../product-passport.html?id={pid}">📋 Product Passport</a><a href="../../product-order.html?id={pid}">🛒 Order</a></section>
 <script>
 const PID="{pid}",ENG="{eng}",QC="{qc}",GATE="{gate}";
 const val=id=>document.getElementById(id)?.value||"";
