@@ -38,10 +38,14 @@ jobs:
           if git ls-remote --exit-code --heads origin automation/production-state >/dev/null 2>&1; then
             git fetch origin automation/production-state
             mkdir -p /tmp/shirmani-production-state
-            git archive FETCH_HEAD generated products/concrete | tar -x -C /tmp/shirmani-production-state
+            git archive FETCH_HEAD generated products/concrete products/visuals | tar -x -C /tmp/shirmani-production-state
             cp -a /tmp/shirmani-production-state/generated/. generated/
             mkdir -p products/concrete
             cp -a /tmp/shirmani-production-state/products/concrete/. products/concrete/
+            if [ -d /tmp/shirmani-production-state/products/visuals ]; then
+              mkdir -p products/visuals
+              cp -a /tmp/shirmani-production-state/products/visuals/. products/visuals/
+            fi
             echo "PUBLIC_BUILD_SOURCE=automation/production-state" >> "$GITHUB_ENV"
             echo "Canonical production-state overlay loaded for public build."
           else
