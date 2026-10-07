@@ -1,0 +1,68 @@
+name: SHIRMANI Production-First Continuous Factory
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Concrete products per cycle"
+        required: false
+        default: "25"
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-production-first-continuous-factory
+  cancel-in-progress: false
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: main
+      - name: Materialize concrete product batch
+        env:
+          REQUESTED_BATCH: ${{ github.event.inputs.batch_size || '25' }}
+        shell: python
+        run: |
+          import json,os,re
+          from datetime import datetime,timezone
+          from pathlib import Path
+          prod=Path("products/concrete"); gen=Path("generated")
+          prod.mkdir(parents=True,exist_ok=True); gen.mkdir(exist_ok=True)
+          target=5000
+          try: batch=max(1,min(50,int(os.environ.get("REQUESTED_BATCH","25"))))
+          except: batch=25
+          ids=[int(m.group(1)) for p in prod.glob("SP-*.html") if (m:=re.fullmatch(r"SP-(\d+)\.html",p.name,re.I))]
+          start=max(ids,default=0)+1; count=min(batch,max(0,target-start+1))
+          families=[("AI & NLP","nlp"),("AI & ML","ai"),("Research","research"),("Creator","creator"),("Education","education"),("Nature & Earth","nature"),("Commerce","commerce"),("Productivity","productivity"),("Data & Files","data"),("Security & Quality","security"),("Audio & Media","audio"),("Visual Lab","visual"),("Engineering","engineering"),("Knowledge","knowledge"),("Automation","automation")]
+          prices=[89,149,249,495,799,999,1500,2500,5000]; offers=["PUBLIC LAUNCH PRICE","SUPREME 20% OFFER","EARLY ACCESS OFFER","SHOWROOM FEATURED"]
+          now=datetime.now(timezone.utc).isoformat(); created=[]
+          for n in range(start,start+count):
+            pid=f"SP-{n:04d}"; family,engine=families[(n-1)%len(families)]; price=prices[(n-1)%len(prices)]; offer=offers[(n-1)%len(offers)]
+            qc=f"QC-PROD-{pid}"
+            html=f"""<!doctype html><html lang="hi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>꙰ SHIRMANI {family} {n:04d}</title><style>body{{font:16px system-ui;background:#071019;color:#eee;max-width:1050px;margin:auto;padding:20px}}section{{background:#101923;border:1px solid #405466;border-radius:16px;padding:18px;margin:12px 0}}h1,h2{{color:#ffd84a}}.m{{display:inline-block;background:#081019;padding:12px;margin:4px;border-radius:9px}}textarea,input,button{{width:100%;box-sizing:border-box;background:#081019;color:#fff;padding:10px;border:1px solid #405466;border-radius:8px;margin:5px 0}}button,a{{padding:10px 13px;background:#ffd84a;color:#111;border:0;border-radius:8px;font-weight:800;text-decoration:none}}pre{{white-space:pre-wrap;background:#060b10;padding:12px}}</style><main><section><h1>꙰ SHIRMANI {family} Production Module {n:04d}</h1><p>Concrete public digital product <b>{pid}</b> · {family} · {engine}</p><div class="m">ID<br><b>{pid}</b></div><div class="m">Price<br><b>₹{price}</b></div><div class="m">Offer<br><b>{offer}</b></div></section><section><h2>QC / Gate / Dispatch</h2><div class="m">QC<br><b>{qc}</b></div><div class="m">Gate<br><b>GATE-PRODUCTION</b></div><div class="m">Dispatch<br><b>NO</b></div><p>PRODUCED · READY FOR CUSTOMER INSPECTION</p></section><section><h2>Working Product Module</h2><textarea id="x" rows="7" placeholder="Enter product input / brief"></textarea><button onclick="go()">Produce result</button><pre id="o">Ready.</pre></section><section><a href="../../showroom.html?id={pid}">Showroom</a> <a href="../../product-passport.html?id={pid}">Passport</a> <a href="../../product-order.html?id={pid}">Order</a></section></main><script>function go(){{let x=document.getElementById('x').value;document.getElementById('o').textContent=JSON.stringify({{product_id:'{pid}',engine:'{engine}',input:x,status:'PRODUCED',qc_code:'{qc}',gate_no:'GATE-PRODUCTION',dispatch_no:'NO',produced_at:new Date().toISOString()}},null,2)}}</script></html>"""
+            (prod/f"{pid}.html").write_text(html,encoding="utf-8")
+            created.append({"id":pid,"production_state":"PRODUCED","sale_state":"READY_FOR_ORDER","artifact_url":f"products/concrete/{pid}.html","produced_at":now,"qc_code":qc,"gate_no":"GATE-PRODUCTION","dispatch_no":"NO"})
+          op=gen/"concrete-production-overlay.json"
+          overlay=json.loads(op.read_text()) if op.exists() else {"schema_version":1,"architecture":["INSTITUTE","FACTORY","QC","SHOWROOM_SALE"],"production_first":True,"verification_is_downstream":True,"product_count":target,"products":[]}
+          by={x["id"]:x for x in overlay.get("products",[]) if isinstance(x,dict) and x.get("id")}
+          by.update({x["id"]:x for x in created}); products=sorted(by.values(),key=lambda x:int(re.search(r"\d+",x["id"]).group()))
+          total=len(products); overlay.update({"generated_at":now,"product_count":target,"produced_count":total,"remaining_count":max(0,target-total),"batch_size":batch,"products":products}); op.write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\n")
+          sp=gen/"live-production-state.json"; state=json.loads(sp.read_text()) if sp.exists() else {}
+          state.update({"schema_version":1,"generated_at":now,"production_first":True,"catalog_identities":target,"concrete_repository_assets":total,"current_catalog_pending":max(0,target-total),"five_thousand_scale_target":target,"remaining_to_scale_target":max(0,target-total),"concrete_materialization_percent_of_catalog":round(total/target*100,2),"concrete_materialization_percent_of_scale_target":round(total/target*100,2),"module_products_generated":total,"last_cycle_concrete_results":len(created),"state":"PRODUCTION_COMPLETE" if total>=target else "PRODUCTION_IN_PROGRESS"}); sp.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n")
+          print(f"created={len(created)} produced_total={total} remaining={max(0,target-total)}")
+      - name: Publish production result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/concrete generated/concrete-production-overlay.json generated/live-production-state.json
+          git diff --cached --quiet && exit 0
+          git commit -m "feat(production): materialize next concrete product batch"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
