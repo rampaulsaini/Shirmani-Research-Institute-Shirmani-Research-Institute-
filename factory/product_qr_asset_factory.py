@@ -8,7 +8,7 @@ import qrcode
 from qrcode.image.svg import SvgPathImage
 
 ROOT=Path(__file__).resolve().parents[1]
-CAT=ROOT/"generated/1000-digital-products.json"
+CAT_CANDIDATES=[ROOT/"generated/concrete-production-overlay.json",ROOT/"generated/1000-digital-products.json"]
 OUT=ROOT/"products/visuals/qr"
 MAN=ROOT/"generated/product-qr-assets.json"
 BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/product-passport.html?id="
@@ -21,8 +21,22 @@ def make_qr(payload:str)->str:
     b=io.BytesIO(); img.save(b)
     return b.getvalue().decode("utf-8")
 
+def load_products():
+    for source in CAT_CANDIDATES:
+        if not source.exists(): continue
+        try: data=json.loads(source.read_text(encoding="utf-8"))
+        except Exception: continue
+        products=data.get("products",[])
+        if products:
+            normalized=[]
+            for p in products:
+                pid=str(p.get("id") or p.get("product_id") or "").strip()
+                if pid: normalized.append({**p,"id":pid})
+            if normalized: return normalized,str(source.relative_to(ROOT))
+    raise SystemExit("No non-empty concrete production catalogue is available; refusing zero-product QR production.")
+
 def main():
-    products=json.loads(CAT.read_text(encoding="utf-8")).get("products",[])
+    products,catalog_source=load_products()
     OUT.mkdir(parents=True,exist_ok=True)
     try: batch=max(1,min(5000,int(os.environ.get("QR_BATCH","250"))))
     except ValueError: batch=250
@@ -40,7 +54,7 @@ def main():
     ready=sum(1 for x in rows if x["exists"])
     MAN.write_text(json.dumps({
         "version":1,"generated_at":datetime.now(timezone.utc).isoformat(),
-        "target":len(products),"qr_assets":ready,"created_this_cycle":created,
+        "target":len(products),"qr_assets":ready,"catalog_source":catalog_source,"created_this_cycle":created,
         "remaining":len(products)-ready,"batch_size":batch,
         "state":"READY" if ready==len(products) else "IN_PROGRESS",
         "purpose":"Per-product QR for long description / product details",
