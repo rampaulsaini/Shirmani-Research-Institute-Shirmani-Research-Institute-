@@ -94,7 +94,8 @@ let cat="all",page=0,products=[],overlay=new Map(),reviewStatus=null;
 const icons={tool:"⚙",research:"⌘",audio:"♫",certificate:"✦",short:"▶"};
 function hashCode(s){let h=2166136261;for(let i=0;i<String(s).length;i++){h^=String(s).charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
 function productVisual(p){return "<img src=\""+SHIRMANI_PRODUCT_VISUAL.visual(p)+"\" alt=\""+esc(String(p.name||"Digital Product"))+" — unique 4K product visual\" loading=\"lazy\">"}
-function productLongUrl(p){const u=String(p.store_url||p.artifact_url||p.url||"").trim();if(u)return u;return "showroom-product.html?id="+encodeURIComponent(p.id||"") }\nfunction productQr(p){const u=productLongUrl(p);if(!u)return "";const qr="https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&data="+encodeURIComponent(new URL(u,location.href).href);return "<div class=\"product-qr\"><img src=\""+qr+"\" alt=\"QR code for long product description\" loading=\"lazy\"><small><strong>Long description QR</strong>Scan to open the full product page / description. Product ID: "+esc(p.id||"—")+"</small></div>"}
+function productLongUrl(p){const u=String(p.store_url||p.artifact_url||p.url||"").trim();if(u)return u;return "showroom-product.html?id="+encodeURIComponent(p.id||"") }
+function productQr(p){const u=productLongUrl(p);if(!u)return "";const qr="https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&data="+encodeURIComponent(new URL(u,location.href).href);return "<div class=\"product-qr\"><img src=\""+qr+"\" alt=\"QR code for long product description\" loading=\"lazy\"><small><strong>Long description QR</strong>Scan to open the full product page / description. Product ID: "+esc(p.id||"—")+"</small></div>"}
 function money(n){return Number(n)===0?"FREE":"₹"+Number(n||0).toLocaleString("en-IN")}
 function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]))}
 function render(){
