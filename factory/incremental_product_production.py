@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 import json, os
 ROOT=Path(__file__).resolve().parents[1]
-GEN=ROOT/"generated"; CAT=GEN/"1000-digital-products.json"
+GEN=ROOT/"generated"; CAT=GEN/"canonical-5000-product-catalog.json"
 OUT=ROOT/"products/production"; VIS=ROOT/"products/visuals"
 LIVE=GEN/"live-production-state.json"; OVERLAY=GEN/"concrete-production-overlay.json"
 LEDGER=GEN/"incremental-production-ledger.jsonl"
@@ -13,7 +13,9 @@ def load(p,d):
     try:return json.loads(p.read_text(encoding="utf-8"))
     except Exception:return d
 def main():
-    target=max(1016,int(os.getenv("PRODUCT_TARGET","5000")))
+    from factory.canonical_product_catalog import write_catalog
+    write_catalog(CAT)
+    target=max(5000,int(os.getenv("PRODUCT_TARGET","5000")))
     batch=max(1,min(1000,int(os.getenv("PRODUCTION_BATCH","500"))))
     catalog=load(CAT,{})
     products=catalog.get("products",[])
