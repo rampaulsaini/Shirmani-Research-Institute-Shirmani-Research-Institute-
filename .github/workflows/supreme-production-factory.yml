@@ -28,7 +28,7 @@ jobs:
       - name: Publish production evidence artifact
         uses: actions/upload-artifact@v4
         with:
-          name: shirmani-supreme-production-${ github.run_number }}
+          name: shirmani-supreme-production-${{ github.run_number }}
           retention-days: 7
           path: |
             generated/public-production-catalog.json
