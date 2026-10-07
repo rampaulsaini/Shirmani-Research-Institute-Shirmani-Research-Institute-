@@ -37,7 +37,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Produce next bounded product-specific video batch
         env:
-          PRODUCT_DEMO_BATCH: \${{ github.event.inputs.batch_size || '50' }}
+                    PRODUCT_DEMO_BATCH: ${{ github.event.inputs.batch_size || '50' }}
         run: python3 factory/product_specific_demo_video_factory.py
       - name: Publish customer-facing demo media through PR
         uses: peter-evans/create-pull-request@v7
