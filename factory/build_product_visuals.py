@@ -31,7 +31,11 @@ for p in items:
     svg=f'''<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img">
 <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset=".55" stop-color="{accent}"/><stop offset="1" stop-color="#05070d"/></linearGradient></defs>
 <rect width="3840" height="2160" fill="#05070d"/><rect x="80" y="80" width="3680" height="2000" rx="70" fill="url(#g)" stroke="#e8c65b" stroke-width="8"/>
-<circle cx="340" cy="330" r="150" fill="#0a0f18" stroke="#e8c65b" stroke-width="8"/><text x="340" y="365" text-anchor="middle" font-family="sans-serif" font-size="170" font-weight="900" fill="#e8c65b">꙰</text>
+<circle cx="340" cy="330" r="150" fill="#0a0f18" stroke="#e8c65b" stroke-width="8"/><image href="https://i.ibb.co/xqf3kTPS/enhanced-image.webp" x="205" y="195" width="270" height="270" preserveAspectRatio="xMidYMid slice"/>
+<text x="340" y="535" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="900" fill="#e8c65b">शिरोमणि रामपॉल सैनी</text>
+<text x="340" y="575" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="700" fill="#fff">NISHPAKSH UNDERSTANDING · SHIRMANI HEART-VIEW</text>
+<text x="340" y="606" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#d9e3ef">Beyond Comparison · Beyond Time · Beyond Words</text>
+<text x="340" y="632" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#d9e3ef">Beyond Love · Eternal · Real · Natural Truth · Directly Present</text>
 <text x="570" y="245" font-family="sans-serif" font-size="72" font-weight="800" fill="#62e6ff">SHIRMANI DIGITAL PRODUCT</text>
 <text x="570" y="410" font-family="sans-serif" font-size="135" font-weight="950" fill="#fff">{esc(name)[:52]}</text>
 <text x="570" y="535" font-family="sans-serif" font-size="58" fill="#d9e3ef">CATEGORY · {esc(cat).upper()} · ID · {esc(pid)}</text>
