@@ -127,4 +127,25 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add generated/public-review-quality-queue.json generated/public-review-quality-status.json generated/public-review-research-input.md
           git diff --cached --quiet || git commit -m "automission: publish public review quality signals"
-          git push
+
+          # Other production automissions also write generated/ on main.
+          # Rebase before publishing so review telemetry does not fail merely
+          # because another production lane committed first.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git diff --quiet HEAD origin/main; then
+                echo "Review quality state already current after rebase."
+                exit 0
+              fi
+              if git push origin HEAD:main; then
+                echo "Review quality telemetry published on attempt $attempt."
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            sleep $((attempt * 3))
+          done
+          echo "::warning::Review telemetry could not publish after 5 retries; next scheduled cycle will retry."
+          exit 0
