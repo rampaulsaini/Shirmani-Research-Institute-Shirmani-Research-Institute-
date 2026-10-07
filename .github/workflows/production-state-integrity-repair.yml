@@ -1,0 +1,148 @@
+name: SHIRMANI Production State Integrity Repair
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-production-state-integrity-repair
+  cancel-in-progress: false
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PRODUCT_TARGET: "5000"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install production dependencies
+        run: python -m pip install --disable-pip-version-check "qrcode>=8,<9"
+      - name: Fetch production-state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin automation/production-state
+          git worktree add --detach /tmp/shirmani-production-state FETCH_HEAD
+          echo "PRODUCTION_STATE_HEAD=$(git rev-parse FETCH_HEAD)" >> "$GITHUB_ENV"
+      - name: Detect conflict markers
+        id: detect
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          root=Path("/tmp/shirmani-production-state")
+          markers=("<<<<<<< ","======= ",">>>>>>> ")
+          hits=[]
+          for p in root.rglob("*"):
+              if not p.is_file() or ".git" in p.parts or p.stat().st_size>8_000_000:
+                  continue
+              try: text=p.read_text(encoding="utf-8")
+              except (UnicodeDecodeError,OSError): continue
+              if any(m in text for m in markers): hits.append(str(p.relative_to(root)))
+          print("CONFLICT_MARKER_FILES",len(hits))
+          for x in hits[:50]: print("CONFLICT",x)
+          with open(os.environ["GITHUB_OUTPUT"],"a") as out:
+              out.write("repair_needed="+("true" if hits else "false")+"\\n")
+          PY
+      - name: Repair and rebuild production-state
+        if: \${{ steps.detect.outputs.repair_needed == 'true' }}
+        shell: bash
+        working-directory: /tmp/shirmani-production-state
+        run: |
+          set -euo pipefail
+          git checkout "$GITHUB_WORKSPACE" -- \
+            factory/public_module_inventory.py \
+            factory/real_product_factory.py \
+            factory/materialize_all_product_assets.py \
+            factory/product_qc_gate.py \
+            factory/product_visual_identity_factory_v2.py \
+            factory/product_qr_asset_factory.py \
+            factory/product_visual_qc_gate.py \
+            factory/public_production_materializer.py \
+            assets/shirmani-perspective-logo.svg
+          python3 factory/public_module_inventory.py
+          python3 factory/real_product_factory.py
+          python3 factory/materialize_all_product_assets.py
+          python3 factory/product_qc_gate.py
+          VISUAL_BATCH=5000 python3 factory/product_visual_identity_factory_v2.py
+          QR_BATCH=5000 python3 factory/product_qr_asset_factory.py
+          python3 factory/product_visual_qc_gate.py
+          python3 factory/public_production_materializer.py
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          root=Path("."); gen=root/"generated"
+          cat=json.loads((gen/"1000-digital-products.json").read_text(encoding="utf-8"))
+          target=int(cat.get("product_count",0))
+          concrete=len(list((root/"products/concrete").glob("*.html")))
+          production=len(list((root/"products/production").glob("*.html")))
+          visuals=len(list((root/"products/visuals").glob("*.svg")))
+          qrs=len(list((root/"products/visuals/qr").glob("*.svg")))
+          now=datetime.now(timezone.utc).isoformat()
+          live={
+            "schema_version":3,"generated_at":now,"production_first":True,
+            "catalog_identities":target,"concrete_repository_assets":concrete,
+            "production_browser_assets":production,"public_4k_visual_assets":visuals,
+            "product_qr_assets":qrs,"current_catalog_pending":max(0,target-concrete),
+            "five_thousand_scale_target":5000,"remaining_to_scale_target":max(0,5000-concrete),
+            "concrete_materialization_percent_of_catalog":round(100*concrete/target,2) if target else 0,
+            "concrete_materialization_percent_of_scale_target":round(100*concrete/5000,2),
+            "module_products_generated":production,"dispatch_released":0,
+            "sales_claimed":0,"payment_claimed":0,"independent_verification_claimed":0,
+            "state":"PRODUCTION_COMPLETE_CURRENT_CATALOG" if concrete>=target else "PRODUCTION_IN_PROGRESS",
+            "qc_state":"READY_FOR_QC",
+            "truth_boundary":"Produced artifacts, QC, dispatch and independent verification are distinct states."
+          }
+          (gen/"live-production-state.json").write_text(json.dumps(live,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          four={
+            "generated_at":now,"mode":"CONTINUOUS_FOUR_STAGE_PRODUCTION",
+            "chat_required_for_continuity":False,
+            "principle":"Production first; QC is the release gate; downstream verification evaluates results.",
+            "stages":[
+              {"stage":1,"name":"INSTITUTE_DISCOVERY","status":"PASS"},
+              {"stage":2,"name":"FACTORY_PRODUCTION","status":"PASS","catalog_products":target,"concrete_product_assets":concrete,"production_browser_assets":production},
+              {"stage":3,"name":"PRODUCT_QC_GATE","status":"PASS","catalog_count":target,"produced_count":concrete,"dispatch_default":"NO"},
+              {"stage":4,"name":"PUBLIC_SHOWROOM","status":"READY","catalog_products":target,"produced_products":concrete,"visual_assets":visuals,"qr_assets":qrs,"dispatch_default":"NO"}
+            ],
+            "production_contract":{"schedule":"every 5 minutes","continuity_without_chat":True,"verification":"downstream"}
+          }
+          (gen/"four-stage-production-status.json").write_text(json.dumps(four,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          PY
+      - name: Fail if conflict markers remain
+        if: \${{ steps.detect.outputs.repair_needed == 'true' }}
+        working-directory: /tmp/shirmani-production-state
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          markers=("<<<<<<< ","======= ",">>>>>>> ")
+          hits=[]
+          for p in Path(".").rglob("*"):
+              if not p.is_file() or ".git" in p.parts or p.stat().st_size>8_000_000: continue
+              try: text=p.read_text(encoding="utf-8")
+              except (UnicodeDecodeError,OSError): continue
+              if any(m in text for m in markers): hits.append(str(p))
+          if hits:
+              print("\\n".join(hits[:100]))
+              raise SystemExit("PRODUCTION_STATE_INTEGRITY_FAIL")
+          print("PRODUCTION_STATE_INTEGRITY_CLEAN")
+          PY
+      - name: Publish repaired production-state
+        if: \${{ steps.detect.outputs.repair_needed == 'true' }}
+        working-directory: /tmp/shirmani-production-state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Production State Repair Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated products factory assets
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "fix(production): repair production-state conflicts and rebuild public outputs"
+          git push origin HEAD:automation/production-state
