@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T02:15:19.706469+00:00",
+  "generated_at": "2026-10-07T02:17:49.481868+00:00",
   "engine": "SHIRMANI Multi-Layer Production Dispatcher",
   "mode": "production-first",
   "discovered_modules": 382,
@@ -7,7 +7,7 @@
   "last_cycle_tasks": 500,
   "new_tasks_added": 500,
   "total_queued_tasks": 500,
-  "scheduled_work_units": 93000,
+  "scheduled_work_units": 94000,
   "lanes": [
     "ai-ml-nlp",
     "automation",
@@ -20,13 +20,13 @@
     "social-media"
   ],
   "lane_counts_last_cycle": {
-    "platform": 102,
-    "automation": 240,
-    "federation": 17,
-    "ai-ml-nlp": 62,
-    "security-quality": 34,
+    "ai-ml-nlp": 65,
     "research": 21,
-    "content": 12,
+    "automation": 208,
+    "federation": 24,
+    "content": 13,
+    "security-quality": 20,
+    "platform": 137,
     "social-media": 4,
     "economic": 8
   },
@@ -41,17 +41,17 @@
     "certificates": 1000,
     "verification_queue": 100200,
     "verified_records": 0,
-    "concrete_results_this_cycle": 6500,
+    "concrete_results_this_cycle": 7000,
     "lane_artifacts": {
-      "ai-ml-nlp": 1076,
-      "automation": 2829,
-      "content": 162,
-      "economic": 127,
-      "federation": 215,
-      "platform": 1442,
-      "research": 254,
-      "security-quality": 330,
-      "social-media": 65
+      "ai-ml-nlp": 1141,
+      "automation": 3037,
+      "content": 175,
+      "economic": 135,
+      "federation": 239,
+      "platform": 1579,
+      "research": 275,
+      "security-quality": 350,
+      "social-media": 69
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
@@ -64,7 +64,7 @@
     "verification": "downstream result-quality/promotion layer"
   },
   "truth_boundary": "Generated production output is not automatically independently verified.",
-  "last_cycle_concrete_results": 6500,
+  "last_cycle_concrete_results": 7000,
   "artifacts": [
     "generated/production-results.jsonl",
     "generated/production-work-queue.jsonl",
