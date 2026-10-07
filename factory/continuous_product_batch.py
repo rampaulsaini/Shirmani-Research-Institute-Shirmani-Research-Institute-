@@ -12,7 +12,11 @@ def page(p):
 def main():
     catalog=json.loads((GEN/"1000-digital-products.json").read_text())
     op=GEN/"concrete-production-overlay.json"
-    old=json.loads(op.read_text()) if op.exists() else {"products":[]}
+    try:
+        old=json.loads(op.read_text(encoding="utf-8")) if op.exists() else {"products":[]}
+    except (json.JSONDecodeError,OSError):
+        old={"products":[]}
+        op.unlink(missing_ok=True)
     previous={x["id"]:x for x in old.get("products",[])}
     done={}
     pending=[]
