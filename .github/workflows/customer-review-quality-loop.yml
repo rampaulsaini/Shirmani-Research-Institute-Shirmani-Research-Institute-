@@ -4,9 +4,8 @@ on:
     types: [opened, edited, labeled]
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
   issues: read
-  pull-requests: write
 concurrency:
   group: shirmani-customer-review-quality-loop
   cancel-in-progress: false
@@ -17,8 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-      - name: Persist customer feedback as production-quality input
+          fetch-depth: 1
+      - name: Build customer quality signal
         env:
           EVENT_PATH: ${{ github.event_path }}
         shell: python
@@ -33,65 +32,23 @@ jobs:
           def f(n):
               m=re.search(r"###\s+"+re.escape(n)+r"\s*\n+([^#]+)",body,re.I)
               return m.group(1).strip() if m else ""
-          rec={"issue_number":issue.get("number"),"updated_at":issue.get("updated_at"),"product":f("Product ID or product name"),"rating":f("Rating"),"experience":f("Customer experience"),"improvement":f("Improvement suggestion"),"version":f("Product version"),"source":"github-public-review","captured_at":datetime.now(timezone.utc).isoformat()}
-          log=root/"customer-review-log.jsonl"
-          with log.open("a",encoding="utf-8") as fh: fh.write(json.dumps(rec,ensure_ascii=False,separators=(",",":"))+"\n")
-          records=[]
-          for line in log.read_text(encoding="utf-8").splitlines():
-              if line.strip():
-                  try: records.append(json.loads(line))
-                  except json.JSONDecodeError: pass
-          dashboard={"generated_at":datetime.now(timezone.utc).isoformat(),"review_count":len(records),"rated_count":sum(bool(r.get("rating")) for r in records),"improvement_suggestions":sum(bool(r.get("improvement")) for r in records),"principle":"Customer reviews are production-quality signals and continuous-improvement inputs, not independent scientific verification.","delivery":"Persisted through an automated pull request so protected main remains governed."}
-          (root/"customer-quality-dashboard.json").write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-          (root/"public-review-quality-status.json").write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-      - name: Publish review telemetry through governed PR
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          REPOSITORY: ${{ github.repository }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "SHIRMANI Customer Quality Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -n "${ISSUE_NUMBER:-}" ]; then
-            BRANCH="automation/customer-review-${ISSUE_NUMBER}"
-          else
-            BRANCH="automation/customer-review-manual-${GITHUB_RUN_ID}"
-          fi
-          git fetch origin main
-          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
-            git fetch origin "$BRANCH"
-            git checkout -B "$BRANCH" "origin/$BRANCH"
-            git rebase origin/main || { git rebase --abort; git merge --no-edit origin/main; }
-          else
-            git checkout -B "$BRANCH" origin/main
-          fi
-          git add generated/customer-review-log.jsonl generated/customer-quality-dashboard.json generated/public-review-quality-status.json
-          if git diff --cached --quiet; then
-            echo "No review delta."
-            exit 0
-          fi
-          git commit -m "automission: persist customer review quality signals"
-          git push --force-with-lease origin "$BRANCH:$BRANCH"
-          existing_pr="$(gh pr list --repo "$REPOSITORY" --head "$BRANCH" --base main --state open --json number --jq '.[0].number // empty')"
-          if [ -z "$existing_pr" ]; then
-            if gh pr create --repo "$REPOSITORY" --base main --head "$BRANCH" \
-              --title "automission: customer review quality update" \
-              --body "Automated production-quality input from customer review telemetry. Public production automission also aggregates review issues directly; this PR is a governed source-history mirror."; then
-              echo "Review telemetry PR created."
-            else
-              echo "::warning::PR creation is unavailable for the current Actions token/repository policy. Review telemetry remains published as workflow artifacts and is independently consumed by the public production automission."
-            fi
-          else
-            echo "Existing review PR #$existing_pr updated."
-          fi
-      - name: Publish review artifact
+          rec={"issue_number":issue.get("number"),"updated_at":issue.get("updated_at"),
+               "product":f("Product ID or product name"),"rating":f("Rating"),
+               "experience":f("Customer experience"),"improvement":f("Improvement suggestion"),
+               "version":f("Product version"),"source":"github-public-review",
+               "captured_at":datetime.now(timezone.utc).isoformat()}
+          (root/"customer-review-event.json").write_text(json.dumps(rec,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          queue={"generated_at":datetime.now(timezone.utc).isoformat(),
+                 "input_type":"customer_review","production_quality_signal":True,
+                 "independent_verification":False,"records":[rec],
+                 "next_actions":["triage feedback","prioritize product improvement","feed next production cycle"]}
+          (root/"public-review-quality-queue.json").write_text(json.dumps(queue,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(queue,ensure_ascii=False))
+      - name: Publish review signal artifact
         uses: actions/upload-artifact@v4
         with:
           name: shirmani-customer-review-${{ github.run_number }}
           retention-days: 30
           path: |
-            generated/customer-review-log.jsonl
-            generated/customer-quality-dashboard.json
-            generated/public-review-quality-status.json
+            generated/customer-review-event.json
+            generated/public-review-quality-queue.json
