@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T05:29:20.011229+00:00",
+  "generated_at": "2026-10-07T05:36:20.464739+00:00",
   "engine": "SHIRMANI Multi-Layer Production Dispatcher",
   "mode": "production-first",
   "discovered_modules": 382,
@@ -7,7 +7,7 @@
   "last_cycle_tasks": 500,
   "new_tasks_added": 500,
   "total_queued_tasks": 500,
-  "scheduled_work_units": 131500,
+  "scheduled_work_units": 133000,
   "lanes": [
     "ai-ml-nlp",
     "automation",
@@ -20,13 +20,13 @@
     "social-media"
   ],
   "lane_counts_last_cycle": {
-    "automation": 235,
-    "platform": 134,
-    "federation": 25,
+    "platform": 135,
+    "automation": 222,
+    "ai-ml-nlp": 59,
+    "research": 18,
+    "federation": 24,
     "content": 10,
-    "research": 17,
-    "security-quality": 23,
-    "ai-ml-nlp": 44,
+    "security-quality": 20,
     "social-media": 4,
     "economic": 8
   },
@@ -41,17 +41,17 @@
     "certificates": 1000,
     "verification_queue": 100200,
     "verified_records": 0,
-    "concrete_results_this_cycle": 36500,
+    "concrete_results_this_cycle": 37000,
     "lane_artifacts": {
-      "ai-ml-nlp": 4467,
-      "automation": 16788,
-      "content": 879,
-      "economic": 758,
-      "federation": 1324,
-      "platform": 8572,
-      "research": 1516,
-      "security-quality": 1815,
-      "social-media": 381
+      "ai-ml-nlp": 4526,
+      "automation": 17010,
+      "content": 889,
+      "economic": 766,
+      "federation": 1348,
+      "platform": 8707,
+      "research": 1534,
+      "security-quality": 1835,
+      "social-media": 385
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
@@ -64,7 +64,7 @@
     "verification": "downstream result-quality/promotion layer"
   },
   "truth_boundary": "Generated production output is not automatically independently verified.",
-  "last_cycle_concrete_results": 36500,
+  "last_cycle_concrete_results": 37000,
   "artifacts": [
     "generated/production-results.jsonl",
     "generated/production-work-queue.jsonl",
