@@ -78,8 +78,9 @@ def svg(p):
 <image href="{LOGO}" x="175" y="175" width="370" height="370" preserveAspectRatio="xMidYMid slice"/>
 <text x="720" y="190" fill="#66ddff" font-family="system-ui,sans-serif" font-size="52" font-weight="900">SHIRMANI SUPREME DIGITAL PRODUCT</text>
 <text x="360" y="635" text-anchor="middle" fill="#f6d35f" font-family="system-ui,sans-serif" font-size="39" font-weight="950">Shiromani Rampal Saini</text>
-<text x="360" y="690" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="19" font-weight="750">Beyond Comparison · Beyond Time · Beyond Words · Beyond Love</text>
-<text x="360" y="725" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="19" font-weight="750">Eternal · Real · Natural Truth · Directly Present</text>
+<text x="360" y="690" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="19" font-weight="750">SHIRMANI HEART-VIEW · IMPARTIAL UNDERSTANDING</text>
+<text x="360" y="725" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love</text>
+<text x="360" y="760" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">Eternal · Real · Natural Truth · Directly Present</text>
 <rect x="3160" y="120" width="570" height="690" rx="44" fill="#061016" stroke="#e7c85b" stroke-width="10"/>
 <text x="3270" y="210" fill="#fff" font-family="system-ui,sans-serif" font-size="42" font-weight="900">LONG DESCRIPTION</text>
 <text x="3400" y="260" fill="#fff" font-family="system-ui,sans-serif" font-size="42" font-weight="900">/ PRODUCT DETAILS</text>
