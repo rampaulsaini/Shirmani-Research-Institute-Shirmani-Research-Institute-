@@ -12,22 +12,54 @@ on:
       - "showroom.html"
       - "showroom-product.html"
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: supreme-production-factory
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   production:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Run production materializer
-        run: python factory/public_production_materializer.py
-      - name: Publish production results
+        run: python3 factory/public_production_materializer.py
+      - name: Assert concrete production outputs
         run: |
-          git config user.name "SHIRMANI Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/public-production-catalog.json generated/public-production-module-index.json generated/public-production-by-module.html generated/public-production/ generated/multi-layer-production-status.json generated/production-results.jsonl
-          git diff --cached --quiet || git commit -m "automission: publish production results"
-          git push
+          set -euo pipefail
+          test -s generated/public-production-catalog.json
+          test -s generated/public-production-module-index.json
+          test -s generated/public-production-by-module.html
+          test -s generated/production-results.jsonl
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("generated/public-production-catalog.json").read_text())
+          assert p.get("integrity",{}).get("generated_output_is_concrete") is True
+          assert p.get("integrity",{}).get("independent_verification_claim") is False
+          print("SUPREME PRODUCTION FACTORY: PASS")
+          print("Concrete results:", p.get("cycle_results", 0))
+          print("Lanes:", len(p.get("lanes", {})))
+          PY
+      - name: Publish production telemetry artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-production-factory-${{ github.run_id }}
+          path: |
+            generated/public-production-catalog.json
+            generated/public-production-module-index.json
+            generated/public-production-by-module.html
+            generated/production-results.jsonl
+            generated/public-production/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Emit production summary
+        run: |
+          {
+            echo "## SHIRMANI Supreme Production Factory"
+            echo "- Concrete production worker: **ACTIVE**"
+            echo "- Public publication: **canonical public-production workflow**"
+            echo "- Main-branch direct writer: **DISABLED to prevent collisions**"
+            echo "- Independent verification: **downstream**"
+          } >> "$GITHUB_STEP_SUMMARY"
