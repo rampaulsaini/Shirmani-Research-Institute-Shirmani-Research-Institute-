@@ -20,3 +20,17 @@ The showroom exposes four existing catalogue entries and links them to the exist
 - build automated factory jobs that generate product artifacts;
 - add inventory/dispatch state and secure checkout;
 - expand categories only as real products are produced.
+
+
+## Public Product Visual Identity Standard — 2026-10-07
+
+Every concrete showroom product is intended to carry one persistent product identity:
+
+- **Unique Product ID / product name** — identity is bound to the product passport.
+- **4K visual** — shared visual engine renders a 3840×2160, 16:9 product identity asset.
+- **Short description on the visual** — the visual itself carries the customer-facing short description, category/engine, price and product ID.
+- **QR on the visual** — the showroom overlays a scannable QR that routes to the public product passport / long-description route and carries Product ID + QC + Gate + Dispatch metadata.
+- **Product page** — the same identity is reused on the individual product page rather than creating a separate unrelated image.
+- **Customer improvement** — reviews/ratings remain inputs to the production-quality loop.
+
+The current published production state is **5,000 catalog identities / 1,516 concrete repository assets / 3,484 remaining to the current 5,000 scale target**. The visual layer is part of the public production presentation; it does not convert a product into an independent scientific verification claim.
