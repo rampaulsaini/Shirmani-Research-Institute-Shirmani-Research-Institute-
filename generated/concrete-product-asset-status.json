@@ -1,6 +1,7 @@
 {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "generated_at": "2026-10-07T02:32:45.958254+00:00",
   "product_assets": 4516,
   "catalog_products": 5000,
@@ -13,6 +14,12 @@
 >>>>>>> Stashed changes
 =======
   "generated_at": "2026-10-07T02:48:08.967454+00:00",
+  "product_assets": 5000,
+  "catalog_products": 5000,
+  "materialization_percent": 100.0,
+>>>>>>> Stashed changes
+=======
+  "generated_at": "2026-10-07T02:57:59.540008+00:00",
   "product_assets": 5000,
   "catalog_products": 5000,
   "materialization_percent": 100.0,

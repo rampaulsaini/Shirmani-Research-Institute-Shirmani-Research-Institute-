@@ -4,6 +4,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "generated_at": "2026-10-07T01:40:42.593170+00:00",
   "catalog_products": 5000,
   "stale_before": 3000,
@@ -29,5 +30,12 @@
   "stale_before": 1500,
   "upgraded_this_cycle": 500,
   "remaining_depth_upgrades": 1000
+>>>>>>> Stashed changes
+=======
+  "generated_at": "2026-10-07T02:57:59.237665+00:00",
+  "catalog_products": 5000,
+  "stale_before": 1000,
+  "upgraded_this_cycle": 500,
+  "remaining_depth_upgrades": 500
 >>>>>>> Stashed changes
 }
