@@ -2,8 +2,6 @@ name: SHIRMANI Continuous Concrete Product Production
 on:
   push:
     branches: [main]
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
