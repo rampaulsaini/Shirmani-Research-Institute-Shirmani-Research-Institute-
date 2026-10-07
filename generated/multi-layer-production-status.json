@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T04:27:54.528195+00:00",
+  "generated_at": "2026-10-07T04:31:27.972372+00:00",
   "engine": "SHIRMANI Multi-Layer Production Dispatcher",
   "mode": "production-first",
   "discovered_modules": 382,
@@ -7,7 +7,7 @@
   "last_cycle_tasks": 500,
   "new_tasks_added": 500,
   "total_queued_tasks": 500,
-  "scheduled_work_units": 112000,
+  "scheduled_work_units": 112500,
   "lanes": [
     "ai-ml-nlp",
     "automation",
@@ -20,14 +20,14 @@
     "social-media"
   ],
   "lane_counts_last_cycle": {
-    "ai-ml-nlp": 57,
-    "automation": 226,
-    "research": 18,
-    "platform": 131,
-    "federation": 25,
-    "content": 10,
-    "security-quality": 21,
-    "social-media": 4,
+    "automation": 243,
+    "security-quality": 33,
+    "platform": 99,
+    "research": 21,
+    "federation": 15,
+    "ai-ml-nlp": 63,
+    "content": 13,
+    "social-media": 5,
     "economic": 8
   },
   "production_outputs": {
@@ -41,17 +41,17 @@
     "certificates": 1000,
     "verification_queue": 100200,
     "verified_records": 0,
-    "concrete_results_this_cycle": 23000,
+    "concrete_results_this_cycle": 23500,
     "lane_artifacts": {
-      "ai-ml-nlp": 2938,
-      "automation": 10493,
-      "content": 556,
-      "economic": 471,
-      "federation": 827,
-      "platform": 5392,
-      "research": 943,
-      "security-quality": 1143,
-      "social-media": 237
+      "ai-ml-nlp": 3001,
+      "automation": 10736,
+      "content": 569,
+      "economic": 479,
+      "federation": 842,
+      "platform": 5491,
+      "research": 964,
+      "security-quality": 1176,
+      "social-media": 242
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
@@ -64,7 +64,7 @@
     "verification": "downstream result-quality/promotion layer"
   },
   "truth_boundary": "Generated production output is not automatically independently verified.",
-  "last_cycle_concrete_results": 23000,
+  "last_cycle_concrete_results": 23500,
   "artifacts": [
     "generated/production-results.jsonl",
     "generated/production-work-queue.jsonl",
