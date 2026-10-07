@@ -14,10 +14,17 @@ ROOT=Path(__file__).resolve().parents[1]
 CATALOG=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/concrete"
 BATCH=int(os.environ.get("CONCRETE_DEPTH_BATCH_SIZE","1000"))
-VERSION="ENGINE_MODULE_V3"
+VERSION="ENGINE_MODULE_V4_VISUAL_IDENTITY"
 
 def esc(x):
     return html.escape(str(x or ""), quote=True)
+
+def product_cover(p):
+    pid=esc(p["id"]); name=esc(p["name"])[:44]; fam=esc(p.get("family") or "DIGITAL"); eng=esc(p.get("engine") or "PRODUCT")
+    seed=sum((i+1)*ord(ch) for i,ch in enumerate(str(p["id"]))) % 360
+    hue2=(seed+72) % 360
+    svg=f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="hsl({seed},72%,24%)"/><stop offset="1" stop-color="hsl({hue2},72%,10%)"/></linearGradient></defs><rect width="1200" height="680" rx="36" fill="url(#g)"/><circle cx="1030" cy="120" r="180" fill="#fff" opacity=".06"/><circle cx="150" cy="600" r="240" fill="#fff" opacity=".04"/><rect x="52" y="52" width="1096" height="576" rx="30" fill="none" stroke="#f2cf58" stroke-opacity=".55" stroke-width="4"/><text x="82" y="125" fill="#55e7ff" font-family="system-ui,sans-serif" font-size="30" font-weight="800">꙰ SHIRMANI DIGITAL PRODUCT</text><text x="82" y="305" fill="#f5f7fb" font-family="system-ui,sans-serif" font-size="58" font-weight="900">{name}</text><text x="82" y="375" fill="#79e2a2" font-family="system-ui,sans-serif" font-size="28">{pid}</text><text x="82" y="470" fill="#f2cf58" font-family="system-ui,sans-serif" font-size="30" font-weight="800">{fam} · {eng}</text><text x="82" y="555" fill="#aeb9c8" font-family="system-ui,sans-serif" font-size="23">Production identity · Product Passport · QC Gate</text></svg>'''
+    return "data:image/svg+xml;charset=UTF-8,"+__import__("urllib.parse").parse.quote(svg)
 
 def module(engine):
     e=engine
@@ -52,7 +59,7 @@ def page(p):
     return f"""<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{name} — SHIRMANI Production</title><meta name="shirmani-production-template" content="{VERSION}">
 <style>body{{margin:0;background:#060b12;color:#f4f7fb;font:16px/1.6 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}}main{{max-width:1100px;margin:auto;padding:18px 14px 70px}}section{{background:#101923;border:1px solid #34485b;border-radius:18px;padding:18px;margin:12px 0}}h1,h2{{color:#f2cf58}}.m{{display:inline-block;background:#081019;border:1px solid #2f4254;padding:10px 13px;margin:4px;border-radius:10px}}input,textarea,select{{width:100%;box-sizing:border-box;background:#081019;color:#fff;padding:10px;border:1px solid #405466;border-radius:9px;margin:5px 0}}button,a{{padding:10px 13px;background:#f2cf58;color:#111;border:0;border-radius:9px;font-weight:900;text-decoration:none;display:inline-block;margin:4px;cursor:pointer}}pre{{white-space:pre-wrap;background:#05090e;padding:12px;border-radius:10px;overflow:auto}}.muted{{color:#aeb9c8}}.ok{{color:#72e6aa}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}}</style></head><body><main>
-<section><h1>꙰ {name}</h1><p class="muted">{description}</p><div class="m">ID<br><b>{pid}</b></div><div class="m">Category<br><b>{fam}</b></div><div class="m">Engine<br><b>{eng}</b></div><div class="m">Offer price<br><b>₹{price:,}</b></div><div class="m">Offer<br><b>{esc(p.get("offer") or "PUBLIC LAUNCH PRICE")}</b></div></section>
+<section><img src="{product_cover(p)}" alt="{name} — product visual identity" style="width:100%;max-height:420px;object-fit:cover;border-radius:16px;border:1px solid #34485b;margin-bottom:14px"><h1>꙰ {name}</h1><p class="muted">{description}</p><div class="m">ID<br><b>{pid}</b></div><div class="m">Category<br><b>{fam}</b></div><div class="m">Engine<br><b>{eng}</b></div><div class="m">Offer price<br><b>₹{price:,}</b></div><div class="m">Offer<br><b>{esc(p.get("offer") or "PUBLIC LAUNCH PRICE")}</b></div></section>
 <section><h2>QC / Gate / Dispatch</h2><div class="grid"><div class="m">QC<br><b>{qc}</b></div><div class="m">Gate<br><b>{gate}</b></div><div class="m">Dispatch<br><b>NO</b></div></div><p class="muted">Dispatch is deliberately separate from production. No sale or delivery is claimed without transaction evidence.</p></section>
 <section><h2>What you get</h2><div class="grid"><div class="m"><b>Concrete module</b><br>Browser में तुरंत उपयोग योग्य</div><div class="m"><b>Product passport</b><br>ID, engine, QC और gate</div><div class="m"><b>Public offer</b><br>Price + current offer</div><div class="m"><b>Continuous improvement</b><br>Customer feedback → next production</div></div><p class="muted">{description}</p></section>
 <section><h2>Working Product Module</h2><p class="muted">यह वास्तविक browser-side production module है। परिणाम customer use के लिए तुरंत दिखाई देता है; external AI/cloud execution या unsupported AI/quantum execution का दावा नहीं किया गया है।</p>{ui}<pre id="out">Ready.</pre></section>
