@@ -67,15 +67,14 @@ jobs:
         run: python3 factory/expand_product_catalog.py
       - name: Produce next concrete public batch
         run: python3 factory/continuous_product_batch.py
-      - name: Materialize unique 4K product identity visuals
-        env:
-          VISUAL_BATCH: "5000"
-          VISUAL_REBUILD: "1"
-        run: python3 factory/product_visual_identity_factory.py
       - name: Materialize per-product QR long-description assets
         env:
           QR_BATCH: "1000"
         run: python3 factory/product_qr_asset_factory.py
+      - name: Materialize unique 4K product identity visuals — centered Heart-View logo + local QR
+        env:
+          VISUAL_BATCH: "5000"
+        run: python3 factory/product_visual_identity_factory_v2.py
       - name: Upgrade concrete products to engine-specific modules
         env:
           CONCRETE_DEPTH_BATCH_SIZE: "500"
@@ -127,6 +126,7 @@ jobs:
             generated/concrete-product-production-status.json
             generated/concrete-product-depth-status.json
             generated/product-visual-assets.json
+            generated/product-visual-assets-v2.json
             generated/product-qr-assets.json
             generated/production-operations-status.json
       - name: Publish concrete production state to canonical production branch
