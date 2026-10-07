@@ -31,11 +31,11 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px s
 <div class="stage"><b>04 · SHOWROOM</b><h3>Public customer layer</h3><p class="muted">Description, category, rate, offer, product passport, use/order path और reviews.</p></div>
 </div></section>
 <section><h2>वर्तमान production snapshot</h2><div class="grid">
-<div class="metric"><div class="num" id="liveConcrete">1,016</div>published concrete product assets</div><div class="metric"><div class="num" id="liveQc">1,016 / 1,016</div>deterministic QC pass</div><div class="metric"><div class="num">5,000</div>next automated concrete-product target</div><div class="metric"><div class="num">9</div>configured production lanes</div><div class="metric"><div class="num">500</div>concrete results in latest published cycle</div><div class="metric"><div class="num">500</div>production modules in latest status record</div>
+<div class="metric"><div class="num" id="liveConcrete">—</div>published concrete product assets</div><div class="metric"><div class="num" id="liveQc">—</div>catalog materialization</div><div class="metric"><div class="num" id="liveTarget">—</div>scale target</div><div class="metric"><div class="num" id="liveLanes">—</div>configured production lanes</div><div class="metric"><div class="num" id="liveCycle">—</div>latest production-cycle concrete results</div><div class="metric"><div class="num" id="liveModules">—</div>production modules generated</div>
 </div><p class="callout"><strong>महत्वपूर्ण:</strong> ये repository-published production states हैं। इन्हें commercial sale, received payment या independent scientific verification के बराबर नहीं माना जाता।</p></section>
 <section><h2>Production maturity map</h2>
-<p><strong>Engineering / platform development ≈ 72%</strong> — current planning estimate</p><div class="bar"><div class="fill" style="width:72%"></div></div>
-<p><strong>Published concrete product materialization = <span id="liveScaleText">1,016 / 5,000 target = 20.32%</span></strong></p><div class="bar"><div class="fill" style="width:20.32%"></div></div><p class="muted"><strong>Remaining production scale: 3,984 concrete products to the 5,000 scale target; 16 catalog identities are still pending within the current 1,016 catalog.</strong> This is production backlog, not verification backlog.</p>
+<p><strong>Engineering / platform development</strong> — planning estimate is intentionally separate from concrete production telemetry.</p>
+<p><strong>Published concrete product materialization = <span id="liveScaleText">loading live state…</span></strong></p><div class="bar"><div id="liveScaleBar" class="fill" style="width:0%"></div></div><p id="liveScaleSummary" class="muted">Live production state loading…</p>
 <p><strong>Independent research verification = 0% of the 100,200-record queue</strong></p><div class="bar"><div class="fill" style="width:0%"></div></div>
 <p><strong>Commercial sale / settlement = not evidenced by the current product manifest</strong></p><div class="bar"><div class="fill" style="width:0%"></div></section>
 <section><h2>Customer-first production loop</h2><table><tr><th>Input</th><th>Production action</th><th>Public result</th></tr><tr><td>Research / idea</td><td>Factory generates a concrete artifact</td><td>Product page + description</td></tr><tr><td>Product metadata</td><td>QC / gate packaging</td><td>Product ID + QC code + gate + dispatch state</td></tr><tr><td>Customer experience</td><td>Use / inspect / compare</td><td>Review + rating + improvement request</td></tr><tr><td>Feedback</td><td>Prioritise next production cycle</td><td>New or improved product/module</td></tr><tr><td>Funding</td><td>Increase production capacity</td><td>More useful customer-visible output</td></tr></table></section>
@@ -55,7 +55,14 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px s
     const pct=Number(p.concrete_materialization_percent_of_scale_target||0);
     document.getElementById("liveConcrete").textContent=produced.toLocaleString("en-IN");
     document.getElementById("liveQc").textContent=produced.toLocaleString("en-IN")+" / "+catalog.toLocaleString("en-IN");
+    document.getElementById("liveTarget").textContent=target.toLocaleString("en-IN");
+    document.getElementById("liveLanes").textContent=Number(p.production_lanes||9).toLocaleString("en-IN");
+    document.getElementById("liveCycle").textContent=Number(p.last_cycle_concrete_results||p.latest_cycle_concrete_results||0).toLocaleString("en-IN");
+    document.getElementById("liveModules").textContent=Number(p.module_products_generated||produced).toLocaleString("en-IN");
     document.getElementById("liveScaleText").textContent=produced.toLocaleString("en-IN")+" / "+target.toLocaleString("en-IN")+" target = "+pct.toFixed(2)+"%";
+    document.getElementById("liveScaleBar").style.width=Math.min(100,pct)+"%";
+    const pending=Number(p.remaining_to_scale_target||Math.max(0,target-produced));
+    document.getElementById("liveScaleSummary").textContent="Remaining to scale target: "+pending.toLocaleString("en-IN")+" concrete products. This is production backlog, not verification backlog.";
   }catch(e){}
 })();
 </script></main></body></html>
