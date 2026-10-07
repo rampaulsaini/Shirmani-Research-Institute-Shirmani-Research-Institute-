@@ -85,7 +85,29 @@ jobs:
           (gen/"concrete-production-overlay.json").write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
           print("CONCRETE_PRODUCTION_OVERLAY",len(rows))
           PY
-          python3 factory/product_qc_gate.py
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          root=Path("."); gen=root/"generated"
+          cat=json.loads((gen/"1000-digital-products.json").read_text(encoding="utf-8"))
+          products=cat.get("products",[])
+          errors=[]
+          for p in products:
+              pid=str(p.get("id",""))
+              asset=root/str(p.get("asset",""))
+              if not asset.is_file():
+                  errors.append({"id":pid,"error":"missing_asset"})
+              for key in ("name","category","engine","price_inr","offer_price_inr","qc_code","gate_no","dispatch_no","description","guarantee","packing","qr_payload"):
+                  if p.get(key) in ("",None):
+                      errors.append({"id":pid,"error":"missing_field","field":key})
+          passed=len(products)-len({x["id"] for x in errors})
+          qc={"generated_at":datetime.now(timezone.utc).isoformat(),"gate":"PRODUCT-QC-GATE","scope":"PRODUCED_PRODUCTS_ONLY","catalog_count":len(products),"produced_count":len(products)-sum(1 for x in errors if x.get("error")=="missing_asset"),"qc_passed":passed,"qc_failed":len({x["id"] for x in errors}),"pass_percent":round(100*passed/len(products),2) if products else 0,"dispatch_default":"NO","release_state":"QC_PASS_READY_FOR_DISPATCH" if not errors else "QC_REVIEW_REQUIRED","integrity":{"deterministic_qc":True,"independent_scientific_verification":False,"sale_claim":False},"errors":errors[:500]}
+          (gen/"product-qc-gate.json").write_text(json.dumps(qc,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps({"PRODUCT_QC_GATE":qc["release_state"],"catalog_count":len(products),"qc_passed":passed,"qc_failed":len({x["id"] for x in errors})},ensure_ascii=False))
+          if errors:
+              raise SystemExit("PRODUCT_QC_GATE_FAIL")
+          PY
           VISUAL_BATCH=5000 python3 factory/product_visual_identity_factory_v2.py
           QR_BATCH=5000 python3 factory/product_qr_asset_factory.py
           python3 factory/product_visual_qc_gate.py
