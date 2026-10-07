@@ -5,7 +5,7 @@
 <body><main class="wrap"><div class="top"><a class="btn" href="showroom.html">← Showroom</a><a class="btn" href="index.html">Institute</a><a class="btn" href="production-quality-loop.html">⭐ Quality Loop</a></div>
 <section id="product" class="hero"><div class="status">Loading production record…</div></section>
 <section class="panel"><h2>QC / Dispatch Passport</h2><div id="passport" class="grid"></div></section>
-<section class="panel"><h2>Product QR</h2><div class="qr"><img id="qr" alt="Product QR code"></div><p class="status">QR identity points to this public product page. QC metadata describes the product record; it is not a claim of scientific truth.</p></section>
+<section class="panel"><h2>Public Payment QR</h2><div class="qr"><img id="qr" alt="Public Paytm UPI payment QR" src="assets/funding-upi-qr.svg"></div><p class="status">यह public payment/support QR है। Product identity के लिए Product ID और live production passport authoritative catalogue metadata हैं।</p></section>
 <section class="panel" id="feedback"><h2>Customer Review → Quality Improvement</h2><p class="lead">उपयोग-अनुभव, rating और सुधार-सुझाव public quality-improvement backlog में भेजे जा सकते हैं। Review को scientific verification नहीं माना जाता।</p><div class="stars" id="stars"></div><textarea id="review" placeholder="Product इस्तेमाल करने के बाद अपना अनुभव या सुधार-सुझाव लिखें…"></textarea><p><button class="submit" id="submit">Review submit route खोलें</button></p><div id="reviewResult" class="status"></div></section></main>
 <script>
 const repo="rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-";const id=new URLSearchParams(location.search).get("id")||"";let product=null,rating=0;const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
