@@ -32,7 +32,7 @@ def main():
     if not CAT.exists(): raise SystemExit("generated/1000-digital-products.json missing")
     products=json.loads(CAT.read_text(encoding="utf-8")).get("products",[])
     OUT.mkdir(parents=True,exist_ok=True); rows=[]; created=existing=0
-    try: batch=max(1,min(1000,int(os.environ.get("VISUAL_BATCH","500")))
+    try: batch=max(1,min(5000,int(os.environ.get("VISUAL_BATCH","5000"))))
     except ValueError: batch=250
     missing=[p for p in products if not (OUT/(str(p["id"]).lower()+".svg")).exists()]
     selected=set(id(x) for x in missing[:batch])
@@ -40,8 +40,8 @@ def main():
         pid=str(p["id"]); path=OUT/(pid.lower()+".svg")
         if path.exists(): existing+=1
         elif id(p) in selected: path.write_text(visual(p),encoding="utf-8"); created+=1
-        rows.append({"product_id":pid,"name":p.get("name"),"family":p.get("family"),"engine":p.get("engine"),"asset_path":str(path.relative_to(ROOT)),"format":"svg","width":3840,"height":2160,"aspect_ratio":"16:9","state":"READY_FOR_PUBLIC_SHOWROOM"})
+        rows.append({"product_id":pid,"name":p.get("name"),"family":p.get("family"),"engine":p.get("engine"),"asset_path":str(path.relative_to(ROOT)),"format":"svg","width":3840,"height":2160,"aspect_ratio":"16:9","exists":path.exists(),"state":"READY_FOR_PUBLIC_SHOWROOM" if path.exists() else "PENDING_VISUAL_ASSET"})
     now=datetime.now(timezone.utc).isoformat()
-    MAN.write_text(json.dumps({"version":1,"generated_at":now,"target":len(products),"visual_assets":len(rows),"created_this_cycle":created,"already_existing":existing,"batch_size":batch,"remaining_visual_assets":max(0,len(products)-created-existing),"state":"READY_FOR_PUBLIC_SHOWROOM","note":"4K-ready vector visual identity assets; raster/AI-photographic variants can be added later without changing product IDs.","products":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    MAN.write_text(json.dumps({"version":1,"generated_at":now,"target":len(products),"visual_assets":sum(1 for x in rows if x["exists"]),"created_this_cycle":created,"already_existing":existing,"batch_size":batch,"remaining_visual_assets":sum(1 for x in rows if not x["exists"]),"state":"READY_FOR_PUBLIC_SHOWROOM","note":"4K-ready vector visual identity assets; raster/AI-photographic variants can be added later without changing product IDs. Public-ready count requires the asset file to exist.","products":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"target":len(products),"visual_assets":len(rows),"created_this_cycle":created},ensure_ascii=False))
 if __name__=="__main__": main()
