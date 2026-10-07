@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "cycle": 0,
+  "target": 5000,
+  "produced_this_cycle": 0,
+  "total_concrete_products": 0,
+  "remaining_to_target": 5000,
+  "production_rate_per_cycle": 25,
+  "schedule": "every 5 minutes",
+  "independent_verification_claim": false,
+  "sales_claim": false,
+  "dispatch_claim": false,
+  "external_outreach_claim": false
+}
