@@ -9,6 +9,7 @@ on:
       - "factory/product_qr_asset_factory.py"
       - "assets/shirmani-perspective-logo.svg"
       - "generated/1000-digital-products.json"
+      - "generated/concrete-production-overlay.json"
       - ".github/workflows/product-visual-production.yml"
   schedule:
     - cron: "*/5 * * * *"
@@ -38,7 +39,7 @@ jobs:
           python-version: "3.x"
       - name: Install QR production dependency
         run: python -m pip install --disable-pip-version-check "qrcode>=8,<9"
-      - name: Generate v2 product visuals
+      - name: Generate v6 product visuals
         env:
           VISUAL_BATCH: ${{ github.event.inputs.batch_size || '1000' }}
         run: python3 factory/product_visual_identity_factory_v2.py
