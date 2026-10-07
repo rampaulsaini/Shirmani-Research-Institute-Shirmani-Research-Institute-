@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-07",
+  "purpose": "Public official-link mapping for product usage, research discovery and lawful outreach preparation.",
+  "rule": "Links are official public pages only. This directory does not imply endorsement, partnership, procurement approval, or prior contact.",
+  "outreach_status": "NOT_CONTACTED",
+  "entries": [
+    {
+      "id": "github",
+      "type": "developer-platform",
+      "name": "GitHub",
+      "official_url": "https://github.com/",
+      "relevant_url": "https://github.com/features/copilot",
+      "use": "code, agents, repositories, automation"
+    },
+    {
+      "id": "nvidia-developer",
+      "type": "ai-ml-platform",
+      "name": "NVIDIA Developer",
+      "official_url": "https://developer.nvidia.com/",
+      "relevant_url": "https://developer.nvidia.com/platforms-and-tools",
+      "use": "CUDA, AI, simulation, developer tools"
+    },
+    {
+      "id": "nvidia-tools",
+      "type": "developer-tools",
+      "name": "NVIDIA Developer Tools",
+      "official_url": "https://developer.nvidia.com/tools-downloads",
+      "relevant_url": "https://developer.nvidia.com/developer-tools-catalog",
+      "use": "profiling, debugging, SDKs, accelerated computing"
+    },
+    {
+      "id": "google-ai",
+      "type": "ai-platform",
+      "name": "Google AI for Developers",
+      "official_url": "https://ai.google.dev/",
+      "relevant_url": "https://ai.google.dev/gemini-api/docs",
+      "use": "generative AI, multimodal APIs, agents"
+    },
+    {
+      "id": "aws-ai",
+      "type": "cloud-ai",
+      "name": "AWS AI / Machine Learning",
+      "official_url": "https://aws.amazon.com/ai/machine-learning/",
+      "relevant_url": "https://aws.amazon.com/sagemaker/ai/",
+      "use": "ML lifecycle, infrastructure, deployment"
+    },
+    {
+      "id": "microsoft-azure-ai",
+      "type": "cloud-ai",
+      "name": "Microsoft Azure AI",
+      "official_url": "https://azure.microsoft.com/",
+      "relevant_url": "https://azure.microsoft.com/en-us/products/category/ai",
+      "use": "AI applications, agents, search, media AI"
+    },
+    {
+      "id": "hugging-face",
+      "type": "ml-community",
+      "name": "Hugging Face",
+      "official_url": "https://huggingface.co/",
+      "relevant_url": "https://huggingface.co/models",
+      "use": "models, datasets, applications"
+    },
+    {
+      "id": "india-gov",
+      "type": "government",
+      "name": "National Portal of India",
+      "official_url": "https://www.india.gov.in/",
+      "relevant_url": "https://www.india.gov.in/services",
+      "use": "government information and public services"
+    },
+    {
+      "id": "nasa",
+      "type": "science-government",
+      "name": "NASA",
+      "official_url": "https://www.nasa.gov/",
+      "relevant_url": "https://www.nasa.gov/nasa-missions/",
+      "use": "science, space, technology and research"
+    },
+    {
+      "id": "cern",
+      "type": "science-organization",
+      "name": "CERN",
+      "official_url": "https://home.cern/",
+      "relevant_url": "https://home.cern/science",
+      "use": "particle physics and scientific research"
+    }
+  ],
+  "expansion": {
+    "target_scale": 150000,
+    "mapping_unit": "product -> category -> use-case -> official resource -> public link",
+    "outreach_unit": "organization -> official contact/discovery page -> prepared message -> explicit human/authorized send",
+    "no_automatic_claim_of_contact": true
+  }
+}
