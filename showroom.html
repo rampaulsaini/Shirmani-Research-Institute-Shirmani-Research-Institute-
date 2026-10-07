@@ -145,18 +145,18 @@ async function loadProductionTelemetry(){
  }
 }
 async function load(){
- const [d,ov,rs]=await Promise.all([
-   fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+ const [passportText,ov,rs]=await Promise.all([
+   fetch("generated/PRODUCT-PASSPORTS.jsonl?ts="+Date.now(),{cache:"no-store"}).then(r=>r.text()),
    fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({products:[]})),
    fetch("generated/public-review-quality-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({review_count:0}))
  ]);
- products=d.products||[];
+ products=passportText.split(/\r?\n/).filter(Boolean).map(line=>{try{const p=JSON.parse(line);return {id:p.id,name:p.name,family:p.category,engine:p.engine,price_inr:p.price_inr,offer_price_inr:p.offer_price_inr,offer:p.offer,description:p.description,production_state:p.status,qc_code:p.qc_code,gate_no:p.gate_no,dispatch_no:p.dispatch_no,guarantee:p.guarantee,packing:p.packing}}catch(e){return null}}).filter(Boolean);
  (ov.products||[]).forEach(p=>overlay.set(p.id,p));
  reviewStatus=rs||{};
  document.getElementById("total").textContent=products.length.toLocaleString("en-IN");
  document.getElementById("public").textContent=overlay.size.toLocaleString("en-IN");
  document.getElementById("external").textContent=products.filter(p=>!overlay.has(p.id)).length.toLocaleString("en-IN");
- document.getElementById("categories").textContent=Number((d.families||[]).length||new Set(products.map(p=>p.family)).size).toLocaleString("en-IN");
+ document.getElementById("categories").textContent=Number(new Set(products.map(p=>p.family)).size).toLocaleString("en-IN");
  document.getElementById("reviewCount").textContent=Number(reviewStatus.review_count||0).toLocaleString("en-IN");
  render();
 }
