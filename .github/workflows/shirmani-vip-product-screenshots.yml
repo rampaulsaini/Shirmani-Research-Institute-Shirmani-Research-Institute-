@@ -19,7 +19,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
   group: shirmani-vip-product-screenshots
@@ -49,23 +48,30 @@ jobs:
           VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.batch_size || '25' }}
           SHOWROOM_BASE: http://127.0.0.1:8765
         run: python3 factory/product_vip_screenshot_factory.py
-      - name: Publish VIP screenshots through PR
-        id: publish_media
-        uses: peter-evans/create-pull-request@v7
-        with:
-          commit-message: "feat(showroom): publish VIP product screenshot batch"
-          title: "Automission: publish VIP product screenshot batch"
-          body: |
-            Continuous customer-facing presentation production.
-            Each concrete product receives a real browser screenshot of its Product Passport,
-            plus the existing unique 4K visual and demo route.
-            Presentation media is not scientific verification.
-          branch: "automission/vip-product-screenshots"
-          delete-branch: true
-          add-paths: |
-            products/vip-screenshots
-            generated/product-vip-screenshot-manifest.json
-
+      - name: Publish VIP screenshots to canonical production-state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI VIP Screenshot Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin automation/production-state
+          rm -rf /tmp/shirmani-vip-publish
+          git worktree add --detach /tmp/shirmani-vip-publish FETCH_HEAD
+          mkdir -p /tmp/shirmani-vip-publish/products/vip-screenshots /tmp/shirmani-vip-publish/generated
+          cp -a products/vip-screenshots/. /tmp/shirmani-vip-publish/products/vip-screenshots/
+          cp generated/product-vip-screenshot-manifest.json /tmp/shirmani-vip-publish/generated/
+          cd /tmp/shirmani-vip-publish
+          git config user.name "SHIRMANI VIP Screenshot Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/vip-screenshots generated/product-vip-screenshot-manifest.json
+          if git diff --cached --quiet; then
+            echo "No new VIP screenshot media."
+            exit 0
+          fi
+          git commit -m "automission: publish VIP product screenshot batch"
+          remote_sha="$(git rev-parse FETCH_HEAD)"
+          git push --force-with-lease="refs/heads/automation/production-state:$remote_sha" origin HEAD:automation/production-state
+          echo "VIP screenshot batch published to canonical production-state."
       - name: Auto-merge published production media
         if: steps.publish_media.outputs.pull-request-number != ''
         env:
