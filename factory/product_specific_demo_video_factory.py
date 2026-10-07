@@ -63,8 +63,11 @@ def make_video(product,path):
     concat.unlink(missing_ok=True)
 
 def load_catalog():
-    """Resolve the strongest available production catalog instead of silently producing zero demos."""
-    candidates=[ROOT/"generated/1000-digital-products.json",ROOT/"generated/production-registry.json",ROOT/"generated/concrete-production-overlay.json"]
+    """Resolve the canonical 5,000 production catalogue; never publish a zero-product manifest."""
+    from factory.canonical_product_catalog import write_catalog
+    canonical=ROOT/"generated/canonical-5000-product-catalog.json"
+    write_catalog(canonical)
+    candidates=[canonical,ROOT/"generated/concrete-production-overlay.json",ROOT/"generated/production-registry.json"]
     for source in candidates:
         if not source.exists(): continue
         try: data=json.loads(source.read_text(encoding="utf-8"))
