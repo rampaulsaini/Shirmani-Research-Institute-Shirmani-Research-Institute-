@@ -155,6 +155,12 @@ jobs:
             "production_contract":{"schedule":"every 5 minutes","continuity_without_chat":True,"verification":"downstream"}
           }
           (gen/"four-stage-production-status.json").write_text(json.dumps(four,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          for filename,payload in {
+              "concrete-product-production-status.json":{"generated_at":now,"catalog_products":target,"concrete_product_assets":concrete,"state":"COMPLETE" if concrete>=target else "IN_PROGRESS","dispatch":"NO"},
+              "concrete-product-depth-status.json":{"generated_at":now,"catalog_products":target,"depth_upgraded":production,"state":"READY"},
+              "continuous-production-batch-status.json":{"generated_at":now,"catalog_products":target,"produced_total":concrete,"produced_this_cycle":concrete,"remaining":max(0,target-concrete),"dispatch_released":0,"verification":"DOWNSTREAM"}
+          }.items():
+              (gen/filename).write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           PY
       - name: Fail if conflict markers remain
         if: \${{ steps.detect.outputs.repair_needed == 'true' }}
