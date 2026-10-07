@@ -1,0 +1,42 @@
+name: SHIRMANI 150K Catalogue Sharding
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "generated/1000-digital-products.json"
+      - "factory/catalog_sharding.py"
+      - ".github/workflows/shirmani-catalog-sharding.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: shirmani-catalog-sharding
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build catalogue shards
+        run: python3 factory/catalog_sharding.py
+      - name: Publish shard index through PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(catalog): refresh scalable product shards"
+          title: "Automission: refresh scalable 150K product catalogue shards"
+          body: |
+            Refreshes the machine-readable public catalogue shards.
+            Current target is 5,000 concrete products; architecture is prepared
+            for 150,000+ identities without putting the entire catalogue in one HTML payload.
+          branch: "automission/catalog-shards"
+          delete-branch: true
+          add-paths: |
+            generated/catalog-shards
+            generated/catalog-shard-index.json
