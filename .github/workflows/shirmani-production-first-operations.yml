@@ -19,7 +19,14 @@ jobs:
         run: python3 scripts/production_first_cycle.py
       - name: Publish state
         run: |
-          git config user.name "shirmani-production-automission"
-          git config user.email "actions@users.noreply.github.com"
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add generated/production-operations-status.json
-          if git diff --cached --quiet; then echo "No change"; else git commit -m "chore: refresh production-first operations state"; git push; fi
+          if git diff --cached --quiet; then echo "No change"; exit 0; fi
+          BRANCH="automation/production-operations-${GITHUB_RUN_ID}"
+          git switch -c "$BRANCH"
+          git commit -m "chore(production): refresh production-first operations state"
+          git push --set-upstream origin "$BRANCH"
+          if command -v gh >/dev/null 2>&1; then
+            gh pr create --base main --head "$BRANCH"               --title "chore(production): refresh production-first operations state"               --body "Automated production operations telemetry. Governed through the repository PR gate."
+          fi
