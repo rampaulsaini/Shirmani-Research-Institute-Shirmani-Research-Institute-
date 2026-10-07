@@ -1,0 +1,39 @@
+name: SHIRMANI Customer Review Improvement Loop
+on:
+  issues:
+    types: [opened, edited, labeled]
+permissions:
+  contents: write
+  issues: read
+jobs:
+  intake:
+    if: contains(github.event.issue.labels.*.name, 'customer-review')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build bounded review improvement record
+        env:
+          ISSUE_NUMBER: ${{github.event.issue.number}}
+          ISSUE_TITLE: ${{github.event.issue.title}}
+          ISSUE_BODY: ${{github.event.issue.body}}
+          ISSUE_URL: ${{github.event.issue.html_url}}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          out=Path("generated/customer-review-improvement-queue.jsonl")
+          row={"issue_number":int(os.environ["ISSUE_NUMBER"]),"title":os.environ.get("ISSUE_TITLE",""),"body":os.environ.get("ISSUE_BODY",""),"url":os.environ.get("ISSUE_URL",""),"state":"IMPROVEMENT_INPUT","next_stage":"PRODUCT_REVIEW -> IMPROVEMENT_TASK -> PRODUCTION -> SHOWROOM"}
+          out.parent.mkdir(parents=True,exist_ok=True)
+          with out.open("a",encoding="utf-8") as f: f.write(json.dumps(row,ensure_ascii=False)+"\\n")
+          PY
+      - name: Publish review improvement queue through PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(quality): ingest customer review into improvement queue"
+          title: "Automission: ingest customer product review"
+          body: |
+            Customer review/rating intake for the production quality-improvement loop.
+            Review input is feedback, not scientific verification.
+          branch: "automission/customer-review-intake"
+          delete-branch: true
+          add-paths: generated/customer-review-improvement-queue.jsonl
