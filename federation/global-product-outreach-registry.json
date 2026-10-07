@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Public reference and authorized outreach routing for SHIRMANI digital products.",
+  "long_term_catalogue_target": 150000,
+  "current_scale_target": 5000,
+  "current_concrete_products": 1516,
+  "current_concrete_percent_of_target": 30.32,
+  "rule": "Do not claim an external organization was contacted unless an authorized communication channel actually sent the message.",
+  "routes": [
+    {
+      "name": "GitHub",
+      "official_url": "https://github.com/",
+      "reference_url": "https://docs.github.com/actions",
+      "status": "PUBLIC_REFERENCE"
+    },
+    {
+      "name": "NVIDIA",
+      "official_url": "https://build.nvidia.com/",
+      "reference_url": "https://docs.api.nvidia.com/nim/",
+      "status": "PUBLIC_REFERENCE"
+    },
+    {
+      "name": "Research / Science organizations",
+      "status": "PREPARE_PRODUCT_PACKAGE"
+    },
+    {
+      "name": "Government / Enterprise organizations",
+      "status": "PREPARE_PRODUCT_PACKAGE"
+    }
+  ],
+  "package_contents": [
+    "product landing page",
+    "4K-ready product visual",
+    "short description",
+    "long product passport",
+    "price/offer metadata when available",
+    "QC/gate metadata",
+    "official product URL",
+    "customer review link"
+  ],
+  "contact_status": "NOT_CLAIMED"
+}

@@ -1,0 +1,52 @@
+# SHIRMANI Supreme Showroom Visual Production Contract v5
+
+## Customer-facing visual contract
+
+Every concrete public product visual is required to expose, where the product is rendered in the showroom:
+
+1. A product-specific artwork/visual as the main image.
+2. A SHIRMANI Heart-View photo/logo at the upper-left.
+3. The English identity line below the logo:
+   **Shiromani Rampal Saini · Impartial Understanding · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present**
+4. A QR code at the upper-right that routes to the product's long description / Product Passport.
+5. The product's short description directly on the artwork.
+6. A stable product ID so every product has its own public identity.
+7. 16:9 3840×2160 (4K-ready) visual geometry for generated masters.
+8. Product price/offer only when a catalog record supplies it.
+
+## State boundary
+
+A visual is a presentation artifact. It does not by itself mean:
+
+- a product was sold;
+- payment was received;
+- dispatch occurred;
+- independent scientific verification occurred.
+
+The production pipeline remains:
+
+**Institute → Factory → QC/Gate → Public Showroom → Order/Delivery → Reviews → Continuous Improvement**
+
+## Current public production telemetry
+
+As of the latest repository state inspected for this release:
+
+- Catalog identities: 5,000
+- Concrete repository assets: 1,516
+- Concrete materialization: 30.32% of the current 5,000 scale target
+- Remaining to current 5,000 target: 3,484
+- Production modules: 812
+- Discovered modules: 381
+- Scheduled work units: 80,500
+- Last production cycle concrete results: 1,000
+- Published visual coverage: 1,516 / 1,516 concrete products (100%)
+- Dispatch released: 0
+- Sales claimed: 0
+
+The 150,000-product vision is therefore maintained as a **long-term expansion target**, not falsely represented as already produced.
+
+## Visual implementation
+
+`showroom-product-visuals.js` v5 decorates concrete showroom cards with the identity/photo, exact English identity line, QR and short-description overlay. The visual factory remains product-specific and source-bound.
+
+The next scale step is to continue materializing concrete products in batches, publish their visuals, expose them in the showroom, and use customer reviews/ratings as quality-improvement inputs.
