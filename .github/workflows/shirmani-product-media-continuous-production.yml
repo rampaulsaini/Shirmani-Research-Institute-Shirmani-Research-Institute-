@@ -1,68 +1,92 @@
-name: SHIRMANI Product Media Continuous Production
-
+name: SHIRMANI Product Media & Catalogue Production — Canonical Continuous Lane
 on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "factory/product_visual_identity_factory_v2.py"
-      - "factory/product_specific_demo_video_factory.py"
-      - "factory/product_vip_screenshot_factory.py"
-      - "generated/1000-digital-products.json"
-      - ".github/workflows/shirmani-product-media-continuous-production.yml"
-
+    inputs:
+      visual_batch:
+        description: "4K visual identities per cycle"
+        required: false
+        default: "500"
+      demo_batch:
+        description: "Product-specific MP4 demos per cycle"
+        required: false
+        default: "25"
+      vip_batch:
+        description: "VIP screenshots per cycle"
+        required: false
+        default: "50"
 permissions:
   contents: write
-
 concurrency:
-  group: shirmani-product-media-continuous-production
+  group: shirmani-canonical-media-production
   cancel-in-progress: false
-
 jobs:
   media:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
+    env:
+      VISUAL_BATCH: ${{ github.event.inputs.visual_batch || '500' }}
+      PRODUCT_DEMO_BATCH: ${{ github.event.inputs.demo_batch || '25' }}
+      VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.vip_batch || '50' }}
+      QR_BATCH: "500"
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
-      - name: Produce next 4K visual batch
-        env:
-          VISUAL_BATCH: "250"
-        run: python3 factory/product_visual_identity_factory_v2.py
-
-      - name: Produce next product-specific MP4 demo batch
-        env:
-          PRODUCT_DEMO_BATCH: "10"
-        run: python3 factory/product_specific_demo_video_factory.py
-
-      - name: Install browser tooling for VIP presentation
+          fetch-depth: 0
+      - name: Install media dependencies
         run: |
-          python -m pip install --disable-pip-version-check playwright
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python -m pip install --disable-pip-version-check "qrcode>=8,<9" "playwright>=1.50,<2"
           python -m playwright install --with-deps chromium
-
-      - name: Produce next VIP screenshot batch
+      - name: Use canonical production state and current factory code
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main automation/production-state
+          git checkout -B automation/production-state origin/automation/production-state
+          git checkout origin/main -- factory/product_visual_identity_factory_v2.py factory/product_qr_asset_factory.py factory/product_specific_demo_video_factory.py factory/product_vip_screenshot_factory.py factory/build_sharded_catalog.py
+      - name: Produce next concrete product batch
         env:
-          VIP_SCREENSHOT_BATCH: "25"
+          PRODUCT_TARGET: "5000"
+          PRODUCTION_BATCH: "500"
+        run: python3 factory/incremental_product_production.py
+      - name: Produce next 4K visual batch
+        run: python3 factory/product_visual_identity_factory_v2.py
+      - name: Produce next QR batch
+        run: python3 factory/product_qr_asset_factory.py
+      - name: Produce next product-specific MP4 + VIP SVG batch
+        run: python3 factory/product_specific_demo_video_factory.py
+      - name: Produce next browser VIP screenshot batch
+        env:
           SHOWROOM_BASE: "http://127.0.0.1:8765"
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/showroom.log 2>&1 &
+          sleep 2
           python3 factory/product_vip_screenshot_factory.py
-
-      - name: Publish media manifests and bounded assets
+      - name: Build 150,000-capacity sharded catalogue map
+        env:
+          CATALOG_CAPACITY: "150000"
+          CATALOG_SHARD_SIZE: "1000"
+        run: python3 factory/build_sharded_catalog.py
+      - name: Publish media and production telemetry
         run: |
-          git config user.name "SHIRMANI Product Media Automission"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime,timezone
+          root=Path("generated"); c=json.loads((root/"1000-digital-products.json").read_text())
+          ps=c.get("products",[]); n=len(ps)
+          def count(d,s): return sum((Path(d)/(str(p["id"]).lower()+s)).exists() for p in ps)
+          concrete=count("products/production",".html"); visual=count("products/visuals",".svg"); qr=count("products/visuals/qr",".svg"); demo=count("products/demos/products",".mp4"); vip=count("products/vip-screenshots",".png")
+          state={"schema_version":4,"generated_at":datetime.now(timezone.utc).isoformat(),"catalog_products":n,"concrete_products":concrete,"concrete_remaining":n-concrete,"concrete_percent":round(100*concrete/n,2) if n else 0,"visual_assets":visual,"visual_remaining":n-visual,"visual_percent":round(100*visual/n,2) if n else 0,"qr_assets":qr,"qr_remaining":n-qr,"demo_mp4_assets":demo,"demo_remaining":n-demo,"demo_percent":round(100*demo/n,2) if n else 0,"vip_screenshots":vip,"vip_remaining":n-vip,"vip_percent":round(100*vip/n,2) if n else 0,"dispatch_released":0,"sales_claimed":0,"payment_claimed":0,"independent_verification_claimed":0,"production_priority":"CUSTOMER_VISIBLE_OUTPUT","verification":"DOWNSTREAM","continuity_without_chat":True}
+          (root/"media-production-progress.json").write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n")
+          print(json.dumps(state,ensure_ascii=False))
+          PY
+          git config user.name "SHIRMANI Canonical Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/product-visual-assets-v2.json generated/product-specific-demo-video-manifest.json generated/product-vip-screenshot-manifest.json products/visuals products/demos/products products/vip-screenshots
-          git diff --cached --quiet || git commit -m "automission: produce next product media batch"
-          git push
-
-      - name: Production summary
-        run: |
-          echo "Product media lane: visual + QR + demo + VIP screenshot."
-          echo "Production is customer-facing output; verification remains downstream."
+          git add generated products/production products/visuals products/demos/products products/demos/vip products/vip-screenshots
+          if git diff --cached --quiet; then echo "No production delta."; exit 0; fi
+          git commit -m "automission: advance concrete product media and catalogue production"
+          git push origin HEAD:automation/production-state
