@@ -60,7 +60,7 @@ jobs:
 
       - name: Materialize expanded concrete product assets
         run: python3 factory/materialize_all_product_assets.py
-
+\n      - name: Materialize unique showroom visual masters for every product\n        run: python3 factory/materialize_product_visuals.py\n
       - name: Publish concrete 5,000-product production manifest
         run: |
           python3 - <<'PY'
