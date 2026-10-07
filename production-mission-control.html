@@ -31,11 +31,11 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px s
 <div class="stage"><b>04 · SHOWROOM</b><h3>Public customer layer</h3><p class="muted">Description, category, rate, offer, product passport, use/order path और reviews.</p></div>
 </div></section>
 <section><h2>वर्तमान production snapshot</h2><div class="grid">
-<div class="metric"><div class="num">1,000</div>published concrete product assets</div><div class="metric"><div class="num">1,000 / 1,016</div>deterministic QC pass</div><div class="metric"><div class="num">5,000</div>next automated concrete-product target</div><div class="metric"><div class="num">9</div>configured production lanes</div><div class="metric"><div class="num">500</div>concrete results in latest published cycle</div><div class="metric"><div class="num">500</div>production modules in latest status record</div>
+<div class="metric"><div class="num" id="liveConcrete">1,016</div>published concrete product assets</div><div class="metric"><div class="num" id="liveQc">1,016 / 1,016</div>deterministic QC pass</div><div class="metric"><div class="num">5,000</div>next automated concrete-product target</div><div class="metric"><div class="num">9</div>configured production lanes</div><div class="metric"><div class="num">500</div>concrete results in latest published cycle</div><div class="metric"><div class="num">500</div>production modules in latest status record</div>
 </div><p class="callout"><strong>महत्वपूर्ण:</strong> ये repository-published production states हैं। इन्हें commercial sale, received payment या independent scientific verification के बराबर नहीं माना जाता।</p></section>
 <section><h2>Production maturity map</h2>
 <p><strong>Engineering / platform development ≈ 72%</strong> — current planning estimate</p><div class="bar"><div class="fill" style="width:72%"></div></div>
-<p><strong>Published concrete product materialization = 1,000 / 5,000 target = 20.00%</strong></p><div class="bar"><div class="fill" style="width:20.32%"></div></div><p class="muted"><strong>Remaining production scale: 4,000 concrete products to the 5,000 scale target; 16 catalog identities are still pending within the current 1,016 catalog.</strong> This is production backlog, not verification backlog.</p>
+<p><strong>Published concrete product materialization = <span id="liveScaleText">1,016 / 5,000 target = 20.32%</span></strong></p><div class="bar"><div class="fill" style="width:20.32%"></div></div><p class="muted"><strong>Remaining production scale: 3,984 concrete products to the 5,000 scale target; 16 catalog identities are still pending within the current 1,016 catalog.</strong> This is production backlog, not verification backlog.</p>
 <p><strong>Independent research verification = 0% of the 100,200-record queue</strong></p><div class="bar"><div class="fill" style="width:0%"></div></div>
 <p><strong>Commercial sale / settlement = not evidenced by the current product manifest</strong></p><div class="bar"><div class="fill" style="width:0%"></div></section>
 <section><h2>Customer-first production loop</h2><table><tr><th>Input</th><th>Production action</th><th>Public result</th></tr><tr><td>Research / idea</td><td>Factory generates a concrete artifact</td><td>Product page + description</td></tr><tr><td>Product metadata</td><td>QC / gate packaging</td><td>Product ID + QC code + gate + dispatch state</td></tr><tr><td>Customer experience</td><td>Use / inspect / compare</td><td>Review + rating + improvement request</td></tr><tr><td>Feedback</td><td>Prioritise next production cycle</td><td>New or improved product/module</td></tr><tr><td>Funding</td><td>Increase production capacity</td><td>More useful customer-visible output</td></tr></table></section>
@@ -43,4 +43,19 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px s
 <section><h2>AI / ML / NLP Automission — production role</h2><p>Automation का उद्देश्य केवल verification नहीं है। इसका production role है: backlog को छोटे independent work units में बाँटना, concrete artifacts बनाना, modules प्रकाशित करना, QC metadata जोड़ना, showroom catalogue update करना और customer feedback को अगले work queue में वापस भेजना.</p><p class="callout"><strong>Quantum boundary:</strong> “Ultra Mega Infinity Quantum” architecture नाम/orchestration concept हो सकता है; वास्तविक physical quantum computation तभी कहा जाएगा जब वास्तविक quantum backend configured और executed हो.</p></section>
 <section><h2>अगला priority stack</h2><ol><li><strong>Commercial delivery:</strong> order → payment evidence → fulfilment → delivery evidence → settlement.</li><li><strong>Product depth:</strong> generic catalog identities के ऊपर product-specific content, demos, datasets, templates और use cases.</li><li><strong>Customer quality loop:</strong> public reviews/ratings → quality backlog → next production cycle.</li><li><strong>Showroom scale:</strong> categories, search, pricing/offers, passports और product-specific landing pages.</li><li><strong>Research verification:</strong> production से अलग 100,200-record evidence/reproduction queue को लगातार process करना.</li></ol></section>
 <footer class="muted" style="text-align:center;padding:20px">SHIRMANI Research Institute · Production-first · Public showroom · Continuous improvement</footer>
-</main></body></html>
+<script>
+(async function(){
+  try{
+    const r=await fetch("generated/live-production-state.json?ts="+Date.now(),{cache:"no-store"});
+    if(!r.ok) return;
+    const p=await r.json();
+    const produced=Number(p.concrete_repository_assets||0);
+    const catalog=Number(p.catalog_identities||0);
+    const target=Number(p.five_thousand_scale_target||5000);
+    const pct=Number(p.concrete_materialization_percent_of_scale_target||0);
+    document.getElementById("liveConcrete").textContent=produced.toLocaleString("en-IN");
+    document.getElementById("liveQc").textContent=produced.toLocaleString("en-IN")+" / "+catalog.toLocaleString("en-IN");
+    document.getElementById("liveScaleText").textContent=produced.toLocaleString("en-IN")+" / "+target.toLocaleString("en-IN")+" target = "+pct.toFixed(2)+"%";
+  }catch(e){}
+})();
+</script></main></body></html>

@@ -1,0 +1,35 @@
+name: SHIRMANI Production Truth Reconciler
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-production-truth-reconciler
+  cancel-in-progress: false
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconcile public production state
+        run: python3 factory/reconcile_production_truth.py
+      - name: Commit reconciled production state
+        run: |
+          git config user.name "shirmani-production[bot]"
+          git config user.email "shirmani-production@users.noreply.github.com"
+          git add generated/live-production-state.json factory/reconcile_production_truth.py
+          if git diff --cached --quiet; then
+            echo "Production truth already current."
+            exit 0
+          fi
+          git commit -m "chore(production): reconcile public production truth"
+          BRANCH="production/truth-reconciler"
+          git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
+          git branch -f "$BRANCH" HEAD
+          git push --force-with-lease origin "HEAD:$BRANCH"
+          if [ "$(gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length')" = "0" ]; then
+            gh pr create --base main --head "$BRANCH" --title "chore(production): reconcile public production truth" --body "Automated reconciliation of the public production state from the concrete production overlay. Downstream QC, dispatch, sales and independent verification remain separate."
+          fi
