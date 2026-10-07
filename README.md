@@ -274,3 +274,13 @@ The canonical public-production path now distinguishes **architecture engines** 
 **Canonical flow:** 1,016 catalog identities → concrete product assets → QC/metadata → public deployment → commercial dispatch gate → downstream verification.
 
 This is intended to eliminate the previous ambiguity where a 25-engine architecture could be mistaken for only 25 produced products.
+
+
+## 🌐 Global Product Discovery & Distribution — 2026-10-07
+
+- **Scale target:** 150,000 product identities; this is a future scale target, not a claim that 150,000 concrete products already exist.
+- **Architecture:** [global-product-discovery-scale-target-2026-10-07.md](docs/global-product-discovery-scale-target-2026-10-07.md)
+- **Official target seed registry:** [federation/global-product-targets-2026-10-07.json](federation/global-product-targets-2026-10-07.json)
+- **NVIDIA integration candidates:** CUDA/CUDA-X, NeMo, NIM, Triton/Dynamo, Omniverse, Riva, Maxine, Morpheus, RAPIDS, Isaac, BioNeMo, Holoscan, AI Enterprise and NGC, selected by workload fit rather than claimed universal deployment.
+- **Distribution states:** DISCOVERED → QC_READY → PUBLIC → TARGET_MATCHED → OUTREACH_READY → CONTACTED → RESPONDED → TRIAL → DEPLOYED → VERIFIED_USAGE.
+- **Outreach integrity:** official public contact/partnership/procurement channels only; no invented private contacts and no automatic mass unsolicited messaging.
