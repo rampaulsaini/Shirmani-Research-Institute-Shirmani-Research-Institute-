@@ -4,7 +4,7 @@ on:
     types: [opened, edited, labeled]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   issues: read
 concurrency:
   group: shirmani-customer-review-quality-loop
@@ -15,12 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Aggregate current public customer feedback
+      - name: Persist customer feedback as production-quality input
         env:
           EVENT_PATH: ${{ github.event_path }}
         shell: python
         run: |
           import json, os, re
+          from datetime import datetime, timezone
           from pathlib import Path
           e=json.loads(Path(os.environ["EVENT_PATH"]).read_text())
           root=Path("generated"); root.mkdir(exist_ok=True)
@@ -29,14 +30,30 @@ jobs:
           def f(n):
               m=re.search(r"###\s+"+re.escape(n)+r"\s*\n+([^#]+)",body,re.I)
               return m.group(1).strip() if m else ""
-          rec={"issue_number":issue.get("number"),"updated_at":issue.get("updated_at"),"product":f("Product ID or product name"),"rating":f("Rating"),"experience":f("Customer experience"),"improvement":f("Improvement suggestion"),"version":f("Product version"),"source":"github-public-review"}
-          (root/"customer-review-event.json").write_text(json.dumps(rec,ensure_ascii=False,indent=2)+"\n")
-          (root/"customer-quality-dashboard.json").write_text(json.dumps({"generated_at":__import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),"review_count":1 if issue else 0,"principle":"Customer reviews are production-quality signals, not independent scientific verification.","delivery":"Aggregated again during every public production build."},ensure_ascii=False,indent=2)+"\n")
-      - name: Publish review telemetry artifact
+          rec={"issue_number":issue.get("number"),"updated_at":issue.get("updated_at"),"product":f("Product ID or product name"),"rating":f("Rating"),"experience":f("Customer experience"),"improvement":f("Improvement suggestion"),"version":f("Product version"),"source":"github-public-review","captured_at":datetime.now(timezone.utc).isoformat()}
+          log=root/"customer-review-log.jsonl"
+          with log.open("a",encoding="utf-8") as fh: fh.write(json.dumps(rec,ensure_ascii=False,separators=(",",":"))+"\n")
+          records=[]
+          if log.exists():
+              for line in log.read_text(encoding="utf-8").splitlines():
+                  if line.strip():
+                      try: records.append(json.loads(line))
+                      except json.JSONDecodeError: pass
+          dashboard={"generated_at":datetime.now(timezone.utc).isoformat(),"review_count":len(records),"rated_count":sum(bool(r.get("rating")) for r in records),"improvement_suggestions":sum(bool(r.get("improvement")) for r in records),"principle":"Customer reviews are production-quality signals and continuous-improvement inputs, not independent scientific verification.","delivery":"Persisted in the repository so future production cycles can consume the feedback."}
+          (root/"customer-quality-dashboard.json").write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          (root/"public-review-quality-status.json").write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+      - name: Publish review telemetry
+        run: |
+          git config user.name "SHIRMANI Customer Quality Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/customer-review-log.jsonl generated/customer-quality-dashboard.json generated/public-review-quality-status.json
+          if git diff --cached --quiet; then echo "No review delta."; else git commit -m "automission: persist customer review quality signals"; git push origin HEAD:main; fi
+      - name: Publish review artifact
         uses: actions/upload-artifact@v4
         with:
           name: shirmani-customer-review-${{ github.run_number }}
           retention-days: 30
           path: |
-            generated/customer-review-event.json
+            generated/customer-review-log.jsonl
             generated/customer-quality-dashboard.json
+            generated/public-review-quality-status.json
