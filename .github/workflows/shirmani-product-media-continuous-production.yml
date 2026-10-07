@@ -38,7 +38,7 @@ jobs:
 
       - name: Produce next product-specific MP4 demo batch
         env:
-          PRODUCT_DEMO_BATCH: "10"
+          PRODUCT_DEMO_BATCH: "50"
         run: python3 factory/product_specific_demo_video_factory.py
 
       - name: Install browser tooling for VIP presentation
