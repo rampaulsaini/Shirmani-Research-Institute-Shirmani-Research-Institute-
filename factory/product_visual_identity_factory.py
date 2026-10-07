@@ -6,9 +6,9 @@ from pathlib import Path
 import hashlib, html, json, os
 
 ROOT=Path(__file__).resolve().parents[1]
-CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets.json"
+SOURCES=[ROOT/"generated/1000-digital-products.json",ROOT/"showroom-products.json",ROOT/"generated/product-catalog-public.json"]
 
 def esc(v): return html.escape(str(v), quote=True)
 
@@ -29,8 +29,23 @@ def visual(p):
 <text x="520" y="1505" fill="#62e6ff" font-family="system-ui,sans-serif" font-size="48" font-weight="800">PRICE ₹{int(p.get("offer_price_inr",p.get("price_inr",0)) or 0):,} · {esc(str(p.get("offer","PUBLIC LAUNCH PRICE"))[:54])}</text><text x="520" y="1590" fill="#ffffff" opacity=".82" font-family="system-ui,sans-serif" font-size="42" font-weight="800">SHORT DESCRIPTION</text><text x="520" y="1655" fill="#ffffff" opacity=".72" font-family="system-ui,sans-serif" font-size="34">{esc(str(p.get("description","")).replace(chr(10)," ")[:120])}</text><text x="520" y="1730" fill="#ffffff" opacity=".55" font-family="system-ui,sans-serif" font-size="34">UNIQUE PRODUCT IDENTITY · 3840×2160 · 16:9 · 4K-READY · QR → LONG DESCRIPTION</text></svg>'''
 
 def main():
-    if not CAT.exists(): raise SystemExit("generated/1000-digital-products.json missing")
-    products=json.loads(CAT.read_text(encoding="utf-8")).get("products",[])
+    products=[]; source=None
+    for CAT in SOURCES:
+        if not CAT.exists() or CAT.stat().st_size == 0: continue
+        try: raw=json.loads(CAT.read_text(encoding="utf-8"))
+        except Exception: continue
+        items=raw.get("products") if isinstance(raw,dict) else None
+        if not items and isinstance(raw,dict): items=raw.get("offers")
+        if isinstance(items,list) and items:
+            seen=set()
+            for i,p in enumerate(items):
+                if not isinstance(p,dict): continue
+                pid=str(p.get("id") or f"CAT-{i+1:05d}")
+                if pid in seen: continue
+                seen.add(pid)
+                p=dict(p); p["id"]=pid; p.setdefault("family",p.get("category",p.get("lane","Digital Product"))); p.setdefault("engine",p.get("delivery","digital")); p.setdefault("description","Customer-facing digital product."); products.append(p)
+            source=str(CAT.relative_to(ROOT)); break
+    if not products: raise SystemExit("No real product catalogue source available")
     OUT.mkdir(parents=True,exist_ok=True); rows=[]; created=existing=0
     try: batch=max(1,min(5000,int(os.environ.get("VISUAL_BATCH","5000"))))
     except ValueError: batch=250
@@ -42,6 +57,6 @@ def main():
         elif id(p) in selected: path.write_text(visual(p),encoding="utf-8"); created+=1
         rows.append({"product_id":pid,"name":p.get("name"),"family":p.get("family"),"engine":p.get("engine"),"asset_path":str(path.relative_to(ROOT)),"format":"svg","width":3840,"height":2160,"aspect_ratio":"16:9","exists":path.exists(),"state":"READY_FOR_PUBLIC_SHOWROOM" if path.exists() else "PENDING_VISUAL_ASSET"})
     now=datetime.now(timezone.utc).isoformat()
-    MAN.write_text(json.dumps({"version":1,"generated_at":now,"target":len(products),"visual_assets":sum(1 for x in rows if x["exists"]),"created_this_cycle":created,"already_existing":existing,"batch_size":batch,"remaining_visual_assets":sum(1 for x in rows if not x["exists"]),"state":"READY_FOR_PUBLIC_SHOWROOM","note":"4K-ready vector visual identity assets; raster/AI-photographic variants can be added later without changing product IDs. Public-ready count requires the asset file to exist.","products":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    MAN.write_text(json.dumps({"version":1,"generated_at":now,"target":len(products),"visual_assets":sum(1 for x in rows if x["exists"]),"created_this_cycle":created,"already_existing":existing,"batch_size":batch,"remaining_visual_assets":sum(1 for x in rows if not x["exists"]),"state":"READY_FOR_PUBLIC_SHOWROOM","source":source,"note":"4K-ready vector visual identity assets; real catalogue identities only. Raster/AI-photographic variants can be added later without changing product IDs. Public-ready count requires the asset file to exist.","products":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"target":len(products),"visual_assets":len(rows),"created_this_cycle":created},ensure_ascii=False))
 if __name__=="__main__": main()

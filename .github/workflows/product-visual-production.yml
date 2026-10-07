@@ -5,6 +5,8 @@ on:
     paths:
       - "factory/product_visual_identity_factory.py"
       - "generated/1000-digital-products.json"
+      - "showroom-products.json"
+      - "generated/product-catalog-public.json"
       - ".github/workflows/product-visual-production.yml"
   schedule:
     - cron: "*/5 * * * *"
