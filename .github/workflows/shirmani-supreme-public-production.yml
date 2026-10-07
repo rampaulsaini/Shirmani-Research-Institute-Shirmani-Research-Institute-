@@ -18,6 +18,8 @@ jobs:
         with:
           python-version: "3.12"
       - name: Institute → Factory — materialize all catalog products
+        env:
+          PRODUCT_TARGET: "1516"
         run: |
           python3 factory/real_product_factory.py
           python3 factory/incremental_public_production.py
