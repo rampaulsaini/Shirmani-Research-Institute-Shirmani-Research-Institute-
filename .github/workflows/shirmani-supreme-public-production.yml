@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: shirmani-supreme-public-production
+  group: shirmani-production-main-writer
   cancel-in-progress: false
 jobs:
   production:
@@ -31,4 +31,4 @@ jobs:
           git config user.name "SHIRMANI Supreme Production"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add generated/1000-digital-products.json generated/PRODUCT-PASSPORTS.jsonl generated/real-product-factory-status.json generated/concrete-production-overlay.json generated/production-registry.json generated/production-status.json generated/product-qc-gate.json generated/product-production-assets.json products/production products/modules production-dashboard.html supreme-showroom.html supreme-production-showroom.html
-          if git diff --cached --quiet; then echo "No production delta."; else git commit -m "automission: publish concrete public product production"; git push origin HEAD:main; fi
+          if git diff --cached --quiet; then echo "No production delta."; else git commit -m "automission: publish concrete public product production"; COMMIT_SHA="$(git rev-parse HEAD)"; for attempt in 1 2 3; do git fetch origin main; git reset --hard origin/main; git cherry-pick "$COMMIT_SHA" || { git cherry-pick --abort || true; }; if git push origin HEAD:main; then exit 0; fi; echo "main moved; retrying push ($attempt/3)"; done; echo "Unable to publish production commit after 3 attempts"; exit 1; fi
