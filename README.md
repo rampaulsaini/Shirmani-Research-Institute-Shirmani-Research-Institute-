@@ -15,7 +15,9 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 
 ## Public Production Showroom
 
-- **Global Product Expansion:** [global-product-expansion.html](global-product-expansion.html) — current concrete production, 5,000 scale target, 150,000 long-term catalogue target, official platform reference routes and authorized outreach package state.
+- **Global Product Expansion:** [global-product-expansion.html](global-product-expansion.html)
+- **Global Product & Usage Directory:** [global-product-usage-directory.html](global-product-usage-directory.html) — public product/usage routing and official-reference mapping.
+- **Product Demo Media Factory:** [product-demo.html](product-demo.html) — product-specific MP4 route, engine fallback and interactive usage demo; media queue is maintained by `factory/product_demo_media_factory.py`. — current concrete production, 5,000 scale target, 150,000 long-term catalogue target, official platform reference routes and authorized outreach package state.
 - **Showroom visual contract:** [docs/showroom/visual-production-contract-v5.md](docs/showroom/visual-production-contract-v5.md) — product-specific 4K-ready visual, Heart-View logo/photo, English identity line, short description and QR-to-long-passport contract.
 
 - **Production Hub (clear “what is this?” map):** [production-hub.html](production-hub.html)
