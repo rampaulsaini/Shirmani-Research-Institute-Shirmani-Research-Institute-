@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "updated": "2026-10-07",
+  "principle": "production-first",
+  "pipeline": ["institute-discovery","factory-production","qc","showroom-public"],
+  "required_product_assets": ["product_id","name","concrete_asset","short_description","long_description","visual_4k_16_9","heart_view_logo_identity","vip_screenshot","product_specific_mp4_demo","usage_guide","product_passport","qr_long_description","price","offer","qc_code","gate_no","dispatch_state","public_showroom_route","customer_review_route"],
+  "scale_targets": {"priority_concrete_products": 5000,"catalogue_capacity": 150000},
+  "quality_loop": "customer_review_rating -> quality_signal -> production_task -> improved_public_version",
+  "verification_policy": "downstream evidence state; never the sole production objective"
+}
