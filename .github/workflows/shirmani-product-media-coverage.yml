@@ -1,0 +1,37 @@
+name: SHIRMANI Product Media Coverage Telemetry
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "factory/product_media_coverage.py"
+      - "generated/1000-digital-products.json"
+      - "generated/production-registry.json"
+      - "generated/concrete-production-overlay.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-product-media-coverage
+  cancel-in-progress: false
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Measure customer-facing product media coverage
+        run: python3 factory/product_media_coverage.py
+      - name: Publish coverage telemetry
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore(showroom): refresh product media coverage"
+          file_pattern: "generated/product-media-coverage.json"
+          commit_user_name: "SHIRMANI Automission"
+          commit_user_email: "actions@users.noreply.github.com"
+          commit_author: "SHIRMANI Automission <actions@users.noreply.github.com>"

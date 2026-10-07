@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Produce next VIP screenshot batch
         env:
-          VIP_BATCH: ${{ github.event.inputs.batch_size || '250' }}
+          VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.batch_size || '250' }}
         run: python3 factory/vip_screenshot_factory.py
       - name: Publish production assets
         uses: stefanzweifel/git-auto-commit-action@v7
