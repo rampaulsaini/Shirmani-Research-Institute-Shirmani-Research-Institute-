@@ -53,6 +53,11 @@ jobs:
           total=len(products); overlay.update({"generated_at":now,"product_count":target,"produced_count":total,"remaining_count":max(0,target-total),"batch_size":batch,"products":products}); op.write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\n")
           sp=gen/"live-production-state.json"; state=json.loads(sp.read_text()) if sp.exists() else {}
           state.update({"schema_version":1,"generated_at":now,"production_first":True,"catalog_identities":target,"concrete_repository_assets":total,"current_catalog_pending":max(0,target-total),"five_thousand_scale_target":target,"remaining_to_scale_target":max(0,target-total),"concrete_materialization_percent_of_catalog":round(total/target*100,2),"concrete_materialization_percent_of_scale_target":round(total/target*100,2),"module_products_generated":total,"last_cycle_concrete_results":len(created),"state":"PRODUCTION_COMPLETE" if total>=target else "PRODUCTION_IN_PROGRESS"}); sp.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n")
+          mp=gen/"multi-layer-production-status.json"; status=json.loads(mp.read_text()) if mp.exists() else {}
+          po=status.get("production_outputs") if isinstance(status.get("production_outputs"),dict) else {}
+          po.update({"production_modules":total,"concrete_results_this_cycle":len(created)})
+          status.update({"observed_at":now,"last_cycle_concrete_results":len(created),"scheduled_work_units":batch,"production_outputs":po})
+          mp.write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\\n")
           print(f"created={len(created)} produced_total={total} remaining={max(0,target-total)}")
       - name: Publish production result
         shell: bash
@@ -60,7 +65,7 @@ jobs:
           set -euo pipefail
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add products/concrete generated/concrete-production-overlay.json generated/live-production-state.json
+          git add products/concrete generated/concrete-production-overlay.json generated/live-production-state.json generated/multi-layer-production-status.json
           git diff --cached --quiet && exit 0
           git commit -m "feat(production): materialize next concrete product batch"
           git fetch origin main
