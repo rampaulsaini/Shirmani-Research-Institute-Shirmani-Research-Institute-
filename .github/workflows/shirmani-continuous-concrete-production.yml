@@ -31,6 +31,27 @@ jobs:
             echo "PRODUCTION_STATE_SOURCE=main-initial"
           fi
 
+      - name: Recover malformed production catalog before factory execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          if python3 - <<'PY'
+          import json
+          json.load(open("generated/1000-digital-products.json", encoding="utf-8"))
+          print("Production catalog JSON is valid.")
+          PY
+          then
+            :
+          else
+            echo "Production-state catalog is malformed; restoring the canonical main catalog before continuing."
+            git restore --source origin/main -- generated/1000-digital-products.json
+            python3 - <<'PY'
+          import json
+          data=json.load(open("generated/1000-digital-products.json", encoding="utf-8"))
+          print("Recovered catalog:", len(data.get("products", [])))
+          PY
+          fi
+
       - name: Configure production scale
         run: |
           echo "PRODUCT_TARGET=$PRODUCT_TARGET" >> "$GITHUB_ENV"
