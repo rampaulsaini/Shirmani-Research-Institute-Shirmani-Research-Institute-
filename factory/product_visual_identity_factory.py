@@ -26,7 +26,7 @@ def visual(p):
 <text x="520" y="1110" fill="#f7f9fc" font-family="system-ui,sans-serif" font-size="138" font-weight="900">{esc(name)}</text>
 <text x="520" y="1270" fill="#6ee7a8" font-family="system-ui,sans-serif" font-size="64" font-weight="800">{esc(family)} · {esc(engine)}</text>
 <rect x="520" y="1380" width="650" height="112" rx="56" fill="#050910" opacity=".78"/><text x="585" y="1458" fill="#e5c35b" font-family="system-ui,sans-serif" font-size="68" font-weight="900">{esc(pid)}</text>
-<text x="520" y="1585" fill="#ffffff" opacity=".78" font-family="system-ui,sans-serif" font-size="42" letter-spacing="4">UNIQUE PRODUCT IDENTITY · 3840×2160 · 16:9 · 4K-READY</text><text x="520" y="1655" fill="#ffffff" opacity=".55" font-family="system-ui,sans-serif" font-size="34">Persistent product visual asset — generated from product identity.</text></svg>'''
+<text x="520" y="1585" fill="#ffffff" opacity=".78" font-family="system-ui,sans-serif" font-size="42" letter-spacing="4">UNIQUE PRODUCT IDENTITY · 3840×2160 · 16:9 · 4K-READY</text><text x="520" y="1655" fill="#ffffff" opacity=".55" font-family="system-ui,sans-serif" font-size="34">Persistent product visual asset — generated from product identity.</text><text x="520" y="1730" fill="#ffffff" opacity=".72" font-family="system-ui,sans-serif" font-size="34">{esc(str(p.get("description","")).replace(chr(10)," ")[:110])}</text></svg>'''
 
 def main():
     if not CAT.exists(): raise SystemExit("generated/1000-digital-products.json missing")
