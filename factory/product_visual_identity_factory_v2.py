@@ -3,13 +3,13 @@
 from __future__ import annotations
 from datetime import datetime, timezone
 from pathlib import Path
-import hashlib, html, json, os
+import hashlib, html, json, os\nfrom urllib.parse import quote
 
 ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-07-production-visual-v5"
+VERSION="2026-10-07-production-visual-v6"
 LOGO="https://i.ibb.co/xqf3kTPS/enhanced-image.webp"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 
@@ -22,12 +22,12 @@ def make(p):
     price=int(p.get("offer_price_inr",p.get("price_inr",0)) or 0)
     offer=str(p.get("offer","PUBLIC LAUNCH PRICE"))[:48]
     h=hashlib.sha256(pid.encode()).hexdigest(); c1="#"+h[:6]; c2="#"+h[6:12]
-    qr=f"qr/{pid.lower()}.svg"
+    qr_target=f"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/product-passport.html?id={quote(pid)}"\n    qr="https://api.qrserver.com/v1/create-qr-code/?size=430x430&margin=10&data="+quote(qr_target,safe="")
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
 <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{c1}"/><stop offset=".55" stop-color="{c2}"/><stop offset="1" stop-color="#050910"/></linearGradient></defs>
 <rect width="3840" height="2160" fill="url(#b)"/><rect x="70" y="70" width="3700" height="2020" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
 <circle cx="360" cy="360" r="205" fill="#061016" stroke="#e7c85b" stroke-width="14"/><image href="{LOGO}" x="175" y="175" width="370" height="370" preserveAspectRatio="xMidYMid slice"/>
-<text x="360" y="640" text-anchor="middle" fill="#f6d35f" font-family="system-ui,sans-serif" font-size="40" font-weight="950">शिरोमणि रामपॉल सैनी</text>
+<text x="360" y="640" text-anchor="middle" fill="#f6d35f" font-family="system-ui,sans-serif" font-size="40" font-weight="950">Shiromani Rampal Saini</text>
 <text x="360" y="692" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="750">NISHPAKSH UNDERSTANDING · SHIRMANI HEART-VIEW</text>
 <text x="360" y="730" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">{esc(IDENTITY[:55])}</text>
 <text x="360" y="764" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">{esc(IDENTITY[55:])}</text>
@@ -54,7 +54,7 @@ def main():
         try: previous=json.loads(MAN.read_text(encoding="utf-8"))
         except Exception: pass
     previous_rows={str(r.get("product_id")):r for r in previous.get("products",[]) if isinstance(r,dict)}
-    batch=max(1,min(5000,int(os.environ.get("VISUAL_BATCH","500"))))
+    batch=max(1,min(5000,int(os.environ.get("VISUAL_BATCH","5000"))))
     # Refresh is version-aware per product. A partial batch must not falsely mark
     # the whole catalogue as upgraded; later cycles continue until every product is current.
     todo=[p for p in products if (
