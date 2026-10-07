@@ -18,7 +18,7 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"products"/"visuals"
 MANIFEST=OUT/"manifest.json"
 BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-"
-LOGO="https://i.ibb.co/xqf3kTPS/enhanced-image.webp"
+LOGO="../../assets/shirmani-perspective-logo.svg"
 
 def load_products():
     candidates=[
@@ -117,8 +117,8 @@ def main():
         "total_visuals":existing,
         "visuals_written_this_cycle":written,
         "coverage_percent": round((existing/len(products)*100),2) if products else 0,
-        "identity_contract":"portrait/logo upper-left; full English identity below; product-specific ID/name/family/engine; short description on-image; long-description QR upper-right; price/offer when available",
-        "principle":"Visual production is a customer-facing production artifact, not independent scientific verification."
+        "identity_contract":"SHIRMANI perspective logo upper-left; English identity line beneath logo; product-specific ID/name/family/engine; short description on-image; long-description QR upper-right; price/offer when available; VIP screenshot route and demo route",
+        "vip_screenshot_route":"product-passport.html?id=<PRODUCT_ID>","demo_video_route":"product-demo.html?id=<PRODUCT_ID>","principle":"Visual production is a customer-facing production artifact, not independent scientific verification."
     }
     MANIFEST.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(manifest,ensure_ascii=False))
