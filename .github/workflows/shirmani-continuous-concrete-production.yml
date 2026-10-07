@@ -7,8 +7,6 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
-  pages: write
-  id-token: write
 concurrency:
   group: shirmani-production-state-writer
   cancel-in-progress: false
@@ -93,19 +91,7 @@ jobs:
         run: |
           echo "Concrete production completed in this run."
           echo "Persistent production-state publication is owned by SHIRMANI Production Persistence & Truth Gate."
-          echo "This workflow publishes the live Pages workspace without competing for the canonical production-state branch."
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Publish live production workspace
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: .
-
-      - name: Deploy live production workspace
-        id: deployment
-        uses: actions/deploy-pages@v4
-
+          echo "Public Pages deployment is owned by SHIRMANI Public Production Automission to avoid duplicate deployment races."
       - name: Report production state
         run: |
           python3 - <<'PY'
