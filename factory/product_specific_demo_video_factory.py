@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Product-specific MP4 demo factory for the SHIRMANI public showroom."""
 from pathlib import Path
-import json, os, re, subprocess
+import json, os, re, subprocess, html
 from datetime import datetime, timezone
 
 ROOT=Path(__file__).resolve().parents[1]
