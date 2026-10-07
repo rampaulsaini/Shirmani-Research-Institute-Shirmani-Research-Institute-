@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 1
       - name: Generate canonical 4K product visuals
         env:
-          VISUAL_BATCH: "500"
+          VISUAL_BATCH: "5000"
         run: python3 factory/product_visual_identity_factory_v2.py
       - name: Commit visual production
         run: |
