@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T01:16:10.902631+00:00",
+  "generated_at": "2026-10-07T01:17:45.080130+00:00",
   "engine": "SHIRMANI Multi-Layer Production Dispatcher",
   "mode": "production-first",
   "discovered_modules": 382,
@@ -7,7 +7,7 @@
   "last_cycle_tasks": 500,
   "new_tasks_added": 500,
   "total_queued_tasks": 500,
-  "scheduled_work_units": 87500,
+  "scheduled_work_units": 88000,
   "lanes": [
     "ai-ml-nlp",
     "automation",
@@ -20,13 +20,13 @@
     "social-media"
   ],
   "lane_counts_last_cycle": {
-    "automation": 209,
-    "research": 24,
-    "ai-ml-nlp": 65,
-    "federation": 24,
-    "content": 13,
-    "security-quality": 20,
-    "platform": 133,
+    "automation": 242,
+    "platform": 113,
+    "research": 21,
+    "security-quality": 30,
+    "federation": 17,
+    "ai-ml-nlp": 56,
+    "content": 9,
     "social-media": 4,
     "economic": 8
   },
@@ -41,17 +41,17 @@
     "certificates": 1000,
     "verification_queue": 100200,
     "verified_records": 0,
-    "concrete_results_this_cycle": 2000,
+    "concrete_results_this_cycle": 2500,
     "lane_artifacts": {
-      "ai-ml-nlp": 578,
-      "automation": 691,
-      "content": 59,
-      "economic": 33,
-      "federation": 61,
-      "platform": 405,
-      "research": 66,
-      "security-quality": 88,
-      "social-media": 19
+      "ai-ml-nlp": 634,
+      "automation": 933,
+      "content": 68,
+      "economic": 41,
+      "federation": 78,
+      "platform": 518,
+      "research": 87,
+      "security-quality": 118,
+      "social-media": 23
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
@@ -64,7 +64,7 @@
     "verification": "downstream result-quality/promotion layer"
   },
   "truth_boundary": "Generated production output is not automatically independently verified.",
-  "last_cycle_concrete_results": 2000,
+  "last_cycle_concrete_results": 2500,
   "artifacts": [
     "generated/production-results.jsonl",
     "generated/production-work-queue.jsonl",
