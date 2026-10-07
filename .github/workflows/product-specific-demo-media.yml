@@ -1,0 +1,57 @@
+name: SHIRMANI Product-Specific Demo Media — Continuous Production
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Product-specific MP4s to create this cycle"
+        required: false
+        default: "20"
+  push:
+    branches: [main]
+    paths:
+      - "factory/product_specific_demo_video_factory.py"
+      - ".github/workflows/product-specific-demo-media.yml"
+      - "generated/1000-digital-products.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-product-specific-demo-media
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Produce product-specific MP4 explainers
+        env:
+          PRODUCT_DEMO_BATCH: ${{ github.event.inputs.batch_size || '20' }}
+        run: python3 factory/product_specific_demo_video_factory.py
+      - name: Publish product-specific demo media
+        run: |
+          git config user.name "SHIRMANI Product-Specific Demo Factory"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/demos/products generated/product-specific-demo-video-manifest.json
+          if git diff --cached --quiet; then
+            echo "No new product-specific demo media."
+            exit 0
+          fi
+          git commit -m "feat(media): publish product-specific demo MP4 batch"
+          git push origin HEAD:main
+      - name: Publish production telemetry
+        run: |
+          python3 - <<'PY'
+          import json
+          d=json.load(open("generated/product-specific-demo-video-manifest.json",encoding="utf-8"))
+          print("Product-specific MP4s:", d["real_mp4_count"])
+          print("Remaining:", d["remaining_real_mp4"])
+          print("Batch:", d["created_this_cycle"])
+          PY
