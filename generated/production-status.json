@@ -1,16 +1,21 @@
 {
-  "generated_at": "2026-10-06T02:39:18.909Z",
+  "generated_at": "2026-10-07T01:06:26.301270+00:00",
   "architecture": [
     "INSTITUTE",
     "FACTORY",
     "QC",
     "SHOWROOM_SALE"
   ],
-  "product_count": 1016,
-  "produced": 1016,
-  "qc_ready": 1016,
-  "offered": 1016,
-  "dispatch_no": 1016,
+  "catalog_count": 5000,
+  "product_count": 250,
+  "produced": 250,
+  "remaining": 4750,
+  "qc_ready": 250,
+  "offered": 250,
+  "dispatch_no": 250,
   "dispatch_yes": 0,
-  "verification_scope": "DOWNSTREAM_PRODUCT_RESULT"
+  "batch_produced": 250,
+  "production_cycle": 1,
+  "verification_scope": "DOWNSTREAM_PRODUCT_RESULT",
+  "next_work": "continue multi-lane product artifact production; verification follows produced results"
 }
