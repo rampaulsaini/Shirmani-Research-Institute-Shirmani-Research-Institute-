@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0",
   "template": "ENGINE_MODULE_V2",
-  "generated_at": "2026-10-07T01:15:26.129636+00:00",
+  "generated_at": "2026-10-07T01:16:57.256088+00:00",
   "catalog_products": 5000,
-  "stale_before": 4500,
+  "stale_before": 4000,
   "upgraded_this_cycle": 500,
-  "remaining_depth_upgrades": 4000
+  "remaining_depth_upgrades": 3500
 }

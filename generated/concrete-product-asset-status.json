@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-07T01:15:26.395822+00:00",
-  "product_assets": 2016,
+  "generated_at": "2026-10-07T01:16:57.440451+00:00",
+  "product_assets": 2516,
   "catalog_products": 5000,
-  "materialization_percent": 40.32,
+  "materialization_percent": 50.32,
   "asset_directory": "products/concrete/",
   "showroom": "showroom.html",
   "state": "IN_PROGRESS",
