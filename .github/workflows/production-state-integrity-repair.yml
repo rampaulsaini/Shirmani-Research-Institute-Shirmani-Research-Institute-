@@ -61,16 +61,15 @@ jobs:
         working-directory: /tmp/shirmani-production-state
         run: |
           set -euo pipefail
-          git checkout "$GITHUB_WORKSPACE" -- \
-            factory/public_module_inventory.py \
-            factory/real_product_factory.py \
-            factory/materialize_all_product_assets.py \
-            factory/product_qc_gate.py \
-            factory/product_visual_identity_factory_v2.py \
-            factory/product_qr_asset_factory.py \
-            factory/product_visual_qc_gate.py \
-            factory/public_production_materializer.py \
-            assets/shirmani-perspective-logo.svg
+          cp "$GITHUB_WORKSPACE/factory/public_module_inventory.py" factory/public_module_inventory.py
+          cp "$GITHUB_WORKSPACE/factory/real_product_factory.py" factory/real_product_factory.py
+          cp "$GITHUB_WORKSPACE/factory/materialize_all_product_assets.py" factory/materialize_all_product_assets.py
+          cp "$GITHUB_WORKSPACE/factory/product_qc_gate.py" factory/product_qc_gate.py
+          cp "$GITHUB_WORKSPACE/factory/product_visual_identity_factory_v2.py" factory/product_visual_identity_factory_v2.py
+          cp "$GITHUB_WORKSPACE/factory/product_qr_asset_factory.py" factory/product_qr_asset_factory.py
+          cp "$GITHUB_WORKSPACE/factory/product_visual_qc_gate.py" factory/product_visual_qc_gate.py
+          cp "$GITHUB_WORKSPACE/factory/public_production_materializer.py" factory/public_production_materializer.py
+          cp "$GITHUB_WORKSPACE/assets/shirmani-perspective-logo.svg" assets/shirmani-perspective-logo.svg
           python3 factory/public_module_inventory.py
           python3 factory/real_product_factory.py
           python3 factory/materialize_all_product_assets.py
