@@ -7,6 +7,8 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pages: write
+  id-token: write
 concurrency:
   group: shirmani-continuous-concrete-production
   cancel-in-progress: false
@@ -86,8 +88,28 @@ jobs:
             echo "No production delta"
           else
             git commit -m "chore(production): persist concrete product batch"
-            git push origin HEAD:main
+            if git push origin HEAD:main; then
+              echo "MAIN_PERSISTENCE=SUCCESS"
+            else
+              echo "MAIN_PERSISTENCE=BLOCKED_BY_REPOSITORY_RULE"
+              BRANCH="automation/continuous-production-${GITHUB_RUN_ID}"
+              git switch -c "$BRANCH"
+              git push --set-upstream origin "$BRANCH"
+              echo "PRODUCTION_BRANCH=$BRANCH"
+            fi
           fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Publish live production workspace
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - name: Deploy live production workspace
+        id: deployment
+        uses: actions/deploy-pages@v4
 
       - name: Report production state
         run: |

@@ -25,6 +25,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Compile production and showroom builders
+        run: |
+          python3 -m py_compile factory/multi_layer_production.py
+          python3 -m py_compile factory/public_module_inventory.py
+          python3 -m py_compile factory/public_production_materializer.py
+          python3 -m py_compile factory/batch_worker.py
+          python3 -m py_compile scripts/build_showroom.py
       - name: Run multi-layer production dispatcher
         run: python3 factory/multi_layer_production.py
 
