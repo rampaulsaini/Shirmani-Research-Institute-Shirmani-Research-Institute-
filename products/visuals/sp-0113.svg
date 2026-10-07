@@ -1,11 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
-<title id="title">SHIRMANI Mapper Accessibility 0113 — SHIRMANI product visual</title><desc id="desc">Unique 4K-ready product identity for SP-0113, Accessibility, access.</desc>
-<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ea7d90"/><stop offset=".52" stop-color="#56d51a"/><stop offset="1" stop-color="#050910"/></linearGradient><linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff" stop-opacity=".20"/><stop offset="1" stop-color="#ffffff" stop-opacity=".035"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="38"/></filter><filter id="shadow"><feDropShadow dx="0" dy="28" stdDeviation="30" flood-opacity=".45"/></filter></defs>
-<rect width="3840" height="2160" fill="url(#bg)"/><circle cx="3150" cy="420" r="500" fill="#1ffa4b" opacity=".12" filter="url(#glow)"/><circle cx="650" cy="1770" r="650" fill="#64d9ff" opacity=".07" filter="url(#glow)"/>
-<g filter="url(#shadow)"><path d="M430 1760 L760 410 L3090 330 L3460 1680 Z" fill="url(#glass)" stroke="#e5c35b" stroke-opacity=".50" stroke-width="12"/><path d="M760 410 L1110 690 L3460 590 L3090 330 Z" fill="#ffffff" opacity=".075"/><path d="M1110 690 L1110 1600 L3460 1680 L3460 590 Z" fill="#000000" opacity=".18"/></g>
-<circle cx="2990" cy="1290" r="350" fill="none" stroke="#64d9ff" stroke-opacity=".38" stroke-width="9"/><circle cx="2990" cy="1290" r="245" fill="none" stroke="#e5c35b" stroke-opacity=".30" stroke-width="6"/><circle cx="2990" cy="1290" r="120" fill="#1ffa4b" opacity=".18"/>
-<text x="520" y="790" fill="#64d9ff" font-family="system-ui,sans-serif" font-size="82" font-weight="900" letter-spacing="12">SHIRMANI DIGITAL PRODUCT</text>
-<text x="520" y="1110" fill="#f7f9fc" font-family="system-ui,sans-serif" font-size="138" font-weight="900">SHIRMANI Mapper Accessibility 0113</text>
-<text x="520" y="1270" fill="#6ee7a8" font-family="system-ui,sans-serif" font-size="64" font-weight="800">Accessibility · access</text>
-<rect x="520" y="1380" width="650" height="112" rx="56" fill="#050910" opacity=".78"/><text x="585" y="1458" fill="#e5c35b" font-family="system-ui,sans-serif" font-size="68" font-weight="900">SP-0113</text>
-<text x="520" y="1585" fill="#ffffff" opacity=".78" font-family="system-ui,sans-serif" font-size="42" letter-spacing="4">UNIQUE PRODUCT IDENTITY · 3840×2160 · 16:9 · 4K-READY</text><text x="520" y="1655" fill="#ffffff" opacity=".55" font-family="system-ui,sans-serif" font-size="34">Persistent product visual asset — generated from product identity.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
+<defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ea7d90"/><stop offset=".55" stop-color="#56d51a"/><stop offset="1" stop-color="#050910"/></linearGradient></defs>
+<rect width="3840" height="2160" fill="url(#b)"/><rect x="70" y="70" width="3700" height="2020" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
+<circle cx="360" cy="360" r="205" fill="#061016" stroke="#e7c85b" stroke-width="14"/><image href="../../assets/images/profile.jpg" x="175" y="175" width="370" height="370" preserveAspectRatio="xMidYMid slice"/>
+<text x="610" y="255" fill="#66ddff" font-family="system-ui,sans-serif" font-size="52" font-weight="900">SHIRMANI SUPREME DIGITAL PRODUCT</text>
+<text x="610" y="325" fill="#fff" font-family="system-ui,sans-serif" font-size="31" font-weight="700">Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real ·</text>
+<text x="610" y="370" fill="#fff" font-family="system-ui,sans-serif" font-size="31" font-weight="700"> Natural Truth · Directly Present</text>
+<rect x="3160" y="120" width="570" height="690" rx="44" fill="#061016" stroke="#e7c85b" stroke-width="10"/>
+<text x="3270" y="210" fill="#fff" font-family="system-ui,sans-serif" font-size="42" font-weight="900">LONG DESCRIPTION</text>
+<text x="3400" y="260" fill="#fff" font-family="system-ui,sans-serif" font-size="42" font-weight="900">/ PRODUCT DETAILS</text>
+<rect x="3250" y="300" width="390" height="390" fill="#fff"/><image href="qr/sp-0113.svg" x="3260" y="310" width="370" height="370"/>
+<text x="3290" y="750" fill="#66ddff" font-family="system-ui,sans-serif" font-size="27" font-weight="900">SCAN FOR LONG DESCRIPTION</text>
+<text x="520" y="820" fill="#66ddff" font-family="system-ui,sans-serif" font-size="76" font-weight="900">SP-0113</text>
+<text x="520" y="1040" fill="#fff" font-family="system-ui,sans-serif" font-size="125" font-weight="900">SHIRMANI Mapper Accessibility 0113</text>
+<text x="520" y="1170" fill="#72e6aa" font-family="system-ui,sans-serif" font-size="62" font-weight="800">Accessibility · access</text>
+<text x="520" y="1300" fill="#fff" font-family="system-ui,sans-serif" font-size="43" font-weight="650">SHORT DESCRIPTION · Concrete public digital product SP-0113. Accessibility · access.</text>
+<rect x="520" y="1390" width="730" height="125" rx="62" fill="#03060d" stroke="#e7c85b" stroke-width="5"/><text x="590" y="1475" fill="#fff" font-family="system-ui,sans-serif" font-size="62" font-weight="900">₹199</text><text x="1340" y="1475" fill="#66ddff" font-family="system-ui,sans-serif" font-size="44" font-weight="800">PUBLIC LAUNCH PRICE</text>
+<text x="520" y="1710" fill="#fff" opacity=".82" font-family="system-ui,sans-serif" font-size="35" font-weight="800">UNIQUE PRODUCT IDENTITY · 3840×2160 · 16:9 · 4K-READY · SHORT DESCRIPTION + QR LONG DESCRIPTION</text>
+<text x="520" y="1780" fill="#e7c85b" opacity=".92" font-family="system-ui,sans-serif" font-size="32" font-weight="700">QC / GATE / DISPATCH metadata remains on the product passport.</text>
+</svg>
