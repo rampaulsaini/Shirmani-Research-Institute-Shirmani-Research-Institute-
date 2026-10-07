@@ -1,0 +1,60 @@
+name: SHIRMANI Production-First Multi-Layer Factory
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "11,26,41,56 * * * *"
+permissions:
+  contents: write
+concurrency:
+  group: production-first-multi-layer-factory
+  cancel-in-progress: false
+jobs:
+  institute-discovery:
+    runs-on: ubuntu-latest
+    outputs:
+      product_count: ${{ steps.count.outputs.product_count }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: count
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          with open("generated/1000-digital-products.json",encoding="utf-8") as f: d=json.load(f)
+          products=d.get("products",[])
+          families=sorted({x.get("family","Unknown") for x in products})
+          engines=sorted({x.get("engine","Unknown") for x in products})
+          print(f"product_count={len(products)}")
+          with open(os.environ["GITHUB_OUTPUT"],"a") as o: o.write(f"product_count={len(products)}\n")
+          out={"updated_at_utc":datetime.now(timezone.utc).isoformat(),"stage":"INSTITUTE_DISCOVERY","product_count":len(products),"family_count":len(families),"engine_count":len(engines),"next_stage":"FACTORY_PRODUCT_PACKAGE"}
+          with open("generated/production-first-discovery.json","w",encoding="utf-8") as o: json.dump(out,o,ensure_ascii=False,indent=2);o.write("\n")
+          PY
+  factory-production:
+    needs: institute-discovery
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build production backlog and visual identity queue
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          with open("generated/1000-digital-products.json",encoding="utf-8") as f: d=json.load(f)
+          rows=[]
+          for p in d.get("products",[]):
+              pid=str(p.get("id",""))
+              rows.append({"id":pid,"name":p.get("name",pid),"family":p.get("family","Digital Product"),"engine":p.get("engine","browser"),"production_stage":"FACTORY_PRODUCT_PACKAGE","visual_identity":"READY_BY_PRODUCT_ID","short_description":"REQUIRED","long_description_qr":"REQUIRED","price":"REQUIRED","offer":"REQUIRED","dispatch_route":"REQUIRED","public_result_route":"products/1000-digital-product-factory.html?id="+pid})
+          result={"updated_at_utc":datetime.now(timezone.utc).isoformat(),"principle":"production-first","total_candidates":len(rows),"factory_queue":rows,"next_action":"materialize concrete packages in priority order"}
+          with open("generated/production-first-backlog-live.json","w",encoding="utf-8") as f: json.dump(result,f,ensure_ascii=False,indent=2);f.write("\n")
+          PY
+      - name: Commit production result
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/production-first-discovery.json generated/production-first-backlog-live.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: advance production-first multi-layer factory"
+          git push
