@@ -6,7 +6,7 @@ on:
     - cron: "*/5 * * * *"
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: shirmani-continuous-concrete-production
   cancel-in-progress: false
@@ -35,10 +35,40 @@ jobs:
         run: python3 factory/concrete_product_depth_upgrade.py
       - name: Audit concrete production truth
         run: python3 factory/concrete_product_truth.py
+      - name: Persist live production telemetry
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone
+          t=json.loads(Path("generated/concrete-product-truth.json").read_text())
+          produced=int(t["concrete_produced"]); target=int(t["catalog_count"])
+          Path("generated/concrete-product-asset-status.json").write_text(json.dumps({
+            "generated_at":datetime.now(timezone.utc).isoformat(),
+            "product_assets":produced,"catalog_products":target,
+            "materialization_percent":round(100*produced/target,2) if target else 0,
+            "asset_directory":"products/concrete/","showroom":"showroom.html",
+            "state":"COMPLETE" if produced==target else "IN_PROGRESS",
+            "dispatch":"NO","principle":"Concrete repository-bound assets are production evidence; QC, dispatch and independent verification remain downstream."
+          },ensure_ascii=False,indent=2)+"\n")
+          Path("generated/live-production-state.json").write_text(json.dumps({
+            "schema_version":1,"generated_at":datetime.now(timezone.utc).isoformat(),
+            "production_first":True,"catalog_identities":target,
+            "concrete_repository_assets":produced,"current_catalog_pending":max(0,target-produced),
+            "five_thousand_scale_target":5000,"remaining_to_scale_target":max(0,5000-produced),
+            "concrete_materialization_percent_of_catalog":round(100*produced/target,2) if target else 0,
+            "concrete_materialization_percent_of_scale_target":round(100*produced/5000,2),
+            "module_products_generated":produced,"dispatch_released":0,"sales_claimed":0,
+            "payment_claimed":0,"independent_verification_claimed":0,
+            "state":"PRODUCTION_COMPLETE_CURRENT_CATALOG" if produced==target else "PRODUCTION_IN_PROGRESS"
+          },ensure_ascii=False,indent=2)+"\n")
+          print(f"PRODUCTION: {produced}/{target}")
+          PY
+
       - name: Publish production evidence artifact
         uses: actions/upload-artifact@v4
         with:
-          name: shirmani-concrete-production-${ github.run_number }}
+          name: shirmani-concrete-production-${{ github.run_number }}
           retention-days: 7
           path: |
             generated/1000-digital-products.json
@@ -47,6 +77,18 @@ jobs:
             generated/concrete-product-truth.json
             generated/concrete-product-production-status.json
             generated/concrete-product-depth-status.json
+      - name: Persist production results
+        run: |
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/1000-digital-products.json generated/concrete-production-overlay.json generated/continuous-production-batch-status.json generated/concrete-product-truth.json generated/concrete-product-production-status.json generated/concrete-product-depth-status.json generated/concrete-product-asset-status.json generated/live-production-state.json products/concrete
+          if git diff --cached --quiet; then
+            echo "No production delta"
+          else
+            git commit -m "chore(production): persist concrete product batch"
+            git push origin HEAD:main
+          fi
+
       - name: Report production state
         run: |
           python3 - <<'PY'
