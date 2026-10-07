@@ -31,6 +31,24 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Overlay canonical production-state into public build
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin automation/production-state >/dev/null 2>&1; then
+            git fetch origin automation/production-state
+            mkdir -p /tmp/shirmani-production-state
+            git archive FETCH_HEAD generated products/concrete | tar -x -C /tmp/shirmani-production-state
+            cp -a /tmp/shirmani-production-state/generated/. generated/
+            mkdir -p products/concrete
+            cp -a /tmp/shirmani-production-state/products/concrete/. products/concrete/
+            echo "PUBLIC_BUILD_SOURCE=automation/production-state" >> "$GITHUB_ENV"
+            echo "Canonical production-state overlay loaded for public build."
+          else
+            echo "PUBLIC_BUILD_SOURCE=main" >> "$GITHUB_ENV"
+            echo "No canonical production-state branch found; using main."
+          fi
+
       - name: Self-heal production queue
         run: python3 factory/public_production_queue_self_heal.py
 
