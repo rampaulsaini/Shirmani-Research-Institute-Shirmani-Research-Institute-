@@ -71,7 +71,9 @@ jobs:
           python3 factory/public_module_inventory.py
           python3 factory/real_product_factory.py
           python3 factory/materialize_all_product_assets.py
-          CONCRETE_PRODUCT_REBUILD=1 CONCRETE_PRODUCT_BATCH_SIZE=5000 python3 factory/continuous_product_batch.py
+          rm -rf products/concrete
+          mkdir -p products/concrete
+          cp -a products/production/. products/concrete/
           python3 - <<'PY'
           import json
           from pathlib import Path
