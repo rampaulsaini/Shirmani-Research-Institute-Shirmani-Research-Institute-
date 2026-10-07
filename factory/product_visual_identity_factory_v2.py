@@ -11,7 +11,7 @@ CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
 VERSION="2026-10-07-production-visual-v8-persistent-logo-qr"
-LOGO="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/assets/shirmani-perspective-logo.svg"
+LOGO="https://i.ibb.co/xqf3kTPS/enhanced-image.webp"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 
 def esc(v): return html.escape(str(v), quote=True)
@@ -30,9 +30,9 @@ def make(p):
 <rect width="3840" height="2160" fill="url(#b)"/><rect x="70" y="70" width="3700" height="2020" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
 <circle cx="360" cy="360" r="205" fill="#061016" stroke="#e7c85b" stroke-width="14"/><image href="{LOGO}" x="175" y="175" width="370" height="370" preserveAspectRatio="xMidYMid slice"/>
 <text x="360" y="640" text-anchor="middle" fill="#f6d35f" font-family="system-ui,sans-serif" font-size="40" font-weight="950">Shiromani Rampal Saini</text>
-<text x="360" y="692" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="750">NISHPAKSH UNDERSTANDING · SHIRMANI HEART-VIEW</text>
-<text x="360" y="730" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">{esc(IDENTITY[:55])}</text>
-<text x="360" y="764" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">{esc(IDENTITY[55:])}</text>
+<text x="360" y="692" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="750">SHIRMANI HEART-VIEW · IMPARTIAL UNDERSTANDING</text>
+<text x="360" y="730" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love</text>
+<text x="360" y="764" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">Eternal · Real · Natural Truth · Directly Present</text>
 <text x="610" y="190" fill="#66ddff" font-family="system-ui,sans-serif" font-size="52" font-weight="900">SHIRMANI SUPREME DIGITAL PRODUCT</text>
 <rect x="3160" y="120" width="570" height="690" rx="44" fill="#061016" stroke="#e7c85b" stroke-width="10"/>
 <text x="3270" y="210" fill="#fff" font-family="system-ui,sans-serif" font-size="42" font-weight="900">LONG DESCRIPTION</text>
