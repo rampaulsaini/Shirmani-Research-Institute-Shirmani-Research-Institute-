@@ -8,7 +8,7 @@ import qrcode
 from qrcode.image.svg import SvgPathImage
 
 ROOT=Path(__file__).resolve().parents[1]
-CAT=ROOT/"generated/1000-digital-products.json"
+CAT=ROOT/"generated/canonical-5000-product-catalog.json"
 OUT=ROOT/"products/visuals/qr"
 MAN=ROOT/"generated/product-qr-assets.json"
 BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/product-passport.html?id="
@@ -22,6 +22,8 @@ def make_qr(payload:str)->str:
     return b.getvalue().decode("utf-8")
 
 def main():
+    from factory.canonical_product_catalog import write_catalog
+    write_catalog(CAT)
     products=json.loads(CAT.read_text(encoding="utf-8")).get("products",[])
     OUT.mkdir(parents=True,exist_ok=True)
     try: batch=max(1,min(5000,int(os.environ.get("QR_BATCH","250"))))
