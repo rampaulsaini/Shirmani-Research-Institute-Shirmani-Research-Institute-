@@ -55,7 +55,7 @@ jobs:
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add generated/production-work-queue.jsonl generated/production-results.jsonl generated/public-production-catalog.json generated/public-production-module-index.json generated/public-production-by-module.html generated/PRODUCTION-TRUTH.json generated/multi-layer-production-status.json generated/MULTI-LAYER-PRODUCTION.md
+          git add generated/production-work-queue.jsonl generated/production-results.jsonl generated/public-production-catalog.json generated/public-production-module-index.json generated/public-production-by-module.html generated/PRODUCTION-TRUTH.json generated/multi-layer-production-status.json generated/MULTI-LAYER-PRODUCTION.md generated/live-production-state.json generated/concrete-product-asset-status.json generated/concrete-production-overlay.json
 
           if git diff --cached --quiet; then
             echo "No persistent production-state changes."
