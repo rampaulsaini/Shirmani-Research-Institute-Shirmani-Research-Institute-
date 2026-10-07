@@ -1,0 +1,58 @@
+name: SHIRMANI Product Visual Production
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Missing product visuals per cycle"
+        required: false
+        default: "250"
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-product-visual-production
+  cancel-in-progress: false
+jobs:
+  visuals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Generate next unique 4K-ready product visuals
+        env:
+          VISUAL_BATCH: ${{ github.event.inputs.batch_size || '250' }}
+        run: python3 factory/product_visual_identity_factory.py
+      - name: Publish visual assets with rebase retry
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Product Visual Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/visuals generated/product-visual-assets.json
+          if git diff --cached --quiet; then
+            echo "No missing visual assets in this cycle."
+            exit 0
+          fi
+          git commit -m "feat(showroom): publish next product visual asset batch"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                echo "Visual batch published on attempt=$attempt."
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            echo "Main moved or push was rejected; retrying attempt=$attempt"
+            sleep $((attempt * 2))
+          done
+          echo "::error::Visual batch could not publish after retries."
+          exit 1
