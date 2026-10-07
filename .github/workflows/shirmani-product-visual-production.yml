@@ -1,0 +1,34 @@
+name: SHIRMANI Supreme Product Visual Production
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: supreme-product-visual-production
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Build 4K product visuals
+        run: python3 factory/product_visual_materializer.py
+      - name: Publish visual artifacts
+        run: |
+          git config user.name "SHIRMANI Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/visuals
+          if git diff --cached --quiet; then
+            echo "No visual production changes."
+          else
+            git commit -m "prod: materialize SHIRMANI 4K product visuals"
+            git push
+          fi
