@@ -10,8 +10,9 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-07-production-visual-v8-persistent-logo-qr"
-LOGO="https://i.ibb.co/xqf3kTPS/enhanced-image.webp"
+VERSION="2026-10-07-production-visual-v10-local-logo-short-description-qr"
+SHOWROOM_BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
+LOGO=SHOWROOM_BASE+"assets/shirmani-perspective-logo.svg"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 
 def esc(v): return html.escape(str(v), quote=True)
@@ -23,7 +24,8 @@ def make(p):
     price=int(p.get("offer_price_inr",p.get("price_inr",0)) or 0)
     offer=str(p.get("offer","PUBLIC LAUNCH PRICE"))[:48]
     h=hashlib.sha256(pid.encode()).hexdigest(); c1="#"+h[:6]; c2="#"+h[6:12]
-    qr_target=f"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/product-passport.html?id={quote(pid)}"
+    qc=str(p.get("qc_code","QC-PENDING")); gate=str(p.get("gate_no","GATE-PENDING")); dispatch=str(p.get("dispatch_no","NO"))
+    qr_target=SHOWROOM_BASE+"product-passport.html?id="+quote(pid)
     qr="https://api.qrserver.com/v1/create-qr-code/?size=430x430&margin=10&data="+quote(qr_target,safe="")
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
 <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{c1}"/><stop offset=".55" stop-color="{c2}"/><stop offset="1" stop-color="#050910"/></linearGradient></defs>
@@ -45,7 +47,7 @@ def make(p):
 <text x="520" y="1300" fill="#fff" font-family="system-ui,sans-serif" font-size="43" font-weight="650">SHORT DESCRIPTION · {esc(desc)}</text>
 <rect x="520" y="1390" width="730" height="125" rx="62" fill="#03060d" stroke="#e7c85b" stroke-width="5"/><text x="590" y="1475" fill="#fff" font-family="system-ui,sans-serif" font-size="62" font-weight="900">₹{price:,}</text><text x="1340" y="1475" fill="#66ddff" font-family="system-ui,sans-serif" font-size="44" font-weight="800">{esc(offer)}</text>
 <text x="520" y="1710" fill="#fff" opacity=".82" font-family="system-ui,sans-serif" font-size="35" font-weight="800">UNIQUE PRODUCT IDENTITY · 3840×2160 · 16:9 · 4K-READY · SHORT DESCRIPTION + QR LONG DESCRIPTION</text>
-<text x="520" y="1780" fill="#e7c85b" opacity=".92" font-family="system-ui,sans-serif" font-size="32" font-weight="700">QC / GATE / DISPATCH metadata remains on the product passport.</text>
+<text x="520" y="1780" fill="#e7c85b" opacity=".92" font-family="system-ui,sans-serif" font-size="32" font-weight="700">QC · {esc(qc)} · GATE · {esc(gate)} · DISPATCH · {esc(dispatch)}</text>
 </svg>'''
 
 def main():
