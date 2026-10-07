@@ -14,7 +14,7 @@ function visual(p){
  const price=esc(money(p.offer_price_inr??p.price_inr??0));
  const target=(global.location&&global.location.origin?global.location.origin:"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-")+"/product-passport.html?id="+encodeURIComponent(key);
  const qr="https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=10&data="+encodeURIComponent(target);
- const logo="https://avatars.githubusercontent.com/u/206398967?v=4";
+ const logo="https://i.ibb.co/xqf3kTPS/enhanced-image.webp";
  const identity="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present";
  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160"><defs>'+
  '<linearGradient id="'+uid+'g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="hsl('+a+',78%,22%)"/><stop offset=".5" stop-color="hsl('+b+',70%,11%)"/><stop offset="1" stop-color="hsl('+c+',72%,6%)"/></linearGradient></defs>'+
