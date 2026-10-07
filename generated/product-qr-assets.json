@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "generated_at": "2026-10-07T12:50:51.124039+00:00",
+  "generated_at": "2026-10-07T12:52:24.390252+00:00",
   "target": 5000,
   "qr_assets": 5000,
-  "created_this_cycle": 5000,
+  "created_this_cycle": 0,
   "remaining": 0,
   "batch_size": 5000,
   "state": "READY",
