@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-07T03:09:45.143791+00:00",
+  "generated_at": "2026-10-07T03:10:21.476415+00:00",
   "truth_model": "OBSERVABLE_PRODUCTION_ONLY",
   "offers_registered": 15,
   "digital_offers": 8,
   "service_offers": 7,
-  "persistent_production_records": 16000,
+  "persistent_production_records": 16500,
   "independent_verified_records": 0,
   "sales_claimed": 0,
   "delivered_customer_orders_claimed": 0,
