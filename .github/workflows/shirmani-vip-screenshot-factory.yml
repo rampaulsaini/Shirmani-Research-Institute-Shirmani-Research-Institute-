@@ -32,6 +32,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Reconcile concrete catalog for media production
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path(".")
+          overlay=root/"generated/concrete-production-overlay.json"
+          catalog=root/"generated/1000-digital-products.json"
+          data=json.loads(overlay.read_text(encoding="utf-8"))
+          rows=data.get("products",[])
+          if not rows:
+              raise SystemExit("Concrete production overlay is empty; refusing media production.")
+          catalog.write_text(json.dumps({"schema_version":2,"products":rows},ensure_ascii=False),encoding="utf-8")
+          print("media catalog rows:",len(rows))
+          PY
       - name: Produce next VIP screenshot batch
         env:
           VIP_BATCH: ${{ github.event.inputs.batch_size || '250' }}
