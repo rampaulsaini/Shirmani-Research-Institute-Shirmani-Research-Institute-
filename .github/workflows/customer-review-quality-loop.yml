@@ -6,6 +6,9 @@ on:
 permissions:
   contents: write
   issues: read
+concurrency:
+  group: shirmani-customer-review-quality-loop
+  cancel-in-progress: false
 jobs:
   aggregate:
     if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.labels.*.name, 'customer-review') || contains(github.event.issue.title, '[CUSTOMER REVIEW]')
@@ -40,5 +43,23 @@ jobs:
           git config user.name "SHIRMANI Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add generated/customer-review-ledger.jsonl generated/customer-quality-dashboard.json
-          git diff --cached --quiet || git commit -m "chore: update customer quality telemetry"
-          git push
+          if git diff --cached --quiet; then
+            echo "No customer-review telemetry delta."
+            exit 0
+          fi
+          git commit -m "chore: update customer quality telemetry"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Customer review telemetry published on attempt $attempt."
+              exit 0
+            fi
+            echo "Concurrent main update detected; rebasing (attempt $attempt)."
+            git fetch origin main
+            git rebase origin/main || {
+              git rebase --abort || true
+              git reset --soft origin/main
+              git commit --reuse-message=HEAD
+            }
+          done
+          echo "::error::Unable to publish customer review telemetry after 5 attempts."
+          exit 1
