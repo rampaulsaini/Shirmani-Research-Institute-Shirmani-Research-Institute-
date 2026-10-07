@@ -61,6 +61,16 @@ jobs:
       - name: Materialize expanded concrete product assets
         run: python3 factory/materialize_all_product_assets.py
 
+      - name: Build complete public 4K product visual layer
+        env:
+          VISUAL_BATCH: "5000"
+        run: python3 factory/product_visual_identity_factory.py
+
+      - name: Build complete public product QR layer
+        run: |
+          python3 -m pip install --disable-pip-version-check "qrcode>=8,<9"
+          QR_BATCH=5000 python3 factory/product_qr_asset_factory.py
+
       - name: Publish concrete 5,000-product production manifest
         run: |
           python3 - <<'PY'
