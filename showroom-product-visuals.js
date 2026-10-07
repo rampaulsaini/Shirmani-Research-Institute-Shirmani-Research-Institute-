@@ -2,7 +2,7 @@
 (function(){
 "use strict";
 const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
-const LOGO="https://i.ibb.co/xqf3kTPS/enhanced-image.webp";
+const LOGO="assets/shirmani-perspective-logo.svg";
 const IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present";
 const qr=id=>"https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=10&data="+encodeURIComponent(location.origin+location.pathname.replace(/[^/]*$/,"")+"product-passport.html?id="+encodeURIComponent(id));
 async function boot(){
@@ -14,7 +14,7 @@ async function boot(){
  document.head.appendChild(style);
  const decorate=()=>document.querySelectorAll("#grid .card").forEach(card=>{
   if(card.dataset.identityVisualV3==="1")return;
-  const img=card.querySelector("img");if(!img)return;
+  const img=card.querySelector("img");if(!img)return;if(/\/products\/visuals\/[^/]+\.svg(?:\?|$)/i.test(img.src)){card.dataset.identityVisualV3="1";return;}
   const m=(card.textContent||"").match(/\bSP-\d{4,}\b/i);if(!m)return;
   const p=map.get(m[0].toUpperCase())||{id:m[0].toUpperCase(),name:"SHIRMANI Digital Product"};
   const id=String(p.id).toUpperCase();
