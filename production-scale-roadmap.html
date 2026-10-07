@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Production Scale Roadmap</title>
+<meta name="description" content="Production-first public scale roadmap for the Shirmani Research Institute.">
+<style>
+:root{--bg:#050810;--panel:#0d1420;--line:#30445a;--gold:#f1ce57;--cyan:#5ce5ff;--green:#70e5a0;--muted:#aeb9c8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#17243a,#050810 50%);color:#f5f7fb;font:16px/1.65 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+main{max-width:1250px;margin:auto;padding:18px 15px 80px}section{background:rgba(13,20,32,.96);border:1px solid var(--line);border-radius:20px;padding:22px;margin:14px 0}
+.hero{border:2px solid var(--gold);text-align:center}.hero h1,h2{color:var(--gold)}.hero h1{font-size:clamp(2rem,5vw,4rem);margin:.2em 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.metric{background:#08111b;border:1px solid var(--line);border-radius:14px;padding:16px}.num{font-size:2rem;font-weight:950;color:var(--gold)}.muted{color:var(--muted)}
+.stage{border:1px solid #34516a;border-radius:14px;padding:16px;background:#08111b}.stage b{color:var(--cyan)}
+.bar{height:15px;background:#172438;border-radius:99px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold))}
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--gold);color:#101010;text-decoration:none;font-weight:900;margin:4px}.btn.alt{background:#132638;color:var(--cyan);border:1px solid #35566e}
+.callout{border-left:4px solid var(--cyan);padding:13px 16px;background:#08151e}table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--gold)}
+</style></head><body><main>
+<section class="hero"><div style="color:var(--gold);font-weight:900">꙰ SHIRMANI RESEARCH INSTITUTE · PRODUCTION SCALE</div>
+<h1>Production Scale Roadmap</h1><p><strong>Institute → Factory → QC/Gate → Showroom/Sale → Customer Feedback → Continuous Improvement</strong></p>
+<p class="muted">यह page वास्तविक published production telemetry को scale planning में बदलता है। Workflow run को product नहीं माना जाता और verification को production का substitute नहीं बनाया जाता।</p>
+<a class="btn" href="showroom.html">🛒 Public Showroom</a><a class="btn alt" href="production-mission-control.html">Mission Control</a><a class="btn alt" href="production-first-public-map.html">Public Map</a></section>
+
+<section><h2>LIVE production state</h2><div class="grid">
+<div class="metric"><div id="products" class="num">—</div>concrete product artifacts</div>
+<div class="metric"><div id="catalog" class="num">—</div>catalog identities</div>
+<div class="metric"><div id="remaining" class="num">—</div>remaining to 5,000 scale</div>
+<div class="metric"><div id="queued" class="num">—</div>scheduled work units</div>
+<div class="metric"><div id="modules" class="num">—</div>production modules</div>
+<div class="metric"><div id="cycle" class="num">—</div>latest-cycle concrete results</div></div>
+<p id="fresh" class="muted">Live telemetry loading…</p><div class="bar"><div id="bar" class="fill" style="width:0%"></div></div><p id="summary" class="muted">Production scale loading…</p></section>
+
+<section><h2>चार-stage production mechanism</h2><div class="grid">
+<div class="stage"><b>01 · INSTITUTE</b><h3>खोज</h3><p>Research, specifications, concepts, source material, backlog और product opportunities.</p></div>
+<div class="stage"><b>02 · FACTORY</b><h3>निर्माण</h3><p>Concrete digital artifacts, modules, browser tools, research/content assets और product packages.</p></div>
+<div class="stage"><b>03 · QC / GATE</b><h3>Release discipline</h3><p>Product ID, version, QC code, gate state और dispatch state. Production और dispatch अलग रहते हैं.</p></div>
+<div class="stage"><b>04 · SHOWROOM / SALE</b><h3>Customer experience</h3><p>Product view, description, category, price/offer, order route और customer feedback.</p></div></div></section>
+
+<section><h2>Current multi-layer production lanes</h2><div class="grid">
+<div class="stage"><b>AI / ML / NLP</b><p>Published lane artifacts: <strong id="ai">—</strong></p></div>
+<div class="stage"><b>Automation</b><p>Published lane artifacts: <strong id="automation">—</strong></p></div>
+<div class="stage"><b>Platform</b><p>Published lane artifacts: <strong id="platform">—</strong></p></div>
+<div class="stage"><b>Research</b><p>Published lane artifacts: <strong id="research">—</strong></p></div>
+<div class="stage"><b>Security / Quality</b><p>Published lane artifacts: <strong id="security">—</strong></p></div>
+<div class="stage"><b>Other active lanes</b><p>Content, economic, federation and social-media production continue in parallel.</p></div></div></section>
+
+<section><h2>Long-run automation design</h2><table><tr><th>Scale</th><th>Operational meaning</th><th>Public result</th></tr>
+<tr><td>Current</td><td>Concrete artifacts are materialized and indexed.</td><td>Customer-visible products in showroom.</td></tr>
+<tr><td>5,000</td><td>Current catalogue-scale target.</td><td>Large searchable production rack.</td></tr>
+<tr><td>100,200</td><td>Separate provenance/verification queue.</td><td>Evidence processing, not product count.</td></tr>
+<tr><td>Long-run</td><td>Queue-based, multi-lane, repeatable production with continuous improvement.</td><td>More concrete products and deeper modules over time.</td></tr></table>
+<p class="callout"><strong>सीमा:</strong> “millions of AI agents” या physical quantum execution को तब तक वास्तविक infrastructure नहीं माना जाएगा जब तक repository/backend में उसका observable execution मौजूद न हो। अभी architecture को multi-layer orchestration और quantum-ready classical routing के रूप में प्रस्तुत करना अधिक सटीक है.</p></section>
+
+<section><h2>Customer quality loop</h2><p><strong>DISCOVER → BUILD → QC/GATE → SHOW → EXPERIENCE → REVIEW/RATING → IMPROVE → BUILD AGAIN</strong></p>
+<p class="muted">Customer reviews और ratings product-quality improvement inputs हैं। वे independent scientific verification नहीं हैं।</p>
+<a class="btn" href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/issues/new?template=product-review.yml">Public Review / Rating →</a></section>
+<section><h2>Production truth boundary</h2><p class="callout">Published concrete production is counted from repository-bound artifacts and generated production manifests. No sales, payment, dispatch or independent verification is claimed merely because an automation run completed.</p></section>
+<footer class="muted" style="text-align:center;padding:20px">꙰ SHIRMANI Research Institute · Production-first · Continuous scale · Public showroom</footer>
+<script>
+(async function(){const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};try{
+const [p,s]=await Promise.all([fetch("generated/live-production-state.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),fetch("generated/multi-layer-production-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json())]);
+const produced=Number(p.concrete_repository_assets||0),catalog=Number(p.catalog_identities||0),target=Number(p.five_thousand_scale_target||5000),remaining=Number(p.remaining_to_scale_target||Math.max(0,target-produced)),pct=Number(p.concrete_materialization_percent_of_scale_target||0);
+set("products",produced.toLocaleString("en-IN"));set("catalog",catalog.toLocaleString("en-IN"));set("remaining",remaining.toLocaleString("en-IN"));set("queued",Number(s.scheduled_work_units||0).toLocaleString("en-IN"));set("modules",Number(s.production_outputs?.production_modules||p.module_products_generated||0).toLocaleString("en-IN"));set("cycle",Number(s.last_cycle_concrete_results||s.production_outputs?.concrete_results_this_cycle||0).toLocaleString("en-IN"));
+set("ai",Number(s.production_outputs?.lane_artifacts?.["ai-ml-nlp"]||0).toLocaleString("en-IN"));set("automation",Number(s.production_outputs?.lane_artifacts?.automation||0).toLocaleString("en-IN"));set("platform",Number(s.production_outputs?.lane_artifacts?.platform||0).toLocaleString("en-IN"));set("research",Number(s.production_outputs?.lane_artifacts?.research||0).toLocaleString("en-IN"));set("security",Number(s.production_outputs?.lane_artifacts?.["security-quality"]||0).toLocaleString("en-IN"));
+document.getElementById("bar").style.width=Math.min(100,Math.max(0,pct))+"%";set("fresh","Generated production state: "+(p.generated_at||s.generated_at||"live")+" · source-derived telemetry.");set("summary",produced.toLocaleString("en-IN")+" / "+target.toLocaleString("en-IN")+" concrete products materialized ("+pct.toFixed(2)+"%); "+remaining.toLocaleString("en-IN")+" remain for the current 5,000 target.");
+}catch(e){set("summary","Live production telemetry unavailable; no value is inferred.");}})();
+</script></main></body></html>
