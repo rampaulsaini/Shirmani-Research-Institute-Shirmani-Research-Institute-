@@ -28,6 +28,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Load canonical production-state branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin automation/production-state >/dev/null 2>&1; then
+            git fetch origin automation/production-state
+            git reset --hard FETCH_HEAD
+            echo "PRODUCTION_STATE_BASE=automation/production-state" >> "$GITHUB_ENV"
+          else
+            echo "PRODUCTION_STATE_BASE=main-initial" >> "$GITHUB_ENV"
+          fi
       - name: Materialize production records
         run: |
           python3 factory/multi_layer_production.py
@@ -52,18 +63,15 @@ jobs:
           git commit -m "chore(production): persist concrete production state and truth gate"
 
           branch="automation/production-state"
-          git fetch origin main
-          git push --force-with-lease origin HEAD:"$branch"
-
-          if gh pr list --base main --head "$branch" --state open --json number --jq 'length' | grep -q '^0$'; then
-            if gh pr create --base main --head "$branch" --title "chore(production): persist concrete production state" --body "Automission-generated production state. This PR preserves concrete production records, QC/truth telemetry and module outputs. It does not claim sales, delivery, payment or independent verification."; then
-              echo "Production-state PR created."
-            else
-              echo "::warning::Repository policy prevents GitHub Actions from creating/approving pull requests. Production state was successfully persisted to $branch; the PR handoff remains pending."
-            fi
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            git fetch origin "$branch"
+            remote_sha="$(git rev-parse FETCH_HEAD)"
+            git push --force-with-lease="refs/heads/$branch:$remote_sha" origin HEAD:"$branch"
           else
-            echo "Existing production-state PR updated."
+            git push origin HEAD:"$branch"
           fi
+          echo "Production state persisted to canonical branch: $branch"
+
       - name: Emit production truth summary
         run: |
           python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
