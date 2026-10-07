@@ -86,11 +86,12 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px s
 const $=id=>document.getElementById(id);
 async function get(p){const r=await fetch(p+"?ts="+Date.now(),{cache:"no-store"});if(!r.ok)throw Error(r.status);return r.json()}
 async function load(){
- const [contract,state,four,publicCat]=await Promise.all([
+ const [contract,state,four,publicCat,visuals]=await Promise.all([
    get("generated/production-scale-contract.json"),
    get("generated/live-production-state.json"),
    get("generated/four-stage-production-status.json"),
-   get("generated/public-production-catalog.json")
+   get("generated/public-production-catalog.json"),
+   get("generated/product-visual-assets-v2.json").catch(()=>null)
  ]);
  $("strategic").textContent=Number(contract.strategic_target_products).toLocaleString("en-IN");
  $("operational").textContent=Number(state.five_thousand_scale_target||contract.operational_target_products).toLocaleString("en-IN");
@@ -98,7 +99,7 @@ async function load(){
  $("production").textContent=Number(four.stages?.[1]?.catalog?.concrete_product_assets||0).toLocaleString("en-IN");
  $("cycles").textContent=Number(publicCat.cycle_results||0).toLocaleString("en-IN");
  $("modules").textContent=Number(four.stages?.[0]?.modules_discovered||0).toLocaleString("en-IN");
- $("visuals").textContent="5,000+";
+ $("visuals").textContent=Number(visuals?.current_version_assets||visuals?.visual_assets||0).toLocaleString("en-IN");
  $("dispatch").textContent=Number(state.dispatch_released||0).toLocaleString("en-IN");
  const concrete=Number(state.concrete_repository_assets||0), target=Number(state.five_thousand_scale_target||contract.operational_target_products);
  const pct=target?Math.min(100,concrete/target*100):0; $("fill").style.width=pct.toFixed(2)+"%"; $("progress").textContent=concrete.toLocaleString("en-IN")+" / "+target.toLocaleString("en-IN")+" concrete assets · "+pct.toFixed(2)+"% · strategic target "+Number(contract.strategic_target_products).toLocaleString("en-IN");
