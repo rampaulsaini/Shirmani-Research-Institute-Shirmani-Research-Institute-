@@ -1,0 +1,40 @@
+name: SHIRMANI Public Product Visual Cache Refresh
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: shirmani-public-product-visual-cache-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: main
+      - name: Refresh visual/QR cache keys
+        run: python3 factory/production_visual_cache_buster.py
+      - name: Publish only when visual URLs changed
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Public Visual Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/concrete
+          if git diff --cached --quiet; then
+            echo "No product visual URL refresh required."
+            exit 0
+          fi
+          git commit -m "fix(showroom): refresh published product visual cache keys"
+          branch="automation/public-visual-refresh-${{ github.run_id }}"
+          git push origin HEAD:"$branch"
+          pr="$(gh pr create --repo "${{ github.repository }}" --base main --head "$branch" --title "Automated public product visual refresh ${{ github.run_id }}" --body "Refreshes content-hash URLs for changed 4K product visuals and QR assets so public product pages show the latest published visuals immediately.")"
+          gh pr merge "$pr" --repo "${{ github.repository }}" --merge --delete-branch
