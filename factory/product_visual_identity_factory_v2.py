@@ -3,7 +3,8 @@
 from __future__ import annotations
 from datetime import datetime, timezone
 from pathlib import Path
-import hashlib, html, json, os\nfrom urllib.parse import quote
+import hashlib, html, json, os
+from urllib.parse import quote
 
 ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
@@ -22,7 +23,8 @@ def make(p):
     price=int(p.get("offer_price_inr",p.get("price_inr",0)) or 0)
     offer=str(p.get("offer","PUBLIC LAUNCH PRICE"))[:48]
     h=hashlib.sha256(pid.encode()).hexdigest(); c1="#"+h[:6]; c2="#"+h[6:12]
-    qr_target=f"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/product-passport.html?id={quote(pid)}"\n    qr="https://api.qrserver.com/v1/create-qr-code/?size=430x430&margin=10&data="+quote(qr_target,safe="")
+    qr_target=f"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/product-passport.html?id={quote(pid)}"
+    qr="https://api.qrserver.com/v1/create-qr-code/?size=430x430&margin=10&data="+quote(qr_target,safe="")
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
 <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{c1}"/><stop offset=".55" stop-color="{c2}"/><stop offset="1" stop-color="#050910"/></linearGradient></defs>
 <rect width="3840" height="2160" fill="url(#b)"/><rect x="70" y="70" width="3700" height="2020" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
