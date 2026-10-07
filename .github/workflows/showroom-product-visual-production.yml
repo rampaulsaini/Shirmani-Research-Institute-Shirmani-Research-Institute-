@@ -1,5 +1,12 @@
 name: SHIRMANI Showroom Product Visual Production
 on:
+  push:
+    branches: [main]
+    paths:
+      - "showroom-products.json"
+      - "generated/PRODUCT-PASSPORTS.jsonl"
+      - "factory/build_product_visuals.py"
+      - ".github/workflows/showroom-product-visual-production.yml"
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
@@ -12,7 +19,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.x"}
-      - name: Install visual build dependency\n        run: python -m pip install "qrcode[pil]"\n      - name: Build product visuals
+      - name: Install visual build dependency
+        run: python -m pip install "qrcode[pil]"
+      - name: Build product visuals
         run: python factory/build_product_visuals.py
       - name: Create reviewable production PR
         uses: peter-evans/create-pull-request@v7
