@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T06:42:28.139715+00:00",
+  "generated_at": "2026-10-07T06:43:27.349419+00:00",
   "engine": "SHIRMANI Multi-Layer Production Dispatcher",
   "mode": "production-first",
   "discovered_modules": 382,
@@ -7,7 +7,7 @@
   "last_cycle_tasks": 500,
   "new_tasks_added": 500,
   "total_queued_tasks": 500,
-  "scheduled_work_units": 142500,
+  "scheduled_work_units": 143000,
   "lanes": [
     "ai-ml-nlp",
     "automation",
@@ -20,13 +20,13 @@
     "social-media"
   ],
   "lane_counts_last_cycle": {
-    "automation": 214,
-    "platform": 129,
-    "research": 24,
-    "ai-ml-nlp": 65,
-    "federation": 23,
-    "content": 13,
-    "security-quality": 20,
+    "platform": 117,
+    "federation": 18,
+    "automation": 240,
+    "research": 21,
+    "security-quality": 28,
+    "ai-ml-nlp": 55,
+    "content": 9,
     "social-media": 4,
     "economic": 8
   },
@@ -41,17 +41,17 @@
     "certificates": 1000,
     "verification_queue": 100200,
     "verified_records": 0,
-    "concrete_results_this_cycle": 44500,
+    "concrete_results_this_cycle": 45000,
     "lane_artifacts": {
-      "ai-ml-nlp": 5366,
-      "automation": 20535,
-      "content": 1067,
-      "economic": 926,
-      "federation": 1610,
-      "platform": 10451,
-      "research": 1854,
-      "security-quality": 2226,
-      "social-media": 465
+      "ai-ml-nlp": 5421,
+      "automation": 20775,
+      "content": 1076,
+      "economic": 934,
+      "federation": 1628,
+      "platform": 10568,
+      "research": 1875,
+      "security-quality": 2254,
+      "social-media": 469
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
@@ -64,7 +64,7 @@
     "verification": "downstream result-quality/promotion layer"
   },
   "truth_boundary": "Generated production output is not automatically independently verified.",
-  "last_cycle_concrete_results": 44500,
+  "last_cycle_concrete_results": 45000,
   "artifacts": [
     "generated/production-results.jsonl",
     "generated/production-work-queue.jsonl",
