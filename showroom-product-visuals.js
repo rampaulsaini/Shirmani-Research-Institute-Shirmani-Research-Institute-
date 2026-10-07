@@ -11,7 +11,8 @@
 "use strict";
 const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 const LOGO="assets/shirmani-perspective-logo.svg";
-const IDENTITY="Shiromani Rampal Saini · Impartial Understanding · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present";
+const VISUAL_CONTRACT="v6-photo-logo-all-products";
+const IDENTITY="Shiromani Rampal Saini · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present";
 const qr=id=>"https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=10&data="+encodeURIComponent(new URL("product-passport.html?id="+encodeURIComponent(id),location.href).href);
 
 async function boot(){
@@ -38,13 +39,22 @@ async function boot(){
 
  const decorate=()=>{
    document.querySelectorAll("#grid .card").forEach(card=>{
-     if(card.dataset.identityVisualV5==="1")return;
+     if(card.dataset.identityVisualV6===VISUAL_CONTRACT)return;
      const img=card.querySelector("img");
      if(!img)return;
-     const m=(card.textContent||"").match(/\bSP-\d{4,}\b/i);
-     if(!m)return;
-     const id=m[0].toUpperCase();
-     const p=map.get(id)||{id,name:"SHIRMANI Digital Product"};
+     const productLink=card.querySelector('a[href*="showroom-product.html?id="]');
+     const orderLink=card.querySelector('a[href*="product-order.html?id="]');
+     let id="";
+     for(const link of [productLink,orderLink]){
+       if(!link)continue;
+       try{const u=new URL(link.href,location.href);const candidate=u.searchParams.get("id");if(candidate){id=String(candidate).toUpperCase();break;}}catch(e){}
+     }
+     if(!id){
+       const m=(card.textContent||"").match(/\b(?:SP|SRI|P|S)-[A-Z0-9-]+\b/i);
+       if(m)id=m[0].toUpperCase();
+     }
+     if(!id)return;
+     const p=map.get(id)||{id,name:(card.querySelector("h3,h2")?.textContent||"SHIRMANI Digital Product").trim(),short_description:(card.querySelector("p")?.textContent||"Unique customer-facing digital product.")};
      const desc=String(p.short_description||p.description||"Unique customer-facing digital product.").replace(/\s+/g," ").slice(0,190);
      const poster=document.createElement("div");
      poster.className="shirmani-poster";
@@ -54,7 +64,7 @@ async function boot(){
        '<div class="shirmani-short"><b>SHORT DESCRIPTION · </b>'+esc(desc)+'</div>'+
        '<div class="shirmani-id">'+esc(id)+'</div>';
      img.parentElement.replaceWith(poster);
-     card.dataset.identityVisualV5="1";
+     card.dataset.identityVisualV6=VISUAL_CONTRACT;
    });
  };
  decorate();
