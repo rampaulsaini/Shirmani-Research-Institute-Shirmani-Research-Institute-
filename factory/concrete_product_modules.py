@@ -65,18 +65,29 @@ def main():
     catalog=json.loads((OUT/"1000-digital-products.json").read_text(encoding="utf-8"))
     for engine,family in [(x["id"],x["label"]) for x in catalog["family_definitions"]]:
         (MOD/(engine+".html")).write_text("<!doctype html><meta charset='utf-8'><meta http-equiv='refresh' content='0;url=../production-launch-center.html'>",encoding="utf-8")
+    batch=max(1,min(500,int(os.environ.get("PRODUCT_BATCH_SIZE","100"))))
+    existing={p.stem.upper() for p in PROD.glob("*.html")}
+    selected=[p for p in catalog["products"] if p["id"].upper() not in existing][:batch]
     created=0
+    for p in selected:
+        p["status"]="READY_FOR_QC"
+        p["commercial_status"]="CATALOG_READY"
+        p["production_state"]="PRODUCED"
+        p["asset_exists"]=True
+        target=PROD/(p["id"].lower()+".html")
+        target.write_text(page(p),encoding="utf-8")
+        created+=1
+    # Keep the passport registry complete while exposing which products are actually materialized.
     with (OUT/"PRODUCT-PASSPORTS.jsonl").open("w",encoding="utf-8") as f:
         for p in catalog["products"]:
-            p["status"]="READY_FOR_QC"
-            p["commercial_status"]="CATALOG_READY"
-            p["production_state"]="PRODUCED"
-            p["asset_exists"]=True
             target=PROD/(p["id"].lower()+".html")
-            target.write_text(page(p),encoding="utf-8")
-            f.write(json.dumps({k:p.get(k) for k in ["id","name","category","engine","module","asset","price_inr","offer_price_inr","offer","description","guarantee","packing","qc_code","gate_no","dispatch_no","status","qr_payload"]},ensure_ascii=False)+"\n")
-            created+=1
+            p["asset_exists"]=target.exists()
+            if target.exists():
+                p["status"]="READY_FOR_QC"
+                p["commercial_status"]="CATALOG_READY"
+                p["production_state"]="PRODUCED"
+            f.write(json.dumps({k:p.get(k) for k in ["id","name","category","engine","module","asset","price_inr","offer_price_inr","offer","description","guarantee","packing","qc_code","gate_no","dispatch_no","status","qr_payload","asset_exists"]},ensure_ascii=False)+"\n")
     (OUT/"1000-digital-products.json").write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    status={"strategy":"CONCRETE_PRODUCT_ASSET_PRODUCTION","concrete_product_mvp":len(catalog["products"]),"catalog_products":len(catalog["products"]),"concrete_product_assets":created,"family_modules":len(catalog["family_definitions"]),"public_showroom":"products.html","product_launch_center":"products/production-launch-center.html","passport":"generated/PRODUCT-PASSPORTS.jsonl","state":"READY_FOR_QC","dispatch":"NO","verification":"DOWNSTREAM"}
-    (OUT/"real-product-factory-status.json").write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    materialized=sum(1 for p in catalog["products"] if p.get("asset_exists"))
+    status={"strategy":"CONCRETE_PRODUCT_ASSET_PRODUCTION","concrete_product_mvp":materialized,"catalog_products":len(catalog["products"]),"concrete_product_assets":materialized,"created_this_cycle":created,"batch_size":batch,"family_modules":len(catalog["family_definitions"]),"public_showroom":"products.html","product_launch_center":"products/production-launch-center.html","passport":"generated/PRODUCT-PASSPORTS.jsonl","state":"READY_FOR_QC" if materialized==len(catalog["products"]) else "PRODUCTION_IN_PROGRESS","dispatch":"NO","verification":"DOWNSTREAM"}
 if __name__=="__main__": main()
