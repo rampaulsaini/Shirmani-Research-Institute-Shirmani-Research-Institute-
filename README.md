@@ -16,7 +16,7 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 ## Public Production Showroom
 
 - **Global Product Expansion:** [global-product-expansion.html](global-product-expansion.html) — current concrete production, 5,000 scale target, 150,000 long-term catalogue target, official platform reference routes and authorized outreach package state.
-- **Showroom visual contract:** [docs/showroom/visual-production-contract-v6.md](docs/showroom/visual-production-contract-v5.md) — product-specific 4K-ready visual, Heart-View logo/photo, English identity line, short description and QR-to-long-passport contract.
+- **Showroom visual contract:** [docs/showroom/visual-production-contract-v6.md](docs/showroom/visual-production-contract-v6.md) — product-specific 4K-ready visual, Heart-View logo/photo, English identity line, short description and QR-to-long-passport contract.
 
 - **Production Hub (clear “what is this?” map):** [production-hub.html](production-hub.html)
 - **Current production state:** the live manifest is the source of truth; the latest published state records 5,000 catalog identities, 1,516 concrete repository assets, 3,484 remaining to the current 5,000 scale target, 812 production modules and 80,500 scheduled work units. Dispatch, sales and independent verification remain separate downstream states.
