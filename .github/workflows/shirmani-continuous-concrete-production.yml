@@ -31,26 +31,33 @@ jobs:
             echo "PRODUCTION_STATE_SOURCE=main-initial"
           fi
 
-      - name: Recover malformed production catalog before factory execution
+      - name: Recover malformed production state before factory execution
         shell: bash
         run: |
           set -euo pipefail
-          if python3 - <<'PY'
+          if ! python3 - <<'PY'
           import json
           json.load(open("generated/1000-digital-products.json", encoding="utf-8"))
           print("Production catalog JSON is valid.")
           PY
           then
-            :
-          else
             echo "Production-state catalog is malformed; restoring the canonical main catalog before continuing."
             git restore --source origin/main -- generated/1000-digital-products.json
-            python3 - <<'PY'
-          import json
-          data=json.load(open("generated/1000-digital-products.json", encoding="utf-8"))
-          print("Recovered catalog:", len(data.get("products", [])))
-          PY
           fi
+          if ! python3 - <<'PY'
+          import json
+          json.load(open("generated/concrete-production-overlay.json", encoding="utf-8"))
+          print("Concrete production overlay JSON is valid.")
+          PY
+          then
+            echo "Concrete production overlay is malformed; removing it so the factory rebuilds it from existing product assets."
+            rm -f generated/concrete-production-overlay.json
+          fi
+          python3 - <<'PY'
+          import json
+          catalog=json.load(open("generated/1000-digital-products.json", encoding="utf-8"))
+          print("Production catalog records:", len(catalog.get("products", [])))
+          PY
 
       - name: Configure production scale
         run: |
