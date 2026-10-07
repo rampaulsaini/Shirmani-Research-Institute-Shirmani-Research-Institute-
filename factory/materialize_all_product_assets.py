@@ -15,23 +15,46 @@ TOOLS={
 "quantum":'<select id=x><option>H</option><option>X</option><option>Z</option><option>CNOT</option></select><button onclick="run()">Simulate</button>',
 "game":'<button onclick="run()">New Game</button><div id=b></div>'}
 def visual_svg(p):
+    """Create a product-specific 3840x2160 16:9 4K-ready pseudo-3D showroom visual."""
     pid=html.escape(str(p.get("id","")), quote=True)
     name=html.escape(str(p.get("name","Digital Product")), quote=True)
     family=html.escape(str(p.get("family",p.get("category","Digital Product"))), quote=True)
     engine=html.escape(str(p.get("engine","product")), quote=True)
     import hashlib
     h=hashlib.sha256(str(p.get("id","")).encode()).hexdigest()
-    c1="#"+h[0:6]; c2="#"+h[6:12]; accent="#"+h[12:18]
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-label="{name} product visual">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{c1}"/><stop offset="1" stop-color="{c2}"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-opacity=".35"/></filter></defs>
-<rect width="3840" height="2160" fill="#060b12"/><rect x="35" y="35" width="1130" height="580" rx="42" fill="url(#g)" opacity=".96" filter="url(#s)"/>
-<circle cx="1010" cy="145" r="90" fill="{accent}" opacity=".25"/><circle cx="1080" cy="225" r="145" fill="#fff" opacity=".08"/>
-<path d="M90 510 C280 410 330 590 510 470 S800 420 1100 505" fill="none" stroke="#fff" stroke-width="5" opacity=".28"/>
-<text x="90" y="105" fill="#fff" font-family="system-ui,sans-serif" font-size="88" font-weight="800">꙰ SHIRMANI DIGITAL PRODUCT</text>
-<text x="90" y="205" fill="#fff" font-family="system-ui,sans-serif" font-size="160" font-weight="900">{name}</text>
-<text x="90" y="265" fill="#fff" font-family="system-ui,sans-serif" font-size="64" opacity=".9">{family} · {engine}</text>
-<rect x="90" y="325" width="330" height="64" rx="32" fill="#060b12" opacity=".72"/><text x="125" y="367" fill="#fff" font-family="system-ui,sans-serif" font-size="62" font-weight="800">{pid}</text>
-<text x="90" y="1860" fill="#fff" font-family="system-ui,sans-serif" font-size="52" opacity=".9">PRODUCT IDENTITY · PRIME DIGITAL PACK</text>
+    c1="#"+h[0:6]; c2="#"+h[6:12]; accent="#"+h[12:18]; uid="u"+h[:10]
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="{uid}t {uid}d">
+<title id="{uid}t">{name} — SHIRMANI unique 4K product visual</title>
+<desc id="{uid}d">Product-specific visual identity with a dimensional digital-product object, product ID, family and engine.</desc>
+<defs>
+ <linearGradient id="{uid}bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{c1}"/><stop offset=".5" stop-color="{c2}"/><stop offset="1" stop-color="#03060d"/></linearGradient>
+ <linearGradient id="{uid}glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff" stop-opacity=".25"/><stop offset=".45" stop-color="#ffffff" stop-opacity=".07"/><stop offset="1" stop-color="#000000" stop-opacity=".35"/></linearGradient>
+ <linearGradient id="{uid}edge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7d86a"/><stop offset=".5" stop-color="#67e8f9"/><stop offset="1" stop-color="#72e6aa"/></linearGradient>
+ <radialGradient id="{uid}orb"><stop stop-color="{accent}" stop-opacity=".48"/><stop offset="1" stop-color="{accent}" stop-opacity="0"/></radialGradient>
+ <filter id="{uid}shadow"><feDropShadow dx="0" dy="34" stdDeviation="38" flood-opacity=".52"/></filter>
+ <filter id="{uid}blur"><feGaussianBlur stdDeviation="42"/></filter>
+</defs>
+<rect width="3840" height="2160" fill="url(#{uid}bg)"/>
+<circle cx="3150" cy="420" r="760" fill="url(#{uid}orb)" filter="url(#{uid}blur)"/>
+<circle cx="680" cy="1770" r="520" fill="#67e8f9" opacity=".08" filter="url(#{uid}blur)"/>
+<ellipse cx="2020" cy="1790" rx="1420" ry="210" fill="#000" opacity=".55" filter="url(#{uid}blur)"/>
+<g filter="url(#{uid}shadow)">
+ <path d="M520 1570 L760 650 L2850 470 L3350 1420 L1120 1735 Z" fill="url(#{uid}glass)" stroke="url(#{uid}edge)" stroke-width="14"/>
+ <path d="M760 650 L1120 890 L3350 700 L2850 470 Z" fill="#ffffff" opacity=".10" stroke="#ffffff" stroke-opacity=".20" stroke-width="6"/>
+ <path d="M1120 890 L1120 1735 L3350 1420 L3350 700 Z" fill="#000000" opacity=".18"/>
+ <path d="M860 820 L1010 740 L2860 600 L3160 760 L1280 1010 Z" fill="#ffffff" opacity=".10"/>
+ <path d="M900 1190 L2920 920" stroke="#67e8f9" stroke-opacity=".30" stroke-width="20"/>
+ <path d="M900 1260 L2700 1010" stroke="#72e6aa" stroke-opacity=".18" stroke-width="12"/>
+ <circle cx="2880" cy="1250" r="290" fill="none" stroke="#f7d86a" stroke-opacity=".45" stroke-width="12"/>
+ <circle cx="2880" cy="1250" r="195" fill="none" stroke="#67e8f9" stroke-opacity=".30" stroke-width="8"/>
+ <circle cx="2880" cy="1250" r="80" fill="{accent}" opacity=".22"/>
+</g>
+<text x="520" y="310" fill="#67e8f9" font-family="system-ui,sans-serif" font-size="76" font-weight="900" letter-spacing="10">꙰ SHIRMANI SUPREME DIGITAL PRODUCT</text>
+<text x="520" y="760" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="132" font-weight="900">{name}</text>
+<text x="520" y="900" fill="#72e6aa" font-family="system-ui,sans-serif" font-size="62" font-weight="850">{family} · {engine}</text>
+<rect x="520" y="980" width="620" height="118" rx="59" fill="#03060d" opacity=".82" stroke="#f7d86a" stroke-opacity=".55" stroke-width="5"/>
+<text x="590" y="1060" fill="#f7d86a" font-family="system-ui,sans-serif" font-size="68" font-weight="900">{pid}</text>
+<text x="520" y="1910" fill="#ffffff" opacity=".86" font-family="system-ui,sans-serif" font-size="44" font-weight="700" letter-spacing="3">UNIQUE PRODUCT IDENTITY · DIMENSIONAL 3D-STYLE · 3840×2160 · 16:9 · 4K-READY</text>
 </svg>"""
 
 def make(p):
