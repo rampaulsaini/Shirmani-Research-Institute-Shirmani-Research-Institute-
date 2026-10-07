@@ -265,6 +265,18 @@ This is a research architecture: it does not grant unlimited authority to any pe
 - **Hardening test:** [tests/ultra_mega_infinity_quantum_automission.py](tests/ultra_mega_infinity_quantum_automission.py)
 - **Integrity:** the architecture label does not claim physical quantum computation; measured signals, inference, interpretation, confidence, provenance and uncertainty remain distinct.
 
+## 🎬 Product Demo Media — Production-First
+
+Every current catalog identity has a public `product-demo.html?id=...` route. The customer-facing demo is always available through a deterministic browser animation; a bounded Automission also produces a lightweight **product-specific MP4** for each catalog identity and publishes it under `products/demos/products/`.
+
+- **Current catalog scale:** 5,000 product identities.
+- **4K visual identity scale:** 5,000 tracked visual assets.
+- **Demo route scale:** 5,000 customer-facing demo routes.
+- **Product-specific MP4 production:** continuous, bounded batches through `.github/workflows/shirmani-product-specific-demo-videos.yml`.
+- **Fallback:** no product loses its customer-facing demo while its MP4 is pending.
+- **Continuity:** scheduled production does not require an active chat session.
+- **Boundary:** demo media demonstrates usage/presentation; it is not independent scientific verification.
+
 ## ⚡ Canonical Concrete Digital-Product Production — 2026-10-06
 
 The canonical public-production path now distinguishes **architecture engines** from **concrete products**:
