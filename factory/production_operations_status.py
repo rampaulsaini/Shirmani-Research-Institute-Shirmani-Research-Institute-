@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publish production-first operational telemetry for the public showroom."""
+"""Publish production-first operational telemetry from the canonical production state."""
 from __future__ import annotations
 from datetime import datetime, timezone
 from pathlib import Path
@@ -9,6 +9,7 @@ ROOT=Path(__file__).resolve().parents[1]
 GEN=ROOT/"generated"
 CAT=GEN/"1000-digital-products.json"
 OVERLAY=GEN/"concrete-production-overlay.json"
+LIVE=GEN/"live-production-state.json"
 BATCH=GEN/"continuous-production-batch-status.json"
 OUT=GEN/"production-operations-status.json"
 
@@ -19,6 +20,7 @@ def load(path, default):
 def main():
     catalog=load(CAT,{"products":[]})
     overlay=load(OVERLAY,{"products":[]})
+    live=load(LIVE,{})
     batch=load(BATCH,{})
     products=catalog.get("products",[])
     produced={x.get("id"):x for x in overlay.get("products",[]) if x.get("production_state")=="PRODUCED"}
@@ -27,7 +29,10 @@ def main():
     pricing=sum(1 for x in products if float(x.get("offer_price_inr",x.get("price_inr",0)) or 0)>0)
     pending=[x for x in products if x.get("id") not in produced]
     target=5000
-    produced_count=len(produced)
+    # Canonical concrete state comes from the production overlay. Never use workflow-run counts as product counts.
+    produced_count=len(produced) if produced else int(live.get("concrete_repository_assets",live.get("public_production_assets",0)) or 0)
+    catalog_count=int(live.get("catalog_identities",len(products)) or len(products))
+    target=int(live.get("five_thousand_scale_target",5000) or 5000)
     next_units=[]
     for p in pending[:24]:
         next_units.append({
@@ -37,11 +42,12 @@ def main():
             "public_route":"products/1000-digital-product-factory.html?id="+str(p.get("id",""))
         })
     state={
-      "schema_version":1,"generated_at":datetime.now(timezone.utc).isoformat(),
+      "schema_version":"2.0","generated_at":datetime.now(timezone.utc).isoformat(),
+      "source_of_truth":"generated/concrete-production-overlay.json",
       "production":{
-        "catalog_products":len(products),"produced_public":produced_count,
+        "catalog_products":catalog_count,"produced_public":produced_count,
         "pricing_published":pricing,"sold_evidence":0,
-        "next_scale_target":target,"production_lanes":len(lanes),
+        "next_scale_target":target,"remaining_to_scale_target":max(0,target-produced_count),"production_lanes":len(lanes),
         "families":len(families),"module_products_generated":produced_count
       },
       "summary":{
@@ -52,12 +58,12 @@ def main():
         "concrete_results_this_cycle":int(batch.get("produced_this_cycle",0)),
         "production_modules":produced_count
       },
-      "scheduled_work_units":len(pending),
+      "scheduled_work_units":max(0,catalog_count-produced_count),
       "next_work_units":next_units,
       "principle":"Production first: research → factory → QC/gate → public showroom/sale. Reviews improve products; verification remains downstream.",
       "commercial_truth":"No sale or settlement is claimed without transaction evidence."
     }
     OUT.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print(json.dumps({"catalog":len(products),"produced":produced_count,"remaining":len(pending),"families":len(families),"lanes":len(lanes)},ensure_ascii=False))
+    print(json.dumps({"catalog":catalog_count,"produced":produced_count,"remaining":max(0,catalog_count-produced_count),"families":len(families),"lanes":len(lanes)},ensure_ascii=False))
 
 if __name__=="__main__": main()
