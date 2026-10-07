@@ -11,6 +11,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "template": "ENGINE_MODULE_V2",
 <<<<<<< Updated upstream
   "generated_at": "2026-10-07T02:59:59+00:00",
@@ -103,6 +104,14 @@
 =======
   "template": "ENGINE_MODULE_V3",
   "generated_at": "2026-10-07T04:54:15.115420+00:00",
+  "catalog_products": 5000,
+  "stale_before": 0,
+  "upgraded_this_cycle": 0,
+  "remaining_depth_upgrades": 0
+>>>>>>> Stashed changes
+=======
+  "template": "ENGINE_MODULE_V3",
+  "generated_at": "2026-10-07T04:59:10.673375+00:00",
   "catalog_products": 5000,
   "stale_before": 0,
   "upgraded_this_cycle": 0,
