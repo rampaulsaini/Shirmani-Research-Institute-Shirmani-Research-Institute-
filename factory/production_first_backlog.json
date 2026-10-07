@@ -1,0 +1,10 @@
+{
+  "schema_version":"1.0",
+  "principle":"production-first",
+  "pipeline":["INSTITUTE_DISCOVERY","FACTORY_PRODUCTION","QC_DISPATCH","SHOWROOM_SALE","REVIEW_IMPROVEMENT"],
+  "current_source":"generated/1000-digital-products.json",
+  "current_target":"convert runnable candidates into concrete product packages rather than creating verification-only activity",
+  "priority_order":["highest-value runnable products","products with reusable browser engines","products with clear customer utility","products with real public preview/access","products with price/offer/dispatch package"],
+  "visual_requirement":"unique scalable product identity + short description + QR full description",
+  "commercial_rule":"only concrete packages may be marked sale-ready"
+}
