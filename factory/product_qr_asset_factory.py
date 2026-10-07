@@ -8,10 +8,10 @@ import qrcode
 from qrcode.image.svg import SvgPathImage
 
 ROOT=Path(__file__).resolve().parents[1]
-CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals/qr"
 MAN=ROOT/"generated/product-qr-assets.json"
-BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/products/concrete/"
+SOURCES=[ROOT/"generated/1000-digital-products.json",ROOT/"showroom-products.json",ROOT/"generated/product-catalog-public.json"]
+BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/showroom-product.html?id="
 
 def make_qr(payload:str)->str:
     qr=qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M,box_size=5,border=2)
@@ -22,7 +22,22 @@ def make_qr(payload:str)->str:
     return b.getvalue().decode("utf-8")
 
 def main():
-    products=json.loads(CAT.read_text(encoding="utf-8")).get("products",[])
+    products=[]; source=None
+    for CAT in SOURCES:
+        if not CAT.exists() or CAT.stat().st_size == 0: continue
+        try: raw=json.loads(CAT.read_text(encoding="utf-8"))
+        except Exception: continue
+        items=raw.get("products") if isinstance(raw,dict) else None
+        if not items and isinstance(raw,dict): items=raw.get("offers")
+        if isinstance(items,list) and items:
+            seen=set()
+            for i,p in enumerate(items):
+                if not isinstance(p,dict): continue
+                pid=str(p.get("id") or f"CAT-{i+1:05d}")
+                if pid in seen: continue
+                seen.add(pid); products.append({"id":pid,"name":str(p.get("name") or "SHIRMANI Digital Product")})
+            source=str(CAT.relative_to(ROOT)); break
+    if not products: raise SystemExit("No real product catalogue source available")
     OUT.mkdir(parents=True,exist_ok=True)
     try: batch=max(1,min(1000,int(os.environ.get("QR_BATCH","250"))))
     except ValueError: batch=250
@@ -43,7 +58,7 @@ def main():
         "target":len(products),"qr_assets":ready,"created_this_cycle":created,
         "remaining":len(products)-ready,"batch_size":batch,
         "state":"READY" if ready==len(products) else "IN_PROGRESS",
-        "purpose":"Per-product QR for long description / product details",
+        "source":source,"purpose":"Per-product QR for long description / product details",
         "products":rows
     },ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"target":len(products),"qr_assets":ready,"created_this_cycle":created,"remaining":len(products)-ready}))
