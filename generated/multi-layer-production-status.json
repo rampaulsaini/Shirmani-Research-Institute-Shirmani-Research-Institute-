@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T05:22:56.331778+00:00",
+  "generated_at": "2026-10-07T05:23:42.359997+00:00",
   "engine": "SHIRMANI Multi-Layer Production Dispatcher",
   "mode": "production-first",
   "discovered_modules": 382,
@@ -7,7 +7,7 @@
   "last_cycle_tasks": 500,
   "new_tasks_added": 500,
   "total_queued_tasks": 500,
-  "scheduled_work_units": 130000,
+  "scheduled_work_units": 130500,
   "lanes": [
     "ai-ml-nlp",
     "automation",
@@ -20,15 +20,15 @@
     "social-media"
   ],
   "lane_counts_last_cycle": {
-    "automation": 241,
-    "platform": 125,
-    "federation": 18,
-    "research": 20,
+    "ai-ml-nlp": 60,
+    "research": 18,
+    "automation": 246,
+    "platform": 102,
     "security-quality": 28,
-    "ai-ml-nlp": 47,
-    "content": 9,
-    "social-media": 4,
-    "economic": 8
+    "content": 13,
+    "social-media": 6,
+    "economic": 13,
+    "federation": 14
   },
   "production_outputs": {
     "verses": 0,
@@ -41,17 +41,17 @@
     "certificates": 1000,
     "verification_queue": 100200,
     "verified_records": 0,
-    "concrete_results_this_cycle": 35000,
+    "concrete_results_this_cycle": 35500,
     "lane_artifacts": {
-      "ai-ml-nlp": 4298,
-      "automation": 16089,
-      "content": 843,
-      "economic": 726,
-      "federation": 1269,
-      "platform": 8211,
-      "research": 1455,
-      "security-quality": 1744,
-      "social-media": 365
+      "ai-ml-nlp": 4358,
+      "automation": 16335,
+      "content": 856,
+      "economic": 739,
+      "federation": 1283,
+      "platform": 8313,
+      "research": 1473,
+      "security-quality": 1772,
+      "social-media": 371
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
@@ -64,7 +64,7 @@
     "verification": "downstream result-quality/promotion layer"
   },
   "truth_boundary": "Generated production output is not automatically independently verified.",
-  "last_cycle_concrete_results": 35000,
+  "last_cycle_concrete_results": 35500,
   "artifacts": [
     "generated/production-results.jsonl",
     "generated/production-work-queue.jsonl",
