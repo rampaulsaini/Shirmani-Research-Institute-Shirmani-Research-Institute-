@@ -7,13 +7,13 @@ body{margin:0;background:#070b12;color:#eef5f8;font:15px system-ui;line-height:1
 let C=[],R=null;const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
 async function load(){
-  R=await fetch("generated/production-registry.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
+  const live=await fetch("generated/live-production-state.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({}));
   const overlay=await fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({products:[]}));
   const catalog=await fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
-  const merged=[...(R.products||[]),...(overlay.products||[])];
+  const merged=[...(overlay.products||[])];
   const produced=new Map(merged.filter(p=>p.production_state==="PRODUCED").map(p=>[p.id,p]));
   C=(catalog.products||[]).map(p=>Object.assign({},p,produced.get(p.id)||{production_state:"QUEUED",sale_state:"NOT_YET_PRODUCED"}));
-  $("catalog").textContent=(R.catalog_count||C.length).toLocaleString();$("produced").textContent=(produced.size).toLocaleString();$("remaining").textContent=(C.length-produced.size).toLocaleString();$("batch").textContent=R.generated_at||"—";$("updated").textContent="Latest factory publication: "+(R.generated_at||"—");
+  const catalogCount=Number(live.catalog_identities||C.length); const producedCount=Number(live.concrete_repository_assets||produced.size); $("catalog").textContent=catalogCount.toLocaleString();$("produced").textContent=producedCount.toLocaleString();$("remaining").textContent=Math.max(0,catalogCount-producedCount).toLocaleString();$("batch").textContent=live.generated_at||overlay.generated_at||"—";$("updated").textContent="Latest factory publication: "+(live.generated_at||overlay.generated_at||"—");
   [...new Set(C.map(p=>p.family).filter(Boolean))].sort().forEach(x=>{let o=document.createElement("option");o.value=x;o.textContent=x;$("family").append(o)});render();
 }
 function render(){let q=$("q").value.toLowerCase(),f=$("family").value,st=$("state").value;a=C.filter(p=>(st==="ALL"||p.production_state==="PRODUCED")&&(!f||p.family===f)&&(!q||JSON.stringify(p).toLowerCase().includes(q)));$("summary").textContent=a.length.toLocaleString()+" shown · "+C.length.toLocaleString()+" catalog identities";$("grid").innerHTML=a.slice(0,120).map(card).join("")||"<div class=card>No products match the current production state/filter.</div>"}
