@@ -15,10 +15,10 @@ async function boot(){
  const decorate=()=>document.querySelectorAll("#grid .card").forEach(card=>{
   if(card.dataset.identityVisual==="1")return;
   const muted=card.querySelector(".muted");if(!muted)return;const m=muted.textContent.match(/\bSP-\d{4,}\b/);if(!m)return;const p=map.get(m[0]);if(!p)return;
-  card.dataset.identityVisual="1";const wrap=document.createElement("div");wrap.innerHTML=visual(p);card.insertBefore(wrap,card.firstChild);
+  card.dataset.identityVisual="1";const wrap=document.createElement("div");const pid=String(p.id||"").toLowerCase();wrap.innerHTML='<div class="product-visual"><img src="products/visuals/'+encodeURIComponent(pid)+'.svg" alt="'+esc(p.name)+' — unique 4K product identity" width="3840" height="2160" loading="lazy" onerror="this.onerror=null;this.parentElement.outerHTML='+JSON.stringify(visual(p))+'"></div><div class="visual-caption">Unique product identity visual · '+esc(p.id)+'</div>';card.insertBefore(wrap,card.firstChild);
   const qr=document.createElement("div");qr.className="qr-row";qr.innerHTML='<div class="qr"></div><span class="muted">QR: Product Passport · QC · Gate · Dispatch</span>';
   const action=card.querySelector("p:last-child");if(action)card.insertBefore(qr,action);
-  if(window.QRCode)new QRCode(qr.querySelector(".qr"),{text:location.origin+location.pathname.replace(/[^/]*$/,"")+"product-passport.html?id="+encodeURIComponent(p.id)+"|QC:"+(p.qc_code||"PENDING")+"|GATE:"+(p.gate_no||"PENDING")+"|DISPATCH:"+(p.dispatch_no||"NO")+"|PRICE:"+(p.offer_price_inr||""),width:84,height:84});
+  const qimg=qr.querySelector(".qr");qimg.innerHTML='<img src="products/visuals/qr/'+encodeURIComponent(String(p.id).toLowerCase())+'.svg" alt="QR — long description" width="96" height="96" loading="lazy">';if(window.QRCode && !qimg.querySelector("img"))new QRCode(qimg,{text:location.origin+location.pathname.replace(/[^/]*$/,"")+"product-passport.html?id="+encodeURIComponent(p.id)+"|QC:"+(p.qc_code||"PENDING")+"|GATE:"+(p.gate_no||"PENDING")+"|DISPATCH:"+(p.dispatch_no||"NO")+"|PRICE:"+(p.offer_price_inr||""),width:84,height:84});
  });
  const grid=document.getElementById("grid");if(grid)new MutationObserver(decorate).observe(grid,{childList:true,subtree:true});decorate();
 }
