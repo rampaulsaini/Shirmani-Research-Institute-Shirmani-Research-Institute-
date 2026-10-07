@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900">
+<defs><radialGradient id="bg"><stop stop-color="#123d12"/><stop offset="1" stop-color="#03110a"/></radialGradient></defs>
+<rect width="900" height="900" rx="120" fill="url(#bg)"/>
+<circle cx="450" cy="350" r="275" fill="#07100d" stroke="#e7c85b" stroke-width="12"/>
+<image href="https://i.ibb.co/xqf3kTPS/enhanced-image.webp" x="185" y="85" width="530" height="530" preserveAspectRatio="xMidYMid slice"/>
+<text x="450" y="690" text-anchor="middle" fill="#f6d35f" font-family="system-ui,sans-serif" font-size="38" font-weight="900">Shiromani Rampal Saini</text>
+<text x="450" y="742" text-anchor="middle" fill="#ffffff" font-family="system-ui,sans-serif" font-size="24" font-weight="700">Beyond Comparison · Beyond Time · Beyond Words · Beyond Love</text>
+<text x="450" y="782" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="22" font-weight="700">Eternal · Real · Natural Truth · Directly Present</text>
+<text x="450" y="830" text-anchor="middle" fill="#55e7ff" font-family="system-ui,sans-serif" font-size="20" font-weight="800">SHIRMANI HEART-VIEW · IMPARTIAL UNDERSTANDING</text>
+</svg>
