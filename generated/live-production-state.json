@@ -5,10 +5,14 @@
 =======
   "schema_version": 1,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "generated_at": "2026-10-07T05:47:33.629815+00:00",
 >>>>>>> Stashed changes
 =======
   "generated_at": "2026-10-07T05:50:24.928271+00:00",
+>>>>>>> Stashed changes
+=======
+  "generated_at": "2026-10-07T05:53:33.267486+00:00",
 >>>>>>> Stashed changes
   "production_first": true,
   "catalog_identities": 5000,
@@ -18,8 +22,13 @@
   "remaining_to_scale_target": 0,
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "concrete_materialization_percent_of_catalog": 100,
   "concrete_materialization_percent_of_scale_target": 100,
+=======
+  "concrete_materialization_percent_of_catalog": 100.0,
+  "concrete_materialization_percent_of_scale_target": 100.0,
+>>>>>>> Stashed changes
 =======
   "concrete_materialization_percent_of_catalog": 100.0,
   "concrete_materialization_percent_of_scale_target": 100.0,
@@ -35,9 +44,13 @@
   "independent_verification_claimed": 0,
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG",
   "qc_state": "READY_FOR_QC",
   "truth_boundary": "Produced assets are production outputs; QC/gate/dispatch and independent verification remain downstream states."
+=======
+  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
+>>>>>>> Stashed changes
 =======
   "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
 >>>>>>> Stashed changes
