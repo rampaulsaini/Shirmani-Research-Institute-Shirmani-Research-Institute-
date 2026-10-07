@@ -27,7 +27,7 @@ jobs:
         run: |
           if git ls-remote --exit-code --heads origin automation/production-state >/dev/null 2>&1; then
             git fetch origin automation/production-state
-            git checkout --force FETCH_HEAD
+            git checkout FETCH_HEAD -- generated products
             echo "PRODUCTION_STATE_SOURCE=automation/production-state"
           else
             echo "PRODUCTION_STATE_SOURCE=main-initial"
@@ -99,8 +99,18 @@ jobs:
             echo "No production delta"
           else
             git commit -m "chore(production): persist concrete product batch"
-            git push --force origin HEAD:automation/production-state
-            echo "PRODUCTION_STATE_PERSISTENCE=SUCCESS"
+            for attempt in 1 2 3 4 5; do
+              git fetch origin automation/production-state || true
+              remote_sha="$(git rev-parse FETCH_HEAD 2>/dev/null || true)"
+              if [ -n "$remote_sha" ] && git push --force-with-lease="refs/heads/automation/production-state:$remote_sha" origin HEAD:automation/production-state; then
+                echo "PRODUCTION_STATE_PERSISTENCE=SUCCESS attempt=$attempt"
+                exit 0
+              fi
+              echo "Production state branch moved during push; retrying attempt=$attempt"
+              sleep $((attempt * 2))
+            done
+            echo "::error::Unable to persist production state after 5 attempts"
+            exit 1
           fi
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
