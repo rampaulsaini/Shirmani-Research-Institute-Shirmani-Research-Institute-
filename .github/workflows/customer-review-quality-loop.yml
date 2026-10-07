@@ -54,37 +54,30 @@ jobs:
           set -euo pipefail
           git config user.name "SHIRMANI Customer Quality Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Use a unique branch per event/run to avoid rebase and lease races.
           if [ -n "${ISSUE_NUMBER:-}" ]; then
-            BRANCH="automation/customer-review-${ISSUE_NUMBER}"
+            BRANCH="automation/customer-review-${ISSUE_NUMBER}-${GITHUB_RUN_ID}"
           else
             BRANCH="automation/customer-review-manual-${GITHUB_RUN_ID}"
           fi
           git fetch origin main
-          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
-            git fetch origin "$BRANCH"
-            git checkout -B "$BRANCH" "origin/$BRANCH"
-            git rebase origin/main || { git rebase --abort; git merge --no-edit origin/main; }
-          else
-            git checkout -B "$BRANCH" origin/main
-          fi
+          git checkout -B "$BRANCH" origin/main
           git add generated/customer-review-log.jsonl generated/customer-quality-dashboard.json generated/public-review-quality-status.json
           if git diff --cached --quiet; then
             echo "No review delta."
             exit 0
           fi
           git commit -m "automission: persist customer review quality signals"
-          git push --force-with-lease origin "$BRANCH:$BRANCH"
-          existing_pr="$(gh pr list --repo "$REPOSITORY" --head "$BRANCH" --base main --state open --json number --jq '.[0].number // empty')"
-          if [ -z "$existing_pr" ]; then
-            if gh pr create --repo "$REPOSITORY" --base main --head "$BRANCH" \
-              --title "automission: customer review quality update" \
-              --body "Automated production-quality input from customer review telemetry. Public production automission also aggregates review issues directly; this PR is a governed source-history mirror."; then
-              echo "Review telemetry PR created."
-            else
-              echo "::warning::PR creation is unavailable for the current Actions token/repository policy. Review telemetry remains published as workflow artifacts and is independently consumed by the public production automission."
-            fi
+          if ! git push --set-upstream origin "$BRANCH:$BRANCH"; then
+            echo "::warning::Review telemetry branch push failed; public production automission remains the canonical customer-review consumer."
+            exit 0
+          fi
+          if gh pr create --repo "$REPOSITORY" --base main --head "$BRANCH" \
+            --title "automission: customer review quality update" \
+            --body "Automated production-quality input from customer review telemetry. Public production automission also aggregates review issues directly; this PR is a governed source-history mirror."; then
+            echo "Review telemetry PR created."
           else
-            echo "Existing review PR #$existing_pr updated."
+            echo "::warning::PR creation is unavailable for the current Actions token/repository policy. Review telemetry remains published as workflow artifacts and is independently consumed by the public production automission."
           fi
       - name: Publish review artifact
         uses: actions/upload-artifact@v4
