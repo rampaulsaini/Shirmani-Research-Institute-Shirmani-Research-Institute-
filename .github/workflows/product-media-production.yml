@@ -34,7 +34,19 @@ jobs:
           if not manifest_path.exists():
               print(f"catalog_products={len(products)} manifest=NOT_YET_PUBLISHED")
               raise SystemExit(0)
-          m=json.loads(manifest_path.read_text(encoding='utf-8'))
+          raw=manifest_path.read_text(encoding='utf-8').strip()
+          if not raw:
+              print(f"catalog_products={len(products)} manifest=EMPTY")
+              print("real_mp4_count=0")
+              print("engine_demo_count=0")
+              print("owner_of_manifest=shirmani-product-demo-media-factory")
+              raise SystemExit(0)
+          try:
+              m=json.loads(raw)
+          except json.JSONDecodeError as exc:
+              print(f"catalog_products={len(products)} manifest=INVALID_JSON error={exc}")
+              print("owner_of_manifest=shirmani-product-demo-media-factory")
+              raise SystemExit(0)
           rows=m.get('products', [])
           print(f"catalog_products={len(products)}")
           print(f"manifest_products={len(rows)}")
