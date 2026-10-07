@@ -13,7 +13,9 @@ permissions:
   contents: write
   pull-requests: write
 concurrency:
-  group: shirmani-production-scale
+  # Serialize generated-state production writers on main so concrete product
+  # materialization cannot race customer-review/public-state writers.
+  group: shirmani-main-generated-writer
   cancel-in-progress: false
 jobs:
   produce:
@@ -44,6 +46,17 @@ jobs:
               raise SystemExit("Invalid production count")
           print("Production QC: PASS")
           print("catalog=",len(c.get("products",[])),"produced=",s.get("product_count"))
+          PY
+      - name: Verify concrete production delta
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path("generated/production-status.json").read_text())
+          if s.get("batch_produced", 0) <= 0:
+              raise SystemExit("No concrete product artifacts were produced in this cycle")
+          print("Concrete production delta:", s.get("batch_produced"))
+          print("Total concrete products:", s.get("product_count"))
           PY
       - name: Publish production result to main
         shell: bash
