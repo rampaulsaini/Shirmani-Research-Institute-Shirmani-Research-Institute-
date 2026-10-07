@@ -1,17 +1,5 @@
 {
   "schema_version": 1,
-<<<<<<< Updated upstream
-  "generated_at": "2026-10-07T01:40:42.776695+00:00",
-  "production_first": true,
-  "catalog_identities": 5000,
-  "concrete_repository_assets": 3516,
-  "current_catalog_pending": 1484,
-  "five_thousand_scale_target": 5000,
-  "remaining_to_scale_target": 1484,
-  "concrete_materialization_percent_of_catalog": 70.32,
-  "concrete_materialization_percent_of_scale_target": 70.32,
-  "module_products_generated": 3516,
-=======
   "generated_at": "2026-10-07T02:32:45.958458+00:00",
   "production_first": true,
   "catalog_identities": 5000,
@@ -22,7 +10,6 @@
   "concrete_materialization_percent_of_catalog": 90.32,
   "concrete_materialization_percent_of_scale_target": 90.32,
   "module_products_generated": 4516,
->>>>>>> Stashed changes
   "dispatch_released": 0,
   "sales_claimed": 0,
   "payment_claimed": 0,
