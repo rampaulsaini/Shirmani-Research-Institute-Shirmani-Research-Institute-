@@ -1,7 +1,5 @@
 name: SHIRMANI Supreme Production Factory
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
