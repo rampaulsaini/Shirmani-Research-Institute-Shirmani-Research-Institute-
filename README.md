@@ -16,9 +16,10 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 ## Public Production Showroom
 
 - **Production Hub (clear “what is this?” map):** [production-hub.html](production-hub.html)
-- **Current production state:** 1,016/1,016 concrete product assets · 1,016/1,016 deterministic QC pass · dispatch/sales/independent verification remain separate downstream states.
+- **Current production state:** the live manifest is the source of truth; the latest published state records 5,000 catalog identities, 1,516 concrete repository assets, 3,484 remaining to the current 5,000 scale target, 812 production modules and 80,500 scheduled work units. Dispatch, sales and independent verification remain separate downstream states.
 
 - **Showroom:** [showroom.html](showroom.html)
+- **LIVE Concrete Product Rack:** [supreme-public-production-showroom.html](supreme-public-production-showroom.html) — searchable customer-facing rack backed by the current concrete-production overlay, with product links, price metadata when available, QC/gate/dispatch state and order/passport routes.
 - **Product registry:** [showroom-products.json](showroom-products.json)
 - **Production specification:** [SHOWROOM-PRODUCTION.md](SHOWROOM-PRODUCTION.md)
 - **Funding / payment:** [funding-appeal.html](funding-appeal.html) — public payment routes are Paytm/UPI and PayPal only.
