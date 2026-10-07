@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Aggregate current public customer feedback
         env:
-          EVENT_PATH: ${ github.event_path }}
+          EVENT_PATH: ${{ github.event_path }}
         shell: python
         run: |
           import json, os, re
@@ -35,7 +35,7 @@ jobs:
       - name: Publish review telemetry artifact
         uses: actions/upload-artifact@v4
         with:
-          name: shirmani-customer-review-${ github.run_number }}
+          name: shirmani-customer-review-${{ github.run_number }}
           retention-days: 30
           path: |
             generated/customer-review-event.json
