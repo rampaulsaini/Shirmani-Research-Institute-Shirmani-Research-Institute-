@@ -89,7 +89,7 @@ jobs:
             generated/concrete-product-truth.json
             generated/concrete-product-production-status.json
             generated/concrete-product-depth-status.json
-      - name: Persist production results without rebase conflicts
+      - name: Persist production results from the latest persistent state
         run: |
           set -euo pipefail
           git config user.name "SHIRMANI Production Automission"
@@ -99,33 +99,54 @@ jobs:
             echo "No production delta"
             exit 0
           fi
-          mkdir -p /tmp/shirmani-production-snapshot
-          git archive --format=tar HEAD generated products | tar -x -C /tmp/shirmani-production-snapshot
-          git diff --cached --binary > /tmp/shirmani-production.patch
+
+          rm -rf /tmp/shirmani-staged
+          mkdir -p /tmp/shirmani-staged
+          git diff --cached --name-only > /tmp/shirmani-staged-files
+          while IFS= read -r f; do
+            [ -n "$f" ] || continue
+            mkdir -p "/tmp/shirmani-staged/$(dirname "$f")"
+            git show ":$f" > "/tmp/shirmani-staged/$f"
+          done < /tmp/shirmani-staged-files
+
           for attempt in 1 2 3 4 5 6 7; do
-            git fetch origin automation/production-state || true
-            remote_sha="$(git rev-parse FETCH_HEAD 2>/dev/null || true)"
+            if git fetch origin automation/production-state; then
+              remote_sha="$(git rev-parse FETCH_HEAD)"
+            else
+              remote_sha=""
+            fi
             if [ -z "$remote_sha" ]; then
-              echo "Production state branch is not readable yet; retrying attempt=$attempt"
+              echo "Production state branch is not readable; retrying attempt=$attempt"
               sleep $((attempt * 2))
               continue
             fi
+
             git reset --hard "$remote_sha"
             git clean -fd
-            if git apply --index /tmp/shirmani-production.patch; then
-              git commit -m "chore(production): persist concrete product batch"
-              new_sha="$(git rev-parse HEAD)"
-              if git push --force-with-lease="refs/heads/automation/production-state:$remote_sha" origin "$new_sha:automation/production-state"; then
-                echo "PRODUCTION_STATE_PERSISTENCE=SUCCESS attempt=$attempt"
-                exit 0
-              fi
-            else
-              git reset --hard "$remote_sha"
-              echo "Production delta no longer applies cleanly; regenerating from refreshed state attempt=$attempt"
+
+            while IFS= read -r f; do
+              [ -n "$f" ] || continue
+              mkdir -p "$(dirname "$f")"
+              cp "/tmp/shirmani-staged/$f" "$f"
+            done < /tmp/shirmani-staged-files
+
+            git add --pathspec-from-file=/tmp/shirmani-staged-files
+            if git diff --cached --quiet; then
+              echo "No production delta after overlay"
+              exit 0
             fi
-            sleep $((attempt * 2))
+
+            git commit -m "chore(production): persist concrete product batch"
+            new_sha="$(git rev-parse HEAD)"
+            if git push --force-with-lease="refs/heads/automation/production-state:$remote_sha" origin "$new_sha:automation/production-state"; then
+              echo "PRODUCTION_STATE_PERSISTENCE=SUCCESS attempt=$attempt"
+              exit 0
+            fi
+
+            echo "Production state branch moved during push; retrying from latest state attempt=$attempt"
           done
-          echo "::error::Unable to persist production state after 7 conflict-safe attempts"
+
+          echo "::error::Unable to persist production state after 7 attempts"
           exit 1
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
