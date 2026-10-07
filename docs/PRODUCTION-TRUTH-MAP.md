@@ -14,7 +14,8 @@ This map separates **catalog identity, concrete product production, deterministi
 | Confirmed sales | 0 evidenced | actual sales | **0% evidenced** | NOT CLAIMED |
 | Settlement / reconciliation | 0 evidenced | actual settlements | **0% evidenced** | NOT CLAIMED |
 | Independent verification | 0 | 100,200 | **0%** | DOWNSTREAM |
-| Public showroom | 1 | 1 | 100% | READY |\n| 4K product visuals | 1,516 | 5,000 | **30.32%** | CURRENT VISUALS |\n| Product-specific real MP4 | 0 | 5,000 | **0%** | MEDIA GAP |\n| VIP screenshots | 1,516 | 5,000 | **30.32%** | IN_PROGRESS |
+| Public showroom | 1 | 1 | 100% | READY |
+| 4K product visuals | 1,516 | 5,000 | **30.32%** | CURRENT VISUALS |\n| Product-specific real MP4 | 0 | 5,000 | **0%** | MEDIA GAP |\n| VIP screenshots | 1,516 | 5,000 | **30.32%** | IN_PROGRESS |
 
 ## Latest production evidence
 
