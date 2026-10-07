@@ -43,6 +43,55 @@ jobs:
       - name: Materialize expanded concrete product assets
         run: python3 factory/materialize_all_product_assets.py
 
+      - name: Publish concrete 5,000-product production manifest
+        run: |
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          root=Path("generated")
+          catalog=json.loads((root/"1000-digital-products.json").read_text(encoding="utf-8"))
+          passports={}
+          for line in (root/"PRODUCT-PASSPORTS.jsonl").read_text(encoding="utf-8").splitlines():
+              if line.strip():
+                  p=json.loads(line); passports[p["product_id"]]=p
+          assets=[]
+          for p in catalog["products"]:
+              asset=Path(p.get("asset", ""))
+              if not asset.is_file():
+                  continue
+              q=passports.get(p["id"],p)
+              assets.append({
+                  "id":p["id"],"production_state":"PRODUCED",
+                  "sale_state":"READY_FOR_QC","artifact_url":p["asset"],
+                  "offer_price_inr":p.get("offer_price_inr",0),"price_inr":p.get("price_inr",0),
+                  "offer":p.get("offer",""),"qc_code":q.get("qc_code",p.get("qc_code","QC-PENDING")),
+                  "gate_no":q.get("gate_no",p.get("gate_no","GATE-PENDING")),
+                  "dispatch_no":q.get("dispatch_no",p.get("dispatch_no","NO")),
+                  "status":"READY_FOR_QC"
+              })
+          ts=datetime.now(timezone.utc).isoformat()
+          target=int(catalog["product_count"])
+          produced=len(assets)
+          overlay={"schema_version":1,"generated_at":ts,"production_first":True,
+                   "source":"products/production + PRODUCT-PASSPORTS.jsonl",
+                   "product_count":target,"produced_count":produced,
+                   "remaining_count":max(0,target-produced),"products":assets}
+          (root/"public-production-asset-overlay.json").write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          live={"schema_version":2,"generated_at":ts,"production_first":True,
+                "catalog_identities":target,"public_production_assets":produced,
+                "concrete_repository_assets":produced,"current_catalog_pending":max(0,target-produced),
+                "five_thousand_scale_target":5000,"remaining_to_scale_target":max(0,5000-produced),
+                "concrete_materialization_percent_of_catalog":round(100*produced/target,2) if target else 0,
+                "concrete_materialization_percent_of_scale_target":round(100*produced/5000,2),
+                "module_products_generated":produced,"dispatch_released":0,"sales_claimed":0,
+                "payment_claimed":0,"independent_verification_claimed":0,
+                "state":"PRODUCTION_COMPLETE_CURRENT_CATALOG" if produced==target else "PRODUCTION_IN_PROGRESS",
+                "qc_state":"READY_FOR_QC","truth_boundary":"Produced assets are not automatically QC-passed or independently verified."}
+          (root/"live-production-state.json").write_text(json.dumps(live,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          print(f"PUBLIC PRODUCTION ASSETS: {produced}/{target} ({(100*produced/target if target else 0):.2f}%)")
+          PY
+
       - name: Aggregate public customer reviews into production quality signals
         env:
           GH_TOKEN: ${{ github.token }}
