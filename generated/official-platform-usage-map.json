@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-07",
+  "purpose": "Official platform usage and integration directory for SHIRMANI digital-product production.",
+  "truth_boundary": "These are public official reference routes and integration targets; no external organisation contact or endorsement is claimed.",
+  "platforms": [
+    {"name":"GitHub Actions","scope":"automation, CI/CD, repository workflows","official_url":"https://docs.github.com/en/actions"},
+    {"name":"GitHub Pages","scope":"public showroom deployment","official_url":"https://docs.github.com/en/pages"},
+    {"name":"GitHub Marketplace","scope":"potential distribution of eligible GitHub Actions/apps","official_url":"https://docs.github.com/en/marketplace"},
+    {"name":"NVIDIA Developer","scope":"AI/ML developer ecosystem","official_url":"https://developer.nvidia.com/"},
+    {"name":"NVIDIA CUDA","scope":"GPU-accelerated computing","official_url":"https://developer.nvidia.com/cuda-toolkit"},
+    {"name":"NVIDIA TensorRT","scope":"production inference optimization","official_url":"https://developer.nvidia.com/tensorrt"},
+    {"name":"NVIDIA NeMo","scope":"AI agent/model lifecycle, training and evaluation","official_url":"https://docs.nvidia.com/nemo/"},
+    {"name":"NVIDIA NGC","scope":"GPU-optimized containers, models and AI resources","official_url":"https://catalog.ngc.nvidia.com/"}
+  ],
+  "usage_rule": "Products should link only to official platform documentation or official product pages when an integration/use case is actually supported.",
+  "outreach_rule": "Automated outreach may prepare lawful contact packages, but the platform must not claim an organisation was contacted unless an authorised outbound channel confirms delivery."
+}
