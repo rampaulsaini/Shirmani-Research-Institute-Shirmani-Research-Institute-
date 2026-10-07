@@ -1,0 +1,55 @@
+name: SHIRMANI Product Demo Video Automission
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "generated/1000-digital-products.json"
+      - "product-demo.html"
+      - "scripts/build_product_demo_manifest.py"
+      - ".github/workflows/showroom-product-demo-production.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-product-demo-production
+  cancel-in-progress: false
+
+jobs:
+  demo-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build complete customer demo manifest
+        run: python3 scripts/build_product_demo_manifest.py
+
+      - name: Validate every demo route
+        run: |
+          python3 -c 'import json; from pathlib import Path; m=json.loads(Path("generated/product-demo-video-manifest.json").read_text(encoding="utf-8")); assert m["catalog_count"] > 0; assert all(x["demo_route"].startswith("product-demo.html?id=") for x in m["products"]); assert all(x["fallback_demo"] for x in m["products"]); print("DEMO_ROUTES:",m["catalog_count"]); print("ENGINES:",m["engine_count"]); print("DEMO_ROUTE_GATE: PASS")'
+
+      - name: Publish customer-facing demo manifest
+        run: |
+          git config user.name "SHIRMANI Product Demo Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/product-demo-video-manifest.json generated/product-demo-video-manifest.md
+          if git diff --cached --quiet; then
+            echo "No demo-manifest delta."
+          else
+            git commit -m "automission: publish complete product demo manifest"
+            git push
+          fi
+
+      - name: Demo production summary
+        run: |
+          {
+            echo "## SHIRMANI Product Demo Video Automission"
+            echo "- Every catalog product: public demo route"
+            echo "- Preferred asset: engine-level MP4"
+            echo "- Guaranteed fallback: browser-generated animated demo"
+            echo "- Demo route readiness is production state, not scientific verification"
+          } >> "$GITHUB_STEP_SUMMARY"
