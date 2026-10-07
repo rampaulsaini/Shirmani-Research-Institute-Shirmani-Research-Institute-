@@ -20,14 +20,22 @@ jobs:
       - uses: actions/checkout@v4
       - name: Materialize real product catalog
         run: python3 factory/product_catalog_materializer.py
-      - name: Publish catalog artifacts
+      - name: Publish catalog artifacts through governed PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -euo pipefail
           git config user.name "SHIRMANI Product Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add products.html generated/product-catalog-public.json
           if git diff --cached --quiet; then
             echo "No product catalog changes."
-          else
-            git commit -m "chore: materialize real product catalog"
-            git push
+            exit 0
           fi
+          BRANCH="automation/real-product-catalog-${GITHUB_RUN_ID}"
+          git switch -c "$BRANCH"
+          git commit -m "chore(production): materialize real product catalog"
+          git push --set-upstream origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" \
+            --title "chore(production): materialize real product catalog" \
+            --body "Automated production catalog publication. Main-branch changes are routed through the repository's required pull-request gate."
