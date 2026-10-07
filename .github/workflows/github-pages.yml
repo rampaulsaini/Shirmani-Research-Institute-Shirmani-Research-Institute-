@@ -25,6 +25,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Load canonical production state
+        run: |
+          if git ls-remote --exit-code --heads origin automation/production-state >/dev/null 2>&1; then
+            git fetch origin automation/production-state
+            git checkout --force FETCH_HEAD
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
