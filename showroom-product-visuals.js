@@ -1,8 +1,8 @@
-/* SHIRMANI Supreme Showroom Visual Identity Layer v3 */
+/* SHIRMANI Supreme Showroom Visual Identity Layer v4 */
 (function(){
 "use strict";
 const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
-const LOGO="https://i.ibb.co/xqf3kTPS/enhanced-image.webp";
+const LOGO="assets/shirmani-perspective-photo.png";
 const IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present";
 const qr=id=>"https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=10&data="+encodeURIComponent(location.origin+location.pathname.replace(/[^/]*$/,"")+"product-passport.html?id="+encodeURIComponent(id));
 async function boot(){
