@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T02:46:53.826140+00:00",
+  "generated_at": "2026-10-07T02:47:21.610311+00:00",
   "engine": "SHIRMANI Multi-Layer Production Dispatcher",
   "mode": "production-first",
   "discovered_modules": 382,
@@ -7,7 +7,7 @@
   "last_cycle_tasks": 500,
   "new_tasks_added": 500,
   "total_queued_tasks": 500,
-  "scheduled_work_units": 100500,
+  "scheduled_work_units": 101000,
   "lanes": [
     "ai-ml-nlp",
     "automation",
@@ -20,13 +20,13 @@
     "social-media"
   ],
   "lane_counts_last_cycle": {
+    "platform": 105,
+    "automation": 247,
+    "security-quality": 34,
+    "federation": 17,
+    "ai-ml-nlp": 56,
     "research": 20,
-    "ai-ml-nlp": 61,
-    "automation": 209,
-    "federation": 24,
-    "content": 13,
-    "security-quality": 20,
-    "platform": 141,
+    "content": 9,
     "social-media": 4,
     "economic": 8
   },
@@ -41,17 +41,17 @@
     "certificates": 1000,
     "verification_queue": 100200,
     "verified_records": 0,
-    "concrete_results_this_cycle": 13000,
+    "concrete_results_this_cycle": 13500,
     "lane_artifacts": {
-      "ai-ml-nlp": 1814,
-      "automation": 5843,
-      "content": 318,
-      "economic": 263,
-      "federation": 453,
-      "platform": 2993,
-      "research": 530,
-      "security-quality": 653,
-      "social-media": 133
+      "ai-ml-nlp": 1870,
+      "automation": 6090,
+      "content": 327,
+      "economic": 271,
+      "federation": 470,
+      "platform": 3098,
+      "research": 550,
+      "security-quality": 687,
+      "social-media": 137
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
@@ -64,7 +64,7 @@
     "verification": "downstream result-quality/promotion layer"
   },
   "truth_boundary": "Generated production output is not automatically independently verified.",
-  "last_cycle_concrete_results": 13000,
+  "last_cycle_concrete_results": 13500,
   "artifacts": [
     "generated/production-results.jsonl",
     "generated/production-work-queue.jsonl",
