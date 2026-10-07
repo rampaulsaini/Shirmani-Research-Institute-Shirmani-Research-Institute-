@@ -76,7 +76,13 @@ jobs:
           git push --force-with-lease origin "$BRANCH:$BRANCH"
           existing_pr="$(gh pr list --repo "$REPOSITORY" --head "$BRANCH" --base main --state open --json number --jq '.[0].number // empty')"
           if [ -z "$existing_pr" ]; then
-            gh pr create --repo "$REPOSITORY" --base main --head "$BRANCH"               --title "automission: customer review quality update"               --body "Automated production-quality input from customer review telemetry. Main remains protected; merge follows repository governance."
+            if gh pr create --repo "$REPOSITORY" --base main --head "$BRANCH" \
+              --title "automission: customer review quality update" \
+              --body "Automated production-quality input from customer review telemetry. Public production automission also aggregates review issues directly; this PR is a governed source-history mirror."; then
+              echo "Review telemetry PR created."
+            else
+              echo "::warning::PR creation is unavailable for the current Actions token/repository policy. Review telemetry remains published as workflow artifacts and is independently consumed by the public production automission."
+            fi
           else
             echo "Existing review PR #$existing_pr updated."
           fi
