@@ -9,8 +9,8 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets.json"
-STYLE_VERSION="2026-10-07-production-visual-v8-persistent-logo-qr"
-LOGO_URL="https://i.ibb.co/xqf3kTPS/enhanced-image.webp"
+STYLE_VERSION="2026-10-07-production-visual-v9-local-logo-qr-top-right"
+LOGO_URL="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/assets/shirmani-perspective-logo.svg"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 SHOWROOM_BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
 
@@ -33,7 +33,7 @@ def visual(p):
 <rect width="3840" height="2160" fill="url(#bg)"/><rect x="28" y="28" width="3784" height="2104" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
 <circle cx="300" cy="310" r="205" fill="#061016" stroke="#e7c85b" stroke-width="12"/><image href="{LOGO_URL}" x="105" y="115" width="390" height="390" preserveAspectRatio="xMidYMid slice"/>
 <text x="570" y="160" fill="#e7c85b" font-family="system-ui,sans-serif" font-size="72" font-weight="950">✦ SHIRMANI SUPREME DIGITAL PRODUCT</text>
-<text x="570" y="245" fill="#ffffff" font-family="system-ui,sans-serif" font-size="34" font-weight="800">Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love</text><text x="570" y="295" fill="#ffffff" font-family="system-ui,sans-serif" font-size="34" font-weight="800">Eternal · Real · Natural Truth · Directly Present</text>
+<text x="570" y="245" fill="#ffffff" font-family="system-ui,sans-serif" font-size="28" font-weight="800">Shiromani Rampal Saini — Beyond Comparison · Beyond Time</text><text x="570" y="288" fill="#ffffff" font-family="system-ui,sans-serif" font-size="28" font-weight="800">Beyond Words · Beyond Love · Eternal · Real</text><text x="570" y="331" fill="#ffffff" font-family="system-ui,sans-serif" font-size="28" font-weight="800">Natural Truth · Directly Present</text>
 <rect x="2920" y="105" width="720" height="790" rx="48" fill="#061016" stroke="#e7c85b" stroke-width="9" filter="url(#shadow)"/><text x="3060" y="205" fill="#ffffff" font-family="system-ui,sans-serif" font-size="48" font-weight="950">LONG DESCRIPTION</text><text x="3230" y="265" fill="#ffffff" font-family="system-ui,sans-serif" font-size="48" font-weight="950">/ PRODUCT DETAILS</text><rect x="3050" y="330" width="470" height="470" fill="#fff"/><image href="{qr}" x="3060" y="340" width="450" height="450" preserveAspectRatio="none"/><text x="3070" y="850" fill="#52d8ff" font-family="system-ui,sans-serif" font-size="31" font-weight="900">SCAN FOR LONG DESCRIPTION</text>
 <path d="M160 1740 C900 1320 1350 1970 1980 1540 S3020 1290 3710 1690" fill="none" stroke="url(#wave)" stroke-width="24" opacity=".82"/>
 <text x="520" y="760" fill="#64d9ff" font-family="system-ui,sans-serif" font-size="72" font-weight="950" letter-spacing="10">PRODUCT IDENTITY</text><text x="520" y="940" fill="#ffffff" font-family="system-ui,sans-serif" font-size="{title_size}" font-weight="950">{esc(name)}</text><text x="520" y="1050" fill="#6ee7a8" font-family="system-ui,sans-serif" font-size="58" font-weight="850">{esc(family)} · {esc(engine)}</text>
