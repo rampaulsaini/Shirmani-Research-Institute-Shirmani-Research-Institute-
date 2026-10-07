@@ -7,10 +7,11 @@ async function load(){
  const data=await Promise.all([
    getj("generated/concrete-production-overlay.json",{products:[]}),
    getj("generated/1000-digital-products.json",{products:[]}),
-   getl("generated/PRODUCT-PASSPORTS.jsonl")
+   getl("generated/PRODUCT-PASSPORTS.jsonl"),
+   getj("generated/production-additions.json",{products:[]})
  ]);
- const overlay=data[0].products||[], catalog=data[1].products||[], passports=data[2];
- const a=overlay.find(x=>x.id===id), b=catalog.find(x=>x.id===id), c=passports.find(x=>x.id===id||x.product_id===id);
+ const overlay=data[0].products||[], catalog=data[1].products||[], passports=data[2], additions=data[3].products||[];
+ const a=overlay.find(x=>x.id===id)||additions.find(x=>x.id===id), b=catalog.find(x=>x.id===id)||additions.find(x=>x.id===id), c=passports.find(x=>x.id===id||x.product_id===id);
  const p={...(b||{}),...(a||{}),...(c||{})};
  if(!p.id){document.getElementById("visual").style.display="none";document.getElementById("product").innerHTML="<h2>Product unavailable</h2><p class='muted'>Current public production registry में यह Product ID उपलब्ध नहीं है.</p>";return}
  const price=Number(p.offer_price_inr??p.price_inr??0), base=Number(p.price_inr??price);\n const visual=document.getElementById("visual"); visual.src="products/visuals/"+String(p.id).toLowerCase()+".svg"; visual.alt=(p.name||p.id)+" — unique 3840×2160 4K product identity visual with QR long-description access"; visual.onerror=()=>visual.style.display="none";
