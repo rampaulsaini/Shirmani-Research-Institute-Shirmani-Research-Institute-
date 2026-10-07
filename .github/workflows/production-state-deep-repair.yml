@@ -1,0 +1,68 @@
+name: SHIRMANI Production State Deep Repair & Module Materialization
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: shirmani-production-state-writer
+  cancel-in-progress: false
+jobs:
+  repair-and-produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Load canonical production-state branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin automation/production-state
+          git archive FETCH_HEAD generated products/concrete products/visuals | tar -x
+      - name: Repair and materialize engine-specific product modules
+        env:
+          CONCRETE_DEPTH_BATCH_SIZE: "1000"
+        run: |
+          set -euo pipefail
+          python3 factory/concrete_product_depth_upgrade.py
+      - name: Materialize missing 4K visuals and QR assets
+        env:
+          VISUAL_BATCH: "1000"
+          QR_BATCH: "1000"
+        run: |
+          set -euo pipefail
+          python3 factory/product_visual_identity_factory.py
+          python3 -m pip install --disable-pip-version-check "qrcode>=8,<9"
+          python3 factory/product_qr_asset_factory.py
+      - name: Fail if merge-conflict markers remain in published product pages
+        run: |
+          if grep -R -n -E '^(<<<<<<<|=======|>>>>>>>)' products/concrete >/tmp/conflicts.txt 2>/dev/null; then
+            cat /tmp/conflicts.txt
+            exit 1
+          fi
+      - name: Refresh public visual cache keys
+        run: python3 factory/production_visual_cache_buster.py
+      - name: Publish repaired production-state branch
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Production State Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated products/concrete products/visuals factory/production_visual_cache_buster.py
+          if git diff --cached --quiet; then
+            echo "Production-state already current."
+            exit 0
+          fi
+          git commit -m "fix(production): repair modules and publish current showroom assets"
+          git push --force-with-lease origin HEAD:automation/production-state
+          echo "Production-state repaired and advanced."
