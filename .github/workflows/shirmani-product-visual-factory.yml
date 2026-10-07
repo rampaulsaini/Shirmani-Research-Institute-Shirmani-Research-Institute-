@@ -1,0 +1,40 @@
+name: SHIRMANI Product Visual Factory
+
+on:
+  push:
+    paths:
+      - "products/concrete/**"
+      - "scripts/generate-product-visuals.mjs"
+      - ".github/workflows/shirmani-product-visual-factory.yml"
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-product-visual-factory
+  cancel-in-progress: true
+
+jobs:
+  generate-product-visuals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout production
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Generate 4K product visuals
+        run: node scripts/generate-product-visuals.mjs
+      - name: Commit visual production
+        run: |
+          git config user.name "SHIRMANI Product Visual Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/visuals
+          if git diff --cached --quiet; then
+            echo "No visual changes required."
+            exit 0
+          fi
+          git commit -m "production: refresh unique 4K visuals for concrete products"
+          git push
