@@ -69,7 +69,7 @@ jobs:
         run: python3 factory/continuous_product_batch.py
       - name: Upgrade concrete products to engine-specific modules
         env:
-          CONCRETE_DEPTH_BATCH_SIZE: "500"
+          CONCRETE_DEPTH_BATCH_SIZE: "1000"
         run: python3 factory/concrete_product_depth_upgrade.py
       - name: Audit concrete production truth
         run: python3 factory/concrete_product_truth.py
