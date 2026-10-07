@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Evidence-bound enterprise/public-sector discovery and outreach",
+  "product_inventory_target": 150000,
+  "product_inventory_claim_status": "NOT_INDEPENDENTLY_COUNTED_HERE",
+  "contact_status": "NOT_CONTACTED",
+  "targets": [
+    {
+      "name": "NVIDIA",
+      "type": "company",
+      "fit": "AI infrastructure",
+      "official_page": "https://www.nvidia.com/en-us/ai/",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "AWS",
+      "type": "company",
+      "fit": "cloud AI and ML",
+      "official_page": "https://aws.amazon.com/ai/",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "Microsoft Azure",
+      "type": "company",
+      "fit": "enterprise AI",
+      "official_page": "https://azure.microsoft.com/en-us/products/ai-services",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "Google Cloud",
+      "type": "company",
+      "fit": "AI and data",
+      "official_page": "https://cloud.google.com/ai",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "IBM watsonx",
+      "type": "company",
+      "fit": "governed enterprise AI",
+      "official_page": "https://www.ibm.com/products/watsonx",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "Oracle Cloud",
+      "type": "company",
+      "fit": "enterprise cloud AI",
+      "official_page": "https://www.oracle.com/artificial-intelligence/",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "SAP",
+      "type": "company",
+      "fit": "enterprise AI workflows",
+      "official_page": "https://www.sap.com/products/artificial-intelligence.html",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "ServiceNow",
+      "type": "company",
+      "fit": "AI agents and workflows",
+      "official_page": "https://www.servicenow.com/platform.html",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "Intel",
+      "type": "company",
+      "fit": "AI compute",
+      "official_page": "https://www.intel.com/content/www/us/en/artificial-intelligence/overview.html",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "MeitY",
+      "type": "government",
+      "fit": "India digital technology",
+      "official_page": "https://www.meity.gov.in/",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "Department of Science & Technology",
+      "type": "government",
+      "fit": "India science and research",
+      "official_page": "https://dst.gov.in/",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "ISRO",
+      "type": "government",
+      "fit": "space science and engineering",
+      "official_page": "https://www.isro.gov.in/",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "NASA",
+      "type": "science/government",
+      "fit": "AI for science and missions",
+      "official_page": "https://www.nasa.gov/artificial-intelligence/",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "CERN",
+      "type": "science",
+      "fit": "fundamental research",
+      "official_page": "https://home.cern/",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    },
+    {
+      "name": "NIH",
+      "type": "science/government",
+      "fit": "biomedical research",
+      "official_page": "https://www.nih.gov/",
+      "status": "DISCOVERED",
+      "contacted": false,
+      "response_received": false,
+      "adoption_evidence": false
+    }
+  ]
+}
