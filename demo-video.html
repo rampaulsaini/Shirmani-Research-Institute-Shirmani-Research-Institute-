@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Product Demo Video</title>
+<style>
+body{margin:0;background:#050a12;color:#f4f7fb;font:16px/1.55 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+main{max-width:1180px;margin:auto;padding:18px 14px 70px}.hero,.stage,.panel{background:#0d1722;border:1px solid #34485a;border-radius:20px;padding:18px;margin:12px 0}.hero{border:2px solid #e8c65b}
+h1,h2{color:#f1cf5b}.muted{color:#aebdca}.tag{display:inline-block;padding:4px 9px;border:1px solid #5ee7ff;border-radius:99px;color:#5ee7ff;font-size:.75rem;font-weight:900}
+.stage{min-height:520px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;background:radial-gradient(circle at 50% 38%,#18324b,#071019 65%)}
+.logo{width:110px;height:110px;border-radius:18px;border:2px solid #e8c65b;background:#061016;padding:8px;object-fit:contain}
+.scene-title{font-size:clamp(1.5rem,4vw,3rem);color:#64e6ff;font-weight:950;margin:20px 0 8px}.scene-main{font-size:clamp(1.4rem,3vw,2.5rem);font-weight:900;color:#fff;max-width:900px}.scene-note{max-width:850px;color:#c7d5df;font-size:1.05rem;margin-top:15px}
+.progress{height:14px;background:#09111a;border:1px solid #34485a;border-radius:99px;overflow:hidden;margin-top:18px}.fill{height:100%;width:0;background:linear-gradient(90deg,#e8c65b,#5ee7ff)}
+.controls{display:flex;gap:9px;flex-wrap:wrap;justify-content:center}.btn,button{padding:11px 15px;border-radius:10px;border:1px solid #3b5163;background:#111c28;color:#fff;text-decoration:none;font-weight:900;cursor:pointer}.primary{background:#e8c65b;color:#111;border-color:#e8c65b}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.card{background:#09121c;border:1px solid #2d4052;border-radius:14px;padding:13px}.ok{color:#72e6aa}
+</style></head>
+<body><main>
+<section class="hero"><span class="tag">🎬 DEMO VIDEO · PRODUCT WALKTHROUGH</span><h1 id="name">Loading…</h1><p id="meta" class="muted">Product-specific demonstration is loading.</p>
+<div class="controls"><button id="play" class="primary">▶ Play Demo</button><button id="pause">⏸ Pause</button><button id="restart">↺ Restart</button><a id="use" class="btn" href="#">Open / Use Product</a><a class="btn" href="showroom.html">← Showroom</a></div></section>
+<section class="stage"><img class="logo" src="assets/shirmani-perspective-logo.svg" alt="SHIRMANI Heart-View logo"><div id="sceneTitle" class="scene-title"></div><div id="sceneMain" class="scene-main"></div><div id="sceneNote" class="scene-note"></div></section>
+<section class="panel"><div class="progress"><div id="fill" class="fill"></div></div><p id="counter" class="muted">Scene 1 / 6</p></section>
+<section class="panel"><h2>इस Demo में क्या दिखता है?</h2><div id="steps" class="grid"></div><p class="muted">यह scalable product walkthrough layer है। जहाँ वास्तविक MP4/WebM asset उपलब्ध होगा, उसे इसी route पर प्राथमिकता दी जा सकती है; अन्यथा यह browser-rendered walkthrough customer को product का उपयोग, उद्देश्य और output दिखाता है।</p></section>
+</main>
+<script>
+const id=new URLSearchParams(location.search).get("id")||"SP-0002";let P=null,idx=0,timer=null,running=false;
+const $=x=>document.getElementById(x),esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+async function load(){const d=await fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());P=(d.products||[]).find(x=>x.id===id)||{id,name:"SHIRMANI Digital Product",family:"Digital Product",engine:"browser"};$("name").textContent=P.name;$("meta").textContent=P.id+" · "+(P.family||"Product")+" · "+(P.engine||"engine");$("use").href="products/concrete/"+encodeURIComponent(P.id)+".html";renderSteps();show(0)}
+function scenes(){const n=P.name||P.id,f=P.family||"Digital Product",e=P.engine||"browser";return[
+["01 · पहचान","यह क्या है?","Product identity: "+n+" · "+P.id,f+" / "+e],
+["02 · कहाँ उपयोग करें","Open → Input → Run","ग्राहक product page पर जाकर अपना input देता है और live module चलाता है।","Use the product directly in the showroom."],
+["03 · कैसे उपयोग करें","अपना input दें","Required input भरें, product action दबाएँ और generated result देखें।","No workflow-run is presented as the product itself."],
+["04 · परिणाम","Customer-visible output","Output को पढ़ें, copy करें या अगले काम में उपयोग करें।","The exact output depends on the customer's input."],
+["05 · Product details","Price · QC · Gate · Dispatch","Product identity, price/offer और release metadata passport से जुड़े हैं.","Long description और passport QR से खुलते हैं."],
+["06 · Improvement loop","Use → Review → Improve","Customer reviews और ratings product-quality improvement inputs हैं.","Production continues through the multi-layer automation queue."]]}
+function renderSteps(){$("steps").innerHTML=scenes().map((s,i)=>"<article class='card'><b class='ok'>"+s[0]+"</b><h3>"+esc(s[1])+"</h3><p>"+esc(s[2])+"</p><small class='muted'>"+esc(s[3])+"</small></article>").join("")}
+function show(i){idx=(i+scenes().length)%scenes().length;const s=scenes()[idx];$("sceneTitle").textContent=s[0];$("sceneMain").textContent=s[1];$("sceneNote").textContent=s[2]+" · "+s[3];$("counter").textContent="Scene "+(idx+1)+" / "+scenes().length;$("fill").style.width=((idx+1)/scenes().length*100)+"%"}
+function play(){if(running)return;running=true;timer=setInterval(()=>show(idx+1),5000)}function pause(){running=false;clearInterval(timer);timer=null}
+$("play").onclick=play;$("pause").onclick=pause;$("restart").onclick=()=>{pause();show(0);play()};load().catch(e=>{$("name").textContent="Demo unavailable";$("meta").textContent=e.message});
+</script></body></html>
