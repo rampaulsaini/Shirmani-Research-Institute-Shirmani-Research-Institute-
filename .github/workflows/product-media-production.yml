@@ -1,4 +1,5 @@
-name: SHIRMANI Product Media Production Automission
+name: SHIRMANI Product Media Inventory Audit
+
 on:
   workflow_dispatch:
   schedule:
@@ -6,49 +7,38 @@ on:
   push:
     paths:
       - 'generated/1000-digital-products.json'
-      - 'assets/product-visuals.js'
       - 'demo-video.html'
       - '.github/workflows/product-media-production.yml'
+      - '.github/workflows/shirmani-product-demo-media-factory.yml'
+
 permissions:
-  contents: write
+  contents: read
+
 concurrency:
-  group: shirmani-product-media-production
-  cancel-in-progress: false
+  group: shirmani-product-media-inventory-audit
+  cancel-in-progress: true
+
 jobs:
-  media-production:
+  inventory-audit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Build product media manifest
+      - name: Audit production media manifest without overwriting it
         shell: python
         run: |
-          import json, os, datetime
-          src='generated/1000-digital-products.json'
-          out='generated/product-media-production-manifest.json'
-          with open(src,encoding='utf-8') as f: data=json.load(f)
-          products=data.get('products',[])
-          rows=[]
-          for p in products:
-              pid=str(p.get('id') or p.get('name') or 'PRODUCT')
-              slug=''.join(ch.lower() if ch.isalnum() else '-' for ch in pid).strip('-')
-              rows.append({
-                  'product_id':pid,'name':p.get('name','SHIRMANI Digital Product'),'family':p.get('family','Digital Product'),
-                  'visual_route':f'assets/product-visuals.js#visual:{pid}',
-                  'vip_visual_route':f'product-passport.html?id={pid}',
-                  'demo_route':f'demo-video.html?id={pid}',
-                  'long_description_qr_route':f'product-passport.html?id={pid}',
-                  'media_contract':'logo-first-4k-short-description-qr-lower-right-demo',
-                  'video_asset':f'assets/demos/{slug}.mp4' if os.path.exists(f'assets/demos/{slug}.mp4') else 'pending-real-mp4',
-                  'production_state':'MEDIA_READY_INTERACTIVE_DEMO'})
-          payload={'generated_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'product_count':len(rows),'interactive_demo_count':len(rows),'real_mp4_count':sum(r['video_asset'].endswith('.mp4') for r in rows),'real_mp4_remaining':sum(not r['video_asset'].endswith('.mp4') for r in rows),'contract':'Every showroom product gets a unique visual route, VIP passport route, demo route and long-description QR route. Real MP4 assets are tracked separately and never fabricated.','products':rows}
-          os.makedirs('generated',exist_ok=True)
-          with open(out,'w',encoding='utf-8') as f: json.dump(payload,f,ensure_ascii=False,indent=2)
-          print(f"products={len(rows)} real_mp4={payload['real_mp4_count']} interactive_demo={payload['interactive_demo_count']}")
-      - name: Publish media manifest
-        run: |
-          git config user.name 'shirmani-product-automission[bot]'
-          git config user.email 'shirmani-product-automission@users.noreply.github.com'
-          git add generated/product-media-production-manifest.json
-          git diff --cached --quiet || git commit -m 'auto: publish product media production manifest'
-          git push
+          import json, pathlib
+          catalog=json.loads(pathlib.Path('generated/1000-digital-products.json').read_text(encoding='utf-8'))
+          products=catalog.get('products', [])
+          manifest_path=pathlib.Path('generated/product-media-production-manifest.json')
+          if not manifest_path.exists():
+              print(f"catalog_products={len(products)} manifest=NOT_YET_PUBLISHED")
+              raise SystemExit(0)
+          m=json.loads(manifest_path.read_text(encoding='utf-8'))
+          rows=m.get('products', [])
+          print(f"catalog_products={len(products)}")
+          print(f"manifest_products={len(rows)}")
+          print(f"interactive_demo_count={m.get('interactive_demo_count', 0)}")
+          print(f"real_mp4_count={m.get('real_mp4_count', 0)}")
+          print(f"engine_demo_count={m.get('engine_demo_count', 0)}")
+          print("owner_of_manifest=shirmani-product-demo-media-factory")
