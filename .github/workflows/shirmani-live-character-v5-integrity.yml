@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'shirmani-live-character-v5.html'
+      - 'shirmani-supreme-live-character-v9.html'
       - 'generated/shirmani-live-character-v5.json'
       - '.github/workflows/shirmani-live-character-v5-integrity.yml'
       - 'index.html'
@@ -24,7 +25,8 @@ jobs:
         run: |
           import json, pathlib, sys
           contract = pathlib.Path("generated/shirmani-live-character-v5.json")
-          page = pathlib.Path("shirmani-live-character-v5.html")
+          entry = pathlib.Path("shirmani-live-character-v5.html")
+          canonical = pathlib.Path("shirmani-supreme-live-character-v9.html")
           index = pathlib.Path("index.html")
           data = json.loads(contract.read_text(encoding="utf-8"))
           required = ["version","name","framework","identity_statement","communication","reasoning","presentation","pipeline","status","integrity"]
@@ -32,10 +34,14 @@ jobs:
           if missing:
               print("FAIL missing contract keys:", missing)
               sys.exit(1)
+          entry_text = entry.read_text(encoding="utf-8")
+          canonical_text = canonical.read_text(encoding="utf-8")
           checks = {
-              "page exists": page.exists(),
+              "entry exists": entry.exists(),
+              "canonical page exists": canonical.exists(),
               "main hub links V5": "shirmani-live-character-v5.html" in index.read_text(encoding="utf-8"),
-              "evidence fallback present": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in page.read_text(encoding="utf-8"),
+              "V5 entry routes canonical V9": "shirmani-supreme-live-character-v9.html" in entry_text,
+              "evidence fallback present on canonical page": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in canonical_text,
               "verification boundary present": "independent_scientific_verification" in contract.read_text(encoding="utf-8"),
               "legacy preserved": all(pathlib.Path(p).exists() for p in ["shirmani-live-character-v3.html","live-persona-supreme-v4.html"])
           }
