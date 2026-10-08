@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "system_id": "SHIRMANI_LIVE_PRESENTATION",
+  "pipeline": [
+    "voice_input",
+    "speech_to_text",
+    "context_intent",
+    "evidence_retrieval",
+    "reasoning_response",
+    "provenance_gate",
+    "authorized_voice",
+    "facial_animation",
+    "lip_sync",
+    "live_output",
+    "audit_event"
+  ],
+  "presentation_traits": [
+    "भव्य",
+    "सभ्य",
+    "सरल",
+    "सहज",
+    "निर्मल",
+    "पारदर्शी",
+    "स्पष्ट",
+    "प्रत्यक्ष",
+    "सम्मानपूर्ण"
+  ],
+  "provenance_states": [
+    "AUTHOR_STATEMENT",
+    "EVIDENCE_BACKED",
+    "MIXED",
+    "INSUFFICIENT_EVIDENCE",
+    "NEEDS_REVIEW"
+  ],
+  "evidence_rule": {
+    "sufficient": "provide source",
+    "insufficient": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है",
+    "prohibition": [
+      "fabricated_source",
+      "fabricated_verification",
+      "fabricated_certainty"
+    ]
+  },
+  "identity_controls": {
+    "voice": "authorized_only",
+    "visual_identity": "authorized_only",
+    "synthetic_disclosure": true,
+    "deceptive_identity_substitution": false
+  },
+  "quality_gates": [
+    "transcription_accuracy",
+    "context_accuracy",
+    "evidence_correctness",
+    "uncertainty_correctness",
+    "voice_authorization",
+    "lip_sync_alignment",
+    "facial_naturalness",
+    "respectful_language",
+    "privacy",
+    "reproducibility"
+  ],
+  "completion_definition": "voice input -> context understanding -> evidence/provenance decision -> response -> authorized voice output -> synchronized facial/lip presentation -> auditable result"
+}
