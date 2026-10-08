@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       batch_size:
-        description: "Product-specific MP4s to create this cycle"
+        description: "Product-specific MP4 + VIP screenshot assets to create this cycle"
         required: false
-        default: "20"
+        default: "50"
   push:
     branches: [main]
     paths:
@@ -31,20 +31,30 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install FFmpeg
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-      - name: Produce product-specific MP4 explainers
+      - name: Produce product-specific MP4 explainers + VIP screenshots
         env:
           PRODUCT_DEMO_BATCH: ${{ github.event.inputs.batch_size || '50' }}
         run: python3 factory/product_specific_demo_video_factory.py
+      - name: Fail closed on stale or zero media production
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/product-specific-demo-video-manifest.json").read_text(encoding="utf-8"))
+          catalog=int(d.get("catalog_count",0)); mp4=int(d.get("real_mp4_count",0)); created=int(d.get("created_this_cycle",0))
+          print(f"catalog={catalog} mp4={mp4} vip={int(d.get('vip_screenshot_count',0))} created={created}")
+          if catalog <= 0:
+              raise SystemExit("Production catalog is empty; refusing to publish a zero-product media state.")
+          if created <= 0 and mp4 < catalog:
+              raise SystemExit("No media was created while media coverage remains incomplete.")
+          PY
       - name: Publish product-specific demo media
         run: |
           git config user.name "SHIRMANI Product-Specific Demo Factory"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add products/demos/products products/demos/vip generated/product-specific-demo-video-manifest.json generated/product-media-production-manifest.json
-          if git diff --cached --quiet; then
-            echo "No new product-specific demo media."
-            exit 0
-          fi
-          git commit -m "feat(media): publish product-specific demo MP4 batch"
+          if git diff --cached --quiet; then echo "No new product-specific demo media."; exit 0; fi
+          git commit -m "feat(media): publish product-specific demo MP4 and VIP batch"
           git push origin HEAD:main
       - name: Publish production telemetry
         run: |
@@ -52,6 +62,8 @@ jobs:
           import json
           d=json.load(open("generated/product-specific-demo-video-manifest.json",encoding="utf-8"))
           print("Product-specific MP4s:", d["real_mp4_count"])
-          print("Remaining:", d["remaining_real_mp4"])
-          print("Batch:", d["created_this_cycle"])
+          print("VIP screenshots:", d["vip_screenshot_count"])
+          print("Remaining MP4:", d["remaining_real_mp4"])
+          print("Remaining VIP:", d["remaining_vip_screenshots"])
+          print("Created this cycle:", d["created_this_cycle"])
           PY
