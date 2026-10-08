@@ -1,0 +1,50 @@
+name: SHIRMANI Unique Digital Product & Tool Automission
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "factory/product-catalog.json"
+      - "factory/unique_product_cycle.py"
+      - ".github/workflows/unique-digital-product-automission.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-unique-digital-product-cycle
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate unique product and tool candidates
+        run: python3 factory/unique_product_cycle.py
+      - name: Validate uniqueness and fail-closed promotion boundary
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("generated/unique-digital-product-cycle.json").read_text())
+          assert p["mode"]=="UNIQUE_DIGITAL_PRODUCT_AND_TOOL_DISCOVERY"
+          assert p["promotion_rule"].startswith("PROPOSAL_ONLY")
+          names=[x["name"].casefold() for x in p["selected_candidates"]]
+          assert len(names)==len(set(names))
+          assert p["next_gates"][-1]=="VERIFICATION"
+          print("Unique product/tool cycle: PASS")
+          print("Candidates:", len(names))
+          PY
+      - name: Upload unique product cycle
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-unique-digital-product-cycle
+          path: generated/unique-digital-product-cycle.json
