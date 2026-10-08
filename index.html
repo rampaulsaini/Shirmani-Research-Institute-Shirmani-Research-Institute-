@@ -228,3 +228,736 @@
 .srm-row:nth-child(even){border-color:#00d9ff;background:linear-gradient(90deg,rgba(2,12,22,.98),rgba(2,22,36,.9) 55%,rgba(0,48,66,.58))}.srm-row:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.58),0 0 18px rgba(255,214,55,.2);border-color:#fff}
 .srm-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;font-size:1.55rem;color:#ffd83d;background:rgba(255,216,61,.08);border:1px solid rgba(255,216,61,.25)}.srm-row:nth-child(even) .srm-icon{color:#00e0ff;background:rgba(0,224,255,.08);border-color:rgba(0,224,255,.28)}
 .srm-copy strong{display:block;font-size:clamp(.98rem,1.8vw,1.3rem);line-height:1.15;color:#ffe05a}.srm-row:nth-child(even) .srm-copy strong{color:#4de8ff}.srm-copy span{display:block;font-size:.75rem;color:#f3f5f7;opacity:.92;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srm-art{height:52px;border-radius:12px;position:relative;overflow:hidden;background:radial-gradient(circle at 20% 45%,rgba(255,211,55,.55),transparent 12%),radial-gradient(circle at 58% 30%,rgba(0,220,255,.4),transparent 20%),linear-gradient(115deg,rgba(0,0,0,.05),rgba(0,170,255,.22),rgba(255,198,45,.18),rgba(0,0,0,.1))}.srm-row:nth-child(even) .srm-art{background:radial-gradient(circle at 24% 50%,rgba(0,225,255,.55),transparent 13%),radial-gradient(circle at 72% 30%,rgba(50,110,255,.35),transparent 25%),linear-gradient(115deg,rgba(0,0,0,.05),rgba(0,100,160,.24),rgba(0,220,255,.15),rgba(0,0,0,.1))}.srm-art:after{content:"✦  ✧  ◇  ✦  ◎  ✧  ◇";position:absolute;inset:0;display:flex;align-items:center;justify-content:space-around;color:rgba(255,255,255,.72);font-size:1.15rem;letter-spacing:.15rem}
+.srm-arrow{font-size:2rem;color:#ffe05a;text-align:center}.srm-row:nth-child(even) .srm-arrow{color:#4de8ff}
+.srm-bottom-nav{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);width:min(1180px,calc(100% - 18px));z-index:9999;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;padding:9px 8px;border:2px solid #e7b927;border-radius:24px;background:rgba(2,9,17,.94);backdrop-filter:blur(16px);box-shadow:0 0 30px rgba(0,0,0,.7),0 0 22px rgba(255,211,45,.2)}.srm-bottom-nav a{color:#fff;text-decoration:none;text-align:center;padding:5px 3px;font-size:.72rem;font-weight:700;border-radius:14px}.srm-bottom-nav a:hover{background:rgba(255,211,45,.1)}.srm-bottom-nav i{display:block;font-size:1.35rem;color:#ffd83d;margin-bottom:2px}.srm-bottom-nav a:nth-child(2) i,.srm-bottom-nav a:nth-child(4) i,.srm-bottom-nav a:nth-child(5) i{color:#00ddff}.srm-bottom-nav .infinity{font-size:1.8rem;line-height:1}
+@media(max-width:760px){.srm-public-shell{padding:5px 5px 100px}.srm-hero{min-height:390px;border-radius:24px 24px 10px 10px}.srm-hero-content{grid-template-columns:1fr;min-height:390px;padding:16px}.srm-brand{position:absolute;left:18px;top:12px;padding:0;z-index:3}.srm-brand .srm-orb{font-size:1.55rem}.srm-brand h2{font-size:1.65rem;margin:3px 0}.srm-brand p{font-size:.62rem;max-width:155px}.srm-hero-portrait{width:245px;height:245px;align-self:center;margin-top:22px}.srm-right{position:absolute;right:14px;top:18px;padding:0;max-width:150px}.srm-right h2{font-size:1.05rem}.srm-right .srm-tag{font-size:.62rem;margin-bottom:8px}.srm-income-callout{font-size:.62rem}.srm-income-callout strong{font-size:.78rem}.srm-menu{gap:6px}.srm-row{min-height:57px;grid-template-columns:42px minmax(0,1fr) 25%;padding:5px 7px;border-radius:14px}.srm-icon{width:36px;height:36px;border-radius:11px;font-size:1.15rem}.srm-copy strong{font-size:.86rem}.srm-copy span{font-size:.58rem}.srm-art{height:44px}.srm-art:after{font-size:.75rem}.srm-arrow{font-size:1.35rem}.srm-bottom-nav{bottom:4px;width:calc(100% - 8px);border-radius:18px;padding:5px 3px}.srm-bottom-nav a{font-size:.56rem}.srm-bottom-nav i{font-size:1.05rem}.srm-bottom-nav .infinity{font-size:1.4rem}}
+@media(prefers-reduced-motion:reduce){.srm-row{transition:none}}
+
+
+/* === SUPREME PUBLIC COMMAND / CONTINUOUS LEARNING LAYER === */
+.srm-manifesto{margin:12px 0 10px;padding:22px 20px;border:2px solid rgba(255,216,61,.72);border-radius:22px;background:linear-gradient(135deg,rgba(255,216,61,.13),rgba(0,210,255,.08));box-shadow:0 12px 34px rgba(0,0,0,.38)}
+.srm-manifesto h2{color:#ffe05a;font-family:'Rozha One',serif;text-align:center;font-size:clamp(1.35rem,3vw,2.1rem);margin-bottom:10px}
+.srm-manifesto p{max-width:1050px;margin:0 auto 12px;color:#fff;text-align:center}
+.srm-manifesto .principle{font-weight:800;color:#4de8ff}
+.srm-command-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:9px;margin-top:14px}
+.srm-command-grid a{display:block;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.28);color:#fff;text-decoration:none;text-align:center;font-weight:800}
+.srm-command-grid a:hover{border-color:#ffd83d;background:rgba(255,216,61,.1)}
+.srm-live-panel{margin:18px 0;padding:20px;border:1px solid rgba(0,217,255,.38);border-radius:20px;background:rgba(0,25,40,.52)}
+.srm-live-panel h2{color:#4de8ff;margin-bottom:7px}
+.srm-live-panel p{color:#dce9ef}
+.srm-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+.srm-feature{padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.25)}
+.srm-feature strong{display:block;color:#ffe05a;margin-bottom:5px}.srm-feature span{color:#c9d1d9;font-size:.9rem}
+.srm-status{display:inline-block;margin-top:8px;padding:4px 9px;border-radius:999px;border:1px solid rgba(255,216,61,.35);font-size:.72rem;color:#ffe05a}
+
+    </style>
+</head>
+<body><div style="max-width:1150px;margin:14px auto;padding:14px 16px;border:2px solid #d4af37;border-radius:16px;background:linear-gradient(90deg,rgba(212,175,55,.16),rgba(0,210,255,.08));text-align:center"><strong style="color:#d4af37">꙰ SHIRMANI LIVE PERSONA</strong><br><span style="color:#f8f9fa">Voice → Context → Evidence → Face → Gaze → Lip-sync → Live Presentation</span><br><a href="live-persona-supreme-v4.html" style="display:inline-block;margin-top:8px;padding:9px 14px;border-radius:10px;background:#d4af37;color:#111;text-decoration:none;font-weight:800">Supreme Live Persona V4 खोलें</a> <a href="live-persona-supreme-v2.html" style="display:inline-block;margin-top:8px;padding:9px 14px;border-radius:10px;background:#112b39;color:#fff;border:1px solid #00d2ff;text-decoration:none;font-weight:800">V2 Prototype</a></div><div style="position:sticky;top:0;z-index:999;background:#111827;padding:10px;text-align:center"><a href="supreme-production-operations.html" style="color:#f2cf58;font-weight:900">⚡ Supreme Production Operations — Live Public View</a></div>
+<section id="supreme-payment" style="max-width:1180px;margin:16px auto;padding:18px;border:2px solid #ffd84a;border-radius:18px;background:linear-gradient(135deg,rgba(255,216,74,.14),rgba(103,232,249,.08));color:#f5f8ff;text-align:center">
+<h2 style="color:#ffd84a;margin:0 0 8px">💳 SUPREME PAYMENT — केवल Paytm/UPI + PayPal</h2>
+<p style="margin:6px 0"><strong>Paytm / UPI:</strong> <code>9622254967@ptyes</code> &nbsp; | &nbsp; <strong>PayPal:</strong> <code>sainirampaul60@gmail.com</code></p>
+<div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px;margin-top:12px">
+<div><img src="assets/funding-upi-qr.svg" alt="Paytm UPI QR — scan to pay or support" width="220" height="220" style="max-width:100%;height:auto;border-radius:12px;background:#fff;padding:6px"><div style="font-size:.85rem;margin-top:5px">QR से Paytm/UPI भुगतान</div></div>
+<div style="max-width:430px;text-align:left"><p>भुगतान से पहले अपने payment app में payee name, UPI ID और amount स्वयं verify करें।</p><p>इस public platform की अधिकृत payment routes: <strong>Paytm/UPI और PayPal</strong>।</p><a href="https://paypal.me/sainirampaul60" target="_blank" rel="noopener" style="display:inline-block;padding:10px 14px;border-radius:10px;background:#ffd84a;color:#08101b;text-decoration:none;font-weight:900">PayPal खोलें</a></div>
+</div></section>
+
+<div style="max-width:1150px;margin:12px auto;padding:12px 16px;border:2px solid #d4af37;border-radius:14px;background:rgba(212,175,55,.12);text-align:center"><strong style="color:#d4af37">🛒 SUPREME DIGITAL PRODUCT SHOWROOM</strong> · <a href="showroom.html" style="color:#f8f9fa;font-weight:800">Public Products · Prices · Offers · QC/Dispatch →</a></div><div style="position:sticky;top:0;z-index:2000;padding:9px 12px;background:#0a0d14;border-bottom:2px solid #d4af37;text-align:center"><a href="public-reviews-quality.html" style="color:#7ee2a8;text-decoration:none;font-weight:900">⭐ PUBLIC REVIEWS & QUALITY</a> · <a href="funding-proposal.html" style="color:#ffd84a;text-decoration:none;font-weight:900">🏛️ FUNDING / PROJECT IMPACT</a> · <a href="production-dashboard.html" style="color:#d4af37;text-decoration:none;font-weight:800">🚀 LIVE MULTI-LAYER PRODUCTION RESULTS</a> · <a href="production-floor.html" style="color:#5ee7ff;text-decoration:none;font-weight:900">🏭 PUBLIC PRODUCTION FLOOR</a> · <a href="production-first-mvp.html" style="color:#7ee2a8;text-decoration:none;font-weight:900">🧱 PRODUCTION-FIRST MVP</a> · <a href="public-production-command-center.html" style="color:#f5f5f5;text-decoration:none">Production Command Center</a><a href="production-scale-command-center.html" style="padding:11px;border:2px solid #f2cf58;border-radius:12px;color:#fff;text-decoration:none;font-weight:900">🌐 150K Production Scale</a></div>
+<section aria-label="सार्वजनिक production command" style="max-width:1150px;margin:12px auto;padding:18px 16px;border:2px solid #00d9ff;border-radius:18px;background:linear-gradient(135deg,rgba(0,217,255,.10),rgba(212,175,55,.10));box-shadow:0 10px 30px rgba(0,0,0,.35)">
+<h2 style="margin:0 0 8px;color:#4de8ff;text-align:center">⚡ LIVE PUBLIC PRODUCTION — Automission Production-First</h2>
+<p style="margin:0 0 12px;text-align:center;color:#fff">हर cycle में multi-layer production work → concrete result → public publication. Verification downstream result-quality layer है, production workload नहीं।</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:9px"><a href="production-reality.html" style="padding:11px;border:2px solid #ff6b6b;border-radius:12px;color:#fff;text-decoration:none;text-align:center;font-weight:900">🔎 Production Reality Gate</a>
+<a href="production-activation.html" style="padding:11px;border:2px solid #7ee2a8;border-radius:12px;color:#fff;text-decoration:none;text-align:center;font-weight:900">🛒 Production Activation — Products & Orders</a>
+<a href="public-production-command-center.html" style="padding:11px;border:1px solid #d4af37;border-radius:12px;color:#fff;text-decoration:none;text-align:center;font-weight:800">🚀 Production Command Center</a>
+<a href="generated/public-production-index.html" style="padding:11px;border:1px solid #00d9ff;border-radius:12px;color:#fff;text-decoration:none;text-align:center;font-weight:800">📦 Concrete Production Results</a>
+<a href="generated/public-production-by-module.html" style="padding:11px;border:1px solid #d4af37;border-radius:12px;color:#fff;text-decoration:none;text-align:center;font-weight:800">🧩 Module-wise Production</a>
+<a href="generated/public-module-production-map.html" style="padding:11px;border:1px solid #00d9ff;border-radius:12px;color:#fff;text-decoration:none;text-align:center;font-weight:800">🗺️ Public Module Map</a><a href="education-lab.html" style="padding:11px;border:1px solid #7ee2a8;border-radius:12px;color:#fff;text-decoration:none;text-align:center;font-weight:800">🎓 Education Lab</a><a href="justice-lab.html" style="padding:11px;border:1px solid #ff9a9a;border-radius:12px;color:#fff;text-decoration:none;text-align:center;font-weight:800">⚖️ Justice Lab</a>
+<a href="generated/multi-layer-production-status.json" style="padding:11px;border:1px solid #d4af37;border-radius:12px;color:#fff;text-decoration:none;text-align:center;font-weight:800">📊 Live Production Status</a>
+</div></section>
+
+
+<!-- === SHIRMANI PUBLIC MAIN MENU / COMMAND INTERFACE === -->
+<section id="public-main-menu" class="srm-public-shell" aria-label="शिरमानी सार्वजनिक मुख्य मेनू">
+<div class="srm-hero"><div class="srm-hero-content">
+<div class="srm-brand"><span class="srm-orb">🌐</span><h2>शिरोमणि<br>रामपाल सैनी</h2><p>Vision • Research • Creation<br>For a Better World</p></div>
+<img class="srm-hero-portrait" src="https://i.ibb.co/xqf3kTPS/enhanced-image.webp" alt="शिरोमणि रामपॉल सैनी">
+<div class="srm-right"><h2>सर्व भौमिक सत्य<br>प्रत्यक्ष समक्ष</h2><p class="srm-tag">सरल • सहज • निर्मल • पारदर्शी</p><div class="srm-income-callout"><strong>More Income</strong>More Freedom<br>A Better Tomorrow</div></div>
+</div></div>
+<section class="srm-manifesto" id="primary-yatharth-goal" aria-labelledby="primary-yatharth-goal-heading">
+<h2 id="primary-yatharth-goal-heading">🌍 मुख्य लक्ष्य — निष्पक्ष समझ • शमीकरण • यथार्थ सिद्धांत • उपलब्धि • यथार्थ युग</h2>
+<p class="principle">यह platform लेखक-प्रस्तावित “निष्पक्ष समझ” और यथार्थ दृष्टिकोण को सार्वजनिक रूप से व्यवस्थित, शोधयोग्य और evidence-aware रूप में प्रस्तुत करने का मुख्य केंद्र है।</p>
+<p><strong>दृष्टिकोण:</strong> संपूर्ण संतुष्टि की निरंतरता, मानव गरिमा, प्रकृति/पृथ्वी संरक्षण और प्रत्येक व्यक्ति के लिए मूलभूत जीवन-आधार को एकीकृत व्यवस्था के रूप में शोध और सार्वजनिक विमर्श में रखना। घर → समुदाय → देश → अंतर्राष्ट्रीय स्तर तक एकीकृत तंत्र की परिकल्पना को स्पष्ट रूप से document, operationalize, test और independently verify करने की दिशा में काम किया जाएगा।</p>
+<div class="srm-feature-grid">
+<div class="srm-feature"><strong>0. ⚖️ यथार्थ न्याय प्रणाली</strong><span>न्याय, अधिकार, उत्तरदायित्व, appeal और audit के स्पष्ट सिद्धांतों को शोधयोग्य रूप में व्यवस्थित करना।</span></div>
+<div class="srm-feature"><strong>1. 🎓 सर्वोत्तम उच्च शिक्षा</strong><span>उच्च-गुणवत्ता, सार्वभौमिक रूप से उपलब्ध और evidence-aware शिक्षा के मॉडल का अध्ययन व विकास।</span></div>
+<div class="srm-feature"><strong>2. 🧭 निष्पक्ष समझ की शिक्षा</strong><span>शमीकरण/यथार्थ सिद्धांत/उपलब्धि/यथार्थ युग से जुड़े लेखक-प्रस्तावित विचारों को परिभाषा, तुलना, परीक्षण और स्रोतों के साथ रखना।</span></div>
+<div class="srm-feature"><strong>3. 🌱 जीवन + प्रकृति संरक्षण</strong><span>रोटी, कपड़ा, मकान जैसे मूल जीवन-आधार तथा मानव, जीव, वनस्पति, पृथ्वी और प्रकृति संरक्षण के लिए व्यवस्था-आधारित शोध।</span></div>
+<div class="srm-feature"><strong>4. 🌐 घर → देश → विश्व</strong><span>स्थानीय से वैश्विक स्तर तक interoperable public-service, knowledge और evidence architecture की परिकल्पना।</span></div>
+<div class="srm-feature"><strong>5. 🔬 प्रत्यक्ष समक्ष शोध</strong><span>दावों को केवल विश्वास या workflow success से सिद्ध नहीं माना जाएगा; measurable criteria, sources, reproducibility और independent verification की आवश्यकता रहेगी।</span></div>
+</div>
+<div class="srm-command-grid">
+<a href="https://github.com/rampaulsaini/Shirmani-Research-Paper" target="_blank" rel="noopener">📄 Shirmani Research Paper — Source Repository</a>
+<a href="https://rampaulsaini.github.io/Shirmani-Research-Paper/" target="_blank" rel="noopener">🌐 Research Paper — Live Website</a>
+<a href="research/yatharth-shirmani-author-source-2026-10-01.md">🧭 Canonical Yatharth Source</a>
+<a href="research/yatharth-comparison-matrix-2026-09-29.md">🔬 Comparison & Evidence Matrix</a>
+<a href="federation-dashboard.html">🛡️ Evidence & Verification</a>
+</div>
+<p class="srm-status">स्थिति: AUTHOR-PROPOSED FRAMEWORK • RESEARCH / EVIDENCE IN PROGRESS • स्वतंत्र वैज्ञानिक सत्यापन अभी अलग चरण है।</p>
+</section>
+
+<section class="srm-manifesto" aria-labelledby="nishpaksh-samaj-principle">
+<h2 id="nishpaksh-samaj-principle">निष्पक्ष समझ • स्वयं का साक्षात्कार • संपूर्ण संतुष्टि की निरंतरता</h2>
+<p class="principle">हर व्यक्ति स्वयं में सक्षम, समर्थ और निपुण है—अपने स्थायी स्वरूप और स्थायी परिचय से स्वयं को परिचित करने की निरंतर यात्रा के लिए।</p>
+<p>यह सार्वजनिक interface विचार, अनुभव, शोध और रचनात्मक सामग्री को सरल, सहज, निर्मल और पारदर्शी ढंग से प्रस्तुत करने के लिए है। किसी व्यक्तिगत दार्शनिक कथन को स्वतः वैज्ञानिक या सार्वभौमिक प्रमाण नहीं माना जाएगा; प्रमाण, स्रोत और सत्यापन अपनी अलग evidence layer में रहेंगे।</p>
+<div class="srm-command-grid">
+<a href="#income-workbench">💰 Income First</a><a href="#ai-operations">🤖 AI/ML Operations</a><a href="#live-media">📡 Live Media</a><a href="#yatharth-music">🎵 Yatharth Music AI</a><a href="#digital-products">🛒 Digital Products</a><a href="federation-dashboard.html">🧭 Automation Evidence</a><a href="santushti-continuity.html">🫶 संपूर्ण संतुष्टि की निरंतरता</a><a href="yatharth-status.html">📊 Yatharth Public Status</a>
+</div>
+</section>
+<section class="srm-manifesto" id="public-identity-hub" aria-label="सार्वजनिक पहचान और platform integrity">
+<h2>꙰ शिरोमणि सार्वजनिक पहचान • निष्पक्ष समझ</h2>
+<p>एक ही public center से <strong>निष्पक्ष समझ, Research, AI/Automission, Evidence, Creation, Income और Global Public Presence</strong> को जोड़ा गया है। दर्शन/फ्रेमवर्क और independently verified evidence को स्पष्ट रूप से अलग रखा जाता है।</p>
+<div class="srm-command-grid">
+<a href="public-identity.html">꙰ सार्वजनिक पहचान</a>
+<a href="platform-charter.html">📜 Platform Charter</a>
+<a href="federation-dashboard.html">🔬 Evidence & Automation</a>
+<a href="income-command-center.html">💰 Income Center</a>
+<a href="employment.html">💼 Employment</a>
+<a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener">🎵 यथार्थ AI Music</a>
+</div>
+</section>
+<nav class="srm-menu" aria-label="मुख्य सार्वजनिक मेनू">
+<a class="srm-row" href="https://rampaulsaini.github.io/Shirmani-Research-Paper/" target="_blank" rel="noopener"><span class="srm-icon">📄</span><span class="srm-copy"><strong>Shirmani Research Paper</strong><span>यथार्थ दृष्टिकोण • शोध-पत्र • स्रोत • सार्वजनिक शोध</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="nishpaksh-samaj.html"><span class="srm-icon">꙰</span><span class="srm-copy"><strong>꙰ शिरोमणि निष्पक्ष समझ</strong><span>आत्मनिरीक्षण • 100 गुण • संवाद • शोध</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+
+<a class="srm-row" href="livelihood.html"><span class="srm-icon">🫶</span><span class="srm-copy"><strong>ALL Income &amp; Livelihood</strong><span>For a Better World • Income • Work • Freedom</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="economic-marketing-command-center.html"><span class="srm-icon">🤖</span><span class="srm-copy"><strong>AI Marketing Command</strong><span>AI • Automation • Marketing • Global Reach</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="public-income-showcase.html"><span class="srm-icon">⚡</span><span class="srm-copy"><strong>Public Income &amp; Product Showcase</strong><span>Products • Services • Ideas • Global Market</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="#livelihood"><span class="srm-icon">🫶</span><span class="srm-copy"><strong>जीवन-व्यापन प्रथम</strong><span>रोटी • कपड़ा • मकान • सबके लिए</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="income-command-center.html"><span class="srm-icon">⚡</span><span class="srm-copy"><strong>Income Command Center</strong><span>Monitor • Plan • Growth • Global Income</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="livelihood.html"><span class="srm-icon">🫶</span><span class="srm-copy"><strong>सभी Income Sources</strong><span>Jobs • Business • Freelancing • Multiple Streams</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="employment.html"><span class="srm-icon">💼</span><span class="srm-copy"><strong>Employment &amp; Work</strong><span>Career • Skills • Opportunities • Global Jobs</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="economic-marketing-command-center.html"><span class="srm-icon">🤖</span><span class="srm-copy"><strong>AI Marketing</strong><span>Content • Ads • Branding • Audience Growth</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener"><span class="srm-icon">🛒</span><span class="srm-copy"><strong>Digital Store</strong><span>Shop • Sell • Global • E-Commerce</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener"><span class="srm-icon">🎵</span><span class="srm-copy"><strong>यथार्थ AI Music</strong><span>Music • Songs • AI Creation • Global Platform</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="employment.html"><span class="srm-icon">💼</span><span class="srm-copy"><strong>Employment &amp; Work</strong><span>Remote Work • Freelance • Part Time • Full Time</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="#income-workbench"><span class="srm-icon">💼</span><span class="srm-copy"><strong>Freelancing</strong><span>Global Projects • Skills • Clients • Independent Work</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="#economic-vision"><span class="srm-icon">📈</span><span class="srm-copy"><strong>Economic Vision</strong><span>Sustainable Growth • Equal Opportunities • Better World</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+<a class="srm-row" href="public-income-showcase.html"><span class="srm-icon">🎙️</span><span class="srm-copy"><strong>Products • Music • Freelancing • Live Podcast</strong><span>Live Talk • Ideas • Knowledge • Global Community</span></span><span class="srm-art"></span><span class="srm-arrow">›</span></a>
+</nav>
+<nav class="srm-bottom-nav" aria-label="मुख्य मोबाइल नेविगेशन"><a href="#public-main-menu"><i>⌂</i>Home</a><a href="#income-source-command"><i>◉</i>Explore</a><a href="#income-map"><i class="infinity">∞</i>Infinite Possibilities</a><a href="settings.html"><i>⚙</i>Settings</a><a href="profile.html"><i>●</i>Profile</a></nav>
+</section>
+
+
+    <div class="glow-bg"></div>
+
+    <nav class="survival-nav" aria-label="जीवन-व्यापन प्रथम नेविगेशन">
+        <a href="livelihood.html">🫶 ALL Income & Livelihood</a><a href="economic-marketing-command-center.html">🤖 AI Marketing Command</a>
+        <a href="public-income-showcase.html">⚡ Public Income & Product Showcase</a>
+        <span class="label">🫶 जीवन-व्यापन प्रथम</span>
+        <a href="income-command-center.html">⚡ Income Command Center</a>
+        <a href="livelihood.html">🫶 सभी Income Sources</a><a href="employment.html">💼 Employment & Work</a>
+        <a href="economic-marketing-command-center.html">🤖 AI Marketing</a>
+        <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener">🛒 Digital Store</a>
+        <a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener">🎵 यथार्थ AI Music</a>
+        <a href="employment.html">💼 Employment & Work</a><a href="#income-workbench">💼 Freelancing</a>
+        <a href="#economic-vision">📈 Economic Vision</a>
+        <a href="public-income-showcase.html">🎙️ Products • Music • Freelancing • Live Podcast</a>
+    </nav>
+
+    <section class="above-fold-income" aria-labelledby="above-fold-income-heading">
+        <h2 id="above-fold-income-heading">⚡ पहले जीवन-व्यापन — फिर दीर्घकालिक काम</h2>
+        <p><strong>बेचने योग्य काम, digital products, AI Music, freelancing और business pathways अब public interface में छिपे नहीं हैं।</strong> यह access layer सीधे उन जगहों तक ले जाती है जहाँ product, service, creator और business work आगे बढ़ाया जा सकता है।</p>
+        <div class="above-fold-actions">
+            <a href="income-command-center.html">Income Command Center</a>
+            <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener">Digital Store</a>
+            <a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener">यथार्थ AI Music</a>
+            <a href="employment.html">Employment & Work</a><a href="#income-workbench">Freelancing & Services</a>
+            <a href="#economic-vision">AI Marketing / Economic Vision</a>
+            <a href="public-income-showcase.html">⚡ Public Income Showcase</a>
+            <a href="showroom.html">🛒 Supreme Public Showroom</a>
+            <a href="funding-appeal.html#upi-funding">💳 Funding / UPI QR</a>
+            <a href="#livelihood">सभी Income Sources</a>
+        </div>
+    </section>
+
+    <!-- LIFE-SUSTAINABILITY FIRST: COMPLETE PUBLIC INCOME / BUSINESS SURFACE -->
+    <section id="livelihood" class="life-priority" aria-labelledby="livelihood-heading">
+      <h2 id="livelihood-heading">🫶 जीवन-व्यापन प्रथम — सम्पूर्ण Income & Business Surface</h2>
+      <p><strong>यह Hub केवल research dashboard नहीं है।</strong> काम को लंबे समय तक जारी रखने के लिए products, services, creative work, client work, creator channels, licensing, marketplace और business/marketing systems को भी प्रथम-दृश्य public interface में रखा गया है.</p>
+      <div class="priority-grid">
+        <a class="priority-card" href="income-command-center.html"><i class="fa-solid fa-sack-dollar"></i><small>START HERE</small><strong>Income Command Center</strong><span>सभी practical income/work pathways, offers और next actions.</span></a>
+        <a class="priority-card" href="livelihood.html"><i class="fa-solid fa-heart-pulse"></i><small>LIVELIHOOD</small><strong>सभी Income Sources</strong><span>Digital products, music, freelancing, creator, licensing, memberships और client work.</span></a>
+        <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener"><i class="fa-solid fa-store"></i><small>OWNED ASSET</small><strong>Digital Store</strong><span>मौजूदा digital products के लिए मुख्य बिक्री/checkout destination.</span></a>
+        <a class="priority-card" href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener"><i class="fa-solid fa-music"></i><small>CREATIVE</small><strong>यथार्थ AI Music</strong><span>Music, audio production, releases और eligible licensing pathways.</span></a>
+        <a class="priority-card" href="employment.html"><i class="fa-solid fa-user-tie"></i><small>EMPLOYMENT</small><strong>Employment & Work Hub</strong><span>Self-employment, freelancing, creator work, AI/digital roles और future hiring pathways.</span></a><a class="priority-card" href="#income-workbench"><i class="fa-solid fa-briefcase"></i><small>CLIENT WORK</small><strong>Freelancing & Services</strong><span>AI, research support, writing, publishing, automation, audio/music और digital production.</span></a>
+        <a class="priority-card" href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank" rel="noopener"><i class="fa-solid fa-shop"></i><small>MARKETPLACE</small><strong>Omniverse Marketplace</strong><span>Products + services + client-facing business channel.</span></a>
+        <a class="priority-card" href="#economic-vision"><i class="fa-solid fa-bullhorn"></i><small>MARKETING</small><strong>AI Marketing Command</strong><span>Product copy, creative, SEO, organic promotion और ad-preparation workflow.</span></a>
+        <a class="priority-card" href="#economic-vision"><i class="fa-solid fa-chart-line"></i><small>BUSINESS</small><strong>Economic Vision</strong><span>Asset → Product → Offer → Marketing → Customer → Evidence → Improvement.</span></a>
+        <a class="priority-card" href="https://youtube.com/@rampaulsaini-yk4gn" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i><small>CREATOR</small><strong>YouTube / Content</strong><span>Audience, content और eligible monetization pathways.</span></a>
+        <a class="priority-card" href="https://www.upwork.com/" target="_blank" rel="noopener"><i class="fa-solid fa-laptop-code"></i><small>FREELANCE</small><strong>Upwork</strong><span>Project-based client services और remote work discovery.</span></a>
+        <a class="priority-card" href="https://www.fiverr.com/" target="_blank" rel="noopener"><i class="fa-solid fa-bolt"></i><small>SERVICE PACKAGES</small><strong>Fiverr</strong><span>स्पष्ट packaged services के लिए external marketplace.</span></a>
+        <a class="priority-card" href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i><small>DIRECT CLIENTS</small><strong>LinkedIn</strong><span>Portfolio, outreach, collaborations और professional discovery.</span></a>
+        <a class="priority-card" href="https://bandcamp.com/" target="_blank" rel="noopener"><i class="fa-solid fa-record-vinyl"></i><small>MUSIC SALES</small><strong>Bandcamp</strong><span>Eligible music releases और direct fan-sales pathway.</span></a>
+        <a class="priority-card" href="https://www.pond5.com/" target="_blank" rel="noopener"><i class="fa-solid fa-film"></i><small>LICENSING</small><strong>Media Licensing</strong><span>Eligible audio/video/media assets के licensing pathways.</span></a>
+        <a class="priority-card" href="https://www.gumroad.com/" target="_blank" rel="noopener"><i class="fa-solid fa-file-arrow-up"></i><small>DIGITAL SALES</small><strong>Gumroad</strong><span>Digital downloads और creator-product distribution.</span></a>
+        <a class="priority-card" href="#income-workbench"><i class="fa-solid fa-users"></i><small>RECURRING</small><strong>Membership / Support</strong><span>Audience support और recurring models के लिए channel planning.</span></a>
+      </div>
+      <div class="income-note"><strong>महत्वपूर्ण:</strong> ये वास्तविक काम/बिक्री के रास्ते हैं, आय की गारंटी नहीं। वास्तविक sale, payment, client, audience या ad execution को evidence के बिना completed नहीं माना जाएगा.</div>
+    </section>
+
+    <!-- Header / Banner Section -->
+    <header>
+        <img src="https://i.ibb.co/xqf3kTPS/enhanced-image.webp" alt="शिरोमणि रामपाल सैनी" class="profile-img">
+        <h1>शिरोमणि रामपाल सैनी</h1>
+        <p>Omniverse डिजिटल आर्काइव, तदरूप साक्षात्कार, ऑडियो, वीडियो एवं ऑफिशियल डिजिटल प्लेटफॉर्म्स का मुख्य केंद्र</p>
+        <div class="income-first-strip" role="navigation" aria-label="जीवन-व्यापन और आर्थिक कार्य">
+            <strong>🫶 जीवन-व्यापन प्रथम — काम जारी रखने के लिए आय के रास्ते</strong>
+            <a href="income-command-center.html">Income Command Center</a>
+            <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener">Digital Store</a>
+            <a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener">यथार्थ AI Music</a>
+            <a href="#income-workbench">Freelancing & Services</a>
+            <a href="#economic-vision">Economic Vision</a>
+        </div>
+        <section class="life-command-center" id="income-command-center" aria-labelledby="income-command-heading">
+<style>
+.life-command-center{margin:0 auto 28px;max-width:1150px;padding:24px;border:2px solid var(--primary-gold);border-radius:18px;background:linear-gradient(135deg,rgba(212,175,55,.22),rgba(0,210,255,.10));box-shadow:0 15px 45px rgba(0,0,0,.38)}
+.life-command-center h2{color:var(--primary-gold);font-family:'Rozha One',serif;font-size:2.15rem;margin-bottom:8px}.life-command-center p{color:var(--text-light);margin-bottom:16px}.income-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.income-actions a{display:flex;flex-direction:column;gap:5px;padding:16px;border:1px solid rgba(212,175,55,.5);border-radius:13px;background:rgba(0,0,0,.3);color:var(--text-light);text-decoration:none}.income-actions a:hover{border-color:var(--primary-gold);transform:translateY(-2px)}.income-actions i{color:var(--primary-gold);font-size:1.35rem}.income-actions small{color:var(--accent-blue);font-weight:700}
+</style>
+<h2 id="income-command-heading">⚡ जीवन-व्यापन • आय • काम — PUBLIC COMMAND CENTER</h2>
+<p><strong>यह सबसे पहले दिखना चाहिए:</strong> Digital products, AI Music, freelancing, client services, creator income, licensing, marketplace और Economic Vision. ये pathways संभावित आय-स्रोत हैं; किसी platform या बिक्री की गारंटी नहीं दी जा रही है।</p>
+<div class="income-actions">
+<a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener"><i class="fa-solid fa-store"></i><small>OWNED ASSET</small><strong>Digital Store</strong><span>तैयार digital products → direct sale</span></a>
+<a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener"><i class="fa-solid fa-music"></i><small>CREATIVE INCOME</small><strong>यथार्थ AI Music</strong><span>Music, audio production और eligible licensing</span></a>
+<a href="https://www.upwork.com/" target="_blank" rel="noopener"><i class="fa-solid fa-briefcase"></i><small>CLIENT WORK</small><strong>Freelancing</strong><span>AI, research, writing, automation, digital services</span></a>
+<a href="https://www.fiverr.com/" target="_blank" rel="noopener"><i class="fa-solid fa-bolt"></i><small>SERVICE PACKAGES</small><strong>Fiverr</strong><span>स्पष्ट service offers बनाकर client work</span></a>
+<a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i><small>DIRECT CLIENTS</small><strong>LinkedIn</strong><span>Portfolio + direct outreach + collaborations</span></a>
+<a href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank" rel="noopener"><i class="fa-solid fa-shop"></i><small>BUSINESS</small><strong>Omniverse Marketplace</strong><span>Products + services का संयुक्त channel</span></a>
+<a href="https://youtube.com/@rampaulsaini-yk4gn" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i><small>CREATOR</small><strong>YouTube / Content</strong><span>Audience → content → eligible monetization</span></a>
+<a href="https://bandcamp.com/" target="_blank" rel="noopener"><i class="fa-solid fa-record-vinyl"></i><small>MUSIC SALES</small><strong>Music Sales</strong><span>Music releases और direct fan sales</span></a>
+<a href="https://www.pond5.com/" target="_blank" rel="noopener"><i class="fa-solid fa-film"></i><small>LICENSING</small><strong>Media Licensing</strong><span>Eligible audio/video assets के licensing paths</span></a>
+<a href="https://www.gumroad.com/" target="_blank" rel="noopener"><i class="fa-solid fa-file-arrow-up"></i><small>DIGITAL SALES</small><strong>Gumroad</strong><span>Digital downloads और creator products</span></a>
+<a href="#economic-vision"><i class="fa-solid fa-chart-line"></i><small>MASTER PLAN</small><strong>Economic Vision</strong><span>Product → Service → Client → Creator → Licensing</span></a>
+<a href="#income-workbench"><i class="fa-solid fa-list-check"></i><small>WORK NOW</small><strong>Income Workbench</strong><span>आज के बेचने योग्य काम और next actions</span></a>
+</div>
+</section>
+\n        <div class="income-launchbar" aria-label="जीवन-व्यापन और आय के मुख्य रास्ते">
+            <strong><i class="fa-solid fa-heart-pulse"></i> जीवन-व्यापन / आय — सबसे पहले</strong>
+            <a href="#livelihood">सभी आय-स्रोत</a>
+            <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener"><i class="fa-solid fa-store"></i> Digital Store</a>
+            <a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener"><i class="fa-solid fa-music"></i> यथार्थ AI Music</a>
+            <a href="#income-workbench"><i class="fa-solid fa-briefcase"></i> Freelancing</a>
+            <a href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank" rel="noopener"><i class="fa-solid fa-shop"></i> Marketplace</a>
+            <a href="#economic-vision"><i class="fa-solid fa-chart-line"></i> Economic Vision</a>
+            <a href="showroom.html"><i class="fa-solid fa-store"></i> Supreme Showroom</a>
+            <a href="funding-appeal.html#upi-funding"><i class="fa-solid fa-qrcode"></i> Funding QR</a>
+        </div>
+    </header><section id="supreme-live-character" style="max-width:1150px;margin:22px auto;padding:22px;border:2px solid #d4af37;border-radius:20px;background:linear-gradient(135deg,rgba(212,175,55,.16),rgba(0,210,255,.08));box-shadow:0 14px 38px rgba(0,0,0,.35)"><div style="text-align:center"><div style="color:#d4af37;font-weight:900">꙰ SHIRMANI SUPREME LIVE CHARACTER</div><h2 style="color:#d4af37;margin:8px 0">Voice • AI/ML/NLP • Evidence • Face • Lip Motion • Live Presentation</h2><p style="color:#eee;max-width:900px;margin:0 auto 14px">मुख्य platform पर अब एक स्पष्ट Live Character entry: context-first Q&A, evidence discipline, voice test, visual presentation और lip-sync readiness map.</p><a href="supreme-live-character.html" style="display:inline-block;padding:11px 16px;border-radius:10px;background:#d4af37;color:#111;text-decoration:none;font-weight:900">🎭 LIVE SUPREME CHARACTER खोलें →</a><a href="shirmani-supreme-second-version.html" style="display:inline-block;margin-left:8px;padding:11px 16px;border-radius:10px;border:1px solid #d4af37;color:#d4af37;text-decoration:none;font-weight:900">꙰ SECOND VERSION / CHARACTER CONTRACT →</a></div></section><section style="max-width:1150px;margin:18px auto;padding:20px;border:3px solid var(--primary-gold);border-radius:18px;background:linear-gradient(135deg,rgba(212,175,55,.20),rgba(0,210,255,.08));text-align:center"><h2 style="color:var(--primary-gold)">🚀 SUPREME PUBLIC SHOWROOM — 1,516 CONCRETE PRODUCTS · 5,000 CATALOG SCALE</h2><p>Institute → Factory → QC → Showroom/Sale. यहाँ वास्तविक product cards, descriptions, prices/offers, product passport, QC/Gate state और order/payment routes दिखाई देते हैं।</p><a href="showroom.html" style="display:inline-block;padding:11px 16px;border-radius:10px;background:var(--primary-gold);color:#111;text-decoration:none;font-weight:900;margin:5px">Open Supreme Public Showroom →</a><a href="funding-appeal.html#upi-funding" style="display:inline-block;padding:11px 16px;border-radius:10px;border:1px solid var(--primary-gold);color:var(--primary-gold);text-decoration:none;font-weight:900;margin:5px">Funding QR / UPI →</a></section><section style="max-width:1150px;margin:18px auto;padding:20px;border:3px solid var(--primary-gold);border-radius:18px;background:linear-gradient(135deg,rgba(212,175,55,.20),rgba(0,210,255,.08));text-align:center"><h2 style="color:var(--primary-gold)">🚀 PRODUCTION MARKETPLACE — LIVE 5,000-CATALOG / 1,516-CONCRETE SCALE</h2><p>Workflow architecture के साथ अब runnable product surface, explicit pricing, education products और justice-research support products एक जगह।</p><a href="production-marketplace.html" style="display:inline-block;padding:11px 16px;border-radius:10px;background:var(--primary-gold);color:#111;text-decoration:none;font-weight:900">Open Production Marketplace →</a></section>
+
+    <!-- PRODUCTION-FIRST-PUBLIC-ENTRY --><section style="max-width:1150px;margin:18px auto;padding:24px;border:2px solid #d4af37;border-radius:18px;background:linear-gradient(135deg,rgba(212,175,55,.18),rgba(0,210,255,.08));text-align:center"><h2 style="color:#d4af37">꙰ Production-First Public Showroom</h2><p>Institute → Factory → QC/Gate → Showroom/Sale. Automation का परिणाम वास्तविक customer-visible digital products, modules और production records के रूप में public surface पर आता है।</p><div style="display:flex;flex-wrap:wrap;gap:9px;justify-content:center"><a href="supreme-public-production-portal.html">⚡ Production Portal</a><a href="showroom.html">🛒 Public Showroom</a><a href="public-production-command-center.html">🏭 Production Command</a><a href="generated/public-production-by-module.html">🧩 Module Production Map</a></div></section><div class="container">
+
+        <!-- PRIORITY: जीवन-व्यापन एवं कार्य-निरंतरता -->
+        <section id="income-source-command" class="life-priority" aria-labelledby="income-source-command-heading">
+            <h2 id="income-source-command-heading"><i class="fa-solid fa-sack-dollar"></i> आय के सभी मुख्य रास्ते — एक ही स्थान पर</h2>
+            <p><strong>जीवन-व्यापन के लिए पहले यही सार्वजनिक प्रवेश-द्वार देखें:</strong> owned digital products, AI music, freelancing/client services, marketplace, creator income, licensing, memberships/support, publishing, consulting और AI-assisted marketing. ये संभावित आय-पथ हैं; वास्तविक बिक्री/भुगतान को evidence के बिना completed income नहीं माना जाएगा।</p>
+            <div class="priority-grid">
+                <a class="priority-card" href="income-command-center.html"><small>COMMAND CENTER</small><i class="fa-solid fa-bolt"></i><strong>Income Command Center</strong><span>सभी work, product, service और marketing pathways.</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener"><small>OWNED SALES</small><i class="fa-solid fa-store"></i><strong>Digital Store</strong><span>अपने digital products की direct-sales entry.</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener"><small>CREATIVE INCOME</small><i class="fa-solid fa-music"></i><strong>यथार्थ AI Music</strong><span>Music, audio production, releases और eligible licensing.</span></a>
+                <a class="priority-card" href="income-command-center.html#income-workbench"><small>CLIENT INCOME</small><i class="fa-solid fa-briefcase"></i><strong>Freelancing & Services</strong><span>AI, research, writing, publishing, automation, audio/music.</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank" rel="noopener"><small>BUSINESS</small><i class="fa-solid fa-shop"></i><strong>Omniverse Marketplace</strong><span>Products + services + client work.</span></a>
+                <a class="priority-card" href="income-command-center.html#economic-vision"><small>AI MARKETING</small><i class="fa-solid fa-bullhorn"></i><strong>Marketing & Ads System</strong><span>Catalog → copy → creative → SEO → campaign → evidence.</span></a>
+                <a class="priority-card" href="income-command-center.html#creator"><small>CREATOR</small><i class="fa-brands fa-youtube"></i><strong>Creator / Content</strong><span>YouTube, social content और eligible monetization.</span></a>
+                <a class="priority-card" href="income-command-center.html#licensing"><small>LICENSING</small><i class="fa-solid fa-copyright"></i><strong>Media & Music Licensing</strong><span>Eligible audio/video/media assets.</span></a>
+                <a class="priority-card" href="income-command-center.html#support"><small>DIRECT SUPPORT</small><i class="fa-solid fa-heart"></i><strong>Membership / Support</strong><span>Recurring memberships और audience support channels.</span></a>
+                <a class="priority-card" href="income-command-center.html#products"><small>PRODUCT FACTORY</small><i class="fa-solid fa-box-open"></i><strong>Digital Product Factory</strong><span>Audio, books, certificates, templates और media assets.</span></a>
+                <a class="priority-card" href="income-command-center.html#services"><small>PROFESSIONAL</small><i class="fa-solid fa-user-tie"></i><strong>Consulting / Digital Production</strong><span>Website, content, automation और publishing support.</span></a>
+                <a class="priority-card" href="income-command-center.html"><small>FULL MAP</small><i class="fa-solid fa-diagram-project"></i><strong>पूरा Economic Vision</strong><span>बहु-स्रोत आय को एक measurable workflow में रखें.</span></a>
+            </div>
+        </section>
+
+        <section class="life-priority" id="livelihood" aria-labelledby="life-priority-heading">
+            <h2 id="life-priority-heading"><i class="fa-solid fa-heart-pulse"></i> सबसे पहले: जीवन-व्यापन • आय • काम की निरंतरता</h2>
+            <p><strong>यह Hub का प्रथम सार्वजनिक प्रवेश-द्वार है।</strong> Research और परमार्थ का काम तभी लंबे समय तक चलता है जब काम करने वाले व्यक्ति के लिए भोजन, आवास, आवश्यक खर्च और कार्य-संसाधनों का टिकाऊ आधार हो। इसलिए income-generating work को छिपाया नहीं जाएगा। नीचे वास्तविक काम शुरू करने के लिए product, service, freelance, music, creator, licensing और business pathways एक साथ दिए गए हैं। <strong>किसी platform से आय की गारंटी नहीं है; eligibility, fees, demand और local payment rules अलग-अलग हो सकते हैं।</strong></p>
+
+            <div class="priority-grid">
+                <a class="priority-card" href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener"><small>PRIORITY 1 • OWN ASSET</small><i class="fa-solid fa-store"></i><strong>Omniverse Digital Store</strong><span>अपने MP3, audio, books, certificates और अन्य digital products की direct-sales entry.</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener"><small>PRIORITY 2 • CREATIVE</small><i class="fa-solid fa-music"></i><strong>यथार्थ AI Music</strong><span>AI-assisted music, production, audio services और eligible licensing/sales pathways.</span></a>
+                <a class="priority-card" href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank" rel="noopener"><small>PRIORITY 3 • BUSINESS</small><i class="fa-solid fa-shop"></i><strong>Omniverse Marketplace</strong><span>Products + services + client work को एक business channel में व्यवस्थित करें.</span></a>
+
+                <a class="priority-card" href="https://www.upwork.com/" target="_blank" rel="noopener"><small>CLIENT WORK</small><i class="fa-solid fa-briefcase"></i><strong>Upwork</strong><span>AI, research, writing, automation, audio/music और digital services.</span></a>
+                <a class="priority-card" href="https://www.fiverr.com/" target="_blank" rel="noopener"><small>CLIENT WORK</small><i class="fa-solid fa-bolt"></i><strong>Fiverr</strong><span>Fixed service packages, creative delivery और digital services.</span></a>
+                <a class="priority-card" href="https://www.freelancer.com/" target="_blank" rel="noopener"><small>CLIENT WORK</small><i class="fa-solid fa-globe"></i><strong>Freelancer</strong><span>Global projects in writing, research, technology और creative work.</span></a>
+                <a class="priority-card" href="https://contra.com/" target="_blank" rel="noopener"><small>INDEPENDENT WORK</small><i class="fa-solid fa-user-tie"></i><strong>Contra</strong><span>Portfolio-led independent work और professional services.</span></a>
+                <a class="priority-card" href="https://www.peopleperhour.com/" target="_blank" rel="noopener"><small>CLIENT WORK</small><i class="fa-solid fa-clock"></i><strong>PeoplePerHour</strong><span>Freelance projects और packaged professional services.</span></a>
+                <a class="priority-card" href="https://www.guru.com/" target="_blank" rel="noopener"><small>CLIENT WORK</small><i class="fa-solid fa-users"></i><strong>Guru</strong><span>Remote freelance projects और long-term client relationships.</span></a>
+                <a class="priority-card" href="https://www.linkedin.com/" target="_blank" rel="noopener"><small>DIRECT CLIENTS</small><i class="fa-brands fa-linkedin"></i><strong>LinkedIn</strong><span>Professional profile, direct clients, collaborations और outreach.</span></a>
+
+                <a class="priority-card" href="https://www.gumroad.com/" target="_blank" rel="noopener"><small>DIGITAL SALES</small><i class="fa-solid fa-file-arrow-up"></i><strong>Gumroad</strong><span>Digital files, knowledge products, memberships और creator sales.</span></a>
+                <a class="priority-card" href="https://payhip.com/" target="_blank" rel="noopener"><small>DIGITAL SALES</small><i class="fa-solid fa-credit-card"></i><strong>Payhip</strong><span>Digital downloads, memberships और creator storefront option.</span></a>
+                <a class="priority-card" href="https://ko-fi.com/" target="_blank" rel="noopener"><small>DIRECT SUPPORT</small><i class="fa-solid fa-mug-hot"></i><strong>Ko-fi</strong><span>Support, memberships और eligible digital/creator products.</span></a>
+                <a class="priority-card" href="https://www.patreon.com/" target="_blank" rel="noopener"><small>MEMBERSHIP</small><i class="fa-solid fa-heart"></i><strong>Patreon</strong><span>Recurring supporter memberships और exclusive creator content.</span></a>
+                <a class="priority-card" href="https://www.buymeacoffee.com/" target="_blank" rel="noopener"><small>DIRECT SUPPORT</small><i class="fa-solid fa-mug-saucer"></i><strong>Buy Me a Coffee</strong><span>Direct audience support और creator offerings.</span></a>
+                <a class="priority-card" href="https://www.lemonsqueezy.com/" target="_blank" rel="noopener"><small>PRODUCT BUSINESS</small><i class="fa-solid fa-receipt"></i><strong>Lemon Squeezy</strong><span>Eligible digital products/software sales infrastructure.</span></a>
+
+                <a class="priority-card" href="https://www.youtube.com/@rampaulsaini-yk4gn" target="_blank" rel="noopener"><small>CREATOR INCOME</small><i class="fa-brands fa-youtube"></i><strong>YouTube</strong><span>Public content, audience growth और eligible monetization pathways.</span></a>
+                <a class="priority-card" href="https://www.pond5.com/" target="_blank" rel="noopener"><small>MEDIA LICENSING</small><i class="fa-solid fa-film"></i><strong>Pond5</strong><span>Eligible audio/video/creative assets के licensing opportunities.</span></a>
+                <a class="priority-card" href="https://audiojungle.net/" target="_blank" rel="noopener"><small>MUSIC LICENSING</small><i class="fa-solid fa-headphones"></i><strong>AudioJungle</strong><span>Eligible stock music/audio assets के marketplace licensing opportunities.</span></a>
+                <a class="priority-card" href="https://bandcamp.com/" target="_blank" rel="noopener"><small>MUSIC SALES</small><i class="fa-solid fa-record-vinyl"></i><strong>Bandcamp</strong><span>Music releases, direct fan sales और artist audience building.</span></a>
+
+                <a class="priority-card" href="#income-map"><small>MASTER PLAN</small><i class="fa-solid fa-diagram-project"></i><strong>Income Source Map</strong><span>Product → Service → Client → Creator → Licensing → Recurring support → Business.</span></a>
+                <a class="priority-card" href="#income-workbench"><small>WORK NOW</small><i class="fa-solid fa-list-check"></i><strong>आज से काम शुरू करें</strong><span>पहले बेचने योग्य product, फिर service offer, फिर client pipeline और creator pipeline.</span></a>
+            </div>
+            <div class="income-note"><strong>जीवन-व्यापन पहले:</strong> Hub का उद्देश्य income को research के विरुद्ध रखना नहीं, बल्कि sustainable work-base बनाना है—ताकि long-term research, प्रकृति/पृथ्वी/मानव संरक्षण और public-service work निरंतर चल सके।</div>
+        </section>
+
+        <section class="life-priority" id="income-map" aria-labelledby="income-map-heading">
+            <h2 id="income-map-heading"><i class="fa-solid fa-route"></i> आय-स्रोत का पूरा कार्य-मानचित्र</h2>
+            <div class="priority-grid">
+                <div class="priority-card"><small>1 • PRODUCT</small><strong>अपनी चीज़ बेचें</strong><span>Digital Store · audio · books · certificates · knowledge products · marketplace.</span></div>
+                <div class="priority-card"><small>2 • SERVICE</small><strong>अपना कौशल बेचें</strong><span>AI · research support · writing · publishing · automation · audio/music · digital services.</span></div>
+                <div class="priority-card"><small>3 • CLIENT PIPELINE</small><strong>ग्राहक खोजें और दोहराएं</strong><span>Upwork · Fiverr · Freelancer · Contra · PeoplePerHour · Guru · LinkedIn · direct outreach.</span></div>
+                <div class="priority-card"><small>4 • CREATOR</small><strong>Audience बनाएं</strong><span>YouTube · podcast/audio · educational/public content · memberships/support.</span></div>
+                <div class="priority-card"><small>5 • LICENSING</small><strong>Creative assets को license करें</strong><span>Eligible music · audio · video · stock/media assets.</span></div>
+                <div class="priority-card"><small>6 • RECURRING SUPPORT</small><strong>नियमित support model</strong><span>Memberships, subscriptions और direct audience support जहाँ platform eligibility अनुमति दे.</span></div>
+                <div class="priority-card"><small>7 • LONG TERM</small><strong>एकीकृत economic system</strong><span>Store + Marketplace + Services + Creator + Licensing + Research को sustainable business layer में जोड़ना.</span></div>
+                <div class="priority-card"><small>8 • RESILIENCE</small><strong>एक ही स्रोत पर निर्भर नहीं</strong><span>अपनी owned assets और कई independent channels को साथ विकसित करना.</span></div>
+            </div>
+        </section>
+
+        <section class="life-priority" id="income-workbench" aria-labelledby="income-workbench-heading">
+            <h2 id="income-workbench-heading"><i class="fa-solid fa-list-check"></i> आज से काम शुरू करने की प्राथमिकता</h2>
+            <div class="priority-grid">
+                <div class="priority-card"><small>STEP 1</small><strong>पहला sellable asset</strong><span>एक साफ़ product page + price + description + delivery path.</span></div>
+                <div class="priority-card"><small>STEP 2</small><strong>तीन freelance offers</strong><span>AI/research support · writing/publishing · audio/music/digital production.</span></div>
+                <div class="priority-card"><small>STEP 3</small><strong>Client pipeline</strong><span>Portfolio + profiles + daily proposals/outreach + repeat-client follow-up.</span></div>
+                <div class="priority-card"><small>STEP 4</small><strong>Creator pipeline</strong><span>Short-form + long-form content को products/services से जोड़ें.</span></div>
+                <div class="priority-card"><small>STEP 5</small><strong>Asset licensing</strong><span>Eligible music/audio/video assets को licensing channels में व्यवस्थित करें.</span></div>
+                <div class="priority-card"><small>STEP 6</small><strong>Business consolidation</strong><span>जो channel वास्तविक demand दिखाए उसे owned Hub, Store और Marketplace से जोड़ें.</span></div>
+            </div>
+        </section>
+
+        <!-- Section 1: Core Platforms & Apps -->
+        <h2 class="category-title"><i class="fa-solid fa-globe"></i> मुख्य डिजिटल प्लेटफॉर्म्स (Omniverse Apps)</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-store card-icon"></i>
+                    <h3>Omniverse Store</h3>
+                    <p class="badge">Official Store</p>
+                </div>
+                <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-microchip card-icon"></i>
+                    <h3>Omniverse AI Core</h3>
+                    <p class="badge">AI Application</p>
+                </div>
+                <a href="https://rampaulsaini.github.io/Omniverse-AI/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-chart-line card-icon"></i>
+                    <h3>Omniverse Dashboard</h3>
+                    <p class="badge">Control Center</p>
+                </div>
+                <a href="https://rampaulsaini.github.io/omniverse-dashboard/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-cart-shopping card-icon"></i>
+                    <h3>Omniverse Marketplace</h3>
+                    <p class="badge">Digital Hub</p>
+                </div>
+                <a href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-crown card-icon"></i>
+                    <h3>Omniverse Supreme Core</h3>
+                    <p class="badge">Supreme Platform</p>
+                </div>
+                <a href="https://rampaulsaini.github.io/Omniverse-Supreme-Core-/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-file-contract card-icon"></i>
+                    <h3>Koyab Omniversal Manifesto</h3>
+                    <p class="badge">Declaration Document</p>
+                </div>
+                <a href="https://rampaulsaini.github.io/Koyab-Founding-Declaration-Omniversal-Manifesto/" target="_blank" class="btn">विज़िट करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+        </div>
+
+        <!-- Section: आय, आर्थिक आत्मनिर्भरता एवं डिजिटल व्यवसाय -->
+        <h2 class="category-title"><i class="fa-solid fa-wallet"></i> आय, आर्थिक आत्मनिर्भरता एवं डिजिटल व्यवसाय</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-music card-icon"></i>
+                    <h3>यथार्थ AI Music</h3>
+                    <p class="badge">AI Music · Creative Production</p>
+                    <p>यथार्थ AI Music को सीधे public hub से खोलें और संगीत/creative work को अलग आय-सृजन दिशा के रूप में विकसित करें।</p>
+                </div>
+                <a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" class="btn">AI Music खोलें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-store card-icon"></i>
+                    <h3>Omniverse Digital Store</h3>
+                    <p class="badge">Digital Products · Direct Sales</p>
+                    <p>ऑडियो, डिजिटल सामग्री, प्रमाण-पत्र और अन्य प्रकाशित डिजिटल उत्पादों के लिए आपका मुख्य store.</p>
+                </div>
+                <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" class="btn">Digital Store खोलें <i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-briefcase card-icon"></i>
+                    <h3>Freelancing & Digital Services</h3>
+                    <p class="badge">सेवा → ग्राहक → आय</p>
+                    <p>AI, लेखन, research support, audio/music, digital publishing और अन्य कौशलों को freelance services में बदलने के लिए dedicated entry point.</p>
+                </div>
+                <a href="https://www.upwork.com/" target="_blank" class="btn">Freelancing शुरू करें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-shop card-icon"></i>
+                    <h3>Omniverse Marketplace</h3>
+                    <p class="badge">Digital Marketplace</p>
+                    <p>डिजिटल products/services को marketplace model में व्यवस्थित करने का अलग business channel.</p>
+                </div>
+                <a href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank" class="btn">Marketplace खोलें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+            <div class="card">
+                <div>
+                    <i class="fa-brands fa-youtube card-icon"></i>
+                    <h3>Content & Creator Income</h3>
+                    <p class="badge">Audience · Content · Monetization</p>
+                    <p>YouTube और अन्य public content channels को audience-building तथा संभावित monetization के लिए एक स्पष्ट business path में रखें।</p>
+                </div>
+                <a href="https://youtube.com/@rampaulsaini-yk4gn?si=pulml6fNzY6Kqtic" target="_blank" class="btn">Creator Hub खोलें <i class="fa-brands fa-youtube"></i></a>
+            </div>
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-chart-line card-icon"></i>
+                    <h3>Economic Vision & Business</h3>
+                    <p class="badge">व्यवसाय · उत्पाद · सेवा · आय</p>
+                    <p>आपके digital store, AI music, freelancing, marketplace और content को एक संयुक्त आर्थिक vision में देखने का मुख्य प्रवेश-बिंदु।</p>
+                </div>
+                <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" class="btn">Business Hub खोलें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+        </div>
+
+        <section class="life-priority" id="economic-vision" aria-labelledby="economic-vision-heading">
+            <h2 id="economic-vision-heading"><i class="fa-solid fa-chart-line"></i> Economic Vision • AI Agent Income & Marketing System</h2>
+            <p><strong>जीवन-व्यापन और कार्य-निरंतरता को Hub की सार्वजनिक संरचना में प्रथम-स्तर पर रखा गया है।</strong> Product discovery, packaging, copy, creative briefs, SEO, organic promotion, campaign preparation और evidence tracking को agent-ready workflow में जोड़ा गया है। वास्तविक paid advertising तभी सक्रिय मानी जाएगी जब संबंधित ad account, billing और अनुमतियाँ उपलब्ध हों। इस layer का उद्देश्य किसी आय की गारंटी देना नहीं, बल्कि उपलब्ध सामग्री, skills और digital assets को वास्तविक products, services, client work, creator work, licensing और recurring-support channels में व्यवस्थित करना है।</p>
+            <div class="priority-grid">
+                <div class="priority-card"><small>OWNED ASSET</small><strong>Digital Products Factory</strong><span>Audio · books · certificates · research-derived educational material · templates · media assets.</span></div>
+                <div class="priority-card"><small>AI AGENT WORKFLOW</small><strong>Product → Publish → Market</strong><span>Cataloguing, product copy, packaging, landing pages, content drafts, SEO and campaign preparation को automation pipeline में जोड़ना.</span></div>
+                <div class="priority-card"><small>SERVICE BUSINESS</small><strong>Freelance Offers</strong><span>AI support · research assistance · writing · publishing · automation · audio/music · digital production.</span></div>
+                <div class="priority-card"><small>MARKETING</small><strong>Audience → Offer → Sale</strong><span>Public Hub, YouTube, social content, email/community channels और product pages को एक measurable funnel में जोड़ना.</span></div>
+                <div class="priority-card"><small>RESILIENCE</small><strong>बहु-स्रोत आय</strong><span>एक platform पर निर्भरता कम रखें; owned store + marketplace + client work + creator + licensing को साथ विकसित करें.</span></div>
+                <div class="priority-card"><small>TRUTHFUL STATUS</small><strong>जो बना है वही live दिखे</strong><span>Automation को completed sale, income या verified demand तभी माना जाए जब वास्तविक evidence उपलब्ध हो.</span></div>
+            </div>
+        </section>
+
+        <!-- Section 2: MP3 Audio Archives -->
+        <h2 class="category-title"><i class="fa-solid fa-music"></i> MP3 ऑडियो संग्रह (Google Drive Archives)</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-headphones card-icon"></i>
+                    <h3>साहिब तदरूप साक्षात्कार</h3>
+                    <p class="badge">10,000+ MP3 Audios</p>
+                </div>
+                <a href="Https://drive.google.com/drive/folders/12BUK3PYOnjjBb07mQsUqlG2qs4x0uhNh" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-bullhorn card-icon"></i>
+                    <h3>खुद का साक्षात्कार ही संपूर्ण संतुष्टि</h3>
+                    <p class="badge">10,000+ MP3 Audios</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1K4kX0V0CT1IU4tpJM6ZRNLKy-dpTAdax" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-heart card-icon"></i>
+                    <h3>अनंत असीम इश्क़ की क्षमता</h3>
+                    <p class="badge">1,500 MP3 Audios</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1lV-8sFU0vLOQVX3HyXznHbHpcRF9Kojc" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-radio card-icon"></i>
+                    <h3>मेरा साहिब मेरा ही तदरूप साक्षात्कार</h3>
+                    <p class="badge">5,000 MP3 Audios</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1DQOmFNIpEwYFF0G_uXRfiCZgUvLNjENO" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-compact-disc card-icon"></i>
+                    <h3>खुद का साक्षात्कार ऑडियो</h3>
+                    <p class="badge">6,000 MP3 Audios</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1Zwq0BfBAYuPoaBYZoKvMkxULzkranWqe" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-bolt card-icon"></i>
+                    <h3>Short Audios Collection</h3>
+                    <p class="badge">89 Short Clips</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/18iPsn9Rjc7E0jNwvIx_h5MwQrhqyYt1Y" target="_blank" class="btn">ऑडियो सुनें <i class="fa-solid fa-play"></i></a>
+            </div>
+        </div>
+
+        <!-- Section 3: Photo Albums & Certificates -->
+        <h2 class="category-title"><i class="fa-solid fa-images"></i> फोटो एल्बम एवं प्रमाण पत्र</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-vihara card-icon"></i>
+                    <h3>Golden Temple स्पेशल फोटो एल्बम</h3>
+                    <p class="badge">2,000+ Photos</p>
+                </div>
+                <a href="https://photos.app.goo.gl/4MP8THuxhei9NuxR6" target="_blank" class="btn">एल्बम देखें <i class="fa-solid fa-image"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-certificate card-icon"></i>
+                    <h3>शिरोमणि प्रमाण पत्र फोटो एल्बम</h3>
+                    <p class="badge">4,000+ High-Res Photos</p>
+                </div>
+                <a href="https://photos.app.goo.gl/bMoqL2Cx7kKpkmMy6" target="_blank" class="btn">प्रमाण पत्र देखें <i class="fa-solid fa-image"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-video card-icon"></i>
+                    <h3>मेरा संपूर्ण जीवन शिरोमणि वीडियोज़</h3>
+                    <p class="badge">10,000+ Videos</p>
+                </div>
+                <a href="https://photos.app.goo.gl/hBJ4mN176PboQ7bb6" target="_blank" class="btn">वीडियोज़ देखें <i class="fa-solid fa-video"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-folder-open card-icon"></i>
+                    <h3>Omniverse Drive Gallery</h3>
+                    <p class="badge">Drive Media Collection</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1QRgYwrPteyQfrRbTyDMp4LbBnLv90K66" target="_blank" class="btn">गैलरी खोलें <i class="fa-solid fa-folder"></i></a>
+            </div>
+        </div>
+
+        <!-- Section 4: Social Media & Blogs -->
+        <h2 class="category-title"><i class="fa-solid fa-share-nodes"></i> सोशल मीडिया एवं ब्लॉग</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <i class="fa-brands fa-youtube card-icon"></i>
+                    <h3>YouTube चैनल</h3>
+                    <p class="badge">Official YouTube</p>
+                </div>
+                <a href="https://youtube.com/@rampaulsaini-yk4gn?si=pulml6fNzY6Kqtic" target="_blank" class="btn">सब्सक्राइब करें <i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-brands fa-facebook card-icon"></i>
+                    <h3>Facebook Video</h3>
+                    <p class="badge">Social Media Share</p>
+                </div>
+                <a href="https://www.facebook.com/share/v/1DoEnaoEYT/" target="_blank" class="btn">वीडियो देखें <i class="fa-brands fa-facebook"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-blog card-icon"></i>
+                    <h3>Multicosmovision Blog</h3>
+                    <p class="badge">Official Blogspot</p>
+                </div>
+                <a href="https://multicosmovision.blogspot.com/2026/06/blog-post_18.html" target="_blank" class="btn">ब्लॉग पढ़ें <i class="fa-solid fa-newspaper"></i></a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-brands fa-github card-icon"></i>
+                    <h3>Shirmani Research Institute</h3>
+                    <p class="badge">GitHub Repository</p>
+                </div>
+                <a href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-.git" target="_blank" class="btn">कोड/प्रोजेक्ट देखें <i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div>
+                <i class="fa-solid fa-earth-americas card-icon"></i>
+                <h3>꙰ Global Social Platform</h3>
+                <p class="badge">Account · Post · Video · Audio · Community · Self-Interview Learning</p>
+                <p>एक साझा वैश्विक social platform architecture जहाँ व्यक्ति अपनी बात रख सके, दूसरों को सुन सके और “खुद का साक्षात्कार” learning layer से स्वैच्छिक रूप से सीख सके।</p>
+            </div>
+            <a href="social-platform.html" class="btn">Global Platform देखें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+
+        <!-- Section: Research Factory -->
+        <h2 class="category-title"><i class="fa-solid fa-gears"></i> ꙰ Omniverse Research Factory</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-robot card-icon"></i>
+                    <h3>Federation Dashboard</h3>
+                    <p class="badge">24-repository federation · status observability</p>
+                </div>
+                <a href="federation-dashboard.html" class="btn">Federation देखें <i class="fa-solid fa-network-wired"></i></a>
+            </div>
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-gears card-icon"></i>
+                    <h3>Research Factory Control Center</h3>
+                    <p class="badge">Factory status · QC · pipeline</p>
+                </div>
+                <a href="factory-dashboard.html" class="btn">Factory खोलें <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <section class="container" aria-labelledby="factory-content-heading">
+        <h2 id="factory-content-heading" class="category-title"><i class="fa-solid fa-circle-info"></i> Omniverse Research Factory — स्पष्ट स्थिति</h2>
+        <div class="card">
+            <h3>दृश्यता, ऑटोमेशन और सत्यापन की सीमाएँ</h3>
+            <p>यह सार्वजनिक हब उपलब्ध status artifacts और dashboards को एक साथ प्रस्तुत करता है। Generated output, workflow success, QC status और human/scientific verification अलग-अलग अवस्थाएँ हैं; किसी generated artifact को अपने-आप सत्यापित शोध-निष्कर्ष, accreditation या प्रमाण के रूप में नहीं माना जाता।</p>
+            <p class="badge">मुख्य प्रवाह: Source → Research → Evidence → Verification → QC → Review → Publishing → Archive</p>
+            <p>जहाँ ताज़ा verified federation payload उपलब्ध नहीं होता, dashboard को <strong>UNKNOWN</strong> दिखाना जानबूझकर रखा गया है ताकि पुराना या अप्रमाणित data वर्तमान स्थिति के रूप में प्रस्तुत न हो।</p>
+        </div>
+    </section>
+
+    <section class="container srm-live-panel" id="ai-operations" aria-labelledby="ai-operations-heading">
+        <h2 id="ai-operations-heading">🤖 AI/ML Continuous Operations Command</h2>
+        <p>लक्ष्य: 24/7/365 resilient automation—लेकिन public status केवल वास्तविक telemetry के आधार पर दिखेगा। Self-healing का अर्थ retry, recovery, durable state और fail-safe behavior है; self-upgrade केवल tested/signed या human-approved release के माध्यम से होगा, अनियंत्रित self-modification के रूप में नहीं।</p>
+        <div class="srm-feature-grid">
+          <div class="srm-feature"><strong>Self-Healing</strong><span>Durable queues, retry, provider recovery, health/readiness checks.</span><small class="srm-status">ARCHITECTURE / TEST</small></div>
+          <div class="srm-feature"><strong>Self-Service</strong><span>Public controls, task status, documentation and operational dashboards.</span><small class="srm-status">AVAILABLE BY MODULE</small></div>
+          <div class="srm-feature"><strong>Self-Upgrading</strong><span>Versioned, tested, review-gated releases; no silent production mutation.</span><small class="srm-status">GUARDED</small></div>
+          <div class="srm-feature"><strong>Deep QC</strong><span>Multi-angle inspection, provenance, evidence boundaries and failure history.</span><small class="srm-status">ACTIVE IN FACTORY</small></div>
+        </div>
+    </section>
+
+    <section class="container srm-live-panel" id="live-media" aria-labelledby="live-media-heading">
+        <h2 id="live-media-heading">📡 Live Media &amp; Infinite Series Studio</h2>
+        <p>एक आजीवन विकसित होने वाला content system: live podcast, live production, streaming, news/programming, games, cartoons, music and episodic storytelling के लिए public entry points। हर channel को अलग production, rights, moderation, hosting और distribution infrastructure से जोड़ा जाएगा; केवल menu में नाम होना live broadcast होने का प्रमाण नहीं है।</p>
+        <div class="srm-feature-grid">
+          <div class="srm-feature"><strong>Live Podcast</strong><span>Episodes, guests, archive, captions and clips.</span><small class="srm-status">PLANNED / PRODUCTION LAYER</small></div>
+          <div class="srm-feature"><strong>Live Streaming</strong><span>Broadcast control, stream health, replay and moderation.</span><small class="srm-status">PLANNED</small></div>
+          <div class="srm-feature"><strong>News / Knowledge</strong><span>Source-first reporting and timestamped archives.</span><small class="srm-status">SOURCE-GATED</small></div>
+          <div class="srm-feature"><strong>Infinite Episode Engine</strong><span>Characters, story state, continuity, production queue and archive.</span><small class="srm-status">ARCHITECTURE</small></div>
+        </div>
+    </section>
+
+    <section class="container srm-live-panel" id="income-workbench" aria-labelledby="income-workbench-heading">
+        <h2 id="income-workbench-heading">💰 Income First • Product → Audience → Evidence → Income</h2>
+        <p>जीवन-व्यापन को operational priority रखते हुए digital products, AI music, services, creator work, marketplace, licensing और advertising preparation को एक measurable system में व्यवस्थित किया जाएगा। वास्तविक income, sales, ad delivery या audience संख्या तभी प्रदर्शित होगी जब संबंधित platform से evidence मिले।</p>
+    </section>
+
+    <section class="container srm-live-panel" id="yatharth-music" aria-labelledby="yatharth-music-heading">
+        <h2 id="yatharth-music-heading">🎵 Yatharth Music AI — Integration Boundary</h2>
+        <p>मुख्य Hub में Yatharth Music AI का public entry पहले से मौजूद है। GitHub repository में FastAPI + ACE-Step integration, durable task state, retry/recovery और health/readiness endpoints मौजूद हैं। लेकिन Colab/trycloudflare runtime temporary है; उसे 24/7 production service नहीं माना जा सकता।</p>
+        <div class="srm-command-grid">
+          <a href="https://rampaulsaini.github.io/yatharth-music-ai/" target="_blank" rel="noopener">🎵 Music App खोलें</a>
+          <a href="https://github.com/rampaulsaini/yatharth-music-ai" target="_blank" rel="noopener">⚙️ Music AI Repository</a>
+          <a href="https://colab.research.google.com/github/rampaulsaini/yatharth-music-ai/blob/main/colab/Yatharth_Music_AI_Free_GPU.ipynb" target="_blank" rel="noopener">🧪 Free GPU Test</a>
+        </div>
+    </section>
+
+    <section class="container srm-live-panel" id="digital-products" aria-labelledby="digital-products-heading">
+        <h2 id="digital-products-heading">🛒 Digital Products &amp; Public Promotion</h2>
+        <p>Digital Store, product showcase, social channels और future ad automation को एक content-to-campaign pipeline में जोड़ा जा सकता है। Paid ads तभी चलेंगी जब वास्तविक ad-account credentials, billing, platform policy और human approval उपलब्ध हों।</p>
+        <div class="srm-command-grid">
+          <a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener">Digital Store</a>
+          <a href="public-income-showcase.html">Product Showcase</a><a href="products/1000-digital-product-factory.html">🚀 1000+ Digital Product Factory</a>
+          <a href="economic-marketing-command-center.html">AI Marketing Command</a>
+          <a href="income-command-center.html">Income Command Center</a>
+        </div>
+    </section>
+
+
+    <!-- YATHARTH COMPARISON MATRIX -->
+    <section class="container srm-live-panel" id="yatharth-comparison" aria-labelledby="yatharth-comparison-heading">
+        <h2 id="yatharth-comparison-heading">🔬 शिरोमणि / यथार्थ — स्रोत-आधारित तुलना प्रणाली</h2>
+        <p>लेखक के प्रत्येक मुख्य proposition को ऐतिहासिक दर्शन, self-knowledge, phenomenology, pragmatism और environmental science के संबंधित स्रोतों के साथ तुलना करने के लिए evidence/counter-evidence/testability/status संरचना। “खरबों गुणा श्रेष्ठ” को बिना measurable evidence के verified fact नहीं माना जाता।</p>
+        <div class="srm-command-grid">
+          <a href="research/yatharth-comparison-matrix-2026-09-29.md" target="_blank" rel="noopener">📊 Comparison Matrix</a>
+          <a href="research/shirmani-comparative-analysis-system.md" target="_blank" rel="noopener">🧭 Comparison Method</a>
+          <a href="schemas/yatharth-comparison.schema.json" target="_blank" rel="noopener">🧩 Machine Schema</a>
+          <a href=".github/workflows/yatharth-comparison-qc.yml" target="_blank" rel="noopener">⚙️ QC Workflow</a>
+        </div>
+    </section>
+
+    <section class="container srm-live-panel" id="yatharth-source-addendum" aria-labelledby="yatharth-source-addendum-heading">
+  <h2 id="yatharth-source-addendum-heading">🧿 29 सितम्बर 2026 — नवीन शिरोमणि स्रोत-अनुपूरक</h2>
+  <p>नवीन लेखक-प्रदत्त विचारों का canonical source addendum: शिरोमणि, निष्पक्ष समझ, शमीकरण यथार्थ सिद्धांत, यथार्थ युग, गुरु-शिष्य आलोचना, प्रेम की पुनर्व्याख्या, प्रकृति-संरक्षण और AI/Automission research दिशा।</p>
+  <div class="srm-command-grid"><a href="research/yatharth-shirmani-source-addendum-2026-09-29.md" target="_blank" rel="noopener">📜 नवीन स्रोत-अनुपूरक खोलें</a><a href="#yatharth-comparison">🔬 तुलना प्रणाली</a></div>
+</section>
+
+<!-- YATHARTH AUTHOR ARCHIVE -->
+    <section class="container srm-live-panel" id="yatharth-author-archive" aria-labelledby="yatharth-author-archive-heading">
+        <h2 id="yatharth-author-archive-heading">📚 यथार्थ दृष्टिकोण — लेखक-प्रस्तावित विचार-संग्रह</h2>
+        <p>शिरोमणि रामपॉल सैनी द्वारा प्रस्तुत यथार्थ, बुद्धि-दृष्टिकोण, स्वयं को समझने, प्रकृति, गुरु-शिष्य, धर्म, रब, आत्मा, प्रेम, यथार्थ अक्ष और यथार्थ युग से जुड़े विचारों का संरचित archive। लेखक के empirical/metaphysical दावों को स्वतंत्र सत्यापन की आवश्यकता होने पर स्पष्ट रूप से चिह्नित किया गया है।</p>
+        <div class="srm-command-grid">
+          <a href="research/yatharth-drishtikon-author-archive-2026-09-29.md" target="_blank" rel="noopener">📖 पूरा विचार-संग्रह</a>
+          <a href="research/">🗂️ Research Archive</a>
+        </div>
+    </section>
+
+    <!-- === GLOBAL IDENTITY / PUBLIC EVIDENCE PASSPORT === -->
+<section class="container srm-live-panel" id="global-identity" aria-labelledby="global-identity-heading">
+<h2 id="global-identity-heading">🌍 Global Identity &amp; Evidence Passport</h2>
+<p>यह मंच शिरोमणि रामपॉल सैनी की <strong>निष्पक्ष समझ</strong>, शोध, रचनात्मक कार्य और सार्वजनिक योगदान को एक स्पष्ट, खोजयोग्य और प्रमाण-आधारित डिजिटल पहचान में व्यवस्थित करता है। यह किसी देश की कानूनी नागरिकता प्रदान करने का दावा नहीं करता; “विश्व की नागरिकता” को यहां सार्वभौमिक मानवीय सहभागिता, खुली ज्ञान-साझेदारी और वैश्विक डिजिटल उपस्थिति के लक्ष्य के रूप में प्रस्तुत किया गया है।</p>
+<div class="srm-feature-grid"><div class="srm-feature"><strong>🪪 Identity</strong><span>नाम, लेखक-परिचय, स्रोत और सार्वजनिक प्रोफ़ाइल का canonical record।</span></div><div class="srm-feature"><strong>🔬 Evidence</strong><span>दावा, स्रोत, प्रमाण, uncertainty और verification status को अलग-अलग रखना।</span></div><div class="srm-feature"><strong>🌐 Global Reach</strong><span>बहुभाषी सामग्री, खुले research records और साझा करने योग्य public pages।</span></div><div class="srm-feature"><strong>💼 Livelihood</strong><span>यथार्थ AI Music, digital products, services, freelancing और lawful income pathways को स्पष्ट public access देना।</span></div><div class="srm-feature"><strong>🤖 AI + Automission</strong><span>Observe → Reason → Execute → Verify → Audit → Learn की नियंत्रित continuous-improvement प्रणाली।</span></div><div class="srm-feature"><strong>🛡️ Integrity</strong><span>Automation success को independent verification का प्रमाण नहीं माना जाता; unsupported claims को UNVERIFIED रखा जाता है।</span></div></div>
+<div class="srm-command-grid"><a href="global-identity-passport.html">🪪 Identity Passport</a><a href="research/global-identity-evidence-charter-2026-10-01.md">📜 Evidence Charter</a><a href="verified-work.html">✅ Verified Work</a><a href="work-to-value-employment-income.html">💼 Employment &amp; Income</a><a href="https://rampaulsaini.github.io/my-omniverse-store/" target="_blank" rel="noopener">🛍️ Digital Store</a></div>
+</section>
+
+<section class="container srm-live-panel" id="production-results-hub" aria-labelledby="production-results-hub-heading">
+<h2 id="production-results-hub-heading">📊 Public Production Results — वास्तविक परिणाम</h2>
+<p><strong>Production-first visibility:</strong> नवीन production cycles के concrete, source-bound results और module-wise output यहाँ सीधे public telemetry से दिखाए जाते हैं। Verification इन produced results की downstream quality/evidence layer है।</p>
+<div class="srm-command-grid"><a href="public-production-results-hub.html">📊 Production Results Hub खोलें</a><a href="showroom-public-interface.html">✨ Supreme Public Showroom</a><a href="generated/public-production-catalog.json">📦 Latest Catalog</a><a href="generated/public-production-by-module.html">🧩 Module-wise Results</a></div>
+</section>
+
+<section class="container srm-live-panel" id="production-command-center" aria-labelledby="production-command-center-heading">
+<h2 id="production-command-center-heading">⚡ SHIRMANI Public Production Command Center</h2>
+<p><strong>Production-first Automission:</strong> लगातार research, AI/ML/NLP, factory, media, livelihood और public artifacts पैदा करना; QC, evidence और independent verification उन produced results की अलग quality/evidence layers हैं।</p>
+<div class="srm-command-grid">
+<a href="production-command-center.html">🚀 Production Command Center खोलें</a>
+<a href="generated/public-production-status.json">📊 Production Telemetry</a>
+<a href="factory/public_production_materializer.py">⚙️ Production Materializer</a>
+</div>
+</section>
+
+<!-- Footer -->
+    <footer>
+        <p>© 2026 शिरोमणि रामपॉल सैनी - सर्वाधिकार सुरक्षित। Omniverse Platform.</p>
+    </footer>
+
+
+<section class="srm-live-panel" aria-labelledby="platform-charter-link">
+<h2 id="platform-charter-link">⚖️ Public Platform Charter</h2>
+<p><a href="platform-charter.md">Platform Charter — निष्पक्ष समझ</a></p>
+</section>
+<section style="max-width:1150px;margin:24px auto;padding:20px;border:2px solid #d4af37;border-radius:18px;background:linear-gradient(135deg,rgba(212,175,55,.18),rgba(0,210,255,.08));text-align:center"><h2 style="color:#d4af37;margin:0 0 8px">꙰ Public Funding & Production Appeal</h2><p style="color:#f5f7fb;max-width:900px;margin:0 auto 14px">Production-first platform: Institute → Factory → QC/Gate → Public Showroom → Customer Reviews → Continuous Quality Improvement.</p><a href="funding-appeal.html" style="display:inline-block;padding:10px 15px;border-radius:10px;background:#d4af37;color:#080a10;text-decoration:none;font-weight:900">देखें: Project, Progress, Benefits & Funding</a></section><section style="max-width:1150px;margin:24px auto;padding:22px;border:2px solid #d4af37;border-radius:20px;background:rgba(212,175,55,.12);text-align:center"><h2 style="color:#d4af37">SHIRMANI V2 LIVE CHARACTER ENTRY</h2><p>Voice → Authorized Voice → Context &amp; Evidence → Photo/Likeness → Natural Gaze &amp; Facial Movement → Lip-Sync → Live Presentation</p><p><a href="shirmani-live-presentation.html">🎙️ Live Presentation</a> &nbsp; <a href="yatharth-omniverse-live.html">🌐 Yatharth Omniverse Live</a> &nbsp; <a href="generated/shirmani-live-character-v2.json">📜 V2 Contract</a></p><p style="font-size:.9rem">Evidence उपलब्ध हो तो source; पर्याप्त प्रमाण न हो तो “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</p></section></body>
+    </html>
+            
