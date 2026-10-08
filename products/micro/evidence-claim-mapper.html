@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Evidence Claim Mapper — SHIRMANI Digital Product</title>
+<meta name="description" content="A browser-first tool for separating claims, evidence, sources and verification state.">
+<style>
+:root{--bg:#071019;--panel:#101b28;--line:#33485c;--gold:#f0cf5a;--cyan:#67e8f9;--ok:#72e6aa;--muted:#aebaca}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#172b42,#071019 55%);color:#f4f7fb;font:15px/1.55 system-ui,sans-serif}
+main{max-width:1100px;margin:auto;padding:18px 14px 70px}.hero,.panel{background:rgba(16,27,40,.97);border:1px solid var(--line);border-radius:18px;padding:20px;margin:12px 0}
+.hero{border:2px solid var(--gold);text-align:center}h1,h2{color:var(--gold)}.tag{display:inline-block;color:var(--cyan);border:1px solid #386477;border-radius:999px;padding:3px 9px;font-size:.78rem}
+.identity{margin:14px auto;padding:10px;border-radius:10px;border:1px solid #6b5a21;color:#f6d35f;max-width:900px;font-weight:800}
+label{display:block;color:var(--cyan);font-weight:800;margin:10px 0 5px}textarea,input,select{width:100%;background:#071019;color:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{display:inline-block;border:0;border-radius:10px;background:var(--gold);color:#111;padding:10px 14px;font-weight:900;cursor:pointer;margin:6px 4px 0 0}.btn.alt{background:#122635;color:var(--cyan);border:1px solid #3b6276}
+.result{background:#071019;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:12px}.state{font-weight:900;color:var(--ok)}.warn{color:#fbbf24}.muted{color:var(--muted)}pre{white-space:pre-wrap;word-break:break-word}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+</style></head>
+<body><main>
+<section class="hero">
+<span class="tag">SHIRMANI SUPREME DIGITAL PRODUCT · EVIDENCE-FIRST</span>
+<h1>Evidence Claim Mapper</h1>
+<p>Claim → Source → Evidence → Interpretation → Verification state</p>
+<div class="identity">Shiromani Rampal Saini · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present</div>
+<p class="muted">Short description: turn an idea or statement into a structured evidence map without presenting unsupported claims as verified facts.</p>
+</section>
+<section class="panel">
+<h2>1. Build the map</h2>
+<label for="claim">Claim / statement</label><textarea id="claim" rows="4" placeholder="Enter one clear claim or statement…"></textarea>
+<div class="grid">
+<div><label for="source">Source</label><input id="source" placeholder="URL, document, dataset, interview, observation…"></div>
+<div><label for="type">Evidence type</label><select id="type"><option>Primary source</option><option>Independent study</option><option>Dataset / measurement</option><option>Observation</option><option>Expert statement</option><option>Philosophical / identity statement</option></select></div>
+</div>
+<label for="evidence">Evidence / excerpt</label><textarea id="evidence" rows="5" placeholder="Record the specific evidence supporting or challenging the claim…"></textarea>
+<label for="interpretation">Interpretation</label><textarea id="interpretation" rows="4" placeholder="What does the evidence justify? Keep interpretation narrower than the evidence."></textarea>
+<button class="btn" onclick="mapClaim()">Create evidence map</button>
+<button class="btn alt" onclick="clearAll()">Clear</button>
+</section>
+<section class="panel"><h2>2. Result</h2><div id="result" class="result muted">No map created yet.</div></section>
+<section class="panel"><h2>3. Product passport</h2>
+<p><b>Product ID:</b> SRI-TOOL-ECM-001</p>
+<p><b>QC code:</b> QC-PROD-SRI-TOOL-ECM-001</p>
+<p><b>Gate:</b> GATE-PRODUCTION · <b>Dispatch:</b> NO</p>
+<p><b>Price:</b> FREE public tool</p>
+<p class="muted">This browser tool does not independently verify a claim. Its purpose is to make the evidence boundary explicit and reusable.</p>
+</section>
+<script>
+const $=id=>document.getElementById(id);
+function mapClaim(){
+ const claim=$("claim").value.trim(),source=$("source").value.trim(),type=$("type").value,evidence=$("evidence").value.trim(),interpretation=$("interpretation").value.trim();
+ if(!claim){$("result").innerHTML='<span class="warn">Enter a claim first.</span>';return}
+ const sufficient=source&&evidence&&interpretation;
+ const state=sufficient?(type==="Philosophical / identity statement"?"IDENTITY_STATEMENT · NOT_SCIENTIFICALLY_VERIFIED":"EVIDENCE_RECORDED · INDEPENDENT_VERIFICATION_NOT_ESTABLISHED"):"INSUFFICIENT_EVIDENCE";
+ const safe=s=>String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+ $("result").innerHTML='<div class="state">'+state+'</div><p><b>Claim:</b> '+safe(claim)+'</p><p><b>Source:</b> '+safe(source||"Not supplied")+'</p><p><b>Evidence:</b> '+safe(evidence||"Not supplied")+'</p><p><b>Interpretation:</b> '+safe(interpretation||"Not supplied")+'</p><p class="muted">Rule: evidence presence is not the same as independent verification.</p>';
+}
+function clearAll(){["claim","source","evidence","interpretation"].forEach(id=>$(id).value="");$("result").textContent="No map created yet."}
+</script></main></body></html>
