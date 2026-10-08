@@ -46,6 +46,14 @@ jobs:
           python3 factory/multi_layer_production.py
           python3 factory/public_production_materializer.py
           python3 factory/production_truth_gate.py
+      - name: Archive oversized production results as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-production-results-${{ github.run_id }}
+          path: generated/production-results.jsonl
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
       - name: Publish persistent production state
         shell: bash
         env:
