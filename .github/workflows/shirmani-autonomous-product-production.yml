@@ -2,10 +2,10 @@ name: SHIRMANI Autonomous Product Production
 on:
   workflow_dispatch:
     inputs:
-      batch: {description: "Concrete products per cycle", required: false, default: "100"}
-      media_batch: {description: "MP4 demos per cycle", required: false, default: "25"}
+      batch: {description: "Concrete products per cycle", required: false, default: "50"}
+      media_batch: {description: "MP4 demos per cycle", required: false, default: "10"}
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/5 * * * *"
 concurrency:
   group: shirmani-autonomous-product-production
   cancel-in-progress: false
@@ -24,13 +24,20 @@ jobs:
       - name: 4K-ready product visuals
         env: {VISUAL_BATCH: "250", VISUAL_REBUILD: "0"}
         run: python3 factory/product_visual_identity_factory.py
-      - name: Product-specific MP4 demos
-        env: {MEDIA_BATCH: ${{ github.event.inputs.media_batch || '25' }}}
+      - name: Product-specific MP4 + VIP screenshot media
+        env:
+          MEDIA_BATCH_SIZE: ${{ github.event.inputs.media_batch || '10' }}
         run: |
-          if command -v ffmpeg >/dev/null 2>&1; then python3 factory/product_demo_media_factory.py; else echo "ffmpeg unavailable; interactive demo routes remain available."; fi
+          python3 -m pip install --disable-pip-version-check "pillow>=10,<12" "qrcode>=8,<9"
+          if command -v ffmpeg >/dev/null 2>&1; then python3 scripts/product_media_factory.py; else echo "ffmpeg unavailable; VIP screenshots will still be produced and interactive demo routes remain available."; fi
+      - name: Build customer-facing demo manifest
+        run: python3 scripts/build_product_demo_manifest.py
+      - name: Build showroom visual manifest
+        run: python3 scripts/build_showroom_visual_manifest.py
+
       - name: Commit production artifacts
         run: |
           git config user.name "SHIRMANI Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add products/concrete products/visuals products/demo-video generated/live-production-state.json generated/concrete-production-overlay.json generated/PRODUCT-PASSPORTS.jsonl generated/product-visual-assets.json generated/product-specific-demo-video-manifest.json
+          git add products/concrete products/visuals products/demos products/vip-screenshots generated/live-production-state.json generated/concrete-production-overlay.json generated/PRODUCT-PASSPORTS.jsonl generated/product-visual-assets.json generated/product-specific-demo-video-manifest.json generated/product-media-production-manifest.json generated/product-vip-screenshot-manifest.json generated/product-demo-video-manifest.json generated/product-demo-video-manifest.md generated/showroom-visual-manifest.json generated/showroom-visual-manifest.md
           if git diff --cached --quiet; then echo "No new artifacts"; else git commit -m "production: autonomous product batch"; git push; fi
