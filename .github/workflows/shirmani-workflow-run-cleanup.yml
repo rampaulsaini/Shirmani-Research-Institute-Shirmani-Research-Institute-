@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      - name: Delete up to 1000 completed workflow runs per cycle
+      - name: Delete up to 5000 completed workflow runs per cycle
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -31,7 +31,8 @@ jobs:
           deleted_file="$(mktemp)"
           trap 'rm -f "${tmp}" "${deleted_file}" "${tmp}.limited"' EXIT
 
-          for page in 1 2 3 4 5 6 7 8 9 10; do
+          # Collect up to 5000 completed runs (50 pages x 100).
+          for page in $(seq 1 50); do
             gh api \
               -H "Accept: application/vnd.github+json" \
               -H "X-GitHub-Api-Version: 2026-03-10" \
@@ -39,12 +40,13 @@ jobs:
               --jq '.workflow_runs[].id' >> "${tmp}" || true
           done
 
+          # Never attempt to delete this cleanup run itself.
           sed -i "/^${current}$/d" "${tmp}" 2>/dev/null || true
-          sort -u "${tmp}" | head -n 1000 > "${tmp}.limited"
+          sort -u "${tmp}" | head -n 5000 > "${tmp}.limited"
           mv "${tmp}.limited" "${tmp}"
 
           total="$(wc -l < "${tmp}" | tr -d ' ')"
-          echo "Found ${total} completed runs selected for deletion."
+          echo "Found ${total} completed workflow runs selected for deletion."
 
           if [ "${total}" -eq 0 ]; then
             echo "No completed workflow runs remain to delete."
@@ -66,7 +68,7 @@ jobs:
           }
           export -f delete_run
 
-          xargs -r -n 1 -P 20 bash -c 'delete_run "$1"' _ < "${tmp}"
+          xargs -r -n 1 -P 25 bash -c 'delete_run "$1"' _ < "${tmp}"
 
           deleted="$(wc -l < "${deleted_file}" | tr -d ' ')"
           echo "Deleted ${deleted} completed workflow runs in this cycle."
