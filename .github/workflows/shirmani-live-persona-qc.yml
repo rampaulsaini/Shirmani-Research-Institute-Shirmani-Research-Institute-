@@ -1,0 +1,38 @@
+name: SHIRMANI Supreme Live Persona Contract QC
+
+on:
+  push:
+    paths:
+      - 'live-persona-supreme-v3.html'
+      - 'docs/supreme-live-persona-v4-contract.md'
+      - '.github/workflows/shirmani-live-persona-qc.yml'
+  pull_request:
+    paths:
+      - 'live-persona-supreme-v3.html'
+      - 'docs/supreme-live-persona-v4-contract.md'
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  contract-qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate persona contract
+        run: |
+          test -s live-persona-supreme-v3.html
+          test -s docs/supreme-live-persona-v4-contract.md
+          grep -q 'Voice → Context → Evidence → Answer → Face → Gaze → Lip-sync → Feedback' live-persona-supreme-v3.html
+          grep -q 'अभी पर्याप्त प्रमाण उपलब्ध नहीं है' live-persona-supreme-v3.html
+          grep -q 'server-side' docs/supreme-live-persona-v4-contract.md
+      - name: HTML smoke test
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("live-persona-supreme-v3.html").read_text(encoding="utf-8")
+          assert p.lower().count("<html") == 1
+          assert "</html>" in p.lower()
+          assert p.count("<script>") == p.count("</script>")
+          print("SHIRMANI LIVE PERSONA QC: PASS")
+          PY
