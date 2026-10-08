@@ -2,8 +2,9 @@ name: SHIRMANI Impartial Verification Gate
 
 on:
   workflow_dispatch:
+  # Keep periodic assurance without five-minute queue pressure.
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "17 * * * *"
   push:
     branches: [main]
     paths:
