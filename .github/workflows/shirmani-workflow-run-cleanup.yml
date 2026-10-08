@@ -5,7 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/15 * * * *"
 
 permissions:
   actions: write
@@ -17,9 +17,9 @@ concurrency:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
-      - name: Delete up to 500 oldest completed workflow runs
+      - name: Delete up to 1000 oldest completed workflow runs
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -27,21 +27,47 @@ jobs:
           set -u
           repo="${GITHUB_REPOSITORY}"
           current="${GITHUB_RUN_ID}"
-          deleted=0
+          tmp="$(mktemp)"
+          deleted_file="$(mktemp)"
+          trap 'rm -f "${tmp}" "${deleted_file}" "${tmp}.limited"' EXIT
 
-          for page in 1 2 3 4 5; do
-            ids="$(gh api               -H "Accept: application/vnd.github+json"               -H "X-GitHub-Api-Version: 2026-03-10"               "repos/${repo}/actions/runs?status=completed&per_page=100&page=${page}"               --jq '.workflow_runs[].id' | grep -v "^${current}$" || true)"
-
-            [ -z "${ids}" ] && break
-
-            for id in ${ids}; do
-              if gh api --method DELETE                 -H "Accept: application/vnd.github+json"                 -H "X-GitHub-Api-Version: 2026-03-10"                 "repos/${repo}/actions/runs/${id}"; then
-                deleted=$((deleted + 1))
-              else
-                echo "Could not delete run ${id}; continuing."
-              fi
-            done
+          for page in 1 2 3 4 5 6 7 8 9 10; do
+            gh api \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2026-03-10" \
+              "repos/${repo}/actions/runs?status=completed&per_page=100&page=${page}" \
+              --jq '.workflow_runs[].id' >> "${tmp}" || true
           done
 
+          sed -i "/^${current}$/d" "${tmp}" 2>/dev/null || true
+          sort -u "${tmp}" | head -n 1000 > "${tmp}.limited"
+          mv "${tmp}.limited" "${tmp}"
+
+          total="$(wc -l < "${tmp}" | tr -d ' ')"
+          echo "Found ${total} completed runs selected for deletion."
+
+          if [ "${total}" -eq 0 ]; then
+            echo "No completed workflow runs remain to delete."
+            exit 0
+          fi
+
+          : > "${deleted_file}"
+
+          delete_run() {
+            id="$1"
+            if gh api --method DELETE \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2026-03-10" \
+              "repos/${repo}/actions/runs/${id}" >/dev/null 2>&1; then
+              echo 1 >> "${deleted_file}"
+            else
+              echo "Could not delete run ${id}; continuing." >&2
+            fi
+          }
+          export -f delete_run
+
+          xargs -r -n 1 -P 20 bash -c 'delete_run "$1"' _ < "${tmp}"
+
+          deleted="$(wc -l < "${deleted_file}" | tr -d ' ')"
           echo "Deleted ${deleted} completed workflow runs in this cycle."
-          echo "Cleanup repeats every 10 minutes until the completed-run backlog is cleared."
+          echo "Cleanup repeats every 15 minutes until the completed-run backlog is cleared."
