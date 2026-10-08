@@ -1,0 +1,35 @@
+{
+  "version": "V10",
+  "canonical_surface": "shirmani-supreme-live-character-v10.html",
+  "entry_chain": "index.html -> shirmani-live-character-v5.html -> V10",
+  "pipeline": [
+    "Voice",
+    "Authorized Voice",
+    "Context",
+    "Evidence",
+    "Reasoning",
+    "Answer",
+    "Face",
+    "Gaze",
+    "Lip Timing",
+    "Live",
+    "Audit",
+    "Improve"
+  ],
+  "rules": {
+    "insufficient_evidence": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है।",
+    "identity": "user-authored framework; not automatically scientific fact",
+    "comparative_reasoning": "criteria + facts + sources + counter-evidence",
+    "dignity": "do not demean people or groups"
+  },
+  "gates": {
+    "browser_voice": "testable",
+    "authorized_voice": "explicit authorization required",
+    "avatar": "authorized asset",
+    "gaze": "runtime validation",
+    "facial_animation": "runtime validation",
+    "phoneme_viseme_lipsync": "timing test",
+    "production_ai_nlp": "secure server-side endpoint",
+    "independent_verification": "separate artifact"
+  }
+}
