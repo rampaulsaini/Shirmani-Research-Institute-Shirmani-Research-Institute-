@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Supreme Production Workbench</title>
+<meta name="description" content="Production-first command surface connecting research discovery, factory production, QC, visual assets, showroom and customer quality improvement.">
+<style>
+:root{--bg:#050910;--panel:#0d1722;--line:#304457;--gold:#f0cf5a;--cyan:#67e8f9;--green:#72e6aa;--muted:#aebaca}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#1a2b45,#050910 55%);color:#f4f7fb;font:15px/1.55 system-ui,-apple-system,"Noto Sans",sans-serif}
+main{max-width:1500px;margin:auto;padding:18px}.hero,.panel,.lane,.metric{background:rgba(13,23,34,.97);border:1px solid var(--line);border-radius:18px}.hero{padding:28px;text-align:center;border:2px solid var(--gold)}
+h1,h2,h3{color:var(--gold)}h1{font-size:clamp(2rem,5vw,4rem);margin:.2rem 0}.muted{color:var(--muted)}.tag{display:inline-block;border:1px solid #386477;border-radius:999px;color:var(--cyan);padding:4px 10px;font-weight:800;font-size:.76rem}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0}.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--gold);color:#111;text-decoration:none;font-weight:900}.alt{background:#122635;color:var(--cyan);border:1px solid #3b6276}
+.metrics,.lanes,.grid{display:grid;gap:11px}.metrics{grid-template-columns:repeat(6,1fr);margin-top:18px}.metric{padding:14px}.num{font-size:1.8rem;font-weight:950;color:var(--gold)}
+.lanes{grid-template-columns:repeat(4,1fr)}.lane{padding:18px}.lane b{color:var(--cyan)}.grid{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.card{padding:16px;background:#08111b;border:1px solid var(--line);border-radius:14px}.bar{height:12px;background:#07101a;border:1px solid var(--line);border-radius:99px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--cyan));width:0}
+.notice{padding:14px;border-left:4px solid var(--cyan);background:#07131b}.ok{color:var(--green);font-weight:900}
+@media(max-width:1000px){.metrics{grid-template-columns:repeat(3,1fr)}.lanes{grid-template-columns:1fr 1fr}}@media(max-width:600px){.metrics,.lanes{grid-template-columns:1fr 1fr}.metrics .metric{min-width:0}}
+</style></head><body><main>
+<section class="hero">
+<span class="tag">꙰ SHIRMANI RESEARCH INSTITUTE · PRODUCTION-FIRST WORKBENCH</span>
+<h1>Supreme Production Workbench</h1>
+<p><b>Institute → Factory → QC/Gate → Showroom/Sale → Customer Improvement</b></p>
+<p class="muted">यह surface automation को केवल verification runner नहीं मानता। इसका public उद्देश्य concrete production, product identity, visual/media assets, customer use और अगले production cycle को एक ही measurable loop में जोड़ना है।</p>
+<div class="actions"><a class="btn" href="supreme-public-production-showroom.html">Open Public Showroom</a><a class="btn alt" href="supreme-production-command-center.html">Production Command Center</a><a class="btn alt" href="supreme-marking-hub.html">Supreme Marking Hub</a><a class="btn alt" href="production-first-public-map.html">Production Map</a></div>
+</section>
+
+<section class="panel" style="padding:16px;margin-top:14px"><h2>LIVE PRODUCTION TELEMETRY</h2>
+<div class="metrics">
+<div class="metric"><div id="products" class="num">—</div><div>Concrete products</div></div>
+<div class="metric"><div id="catalog" class="num">—</div><div>Catalog identities</div></div>
+<div class="metric"><div id="modules" class="num">—</div><div>Production modules</div></div>
+<div class="metric"><div id="outputs" class="num">—</div><div>Concrete outputs</div></div>
+<div class="metric"><div id="visuals" class="num">—</div><div>Published visuals</div></div>
+<div class="metric"><div id="media" class="num">—</div><div>Media assets/routes</div></div>
+</div><div style="margin-top:14px" class="bar"><div id="bar" class="fill"></div></div>
+<p id="summary" class="muted">Loading live manifests…</p>
+</section>
+
+<section class="panel" style="padding:16px;margin-top:14px"><h2>FOUR-LEVEL PRODUCTION PIPELINE</h2>
+<div class="lanes">
+<div class="lane"><b>01 · INSTITUTE</b><h3>Discover</h3><p class="muted">Research ideas, use cases, product families, source-backed concepts and bounded backlog.</p><a class="btn alt" href="index.html">Institute →</a></div>
+<div class="lane"><b>02 · FACTORY</b><h3>Build</h3><p class="muted">Turn approved work units into concrete browser/digital product artifacts with unique IDs.</p><a class="btn alt" href="supreme-production-operations.html">Factory →</a></div>
+<div class="lane"><b>03 · QC / GATE</b><h3>Release</h3><p class="muted">QC passport, gate state, visual/media readiness and dispatch state remain explicit.</p><a class="btn alt" href="product-qc-dashboard.html">QC →</a></div>
+<div class="lane"><b>04 · SHOWROOM</b><h3>Use / Sale</h3><p class="muted">Public product view, description, price/offer when configured, QR passport, review and order intent.</p><a class="btn alt" href="supreme-public-production-showroom.html">Showroom →</a></div>
+</div></section>
+
+<section class="panel" style="padding:16px;margin-top:14px"><h2>MULTI-LAYER WORK PLAN</h2>
+<div class="grid">
+<div class="card"><h3>🧩 Product materialization</h3><p class="muted">Convert queued identities into concrete artifacts. A workflow run is never counted as a product.</p><p class="ok">Measure: concrete artifact + product ID.</p></div>
+<div class="card"><h3>🎨 Visual identity</h3><p class="muted">Every concrete product gets its own scalable master visual route with logo, identity text, short description and upper-right long-description QR.</p><p class="ok">Measure: visual manifest coverage.</p></div>
+<div class="card"><h3>🎬 Media presentation</h3><p class="muted">Connect demo-video, interactive demo and VIP presentation routes where assets exist; never claim a real MP4 when only a route exists.</p><p class="ok">Measure: media manifest coverage.</p></div>
+<div class="card"><h3>⭐ Customer improvement</h3><p class="muted">Reviews and ratings feed product-quality improvement. They are customer signals, not scientific verification.</p><p class="ok">Measure: feedback → improvement actions.</p></div>
+<div class="card"><h3>🛍️ Commercial readiness</h3><p class="muted">Keep price, offer, guarantee, packing, order intent and dispatch state separate. No fabricated sale or dispatch.</p><p class="ok">Measure: sale-ready passport fields.</p></div>
+<div class="card"><h3>⚙️ Continuous automission</h3><p class="muted">Scheduled work can continue without an open chat, subject to GitHub Actions availability, permissions, quotas and workflow health.</p><p class="ok">Measure: completed production cycles.</p></div>
+</div></section>
+
+<section class="panel" style="padding:16px;margin-top:14px"><h2>SCALE TARGETS — TRUTHFUL COUNTS</h2>
+<div class="notice"><b>Important:</b> large planning targets such as 150,000 digital products are treated as targets/backlog capacity until concrete products actually exist. The public counters below are loaded from repository manifests; nothing is invented merely to fill the showroom.</div>
+<p id="scale" class="muted">Loading scale state…</p>
+<div class="actions"><a class="btn" href="generated/public-production-index.html">Live Production Results</a><a class="btn alt" href="generated/public-module-production-map.html">Module Production Map</a><a class="btn alt" href="customer-reviews.html">Customer Reviews</a></div>
+</section>
+
+<footer class="muted" style="text-align:center;padding:30px 0">SHIRMANI Research Institute · Production → QC → Showroom → Customer Improvement · No fabricated production, sales or verification claims.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+async function J(p,d={}){try{const r=await fetch(p+"?ts="+Date.now(),{cache:"no-store"});return r.ok?await r.json():d}catch{return d}}
+async function load(){
+ const [s,o,m,v,ma,r]=await Promise.all([
+  J("generated/live-production-state.json"),J("generated/concrete-production-overlay.json"),J("generated/public-module-inventory.json"),J("products/visuals/manifest.json"),J("generated/product-media-production-manifest.json"),J("generated/customer-quality-dashboard.json")
+ ]);
+ const p=Number(s.concrete_repository_assets||o.produced_count||0), c=Number(s.catalog_identities||o.product_count||0);
+ $("products").textContent=p.toLocaleString("en-IN");$("catalog").textContent=c.toLocaleString("en-IN");
+ $("modules").textContent=Number(m.module_count||0).toLocaleString("en-IN");$("outputs").textContent=Number(o.produced_count||0).toLocaleString("en-IN");
+ $("visuals").textContent=Number(v.total_visuals||0).toLocaleString("en-IN");
+ $("media").textContent=(Number(ma.interactive_demo_count||0)+Number(ma.real_mp4_count||0)+Number(ma.vip_screenshot_count||0)).toLocaleString("en-IN");
+ const target=Number(s.five_thousand_scale_target||o.product_count||5000); const pct=target?Math.min(100,p/target*100):0;
+ $("bar").style.width=pct+"%";
+ $("summary").textContent=p.toLocaleString("en-IN")+" concrete products against current production scale target "+target.toLocaleString("en-IN")+" ("+pct.toFixed(2)+"%). Reviews: "+Number(r.review_count||0).toLocaleString("en-IN")+" · improvement actions: "+Number(r.improvement_actions||0).toLocaleString("en-IN")+".";
+ $("scale").textContent="Concrete products: "+p.toLocaleString("en-IN")+" · catalog identities: "+c.toLocaleString("en-IN")+" · modules: "+Number(m.module_count||0).toLocaleString("en-IN")+" · visuals: "+Number(v.total_visuals||0).toLocaleString("en-IN")+" · media assets/routes: "+(Number(ma.interactive_demo_count||0)+Number(ma.real_mp4_count||0)+Number(ma.vip_screenshot_count||0)).toLocaleString("en-IN")+". Large targets remain backlog until materialized.";
+}
+load();
+</script></body></html>
