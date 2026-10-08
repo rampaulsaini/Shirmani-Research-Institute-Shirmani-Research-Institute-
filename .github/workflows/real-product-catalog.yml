@@ -10,6 +10,7 @@ on:
       - "factory/product_catalog_materializer.py"
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-real-product-catalog
   cancel-in-progress: false
@@ -18,16 +19,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Materialize real product catalog
         run: python3 factory/product_catalog_materializer.py
-      - name: Publish catalog artifacts
+      - name: Publish catalog artifacts through pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          set -euo pipefail
+          branch="automation/real-product-catalog-materialization"
+          git fetch origin main
+          git checkout -B "$branch" origin/main
+          python3 factory/product_catalog_materializer.py
           git config user.name "SHIRMANI Product Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add products.html generated/product-catalog-public.json
           if git diff --cached --quiet; then
             echo "No product catalog changes."
+            exit 0
+          fi
+          git commit -m "chore: materialize real product catalog"
+          git push --force-with-lease origin "HEAD:$branch"
+          if gh pr view "$branch" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            echo "Catalog PR already exists; branch updated."
           else
-            git commit -m "chore: materialize real product catalog"
-            git push
+            gh pr create               --repo "${{ github.repository }}"               --base main               --head "$branch"               --title "chore: materialize real product catalog"               --body "Automated product catalog materialization. Generated artifacts are proposed through the repository's PR-only main-branch policy."
           fi
