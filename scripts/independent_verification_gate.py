@@ -50,6 +50,24 @@ def validate_record(record: dict[str, Any]) -> None:
         sources = record.get("independent_sources")
         if not isinstance(sources, list) or not sources:
             fail(f"{rid}: at least one independent source is required")
+        if any(not isinstance(source, dict) for source in sources):
+            fail(f"{rid}: independent_sources must contain structured provenance objects")
+        for source in sources:
+            if not source.get("locator"):
+                fail(f"{rid}: every independent source requires a locator")
+            if source.get("author_authored") is True:
+                fail(f"{rid}: author-authored material cannot be an independent source")
+            if source.get("independence_attested") is not True:
+                fail(f"{rid}: every independent source requires explicit independence_attested=true")
+        test = record.get("test_or_observation")
+        if not isinstance(test, dict) or not test.get("protocol") or not test.get("result"):
+            fail(f"{rid}: test_or_observation requires protocol and result")
+        counter = record.get("counter_evidence_review")
+        if not isinstance(counter, dict) or counter.get("reviewed") is not True:
+            fail(f"{rid}: counter_evidence_review must explicitly record reviewed=true")
+        reviewer = record["reviewer"]
+        if not isinstance(reviewer, dict) or reviewer.get("identity") == record.get("author_identity"):
+            fail(f"{rid}: reviewer must be distinct from the author")
         if record.get("decision") not in ALLOWED_DECISIONS:
             fail(f"{rid}: invalid decision")
         if record.get("decision") != "VERIFIED":
