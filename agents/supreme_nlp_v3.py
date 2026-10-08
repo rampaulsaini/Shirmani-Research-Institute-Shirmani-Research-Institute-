@@ -386,16 +386,18 @@ def drift_report(reference, current, threshold=2.0):
     cur=[normalize(x) for x in current]
     ref_groups={}
     cur_groups={}
+    insufficient_unit_evidence = False
     for row in ref:
-        # Missing units cannot establish a safe feature comparison. Keep them
-        # as explicit fail-closed groups instead of treating "" as a unit.
+        # Missing units cannot establish a safe feature comparison. Do not
+        # manufacture a pseudo-unit such as "<MISSING_UNIT>" because that
+        # would still permit arithmetic comparison of incomparable scales.
         if not row.unit.strip():
-            ref_groups.setdefault((row.feature,"<MISSING_UNIT>"),[]).append(row.value)
+            insufficient_unit_evidence = True
             continue
         ref_groups.setdefault((row.feature,row.unit),[]).append(row.value)
     for row in cur:
         if not row.unit.strip():
-            cur_groups.setdefault((row.feature,"<MISSING_UNIT>"),[]).append(row.value)
+            insufficient_unit_evidence = True
             continue
         cur_groups.setdefault((row.feature,row.unit),[]).append(row.value)
     keys=sorted(set(ref_groups)|set(cur_groups))
@@ -403,7 +405,7 @@ def drift_report(reference, current, threshold=2.0):
         return {"status":"INSUFFICIENT_EVIDENCE","drift_detected":False,"features":{}}
     features={}
     drift=False
-    insufficient_evidence=False
+    insufficient_evidence=insufficient_unit_evidence
     for key in keys:
         rv=ref_groups.get(key,[]); cv=cur_groups.get(key,[])
         # A one-sample population cannot support a variance-based standardized
