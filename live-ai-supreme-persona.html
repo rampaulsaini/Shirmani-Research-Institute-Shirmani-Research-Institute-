@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI — Supreme Live AI Persona</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#17202a;background:#f5f7fa}
+body{margin:0}.wrap{max-width:1100px;margin:auto;padding:24px}.hero,.card{background:#fff;border:1px solid #dfe5ec;border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 4px 18px #0000000b}
+h1,h2{margin-top:0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:760px){.grid{grid-template-columns:1fr}}
+button,input,textarea,select{font:inherit;border:1px solid #ccd4df;border-radius:10px;padding:10px}button{cursor:pointer;background:#17202a;color:white}.row{display:flex;gap:8px;flex-wrap:wrap}.status{padding:10px;border-radius:10px;background:#eef3f7;margin-top:10px}.ok{border-left:5px solid #198754}.warn{border-left:5px solid #d39e00}.avatar{position:relative;width:100%;aspect-ratio:16/10;background:#111;border-radius:16px;overflow:hidden;display:grid;place-items:center}.avatar img{max-width:100%;max-height:100%;display:none}.face{font-size:90px}.mouth{position:absolute;bottom:18%;left:50%;transform:translateX(-50%);width:54px;height:12px;border-radius:50%;background:#000;transition:height .08s}.speaking .mouth{height:38px}.small{font-size:.9rem;color:#536273}.claim{font-weight:700}.tag{display:inline-block;padding:4px 8px;border-radius:99px;background:#edf1f5;margin:2px;font-size:.82rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+<h1>꙰ SHIRMANI HEART-VIEW — Supreme Live AI Persona</h1>
+<p>Voice → Voice System → Content → Photo/Lip-sync → Live Presentation</p>
+<div class="row"><span class="tag">Context-aware Q&A</span><span class="tag">Evidence-first</span><span class="tag">Respectful communication</span><span class="tag">Uncertainty-aware</span><span class="tag">Authorized voice gate</span></div>
+<div id="systemStatus" class="status ok">READY: browser presentation layer loaded. External AI/voice/lip-sync providers are not claimed as connected.</div>
+</section>
+
+<section class="grid">
+<div class="card">
+<h2>Live presentation</h2>
+<div id="avatar" class="avatar"><div class="face">꙰</div><img id="photo" alt="Authorized presentation photo"><div id="mouth" class="mouth"></div></div>
+<div class="row" style="margin-top:10px">
+<input id="photoInput" type="file" accept="image/*">
+<button id="start">Start voice</button><button id="stop">Stop</button>
+</div>
+<p class="small">Photo is used locally in this page. No identity substitution or voice cloning is performed by this static layer.</p>
+</div>
+
+<div class="card">
+<h2>Voice → NLP → Answer</h2>
+<textarea id="input" rows="8" placeholder="प्रश्न लिखें या Start voice दबाकर बोलें…"></textarea>
+<div class="row" style="margin-top:10px"><button id="answer">Prepare answer</button><button id="speak">Speak answer</button></div>
+<div id="output" class="status">उत्तर अभी तैयार नहीं है।</div>
+</div>
+</section>
+
+<section class="card">
+<h2>Evidence contract</h2>
+<p>हर उत्तर को तीन अवस्थाओं में रखा जाता है:</p>
+<div class="row"><span class="tag">AUTHOR / PHILOSOPHICAL STATEMENT</span><span class="tag">EVIDENCE-BACKED</span><span class="tag">NOT VERIFIED</span></div>
+<p id="evidenceNote" class="small">यदि स्वतंत्र स्रोत उपलब्ध नहीं है, interface उत्तर को “अभी पर्याप्त प्रमाण उपलब्ध नहीं है” के रूप में सीमित कर सकता है।</p>
+</section>
+
+<section class="card">
+<h2>Authorized voice integration</h2>
+<p>Provider credentials, consent और account authorization इस repository में hard-code नहीं किए जाते। नीचे adapter contract दिया गया है ताकि अधिकृत provider बाद में सुरक्षित रूप से जोड़ा जा सके।</p>
+<pre><code>voiceInput → authorizedVoiceAdapter → transcript
+transcript → context/NLP → evidence gate → response
+response → authorizedVoiceAdapter → audio
+audio + authorized photo/video → lip-sync renderer → live presentation</code></pre>
+</section>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const avatar=$('avatar'), input=$('input'), output=$('output');
+$('photoInput').onchange=e=>{const f=e.target.files[0];if(!f)return;const u=URL.createObjectURL(f);$('photo').src=u;$('photo').style.display='block';document.querySelector('.face').style.display='none'};
+let recognition=null;
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(SR){
+ recognition=new SR(); recognition.lang='hi-IN'; recognition.interimResults=false;
+ recognition.onresult=e=>{input.value=e.results[0][0].transcript;prepare()};
+ recognition.onend=()=>{$('start').disabled=false};
+}
+$('start').onclick=()=>{if(!recognition){output.textContent='इस browser में Speech Recognition उपलब्ध नहीं है।';return}$('start').disabled=true;recognition.start()};
+$('stop').onclick=()=>{if(recognition)recognition.stop();speechSynthesis.cancel();avatar.classList.remove('speaking')};
+function prepare(){
+ const q=input.value.trim();
+ if(!q){output.textContent='पहले प्रश्न दें।';return}
+ output.innerHTML='<span class="claim">उत्तर-तैयारी:</span> प्रश्न का context समझकर उत्तर दिया जाएगा। जहाँ स्वतंत्र evidence उपलब्ध नहीं होगा, दावा VERIFIED नहीं बनाया जाएगा।<br><br><strong>स्थिति:</strong> इस static presentation layer में external knowledge/research provider अभी connected नहीं है; इसलिए वास्तविक तथ्यात्मक उत्तर गढ़ना उचित नहीं है।';
+}
+$('answer').onclick=prepare;
+$('speak').onclick=()=>{
+ const text=output.innerText.trim(); if(!text)return;
+ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text);u.lang='hi-IN';
+ u.onstart=()=>avatar.classList.add('speaking');u.onend=()=>avatar.classList.remove('speaking');
+ speechSynthesis.speak(u);
+};
+</script>
+</body>
+</html>
