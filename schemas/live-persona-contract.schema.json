@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Live Persona Contract",
+  "type": "object",
+  "required": [
+    "version",
+    "identity_boundary",
+    "interaction_policy",
+    "evidence_gate",
+    "presentation_pipeline",
+    "production_states"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "identity_boundary": {
+      "type": "string"
+    },
+    "interaction_policy": {
+      "type": "object",
+      "required": [
+        "question_pipeline",
+        "insufficient_evidence_response"
+      ]
+    },
+    "evidence_gate": {
+      "type": "object",
+      "required": [
+        "claim_states",
+        "verification_pipeline"
+      ]
+    },
+    "presentation_pipeline": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "production_states": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "external_service_status": {
+      "type": "string"
+    }
+  }
+}
