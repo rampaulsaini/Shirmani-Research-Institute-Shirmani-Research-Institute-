@@ -1,13 +1,13 @@
 name: SHIRMANI Product Media Factory
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "2,7,12,17,22,27,32,37,42,47,52,57 * * * *"
   workflow_dispatch:
     inputs:
       batch_size:
         description: "Products to materialize with MP4 + VIP screenshot"
         required: false
-        default: "10"
+        default: "50"
 permissions:
   contents: write
 concurrency:
@@ -27,7 +27,7 @@ jobs:
           ffmpeg -version | head -n 1
       - name: Produce next media batch
         env:
-          MEDIA_BATCH_SIZE: ${{ github.event.inputs.batch_size || '10' }}
+          MEDIA_BATCH_SIZE: ${{ github.event.inputs.batch_size || '50' }}
         run: python scripts/product_media_factory.py
       - name: Commit generated media
         run: |
