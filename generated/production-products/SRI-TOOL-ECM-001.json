@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "product_id": "SRI-TOOL-ECM-001",
+  "name": "Evidence Claim Mapper",
+  "category": "browser-tool",
+  "production_state": "PRODUCED",
+  "sale_state": "READY_FOR_ORDER",
+  "artifact_url": "products/micro/evidence-claim-mapper.html",
+  "price_inr": 0,
+  "short_description": "Turn a claim into a structured map of source, evidence, interpretation and verification state.",
+  "qc_code": "QC-PROD-SRI-TOOL-ECM-001",
+  "gate_no": "GATE-PRODUCTION",
+  "dispatch_no": "NO",
+  "visual_contract": {
+    "logo_identity": true,
+    "english_identity": true,
+    "short_description_on_visual": true,
+    "qr_long_description_target": "product-passport.html?id=SRI-TOOL-ECM-001"
+  },
+  "integrity": {
+    "independent_verification": "NOT_ESTABLISHED",
+    "claim_policy": "fail_closed"
+  },
+  "produced_at": "2026-10-08",
+  "pipeline": [
+    "INSTITUTE",
+    "FACTORY",
+    "QC",
+    "SHOWROOM"
+  ]
+}
