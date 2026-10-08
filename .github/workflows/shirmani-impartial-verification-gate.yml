@@ -1,0 +1,33 @@
+name: SHIRMANI Impartial Verification Gate
+
+on:
+  workflow_dispatch:
+  # Hourly assurance; no push-triggered self-retrigger loop.
+  schedule:
+    - cron: "17 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-impartial-verification-gate
+  cancel-in-progress: true
+
+jobs:
+  impartiality:
+    name: Fail-Closed Impartiality Gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run impartiality contract tests
+        run: python -m pytest -q tests/test_impartial_verification_gate.py
+
+      - name: Run impartiality gate
+        run: python factory/impartial_verification_gate.py
+
+      - name: Publish impartiality status
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-impartial-verification-status
+          path: generated/impartial-verification-status.json
