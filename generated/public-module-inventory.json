@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-10-08T16:51:34.223104+00:00",
+  "generated_at": "2026-10-08T17:11:07.448837+00:00",
   "purpose": "public-first production module map",
-  "module_count": 10712,
+  "module_count": 10714,
   "lane_counts": {
-    "ai_ml_nlp": 9022,
+    "ai_ml_nlp": 9024,
     "automation": 5,
     "content": 8,
     "economic": 2,
@@ -20,7 +20,7 @@
     "READY": 10077,
     "RECORDED": 27,
     "UNAVAILABLE": 27,
-    "UNSPECIFIED": 436
+    "UNSPECIFIED": 438
   },
   "integrity": {
     "source": "repository files",
@@ -62595,6 +62595,13 @@
       "bytes": 807
     },
     {
+      "path": "factory/generate_product_demo_videos.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 4107
+    },
+    {
       "path": "factory/generate_products.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -62782,6 +62789,13 @@
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
       "bytes": 14055
+    },
+    {
+      "path": "product-demo.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1328
     },
     {
       "path": "production-hub.html",
