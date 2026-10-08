@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "subsystem": "SHIRMANI Voice → Authorized Voice Integration → Test Q&A → Lip-Sync → Live Presentation",
+  "consent": {
+    "subject": "user-provided voice/photo",
+    "status": "USER_PROVIDED_FOR_THIS_CONVERSATION",
+    "external_voice_cloning": "NOT_ENABLED_BY_DEFAULT",
+    "provider_connection": "REQUIRES_EXPLICIT_AUTHORIZATION_AND_PROVIDER_CREDENTIALS"
+  },
+  "source_assets": {
+    "photo_sha256": "562f03564d1c1f5f90b9aaab5ecc9fecce471345d9dbfbdd8c34ba18e2110631",
+    "audio_sha256": "2d7bbdee9338dcc87217ba40aecf72a2a2abd455f4a4bd9cdee8e084730dc0ba",
+    "audio_duration_seconds": 176.485,
+    "audio_channels": 1,
+    "audio_sample_rate_hz": 48000
+  },
+  "modes": {
+    "prerecorded_voice": "PLAYBACK_USER_SUPPLIED_AUDIO",
+    "browser_demo_tts": "BROWSER_SPEECH_SYNTHESIS_FALLBACK",
+    "authorized_provider": "ADAPTER_INTERFACE_ONLY_UNTIL_EXPLICIT_PROVIDER_AUTHORIZATION",
+    "lip_sync": "AUDIO_REACTIVE_DEMO; PHONEME_ACCURATE_MODE_REQUIRES_TIMESTAMPS"
+  },
+  "evidence_policy": {
+    "factual_answer_with_source": true,
+    "insufficient_evidence_phrase": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है",
+    "identity_statements_are_labeled_user_authored": true
+  }
+}
