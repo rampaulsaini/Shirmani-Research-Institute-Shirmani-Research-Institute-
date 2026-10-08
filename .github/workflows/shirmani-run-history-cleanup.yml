@@ -1,0 +1,61 @@
+name: SHIRMANI Actions History Cleanup
+
+on:
+  schedule:
+    - cron: "2/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+
+concurrency:
+  group: shirmani-actions-history-cleanup
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Delete historical workflow runs in controlled batches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          CURRENT_RUN_ID: ${{ github.run_id }}
+        run: |
+          set -u
+          deleted=0
+          attempted=0
+
+          while [ "$attempted" -lt 80 ]; do
+            runs="$(gh api -H "Accept: application/vnd.github+json" "/repos/$REPO/actions/runs?per_page=100" --jq '[.workflow_runs[] | select(.id != ('$CURRENT_RUN_ID')) | select(.status == "completed")][0:80] | .[].id' 2>/dev/null || true)"
+            [ -z "$runs" ] && break
+
+            while IFS= read -r run_id; do
+              [ -z "$run_id" ] && continue
+              attempted=$((attempted + 1))
+              if gh api --method DELETE -H "Accept: application/vnd.github+json" "/repos/$REPO/actions/runs/$run_id" >/dev/null 2>&1; then
+                deleted=$((deleted + 1))
+              fi
+              [ "$attempted" -ge 80 ] && break
+            done <<< "$runs"
+          done
+
+          total="$(gh api -H "Accept: application/vnd.github+json" "/repos/$REPO/actions/runs?per_page=1" --jq '.total_count' 2>/dev/null || echo unknown)"
+          echo "Deleted in this pass: $deleted"
+          echo "Remaining workflow runs: $total"
+
+          if [ "$total" = "1" ]; then
+            file=".github/workflows/shirmani-run-history-cleanup.yml"
+            sha="$(gh api -H "Accept: application/vnd.github+json" "/repos/$REPO/contents/$file" --jq '.sha' 2>/dev/null || true)"
+            if [ -n "$sha" ]; then
+              gh api --method DELETE -H "Accept: application/vnd.github+json" "/repos/$REPO/contents/$file" -f message="chore: remove temporary Actions history cleanup workflow" -f sha="$sha" >/dev/null || true
+            fi
+          fi
+
+          {
+            echo "## SHIRMANI Actions History Cleanup"
+            echo "- Deleted this pass: $deleted"
+            echo "- Remaining workflow runs: $total"
+          } >> "$GITHUB_STEP_SUMMARY"
