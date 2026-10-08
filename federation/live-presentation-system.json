@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "pipeline": [
+    {
+      "id": "voice",
+      "state": "READY"
+    },
+    {
+      "id": "authorized_voice",
+      "state": "NOT_CONNECTED"
+    },
+    {
+      "id": "test_qa",
+      "state": "READY"
+    },
+    {
+      "id": "photo_lipsync",
+      "state": "RUNTIME_REQUIRED"
+    },
+    {
+      "id": "live_presentation",
+      "state": "RUNTIME_REQUIRED"
+    }
+  ],
+  "truth_boundary": {
+    "live_claim_requires_runtime_health": true
+  },
+  "identity_policy": {
+    "authorized_voice_only": true,
+    "ai_identity_substitution_disabled": true
+  },
+  "answer_policy": {
+    "evidence_required_for_factual_claims": true,
+    "uncertainty_phrase": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है",
+    "respectful_dialogue": true
+  }
+}
