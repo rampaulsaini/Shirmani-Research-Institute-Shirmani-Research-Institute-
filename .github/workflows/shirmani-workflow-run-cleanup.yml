@@ -78,3 +78,4 @@ jobs:
           echo "Target: clear historical completed-run backlog without deleting workflow definitions."
 
       # Immediate-cleanup trigger: this update is intentionally merged to start a cleanup cycle.
+      # Historical cleanup is limited to completed runs; workflow definitions remain intact.
