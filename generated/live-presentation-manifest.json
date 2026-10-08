@@ -1,0 +1,22 @@
+{
+  "asset_policy": "USER_SUPPLIED_AND_AUTHORIZED_ASSETS_ONLY",
+  "status": "SOURCE_ASSETS_READY; BROWSER_DEMO_IMPLEMENTED; PROVIDER_RUNTIME_NOT_CONNECTED",
+  "photo": {
+    "source": "1769318638154.jpg",
+    "sha256": "562f03564d1c1f5f90b9aaab5ecc9fecce471345d9dbfbdd8c34ba18e2110631",
+    "width": 600,
+    "height": 525
+  },
+  "voice": {
+    "source": "शिरोमणि रामपॉल सैनी (1).mp3",
+    "sha256": "2d7bbdee9338dcc87217ba40aecf72a2a2abd455f4a4bd9cdee8e084730dc0ba",
+    "duration_seconds": 176.485,
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "runtime": {
+    "browser_demo": true,
+    "provider_adapter": "not-connected",
+    "phoneme_lipsync": false
+  }
+}
