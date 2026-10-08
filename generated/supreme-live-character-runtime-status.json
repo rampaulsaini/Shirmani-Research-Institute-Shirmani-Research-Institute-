@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "system": "SHIRMANI Supreme Live Character V2",
+  "public_entry": "supreme-live-character.html",
+  "main_platform_entry": "index.html#supreme-live-character",
+  "contract_entry": "shirmani-supreme-second-version.html",
+  "implemented": {
+    "main_platform_entry": true,
+    "character_contract": true,
+    "context_first_qa_demo": true,
+    "browser_voice_demo": true,
+    "local_audio_timing_preview": true,
+    "evidence_boundary": true,
+    "dignity_policy": true,
+    "continuous_runtime_gate": true
+  },
+  "integration_gates": {
+    "authorized_personal_voice": "NOT_CONNECTED",
+    "realtime_gaze_renderer": "IMPLEMENTATION_GATE",
+    "production_phoneme_viseme_lipsync": "VALIDATION_GATE",
+    "photorealistic_realtime_facial_animation": "RUNTIME_GATE",
+    "independent_scientific_verification": "EVIDENCE_SPECIFIC"
+  },
+  "truth_rule": "IMPLEMENTED means repository/UI contract exists; LIVE_READY requires the relevant external runtime and validation evidence.",
+  "answer_rule": {
+    "with_evidence": "answer_with_source",
+    "insufficient_evidence": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है।"
+  },
+  "pipeline": ["Voice","Authorized Voice Integration","Test Q&A","Context/NLP","Evidence/Source Check","Answer","Photo/Avatar","Gaze/Facial Motion","Lip-sync","Live Presentation","QC","Archive","Continuous Improvement"]
+}
