@@ -1,0 +1,70 @@
+name: SHIRMANI One-Time Workflow Run Cleanup
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Delete historical workflow runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          CURRENT_RUN_ID: ${{ github.run_id }}
+        shell: bash
+        run: |
+          set -u
+          deleted=0
+          failed=0
+          page=1
+
+          echo "Starting cleanup for $REPO"
+          echo "Keeping current cleanup run: $CURRENT_RUN_ID"
+
+          while true; do
+            ids=$(gh api -H "Accept: application/vnd.github+json"               "/repos/$REPO/actions/runs?per_page=100&page=$page"               --jq '.workflow_runs[].id' 2>/dev/null || true)
+
+            [ -z "$ids" ] && break
+
+            while IFS= read -r id; do
+              [ -z "$id" ] && continue
+              [ "$id" = "$CURRENT_RUN_ID" ] && continue
+
+              ok=0
+              for attempt in 1 2 3 4 5; do
+                if gh api --method DELETE                   -H "Accept: application/vnd.github+json"                   "/repos/$REPO/actions/runs/$id" >/dev/null 2>&1; then
+                  ok=1
+                  deleted=$((deleted + 1))
+                  break
+                fi
+                sleep $((attempt * 5))
+              done
+
+              [ "$ok" -eq 0 ] && failed=$((failed + 1))
+            done <<< "$ids"
+
+            page=$((page + 1))
+          done
+
+          echo "Cleanup pass complete: deleted=$deleted failed=$failed"
+
+      - name: Remove this temporary cleanup workflow
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          path=".github/workflows/shirmani-cleanup-all-runs.yml"
+          sha=$(gh api "/repos/$REPO/contents/$path?ref=main" --jq '.sha' 2>/dev/null || true)
+          if [ -n "$sha" ]; then
+            gh api --method DELETE               -H "Accept: application/vnd.github+json"               "/repos/$REPO/contents/$path"               -f message="chore: remove one-time workflow run cleanup"               -f sha="$sha"               -f branch="main" >/dev/null || true
+          fi
