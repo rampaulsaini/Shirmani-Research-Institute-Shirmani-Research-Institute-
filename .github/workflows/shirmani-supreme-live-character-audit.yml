@@ -1,0 +1,76 @@
+name: SHIRMANI Supreme Live Character Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  contract-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate required character surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          required=(
+            "index.html"
+            "supreme-live-character.html"
+            "shirmani-supreme-second-version.html"
+            "global-identity-passport.html"
+            "generated/supreme-live-character-spec.json"
+            "generated/shirmani-supreme-second-version.json"
+            "research/supreme-live-character-spec.md"
+            "research/shirmani-supreme-second-version.md"
+          )
+          for f in "${required[@]}"; do
+            test -s "$f" || { echo "MISSING_OR_EMPTY: $f"; exit 1; }
+          done
+      - name: Validate evidence-bound language
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "अभी पर्याप्त प्रमाण उपलब्ध नहीं है।" supreme-live-character.html
+          grep -q "independently verified" supreme-live-character.html
+          grep -q "authorized" supreme-live-character.html
+          grep -q "अभी पर्याप्त प्रमाण उपलब्ध नहीं है।" shirmani-supreme-second-version.html
+          grep -q "scientific fact" shirmani-supreme-second-version.html
+      - name: Validate public navigation
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "supreme-live-character.html" index.html
+          grep -q "shirmani-supreme-second-version.html" index.html
+          grep -q "supreme-live-character.html" global-identity-passport.html
+      - name: Validate machine contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          for p in ["generated/supreme-live-character-spec.json","generated/shirmani-supreme-second-version.json"]:
+              with open(p, encoding="utf-8") as f:
+                  d=json.load(f)
+              assert d.get("verification"), p
+              assert d.get("presentation") or d.get("presentation_contract"), p
+          print("Machine contracts: PASS")
+          PY
+      - name: Emit audit summary
+        run: |
+          {
+            echo "## SHIRMANI Supreme Live Character Audit"
+            echo
+            echo "- Public character page: present"
+            echo "- Second Version contract: present"
+            echo "- Evidence-bound uncertainty rule: present"
+            echo "- Authorized voice boundary: present"
+            echo "- Navigation: present"
+            echo "- Machine contracts: valid"
+            echo
+            echo "**Important:** this workflow validates implementation contracts; it does not independently verify philosophical or scientific claims and does not create a production voice/lip-sync runtime."
+          } >> "$GITHUB_STEP_SUMMARY"
