@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Voice → Live Presentation — Shirmani Research Institute</title>
+<meta name="description" content="Production-facing voice, content, visual presentation and lip-sync subsystem for the Shirmani Research Institute showroom.">
+<style>
+:root{--bg:#070910;--panel:#101521;--gold:#e5c35b;--cyan:#64d9ff;--green:#6ee7a8;--muted:#aeb8c7;--line:#273244;--text:#f5f7fb}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#1a2340,#070910 50%);color:var(--text);font:15px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.wrap{max-width:1180px;margin:auto;padding:28px 18px 70px}a{color:inherit}.hero,.card{background:rgba(16,21,33,.92);border:1px solid var(--line);border-radius:18px}.hero{padding:30px;text-align:center}.tag{color:var(--cyan);font-weight:800;letter-spacing:.08em;font-size:.78rem}h1,h2{color:var(--gold)}h1{font-size:clamp(2rem,5vw,4rem);margin:8px 0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0}.card{padding:20px}.stage{min-height:150px}.stage b{color:var(--cyan)}.status{display:inline-block;padding:5px 9px;border:1px solid var(--line);border-radius:999px;color:var(--green);font-weight:800;font-size:.78rem}.demo{display:grid;grid-template-columns:minmax(240px,360px) 1fr;gap:20px;align-items:center}.avatar{height:300px;border-radius:18px;background:radial-gradient(circle,#1c2b42,#080c14 72%);border:1px solid var(--line);display:grid;place-items:center;position:relative;overflow:hidden}.avatar img{width:190px;height:190px;border-radius:50%;border:3px solid var(--gold);object-fit:cover}.mouth{position:absolute;bottom:55px;width:52px;height:10px;border-radius:50%;border:2px solid var(--gold);transition:.08s}.speaking .mouth{height:25px;animation:talk .12s infinite alternate}@keyframes talk{to{transform:scaleY(.55)}}button,input,textarea{width:100%;border:1px solid var(--line);border-radius:10px;background:#0b1019;color:var(--text);padding:11px;margin:6px 0;font:inherit}button{cursor:pointer;font-weight:800}button.primary{background:var(--gold);color:#111;border-color:var(--gold)}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.boundary{border-left:3px solid var(--gold);padding:12px 15px;color:var(--muted)}code{color:var(--cyan)}@media(max-width:760px){.demo{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+</style></head>
+<body><main class="wrap">
+<section class="hero"><div class="tag">SHIRMANI RESEARCH INSTITUTE · PRODUCTION SUBSYSTEM</div>
+<h1>Voice → Voice System → Content → Visual → Live Presentation</h1>
+<p class="muted">एक production-ready browser subsystem foundation: voice input/output, context-aware response presentation, visual identity, timing coordination और lip-sync presentation boundary.</p>
+<p><a class="status" href="showroom.html">← Public Showroom</a> <a class="status" href="factory-dashboard.html">Factory</a></p></section>
+
+<section><h2>Four-Layer Presentation Pipeline</h2><div class="grid">
+<div class="card stage"><b>01 · VOICE</b><h3>Listen / Speak</h3><p>Microphone input और browser speech output के लिए capability detection. User permission के बिना microphone access नहीं।</p><span class="status">BROWSER CAPABILITY</span></div>
+<div class="card stage"><b>02 · VOICE SYSTEM</b><h3>Authorized Adapter</h3><p>Voice provider को एक explicit adapter boundary में रखा जाता है ताकि authorized credentials, consent और provider policy अलग रहें।</p><span class="status">ADAPTER BOUNDARY</span></div>
+<div class="card stage"><b>03 · CONTENT + VISUAL</b><h3>Context → Response</h3><p>उत्तर के साथ source/evidence state, uncertainty और product context को presentation layer तक पहुँचाया जाता है।</p><span class="status">CONTENT CONTRACT</span></div>
+<div class="card stage"><b>04 · LIVE</b><h3>Face / Timing</h3><p>Visual identity, speech timing और mouth animation को एक presentation clock में बाँधा जाता है। Full phoneme-level lip-sync के लिए dedicated audiovisual model/asset adapter अलग रहेगा।</p><span class="status">LIVE PRESENTATION</span></div>
+</div></section>
+
+<section class="card"><h2>Live Voice Demonstrator</h2><div class="demo"><div id="avatar" class="avatar"><img src="assets/shirmani-perspective-logo.svg" alt="Shirmani perspective logo"><div class="mouth"></div></div>
+<div><label for="text">Presentation text</label><textarea id="text" rows="6">सरल, सहज, निर्मल और पारदर्शी संवाद। जहाँ पर्याप्त प्रमाण उपलब्ध हो, स्रोत सहित उत्तर दिया जाएगा। जहाँ प्रमाण अपर्याप्त हो, स्पष्ट रूप से कहा जाएगा कि अभी पर्याप्त प्रमाण उपलब्ध नहीं है।</textarea>
+<div class="row"><button class="primary" id="speak">▶ Speak + Visual Timing</button><button id="stop">■ Stop</button></div><p id="voiceStatus" class="muted">Ready. Browser speech synthesis capability will be detected locally.</p></div></div></section>
+
+<section><h2>Communication Contract</h2><div class="grid">
+<div class="card"><h3>Simple • Natural • Transparent</h3><p>स्पष्ट भाषा, respectful tone और किसी व्यक्ति, जाति, धर्म, मज़हब या संगठन को नीचा दिखाए बिना संवाद।</p></div>
+<div class="card"><h3>Evidence-aware answers</h3><p><strong>Evidence available:</strong> source + answer. <strong>Evidence insufficient:</strong> “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</p></div>
+<div class="card"><h3>Identity boundary</h3><p>दर्शन/पहचान statements को author-declared material की तरह प्रस्तुत किया जा सकता है; उन्हें स्वतः independently verified scientific fact नहीं माना जाएगा।</p></div>
+</div></section>
+
+<section class="card"><h2>Production / QC Contract</h2><p><code>INSTITUTE → FACTORY → QC → SHOWROOM / SALE</code></p><p>हर concrete presentation asset को Product ID, version, QC state और dispatch state से जोड़ा जा सकता है। Workflow success को product quality का substitute नहीं माना जाता।</p>
+<div class="boundary"><strong>Important:</strong> यह page browser-native voice output और presentation timing को वास्तविक रूप से चलाता है। यह dedicated human/avatar recording, provider-specific authorized voice cloning या phoneme-accurate lip-sync को बिना संबंधित authorized model/assets के fabricate नहीं करता।</div></section>
+
+<section class="card"><h2>Next Production Hooks</h2><ul><li>Authorized voice-provider adapter</li><li>Streaming speech-to-text / text-to-speech adapter</li><li>Response context + source metadata contract</li><li>Phoneme/viseme timeline adapter</li><li>Avatar/video render adapter</li><li>Live session telemetry + customer feedback loop</li></ul></section>
+</main>
+<script>
+const avatar=document.getElementById('avatar'),text=document.getElementById('text'),status=document.getElementById('voiceStatus');
+const speak=document.getElementById('speak'),stop=document.getElementById('stop');
+function supported(){return 'speechSynthesis' in window}
+speak.onclick=()=>{if(!supported()){status.textContent='Speech synthesis is not available in this browser.';return}
+speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text.value);u.lang='hi-IN';u.rate=0.98;u.pitch=1;
+u.onstart=()=>{avatar.classList.add('speaking');status.textContent='Speaking — visual timing active.'};
+u.onend=()=>{avatar.classList.remove('speaking');status.textContent='Completed.'};
+u.onerror=()=>{avatar.classList.remove('speaking');status.textContent='Speech synthesis failed; no completion is claimed.'};
+speechSynthesis.speak(u)}
+stop.onclick=()=>{if('speechSynthesis' in window)speechSynthesis.cancel();avatar.classList.remove('speaking');status.textContent='Stopped.'};
+</script></body></html>
