@@ -1,0 +1,63 @@
+name: SHIRMANI Supreme Second Version Readiness
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/SHIRMANI-SUPREME-SECOND-VERSION.md"
+      - "schemas/shirmani-supreme-live-character.schema.json"
+      - ".github/workflows/shirmani-supreme-second-version-readiness.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-second-version-readiness
+  cancel-in-progress: true
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate contract and fail-closed invariants
+        run: |
+          python - <<'PY'
+          import json
+          d=json.loads(open("schemas/shirmani-supreme-live-character.schema.json",encoding="utf-8").read())
+          assert d["properties"]["version"]["const"]=="2.0"
+          assert d["properties"]["content_contract"]["properties"]["identity_statements_are_user_authored"]["const"] is True
+          assert d["properties"]["content_contract"]["properties"]["scientific_claims_are_evidence_separated"]["const"] is True
+          assert d["properties"]["evidence_policy"]["properties"]["insufficient_evidence_response"]["const"]=="अभी पर्याप्त प्रमाण उपलब्ध नहीं है।"
+          assert d["properties"]["voice"]["properties"]["authorization_required"]["const"] is True
+          assert d["properties"]["presentation"]["properties"]["lip_sync"]["const"] is True
+          assert d["properties"]["presentation"]["properties"]["audio_face_coherence"]["const"] is True
+          assert d["properties"]["fail_closed"]["const"] is True
+          print("SHIRMANI_SECOND_VERSION_CONTRACT: PASS")
+          PY
+      - name: Emit readiness summary
+        run: |
+          {
+            echo "## ꙰ SHIRMANI Supreme Second Version"
+            echo "- Content/evidence separation: PASS"
+            echo "- Voice authorization boundary: REQUIRED"
+            echo "- Test Q&A: REQUIRED before presentation approval"
+            echo "- Natural gaze/facial movement/lip-sync: CONTRACTED"
+            echo "- Independent verification: remains separate"
+            echo "- Autonomous voice/public identity claims: BLOCKED until authorized and tested"
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload contract artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-supreme-second-version-contract
+          path: |
+            docs/SHIRMANI-SUPREME-SECOND-VERSION.md
+            schemas/shirmani-supreme-live-character.schema.json
+          retention-days: 14
