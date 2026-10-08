@@ -36,7 +36,11 @@ jobs:
           # Stay within the 1000 requests/hour GITHUB_TOKEN repository limit:
           # 9 list requests + up to 990 delete requests = <= 999 requests/cycle.
           for page in $(seq 1 9); do
-            gh api               -H "Accept: application/vnd.github+json"               -H "X-GitHub-Api-Version: 2026-03-10"               "repos/${repo}/actions/runs?status=completed&per_page=100&page=${page}"               --jq '.workflow_runs[].id' >> "${tmp}" || true
+            gh api \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2026-03-10" \
+              "repos/${repo}/actions/runs?status=completed&per_page=100&page=${page}" \
+              --jq '.workflow_runs[].id' >> "${tmp}" || true
           done
 
           sed -i "/^${current}$/d" "${tmp}" 2>/dev/null || true
@@ -55,7 +59,10 @@ jobs:
 
           delete_run() {
             id="$1"
-            if gh api --method DELETE               -H "Accept: application/vnd.github+json"               -H "X-GitHub-Api-Version: 2026-03-10"               "repos/${repo}/actions/runs/${id}" >/dev/null 2>&1; then
+            if gh api --method DELETE \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2026-03-10" \
+              "repos/${repo}/actions/runs/${id}" >/dev/null 2>&1; then
               echo 1 >> "${deleted_file}"
             else
               echo "Could not delete run ${id}; continuing." >&2
@@ -69,3 +76,5 @@ jobs:
           echo "Deleted ${deleted} completed workflow runs in this cycle."
           echo "Cleanup repeats hourly until the completed-run backlog is cleared."
           echo "Target: clear historical completed-run backlog without deleting workflow definitions."
+
+      # Immediate-cleanup trigger: this update is intentionally merged to start a cleanup cycle.
