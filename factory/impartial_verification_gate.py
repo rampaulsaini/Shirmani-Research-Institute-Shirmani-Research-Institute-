@@ -43,6 +43,10 @@ def check_record(record: dict, policy: dict) -> tuple[bool, list[str]]:
     reviewer_identity = str(reviewer.get("reviewer_identity", "")).strip()
     reviewer_role = str(reviewer.get("reviewer_role", "")).strip()
 
+    if decision == "VERIFIED" and not author:
+        errors.append("AUTHOR_IDENTITY_MISSING")
+    if decision == "VERIFIED" and not reviewer_identity:
+        errors.append("REVIEWER_IDENTITY_MISSING")
     if rules["author_cannot_self_verify"] and author and reviewer_identity and author == reviewer_identity:
         errors.append("AUTHOR_SELF_VERIFICATION_FORBIDDEN")
     if rules["independent_reviewer_must_differ_from_author"] and author and not reviewer_identity:
