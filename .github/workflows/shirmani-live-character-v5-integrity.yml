@@ -7,6 +7,7 @@ on:
       - 'generated/shirmani-live-character-v5.json'
       - '.github/workflows/shirmani-live-character-v5-integrity.yml'
       - 'index.html'
+      - 'shirmani-supreme-live-character-v6.html'
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
@@ -28,9 +29,10 @@ jobs:
 
           contract = pathlib.Path("generated/shirmani-live-character-v5.json")
           page = pathlib.Path("shirmani-live-character-v5.html")
+          runtime = pathlib.Path("shirmani-supreme-live-character-v6.html")
           index = pathlib.Path("index.html")
 
-          if not contract.is_file() or not page.is_file() or not index.is_file():
+          if not all(path.is_file() for path in (contract, page, runtime, index)):
               print("FAIL: required V5 public files are missing")
               sys.exit(1)
 
@@ -103,14 +105,18 @@ jobs:
               shape_errors.append("presentation.voice must retain the authorized-voice boundary")
 
           page_text = page.read_text(encoding="utf-8")
+          runtime_text = runtime.read_text(encoding="utf-8")
           index_text = index.read_text(encoding="utf-8")
           page_checks = {
-              "evidence fallback present": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in page_text,
-              "NOT_VERIFIED boundary present": "NOT_VERIFIED" in page_text,
-              "V5 contract linked": "generated/shirmani-live-character-v5.json" in page_text,
+              "V5 page redirects to V6": "shirmani-supreme-live-character-v6.html" in page_text,
+              "V6 evidence fallback present": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in runtime_text,
+              "V6 NOT_VERIFIED boundary present": "NOT_VERIFIED" in runtime_text,
+              "V6 contract boundary present": "generated/shirmani-live-character-v5.json" in runtime_text or "independent evidence" in runtime_text,
               "V5 public page linked from hub": "shirmani-live-character-v5.html" in index_text,
               "legacy V3 preserved": pathlib.Path("shirmani-live-character-v3.html").is_file(),
               "legacy V4 preserved": pathlib.Path("live-persona-supreme-v4.html").is_file(),
+              "V6 does not claim independent verification": "independent scientific verification" in runtime_text.lower(),
+              "V6 does not claim production avatar": "production avatar" in runtime_text.lower(),
           }
           page_errors = [name for name, ok in page_checks.items() if not ok]
 
