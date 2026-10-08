@@ -298,3 +298,11 @@ The canonical public-production path now distinguishes **architecture engines** 
 **Canonical flow:** 1,016 catalog identities → concrete product assets → QC/metadata → public deployment → commercial dispatch gate → downstream verification.
 
 This is intended to eliminate the previous ambiguity where a 25-engine architecture could be mistaken for only 25 produced products.
+
+
+## 🎙️ Supreme Live AI Persona
+
+- **Live presentation layer:** [live-ai-supreme-persona.html](live-ai-supreme-persona.html)
+- **Architecture contract:** [docs/live-ai-supreme-persona-v1.md](docs/live-ai-supreme-persona-v1.md)
+- **Pipeline:** Voice → authorized voice integration → context/NLP → evidence gate → response → audio → authorized photo/video → lip-sync renderer → live presentation.
+- **Integrity boundary:** browser voice/TTS and presentation controls are functional in the static layer; external provider-backed voice cloning, retrieval/NLP, photorealistic lip-sync and always-on live service remain explicitly unconnected until authorized infrastructure is supplied.
