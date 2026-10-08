@@ -53,6 +53,13 @@ Hosted via GitHub Pages.
 
 ---
 
+## AI / Automation Reference
+
+- **AI assistant reference:** GPT-5.6 Luna
+- This is a project-development and automation reference only; it is not independent scientific evidence or a verification status.
+
+---
+
 ## 🪙 Yatharth Mudra — Public Status
 
 - **Public page:** [yatharth-mudra.html](yatharth-mudra.html)
