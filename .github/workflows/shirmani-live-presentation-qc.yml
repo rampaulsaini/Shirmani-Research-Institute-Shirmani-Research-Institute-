@@ -1,0 +1,91 @@
+name: SHIRMANI Live Presentation Subsystem QC
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "shirmani-live-presentation.html"
+      - "docs/SHIRMANI-LIVE-PRESENTATION-SUBSYSTEM.md"
+      - "config/authorized-voice-integration.json"
+      - ".github/workflows/shirmani-live-presentation-qc.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-live-presentation-qc
+  cancel-in-progress: true
+
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate subsystem contract
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          cfg=json.loads(Path("config/authorized-voice-integration.json").read_text(encoding="utf-8"))
+          required=[
+            cfg["consent"]["status"]=="USER_PROVIDED_FOR_THIS_CONVERSATION",
+            cfg["consent"]["external_voice_cloning"]=="NOT_ENABLED_BY_DEFAULT",
+            cfg["evidence_policy"]["factual_answer_with_source"] is True,
+            cfg["evidence_policy"]["insufficient_evidence_phrase"]=="अभी पर्याप्त प्रमाण उपलब्ध नहीं है",
+            cfg["modes"]["lip_sync"]=="AUDIO_REACTIVE_DEMO; PHONEME_ACCURATE_MODE_REQUIRES_TIMESTAMPS"
+          ]
+          if not all(required):
+            raise SystemExit("LIVE_PRESENTATION_QC_FAIL: contract invariant violated")
+          print("LIVE_PRESENTATION_QC_PASS")
+
+      - name: Validate required UI boundaries
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path("shirmani-live-presentation.html").read_text(encoding="utf-8")
+          checks=[
+            "Voice → Authorized Voice Integration → Test Q&A → Lip-Sync → Live Presentation",
+            "अभी पर्याप्त प्रमाण उपलब्ध नहीं है",
+            "EXPLICIT AUTH REQUIRED",
+            "NOT CLAIMED",
+            "Audio-reactive mouth timing"
+          ]
+          missing=[x for x in checks if x not in p]
+          if missing:
+            raise SystemExit("LIVE_PRESENTATION_UI_QC_FAIL: "+repr(missing))
+          print("LIVE_PRESENTATION_UI_QC_PASS")
+
+      - name: Publish QC state
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone
+          out={
+            "generated_at":datetime.now(timezone.utc).isoformat(),
+            "subsystem":"voice-authorized-live-presentation",
+            "qc":"PASS",
+            "dynamic_external_voice_provider":"NOT_CONNECTED",
+            "lip_sync":"AUDIO_REACTIVE_DEMO",
+            "phoneme_accurate_sync":"NOT_YET_ESTABLISHED",
+            "evidence_gate":"ENABLED",
+            "independent_verification":"SEPARATE_DOWNSTREAM_GATE"
+          }
+          p=Path("generated/live-presentation-qc.json")
+          p.write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False))
+          Path("generated").mkdir(exist_ok=True)
+
+      - name: Commit QC state
+        shell: bash
+        run: |
+          git config user.name "SHIRMANI Live Presentation Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/live-presentation-qc.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "automission: publish live presentation subsystem QC"
+          git push origin HEAD:main
