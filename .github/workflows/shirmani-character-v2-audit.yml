@@ -1,0 +1,93 @@
+name: SHIRMANI Character V2 Continuous Audit
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "config/shirmani-character-v2.json"
+      - "docs/SHIRMANI-CHARACTER-V2.md"
+      - "shirmani-live-presentation.html"
+      - ".github/workflows/shirmani-character-v2-audit.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-character-v2-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Character V2 contract
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          cfg=json.loads(Path("config/shirmani-character-v2.json").read_text(encoding="utf-8"))
+          required=[
+            cfg["identity_owner"]=="user-authored",
+            cfg["reasoning"]["context_first"] is True,
+            cfg["reasoning"]["comparative_facts_required_for_argument"] is True,
+            cfg["reasoning"]["identity_boundary"].startswith("user-authored"),
+            cfg["evidence"]["source_when_available"] is True,
+            cfg["evidence"]["independent_verification_required_for_verified_claims"] is True,
+            cfg["evidence"]["workflow_success_is_not_verification"] is True,
+            cfg["respect"]["no_demeaning_of_persons"] is True,
+            cfg["respect"]["no_demeaning_of_caste"] is True,
+            cfg["respect"]["no_demeaning_of_religion_or_faith"] is True,
+            cfg["respect"]["no_demeaning_of_organizations"] is True,
+            cfg["presentation"]["live_release"]=="fail-closed until all upstream gates pass",
+            "QUESTION" in cfg["promotion_chain"],
+            "VERIFIED" in cfg["promotion_chain"],
+          ]
+          if not all(required):
+            raise SystemExit("CHARACTER_V2_AUDIT_FAIL")
+          print("CHARACTER_V2_AUDIT_PASS")
+
+      - name: Validate live presentation integration
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path("shirmani-live-presentation.html").read_text(encoding="utf-8")
+          required=["SHIRMANI LIVE PRESENTATION SUBSYSTEM","Character & communication contract","अभी पर्याप्त प्रमाण उपलब्ध नहीं है","EXPLICIT AUTH REQUIRED","NOT CLAIMED"]
+          missing=[x for x in required if x not in p]
+          if missing: raise SystemExit("CHARACTER_V2_UI_AUDIT_FAIL: "+repr(missing))
+          print("CHARACTER_V2_UI_AUDIT_PASS")
+
+      - name: Publish audit state
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone
+          out={
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "character_contract": "SHIRMANI Character V2",
+            "contract": "PASS",
+            "live_release": "FAIL_CLOSED_UNTIL_UPSTREAM_GATES_PASS",
+            "independent_verification": "REQUIRED",
+            "external_voice_provider": "NOT_CONNECTED_BY_THIS_AUDIT",
+            "phoneme_accurate_lipsync": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+            "evidence_uncertainty": "FAIL_CLOSED",
+            "source_of_truth": "config/shirmani-character-v2.json"
+          }
+          Path("generated").mkdir(exist_ok=True)
+          Path("generated/shirmani-character-v2-audit.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+
+      - name: Commit audit state
+        shell: bash
+        run: |
+          git config user.name "SHIRMANI Character V2 Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/shirmani-character-v2-audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "automission: publish SHIRMANI Character V2 audit state"
+          git push origin HEAD:main
