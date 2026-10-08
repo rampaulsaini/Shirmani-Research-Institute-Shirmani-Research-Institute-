@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Live Character Runtime Contract",
+  "type": "object",
+  "required": [
+    "identity_source",
+    "voice",
+    "avatar",
+    "evidence_gate",
+    "live_session"
+  ],
+  "properties": {
+    "identity_source": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "AUTHOR_SOURCE",
+            "APPROVED_SOURCE",
+            "UNAVAILABLE"
+          ]
+        },
+        "source_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "voice": {
+      "type": "object",
+      "required": [
+        "authorization_status"
+      ],
+      "properties": {
+        "authorization_status": {
+          "enum": [
+            "AUTHORIZED",
+            "PENDING",
+            "NOT_CONFIGURED",
+            "REVOKED"
+          ]
+        },
+        "provider": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "voice_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "avatar": {
+      "type": "object",
+      "required": [
+        "authorization_status"
+      ],
+      "properties": {
+        "authorization_status": {
+          "enum": [
+            "AUTHORIZED",
+            "PENDING",
+            "NOT_CONFIGURED",
+            "REVOKED"
+          ]
+        },
+        "provider": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "avatar_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "evidence_gate": {
+      "type": "object",
+      "required": [
+        "state"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "EVIDENCE_VERIFIED",
+            "EVIDENCE_PARTIAL",
+            "EVIDENCE_INSUFFICIENT",
+            "AUTHOR_STATEMENT",
+            "PHILOSOPHICAL_PROPOSITION",
+            "GENERATED_CONTENT"
+          ]
+        }
+      }
+    },
+    "live_session": {
+      "type": "object",
+      "required": [
+        "state"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "NOT_CONFIGURED",
+            "READY",
+            "TESTING",
+            "LIVE",
+            "STOPPED",
+            "FAILED"
+          ]
+        }
+      }
+    }
+  }
+}
