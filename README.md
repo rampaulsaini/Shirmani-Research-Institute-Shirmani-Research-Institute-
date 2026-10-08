@@ -12,6 +12,7 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 ## Production Mission Control
 
 - **Production Mission Control:** [production-mission-control.html](production-mission-control.html) — production-first public map for Institute → Factory → QC/Gate → Showroom/Sale, customer feedback and funding.
+- **Supreme Live Character:** [supreme-live-character.html](supreme-live-character.html) — live presentation, browser voice, context-first Q&A, evidence boundary and voice/face/lip-sync readiness map.
 
 ## Public Production Showroom
 
