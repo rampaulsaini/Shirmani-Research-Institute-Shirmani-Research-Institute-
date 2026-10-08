@@ -7,6 +7,7 @@ on:
       - 'generated/shirmani-live-character-v5.json'
       - '.github/workflows/shirmani-live-character-v5-integrity.yml'
       - 'index.html'
+      - 'shirmani-supreme-live-character-v6.html'
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
@@ -19,29 +20,130 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate V5 contract and public wiring
+      - name: Validate V5 contract, fail-closed status and public wiring
         shell: python
         run: |
-          import json, pathlib, sys
+          import json
+          import pathlib
+          import sys
+
           contract = pathlib.Path("generated/shirmani-live-character-v5.json")
           page = pathlib.Path("shirmani-live-character-v5.html")
+          runtime = pathlib.Path("shirmani-supreme-live-character-v6.html")
           index = pathlib.Path("index.html")
-          data = json.loads(contract.read_text(encoding="utf-8"))
-          required = ["version","name","framework","identity_statement","communication","reasoning","presentation","pipeline","status","integrity"]
-          missing = [k for k in required if k not in data]
-          if missing:
-              print("FAIL missing contract keys:", missing)
+
+          if not all(path.is_file() for path in (contract, page, runtime, index)):
+              print("FAIL: required V5 public files are missing")
               sys.exit(1)
-          checks = {
-              "page exists": page.exists(),
-              "main hub links V5": "shirmani-live-character-v5.html" in index.read_text(encoding="utf-8"),
-              "evidence fallback present": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in page.read_text(encoding="utf-8"),
-              "verification boundary present": "independent_scientific_verification" in contract.read_text(encoding="utf-8"),
-              "legacy preserved": all(pathlib.Path(p).exists() for p in ["shirmani-live-character-v3.html","live-persona-supreme-v4.html"])
+
+          try:
+              data = json.loads(contract.read_text(encoding="utf-8"))
+          except (OSError, json.JSONDecodeError) as exc:
+              print("FAIL: V5 contract is not valid UTF-8 JSON:", exc)
+              sys.exit(1)
+
+          required = [
+              "version", "name", "framework", "identity_statement",
+              "communication", "reasoning", "presentation",
+              "pipeline", "status", "integrity"
+          ]
+          missing = [key for key in required if key not in data]
+
+          expected_status = {
+              "main_hub_entry": True,
+              "v5_public_runtime": True,
+              "v2_v3_v4_preserved": True,
+              "browser_voice_input_output": True,
+              "local_portrait_audio": True,
+              "external_authorized_voice_integration": False,
+              "production_avatar_engine": False,
+              "phoneme_accurate_lip_sync": False,
+              "independent_scientific_verification": False,
           }
-          bad = [k for k,v in checks.items() if not v]
-          print("V5 integrity:", checks)
-          if bad:
-              print("FAIL:", bad)
+
+          status = data.get("status", {})
+          status_errors = [
+              f"{key}={status.get(key)!r}, expected {expected!r}"
+              for key, expected in expected_status.items()
+              if not isinstance(status.get(key), bool) or status.get(key) != expected
+          ]
+
+          pipeline = data.get("pipeline")
+          expected_pipeline = [
+              "Voice Input", "Authorization", "Context",
+              "NLP Claim Classification", "Evidence Gate",
+              "Content", "Authorized Voice", "Portrait/Avatar",
+              "Gaze", "Viseme/Lip-sync", "Live Presentation",
+              "Transcript/Provenance/Audit"
+          ]
+          pipeline_ok = isinstance(pipeline, list) and pipeline == expected_pipeline
+
+          integrity = data.get("integrity")
+          required_integrity = [
+              "identity/philosophy is not automatically scientific fact",
+              "generated media is not independent verification",
+              "workflow success is not model accuracy",
+              "production claims require observable telemetry and provenance",
+              "no public factual claim is marked VERIFIED without evidence and verification state",
+          ]
+          integrity_ok = (
+              isinstance(integrity, list)
+              and all(item in integrity for item in required_integrity)
+          )
+
+          communication = data.get("communication", {})
+          reasoning = data.get("reasoning", {})
+          presentation = data.get("presentation", {})
+          shape_errors = []
+          if not isinstance(communication.get("style"), list) or not communication["style"]:
+              shape_errors.append("communication.style must be a non-empty list")
+          if not isinstance(reasoning.get("classes"), list) or set(reasoning["classes"]) != {
+              "identity_or_philosophy", "factual_or_scientific", "mixed"
+          }:
+              shape_errors.append("reasoning.classes must contain the three supported claim classes")
+          if not isinstance(presentation.get("voice"), str) or "authorized" not in presentation["voice"].lower():
+              shape_errors.append("presentation.voice must retain the authorized-voice boundary")
+
+          page_text = page.read_text(encoding="utf-8")
+          runtime_text = runtime.read_text(encoding="utf-8")
+          index_text = index.read_text(encoding="utf-8")
+          page_checks = {
+              "V5 page redirects to V6": "shirmani-supreme-live-character-v6.html" in page_text,
+              "V6 evidence fallback present": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in runtime_text,
+              "V6 NOT_VERIFIED boundary present": "NOT_VERIFIED" in runtime_text,
+              "V6 contract boundary present": "generated/shirmani-live-character-v5.json" in runtime_text or "independent evidence" in runtime_text,
+              "V5 public page linked from hub": "shirmani-live-character-v5.html" in index_text,
+              "legacy V3 preserved": pathlib.Path("shirmani-live-character-v3.html").is_file(),
+              "legacy V4 preserved": pathlib.Path("live-persona-supreme-v4.html").is_file(),
+              "V6 does not claim independent verification": "independent scientific verification" in runtime_text.lower(),
+              "V6 does not claim production avatar": "production avatar" in runtime_text.lower(),
+          }
+          page_errors = [name for name, ok in page_checks.items() if not ok]
+
+          structural_errors = []
+          if data.get("version") != "5.0":
+              structural_errors.append(f"version={data.get('version')!r}, expected '5.0'")
+          for key in ("name", "framework", "identity_statement"):
+              if not isinstance(data.get(key), str) or not data[key].strip():
+                  structural_errors.append(f"{key} must be a non-empty string")
+
+          print("V5 semantic integrity:")
+          print("  status:", status)
+          print("  pipeline_exact:", pipeline_ok)
+          print("  integrity_boundary:", integrity_ok)
+          print("  page_checks:", page_checks)
+
+          errors = missing + status_errors + shape_errors + structural_errors
+          if not pipeline_ok:
+              errors.append("pipeline does not exactly match the declared fail-closed V5 sequence")
+          if not integrity_ok:
+              errors.append("required integrity boundaries are missing")
+          errors.extend(page_errors)
+
+          if errors:
+              print("FAIL:")
+              for error in errors:
+                  print(" -", error)
               sys.exit(1)
-          print("PASS: SHIRMANI Supreme Live Character V5 integrity gate")
+
+          print("PASS: SHIRMANI Supreme Live Character V5 semantic integrity gate")
