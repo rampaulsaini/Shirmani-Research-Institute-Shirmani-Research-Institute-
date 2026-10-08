@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Live Voice & Presentation System</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;background:#081018;color:#eef4f7}
+main{max-width:1100px;margin:auto;padding:28px}
+.card{background:#101c26;border:1px solid #2d4454;border-radius:18px;padding:20px;margin:16px 0}
+h1{margin-bottom:6px}.muted{opacity:.78}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+button,input,textarea{font:inherit;border-radius:10px;border:1px solid #496174;padding:10px;background:#0b141c;color:#fff}
+button{cursor:pointer}.row{display:flex;gap:10px;flex-wrap:wrap}
+#avatar{width:260px;height:260px;border-radius:50%;object-fit:cover;background:#172735;margin:auto;display:block}
+#mouth{width:58px;height:12px;border-radius:50%;background:#e5a3a3;margin:-58px auto 35px;transition:transform .08s,height .08s}
+.status{font-weight:700}.ok{font-weight:700}
+pre{white-space:pre-wrap}
+</style>
+</head>
+<body>
+<main>
+<h1>꙰ SHIRMANI Live Voice → Voice System → Content → Photo/Lip-sync → Live Presentation</h1>
+<p class="muted">Evidence-gated presentation foundation. Voice authorization and factual verification remain explicit states.</p>
+
+<section class="card">
+<h2>1. Authorization Gate</h2>
+<label><input id="authorized" type="checkbox"> I confirm this voice/media is authorized for this presentation.</label>
+<p id="authState" class="status">AUTHORIZATION_REQUIRED</p>
+</section>
+
+<section class="grid">
+<div class="card">
+<h2>2. Test Q&A</h2>
+<textarea id="question" rows="5" placeholder="प्रश्न लिखें…"></textarea>
+<div class="row"><button id="answerBtn">उत्तर तैयार करें</button><button id="speakBtn">आवाज़ परीक्षण</button></div>
+<pre id="answer">अभी प्रश्न की प्रतीक्षा है।</pre>
+</div>
+<div class="card">
+<h2>3. Photo Presentation</h2>
+<input id="photo" type="file" accept="image/*">
+<img id="avatar" alt="Authorized presentation photo preview">
+<div id="mouth" aria-hidden="true"></div>
+<p class="muted">यह preview identity verification नहीं है।</p>
+</div>
+</section>
+
+<section class="card">
+<h2>4. Evidence State</h2>
+<p><strong>उत्तर:</strong> <span id="evidenceState">EVIDENCE_REQUIRED</span></p>
+<p>सिद्ध/स्रोतित तथ्य उपलब्ध न हों तो सिस्टम स्पष्ट रूप से कहेगा: “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</p>
+</section>
+
+<section class="card">
+<h2>5. Live Presentation Readiness</h2>
+<pre id="readyState">NOT_READY</pre>
+</section>
+</main>
+<script>
+const auth=document.getElementById('authorized');
+const authState=document.getElementById('authState');
+const readyState=document.getElementById('readyState');
+function update(){
+ const a=auth.checked;
+ authState.textContent=a?'AUTHORIZED_FOR_TEST':'AUTHORIZATION_REQUIRED';
+ readyState.textContent=a?'TEST_ONLY — human approval still required for public LIVE':'NOT_READY';
+}
+auth.addEventListener('change',update); update();
+
+const answer=document.getElementById('answer');
+document.getElementById('answerBtn').onclick=()=>{
+ const q=document.getElementById('question').value.trim();
+ if(!q){answer.textContent='कृपया प्रश्न लिखें।';return;}
+ answer.textContent='यह test Q&A layer है। उपलब्ध स्रोत/प्रमाण के बिना किसी तथ्य को VERIFIED नहीं माना जाएगा।\n\nअभी पर्याप्त प्रमाण उपलब्ध नहीं है।';
+ document.getElementById('evidenceState').textContent='INSUFFICIENT_EVIDENCE';
+};
+
+document.getElementById('speakBtn').onclick=()=>{
+ if(!auth.checked){alert('पहले explicit authorization gate पूरा करें।');return;}
+ const text=answer.textContent;
+ if(!('speechSynthesis' in window)){alert('इस browser में speech synthesis उपलब्ध नहीं है।');return;}
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(text);
+ u.lang='hi-IN';
+ u.onstart=()=>{document.getElementById('mouth').style.height='28px';};
+ u.onend=()=>{document.getElementById('mouth').style.height='12px';};
+ speechSynthesis.speak(u);
+};
+
+document.getElementById('photo').onchange=e=>{
+ const f=e.target.files?.[0]; if(!f)return;
+ document.getElementById('avatar').src=URL.createObjectURL(f);
+};
+</script>
+</body>
+</html>

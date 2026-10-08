@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Live Voice Presentation State",
+  "type":"object",
+  "required":["authorization_state","evidence_state","presentation_state"],
+  "properties":{
+    "authorization_state":{"enum":["AUTHORIZATION_REQUIRED","AUTHORIZED_FOR_TEST","REVOKED"]},
+    "evidence_state":{"enum":["EVIDENCE_REQUIRED","INSUFFICIENT_EVIDENCE","EVIDENCE_AVAILABLE","INDEPENDENTLY_VERIFIED"]},
+    "presentation_state":{"enum":["NOT_READY","TEST_ONLY","HUMAN_REVIEW","LIVE_READY","LIVE"]},
+    "voice_provider":{"type":["string","null"]},
+    "photo_source":{"type":["string","null"]},
+    "timestamp":{"type":"string"}
+  },
+  "additionalProperties":true
+}
