@@ -1,0 +1,39 @@
+{
+  "version": "V9",
+  "name": "SHIRMANI Supreme Live Character",
+  "canonical_surface": "shirmani-supreme-live-character-v9.html",
+  "main_platform_entry": "shirmani-live-character-v5.html",
+  "pipeline": [
+    "voice",
+    "authorized_voice",
+    "context",
+    "evidence",
+    "reasoning",
+    "answer",
+    "face",
+    "gaze",
+    "lip_timing",
+    "live",
+    "audit",
+    "improve"
+  ],
+  "evidence": {
+    "source_when_available": true,
+    "insufficient_phrase": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है।",
+    "workflow_success_is_not_independent_verification": true
+  },
+  "voice": {
+    "browser_input": true,
+    "browser_output": true,
+    "external_personal_voice": "EXPLICIT_AUTH_REQUIRED"
+  },
+  "presentation": {
+    "natural_gaze": "prototype",
+    "facial_animation": "runtime_validation_required",
+    "lip_sync": "audio_reactive_prototype; phoneme_viseme_accuracy_requires_test"
+  },
+  "identity_boundary": "user-authored identity/philosophy is not automatically scientific fact",
+  "respect": {
+    "no_demeaning_of_persons_or_groups": true
+  }
+}
