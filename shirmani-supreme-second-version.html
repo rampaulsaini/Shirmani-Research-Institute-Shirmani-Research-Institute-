@@ -66,4 +66,15 @@ main{max-width:1240px;margin:auto;padding:18px 14px 80px}.hero,.panel{background
 
 <section class="panel"><h2>♻️ Continuous Improvement Loop</h2><p class="flow">Live Test → Transcript → Timing / Evidence Audit → Failure Capture → Correction → Re-test → Verification → Release</p>
 <p>इस loop में सुधार लगातार जारी रह सकता है, लेकिन मूल user-source को overwrite किए बिना।</p></section>
+<section class="panel"><h2>🟢 Live Runtime Status — continuously checked</h2>
+<div class="grid">
+<div class="card"><b>Main platform entry</b><p class="ok">IMPLEMENTED</p><p><a href="index.html#supreme-live-character">Main Platform → Live Character</a></p></div>
+<div class="card"><b>Character contract</b><p class="ok">IMPLEMENTED</p><p>Identity, presentation, dignity and evidence rules are machine-readable.</p></div>
+<div class="card"><b>Browser voice / local timing</b><p class="ok">IMPLEMENTED</p><p>Demonstration layer; not an authorized personal voice clone.</p></div>
+<div class="card"><b>Authorized personal voice</b><p class="pending">NOT CONNECTED</p><p>No provider/credential is claimed as active.</p></div>
+<div class="card"><b>Real-time gaze / facial renderer</b><p class="pending">IMPLEMENTATION / RUNTIME GATE</p><p>Requires a validated rendering runtime.</p></div>
+<div class="card"><b>Production phoneme/viseme lip-sync</b><p class="pending">VALIDATION GATE</p><p>Requires real timing tests before LIVE_READY.</p></div>
+</div>
+<p class="note"><strong>Continuous gate:</strong> repository contract is checked every 5 minutes. A passing repository check does <em>not</em> by itself mean external voice, avatar or scientific verification is live.</p>
+</section>
 </main></body></html>
