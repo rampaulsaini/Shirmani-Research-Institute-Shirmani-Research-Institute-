@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/voice-presentation-contract.schema.json",
+  "title":"SHIRMANI Voice Presentation Contract",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["version","identity_mode","voice","avatar","qa","gates"],
+  "properties":{
+    "version":{"type":"string"},
+    "identity_mode":{"enum":["SELF_AUTHORIZED","FICTIONAL_AVATAR","DISABLED"]},
+    "voice":{"type":"object","additionalProperties":false,"required":["authorization","provider","asset_id"],"properties":{"authorization":{"enum":["EXPLICIT","PENDING","REJECTED"]},"provider":{"type":"string","minLength":1},"asset_id":{"type":"string","minLength":1},"locale":{"type":"string"},"test_status":{"enum":["NOT_RUN","PASS","FAIL"]}}},
+    "avatar":{"type":"object","additionalProperties":false,"required":["authorization","asset_id"],"properties":{"authorization":{"enum":["EXPLICIT","PENDING","REJECTED"]},"asset_id":{"type":"string","minLength":1},"lip_sync_test":{"enum":["NOT_RUN","PASS","FAIL"]},"gaze_test":{"enum":["NOT_RUN","PASS","FAIL"]}}},
+    "qa":{"type":"object","additionalProperties":false,"required":["context_test","evidence_policy"],"properties":{"context_test":{"enum":["NOT_RUN","PASS","FAIL"]},"evidence_policy":{"enum":["PASS","FAIL"]},"insufficient_evidence_fallback":{"const":"अभी पर्याप्त प्रमाण उपलब्ध नहीं है।"}}},
+    "gates":{"type":"object","additionalProperties":false,"properties":{"audio_video_coherence":{"enum":["NOT_RUN","PASS","FAIL"]},"live_presentation":{"enum":["NOT_RUN","PASS","FAIL"]},"audit_record":{"enum":["NOT_RUN","PASS","FAIL"]}}}
+  }
+}
