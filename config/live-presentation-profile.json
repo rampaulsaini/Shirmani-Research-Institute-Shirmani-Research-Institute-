@@ -1,0 +1,12 @@
+{
+  "profile_id": "shirmani-live-presentation-v1",
+  "portrait_asset_ref": "",
+  "voice_provider": "",
+  "voice_authorization_ref": "",
+  "content_policy_version": "evidence-first-v1",
+  "test_qa_status": "PENDING",
+  "lip_sync_status": "PENDING",
+  "preview_status": "PENDING",
+  "live_publish_status": "BLOCKED",
+  "last_verified_at": null
+}
