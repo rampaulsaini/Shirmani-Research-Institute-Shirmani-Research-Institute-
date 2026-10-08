@@ -1,0 +1,85 @@
+name: SHIRMANI Live Presentation Readiness Audit
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-live-presentation-readiness
+  cancel-in-progress: false
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Evaluate fail-closed readiness
+        shell: python
+        run: |
+          import hashlib, json, pathlib, datetime
+
+          root = pathlib.Path('.')
+          contract = root / 'docs/SHIRMANI-LIVE-PRESENTATION-SUBSYSTEM.md'
+          source = root / 'source/user-directives/2026-09-20-shirmani-heart-view-request.md'
+
+          def exists(p): return p.exists() and p.is_file()
+          def sha256(p):
+              h=hashlib.sha256()
+              with p.open('rb') as f:
+                  for chunk in iter(lambda:f.read(1024*1024), b''): h.update(chunk)
+              return h.hexdigest()
+
+          checks = {
+            'source_contract_present': exists(source),
+            'live_presentation_contract_present': exists(contract),
+            'insufficient_evidence_fail_closed_rule': False,
+            'provider_secret_in_repository': False,
+            'authorized_voice_provider_connected': False,
+            'approved_visual_asset_present': False,
+            'phoneme_or_viseme_lipsync_ready': False,
+            'live_publish_ready': False,
+          }
+
+          if exists(contract):
+              text=contract.read_text(encoding='utf-8')
+              checks['insufficient_evidence_fail_closed_rule'] = 'अभी पर्याप्त प्रमाण उपलब्ध नहीं है' in text
+
+          forbidden=[]
+          for p in root.rglob('*'):
+              if p.is_file() and '.git' not in p.parts:
+                  n=p.name.lower()
+                  if n in {'.env','credentials.json','service-account.json'} or 'private-key' in n:
+                      forbidden.append(str(p))
+          checks['provider_secret_in_repository'] = bool(forbidden)
+
+          ready = all(checks[k] for k in [
+              'source_contract_present',
+              'live_presentation_contract_present',
+              'insufficient_evidence_fail_closed_rule'
+          ]) and not checks['provider_secret_in_repository']
+
+          result={
+            'generated_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            'mode': 'FAIL_CLOSED_READINESS_AUDIT',
+            'ready_for_live': False,
+            'contract_scaffold_ready': ready,
+            'checks': checks,
+            'source_sha256': sha256(source) if exists(source) else None,
+            'next_gate': 'AUTHORIZED_PROVIDER + APPROVED_VISUAL_ASSET + PHONEME/VISEME_LIPSYNC + TEST_QA + INDEPENDENT_VERIFICATION',
+          }
+          pathlib.Path('generated').mkdir(exist_ok=True)
+          pathlib.Path('generated/live-presentation-readiness.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(result,ensure_ascii=False,indent=2))
+          if not ready:
+              raise SystemExit('Fail-closed: foundational contract checks did not pass.')
+      - name: Upload readiness artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-live-presentation-readiness
+          path: generated/live-presentation-readiness.json
