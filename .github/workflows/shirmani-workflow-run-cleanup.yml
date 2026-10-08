@@ -77,5 +77,6 @@ jobs:
           echo "Cleanup repeats hourly until the completed-run backlog is cleared."
           echo "Target: clear historical completed-run backlog without deleting workflow definitions."
 
-      # Immediate-cleanup trigger: this update is intentionally merged to start a cleanup cycle.
+      # Immediate-cleanup trigger: this revision is intended to start a cleanup cycle.
+      # Operator-triggered cleanup revision: 2026-10-08.
       # Historical cleanup is limited to completed runs; workflow definitions remain intact.
