@@ -20,7 +20,10 @@ permissions:
   contents: read
 
 concurrency:
-  group: shirmani-supreme-independent-verification-ledger
+  # Keep scheduled/main and pull-request audits isolated so a recurring run
+  # cannot cancel a PR verification gate. Older runs of the same PR may still
+  # be cancelled when a newer commit supersedes them.
+  group: shirmani-supreme-independent-verification-ledger-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
