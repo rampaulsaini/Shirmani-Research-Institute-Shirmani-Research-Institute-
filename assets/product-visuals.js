@@ -1,4 +1,4 @@
-/* SHIRMANI Supreme Product Visual Engine v5 — logo-first, product-first, QR upper-right */
+/* SHIRMANI Supreme Product Visual Engine v7 — logo-first, product-first, QR upper-right, cache-busted showroom identity */
 (function(global){
 "use strict";
 function hashCode(s){let h=2166136261;for(let i=0;i<String(s).length;i++){h^=String(s).charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
@@ -38,5 +38,5 @@ function visual(p){
  '<text x="520" y="1860" fill="#fff" opacity=".86" font-family="system-ui,sans-serif" font-size="35" font-weight="800">3840×2160 4K MASTER · UNIQUE PRODUCT IDENTITY · DEMO VIDEO · QC/GATE/DISPATCH · LONG-PASSPORT QR</text></svg>';
  return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(svg);
 }
-global.SHIRMANI_PRODUCT_VISUAL={hashCode,visual,version:"v6-logo-first-qr-upper-right"};
+global.SHIRMANI_PRODUCT_VISUAL={hashCode,visual,version:"v7-logo-first-qr-upper-right-short-description"};
 })(window);
