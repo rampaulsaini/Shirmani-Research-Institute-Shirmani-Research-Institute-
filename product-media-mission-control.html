@@ -56,7 +56,7 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px s
    fetch("generated/product-specific-demo-video-manifest.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({}))
   ]);
   const catalog=Number(p.catalog_identities||5000),concrete=Number(p.concrete_repository_assets||0),target=Number(p.five_thousand_scale_target||5000);
-  const vipData=await fetch("generated/vip-screenshot-production-manifest.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({vip_screenshot_count:0}));
+  const vipData=await fetch("generated/product-vip-screenshot-manifest.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({vip_screenshot_count:0}));
   set("catalog",n(catalog));set("concrete",n(concrete));set("vip",n(vipData.vip_screenshot_count));set("mp4",n(d.real_mp4_count));set("remain",n(Math.max(0,target-concrete)));set("queue",n(m.scheduled_work_units));
   const pct=Math.min(100,concrete/target*100);document.getElementById("fill").style.width=pct+"%";
   set("status","Concrete production "+pct.toFixed(2)+"% of the 5,000 target · media lanes continue on scheduled cycles · generated "+(p.generated_at||"—"));
