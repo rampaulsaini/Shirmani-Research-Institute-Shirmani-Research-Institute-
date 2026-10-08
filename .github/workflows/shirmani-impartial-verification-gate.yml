@@ -26,6 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Run impartiality contract tests
+        run: python -m pytest -q tests/test_impartial_verification_gate.py
+
       - name: Run impartiality gate
         run: python factory/impartial_verification_gate.py
 
