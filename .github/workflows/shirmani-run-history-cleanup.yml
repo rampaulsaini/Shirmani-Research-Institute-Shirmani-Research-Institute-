@@ -1,6 +1,10 @@
 name: SHIRMANI Actions History Cleanup
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/shirmani-run-history-cleanup.yml"
   schedule:
     - cron: "2/5 * * * *"
   workflow_dispatch:
