@@ -5,6 +5,7 @@ on:
     paths:
       - "products/concrete/**"
       - "factory/product_visual_identity_factory_v2.py"
+      - "factory/product_qr_asset_factory.py"
       - ".github/workflows/shirmani-product-visual-factory.yml"
   schedule:
     - cron: "17 * * * *"
@@ -18,25 +19,36 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  generate-product-visuals:
+  generate-product-media:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout production
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+
+      - name: Install QR dependency
+        run: python3 -m pip install --disable-pip-version-check "qrcode>=8,<9"
+
+      - name: Generate product-specific QR assets first
+        env:
+          QR_BATCH: "5000"
+        run: python3 factory/product_qr_asset_factory.py
+
       - name: Generate canonical 4K product visuals
         env:
           VISUAL_BATCH: "5000"
         run: python3 factory/product_visual_identity_factory_v2.py
-      - name: Commit visual production
+
+      - name: Publish complete visual media state
         run: |
           git config user.name "SHIRMANI Product Visual Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add products/visuals
+          git add products/visuals generated/product-qr-assets.json generated/product-visual-assets-v2.json
           if git diff --cached --quiet; then
-            echo "No visual changes required."
+            echo "No visual/QR changes required."
             exit 0
           fi
-          git commit -m "production: refresh unique 4K visuals for concrete products"
+          git commit -m "production: publish product visuals with QR media state"
           git push
