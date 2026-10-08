@@ -2,19 +2,12 @@ name: SHIRMANI Impartial Verification Gate
 
 on:
   workflow_dispatch:
-  # Keep periodic assurance without five-minute queue pressure.
+  # Hourly assurance; no push-triggered self-retrigger loop.
   schedule:
     - cron: "17 * * * *"
-  push:
-    branches: [main]
-    paths:
-      - "generated/independent-verification-records.json"
-      - "config/impartial-verification-policy.json"
-      - "factory/impartial_verification_gate.py"
-      - ".github/workflows/shirmani-impartial-verification-gate.yml"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: shirmani-impartial-verification-gate
@@ -38,16 +31,3 @@ jobs:
         with:
           name: shirmani-impartial-verification-status
           path: generated/impartial-verification-status.json
-
-      - name: Commit status artifact
-        if: success()
-        run: |
-          if git diff --quiet -- generated/impartial-verification-status.json; then
-            echo "No status change."
-            exit 0
-          fi
-          git config user.name "SHIRMANI Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/impartial-verification-status.json
-          git commit -m "chore: publish impartial verification status"
-          git push
