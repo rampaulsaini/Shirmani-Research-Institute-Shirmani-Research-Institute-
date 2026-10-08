@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      - name: Delete up to 900 completed workflow runs per cycle
+      - name: Delete up to 990 completed workflow runs per cycle
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -33,14 +33,14 @@ jobs:
           deleted_file="$(mktemp)"
           trap 'rm -f "${tmp}" "${deleted_file}" "${tmp}.limited"' EXIT
 
-          # Keep API usage below the normal 1000 requests/hour GITHUB_TOKEN limit.
-          # 9 list requests + up to 900 delete requests = <= 909 API requests/cycle.
+          # Stay within the 1000 requests/hour GITHUB_TOKEN repository limit:
+          # 9 list requests + up to 990 delete requests = <= 999 requests/cycle.
           for page in $(seq 1 9); do
             gh api               -H "Accept: application/vnd.github+json"               -H "X-GitHub-Api-Version: 2026-03-10"               "repos/${repo}/actions/runs?status=completed&per_page=100&page=${page}"               --jq '.workflow_runs[].id' >> "${tmp}" || true
           done
 
           sed -i "/^${current}$/d" "${tmp}" 2>/dev/null || true
-          sort -u "${tmp}" | head -n 900 > "${tmp}.limited"
+          sort -u "${tmp}" | head -n 990 > "${tmp}.limited"
           mv "${tmp}.limited" "${tmp}"
 
           total="$(wc -l < "${tmp}" | tr -d ' ')"
