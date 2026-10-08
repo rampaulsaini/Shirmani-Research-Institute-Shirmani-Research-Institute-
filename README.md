@@ -298,3 +298,12 @@ The canonical public-production path now distinguishes **architecture engines** 
 **Canonical flow:** 1,016 catalog identities → concrete product assets → QC/metadata → public deployment → commercial dispatch gate → downstream verification.
 
 This is intended to eliminate the previous ambiguity where a 25-engine architecture could be mistaken for only 25 produced products.
+
+
+## 🎙️ SHIRMANI Live Persona
+
+- **Live Persona foundation contract:** [docs/live-persona/SHIRMANI-LIVE-PERSONA-CONTRACT.md](docs/live-persona/SHIRMANI-LIVE-PERSONA-CONTRACT.md)
+- **Machine-readable contract:** [schemas/live-persona-contract.schema.json](schemas/live-persona-contract.schema.json)
+- **Pipeline:** Voice → Voice System → Content → Photo/Lip-sync → Live Presentation
+- **Integrity gate:** author-source, presentation output and independent evidence remain separate states.
+- **External service state:** HeyGen/API connection must be recorded separately; repository implementation does not claim an external account connection, live deployment or completed contact unless independently evidenced.
