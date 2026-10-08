@@ -1,0 +1,43 @@
+name: SHIRMANI Supreme Presence v2
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "automation/supreme_presence_v2.json"
+      - "automation/supreme_presence_v2.py"
+      - ".github/workflows/shirmani-supreme-presence-v2.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-supreme-presence-v2
+  cancel-in-progress: true
+
+jobs:
+  contract-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run Supreme Presence v2 contract tests
+        run: python automation/supreme_presence_v2.py
+      - name: Publish deterministic status
+        run: |
+          git config user.name "SHIRMANI Supreme Presence Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/supreme-presence-v2
+          if git diff --cached --quiet; then
+            echo "No status delta."
+            exit 0
+          fi
+          git commit -m "automission: update supreme presence v2 status"
+          git push origin HEAD:main
