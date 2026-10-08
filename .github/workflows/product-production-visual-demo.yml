@@ -26,7 +26,21 @@ jobs:
           VISUAL_BATCH: "500"
           VISUAL_REBUILD: "1"
       - name: Generate product demo/passport manifest
-        run: python3 factory/product_media_manifest_factory.py
+        run: |
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          root=Path("."); cat=json.loads((root/"generated/1000-digital-products.json").read_text())
+          base="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
+          rows=[]
+          for p in cat.get("products",[]):
+            pid=str(p["id"]); engine=str(p.get("engine","default"))
+            demo="products/demos/calculator-demo.html" if engine in ("calculator","engineering") else ("products/demos/text-demo.html" if engine in ("text","nlp","seo","marketing","data","files") else "products/demos/product-demo.html")
+            rows.append({"product_id":pid,"name":p.get("name"),"engine":engine,"interactive_demo_url":base+demo+"?id="+pid,"product_passport_url":base+"product-passport.html?id="+pid,"visual_url":base+"products/visuals/"+pid.lower()+".svg","mp4_status":"NOT_YET_MATERIALIZED","mp4_url":None})
+          out={"schema_version":"1.0","generated_at":datetime.now(timezone.utc).isoformat(),"product_count":len(rows),"interactive_demo_routes":len(rows),"mp4_available":0,"truth_boundary":"MP4 is claimed only when an actual MP4 artifact is evidenced.","products":rows}
+          (root/"generated/product-media-production-manifest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n")
+          PY
       - name: Publish production artifacts
         run: |
           git config user.name "SHIRMANI Automission"
