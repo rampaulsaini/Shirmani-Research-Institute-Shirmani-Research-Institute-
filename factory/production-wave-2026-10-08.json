@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "cycle": "5-minute Automission",
+  "principle": "UNIQUE_DIGITAL_TOOL_PRODUCTION",
+  "wave": "2026-10-08",
+  "tools": [
+    {"id":"UT007","name":"Text Case Studio","category":"writing","path":"products/micro/text-case-studio.html","production_state":"FACTORY_QUEUE"},
+    {"id":"UT008","name":"Slug Generator","category":"publishing","path":"products/micro/slug-generator.html","production_state":"FACTORY_QUEUE"},
+    {"id":"UT009","name":"Base64 Studio","category":"developer","path":"products/micro/base64-studio.html","production_state":"FACTORY_QUEUE"},
+    {"id":"UT010","name":"URL Encode Studio","category":"developer","path":"products/micro/url-encode-studio.html","production_state":"FACTORY_QUEUE"},
+    {"id":"UT011","name":"CSV to JSON Lite","category":"data","path":"products/micro/csv-to-json-lite.html","production_state":"FACTORY_QUEUE"},
+    {"id":"UT012","name":"Number Base Converter","category":"developer","path":"products/micro/number-base-converter.html","production_state":"FACTORY_QUEUE"},
+    {"id":"UT013","name":"Color Contrast Checker","category":"design","path":"products/micro/color-contrast-checker.html","production_state":"FACTORY_QUEUE"},
+    {"id":"UT014","name":"Unix Timestamp Studio","category":"developer","path":"products/micro/unix-timestamp-studio.html","production_state":"FACTORY_QUEUE"}
+  ],
+  "gates":["SOURCE_FILE","FUNCTIONAL_PAGE","SHOWROOM_ENTRY","MEDIA_ELIGIBILITY","VERIFICATION_DOWNSTREAM"]
+}
