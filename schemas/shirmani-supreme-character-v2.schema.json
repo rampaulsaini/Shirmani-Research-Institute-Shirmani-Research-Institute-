@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Supreme Live Character V2 Contract",
+  "type": "object",
+  "required": [
+    "version",
+    "name",
+    "status",
+    "canonical_identity",
+    "framework",
+    "presentation",
+    "reasoning",
+    "media",
+    "verification",
+    "main_platform_routes"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "canonical_identity": {
+      "type": "string"
+    },
+    "framework": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "presentation": {
+      "type": "object",
+      "required": [
+        "core",
+        "dress_code"
+      ],
+      "properties": {
+        "core": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dress_code": {
+          "type": "string"
+        }
+      }
+    },
+    "reasoning": {
+      "type": "object",
+      "required": [
+        "pipeline",
+        "insufficient_evidence",
+        "rules"
+      ],
+      "properties": {
+        "pipeline": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "insufficient_evidence": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "media": {
+      "type": "object",
+      "required": [
+        "pipeline"
+      ],
+      "properties": {
+        "pipeline": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "states",
+        "promotion_rule"
+      ],
+      "properties": {
+        "states": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "promotion_rule": {
+          "type": "string"
+        }
+      }
+    },
+    "main_platform_routes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}
