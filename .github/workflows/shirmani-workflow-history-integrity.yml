@@ -29,8 +29,13 @@ jobs:
           set -euo pipefail
 
           found=0
+          guard_file=".github/workflows/shirmani-workflow-history-integrity.yml"
 
           while IFS= read -r -d '' file; do
+            # Do not self-match the detector's own literal detection patterns.
+            # The guard itself is protected by normal PR review/branch controls.
+            [ "$file" = "$guard_file" ] && continue
+
             if grep -Eiq '(/repos/\$?\{?[^[:space:]"]+\}?/actions/runs/|actions/runs/\$\{|actions/runs/\$REPO)' "$file"               && grep -Eiq '(^|[^A-Za-z])(DELETE|--method[[:space:]]+DELETE)([^A-Za-z]|$)' "$file"; then
               echo "::error file=$file::Destructive GitHub Actions run deletion pattern detected."
               found=1
