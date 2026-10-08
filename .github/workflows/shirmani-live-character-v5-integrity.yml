@@ -48,7 +48,7 @@ jobs:
           # to a newer canonical presentation surface, so validate the target
           # rather than requiring legacy presentation text to remain in V5.
           target_match = re.search(
-              r'(?:url=|href=")(shirmani-supreme-live-character-v[^"]+\\.html)',
+              r'(?:url=|href=")(shirmani-supreme-live-character-v[^"]+\.html)',
               page_text,
               flags=re.IGNORECASE,
           )
