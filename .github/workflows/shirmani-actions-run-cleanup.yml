@@ -1,0 +1,46 @@
+name: SHIRMANI Actions Run Cleanup
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete old workflow runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          CURRENT_RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          deleted=0
+          page=1
+          while true; do
+            runs=$(gh api "/repos/$REPO/actions/runs?per_page=100&page=$page"               --jq '.workflow_runs[] | [.id,.status] | @tsv' 2>/dev/null || true)
+            [ -z "$runs" ] && break
+
+            while IFS=$'\t' read -r run_id status; do
+              [ -z "$run_id" ] && continue
+              if [ "$run_id" = "$CURRENT_RUN_ID" ]; then
+                continue
+              fi
+              if gh api --method DELETE                 "/repos/$REPO/actions/runs/$run_id" >/dev/null 2>&1; then
+                deleted=$((deleted + 1))
+                echo "Deleted workflow run: $run_id"
+              else
+                echo "Could not delete workflow run: $run_id (status=$status)"
+              fi
+            done <<< "$runs"
+
+            page=$((page + 1))
+            [ "$page" -gt 1000 ] && break
+          done
+
+          echo "Cleanup complete. Deleted: $deleted"
