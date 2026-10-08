@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
-      - name: Delete up to 100 oldest completed workflow runs
+      - name: Delete up to 500 oldest completed workflow runs
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -27,25 +27,21 @@ jobs:
           set -u
           repo="${GITHUB_REPOSITORY}"
           current="${GITHUB_RUN_ID}"
-
-          ids="$(gh api \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            "repos/${repo}/actions/runs?status=completed&per_page=100&page=1" \
-            --jq '.workflow_runs[].id' | grep -v "^${current}$" | head -n 100 || true)"
-
           deleted=0
-          for id in $ids; do
-            if gh api --method DELETE \
-              -H "Accept: application/vnd.github+json" \
-              -H "X-GitHub-Api-Version: 2026-03-10" \
-              "repos/${repo}/actions/runs/${id}"; then
-              deleted=$((deleted + 1))
-            else
-              echo "Could not delete run ${id}; continuing."
-            fi
-            sleep 1
+
+          for page in 1 2 3 4 5; do
+            ids="$(gh api               -H "Accept: application/vnd.github+json"               -H "X-GitHub-Api-Version: 2026-03-10"               "repos/${repo}/actions/runs?status=completed&per_page=100&page=${page}"               --jq '.workflow_runs[].id' | grep -v "^${current}$" || true)"
+
+            [ -z "${ids}" ] && break
+
+            for id in ${ids}; do
+              if gh api --method DELETE                 -H "Accept: application/vnd.github+json"                 -H "X-GitHub-Api-Version: 2026-03-10"                 "repos/${repo}/actions/runs/${id}"; then
+                deleted=$((deleted + 1))
+              else
+                echo "Could not delete run ${id}; continuing."
+              fi
+            done
           done
 
-          echo "Deleted $deleted completed workflow runs in this cycle."
-          echo "Cleanup repeats every 10 minutes until the backlog is cleared."
+          echo "Deleted ${deleted} completed workflow runs in this cycle."
+          echo "Cleanup repeats every 10 minutes until the completed-run backlog is cleared."
