@@ -5,7 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/5 * * * *"
 
 permissions:
   actions: write
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      - name: Delete up to 1000 oldest completed workflow runs
+      - name: Delete up to 1000 completed workflow runs per cycle
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -32,11 +32,7 @@ jobs:
           trap 'rm -f "${tmp}" "${deleted_file}" "${tmp}.limited"' EXIT
 
           for page in 1 2 3 4 5 6 7 8 9 10; do
-            gh api \
-              -H "Accept: application/vnd.github+json" \
-              -H "X-GitHub-Api-Version: 2026-03-10" \
-              "repos/${repo}/actions/runs?status=completed&per_page=100&page=${page}" \
-              --jq '.workflow_runs[].id' >> "${tmp}" || true
+            gh api               -H "Accept: application/vnd.github+json"               -H "X-GitHub-Api-Version: 2026-03-10"               "repos/${repo}/actions/runs?status=completed&per_page=100&page=${page}"               --jq '.workflow_runs[].id' >> "${tmp}" || true
           done
 
           sed -i "/^${current}$/d" "${tmp}" 2>/dev/null || true
@@ -55,10 +51,7 @@ jobs:
 
           delete_run() {
             id="$1"
-            if gh api --method DELETE \
-              -H "Accept: application/vnd.github+json" \
-              -H "X-GitHub-Api-Version: 2026-03-10" \
-              "repos/${repo}/actions/runs/${id}" >/dev/null 2>&1; then
+            if gh api --method DELETE               -H "Accept: application/vnd.github+json"               -H "X-GitHub-Api-Version: 2026-03-10"               "repos/${repo}/actions/runs/${id}" >/dev/null 2>&1; then
               echo 1 >> "${deleted_file}"
             else
               echo "Could not delete run ${id}; continuing." >&2
@@ -70,4 +63,4 @@ jobs:
 
           deleted="$(wc -l < "${deleted_file}" | tr -d ' ')"
           echo "Deleted ${deleted} completed workflow runs in this cycle."
-          echo "Cleanup repeats every 15 minutes until the completed-run backlog is cleared."
+          echo "Cleanup repeats every 5 minutes until the completed-run backlog is cleared."
