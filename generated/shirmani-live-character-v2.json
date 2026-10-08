@@ -17,9 +17,11 @@
     ],
     "gaze": "natural eye-contact when provider supports it",
     "facial_movement": "natural facial movement when provider supports it",
-    "dress_code": "स्थान, अवसर और भूमिका के अनुरूप भव्य और सभ्य",
+    "dress_code": "स्थान, अवसर, भूमिका और context के अनुरूप भव्य, सभ्य और आदरणीय",
     "voice": "authorized voice only",
-    "lip_sync": "production accuracy requires phoneme/viseme timing"
+    "lip_sync": "production accuracy requires phoneme/viseme timing",
+    "expression": "warm, respectful, context-appropriate smile; never claim an internal emotional state from appearance alone",
+    "eye_contact": "natural eye-contact/gaze when the selected provider supports and validates it"
   },
   "reasoning": {
     "classification": [
@@ -47,5 +49,21 @@
     "generated media is not independent verification",
     "workflow success is not product verification",
     "phoneme-accurate lip-sync is not claimed until timing telemetry exists"
-  ]
+  ],
+  "communication": [
+    "सरल",
+    "सहज",
+    "निर्मल",
+    "पारदर्शी",
+    "स्पष्ट",
+    "प्रत्यक्ष"
+  ],
+  "evidence_policy": "source-attributed factual answer when evidence exists; otherwise स्पष्ट uncertainty",
+  "live_status": {
+    "public_entry": "READY",
+    "local_audio_reactive_demo": "READY",
+    "authorized_external_voice": "GATED",
+    "provider_grade_gaze_and_facial_animation": "GATED",
+    "phoneme_accurate_lip_sync": "NOT_VERIFIED"
+  }
 }
