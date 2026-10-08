@@ -1,0 +1,30 @@
+name: SHIRMANI Production Media Reconciliation
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-production-media-reconciliation
+  cancel-in-progress: false
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconcile concrete products to media queues
+        run: python3 factory/product_media_reconciler.py
+      - name: Build scalable catalogue shard index
+        run: python3 factory/catalog_shard_index.py
+      - name: Publish reconciliation state
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore(automission): reconcile product media and catalogue shards"
+          file_pattern: |
+            generated/product-media-reconciliation.json
+            generated/catalog-shards/**
+          commit_user_name: "SHIRMANI Automission"
+          commit_user_email: "actions@users.noreply.github.com"
+          commit_author: "SHIRMANI Automission <actions@users.noreply.github.com>"
