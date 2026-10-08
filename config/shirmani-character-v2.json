@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "name": "SHIRMANI Character V2",
+  "status": "CONTRACT_DEFINED_FAIL_CLOSED",
+  "source_boundary": "USER_AUTHORED_DERIVATIVE",
+  "principles": ["सरल","सहज","निर्मल","पारदर्शी","स्पष्ट","प्रत्यक्ष"],
+  "presentation": {
+    "natural_eye_contact": true,
+    "natural_facial_movement": true,
+    "voice_face_timing_coherence": true,
+    "context_aware_question_handling": true,
+    "respect_without_demeaning_people_or_groups": true
+  },
+  "identity_boundary": {
+    "user_authored_identity_statements": "LABEL_AS_USER_AUTHORED",
+    "independent_scientific_fact": "REQUIRES_INDEPENDENT_EVIDENCE",
+    "unsupported_factual_claim": "FAIL_CLOSED"
+  },
+  "evidence_policy": {
+    "source_when_available": true,
+    "insufficient_evidence_phrase": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है",
+    "never_invent_sources": true,
+    "never_upgrade_identity_statement_to_scientific_fact": true
+  },
+  "media_pipeline": ["VOICE","AUTHORIZED_VOICE_INTEGRATION","TEST_QA","CONTENT","APPROVED_PHOTO_OR_AVATAR","PHONEME_OR_VISEME_TIMING","LIP_SYNC","LIVE_PRESENTATION","TRANSCRIPT_PROVENANCE_AUDIT"],
+  "release_gates": {
+    "authorized_voice_provider": "REQUIRED",
+    "approved_visual_asset": "REQUIRED",
+    "test_qa": "REQUIRED",
+    "phoneme_or_viseme_lipsync": "REQUIRED_FOR_ACCURATE_MODE",
+    "independent_verification": "REQUIRED_FOR_VERIFIED_CLAIMS",
+    "live_publish": "FAIL_CLOSED_UNTIL_ALL_REQUIRED_GATES_PASS"
+  },
+  "prohibited_shortcuts": [
+    "invented consent",
+    "invented provider connection",
+    "invented reviewer identity",
+    "invented scientific verification",
+    "claiming production lip-sync from audio-reactive animation alone",
+    "claiming LIVE_READY when an upstream gate fails"
+  ]
+}
