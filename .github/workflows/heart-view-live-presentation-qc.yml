@@ -1,0 +1,24 @@
+name: SHIRMANI Heart-View Live Presentation QC
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic presentation QC
+        run: python factory/heart_view_live_presentation_qc.py
+      - name: Commit generated status
+        run: |
+          git config user.name "shirmani-automission"
+          git config user.email "actions@users.noreply.github.com"
+          git add generated/heart-view-live-presentation-status.json
+          git diff --cached --quiet || git commit -m "chore: update Heart-View live presentation status"
+          git push
