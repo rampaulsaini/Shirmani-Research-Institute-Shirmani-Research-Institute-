@@ -4,7 +4,9 @@ on:
   push:
     paths:
       - 'shirmani-live-character-v5.html'
+      - 'shirmani-supreme-live-character-v*.html'
       - 'generated/shirmani-live-character-v5.json'
+      - 'generated/shirmani-live-character-v*.json'
       - '.github/workflows/shirmani-live-character-v5-integrity.yml'
       - 'index.html'
   schedule:
@@ -22,26 +24,62 @@ jobs:
       - name: Validate V5 contract and public wiring
         shell: python
         run: |
-          import json, pathlib, sys
+          import json, pathlib, re, sys
+
           contract = pathlib.Path("generated/shirmani-live-character-v5.json")
           page = pathlib.Path("shirmani-live-character-v5.html")
           index = pathlib.Path("index.html")
+
           data = json.loads(contract.read_text(encoding="utf-8"))
-          required = ["version","name","framework","identity_statement","communication","reasoning","presentation","pipeline","status","integrity"]
+          page_text = page.read_text(encoding="utf-8")
+          index_text = index.read_text(encoding="utf-8")
+
+          required = [
+              "version","name","framework","identity_statement",
+              "communication","reasoning","presentation",
+              "pipeline","status","integrity"
+          ]
           missing = [k for k in required if k not in data]
           if missing:
               print("FAIL missing contract keys:", missing)
               sys.exit(1)
+
+          # V5 is the stable public entry point. It may be a redirect/wrapper
+          # to a newer canonical presentation surface, so validate the target
+          # rather than requiring legacy presentation text to remain in V5.
+          target_match = re.search(
+              r'(?:url=|href=")(shirmani-supreme-live-character-v[^"]+\.html)',
+              page_text,
+              flags=re.IGNORECASE,
+          )
+          target_name = target_match.group(1) if target_match else None
+          target = pathlib.Path(target_name) if target_name else None
+          target_text = target.read_text(encoding="utf-8") if target and target.exists() else ""
+
           checks = {
-              "page exists": page.exists(),
-              "main hub links V5": "shirmani-live-character-v5.html" in index.read_text(encoding="utf-8"),
-              "evidence fallback present": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in page.read_text(encoding="utf-8"),
-              "verification boundary present": "independent_scientific_verification" in contract.read_text(encoding="utf-8"),
-              "legacy preserved": all(pathlib.Path(p).exists() for p in ["shirmani-live-character-v3.html","live-persona-supreme-v4.html"])
+              "entry page exists": page.exists(),
+              "main hub links V5 entry": "shirmani-live-character-v5.html" in index_text,
+              "entry target resolved": bool(target and target.exists()),
+              "target evidence fallback present": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in target_text,
+              "target verification boundary present": (
+                  "NOT_VERIFIED" in target_text
+                  or "independent_scientific_verification" in target_text
+                  or "workflow_success_is_not_independent_verification" in target_text
+              ),
+              "legacy preserved": all(
+                  pathlib.Path(p).exists()
+                  for p in ["shirmani-live-character-v3.html","live-persona-supreme-v4.html"]
+              ),
+              "V5 contract verification boundary present": (
+                  "independent_scientific_verification" in contract.read_text(encoding="utf-8")
+              ),
           }
-          bad = [k for k,v in checks.items() if not v]
-          print("V5 integrity:", checks)
+
+          bad = [k for k, v in checks.items() if not v]
+          print("V5 entry integrity:", checks)
+          print("V5 entry target:", target_name or "UNRESOLVED")
           if bad:
               print("FAIL:", bad)
               sys.exit(1)
-          print("PASS: SHIRMANI Supreme Live Character V5 integrity gate")
+
+          print("PASS: SHIRMANI Supreme Live Character V5 entry integrity gate")
