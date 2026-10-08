@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shirmani Voice To Live Presentation Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "session_id",
+    "stage",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stage": {
+      "enum": [
+        "voice_intake",
+        "voice_system",
+        "content",
+        "photo_lipsync",
+        "live_presentation"
+      ]
+    },
+    "status": {
+      "enum": [
+        "RECEIVED",
+        "TRANSCRIBED",
+        "CONTENT_READY",
+        "VOICE_READY",
+        "VISUAL_READY",
+        "LIVE",
+        "REJECTED",
+        "ABSTAINED",
+        "UNVERIFIED",
+        "DEGRADED"
+      ]
+    },
+    "language": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "request_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "content_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_state": {
+      "enum": [
+        "AVAILABLE",
+        "INSUFFICIENT",
+        "CONFLICTING",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "verification_state": {
+      "enum": [
+        "UNVERIFIED",
+        "VERIFIED",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "voice_authorization_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "voice_asset_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "presenter_asset_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "audio_generation_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "visual_generation_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "runtime_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification_state": {
+            "const": "VERIFIED"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "source_refs"
+        ]
+      }
+    }
+  ]
+}
