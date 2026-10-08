@@ -1,0 +1,88 @@
+name: SHIRMANI Character V2 Orchestrator
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "config/shirmani-character-v2.json"
+      - "docs/SHIRMANI-CHARACTER-V2-ORCHESTRATION.md"
+      - "shirmani-live-presentation.html"
+      - "config/authorized-voice-integration.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-character-v2-orchestrator
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Character V2 contract
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          c=json.loads(Path("config/shirmani-character-v2.json").read_text(encoding="utf-8"))
+          v=json.loads(Path("config/authorized-voice-integration.json").read_text(encoding="utf-8"))
+          h=Path("shirmani-live-presentation.html").read_text(encoding="utf-8")
+          checks=[
+            c["status"]=="CONTRACT_DEFINED_FAIL_CLOSED",
+            c["evidence_policy"]["insufficient_evidence_phrase"]=="अभी पर्याप्त प्रमाण उपलब्ध नहीं है",
+            c["identity_boundary"]["user_authored_identity_statements"]=="LABEL_AS_USER_AUTHORED",
+            v["consent"]["external_voice_cloning"]=="NOT_ENABLED_BY_DEFAULT",
+            v["evidence_policy"]["factual_answer_with_source"] is True,
+            "Voice → Authorized Voice Integration → Test Q&A → Lip-Sync → Live Presentation" in h,
+            "EXPLICIT AUTH REQUIRED" in h,
+            "NOT CLAIMED" in h,
+            "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in h
+          ]
+          if not all(checks):
+              raise SystemExit("CHARACTER_V2_CONTRACT_FAIL")
+          print("CHARACTER_V2_CONTRACT_PASS")
+
+      - name: Evaluate production gates
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone
+          v=json.loads(Path("config/authorized-voice-integration.json").read_text(encoding="utf-8"))
+          gates={
+            "contract": True,
+            "evidence_gate": v["evidence_policy"]["factual_answer_with_source"] is True,
+            "authorized_provider": v["modes"]["authorized_provider"] == "CONNECTED_AND_HEALTHY",
+            "phoneme_accurate_lipsync": v["modes"]["lip_sync"] == "PHONEME_ACCURATE_MODE_READY",
+            "external_live_publish": False,
+            "independent_verification": False
+          }
+          live_ready=all(gates.values())
+          out={
+            "generated_at_utc":datetime.now(timezone.utc).isoformat(),
+            "character_v2":"ACTIVE_CONTRACT",
+            "gates":gates,
+            "live_ready":live_ready,
+            "state":"LIVE_READY" if live_ready else "FAIL_CLOSED",
+            "next_required_gates":[k for k,v in gates.items() if not v]
+          }
+          Path("generated").mkdir(exist_ok=True)
+          Path("generated/character-v2-orchestration-status.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+
+      - name: Publish orchestration status
+        shell: bash
+        run: |
+          git config user.name "SHIRMANI Character V2 Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/character-v2-orchestration-status.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "automission: publish character v2 orchestration status"
+          git push origin HEAD:main
