@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-07T18:25:22.999496+00:00",
+  "generated_at": "2026-10-08T16:51:34.223104+00:00",
   "purpose": "public-first production module map",
   "module_count": 10712,
   "lane_counts": {
@@ -341,7 +341,7 @@
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "READY",
-      "bytes": 3739
+      "bytes": 3953
     },
     {
       "path": "factory/production_dashboard.py",
@@ -64251,7 +64251,7 @@
       "type": "py",
       "lane": "research",
       "status": "READY",
-      "bytes": 8230
+      "bytes": 8205
     },
     {
       "path": "factory/recovery.py",
