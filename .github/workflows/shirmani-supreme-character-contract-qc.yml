@@ -1,0 +1,39 @@
+name: SHIRMANI Supreme Live Character Contract QC
+
+on:
+  push:
+    paths:
+      - 'federation/shirmani-supreme-character-v2.json'
+      - 'schemas/shirmani-supreme-character-v2.schema.json'
+      - '.github/workflows/shirmani-supreme-character-contract-qc.yml'
+  pull_request:
+    paths:
+      - 'federation/shirmani-supreme-character-v2.json'
+      - 'schemas/shirmani-supreme-character-v2.schema.json'
+      - '.github/workflows/shirmani-supreme-character-contract-qc.yml'
+
+jobs:
+  contract-qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON contract
+        run: |
+          python - <<'PY'
+          import json
+          p='federation/shirmani-supreme-character-v2.json'
+          s='schemas/shirmani-supreme-character-v2.schema.json'
+          with open(p,encoding='utf-8') as f: c=json.load(f)
+          with open(s,encoding='utf-8') as f: schema=json.load(f)
+          required=schema['required']
+          missing=[k for k in required if k not in c]
+          if missing:
+              raise SystemExit('Missing required contract fields: '+', '.join(missing))
+          if c['reasoning']['insufficient_evidence'] != 'अभी पर्याप्त प्रमाण उपलब्ध नहीं है।':
+              raise SystemExit('Fail-closed insufficient-evidence wording changed unexpectedly')
+          if 'VERIFIED' not in c['verification']['states']:
+              raise SystemExit('VERIFIED state missing')
+          if 'independent verification' not in c['verification']['promotion_rule'].lower():
+              raise SystemExit('Independent-verification gate missing')
+          print('SHIRMANI Supreme Live Character V2 contract: PASS')
+          PY
