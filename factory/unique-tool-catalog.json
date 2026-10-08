@@ -38,6 +38,42 @@
       "name": "JSON Shape Checker",
       "path": "products/micro/json-schema-checker.html",
       "category": "developer"
+    },
+    {
+      "id": "UT007",
+      "name": "Structured Data Formatter",
+      "path": "products/micro/structured-data-formatter.html",
+      "category": "developer"
+    },
+    {
+      "id": "UT008",
+      "name": "CSV Column Mapper",
+      "path": "products/micro/csv-column-mapper.html",
+      "category": "data"
+    },
+    {
+      "id": "UT009",
+      "name": "Date Difference Planner",
+      "path": "products/micro/date-difference-planner.html",
+      "category": "planning"
+    },
+    {
+      "id": "UT010",
+      "name": "Markdown Table Builder",
+      "path": "products/micro/markdown-table-builder.html",
+      "category": "publishing"
+    },
+    {
+      "id": "UT011",
+      "name": "Text Case Transformer",
+      "path": "products/micro/text-case-transformer.html",
+      "category": "writing"
+    },
+    {
+      "id": "UT012",
+      "name": "URL Query Inspector",
+      "path": "products/micro/url-query-inspector.html",
+      "category": "developer"
     }
   ],
   "gates": [
