@@ -1,0 +1,31 @@
+name: SHIRMANI Supreme Live Character V9 Integrity
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "shirmani-supreme-live-character-v9.html"
+      - "generated/shirmani-live-character-v9.json"
+      - "shirmani-live-character-v5.html"
+      - ".github/workflows/shirmani-live-character-v9-integrity.yml"
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-live-character-v9-integrity
+  cancel-in-progress: true
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate V9
+        shell: python
+        run: |
+          import json,pathlib
+          p=pathlib.Path("shirmani-supreme-live-character-v9.html").read_text(encoding="utf-8")
+          c=json.loads(pathlib.Path("generated/shirmani-live-character-v9.json").read_text(encoding="utf-8"))
+          required=["Voice → Authorized Voice → Context → Evidence → Reasoning → Answer → Face → Gaze → Lip Timing → Live → Audit → Improve","अभी पर्याप्त प्रमाण उपलब्ध नहीं है。","EXPLICIT AUTH REQUIRED","NOT YET ESTABLISHED"]
+          assert c["version"]=="V9" and c["evidence"]["workflow_success_is_not_independent_verification"] and all(x in p for x in required)
+          print("SHIRMANI_V9_INTEGRITY_PASS")
