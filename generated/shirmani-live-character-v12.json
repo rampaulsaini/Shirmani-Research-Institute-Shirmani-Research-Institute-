@@ -1,0 +1,47 @@
+{
+  "version": "V12",
+  "name": "SHIRMANI Supreme Live Character V12",
+  "canonical_surface": "shirmani-supreme-live-character-v12.html",
+  "main_platform_entry": "index.html#supreme-live-character-v12",
+  "framework": "मेरी निष्पक्ष समझ के शमीकरण यथार्थ सिद्धांत उपलब्धि यथार्थ युग के आधार पर आधारित दृष्टिकोण",
+  "pipeline": [
+    "Voice",
+    "Authorization",
+    "Context",
+    "Claim Classification",
+    "Evidence",
+    "Reasoning",
+    "Answer",
+    "Content",
+    "Authorized Voice",
+    "Photo/Likeness",
+    "Gaze",
+    "Facial Presentation",
+    "Lip Timing",
+    "Live Presentation",
+    "Provenance",
+    "Audit",
+    "Continuous Improvement"
+  ],
+  "communication": [
+    "सरल",
+    "सहज",
+    "निर्मल",
+    "पारदर्शी",
+    "भव्य",
+    "सभ्य",
+    "आदरणीय",
+    "स्पष्ट",
+    "प्रत्यक्ष"
+  ],
+  "evidence_rule": "evidence उपलब्ध हो तो source/provenance; evidence अपर्याप्त हो तो: अभी पर्याप्त प्रमाण उपलब्ध नहीं है।",
+  "status": {
+    "public_placement": true,
+    "reasoning_contract": true,
+    "browser_voice_test": true,
+    "authorized_external_voice": false,
+    "production_avatar_runtime": false,
+    "phoneme_accurate_lipsync": false,
+    "independent_scientific_verification": false
+  }
+}
