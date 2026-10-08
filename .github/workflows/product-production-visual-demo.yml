@@ -1,0 +1,36 @@
+name: SHIRMANI Product Production Visual + Demo Conveyor
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "generated/1000-digital-products.json"
+      - "factory/product_visual_identity_factory.py"
+      - "factory/product_media_manifest_factory.py"
+      - "products/demos/**"
+      - ".github/workflows/product-production-visual-demo.yml"
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-product-visual-demo
+  cancel-in-progress: false
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate concrete 4K-ready product visuals
+        run: python3 factory/product_visual_identity_factory.py
+        env:
+          VISUAL_BATCH: "500"
+          VISUAL_REBUILD: "1"
+      - name: Generate product demo/passport manifest
+        run: python3 factory/product_media_manifest_factory.py
+      - name: Publish production artifacts
+        run: |
+          git config user.name "SHIRMANI Automission"
+          git config user.email "actions@users.noreply.github.com"
+          git add products/visuals generated/product-visual-assets.json generated/product-media-production-manifest.json
+          git diff --cached --quiet || git commit -m "Automission: product visuals and demo routes"
+          git push
