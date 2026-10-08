@@ -162,6 +162,23 @@ def main():
     assert malformed_drift["drift_detected"] is False
     assert malformed_drift["insufficient_evidence"] is True
 
+    # Missing units must remain fail-closed in drift analysis even when
+    # enough samples exist to calculate a numerical shift. A pseudo-unit must
+    # never turn unknown scale into evidence of no-drift or drift.
+    missing_unit_reference = [
+        {"feature":"latency","value":10},
+        {"feature":"latency","value":12},
+    ]
+    missing_unit_current = [
+        {"feature":"latency","value":20},
+        {"feature":"latency","value":22},
+    ]
+    missing_unit_drift = drift_report(missing_unit_reference, missing_unit_current)
+    assert missing_unit_drift["status"] == "INSUFFICIENT_EVIDENCE"
+    assert missing_unit_drift["drift_detected"] is False
+    assert missing_unit_drift["insufficient_evidence"] is True
+    assert missing_unit_drift["features"] == {}
+
     # Explicit binary contracts also reject non-binary numeric labels and
     # predictions; truthiness must never silently change evaluation outcomes.
     for bad_value in (0.5, -1, 2, float("nan"), float("inf")):
