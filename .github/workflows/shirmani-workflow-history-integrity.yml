@@ -1,0 +1,57 @@
+name: SHIRMANI Workflow History Integrity Guard
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/**"
+  schedule:
+    - cron: "23 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    name: Block destructive workflow-run cleanup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Scan workflow definitions for destructive run deletion
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          found=0
+          guard_file=".github/workflows/shirmani-workflow-history-integrity.yml"
+
+          while IFS= read -r -d '' file; do
+            # Do not self-match the detector's own literal detection patterns.
+            # The guard itself is protected by normal PR review/branch controls.
+            [ "$file" = "$guard_file" ] && continue
+
+            if grep -Eiq '(/repos/\$?\{?[^[:space:]"]+\}?/actions/runs/|actions/runs/\$\{|actions/runs/\$REPO)' "$file"               && grep -Eiq '(^|[^A-Za-z])(DELETE|--method[[:space:]]+DELETE)([^A-Za-z]|$)' "$file"; then
+              echo "::error file=$file::Destructive GitHub Actions run deletion pattern detected."
+              found=1
+            fi
+
+            if grep -Eiq 'gh[[:space:]]+api[^\n]*--method[[:space:]]+DELETE[^\n]*actions/runs' "$file"; then
+              echo "::error file=$file::Workflow-run deletion through gh api is prohibited."
+              found=1
+            fi
+          done < <(find .github/workflows -type f \( -name '*.yml' -o -name '*.yaml' \) -print0)
+
+          if [ "$found" -ne 0 ]; then
+            echo "Workflow history integrity guard FAILED."
+            echo "No workflow may automatically delete GitHub Actions run history."
+            exit 1
+          fi
+
+          echo "Workflow history integrity guard PASSED."
+          echo "No destructive workflow-run cleanup pattern was found."
