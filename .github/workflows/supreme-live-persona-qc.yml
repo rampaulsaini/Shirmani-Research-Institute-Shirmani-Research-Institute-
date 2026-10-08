@@ -1,0 +1,30 @@
+name: Supreme Live Persona Contract QC
+on:
+  push:
+    paths:
+      - "supreme-live-persona.html"
+      - "docs/supreme-live-persona-contract-2026-10-08.md"
+      - ".github/workflows/supreme-live-persona-qc.yml"
+  pull_request:
+    paths:
+      - "supreme-live-persona.html"
+      - "docs/supreme-live-persona-contract-2026-10-08.md"
+      - ".github/workflows/supreme-live-persona-qc.yml"
+  workflow_dispatch:
+jobs:
+  contract-qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required public contract markers
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f supreme-live-persona.html
+          test -f docs/supreme-live-persona-contract-2026-10-08.md
+          grep -q "Evidence" supreme-live-persona.html
+          grep -q "Authorized voice" supreme-live-persona.html
+          grep -q "IMPLEMENTED PAGE" supreme-live-persona.html
+          grep -q "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" supreme-live-persona.html
+          grep -q "independent" docs/supreme-live-persona-contract-2026-10-08.md
+          echo "Supreme Live Persona contract QC: PASS"
