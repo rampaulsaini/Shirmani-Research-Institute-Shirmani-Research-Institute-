@@ -1,0 +1,41 @@
+name: SHIRMANI Heart-View Live Character QC
+on:
+  push:
+    paths:
+      - 'heart-view-live-character.html'
+      - 'docs/heart-view-live-character-system.md'
+      - 'schemas/heart-view-live-character.schema.json'
+      - '.github/workflows/heart-view-live-character-qc.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate required files
+        run: |
+          test -s heart-view-live-character.html
+          test -s docs/heart-view-live-character-system.md
+          test -s schemas/heart-view-live-character.schema.json
+      - name: Validate JSON schema syntax
+        run: |
+          python - <<'PY'
+          import json
+          with open("schemas/heart-view-live-character.schema.json", encoding="utf-8") as f:
+              json.load(f)
+          print("schema-json: PASS")
+          PY
+      - name: Integrity scan
+        run: |
+          if grep -RniE 'sk-[A-Za-z0-9_-]{20,}|AIza[0-9A-Za-z_-]{20,}|ghp_[A-Za-z0-9]{20,}' heart-view-live-character.html docs/heart-view-live-character-system.md schemas/heart-view-live-character.schema.json; then
+            echo "Potential credential detected"
+            exit 1
+          fi
+          echo "secret-scan: PASS"
+      - name: Evidence boundary check
+        run: |
+          grep -q 'EVIDENCE_INSUFFICIENT' heart-view-live-character.html
+          grep -q 'NOT_VERIFIED' docs/heart-view-live-character-system.md
+          echo "evidence-boundary: PASS"

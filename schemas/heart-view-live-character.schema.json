@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Heart-View Live Character Presentation",
+  "type": "object",
+  "required": [
+    "request_id",
+    "question",
+    "response",
+    "evidence_state",
+    "verification_state",
+    "presentation"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "question": {
+      "type": "string"
+    },
+    "response": {
+      "type": "string"
+    },
+    "evidence_state": {
+      "type": "string",
+      "enum": [
+        "VERIFIED",
+        "SUPPORTED",
+        "AUTHOR_STATEMENT",
+        "EVIDENCE_INSUFFICIENT",
+        "UNKNOWN"
+      ]
+    },
+    "verification_state": {
+      "type": "string",
+      "enum": [
+        "INDEPENDENTLY_VERIFIED",
+        "QC_ONLY",
+        "NOT_VERIFIED",
+        "UNKNOWN"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "required": [
+        "speech_text",
+        "voice_status",
+        "visual_status",
+        "lip_sync_status"
+      ],
+      "properties": {
+        "speech_text": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "voice_status": {
+          "type": "string",
+          "enum": [
+            "AUTHORIZED_CONNECTED",
+            "AUTHORIZED_PENDING",
+            "NOT_CONNECTED"
+          ]
+        },
+        "voice_reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "visual_status": {
+          "type": "string",
+          "enum": [
+            "PHOTO_CONNECTED",
+            "AVATAR_CONNECTED",
+            "PENDING_ASSET"
+          ]
+        },
+        "visual_reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lip_sync_status": {
+          "type": "string",
+          "enum": [
+            "CONNECTED",
+            "TEST_ONLY",
+            "NOT_CONNECTED"
+          ]
+        },
+        "gaze": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "expression": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "captions": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
