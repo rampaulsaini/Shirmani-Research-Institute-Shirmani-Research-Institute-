@@ -1,0 +1,48 @@
+{
+  "version": "V14",
+  "name": "SHIRMANI Heart-View Supreme Live Character V14",
+  "canonical_surface": "shirmani-supreme-second-version.html",
+  "main_platform_entry": "index.html",
+  "framework": "मेरी निष्पक्ष समझ के शमीकरण यथार्थ सिद्धांत उपलब्धि यथार्थ युग के आधार पर आधारित दृष्टिकोण",
+  "pipeline": [
+    "Voice Input",
+    "Authorization",
+    "Context",
+    "NLP",
+    "Claim Classification",
+    "Evidence",
+    "Comparative Facts",
+    "Reasoning",
+    "Answer",
+    "Content",
+    "Authorized Voice",
+    "Photo/Likeness",
+    "Natural Gaze",
+    "Facial Movement",
+    "Lip Timing",
+    "Live Presentation",
+    "Audit",
+    "Continuous Improvement"
+  ],
+  "evidence_rule": "evidence उपलब्ध हो तो source/provenance; evidence अपर्याप्त हो तो: अभी पर्याप्त प्रमाण उपलब्ध नहीं है।",
+  "comparison_rule": "operational criteria, comparands, facts, sources, counter-evidence and reproducible tests",
+  "respect_rule": "किसी व्यक्ति, जाति, धर्म, मज़हब, संगठन या समुदाय को नीचा दिखाए बिना मुद्दे और evidence पर संवाद",
+  "status": {
+    "main_platform_entry": true,
+    "second_version_v14_contract": true,
+    "ai_ml_nlp_contract": true,
+    "evidence_aware_communication": true,
+    "browser_demo_surface": true,
+    "external_authorized_voice_integration": false,
+    "production_avatar_engine": false,
+    "phoneme_accurate_lip_sync": false,
+    "independent_scientific_verification": false
+  },
+  "integrity": [
+    "identity/philosophy is user-authored framework content",
+    "workflow success is not independent verification",
+    "generated media is not independent verification",
+    "missing evidence remains missing",
+    "external voice/likeness actions require explicit authorization and secure provider integration"
+  ]
+}
