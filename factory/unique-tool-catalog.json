@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "principle": "UNIQUE_DIGITAL_TOOL_PRODUCTION",
+  "cycle": "5-minute Automission",
+  "tools": [
+    {
+      "id": "UT001",
+      "name": "Text Diff Studio",
+      "path": "products/micro/text-diff.html",
+      "category": "writing"
+    },
+    {
+      "id": "UT002",
+      "name": "Reading Time Calculator",
+      "path": "products/micro/reading-time-calculator.html",
+      "category": "publishing"
+    },
+    {
+      "id": "UT003",
+      "name": "UTM Link Builder",
+      "path": "products/micro/utm-builder.html",
+      "category": "marketing"
+    },
+    {
+      "id": "UT004",
+      "name": "Regex Tester",
+      "path": "products/micro/regex-tester.html",
+      "category": "developer"
+    },
+    {
+      "id": "UT005",
+      "name": "Invoice Calculator",
+      "path": "products/micro/invoice-calculator.html",
+      "category": "business"
+    },
+    {
+      "id": "UT006",
+      "name": "JSON Shape Checker",
+      "path": "products/micro/json-schema-checker.html",
+      "category": "developer"
+    }
+  ],
+  "gates": [
+    "SOURCE_FILE",
+    "FUNCTIONAL_PAGE",
+    "SHOWROOM_ENTRY",
+    "MEDIA_ELIGIBILITY",
+    "VERIFICATION_DOWNSTREAM"
+  ]
+}
