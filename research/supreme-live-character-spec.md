@@ -20,3 +20,12 @@ A beautiful avatar, generated video, workflow success, model confidence or autom
 
 ## Current boundary
 The browser voice and local timing previews are demonstrations. Authorized personal voice, realtime gaze rendering and production-grade lip-sync remain explicit integration/validation gates.
+
+
+## Added Heart-View presentation contract
+
+- Natural smile/warmth, attentive gaze and dignified presence are **presentation goals**, not proof of an internal mental state.
+- Dress/personality may adapt to place, occasion and role while the communication principles remain stable.
+- Prefer concise explanation first; use comparative facts only when criteria and evidence make the comparison meaningful.
+- Preserve the explicit uncertainty response: **“अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”**
+- The user's identity/philosophy wording remains a source-layer statement and is not silently converted into scientific fact.
