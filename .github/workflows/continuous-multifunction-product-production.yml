@@ -1,0 +1,66 @@
+name: SHIRMANI Continuous Multi-Function Product Production
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      visual_batch: {description: "Product visuals per cycle", required: false, default: "250"}
+      qr_batch: {description: "Product QR assets per cycle", required: false, default: "250"}
+      vip_batch: {description: "VIP screenshots per cycle", required: false, default: "250"}
+      demo_batch: {description: "Product MP4 demos per cycle", required: false, default: "10"}
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-continuous-multifunction-production
+  cancel-in-progress: false
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - name: Load persistent production-state
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin automation/production-state >/dev/null 2>&1; then
+            git fetch origin automation/production-state
+            git archive FETCH_HEAD generated products | tar -x
+          fi
+      - name: Install media dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python3 -m pip install --disable-pip-version-check "qrcode>=8,<9"
+      - name: Run multi-function production cycle
+        env:
+          VISUAL_BATCH: ${{ github.event.inputs.visual_batch || '250' }}
+          QR_BATCH: ${{ github.event.inputs.qr_batch || '250' }}
+          VIP_BATCH: ${{ github.event.inputs.vip_batch || '250' }}
+          DEMO_BATCH: ${{ github.event.inputs.demo_batch || '10' }}
+        run: python3 factory/continuous_multifunction_product_production.py
+      - name: Publish production-state branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated products
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "automission: continuous multi-function product production cycle"
+          git push origin HEAD:automation/production-state
+      - name: Publish cycle summary
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("generated/multi-function-production-cycle.json")
+          if p.exists():
+              d=json.loads(p.read_text(encoding="utf-8"))
+              print("PRODUCTION CYCLE:",d.get("cycle_state"))
+              print("CONCRETE PRODUCTS:",d.get("results",{}).get("concrete_products"))
+              print("VIP SCREENSHOTS:",d.get("results",{}).get("vip_screenshots"))
+              print("REAL MP4:",d.get("results",{}).get("real_mp4"))
+              print("CHAT REQUIRED:",d.get("chat_required_for_continuity"))
+          PY
