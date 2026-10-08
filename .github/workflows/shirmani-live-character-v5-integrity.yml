@@ -32,11 +32,22 @@ jobs:
           if missing:
               print("FAIL missing contract keys:", missing)
               sys.exit(1)
+          v5_text = page.read_text(encoding="utf-8")
+          index_text = index.read_text(encoding="utf-8")
+          v10_contract = pathlib.Path("generated/shirmani-live-character-v10-contract.json")
+          v10_page = pathlib.Path("shirmani-supreme-live-character-v10.html")
+          v10_data = json.loads(v10_contract.read_text(encoding="utf-8")) if v10_contract.exists() else {}
+
           checks = {
               "page exists": page.exists(),
-              "main hub links V5": "shirmani-live-character-v5.html" in index.read_text(encoding="utf-8"),
-              "evidence fallback present": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in page.read_text(encoding="utf-8"),
-              "verification boundary present": "independent_scientific_verification" in contract.read_text(encoding="utf-8"),
+              "legacy V5 entry preserved": "shirmani-live-character-v5.html" in index_text,
+              "legacy V5 redirects to V10": "shirmani-supreme-live-character-v10.html" in v5_text,
+              "canonical V10 page exists": v10_page.exists(),
+              "canonical V10 contract exists": v10_contract.exists(),
+              "V10 contract points to canonical surface": v10_data.get("canonical_surface") == "shirmani-supreme-live-character-v10.html",
+              "evidence fallback present": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in v5_text,
+              "V5 verification boundary present": "independent_scientific_verification" in contract.read_text(encoding="utf-8"),
+              "V10 independent verification remains separate": v10_data.get("gates", {}).get("independent_verification") == "separate artifact",
               "legacy preserved": all(pathlib.Path(p).exists() for p in ["shirmani-live-character-v3.html","live-persona-supreme-v4.html"])
           }
           bad = [k for k,v in checks.items() if not v]
