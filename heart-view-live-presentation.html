@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Heart-View Live Presentation</title>
+<style>
+:root{--bg:#07111d;--card:#0d1b2a;--line:#24445f;--gold:#ffd85a;--cyan:#63e6ff;--text:#eef7fb;--muted:#a9bdc9;--ok:#73e6a2}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#17304a 0,#07111d 45%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}main{max-width:1100px;margin:auto;padding:20px 16px 70px}h1{font-size:clamp(2rem,7vw,4.6rem);line-height:1;margin:12px 0;color:var(--gold)}h2{color:var(--cyan)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}.card{background:rgba(13,27,42,.9);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 12px 40px #0005}.stage{display:flex;gap:8px;flex-wrap:wrap}.pill{border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:.82rem}.ok{border-color:var(--ok);color:var(--ok)}.portrait-wrap{position:relative;max-width:520px;margin:auto;overflow:hidden;border-radius:24px;border:1px solid var(--line);background:#000}.portrait{display:block;width:100%;aspect-ratio:512/448;object-fit:cover}.mouth{position:absolute;left:50%;top:67%;width:54px;height:10px;transform:translate(-50%,-50%);border-radius:50%;border:2px solid transparent;background:rgba(90,20,25,.0);transition:height .08s ease,border-color .08s ease}.speaking .mouth{height:28px;border-color:#4b1c20;background:rgba(60,15,20,.45);animation:talk .13s infinite alternate}@keyframes talk{to{height:14px;transform:translate(-50%,-50%) scaleX(.86)}}textarea{width:100%;min-height:130px;background:#07111d;color:var(--text);border:1px solid var(--line);border-radius:14px;padding:14px;font:inherit}button{border:0;border-radius:14px;padding:12px 16px;margin:6px 4px 0 0;background:var(--gold);color:#111;font-weight:700;cursor:pointer}button.secondary{background:#17304a;color:var(--text);border:1px solid var(--line)}audio{width:100%;margin-top:10px}.answer{white-space:pre-wrap;line-height:1.7}.state{padding:12px;border-radius:14px;background:#081622;border:1px solid var(--line)}small,.muted{color:var(--muted)}a{color:var(--cyan)}
+</style>
+</head>
+<body>
+<main>
+<section class="card">
+<div class="stage">
+<span class="pill ok">HEART-VIEW PRESENTATION v1</span>
+<span class="pill">AUTHOR-DECLARED IDENTITY</span>
+<span class="pill">EVIDENCE-AWARE</span>
+</div>
+<h1>शिरोमणि रामपॉल सैनी</h1>
+<p>Voice → Voice System → Content → Photo/Lip-sync → Live presentation</p>
+<p class="muted">यह public presentation subsystem है। जहाँ स्वतंत्र प्रमाण उपलब्ध नहीं है वहाँ system certainty का दिखावा नहीं करेगा।</p>
+</section>
+
+<div class="grid">
+<section class="card">
+<h2>Photo / facial presentation</h2>
+<div id="portraitBox" class="portrait-wrap">
+<img class="portrait" src="assets/identity/shirmani-ram-paulp-saini-portrait.jpg" alt="Project portrait">
+<div class="mouth" aria-hidden="true"></div>
+</div>
+<p class="muted">वर्तमान animation speech-activity approximation है; true phoneme-accurate lip-sync के लिए authorized media provider आवश्यक है।</p>
+</section>
+
+<section class="card">
+<h2>Live voice</h2>
+<textarea id="question">निष्पक्ष समझ क्या है?</textarea>
+<button onclick="answerQuestion()">सुनें और उत्तर दें</button>
+<button class="secondary" onclick="stopSpeaking()">रोकें</button>
+<div id="answer" class="answer state">प्रश्न का उत्तर यहाँ आएगा।</div>
+<p><small>Browser speech synthesis = presentation fallback. Exact voice identity is not claimed.</small></p>
+</section>
+</div>
+
+<section class="card">
+<h2>Authorized voice integration</h2>
+<div class="state" id="voiceState">AUTHORIZED_PROVIDER_REQUIRED</div>
+<p>कोई API secret इस public page में नहीं रखा गया है। Authorized provider जोड़ने के लिए सुरक्षित server-side integration और consent/provenance record आवश्यक होगा।</p>
+<label>स्थानीय voice/audio test: <input id="audioFile" type="file" accept="audio/*"></label>
+<audio id="player" controls></audio>
+</section>
+
+<section class="card">
+<h2>Q&A integrity engine</h2>
+<ul>
+<li>प्रश्न को context के साथ समझना।</li>
+<li>Author statement, inference और independently verified scientific evidence अलग रखना।</li>
+<li>Evidence उपलब्ध हो तो source देना।</li>
+<li>Evidence अपर्याप्त हो तो: “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</li>
+<li>किसी व्यक्ति, जाति, धर्म, मज़हब या संगठन को नीचा दिखाए बिना स्पष्ट उत्तर देना।</li>
+</ul>
+<div class="state">INDEPENDENTLY VERIFIED ≠ WORKFLOW SUCCESS</div>
+</section>
+
+<section class="card">
+<h2>Production path</h2>
+<div class="stage">
+<span class="pill ok">Content</span>
+<span class="pill ok">Photo</span>
+<span class="pill ok">Browser Voice</span>
+<span class="pill">Authorized Voice Adapter</span>
+<span class="pill">True Lip-sync Provider</span>
+<span class="pill">External Live Runtime</span>
+</div>
+<p class="muted">The repository QC workflow checks this subsystem every five minutes. Provider-dependent stages remain explicitly gated.</p>
+</section>
+</main>
+
+<script>
+const box=document.getElementById('portraitBox');
+const answer=document.getElementById('answer');
+const audioFile=document.getElementById('audioFile');
+const player=document.getElementById('player');
+
+audioFile.addEventListener('change',()=>{
+  const f=audioFile.files?.[0];
+  if(f) player.src=URL.createObjectURL(f);
+});
+
+function speak(text){
+  if(!('speechSynthesis' in window)){
+    answer.textContent += "\n\nBrowser speech synthesis उपलब्ध नहीं है।";
+    return;
+  }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='hi-IN'; u.rate=.94; u.pitch=1;
+  u.onstart=()=>box.classList.add('speaking');
+  u.onend=()=>box.classList.remove('speaking');
+  u.onerror=()=>box.classList.remove('speaking');
+  speechSynthesis.speak(u);
+}
+function stopSpeaking(){speechSynthesis.cancel();box.classList.remove('speaking');}
+function answerQuestion(){
+  const q=document.getElementById('question').value.trim();
+  if(!q)return;
+  const lower=q.toLowerCase();
+  let text;
+  if(lower.includes('निष्पक्ष') || lower.includes('impartial')){
+    text='निष्पक्ष समझ इस परियोजना में लेखक-प्रस्तावित दृष्टिकोण है। इसे तथ्य के रूप में प्रस्तुत करने से पहले स्पष्ट परिभाषा, स्रोत, परीक्षण और स्वतंत्र सत्यापन आवश्यक है।';
+  }else if(lower.includes('शिरोमणि')){
+    text='शिरोमणि इस परियोजना में लेखक-परिभाषित heart-centered self-realization और संपूर्ण संतुष्टि की निरंतरता से जुड़ा एक दार्शनिक construct है। इसकी सार्वभौमिक श्रेष्ठता का स्वतंत्र वैज्ञानिक प्रमाण यहाँ स्वतः घोषित नहीं किया जाता।';
+  }else{
+    text='इस प्रश्न पर अभी पर्याप्त प्रमाण उपलब्ध नहीं है। यदि विश्वसनीय स्रोत या परीक्षण-योग्य evidence उपलब्ध हो, तो उत्तर को उसी आधार पर अपडेट किया जाएगा।';
+  }
+  answer.textContent=text;
+  speak(text);
+}
+</script>
+</body>
+</html>
