@@ -27,5 +27,7 @@
     "FACTORY",
     "QC",
     "SHOWROOM"
-  ]
+  ],
+  "visual_asset": "products/visuals/sri-tool-ecm-001.svg",
+  "visual_format": "SVG 3840x2160 16:9 4K-ready"
 }
