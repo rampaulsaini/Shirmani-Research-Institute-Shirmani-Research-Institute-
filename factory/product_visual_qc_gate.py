@@ -17,7 +17,6 @@ QR_MANIFEST = ROOT / "generated" / "product-qr-assets.json"
 VISUAL_ROOT = ROOT / "products" / "visuals"
 QR_ROOT = VISUAL_ROOT / "qr"
 
-EXPECTED_VERSION = "2026-10-07-production-visual-v10-local-logo-short-description-qr"
 IDENTITY = "Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 
 
@@ -30,13 +29,16 @@ def load(path: Path) -> dict:
 def main() -> None:
     visual = load(VISUAL_MANIFEST)
     qr = load(QR_MANIFEST)
+    expected_version = str(visual.get("target_visual_version", "")).strip()
+    if not expected_version:
+        raise SystemExit("QC_INPUT_INVALID: product visual manifest has no target_visual_version")
     products = visual.get("products", [])
     qr_rows = {str(x.get("product_id")): x for x in qr.get("products", [])}
 
     failures: list[str] = []
     checked = 0
     for row in products:
-        if row.get("visual_version") != EXPECTED_VERSION:
+        if row.get("visual_version") != expected_version:
             continue
         checked += 1
         pid = str(row.get("product_id", "")).lower()
@@ -71,6 +73,7 @@ def main() -> None:
             "gate": "PRODUCT-VISUAL-QC-GATE",
             "status": "FAIL",
             "checked_current_version": checked,
+            "expected_version": expected_version,
             "failures": failures[:100],
             "failure_count": len(failures),
         }, ensure_ascii=False, indent=2))
@@ -80,6 +83,7 @@ def main() -> None:
         "gate": "PRODUCT-VISUAL-QC-GATE",
         "status": "PASS",
         "checked_current_version": checked,
+        "expected_version": expected_version,
         "failure_count": 0,
         "contract": {
             "local_logo": True,
