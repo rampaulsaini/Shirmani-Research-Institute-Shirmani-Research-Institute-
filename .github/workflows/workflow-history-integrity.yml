@@ -1,0 +1,77 @@
+name: SHIRMANI Workflow History Integrity
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  protect-history:
+    name: Block destructive Actions run-history cleanup
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan workflow definitions
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          base_ref="${{ github.event.pull_request.base.sha || github.sha }}"
+          head_ref="${{ github.event.pull_request.head.sha || github.sha }}"
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            mapfile -t workflow_files < <(
+              git diff --name-only --diff-filter=ACMR "${base_ref}" "${head_ref}" -- '.github/workflows/*.yml' '.github/workflows/*.yaml'
+            )
+          else
+            mapfile -t workflow_files < <(
+              find .github/workflows -type f \( -name '*.yml' -o -name '*.yaml' \) -print
+            )
+          fi
+
+          if [ "${#workflow_files[@]}" -eq 0 ]; then
+            echo "No workflow files to inspect."
+            exit 0
+          fi
+
+          forbidden=0
+
+          for file in "${workflow_files[@]}"; do
+            [ -f "$file" ] || continue
+            echo "Inspecting $file"
+
+            # Ignore comments, then reject only destructive Actions-run deletion
+            # mechanisms. Read-only Actions APIs remain allowed.
+            active_lines="$(grep -vE '^[[:space:]]*#' "$file" || true)"
+
+            if printf '%s\n' "$active_lines" | grep -Eiq 'gh[[:space:]]+run[[:space:]]+delete'; then
+              echo "::error file=$file::Destructive 'gh run delete' is forbidden in repository workflows."
+              forbidden=1
+            fi
+
+            if printf '%s\n' "$active_lines" | grep -Eiq 'gh[[:space:]]+api[^\n]*--method[[:space:]]+DELETE[^\n]*actions/runs'; then
+              echo "::error file=$file::Deleting GitHub Actions workflow runs is forbidden."
+              forbidden=1
+            fi
+
+            if printf '%s\n' "$active_lines" | grep -Eiq '(--method[[:space:]]+DELETE|[[:space:]]DELETE[[:space:]])[^\n]*actions/runs'; then
+              echo "::error file=$file::A DELETE request targeting actions/runs is forbidden."
+              forbidden=1
+            fi
+          done
+
+          if [ "$forbidden" -ne 0 ]; then
+            echo "Workflow history protection failed."
+            exit 1
+          fi
+
+          echo "Workflow history protection passed: no destructive run-history deletion detected."
