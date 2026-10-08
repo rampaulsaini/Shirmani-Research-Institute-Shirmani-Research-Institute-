@@ -1,0 +1,50 @@
+name: SHIRMANI Product Production Visual + Demo Conveyor
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "generated/1000-digital-products.json"
+      - "factory/product_visual_identity_factory.py"
+      - "factory/product_media_manifest_factory.py"
+      - "products/demos/**"
+      - ".github/workflows/product-production-visual-demo.yml"
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-product-visual-demo
+  cancel-in-progress: false
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate concrete 4K-ready product visuals
+        run: python3 factory/product_visual_identity_factory.py
+        env:
+          VISUAL_BATCH: "500"
+          VISUAL_REBUILD: "1"
+      - name: Generate product demo/passport manifest
+        run: |
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          root=Path("."); cat=json.loads((root/"generated/1000-digital-products.json").read_text())
+          base="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
+          rows=[]
+          for p in cat.get("products",[]):
+            pid=str(p["id"]); engine=str(p.get("engine","default"))
+            demo="products/demos/calculator-demo.html" if engine in ("calculator","engineering") else ("products/demos/text-demo.html" if engine in ("text","nlp","seo","marketing","data","files") else "products/demos/product-demo.html")
+            rows.append({"product_id":pid,"name":p.get("name"),"engine":engine,"interactive_demo_url":base+demo+"?id="+pid,"product_passport_url":base+"product-passport.html?id="+pid,"visual_url":base+"products/visuals/"+pid.lower()+".svg","mp4_status":"NOT_YET_MATERIALIZED","mp4_url":None})
+          out={"schema_version":"1.0","generated_at":datetime.now(timezone.utc).isoformat(),"product_count":len(rows),"interactive_demo_routes":len(rows),"mp4_available":0,"truth_boundary":"MP4 is claimed only when an actual MP4 artifact is evidenced.","products":rows}
+          (root/"generated/product-media-production-manifest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n")
+          PY
+      - name: Publish production artifacts
+        run: |
+          git config user.name "SHIRMANI Automission"
+          git config user.email "actions@users.noreply.github.com"
+          git add products/visuals generated/product-visual-assets.json generated/product-media-production-manifest.json
+          git diff --cached --quiet || git commit -m "Automission: product visuals and demo routes"
+          git push
