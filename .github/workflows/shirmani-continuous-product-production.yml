@@ -1,0 +1,42 @@
+name: SHIRMANI Continuous Product Production Factory
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'factory/continuous_product_factory.py'
+      - 'generated/continuous-production-state.json'
+      - 'products/continuous/**'
+  schedule:
+    - cron: '7,12,17,22,27,32,37,42,47,52,57 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: shirmani-continuous-product-production
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Produce next concrete batch
+        env:
+          PRODUCT_BATCH: '12'
+        run: python3 factory/continuous_product_factory.py
+      - name: Commit production outputs
+        run: |
+          git config user.name "SHIRMANI Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add factory/continuous_product_factory.py generated/continuous-production-state.json generated/continuous-production-manifest.json products/continuous products/visuals/continuous products/demos/continuous
+          if git diff --cached --quiet; then
+            echo "No new production output in this cycle."
+          else
+            git commit -m "production: materialize next concrete digital product batch"
+            git push
+          fi
