@@ -1,4 +1,4 @@
-/* SHIRMANI Supreme Product Visual Engine v5 — logo-first, product-first, QR upper-right */
+/* SHIRMANI Supreme Product Visual Engine v6 — logo-first, product-first, repository-local QR upper-right */
 (function(global){
 "use strict";
 function hashCode(s){let h=2166136261;for(let i=0;i<String(s).length;i++){h^=String(s).charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
@@ -13,7 +13,7 @@ function visual(p){
  const price=esc(money(p.offer_price_inr??p.price_inr??0));
  const base=global.location&&global.location.origin?global.location.origin:"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-";
  const target=base+"/product-passport.html?id="+encodeURIComponent(key);
- const qr="https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=10&data="+encodeURIComponent(target);
+ const qr=base+"/products/visuals/qr/"+encodeURIComponent(key.toLowerCase())+".svg";
  const logo=base+"/assets/shirmani-perspective-logo.svg";
  const identity="Shiromani Rampal Saini · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present";
  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160"><defs>'+
@@ -38,5 +38,5 @@ function visual(p){
  '<text x="520" y="1860" fill="#fff" opacity=".86" font-family="system-ui,sans-serif" font-size="35" font-weight="800">3840×2160 4K MASTER · UNIQUE PRODUCT IDENTITY · DEMO VIDEO · QC/GATE/DISPATCH · LONG-PASSPORT QR</text></svg>';
  return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(svg);
 }
-global.SHIRMANI_PRODUCT_VISUAL={hashCode,visual,version:"v6-logo-first-qr-upper-right"};
+global.SHIRMANI_PRODUCT_VISUAL={hashCode,visual,version:"v7-local-qr-logo-first"};
 })(window);
