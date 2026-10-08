@@ -1,0 +1,49 @@
+name: SHIRMANI Impartial Verification Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "generated/independent-verification-records.json"
+      - "config/impartial-verification-policy.json"
+      - "factory/impartial_verification_gate.py"
+      - ".github/workflows/shirmani-impartial-verification-gate.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-impartial-verification-gate
+  cancel-in-progress: true
+
+jobs:
+  impartiality:
+    name: Fail-Closed Impartiality Gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run impartiality gate
+        run: python factory/impartial_verification_gate.py
+
+      - name: Publish impartiality status
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-impartial-verification-status
+          path: generated/impartial-verification-status.json
+
+      - name: Commit status artifact
+        if: success()
+        run: |
+          if git diff --quiet -- generated/impartial-verification-status.json; then
+            echo "No status change."
+            exit 0
+          fi
+          git config user.name "SHIRMANI Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/impartial-verification-status.json
+          git commit -m "chore: publish impartial verification status"
+          git push
