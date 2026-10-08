@@ -1,0 +1,47 @@
+name: SHIRMANI Supreme Live Character V5 Integrity
+
+on:
+  push:
+    paths:
+      - 'shirmani-live-character-v5.html'
+      - 'generated/shirmani-live-character-v5.json'
+      - '.github/workflows/shirmani-live-character-v5-integrity.yml'
+      - 'index.html'
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate V5 contract and public wiring
+        shell: python
+        run: |
+          import json, pathlib, sys
+          contract = pathlib.Path("generated/shirmani-live-character-v5.json")
+          page = pathlib.Path("shirmani-live-character-v5.html")
+          index = pathlib.Path("index.html")
+          data = json.loads(contract.read_text(encoding="utf-8"))
+          required = ["version","name","framework","identity_statement","communication","reasoning","presentation","pipeline","status","integrity"]
+          missing = [k for k in required if k not in data]
+          if missing:
+              print("FAIL missing contract keys:", missing)
+              sys.exit(1)
+          checks = {
+              "page exists": page.exists(),
+              "main hub links V5": "shirmani-live-character-v5.html" in index.read_text(encoding="utf-8"),
+              "evidence fallback present": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in page.read_text(encoding="utf-8"),
+              "verification boundary present": "independent_scientific_verification" in contract.read_text(encoding="utf-8"),
+              "legacy preserved": all(pathlib.Path(p).exists() for p in ["shirmani-live-character-v3.html","live-persona-supreme-v4.html"])
+          }
+          bad = [k for k,v in checks.items() if not v]
+          print("V5 integrity:", checks)
+          if bad:
+              print("FAIL:", bad)
+              sys.exit(1)
+          print("PASS: SHIRMANI Supreme Live Character V5 integrity gate")
