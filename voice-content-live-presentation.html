@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Voice → Live Presentation</title>
+<style>
+body{margin:0;background:#050910;color:#eef5f8;font:16px/1.6 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+.wrap{max-width:1250px;margin:auto;padding:20px}
+.hero,.card{background:#0d1722;border:1px solid #345064;border-radius:18px;padding:22px;margin:14px 0}
+.hero{border:2px solid #e7c85b}h1,h2{color:#e7c85b}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.stage{background:#07111b;border:1px solid #30495d;border-radius:14px;padding:18px}
+.stage b{color:#67e8f9}.tag{display:inline-block;border:1px solid #456276;border-radius:999px;padding:4px 9px;margin:3px;color:#b8c7d3}
+.ok{color:#72e6aa}.muted{color:#aebdca}.warn{color:#f2cf68}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="hero">
+<div class="ok">꙰ SHIRMANI · MEDIA / PRESENTATION SUBSYSTEM</div>
+<h1>Voice → Voice System → Content → Photo/Lip-sync → Live Presentation</h1>
+<p class="muted">Production-safe architecture for voice, scripted content, visual presentation and live delivery. A pipeline execution is not itself proof of content truth or identity.</p>
+</section>
+<section class="card">
+<h2>Pipeline</h2>
+<div class="flow">
+<div class="stage"><b>01 · Voice</b><p>Capture or approved audio source. Preserve source, timestamp and authorization metadata.</p><span class="tag">audio</span><span class="tag">provenance</span></div>
+<div class="stage"><b>02 · Voice System</b><p>STT / TTS / cleanup / voice routing through replaceable adapters.</p><span class="tag">STT</span><span class="tag">TTS</span></div>
+<div class="stage"><b>03 · Content</b><p>Versioned script with source references and generated-content labeling.</p><span class="tag">script</span><span class="tag">sources</span></div>
+<div class="stage"><b>04 · Photo / Lip-sync</b><p>Approved visual reference plus optional animation/lip-sync render.</p><span class="tag">visual</span><span class="tag">sync QC</span></div>
+<div class="stage"><b>05 · Live Presentation</b><p>Preview → QC → human approval → live. Rollback remains separate.</p><span class="tag">approval</span><span class="tag">live</span></div>
+</div>
+</section>
+<section class="card">
+<h2>Fail-closed gates</h2>
+<p><span class="warn">PROVENANCE_MISSING</span> · <span class="warn">UNAUTHORIZED</span> · <span class="warn">IDENTITY_REVIEW_REQUIRED</span> · <span class="warn">QC_FAIL</span> · <span class="warn">LIVE_UNAVAILABLE</span></p>
+<p class="muted">UNVERIFIED remains UNVERIFIED until an appropriate independent review process exists. Lip-sync quality, voice quality and successful publication cannot promote a claim to VERIFIED.</p>
+</section>
+<section class="card">
+<h2>Minimum packet</h2>
+<p><code>packet_id · voice_asset_id · content_asset_id · visual_asset_id · renderer/version · language · consent · provenance · QC · verification_state · publication_state · created_at</code></p>
+<p><a href="schemas/voice-content-live-presentation.schema.json">Machine-readable schema</a> · <a href="docs/voice-content-live-presentation-subsystem-v1.md">Subsystem contract</a></p>
+</section>
+<section class="card">
+<h2>Implementation status</h2>
+<p><strong>READY — architecture/specification layer.</strong> Provider-specific STT/TTS/lip-sync/live adapters are intentionally not represented as connected production services until their runtime credentials, external execution, safety controls, QC evidence and rollback paths are demonstrated.</p>
+</section>
+</main>
+</body>
+</html>
