@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Product Usage</title>
+<style>
+body{margin:0;background:#050910;color:#eef5f8;font:16px/1.65 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+main{max-width:1100px;margin:auto;padding:18px 14px 70px}.hero,.card{background:#101923;border:1px solid #34485b;border-radius:18px;padding:18px;margin:12px 0}
+h1,h2{color:#f2cf58}.muted{color:#aeb9c8}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.k{background:#081019;border:1px solid #2f4254;border-radius:12px;padding:12px}.btn{display:inline-block;padding:10px 13px;border-radius:9px;background:#f2cf58;color:#111;font-weight:900;text-decoration:none;margin:4px}
+input,textarea,select{width:100%;box-sizing:border-box;background:#081019;color:#fff;padding:10px;border:1px solid #405466;border-radius:9px;margin:5px 0}
+button{padding:10px 13px;background:#f2cf58;color:#111;border:0;border-radius:9px;font-weight:900;cursor:pointer}
+pre{white-space:pre-wrap;background:#05090e;padding:12px;border-radius:10px;overflow:auto}.status{color:#72e6aa;font-weight:900}
+</style>
+</head>
+<body><main>
+<section class="hero">
+<a class="btn" href="showroom.html">← Showroom</a>
+<a class="btn" href="product-demo.html" id="demo">Demo</a>
+<a class="btn" href="product-passport.html" id="passport">Passport</a>
+<h1 id="name">SHIRMANI Product Usage</h1>
+<p id="desc" class="muted">Concrete product data loading…</p>
+<div class="grid" id="meta"></div>
+</section>
+<section class="card"><h2>कैसे उपयोग करें</h2><div id="steps" class="grid"></div></section>
+<section class="card"><h2>Live Working Area</h2>
+<p class="muted">यह customer-facing browser workspace है। Input को product engine के अनुसार चलाया जाता है; result को reuse किया जा सकता है।</p>
+<textarea id="input" rows="5" placeholder="अपना input लिखें…"></textarea>
+<div class="grid"><div><label>Operation</label><select id="op"><option value="analyze">Analyze / Produce</option><option value="summarize">Summarize</option><option value="format">Format</option><option value="plan">Plan</option></select></div><div><label>Reference</label><input id="ref" placeholder="optional reference"></div></div>
+<button onclick="run()">▶ Run Product</button>
+<pre id="out">Ready.</pre>
+</section>
+<section class="card"><h2>Production → Customer Loop</h2>
+<p class="muted">INSTITUTE → FACTORY → QC/GATE → SHOWROOM → USE → REVIEW/RATING → QUALITY IMPROVEMENT → NEXT PRODUCTION</p>
+<p class="status">Production asset state remains separate from payment, dispatch and independent scientific verification.</p>
+</section>
+</main>
+<script>
+const id=new URLSearchParams(location.search).get("id")||"";
+const $=x=>document.getElementById(x);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+let product=null;
+async function load(){
+  const d=await fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
+  product=(d.products||[]).find(x=>x.id===id);
+  if(!product) throw new Error("Product is not currently a concrete production asset.");
+  $("name").textContent=product.name||("SHIRMANI Product "+product.id);
+  $("desc").textContent=product.description||product.short_description||"Concrete customer-facing digital product.";
+  $("demo").href="product-demo.html?id="+encodeURIComponent(product.id);
+  $("passport").href="product-passport.html?id="+encodeURIComponent(product.id);
+  $("meta").innerHTML=[
+    ["Product ID",product.id],["Family",product.family||product.category||"Production"],
+    ["Engine",product.engine||"browser-digital"],["Price / Offer","₹"+Number(product.offer_price_inr??product.price_inr??0).toLocaleString("en-IN")+" · "+(product.offer||"Published offer")],
+    ["QC",product.qc_code||"QC-PENDING"],["Gate",product.gate_no||"GATE-PRODUCTION"],["Dispatch",product.dispatch_no||"NO"],["State",product.production_state||"PRODUCED"]
+  ].map(x=>"<div class='k'><small class='muted'>"+esc(x[0])+"</small><br><b>"+esc(x[1])+"</b></div>").join("");
+  const family=String(product.family||product.category||"").toLowerCase();
+  const steps=family.includes("math")?["Enter the values or problem","Choose the required operation","Run the product","Inspect and reuse the result"]:family.includes("research")?["Enter the research question","Add source/evidence context","Produce the structured record","Review limitations and reuse"]:family.includes("text")||family.includes("language")?["Enter the language material","Run the text workflow","Review the generated structure","Reuse or refine the output"]:["Open the product","Enter the task or brief","Run the concrete module","Review and reuse the result"];
+  $("steps").innerHTML=steps.map((x,i)=>"<div class='k'><b>"+(i+1)+".</b> "+esc(x)+"</div>").join("");
+}
+function run(){
+  const input=$("input").value.trim(),op=$("op").value,ref=$("ref").value.trim();
+  const words=(input.match(/\S+/g)||[]),lines=input?input.split(/\n/).length:0;
+  let result;
+  if(op==="summarize") result={type:"PRODUCT_SUMMARY",characters:input.length,words:words.length,lines,preview:input.slice(0,500)};
+  else if(op==="format") result={type:"PRODUCT_FORMAT",reference:ref,lines:input.split(/\n/).filter(Boolean).map((x,i)=>({index:i+1,text:x.trim()}))};
+  else if(op==="plan") result={type:"PRODUCT_PLAN",objective:input,reference:ref,stages:["input","produce","review","reuse"]};
+  else result={type:"PRODUCT_PRODUCTION_RESULT",product_id:product?.id,engine:product?.engine||"browser-digital",operation:op,input_characters:input.length,words:words.length,reference:ref,status:"PRODUCED",generated_at:new Date().toISOString()};
+  $("out").textContent=JSON.stringify(result,null,2);
+}
+load().catch(e=>{$("desc").textContent=e.message;$("meta").innerHTML="<div class='k'>NOT READY FOR PUBLIC USE</div>"});
+</script>
+</body></html>
