@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Live Presentation Contract",
+  "type": "object",
+  "required": [
+    "version",
+    "pipeline",
+    "truth_boundary",
+    "identity_policy"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "pipeline": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "state"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "READY",
+              "NOT_CONNECTED",
+              "RUNTIME_REQUIRED",
+              "PASS",
+              "FAIL",
+              "LIVE"
+            ]
+          }
+        }
+      }
+    },
+    "truth_boundary": {
+      "type": "object",
+      "required": [
+        "live_claim_requires_runtime_health"
+      ],
+      "properties": {
+        "live_claim_requires_runtime_health": {
+          "const": true
+        }
+      }
+    },
+    "identity_policy": {
+      "type": "object",
+      "required": [
+        "authorized_voice_only",
+        "ai_identity_substitution_disabled"
+      ],
+      "properties": {
+        "authorized_voice_only": {
+          "const": true
+        },
+        "ai_identity_substitution_disabled": {
+          "const": true
+        }
+      }
+    }
+  }
+}
