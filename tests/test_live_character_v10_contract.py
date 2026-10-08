@@ -27,7 +27,7 @@ def test_v10_does_not_insert_source_url_with_innerhtml():
     page = V10.read_text(encoding="utf-8")
     assert "const a=document.createElement('a')" in page
     assert "a.href=u.href" in page
-    assert "a.textContent='दिया गया source खोलें'" in page
+    assert "a.textContent='Source खोलें'" in page
     assert "li.appendChild(a)" in page
 
 def test_v10_source_boundary_is_documented_as_not_evaluated():
