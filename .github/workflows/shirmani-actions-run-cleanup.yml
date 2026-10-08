@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
 
 permissions:
   actions: write
@@ -13,7 +15,7 @@ jobs:
   cleanup:
     runs-on: ubuntu-latest
     steps:
-      - name: Delete old workflow runs
+      - name: Snapshot and delete workflow runs
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
@@ -21,26 +23,21 @@ jobs:
         run: |
           set -euo pipefail
           deleted=0
-          page=1
-          while true; do
-            runs=$(gh api "/repos/$REPO/actions/runs?per_page=100&page=$page"               --jq '.workflow_runs[] | [.id,.status] | @tsv' 2>/dev/null || true)
-            [ -z "$runs" ] && break
+          failed=0
 
-            while IFS=$'\t' read -r run_id status; do
-              [ -z "$run_id" ] && continue
-              if [ "$run_id" = "$CURRENT_RUN_ID" ]; then
-                continue
-              fi
-              if gh api --method DELETE                 "/repos/$REPO/actions/runs/$run_id" >/dev/null 2>&1; then
-                deleted=$((deleted + 1))
-                echo "Deleted workflow run: $run_id"
-              else
-                echo "Could not delete workflow run: $run_id (status=$status)"
-              fi
-            done <<< "$runs"
+          gh api --paginate             "/repos/$REPO/actions/runs?per_page=100"             --jq '.workflow_runs[] | [.id,.status] | @tsv' > /tmp/runs.tsv
 
-            page=$((page + 1))
-            [ "$page" -gt 1000 ] && break
-          done
+          while IFS=$'\t' read -r run_id status; do
+            [ -z "$run_id" ] && continue
+            [ "$run_id" = "$CURRENT_RUN_ID" ] && continue
 
-          echo "Cleanup complete. Deleted: $deleted"
+            if gh api --method DELETE               "/repos/$REPO/actions/runs/$run_id" >/dev/null 2>&1; then
+              deleted=$((deleted + 1))
+              echo "Deleted workflow run: $run_id"
+            else
+              failed=$((failed + 1))
+              echo "Could not delete workflow run: $run_id (status=$status)"
+            fi
+          done < /tmp/runs.tsv
+
+          echo "Cleanup complete. Deleted: $deleted; failed: $failed; current run preserved: $CURRENT_RUN_ID"
