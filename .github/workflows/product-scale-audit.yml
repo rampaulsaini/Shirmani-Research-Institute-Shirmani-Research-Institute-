@@ -1,0 +1,46 @@
+name: SHIRMANI Product Scale Audit
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "factory/product_scale_audit.py"
+      - "docs/PRODUCT_5000_150K_SCALE_PLAN.md"
+      - ".github/workflows/product-scale-audit.yml"
+      - "generated/1000-digital-products.json"
+      - "generated/production-registry.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-product-scale-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure concrete product progress
+        run: python3 factory/product_scale_audit.py
+      - name: Upload scale report
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-product-scale-audit-${{ github.run_id }}
+          path: generated/product-scale-audit.json
+      - name: Publish changed scale report
+        run: |
+          git config user.name "SHIRMANI Product Scale Audit"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/product-scale-audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore(product): update 5000-product scale audit"
+          git push
