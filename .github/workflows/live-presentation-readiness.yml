@@ -1,0 +1,39 @@
+name: SHIRMANI Live Presentation Readiness
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/SHIRMANI-LIVE-PRESENTATION-SUBSYSTEM.md"
+      - "config/live-presentation-profile.json"
+      - "tests/live_presentation_readiness.py"
+      - ".github/workflows/live-presentation-readiness.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-live-presentation-readiness
+  cancel-in-progress: true
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run fail-closed readiness gate
+        run: python3 tests/live_presentation_readiness.py
+      - name: Publish readiness artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-presentation-readiness-${{ github.run_id }}
+          path: generated/live-presentation-readiness.json
+          if-no-files-found: error
+          retention-days: 14
