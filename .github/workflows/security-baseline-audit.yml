@@ -1,0 +1,25 @@
+name: SHIRMANI Read-Only Security Baseline
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 3 * * 1"
+permissions:
+  contents: read
+concurrency:
+  group: security-baseline-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  static-baseline:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Run read-only credential and workflow-hardening scan
+        run: python3 scripts/security_baseline_audit.py
