@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-production-media-reconciliation
   cancel-in-progress: false
@@ -18,13 +19,17 @@ jobs:
         run: python3 factory/product_media_reconciler.py
       - name: Build scalable catalogue shard index
         run: python3 factory/catalog_shard_index.py
-      - name: Publish reconciliation state
-        uses: stefanzweifel/git-auto-commit-action@v7
+      - name: Propose reconciliation state through a PR
+        uses: peter-evans/create-pull-request@v7
         with:
-          commit_message: "chore(automission): reconcile product media and catalogue shards"
-          file_pattern: |
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/product-media-reconciliation
+          delete-branch: false
+          commit-message: "chore(automission): reconcile product media and catalogue shards"
+          title: "chore(automission): reconcile product media and catalogue shards"
+          body: |
+            Generated reconciliation and catalogue shard index, proposed through a PR.
+            This preserves protected-main rules and does not assert media completeness beyond measured files.
+          add-paths: |
             generated/product-media-reconciliation.json
             generated/catalog-shards/**
-          commit_user_name: "SHIRMANI Automission"
-          commit_user_email: "actions@users.noreply.github.com"
-          commit_author: "SHIRMANI Automission <actions@users.noreply.github.com>"
