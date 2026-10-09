@@ -2,6 +2,7 @@
 """Product-specific MP4 demo factory for the SHIRMANI public showroom."""
 from pathlib import Path
 import json, os, re, subprocess, html
+from urllib.parse import quote
 from datetime import datetime, timezone
 
 ROOT=Path(__file__).resolve().parents[1]
