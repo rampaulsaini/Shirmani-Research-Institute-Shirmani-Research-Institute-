@@ -24,6 +24,9 @@ concurrency:
 
 jobs:
   persist:
+    # A workflow_run event fires for both successful and failed upstream runs.
+    # Never materialize/publish persistent production state from a failed upstream run.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
