@@ -103,7 +103,7 @@ def main():
         "generated_at":now(),
         "shard_strategy":"one JSONL file per production cycle",
         "cycle_shards":len(archive_files),
-        "files":[f"archive/{name}" for name in archive_files],
+        "files":archive_files,
         "latest_cycle":cycle,
         "latest_cycle_records":len(results),
         "integrity":{"records_are_produced_artifacts":True,"independent_verification_claim":False}
