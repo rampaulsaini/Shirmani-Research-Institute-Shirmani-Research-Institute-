@@ -8,7 +8,7 @@ on:
       batch_size:
         description: "VIP screenshots per production cycle"
         required: false
-        default: "250"
+        default: "100"
   push:
     branches: [main]
     paths:
@@ -20,6 +20,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: shirmani-vip-screenshot-production
@@ -47,15 +48,26 @@ jobs:
           catalog.write_text(json.dumps({"schema_version":2,"products":rows},ensure_ascii=False),encoding="utf-8")
           print("media catalog rows:",len(rows))
           PY
-      - name: Produce next VIP screenshot batch
+      - name: Produce next bounded VIP screenshot batch
         env:
-          VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.batch_size || '250' }}
+          VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.batch_size || '100' }}
         run: python3 factory/vip_screenshot_factory.py
-      - name: Publish production assets
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: "feat(showroom): publish next VIP product screenshot batch"
-          file_pattern: "products/vip-screenshots generated/vip-screenshot-assets.json generated/product-vip-screenshot-manifest.json"
-          commit_user_name: "SHIRMANI Automission"
-          commit_user_email: "actions@users.noreply.github.com"
-          commit_author: "SHIRMANI Automission <actions@users.noreply.github.com>"
+      - name: Stage generated VIP outputs without bypassing protected main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Automission"
+          git config user.email "actions@users.noreply.github.com"
+          git add products/vip-screenshots generated/vip-screenshot-assets.json generated/product-vip-screenshot-manifest.json
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git commit -m "automission: stage vip production outputs"
+          branch="automation/vip-screenshot-assets-staging"
+          if remote_sha="$(git ls-remote origin "refs/heads/$branch" | cut -f1)" && [ -n "$remote_sha" ]; then
+            git push --force-with-lease="refs/heads/$branch:$remote_sha" origin HEAD:"refs/heads/$branch"
+          else
+            git push origin HEAD:"refs/heads/$branch"
+          fi
+          echo "Staging branch updated: automation/vip-screenshot-assets-staging. Protected main was not pushed."

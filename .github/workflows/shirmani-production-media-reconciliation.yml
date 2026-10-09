@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-production-media-reconciliation
   cancel-in-progress: false
@@ -18,13 +19,22 @@ jobs:
         run: python3 factory/product_media_reconciler.py
       - name: Build scalable catalogue shard index
         run: python3 factory/catalog_shard_index.py
-      - name: Publish reconciliation state
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: "chore(automission): reconcile product media and catalogue shards"
-          file_pattern: |
-            generated/product-media-reconciliation.json
-            generated/catalog-shards/**
-          commit_user_name: "SHIRMANI Automission"
-          commit_user_email: "actions@users.noreply.github.com"
-          commit_author: "SHIRMANI Automission <actions@users.noreply.github.com>"
+      - name: Stage generated MEDIA outputs without bypassing protected main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Automission"
+          git config user.email "actions@users.noreply.github.com"
+          git add generated/product-media-reconciliation.json generated/catalog-shards
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git commit -m "automission: stage media production outputs"
+          branch="automation/product-media-reconciliation-staging"
+          if remote_sha="$(git ls-remote origin "refs/heads/$branch" | cut -f1)" && [ -n "$remote_sha" ]; then
+            git push --force-with-lease="refs/heads/$branch:$remote_sha" origin HEAD:"refs/heads/$branch"
+          else
+            git push origin HEAD:"refs/heads/$branch"
+          fi
+          echo "Staging branch updated: automation/product-media-reconciliation-staging. Protected main was not pushed."
