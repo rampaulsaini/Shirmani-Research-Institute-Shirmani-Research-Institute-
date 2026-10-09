@@ -20,7 +20,7 @@
       "readiness": "Specification",
       "price": null,
       "currency": "INR",
-      "guide": "../product-guides/yatharth-learning-path.md",
+      "guide": "./product-guides/yatharth-learning-path.md",
       "demo": null,
       "version": "0.1.0"
     },
@@ -39,7 +39,7 @@
       "readiness": "Specification",
       "price": null,
       "currency": "INR",
-      "guide": "../product-guides/fair-decision-worksheet.md",
+      "guide": "./product-guides/fair-decision-worksheet.md",
       "demo": null,
       "version": "0.1.0"
     },
@@ -58,7 +58,7 @@
       "readiness": "Specification",
       "price": null,
       "currency": "INR",
-      "guide": "../product-guides/skill-sprint-planner.md",
+      "guide": "./product-guides/skill-sprint-planner.md",
       "demo": null,
       "version": "0.1.0"
     },
@@ -77,7 +77,7 @@
       "readiness": "Prototype / specification",
       "price": null,
       "currency": "INR",
-      "guide": "../product-guides/product-passport-builder.md",
+      "guide": "./product-guides/product-passport-builder.md",
       "demo": null,
       "version": "0.1.0"
     },
@@ -96,7 +96,7 @@
       "readiness": "Prototype / specification",
       "price": null,
       "currency": "INR",
-      "guide": "../product-guides/evidence-to-answer.md",
+      "guide": "./product-guides/evidence-to-answer.md",
       "demo": null,
       "version": "0.1.0"
     },
@@ -115,7 +115,7 @@
       "readiness": "Specification",
       "price": null,
       "currency": "INR",
-      "guide": "../product-guides/voice-presentation-runbook.md",
+      "guide": "./product-guides/voice-presentation-runbook.md",
       "demo": null,
       "version": "0.1.0"
     }
