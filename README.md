@@ -17,6 +17,8 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 - **Writing & Research Enquiry:** [writing-research-enquiry.html](writing-research-enquiry.html) — public-facing Hindi/English writing, research-summary, and website/blog content brief builder. It does not claim to send enquiries or receive payments until those integrations are actually connected.
 - **Client Brief & Quote Studio (new concrete product):** [SRI-WRITE-003](products/concrete/SRI-WRITE-003-client-brief-quote-studio.html) — working browser-local scope/quote draft builder, proposed starter packages, copyable client proposal and explicit integration limitations. No automated email, payment, or income claim.
 
+- **Client Proposal & Scope Builder — SR-WRITE-004:** [working browser demo](showroom/client-proposal-scope-builder.html) — creates a client-specific quote/scope proposal, delivery estimate, revision terms and TXT export; no automatic email/payment or sales claim.
+
 ## Supreme Compound Automission — Production Workspace v2
 
 - **Production Workspace v2:** [supreme-compound-automission-production-v2.html](supreme-compound-automission-production-v2.html) — four usable browser tools: Yatharth Learning Studio, Evidence-First Answer Builder, Digital Product Passport Maker, and Voice-to-Presentation Planner. The page distinguishes local tool behavior from unconnected AI/voice/payment integrations and labels QC/dispatch limitations clearly.
