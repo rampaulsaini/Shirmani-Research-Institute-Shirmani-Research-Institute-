@@ -368,3 +368,8 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 
 - **Shirmani Supreme Presentation Studio:** [four-version interactive demo](products/concrete/SRI-PRES-001-supreme-presentation-studio.html) — character/script, authorized-voice workflow, avatar/lip-sync planning, and live-presenter readiness. Exports a browser-local JSON brief and supports print/save as PDF.
 - **Current limits:** no connected voice/video provider, avatar generation, lip-sync engine, livestream, email, payment, or backend. Treat as a working planning prototype, not a finished MP4 or a verified commercial release.
+
+
+## Public Product Studio — new working demo (2026-10-09)
+
+- **SRI Product Studio v1:** [open the browser demo](showroom/sri-product-studio-v1.html) — public service cards, indicative starting-price anchors, a working client-brief/proposal generator, copy and TXT export, and clear boundaries around unconnected sales/payment/AI integrations. Prices are indicative only; no sales or income are claimed.
