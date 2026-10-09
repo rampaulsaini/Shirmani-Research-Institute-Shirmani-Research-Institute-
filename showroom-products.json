@@ -313,7 +313,7 @@
       "dispatch": "NO",
       "version": "1.0.0",
       "artifact_url": "products/concrete/SRI-WRITE-005-bilingual-content-quality-desk.html",
-      "artifact_evidence": "CREATED_IN_BRANCH_QC_PENDING",
+      "artifact_evidence": "SOURCE_MERGED_QC_PENDING",
       "demo_url": "products/concrete/SRI-WRITE-005-bilingual-content-quality-desk.html",
       "usage_guide": "Choose language and content type, enter title and optional required terms, paste the draft, review counts and checklist, then download the note or print/save as PDF.",
       "visual_status": "PRODUCT_PAGE_VISUAL_PRESENT_VIP_SCREENSHOT_NOT_CAPTURED",
@@ -324,6 +324,32 @@
         "No server persistence or cloud sync",
         "No payment, email, checkout or sales integration",
         "QR image uses an external QR rendering endpoint and may be unavailable offline"
+      ]
+    },
+    {
+      "id": "SRI-RES-002",
+      "category": "research-tool",
+      "name": "Claim & Evidence Mapper",
+      "price_inr": 0,
+      "status": "PROTOTYPE_QC_PENDING",
+      "store_url": "products/concrete/SRI-RES-002-claim-evidence-mapper.html",
+      "description": "Browser-local research record tool for mapping claims to source details, evidence notes, limitations, countercases and next actions, with JSON and TXT export.",
+      "short_description": "Organize claims, source trails, evidence notes and uncertainty without treating a link or self-selected status as independent verification.",
+      "offer": "Free prototype test drive; research and writing services quoted separately",
+      "qc_gate": "QC-PROTOTYPE-MANUAL-TEST-PENDING",
+      "dispatch": "NO",
+      "version": "1.0.0",
+      "artifact_url": "products/concrete/SRI-RES-002-claim-evidence-mapper.html",
+      "artifact_evidence": "SOURCE_MERGED_QC_PENDING",
+      "demo_url": "products/concrete/SRI-RES-002-claim-evidence-mapper.html",
+      "usage_guide": "Add each claim, enter source title/URL/date, record evidence and method, document limitations or countercases, choose a next action, then export JSON/TXT or print/save as PDF.",
+      "visual_status": "PRODUCT_PAGE_VISUAL_PRESENT_VIP_SCREENSHOT_NOT_CAPTURED",
+      "passport_status": "INLINE_USAGE_AND_LIMITATIONS",
+      "limitations": [
+        "No external source retrieval or source authentication",
+        "A user-selected VERIFIED label is not proof of independent verification",
+        "No remote AI, server persistence, email, checkout, payment or sales integration",
+        "Manual review and acceptance testing remain pending"
       ]
     }
   ]
