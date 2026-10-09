@@ -351,6 +351,21 @@
         "No remote AI, server persistence, email, checkout, payment or sales integration",
         "Manual review and acceptance testing remain pending"
       ]
+    },
+    {
+      "id": "SRI-RESEARCH-WORKBENCH-001",
+      "category": "research",
+      "name": "Research & Writing Workbench",
+      "price_inr": null,
+      "status": "PRODUCED_REVIEW_PENDING",
+      "store_url": "products/concrete/SRI-RESEARCH-WRITING-WORKBENCH-001.html",
+      "description": "Browser-based Hindi/English workbench to structure research and writing enquiries, define deliverables and sources, and prepare a client brief with a pre-start quality checklist.",
+      "offer": "Preview; agree scope and quote before work starts",
+      "qc_gate": "QC-PENDING",
+      "dispatch": "PREVIEW_ONLY",
+      "version": "1.0.0",
+      "artifact_url": "products/concrete/SRI-RESEARCH-WRITING-WORKBENCH-001.html",
+      "artifact_evidence": "REPOSITORY_ARTIFACT_CREATED_QC_PENDING"
     }
   ]
 }
