@@ -12,6 +12,10 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 
 - **Production-First Public Map:** [production-first-public-map.html](production-first-public-map.html) — four-stage Institute → Factory → QC/Gate → Showroom map with current published production telemetry.
 
+## New Concrete Research Tool — Research Brief & Source Ledger
+
+- **Research Brief & Source Ledger:** [open working browser demo](showroom/research-brief-source-ledger.html) — create a scoped research brief, record claim/source/date/URL/evidence status/limitations, and export a text pack or print to PDF. Browser-local prototype; it does not browse or independently verify claims, connect AI, or upload data.
+
 ## Global Product & Service Sales Desk — New Demo
 
 - **Sales Desk:** [global-product-sales-desk.html](showroom/global-product-sales-desk.html) — service menu for Hindi/English writing, research summaries, and website/blog content; generates a client brief with TXT export, copy, and a user-reviewed email draft. Browser-local only: it does not send automatically, accept payment, or claim a sale/income.
