@@ -1,0 +1,98 @@
+name: Yatharth Product Factory Cycle
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yatharth-product-factory-cycle
+  cancel-in-progress: true
+
+jobs:
+  catalogue-and-release-packet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate product catalogue and required product assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          catalog_path = Path("showroom/catalog.json")
+          catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+          assert catalog.get("schema_version"), "catalog schema_version missing"
+          products = catalog.get("products")
+          assert isinstance(products, list) and products, "catalog has no products"
+          failures = []
+          for product in products:
+              pid = product.get("id", "<missing-id>")
+              if not product.get("name"):
+                  failures.append(f"{pid}: name missing")
+              for key in ("guide", "passport", "demo_script"):
+                  rel = product.get("links", {}).get(key)
+                  if rel and not Path("showroom", rel).exists():
+                      failures.append(f"{pid}: missing linked file showroom/{rel}")
+              for rel in product.get("deliverables", []):
+                  path = Path("showroom/products") / pid / rel
+                  # deliverables are relative to the product folder
+                  if not path.exists():
+                      failures.append(f"{pid}: missing deliverable {path}")
+          if failures:
+              print("\n".join(failures))
+              raise SystemExit(1)
+          print(f"Catalogue OK: {len(products)} product records")
+          PY
+
+      - name: Build production-cycle report
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          catalog = json.loads(Path("showroom/catalog.json").read_text(encoding="utf-8"))
+          lines = [
+              "# Yatharth Product Factory Cycle",
+              "",
+              f"- Generated (UTC): {datetime.now(timezone.utc).isoformat()}",
+              f"- Catalogue entries: {len(catalog['products'])}",
+              "",
+              "| Product | Version | Readiness | Demo video | Independent verification |",
+              "|---|---|---|---|---|",
+          ]
+          for p in catalog["products"]:
+              lines.append(
+                  f"| {p.get('name','(unnamed)')} | {p.get('version','n/a')} | "
+                  f"{p.get('readiness','n/a')} | {p.get('demo_video_status','not stated')} | "
+                  f"{p.get('independent_verification', False)} |"
+              )
+          lines += [
+              "",
+              "## Next production actions",
+              "- Turn the next roadmap item into a usable artifact and product-specific usage guide.",
+              "- Add a product visual and record demo status honestly; do not label a script as an MP4.",
+              "- Run functional checks and record actual findings before changing release state.",
+              "- Treat this report as a catalogue/build status artifact, not proof of independent verification.",
+              "",
+              "## Integration boundary",
+              "This scheduled cycle validates catalogue files and produces a report. It does not call an AI/ML/NLP provider, generate video, publish to GitHub Pages, process payments, or independently verify research claims.",
+          ]
+          Path("product-factory-report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+          PY
+
+      - name: Upload production-cycle report
+        uses: actions/upload-artifact@v4
+        with:
+          name: yatharth-product-factory-report
+          path: product-factory-report.md
+          if-no-files-found: error
+          retention-days: 14

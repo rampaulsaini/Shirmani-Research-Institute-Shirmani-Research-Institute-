@@ -1,0 +1,12 @@
+# Question brief
+- **Question to answer:**
+- **Audience:**
+- **Why this matters:**
+- **Decision this supports:**
+- **Scope:**
+- **Out of scope:**
+- **Date sensitivity:**
+- **Evidence required:**
+- **Potential harms or sensitive context:**
+- **Answer owner/reviewer:**
+- **Last updated (UTC):**

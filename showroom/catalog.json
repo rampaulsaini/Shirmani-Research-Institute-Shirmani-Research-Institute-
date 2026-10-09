@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_title": "Shirmani Yatharth Digital Showroom",
+  "policy": "Only list artifacts with documented scope and readiness.",
+  "products": [
+    {
+      "id": "yatharth-evidence-answer-kit",
+      "name": "Yatharth Evidence Answer Kit",
+      "version": "1.0.0",
+      "category": "Research & Education",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free starter edition"
+      },
+      "readiness": "starter-release",
+      "deliverables": [
+        "README.md",
+        "product.json",
+        "demo-script.md",
+        "templates/question-brief.md",
+        "templates/source-log.csv",
+        "templates/answer-review-checklist.md"
+      ],
+      "demo_video_status": "script-available-mp4-not-yet-rendered",
+      "independent_verification": false
+    },
+    {
+      "id": "product-passport-qc-gate",
+      "name": "Product Passport & QC Gate",
+      "version": "0.1.0",
+      "category": "Production Systems",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free specification template"
+      },
+      "readiness": "specification-template",
+      "deliverables": [
+        "README.md"
+      ],
+      "independent_verification": false
+    }
+  ]
+}
