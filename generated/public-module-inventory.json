@@ -1,26 +1,26 @@
 {
   "version": 1,
-  "generated_at": "2026-10-09T07:08:03.625763+00:00",
+  "generated_at": "2026-10-09T07:38:50.994545+00:00",
   "purpose": "public-first production module map",
-  "module_count": 10714,
+  "module_count": 10738,
   "lane_counts": {
-    "ai_ml_nlp": 9023,
+    "ai_ml_nlp": 9037,
     "automation": 5,
     "content": 8,
-    "economic": 2,
+    "economic": 4,
     "platform": 3,
-    "research": 1636,
+    "research": 1644,
     "security_quality": 37
   },
   "status_counts": {
-    "ACTIVE": 57,
-    "ARCHITECTURE": 67,
+    "ACTIVE": 58,
+    "ARCHITECTURE": 71,
     "DESIGN": 15,
     "PLANNED": 6,
-    "READY": 10077,
+    "READY": 10083,
     "RECORDED": 27,
     "UNAVAILABLE": 27,
-    "UNSPECIFIED": 438
+    "UNSPECIFIED": 451
   },
   "integrity": {
     "source": "repository files",
@@ -48,13 +48,6 @@
       "lane": "ai_ml_nlp",
       "status": "ACTIVE",
       "bytes": 5103
-    },
-    {
-      "path": "factory/production_truth_gate.py",
-      "type": "py",
-      "lane": "ai_ml_nlp",
-      "status": "ACTIVE",
-      "bytes": 2456
     },
     {
       "path": "production-first-mvp.html",
@@ -106,11 +99,39 @@
       "bytes": 811
     },
     {
+      "path": "factory/autonomous_product_batch_factory.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 5191
+    },
+    {
+      "path": "factory/build_sharded_catalog.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 1988
+    },
+    {
+      "path": "factory/catalog_sharding.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 2009
+    },
+    {
+      "path": "factory/incremental_product_production.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "ARCHITECTURE",
+      "bytes": 4440
+    },
+    {
       "path": "factory/incremental_public_production.py",
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "ARCHITECTURE",
-      "bytes": 3414
+      "bytes": 4529
     },
     {
       "path": "factory/product_catalog_materializer.py",
@@ -306,7 +327,7 @@
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "READY",
-      "bytes": 5231
+      "bytes": 5897
     },
     {
       "path": "factory/federation.py",
@@ -337,6 +358,13 @@
       "bytes": 2366
     },
     {
+      "path": "factory/product_vip_screenshot_factory.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 2664
+    },
+    {
       "path": "factory/product_visual_qc_gate.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -363,6 +391,13 @@
       "lane": "ai_ml_nlp",
       "status": "READY",
       "bytes": 2419
+    },
+    {
+      "path": "factory/supreme_persona_readiness_gate.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "READY",
+      "bytes": 3022
     },
     {
       "path": "income-command-center.html",
@@ -62581,6 +62616,20 @@
       "bytes": 6343
     },
     {
+      "path": "factory/catalog_shard_index.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1649
+    },
+    {
+      "path": "factory/catalog_sharder.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1444
+    },
+    {
       "path": "factory/concrete_product_truth.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -62593,13 +62642,6 @@
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
       "bytes": 807
-    },
-    {
-      "path": "factory/generate_product_demo_videos.py",
-      "type": "py",
-      "lane": "ai_ml_nlp",
-      "status": "UNSPECIFIED",
-      "bytes": 4107
     },
     {
       "path": "factory/generate_products.py",
@@ -62630,11 +62672,60 @@
       "bytes": 4960
     },
     {
+      "path": "factory/product_demo_media_factory.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1808
+    },
+    {
+      "path": "factory/product_demo_video_factory.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 6459
+    },
+    {
+      "path": "factory/product_media_coverage.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3274
+    },
+    {
+      "path": "factory/product_media_factory.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 5515
+    },
+    {
+      "path": "factory/product_media_reconciler.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3282
+    },
+    {
       "path": "factory/product_reality_audit.py",
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
       "bytes": 2661
+    },
+    {
+      "path": "factory/product_surface_factory.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3247
+    },
+    {
+      "path": "factory/production_operations_status.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3643
     },
     {
       "path": "factory/public_showroom.py",
@@ -62740,6 +62831,13 @@
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
       "bytes": 1372
+    },
+    {
+      "path": "factory/unique-tool-catalog.json",
+      "type": "json",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1177
     },
     {
       "path": "factory/verification_progress.py",
@@ -63281,11 +63379,25 @@
       "bytes": 471
     },
     {
+      "path": "factory/production_first_backlog.json",
+      "type": "json",
+      "lane": "economic",
+      "status": "READY",
+      "bytes": 757
+    },
+    {
       "path": "factory/product_qc_gate.py",
       "type": "py",
       "lane": "economic",
       "status": "UNSPECIFIED",
       "bytes": 2446
+    },
+    {
+      "path": "factory/production_first_visual_identity_spec.json",
+      "type": "json",
+      "lane": "economic",
+      "status": "UNSPECIFIED",
+      "bytes": 1170
     },
     {
       "path": "schemas/product.schema.json",
@@ -63575,11 +63687,25 @@
       "bytes": 3615
     },
     {
+      "path": "factory/multi_layer_production.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 9694
+    },
+    {
       "path": "factory/product_orchestrator.py",
       "type": "py",
       "lane": "research",
       "status": "ACTIVE",
       "bytes": 7047
+    },
+    {
+      "path": "factory/production_truth_gate.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ACTIVE",
+      "bytes": 2866
     },
     {
       "path": "factory/public_module_inventory.py",
@@ -64202,7 +64328,7 @@
       "type": "py",
       "lane": "research",
       "status": "READY",
-      "bytes": 9605
+      "bytes": 11788
     },
     {
       "path": "factory/concrete_product_materializer.py",
@@ -64216,7 +64342,14 @@
       "type": "py",
       "lane": "research",
       "status": "READY",
-      "bytes": 9974
+      "bytes": 10828
+    },
+    {
+      "path": "factory/continuous_product_factory.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 13145
     },
     {
       "path": "factory/digital_product_reality_map.py",
@@ -64233,13 +64366,6 @@
       "bytes": 9941
     },
     {
-      "path": "factory/multi_layer_production.py",
-      "type": "py",
-      "lane": "research",
-      "status": "READY",
-      "bytes": 9660
-    },
-    {
       "path": "factory/product-catalog.json",
       "type": "json",
       "lane": "research",
@@ -64254,11 +64380,25 @@
       "bytes": 2372
     },
     {
+      "path": "factory/product_visual_identity_factory.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 7861
+    },
+    {
       "path": "factory/product_visual_identity_factory_v2.py",
       "type": "py",
       "lane": "research",
       "status": "READY",
       "bytes": 8205
+    },
+    {
+      "path": "factory/product_visual_materializer.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 7911
     },
     {
       "path": "factory/recovery.py",
@@ -64273,6 +64413,13 @@
       "lane": "research",
       "status": "READY",
       "bytes": 7675
+    },
+    {
+      "path": "factory/vip_screenshot_factory.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 7787
     },
     {
       "path": "federation-dashboard.html",
@@ -73767,6 +73914,13 @@
       "bytes": 3613
     },
     {
+      "path": "factory/build_product_visuals.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 5667
+    },
+    {
       "path": "factory/capability-map.json",
       "type": "json",
       "lane": "research",
@@ -73807,6 +73961,13 @@
       "lane": "research",
       "status": "UNSPECIFIED",
       "bytes": 3790
+    },
+    {
+      "path": "factory/generate_product_demo_videos.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2007
     },
     {
       "path": "factory/independent_verification_engine.py",
@@ -73872,6 +74033,13 @@
       "bytes": 696
     },
     {
+      "path": "factory/product_specific_demo_video_factory.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 13293
+    },
+    {
       "path": "factory/production_queue_builder.py",
       "type": "py",
       "lane": "research",
@@ -73883,7 +74051,7 @@
       "type": "py",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 3815
+      "bytes": 4051
     },
     {
       "path": "factory/public_production_materializer.py",
@@ -73897,7 +74065,7 @@
       "type": "py",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 3422
+      "bytes": 3423
     },
     {
       "path": "factory/publication_gate.py",
