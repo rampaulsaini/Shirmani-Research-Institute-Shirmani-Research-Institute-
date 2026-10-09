@@ -319,3 +319,8 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 - **Usable local functions:** editable content script, browser-supported speech recognition, authorized photo preview, evidence-state labeling and browser text-to-speech.
 - **Explicitly not connected:** hosted AI reasoning, external voice provider, animated face, real lip-sync, payment or persistent database.
 - **Commercial state:** demo only; not represented as a completed live-avatar service or a paid order. Test on supported browsers before customer delivery.
+
+
+## Production Chain Operator Console
+
+- **Production Chain Operator Console:** [production-chain-operator-console.html](production-chain-operator-console.html) — browser-local workbench to draft concrete product records, generate a passport/demo/QC checklist, and export drafts as JSON. Local counters are explicitly not repository-wide production, verified QC, sales, or income metrics. The page has no backend and does not claim email, voice, payment, QR, video hosting, or livestream integrations are connected.
