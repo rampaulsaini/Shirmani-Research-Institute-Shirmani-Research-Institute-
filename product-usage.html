@@ -41,6 +41,14 @@ const $=x=>document.getElementById(x);
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
 let product=null;
 async function load(){
+  if(id==="SRI-TOOL-009"){
+    $("name").textContent="Product Blueprint Studio";
+    $("desc").textContent="Turn a product idea into a structured build brief, acceptance criteria, demo outline and showroom copy.";
+    $("demo").href="product-demo.html?id=SRI-TOOL-009";
+    $("passport").href="product-passport.html?id=SRI-TOOL-009";
+    $("meta").innerHTML="<div class='k'><b>Product ID</b><br>SRI-TOOL-009</div><div class='k'><b>Type</b><br>Free browser tool</div><div class='k'><b>Use</b><br>Enter idea, audience, features and limits; generate a Markdown blueprint</div><div class='k'><b>QC</b><br>QC-PENDING-PUBLISHED-SMOKE-TEST</div><p><a href='products/micro/product-blueprint-studio.html'>Open the tool</a> · <a href='products/micro/product-blueprint-studio-guide.md'>Full usage guide</a></p>";
+    return;
+  }
   const d=await fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
   product=(d.products||[]).find(x=>x.id===id);
   if(!product) throw new Error("Product is not currently a concrete production asset.");
