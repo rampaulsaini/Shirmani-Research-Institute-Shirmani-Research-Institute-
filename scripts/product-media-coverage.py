@@ -66,7 +66,7 @@ def coverage(products):
                 report["missing"][metric].append(pid)
 
         guide = product.get("usage_guide")
-        if isinstance(guide, str) and guide.strip():
+        if repository_file(guide):
             report["usage_guide"] += 1
         else:
             report["missing"]["usage_guide"].append(pid)
