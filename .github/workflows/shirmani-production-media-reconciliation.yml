@@ -19,17 +19,17 @@ jobs:
         run: python3 factory/product_media_reconciler.py
       - name: Build scalable catalogue shard index
         run: python3 factory/catalog_shard_index.py
-      - name: Propose reconciliation state through a PR
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: automation/product-media-reconciliation
-          delete-branch: false
-          commit-message: "chore(automission): reconcile product media and catalogue shards"
-          title: "chore(automission): reconcile product media and catalogue shards"
-          body: |
-            Generated reconciliation and catalogue shard index, proposed through a PR.
-            This preserves protected-main rules and does not assert media completeness beyond measured files.
-          add-paths: |
-            generated/product-media-reconciliation.json
-            generated/catalog-shards/**
+      - name: Stage generated MEDIA outputs without bypassing protected main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Automission"
+          git config user.email "actions@users.noreply.github.com"
+          git add generated/product-media-reconciliation.json generated/catalog-shards
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git commit -m "automission: stage media production outputs"
+          git push --force-with-lease origin HEAD:refs/heads/automation/product-media-reconciliation-staging
+          echo "Staging branch updated: automation/product-media-reconciliation-staging. Protected main was not pushed."
