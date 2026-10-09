@@ -13,6 +13,12 @@ function hashCode(s){let h=2166136261;for(let i=0;i<String(s).length;i++){h^=Str
 function visualData(p){return SHIRMANI_PRODUCT_VISUAL.visual(p)}
 const id=new URLSearchParams(location.search).get("id")||"";let product=null,rating=0;const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 async function load(){
+ if(id==="SRI-TOOL-009"){
+  product={id:"SRI-TOOL-009",family:"Creator",engine:"productivity",name:"Product Blueprint Studio",description:"Free browser tool that turns a product idea into a structured build brief, user journey, acceptance criteria, demo outline and showroom copy.",offer_price_inr:0,price_inr:0,offer:"Free public tool",image_url:"products/visuals/sri-tool-009.svg"};
+  document.title=product.name+" — Shirmani";
+  document.getElementById("product").innerHTML='<div class="product-visual"><img src="products/visuals/sri-tool-009.svg" alt="Product Blueprint Studio visual"></div><div class="status">Creator · Browser tool</div><h1>Product Blueprint Studio</h1><p class="lead">Turn a product idea into a structured build brief, user journey, acceptance criteria, demo outline and showroom copy. Runs locally in the browser.</p><div class="price">FREE</div><p class="offer">No login · No server upload</p><p><a class="btn" href="products/micro/product-blueprint-studio.html">▶ Open Tool</a> <a class="btn" href="products/micro/product-blueprint-studio-guide.md">Usage Guide</a> <a class="btn" href="product-passport.html?id=SRI-TOOL-009">Product Passport</a> <a class="btn" href="product-demo.html?id=SRI-TOOL-009">Demo</a></p><p>QC: QC-PENDING-PUBLISHED-SMOKE-TEST · Gate: GATE-PENDING · Dispatch: NO</p>';
+  return;
+ }
  const d=await fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json());
  const i=Math.max(0,(d.products||[]).findIndex(x=>x.id===id));
  product=(d.products||[])[i]||null;

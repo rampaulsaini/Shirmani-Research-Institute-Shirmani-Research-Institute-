@@ -4,6 +4,10 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&
 async function getj(path,fallback){try{const r=await fetch(path+"?ts="+Date.now(),{cache:"no-store"});return r.ok?await r.json():fallback}catch(e){return fallback}}
 async function getl(path){try{const raw=await fetch(path+"?ts="+Date.now(),{cache:"no-store"}).then(r=>r.text());return raw.split(/\n/).filter(Boolean).map(line=>JSON.parse(line))}catch(e){return[]}}
 async function load(){
+ if(id==="SRI-TOOL-009"){
+  const v=document.getElementById("visual");v.src="products/visuals/sri-tool-009.svg";v.alt="Product Blueprint Studio 4K product visual";v.style.display="block";
+  document.getElementById("product").innerHTML="<h2>Product Blueprint Studio</h2><p>Product ID: SRI-TOOL-009 · Version 1.0.0</p><p>Free browser tool that turns a product idea into a structured brief, user journey, acceptance criteria, demo outline and showroom copy.</p><p><b>QC:</b> QC-PENDING-PUBLISHED-SMOKE-TEST · <b>Gate:</b> GATE-PENDING · <b>Dispatch:</b> NO</p><p>This passport is a source-backed product record; live deployment and full media QC remain pending.</p><p><a class='btn' href='products/micro/product-blueprint-studio.html'>Open tool</a> <a class='btn' href='products/micro/product-blueprint-studio-guide.md'>Usage guide</a> <a class='btn' href='product-demo.html?id=SRI-TOOL-009'>Demo route</a></p>";return;
+ }
  const data=await Promise.all([
    getj("generated/concrete-production-overlay.json",{products:[]}),
    getj("generated/1000-digital-products.json",{products:[]}),
