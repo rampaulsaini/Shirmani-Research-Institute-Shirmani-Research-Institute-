@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "institute": "Shirmani Research Institute",
-  "release": "Supreme Showroom V2 + Production Studio Batch 01",
-  "note": "Preview tools only. Commercial checkout, persistent reviews and dispatch require separate configuration; actual MP4s must be recorded and attached per product.",
+  "release": "Supreme Showroom + Client Scope & Quote Desk",
+  "note": "Browser prototypes and planning tools; actual MP4 assets, backend persistence, automated messaging and checkout require separate implementation.",
   "products": [
     {
       "id": "SR-SHOW-001",
@@ -245,6 +245,30 @@
       "demo": "products/concrete/SRI-PRES-001-supreme-presentation-studio.html",
       "usage_guide": "Choose one of four versions, complete the presentation brief, set evidence state, update preview, then export JSON or print. Use only authorized voice and portrait assets.",
       "commercial_status": "Prototype; no checkout, provider integration, or sales claim"
+    },
+    {
+      "id": "SRI-SALES-001",
+      "slug": "client-scope-quote-desk",
+      "name": "Shirmani Client Scope & Quote Desk",
+      "category": "Writing & Research Sales",
+      "status": "built-preview",
+      "version": "1.0.0",
+      "price": {
+        "label": "Free enquiry/quote builder; service fee quoted per scope",
+        "currency": "INR"
+      },
+      "description": "Build transparent client proposals for Hindi/English writing, research summaries and website/blog content with scope, deliverables, editable fee, urgency, revisions, deadline and payment terms.",
+      "deliverables": [
+        "Interactive proposal builder",
+        "Editable indicative INR fee calculator",
+        "Copyable proposal and client email draft",
+        "Downloadable TXT proposal",
+        "Print / Save PDF"
+      ],
+      "demo": "products/client-scope-quote-desk.html",
+      "usage_guide": "Complete the client, topic, deliverables and source notes; review the editable fee; generate and inspect the proposal; send manually; begin only after written agreement.",
+      "qc_gate": "Browser-local only; no automatic email, checkout, payment collection, CRM persistence or order confirmation. Indicative fee must be confirmed against actual scope.",
+      "commercial_status": "Lead-generation tool; no sales or income claimed"
     }
   ]
 }
