@@ -35,6 +35,8 @@ jobs:
           git checkout -B automation/production-state origin/automation/production-state
           git checkout origin/main -- factory/incremental_product_production.py factory/materialize_all_product_assets.py factory/product_visual_identity_factory_v2.py
       - name: Materialize next concrete product batch
+        env:
+          PYTHONPATH: ${{ github.workspace }}
         run: python3 factory/incremental_product_production.py
       - name: Publish production state
         run: |
