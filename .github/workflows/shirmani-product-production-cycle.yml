@@ -1,0 +1,57 @@
+name: SHIRMANI Product Production Cycle
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17,47 * * * *"
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: shirmani-product-production-cycle
+  cancel-in-progress: false
+jobs:
+  catalogue-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Validate product catalogue and public targets
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          path = pathlib.Path("data/production/shirmani-starter-products.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          products = data.get("products", [])
+          errors = []
+          ids = [p.get("id") for p in products]
+          if len(ids) != len(set(ids)):
+              errors.append("Duplicate product IDs")
+          for p in products:
+              for field in ("id", "name", "category", "status"):
+                  if not p.get(field):
+                      errors.append(f"{p.get('id', '<unknown>')}: missing {field}")
+              if p.get("status") == "prototype-live" and not p.get("public_url"):
+                  errors.append(f"{p.get('id')}: prototype missing public_url")
+          report = {
+              "workflow": "SHIRMANI Product Production Cycle",
+              "catalogue": str(path),
+              "product_count": len(products),
+              "prototype_live_count": sum(p.get("status") == "prototype-live" for p in products),
+              "planned_count": sum(p.get("status") == "planned" for p in products),
+              "errors": errors,
+              "result": "PASS" if not errors else "FAIL",
+              "scope": "Catalogue-structure check only; not independent product verification."
+          }
+          pathlib.Path("production-cycle-report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+          print(json.dumps(report, indent=2))
+          if errors:
+              sys.exit(1)
+          PY
+      - name: Upload production cycle report
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-product-production-report
+          path: production-cycle-report.json
+          if-no-files-found: error
+          retention-days: 30
