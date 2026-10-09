@@ -356,3 +356,9 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 - **Concrete product demo:** [SR-COMM-001 — Supreme Communication Blueprint Studio](products/concrete/SR-COMM-001-supreme-communication-blueprint-studio.html) — interactive browser-local builder for a voice → context → evidence → presentation pipeline, with test gates and an exportable blueprint.
 - **Current release boundary:** planning/demo only. It does not claim a connected LLM, voice provider, face/lip-sync engine, livestream, payment processing, backend, or independent verification.
 - **Next production step:** connect one authorized provider, run end-to-end tests, and publish measured results before expanding the chain.
+
+
+## New concrete prototype — SRI-PRES-001
+
+- **Shirmani Supreme Presentation Studio:** [four-version interactive demo](products/concrete/SRI-PRES-001-supreme-presentation-studio.html) — character/script, authorized-voice workflow, avatar/lip-sync planning, and live-presenter readiness. Exports a browser-local JSON brief and supports print/save as PDF.
+- **Current limits:** no connected voice/video provider, avatar generation, lip-sync engine, livestream, email, payment, or backend. Treat as a working planning prototype, not a finished MP4 or a verified commercial release.
