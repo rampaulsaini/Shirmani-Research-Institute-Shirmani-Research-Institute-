@@ -1,0 +1,13 @@
+{
+  "schema_version": "shirmani.production-catalog.v1",
+  "catalogue_name": "SHIRMANI Next-Version Starter Products",
+  "updated_at": "2026-10-09",
+  "claim_policy": "Only features present in the linked page are marked prototype-live. Roadmap items remain planned until delivered.",
+  "products": [
+    {"id":"SRI-TOOL-001","name":"Evidence Passport Builder","category":"Documentation & Product Quality","status":"prototype-live","public_url":"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/supreme-next-version-showroom.html#passport","price_status":"not-configured","demo_video_status":"not-created"},
+    {"id":"SRI-TOOL-002","name":"Product Demo Script Studio","category":"Product Education & Marketing","status":"prototype-live","public_url":"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/supreme-next-version-showroom.html#demo","price_status":"not-configured","demo_video_status":"not-created"},
+    {"id":"SRI-TOOL-003","name":"Review-to-Improvement Planner","category":"Customer Feedback & Quality","status":"prototype-live","public_url":"https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/supreme-next-version-showroom.html#reviews","price_status":"not-configured","demo_video_status":"not-created"},
+    {"id":"SRI-TOOL-004","name":"QR Product Passport","category":"Product Identity & Release","status":"planned","price_status":"not-configured","demo_video_status":"not-created"},
+    {"id":"SRI-TOOL-005","name":"Voice Q&A Presentation Kit","category":"Voice & Presentation","status":"planned","price_status":"not-configured","demo_video_status":"not-created"}
+  ]
+}
