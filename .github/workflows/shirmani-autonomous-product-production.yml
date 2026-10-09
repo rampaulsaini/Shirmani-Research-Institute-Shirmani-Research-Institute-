@@ -35,9 +35,38 @@ jobs:
       - name: Product-specific MP4 demos and VIP visual cards
         env: {PRODUCT_DEMO_BATCH: ${{ github.event.inputs.media_batch || '25' }}}
         run: python3 factory/product_specific_demo_video_factory.py
-      - name: Commit production artifacts
+      - name: Persist product artifacts to canonical production branch
+        shell: bash
         run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          branch="automation/production-state"
+          git fetch origin "$branch"
+          remote_sha="$(git rev-parse "origin/$branch")"
+          target="/tmp/shirmani-product-media-publish"
+          rm -rf "$target"
+          git worktree add --detach "$target" "origin/$branch"
+          for path in products/concrete products/visuals products/demo-video products/demos; do
+            if [[ -d "$path" ]]; then
+              mkdir -p "$target/$path"
+              cp -a "$path/." "$target/$path/"
+            fi
+          done
+          for path in generated/live-production-state.json generated/concrete-production-overlay.json generated/PRODUCT-PASSPORTS.jsonl generated/product-visual-assets.json generated/product-qr-assets.json generated/product-media-production-manifest.json generated/product-specific-demo-video-manifest.json; do
+            if [[ -f "$path" ]]; then
+              mkdir -p "$target/$(dirname "$path")"
+              cp "$path" "$target/$path"
+            fi
+          done
+          cd "$target"
           git config user.name "SHIRMANI Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add products/concrete products/visuals products/demo-video products/demos generated/live-production-state.json generated/concrete-production-overlay.json generated/PRODUCT-PASSPORTS.jsonl generated/product-visual-assets.json generated/product-qr-assets.json generated/product-media-production-manifest.json generated/product-specific-demo-video-manifest.json
-          if git diff --cached --quiet; then echo "No new artifacts"; else git commit -m "production: concrete products with QR and product-specific demo media"; git push; fi
+          if git diff --cached --quiet; then
+            echo "No new product artifacts to persist."
+            exit 0
+          fi
+          git commit -m "production: persist concrete products with QR and product-specific demo media"
+          git push --force-with-lease="refs/heads/$branch:$remote_sha" origin HEAD:"$branch"
+          echo "Product artifacts persisted to $branch; main remains protected by pull-request rules."
