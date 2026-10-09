@@ -3,7 +3,6 @@
 import datetime
 import json
 import pathlib
-import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -48,7 +47,7 @@ def main():
             errors.append(f"{pid}: duplicate demo anchor #{anchor}")
         else:
             anchors.add(anchor)
-            if not re.search(r'id=["\\']' + re.escape(anchor) + r'["\\']', html):
+            if f'id="{anchor}"' not in html and f"id='{anchor}'" not in html:
                 errors.append(f"{pid}: showroom anchor #{anchor} not found in showroom/index.html")
 
     report = {
@@ -69,7 +68,7 @@ def main():
         ],
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\\n", encoding="utf-8")
+    OUT.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(report, indent=2, ensure_ascii=False))
     return 1 if errors else 0
 
