@@ -1,5 +1,8 @@
 # Shirmani Research Institute
 
+[![SHIRMANI Production Persistence & Truth Gate](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/workflows/shirmani-production-persistence.yml/badge.svg)](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/workflows/shirmani-production-persistence.yml)
+
+
 Unified digital research and archive platform.
 
 🌐 **Live Website:**  
