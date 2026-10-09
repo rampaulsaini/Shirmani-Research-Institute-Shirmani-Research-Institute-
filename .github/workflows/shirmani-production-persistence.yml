@@ -57,6 +57,19 @@ jobs:
 
           git add generated/production-work-queue.jsonl generated/production-results.jsonl generated/public-production-catalog.json generated/public-production-module-index.json generated/public-production-by-module.html generated/PRODUCTION-TRUTH.json generated/multi-layer-production-status.json generated/MULTI-LAYER-PRODUCTION.md generated/live-production-state.json generated/concrete-product-asset-status.json generated/concrete-production-overlay.json
 
+          # GitHub blocks any single file >= 100 MB. Keep the repo pushable and
+          # report oversized append-only ledgers rather than failing every cycle.
+          while IFS= read -r -d '' path; do
+            if [ -f "$path" ]; then
+              size="$(wc -c < "$path")"
+              if [ "$size" -ge 90000000 ]; then
+                git restore --staged -- "$path"
+                echo "::warning::Excluded oversized state file $path ($size bytes); shard it before publishing."
+                echo "- Oversized state excluded from commit: `$path` ($size bytes)" >> "$GITHUB_STEP_SUMMARY"
+              fi
+            fi
+          done < <(git diff --cached --name-only -z)
+
           if git diff --cached --quiet; then
             echo "No persistent production-state changes."
             exit 0
