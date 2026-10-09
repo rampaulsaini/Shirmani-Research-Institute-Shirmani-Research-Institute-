@@ -310,3 +310,12 @@ The canonical public-production path now distinguishes **architecture engines** 
 **Canonical flow:** 1,016 catalog identities → concrete product assets → QC/metadata → public deployment → commercial dispatch gate → downstream verification.
 
 This is intended to eliminate the previous ambiguity where a 25-engine architecture could be mistaken for only 25 produced products.
+
+
+## Voice-to-Presentation Studio — Concrete Browser Demo
+
+- **Public page after merge/deploy:** [voice-to-presentation-studio.html](voice-to-presentation-studio.html)
+- **Product ID:** `SRI-PRES-001`, version `0.1.0`.
+- **Usable local functions:** editable content script, browser-supported speech recognition, authorized photo preview, evidence-state labeling and browser text-to-speech.
+- **Explicitly not connected:** hosted AI reasoning, external voice provider, animated face, real lip-sync, payment or persistent database.
+- **Commercial state:** demo only; not represented as a completed live-avatar service or a paid order. Test on supported browsers before customer delivery.
