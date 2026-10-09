@@ -15,6 +15,7 @@ GEN=ROOT/"generated"; QUEUE=GEN/"production-work-queue.jsonl"
 RESULTS=GEN/"production-results.jsonl"; DASHBOARD=GEN/"public-production-index.html"
 MODULE_INDEX=GEN/"public-production-by-module.html"; MODULE_JSON=GEN/"public-production-module-index.json"
 ARTIFACT_DIR=GEN/"public-production"
+ARCHIVE_DIR=ARTIFACT_DIR/"archive"
 
 def now(): return datetime.now(timezone.utc).isoformat()
 def digest(v): return hashlib.sha256(v.encode("utf-8")).hexdigest()
@@ -80,7 +81,7 @@ def deliverable(task,source):
     return base
 
 def main():
-    GEN.mkdir(parents=True,exist_ok=True); ARTIFACT_DIR.mkdir(parents=True,exist_ok=True)
+    GEN.mkdir(parents=True,exist_ok=True); ARTIFACT_DIR.mkdir(parents=True,exist_ok=True); ARCHIVE_DIR.mkdir(parents=True,exist_ok=True)
     tasks=load_tasks(); results=[]; counts=Counter(); rows=defaultdict(list)
     for task in tasks:
         p=ROOT/task["module"]; source=p.read_text(encoding="utf-8",errors="ignore") if p.is_file() else ""
@@ -91,7 +92,22 @@ def main():
            "integrity":{"source_bound":True,"independent_verification":"NOT_YET_PERFORMED",
                         "production_is_not_verification":True}}
         results.append(r); counts[task["lane"]]+=1; rows[task["lane"]].append(r)
+    # Keep the public "latest results" stream bounded, and preserve history in
+    # one immutable-sized JSONL shard per production cycle.
     RESULTS.write_text("".join(json.dumps(r,ensure_ascii=False)+"\n" for r in results),encoding="utf-8")
+    cycle=max((int(r.get("cycle",0)) for r in results), default=0)
+    archive_path=ARCHIVE_DIR/f"production-cycle-{cycle:06d}.jsonl"
+    archive_path.write_text("".join(json.dumps(r,ensure_ascii=False)+"\n" for r in results),encoding="utf-8")
+    archive_files=sorted(p.name for p in ARCHIVE_DIR.glob("production-cycle-*.jsonl"))
+    (ARCHIVE_DIR/"index.json").write_text(json.dumps({
+        "generated_at":now(),
+        "shard_strategy":"one JSONL file per production cycle",
+        "cycle_shards":len(archive_files),
+        "files":archive_files,
+        "latest_cycle":cycle,
+        "latest_cycle_records":len(results),
+        "integrity":{"records_are_produced_artifacts":True,"independent_verification_claim":False}
+    },ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     for lane,items in rows.items():
         (ARTIFACT_DIR/f"{lane}.jsonl").write_text("".join(json.dumps(r,ensure_ascii=False)+"\n" for r in items),encoding="utf-8")
     module_stats=defaultdict(lambda: {"lane":"","module_kind":"","outputs":0,"latest_cycle":0,"latest_status":"PRODUCED"})
@@ -107,7 +123,7 @@ def main():
     MODULE_INDEX.write_text(module_page,encoding="utf-8")
     catalog={"generated_at":now(),"principle":"Production first; verification downstream.",
              "cycle_results":len(results),"lanes":dict(sorted(counts.items())),
-             "artifacts":[f"generated/public-production/{x}.jsonl" for x in sorted(rows)] + ["generated/public-production-module-index.json","generated/public-production-by-module.html"],
+             "artifacts":[f"generated/public-production/{x}.jsonl" for x in sorted(rows)] + ["generated/public-production-module-index.json","generated/public-production-by-module.html","generated/public-production/archive/index.json"],
              "integrity":{"generated_output_is_concrete":True,"source_bound":True,"independent_verification_claim":False}}
     (GEN/"public-production-catalog.json").write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     status_path=GEN/"multi-layer-production-status.json"
@@ -126,7 +142,7 @@ def main():
         d=r["deliverable"]; preview=html.escape((d.get("draft") or d.get("source_excerpt") or d.get("production_objective") or "")[:500])
         cards.append(f"<article><h3>{html.escape(r['lane'].upper())}</h3><small>{html.escape(r['module'])}</small><h4>{html.escape(str(d.get('title') or d.get('offer_title') or d.get('artifact_type')))}</h4><p>{preview}</p><b>PRODUCED</b> · downstream verification</article>")
     links="".join(f"<a href='public-production/{html.escape(l)}.jsonl'>{html.escape(l)} · {n:,} outputs</a>" for l,n in sorted(counts.items()))
-    page=f"""<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI Public Production</title><style>body{{margin:0;background:#0b0d14;color:#f5f5f5;font-family:system-ui,sans-serif;line-height:1.5}}main{{max-width:1250px;margin:auto;padding:24px}}h1,h2{{color:#d4af37}}.hero,article,.links{{background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.25);border-radius:14px;padding:18px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}}.links{{display:flex;flex-wrap:wrap;gap:10px}}a{{color:#67e8f9;text-decoration:none;padding:8px 12px;border:1px solid #365;border-radius:9px}}small{{color:#aeb5c2}}b{{color:#6ee7b7}}</style></head><body><main><section class="hero"><h1>꙰ SHIRMANI Public Production</h1><p><strong>Production-first Automission:</strong> every queued work unit becomes a concrete source-bound production card. Verification is downstream.</p><h2>{len(results):,} concrete results this cycle</h2><p>Generated: {catalog["generated_at"]}</p><p><a href="public-production-catalog.json">Catalog</a> · <a href="multi-layer-production-status.json">Status</a> · <a href="production-results.jsonl">Full stream</a> · <a href="../index.html">Main Hub</a></p></section><h2>Production lanes</h2><div class="links">{links}</div><h2>Actual production cards</h2><div class="grid">{''.join(cards)}</div><section class="hero"><strong>Integrity:</strong> PRODUCED means a concrete artifact was generated from a repository-bound source. It is not automatically scientifically verified, commercially sold, or independently validated.</section></main></body></html>"""
+    page=f"""<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI Public Production</title><style>body{{margin:0;background:#0b0d14;color:#f5f5f5;font-family:system-ui,sans-serif;line-height:1.5}}main{{max-width:1250px;margin:auto;padding:24px}}h1,h2{{color:#d4af37}}.hero,article,.links{{background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.25);border-radius:14px;padding:18px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}}.links{{display:flex;flex-wrap:wrap;gap:10px}}a{{color:#67e8f9;text-decoration:none;padding:8px 12px;border:1px solid #365;border-radius:9px}}small{{color:#aeb5c2}}b{{color:#6ee7b7}}</style></head><body><main><section class="hero"><h1>꙰ SHIRMANI Public Production</h1><p><strong>Production-first Automission:</strong> every queued work unit becomes a concrete source-bound production card. Verification is downstream.</p><h2>{len(results):,} concrete results this cycle</h2><p>Generated: {catalog["generated_at"]}</p><p><a href="public-production-catalog.json">Catalog</a> · <a href="multi-layer-production-status.json">Status</a> · <a href="production-results.jsonl">Latest cycle stream</a> · <a href="public-production/archive/index.json">Cycle archive index</a> · <a href="../index.html">Main Hub</a></p></section><h2>Production lanes</h2><div class="links">{links}</div><h2>Actual production cards</h2><div class="grid">{''.join(cards)}</div><section class="hero"><strong>Integrity:</strong> PRODUCED means a concrete artifact was generated from a repository-bound source. It is not automatically scientifically verified, commercially sold, or independently validated.</section></main></body></html>"""
     DASHBOARD.write_text(page,encoding="utf-8")
     print(json.dumps({"produced":len(results),"lanes":dict(counts)},ensure_ascii=False))
 if __name__=="__main__": main()

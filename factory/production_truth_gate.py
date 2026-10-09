@@ -14,6 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 GEN=ROOT/"generated"
 CATALOG=GEN/"product-catalog-public.json"
 RESULTS=GEN/"production-results.jsonl"
+ARCHIVE_DIR=GEN/"public-production"/"archive"
 VERIFICATION=GEN/"VERIFICATION-REGISTRY.json"
 OUT=GEN/"PRODUCTION-TRUTH.json"
 
@@ -25,7 +26,10 @@ def main():
     catalog=json.loads(CATALOG.read_text(encoding="utf-8")) if CATALOG.exists() else {"offers":[]}
     verification=json.loads(VERIFICATION.read_text(encoding="utf-8")) if VERIFICATION.exists() else {}
     offers=catalog.get("offers",[])
-    result_count=count_lines(RESULTS)
+    latest_result_count=count_lines(RESULTS)
+    archive_files=sorted(ARCHIVE_DIR.glob("production-cycle-*.jsonl")) if ARCHIVE_DIR.exists() else []
+    archived_record_count=sum(count_lines(p) for p in archive_files)
+    result_count=archived_record_count if archive_files else latest_result_count
     digital=sum(1 for x in offers if x.get("delivery") in {"digital-audio","digital-asset","creator-assets"})
     services=sum(1 for x in offers if x.get("delivery") in {"service","creative-service"})
     payload={
@@ -35,6 +39,8 @@ def main():
       "digital_offers":digital,
       "service_offers":services,
       "persistent_production_records":result_count,
+      "latest_cycle_records":latest_result_count,
+      "production_archive_shards":len(archive_files),
       "independent_verified_records":int(verification.get("verified",0)),
       "sales_claimed":0,
       "delivered_customer_orders_claimed":0,

@@ -125,20 +125,21 @@ def build_tasks(modules, cursor, per_cycle, cycle_number):
     return tasks
 
 def append_unique(tasks):
-    existing = set()
-    if QUEUE.exists():
-        with QUEUE.open(encoding="utf-8", errors="ignore") as f:
-            for line in f:
-                try:
-                    existing.add(json.loads(line)["task_id"])
-                except Exception:
-                    pass
-    pending = [t for t in tasks if t["task_id"] not in existing]
-    if pending:
-        with QUEUE.open("a", encoding="utf-8") as f:
-            for t in pending:
-                f.write(json.dumps(t, ensure_ascii=False) + "\n")
-    return len(pending)
+    """Persist only the active cycle; historical work is stored as bounded shards.
+
+    Task IDs include the cycle number, so retaining every old queue row here
+    only creates an unbounded monolithic file. The archive is written by the
+    materializer, one JSONL shard per cycle.
+    """
+    unique = {}
+    for task in tasks:
+        unique.setdefault(task["task_id"], task)
+    active = list(unique.values())
+    QUEUE.write_text(
+        "".join(json.dumps(t, ensure_ascii=False) + "\n" for t in active),
+        encoding="utf-8",
+    )
+    return len(active)
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
