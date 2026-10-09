@@ -18,7 +18,16 @@ for p in products:
     if pid in ids:
         raise SystemExit(f"duplicate product id: {pid}")
     ids.add(pid)
-    if not isinstance(p["price_inr"],(int,float)) or p["price_inr"]<0:
+    price=p["price_inr"]
+    if price is None:
+        # An unpriced preview is valid only when the catalogue explicitly says
+        # a quote/agreement is required; null must never imply a free product.
+        offer=str(p.get("offer","")).lower()
+        status=str(p.get("status","")).upper()
+        quote_markers=("quote","agree","preview","confirm")
+        if not any(marker in offer for marker in quote_markers) or not any(marker in status for marker in ("PREVIEW","REVIEW","QUOTE")):
+            raise SystemExit(f"null price requires explicit quote/preview status: {pid}")
+    elif isinstance(price,bool) or not isinstance(price,(int,float)) or price<0:
         raise SystemExit(f"bad price: {pid}")
     url=str(p["store_url"]).strip()
     if not url:
