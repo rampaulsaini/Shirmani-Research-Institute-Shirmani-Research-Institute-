@@ -18,6 +18,8 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 
 - **Research Brief & Source Ledger:** [open working browser demo](showroom/research-brief-source-ledger.html) — create a scoped research brief, record claim/source/date/URL/evidence status/limitations, and export a text pack or print to PDF. Browser-local prototype; it does not browse or independently verify claims, connect AI, or upload data.
 
+- **Claim & Evidence Mapper (SRI-RES-002):** [open working browser demo](products/concrete/SRI-RES-002-claim-evidence-mapper.html) — record claims, source links, evidence excerpts, limitations and next actions; export JSON or a review brief. Browser-local prototype; it does not fetch/authenticate sources or independently verify claims.
+
 ## Global Product & Service Sales Desk — New Demo
 
 - **Sales Desk:** [global-product-sales-desk.html](showroom/global-product-sales-desk.html) — service menu for Hindi/English writing, research summaries, and website/blog content; generates a client brief with TXT export, copy, and a user-reviewed email draft. Browser-local only: it does not send automatically, accept payment, or claim a sale/income.
