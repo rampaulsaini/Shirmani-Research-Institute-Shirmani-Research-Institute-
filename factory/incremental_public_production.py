@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1]; GEN=ROOT/"generated"; PROD=ROOT/"products"/"production"; BATCH_SIZE=100
+ROOT=Path(__file__).resolve().parents[1]; GEN=ROOT/"generated"; PROD=ROOT/"products"/"production"; BATCH_SIZE=500
 def load(path, default):
     try: return json.loads(path.read_text(encoding="utf-8"))
     except Exception: return default
@@ -12,13 +12,30 @@ def main():
     catalog=load(GEN/"1000-digital-products.json",{"products":[]}); products=catalog.get("products",[])
     overlay=load(GEN/"concrete-production-overlay.json",{"products":[]})
     existing={p.get("id"):p for p in overlay.get("products",[]) if p.get("production_state")=="PRODUCED"}
+    for p in products:
+        if p.get("id") in existing:
+            existing[p["id"]].update({
+                "name": p.get("name"),
+                "family": p.get("family"),
+                "category": p.get("category", p.get("family")),
+                "engine": p.get("engine"),
+                "description": p.get("description"),
+                "price_inr": p.get("price_inr", existing[p["id"]].get("price_inr", 0)),
+                "offer_price_inr": p.get("offer_price_inr", existing[p["id"]].get("offer_price_inr", 0)),
+                "offer": p.get("offer", existing[p["id"]].get("offer", "")),
+                "commercial_status": p.get("commercial_status", "NOT_SOLD"),
+                "verification": p.get("verification", "FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY")
+            })
     pending=[p for p in products if p.get("id") not in existing]; batch=pending[:BATCH_SIZE]; PROD.mkdir(parents=True,exist_ok=True)
     for p in batch:
         pid=p["id"]; target=ROOT/(p.get("asset") or f"products/production/{pid.lower()}.html")
         if not target.is_file():
             from concrete_product_modules import page
             target.write_text(page(p),encoding="utf-8")
-        existing[pid]={"id":pid,"production_state":"PRODUCED","sale_state":"READY_FOR_ORDER","artifact_url":str(target.relative_to(ROOT)),"production_batch":datetime.now(timezone.utc).strftime("%Y-%m-%d-batch"),"produced_at":datetime.now(timezone.utc).isoformat(),"qc_code":p.get("qc_code","QC-PENDING"),"gate_no":p.get("gate_no","GATE-PENDING"),"dispatch_no":"NO","price_inr":p.get("price_inr",0),"offer_price_inr":p.get("offer_price_inr",0),"offer":p.get("offer",""),"guarantee":p.get("guarantee",""),"packing":p.get("packing","")}
+        existing[pid]={"id":pid,"production_state":"PRODUCED","sale_state":"READY_FOR_ORDER","artifact_url":str(target.relative_to(ROOT)),"production_batch":datetime.now(timezone.utc).strftime("%Y-%m-%d-batch"),"produced_at":datetime.now(timezone.utc).isoformat(),"qc_code":p.get("qc_code","QC-PENDING"),"gate_no":p.get("gate_no","GATE-PENDING"),"dispatch_no":"NO","price_inr":p.get("price_inr",0),"offer_price_inr":p.get("offer_price_inr",0),"offer":p.get("offer",""),"guarantee":p.get("guarantee",""),"packing":p.get("packing",""),"name":p.get("name"),"family":p.get("family"),
+            "category":p.get("category",p.get("family")),"engine":p.get("engine"),
+            "description":p.get("description"),"commercial_status":p.get("commercial_status","NOT_SOLD"),
+            "verification":p.get("verification","FUNCTIONAL_BROWSER_BEHAVIOUR_ONLY")}
     rows=[existing[p["id"]] for p in products if p.get("id") in existing]; stamp=datetime.now(timezone.utc).isoformat()
     overlay={"schema_version":3,"generated_at":stamp,"architecture":["INSTITUTE","FACTORY","QC","SHOWROOM_SALE"],"production_first":True,"verification_is_downstream":True,"batch_size":BATCH_SIZE,"catalog_count":len(products),"produced_count":len(rows),"remaining_count":len(products)-len(rows),"cycle_produced_count":len(batch),"products":rows}
     (GEN/"concrete-production-overlay.json").write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")

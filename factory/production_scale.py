@@ -45,8 +45,16 @@ def main():
             "variant_number":variant_no,"production_role":"customer-visible reusable digital product variant"
         })
         next_index+=1; created+=1
+    raw_schema = data.get("schema_version", 1)
+    try:
+        schema_num = int(raw_schema)
+    except (TypeError, ValueError):
+        try:
+            schema_num = int(float(raw_schema))
+        except (TypeError, ValueError):
+            schema_num = 1
     data.update({
-        "schema_version":max(2,int(data.get("schema_version",1))),
+        "schema_version": max(2, schema_num),
         "production_target":TARGET,"production_scale":"multi-lane-resumable",
         "generated_at":datetime.now(timezone.utc).isoformat(),"products":products
     })
