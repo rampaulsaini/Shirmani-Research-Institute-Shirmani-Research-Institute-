@@ -44,5 +44,5 @@ def main():
     ordered=sorted(done.values(),key=lambda x:int(x["id"].split("-")[-1]))
     op.write_text(json.dumps({"schema_version":1,"generated_at":ts,"architecture":["INSTITUTE","FACTORY","QC","SHOWROOM_SALE"],"production_first":True,"verification_is_downstream":True,"batch":batch,"product_count":len(catalog["products"]),"produced_count":len(ordered),"remaining_count":len(catalog["products"])-len(ordered),"batch_size":len(pending),"products":ordered},ensure_ascii=False,indent=2)+"\n")
     (GEN/"continuous-production-batch-status.json").write_text(json.dumps({"generated_at":ts,"batch":batch,"catalog_products":len(catalog["products"]),"produced_total":len(ordered),"produced_this_cycle":len(pending),"remaining":len(catalog["products"])-len(ordered),"dispatch_released":0,"verification":"DOWNSTREAM"},ensure_ascii=False,indent=2)+"\n")
-    print(json.dumps({"batch":batch,"produced_this_cycle":len(pending),"produced_total":len(ordered),"remaining":len(catalog["products"])}))
+    print(json.dumps({"batch":batch,"produced_this_cycle":len(pending),"produced_total":len(ordered),"remaining":max(0,len(catalog["products"])-len(ordered))}))
 if __name__=="__main__": main()
