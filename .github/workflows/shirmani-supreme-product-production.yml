@@ -1,0 +1,54 @@
+name: SHIRMANI Supreme Product Production Cycle
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17,47 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-supreme-product-production
+  cancel-in-progress: false
+
+jobs:
+  produce-one-concrete-product:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Produce one concrete tool, passport and product visual
+        run: python scripts/production_factory_cycle.py
+      - name: Validate production outputs
+        run: |
+          python -m json.tool generated/concrete-production-overlay.json >/dev/null
+          python -m json.tool generated/live-production-state.json >/dev/null
+          python -m json.tool products/visuals/manifest.json >/dev/null
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[json.loads(s) for s in Path('generated/PRODUCT-PASSPORTS.jsonl').read_text().splitlines() if s.strip()]
+          assert len(rows)==len({x['id'] for x in rows}), 'duplicate passport IDs'
+          overlay=json.loads(Path('generated/concrete-production-overlay.json').read_text())
+          assert overlay['produced_count']==len(overlay['products']), 'overlay count mismatch'
+          assert Path(overlay['products'][-1]['artifact_url']).exists(), 'last product artifact missing'
+          print('PASS: product artifact exists; JSON valid; IDs unique; counts aligned.')
+          PY
+      - name: Commit production artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/concrete-production-overlay.json generated/PRODUCT-PASSPORTS.jsonl generated/live-production-state.json products/concrete products/visuals/manifest.json products/visuals
+          if git diff --cached --quiet; then
+            echo "No new production artifact to commit."
+          else
+            git commit -m "Produce next SHIRMANI concrete digital product"
+            git push origin HEAD:main
+          fi
