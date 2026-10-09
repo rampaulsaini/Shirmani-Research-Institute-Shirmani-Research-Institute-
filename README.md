@@ -11,6 +11,7 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 ---
 
 - **Production-First Public Map:** [production-first-public-map.html](production-first-public-map.html) — four-stage Institute → Factory → QC/Gate → Showroom map with current published production telemetry.
+- **Measurable Production Chain & First Revenue Sprint:** [implementation specification](docs/production/MEASURABLE-PRODUCTION-CHAIN-AND-FIRST-REVENUE-SPRINT-2026-10-09.md) — product state machine, measurable weekly metrics, voice/live acceptance gates, and proposed writing/research pilot offers.
 
 ## New Concrete Research Tool — Research Brief & Source Ledger
 
