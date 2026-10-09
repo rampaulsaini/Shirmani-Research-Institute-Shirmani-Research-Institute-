@@ -12,7 +12,7 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 
 - **Production-First Public Map:** [production-first-public-map.html](production-first-public-map.html) — four-stage Institute → Factory → QC/Gate → Showroom map with current published production telemetry.
 
-## Immediate Income Action Center\n\n- **Income Action Center:** [income-action-center.html](income-action-center.html) — practical outreach template, proposed service packages, seven-day activity targets and a local-only pipeline tracker. It does not send email or claim income automatically.\n\n## Client Income — Writing & Research Enquiry
+## Immediate Income Action Center\n\n- **Income Action Center:** [income-action-center.html](income-action-center.html) — practical outreach template, proposed service packages, seven-day activity targets and a local-only pipeline tracker. It does not send email or claim income automatically.\n\n- **Research Brief Studio (SRI-RES-001):** [products/concrete/SRI-RES-001.html](products/concrete/SRI-RES-001.html) — working browser-local brief builder that generates a scope checklist, proposal draft, and TXT/JSON exports. Price/timeline remain to be agreed; it does not send email or claim a sale.\n\n## Client Income — Writing & Research Enquiry
 
 - **Writing & Research Enquiry:** [writing-research-enquiry.html](writing-research-enquiry.html) — public-facing Hindi/English writing, research-summary, and website/blog content brief builder. It does not claim to send enquiries or receive payments until those integrations are actually connected.
 
