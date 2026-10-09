@@ -17,8 +17,6 @@ permissions:
   pull-requests: write
 
 concurrency:
-  # This workflow and SHIRMANI Continuous Concrete Product Production both
-  # write automation/production-state. They must share one serialization lock.
   group: shirmani-production-state-writer
   cancel-in-progress: false
 
@@ -41,12 +39,35 @@ jobs:
           else
             echo "PRODUCTION_STATE_BASE=main-initial" >> "$GITHUB_ENV"
           fi
-      - name: Materialize production records
+      - name: Materialize production records and truth gate
         run: |
           python3 factory/multi_layer_production.py
           python3 factory/public_production_materializer.py
           python3 factory/production_truth_gate.py
-      - name: Publish persistent production state
+      - name: Compress oversized JSONL archive safely
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f generated/production-results.jsonl
+          python3 - <<'PY'
+          import gzip
+          from pathlib import Path
+          source=Path("generated/production-results.jsonl")
+          target=Path("generated/production-results.jsonl.gz")
+          with source.open("rb") as src, gzip.open(target,"wb",compresslevel=9,mtime=0) as dst:
+              while True:
+                  block=src.read(1024*1024)
+                  if not block:
+                      break
+                  dst.write(block)
+          original=source.stat().st_size
+          compressed=target.stat().st_size
+          if compressed >= 95_000_000:
+              raise SystemExit(f"Compressed archive remains too large ({compressed} bytes); refusing to persist.")
+          print(f"Production result archive: {original} bytes -> {compressed} bytes")
+          source.unlink()
+          PY
+      - name: Publish bounded persistent production state
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -54,16 +75,13 @@ jobs:
           set -euo pipefail
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add generated/production-work-queue.jsonl generated/production-results.jsonl generated/public-production-catalog.json generated/public-production-module-index.json generated/public-production-by-module.html generated/PRODUCTION-TRUTH.json generated/multi-layer-production-status.json generated/MULTI-LAYER-PRODUCTION.md generated/live-production-state.json generated/concrete-product-asset-status.json generated/concrete-production-overlay.json
-
+          git add generated/production-work-queue.jsonl generated/production-results.jsonl.gz generated/public-production-catalog.json generated/public-production-module-index.json generated/public-production-by-module.html generated/PRODUCTION-TRUTH.json generated/multi-layer-production-status.json generated/MULTI-LAYER-PRODUCTION.md generated/live-production-state.json generated/concrete-product-asset-status.json generated/concrete-production-overlay.json
+          git rm --cached --ignore-unmatch generated/production-results.jsonl
           if git diff --cached --quiet; then
             echo "No persistent production-state changes."
             exit 0
           fi
-
-          git commit -m "chore(production): persist concrete production state and truth gate"
-
+          git commit -m "chore(production): persist compressed production archive and truth gate"
           branch="automation/production-state"
           if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
             git fetch origin "$branch"
@@ -73,18 +91,20 @@ jobs:
             git push origin HEAD:"$branch"
           fi
           echo "Production state persisted to canonical branch: $branch"
-
       - name: Emit production truth summary
+        if: always()
         run: |
-          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          if [ -f generated/PRODUCTION-TRUTH.json ]; then
+            python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
           p=json.load(open("generated/PRODUCTION-TRUTH.json", encoding="utf-8"))
           print("# SHIRMANI Production Truth Gate")
           print(f"- Registered offers: **{p['offers_registered']}**")
-          print(f"- Persistent production records: **{p['persistent_production_records']}**")
+          print(f"- Production records in this generated cycle: **{p['persistent_production_records']}**")
           print(f"- Independently VERIFIED: **{p['independent_verified_records']}**")
           print("- Sales claimed: **0 unless transaction evidence exists**")
           print("- Customer deliveries claimed: **0 unless delivery evidence exists**")
           print(f"- Production records gate: **{p['gates']['production_records']}**")
           print(f"- Verification gate: **{p['gates']['independent_verification']}**")
           PY
+          fi
