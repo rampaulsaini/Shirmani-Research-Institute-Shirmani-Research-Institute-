@@ -1,0 +1,50 @@
+name: SHIRMANI Supreme Product Production Cycle
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+permissions:
+  contents: write
+concurrency:
+  group: supreme-product-production-cycle
+  cancel-in-progress: false
+jobs:
+  build-product-catalogue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build catalogue and production board
+        run: |
+          python scripts/build_showroom_catalog.py
+          python scripts/product_production_cycle.py
+      - name: Validate product catalogue
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path("showroom/data/catalog.json").read_text(encoding="utf-8"))
+          b=json.loads(Path("showroom/data/production-board.json").read_text(encoding="utf-8"))
+          ids=[p["id"] for p in c["products"]]
+          assert ids and len(ids)==len(set(ids)), "Empty or duplicate product IDs"
+          for p in c["products"]:
+              assert all(p.get(k) for k in ("id","name","category","description","readiness")), p
+          assert len(b["products"])==len(c["products"])
+          print(f"PASS: {len(ids)} unique product passports; board entries={len(b['products'])}")
+          PY
+      - name: Commit generated catalogue when changed
+        run: |
+          if git diff --quiet -- showroom/data/catalog.json showroom/data/production-board.json; then
+            echo "No catalogue changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add showroom/data/catalog.json showroom/data/production-board.json
+          git commit -m "chore(showroom): refresh product catalogue and production board"
+          git push

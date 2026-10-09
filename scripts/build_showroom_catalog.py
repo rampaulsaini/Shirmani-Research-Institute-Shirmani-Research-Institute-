@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+"""Build the transparent starter product catalogue for the public showroom."""
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "showroom" / "data" / "catalog.json"
+PRODUCTS_JSON = r'''[{"id":"YUG-001","name":"Yatharth Learning Path Designer","category":"Education","icon":"✦","tagline":"Turn a learning goal into a structured study path.","description":"Creates a learning roadmap with milestones, practice activities, and progress checkpoints.","useCases":["Study planning","Skill roadmaps","Course outlines"],"readiness":"Specification","price":null,"currency":"INR","guide":"./product-guides/yatharth-learning-path.md","demo":null,"version":"0.1.0"},{"id":"NYA-002","name":"Yatharth Fair-Decision Worksheet","category":"Civic & Decision Support","icon":"⚖","tagline":"Compare options with transparent criteria.","description":"Records options, evidence, affected stakeholders, uncertainty, and reasons. Supports human judgment; it is not a court or legal authority.","useCases":["Decision logs","Policy comparison","Meeting preparation"],"readiness":"Specification","price":null,"currency":"INR","guide":"./product-guides/fair-decision-worksheet.md","demo":null,"version":"0.1.0"},{"id":"SKL-003","name":"Supreme Skill Sprint Planner","category":"Productivity","icon":"⌁","tagline":"Break a skill into measurable practice cycles.","description":"Organizes a skill goal into small tasks, spaced practice, self-assessment, and review checkpoints.","useCases":["Career skills","Daily practice","Portfolio planning"],"readiness":"Specification","price":null,"currency":"INR","guide":"./product-guides/skill-sprint-planner.md","demo":null,"version":"0.1.0"},{"id":"TOOL-004","name":"Digital Product Passport Builder","category":"Creator Tools","icon":"▣","tagline":"Give every product a consistent public identity.","description":"A reusable schema for title, version, intended use, limitations, guide, demo link, support, and release notes.","useCases":["Digital downloads","Tool directories","Release documentation"],"readiness":"Prototype / specification","price":null,"currency":"INR","guide":"./product-guides/product-passport-builder.md","demo":null,"version":"0.1.0"},{"id":"EVD-005","name":"Evidence-to-Answer Brief","category":"Research","icon":"⌕","tagline":"Separate sourced claims from assumptions.","description":"Structures a response into claim, source, evidence date, confidence, limitation, and unanswered question. Does not independently verify sources by itself.","useCases":["Research briefs","Source tracking","Evidence-aware Q&A"],"readiness":"Prototype / specification","price":null,"currency":"INR","guide":"./product-guides/evidence-to-answer.md","demo":null,"version":"0.1.0"},{"id":"VOX-006","name":"Voice-to-Presentation Runbook","category":"Media & Accessibility","icon":"◖","tagline":"Plan speech-to-presentation workflows.","description":"A test checklist for speech recognition, response generation, authorized voice output, captions, avatar timing, and latency. Provider integrations must be configured separately.","useCases":["Voice assistant prototypes","Caption workflows","Presentation QA"],"readiness":"Specification","price":null,"currency":"INR","guide":"./product-guides/voice-presentation-runbook.md","demo":null,"version":"0.1.0"}]'''
+PRODUCTS = json.loads(PRODUCTS_JSON)
+payload = {
+    "schemaVersion": "1.0.0",
+    "catalogueName": "Shirmani Supreme Digital Showroom",
+    "generatedAt": datetime.now(timezone.utc).isoformat(),
+    "productionCycle": "catalog-build",
+    "note": "Catalogue generation is not proof of deployment, customer validation, or independent verification. Readiness labels are explicit.",
+    "products": PRODUCTS,
+}
+OUT.parent.mkdir(parents=True, exist_ok=True)
+OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+print(f"Wrote {len(PRODUCTS)} product passports to {OUT.relative_to(ROOT)}")

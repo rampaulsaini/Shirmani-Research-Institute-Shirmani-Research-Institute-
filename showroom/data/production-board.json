@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-10-09T00:00:00Z",
+  "stages": [
+    {
+      "id": "institute",
+      "name": "Research Institute",
+      "purpose": "Define user problem, scope, differentiator, and audience."
+    },
+    {
+      "id": "factory",
+      "name": "Product Factory",
+      "purpose": "Create specification, passport, usage guide, and demo plan."
+    },
+    {
+      "id": "qc",
+      "name": "Quality Control",
+      "purpose": "Check fields, claims, pricing, guide/demo, and release readiness."
+    },
+    {
+      "id": "showroom",
+      "name": "Public Showroom",
+      "purpose": "Publish discoverable cards with accurate readiness labels."
+    }
+  ],
+  "counts": {
+    "catalogueEntries": 6,
+    "specification": 4,
+    "prototype": 2,
+    "productionReady": 0,
+    "demoPublished": 0,
+    "priced": 0
+  },
+  "products": [
+    {
+      "id": "YUG-001",
+      "name": "Yatharth Learning Path Designer",
+      "currentStage": "factory-specification",
+      "pipeline": [
+        "institute",
+        "factory",
+        "qc",
+        "showroom"
+      ],
+      "qc": {
+        "requiredFieldsPresent": true,
+        "guideLinked": true,
+        "demoPublished": false,
+        "priceConfigured": false,
+        "releaseEligible": false,
+        "reason": "Functional implementation, tests, product-specific demo, support terms, and release review are still required."
+      },
+      "nextAction": "Implement and test the actual tool; publish a product-specific demo and usage guide."
+    },
+    {
+      "id": "NYA-002",
+      "name": "Yatharth Fair-Decision Worksheet",
+      "currentStage": "factory-specification",
+      "pipeline": [
+        "institute",
+        "factory",
+        "qc",
+        "showroom"
+      ],
+      "qc": {
+        "requiredFieldsPresent": true,
+        "guideLinked": true,
+        "demoPublished": false,
+        "priceConfigured": false,
+        "releaseEligible": false,
+        "reason": "Functional implementation, tests, product-specific demo, support terms, and release review are still required."
+      },
+      "nextAction": "Implement and test the actual tool; publish a product-specific demo and usage guide."
+    },
+    {
+      "id": "SKL-003",
+      "name": "Supreme Skill Sprint Planner",
+      "currentStage": "factory-specification",
+      "pipeline": [
+        "institute",
+        "factory",
+        "qc",
+        "showroom"
+      ],
+      "qc": {
+        "requiredFieldsPresent": true,
+        "guideLinked": true,
+        "demoPublished": false,
+        "priceConfigured": false,
+        "releaseEligible": false,
+        "reason": "Functional implementation, tests, product-specific demo, support terms, and release review are still required."
+      },
+      "nextAction": "Implement and test the actual tool; publish a product-specific demo and usage guide."
+    },
+    {
+      "id": "TOOL-004",
+      "name": "Digital Product Passport Builder",
+      "currentStage": "factory-specification",
+      "pipeline": [
+        "institute",
+        "factory",
+        "qc",
+        "showroom"
+      ],
+      "qc": {
+        "requiredFieldsPresent": true,
+        "guideLinked": true,
+        "demoPublished": false,
+        "priceConfigured": false,
+        "releaseEligible": false,
+        "reason": "Functional implementation, tests, product-specific demo, support terms, and release review are still required."
+      },
+      "nextAction": "Implement and test the actual tool; publish a product-specific demo and usage guide."
+    },
+    {
+      "id": "EVD-005",
+      "name": "Evidence-to-Answer Brief",
+      "currentStage": "factory-specification",
+      "pipeline": [
+        "institute",
+        "factory",
+        "qc",
+        "showroom"
+      ],
+      "qc": {
+        "requiredFieldsPresent": true,
+        "guideLinked": true,
+        "demoPublished": false,
+        "priceConfigured": false,
+        "releaseEligible": false,
+        "reason": "Functional implementation, tests, product-specific demo, support terms, and release review are still required."
+      },
+      "nextAction": "Implement and test the actual tool; publish a product-specific demo and usage guide."
+    },
+    {
+      "id": "VOX-006",
+      "name": "Voice-to-Presentation Runbook",
+      "currentStage": "factory-specification",
+      "pipeline": [
+        "institute",
+        "factory",
+        "qc",
+        "showroom"
+      ],
+      "qc": {
+        "requiredFieldsPresent": true,
+        "guideLinked": true,
+        "demoPublished": false,
+        "priceConfigured": false,
+        "releaseEligible": false,
+        "reason": "Functional implementation, tests, product-specific demo, support terms, and release review are still required."
+      },
+      "nextAction": "Implement and test the actual tool; publish a product-specific demo and usage guide."
+    }
+  ]
+}
