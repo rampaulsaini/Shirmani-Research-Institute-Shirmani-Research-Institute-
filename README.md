@@ -381,3 +381,10 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 
 - **Working browser-local product:** [Heart-View Communication Studio](products/concrete/SRI-HV-001-heart-view-communication-studio.html) — builds a structured Hindi/English presentation brief from user input, separates personal/philosophical statements from source-based input, includes respectful live-delivery guidance, and exports a TXT brief.
 - **Product limitations:** deterministic browser-side template only; no external AI model, independent source verification, HeyGen/provider connection, voice cloning, avatar generation, lip-sync, live streaming, email sending, payment processing, or backend. The built-in walkthrough is not an MP4 recording. QC remains pending manual review.
+
+
+## Read-only security baseline — new workflow (2026-10-09)
+
+- **Scanner:** [scripts/security_baseline_audit.py](scripts/security_baseline_audit.py) scans tracked-style text files for a small set of high-confidence credential patterns and reviews GitHub Actions workflow permission blocks/action references. It never prints matched secret values.
+- **Automation:** [security-baseline-audit.yml](.github/workflows/security-baseline-audit.yml) runs on pull requests, pushes to `main`, manual dispatch, and a weekly schedule with `contents: read` and checkout credentials disabled.
+- **Limitations:** a static pattern scan is not a penetration test, does not validate every secret type, and cannot guarantee platform security. Workflow-hardening warnings require human review; high-confidence credential-pattern matches fail the job for triage.
