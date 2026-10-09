@@ -13,10 +13,9 @@
 ## First offers to test (proposed pilot prices, not proven market rates)
 | Service | Pilot price | Deliverable | Target turnaround |
 |---|---:|---|---|
-| Hindi/English proofreading and clarity edit | ₹299 | Edited document up to 1,000 words + short change note | 24–48 hours |
-| Short article, profile or product description | ₹599 | One 600–900-word draft in Hindi or English; bilingual version quoted separately | 2–3 days |
-| Evidence-organized research brief | ₹999 | Up to 3 pages, source links, claim/evidence distinction and uncertainty note | 3–5 days |
-| Research-to-presentation outline | ₹799 | 8–10 slide outline with source notes; no fabricated references | 2–3 days |
+| Hindi/English proofreading and clarity edit | ₹499 से | एक edited version, अधिकतम 700 शब्द, एक revision | 24–48 hours; final deadline confirmed in quote |
+| Article / website copy | ₹999 से | एक draft, अधिकतम 1,000 शब्द, headings और एक revision | 2–3 days; final deadline confirmed in quote |
+| Source-based research brief | ₹1,499 से | लगभग 800–1,200 शब्द, 3–5 credible sources where available, gaps/uncertainty note | 3–5 days; final deadline confirmed in quote |
 
 These are test prices, not guaranteed market rates or sales. Agree scope, deadline, revision limit and payment terms in writing before starting. Do not offer academic cheating, fake citations, guaranteed outcomes or verification that was not performed.
 
@@ -29,9 +28,9 @@ These are test prices, not guaranteed market rates or sales. Agree scope, deadli
 
 ## Copy-ready outreach message
 Namaste! मैं Shirmani Research Institute की ओर से Hindi/English writing, proofreading और source-organized research brief की सीमित pilot service शुरू कर रहा हूँ।
-- Proofreading/editing (up to 1,000 words): ₹299
-- Short article/product description: ₹599 से
-- Source-organized research brief: ₹999 से
+- Proofreading/editing (up to 700 words): ₹499 से
+- Article / website copy (up to 1,000 words): ₹999 से
+- Source-based research brief (about 800–1,200 words): ₹1,499 से
 काम शुरू करने से पहले scope, deadline और final price लिखित में तय होंगे। कोई fabricated source या unverified claim नहीं जोड़ा जाएगा। यदि आपको या आपके परिचित को ऐसी सेवा चाहिए, तो विषय और अनुमानित शब्द-संख्या भेजें। Portfolio/store: https://rampaulsaini.github.io/my-omniverse-store/
 
 ## Lead and delivery tracker
