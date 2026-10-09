@@ -29,14 +29,33 @@ jobs:
         env:
           PRODUCT_BATCH: '12'
         run: python3 factory/continuous_product_factory.py
-      - name: Commit production outputs
+      - name: Persist continuous product batch to canonical production branch
+        shell: bash
         run: |
+          set -euo pipefail
+          branch="automation/production-state"
+          git fetch origin "$branch"
+          remote_sha="$(git rev-parse "origin/$branch")"
+          target="/tmp/shirmani-continuous-product-publish"
+          rm -rf "$target"
+          git worktree add --detach "$target" "origin/$branch"
+          for path in generated/continuous-production-state.json generated/continuous-production-manifest.json products/continuous products/visuals/continuous products/demos/continuous; do
+            if [[ -d "$path" ]]; then
+              mkdir -p "$target/$path"
+              cp -a "$path/." "$target/$path/"
+            elif [[ -f "$path" ]]; then
+              mkdir -p "$target/$(dirname "$path")"
+              cp "$path" "$target/$path"
+            fi
+          done
+          cd "$target"
           git config user.name "SHIRMANI Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add factory/continuous_product_factory.py generated/continuous-production-state.json generated/continuous-production-manifest.json products/continuous products/visuals/continuous products/demos/continuous
+          git add generated/continuous-production-state.json generated/continuous-production-manifest.json products/continuous products/visuals/continuous products/demos/continuous
           if git diff --cached --quiet; then
             echo "No new production output in this cycle."
-          else
-            git commit -m "production: materialize next concrete digital product batch"
-            git push
+            exit 0
           fi
+          git commit -m "production: persist next concrete digital product batch"
+          git push --force-with-lease="refs/heads/$branch:$remote_sha" origin HEAD:"$branch"
+          echo "Continuous product batch persisted to $branch."
