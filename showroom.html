@@ -83,6 +83,7 @@
 <div class="stat"><div class="metric" id="categories">—</div><div class="muted">Product categories</div></div><div class="stat"><div class="metric" id="reviewCount">—</div><div class="muted">Public reviews</div></div><div class="stat"><div class="metric" id="productionModules">—</div><div class="muted">Production modules</div></div><div class="stat"><div class="metric" id="scheduledUnits">—</div><div class="muted">Scheduled work units</div></div>
 </section>
 <div class="note"><strong>Production expansion:</strong> Live production telemetry is the source of truth. The showroom does not hard-code a product count; each deployment reads the current concrete asset manifest and scale target.<br><br><strong>Production principle:</strong> जितना काम automation से वास्तविक artifact बनकर platform पर दिखाई देता है, वही production progress है। Independent verification अलग downstream quality state है; उसे production का substitute नहीं बनाया गया है। <strong>QC, gate and dispatch remain separate downstream release states.</strong></div><section class="note" id="payments"><h2>💳 Public Payment Routes</h2><p><strong>Paytm / UPI:</strong> <code>9622254967@ptyes</code> · <strong>PayPal:</strong> <code>sainirampaul60@gmail.com</code></p><p>सभी public funding/product-payment instructions में इन्हीं दो routes का उपयोग करें। Payment भेजने से पहले अपने payment app में payee details verify करें।</p><a class="btn primary" href="funding-appeal.html#upi-funding">Funding QR / Payment page →</a></section>
+<section class="note" id="registry-products"><h2>🧪 Concrete Product Registry — सीधे उपलब्ध artifacts</h2><p>यह सूची showroom-products.json से पढ़ी जाती है। Preview, QC-pending और external catalogue entries को स्पष्ट रूप से अलग दिखाया जाता है; कोई unconfirmed price बिक्री-कीमत नहीं मानी जाती।</p><div id="registryProductGrid" class="grid"><div class="note">Registry products loading…</div></div><p id="registryProductStatus" class="muted">Registry loading…</p></section>
 <section id="products"><h2>Public Product Rack</h2><div class="toolbar"><div class="filters"><input id="search" placeholder="Product खोजें…" aria-label="Product search"><button class="active" data-cat="all">सभी</button><button data-cat="featured">Featured</button><button data-cat="research">Research</button><button data-cat="ai">AI / ML / NLP</button><button data-cat="creator">Creator</button><button data-cat="education">Education</button><button data-cat="nature">Nature</button><button data-cat="commerce">Commerce</button></div></div><div class="note"><strong id="shown">Loading product rack…</strong> · यह rack canonical concrete-production manifest से live product state पढ़ता है। <span id="rackTelemetry">Production telemetry loading…</span></div><div id="grid" class="grid"></div><div id="pager" class="actions" aria-label="Product pagination"></div></section>
 <div class="note"><strong>Customer feedback → quality improvement:</strong> product page पर review/rating को improvement input माना जाएगा। Review स्वयं scientific verification नहीं है।</div>
 <section class="note" id="customer-reviews"><h2>⭐ Customer Reviews → Production Quality Improvement</h2><p>Customer reviews, ratings और सुधार-सुझाव production quality improvement input हैं। वे independent scientific verification का विकल्प नहीं हैं।</p><a class="btn primary" href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/issues/new?template=product-review.yml" target="_blank" rel="noopener">Public Review / Rating दें →</a> <a class="btn" href="generated/public-review-quality-queue.json">Quality Queue देखें</a></section></main>
@@ -180,4 +181,30 @@ search.oninput=()=>{page=0;render()};
 loadProductionTelemetry();
 load().catch(e=>{grid.innerHTML="<div class='note'>Product catalogue unavailable: "+esc(e.message)+"</div>"});
 </script>
-<!-- Static QR asset is used so the payment QR remains visible even when third-party scripts/CDNs are blocked. --></body></html>
+<!-- Static QR asset is used so the payment QR remains visible even when third-party scripts/CDNs are blocked. -->
+<script>
+(async function loadRegistryProducts(){
+ const grid=document.getElementById("registryProductGrid"),status=document.getElementById("registryProductStatus");
+ if(!grid||!status)return;
+ const escRegistry=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+ try{
+  const response=await fetch("showroom-products.json?ts="+Date.now(),{cache:"no-store"});
+  if(!response.ok)throw new Error("HTTP "+response.status);
+  const data=await response.json(),items=Array.isArray(data.products)?data.products:[];
+  if(!items.length){grid.innerHTML="<div class='note'>अभी registry में कोई product नहीं है।</div>";status.textContent="0 registry products";return;}
+  grid.innerHTML=items.map(p=>{
+   const url=String(p.store_url||p.artifact_url||"").trim();
+   const external=/^https?:\/\//i.test(url);
+   const price=p.price_inr===null||p.price_inr===undefined?"Rate on request":(Number(p.price_inr)===0?"FREE":"₹"+Number(p.price_inr).toLocaleString("en-IN"));
+   const state=String(p.status||"STATUS UNSET").replace(/_/g," ");
+   const qc=String(p.qc_gate||"QC NOT RECORDED").replace(/_/g," ");
+   const preview=/PREVIEW|REVIEW|PENDING/i.test(String(p.status||""));
+   const action=preview?"Preview खोलें":(external?"External route खोलें":"Product खोलें");
+   const link=url?'<a class="btn primary" href="'+escRegistry(url)+'"'+(external?' target="_blank" rel="noopener"':'')+'>'+action+'</a>':'<span class="muted">Product route unavailable</span>';
+   return '<article class="card"><div class="body"><span class="tag">'+escRegistry(p.category||"digital")+'</span><div class="title">'+escRegistry(p.name||p.id)+'</div><div class="desc">'+escRegistry(p.description||"Concrete product registry entry.")+'</div><div class="price">'+escRegistry(price)+'</div><div class="offer">'+escRegistry(p.offer||"Offer not specified")+'</div><div class="meta"><div><span>Product ID</span>'+escRegistry(p.id)+'</div><div><span>State</span>'+escRegistry(state)+'</div><div><span>QC gate</span>'+escRegistry(qc)+'</div><div><span>Dispatch</span>'+escRegistry(String(p.dispatch||"NOT RECORDED").replace(/_/g," "))+'</div></div><div class="card-actions">'+link+'</div></div></article>';
+  }).join("");
+  status.textContent=items.length.toLocaleString("en-IN")+" registry entries · pricing/QC states shown as recorded";
+ }catch(error){grid.innerHTML="<div class='note'>Registry unavailable; no product count is inferred.</div>";status.textContent="Registry unavailable: "+String(error.message||error);}
+})();
+</script>
+</body></html>
