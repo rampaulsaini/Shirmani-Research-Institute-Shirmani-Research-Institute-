@@ -223,6 +223,44 @@
       "demo_url": "products/micro/yatharth-clarity-evidence-mapper.html",
       "visual_status": "SHOWROOM_CARD_VISUAL_PENDING",
       "passport_status": "INLINE_USAGE_GUIDE"
+    },
+    {
+      "id": "SRI-TOOL-016",
+      "category": "tool",
+      "name": "Yatharth Product Passport Studio",
+      "price_inr": 0,
+      "status": "PRODUCED_PUBLIC",
+      "store_url": "products/micro/yatharth-product-passport-studio.html",
+      "description": "Browser-local product passport builder: capture product ID, category, price, usage guide, QC state, gate reference, dispatch state and support terms; export a JSON passport or print/save as PDF.",
+      "offer": "Free public tool",
+      "qc_gate": "QC-LOCAL-FUNCTIONAL",
+      "dispatch": "PUBLIC",
+      "version": "1.0.0",
+      "artifact_url": "products/micro/yatharth-product-passport-studio.html",
+      "artifact_evidence": "REPOSITORY_FILE_CREATED_QC_PENDING",
+      "usage_guide": "Fill product metadata, choose the true QC and dispatch state, generate the passport, review it, then download JSON or print/save as PDF.",
+      "demo_url": "products/micro/yatharth-product-passport-studio.html",
+      "visual_status": "SHOWROOM_CARD_VISUAL_PENDING",
+      "passport_status": "GENERATED_IN_TOOL"
+    },
+    {
+      "id": "SRI-TOOL-017",
+      "category": "tool",
+      "name": "Yatharth Listing & Offer Studio",
+      "price_inr": 0,
+      "status": "PRODUCED_PUBLIC",
+      "store_url": "products/micro/yatharth-listing-offer-studio.html",
+      "description": "Browser-local listing builder for product name, category, price, optional reference price, offer label, benefits, usage guide and support terms; exports JSON and prints a customer-ready draft.",
+      "offer": "Free public tool",
+      "qc_gate": "QC-LOCAL-FUNCTIONAL",
+      "dispatch": "PUBLIC",
+      "version": "1.0.0",
+      "artifact_url": "products/micro/yatharth-listing-offer-studio.html",
+      "artifact_evidence": "REPOSITORY_FILE_CREATED_QC_PENDING",
+      "usage_guide": "Enter the real product details and approved price, build the listing, review the preview, then export JSON or print/save PDF.",
+      "demo_url": "products/micro/yatharth-listing-offer-studio.html",
+      "visual_status": "SHOWROOM_CARD_VISUAL_PENDING",
+      "passport_status": "DRAFT_LISTING_REQUIRES_OWNER_REVIEW"
     }
   ]
 }
