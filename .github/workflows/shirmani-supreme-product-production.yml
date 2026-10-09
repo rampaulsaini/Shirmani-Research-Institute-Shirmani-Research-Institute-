@@ -1,0 +1,58 @@
+name: SHIRMANI Supreme Product Production Cycle
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17,47 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-supreme-product-production
+  cancel-in-progress: false
+
+jobs:
+  produce-one-concrete-product:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Produce one concrete tool, passport and product visual
+        run: python scripts/production_factory_cycle.py
+      - name: Validate production outputs
+        run: |
+          python -m json.tool generated/concrete-production-overlay.json >/dev/null
+          python -m json.tool generated/live-production-state.json >/dev/null
+          python -m json.tool products/visuals/manifest.json >/dev/null
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[json.loads(s) for s in Path('generated/PRODUCT-PASSPORTS.jsonl').read_text().splitlines() if s.strip()]
+          assert len(rows)==len({x['id'] for x in rows}), 'duplicate passport IDs'
+          overlay=json.loads(Path('generated/concrete-production-overlay.json').read_text())
+          assert overlay['produced_count']==len(overlay['products']), 'overlay count mismatch'
+          assert Path(overlay['products'][-1]['artifact_url']).exists(), 'last product artifact missing'
+          print('PASS: product artifact exists; JSON valid; IDs unique; counts aligned.')
+          PY
+      - name: Open/update production artifact PR (repository requires PR-based writes)
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automission/product-production
+          delete-branch: false
+          title: "Automission production: next concrete SHIRMANI product"
+          commit-message: "Produce next SHIRMANI concrete digital product"
+          body: |
+            Scheduled production cycle generated one concrete browser-usable product artifact, its passport entry, and a unique 4K-ready SVG visual.
+            
+            State boundary: QC remains pending, dispatch is NO, and no sale, payment, or independent verification is claimed. Review generated artifacts and checks before merging.
+          labels: |
+            automission
+            production
