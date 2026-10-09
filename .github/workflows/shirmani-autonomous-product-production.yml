@@ -28,9 +28,42 @@ jobs:
         env: {MEDIA_BATCH: ${{ github.event.inputs.media_batch || '25' }}}
         run: |
           if command -v ffmpeg >/dev/null 2>&1; then python3 factory/product_demo_media_factory.py; else echo "ffmpeg unavailable; interactive demo routes remain available."; fi
-      - name: Commit production artifacts
+      - name: Stage production artifacts safely
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "SHIRMANI Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add products/concrete products/visuals products/demo-video generated/live-production-state.json generated/concrete-production-overlay.json generated/PRODUCT-PASSPORTS.jsonl generated/product-visual-assets.json generated/product-specific-demo-video-manifest.json
-          if git diff --cached --quiet; then echo "No new artifacts"; else git commit -m "production: autonomous product batch"; git push; fi
+
+          # GitHub rejects individual files above 100 MB. Keep oversized generated
+          # state out of Git and fail closed rather than creating an unpushable commit.
+          while IFS= read -r -d '' path; do
+            if [ -f "$path" ]; then
+              size="$(wc -c < "$path")"
+              if [ "$size" -ge 90000000 ]; then
+                git restore --staged -- "$path"
+                echo "::warning::Not staging $path ($size bytes); generated artifacts must stay below the 90 MB safety ceiling."
+              fi
+            fi
+          done < <(git diff --cached --name-only -z)
+
+          if git diff --cached --quiet; then
+            echo "No publishable production delta; no commit created."
+            exit 0
+          fi
+
+          git commit -m "production: stage autonomous product batch"
+          branch="automation/autonomous-product-production-staging"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            remote_sha="$(git ls-remote origin "refs/heads/$branch" | cut -f1)"
+            git push --force-with-lease="refs/heads/$branch:$remote_sha" origin "HEAD:refs/heads/$branch"
+          else
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+          {
+            echo "## Production artifacts staged for review"
+            echo "- Destination: `$branch` (not protected `main`)"
+            echo "- Direct push to `main` is intentionally disabled."
+            echo "- Oversized generated files are excluded; production/live status is not implied."
+          } >> "$GITHUB_STEP_SUMMARY"
