@@ -15,6 +15,7 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 ## Immediate Income Action Center\n\n- **Income Action Center:** [income-action-center.html](income-action-center.html) — practical outreach template, proposed service packages, seven-day activity targets and a local-only pipeline tracker. It does not send email or claim income automatically.\n\n## Client Income — Writing & Research Enquiry
 
 - **Writing & Research Enquiry:** [writing-research-enquiry.html](writing-research-enquiry.html) — public-facing Hindi/English writing, research-summary, and website/blog content brief builder. It does not claim to send enquiries or receive payments until those integrations are actually connected.
+- **Client Brief & Quote Studio (new concrete product):** [SRI-WRITE-003](products/concrete/SRI-WRITE-003-client-brief-quote-studio.html) — working browser-local scope/quote draft builder, proposed starter packages, copyable client proposal and explicit integration limitations. No automated email, payment, or income claim.
 
 ## Supreme Compound Automission — Production Workspace v2
 
