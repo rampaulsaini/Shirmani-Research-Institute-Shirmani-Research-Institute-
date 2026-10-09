@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-09T08:32:54.644791+00:00",
+  "generated_at": "2026-10-09T08:41:49.419005+00:00",
   "purpose": "public-first production module map",
   "module_count": 10738,
   "lane_counts": {
@@ -74037,7 +74037,7 @@
       "type": "py",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 13293
+      "bytes": 13324
     },
     {
       "path": "factory/production_queue_builder.py",
