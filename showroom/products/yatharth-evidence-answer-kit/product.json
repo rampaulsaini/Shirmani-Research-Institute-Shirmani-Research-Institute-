@@ -1,0 +1,44 @@
+{
+  "product_id": "yatharth-evidence-answer-kit",
+  "brand": "Shirmani Research Institute",
+  "version": "1.0.0",
+  "title": "Yatharth Evidence Answer Kit",
+  "short_description": "Question-to-answer workflow with source logging, uncertainty labels, and review checklist.",
+  "intended_users": [
+    "students",
+    "educators",
+    "researchers",
+    "content creators"
+  ],
+  "price": {
+    "amount": 0,
+    "currency": "INR",
+    "display": "Free starter edition"
+  },
+  "deliverables": [
+    "README.md",
+    "templates/question-brief.md",
+    "templates/source-log.csv",
+    "templates/answer-review-checklist.md",
+    "demo-script.md"
+  ],
+  "quality": {
+    "artifact_present": true,
+    "usage_guide_present": true,
+    "independent_verification": false,
+    "certification": false
+  },
+  "media": {
+    "showroom_visual": "CSS visual in showroom/index.html",
+    "demo_script": "demo-script.md",
+    "rendered_mp4": null,
+    "qr_code": null
+  },
+  "limitations": [
+    "No automatic web research",
+    "No connected AI/ML/NLP API",
+    "No payment integration",
+    "No independent certification"
+  ],
+  "release_state": "STARTER_RELEASE"
+}
