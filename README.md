@@ -302,3 +302,10 @@ The canonical public-production path now distinguishes **architecture engines** 
 **Canonical flow:** 1,016 catalog identities → concrete product assets → QC/metadata → public deployment → commercial dispatch gate → downstream verification.
 
 This is intended to eliminate the previous ambiguity where a 25-engine architecture could be mistaken for only 25 produced products.
+
+
+## Supreme Human-Presentation System — Browser Prototype
+
+- **Prototype:** [supreme-human-presentation-system.html](supreme-human-presentation-system.html) — browser-side speech input where supported, evidence-state Q&A test, presentation draft builder, local photo/avatar preview, browser speech output, and downloadable local audit summary.
+- **Capability boundary:** this prototype does not claim connected AI/NLP, authorized voice cloning, generated facial animation, real-time lip-sync, live streaming, remote storage, or sales/payment integration. Those require separately configured providers, permissions, and successful tests.
+- **Production rule:** workflow activity is not product output; a user-selected VERIFIED label is not independent verification; a prepared outreach package is not a sent message.
