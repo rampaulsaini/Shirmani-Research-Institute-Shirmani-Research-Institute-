@@ -338,3 +338,10 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 ## Shirmani Swarup Drishtikon — Social Platform MVP
 
 - **Interactive Social Platform Prototype:** [supreme-social-platform-mvp.html](supreme-social-platform-mvp.html) — local-only post composer and feed, category filters, source-link checks for news, program-room roadmap, and clearly stated backend/live-streaming limitations. Not yet a deployed social network.
+
+
+## Supreme Communication Blueprint Studio
+
+- **Concrete product demo:** [SR-COMM-001 — Supreme Communication Blueprint Studio](products/concrete/SR-COMM-001-supreme-communication-blueprint-studio.html) — interactive browser-local builder for a voice → context → evidence → presentation pipeline, with test gates and an exportable blueprint.
+- **Current release boundary:** planning/demo only. It does not claim a connected LLM, voice provider, face/lip-sync engine, livestream, payment processing, backend, or independent verification.
+- **Next production step:** connect one authorized provider, run end-to-end tests, and publish measured results before expanding the chain.
