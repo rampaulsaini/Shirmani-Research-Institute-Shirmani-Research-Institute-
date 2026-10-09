@@ -261,6 +261,21 @@
       "demo_url": "products/micro/yatharth-listing-offer-studio.html",
       "visual_status": "SHOWROOM_CARD_VISUAL_PENDING",
       "passport_status": "DRAFT_LISTING_REQUIRES_OWNER_REVIEW"
+    },
+    {
+      "id": "SRI-TOOL-018",
+      "category": "tool",
+      "name": "Yatharth Demo Storyboard Studio",
+      "price_inr": 0,
+      "status": "PRODUCED_PUBLIC",
+      "store_url": "products/micro/yatharth-demo-storyboard-studio.html",
+      "description": "Browser-local product-specific demo storyboard builder with timed scenes, screen-capture notes, narration, captions, QC handoff and JSON export; it creates a production brief, not an MP4.",
+      "offer": "Free public tool",
+      "qc_gate": "QC-LOCAL-FUNCTIONAL",
+      "dispatch": "PUBLIC",
+      "version": "1.0.0",
+      "artifact_url": "products/micro/yatharth-demo-storyboard-studio.html",
+      "artifact_evidence": "REPOSITORY_FILE_CREATED_QC_PENDING"
     }
   ]
 }
