@@ -261,6 +261,24 @@
       "demo_url": "products/micro/yatharth-listing-offer-studio.html",
       "visual_status": "SHOWROOM_CARD_VISUAL_PENDING",
       "passport_status": "DRAFT_LISTING_REQUIRES_OWNER_REVIEW"
+    },
+    {
+      "id": "SRI-TOOL-YDCW-001",
+      "category": "tool",
+      "name": "Yatharth Decision Clarity Workbench",
+      "price_inr": 0,
+      "status": "PRODUCED_PUBLIC",
+      "store_url": "products/yatharth-decision-clarity-workbench.html",
+      "description": "Browser-based decision brief builder that separates observed facts, sources, assumptions, unknowns, risks and options; exports a plain-text report.",
+      "offer": "Free public tool · Version 1.0",
+      "qc_gate": "QC-LOCAL-FUNCTIONAL-SMOKE",
+      "dispatch": "PUBLIC_BROWSER_TOOL",
+      "version": "1.0.0",
+      "artifact_url": "products/yatharth-decision-clarity-workbench.html",
+      "artifact_evidence": "REPOSITORY_ARTIFACT_CREATED_QC_PENDING",
+      "demo_url": "products/yatharth-decision-clarity-workbench.html",
+      "usage_guide": "Enter a decision, desired outcome and constraints; separate facts from assumptions; compare up to three options; build and export the decision brief.",
+      "passport_url": "products/yatharth-decision-clarity-workbench.html"
     }
   ]
 }
