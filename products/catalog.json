@@ -222,6 +222,29 @@
       "usage_guide": "Fill in the required topic and purpose, add scope/deadline/sources/budget if available, generate the brief, review it, then copy or download it to send through a contact channel you choose.",
       "qc_gate": "Browser-only draft generation; no email sending, payment processing, persistent storage, or order confirmation is connected.",
       "commercial_status": "Quote required; no price promised until scope is agreed"
+    },
+    {
+      "id": "SRI-PRES-001",
+      "slug": "supreme-presentation-studio",
+      "name": "Shirmani Supreme Presentation Studio",
+      "category": "Voice & Presentation",
+      "status": "prototype",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Prototype preview — no commercial price set"
+      },
+      "deliverables": [
+        "four-version interactive browser demo",
+        "presentation brief preview",
+        "JSON brief export",
+        "print/save-PDF view",
+        "version-specific readiness checklist"
+      ],
+      "qc_gate": "Browser-local planning prototype; voice/avatar/lip-sync/live-stream integrations are not connected",
+      "demo": "products/concrete/SRI-PRES-001-supreme-presentation-studio.html",
+      "usage_guide": "Choose one of four versions, complete the presentation brief, set evidence state, update preview, then export JSON or print. Use only authorized voice and portrait assets.",
+      "commercial_status": "Prototype; no checkout, provider integration, or sales claim"
     }
   ]
 }
