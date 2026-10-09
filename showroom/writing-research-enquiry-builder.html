@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Create a scoped Hindi/English writing and research enquiry for Shirmani Research Institute.">
+<title>SHIRMANI | Writing & Research Enquiry Builder</title>
+<style>
+:root{color-scheme:dark;--bg:#07101b;--panel:#111f31;--line:#304861;--gold:#f0cf78;--cyan:#83e5e5;--ink:#f4f7fc;--muted:#bdc9d8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1c3450,var(--bg) 65%);color:var(--ink);font:16px/1.6 system-ui,sans-serif}main{max-width:1120px;margin:auto;padding:20px}header{text-align:center;padding:24px 12px;border-bottom:1px solid var(--line)}.mark{display:inline-grid;place-items:center;width:58px;height:58px;border:2px solid var(--gold);border-radius:50%;font-size:28px;color:var(--gold)}h1,h2{color:var(--gold)}h1{font-size:clamp(1.8rem,4vw,3rem);margin:10px 0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;margin:18px 0}.panel{background:linear-gradient(145deg,#162840,#0e1928);border:1px solid var(--line);border-radius:16px;padding:18px}label{display:block;font-weight:700;margin:12px 0 5px}input,select,textarea{width:100%;padding:11px;border:1px solid #4b6580;border-radius:9px;background:#091522;color:var(--ink);font:inherit}textarea{min-height:85px}button,.button{display:inline-block;border:1px solid var(--gold);border-radius:9px;background:var(--gold);color:#17140c;padding:10px 14px;font-weight:850;cursor:pointer;text-decoration:none;margin:7px 5px 0 0}.secondary{background:#0b1727;color:var(--ink);border-color:var(--line)}.notice{border-left:3px solid var(--cyan);padding:12px;background:#0b1727;border-radius:5px}.price{font-size:1.5rem;color:var(--gold);font-weight:900}.out{white-space:pre-wrap;overflow-wrap:anywhere;background:#070d15;border:1px solid var(--line);border-radius:10px;padding:14px;min-height:180px}.small{font-size:.9rem}@media print{body{background:white;color:#111}.panel{background:white;color:#111}button{display:none}}
+</style></head>
+<body><header><div class="mark">꙰</div><p class="muted">SHIRMANI RESEARCH INSTITUTE · CLIENT INTAKE TOOL</p><h1>Writing & Research Enquiry Builder</h1><p class="muted">Hindi/English writing · Research summaries · Website/blog content</p></header>
+<main>
+<div class="notice"><b>Clear scope, no false promises:</b> यह tool enquiry/proposal draft बनाता है; यह email/WhatsApp अपने-आप नहीं भेजता, payment नहीं लेता और बिक्री/आय की पुष्टि नहीं करता। काम शुरू करने से पहले scope, deadline, deliverables और payment terms लिखित रूप में स्वीकार करना आवश्यक है।</div>
+<div class="grid">
+<section class="panel"><h2>1 · ग्राहक और काम</h2>
+<label for="client">ग्राहक / संस्था (वैकल्पिक)</label><input id="client" placeholder="नाम या संस्था">
+<label for="email">संपर्क ईमेल (वैकल्पिक)</label><input id="email" type="email" placeholder="name@example.com">
+<label for="service">सेवा *</label><select id="service"><option>Hindi/English Writing</option><option>Research Summary</option><option>Website / Blog Content</option><option>Research + Writing Package</option></select>
+<label for="goal">ग्राहक का उद्देश्य *</label><textarea id="goal" placeholder="काम किस समस्या को हल करेगा?"></textarea>
+<label for="topic">विषय / प्रश्न *</label><textarea id="topic" placeholder="विषय, मुख्य प्रश्न और आवश्यक संदर्भ"></textarea>
+<label for="language">भाषा</label><select id="language"><option>Hindi</option><option>English</option><option>Hindi + English</option></select>
+<label for="words">शब्द-सीमा / deliverables</label><input id="words" placeholder="जैसे 800–1,000 शब्द; 1 draft">
+<label for="deadline">समय-सीमा</label><input id="deadline" placeholder="जैसे 5 कार्य-दिवस; पुष्टि आवश्यक">
+<label for="sources">उपलब्ध स्रोत / लिंक</label><textarea id="sources" placeholder="URLs, files, references; केवल साझा करने योग्य स्रोत"></textarea>
+<label for="budget">ग्राहक का बजट / currency</label><input id="budget" placeholder="जैसे ₹1,000 या quote requested">
+</section>
+<section class="panel"><h2>2 · शुरुआती पैकेज</h2>
+<div class="notice small">नीचे indicative starting prices हैं, guaranteed quote नहीं। Final fee complexity, source volume, revisions और deadline देखकर दोनों पक्षों की लिखित सहमति से तय होगी।</div>
+<p><b>Starter</b> <span class="price">₹499 से</span><br><span class="muted small">छोटा writing task या concise summary; scope पहले तय होगा।</span></p>
+<p><b>Standard</b> <span class="price">₹999 से</span><br><span class="muted small">Structured article या source-led research summary; deliverables तय होंगे।</span></p>
+<p><b>Extended</b> <span class="price">₹1,499 से</span><br><span class="muted small">विस्तृत writing/research package; source depth और revision सीमा लिखित होगी।</span></p>
+<label for="package">प्रस्तावित पैकेज</label><select id="package"><option value="To be scoped">Scope के बाद तय करें</option><option value="Starter — indicative ₹499+">Starter — indicative ₹499+</option><option value="Standard — indicative ₹999+">Standard — indicative ₹999+</option><option value="Extended — indicative ₹1,499+">Extended — indicative ₹1,499+</option><option value="Custom quote">Custom quote</option></select>
+<label for="revisions">शामिल revisions</label><select id="revisions"><option>Quote में तय करना है</option><option>1 revision round</option><option>2 revision rounds</option><option>Custom agreed scope</option></select>
+<label for="terms">भुगतान / शर्तें</label><textarea id="terms" placeholder="उदाहरण: लिखित स्वीकृति के बाद advance; शेष राशि delivery पर—दोनों पक्ष सहमत हों तभी"></textarea>
+<button type="button" id="generate">Enquiry / proposal draft बनाएँ</button><button type="button" id="download" class="secondary">TXT डाउनलोड</button><button type="button" id="copy" class="secondary">Draft कॉपी करें</button>
+</section>
+</div>
+<section class="panel"><h2>3 · तैयार draft</h2><p class="muted small">Draft browser में यहीं बनता है। इसे जाँचकर ही ग्राहक को भेजें। यह कोई वास्तविक outbound message नहीं है।</p><div id="output" class="out" aria-live="polite">ऊपर आवश्यक जानकारी भरें और “Enquiry / proposal draft बनाएँ” दबाएँ।</div></section>
+<section class="panel"><h2>4 · Delivery और quality loop</h2><ol><li>Scope, language, word count, sources और deadline confirm करें।</li><li>Deliverables, price, revisions, payment terms और acceptance criteria लिखित रूप में तय करें।</li><li>स्रोतों और तथ्यात्मक दावों को अलग दर्ज करें; अनिश्चितता छिपाएँ नहीं।</li><li>Draft deliver करें और agreed revision window रखें।</li><li>ग्राहक की अनुमति से feedback लें; सुधार को अगले version/backlog में दर्ज करें।</li></ol><p class="muted small">Privacy: इस page में कोई server submission या external network request नहीं है। ग्राहक की निजी जानकारी केवल आवश्यकता और अनुमति के अनुसार संभालें।</p></section>
+</main>
+<script>
+(function(){
+const byId=id=>document.getElementById(id);
+function build(){
+const v=id=>byId(id).value.trim();
+const required=[["goal","ग्राहक का उद्देश्य"],["topic","विषय / प्रश्न"]];
+const missing=required.filter(([id])=>!v(id)).map(([,name])=>name);
+if(missing.length){byId("output").textContent="पहले यह जानकारी भरें: "+missing.join(", ")+".\nअन्य fields अभी खाली छोड़े जा सकते हैं।";return;}
+const lines=[
+"SHIRMANI RESEARCH INSTITUTE — WRITING & RESEARCH ENQUIRY",
+"Status: DRAFT ONLY — not sent; no order or payment confirmed.",
+"",
+"Client / organisation: "+(v("client")||"Not supplied"),
+"Contact email: "+(v("email")||"Not supplied"),
+"Service: "+v("service"),
+"Customer objective: "+v("goal"),
+"Topic / research question: "+v("topic"),
+"Language: "+v("language"),
+"Word limit / deliverables: "+(v("words")||"To be agreed"),
+"Requested deadline: "+(v("deadline")||"To be agreed"),
+"Sources / links: "+(v("sources")||"Not supplied"),
+"Customer budget: "+(v("budget")||"Not supplied"),
+"Proposed package: "+v("package"),
+"Revision policy: "+v("revisions"),
+"Payment terms: "+(v("terms")||"To be agreed in writing"),
+"",
+"PROPOSED NEXT STEPS",
+"1. Confirm scope, source availability, output format and acceptance criteria.",
+"2. Confirm final price, delivery date, revisions and payment terms in writing.",
+"3. Start only after both sides agree to the written scope and payment arrangement.",
+"4. Deliver the agreed work; record feedback and agreed improvements.",
+"",
+"Important: Indicative prices are not a binding quote. No work, sale, payment or income is confirmed by generating this draft."
+];
+byId("output").textContent=lines.join("\n");
+}
+byId("generate").addEventListener("click",build);
+byId("copy").addEventListener("click",async()=>{if(byId("output").textContent.startsWith("ऊपर आवश्यक")){build();}try{await navigator.clipboard.writeText(byId("output").textContent);byId("copy").textContent="कॉपी अनुरोध किया गया";}catch(e){byId("output").textContent+="\n\nClipboard उपलब्ध नहीं है—कृपया text manually select/copy करें."; }});
+byId("download").addEventListener("click",()=>{if(byId("output").textContent.startsWith("ऊपर आवश्यक"))build();const blob=new Blob([byId("output").textContent],{type:"text/plain;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="shirmani-writing-research-enquiry.txt";a.click();URL.revokeObjectURL(url);});
+})();
+</script></body></html>
