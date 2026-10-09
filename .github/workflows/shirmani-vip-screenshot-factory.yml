@@ -20,6 +20,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: shirmani-vip-screenshot-production
@@ -51,11 +52,18 @@ jobs:
         env:
           VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.batch_size || '250' }}
         run: python3 factory/vip_screenshot_factory.py
-      - name: Publish production assets
-        uses: stefanzweifel/git-auto-commit-action@v7
+      - name: Propose production assets through a pull request
+        uses: peter-evans/create-pull-request@v7
         with:
-          commit_message: "feat(showroom): publish next VIP product screenshot batch"
-          file_pattern: "products/vip-screenshots generated/vip-screenshot-assets.json generated/product-vip-screenshot-manifest.json"
-          commit_user_name: "SHIRMANI Automission"
-          commit_user_email: "actions@users.noreply.github.com"
-          commit_author: "SHIRMANI Automission <actions@users.noreply.github.com>"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/vip-screenshot-assets
+          delete-branch: false
+          commit-message: "feat(showroom): publish next VIP product screenshot batch"
+          title: "feat(showroom): publish next VIP product screenshot batch"
+          body: |
+            Automated VIP screenshot production batch.
+            Generated assets are presentation artifacts and are not independent verification.
+          add-paths: |
+            products/vip-screenshots
+            generated/vip-screenshot-assets.json
+            generated/product-vip-screenshot-manifest.json
