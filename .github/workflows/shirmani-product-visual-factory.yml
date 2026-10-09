@@ -13,13 +13,16 @@ on:
 permissions:
   contents: write
 
+# Do not cancel an active catalogue batch: partial visual refreshes are resumable,
+# but cancellation during a write/push can leave work unfinished and trigger churn.
 concurrency:
   group: shirmani-product-visual-factory
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   generate-product-visuals:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - name: Checkout production
         uses: actions/checkout@v4
