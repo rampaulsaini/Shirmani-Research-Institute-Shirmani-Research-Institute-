@@ -277,6 +277,27 @@
       "version": "2.0.0",
       "artifact_url": "supreme-compound-automission-production-v2.html",
       "artifact_evidence": "SOURCE_ADDED_IN_PULL_REQUEST_NOT_YET_DEPLOYED"
+    },
+    {
+      "id": "SRI-SRC-001",
+      "category": "research-tool",
+      "name": "Source Ledger — Research Evidence Organizer",
+      "price_inr": 0,
+      "status": "PRODUCED_PUBLIC",
+      "store_url": "products/concrete/SRI-SRC-001-source-ledger.html",
+      "description": "Browser-local register for research claims, source links, dates, evidence notes, uncertainty labels and JSON/CSV export.",
+      "offer": "Free public test drive; custom research service quoted separately",
+      "qc_gate": "QC-MANUAL-TEST-PENDING",
+      "dispatch": "PUBLIC_TEST_DRIVE",
+      "version": "1.0",
+      "artifact_url": "products/concrete/SRI-SRC-001-source-ledger.html",
+      "artifact_evidence": "REPOSITORY_ARTIFACT_CREATED_TESTS_PENDING",
+      "limitations": [
+        "No independent URL verification",
+        "No cloud sync",
+        "No automatic email or payment",
+        "Browser-local storage only"
+      ]
     }
   ]
 }
