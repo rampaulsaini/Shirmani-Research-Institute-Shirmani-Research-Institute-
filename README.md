@@ -40,6 +40,8 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 - **Production specification:** [SHOWROOM-PRODUCTION.md](SHOWROOM-PRODUCTION.md)
 - **Funding / payment:** [funding-appeal.html](funding-appeal.html) — public payment routes are Paytm/UPI and PayPal only.
 - **Paid-service enquiry:** [services-writing-research.html](services-writing-research.html) — structured Hindi/English writing and research brief form; opens a user-reviewed email draft and does not claim an order or income.
+- **New concrete product — Research Brief Studio:** [SR-WRITE-002](products/concrete/SR-WRITE-002-research-brief-studio.html) — browser-local Hindi/English writing and research scope builder with copy, text export and user-reviewed email draft. No backend, automatic sending, payment, or income is claimed.
+- **SRI-WRITE-002 product passport:** [Product Passport](products/concrete/SR-WRITE-002-product-passport.html) — usage guide, current limitations, release gate and demo/VIP screenshot capture checklist.
 
 ## Platform Includes
 
