@@ -1,0 +1,61 @@
+name: SHIRMANI Product Factory — Showroom Cycle
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+  push:
+    paths:
+      - "showroom/**"
+      - ".github/workflows/shirmani-product-factory.yml"
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: shirmani-product-factory-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  catalogue-release-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Check public showroom and product cards
+        id: check
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s showroom/index.html
+          grep -q "Yatharth Digital Showroom" showroom/index.html
+          grep -q "Production roadmap" showroom/index.html
+          cards=$(grep -o '<article class="card">' showroom/index.html | wc -l | tr -d ' ')
+          if [ "$cards" -lt 8 ]; then
+            echo "Expected at least 8 product cards, found $cards" >&2
+            exit 1
+          fi
+          echo "cards=$cards" >> "$GITHUB_OUTPUT"
+          echo "Showroom file and $cards product cards detected."
+      - name: Write cycle report
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p cycle-report
+          {
+            echo "# SHIRMANI Product Factory Cycle"
+            echo
+            echo "- Commit: \`${GITHUB_SHA}\`"
+            echo "- Trigger: \`${GITHUB_EVENT_NAME}\`"
+            echo "- Catalogue path: \`showroom/index.html\`"
+            echo "- Product cards detected: \`${{ steps.check.outputs.cards || 'not measured' }}\`"
+            echo "- Check result: \`${{ steps.check.outcome || 'unknown' }}\`"
+            echo
+            echo "This cycle checks catalogue presence and release structure only. It does not claim AI-generated products, scientific verification, payment processing, QR issuance, or MP4 rendering."
+          } > cycle-report/summary.md
+      - name: Publish cycle report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-product-factory-cycle-${{ github.run_number }}
+          path: cycle-report/summary.md
+          if-no-files-found: error
+          retention-days: 30
