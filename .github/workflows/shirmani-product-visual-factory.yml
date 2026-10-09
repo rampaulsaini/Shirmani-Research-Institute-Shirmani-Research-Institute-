@@ -38,5 +38,11 @@ jobs:
             echo "No visual changes required."
             exit 0
           fi
-          git commit -m "production: refresh unique 4K visuals for concrete products"
-          git push
+          git commit -m "production: stage unique 4K visuals for concrete products"
+          branch="automation/product-visual-staging"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            remote_sha="$(git ls-remote origin "refs/heads/$branch" | cut -f1)"
+            git push --force-with-lease="refs/heads/$branch:$remote_sha" origin "HEAD:refs/heads/$branch"
+          else
+            git push origin "HEAD:refs/heads/$branch"
+          fi
