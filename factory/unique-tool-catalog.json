@@ -38,6 +38,12 @@
       "name": "JSON Shape Checker",
       "path": "products/micro/json-schema-checker.html",
       "category": "developer"
+    },
+    {
+      "id": "UT007",
+      "name": "Yatharth Clarity Lab",
+      "path": "yatharth-supreme-clarity-lab.html",
+      "category": "reasoning-evidence"
     }
   ],
   "gates": [
