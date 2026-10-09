@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """SHIRMANI production truth gate.
 
-Counts only observable repository artifacts and explicit product routes.
-It never converts workflow runs into sales, delivery, accreditation,
-currency deployment, or independent verification.
+Counts observable, materialized production records. Prefer the lane-sharded
+public production files so persistence does not depend on one oversized JSONL.
+A local aggregate remains a backward-compatible fallback. This gate never
+converts workflow runs into sales, delivery, accreditation, currency deployment,
+or independent verification.
 """
 from __future__ import annotations
 import json
@@ -14,18 +16,26 @@ ROOT=Path(__file__).resolve().parents[1]
 GEN=ROOT/"generated"
 CATALOG=GEN/"product-catalog-public.json"
 RESULTS=GEN/"production-results.jsonl"
+SHARDS=GEN/"public-production"
 VERIFICATION=GEN/"VERIFICATION-REGISTRY.json"
 OUT=GEN/"PRODUCTION-TRUTH.json"
 
 def count_lines(p):
     if not p.exists(): return 0
-    return sum(1 for x in p.read_text(encoding="utf-8",errors="ignore").splitlines() if x.strip())
+    with p.open(encoding="utf-8", errors="ignore") as f:
+        return sum(1 for line in f if line.strip())
+
+def production_record_count():
+    shard_files=sorted(SHARDS.glob("*.jsonl")) if SHARDS.exists() else []
+    if shard_files:
+        return sum(count_lines(p) for p in shard_files), "lane-shards"
+    return count_lines(RESULTS), "local-aggregate-fallback"
 
 def main():
     catalog=json.loads(CATALOG.read_text(encoding="utf-8")) if CATALOG.exists() else {"offers":[]}
     verification=json.loads(VERIFICATION.read_text(encoding="utf-8")) if VERIFICATION.exists() else {}
     offers=catalog.get("offers",[])
-    result_count=count_lines(RESULTS)
+    result_count,record_source=production_record_count()
     digital=sum(1 for x in offers if x.get("delivery") in {"digital-audio","digital-asset","creator-assets"})
     services=sum(1 for x in offers if x.get("delivery") in {"service","creative-service"})
     payload={
@@ -35,6 +45,7 @@ def main():
       "digital_offers":digital,
       "service_offers":services,
       "persistent_production_records":result_count,
+      "production_record_source":record_source,
       "independent_verified_records":int(verification.get("verified",0)),
       "sales_claimed":0,
       "delivered_customer_orders_claimed":0,
