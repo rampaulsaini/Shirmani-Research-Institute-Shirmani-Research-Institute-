@@ -31,5 +31,10 @@ jobs:
             exit 0
           fi
           git commit -m "automission: stage media production outputs"
-          git push --force-with-lease origin HEAD:refs/heads/automation/product-media-reconciliation-staging
+          branch="automation/product-media-reconciliation-staging"
+          if remote_sha="$(git ls-remote origin "refs/heads/$branch" | cut -f1)" && [ -n "$remote_sha" ]; then
+            git push --force-with-lease="refs/heads/$branch:$remote_sha" origin HEAD:"refs/heads/$branch"
+          else
+            git push origin HEAD:"refs/heads/$branch"
+          fi
           echo "Staging branch updated: automation/product-media-reconciliation-staging. Protected main was not pushed."
