@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0.0",
+  "institute": "Shirmani Research Institute",
+  "release": "Supreme Showroom V2 starter batch",
+  "note": "Starter catalogue only. Preview price is not a commercial offer; checkout, actual MP4 demos, review persistence and dispatch are not configured.",
+  "products": [
+    {
+      "id": "SR-SHOW-001",
+      "slug": "evidence-brief",
+      "name": "Evidence Brief Builder",
+      "category": "Research",
+      "status": "preview",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free preview"
+      },
+      "deliverables": [
+        "interactive browser demo",
+        "usage guide",
+        "text export",
+        "QR product anchor"
+      ],
+      "qc_gate": "Manual source review required",
+      "demo": "showroom/#evidence-brief"
+    },
+    {
+      "id": "SR-SHOW-002",
+      "slug": "product-passport",
+      "name": "Digital Product Passport",
+      "category": "Product Operations",
+      "status": "preview",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free preview"
+      },
+      "deliverables": [
+        "interactive browser demo",
+        "JSON export",
+        "QC fields",
+        "usage guide"
+      ],
+      "qc_gate": "User-entered QC state is not proof",
+      "demo": "showroom/#product-passport"
+    },
+    {
+      "id": "SR-SHOW-003",
+      "slug": "review-loop",
+      "name": "Review-to-Improvement Board",
+      "category": "Quality",
+      "status": "preview",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free preview"
+      },
+      "deliverables": [
+        "interactive browser demo",
+        "ticket export",
+        "usage guide"
+      ],
+      "qc_gate": "Review persistence requires backend",
+      "demo": "showroom/#review-loop"
+    },
+    {
+      "id": "SR-SHOW-004",
+      "slug": "study-sprint",
+      "name": "Yatharth Study Sprint Planner",
+      "category": "Education",
+      "status": "preview",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free preview"
+      },
+      "deliverables": [
+        "interactive browser demo",
+        "plan export",
+        "usage guide"
+      ],
+      "qc_gate": "User should validate plan suitability",
+      "demo": "showroom/#study-sprint"
+    },
+    {
+      "id": "SR-SHOW-005",
+      "slug": "presentation-script",
+      "name": "Voice-to-Presentation Script Studio",
+      "category": "Presentation",
+      "status": "preview",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free preview"
+      },
+      "deliverables": [
+        "interactive browser demo",
+        "script export",
+        "usage guide"
+      ],
+      "qc_gate": "No voice, avatar or lip-sync integration yet",
+      "demo": "showroom/#presentation-script"
+    },
+    {
+      "id": "SR-SHOW-006",
+      "slug": "automission-cycle",
+      "name": "Automission Production Cycle Planner",
+      "category": "AI Workflow",
+      "status": "preview",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free preview"
+      },
+      "deliverables": [
+        "interactive browser demo",
+        "checklist export",
+        "usage guide"
+      ],
+      "qc_gate": "Planning tool; does not launch workflows",
+      "demo": "showroom/#automission-cycle"
+    }
+  ]
+}
