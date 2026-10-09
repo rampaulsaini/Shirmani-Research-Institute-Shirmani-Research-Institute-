@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "product_id": "UT007",
+  "name": "Evidence Claim Ledger",
+  "category": "Research / Evidence Tools",
+  "version": "1.0.0",
+  "price_inr": 0,
+  "offer": "Free public browser tool",
+  "short_description": "Structure claims, source URLs, evidence states, limitations and review notes; export JSON or CSV.",
+  "long_description": "A local-first research helper for creating traceable claim records. It does not fetch sources or independently verify claims. The VERIFIED option records a reviewer-selected state only, with an explicit notice.",
+  "usage_url": "products/micro/evidence-claim-ledger.html",
+  "demo_script": "products/demo-scripts/UT007-evidence-claim-ledger.md",
+  "vip_visual": "products/vip-screenshots/ut007-evidence-claim-ledger.svg",
+  "qr_target": "products/micro/evidence-claim-ledger.html",
+  "quality": {
+    "qc_code": "QC-METADATA-PENDING",
+    "gate_no": "GATE-UT007",
+    "dispatch": "NO",
+    "status": "READY_FOR_REVIEW"
+  },
+  "limitations": [
+    "No server-side persistence",
+    "No source fetching or source authenticity validation",
+    "No independent verification",
+    "User must review and protect sensitive notes"
+  ]
+}
