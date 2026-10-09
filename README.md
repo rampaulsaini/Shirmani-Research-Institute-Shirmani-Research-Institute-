@@ -302,3 +302,9 @@ The canonical public-production path now distinguishes **architecture engines** 
 **Canonical flow:** 1,016 catalog identities → concrete product assets → QC/metadata → public deployment → commercial dispatch gate → downstream verification.
 
 This is intended to eliminate the previous ambiguity where a 25-engine architecture could be mistaken for only 25 produced products.
+
+
+## Voice-to-Presentation Studio — browser prototype
+
+- **Voice-to-Presentation Studio:** [voice-to-presentation-studio.html](voice-to-presentation-studio.html) — local browser prototype for optional speech recognition, transcript editing, text-derived presentation outline, browser speech synthesis, export, and local capability checks.
+- **Production boundary:** no cloned voice, remote AI reasoning, evidence-checking service, photorealistic/phoneme-level lip-sync, live broadcast, or server persistence is connected. Treat this as a concrete prototype, not a completed live AI product.
