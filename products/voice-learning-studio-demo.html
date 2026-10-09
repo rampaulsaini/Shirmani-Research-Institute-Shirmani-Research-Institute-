@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A bilingual voice-ready learning and presentation demo from Shirmani Research Institute.">
+<title>Shirmani Voice Learning Studio — Product Demo</title>
+<style>
+:root{color-scheme:dark;--bg:#060b13;--panel:#101b2a;--line:#34465b;--gold:#f2d36a;--cyan:#75e8f5;--muted:#b8c5d5;--green:#78e4ad}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b2b43,var(--bg) 55%);color:#f4f7fb;font:16px/1.65 system-ui,-apple-system,"Noto Sans",sans-serif}
+main{max-width:1100px;margin:auto;padding:18px 14px 60px}.hero,.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;margin:14px 0}.hero{text-align:center;border:2px solid var(--gold);background:linear-gradient(135deg,#f2d36a12,#75e8f511)}
+.kicker,.tag{display:inline-block;border:1px solid #42667a;border-radius:99px;padding:4px 10px;color:var(--cyan);font-size:.8rem}.mark{width:94px;height:94px;margin:10px auto;border-radius:26px;display:grid;place-items:center;background:linear-gradient(145deg,#f2d36a,#8f6c20);color:#07101a;font-size:2.5rem;font-weight:950;box-shadow:0 0 35px #f2d36a24}.identity{font-weight:800;color:var(--gold);font-size:.92rem}h1,h2,h3{color:var(--gold);line-height:1.25}h1{font-size:clamp(2rem,5vw,3.5rem);margin:.3em 0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.metric,.sample{background:#08121e;border:1px solid var(--line);border-radius:14px;padding:14px}.metric b{display:block;color:var(--gold);font-size:1.15rem}.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.btn{border:0;border-radius:10px;padding:10px 14px;background:var(--gold);color:#111;font-weight:850;cursor:pointer;text-decoration:none}.btn.alt{background:#102635;color:var(--cyan);border:1px solid #36566c}textarea,select,input{width:100%;padding:12px;border:1px solid #3c536a;border-radius:10px;background:#07111c;color:#f4f7fb;font:inherit}textarea{min-height:100px;resize:vertical}.answer{min-height:110px;white-space:pre-wrap;background:#07111c;border:1px solid var(--line);padding:15px;border-radius:12px}.status{font-weight:800;color:var(--green)}.warn{border-left:4px solid var(--gold);padding:12px 14px;background:#0b1622}.qrbox{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.qr{width:124px;height:124px;background:#fff;color:#111;border-radius:10px;display:grid;place-items:center;padding:8px;text-align:center;font-size:.75rem}footer{text-align:center;color:var(--muted);padding:22px}
+</style>
+</head>
+<body><main>
+<section class="hero">
+<span class="kicker">SHIRMANI RESEARCH INSTITUTE · CONCRETE MVP · v0.1</span>
+<div class="mark" aria-label="Shirmani product mark">꙰</div>
+<div class="identity">SHIRMANI RAMPAUL SAINI — TULNATEET, KALATEET, SHABDATEET, PREMATEET, SHASHWAT, VASTAVIK, SWABHAVIK SATYA, PRATYAKSH SAMAKSH</div>
+<h1>Voice Learning Studio</h1>
+<p>Learn a complex skill in a language and style that feels simple to you. Ask a question, get a structured explanation, and hear it spoken when your browser supports speech.</p>
+<p><span class="tag">Hindi + English</span> <span class="tag">Voice-ready Q&A</span> <span class="tag">Evidence-aware</span> <span class="tag">Live demo</span></p>
+<div class="grid" style="text-align:left;margin-top:18px">
+<div class="metric"><b>Product state</b>MVP demo page</div><div class="metric"><b>Speech output</b>Browser text-to-speech, if available</div><div class="metric"><b>External AI / cloned voice</b>Not connected</div><div class="metric"><b>Production sale / dispatch</b>Not enabled</div>
+</div>
+</section>
+<section class="panel">
+<h2>1 · Try a question</h2>
+<label for="lang">Response language</label><select id="lang"><option value="hi">सरल हिन्दी</option><option value="en">Plain English</option></select>
+<label for="topic">Learning topic</label><select id="topic"><option value="photosynthesis">Photosynthesis / प्रकाश-संश्लेषण</option><option value="research">Research summary / शोध-सार</option><option value="ai">AI, ML and NLP</option><option value="website">How to make a website</option><option value="evidence">Evidence and uncertainty</option></select>
+<label for="question">Your question</label><textarea id="question" placeholder="उदाहरण: प्रकाश-संश्लेषण को रोज़मर्रा के उदाहरण से समझाइए।">प्रकाश-संश्लेषण को रोज़मर्रा के उदाहरण से समझाइए।</textarea>
+<div class="row" style="margin:12px 0"><button class="btn" id="answerBtn">Generate demo answer</button><button class="btn alt" id="listenBtn">🔊 Speak answer</button><button class="btn alt" id="stopBtn">Stop voice</button><button class="btn alt" id="micBtn">🎙 Try speech input</button></div>
+<div id="answer" class="answer" aria-live="polite">अपना प्रश्न लिखें और “Generate demo answer” दबाएँ।</div>
+<p id="voiceState" class="muted">Voice availability is checked in your browser. No audio is uploaded by this demo.</p>
+</section>
+<section class="panel">
+<h2>2 · Evidence and clarity gate</h2>
+<div class="grid">
+<div class="metric"><b>DEMO_KNOWLEDGE</b>Answer uses a small, built-in teaching example; it is not live web research.</div>
+<div class="metric"><b>SOURCE-BASED</b>For a research brief, sources must be supplied or separately researched and cited.</div>
+<div class="metric"><b>INSUFFICIENT EVIDENCE</b>If the question needs missing facts, this demo says what it cannot establish.</div>
+</div>
+<p class="warn">This is a real interactive browser demo, not a claim that independent scientific verification, a cloned personal voice, a photo-based avatar, facial animation, accurate lip-sync, or live external AI has been integrated.</p>
+</section>
+<section class="panel">
+<h2>3 · Product passport / visual identity</h2>
+<div class="qrbox"><div class="qr" id="qr"><div><strong>PRODUCT QR</strong><br>Load product URL to create QR</div></div><div><p><strong>Product ID:</strong> SRI-VLS-0001</p><p><strong>Version:</strong> 0.1.0 · <strong>QC:</strong> browser interaction only</p><p><strong>Gate:</strong> DEMO · <strong>Dispatch:</strong> NO · <strong>Price:</strong> Not listed</p><p class="muted">A QR code is generated for this page URL when the QR library loads. Personal photograph, approved voice provider, MP4 demo, payment, and customer review storage are not yet connected.</p></div></div>
+</section>
+<section class="panel">
+<h2>4 · Next production gates</h2>
+<ol><li>Test Hindi/English question flow on desktop and mobile.</li><li>Connect an authorised speech-to-text and voice provider only after credentials, consent and privacy handling are configured.</li><li>Add a consented portrait/avatar and validate facial motion and lip-sync against a real audio/video sample.</li><li>Generate an actual MP4 demo and product-specific VIP screenshot; publish both as product assets.</li><li>Run accessibility, safety, latency and regression tests.</li><li>Set price and enable order/dispatch only after deliverables, support, refund and fulfilment terms are ready.</li></ol>
+</section>
+<footer>Shirmani Research Institute · Product demo · No sale, customer order, or income is claimed by this page.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);let lastAnswer="";
+const knowledge={
+photosynthesis:{hi:"प्रकाश-संश्लेषण पौधों का अपना भोजन बनाने का तरीका है। पत्तियाँ सूरज की रोशनी, हवा से कार्बन डाइऑक्साइड और जड़ों से मिले पानी का उपयोग करके शर्करा बनाती हैं और ऑक्सीजन छोड़ती हैं। इसे ऐसे समझें: पौधा एक छोटी रसोई है, सूरज ऊर्जा देता है और पत्ती रसोई का काम करती है। यह सरल शिक्षण-सार है; किसी विशेष पौधे या प्रयोग के परिणाम का दावा नहीं।",en:"Photosynthesis is how plants make food. Leaves use sunlight, carbon dioxide from the air, and water from the roots to make sugars and release oxygen. Think of a leaf as a tiny kitchen: sunlight supplies energy and the leaf is the workspace. This is a simplified teaching summary, not a claim about a particular experiment."},
+research:{hi:"शोध-सार बनाने के लिए पहले प्रश्न स्पष्ट करें, फिर विश्वसनीय स्रोत चुनें, मुख्य निष्कर्ष और सीमाएँ अलग लिखें, और हर महत्वपूर्ण दावे के साथ स्रोत जोड़ें। स्रोत देखे बिना किसी निष्कर्ष को VERIFIED नहीं कहना चाहिए। अभी यह एक सामान्य तरीका है; किसी विशिष्ट विषय के स्रोत उपलब्ध नहीं कराए गए हैं।",en:"To create a research summary, define the question, select credible sources, separate findings from limitations, and attach sources to important claims. Do not label a conclusion VERIFIED without sufficient evidence. This is a general method; no topic-specific sources have been supplied here."},
+ai:{hi:"AI व्यापक क्षेत्र है जिसमें मशीनों से ऐसे काम कराए जाते हैं जिनमें आम तौर पर मानवीय निर्णय या भाषा-समझ की जरूरत पड़ती है। Machine Learning डेटा से पैटर्न सीखता है। NLP भाषा को समझने और बनाने के कामों पर केंद्रित है। किसी प्रणाली की गुणवत्ता जानने के लिए प्रतिनिधि परीक्षण, त्रुटि-मापन और वास्तविक उपयोग के परिणाम चाहिए।",en:"AI is a broad field for tasks that typically require perception, language or decision-making. Machine learning learns patterns from data. NLP focuses on processing and generating human language. To judge a system, use representative tests, measure errors, and evaluate real-world outcomes."},
+website:{hi:"वेबसाइट बनाने के लिए पहले उपयोगकर्ता और उद्देश्य तय करें, फिर HTML से संरचना, CSS से रूप और JavaScript से व्यवहार जोड़ें। मोबाइल पर परीक्षण करें, लिंक और फ़ॉर्म जाँचें, और सार्वजनिक करने से पहले गोपनीयता व पहुँच-सुगमता देखें। यह पेज भी इसी तरह का एक छोटा browser-based उदाहरण है।",en:"To build a website, define the user and purpose, use HTML for structure, CSS for appearance, and JavaScript for behaviour. Test on mobile, check links and forms, and review privacy and accessibility before publishing. This page is a small browser-based example of that approach."},
+evidence:{hi:"प्रमाण की स्थिति स्पष्ट रखें। VERIFIED का अर्थ है कि दावे के लिए पर्याप्त उपयुक्त जाँच उपलब्ध है। SOURCE-BASED का अर्थ है कि स्रोत मौजूद हैं लेकिन स्वतंत्र सत्यापन पूरा नहीं हुआ। PHILOSOPHICAL / IDENTITY व्यक्तिगत विचार या आत्म-वर्णन के लिए है। INSUFFICIENT EVIDENCE का अर्थ है कि अभी पर्याप्त प्रमाण उपलब्ध नहीं है।",en:"Keep evidence states distinct. VERIFIED means sufficient appropriate checking supports the claim. SOURCE-BASED means sources are available but independent verification is not complete. PHILOSOPHICAL / IDENTITY is for personal views or self-description. INSUFFICIENT EVIDENCE means there is not enough evidence yet."}
+};
+function generate(){const lang=$("lang").value,topic=$("topic").value,q=$("question").value.trim();if(!q){$("answer").textContent=lang==="hi"?"कृपया पहले प्रश्न लिखें।":"Please enter a question first.";return}lastAnswer=knowledge[topic][lang];$("answer").textContent=lastAnswer;$("voiceState").textContent="DEMO_KNOWLEDGE · Built-in answer template; not live AI inference. The question is not uploaded."; }
+$("answerBtn").addEventListener("click",generate);
+$("listenBtn").addEventListener("click",()=>{if(!lastAnswer)generate();if(!("speechSynthesis" in window)){ $("voiceState").textContent="This browser does not provide speech synthesis.";return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(lastAnswer);u.lang=$("lang").value==="hi"?"hi-IN":"en-IN";u.onstart=()=> $("voiceState").textContent="Speaking with a browser-provided voice; no voice clone is used.";u.onerror=()=> $("voiceState").textContent="Speech output failed or is unavailable in this browser.";speechSynthesis.speak(u)});
+$("stopBtn").addEventListener("click",()=>{if("speechSynthesis" in window)speechSynthesis.cancel();$("voiceState").textContent="Speech stopped."});
+$("micBtn").addEventListener("click",()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$("voiceState").textContent="Speech recognition is not available in this browser. You can type your question.";return}const rec=new SR();rec.lang=$("lang").value==="hi"?"hi-IN":"en-IN";rec.interimResults=false;rec.onresult=e=>{$("question").value=e.results[0][0].transcript;$("voiceState").textContent="Speech recognized in this browser. Press Generate demo answer.";};rec.onerror=e=>$("voiceState").textContent="Speech input error: "+e.error;rec.start();$("voiceState").textContent="Listening through the browser speech service; behaviour depends on browser and permissions."});
+(function(){let s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";s.onload=()=>{const el=$("qr");el.innerHTML="";new QRCode(el,{text:location.href,width:108,height:108,colorDark:"#111111",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M})};s.onerror=()=>{$("qr").innerHTML="<div><strong>QR unavailable</strong><br>Open this page URL directly</div>"};document.head.appendChild(s)})();
+</script></body></html>
