@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-09T08:41:49.419005+00:00",
+  "generated_at": "2026-10-09T08:53:03.778475+00:00",
   "purpose": "public-first production module map",
   "module_count": 10738,
   "lane_counts": {
@@ -327,7 +327,7 @@
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "READY",
-      "bytes": 5897
+      "bytes": 5917
     },
     {
       "path": "factory/federation.py",
