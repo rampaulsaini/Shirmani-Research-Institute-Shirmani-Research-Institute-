@@ -52,18 +52,17 @@ jobs:
         env:
           VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.batch_size || '100' }}
         run: python3 factory/vip_screenshot_factory.py
-      - name: Propose production assets through a PR
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: automation/vip-screenshot-assets
-          delete-branch: false
-          commit-message: "feat(showroom): publish bounded VIP screenshot batch"
-          title: "feat(showroom): publish bounded VIP screenshot batch"
-          body: |
-            Bounded automated screenshot batch. Changes are proposed through a PR;
-            protected main is never pushed directly. Generated media is not independent verification.
-          add-paths: |
-            products/vip-screenshots/**
-            generated/vip-screenshot-assets.json
-            generated/product-vip-screenshot-manifest.json
+      - name: Stage generated VIP outputs without bypassing protected main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Automission"
+          git config user.email "actions@users.noreply.github.com"
+          git add products/vip-screenshots generated/vip-screenshot-assets.json generated/product-vip-screenshot-manifest.json
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git commit -m "automission: stage vip production outputs"
+          git push --force-with-lease origin HEAD:refs/heads/automation/vip-screenshot-assets-staging
+          echo "Staging branch updated: automation/vip-screenshot-assets-staging. Protected main was not pushed."
