@@ -17,8 +17,6 @@ permissions:
   pull-requests: write
 
 concurrency:
-  # This workflow and SHIRMANI Continuous Concrete Product Production both
-  # write automation/production-state. They must share one serialization lock.
   group: shirmani-production-state-writer
   cancel-in-progress: false
 
@@ -42,7 +40,9 @@ jobs:
             echo "PRODUCTION_STATE_BASE=main-initial" >> "$GITHUB_ENV"
           fi
       - name: Materialize production records
+        shell: bash
         run: |
+          set -euo pipefail
           python3 factory/multi_layer_production.py
           python3 factory/public_production_materializer.py
           python3 factory/production_truth_gate.py
@@ -55,15 +55,15 @@ jobs:
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Stage only declared outputs that actually exist on the canonical state branch.
-          # A missing optional artifact must not make git add abort the entire production run.
           outputs=(
             generated/production-work-queue.jsonl
             generated/production-results.jsonl
             generated/public-production-catalog.json
+            generated/public-production-index.html
             generated/public-production-module-index.json
             generated/public-production-by-module.html
             generated/PRODUCTION-TRUTH.json
+            generated/multi-layer-production-state.json
             generated/multi-layer-production-status.json
             generated/MULTI-LAYER-PRODUCTION.md
             generated/live-production-state.json
@@ -79,18 +79,29 @@ jobs:
               echo "::warning::Optional production output missing on this cycle: $path"
             fi
           done
+
+          # Persist the JSONL lane files linked by the public showroom.
+          if [[ -d generated/public-production ]]; then
+            git add -A -- generated/public-production/
+            lane_files="$(find generated/public-production -type f | wc -l | tr -d ' ')"
+            echo "Per-lane artifact files found: $lane_files"
+            staged=$((staged + lane_files))
+          else
+            echo "::warning::No per-lane production artifact directory exists."
+          fi
+
           if [[ "$staged" -eq 0 ]]; then
             echo "::error::No production outputs were available to persist."
             exit 1
           fi
-          echo "Staged $staged available production outputs."
+          echo "Staged $staged available production output(s)."
 
           if git diff --cached --quiet; then
             echo "No persistent production-state changes."
             exit 0
           fi
 
-          git commit -m "chore(production): persist concrete production state and truth gate"
+          git commit -m "fix(production): persist showroom and per-lane artifacts"
 
           branch="automation/production-state"
           if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
@@ -103,7 +114,9 @@ jobs:
           echo "Production state persisted to canonical branch: $branch"
 
       - name: Emit production truth summary
+        shell: bash
         run: |
+          set -euo pipefail
           python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
           p=json.load(open("generated/PRODUCTION-TRUTH.json", encoding="utf-8"))
