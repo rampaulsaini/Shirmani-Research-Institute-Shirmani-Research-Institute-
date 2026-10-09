@@ -35,6 +35,7 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 - **Product registry:** [showroom-products.json](showroom-products.json)
 - **Production specification:** [SHOWROOM-PRODUCTION.md](SHOWROOM-PRODUCTION.md)
 - **Funding / payment:** [funding-appeal.html](funding-appeal.html) — public payment routes are Paytm/UPI and PayPal only.
+- **Paid-service enquiry:** [services-writing-research.html](services-writing-research.html) — structured Hindi/English writing and research brief form; opens a user-reviewed email draft and does not claim an order or income.
 
 ## Platform Includes
 

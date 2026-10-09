@@ -11,5 +11,65 @@
 </div><p class="note"><strong>Rate status:</strong> ये शुरुआती प्रस्तावित दरें हैं, market-average का दावा नहीं। विषय, deadline और source access के अनुसार final quote लिखित स्वीकृति के बाद तय होगा। SEO ranking या business results की guarantee नहीं।</p></section>
 <section class="card"><h2>काम का तरीका</h2><table><thead><tr><th>चरण</th><th>कार्रवाई</th><th>मापने योग्य परिणाम</th></tr></thead><tbody><tr><td>1. Brief</td><td>विषय, भाषा, audience, length, deadline</td><td>लिखित scope</td></tr><tr><td>2. Quote</td><td>कीमत, deliverable, revision और तारीख</td><td>ग्राहक की लिखित स्वीकृति</td></tr><tr><td>3. Draft + QC</td><td>लेखन/संपादन; research में sources और limitations</td><td>एक draft और checklist</td></tr><tr><td>4. Delivery</td><td>सहमत शर्तों के अनुसार final file</td><td>Delivery record</td></tr><tr><td>5. Settlement</td><td>वास्तविक transaction evidence की जाँच</td><td>Payment केवल पुष्टि के बाद PAID</td></tr></tbody></table></section>
 <section class="card"><h2>काम का अनुरोध भेजें</h2><p>ईमेल में काम का विषय/उद्देश्य, भाषा, शब्द-संख्या, deadline, उपलब्ध sources और बजट लिखें।</p><a class="btn" href="mailto:sainirampaul60@gmail.com?subject=Writing%20and%20Research%20Brief&body=Service%3A%20%0ALanguage%3A%20%0ATopic%20and%20goal%3A%20%0AWord%20count%3A%20%0ADeadline%3A%20%0ASources%20provided%3A%20%0ABudget%3A%20">Brief ईमेल में तैयार करें</a><p class="small muted">यह बटन ईमेल draft खोलता है; ईमेल अपने-आप नहीं भेजता।</p></section>
+
+<section class="card" id="enquiry"><h2>अपना काम स्पष्ट करें · Build an enquiry brief</h2>
+<p>यह form आपके लिए email draft तैयार करता है। यह अपने-आप email नहीं भेजता और enquiry को server पर save नहीं करता।</p>
+<form id="enquiryForm">
+<div class="grid">
+<label>सेवा / Service<select name="service" required><option value="">सेवा चुनें</option><option>Editing / Proofreading — proposed from ₹499</option><option>Article / Website Copy — proposed from ₹999</option><option>Source-based Research Brief — proposed from ₹1,499</option><option>Other / custom scope — quote required</option></select></label>
+<label>भाषा / Language<select name="language" required><option value="">भाषा चुनें</option><option>Hindi</option><option>English</option><option>Hindi + English</option></select></label>
+<label>विषय / Topic<input name="topic" required maxlength="180" placeholder="किस विषय पर काम चाहिए?"></label>
+<label>उद्देश्य / Goal<input name="goal" required maxlength="240" placeholder="यह काम किस उपयोग के लिए है?"></label>
+<label>शब्द-सीमा / Word count<input name="words" inputmode="numeric" placeholder="जैसे 700"></label>
+<label>समय-सीमा / Deadline<input name="deadline" placeholder="जैसे 3 दिन / 20 Oct"></label>
+<label>बजट / Budget<input name="budget" placeholder="जैसे ₹500–₹1,000"></label>
+<label>स्रोत / Source links<input name="sources" placeholder="URL या उपलब्ध स्रोत"></label>
+</div>
+<label style="display:block;margin-top:14px">अतिरिक्त निर्देश / Notes<textarea name="notes" rows="3" maxlength="1000" placeholder="Audience, format, references, revision needs..."></textarea></label>
+<p class="note">Final price, deliverables, deadline, revision limit और payment terms लिखित सहमति के बाद ही तय होंगे। कृपया संवेदनशील निजी जानकारी न डालें।</p>
+<button class="btn" type="submit">Email draft तैयार करें</button>
+<button class="btn alt" type="button" id="copyBrief">Brief copy करें</button>
+<p id="formStatus" class="small muted" aria-live="polite"></p>
+</form>
+</section>
+
 <section class="card"><h2>भरोसा और सीमाएँ</h2><ul><li>काम शुरू होने से पहले scope, price, deadline और revision लिखित रूप में तय करें।</li><li>किसी payment को received नहीं कहा जाएगा जब तक transaction evidence न हो; recipient और amount अपने payment app में verify करें।</li><li>मनगढ़ंत citations या परिणाम नहीं; uncertainty और source limitations स्पष्ट होंगी।</li><li>Proofreading, research guidance और source organization उपलब्ध हैं; academic cheating या किसी के behalf पर जमा करने योग्य graded work नहीं।</li></ul><p class="small muted">Repository में Paytm/UPI और PayPal routes सूचीबद्ध हैं; किसी specific order के लिए recipient और agreed amount की पुष्टि आवश्यक है।</p></section>
-<footer>꙰ Shirmani Research Institute · Writing & Research Services · प्रस्तावित दरें; बिक्री/आय का दावा नहीं</footer></main></body></html>
+<footer>꙰ Shirmani Research Institute · Writing & Research Services · प्रस्तावित दरें; बिक्री/आय का दावा नहीं</footer></main>
+<script>
+(function(){
+ const form=document.getElementById('enquiryForm');
+ const status=document.getElementById('formStatus');
+ function brief(){
+  const d=new FormData(form);
+  return [
+   'SHIRMANI RESEARCH INSTITUTE — Writing & Research Enquiry','',
+   'Service: '+(d.get('service')||'Not selected'),
+   'Topic: '+(d.get('topic')||''),
+   'Goal: '+(d.get('goal')||''),
+   'Language: '+(d.get('language')||''),
+   'Word count: '+(d.get('words')||'Not specified'),
+   'Deadline: '+(d.get('deadline')||'Not specified'),
+   'Sources: '+(d.get('sources')||'Not provided'),
+   'Budget: '+(d.get('budget')||'Not specified'),
+   'Notes: '+(d.get('notes')||'None'),'',
+   'Please confirm scope, deliverables, final price, timeline, revision limit and payment terms in writing before work begins.'
+  ].join('\n');
+ }
+ form.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!form.reportValidity()) return;
+  const subject=encodeURIComponent('Writing & Research Service Enquiry');
+  const body=encodeURIComponent(brief());
+  status.textContent='आपका email draft खुलना चाहिए। Send दबाने से पहले विवरण और recipient जाँचें।';
+  window.location.href='mailto:sainirampaul60@gmail.com?subject='+subject+'&body='+body;
+ });
+ document.getElementById('copyBrief').addEventListener('click',async function(){
+  if(!form.reportValidity()) return;
+  const text=brief();
+  try { await navigator.clipboard.writeText(text); status.textContent='Enquiry brief clipboard में copy हो गया।'; }
+  catch(e) { const box=document.createElement('textarea'); box.value=text; box.style.width='100%'; box.rows=10; form.appendChild(box); box.select(); status.textContent='Auto-copy उपलब्ध नहीं था; नीचे के text को manually copy करें।'; }
+ });
+})();
+</script>
+
+</body></html>
