@@ -48,7 +48,7 @@ jobs:
           from pathlib import Path
           p=Path("shirmani-live-presentation.html").read_text(encoding="utf-8")
           checks=[
-            "Voice → Authorized Voice Integration → Test Q&A → Lip-Sync → Live Presentation",
+            "Voice → Authorized Voice → Test Q&A → Lip-Sync → Live Presentation",
             "अभी पर्याप्त प्रमाण उपलब्ध नहीं है",
             "EXPLICIT AUTH REQUIRED",
             "NOT CLAIMED",
