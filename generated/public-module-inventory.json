@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generated_at": "2026-10-09T08:22:41.606327+00:00",
+  "generated_at": "2026-10-09T08:28:15.797199+00:00",
   "purpose": "public-first production module map",
   "module_count": 10738,
   "lane_counts": {
-    "ai_ml_nlp": 9037,
+    "ai_ml_nlp": 9036,
     "automation": 5,
     "content": 8,
     "economic": 4,
     "platform": 3,
-    "research": 1644,
+    "research": 1645,
     "security_quality": 37
   },
   "status_counts": {
@@ -18,9 +18,9 @@
     "DESIGN": 15,
     "PLANNED": 6,
     "READY": 10083,
-    "RECORDED": 27,
+    "RECORDED": 28,
     "UNAVAILABLE": 27,
-    "UNSPECIFIED": 451
+    "UNSPECIFIED": 450
   },
   "integrity": {
     "source": "repository files",
@@ -62672,13 +62672,6 @@
       "bytes": 4960
     },
     {
-      "path": "factory/product_demo_media_factory.py",
-      "type": "py",
-      "lane": "ai_ml_nlp",
-      "status": "UNSPECIFIED",
-      "bytes": 1808
-    },
-    {
       "path": "factory/product_demo_video_factory.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -73009,6 +73002,13 @@
       "lane": "research",
       "status": "RECORDED",
       "bytes": 2819
+    },
+    {
+      "path": "factory/product_demo_media_factory.py",
+      "type": "py",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 4447
     },
     {
       "path": "factory/research_evidence_graph.py",
