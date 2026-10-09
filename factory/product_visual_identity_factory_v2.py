@@ -7,13 +7,13 @@ import hashlib, html, json, os
 from urllib.parse import quote
 
 ROOT=Path(__file__).resolve().parents[1]
-CAT=ROOT/"generated/1000-digital-products.json"
+CAT_CANDIDATES=[ROOT/"generated/concrete-production-overlay.json",ROOT/"generated/1000-digital-products.json"]
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-07-production-visual-v11-centered-logo-local-qr-short-description"
+VERSION="2026-10-08-production-visual-v12-logo-upper-left-impartial-understanding-qr-upper-right"
 SHOWROOM_BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
 LOGO=SHOWROOM_BASE+"assets/shirmani-perspective-logo.svg"
-IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
+IDENTITY="Shiromani Rampal Saini · Impartial Understanding · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 
 def esc(v): return html.escape(str(v), quote=True)
 
@@ -30,12 +30,10 @@ def make(p):
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
 <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{c1}"/><stop offset=".55" stop-color="{c2}"/><stop offset="1" stop-color="#050910"/></linearGradient></defs>
 <rect width="3840" height="2160" fill="url(#b)"/><title>{esc(name)} — {esc(pid)}</title><desc>{esc(IDENTITY)} · Short description on image · QR for long product description · 3840×2160 4K-ready product identity.</desc><rect x="70" y="70" width="3700" height="2020" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
-<circle cx="1920" cy="285" r="205" fill="#061016" stroke="#e7c85b" stroke-width="14"/><image href="{LOGO}" x="1735" y="100" width="370" height="370" preserveAspectRatio="xMidYMid slice"/>
-<text x="1920" y="540" text-anchor="middle" fill="#f6d35f" font-family="system-ui,sans-serif" font-size="40" font-weight="950">Shiromani Rampal Saini</text>
-<text x="1920" y="592" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="750">SHIRMANI HEART-VIEW · IMPARTIAL UNDERSTANDING</text>
-<text x="1920" y="630" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love</text>
-<text x="1920" y="664" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">Eternal · Real · Natural Truth · Directly Present</text>
-<text x="610" y="190" fill="#66ddff" font-family="system-ui,sans-serif" font-size="52" font-weight="900">SHIRMANI SUPREME DIGITAL PRODUCT</text>
+<rect x="150" y="125" width="580" height="580" rx="80" fill="#061016" stroke="#e7c85b" stroke-width="12"/><image href="{LOGO}" x="205" y="180" width="470" height="470" preserveAspectRatio="xMidYMid meet"/>
+<text x="440" y="760" text-anchor="middle" fill="#f6d35f" font-family="system-ui,sans-serif" font-size="34" font-weight="950">SHIRMANI HEART-VIEW</text>
+<text x="440" y="810" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="17" font-weight="750">Shiromani Rampal Saini · Impartial Understanding</text><text x="440" y="842" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Beyond Comparison · Beyond Time · Beyond Words · Beyond Love</text><text x="440" y="872" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Eternal · Real · Natural Truth · Directly Present</text>
+<text x="830" y="190" fill="#66ddff" font-family="system-ui,sans-serif" font-size="52" font-weight="900">SHIRMANI SUPREME DIGITAL PRODUCT</text>
 <rect x="3160" y="120" width="570" height="690" rx="44" fill="#061016" stroke="#e7c85b" stroke-width="10"/>
 <text x="3270" y="210" fill="#fff" font-family="system-ui,sans-serif" font-size="42" font-weight="900">LONG DESCRIPTION</text>
 <text x="3400" y="260" fill="#fff" font-family="system-ui,sans-serif" font-size="42" font-weight="900">/ PRODUCT DETAILS</text>
@@ -51,7 +49,20 @@ def make(p):
 </svg>'''
 
 def main():
-    products=json.loads(CAT.read_text(encoding="utf-8")).get("products",[])
+    products=[]; catalog_source=None
+    for source in CAT_CANDIDATES:
+        if not source.exists(): continue
+        try: data=json.loads(source.read_text(encoding="utf-8"))
+        except Exception: continue
+        rows=data.get("products",[])
+        if rows:
+            normalized=[]
+            for p in rows:
+                pid=str(p.get("id") or p.get("product_id") or "").strip()
+                if pid: normalized.append({**p,"id":pid})
+            if normalized:
+                products=normalized; catalog_source=str(source.relative_to(ROOT)); break
+    if not products: raise SystemExit("No non-empty concrete production catalogue is available; refusing visual production.")
     OUT.mkdir(parents=True,exist_ok=True)
     previous={}
     if MAN.exists():
@@ -84,10 +95,10 @@ def main():
     remaining=len(products)-current
     MAN.write_text(json.dumps({"version":2,"visual_version":VERSION if current==len(products) else "IN_PROGRESS",
         "target_visual_version":VERSION,"generated_at":datetime.now(timezone.utc).isoformat(),
-        "target":len(products),"visual_assets":ready,"current_version_assets":current,
+        "target":len(products),"catalog_source":catalog_source,"visual_assets":ready,"current_version_assets":current,
         "changed_this_cycle":changed,"remaining":remaining,
         "logo":LOGO,"english_identity_line":IDENTITY,"short_description_on_visual":True,
-        "qr_upper_right":True,"qr_asset_local":True,"qr_purpose":"long description / product details","visual_contract":{"logo_photo":True,"logo_position":"upper-center","english_identity":"Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present","short_description":"on-image","qr_position":"upper-right","qr_target":"product passport / long description","canvas":"3840x2160 16:9 4K-ready"},"products":rows},
+        "qr_upper_right":True,"qr_asset_local":True,"qr_purpose":"long description / product details","visual_contract":{"logo_photo":True,"logo_position":"upper-left","english_identity":IDENTITY,"short_description":"on-image","qr_position":"upper-right","qr_target":"product passport / long description","canvas":"3840x2160 16:9 4K-ready"},"products":rows},
         ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"target":len(products),"visual_assets":ready,"current_version_assets":current,
                       "changed_this_cycle":changed,"remaining":remaining}))
