@@ -21,14 +21,15 @@ jobs:
       - name: Install concrete product media dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
-          python3 -m pip install --disable-pip-version-check "qrcode[pil]"
+          sudo apt-get install -y ffmpeg python3-venv
+          python3 -m venv .venv
+          .venv/bin/python -m pip install --disable-pip-version-check "qrcode[pil]"
       - name: Concrete product batch
         env: {PRODUCT_BATCH: ${{ github.event.inputs.batch || '100' }}}
         run: python3 factory/autonomous_product_batch_factory.py
       - name: Product-specific QR asset batch
         env: {QR_BATCH: "250"}
-        run: python3 factory/product_qr_asset_factory.py
+        run: .venv/bin/python factory/product_qr_asset_factory.py
       - name: 4K-ready product visuals
         env: {VISUAL_BATCH: "250", VISUAL_REBUILD: "0"}
         run: python3 factory/product_visual_identity_factory.py
