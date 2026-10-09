@@ -46,6 +46,25 @@ jobs:
           python3 factory/multi_layer_production.py
           python3 factory/public_production_materializer.py
           python3 factory/production_truth_gate.py
+
+      - name: Preserve detailed production records as a workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-production-records-${{ github.run_number }}
+          path: |
+            generated/production-results.jsonl
+            generated/production-work-queue.jsonl
+            generated/public-production-catalog.json
+            generated/public-production-module-index.json
+            generated/public-production-by-module.html
+            generated/PRODUCTION-TRUTH.json
+            generated/multi-layer-production-status.json
+            generated/MULTI-LAYER-PRODUCTION.md
+            generated/live-production-state.json
+            generated/concrete-product-asset-status.json
+            generated/concrete-production-overlay.json
+          if-no-files-found: warn
+          retention-days: 14
       - name: Publish persistent production state
         shell: bash
         env:
@@ -55,7 +74,10 @@ jobs:
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add generated/production-work-queue.jsonl generated/production-results.jsonl generated/public-production-catalog.json generated/public-production-module-index.json generated/public-production-by-module.html generated/PRODUCTION-TRUTH.json generated/multi-layer-production-status.json generated/MULTI-LAYER-PRODUCTION.md generated/live-production-state.json generated/concrete-product-asset-status.json generated/concrete-production-overlay.json
+          git add generated/production-work-queue.jsonl generated/public-production-catalog.json generated/public-production-module-index.json generated/public-production-by-module.html generated/PRODUCTION-TRUTH.json generated/multi-layer-production-status.json generated/MULTI-LAYER-PRODUCTION.md generated/live-production-state.json generated/concrete-product-asset-status.json generated/concrete-production-overlay.json
+
+          # Keep detailed JSONL out of Git history; preserve it as a run artifact above.
+          git rm --cached --ignore-unmatch generated/production-results.jsonl
 
           if git diff --cached --quiet; then
             echo "No persistent production-state changes."
