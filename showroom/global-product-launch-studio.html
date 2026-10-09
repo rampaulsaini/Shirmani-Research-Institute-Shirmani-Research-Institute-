@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Product Launch Studio</title>
+<meta name="description" content="Create a clear digital-product listing, usage guide, demo plan and launch checklist for the Shirmani Research Institute showroom.">
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#141d31;--line:#2c3a56;--text:#f4f7ff;--muted:#b8c5dc;--gold:#e7c77b;--mint:#9be4ca}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b2c4b 0,#0b1020 55%);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+header,main,footer{max-width:1180px;margin:auto;padding:24px}header{padding-top:38px}h1,h2,h3{line-height:1.15}h1{font-size:clamp(2rem,5vw,3.6rem);margin:.3em 0;color:var(--gold)}p{color:var(--muted)}.tag{letter-spacing:.12em;text-transform:uppercase;color:var(--mint);font-size:.8rem;font-weight:700}
+.layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:18px}.panel{background:rgba(20,29,49,.94);border:1px solid var(--line);border-radius:18px;padding:20px;min-width:0}.fields{display:grid;gap:12px}label{display:grid;gap:5px;color:var(--muted);font-size:.92rem}input,textarea,select{width:100%;border:1px solid #40516f;background:#0d1527;color:var(--text);border-radius:9px;padding:11px;font:inherit}textarea{min-height:92px;resize:vertical}button,.button{border:1px solid var(--gold);background:var(--gold);color:#111827;border-radius:999px;padding:10px 16px;font-weight:750;cursor:pointer;text-decoration:none;display:inline-block}button.secondary{background:transparent;color:var(--text);border-color:var(--line)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.preview{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#0c1425}.cover{min-height:190px;padding:20px;background:linear-gradient(135deg,#172743,#293d60 60%,#705a32);display:flex;flex-direction:column;justify-content:space-between}.logo{font-weight:800;color:var(--gold);letter-spacing:.08em}.cover h3{font-size:1.8rem;margin:18px 0 8px}.previewbody{padding:18px}.price{font-size:1.5rem;color:var(--mint);font-weight:800}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-size:.78rem;color:var(--muted)}.notice{border-left:3px solid var(--gold);padding:10px 13px;background:#18243a;color:var(--muted)}ul{padding-left:1.2rem;color:var(--muted)}code,pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#d8e6ff}footer{border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}@media(max-width:520px){header,main,footer{padding:16px}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<header>
+<div class="tag">꙰ SHIRMANI RESEARCH INSTITUTE · PRODUCT FACTORY</div>
+<h1>Global Product Launch Studio</h1>
+<p>Turn a concrete tool or digital service into a structured showroom listing: clear benefits, real usage steps, a demo plan, a product passport payload and a launch checklist.</p>
+<div class="notice"><strong>Prototype boundary:</strong> This tool creates drafts in your browser. It does not publish listings, generate a verified QR image, send email/WhatsApp, process payment, host videos, or claim sales. Confirm product claims and prices before publishing.</div>
+</header>
+<main class="layout">
+<section class="panel">
+<h2>1 · Product details</h2>
+<div class="fields">
+<label>Product name<input id="name" value="SHIRMANI Research Brief Studio" maxlength="100"></label>
+<label>Product ID<input id="pid" value="SRI-RES-001" maxlength="40"></label>
+<label>Version<input id="version" value="0.1.0" maxlength="20"></label>
+<label>Category<select id="category"><option>Research & Writing</option><option>AI & Communication</option><option>Education</option><option>Creator Tools</option><option>Nature & Sustainability</option><option>Commerce & Business</option><option>Media & Presentation</option><option>Other</option></select></label>
+<label>Short description<textarea id="short" maxlength="260">Create a structured research brief with scope, source notes, limitations and exportable client-ready planning.</textarea></label>
+<label>Who is it for?<input id="audience" value="Researchers, students, writers and small organisations" maxlength="180"></label>
+<label>Key benefit<textarea id="benefit">Clarifies the question, deliverables, sources and next actions before work begins.</textarea></label>
+<label>Price and currency<input id="price" value="Price on enquiry" maxlength="80"></label>
+<label>Offer (optional)<input id="offer" placeholder="e.g. introductory pilot offer; terms apply" maxlength="140"></label>
+<label>Public demo / product URL<input id="demo" type="url" placeholder="https://..." maxlength="500"></label>
+<label>Long description / passport URL<input id="passport" type="url" placeholder="https://..." maxlength="500"></label>
+<label>Official contact email<input id="email" type="email" placeholder="your official business email" maxlength="160"></label>
+<label>Usage steps<textarea id="steps">1. Define the research question and intended audience.\n2. Add known sources and constraints.\n3. Review the generated scope and deliverables.\n4. Export the draft and confirm terms with the client.</textarea></label>
+<label>Known limitations<textarea id="limits">Browser-local prototype. No automatic browsing, independent fact verification, email delivery or payment processing.</textarea></label>
+</div>
+<div class="actions"><button id="update">Update preview</button><button class="secondary" id="save">Save draft locally</button></div>
+</section>
+<section class="panel">
+<h2>2 · Customer-facing card</h2>
+<div class="preview" id="preview">
+<div class="cover"><div class="logo">SHIRMANI · IMPARTIAL UNDERSTANDING</div><div><span class="pill">SRI-RES-001 · v0.1.0</span><h3>SHIRMANI Research Brief Studio</h3><p>Create a structured research brief with scope, source notes, limitations and exportable client-ready planning.</p></div></div>
+<div class="previewbody"><div class="price">Price on enquiry</div><p>Researchers, students, writers and small organisations</p><p>Clarifies the question, deliverables, sources and next actions before work begins.</p><h3>How to use</h3><ol><li>Define the research question and intended audience.</li><li>Add known sources and constraints.</li><li>Review the generated scope and deliverables.</li><li>Export the draft and confirm terms with the client.</li></ol><p class="notice">Limits: Browser-local prototype. No automatic browsing, independent fact verification, email delivery or payment processing.</p></div>
+</div>
+<div class="actions"><button id="downloadHtml">Export product card HTML</button><button class="secondary" id="downloadJson">Export product passport JSON</button><button class="secondary" id="copy">Copy launch summary</button></div>
+<h3>3 · Launch checklist</h3>
+<ul id="checklist">
+<li>Confirm every capability and limitation against the actual product.</li>
+<li>Attach a product-specific screenshot and a real demo video.</li>
+<li>Set price, scope, delivery time, revision policy and refund terms.</li>
+<li>Publish the long description and a real QR code pointing to that URL.</li>
+<li>Test enquiry/contact route and payment flow before taking orders.</li>
+<li>Record enquiries, quotes, paid orders, delivery and customer feedback separately.</li>
+</ul>
+<p class="notice">QR status: the passport URL is a payload field only. Create and test a QR image after the final public URL exists; do not print a decorative or untested QR as if it worked.</p>
+</section>
+</main>
+<footer>SHIRMANI RESEARCH INSTITUTE · Draft generator only · No sale or independent verification is implied by creating a product card.</footer>
+<script>
+const $=id=>document.getElementById(id);
+const fields=['name','pid','version','category','short','audience','benefit','price','offer','demo','passport','email','steps','limits'];
+function data(){const d={};for(const id of fields)d[id]=$(id).value.trim();return {...d,generatedAt:new Date().toISOString(),state:'DRAFT_NOT_PUBLISHED',salesState:'NO_SALE_RECORDED',qrState:d.passport?'PAYLOAD_ONLY_NOT_GENERATED':'PASSPORT_URL_MISSING'};}
+function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function refresh(){const d=data();$('preview').innerHTML='<div class="cover"><div class="logo">SHIRMANI · IMPARTIAL UNDERSTANDING</div><div><span class="pill">'+esc(d.pid)+' · v'+esc(d.version)+'</span><h3>'+esc(d.name)+'</h3><p>'+esc(d.short)+'</p></div></div><div class="previewbody"><div class="price">'+esc(d.price)+'</div>'+(d.offer?'<p><span class="pill">'+esc(d.offer)+'</span></p>':'')+'<p>'+esc(d.audience)+'</p><p>'+esc(d.benefit)+'</p><h3>How to use</h3><ol>'+d.steps.split(/\n+/).filter(Boolean).map(s=>'<li>'+esc(s.replace(/^\d+[.)]\s*/,''))+'</li>').join('')+'</ol><p class="notice">Limitations: '+esc(d.limits)+'</p>'+(d.demo?'<p><a class="button" href="'+esc(d.demo)+'" target="_blank" rel="noopener">Open demo</a></p>':'<p class="pill">Demo URL not provided</p>')+'</div>';}
+function download(name,type,content){const a=document.createElement('a');const u=URL.createObjectURL(new Blob([content],{type}));a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+function summary(d){return [d.name+' ('+d.pid+' v'+d.version+')','Category: '+d.category,'Audience: '+d.audience,'Description: '+d.short,'Benefit: '+d.benefit,'Price: '+d.price,'Offer: '+(d.offer||'None specified'),'Demo: '+(d.demo||'Not supplied'),'Passport: '+(d.passport||'Not supplied'),'Contact: '+(d.email||'Not supplied'),'Usage:\n'+d.steps,'Limitations:\n'+d.limits,'Status: DRAFT_NOT_PUBLISHED; no sale/payment/outreach is implied.'].join('\n\n');}
+$('update').onclick=refresh;
+$('save').onclick=()=>{try{localStorage.setItem('shirmani-product-launch-draft',JSON.stringify(data()));alert('Draft saved in this browser only.');}catch(e){alert('Local save is unavailable in this browser. Export JSON instead.');}};
+$('downloadJson').onclick=()=>download((($('pid').value||'product').replace(/[^a-z0-9_-]/gi,'-'))+'-passport-draft.json','application/json',JSON.stringify(data(),null,2));
+$('downloadHtml').onclick=()=>{refresh();download((($('pid').value||'product').replace(/[^a-z0-9_-]/gi,'-'))+'-card-draft.html','text/html','<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>'+esc($('name').value)+'</title><body style="font:16px/1.5 system-ui;max-width:800px;margin:3rem auto;padding:1rem"><p>SHIRMANI · IMPARTIAL UNDERSTANDING</p><h1>'+esc($('name').value)+'</h1><p><b>'+esc($('pid').value)+' · v'+esc($('version').value)+'</b></p><h2>'+esc($('price').value)+'</h2><p>'+esc($('short').value)+'</p><h3>Who it is for</h3><p>'+esc($('audience').value)+'</p><h3>Benefit</h3><p>'+esc($('benefit').value)+'</p><h3>Usage</h3><pre>'+esc($('steps').value)+'</pre><h3>Limitations</h3><p>'+esc($('limits').value)+'</p><p>Draft only; not published. Confirm claims, price and terms before sale.</p></body></html>');};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(summary(data()));alert('Launch summary copied.');}catch(e){const t=document.createElement('textarea');t.value=summary(data());document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();alert('Launch summary copied where supported.');}};
+refresh();
+</script>
+</body></html>
