@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "institute": "Shirmani Research Institute",
-  "release": "Supreme Showroom V2 starter batch",
-  "note": "Starter catalogue only. Preview price is not a commercial offer; checkout, actual MP4 demos, review persistence and dispatch are not configured.",
+  "release": "Supreme Showroom V2 starter batch + quote/offer production increment",
+  "note": "Preview tools only. No commercial checkout, payment, dispatch, hosted review persistence, or independent product certification is configured.",
   "products": [
     {
       "id": "SR-SHOW-001",
@@ -139,6 +139,27 @@
       ],
       "qc_gate": "Draft generator only; each product requires implementation, test evidence and release-owner approval",
       "demo": "showroom/#launch-kit"
+    },
+    {
+      "id": "SR-SHOW-008",
+      "slug": "yatharth-quote-offer-builder",
+      "name": "Yatharth Quote & Offer Builder",
+      "category": "Product Operations",
+      "status": "preview",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free preview"
+      },
+      "deliverables": [
+        "interactive browser demo",
+        "itemized quotation draft",
+        "discount and tax calculation",
+        "downloadable text quotation",
+        "usage guide"
+      ],
+      "qc_gate": "Draft only; review item prices, applicable tax, licence, delivery, support and refund terms before issuing",
+      "demo": "showroom/#offer-builder"
     }
   ]
 }
