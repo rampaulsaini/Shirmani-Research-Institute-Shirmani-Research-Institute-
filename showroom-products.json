@@ -365,7 +365,9 @@
       "dispatch": "PREVIEW_ONLY",
       "version": "1.0.0",
       "artifact_url": "products/concrete/SRI-RESEARCH-WRITING-WORKBENCH-001.html",
-      "artifact_evidence": "REPOSITORY_ARTIFACT_CREATED_QC_PENDING"
+      "artifact_evidence": "REPOSITORY_ARTIFACT_CREATED_QC_PENDING",
+      "usage_guide": "docs/products/research-writing-workbench-guide.md",
+      "demo_url": "products/concrete/SRI-RESEARCH-WRITING-WORKBENCH-001.html"
     }
   ]
 }
