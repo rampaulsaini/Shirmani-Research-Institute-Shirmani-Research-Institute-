@@ -39,6 +39,12 @@ jobs:
           else
             echo "PRODUCTION_STATE_BASE=main-initial" >> "$GITHUB_ENV"
           fi
+
+          # The persistence branch is a data store, not the source of truth
+          # for production code. Refresh factory code from main after loading
+          # persisted generated state so fixes merged to main actually execute.
+          git checkout origin/main -- factory/
+          echo "Production factory code refreshed from origin/main."
       - name: Materialize production records
         shell: bash
         run: |
