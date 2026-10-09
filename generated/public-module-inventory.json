@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generated_at": "2026-10-09T06:58:55.480560+00:00",
+  "generated_at": "2026-10-09T07:08:03.625763+00:00",
   "purpose": "public-first production module map",
   "module_count": 10714,
   "lane_counts": {
-    "ai_ml_nlp": 9024,
+    "ai_ml_nlp": 9023,
     "automation": 5,
     "content": 8,
     "economic": 2,
     "platform": 3,
-    "research": 1635,
+    "research": 1636,
     "security_quality": 37
   },
   "status_counts": {
@@ -62637,13 +62637,6 @@
       "bytes": 2661
     },
     {
-      "path": "factory/public_production_materializer.py",
-      "type": "py",
-      "lane": "ai_ml_nlp",
-      "status": "UNSPECIFIED",
-      "bytes": 12630
-    },
-    {
       "path": "factory/public_showroom.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -73891,6 +73884,13 @@
       "lane": "research",
       "status": "UNSPECIFIED",
       "bytes": 3815
+    },
+    {
+      "path": "factory/public_production_materializer.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 13768
     },
     {
       "path": "factory/public_production_queue_self_heal.py",

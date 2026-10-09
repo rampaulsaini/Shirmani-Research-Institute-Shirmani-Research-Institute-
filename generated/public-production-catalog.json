@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T06:59:05.260747+00:00",
+  "generated_at": "2026-10-09T07:08:14.271938+00:00",
   "principle": "Production first; verification downstream.",
   "cycle_results": 46000,
   "lanes": {
@@ -24,7 +24,8 @@
     "generated/public-production/security-quality.jsonl",
     "generated/public-production/social-media.jsonl",
     "generated/public-production-module-index.json",
-    "generated/public-production-by-module.html"
+    "generated/public-production-by-module.html",
+    "generated/public-production/archive/index.json"
   ],
   "integrity": {
     "generated_output_is_concrete": true,
