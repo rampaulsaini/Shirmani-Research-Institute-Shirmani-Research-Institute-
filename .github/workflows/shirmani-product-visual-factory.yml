@@ -30,18 +30,17 @@ jobs:
         env:
           VISUAL_BATCH: "100"
         run: python3 factory/product_visual_identity_factory_v2.py
-      - name: Propose visual production changes through a PR
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: automation/product-visual-assets
-          delete-branch: false
-          commit-message: "production: refresh bounded product visual batch"
-          title: "production: publish bounded product visual batch"
-          body: |
-            Automated, bounded product visual refresh.
-            This change is proposed through a pull request so repository rules on main remain enabled.
-            Visual generation and QC are not sales, delivery, or independent verification.
-          add-paths: |
-            products/visuals/**
-            generated/product-visual-assets-v2.json
+      - name: Stage generated VISUAL outputs without bypassing protected main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "SHIRMANI Automission"
+          git config user.email "actions@users.noreply.github.com"
+          git add products/visuals generated/product-visual-assets-v2.json
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git commit -m "automission: stage visual production outputs"
+          git push --force-with-lease origin HEAD:refs/heads/automation/product-visual-assets-staging
+          echo "Staging branch updated: automation/product-visual-assets-staging. Protected main was not pushed."
