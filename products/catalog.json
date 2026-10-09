@@ -199,6 +199,29 @@
       ],
       "qc_gate": "Generates a shotlist only; actual MP4 must be recorded and reviewed separately",
       "demo": "showroom/production-studio.html#shotout"
+    },
+    {
+      "id": "SRI-WR-01",
+      "slug": "writing-research-brief-builder",
+      "name": "Writing & Research Brief Builder",
+      "category": "Writing & Research",
+      "status": "built-preview",
+      "version": "1.0.0",
+      "price": {
+        "label": "Quote required after scope review",
+        "currency": "INR"
+      },
+      "description": "Create a structured Hindi/English writing, research summary, or website/blog content enquiry with topic, audience, scope, deadline, source links, budget and contact details.",
+      "deliverables": [
+        "Interactive browser form",
+        "Copyable enquiry draft",
+        "Downloadable JSON brief",
+        "Print / Save PDF"
+      ],
+      "demo": "products/writing-research-brief-builder.html",
+      "usage_guide": "Fill in the required topic and purpose, add scope/deadline/sources/budget if available, generate the brief, review it, then copy or download it to send through a contact channel you choose.",
+      "qc_gate": "Browser-only draft generation; no email sending, payment processing, persistent storage, or order confirmation is connected.",
+      "commercial_status": "Quote required; no price promised until scope is agreed"
     }
   ]
 }
