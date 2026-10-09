@@ -19,6 +19,7 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 ## Supreme Compound Automission — Production Workspace v2
 
 - **Production Workspace v2:** [supreme-compound-automission-production-v2.html](supreme-compound-automission-production-v2.html) — four usable browser tools: Yatharth Learning Studio, Evidence-First Answer Builder, Digital Product Passport Maker, and Voice-to-Presentation Planner. The page distinguishes local tool behavior from unconnected AI/voice/payment integrations and labels QC/dispatch limitations clearly.
+- **Customer Voice & Quality Loop:** [SR-CUSTOMER-VOICE-QUALITY-LOOP-0001](products/concrete/SR-CUSTOMER-VOICE-QUALITY-LOOP-0001.html) — browser-local review capture, rating summary, improvement-ticket generation and JSON export. Shared review aggregation and automatic issue creation are not connected.
 
 ## Production Mission Control
 
