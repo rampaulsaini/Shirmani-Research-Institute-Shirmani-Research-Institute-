@@ -107,7 +107,7 @@ def main():
         "latest_cycle":cycle,
         "latest_cycle_records":len(results),
         "integrity":{"records_are_produced_artifacts":True,"independent_verification_claim":False}
-    },ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    },ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     for lane,items in rows.items():
         (ARTIFACT_DIR/f"{lane}.jsonl").write_text("".join(json.dumps(r,ensure_ascii=False)+"\n" for r in items),encoding="utf-8")
     module_stats=defaultdict(lambda: {"lane":"","module_kind":"","outputs":0,"latest_cycle":0,"latest_status":"PRODUCED"})
