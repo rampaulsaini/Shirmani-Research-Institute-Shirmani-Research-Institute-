@@ -24,7 +24,8 @@ jobs:
           sudo apt-get install -y ffmpeg
           python3 -m pip install --disable-pip-version-check "qrcode[pil]"
       - name: Concrete product batch
-        env: {PRODUCT_BATCH: ${{ github.event.inputs.batch || '100' }}}
+        env:
+          PRODUCT_BATCH: "${{ github.event.inputs.batch || '100' }}"
         run: python3 factory/autonomous_product_batch_factory.py
       - name: Product-specific QR asset batch
         env: {QR_BATCH: "250"}
@@ -33,7 +34,8 @@ jobs:
         env: {VISUAL_BATCH: "250", VISUAL_REBUILD: "0"}
         run: python3 factory/product_visual_identity_factory.py
       - name: Product-specific MP4 demos and VIP visual cards
-        env: {PRODUCT_DEMO_BATCH: ${{ github.event.inputs.media_batch || '25' }}}
+        env:
+          PRODUCT_DEMO_BATCH: "${{ github.event.inputs.media_batch || '25' }}"
         run: python3 factory/product_specific_demo_video_factory.py
       - name: Persist product artifacts to canonical production branch
         shell: bash
