@@ -324,3 +324,9 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 ## Production Chain Operator Console
 
 - **Production Chain Operator Console:** [production-chain-operator-console.html](production-chain-operator-console.html) — browser-local workbench to draft concrete product records, generate a passport/demo/QC checklist, and export drafts as JSON. Local counters are explicitly not repository-wide production, verified QC, sales, or income metrics. The page has no backend and does not claim email, voice, payment, QR, video hosting, or livestream integrations are connected.
+
+
+## Supreme Human Presentation Studio
+
+- **Browser demo:** [supreme-human-presentation-studio.html](supreme-human-presentation-studio.html) — local Q&A composition, evidence-state labels, optional browser speech input/output, animated illustrative avatar preview, and an interaction-chain summary.
+- **Prototype boundary:** no external AI model, custom/voice-cloned provider, accurate phoneme lip-sync, MP4 renderer, email sender, payment gateway, or always-on service is claimed as connected.
