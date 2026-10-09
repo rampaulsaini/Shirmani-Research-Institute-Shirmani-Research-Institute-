@@ -38,6 +38,16 @@
       "name": "JSON Shape Checker",
       "path": "products/micro/json-schema-checker.html",
       "category": "developer"
+    },
+    {
+      "id": "UT007",
+      "name": "Evidence Claim Ledger",
+      "path": "products/micro/evidence-claim-ledger.html",
+      "category": "research",
+      "passport": "products/UT007-product-passport.json",
+      "demo": "products/demo-scripts/UT007-evidence-claim-ledger.md",
+      "vip_visual": "products/vip-screenshots/ut007-evidence-claim-ledger.svg",
+      "price_inr": 0
     }
   ],
   "gates": [

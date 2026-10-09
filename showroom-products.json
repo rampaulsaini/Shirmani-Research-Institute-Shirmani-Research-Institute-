@@ -223,6 +223,24 @@
       "demo_url": "products/micro/yatharth-clarity-evidence-mapper.html",
       "visual_status": "SHOWROOM_CARD_VISUAL_PENDING",
       "passport_status": "INLINE_USAGE_GUIDE"
+    },
+    {
+      "id": "SRI-TOOL-UT007",
+      "category": "tool",
+      "name": "Evidence Claim Ledger",
+      "price_inr": 0,
+      "status": "PRODUCED_PUBLIC",
+      "store_url": "products/micro/evidence-claim-ledger.html",
+      "description": "Create traceable claim records with source URLs, evidence state, limitations and review notes; export JSON/CSV. Does not independently verify claims.",
+      "offer": "Free public browser tool",
+      "qc_gate": "QC-METADATA-PENDING",
+      "dispatch": "NO",
+      "version": "1.0.0",
+      "artifact_url": "products/micro/evidence-claim-ledger.html",
+      "artifact_evidence": "REPOSITORY_ARTIFACT_CREATED_AWAITING_WORKFLOW_QC",
+      "passport_url": "products/UT007-product-passport.json",
+      "demo_url": "products/demo-scripts/UT007-evidence-claim-ledger.md",
+      "vip_visual_url": "products/vip-screenshots/ut007-evidence-claim-ledger.svg"
     }
   ]
 }
