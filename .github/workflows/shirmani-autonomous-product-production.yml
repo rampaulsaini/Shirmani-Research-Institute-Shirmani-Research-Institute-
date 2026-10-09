@@ -1,6 +1,9 @@
 name: SHIRMANI Autonomous Product Production
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       batch:
@@ -23,6 +26,9 @@ permissions:
 
 jobs:
   production:
+    # Product generation commits are authoritative only on main. Feature branches
+    # must not start production batches or create bot commits in every PR branch.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
