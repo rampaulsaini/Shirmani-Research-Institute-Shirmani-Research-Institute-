@@ -54,9 +54,15 @@ def main():
       "last_cycle_product_id":pid,"last_cycle_concrete_results":1,"verification_is_downstream":True})
     overlay_path.write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     lines=passport_path.read_text(encoding="utf-8").splitlines() if passport_path.exists() else []
-    if not any(json.loads(s).get("id")==pid for s in lines if s.strip()):
+    replaced=False
+    for i,line in enumerate(lines):
+        if line.strip() and json.loads(line).get("id")==pid:
+            lines[i]=json.dumps(passport,ensure_ascii=False)
+            replaced=True
+            break
+    if not replaced:
         lines.append(json.dumps(passport,ensure_ascii=False))
-        passport_path.write_text("\n".join(lines)+"\n",encoding="utf-8")
+    passport_path.write_text("\\n".join(lines)+"\\n",encoding="utf-8")
     state=load(state_path,{})
     state.update({"generated_at":now,"catalog_identities":max(int(state.get("catalog_identities",5000)),len(products)),
       "concrete_repository_assets":len(products),"current_catalog_pending":max(0,5000-len(products)),
