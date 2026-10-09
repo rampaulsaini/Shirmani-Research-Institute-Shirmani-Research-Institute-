@@ -59,19 +59,14 @@ jobs:
             echo "No new production output."
             exit 0
           fi
-          git commit -m "chore(production): materialize next public product batch"
-          for attempt in 1 2 3 4 5 6 7; do
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
-                echo "Production batch published directly to main on attempt=$attempt."
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-            echo "Main moved or publication was rejected; retrying attempt=$attempt"
-            sleep $((attempt * 2))
-          done
-          echo "::warning::Direct main publication unavailable after retries; generated batch remains in this run workspace."
-          exit 0
+          # Keep generated production changes on a reviewable staging branch.
+          # Protected main must only be changed through an approved pull request.
+          git commit -m "chore(production): stage next public product batch"
+          branch="automation/production-scale-staging"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            remote_sha="$(git ls-remote origin "refs/heads/$branch" | cut -f1)"
+            git push --force-with-lease="refs/heads/$branch:$remote_sha" origin "HEAD:refs/heads/$branch"
+          else
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+          echo "- Generated batch staged on `$branch`; not published to protected main." >> "$GITHUB_STEP_SUMMARY"
