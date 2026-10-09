@@ -9,6 +9,10 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 
 - **Production-First Public Map:** [production-first-public-map.html](production-first-public-map.html) — four-stage Institute → Factory → QC/Gate → Showroom map with current published production telemetry.
 
+## Supreme Compound Automission — Production Workspace v2
+
+- **Production Workspace v2:** [supreme-compound-automission-production-v2.html](supreme-compound-automission-production-v2.html) — four usable browser tools: Yatharth Learning Studio, Evidence-First Answer Builder, Digital Product Passport Maker, and Voice-to-Presentation Planner. The page distinguishes local tool behavior from unconnected AI/voice/payment integrations and labels QC/dispatch limitations clearly.
+
 ## Production Mission Control
 
 - **Production Mission Control:** [production-mission-control.html](production-mission-control.html) — production-first public map for Institute → Factory → QC/Gate → Showroom/Sale, customer feedback and funding.
