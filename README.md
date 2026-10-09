@@ -26,6 +26,7 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 ## Client Outreach — SR-OUTREACH-005
 
 - **Research-to-Client Outreach Kit:** [working browser demo](showroom/research-to-client-outreach-kit.html) — official-source prospect research, tailored outreach drafts, and a browser-local follow-up pipeline/CSV export. Does not send messages or guarantee sales/income.
+- **Global Official Outreach Workbench:** [new browser demo](showroom/global-official-outreach-workbench.html) — sector-aware prospect record, official-source URL field, tailored outreach draft, local-only prospect ledger and CSV export. Manual human-reviewed sending only; no automatic email/WhatsApp, contact verification, payment or revenue claim.
 
 ## Supreme Compound Automission — Production Workspace v2
 
