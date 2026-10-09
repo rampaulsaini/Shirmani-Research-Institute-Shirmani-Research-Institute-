@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "institute": "Shirmani Research Institute",
-  "release": "Supreme Showroom V2 starter batch",
-  "note": "Starter catalogue only. Preview price is not a commercial offer; checkout, actual MP4 demos, review persistence and dispatch are not configured.",
+  "release": "Supreme Showroom V2 + Production Studio Batch 01",
+  "note": "Preview tools only. Commercial checkout, persistent reviews and dispatch require separate configuration; actual MP4s must be recorded and attached per product.",
   "products": [
     {
       "id": "SR-SHOW-001",
@@ -139,6 +139,66 @@
       ],
       "qc_gate": "Draft generator only; each product requires implementation, test evidence and release-owner approval",
       "demo": "showroom/#launch-kit"
+    },
+    {
+      "id": "SR-FACT-001",
+      "slug": "product-description-studio",
+      "name": "Yatharth Product Description Studio",
+      "category": "Product Operations",
+      "status": "preview",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free preview"
+      },
+      "deliverables": [
+        "interactive browser demo",
+        "product-specific description draft",
+        "TXT export",
+        "usage guide"
+      ],
+      "qc_gate": "Copy is a draft; product claims must be checked against working features",
+      "demo": "showroom/production-studio.html#copyout"
+    },
+    {
+      "id": "SR-FACT-002",
+      "slug": "price-offer-planner",
+      "name": "Transparent Price & Offer Planner",
+      "category": "Product Operations",
+      "status": "preview",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free preview"
+      },
+      "deliverables": [
+        "interactive browser demo",
+        "price estimate",
+        "TXT export",
+        "usage guide"
+      ],
+      "qc_gate": "Estimate only; taxes, actual fees and commercial terms require owner review",
+      "demo": "showroom/production-studio.html#priceout"
+    },
+    {
+      "id": "SR-FACT-003",
+      "slug": "demo-shotlist-builder",
+      "name": "Product Demo Video Shotlist Builder",
+      "category": "Media Production",
+      "status": "preview",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free preview"
+      },
+      "deliverables": [
+        "interactive browser demo",
+        "product-specific shotlist",
+        "TXT export",
+        "usage guide"
+      ],
+      "qc_gate": "Generates a shotlist only; actual MP4 must be recorded and reviewed separately",
+      "demo": "showroom/production-studio.html#shotout"
     }
   ]
 }
