@@ -19,6 +19,10 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 
 - **Client Proposal & Scope Builder — SR-WRITE-004:** [working browser demo](showroom/client-proposal-scope-builder.html) — creates a client-specific quote/scope proposal, delivery estimate, revision terms and TXT export; no automatic email/payment or sales claim.
 
+## Client Outreach — SR-OUTREACH-005
+
+- **Research-to-Client Outreach Kit:** [working browser demo](showroom/research-to-client-outreach-kit.html) — official-source prospect research, tailored outreach drafts, and a browser-local follow-up pipeline/CSV export. Does not send messages or guarantee sales/income.
+
 ## Supreme Compound Automission — Production Workspace v2
 
 - **Production Workspace v2:** [supreme-compound-automission-production-v2.html](supreme-compound-automission-production-v2.html) — four usable browser tools: Yatharth Learning Studio, Evidence-First Answer Builder, Digital Product Passport Maker, and Voice-to-Presentation Planner. The page distinguishes local tool behavior from unconnected AI/voice/payment integrations and labels QC/dispatch limitations clearly.
