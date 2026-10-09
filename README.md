@@ -331,3 +331,8 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 
 - **Browser demo:** [supreme-human-presentation-studio.html](supreme-human-presentation-studio.html) — local Q&A composition, evidence-state labels, optional browser speech input/output, animated illustrative avatar preview, and an interaction-chain summary.
 - **Prototype boundary:** no external AI model, custom/voice-cloned provider, accurate phoneme lip-sync, MP4 renderer, email sender, payment gateway, or always-on service is claimed as connected.
+
+
+## Shirmani Swarup Drishtikon — Social Platform MVP
+
+- **Interactive Social Platform Prototype:** [supreme-social-platform-mvp.html](supreme-social-platform-mvp.html) — local-only post composer and feed, category filters, source-link checks for news, program-room roadmap, and clearly stated backend/live-streaming limitations. Not yet a deployed social network.
