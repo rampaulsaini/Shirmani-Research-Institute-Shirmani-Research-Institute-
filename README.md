@@ -375,3 +375,9 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 ## Public Product Studio — new working demo (2026-10-09)
 
 - **SRI Product Studio v1:** [open the browser demo](showroom/sri-product-studio-v1.html) — public service cards, indicative starting-price anchors, a working client-brief/proposal generator, copy and TXT export, and clear boundaries around unconnected sales/payment/AI integrations. Prices are indicative only; no sales or income are claimed.
+
+
+## New concrete product — SRI-HV-001 Heart-View Communication Studio (2026-10-09)
+
+- **Working browser-local product:** [Heart-View Communication Studio](products/concrete/SRI-HV-001-heart-view-communication-studio.html) — builds a structured Hindi/English presentation brief from user input, separates personal/philosophical statements from source-based input, includes respectful live-delivery guidance, and exports a TXT brief.
+- **Product limitations:** deterministic browser-side template only; no external AI model, independent source verification, HeyGen/provider connection, voice cloning, avatar generation, lip-sync, live streaming, email sending, payment processing, or backend. The built-in walkthrough is not an MP4 recording. QC remains pending manual review.
