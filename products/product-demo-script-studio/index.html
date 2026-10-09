@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Create a clear, evidence-aware product demo script with audience, use case, proof points, offer and next step.">
+<title>Product Demo Script Studio | Shirmani Research Institute</title>
+<style>
+:root{color-scheme:light;--ink:#182230;--muted:#596579;--line:#d9e1ec;--paper:#fff;--bg:#f3f6fb;--accent:#174ea6;--soft:#eaf1ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}header{background:linear-gradient(125deg,#101d38,#174ea6);color:#fff;padding:36px 20px}header .wrap,main{max-width:1080px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:750;opacity:.8}h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.08;margin:.5rem 0}header p{max-width:760px;color:#e7efff}.pill{display:inline-block;border:1px solid #9db8ed;border-radius:999px;padding:4px 10px;font-size:.8rem}main{padding:24px 16px 60px}.layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 26px #172d4a0b}h2{font-size:1.25rem;margin:0 0 14px}label{display:block;font-weight:650;margin:13px 0 5px}input,textarea,select{width:100%;font:inherit;padding:11px 12px;border:1px solid #bdc9d9;border-radius:10px;background:#fff;color:var(--ink)}textarea{min-height:90px;resize:vertical}.hint,.muted{color:var(--muted);font-size:.9rem}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}button{border:0;border-radius:10px;background:var(--accent);color:#fff;font:inherit;font-weight:700;padding:11px 16px;cursor:pointer}button.secondary{background:#e9eef6;color:#182230;border:1px solid var(--line)}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #9db8ed;outline-offset:2px}#output{white-space:pre-wrap;overflow-wrap:anywhere;min-height:300px;background:#fbfcff;border:1px dashed #b7c7de;border-radius:12px;padding:16px}.notice{border-left:4px solid #b7791f;background:#fff8e8;padding:12px 14px;border-radius:8px;margin-top:16px;font-size:.9rem}.status{font-size:.85rem;min-height:1.4em;color:#17633b}.footer{margin-top:18px;font-size:.88rem;color:var(--muted)}@media(max-width:760px){.layout{grid-template-columns:1fr}header{padding:28px 18px}.card{padding:17px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="eyebrow">Shirmani Research Institute · Product Lab</div><h1>Product Demo Script Studio</h1><p>Turn a real product description into a practical, audience-aware demo plan. Explain the use case, demonstrate the workflow, disclose limitations and give customers a clear next step.</p><span class="pill">Browser-only prototype · no account required</span></div></header>
+<main>
+<div class="layout">
+<section class="card" aria-labelledby="inputs-title"><h2 id="inputs-title">1. Describe your product</h2>
+<label for="product">Product / tool name</label><input id="product" maxlength="120" placeholder="e.g. Evidence Passport Builder" value="Evidence Passport Builder">
+<label for="audience">Intended audience</label><input id="audience" maxlength="180" placeholder="e.g. small digital product teams" value="Small digital product teams">
+<label for="problem">Problem it solves</label><textarea id="problem" maxlength="600" placeholder="Describe the user's real problem">Teams need a consistent way to present product identity, usage guidance and release status.</textarea>
+<label for="features">Features that actually exist</label><textarea id="features" maxlength="900" placeholder="List only implemented features">Collect product ID, version, intended use, known limitations and release status in one structured record.</textarea>
+<label for="proof">Evidence / proof available</label><textarea id="proof" maxlength="600" placeholder="Tests, sample outputs, links, measured results—or say none">A generated sample record can be reviewed before use. No independent certification claimed.</textarea>
+<label for="limitations">Limitations / requirements</label><textarea id="limitations" maxlength="600" placeholder="Be specific">This prototype does not issue a certification, process payments or store submissions on a server.</textarea>
+<label for="offer">Offer / next step</label><input id="offer" maxlength="250" placeholder="e.g. request a scoped pilot" value="Request a scoped pilot; price confirmed after scope">
+<label for="duration">Demo duration</label><select id="duration"><option>60-second overview</option><option selected>3-minute guided demo</option><option>5-minute detailed demo</option><option>10-minute workshop</option></select>
+<div class="actions"><button id="generate">Generate demo script</button><button class="secondary" id="reset" type="button">Reset example</button></div><p class="hint">The script is assembled from your inputs; it does not independently validate product claims.</p></section>
+<section class="card" aria-labelledby="result-title"><h2 id="result-title">2. Customer-ready demo script</h2><div id="output" aria-live="polite">Choose “Generate demo script” to create your outline.</div><div class="actions"><button id="copy" class="secondary" type="button">Copy script</button><button id="download" class="secondary" type="button">Download .txt</button></div><p class="status" id="status" role="status"></p><div class="notice"><strong>Trust rule:</strong> Never invent performance, customer reviews, certifications, guarantees or savings. Replace placeholders with observed results and keep unsupported claims out of the demo.</div></section>
+</div>
+<section class="card" style="margin-top:18px"><h2>Product passport</h2><p class="muted">This page is a working script-generation prototype. It does not yet create a persistent QR passport, MP4 video, checkout, order record or server-backed review. Those require separate production work and integrations.</p><p><strong>Product ID:</strong> SRI-TOOL-002 · <strong>Release:</strong> Prototype v1 · <strong>QC:</strong> Local input/output smoke checks only · <strong>Dispatch:</strong> Not applicable</p><p class="footer">Shirmani Research Institute · सरल • सहज • निर्मल • पारदर्शी</p></section>
+</main>
+<script>
+(()=>{'use strict';
+const ids=['product','audience','problem','features','proof','limitations','offer','duration'];
+const el=id=>document.getElementById(id);
+const clean=id=>el(id).value.trim();
+function build(){const product=clean('product')||'[Product name]';const audience=clean('audience')||'[Audience]';const problem=clean('problem')||'[Describe the customer problem]';const features=clean('features')||'[List implemented features]';const proof=clean('proof')||'No evidence supplied yet. Show a sample and label it as a demonstration, not proof.';const limitations=clean('limitations')||'Limitations have not yet been documented; clarify before publishing.';const offer=clean('offer')||'Request a scoped discussion; confirm price and delivery in writing.';const duration=clean('duration');const script=[
+'SHIRMANI RESEARCH INSTITUTE — PRODUCT DEMO SCRIPT',
+'Product: '+product,'Audience: '+audience,'Format: '+duration,'',
+'1. OPEN — CUSTOMER CONTEXT',
+'“If you are '+audience+', you may face this challenge: '+problem+'”',
+'',
+'2. SHOW THE PRODUCT',
+'“This is '+product+'. I will show the actual workflow, not just describe it.”',
+'Walkthrough: demonstrate each implemented feature in this order:',
+features,'',
+'3. EXPLAIN THE USE',
+'Explain when to use the product, the intended user, required inputs, expected output and one realistic example. Let the audience inspect the result before asking them to decide.',
+'',
+'4. EVIDENCE AND LIMITATIONS',
+'Available evidence: '+proof,
+'Limitations / requirements: '+limitations,
+'Do not imply independent verification, guaranteed outcomes or capabilities that have not been tested.',
+'',
+'5. OFFER AND NEXT STEP',
+offer,
+'Confirm scope, deliverables, price, timeline, support and payment terms in writing before accepting an order.',
+'',
+'6. CUSTOMER QUESTIONS',
+'Ask: “What would you need to test before deciding?” Record questions and feedback with consent. Do not invent a testimonial or rating.',
+'',
+'7. RELEASE CHECKLIST',
+'[ ] Demonstrate the current build',
+'[ ] Show a real example and known limitations',
+'[ ] Confirm the product route works',
+'[ ] Confirm approved price and offer—or state “quote after scope”',
+'[ ] Provide usage guide and support route',
+'[ ] Record feedback and create a specific improvement item',
+'',
+'STATUS: Script generated locally from user-provided inputs. Product claims and evidence have not been independently verified.'
+];el('output').textContent=script.join('\n');el('status').textContent='Script generated in this browser.'}
+el('generate').addEventListener('click',build);
+el('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(el('output').textContent);el('status').textContent='Copied to clipboard.'}catch(e){el('status').textContent='Clipboard unavailable. Select the script and copy it manually.'}});
+el('download').addEventListener('click',()=>{const blob=new Blob([el('output').textContent],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='shirmani-product-demo-script.txt';a.click();URL.revokeObjectURL(url);el('status').textContent='Text file prepared for download.'});
+el('reset').addEventListener('click',()=>{el('product').value='Evidence Passport Builder';el('audience').value='Small digital product teams';el('problem').value='Teams need a consistent way to present product identity, usage guidance and release status.';el('features').value='Collect product ID, version, intended use, known limitations and release status in one structured record.';el('proof').value='A generated sample record can be reviewed before use. No independent certification claimed.';el('limitations').value='This prototype does not issue a certification, process payments or store submissions on a server.';el('offer').value='Request a scoped pilot; price confirmed after scope';el('duration').value='3-minute guided demo';build()});
+build();
+})();
+</script>
+</body></html>
