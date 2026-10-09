@@ -161,6 +161,9 @@ async function load(){
    fetch("generated/public-review-quality-status.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>({review_count:0}))
  ]);
  products=d.products||[];
+ const studioProduct={id:"SRI-TOOL-009",family:"Creator",engine:"productivity",name:"Product Blueprint Studio",description:"Free browser tool: turn a product idea into a structured brief, user journey, acceptance criteria, demo outline and showroom copy.",offer_price_inr:0,offer:"Free public tool",url:"products/micro/product-blueprint-studio.html",artifact_url:"products/micro/product-blueprint-studio.html",visual_asset:"products/visuals/SRI-TOOL-009.svg",usage_guide:"products/micro/product-blueprint-studio-guide.md"};
+ if(!products.some(p=>p.id===studioProduct.id)) products.unshift(studioProduct);
+ overlay.set(studioProduct.id,{status:"READY_FOR_QC",qc_code:"QC-PENDING-PUBLISHED-SMOKE-TEST",gate_no:"GATE-PENDING",dispatch_no:"NO",offer_price_inr:0,offer:"Free public tool",artifact_url:studioProduct.artifact_url,visual_asset:studioProduct.visual_asset});
  (ov.products||[]).forEach(p=>overlay.set(p.id,p));
  reviewStatus=rs||{};
  document.getElementById("total").textContent=products.length.toLocaleString("en-IN");
