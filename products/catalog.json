@@ -119,6 +119,26 @@
       ],
       "qc_gate": "Planning tool; does not launch workflows",
       "demo": "showroom/#automission-cycle"
+    },
+    {
+      "id": "SR-SHOW-007",
+      "slug": "launch-kit",
+      "name": "Supreme Product Launch Kit",
+      "category": "Product Operations",
+      "status": "preview",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free preview"
+      },
+      "deliverables": [
+        "interactive browser demo",
+        "downloadable launch brief",
+        "product-specific QC and release checklist",
+        "usage guide"
+      ],
+      "qc_gate": "Draft generator only; each product requires implementation, test evidence and release-owner approval",
+      "demo": "showroom/#launch-kit"
     }
   ]
 }
