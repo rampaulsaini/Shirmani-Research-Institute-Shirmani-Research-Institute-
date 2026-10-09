@@ -1,0 +1,26 @@
+{
+  "product_id": "SHI-CLARITY-001",
+  "name": "Yatharth Clarity Lab",
+  "version": "1.0.0",
+  "category": "Evidence-aware writing and decision tool",
+  "status": "PUBLIC-DEMO",
+  "product_type": "deterministic browser prototype",
+  "short_description": "Structure a claim, philosophical statement, product description, or decision into a clear brief with explicit evidence-state labels.",
+  "features": [
+    "local browser processing",
+    "claim-type selection",
+    "evidence notes and source URL capture",
+    "insufficient-evidence state",
+    "copy result",
+    "JSON export",
+    "print/save PDF"
+  ],
+  "limitations": [
+    "does not call an external AI model",
+    "does not browse or independently verify sources",
+    "no payment, ratings, or purchase backend"
+  ],
+  "qc_gate": "CLARITY-GATE-01",
+  "dispatch_state": "PUBLIC-DEMO",
+  "demo_url": "yatharth-supreme-clarity-lab.html"
+}
