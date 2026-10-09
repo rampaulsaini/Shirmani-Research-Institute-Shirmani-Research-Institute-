@@ -261,6 +261,22 @@
       "demo_url": "products/micro/yatharth-listing-offer-studio.html",
       "visual_status": "SHOWROOM_CARD_VISUAL_PENDING",
       "passport_status": "DRAFT_LISTING_REQUIRES_OWNER_REVIEW"
+    },
+    {
+      "id": "SRI-V2-SUITE-001",
+      "category": "tool-suite",
+      "name": "Supreme Compound Automission Production Workspace v2",
+      "price_inr": 0,
+      "status": "PRODUCED_PUBLIC_PENDING_MERGE",
+      "store_url": "supreme-compound-automission-production-v2.html",
+      "description": "Four usable client-side tools: Yatharth Learning Studio, Evidence-First Answer Builder, Digital Product Passport Maker, and Voice-to-Presentation Planner. Local browser operation; external AI/voice/payment integrations are not connected.",
+      "short_description": "Four browser tools for learning, evidence-aware writing, product passports and presentation planning.",
+      "offer": "Free browser-based production workspace",
+      "qc_gate": "QC-PENDING-POST-MERGE",
+      "dispatch": "PUBLIC_ROUTE_PENDING_MERGE",
+      "version": "2.0.0",
+      "artifact_url": "supreme-compound-automission-production-v2.html",
+      "artifact_evidence": "SOURCE_ADDED_IN_PULL_REQUEST_NOT_YET_DEPLOYED"
     }
   ]
 }
