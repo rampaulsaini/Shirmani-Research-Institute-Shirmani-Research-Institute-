@@ -277,6 +277,26 @@
       "version": "2.0.0",
       "artifact_url": "supreme-compound-automission-production-v2.html",
       "artifact_evidence": "SOURCE_ADDED_IN_PULL_REQUEST_NOT_YET_DEPLOYED"
+    },
+    {
+      "id": "SRI-SERVICE-001",
+      "category": "writing-research-service",
+      "name": "SHIRMANI Writing & Research Studio",
+      "price_inr": null,
+      "status": "PRODUCED_PUBLIC_PENDING_MERGE",
+      "store_url": "products/writing-research-studio.html",
+      "description": "Client-side enquiry brief builder for Hindi/English writing, research summaries, editing and website/blog content. Produces a copyable/downloadable brief; does not send enquiries or take payments.",
+      "short_description": "Create a clear Hindi/English writing or research brief before agreeing scope and price.",
+      "offer": "Enquiry builder; quote after scope review",
+      "qc_gate": "QC-PENDING-POST-MERGE",
+      "dispatch": "PUBLIC_ROUTE_PENDING_MERGE",
+      "version": "1.0.0",
+      "artifact_url": "products/writing-research-studio.html",
+      "artifact_evidence": "SOURCE_ADDED_IN_PULL_REQUEST_NOT_YET_DEPLOYED",
+      "usage_guide": "Select service and language, enter topic, size, deadline, budget and sources, then build and copy or download the enquiry brief.",
+      "demo_url": "products/writing-research-studio.html",
+      "visual_status": "PRODUCT_SPECIFIC_ON_PAGE_VISUAL",
+      "passport_status": "INLINE_SERVICE_AND_ACCEPTANCE_GATES"
     }
   ]
 }
