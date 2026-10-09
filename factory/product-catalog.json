@@ -196,6 +196,15 @@
           "delivery": "browser-tool",
           "asset_path": "products/micro/seo-meta-generator.html",
           "asset_evidence": "VERIFIED_IN_REPOSITORY"
+        },
+        {
+          "id": "M009",
+          "name": "Product Brief Forge",
+          "delivery": "browser-tool",
+          "asset_path": "products/micro/product-brief-forge.html",
+          "asset_evidence": "CREATED_ON_PRODUCTION_BRANCH",
+          "description": "Create a structured product passport, usage outline, and release acceptance checklist from a product idea.",
+          "price_inr": 0
         }
       ]
     }
