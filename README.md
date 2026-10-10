@@ -420,3 +420,8 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 ## First Paid Pilot Offer — Client-Ready Page
 
 - **First Client Pilot:** [open proposed writing/research offers and enquiry builder](first-paid-pilot-offer.html) — ₹499 writing polish, ₹999 source-based research summary, and ₹1,499 website/blog draft are proposed starter rates only. The browser-local page prepares/copies/downloads an enquiry draft; it does not send messages, take payment, create an order, or claim revenue. Confirm scope, price, timeline, revisions and payment terms in writing before accepting work.
+
+
+## New Concrete Product — Bilingual Clarity Audit (SRI-WRITE-006)
+
+- **Bilingual Clarity Audit:** [open working browser-local tool](showroom/bilingual-clarity-audit.html) — checks basic draft structure, audience context, next-step language, source cues, benefits and contact route; produces a checklist report with copy, TXT download and print/PDF. It uses transparent heuristics, not an external AI model; it does not fact-check, inspect live URLs, send data, accept payments or guarantee conversions. Proposed human-reviewed service add-on from ₹299, subject to written scope confirmation.
