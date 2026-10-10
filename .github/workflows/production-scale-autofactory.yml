@@ -24,7 +24,7 @@ jobs:
       PRODUCT_TARGET: "5000"
       PRODUCTION_BATCH: "500"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
       - name: Use canonical production-state branch
