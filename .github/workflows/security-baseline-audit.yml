@@ -23,3 +23,14 @@ jobs:
           persist-credentials: false
       - name: Run read-only credential and workflow-hardening scan
         run: python3 scripts/security_baseline_audit.py
+      - name: Run focused workflow static baseline
+        if: always()
+        run: python3 scripts/security/workflow_static_baseline.py
+      - name: Upload machine-readable workflow report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: workflow-static-security-baseline
+          path: security/reports/workflow-static-baseline.json
+          if-no-files-found: warn
+          retention-days: 30
