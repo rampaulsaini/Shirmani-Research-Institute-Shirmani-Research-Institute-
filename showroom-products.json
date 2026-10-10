@@ -394,6 +394,32 @@
         "No server persistence, email, checkout, payment or sales integration",
         "Manual browser testing and QC remain pending"
       ]
+    },
+    {
+      "id": "SRI-PRES-001",
+      "category": "presentation",
+      "name": "Heart-View Presentation Production Studio",
+      "price_inr": 0,
+      "status": "PROTOTYPE_QC_PENDING",
+      "description": "Browser-local presentation pack builder with script, scene plan, source ledger, voice-to-presentation workflow and consent-aware release checklist.",
+      "short_description": "Turn a topic into a presenter script, scene plan, evidence notes and a release checklist; export the pack as TXT.",
+      "offer": "Free prototype test drive; custom voice/video production quoted separately after scope confirmation",
+      "qc_gate": "QC-PENDING-MANUAL-TEST",
+      "dispatch": "PREVIEW_ONLY",
+      "version": "1.0.0",
+      "artifact_url": "showroom/heart-view-presentation-production-studio.html",
+      "demo_url": "showroom/heart-view-presentation-production-studio.html",
+      "usage_guide": "Enter topic, audience, language, duration, outcome, key points and source links; generate the pack; export TXT; check consent, source review, disclosure and human-review gates before any external production.",
+      "visual_status": "VIP_SCREENSHOT_PENDING",
+      "demo_video_status": "MP4_RENDERING_NOT_IMPLEMENTED",
+      "passport_status": "INLINE_USAGE_AND_LIMITATIONS",
+      "artifact_evidence": "CREATED_ON_PRODUCTION_BRANCH_REVIEW_AND_MANUAL_QC_PENDING",
+      "limitations": [
+        "No MP4 rendering or voice/face generation",
+        "No external AI, email, checkout, payment or publishing integration",
+        "Sources are supplied by the user and not independently verified",
+        "Manual browser testing and QC remain pending"
+      ]
     }
   ]
 }
