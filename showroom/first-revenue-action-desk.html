@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI — First Revenue Action Desk</title>
+<meta name="description" content="A practical client-ready desk for Hindi/English writing, research summaries, and website/blog content.">
+<style>
+:root{color-scheme:dark;--bg:#08111d;--panel:#101f30;--line:#294258;--gold:#f0cb65;--cyan:#69e1ed;--muted:#b6c5d3}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0,#17344b,var(--bg) 55%);color:#f5f7fa;font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1100px;margin:auto;padding:26px 16px 60px}header,.panel{border:1px solid var(--line);border-radius:18px;background:#0d1b2beF;padding:22px;margin-bottom:18px}
+.eyebrow{letter-spacing:.12em;color:var(--cyan);font-weight:800;font-size:.78rem}h1,h2{line-height:1.15}h1{font-size:clamp(2rem,5vw,3.5rem);margin:.4rem 0;color:var(--gold)}h2{font-size:1.35rem;color:var(--gold)}p,.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.card{border:1px solid var(--line);border-radius:14px;padding:17px;background:#0a1624}.price{font-size:1.6rem;color:var(--cyan);font-weight:800}.tag{display:inline-block;border:1px solid #426176;border-radius:999px;padding:3px 9px;font-size:.78rem;color:#d5e5ee}
+label{display:block;margin:12px 0 5px;color:#dce7ef;font-weight:650}input,select,textarea{width:100%;padding:11px;border:1px solid #3a566c;border-radius:9px;background:#07121e;color:#fff;font:inherit}textarea{min-height:85px}button,.button{display:inline-block;background:var(--gold);color:#10151b;font-weight:800;border:0;border-radius:9px;padding:11px 15px;margin:8px 7px 0 0;cursor:pointer;text-decoration:none}.secondary{background:#153246;color:#eaf8ff;border:1px solid #3e7188}.notice{border-left:4px solid var(--cyan);padding:10px 14px;background:#102b3a;color:#e5f3f8}.small{font-size:.88rem}#draft{white-space:pre-wrap;background:#07121e;border:1px solid var(--line);border-radius:10px;padding:15px;min-height:90px}footer{padding:15px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body><main>
+<header><div class="eyebrow">꙰ SHIRMANI RESEARCH INSTITUTE · CLIENT ACQUISITION</div>
+<h1>First Revenue Action Desk</h1>
+<p>Turn a real client need into a clearly scoped Hindi/English writing or research assignment. Build a proposal, agree terms, deliver quality, and record the outcome.</p>
+<div class="notice"><strong>Honest operating rule:</strong> these are proposed starter prices, not guaranteed market rates. No client contact, order, payment, sale, or income is claimed by this page. Confirm scope, deadline, price, revisions, and payment terms with the client before starting.</div>
+</header>
+<section class="panel"><h2>1 · Client-ready service menu</h2><div class="grid">
+<article class="card"><span class="tag">STARTER</span><h3>Hindi / English Writing</h3><div class="price">₹999*</div><p>One clearly scoped short article, editing task, or structured draft up to 800 words.</p><p class="small">Includes one agreed revision. Research-heavy work is quoted separately.</p></article>
+<article class="card"><span class="tag">RESEARCH</span><h3>Research Summary</h3><div class="price">₹1,999*</div><p>A concise summary of client-provided or agreed public sources, with links and limitations.</p><p class="small">Not legal, medical, investment, or independently certified advice.</p></article>
+<article class="card"><span class="tag">WEB CONTENT</span><h3>Website / Blog Content</h3><div class="price">₹2,499*</div><p>One landing-page section or blog draft with audience, tone, and call-to-action defined.</p><p class="small">Design, SEO guarantees, publishing, and paid assets are excluded unless agreed.</p></article>
+</div><p class="small">*Indicative pilot reference only. Confirm the final quote after reviewing the brief. Never promise unsupported results or plagiarize source material.</p></section>
+<section class="panel"><h2>2 · Build an enquiry and proposal</h2>
+<div class="grid"><div><label for="client">Client / organisation</label><input id="client" placeholder="Name or organisation"></div><div><label for="email">Client email (optional)</label><input id="email" type="email" placeholder="contact@example.org"></div>
+<div><label for="service">Requested service</label><select id="service"><option value="Hindi / English Writing">Hindi / English Writing — proposed ₹999</option><option value="Research Summary">Research Summary — proposed ₹1,999</option><option value="Website / Blog Content">Website / Blog Content — proposed ₹2,499</option><option value="Custom scope">Custom scope — quote after review</option></select></div>
+<div><label for="language">Language</label><select id="language"><option>Hindi</option><option>English</option><option>Hindi + English</option></select></div>
+<div><label for="words">Word limit / scope</label><input id="words" placeholder="e.g. 800 words / 5 sources"></div><div><label for="deadline">Requested deadline</label><input id="deadline" type="date"></div>
+<div><label for="budget">Client budget / proposed quote (INR)</label><input id="budget" inputmode="numeric" placeholder="Discuss and confirm"></div><div><label for="revisions">Included revisions</label><select id="revisions"><option>1 revision</option><option>2 revisions</option><option>None — final delivery</option><option>To be agreed</option></select></div></div>
+<label for="purpose">Client objective / topic</label><textarea id="purpose" placeholder="What should the deliverable help the client accomplish?"></textarea>
+<label for="sources">Sources / links / requirements</label><textarea id="sources" placeholder="Paste public links or list client-provided materials. Do not enter passwords or confidential data."></textarea>
+<button id="generate">Generate proposal draft</button><button class="secondary" id="copy">Copy draft</button><button class="secondary" id="download">Download TXT</button>
+<div id="draft" aria-live="polite">Your proposal draft will appear here. Complete the brief, then select “Generate proposal draft”.</div>
+<p class="small">Email is opened only when you choose to open a draft and an email address is supplied. This page does not send messages, collect payments, or upload the brief.</p><button class="secondary" id="emailDraft">Open email draft</button>
+</section>
+<section class="panel"><h2>3 · Simple outcome tracker</h2><p>Record real activity, not assumed success. These entries remain in this browser only and are not shared with the institute or synced across devices.</p>
+<div class="grid"><div><label for="prospects">Relevant prospects researched</label><input id="prospects" type="number" min="0" value="0"></div><div><label for="sent">Messages actually sent by you</label><input id="sent" type="number" min="0" value="0"></div><div><label for="replies">Replies received</label><input id="replies" type="number" min="0" value="0"></div><div><label for="paid">Paid orders completed</label><input id="paid" type="number" min="0" value="0"></div><div><label for="revenue">Revenue actually received (₹)</label><input id="revenue" type="number" min="0" value="0"></div></div>
+<button id="save" >Save tracker on this device</button><button class="secondary" id="export">Export tracker JSON</button><button class="secondary" id="clear">Clear tracker</button><p id="trackerStatus" class="small" aria-live="polite">Not saved yet.</p>
+</section>
+<section class="panel"><h2>4 · Seven-day execution checklist</h2><ol><li>Choose one service and prepare one original, polished sample.</li><li>Identify 10 relevant prospects from official public websites; record the source URL and why the service fits.</li><li>Personalise each message; send manually only to appropriate public business contacts and respect opt-outs.</li><li>Follow up once after a reasonable interval, unless asked not to.</li><li>For every interested client, agree scope, deadline, revisions, fee and payment milestone in writing.</li><li>Deliver the agreed work, request feedback, and ask permission before publishing a testimonial.</li><li>Update the tracker with actual replies, completed work and received payments.</li></ol>
+<p class="notice">No mass unsolicited messaging, scraped private contact lists, impersonation, fabricated testimonials, or guaranteed-income claims.</p></section>
+<footer>SHIRMANI RESEARCH INSTITUTE · Browser-local working tool · Version 1.0 · Proposal and tracker data are not automatically uploaded.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+let latestDraft='';
+function buildDraft(){
+ const client=$('client').value.trim()||'[Client / organisation]';
+ const service=$('service').value, language=$('language').value;
+ const quote=$('budget').value.trim()||'To be confirmed after scope review';
+ const words=$('words').value.trim()||'To be agreed';
+ const deadline=$('deadline').value||'To be agreed in writing';
+ const purpose=$('purpose').value.trim()||'[Client objective / topic]';
+ const sources=$('sources').value.trim()||'Sources to be agreed';
+ latestDraft='SHIRMANI RESEARCH INSTITUTE — PROPOSED SERVICE SCOPE\n\nClient: '+client+'\nService: '+service+'\nLanguage: '+language+'\nScope / word limit: '+words+'\nObjective: '+purpose+'\nSources / requirements: '+sources+'\nProposed fee: ₹'+quote+'\nRequested deadline: '+deadline+'\nRevisions: '+$('revisions').value+'\n\nDeliverables: One agreed digital deliverable in the scope above, with source links where relevant and limitations disclosed.\n\nBefore work begins, both parties will confirm the final scope, price, delivery date, revision limit, ownership/licensing terms and payment schedule in writing. Work begins only after acceptance of those terms and any agreed advance. Changes outside scope may require a revised quote. No outcome, ranking, scientific verification or commercial result is guaranteed unless explicitly agreed and evidenced.\n\nPrepared as a draft; not yet sent or accepted.';
+ $('draft').textContent=latestDraft;
+}
+$('generate').addEventListener('click',buildDraft);
+$('copy').addEventListener('click',async()=>{if(!latestDraft)buildDraft();try{await navigator.clipboard.writeText(latestDraft);$('trackerStatus').textContent='Proposal copied.'}catch(e){$('draft').focus();$('trackerStatus').textContent='Clipboard unavailable; select and copy the draft text manually.'}});
+$('download').addEventListener('click',()=>{if(!latestDraft)buildDraft();const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([latestDraft],{type:'text/plain;charset=utf-8'}));a.download='shirmani-client-proposal.txt';a.click();URL.revokeObjectURL(a.href)});
+$('emailDraft').addEventListener('click',()=>{if(!latestDraft)buildDraft();const email=$('email').value.trim();if(!email){$('trackerStatus').textContent='Enter the recipient email first. No message has been sent.';return}location.href='mailto:'+encodeURIComponent(email)+'?subject='+encodeURIComponent('Proposed writing / research scope — SHIRMANI')+'&body='+encodeURIComponent(latestDraft)});
+const trackerIds=['prospects','sent','replies','paid','revenue'];
+function tracker(){return Object.fromEntries(trackerIds.map(k=>[k,Math.max(0,Number($(k).value)||0)]))}
+$('save').addEventListener('click',()=>{try{localStorage.setItem('shirmani-first-revenue-tracker',JSON.stringify(tracker()));$('trackerStatus').textContent='Saved on this browser/device only. These figures are user-entered, not independently verified.'}catch(e){$('trackerStatus').textContent='Local storage unavailable; export JSON to keep a copy.'}});
+$('export').addEventListener('click',()=>{const data={recorded_at:new Date().toISOString(),scope:'browser-local user-entered activity; not independently verified',metrics:tracker()};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download='shirmani-activity-tracker.json';a.click();URL.revokeObjectURL(a.href)});
+$('clear').addEventListener('click',()=>{if(!confirm('Clear the saved tracker from this browser?'))return;try{localStorage.removeItem('shirmani-first-revenue-tracker')}catch(e){}trackerIds.forEach(k=>$(k).value='0');$('trackerStatus').textContent='Tracker cleared on this browser.'});
+try{const saved=JSON.parse(localStorage.getItem('shirmani-first-revenue-tracker')||'null');if(saved)trackerIds.forEach(k=>$(k).value=saved[k]??0)}catch(e){}
+</script></body></html>
