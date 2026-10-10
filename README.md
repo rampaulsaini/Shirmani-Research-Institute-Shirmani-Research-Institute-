@@ -437,3 +437,10 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 ## First Paid Pilot Offer — Client-Ready Page
 
 - **First Client Pilot:** [open proposed writing/research offers and enquiry builder](first-paid-pilot-offer.html) — ₹499 writing polish, ₹999 source-based research summary, and ₹1,499 website/blog draft are proposed starter rates only. The browser-local page prepares/copies/downloads an enquiry draft; it does not send messages, take payment, create an order, or claim revenue. Confirm scope, price, timeline, revisions and payment terms in writing before accepting work.
+
+
+## SRI-HV-001 — Heart-View Human Presentation Production Contract
+
+- [Production contract and acceptance tests](docs/products/sri-hv-001-character-presentation-production-contract.md)
+- Defines the character's communication qualities, four capability tiers, evidence gate, voice/face authorization, acceptance tests, release record and continuous improvement loop.
+- Current integration boundary: a browser prototype is not a provider-backed live avatar; only tested and connected components may be advertised as live.
