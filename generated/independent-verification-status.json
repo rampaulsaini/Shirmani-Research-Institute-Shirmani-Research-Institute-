@@ -1,26 +1,223 @@
 {
   "version": 1,
-  "generated_at": "2026-10-04T11:55:00Z",
-  "state": "NOT_VERIFIED",
+  "generated_from": {
+    "queue": "generated/independent-verification-queue.jsonl.gz",
+    "registry": "generated/independent-verification-registry.jsonl.gz"
+  },
   "queue_total": 100200,
-  "queued_records": 100200,
-  "prepared_review_records": 100200,
-  "prepared_percent": 100,
-  "reviewed_records": 0,
+  "registry_total": 100200,
+  "prepared_review_records": 12950,
   "verified_records": 0,
-  "verified_percent_of_queue": 0,
-  "promotion_eligible": 0,
-  "packet_qc_checked_items": 1000,
-  "queue_qc_error_count": 0,
-  "registry_qc_error_count": 0,
-  "promotion_qc_error_count": 0,
-  "policy": "No task may be auto-promoted to VERIFIED. VERIFIED requires independent review, evidence, countercase, reproduction/test and audit records matching the current task hash.",
-  "source_artifacts": [
-    "generated/VERIFICATION-QUEUE.json",
-    "generated/VERIFICATION-QUEUE-QC.json",
-    "generated/VERIFICATION-REGISTRY.json",
-    "generated/VERIFICATION-PROMOTION-QC.json",
-    "generated/VERIFICATION-PACKET-QC.json"
+  "review_records": 0,
+  "unverified_records": 100200,
+  "blocked_records": 0,
+  "other_registry_status_records": 0,
+  "verification_policy": "FAIL_CLOSED",
+  "workflow_success_is_not_independent_verification": true,
+  "human_review_required_for_verified_promotion": true,
+  "prepared_ranges": [
+    [
+      1,
+      25
+    ],
+    [
+      26,
+      50
+    ],
+    [
+      51,
+      75
+    ],
+    [
+      76,
+      100
+    ],
+    [
+      101,
+      125
+    ],
+    [
+      126,
+      150
+    ],
+    [
+      151,
+      175
+    ],
+    [
+      176,
+      200
+    ],
+    [
+      201,
+      225
+    ],
+    [
+      226,
+      250
+    ],
+    [
+      251,
+      275
+    ],
+    [
+      276,
+      300
+    ],
+    [
+      301,
+      325
+    ],
+    [
+      326,
+      350
+    ],
+    [
+      351,
+      375
+    ],
+    [
+      376,
+      400
+    ],
+    [
+      401,
+      425
+    ],
+    [
+      426,
+      450
+    ],
+    [
+      451,
+      475
+    ],
+    [
+      476,
+      500
+    ],
+    [
+      501,
+      525
+    ],
+    [
+      526,
+      550
+    ],
+    [
+      551,
+      575
+    ],
+    [
+      576,
+      600
+    ],
+    [
+      601,
+      625
+    ],
+    [
+      626,
+      650
+    ],
+    [
+      651,
+      675
+    ],
+    [
+      676,
+      700
+    ],
+    [
+      701,
+      725
+    ],
+    [
+      726,
+      750
+    ],
+    [
+      751,
+      775
+    ],
+    [
+      776,
+      800
+    ],
+    [
+      801,
+      825
+    ],
+    [
+      826,
+      850
+    ],
+    [
+      851,
+      875
+    ],
+    [
+      876,
+      900
+    ],
+    [
+      901,
+      925
+    ],
+    [
+      926,
+      950
+    ],
+    [
+      951,
+      1950
+    ],
+    [
+      1951,
+      2950
+    ],
+    [
+      2951,
+      3950
+    ],
+    [
+      3951,
+      4950
+    ],
+    [
+      4951,
+      5950
+    ],
+    [
+      5951,
+      6950
+    ],
+    [
+      6951,
+      7950
+    ],
+    [
+      7951,
+      8950
+    ],
+    [
+      8951,
+      9950
+    ],
+    [
+      9951,
+      10950
+    ],
+    [
+      10951,
+      11950
+    ],
+    [
+      11951,
+      12950
+    ]
   ],
-  "integrity_note": "Prepared/queued is not reviewed; reviewed is not VERIFIED; deterministic QC is not independent scientific verification."
+  "prepared_percent": 12.92,
+  "verified_percent_of_queue": 0.0,
+  "state": "READY_FOR_REVIEW"
 }
