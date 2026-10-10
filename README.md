@@ -423,3 +423,9 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 ## First Paid Pilot Offer — Client-Ready Page
 
 - **First Client Pilot:** [open proposed writing/research offers and enquiry builder](first-paid-pilot-offer.html) — ₹499 writing polish, ₹999 source-based research summary, and ₹1,499 website/blog draft are proposed starter rates only. The browser-local page prepares/copies/downloads an enquiry draft; it does not send messages, take payment, create an order, or claim revenue. Confirm scope, price, timeline, revisions and payment terms in writing before accepting work.
+
+
+## First Revenue Action Desk — 2026-10-10
+
+- **[Open the client-ready First Revenue Action Desk](showroom/first-revenue-action-desk.html)** — proposed writing, research-summary, and website/blog packages; generates a scoped proposal; opens a user-reviewed email draft; exports TXT/JSON; and tracks user-entered prospect, reply, order, and received-revenue metrics locally in the browser.
+- **Readiness boundary:** proposed prices are not guaranteed market rates. The tool does not send messages, accept payment, synchronise tracker data, or claim a sale/income. Confirm scope, deadline, revisions, ownership/licensing, and payment terms before work begins.
