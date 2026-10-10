@@ -410,3 +410,8 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 
 - **[Open browser-local Product Passport & Demo Studio](showroom/supreme-product-passport-demo-studio.html)** — drafts a product-specific showroom card, product passport JSON, QR route, and demo-video shot list from the product details; includes release checklist and print/PDF support.
 - **Current status:** browser-local prototype. It does not record or publish MP4 video, store data on a server, send outreach, accept payment, or grant QC/dispatch approval. QR rendering uses a third-party service. Actual screenshot, MP4, usage guide, QC report, pricing terms, and sales route must be separately completed and checked before a product is marked showroom-ready.
+
+
+## Revenue-First Service Desk (new concrete tool)
+
+- **Writing & Research Client Enquiry Desk:** [open browser-local tool](showroom/revenue-first-service-desk.html) — proposes pilot service packages, captures client scope, generates a reviewable enquiry draft, and supports copy/TXT export. Does not send messages, accept payment, or claim income.
