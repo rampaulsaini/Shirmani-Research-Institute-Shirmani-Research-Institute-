@@ -1,5 +1,15 @@
 # Shirmani Research Institute
 
+## Public Showroom — Direct Entry
+
+- **[Open the public showroom](https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/showroom-public.html)** — public landing page for the product catalogue, working browser demos, writing/research services, order preparation, and product readiness notes.
+- **[Browse the product catalogue](https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/showroom/public-product-showroom.html)** — searchable registry-backed catalogue. Product links, recorded prices and readiness states are shown from available records.
+- **[Open the main platform](https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/)** — primary public interface.
+- **[Start a Hindi/English writing or research enquiry](https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/writing-research-enquiry.html)** — define the scope before confirming price, delivery and payment terms.
+
+**Public-readiness rule:** a public listing is not proof that a product is fully produced, that a demo video or screenshot exists, that checkout is connected, or that a sale/payment occurred. Missing production assets and integrations must remain explicitly marked pending.
+
+
 - **Product Demo & Visual Brief Studio (SRI-MEDIA-001):** [open browser tool](showroom/product-demo-visual-brief-studio.html) — generates a product-specific video storyboard, VIP screenshot composition brief, QR destination record and release checklist. Browser-local brief only; it does not record/render MP4, capture screenshots, generate QR images, publish, independently certify QC, contact prospects, or process payments.
 
 [![SHIRMANI Production Persistence & Truth Gate](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/workflows/shirmani-production-persistence.yml/badge.svg)](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/workflows/shirmani-production-persistence.yml)
