@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product Demo Video Production Desk | Shirmani Research Institute</title>
+<meta name="description" content="Build a product-specific demo video plan, shot list, narration, usage guide and release checklist.">
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#141d33;--line:#30415e;--ink:#eef4ff;--muted:#aebbd2;--gold:#e7c47b;--green:#8bd7b0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b2d4c,var(--bg) 60%);color:var(--ink);font:16px/1.55 system-ui,sans-serif}main{max-width:1120px;margin:auto;padding:24px}header,.panel{background:#111a2dcc;border:1px solid var(--line);border-radius:18px;padding:22px;margin:14px 0}h1,h2{line-height:1.15}h1{font-size:clamp(2rem,5vw,3.5rem);margin:.3em 0;color:var(--gold)}p,.muted{color:var(--muted)}label{display:block;font-weight:650;margin:12px 0 5px}input,select,textarea{width:100%;background:#091121;color:var(--ink);border:1px solid #405371;border-radius:10px;padding:12px;font:inherit}textarea{min-height:90px}button,.button{border:0;border-radius:10px;background:var(--gold);color:#151a26;padding:12px 16px;font-weight:750;cursor:pointer;margin:7px 7px 0 0}button.secondary{background:#263957;color:var(--ink);border:1px solid #405371}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.stat{border:1px solid var(--line);border-radius:12px;padding:14px;background:#0c1426}.pill{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:4px 10px;color:var(--green);font-size:.85rem}.output{white-space:pre-wrap;background:#080e1b;border:1px solid var(--line);border-radius:12px;padding:16px;min-height:150px}.notice{border-left:4px solid var(--gold);padding:10px 14px;background:#1b2232}footer{padding:18px;color:var(--muted);font-size:.9rem}a{color:#a9d1ff}
+</style></head>
+<body><main>
+<header><span class="pill">SRI • Concrete production tool</span><h1>Product Demo Video Production Desk</h1>
+<p>Turn a real product into a clear, honest, customer-facing demo plan: problem → setup → live use → result → limitations → offer. Create a separate plan for each product/version.</p>
+<p><strong>Production boundary:</strong> this tool writes a shot list and narration plan. It does not record/render MP4, create a screenshot, host media, generate a QR image, or certify QC. Attach actual media and test playback before calling a listing demo-ready.</p></header>
+<section class="panel"><h2>1. Product identity & demo brief</h2><div class="grid">
+<div><label for="pid">Product ID / version</label><input id="pid" placeholder="e.g. SRI-RES-002 v1.0"></div>
+<div><label for="name">Product name</label><input id="name" placeholder="Claim & Evidence Mapper"></div>
+<div><label for="audience">Intended customer</label><input id="audience" placeholder="Researchers, educators, small teams"></div>
+<div><label for="duration">Demo duration</label><select id="duration"><option>60 seconds</option><option selected>2 minutes</option><option>3 minutes</option><option>5 minutes</option><option>10 minutes</option></select></div>
+</div><label for="problem">Customer problem / job-to-be-done</label><textarea id="problem" placeholder="What specific task does this product help with?"></textarea>
+<label for="features">Real features that can be demonstrated now</label><textarea id="features" placeholder="List only features you have actually tested in the current version."></textarea>
+<label for="steps">Exact test steps and expected visible result</label><textarea id="steps" placeholder="Step 1... Step 2... Expected result..."></textarea>
+<label for="limits">Known limitations / integrations not connected</label><textarea id="limits" placeholder="For example: browser-local only; no cloud sync or payment."></textarea>
+<label for="url">Public demo URL (optional)</label><input id="url" type="url" placeholder="https://...">
+<label for="offer">Offer / price (optional; label proposed prices honestly)</label><input id="offer" placeholder="e.g. Pilot quote after scope confirmation">
+<button id="build">Generate demo production pack</button><button class="secondary" id="copy">Copy pack</button><button class="secondary" id="download">Download TXT</button><button class="secondary" id="print">Print / save PDF</button>
+</section>
+<section class="panel"><h2>2. Generated production pack</h2><div class="grid"><div class="stat"><strong>Deliverable A</strong><p>Timed shot list + on-screen captions</p></div><div class="stat"><strong>Deliverable B</strong><p>Voice-over script + real test sequence</p></div><div class="stat"><strong>Deliverable C</strong><p>Usage guide + limitations disclosure</p></div><div class="stat"><strong>Deliverable D</strong><p>Media/QC release checklist</p></div></div><div id="output" class="output" aria-live="polite">Enter product details and generate the pack. Do not claim a feature until it passes the described test.</div></section>
+<section class="panel"><h2>3. Release gate — actual assets required</h2><p>Check only after the item is actually produced and inspected. These checkboxes are a local planning aid, not proof of completion.</p><div class="grid">
+<label><input type="checkbox" class="gate"> Product-specific screenshot/VIP visual saved and linked</label>
+<label><input type="checkbox" class="gate"> Demo MP4 rendered and playback checked</label>
+<label><input type="checkbox" class="gate"> Voice-over, captions and timings checked</label>
+<label><input type="checkbox" class="gate"> Usage guide matches current version</label>
+<label><input type="checkbox" class="gate"> Limitations, price and support terms shown</label>
+<label><input type="checkbox" class="gate"> Passport/QR destination opens correctly</label>
+<label><input type="checkbox" class="gate"> QC reviewer recorded result and evidence link</label>
+<label><input type="checkbox" class="gate"> Dispatch/sale state approved separately</label>
+</div><p id="gateStatus" class="notice">0 of 8 local checklist items checked. This is not an independent QC result.</p></section>
+<footer>Shirmani Research Institute • Product-first, evidence-aware production • Browser-local tool: content is not uploaded or saved to a server. Export your pack and store it in the repository or approved product record.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function makePack(){
+ const pid=$('pid').value.trim()||'[PRODUCT-ID / VERSION]';
+ const name=$('name').value.trim()||'[PRODUCT NAME]';
+ const audience=$('audience').value.trim()||'[TARGET CUSTOMER]';
+ const duration=$('duration').value;
+ const problem=$('problem').value.trim()||'[Describe the customer problem]';
+ const features=$('features').value.trim()||'[Enter tested features only]';
+ const steps=$('steps').value.trim()||'[Write exact reproducible test steps and expected result]';
+ const limits=$('limits').value.trim()||'Limitations not supplied; confirm before publication.';
+ const url=$('url').value.trim()||'[Add public demo URL]';
+ const offer=$('offer').value.trim()||'Price/offer: confirm scope and terms before accepting an order.';
+ const pack=`SHIRMANI RESEARCH INSTITUTE — PRODUCT DEMO PRODUCTION PACK
+Product: ${name}
+Product ID/version: ${pid}
+Audience: ${audience}
+Target runtime: ${duration}
+Demo URL: ${url}
+
+CUSTOMER PROBLEM
+${problem}
+
+SHOT LIST / VOICE-OVER
+00:00–00:08 | Opening title: ${name} | Say what task this version is designed to help with. No unsupported superlative claims.
+00:08–00:20 | Problem context | Show a realistic example using dummy/non-sensitive data.
+00:20–00:35 | Setup | Show the actual current interface and explain required inputs.
+00:35–01:10 | Live test | Perform these steps on screen; do not simulate a successful result: 
+${steps}
+01:10–01:25 | Result | Zoom into the real output. State what worked and what was not tested.
+01:25–01:40 | Usage / fit | Explain who may benefit, required skills and the next action.
+01:40–01:55 | Limitations | Read the limitations plainly: ${limits}
+Final frame | Product name, version, public demo/passport URL and contact/enquiry route. Offer: ${offer}
+
+FEATURES CLAIMED FOR THIS VERSION (must be demonstrated)
+${features}
+
+SHORT SHOWROOM DESCRIPTION
+${name} (${pid}): A practical tool for ${audience.toLowerCase()}. The demo shows its tested workflow, real output, appropriate use and current limitations.
+
+QUICK USAGE GUIDE
+1. Open the demo URL and confirm the product/version.
+2. Use dummy or authorized data only.
+3. Follow the on-screen test steps.
+4. Compare actual output with the stated expected result.
+5. Save/export your result where the tool supports it.
+6. Report reproducible issues with version, steps and evidence link.
+
+QC / RELEASE CHECK
+[ ] MP4 file exists; duration and audio checked
+[ ] Every shown interaction is from the actual product version
+[ ] Captions, spelling, sound and playback checked
+[ ] Screenshot/VIP visual saved; identity and QR destination checked
+[ ] Usage guide and known limitations match the build
+[ ] Price, support, refund and license terms reviewed
+[ ] QC reviewer, date, evidence link and decision recorded
+[ ] Dispatch/sale state approved separately
+
+STATUS RULE
+Planning pack generated locally; not an MP4, screenshot, independent QC certificate, published asset, order, sale or income record. Mark demo-ready only after the real media file is linked and playback has passed.`;
+ $('output').textContent=pack;
+}
+$('build').addEventListener('click',makePack);
+$('copy').addEventListener('click',async()=>{if(!$('output').textContent.trim()||$('output').textContent.startsWith('Enter product'))makePack();try{await navigator.clipboard.writeText($('output').textContent);$('copy').textContent='Copied';}catch(e){alert('Clipboard access unavailable. Select the generated text and copy it manually.')}});
+$('download').addEventListener('click',()=>{if($('output').textContent.startsWith('Enter product'))makePack();const blob=new Blob([$('output').textContent],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(($('pid').value||'SRI-demo-pack').replace(/[^a-z0-9_-]+/gi,'-'))+'.txt';a.click();URL.revokeObjectURL(a.href)});
+$('print').addEventListener('click',()=>{if($('output').textContent.startsWith('Enter product'))makePack();window.print()});
+function updateGate(){const n=[...document.querySelectorAll('.gate')].filter(x=>x.checked).length;$('gateStatus').textContent=n+' of 8 local checklist items checked. This is not an independent QC result.'}
+document.querySelectorAll('.gate').forEach(x=>x.addEventListener('change',updateGate));
+</script></body></html>
