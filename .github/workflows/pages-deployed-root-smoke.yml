@@ -1,0 +1,29 @@
+name: GitHub Pages Deployed Root Smoke Check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-root-smoke
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check deployed root, direct index, showroom, and character studio
+        env:
+          PAGES_BASE_URL: https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-
+        run: python scripts/pages_root_smoke.py
