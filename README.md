@@ -5,6 +5,8 @@
 
 Unified digital research and archive platform.
 
+- **First Revenue Execution Board (2026-10-10):** [open measurable seven-day writing/research client-acquisition plan](docs/production/FIRST-REVENUE-EXECUTION-BOARD-2026-10-10.md) — proposed scoped offers, official-source prospecting, human-reviewed outreach, and funnel metrics. This plan does not claim outreach, sales, or income.
+
 - **First Client Service Desk:** [open proposal builder](showroom/first-client-service-desk.html) — creates a client-specific scope/proposal draft for Hindi/English writing, research summaries and website/blog content. Local-only prototype; no automatic sending, payment, confirmed client, or income claim.
 - **First Client Deliverable Studio (SRI-WRITE-006):** [open concrete browser tool](products/concrete/SRI-WRITE-006-first-client-deliverable-studio.html) — sample deliverable preview, three proposed pilot packages, client brief form, copyable enquiry and TXT export. Browser-local only; no automatic sending, payment, customer or income claim.\n
 - **Global Public Product Showroom:** [open searchable public catalogue](showroom/public-product-showroom.html)
