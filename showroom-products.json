@@ -409,7 +409,9 @@
       "qc_gate": "QC-MANUAL-REVIEW-PENDING",
       "dispatch": "ENQUIRY_ONLY",
       "version": "1.0.0",
-      "artifact_evidence": "CREATED_ON_FEATURE_BRANCH_NOT_YET_DEPLOYED"
+      "artifact_evidence": "CREATED_ON_FEATURE_BRANCH_NOT_YET_DEPLOYED",
+      "store_url": "showroom/revenue-quote-calculator.html",
+      "usage_guide": "Enter service, language, word count, objective, sources and deadline; generate the proposal; review and agree scope and terms with the client before starting."
     }
   ]
 }
