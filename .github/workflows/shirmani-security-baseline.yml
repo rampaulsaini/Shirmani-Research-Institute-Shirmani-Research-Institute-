@@ -1,0 +1,93 @@
+name: SHIRMANI Security Baseline Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 2 * * *"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/**"
+      - "scripts/security/**"
+      - "SECURITY.md"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-security-baseline-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  workflow-hardening-audit:
+    name: Read-only workflow hardening audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Audit workflow security patterns
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          import sys
+
+          root = Path(".github/workflows")
+          files = sorted(root.glob("*.yml")) + sorted(root.glob("*.yaml"))
+          errors = []
+          warnings = []
+          if not files:
+              print("ERROR: no workflow YAML files found")
+              sys.exit(1)
+
+          for path in files:
+              text = path.read_text(encoding="utf-8", errors="replace")
+              lines = text.splitlines()
+              for number, line in enumerate(lines, 1):
+                  stripped = line.strip()
+                  if re.search(r"(?i)^permissions\s*:\s*write-all\s*$", stripped):
+                      errors.append(f"{path}:{number}: permissions: write-all")
+                  if "pull_request_target:" in stripped:
+                      warnings.append(f"{path}:{number}: review pull_request_target trust boundary")
+                  if re.search(r"(?i)uses:\s*[^\s]+@(?:main|master|latest)\s*$", stripped):
+                      warnings.append(f"{path}:{number}: action uses a moving ref; pin to a reviewed full commit SHA")
+                  if re.search(r"(?i)uses:\s*[^\s]+@v\d+(?:\.\d+)?\s*$", stripped):
+                      warnings.append(f"{path}:{number}: action uses a version tag; consider a reviewed full commit SHA")
+                  if re.search(r"(?i)\bpermissions\s*:\s*\{[^}]*write-all", stripped):
+                      errors.append(f"{path}:{number}: inline permissions: write-all")
+                  if re.search(r"\$\{\{\s*github\.event\.(?:pull_request|issue|comment)\.(?:title|body|comment)", stripped):
+                      warnings.append(f"{path}:{number}: event text interpolation found; ensure it is not executed as shell code")
+
+          print(f"Workflow files inspected: {len(files)}")
+          print(f"High-risk findings: {len(errors)}")
+          print(f"Review warnings: {len(warnings)}")
+          for item in errors:
+              print("ERROR:", item)
+          for item in warnings:
+              print("REVIEW:", item)
+          print("Scope: static pattern audit only; not a secret scan, penetration test, dependency audit, or security certification.")
+          if errors:
+              sys.exit(1)
+          PY
+
+      - name: Record scope and outcome
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## SHIRMANI Security Baseline Audit"
+            echo ""
+            echo "- Read-only workflow-pattern audit."
+            echo "- Does not change repository settings or contact external systems."
+            echo "- Review warnings in the preceding step; version tags and broad write permissions need deliberate owner review."
+            echo "- This run is not a full security certification."
+          } >> "$GITHUB_STEP_SUMMARY"
