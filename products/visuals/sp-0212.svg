@@ -1,22 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
-<defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8fbfd0"/><stop offset=".55" stop-color="#77da7f"/><stop offset="1" stop-color="#050910"/></linearGradient></defs>
-<rect width="3840" height="2160" fill="url(#b)"/><title>SHIRMANI Mobile Commerce 0212 — SP-0212</title><desc>Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present · Short description on image · QR for long product description · 3840×2160 4K-ready product identity.</desc><rect x="70" y="70" width="3700" height="2020" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
-<circle cx="1920" cy="285" r="205" fill="#061016" stroke="#e7c85b" stroke-width="14"/><image href="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/assets/shirmani-perspective-logo.svg" x="1735" y="100" width="370" height="370" preserveAspectRatio="xMidYMid slice"/>
-<text x="1920" y="540" text-anchor="middle" fill="#f6d35f" font-family="system-ui,sans-serif" font-size="40" font-weight="950">Shiromani Rampal Saini</text>
-<text x="1920" y="592" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="750">SHIRMANI HEART-VIEW · IMPARTIAL UNDERSTANDING</text>
-<text x="1920" y="630" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love</text>
-<text x="1920" y="664" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">Eternal · Real · Natural Truth · Directly Present</text>
-<text x="610" y="190" fill="#66ddff" font-family="system-ui,sans-serif" font-size="52" font-weight="900">SHIRMANI SUPREME DIGITAL PRODUCT</text>
+<defs>
+<linearGradient id="v42411712631g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="hsl(271,78%,24%)"/><stop offset=".48" stop-color="hsl(272,72%,11%)"/><stop offset="1" stop-color="hsl(79,78%,5%)"/></linearGradient>
+<radialGradient id="v42411712631r"><stop stop-color="#fff" stop-opacity=".28"/><stop offset=".42" stop-color="#67e8f9" stop-opacity=".08"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<filter id="v42411712631gl"><feGaussianBlur stdDeviation="22"/></filter>
+</defs>
+<rect width="3840" height="2160" fill="url(#v42411712631g)"/>
+<circle cx="2050" cy="1100" r="760" fill="url(#v42411712631r)"/>
+<path d="M260 1540 C980 1180 1280 1820 2020 1450 S3040 1260 3630 1510" fill="none" stroke="#1ee7ff" stroke-opacity=".45" stroke-width="42" filter="url(#v42411712631gl)"/>
+<path d="M260 1540 C980 1180 1280 1820 2020 1450 S3040 1260 3630 1510" fill="none" stroke="#2ce7c9" stroke-width="8"/>
+<rect x="70" y="70" width="3700" height="2020" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
+<circle cx="360" cy="360" r="205" fill="#061016" stroke="#e7c85b" stroke-width="14"/>
+<image href="../../assets/shirmani-perspective-logo.svg" x="175" y="175" width="370" height="370" preserveAspectRatio="xMidYMid slice"/>
+<text x="720" y="190" fill="#66ddff" font-family="system-ui,sans-serif" font-size="52" font-weight="900">SHIRMANI SUPREME DIGITAL PRODUCT</text>
+<text x="360" y="635" text-anchor="middle" fill="#f6d35f" font-family="system-ui,sans-serif" font-size="39" font-weight="950">Shiromani Rampal Saini</text>
+<text x="360" y="690" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="19" font-weight="750">SHIRMANI HEART-VIEW · IMPARTIAL UNDERSTANDING</text>
+<text x="360" y="725" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love</text>
+<text x="360" y="760" text-anchor="middle" fill="#d9e3ef" font-family="system-ui,sans-serif" font-size="18" font-weight="700">Eternal · Real · Natural Truth · Directly Present</text>
 <rect x="3160" y="120" width="570" height="690" rx="44" fill="#061016" stroke="#e7c85b" stroke-width="10"/>
 <text x="3270" y="210" fill="#fff" font-family="system-ui,sans-serif" font-size="42" font-weight="900">LONG DESCRIPTION</text>
 <text x="3400" y="260" fill="#fff" font-family="system-ui,sans-serif" font-size="42" font-weight="900">/ PRODUCT DETAILS</text>
-<rect x="3250" y="300" width="390" height="390" fill="#fff"/><image href="qr/sp-0212.svg" x="3260" y="310" width="370" height="370"/>
+<rect x="3250" y="300" width="390" height="390" fill="#fff"/>
+<image href="https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=10&data=https%3A%2F%2Frampaulsaini.github.io%2FShirmani-Research-Institute-Shirmani-Research-Institute-%2Fproduct-passport.html%3Fid%3DSP-0212" x="3260" y="310" width="370" height="370"/>
 <text x="3290" y="750" fill="#66ddff" font-family="system-ui,sans-serif" font-size="27" font-weight="900">SCAN FOR LONG DESCRIPTION</text>
 <text x="520" y="820" fill="#66ddff" font-family="system-ui,sans-serif" font-size="76" font-weight="900">SP-0212</text>
-<text x="520" y="1040" fill="#fff" font-family="system-ui,sans-serif" font-size="125" font-weight="900">SHIRMANI Mobile Commerce 0212</text>
-<text x="520" y="1170" fill="#72e6aa" font-family="system-ui,sans-serif" font-size="62" font-weight="800">Commerce · commerce</text>
-<text x="520" y="1300" fill="#fff" font-family="system-ui,sans-serif" font-size="43" font-weight="650">SHORT DESCRIPTION · Concrete public digital product SP-0212. Commerce · commerce.</text>
-<rect x="520" y="1390" width="730" height="125" rx="62" fill="#03060d" stroke="#e7c85b" stroke-width="5"/><text x="590" y="1475" fill="#fff" font-family="system-ui,sans-serif" font-size="62" font-weight="900">₹499</text><text x="1340" y="1475" fill="#66ddff" font-family="system-ui,sans-serif" font-size="44" font-weight="800">PUBLIC LAUNCH PRICE</text>
-<text x="520" y="1710" fill="#fff" opacity=".82" font-family="system-ui,sans-serif" font-size="35" font-weight="800">UNIQUE PRODUCT IDENTITY · 3840×2160 · 16:9 · 4K-READY · SHORT DESCRIPTION + QR LONG DESCRIPTION</text>
-<text x="520" y="1780" fill="#e7c85b" opacity=".92" font-family="system-ui,sans-serif" font-size="32" font-weight="700">QC · QC-PROD-SP-0212 · GATE · GATE-PRODUCTION · DISPATCH · NO</text>
+<text x="520" y="1040" fill="#fff" font-family="system-ui,sans-serif" font-size="122" font-weight="900">SHIRMANI Digital Product</text>
+<text x="520" y="1170" fill="#72e6aa" font-family="system-ui,sans-serif" font-size="62" font-weight="800">DIGITAL PRODUCT · SUPREME</text>
+<text x="520" y="1285" fill="#fff" font-family="system-ui,sans-serif" font-size="43" font-weight="650">SHORT DESCRIPTION</text>
+<text x="520" y="1345" fill="#dce7f2" font-family="system-ui,sans-serif" font-size="39" font-weight="650">Unique customer-facing digital product</text>
+<rect x="520" y="1535" width="730" height="125" rx="62" fill="#03060d" stroke="#e7c85b" stroke-width="5"/>
+<text x="590" y="1620" fill="#fff" font-family="system-ui,sans-serif" font-size="62" font-weight="900">FREE</text>
+<text x="520" y="1800" fill="#fff" opacity=".86" font-family="system-ui,sans-serif" font-size="35" font-weight="800">4K · UNIQUE PRODUCT IDENTITY · QC/GATE/DISPATCH · QR LONG DESCRIPTION</text>
 </svg>

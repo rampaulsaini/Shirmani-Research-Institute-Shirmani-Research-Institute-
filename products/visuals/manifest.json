@@ -1,10 +1,12 @@
 {
-  "generated_at": "2026-10-07T05:00:06.848Z",
+  "generated_at": "AUTOMISSION_RUNTIME",
   "format": "SVG 3840x2160 16:9 4K-ready",
   "concrete_products": 1516,
-  "previous_visuals": 250,
-  "visuals_added": 1266,
-  "total_visuals": 1516,
-  "coverage_percent": 100,
-  "principle": "Every concrete product receives a unique public visual identity; visual presentation is not independent scientific verification."
+  "total_visuals": 5000,
+  "visuals_written_this_cycle": 1516,
+  "coverage_percent": 329.82,
+  "identity_contract": "SHIRMANI perspective logo upper-left; English identity line beneath logo; product-specific ID/name/family/engine; short description on-image; long-description QR upper-right; price/offer when available; VIP screenshot route and demo route",
+  "vip_screenshot_route": "product-passport.html?id=<PRODUCT_ID>",
+  "demo_video_route": "product-demo.html?id=<PRODUCT_ID>",
+  "principle": "Visual production is a customer-facing production artifact, not independent scientific verification."
 }
