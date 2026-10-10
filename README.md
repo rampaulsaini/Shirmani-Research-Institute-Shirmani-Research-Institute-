@@ -415,3 +415,8 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 ## Revenue-First Service Desk (new concrete tool)
 
 - **Writing & Research Client Enquiry Desk:** [open browser-local tool](showroom/revenue-first-service-desk.html) — proposes pilot service packages, captures client scope, generates a reviewable enquiry draft, and supports copy/TXT export. Does not send messages, accept payment, or claim income.
+
+
+## First Paid Pilot Offer — Client-Ready Page
+
+- **First Client Pilot:** [open proposed writing/research offers and enquiry builder](first-paid-pilot-offer.html) — ₹499 writing polish, ₹999 source-based research summary, and ₹1,499 website/blog draft are proposed starter rates only. The browser-local page prepares/copies/downloads an enquiry draft; it does not send messages, take payment, create an order, or claim revenue. Confirm scope, price, timeline, revisions and payment terms in writing before accepting work.
