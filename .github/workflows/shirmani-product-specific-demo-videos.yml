@@ -67,7 +67,7 @@ jobs:
         run: python3 factory/product_specific_demo_video_factory.py
       - name: Publish customer-facing demo media through PR
         id: publish_media
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "feat(showroom): publish product-specific demo video batch"
           title: "Automission: publish product-specific demo video batch"

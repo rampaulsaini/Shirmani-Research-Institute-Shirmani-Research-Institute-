@@ -27,7 +27,7 @@ jobs:
           with out.open("a",encoding="utf-8") as f: f.write(json.dumps(row,ensure_ascii=False)+"\\n")
           PY
       - name: Publish review improvement queue through PR
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "chore(quality): ingest customer review into improvement queue"
           title: "Automission: ingest customer product review"

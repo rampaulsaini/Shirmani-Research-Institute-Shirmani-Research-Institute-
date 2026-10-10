@@ -62,7 +62,7 @@ jobs:
         run: python3 factory/product_vip_screenshot_factory.py
       - name: Publish VIP screenshots through PR
         id: publish_media
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "feat(showroom): publish VIP product screenshot batch"
           title: "Automission: publish VIP product screenshot batch"
