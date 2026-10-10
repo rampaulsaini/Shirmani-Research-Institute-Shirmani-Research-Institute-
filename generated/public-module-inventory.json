@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-10T15:26:09.236942+00:00",
+  "generated_at": "2026-10-10T15:32:09.671928+00:00",
   "purpose": "public-first production module map",
   "module_count": 10762,
   "lane_counts": {
@@ -64482,7 +64482,7 @@
       "type": "py",
       "lane": "research",
       "status": "READY",
-      "bytes": 7787
+      "bytes": 7871
     },
     {
       "path": "federation-dashboard.html",
