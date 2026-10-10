@@ -1,5 +1,7 @@
 # Shirmani Research Institute
 
+- **Product Demo & Visual Brief Studio (SRI-MEDIA-001):** [open browser tool](showroom/product-demo-visual-brief-studio.html) — generates a product-specific video storyboard, VIP screenshot composition brief, QR destination record and release checklist. Browser-local brief only; it does not record/render MP4, capture screenshots, generate QR images, publish, independently certify QC, contact prospects, or process payments.
+
 [![SHIRMANI Production Persistence & Truth Gate](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/workflows/shirmani-production-persistence.yml/badge.svg)](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/workflows/shirmani-production-persistence.yml)
 
 
