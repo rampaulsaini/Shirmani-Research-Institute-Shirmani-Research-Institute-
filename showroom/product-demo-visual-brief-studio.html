@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Build a product-specific demo-video storyboard, VIP screenshot brief, QR destination and release checklist for SHIRMANI products.">
+<title>SHIRMANI Product Demo & Visual Brief Studio</title>
+<style>
+:root{color-scheme:dark;--gold:#f4d06f;--cyan:#73e5ef;--bg:#07111c;--panel:#102033;--line:#2b465c;--muted:#b7c9d9}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0,#19354b,var(--bg) 65%);color:#f5f8fc;font:16px/1.55 system-ui,sans-serif}header,main{max-width:1160px;margin:auto;padding:22px}header{padding-top:38px}h1,h2,h3{line-height:1.2}h1,h2{color:var(--gold)}h1{font-size:clamp(2rem,5vw,3.4rem);margin:.25em 0}p,.muted{color:var(--muted)}.tag{display:inline-block;border:1px solid #52748b;border-radius:99px;padding:4px 10px;color:var(--cyan);font-size:.82rem}.flow,.stats,.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.tile,form,.panel{background:#0d1b2a;border:1px solid var(--line);border-radius:15px;padding:16px}.tile b{display:block;color:var(--cyan)}.layout{display:grid;grid-template-columns:minmax(270px,.85fr) 1.15fr;gap:16px;align-items:start}label{display:block;margin:11px 0 4px;color:var(--muted);font-size:.9rem}input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #3b5a72;background:#06111b;color:#fff;font:inherit}textarea{min-height:78px}button{cursor:pointer;border:0;border-radius:9px;padding:11px 14px;margin:8px 5px 0 0;background:var(--gold);color:#151515;font-weight:800}button.alt{background:#17364a;color:white;border:1px solid #456b82}.notice{border-left:3px solid var(--gold);background:#17283a;padding:12px 15px;border-radius:6px}.scene{border:1px solid var(--line);border-radius:11px;padding:13px;margin:9px 0;background:#0a1725}.scene h3{color:var(--cyan);margin:0 0 6px}.small{font-size:.87rem}.checks label{display:flex;gap:9px;align-items:flex-start}.checks input{width:auto;margin-top:6px}.preview{white-space:pre-wrap;overflow-wrap:anywhere;min-height:160px;padding:14px;border-radius:10px;background:#06111b;border:1px solid var(--line)}footer{max-width:1160px;margin:auto;padding:22px;color:var(--muted)}@media(max-width:760px){.layout{grid-template-columns:1fr}header,main{padding:14px}}
+</style></head>
+<body>
+<header>
+<span class="tag">SRI-MEDIA-001 · BROWSER-LOCAL PROTOTYPE</span>
+<h1>Product Demo & Visual Brief Studio</h1>
+<p>Turn one real product/tool into a consistent demo-video plan, VIP screenshot composition, on-image identity brief, QR destination record and release checklist. Designed for product-specific assets—not generic catalogue filler.</p>
+<div class="flow">
+<div class="tile"><b>01 · SHOW THE PROBLEM</b>Audience and task are explicit.</div>
+<div class="tile"><b>02 · SHOW REAL USE</b>Record actual screens and outputs.</div>
+<div class="tile"><b>03 · SHOW THE RESULT</b>Include limitations and a repeatable test.</div>
+<div class="tile"><b>04 · PREPARE RELEASE</b>Video, VIP visual, passport, QR and QC evidence.</div>
+</div>
+<div class="notice"><strong>Truth boundary:</strong> this tool creates a production brief and storyboard only. It does not record or render an MP4, capture screenshots, generate a QR image, publish assets, verify quality independently, contact prospects, or process payment. Use only real product screens, authorized likeness/voice, and a QR URL that has been checked.</div>
+</header>
+<main class="layout">
+<form id="briefForm">
+<h2>Product brief</h2>
+<label for="pid">Product ID</label><input id="pid" required value="SRI-WRITE-006">
+<label for="name">Product/tool name</label><input id="name" required value="First Client Deliverable Studio">
+<label for="category">Category</label><select id="category"><option>Writing & Research</option><option>Education</option><option>AI / Presentation</option><option>Productivity Tool</option><option>Research & Evidence</option><option>Creative Studio</option><option>Other</option></select>
+<label for="audience">Intended audience</label><input id="audience" required placeholder="e.g. students, small businesses, research teams">
+<label for="problem">Problem it solves</label><textarea id="problem" required placeholder="Describe one specific user problem"></textarea>
+<label for="use">Primary use case</label><textarea id="use" required placeholder="What can the buyer actually do with it?"></textarea>
+<label for="feature">Feature to demonstrate</label><textarea id="feature" required placeholder="Name a working feature that can be shown on screen"></textarea>
+<label for="result">Real sample output/result</label><textarea id="result" required placeholder="Describe the output the demo will visibly produce"></textarea>
+<label for="limits">Known limits / requirements</label><textarea id="limits" placeholder="Browser support, manual steps, unconnected integrations, data handling"></textarea>
+<label for="lang">Demo language</label><select id="lang"><option>Hindi + English</option><option>Hindi</option><option>English</option></select>
+<label for="duration">Video length</label><select id="duration"><option value="45">45 seconds</option><option value="60" selected>60 seconds</option><option value="90">90 seconds</option><option value="180">3 minutes</option></select>
+<label for="price">Proposed price / offer (optional)</label><input id="price" placeholder="e.g. Pilot price to be agreed">
+<label for="qr">Long description / passport URL (must be real)</label><input id="qr" type="url" placeholder="https://…">
+<label for="owner">Voice/face authorization note (if used)</label><input id="owner" placeholder="e.g. creator-authorized voice; omit if not used">
+<button type="submit">Generate storyboard & visual brief</button><button type="button" class="alt" id="sample">Load sample brief</button><button type="reset" class="alt">Clear form</button>
+</form>
+<section>
+<div class="panel">
+<h2>Generated production pack</h2>
+<p class="small">Submit the brief to generate a scene-by-scene plan. Confirm every shot against the real product before filming.</p>
+<div id="output" class="preview">Your product-specific storyboard will appear here.</div>
+<button type="button" id="copy" class="alt">Copy pack</button><button type="button" id="txt">Export TXT</button><button type="button" id="json">Export JSON</button>
+</div>
+<div class="panel" style="margin-top:14px">
+<h2>Release asset gate</h2>
+<p class="small">Mark only when the actual asset/evidence exists. These ticks are local self-reports, not certification.</p>
+<div class="checks" id="checks">
+<label><input type="checkbox" value="working-demo"> Working demo URL tested on mobile and desktop</label>
+<label><input type="checkbox" value="raw-recording"> Product-specific raw screen recording exists</label>
+<label><input type="checkbox" value="final-mp4"> Final MP4 plays, audio is clear, captions checked</label>
+<label><input type="checkbox" value="vip-screenshot"> VIP screenshot captured from the actual product</label>
+<label><input type="checkbox" value="identity"> Product name + short description legible on visual</label>
+<label><input type="checkbox" value="qr-tested"> QR destination resolves to the correct long passport</label>
+<label><input type="checkbox" value="passport"> Passport and usage guide published</label>
+<label><input type="checkbox" value="qc"> QC tests run; defects and results recorded</label>
+<label><input type="checkbox" value="commercial"> Price, offer, terms and order route reviewed</label>
+</div>
+<p id="gate" class="notice">Release state: NOT READY — assets have not been evidenced.</p>
+</div>
+<div class="panel" style="margin-top:14px"><h2>VIP visual composition</h2><ul><li>16:9, 3840×2160 master; preserve safe margins for mobile crops.</li><li>Unique product image/scene, not a generic stock visual.</li><li>Top-left: authorized “निष्पक्ष समझ” logo/photo asset.</li><li>Below logo: “Shiromani Rampal Saini — Beyond Comparison, Beyond Time, Beyond Words, Beyond Love — Eternal, Real, Natural, Truth in Direct Presence.”</li><li>Center: real product/tool screen or product-specific visual with readable short description.</li><li>Top-right: QR to the checked long passport URL; never use a placeholder QR.</li><li>Check contrast, spelling, scaling, actual feature match and accessibility.</li></ul></div>
+</section>
+</main>
+<footer>SHIRMANI Research Institute · Source truth: real artifacts and observed tests. A plan is not a video; a tick is not independent QC; a proposed offer is not a sale.</footer>
+<script>
+const $=id=>document.getElementById(id);let pack=null;
+const fields=['pid','name','category','audience','problem','use','feature','result','limits','lang','duration','price','qr','owner'];
+function value(id){return $(id).value.trim()}
+function build(){const d=Object.fromEntries(fields.map(k=>[k,value(k)]));const n=Number(d.duration);const scenes=[
+['0–'+Math.round(n*.12)+'s · Hook','Show the real audience problem in one sentence. Avoid superlative claims.'],
+[Math.round(n*.12)+'–'+Math.round(n*.28)+'s · Open the product','Show the actual landing screen and identify '+d.name+'. Keep text readable.'],
+[Math.round(n*.28)+'–'+Math.round(n*.52)+'s · Demonstrate the workflow','Perform the primary use case: '+d.use+' Show clicks/inputs, not a static mock-up.'],
+[Math.round(n*.52)+'–'+Math.round(n*.72)+'s · Show the output','Display this real sample result: '+d.result+' Do not fabricate results.'],
+[Math.round(n*.72)+'–'+Math.round(n*.87)+'s · Explain fit and limits','Explain value for '+d.audience+'. State relevant limits: '+(d.limits||'List limitations discovered during testing; do not imply untested integrations work.')],
+[Math.round(n*.87)+'–'+n+'s · Clear next step','Invite viewers to test the product and review the long passport. Price/offer: '+(d.price||'Not set; confirm scope and terms before sale')+'.']
+];const storyboard=scenes.map((s,i)=>(i+1)+'. '+s[0]+'\n   Visual: '+s[1]+'\n   Audio/caption: '+(i===0?d.problem:i===2?d.feature:i===3?d.result:i===5?'Try the demo; read the passport and terms.':d.name+' — '+d.lang)).join('\n\n');
+pack={schema:'SRI-MEDIA-001-v1',status:'BRIEF_ONLY_NOT_RECORDED_NOT_PUBLISHED',createdAt:new Date().toISOString(),product:d,storyboard,visualBrief:{format:'16:9 master, 3840x2160; mobile-safe crops',logo:'Use only authorized Nishpaksh Understanding logo/photo asset',identityLine:'Shiromani Rampal Saini — Beyond Comparison, Beyond Time, Beyond Words, Beyond Love — Eternal, Real, Natural, Truth in Direct Presence.',shortDescription:'Write one specific, factual sentence after feature testing',qrDestination:d.qr||'NOT_PROVIDED — do not generate QR until a real URL is entered and checked',screenshots:'Capture the real working product; no mock-up presented as live',voiceAuthorization:d.owner||'NOT SPECIFIED — do not clone or synthesize a voice without authorization',qc:'Record device/browser, test steps, observed output, defects and reviewer'};const checked=[...$('checks').querySelectorAll('input:checked')].map(x=>x.value);pack.releaseChecks=checked;pack.releaseState=checked.length===9?'SELF_REPORTED_CHECKLIST_COMPLETE_REQUIRES_REVIEW':'NOT_READY';$('output').textContent='PRODUCT: '+d.name+' ('+d.pid+')\nAUDIENCE: '+d.audience+'\nPROBLEM: '+d.problem+'\nFEATURE: '+d.feature+'\n\nDEMO STORYBOARD\n'+storyboard+'\n\nVIP SCREENSHOT BRIEF\n'+JSON.stringify(pack.visualBrief,null,2)+'\n\nSTATUS: '+pack.status+'\nThis is a plan only; no recording, QR image, QC certification, publication or sale has occurred.';gate()}
+function gate(){const c=[...$('checks').querySelectorAll('input')];const count=c.filter(x=>x.checked).length;$('gate').textContent='Release state: '+(count===9?'CHECKLIST COMPLETE — HUMAN REVIEW STILL REQUIRED':'NOT READY — '+count+'/9 release checks self-reported')+'. This page does not independently inspect the assets.';if(pack){pack.releaseChecks=c.filter(x=>x.checked).map(x=>x.value);pack.releaseState=count===9?'SELF_REPORTED_CHECKLIST_COMPLETE_REQUIRES_REVIEW':'NOT_READY'}}
+$('briefForm').addEventListener('submit',e=>{e.preventDefault();build()});$('checks').addEventListener('change',gate);
+$('sample').addEventListener('click',()=>{const vals={pid:'SRI-WRITE-006',name:'First Client Deliverable Studio',category:'Writing & Research',audience:'Small businesses, students and independent researchers',problem:'A client needs a clear Hindi/English writing or research deliverable but the scope is unclear.',use:'Collect a brief, define deliverables and prepare a draft production pack.',feature:'Brief form and draft deliverable structure',result:'A scoped draft pack with deliverables and source-review prompts',limits:'Browser-local prototype; no connected AI research, email sending or payment processing.',lang:'Hindi + English',duration:'60',price:'Pilot price to be agreed after scope review',qr:'',owner:'No synthetic voice used in this demo'};Object.entries(vals).forEach(([k,v])=>$(k).value=v);});
+function download(name,content,type){const a=document.createElement('a');const u=URL.createObjectURL(new Blob([content],{type}));a.href=u;a.download=name;a.click();URL.revokeObjectURL(u)}
+$('copy').addEventListener('click',()=>{if(!pack){alert('Generate the pack first.');return}navigator.clipboard?.writeText($('output').textContent).then(()=>alert('Pack copied.')).catch(()=>alert('Clipboard unavailable; select and copy the preview text.'))});
+$('txt').addEventListener('click',()=>{if(!pack)build();download((pack.product.pid||'product')+'-demo-visual-brief.txt',$('output').textContent,'text/plain;charset=utf-8')});
+$('json').addEventListener('click',()=>{if(!pack)build();download((pack.product.pid||'product')+'-demo-visual-brief.json',JSON.stringify(pack,null,2),'application/json')});
+</script>
+</body></html>
