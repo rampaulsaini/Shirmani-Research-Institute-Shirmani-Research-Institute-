@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SHIRMANI Security Command Center: practical security baseline, risk register, release gates and incident checklist.">
+<title>꙰ SHIRMANI Supreme Security Command Center</title>
+<style>
+:root{color-scheme:dark;--bg:#080d15;--panel:#121c2a;--line:#2a3a50;--gold:#e8c75a;--cyan:#66dcf4;--text:#f4f7fb;--muted:#b0bfd0;--red:#ff8d8d;--green:#82e0ae}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172740,var(--bg) 55%);color:var(--text);font:15px/1.6 system-ui,sans-serif}main{max-width:1180px;margin:auto;padding:22px}.hero,.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;margin:14px 0}.hero{border-color:#8a7738}h1,h2{color:var(--gold)}h1{font-size:clamp(1.8rem,4vw,3.3rem);line-height:1.12}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:12px}.tile{border:1px solid var(--line);border-radius:13px;padding:14px;background:#0b1420}.tag{color:var(--cyan);font-size:.78rem;font-weight:800;letter-spacing:.05em}.metric{font-size:2rem;font-weight:900;color:var(--gold)}label.check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #253347}input[type=checkbox]{margin-top:5px;accent-color:var(--gold)}button,a.btn{display:inline-block;border:1px solid var(--line);border-radius:10px;padding:10px 13px;background:#19283a;color:var(--text);text-decoration:none;cursor:pointer;font-weight:700;margin:4px 4px 4px 0}button.primary,a.primary{background:var(--gold);color:#111;border-color:var(--gold)}textarea,input[type=text],select{width:100%;background:#09111c;border:1px solid var(--line);color:var(--text);padding:10px;border-radius:9px}textarea{min-height:85px}.warning{border-left:4px solid var(--red);padding:10px 14px;background:#26171d;border-radius:8px}.good{color:var(--green)}footer{padding:20px;color:var(--muted);font-size:.9rem}code{overflow-wrap:anywhere}
+</style>
+</head>
+<body><main>
+<section class="hero">
+<div class="tag">PRODUCTION-FIRST · SECURITY BASELINE · LOCAL WORKSPACE</div>
+<h1>꙰ SHIRMANI Supreme Security Command Center</h1>
+<p>One practical control room for platform hardening: inventory, access, secrets, dependency risk, deployment gates, incident readiness and tracked remediation.</p>
+<p class="muted">This is a working browser-local planning tool. It does not scan GitHub, test infrastructure, change settings, detect vulnerabilities, or certify the platform by itself. Never paste passwords, API keys, tokens, private customer data or recovery codes here.</p>
+<a class="btn primary" href="../production-first-public-map.html">Production map</a>
+<a class="btn" href="../showroom.html">Public showroom</a>
+<a class="btn" href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/security" target="_blank" rel="noopener">Repository Security tab</a>
+</section>
+<section class="panel"><h2>Security posture snapshot</h2><div class="grid">
+<div class="tile"><div class="tag">CHECKS COMPLETED</div><div class="metric" id="done">0 / 16</div><div class="muted">Manual evidence-backed checklist</div></div>
+<div class="tile"><div class="tag">READINESS SCORE</div><div class="metric" id="score">0%</div><div class="muted">Checklist progress only—not a security certification</div></div>
+<div class="tile"><div class="tag">OPEN RISKS</div><div class="metric" id="risks">0</div><div class="muted">Risks recorded in this browser session</div></div>
+<div class="tile"><div class="tag">RELEASE DECISION</div><div class="metric" id="release">HOLD</div><div class="muted">Release only after critical controls have evidence</div></div>
+</div></section>
+<section class="panel"><h2>Layer 1 — Identity, access and secrets</h2><div id="checks1"></div></section>
+<section class="panel"><h2>Layer 2 — Code, dependencies and CI/CD</h2><div id="checks2"></div></section>
+<section class="panel"><h2>Layer 3 — Public site, data and abuse prevention</h2><div id="checks3"></div></section>
+<section class="panel"><h2>Layer 4 — Recovery, incident response and release gate</h2><div id="checks4"></div></section>
+<section class="panel"><h2>Risk register</h2><div class="grid"><div><label for="riskTitle">Risk / finding (no secrets)</label><input id="riskTitle" type="text" placeholder="e.g. workflow uses broad write permissions"></div><div><label for="riskSeverity">Severity</label><select id="riskSeverity"><option>Critical</option><option>High</option><option selected>Medium</option><option>Low</option></select></div></div><label for="riskAction">Mitigation / evidence required</label><textarea id="riskAction" placeholder="Describe the fix, owner role, and evidence needed"></textarea><button class="primary" id="addRisk">Add risk</button><div id="riskList"></div></section>
+<section class="panel"><h2>Incident quick response</h2><ol><li>Contain the affected workflow, deployment, token or integration using the relevant official console.</li><li>Revoke and rotate suspected exposed credentials; do not copy them into issue comments or logs.</li><li>Preserve timestamps, run IDs and relevant logs while limiting access to sensitive evidence.</li><li>Assess affected releases, customer data and downstream integrations; notify the appropriate parties when required.</li><li>Restore from a known-good version, verify the fix, and record a prevention task.</li></ol><p class="warning">If a credential may have been exposed, assume it is compromised. Deleting the visible text alone is not sufficient; revoke/rotate it at the provider.</p></section>
+<section class="panel"><h2>Export an evidence checklist</h2><p class="muted">Exports only checklist states and risks entered in this page. It does not include credentials.</p><button class="primary" id="export">Download JSON report</button><button id="reset">Reset local checklist</button><p id="status" class="muted" role="status">No external scan has been run.</p></section>
+<footer>SHIRMANI Research Institute · Security is continuous risk reduction, not a one-time badge. Checklist status must be supported by real evidence before a release is called secure.</footer>
+</main>
+<script>
+const groups=[
+["checks1",[
+["MFA is enabled for repository owners and administrators","High"],
+["Least-privilege access is applied; former collaborators are removed","High"],
+["Fine-grained tokens/apps have minimal permissions and expiry/review","High"],
+["No credentials or private keys are committed; exposed secrets are rotated","Critical"]],
+["checks2",[
+["GitHub Actions use least-privilege permissions by default","High"],
+["Third-party Actions are pinned to reviewed immutable commit SHAs","High"],
+["Dependency alerts and secret scanning are enabled where available","High"],
+["Pull requests require review and relevant CI checks before release","High"]],
+["checks3",[
+["Public pages contain no private data, internal endpoints or secrets","Critical"],
+["Forms validate input and clearly explain data handling","High"],
+["External links use safe target/rel settings and HTTPS","Medium"],
+["Customer records are not stored in browser-only demos as if shared/secure","High"]],
+["checks4",[
+["A known-good release and rollback procedure are documented","High"],
+["A backup/recovery test has a dated result and responsible owner","High"],
+["Incident contact path and credential-rotation steps are documented","High"],
+["Production changes have a release note, smoke test and rollback decision","High"]]]
+];
+const state={checked:{},risks:[]};
+function renderChecks(){groups.forEach(([id,items],g)=>{const host=document.getElementById(id);host.innerHTML="";items.forEach(([label,severity],i)=>{const key=g+"-"+i;const row=document.createElement("label");row.className="check";const cb=document.createElement("input");cb.type="checkbox";cb.checked=!!state.checked[key];cb.addEventListener("change",()=>{state.checked[key]=cb.checked;update()});const span=document.createElement("span");span.innerHTML="<strong>"+label+"</strong><br><small class='muted'>Evidence required · "+severity+" priority</small>";row.append(cb,span);host.append(row)})})}
+function update(){const all=groups.reduce((n,g)=>n+g[1].length,0),done=Object.values(state.checked).filter(Boolean).length;document.getElementById("done").textContent=done+" / "+all;document.getElementById("score").textContent=Math.round(done/all*100)+"%";document.getElementById("risks").textContent=state.risks.length;const criticalUnchecked=groups.some((g,gi)=>g[1].some((x,i)=>x[1]==="Critical"&&!state.checked[gi+"-"+i]));document.getElementById("release").textContent=done===all&&!criticalUnchecked&&state.risks.every(r=>r.severity!=="Critical")?"REVIEW":"HOLD";document.getElementById("release").style.color=done===all&&!criticalUnchecked&&state.risks.every(r=>r.severity!=="Critical")?"var(--green)":"var(--red)";renderRisks()}
+function renderRisks(){const host=document.getElementById("riskList");host.innerHTML="";state.risks.forEach((r,i)=>{const d=document.createElement("div");d.className="tile";d.style.marginTop="10px";const b=document.createElement("strong");b.textContent=r.severity+" — "+r.title;const p=document.createElement("p");p.textContent=r.action||"Mitigation not yet specified";const del=document.createElement("button");del.textContent="Remove";del.onclick=()=>{state.risks.splice(i,1);update()};d.append(b,p,del);host.append(d)})}
+document.getElementById("addRisk").onclick=()=>{const title=document.getElementById("riskTitle").value.trim();if(!title){document.getElementById("status").textContent="Enter a risk title first.";return}state.risks.push({title,severity:document.getElementById("riskSeverity").value,action:document.getElementById("riskAction").value.trim()});document.getElementById("riskTitle").value="";document.getElementById("riskAction").value="";update();document.getElementById("status").textContent="Risk added to this page session."};
+document.getElementById("export").onclick=()=>{const report={title:"SHIRMANI Security Checklist",generated_at:new Date().toISOString(),note:"Checklist progress is not an external scan or security certification.",checks:groups.map((g,gi)=>({layer:g[0],items:g[1].map((x,i)=>({control:x[0],priority:x[1],marked_complete:!!state.checked[gi+"-"+i]}))})),risks:state.risks};const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:"application/json"}));a.download="shirmani-security-checklist.json";a.click();URL.revokeObjectURL(a.href);document.getElementById("status").textContent="Checklist JSON exported. Attach evidence separately; do not include secrets."};
+document.getElementById("reset").onclick=()=>{if(confirm("Reset checklist and risks in this page session?")){state.checked={};state.risks=[];renderChecks();update();document.getElementById("status").textContent="Local checklist reset."}};
+renderChecks();update();
+</script></body></html>
