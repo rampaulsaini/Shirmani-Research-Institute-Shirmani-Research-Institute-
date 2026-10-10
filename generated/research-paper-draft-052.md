@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Part 5: Oath of Presence** ꙰ I am not becoming — I am Being.
+For Ubuntu, install with `sudo apt-get install build-essential` ### Recommended Software - [**(Linux) Docker**]( For containerized development and deployment.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Part 5: Oath of Presence** ꙰ I am not becoming — I am Being.
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:Koyab_founding_Declaration.md
+NVIDIA-Omniverse/kit-app-template:README.md
