@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-06T17:59:10.079Z",
+  "generated_at": "2026-10-10T07:41:31.023350+00:00",
   "mode": "PRODUCTION_FIRST",
   "pipeline": [
     "INSTITUTE_RESEARCH",
@@ -9,9 +9,9 @@
     "PUBLIC_SHOWROOM_SALE"
   ],
   "production": {
-    "catalog_products": 1016,
+    "catalog_products": 5000,
     "produced_public": 1016,
-    "pricing_published": 1016,
+    "pricing_published": 5000,
     "sold_evidence": 0,
     "next_scale_target": 5000,
     "remaining_to_scale_target": 3984
@@ -29,48 +29,1008 @@
   "verification_boundary": "Independent verification is downstream and is not a substitute for production.",
   "next_work_units": [
     {
-      "product_id": "SP-0001",
-      "name": "SHIRMANI Starter Counting & Math 0001",
-      "family": "Counting & Math",
-      "engine": "calculator",
-      "priority": 4,
+      "product_id": "SP-0016",
+      "name": "SHIRMANI Toolkit AI Prompt Tools 0016",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
       "action": "DEPTH_UPGRADE",
-      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
-      "public_route": "products/concrete/SP-0001.html"
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0016.html"
     },
     {
-      "product_id": "SP-0002",
-      "name": "SHIRMANI Quick Text & Language 0002",
-      "family": "Text & Language",
-      "engine": "text",
-      "priority": 4,
+      "product_id": "SP-0041",
+      "name": "SHIRMANI Starter AI Prompt Tools 0041",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
       "action": "DEPTH_UPGRADE",
-      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
-      "public_route": "products/concrete/SP-0002.html"
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0041.html"
     },
     {
-      "product_id": "SP-0003",
-      "name": "SHIRMANI Pro SEO & Web 0003",
-      "family": "SEO & Web",
-      "engine": "seo",
-      "priority": 4,
+      "product_id": "SP-0066",
+      "name": "SHIRMANI Inspector AI Prompt Tools 0066",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
       "action": "DEPTH_UPGRADE",
-      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
-      "public_route": "products/concrete/SP-0003.html"
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0066.html"
     },
     {
-      "product_id": "SP-0004",
-      "name": "SHIRMANI Studio Data Tools 0004",
-      "family": "Data Tools",
-      "engine": "data",
-      "priority": 4,
+      "product_id": "SP-0091",
+      "name": "SHIRMANI Classroom AI Prompt Tools 0091",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
       "action": "DEPTH_UPGRADE",
-      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
-      "public_route": "products/concrete/SP-0004.html"
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0091.html"
+    },
+    {
+      "product_id": "SP-0116",
+      "name": "SHIRMANI Console AI Prompt Tools 0116",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0116.html"
+    },
+    {
+      "product_id": "SP-0141",
+      "name": "SHIRMANI Workspace AI Prompt Tools 0141",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0141.html"
+    },
+    {
+      "product_id": "SP-0166",
+      "name": "SHIRMANI Advanced AI Prompt Tools 0166",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0166.html"
+    },
+    {
+      "product_id": "SP-0191",
+      "name": "SHIRMANI Manager AI Prompt Tools 0191",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0191.html"
+    },
+    {
+      "product_id": "SP-0216",
+      "name": "SHIRMANI Toolkit AI Prompt Tools 0216",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0216.html"
+    },
+    {
+      "product_id": "SP-0241",
+      "name": "SHIRMANI Starter AI Prompt Tools 0241",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0241.html"
+    },
+    {
+      "product_id": "SP-0266",
+      "name": "SHIRMANI Inspector AI Prompt Tools 0266",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0266.html"
+    },
+    {
+      "product_id": "SP-0291",
+      "name": "SHIRMANI Classroom AI Prompt Tools 0291",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0291.html"
+    },
+    {
+      "product_id": "SP-0316",
+      "name": "SHIRMANI Console AI Prompt Tools 0316",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0316.html"
+    },
+    {
+      "product_id": "SP-0341",
+      "name": "SHIRMANI Workspace AI Prompt Tools 0341",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0341.html"
+    },
+    {
+      "product_id": "SP-0366",
+      "name": "SHIRMANI Advanced AI Prompt Tools 0366",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0366.html"
+    },
+    {
+      "product_id": "SP-0391",
+      "name": "SHIRMANI Manager AI Prompt Tools 0391",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0391.html"
+    },
+    {
+      "product_id": "SP-0416",
+      "name": "SHIRMANI Toolkit AI Prompt Tools 0416",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0416.html"
+    },
+    {
+      "product_id": "SP-0441",
+      "name": "SHIRMANI Starter AI Prompt Tools 0441",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0441.html"
+    },
+    {
+      "product_id": "SP-0466",
+      "name": "SHIRMANI Inspector AI Prompt Tools 0466",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0466.html"
+    },
+    {
+      "product_id": "SP-0491",
+      "name": "SHIRMANI Classroom AI Prompt Tools 0491",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0491.html"
+    },
+    {
+      "product_id": "SP-0516",
+      "name": "SHIRMANI Console AI Prompt Tools 0516",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0516.html"
+    },
+    {
+      "product_id": "SP-0541",
+      "name": "SHIRMANI Workspace AI Prompt Tools 0541",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0541.html"
+    },
+    {
+      "product_id": "SP-0566",
+      "name": "SHIRMANI Advanced AI Prompt Tools 0566",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0566.html"
+    },
+    {
+      "product_id": "SP-0591",
+      "name": "SHIRMANI Manager AI Prompt Tools 0591",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0591.html"
+    },
+    {
+      "product_id": "SP-0616",
+      "name": "SHIRMANI Toolkit AI Prompt Tools 0616",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0616.html"
+    },
+    {
+      "product_id": "SP-0641",
+      "name": "SHIRMANI Starter AI Prompt Tools 0641",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0641.html"
+    },
+    {
+      "product_id": "SP-0666",
+      "name": "SHIRMANI Inspector AI Prompt Tools 0666",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0666.html"
+    },
+    {
+      "product_id": "SP-0691",
+      "name": "SHIRMANI Classroom AI Prompt Tools 0691",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0691.html"
+    },
+    {
+      "product_id": "SP-0716",
+      "name": "SHIRMANI Console AI Prompt Tools 0716",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0716.html"
+    },
+    {
+      "product_id": "SP-0741",
+      "name": "SHIRMANI Workspace AI Prompt Tools 0741",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0741.html"
+    },
+    {
+      "product_id": "SP-0766",
+      "name": "SHIRMANI Advanced AI Prompt Tools 0766",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0766.html"
+    },
+    {
+      "product_id": "SP-0791",
+      "name": "SHIRMANI Manager AI Prompt Tools 0791",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0791.html"
+    },
+    {
+      "product_id": "SP-0816",
+      "name": "SHIRMANI Toolkit AI Prompt Tools 0816",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0816.html"
+    },
+    {
+      "product_id": "SP-0841",
+      "name": "SHIRMANI Starter AI Prompt Tools 0841",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0841.html"
+    },
+    {
+      "product_id": "SP-0866",
+      "name": "SHIRMANI Inspector AI Prompt Tools 0866",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0866.html"
+    },
+    {
+      "product_id": "SP-0891",
+      "name": "SHIRMANI Classroom AI Prompt Tools 0891",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0891.html"
+    },
+    {
+      "product_id": "SP-0916",
+      "name": "SHIRMANI Console AI Prompt Tools 0916",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0916.html"
+    },
+    {
+      "product_id": "SP-0941",
+      "name": "SHIRMANI Workspace AI Prompt Tools 0941",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0941.html"
+    },
+    {
+      "product_id": "SP-0966",
+      "name": "SHIRMANI Advanced AI Prompt Tools 0966",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0966.html"
+    },
+    {
+      "product_id": "SP-0991",
+      "name": "SHIRMANI Manager AI Prompt Tools 0991",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-0991.html"
+    },
+    {
+      "product_id": "SP-1016",
+      "name": "SHIRMANI Toolkit AI Prompt Tools 1016",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/concrete/SP-1016.html"
+    },
+    {
+      "product_id": "SP-1032",
+      "name": "SHIRMANI Supreme Nature AI Prompt Tools 1032",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1032"
+    },
+    {
+      "product_id": "SP-1057",
+      "name": "SHIRMANI Starter Nature AI Prompt Tools 1057",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1057"
+    },
+    {
+      "product_id": "SP-1082",
+      "name": "SHIRMANI Quick Nature AI Prompt Tools 1082",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1082"
+    },
+    {
+      "product_id": "SP-1107",
+      "name": "SHIRMANI Smart Nature AI Prompt Tools 1107",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1107"
+    },
+    {
+      "product_id": "SP-1132",
+      "name": "SHIRMANI Pro Nature AI Prompt Tools 1132",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1132"
+    },
+    {
+      "product_id": "SP-1157",
+      "name": "SHIRMANI Studio Nature AI Prompt Tools 1157",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1157"
+    },
+    {
+      "product_id": "SP-1182",
+      "name": "SHIRMANI Advanced Nature AI Prompt Tools 1182",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1182"
+    },
+    {
+      "product_id": "SP-1207",
+      "name": "SHIRMANI Expert Nature AI Prompt Tools 1207",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1207"
+    },
+    {
+      "product_id": "SP-1232",
+      "name": "SHIRMANI Supreme Nature AI Prompt Tools 1232",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1232"
+    },
+    {
+      "product_id": "SP-1257",
+      "name": "SHIRMANI Starter Nature AI Prompt Tools 1257",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1257"
+    },
+    {
+      "product_id": "SP-1282",
+      "name": "SHIRMANI Quick Nature AI Prompt Tools 1282",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1282"
+    },
+    {
+      "product_id": "SP-1307",
+      "name": "SHIRMANI Smart Nature AI Prompt Tools 1307",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1307"
+    },
+    {
+      "product_id": "SP-1332",
+      "name": "SHIRMANI Pro Nature AI Prompt Tools 1332",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1332"
+    },
+    {
+      "product_id": "SP-1357",
+      "name": "SHIRMANI Studio Nature AI Prompt Tools 1357",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1357"
+    },
+    {
+      "product_id": "SP-1382",
+      "name": "SHIRMANI Advanced Nature AI Prompt Tools 1382",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1382"
+    },
+    {
+      "product_id": "SP-1407",
+      "name": "SHIRMANI Expert Nature AI Prompt Tools 1407",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1407"
+    },
+    {
+      "product_id": "SP-1432",
+      "name": "SHIRMANI Supreme Nature AI Prompt Tools 1432",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1432"
+    },
+    {
+      "product_id": "SP-1457",
+      "name": "SHIRMANI Starter Nature AI Prompt Tools 1457",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1457"
+    },
+    {
+      "product_id": "SP-1482",
+      "name": "SHIRMANI Quick Nature AI Prompt Tools 1482",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1482"
+    },
+    {
+      "product_id": "SP-1507",
+      "name": "SHIRMANI Smart Nature AI Prompt Tools 1507",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1507"
+    },
+    {
+      "product_id": "SP-1532",
+      "name": "SHIRMANI Pro Nature AI Prompt Tools 1532",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1532"
+    },
+    {
+      "product_id": "SP-1557",
+      "name": "SHIRMANI Studio Nature AI Prompt Tools 1557",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1557"
+    },
+    {
+      "product_id": "SP-1582",
+      "name": "SHIRMANI Advanced Nature AI Prompt Tools 1582",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1582"
+    },
+    {
+      "product_id": "SP-1607",
+      "name": "SHIRMANI Expert Nature AI Prompt Tools 1607",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1607"
+    },
+    {
+      "product_id": "SP-1632",
+      "name": "SHIRMANI Supreme Nature AI Prompt Tools 1632",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1632"
+    },
+    {
+      "product_id": "SP-1657",
+      "name": "SHIRMANI Starter Nature AI Prompt Tools 1657",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1657"
+    },
+    {
+      "product_id": "SP-1682",
+      "name": "SHIRMANI Quick Nature AI Prompt Tools 1682",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1682"
+    },
+    {
+      "product_id": "SP-1707",
+      "name": "SHIRMANI Smart Nature AI Prompt Tools 1707",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1707"
+    },
+    {
+      "product_id": "SP-1732",
+      "name": "SHIRMANI Pro Nature AI Prompt Tools 1732",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1732"
+    },
+    {
+      "product_id": "SP-1757",
+      "name": "SHIRMANI Studio Nature AI Prompt Tools 1757",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1757"
+    },
+    {
+      "product_id": "SP-1782",
+      "name": "SHIRMANI Advanced Nature AI Prompt Tools 1782",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1782"
+    },
+    {
+      "product_id": "SP-1807",
+      "name": "SHIRMANI Expert Nature AI Prompt Tools 1807",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1807"
+    },
+    {
+      "product_id": "SP-1832",
+      "name": "SHIRMANI Supreme Nature AI Prompt Tools 1832",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1832"
+    },
+    {
+      "product_id": "SP-1857",
+      "name": "SHIRMANI Starter Nature AI Prompt Tools 1857",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1857"
+    },
+    {
+      "product_id": "SP-1882",
+      "name": "SHIRMANI Quick Nature AI Prompt Tools 1882",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1882"
+    },
+    {
+      "product_id": "SP-1907",
+      "name": "SHIRMANI Smart Nature AI Prompt Tools 1907",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1907"
+    },
+    {
+      "product_id": "SP-1932",
+      "name": "SHIRMANI Pro Nature AI Prompt Tools 1932",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1932"
+    },
+    {
+      "product_id": "SP-1957",
+      "name": "SHIRMANI Studio Nature AI Prompt Tools 1957",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1957"
+    },
+    {
+      "product_id": "SP-1982",
+      "name": "SHIRMANI Advanced Nature AI Prompt Tools 1982",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-1982"
+    },
+    {
+      "product_id": "SP-2007",
+      "name": "SHIRMANI Expert Nature AI Prompt Tools 2007",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2007"
+    },
+    {
+      "product_id": "SP-2032",
+      "name": "SHIRMANI Supreme Nature AI Prompt Tools 2032",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2032"
+    },
+    {
+      "product_id": "SP-2048",
+      "name": "SHIRMANI Supreme Productivity AI Prompt Tools 2048",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2048"
+    },
+    {
+      "product_id": "SP-2073",
+      "name": "SHIRMANI Starter Productivity AI Prompt Tools 2073",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2073"
+    },
+    {
+      "product_id": "SP-2098",
+      "name": "SHIRMANI Quick Productivity AI Prompt Tools 2098",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2098"
+    },
+    {
+      "product_id": "SP-2123",
+      "name": "SHIRMANI Smart Productivity AI Prompt Tools 2123",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2123"
+    },
+    {
+      "product_id": "SP-2148",
+      "name": "SHIRMANI Pro Productivity AI Prompt Tools 2148",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2148"
+    },
+    {
+      "product_id": "SP-2173",
+      "name": "SHIRMANI Studio Productivity AI Prompt Tools 2173",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2173"
+    },
+    {
+      "product_id": "SP-2198",
+      "name": "SHIRMANI Advanced Productivity AI Prompt Tools 2198",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2198"
+    },
+    {
+      "product_id": "SP-2223",
+      "name": "SHIRMANI Expert Productivity AI Prompt Tools 2223",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2223"
+    },
+    {
+      "product_id": "SP-2248",
+      "name": "SHIRMANI Supreme Productivity AI Prompt Tools 2248",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2248"
+    },
+    {
+      "product_id": "SP-2273",
+      "name": "SHIRMANI Starter Productivity AI Prompt Tools 2273",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2273"
+    },
+    {
+      "product_id": "SP-2298",
+      "name": "SHIRMANI Quick Productivity AI Prompt Tools 2298",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2298"
+    },
+    {
+      "product_id": "SP-2323",
+      "name": "SHIRMANI Smart Productivity AI Prompt Tools 2323",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2323"
+    },
+    {
+      "product_id": "SP-2348",
+      "name": "SHIRMANI Pro Productivity AI Prompt Tools 2348",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2348"
+    },
+    {
+      "product_id": "SP-2373",
+      "name": "SHIRMANI Studio Productivity AI Prompt Tools 2373",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2373"
+    },
+    {
+      "product_id": "SP-2398",
+      "name": "SHIRMANI Advanced Productivity AI Prompt Tools 2398",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2398"
+    },
+    {
+      "product_id": "SP-2423",
+      "name": "SHIRMANI Expert Productivity AI Prompt Tools 2423",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2423"
+    },
+    {
+      "product_id": "SP-2448",
+      "name": "SHIRMANI Supreme Productivity AI Prompt Tools 2448",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2448"
+    },
+    {
+      "product_id": "SP-2473",
+      "name": "SHIRMANI Starter Productivity AI Prompt Tools 2473",
+      "family": "AI Prompt Tools",
+      "engine": "ai",
+      "priority": 1,
+      "action": "DEPTH_UPGRADE",
+      "goal": "reusable prompt packs, examples and export",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2473"
     }
   ],
   "summary": {
     "families": 25,
-    "priority_units": 0
+    "priority_units": 100
   }
 }
