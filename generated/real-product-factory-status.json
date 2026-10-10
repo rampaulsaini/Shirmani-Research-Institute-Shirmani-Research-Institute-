@@ -1,8 +1,8 @@
 {
   "strategy": "CONCRETE_PRODUCT_ASSET_PRODUCTION",
-  "concrete_product_mvp": 1016,
-  "catalog_products": 1016,
-  "concrete_product_assets": 1016,
+  "concrete_product_mvp": 5000,
+  "catalog_products": 5000,
+  "concrete_product_assets": 5000,
   "family_modules": 25,
   "public_showroom": "products.html",
   "product_launch_center": "products/production-launch-center.html",
