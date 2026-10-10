@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - fix/pages-root-smoke-20261010
     paths:
       - ".github/workflows/pages-deployed-root-smoke.yml"
       - "scripts/pages_root_smoke.py"
