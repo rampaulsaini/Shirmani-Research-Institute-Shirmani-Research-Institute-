@@ -1,5 +1,7 @@
 # Shirmani Research Institute
 
+- **Bilingual Writing & Research Portfolio:** [view original Hindi/English samples and proposed pilot service boundaries](portfolio-writing-research-samples.html). Samples are illustrative, not client testimonials or claims of completed independent research.
+
 [![SHIRMANI Production Persistence & Truth Gate](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/workflows/shirmani-production-persistence.yml/badge.svg)](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/workflows/shirmani-production-persistence.yml)
 
 
