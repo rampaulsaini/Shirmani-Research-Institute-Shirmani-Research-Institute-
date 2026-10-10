@@ -7,7 +7,7 @@
 
 Unified digital research and archive platform.
 
-- **First Revenue Execution Board (2026-10-10):** [open measurable seven-day writing/research client-acquisition plan](docs/production/FIRST-REVENUE-EXECUTION-BOARD-2026-10-10.md) — proposed scoped offers, official-source prospecting, human-reviewed outreach, and funnel metrics. This plan does not claim outreach, sales, or income.
+- **Revenue-Ready Writing & Research Studio (new):** [open enquiry builder](showroom/revenue-ready-writing-research-studio.html) — service menu, proposed pilot references, structured brief, copyable enquiry and TXT export; browser-local only, with no automatic sending, checkout, sale or income claim.\n\n- **First Revenue Execution Board (2026-10-10):** [open measurable seven-day writing/research client-acquisition plan](docs/production/FIRST-REVENUE-EXECUTION-BOARD-2026-10-10.md) — proposed scoped offers, official-source prospecting, human-reviewed outreach, and funnel metrics. This plan does not claim outreach, sales, or income.
 
 - **Writing & Research Sample Portfolio:** [open bilingual public portfolio](showroom/writing-research-sample-portfolio.html) — original illustrative Hindi/English samples, proposed pilot rates, clear scope boundaries and a direct enquiry route. Samples are demonstrations, not client testimonials or completed paid work.
 - **Client-Ready Writing Samples (new):** [open bilingual sample page](showroom/client-ready-writing-sample.html) — original Hindi/English website-copy examples, a research-summary structure, proposal scope, and direct enquiry routes. Samples are illustrative, not client work or proof of sales.
