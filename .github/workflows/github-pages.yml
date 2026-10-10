@@ -24,15 +24,22 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
+      - name: Checkout the triggering commit
         uses: actions/checkout@v4
+        # IMPORTANT: deploy the commit that triggered this workflow.
+        # Do not replace the working tree with automation/production-state:
+        # that branch can lag behind main and silently omit public routes/assets.
+        # Persisted state should be read/merged as specific data, not deployed as
+        # a replacement source tree.
 
-      - name: Load canonical production state
+      - name: Check public entry routes exist
         run: |
-          if git ls-remote --exit-code --heads origin automation/production-state >/dev/null 2>&1; then
-            git fetch origin automation/production-state
-            git checkout --force FETCH_HEAD
-          fi
+          set -euo pipefail
+          test -s showroom/public-product-showroom.html
+          test -s showroom-public.html
+          test -s showroom-public-interface.html
+          test -s writing-research-enquiry.html
+          echo "Public showroom and writing/research entry files exist in the Pages artifact source."
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
