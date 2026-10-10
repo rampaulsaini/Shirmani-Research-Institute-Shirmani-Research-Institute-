@@ -15,6 +15,13 @@ Every public product identity progressively receives its own customer-facing med
 9. Price/offer when a catalog record supplies it.
 10. QC / Gate / Dispatch fields remain explicit release metadata.
 
+## 4K visual output contract (2026-10-10)
+
+- VIP visual SVGs declare a 3840 × 2160 output canvas and a 16:9 viewBox, preserving the existing composition while enabling 4K-sized vector rendering.
+- The current factory output is **SVG**, not a raster PNG/JPEG and not a captured screenshot of the live browser UI. Do not label it as a raster 4K photograph or an actual browser screenshot.
+- The factory manifest records the 3840 × 2160 canvas dimensions. A true browser screenshot, raster export, and QR scan test remain separate media-production tasks and must not be implied by SVG generation alone.
+- Regression coverage: `tests/test_vip_screenshot_factory.py` checks the canvas, product-specific routes, identity line, and escaping of catalogue text.
+
 ## Automation
 
 - VIP screenshot factory: `.github/workflows/shirmani-vip-screenshot-factory.yml`
