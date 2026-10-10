@@ -1,0 +1,69 @@
+name: Repository Security Baseline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "23 2 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-baseline-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source-safety:
+    name: Source safety checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Check for high-risk committed credential patterns
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Lightweight tripwire only; not a substitute for a dedicated secret scanner.
+          if grep -RInE --exclude-dir=.git --exclude='SECURITY-BASELINE.md' --exclude='security-baseline.yml' --exclude='*.lock' '(-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{30,}|sk-[A-Za-z0-9]{24,})' .; then
+            echo "::error::Potential credential pattern found. Review and rotate any exposed secret."
+            exit 1
+          fi
+          echo "No configured high-risk credential pattern detected."
+
+      - name: Check workflow permissions and risky triggers
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          problems = []
+          for p in Path(".github/workflows").glob("*.yml"):
+              content = p.read_text(encoding="utf-8")
+              if not re.search(r"(?m)^permissions\s*:", content):
+                  problems.append(f"{p}: missing explicit top-level permissions block")
+              if re.search(r"(?m)^\s*pull_request_target\s*:", content):
+                  problems.append(f"{p}: pull_request_target needs manual security review")
+          if problems:
+              print("\n".join(problems))
+              print("::warning::Review flagged workflows; this is not an exploitability verdict.")
+          else:
+              print("Workflow permission declarations present; manual review is still required.")
+          PY
+
+      - name: Check public entry points
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f index.html
+          test -f SECURITY-BASELINE.md
+          test -d showroom
+          echo "Public entry points exist."
