@@ -403,3 +403,8 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 
 - **Production Batch Planner:** [open browser-local demo](products/concrete/SRI-OPS-001-production-batch-planner.html) — tracks Institute research → Factory build → QC/release gate → Showroom publication, including demo-video URL, QR destination, product image/screenshot, usage guide, pricing and support terms. Exports JSON batch reports and CSV checklists.
 - **Limitations:** local-only prototype; no server persistence, generated QR image, automatic video recording, security scan, independent verification, payment, email outreach, or sales claim. A human must review evidence and approve release.
+
+## New concrete showroom tool — Product Passport & Demo Studio
+
+- **[Open browser-local Product Passport & Demo Studio](showroom/supreme-product-passport-demo-studio.html)** — drafts a product-specific showroom card, product passport JSON, QR route, and demo-video shot list from the product details; includes release checklist and print/PDF support.
+- **Current status:** browser-local prototype. It does not record or publish MP4 video, store data on a server, send outreach, accept payment, or grant QC/dispatch approval. QR rendering uses a third-party service. Actual screenshot, MP4, usage guide, QC report, pricing terms, and sales route must be separately completed and checked before a product is marked showroom-ready.
