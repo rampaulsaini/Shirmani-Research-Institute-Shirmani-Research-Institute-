@@ -37,7 +37,7 @@ jobs:
           print("Completion:",p["completion_pct"],"%")
           PY
       - name: Publish product production queue
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: shirmani-product-production-queue
           path: |

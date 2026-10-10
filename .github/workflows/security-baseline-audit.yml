@@ -28,7 +28,7 @@ jobs:
         run: python3 scripts/security/workflow_static_baseline.py
       - name: Upload machine-readable workflow report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: workflow-static-security-baseline
           path: security/reports/workflow-static-baseline.json
