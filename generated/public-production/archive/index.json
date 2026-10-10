@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-10T08:44:01.490779+00:00",
+  "generated_at": "2026-10-10T08:45:08.298569+00:00",
   "shard_strategy": "one JSONL file per production cycle",
-  "cycle_shards": 238,
+  "cycle_shards": 239,
   "files": [
     "production-cycle-000672.jsonl",
     "production-cycle-000673.jsonl",
@@ -240,9 +240,10 @@
     "production-cycle-000939.jsonl",
     "production-cycle-000940.jsonl",
     "production-cycle-000943.jsonl",
+    "production-cycle-000947.jsonl",
     "production-cycle-5970968.jsonl"
   ],
-  "latest_cycle": 943,
+  "latest_cycle": 947,
   "latest_cycle_records": 500,
   "integrity": {
     "records_are_produced_artifacts": true,
