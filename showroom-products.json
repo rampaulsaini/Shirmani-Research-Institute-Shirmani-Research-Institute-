@@ -412,6 +412,26 @@
       "artifact_evidence": "CREATED_ON_FEATURE_BRANCH_NOT_YET_DEPLOYED",
       "store_url": "showroom/revenue-quote-calculator.html",
       "usage_guide": "Enter service, language, word count, objective, sources and deadline; generate the proposal; review and agree scope and terms with the client before starting."
+    },
+    {
+      "id": "SRI-MEDIA-002",
+      "category": "media",
+      "name": "Product Media Launch Kit",
+      "short_description": "Create a product-specific cover, demo storyboard, usage guide, product passport JSON and QR destination preview.",
+      "description": "Browser-local launch-pack builder. Generates a downloadable SVG cover, five-scene demo storyboard, usage guide and product passport. QR image uses an external service.",
+      "price_inr": 0,
+      "status": "WORKING_BROWSER_DEMO_DRAFT",
+      "version": "0.1.0",
+      "artifact_url": "showroom/product-media-launch-kit.html",
+      "demo_url": "showroom/product-media-launch-kit.html",
+      "usage_guide_url": "showroom/product-media-launch-kit.html",
+      "passport_url": "showroom/product-media-launch-kit.html",
+      "qr_url": "showroom/product-media-launch-kit.html",
+      "offer": "Free internal production tool; downstream product prices are entered per product.",
+      "qc_gate": "QC-PENDING",
+      "dispatch": "NOT_A_CUSTOMER_PRODUCT",
+      "limitations": "Does not render MP4, publish listings, certify QC, send messages, process payments or prove sales. Cover is SVG artwork, not a photorealistic product screenshot.",
+      "artifact_evidence": "REPOSITORY_FILE_CREATED; browser behavior not independently tested"
     }
   ]
 }

@@ -1,4 +1,9 @@
+- **Production Expansion Sprint (2026-10-10):** [production-first execution plan](docs/production/PRODUCTION-EXPANSION-SPRINT-2026-10-10.md) — prioritises real customer-visible tool outputs, actual product media, layered authorised security, measurable production telemetry, and evidence-based outreach; no unverified sales or income claims.
+
 # Shirmani Research Institute
+
+- **Product Media Launch Kit (SRI-MEDIA-002):** [open browser tool](showroom/product-media-launch-kit.html) — creates a downloadable SVG cover, five-scene demo storyboard, usage guide, product passport JSON and QR destination preview. Browser-local draft tool; does not render MP4, publish listings, certify QC, send outreach or process payments.
+
 
 - **Product Demo & Visual Brief Studio (SRI-MEDIA-001):** [open browser tool](showroom/product-demo-visual-brief-studio.html) — generates a product-specific video storyboard, VIP screenshot composition brief, QR destination record and release checklist. Browser-local brief only; it does not record/render MP4, capture screenshots, generate QR images, publish, independently certify QC, contact prospects, or process payments.
 
