@@ -445,3 +445,9 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 - [Production contract and acceptance tests](docs/products/sri-hv-001-character-presentation-production-contract.md)
 - Defines the character's communication qualities, four capability tiers, evidence gate, voice/face authorization, acceptance tests, release record and continuous improvement loop.
 - Current integration boundary: a browser prototype is not a provider-backed live avatar; only tested and connected components may be advertised as live.
+
+
+## Reconstructed Heart-View Character Brief — 2026-10-10
+
+- [Author brief and measurable production plan](docs/products/SHIRMANI-HEART-VIEW-CHARACTER-AUTHOR-BRIEF-2026-10-10.md) — preserves the recovered character intent, four capability tiers, evidence/authorization boundaries, product-specific visual and demo-video requirements, release gates, and measurable quality metrics.
+- This is a reconstruction from available context, not a restored transcript of the deleted chat. It does not claim HeyGen integration, MP4 rendering, live avatar, outreach, payment or revenue until those capabilities are actually connected and tested.
