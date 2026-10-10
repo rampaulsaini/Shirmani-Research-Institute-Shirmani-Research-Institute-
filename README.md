@@ -5,6 +5,9 @@
 
 Unified digital research and archive platform.
 
+- **Supreme Security Command Center:** [open browser-local security checklist](showroom/supreme-security-command-center.html) — four-layer access/secrets, CI/CD, public-surface and recovery checklist; risk register and JSON export. It does not scan infrastructure or certify security; use it to track evidence-backed hardening.
+
+
 🌐 **Live Website:**  
 https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/
 
