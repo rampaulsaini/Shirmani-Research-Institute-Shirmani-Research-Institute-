@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Research Deliverable Builder | Shirmani Research Institute</title><meta name="description" content="Draft a scoped Hindi/English writing or research proposal with deliverables, quote, timeline and client message."><style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#151d32;--line:#34415d;--ink:#f2f5ff;--muted:#b9c4dc;--gold:#f1cc7a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#18274b,#0b1020 65%);color:var(--ink);font:16px/1.55 system-ui,sans-serif}main{max-width:1050px;margin:auto;padding:24px}header{padding:24px 0;border-bottom:1px solid var(--line)}.eyebrow{color:var(--gold);letter-spacing:.1em;text-transform:uppercase;font-size:.8rem;font-weight:800}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;margin:.5rem 0}h2{font-size:1.15rem}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin:20px 0}.panel{background:#151d32;border:1px solid var(--line);border-radius:16px;padding:20px}label{display:block;color:var(--muted);font-size:.9rem;margin:12px 0 5px}input,select,textarea{width:100%;border:1px solid #465675;border-radius:9px;background:#0d1427;color:var(--ink);padding:11px;font:inherit}textarea{min-height:85px}button{background:var(--gold);color:#191608;border:0;border-radius:9px;padding:11px 15px;font-weight:800;cursor:pointer;margin:5px 6px 0 0}.secondary{background:#24334f;color:var(--ink);border:1px solid #536786}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#090e1b;border:1px solid var(--line);padding:16px;border-radius:10px;min-height:150px}.notice{border-left:3px solid var(--gold);padding:10px 14px;background:#f1cc7a12;color:var(--muted)}footer{padding:24px 0;color:var(--muted);font-size:.9rem}</style></head>
+<body><main><header><div class="eyebrow">꙰ Shirmani Research Institute · SRI-WRITE-005</div><h1>Research Deliverable Builder</h1><p class="muted">Create a client-ready scope, deliverables, proposed quote, timeline and message for Hindi/English writing or research.</p><div class="notice"><b>Transparent status:</b> browser-local drafting tool. It does not send messages, accept payment, automatically verify sources or claim a sale. Prices are editable proposals, not guaranteed market rates.</div></header>
+<div class="grid"><section class="panel"><h2>1 · Client brief</h2><label for="client">Client / organisation</label><input id="client" placeholder="Optional"><label for="service">Service</label><select id="service"><option>Hindi/English writing</option><option>Research summary with source list</option><option>Website / blog content</option><option>Research + website content bundle</option></select><label for="lang">Language</label><select id="lang"><option>Hindi</option><option>English</option><option>Hindi + English</option></select><label for="topic">Topic and intended outcome</label><textarea id="topic" placeholder="What should the work achieve?"></textarea><label for="words">Approximate word count</label><input id="words" type="number" min="100" value="800" step="100"><label for="sources">Sources / links supplied</label><textarea id="sources" placeholder="URLs or 'to be agreed'"></textarea></section>
+<section class="panel"><h2>2 · Scope and quote</h2><label for="pack">Proposed package</label><select id="pack"><option value="starter">Starter — focused draft</option><option value="standard" selected>Standard — draft + source notes</option><option value="extended">Extended — deeper research</option><option value="custom">Custom scope</option></select><label for="price">Proposed price (INR)</label><input id="price" type="number" min="0" value="1499" step="100"><label for="days">Proposed delivery days</label><input id="days" type="number" min="1" value="3"><label for="rev">Included revisions</label><select id="rev"><option>1 round</option><option selected>2 rounds</option><option>3 rounds</option><option>To be agreed</option></select><label for="terms">Terms</label><textarea id="terms">Confirm scope, price, payment milestone and due date in writing before work starts.</textarea><button id="make">Generate proposal</button><button class="secondary" id="reset">Reset</button></section></div>
+<section class="panel"><h2>3 · Proposal output</h2><p class="muted">Review the draft, source permissions, feasibility, price and deadline before sending.</p><pre id="out">Fill the brief and select Generate proposal.</pre><button id="copy">Copy</button><button class="secondary" id="download">Download .txt</button><button class="secondary" onclick="window.print()">Print / Save PDF</button><p id="status" class="muted" role="status"></p></section>
+<footer>Scope → written approval → agreed payment → evidence-aware work → client review → agreed revisions. No automated outreach, checkout or income claims.</footer></main>
+<script>
+const $=id=>document.getElementById(id);$('pack').onchange=()=>{const p={starter:[699,2],standard:[1499,3],extended:[2999,5]}[$('pack').value];if(p){$('price').value=p[0];$('days').value=p[1]}};
+$('make').onclick=()=>{const topic=$('topic').value.trim(),price=Number($('price').value),days=Number($('days').value),words=Number($('words').value);if(!topic){$('status').textContent='Enter a topic or intended outcome first.';return}if(price<0||days<1||words<100||![price,days,words].every(Number.isFinite)){$('status').textContent='Check price, timeline and word count.';return}
+const client=$('client').value.trim()||'Client';const packageName={starter:'Starter — focused draft',standard:'Standard — draft + source notes',extended:'Extended — deeper research',custom:'Custom scope'}[$('pack').value];
+$('out').textContent=`SHIRMANI RESEARCH INSTITUTE — PROPOSAL DRAFT
+STATUS: DRAFT — NOT SENT OR ACCEPTED
+
+Client: ${client}
+Service: ${$('service').value}
+Language: ${$('lang').value}
+Topic / intended outcome: ${topic}
+Target length: approximately ${words.toLocaleString()} words
+Package: ${packageName}
+
+PROPOSED DELIVERABLES
+1. Scoped ${$('service').value.toLowerCase()} deliverable on the topic above.
+2. Approximate target length: ${words.toLocaleString()} words, subject to agreement.
+3. Sources: ${$('sources').value.trim()||'To be agreed before work begins.'}
+4. Missing evidence and limitations will be flagged rather than invented.
+5. Included revisions: ${$('rev').value}.
+
+PROPOSED COMMERCIAL TERMS
+Fee: INR ₹${price.toLocaleString('en-IN')}
+Delivery: ${days} calendar day(s) after scope, required materials and payment milestone are agreed.
+Terms: ${$('terms').value}
+
+ACCEPTANCE CHECKLIST
+[ ] Client confirms audience, purpose and intended use.
+[ ] Deliverables, source permissions, length and exclusions are agreed.
+[ ] Price, payment milestone and delivery date are confirmed in writing.
+[ ] Revision and final-delivery process is agreed.
+
+CLIENT MESSAGE DRAFT
+Hello ${client},
+Thank you for contacting Shirmani Research Institute. The proposed scope is: ${topic}
+Service: ${$('service').value} (${$('lang').value}); target length approximately ${words.toLocaleString()} words.
+Proposed fee: INR ₹${price.toLocaleString('en-IN')}; proposed delivery: ${days} day(s).
+This is a draft offer, not a confirmed booking. Please review and confirm the scope, sources, timeline and terms in writing. Work begins only after both sides agree.
+Regards, Shirmani Research Institute
+
+This is not an invoice, payment receipt, legal advice or proof of a sale. Price and timing must be reviewed for feasibility before sending.`;$('status').textContent='Proposal generated locally. Review before use.'};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('out').textContent);$('status').textContent='Copied if browser clipboard permission was granted.'}catch(e){$('status').textContent='Clipboard unavailable; select and copy the text manually.'}};
+$('download').onclick=()=>{const u=URL.createObjectURL(new Blob([$('out').textContent],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=u;a.download='shirmani-research-proposal.txt';a.click();URL.revokeObjectURL(u);$('status').textContent='Download requested.'};
+$('reset').onclick=()=>{['client','topic','sources'].forEach(x=>$(x).value='');$('service').selectedIndex=0;$('lang').selectedIndex=0;$('words').value=800;$('pack').value='standard';$('price').value=1499;$('days').value=3;$('rev').selectedIndex=1;$('terms').value='Confirm scope, price, payment milestone and due date in writing before work starts.';$('out').textContent='Fill the brief and select Generate proposal.';$('status').textContent='Reset complete.'};
+</script></body></html>
