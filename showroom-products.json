@@ -419,7 +419,8 @@
         "No external AI, email, checkout, payment or publishing integration",
         "Sources are supplied by the user and not independently verified",
         "Manual browser testing and QC remain pending"
-      ]
+      ],
+      "store_url": "showroom/heart-view-presentation-production-studio.html"
     }
   ]
 }
