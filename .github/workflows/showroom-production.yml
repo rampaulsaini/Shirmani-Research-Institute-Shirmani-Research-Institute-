@@ -11,7 +11,7 @@ jobs:
   production-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Validate production catalogue
         run: python3 scripts/showroom-production-check.py
       - name: Report production surface

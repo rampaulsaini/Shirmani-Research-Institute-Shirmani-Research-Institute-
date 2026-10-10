@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build production queue and public telemetry
         run: python scripts/production_first_conveyor.py
       - name: Publish production telemetry

@@ -10,7 +10,7 @@ jobs:
     if: contains(github.event.issue.labels.*.name, 'customer-review')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build bounded review improvement record
         env:
           ISSUE_NUMBER: ${{github.event.issue.number}}

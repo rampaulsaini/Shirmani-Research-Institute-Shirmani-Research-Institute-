@@ -24,7 +24,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Build engine-family demo MP4s and product media manifest
         run: python3 factory/product_demo_video_factory.py
       - name: Publish demo media
