@@ -28,6 +28,9 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 
 - **Voice-to-Presentation Planner (SRI-VOICE-004):** [open browser demo](showroom/voice-to-presentation-planner.html) — builds a presentation brief/script, evidence gate, authorized voice/avatar pipeline and acceptance checklist; browser-local only, no live HeyGen/provider integration claimed.
 
+
+- **Production & Security Control Room (SRI-OPS-001):** [open browser tool](showroom/supreme-production-security-control-room.html) — four-stage production workboard, security-first manual checklist, evidence/notes, local save and JSON/CSV export. Browser-local only; it does not scan infrastructure, sync to GitHub, or certify security.
+
 ## New Concrete Research Tool — Research Brief & Source Ledger
 
 - **Research Brief & Source Ledger:** [open working browser demo](showroom/research-brief-source-ledger.html) — create a scoped research brief, record claim/source/date/URL/evidence status/limitations, and export a text pack or print to PDF. Browser-local prototype; it does not browse or independently verify claims, connect AI, or upload data.
