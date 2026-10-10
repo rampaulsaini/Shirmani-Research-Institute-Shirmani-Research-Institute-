@@ -392,3 +392,8 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 - **Scanner:** [scripts/security_baseline_audit.py](scripts/security_baseline_audit.py) scans tracked-style text files for a small set of high-confidence credential patterns and reviews GitHub Actions workflow permission blocks/action references. It never prints matched secret values.
 - **Automation:** [security-baseline-audit.yml](.github/workflows/security-baseline-audit.yml) runs on pull requests, pushes to `main`, manual dispatch, and a weekly schedule with `contents: read` and checkout credentials disabled.
 - **Limitations:** a static pattern scan is not a penetration test, does not validate every secret type, and cannot guarantee platform security. Workflow-hardening warnings require human review; high-confidence credential-pattern matches fail the job for triage.
+
+
+## New Concrete Production — SRI-WRITE-006 Client Delivery & Acceptance Desk
+
+- **Client Delivery & Acceptance Desk:** [open browser tool](products/concrete/SRI-WRITE-006-client-delivery-acceptance-desk.html) — records agreed scope, deadline, fee/payment state and delivery state; provides an eight-item handover checklist plus TXT/JSON exports. Browser-local only: no connected email, WhatsApp, payment, shared database, independent verification, or guaranteed income.
