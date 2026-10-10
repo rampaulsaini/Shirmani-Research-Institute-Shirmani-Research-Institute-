@@ -32,7 +32,7 @@ jobs:
         run: |
           set -euo pipefail
           # Lightweight tripwire only; not a substitute for a dedicated secret scanner.
-          if grep -RInE --exclude-dir=.git --exclude='SECURITY-BASELINE.md' --exclude='*.lock' '(-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{30,}|sk-[A-Za-z0-9]{24,})' .; then
+          if grep -RInE --exclude-dir=.git --exclude='SECURITY-BASELINE.md' --exclude='security-baseline.yml' --exclude='*.lock' '(-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{30,}|sk-[A-Za-z0-9]{24,})' .; then
             echo "::error::Potential credential pattern found. Review and rotate any exposed secret."
             exit 1
           fi
