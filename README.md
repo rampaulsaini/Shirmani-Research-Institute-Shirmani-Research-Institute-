@@ -7,7 +7,7 @@ Unified digital research and archive platform.
 
 - **Global Public Product Showroom:** [open searchable public catalogue](showroom/public-product-showroom.html) — lists concrete tools and services with direct demo links, category filtering, readiness labels, and a transparent four-stage production/order path. Catalogue entries describe current browser demos; unconnected AI, MP4 generation, checkout, automatic outreach, and sales are not claimed as live.
 
-- **Research Deliverable Builder (SRI-WRITE-005):** [open browser demo](showroom/research-deliverable-builder.html) — drafts a Hindi/English writing/research scope, proposed quote, timeline, revision terms and client message; local copy/TXT/print. No automatic outreach, payment, or income claim.
+- **Writing & Research Pilot Desk (SRI-WRITE-006):** [open working enquiry builder](showroom/writing-research-pilot-desk.html) — client brief, proposed starter packages, scope/terms draft, copy and TXT/print export. Prices are proposed and require confirmation; no automatic sending, payment, sale, or income is claimed.\n- **Research Deliverable Builder (SRI-WRITE-005):** [open browser demo](showroom/research-deliverable-builder.html) — drafts a Hindi/English writing/research scope, proposed quote, timeline, revision terms and client message; local copy/TXT/print. No automatic outreach, payment, or income claim.
 
 - **Supreme Security Command Center:** [open browser-local security checklist](showroom/supreme-security-command-center.html) — four-layer access/secrets, CI/CD, public-surface and recovery checklist; risk register and JSON export. It does not scan infrastructure or certify security; use it to track evidence-backed hardening.
 
