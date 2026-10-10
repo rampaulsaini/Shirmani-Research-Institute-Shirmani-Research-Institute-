@@ -13,6 +13,13 @@ Turn the existing Hindi/English Writing & Research service into a measurable, hu
 - `showroom/client-proposal-scope-builder.html` — scope, quote and delivery terms
 - `showroom-public-interface.html` — public showroom entry
 
+## Portfolio samples now prepared
+
+- [Hindi writing sample — Digital Literacy](../portfolio/sample-hindi-digital-literacy-article.md)
+- [English research-summary sample — Digital Literacy](../portfolio/sample-english-digital-literacy-research-summary.md)
+
+Both are clearly labelled illustrative samples, not client work or independently verified research. Before advertising them as public samples, review them and confirm they are appropriate for publication.
+
 ## Sellable service menu (proposed, confirm scope before quoting)
 
 | Offer | Deliverable | Proposed starting reference | Boundary |
@@ -36,7 +43,7 @@ Targets below are activity goals, not predicted outcomes.
 
 | Day | Work | Evidence to record |
 |---|---|---|
-| 1 | Polish one Hindi sample and one English sample | Two sample files/URLs |
+| 1 | Prepare one Hindi sample and one English research-summary sample | **Prepared in repository branch**; publication/review still pending |
 | 2 | Publish one clear service menu and enquiry route | Public URL + mobile check |
 | 3 | Identify 10 relevant prospects from their official websites | Prospect name, official URL, fit reason |
 | 4 | Personalize and manually review 5 messages | Drafts + approval status |
