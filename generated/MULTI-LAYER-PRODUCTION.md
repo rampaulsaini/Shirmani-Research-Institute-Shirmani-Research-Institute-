@@ -1,6 +1,6 @@
 # ꙰ SHIRMANI Multi-Layer Production Status
 
-Generated: 2026-10-10T08:45:08.187209+00:00
+Generated: 2026-10-10T08:46:10.708086+00:00
 
 ## Production-first principle
 Platform work is generated first. Independent verification is downstream evidence/promotion, not the production objective.
@@ -11,15 +11,15 @@ Platform work is generated first. Independent verification is downstream evidenc
 - Total queued tasks: **500**
 
 ## Production lanes
-- **ai-ml-nlp** — 63 tasks in latest cycle
-- **automation** — 248 tasks in latest cycle
-- **content** — 13 tasks in latest cycle
-- **economic** — 8 tasks in latest cycle
-- **federation** — 14 tasks in latest cycle
-- **platform** — 94 tasks in latest cycle
-- **research** — 19 tasks in latest cycle
-- **security-quality** — 32 tasks in latest cycle
-- **social-media** — 9 tasks in latest cycle
+- **ai-ml-nlp** — 43 tasks in latest cycle
+- **automation** — 247 tasks in latest cycle
+- **content** — 10 tasks in latest cycle
+- **economic** — 16 tasks in latest cycle
+- **federation** — 15 tasks in latest cycle
+- **platform** — 119 tasks in latest cycle
+- **research** — 18 tasks in latest cycle
+- **security-quality** — 21 tasks in latest cycle
+- **social-media** — 11 tasks in latest cycle
 
 ## Existing production output
 
