@@ -10,7 +10,7 @@ CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/vip-screenshots"
 MAN=ROOT/"generated/vip-screenshot-assets.json"
 PUBLIC_MAN=ROOT/"generated/product-vip-screenshot-manifest.json"
-STYLE="2026-10-07-vip-screenshot-v1"
+STYLE="2026-10-10-vip-screenshot-4k-v2"
 BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
 LOGO=BASE+"assets/shirmani-perspective-logo.svg"
 IDENTITY="Shiromani Rampal Saini — Impartial Understanding · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
@@ -27,7 +27,7 @@ def make_svg(p):
     demo=BASE+"product-demo.html?id="+urllib.parse.quote(pid)
     qr="https://api.qrserver.com/v1/create-qr-code/?size=500x500&margin=10&data="+urllib.parse.quote(passport,safe="")
     return f'''<!-- {STYLE} -->
-<svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1440" viewBox="0 0 2560 1440" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 2560 1440" preserveAspectRatio="xMidYMid meet" role="img">
 <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{c1}"/><stop offset=".55" stop-color="{c2}"/><stop offset="1" stop-color="#050910"/></linearGradient></defs>
 <rect width="2560" height="1440" fill="url(#bg)"/><rect x="24" y="24" width="2512" height="1392" rx="70" fill="none" stroke="#e7c85b" stroke-width="7"/>
 <circle cx="210" cy="205" r="150" fill="#061016" stroke="#e7c85b" stroke-width="8"/><image href="{LOGO}" x="80" y="75" width="260" height="260" preserveAspectRatio="xMidYMid slice"/>
@@ -69,7 +69,7 @@ def main():
             path.write_text(make_svg(p),encoding="utf-8"); updated+=1
         elif path.exists(): existing+=1
         elif id(p) in selected: path.write_text(make_svg(p),encoding="utf-8"); created+=1
-        rows.append({"product_id":pid,"name":p.get("name"),"asset_path":str(path.relative_to(ROOT)),"format":"svg","width":2560,"height":1440,"aspect_ratio":"16:9","exists":path.exists(),"state":"READY_FOR_PUBLIC_SHOWROOM" if path.exists() else "PENDING","demo_route":f"product-demo.html?id={urllib.parse.quote(pid)}","passport_route":f"product-passport.html?id={urllib.parse.quote(pid)}"})
+        rows.append({"product_id":pid,"name":p.get("name"),"asset_path":str(path.relative_to(ROOT)),"format":"svg","width":3840,"height":2160,"rendering":"4K vector viewport (3840x2160)","aspect_ratio":"16:9","exists":path.exists(),"state":"READY_FOR_PUBLIC_SHOWROOM" if path.exists() else "PENDING","demo_route":f"product-demo.html?id={urllib.parse.quote(pid)}","passport_route":f"product-passport.html?id={urllib.parse.quote(pid)}"})
     now=datetime.now(timezone.utc).isoformat(); ready=sum(1 for r in rows if r["exists"])
     payload={"schema_version":1,"generated_at":now,"style":STYLE,"target":len(products),"vip_screenshot_assets":ready,"coverage_percent":round(100*ready/len(products),2) if products else 0,"created_this_cycle":created,"updated_this_cycle":updated,"already_existing":existing,"remaining":len(products)-ready,"principle":"Every concrete product gets a product-specific VIP presentation asset.","truth_boundary":"VIP screenshot is a customer-facing presentation asset, not independent scientific verification.","products":rows}
     text=json.dumps(payload,ensure_ascii=False,indent=2)+"\n"
