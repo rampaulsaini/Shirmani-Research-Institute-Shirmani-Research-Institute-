@@ -394,6 +394,34 @@
         "No server persistence, email, checkout, payment or sales integration",
         "Manual browser testing and QC remain pending"
       ]
+    },
+    {
+      "id": "SRI-MEDIA-002",
+      "category": "media-tool",
+      "name": "Product Passport & Demo Pack Studio",
+      "price_inr": 0,
+      "status": "PROTOTYPE_QC_PENDING",
+      "store_url": "products/concrete/SRI-MEDIA-002-product-passport-demo-pack-studio.html",
+      "description": "Browser-local product pack builder for a structured passport, short showroom copy, usage guide, demo storyboard, QR preview and explicit QC/gate/dispatch states; exports JSON and TXT.",
+      "short_description": "Build a product passport, usage guide, demo storyboard and release checklist from one structured brief.",
+      "offer": "Free prototype test drive; custom production quoted separately after scope review",
+      "qc_gate": "QC-PENDING-MANUAL-TEST",
+      "dispatch": "PREVIEW_ONLY",
+      "version": "1.0.0",
+      "artifact_url": "products/concrete/SRI-MEDIA-002-product-passport-demo-pack-studio.html",
+      "artifact_evidence": "CREATED_ON_PRODUCTION_BRANCH_REVIEW_AND_MANUAL_QC_PENDING",
+      "demo_url": "products/concrete/SRI-MEDIA-002-product-passport-demo-pack-studio.html",
+      "usage_guide": "Enter product identity, features, usage steps and canonical public URL; build the passport; inspect the storyboard and QR preview; export JSON/TXT; record manual test evidence before changing QC status.",
+      "visual_status": "VIP_SCREENSHOT_PENDING",
+      "demo_video_status": "STORYBOARD_ONLY_MP4_NOT_CREATED",
+      "passport_status": "GENERATED_LOCALLY",
+      "limitations": [
+        "Browser-local only; no server persistence",
+        "No external AI or video rendering; storyboard only, not MP4",
+        "QR preview depends on external QR image service and must be scan-tested",
+        "No email, checkout, payment, sales or independent QC certification",
+        "Manual browser testing remains pending"
+      ]
     }
   ]
 }
