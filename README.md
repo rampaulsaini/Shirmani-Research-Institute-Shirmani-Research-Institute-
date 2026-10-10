@@ -1,5 +1,7 @@
 # Shirmani Research Institute
 
+- **Heart-View Presentation Production Studio (SRI-PRES-001):** [open working browser demo](showroom/heart-view-presentation-production-studio.html) — generates a presenter script, scene plan, source ledger, voice-to-presentation workflow and consent/release checklist, with TXT export. Browser-local prototype; does not render MP4, generate voice, clone faces, call external AI, publish, or independently verify claims.
+
 - **Product Demo & Visual Brief Studio (SRI-MEDIA-001):** [open browser tool](showroom/product-demo-visual-brief-studio.html) — generates a product-specific video storyboard, VIP screenshot composition brief, QR destination record and release checklist. Browser-local brief only; it does not record/render MP4, capture screenshots, generate QR images, publish, independently certify QC, contact prospects, or process payments.
 
 [![SHIRMANI Production Persistence & Truth Gate](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/workflows/shirmani-production-persistence.yml/badge.svg)](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/workflows/shirmani-production-persistence.yml)
