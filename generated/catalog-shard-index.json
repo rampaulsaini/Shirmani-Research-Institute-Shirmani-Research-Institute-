@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-10T18:12:22.788807+00:00",
+  "current_catalog": 5000,
+  "current_target": 5000,
+  "long_term_target": 150000,
+  "shard_size": 1000,
+  "current_shards": 5,
+  "shards": [
+    {
+      "shard": 1,
+      "path": "generated/catalog-shards/shard-0001.json",
+      "count": 1000,
+      "first_id": "SP-0001",
+      "last_id": "SP-1000"
+    },
+    {
+      "shard": 2,
+      "path": "generated/catalog-shards/shard-0002.json",
+      "count": 1000,
+      "first_id": "SP-1001",
+      "last_id": "SP-2000"
+    },
+    {
+      "shard": 3,
+      "path": "generated/catalog-shards/shard-0003.json",
+      "count": 1000,
+      "first_id": "SP-2001",
+      "last_id": "SP-3000"
+    },
+    {
+      "shard": 4,
+      "path": "generated/catalog-shards/shard-0004.json",
+      "count": 1000,
+      "first_id": "SP-3001",
+      "last_id": "SP-4000"
+    },
+    {
+      "shard": 5,
+      "path": "generated/catalog-shards/shard-0005.json",
+      "count": 1000,
+      "first_id": "SP-4001",
+      "last_id": "SP-5000"
+    }
+  ],
+  "estimated_shards_at_150k": 150,
+  "architecture": "INDEX -> SHARD -> PRODUCT -> PASSPORT -> DEMO/VISUAL -> QC -> SHOWROOM",
+  "production_truth": "Shard presence is catalogue packaging; it is not evidence that every identity has a concrete production asset."
+}
