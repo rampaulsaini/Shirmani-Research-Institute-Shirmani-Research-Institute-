@@ -5,6 +5,8 @@
 
 Unified digital research and archive platform.
 
+- **First Client Service Desk:** [open proposal builder](showroom/first-client-service-desk.html) — creates a client-specific scope/proposal draft for Hindi/English writing, research summaries and website/blog content. Local-only prototype; no automatic sending, payment, confirmed client, or income claim.
+
 - **Global Public Product Showroom:** [open searchable public catalogue](showroom/public-product-showroom.html)
 - **Supreme Showroom Public Entry:** [open public showroom landing page](showroom-public.html) — catalogue, current writing/research service, presentation studio, directory and customer feedback links with honest readiness labels. — lists concrete tools and services with direct demo links, category filtering, readiness labels, and a transparent four-stage production/order path. Catalogue entries describe current browser demos; unconnected AI, MP4 generation, checkout, automatic outreach, and sales are not claimed as live.
 
