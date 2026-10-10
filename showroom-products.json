@@ -394,6 +394,24 @@
         "No server persistence, email, checkout, payment or sales integration",
         "Manual browser testing and QC remain pending"
       ]
+    },
+    {
+      "id": "SRI-REV-003",
+      "category": "writing",
+      "name": "Revenue Quote Calculator — Hindi/English Writing & Research",
+      "short_description": "Create a scoped client estimate and proposal; copy, download TXT, or open a reviewed email draft.",
+      "description": "Browser-side quote calculator for editing, article/website copy, source-based research briefs, and content packs. It does not send messages or accept payment.",
+      "price_inr": 0,
+      "status": "PROTOTYPE_READY",
+      "demo_url": "showroom/revenue-quote-calculator.html",
+      "artifact_url": "showroom/revenue-quote-calculator.html",
+      "offer": "Free enquiry-planning tool; service rates are proposed and must be agreed in writing.",
+      "qc_gate": "QC-MANUAL-REVIEW-PENDING",
+      "dispatch": "ENQUIRY_ONLY",
+      "version": "1.0.0",
+      "artifact_evidence": "CREATED_ON_FEATURE_BRANCH_NOT_YET_DEPLOYED",
+      "store_url": "showroom/revenue-quote-calculator.html",
+      "usage_guide": "Enter service, language, word count, objective, sources and deadline; generate the proposal; review and agree scope and terms with the client before starting."
     }
   ]
 }
