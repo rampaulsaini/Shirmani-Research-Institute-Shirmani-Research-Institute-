@@ -368,6 +368,32 @@
       "artifact_evidence": "REPOSITORY_ARTIFACT_CREATED_QC_PENDING",
       "usage_guide": "docs/products/research-writing-workbench-guide.md",
       "demo_url": "products/concrete/SRI-RESEARCH-WRITING-WORKBENCH-001.html"
+    },
+    {
+      "id": "SRI-RES-003",
+      "category": "research-tool",
+      "name": "Research Deliverable Pack Builder",
+      "price_inr": 0,
+      "status": "PROTOTYPE_QC_PENDING",
+      "store_url": "products/concrete/SRI-RES-003-research-deliverable-pack-builder.html",
+      "description": "Browser-local builder for a structured research deliverable pack with objective, source notes, URL ledger, limitations, next steps and QC checklist; copy, TXT and print/PDF export.",
+      "short_description": "Turn a scoped research brief and supplied source notes into an organized, reviewable deliverable pack.",
+      "offer": "Free prototype test drive; custom Hindi/English research and writing quoted separately",
+      "qc_gate": "QC-PENDING-MANUAL-TEST",
+      "dispatch": "PREVIEW_ONLY",
+      "version": "1.0.0",
+      "artifact_url": "products/concrete/SRI-RES-003-research-deliverable-pack-builder.html",
+      "artifact_evidence": "CREATED_ON_PRODUCTION_BRANCH_REVIEW_AND_MANUAL_QC_PENDING",
+      "demo_url": "products/concrete/SRI-RES-003-research-deliverable-pack-builder.html",
+      "usage_guide": "Enter topic, objective, audience, source notes, URLs, limitations and next steps; build the pack; export TXT or print/save PDF; manually check every claim and citation.",
+      "visual_status": "VIP_SCREENSHOT_PENDING",
+      "passport_status": "INLINE_USAGE_AND_LIMITATIONS",
+      "limitations": [
+        "No external AI or source retrieval",
+        "URLs are not authenticated or independently verified",
+        "No server persistence, email, checkout, payment or sales integration",
+        "Manual browser testing and QC remain pending"
+      ]
     }
   ]
 }
