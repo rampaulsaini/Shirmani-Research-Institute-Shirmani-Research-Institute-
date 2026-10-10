@@ -397,3 +397,9 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 - **Scanner:** [scripts/security_baseline_audit.py](scripts/security_baseline_audit.py) scans tracked-style text files for a small set of high-confidence credential patterns and reviews GitHub Actions workflow permission blocks/action references. It never prints matched secret values.
 - **Automation:** [security-baseline-audit.yml](.github/workflows/security-baseline-audit.yml) runs on pull requests, pushes to `main`, manual dispatch, and a weekly schedule with `contents: read` and checkout credentials disabled.
 - **Limitations:** a static pattern scan is not a penetration test, does not validate every secret type, and cannot guarantee platform security. Workflow-hardening warnings require human review; high-confidence credential-pattern matches fail the job for triage.
+
+
+## New concrete production tool — SRI-OPS-001
+
+- **Production Batch Planner:** [open browser-local demo](products/concrete/SRI-OPS-001-production-batch-planner.html) — tracks Institute research → Factory build → QC/release gate → Showroom publication, including demo-video URL, QR destination, product image/screenshot, usage guide, pricing and support terms. Exports JSON batch reports and CSV checklists.
+- **Limitations:** local-only prototype; no server persistence, generated QR image, automatic video recording, security scan, independent verification, payment, email outreach, or sales claim. A human must review evidence and approve release.
