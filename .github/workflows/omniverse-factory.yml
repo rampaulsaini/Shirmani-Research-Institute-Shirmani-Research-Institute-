@@ -161,7 +161,7 @@ jobs:
           test -s "$PACKET_PATH"
           python3 factory/verification_review_packet_qc.py --packet "$PACKET_PATH"
       - name: Upload independent verification review packet
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: shirmani-heart-view-review-packet
           path: generated/verification-review-packet-*.json

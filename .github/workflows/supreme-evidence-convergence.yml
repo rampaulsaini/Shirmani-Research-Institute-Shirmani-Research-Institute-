@@ -44,7 +44,7 @@ jobs:
           assert all(v in {'UNVERIFIED','UNKNOWN'} for v in d['verification_status'].values())
           print('SUPREME_EVIDENCE_CONVERGENCE: PASS')
           PY
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: supreme-evidence-convergence-${{ github.run_id }}
           path: generated/supreme-nlp/cross-layer-consistency.json

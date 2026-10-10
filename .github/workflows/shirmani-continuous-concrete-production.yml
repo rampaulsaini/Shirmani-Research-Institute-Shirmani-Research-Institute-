@@ -116,7 +116,7 @@ jobs:
       - name: Publish public production operations telemetry
         run: python3 factory/production_operations_status.py
       - name: Publish production evidence artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: shirmani-concrete-production-${{ github.run_number }}
           retention-days: 7
