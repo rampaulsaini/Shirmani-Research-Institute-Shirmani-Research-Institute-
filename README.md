@@ -5,7 +5,8 @@
 
 Unified digital research and archive platform.
 
-- **Global Public Product Showroom:** [open searchable public catalogue](showroom/public-product-showroom.html) — lists concrete tools and services with direct demo links, category filtering, readiness labels, and a transparent four-stage production/order path. Catalogue entries describe current browser demos; unconnected AI, MP4 generation, checkout, automatic outreach, and sales are not claimed as live.
+- **Global Public Product Showroom:** [open searchable public catalogue](showroom/public-product-showroom.html)
+- **Supreme Showroom Public Entry:** [open public showroom landing page](showroom-public.html) — catalogue, current writing/research service, presentation studio, directory and customer feedback links with honest readiness labels. — lists concrete tools and services with direct demo links, category filtering, readiness labels, and a transparent four-stage production/order path. Catalogue entries describe current browser demos; unconnected AI, MP4 generation, checkout, automatic outreach, and sales are not claimed as live.
 
 - **Research Deliverable Builder (SRI-WRITE-005):** [open browser demo](showroom/research-deliverable-builder.html) — drafts a Hindi/English writing/research scope, proposed quote, timeline, revision terms and client message; local copy/TXT/print. No automatic outreach, payment, or income claim.
 
