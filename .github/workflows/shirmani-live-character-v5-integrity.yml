@@ -4,7 +4,9 @@ on:
   push:
     paths:
       - 'shirmani-live-character-v5.html'
+      - 'shirmani-supreme-live-character-v10.html'
       - 'generated/shirmani-live-character-v5.json'
+      - 'generated/shirmani-live-character-v10-contract.json'
       - '.github/workflows/shirmani-live-character-v5-integrity.yml'
       - 'index.html'
   schedule:
@@ -19,40 +21,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate V5 contract and public wiring
+      - name: Validate legacy V5 entry against canonical V10
         shell: python
         run: |
           import json, pathlib, sys
-          contract = pathlib.Path("generated/shirmani-live-character-v5.json")
-          page = pathlib.Path("shirmani-live-character-v5.html")
+          legacy_contract = pathlib.Path("generated/shirmani-live-character-v5.json")
+          legacy_entry = pathlib.Path("shirmani-live-character-v5.html")
+          canonical_page = pathlib.Path("shirmani-supreme-live-character-v10.html")
+          canonical_contract = pathlib.Path("generated/shirmani-live-character-v10-contract.json")
           index = pathlib.Path("index.html")
-          data = json.loads(contract.read_text(encoding="utf-8"))
           required = ["version","name","framework","identity_statement","communication","reasoning","presentation","pipeline","status","integrity"]
-          missing = [k for k in required if k not in data]
+          legacy_data = json.loads(legacy_contract.read_text(encoding="utf-8"))
+          missing = [key for key in required if key not in legacy_data]
           if missing:
-              print("FAIL missing contract keys:", missing)
+              print("FAIL missing legacy contract keys:", missing)
               sys.exit(1)
-          v5_text = page.read_text(encoding="utf-8")
-          index_text = index.read_text(encoding="utf-8")
-          v10_contract = pathlib.Path("generated/shirmani-live-character-v10-contract.json")
-          v10_page = pathlib.Path("shirmani-supreme-live-character-v10.html")
-          v10_data = json.loads(v10_contract.read_text(encoding="utf-8")) if v10_contract.exists() else {}
-
+          v10_data = json.loads(canonical_contract.read_text(encoding="utf-8"))
+          legacy_text = legacy_entry.read_text(encoding="utf-8")
+          canonical_text = canonical_page.read_text(encoding="utf-8")
+          legacy_contract_text = legacy_contract.read_text(encoding="utf-8")
           checks = {
-              "page exists": page.exists(),
-              "legacy V5 entry preserved": "shirmani-live-character-v5.html" in index_text,
-              "legacy V5 redirects to V10": "shirmani-supreme-live-character-v10.html" in v5_text,
-              "canonical V10 page exists": v10_page.exists(),
-              "canonical V10 contract exists": v10_contract.exists(),
-              "V10 contract points to canonical surface": v10_data.get("canonical_surface") == "shirmani-supreme-live-character-v10.html",
-              "evidence fallback present": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in v5_text,
-              "V5 verification boundary present": "independent_scientific_verification" in contract.read_text(encoding="utf-8"),
-              "V10 independent verification remains separate": v10_data.get("gates", {}).get("independent_verification") == "separate artifact",
-              "legacy preserved": all(pathlib.Path(p).exists() for p in ["shirmani-live-character-v3.html","live-persona-supreme-v4.html"])
+              "legacy entry exists": legacy_entry.exists(),
+              "main hub links legacy entry": "shirmani-live-character-v5.html" in index.read_text(encoding="utf-8"),
+              "legacy V5 routes to canonical V10": "shirmani-supreme-live-character-v10.html" in legacy_text,
+              "canonical V10 page exists": canonical_page.exists(),
+              "canonical V10 contract exists": canonical_contract.exists(),
+              "V10 contract points to canonical page": v10_data.get("canonical_surface") == "shirmani-supreme-live-character-v10.html",
+              "insufficient-evidence fallback rendered by canonical V10": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in canonical_text,
+              "legacy verification boundary preserved": "independent_scientific_verification" in legacy_contract_text,
+              "V10 independent verification remains a separate gate": v10_data.get("gates", {}).get("independent_verification") == "separate artifact",
+              "older V3/V4 entries preserved": all(pathlib.Path(path).exists() for path in ["shirmani-live-character-v3.html","live-persona-supreme-v4.html"])
           }
-          bad = [k for k,v in checks.items() if not v]
-          print("V5 integrity:", checks)
-          if bad:
-              print("FAIL:", bad)
+          for name, passed in checks.items():
+              print(("PASS" if passed else "FAIL"), name)
+          failed = [name for name, passed in checks.items() if not passed]
+          if failed:
+              print("FAIL integrity gate:", failed)
               sys.exit(1)
-          print("PASS: SHIRMANI Supreme Live Character V5 integrity gate")
+          print("PASS: V5 compatibility entry and canonical V10 integrity")
