@@ -2,6 +2,9 @@
 
 - **Bilingual Website Copy Pack Studio (SRI-WRITE-007):** [open concrete browser tool](products/concrete/SRI-WRITE-007-bilingual-website-copy-pack-studio.html) — creates an editable website copy starter pack in Hindi, English or both, with homepage, about, service, CTA, SEO description and QC notes plus copy/TXT/print export. Template-based browser-local prototype; human fact-checking required, no connected AI, publishing, sending or payment integration is claimed.\n\n- **Production Expansion Sprint (2026-10-10):** [production-first execution plan](docs/production/PRODUCTION-EXPANSION-SPRINT-2026-10-10.md) — prioritises real customer-visible tool outputs, actual product media, layered authorised security, measurable production telemetry, and evidence-based outreach; no unverified sales or income claims.
 
+
+- **Product Release Pack Builder (SRI-MEDIA-003):** [open working browser tool](showroom/product-release-pack-builder.html) — generates a product-specific QR code, downloadable cover SVG, passport JSON, usage guide and demo storyboard. Browser-local; QR library loads from a public CDN. It does not record MP4, publish listings, certify QC, send outreach, process payments or claim sales.
+
 # Shirmani Research Institute
 
 - **SRI-PRES-001 — Heart-View Character Studio:** [open browser-local character brief and rehearsal tool](showroom/heart-view-character-studio.html) · [product cover](assets/products/SRI-PRES-001-heart-view-character-studio.svg) · [product passport](docs/products/SRI-PRES-001-product-passport.md). This is a brief/checklist generator, not an integrated AI avatar, voice-cloning, lip-sync or MP4 service.
