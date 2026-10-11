@@ -1,0 +1,35 @@
+name: SHIRMANI Supreme NLP Contract
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-practitioner-contract.md"
+      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+      - "schemas/agent-governance.json"
+      - "factory/supreme_nlp_contract_qc.py"
+      - "schemas/supreme-nlp-evaluation.schema.json"
+      - "factory/supreme_nlp_evaluation_qc.py"
+      - "docs/supreme-nlp-evaluation-gate.md"
+      - ".github/workflows/supreme-nlp-contract.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-contract
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Supreme NLP contract
+        run: python3 factory/supreme_nlp_contract_qc.py
+      - name: Validate Supreme NLP evaluation gate
+        run: python3 factory/supreme_nlp_evaluation_qc.py
