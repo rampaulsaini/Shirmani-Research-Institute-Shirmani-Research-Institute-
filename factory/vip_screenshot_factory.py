@@ -65,7 +65,7 @@ def main():
     rows=[]; created=updated=existing=0
     for p in products:
         pid=str(p["id"]); path=OUT/(pid.lower()+".svg")
-        if path.exists() and rebuild and STYLE not in path.read_text(encoding="utf-8",errors="ignore")[:120]:
+        if path.exists() and rebuild:
             path.write_text(make_svg(p),encoding="utf-8"); updated+=1
         elif path.exists(): existing+=1
         elif id(p) in selected: path.write_text(make_svg(p),encoding="utf-8"); created+=1
