@@ -35,15 +35,49 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if ! python3 - <<'PY'
+          python3 - <<'PY'
           import json
-          json.load(open("generated/1000-digital-products.json", encoding="utf-8"))
-          print("Production catalog JSON is valid.")
+          from pathlib import Path
+
+          path = Path("generated/1000-digital-products.json")
+          raw = path.read_text(encoding="utf-8")
+          decoder = json.JSONDecoder()
+          values = []
+          offset = 0
+          while offset < len(raw):
+              while offset < len(raw) and raw[offset].isspace():
+                  offset += 1
+              if offset >= len(raw):
+                  break
+              value, end = decoder.raw_decode(raw, offset)
+              values.append(value)
+              offset = end
+
+          if not values or not all(isinstance(value, dict) for value in values):
+              raise SystemExit("Production catalog recovery failed: expected one or more JSON objects.")
+
+          # Some persistence runs concatenated complete JSON snapshots. Merge
+          # product arrays by stable ID rather than discarding later product rows.
+          catalog = dict(values[0])
+          products = []
+          seen = set()
+          for value in values:
+              rows = value.get("products", [])
+              if not isinstance(rows, list):
+                  continue
+              for product in rows:
+                  if not isinstance(product, dict):
+                      continue
+                  product_id = product.get("id")
+                  key = str(product_id) if product_id is not None else json.dumps(product, sort_keys=True, ensure_ascii=False)
+                  if key not in seen:
+                      seen.add(key)
+                      products.append(product)
+          if products:
+              catalog["products"] = products
+          path.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+          print(f"Production catalog recovered: {len(products)} unique product records from {len(values)} JSON snapshot(s).")
           PY
-          then
-            echo "Production-state catalog is malformed; restoring the canonical main catalog before continuing."
-            git restore --source origin/main -- generated/1000-digital-products.json
-          fi
           if ! python3 - <<'PY'
           import json
           json.load(open("generated/concrete-production-overlay.json", encoding="utf-8"))
@@ -53,11 +87,6 @@ jobs:
             echo "Concrete production overlay is malformed; removing it so the factory rebuilds it from existing product assets."
             rm -f generated/concrete-production-overlay.json
           fi
-          python3 - <<'PY'
-          import json
-          catalog=json.load(open("generated/1000-digital-products.json", encoding="utf-8"))
-          print("Production catalog records:", len(catalog.get("products", [])))
-          PY
 
       - name: Configure production scale
         run: |
@@ -139,6 +168,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           set -euo pipefail
           git fetch origin automation/production-state
+          remote_sha="$(git rev-parse FETCH_HEAD)"
           rm -rf /tmp/shirmani-production-publish
           git worktree add --detach /tmp/shirmani-production-publish origin/automation/production-state
           cp -a generated/. /tmp/shirmani-production-publish/generated/
@@ -154,7 +184,6 @@ jobs:
             exit 0
           fi
           git commit -m "chore(production): publish concrete product batch"
-          remote_sha="$(git rev-parse FETCH_HEAD)"
           git push --force-with-lease="refs/heads/automation/production-state:${remote_sha}" origin HEAD:automation/production-state
           echo "Concrete production state published to canonical production-state without stash/merge conflicts."
       - name: Production publication handoff
