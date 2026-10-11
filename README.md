@@ -493,9 +493,3 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 ## Concrete Bilingual Research Sample — 2026-10-11
 
 - **SRI-RES-DEMO-002 — Water Conservation Research Sample:** [open public-facing Hindi/English sample](showroom/water-conservation-research-sample.html) — includes plain-language explanations, a practical checklist, scope/deliverables and explicit evidence boundaries. Demonstration content only; no site-specific scientific claims, customer testimonial, paid order or income is claimed.
-
----
-
-## Preserved additions from PR #2050 branch
-
-
