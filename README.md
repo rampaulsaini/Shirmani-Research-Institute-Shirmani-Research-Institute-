@@ -469,3 +469,10 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 
 
 - **Simple-to-Scientific Explainer Studio (SRI-THINK-002):** [open the browser-local tool](showroom/simple-to-scientific-explainer-studio.html) — creates a plain-language explanation scaffold, analogy, technical claim breakdown, evidence/uncertainty boundary, research questions and paper outline with copy/TXT export. It does not perform connected AI research, independent verification, publishing, outreach or payments. See [production scope and gates](docs/production/SRI-THINK-002-simple-to-scientific-explainer.md).
+
+
+## Institutional Outreach Studio — 2026-10-11
+
+- [Open browser-local Institutional Outreach Studio](showroom/institutional-outreach-studio.html) — prepares tailored first-contact drafts for research labs, education, nature organisations, creators, commerce, public institutions and AI/software teams; tracks prospect status; exports a CSV.
+- **Current boundary:** it does not send email/WhatsApp, scrape contacts, verify recipients, process payments or claim revenue. Contact details must be checked against official sources; actual outreach and paid orders must be recorded only after they occur.
+- **Production objective:** measure prospects researched → messages actually sent → replies → proposals → accepted work → delivered work → payments confirmed.
