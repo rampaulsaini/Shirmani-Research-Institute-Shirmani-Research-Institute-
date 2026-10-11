@@ -1,6 +1,22 @@
+- **SRI-WRITE-006 — First Client Deliverable Studio:** [open the working browser-local tool](showroom/first-client-deliverable-studio.html) — prepares a structured Hindi/English writing and research deliverable pack from a client brief, with copy/TXT/print export and human release checklist. It is a drafting scaffold, not connected AI research, independent fact-checking, outreach, payment processing or evidence of sales. [Product specification](docs/products/SRI-WRITE-006-first-client-deliverable-studio.md)
+
+- **Production Control Centre:** [open the working browser-local production dashboard](showroom/production-control-centre.html) — register products through Discovery → Build → QC → Published, track actual media links, export/import catalogue JSON/CSV and product passports. Browser-local records only; no server sync, email sending, payment processing or external automation is claimed.
+- **Heart-View Character Specification:** [read the presentation character, evidence labels, consent boundaries and acceptance tests](docs/production/HEART-VIEW-CHARACTER-SPEC.md) — build specification, not a claim that live avatar/voice/lip-sync integrations are already implemented.
+
+- **SRI-PRES-002 — Heart-View Live Rehearsal & Cue Deck:** [open the working browser-local presentation tool](showroom/heart-view-live-rehearsal-cue-deck.html) — builds a timed run-of-show, opening/closing cues, evidence-aware Q&A, camera/voice cues and a release checklist, with copy/TXT/print export. It is a text rehearsal tool; no live avatar, voice cloning, streaming, MP4 rendering, external research or payment integration is claimed.
+
 - **Bilingual Website Copy Pack Studio (SRI-WRITE-007):** [open concrete browser tool](products/concrete/SRI-WRITE-007-bilingual-website-copy-pack-studio.html) — creates an editable website copy starter pack in Hindi, English or both, with homepage, about, service, CTA, SEO description and QC notes plus copy/TXT/print export. Template-based browser-local prototype; human fact-checking required, no connected AI, publishing, sending or payment integration is claimed.\n\n- **Production Expansion Sprint (2026-10-10):** [production-first execution plan](docs/production/PRODUCTION-EXPANSION-SPRINT-2026-10-10.md) — prioritises real customer-visible tool outputs, actual product media, layered authorised security, measurable production telemetry, and evidence-based outreach; no unverified sales or income claims.
 
+
+- **Product Release Pack Builder (SRI-MEDIA-003):** [open working browser tool](showroom/product-release-pack-builder.html) — generates a product-specific QR code, downloadable cover SVG, passport JSON, usage guide and demo storyboard. Browser-local; QR library loads from a public CDN. It does not record MP4, publish listings, certify QC, send outreach, process payments or claim sales.
+
 # Shirmani Research Institute
+
+- **SRI-PRES-001 — Heart-View Character Studio:** [open browser-local character brief and rehearsal tool](showroom/heart-view-character-studio.html) · [product cover](assets/products/SRI-PRES-001-heart-view-character-studio.svg) · [product passport](docs/products/SRI-PRES-001-product-passport.md). This is a brief/checklist generator, not an integrated AI avatar, voice-cloning, lip-sync or MP4 service.
+
+
+- **Heart-View Explainer & Research Studio (SRI-THINK-001):** [open the working browser-local tool](showroom/heart-view-explainer-research-studio.html) — turns a submitted idea into beginner-friendly explanations, an analogy, a science/evidence boundary, source-ledger prompts and a research-paper outline, with copy/TXT export. No external research, connected AI, independent verification, email sending, or payment integration is claimed.
+
 
 - **Product Media Launch Kit (SRI-MEDIA-002):** [open browser tool](showroom/product-media-launch-kit.html) — creates a downloadable SVG cover, five-scene demo storyboard, usage guide, product passport JSON and QR destination preview. Browser-local draft tool; does not render MP4, publish listings, certify QC, send outreach or process payments.
 
@@ -458,3 +474,28 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 
 - [Author brief and measurable production plan](docs/products/SHIRMANI-HEART-VIEW-CHARACTER-AUTHOR-BRIEF-2026-10-10.md) — preserves the recovered character intent, four capability tiers, evidence/authorization boundaries, product-specific visual and demo-video requirements, release gates, and measurable quality metrics.
 - This is a reconstruction from available context, not a restored transcript of the deleted chat. It does not claim HeyGen integration, MP4 rendering, live avatar, outreach, payment or revenue until those capabilities are actually connected and tested.
+
+
+- **Simple-to-Scientific Explainer Studio (SRI-THINK-002):** [open the browser-local tool](showroom/simple-to-scientific-explainer-studio.html) — creates a plain-language explanation scaffold, analogy, technical claim breakdown, evidence/uncertainty boundary, research questions and paper outline with copy/TXT export. It does not perform connected AI research, independent verification, publishing, outreach or payments. See [production scope and gates](docs/production/SRI-THINK-002-simple-to-scientific-explainer.md).
+
+
+## Institutional Outreach Studio — 2026-10-11
+
+- [Open browser-local Institutional Outreach Studio](showroom/institutional-outreach-studio.html) — prepares tailored first-contact drafts for research labs, education, nature organisations, creators, commerce, public institutions and AI/software teams; tracks prospect status; exports a CSV.
+- **Current boundary:** it does not send email/WhatsApp, scrape contacts, verify recipients, process payments or claim revenue. Contact details must be checked against official sources; actual outreach and paid orders must be recorded only after they occur.
+- **Production objective:** measure prospects researched → messages actually sent → replies → proposals → accepted work → delivered work → payments confirmed.
+
+## Revenue Execution Runbook — 2026-10-11
+
+- [Open the measurable revenue execution runbook](docs/production/REVENUE-EXECUTION-RUNBOOK-2026-10-11.md) — reuses existing Hindi/English writing and research tools; defines official-source prospecting, human-reviewed outreach, evidence-backed funnel metrics, product production states, and security boundaries. No outreach, sales, payment, or income is claimed.
+
+
+## Concrete Bilingual Research Sample — 2026-10-11
+
+- **SRI-RES-DEMO-002 — Water Conservation Research Sample:** [open public-facing Hindi/English sample](showroom/water-conservation-research-sample.html) — includes plain-language explanations, a practical checklist, scope/deliverables and explicit evidence boundaries. Demonstration content only; no site-specific scientific claims, customer testimonial, paid order or income is claimed.
+
+---
+
+## Preserved additions from PR #2050 branch
+
+
