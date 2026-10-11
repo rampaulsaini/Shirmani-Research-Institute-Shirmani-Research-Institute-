@@ -432,6 +432,39 @@
       "dispatch": "NOT_A_CUSTOMER_PRODUCT",
       "limitations": "Does not render MP4, publish listings, certify QC, send messages, process payments or prove sales. Cover is SVG artwork, not a photorealistic product screenshot.",
       "artifact_evidence": "REPOSITORY_FILE_CREATED; browser behavior not independently tested"
+    },
+    {
+      "id": "SRI-PRES-001",
+      "category": "presentation",
+      "name": "꙰ SHIRMANI Voice-to-Presentation Studio",
+      "short_description": "Prepare a Hindi/English presentation script with an evidence-state label and browser speech input/output where supported.",
+      "description": "Browser-local presentation workflow for voice input, question/topic capture, presentation purpose, evidence-state labelling, editable script preparation and supported browser speech output. Designed around simple, calm, clear, transparent and respectful communication.",
+      "price_inr": 0,
+      "status": "WORKING_BROWSER_DEMO_QC_PENDING",
+      "offer": "Free browser demo; custom writing/research or presentation production is scoped and quoted separately.",
+      "qc_gate": "QC-MANUAL-ACCEPTANCE-PENDING",
+      "dispatch": "PUBLIC_DEMO_ONLY",
+      "version": "0.1.0",
+      "artifact_url": "voice-to-presentation-studio.html",
+      "demo_url": "voice-to-presentation-studio.html",
+      "usage_guide": "Open the studio; select language and purpose; enter or speak a question; choose the correct evidence state; add a source note if available; prepare and review the script before speaking. Browser speech features require browser support and microphone permission.",
+      "passport_url": "voice-to-presentation-studio.html#product-passport",
+      "qr_url": "voice-to-presentation-studio.html#product-passport",
+      "visual_status": "PRODUCT_SPECIFIC_IMAGE_NOT_CREATED",
+      "demo_video_status": "REAL_MP4_NOT_CREATED",
+      "vip_screenshot_status": "REAL_SCREENSHOT_NOT_CAPTURED",
+      "qc_code": "SRI-PRES-001-QC-PENDING",
+      "gate_number": "GATE-03-PENDING",
+      "dispatch_number": "NO",
+      "artifact_evidence": "EXISTING_REPOSITORY_BROWSER_DEMO",
+      "limitations": [
+        "No hosted AI reasoning or connected HeyGen/provider integration",
+        "No voice cloning or external authorized voice provider connection",
+        "No animated avatar or real lip-sync engine",
+        "No live streaming, automatic email, checkout or payment integration",
+        "Evidence state is user-selected and does not independently verify claims",
+        "Manual browser testing and QC acceptance remain pending"
+      ]
     }
   ]
 }
