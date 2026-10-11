@@ -2,6 +2,9 @@
 
 # Shirmani Research Institute
 
+- **SRI-PRES-001 — Heart-View Character Studio:** [open browser-local character brief and rehearsal tool](showroom/heart-view-character-studio.html) · [product cover](assets/products/SRI-PRES-001-heart-view-character-studio.svg) · [product passport](docs/products/SRI-PRES-001-product-passport.md). This is a brief/checklist generator, not an integrated AI avatar, voice-cloning, lip-sync or MP4 service.
+
+
 - **Heart-View Explainer & Research Studio (SRI-THINK-001):** [open the working browser-local tool](showroom/heart-view-explainer-research-studio.html) — turns a submitted idea into beginner-friendly explanations, an analogy, a science/evidence boundary, source-ledger prompts and a research-paper outline, with copy/TXT export. No external research, connected AI, independent verification, email sending, or payment integration is claimed.
 
 
