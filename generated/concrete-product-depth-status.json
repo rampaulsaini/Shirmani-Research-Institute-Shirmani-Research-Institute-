@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0",
   "template": "ENGINE_MODULE_V4_VISUAL_QR",
-  "generated_at": "2026-10-11T15:11:02.546854+00:00",
+  "generated_at": "2026-10-11T15:16:03.265918+00:00",
   "catalog_products": 5000,
-  "stale_before": 4500,
+  "stale_before": 4000,
   "upgraded_this_cycle": 500,
-  "remaining_depth_upgrades": 4000
+  "remaining_depth_upgrades": 3500
 }
