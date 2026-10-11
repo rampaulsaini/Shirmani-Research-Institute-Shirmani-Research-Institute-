@@ -64,25 +64,6 @@
       "demo": "showroom/#review-loop"
     },
     {
-      "id": "SR-SHOW-004",
-      "slug": "study-sprint",
-      "name": "Yatharth Study Sprint Planner",
-      "category": "Education",
-      "status": "preview",
-      "price": {
-        "amount": 0,
-        "currency": "INR",
-        "label": "Free preview"
-      },
-      "deliverables": [
-        "interactive browser demo",
-        "plan export",
-        "usage guide"
-      ],
-      "qc_gate": "User should validate plan suitability",
-      "demo": "showroom/#study-sprint"
-    },
-    {
       "id": "SR-SHOW-005",
       "slug": "presentation-script",
       "name": "Voice-to-Presentation Script Studio",
@@ -269,6 +250,32 @@
       "usage_guide": "Complete the client, topic, deliverables and source notes; review the editable fee; generate and inspect the proposal; send manually; begin only after written agreement.",
       "qc_gate": "Browser-local only; no automatic email, checkout, payment collection, CRM persistence or order confirmation. Indicative fee must be confirmed against actual scope.",
       "commercial_status": "Lead-generation tool; no sales or income claimed"
+    },
+    {
+      "id": "SR-SHOW-004",
+      "slug": "research-brief-quote-studio",
+      "name": "Research Brief & Quote Studio",
+      "category": "Writing & Research Operations",
+      "status": "DEMO_READY",
+      "price": {
+        "amount": 0,
+        "currency": "INR",
+        "label": "Free browser demo; writing/research services quoted separately"
+      },
+      "deliverables": [
+        "interactive local browser demo",
+        "project scope draft",
+        "copy-to-clipboard",
+        "TXT download",
+        "print/save-PDF option",
+        "pilot pricing guide"
+      ],
+      "qc_gate": "Manual review required; demo does not send messages, save to server, take payments, or independently verify sources",
+      "demo": "showroom/research-brief-quote-studio.html",
+      "usage_guide": "Complete client, service, language, length, deadline, budget, goal, topic, sources and deliverables. Generate a scope draft, then agree final scope, price, timeline and payment terms in writing.",
+      "version": "1.0.0",
+      "visual": "Individual product card pending approved product artwork; no mock screenshot represented as a live customer result",
+      "passport": "products/catalog.json#SR-SHOW-004"
     }
   ]
 }
