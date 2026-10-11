@@ -1,0 +1,41 @@
+name: SHIRMANI Layered Security Baseline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "23 2 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+concurrency:
+  group: shirmani-security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  codeql:
+    name: Static analysis (JavaScript, TypeScript, Python)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript, python
+          queries: security-extended
+
+      # JavaScript/TypeScript and Python are interpreted languages; CodeQL
+      # extracts them without a compiled-language autobuild step.
+      - name: Analyze and upload findings
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:javascript-typescript,python"
