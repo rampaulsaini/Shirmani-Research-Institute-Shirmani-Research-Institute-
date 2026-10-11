@@ -493,6 +493,29 @@
         "No email sending or payment processing"
       ],
       "qc_note": "Interactive source file committed on feature branch; browser execution and deployed Pages publication still require testing/merge/deploy."
+    },
+    {
+      "id": "SRI-THINK-002",
+      "category": "research",
+      "name": "Heart-View Simple-to-Supreme Explainer",
+      "short_description": "Turn a complex idea into plain-language explanation, analogy, reasoning checks, evidence boundaries and a research outline.",
+      "description": "Browser-local Hindi/English draft tool with TXT export. It does not connect to AI, browse sources or independently verify scientific claims.",
+      "status": "PRODUCED_PUBLIC",
+      "price_inr": 0,
+      "offer": "Free demonstration; custom research/writing work requires a separately agreed scope and quote.",
+      "qc_gate": "QC-MANUAL-REVIEW",
+      "dispatch": "PUBLIC_DEMO",
+      "version": "1.0.0",
+      "artifact_url": "showroom/heart-view-simple-to-supreme-explainer.html",
+      "demo_url": "showroom/heart-view-simple-to-supreme-explainer.html",
+      "usage_guide_url": "showroom/heart-view-simple-to-supreme-explainer.html",
+      "artifact_evidence": "REPOSITORY_FILE_CREATED; browser test pending",
+      "media_state": "No actual product-specific MP4 or VIP screenshot created yet",
+      "limitations": [
+        "Template-based; no connected AI/ML",
+        "No web research or independent verification",
+        "Human review required before publication"
+      ]
     }
   ]
 }
