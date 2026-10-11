@@ -1,0 +1,57 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Simple-to-Scientific Explainer Studio · SRI-THINK-002</title><meta name="description" content="Explain an idea simply, map evidence and prepare a research-paper outline."><style>
+:root{color-scheme:dark;--gold:#e6c46a;--bg:#10131c;--panel:#1b2231;--line:#39465c;--muted:#c1cad9}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#29243b,var(--bg) 60%);color:#f5f7fb;font:16px/1.6 system-ui,sans-serif}header,main,footer{max-width:1100px;margin:auto;padding:24px}header{padding-top:40px}h1{font-size:clamp(2rem,5vw,3.4rem);color:var(--gold);line-height:1.15}.eyebrow{color:#8ddcff;letter-spacing:.13em;font-weight:800;font-size:.8rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px}.card{padding:20px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#222b3d,#151a25)}p{color:var(--muted)}label{display:block;margin:12px 0 5px;font-weight:700}input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid #536078;background:#0e1420;color:#fff;font:inherit}textarea{min-height:85px}button{margin:10px 7px 0 0;padding:11px 16px;border:0;border-radius:999px;background:var(--gold);font-weight:800;cursor:pointer}.secondary{background:#29374d;color:white;border:1px solid #596985}.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#0c111b;padding:16px;border-radius:12px;border:1px solid var(--line);min-height:170px}.notice{padding:12px;border-left:4px solid var(--gold);background:#2a271b;color:#f7edc9}.pill{display:inline-block;border:1px solid #65738a;border-radius:99px;padding:3px 9px;margin:3px;font-size:.82rem}footer{border-top:1px solid var(--line);margin-top:20px;font-size:.9rem}</style></head><body>
+<header><div class="eyebrow">꙰ SHIRMANI RESEARCH INSTITUTE · PRODUCT SRI-THINK-002</div><h1>Simple-to-Scientific Explainer Studio</h1><p>एक विचार को सरल भाषा, रोज़मर्रा के उदाहरण, तकनीकी रूपरेखा और शोध-पत्र के ढाँचे में व्यवस्थित करें—बिना कल्पना को प्रमाण बताने के।</p><span class="pill">Hindi + English</span><span class="pill">Copy / TXT export</span><span class="pill">Evidence-aware</span><span class="pill">Browser-local prototype</span></header>
+<main><div class="grid"><section class="card"><h2>1 · विषय और स्रोत</h2><label for="topic">विषय / मुख्य कथन *</label><textarea id="topic" placeholder="एक या दो वाक्यों में विचार लिखें"></textarea><label for="audience">पाठक</label><select id="audience"><option>सभी पाठक</option><option>बच्चे / शुरुआती विद्यार्थी</option><option>कॉलेज विद्यार्थी</option><option>शिक्षक / शोधकर्ता</option><option>वैज्ञानिक / तकनीकी विशेषज्ञ</option><option>नीति-निर्माता / संस्थाएँ</option></select><label for="lang">भाषा</label><select id="lang"><option>Hindi</option><option>English</option><option>Hindi + English</option></select><label for="kind">कथन का प्रकार</label><select id="kind"><option>अभी वर्गीकृत नहीं</option><option>वैज्ञानिक / अनुभवजन्य दावा</option><option>दार्शनिक / व्यक्तिगत दृष्टिकोण</option><option>प्रस्ताव / परिकल्पना</option><option>व्यावहारिक निर्देश</option></select><label for="sources">स्रोत / लिंक / उद्धरण</label><textarea id="sources" placeholder="लेखक, संस्था, तारीख, URL या उद्धरण; न हो तो खाली छोड़ें"></textarea><label for="limits">सीमाएँ / अनिश्चितताएँ</label><textarea id="limits" placeholder="क्या पता नहीं है? क्या जाँचना बाकी है?"></textarea><button id="make">व्याख्या तैयार करें</button><button class="secondary" id="clear">साफ़ करें</button></section>
+<section class="card"><h2>2 · आउटपुट</h2><p>इनपुट से संरचित ड्राफ्ट बनता है। यह अपने-आप इंटरनेट रिसर्च, AI API कॉल, वैज्ञानिक सत्यापन या शोध-पत्र प्रकाशन नहीं करता।</p><div id="out" class="output" aria-live="polite">विषय भरें और “व्याख्या तैयार करें” दबाएँ।</div><button id="copy">कॉपी करें</button><button class="secondary" id="download">TXT डाउनलोड</button></section></div>
+<section class="card" style="margin-top:16px"><h2>3 · Production quality loop</h2><p><b>Research → Draft → Source review → Human QC → Release → Feedback → Revision.</b> Reviews सुधार के संकेत हैं, प्रमाण का विकल्प नहीं। Workflow run अपने-आप product quality या independent verification सिद्ध नहीं करता।</p><div class="notice">पर्याप्त प्रमाण न हो तो साफ़ कहें: “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।” वैज्ञानिक दावों और दार्शनिक/पहचान-संबंधी कथनों को अलग रखें। स्रोत, समीकरण, आँकड़े, गारंटी या ग्राहक परिणाम गढ़ें नहीं।</div></section></main>
+<footer>Product ID SRI-THINK-002 · Version 1.0 · यह prototype बाहरी AI/API, email/WhatsApp sending, checkout, payment processing, live video या backend storage से जुड़ा नहीं है।</footer>
+<script>
+const el=id=>document.getElementById(id);let draft="";
+function generate(){let t=el("topic").value.trim();if(!t){el("out").textContent="पहले विषय / मुख्य कथन भरें।";return}let s=el("sources").value.trim(),l=el("limits").value.trim();draft=`SHIRMANI SIMPLE-TO-SCIENTIFIC EXPLAINER STUDIO
+Product ID: SRI-THINK-002 | Draft v1.0
+Language: ${el("lang").value} | Audience: ${el("audience").value}
+Claim type: ${el("kind").value}
+
+1. MAIN IDEA IN PLAIN WORDS
+${t}
+
+2. SIMPLE EXPLANATION
+मुख्य शब्दों की परिभाषा दें। एक समय में एक विचार रखें। अस्पष्ट शब्दों के कई अर्थ हों तो अर्थ स्पष्ट करें।
+
+3. EVERYDAY EXAMPLE / ANALOGY
+ऐसा उदाहरण चुनें जो विचार का एक पहलू समझाए। उदाहरण प्रमाण नहीं है; उसकी सीमा भी बताएँ।
+
+4. TECHNICAL BREAKDOWN
+• दावा A: किस चीज़ के बारे में कथन है?
+• दावा B: कौन-सी प्रक्रिया/कारण प्रस्तावित है?
+• दावा C: कौन-सा अवलोकन इसे समर्थन या चुनौती दे सकता है?
+समीकरण/सांख्यिकी तभी जोड़ें जब परिभाषित चर, डेटा और स्रोत उपलब्ध हों। इस टूल ने कोई नया वैज्ञानिक समीकरण या आँकड़ा नहीं गढ़ा है।
+
+5. EVIDENCE STATUS
+${s?"User-provided source material:\n"+s:"अभी पर्याप्त प्रमाण उपलब्ध नहीं है। कोई स्रोत नहीं दिया गया; वैज्ञानिक सत्यापन का दावा नहीं किया जा सकता।"}
+हर स्रोत की प्रासंगिकता, लेखक/संस्था, तारीख, विधि, सीमाएँ और स्वतंत्र पुष्टि जाँचें। केवल URL होना प्रमाण नहीं है।
+
+6. UNCERTAINTY / LIMITATIONS
+${l||"सीमाएँ अभी निर्दिष्ट नहीं हैं। वैकल्पिक व्याख्याएँ, अनुपलब्ध डेटा और falsifiable tests लिखना शेष है।"}
+
+7. TESTABLE QUESTIONS
+• कौन-सा डेटा कथन का समर्थन करेगा?
+• कौन-सा परिणाम इसे चुनौती देगा?
+• तुलना / baseline क्या है?
+• त्रुटि और पुनरावृत्ति कैसे मापेंगे?
+
+8. RESEARCH PAPER OUTLINE
+Title; Abstract (वास्तविक परिणाम ही); Introduction and research question; Prior work and traceable sources; Method/data; Results (डेटा न हो तो “not yet collected”); Discussion and alternatives; Limitations and ethics; Evidence-proportional conclusion; References.
+
+9. RELEASE CHECKLIST
+[ ] सरल पाठक मुख्य विचार दोहरा सके
+[ ] तकनीकी मान्यताएँ स्पष्ट हों
+[ ] प्रत्येक तथ्य स्रोत-सहित हो या unverified चिह्नित हो
+[ ] समीकरण/आँकड़े जाँचे गए हों
+[ ] दर्शन/पहचान और अनुभवजन्य विज्ञान अलग हों
+[ ] सम्मानजनक भाषा
+[ ] मानव संपादकीय समीक्षा और version log
+
+STATUS: DRAFT — independently verified नहीं, peer-reviewed नहीं, और किसी प्रयोग के पूरा होने का प्रमाण नहीं।`;el("out").textContent=draft}
+el("make").onclick=generate;el("clear").onclick=()=>{["topic","sources","limits"].forEach(x=>el(x).value="");draft="";el("out").textContent="विषय भरें और “व्याख्या तैयार करें” दबाएँ।"};el("copy").onclick=async()=>{if(!draft)generate();if(!draft)return;try{await navigator.clipboard.writeText(draft)}catch(e){alert("क्लिपबोर्ड उपलब्ध नहीं; आउटपुट चुनकर कॉपी करें।")}};el("download").onclick=()=>{if(!draft)generate();if(!draft)return;let u=URL.createObjectURL(new Blob([draft],{type:"text/plain;charset=utf-8"})),a=document.createElement("a");a.href=u;a.download="SRI-THINK-002-explainer-draft.txt";a.click();URL.revokeObjectURL(u)};
+</script></body></html>

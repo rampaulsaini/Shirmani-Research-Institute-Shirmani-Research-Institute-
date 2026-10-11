@@ -461,3 +461,6 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 
 - [Author brief and measurable production plan](docs/products/SHIRMANI-HEART-VIEW-CHARACTER-AUTHOR-BRIEF-2026-10-10.md) — preserves the recovered character intent, four capability tiers, evidence/authorization boundaries, product-specific visual and demo-video requirements, release gates, and measurable quality metrics.
 - This is a reconstruction from available context, not a restored transcript of the deleted chat. It does not claim HeyGen integration, MP4 rendering, live avatar, outreach, payment or revenue until those capabilities are actually connected and tested.
+
+
+- **Simple-to-Scientific Explainer Studio (SRI-THINK-002):** [open the browser-local tool](showroom/simple-to-scientific-explainer-studio.html) — creates a plain-language explanation scaffold, analogy, technical claim breakdown, evidence/uncertainty boundary, research questions and paper outline with copy/TXT export. It does not perform connected AI research, independent verification, publishing, outreach or payments. See [production scope and gates](docs/production/SRI-THINK-002-simple-to-scientific-explainer.md).
