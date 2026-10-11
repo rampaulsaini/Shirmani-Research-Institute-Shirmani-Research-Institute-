@@ -33,9 +33,8 @@ jobs:
           languages: javascript-typescript, python
           queries: security-extended
 
-      - name: Autobuild supported projects
-        uses: github/codeql-action/autobuild@v3
-
+      # JavaScript/TypeScript and Python are interpreted languages; CodeQL
+      # extracts them without a compiled-language autobuild step.
       - name: Analyze and upload findings
         uses: github/codeql-action/analyze@v3
         with:
