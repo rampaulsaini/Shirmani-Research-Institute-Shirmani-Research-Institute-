@@ -1,0 +1,58 @@
+name: SHIRMANI Public Surface Security Smoke Gate
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-surface-security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  html-security-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Select changed HTML files
+        id: changed
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_REF: ${{ github.base_ref }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            git fetch origin "$BASE_REF" --depth=1
+            git diff --name-only "origin/$BASE_REF...HEAD" > /tmp/changed-files.txt
+          elif [[ "$EVENT_NAME" == "push" && "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]]; then
+            git diff --name-only "$BEFORE_SHA" HEAD > /tmp/changed-files.txt
+          else
+            git ls-files '*.html' '*.htm' | head -n 250 > /tmp/changed-files.txt
+          fi
+          cat /tmp/changed-files.txt
+          {
+            echo 'paths<<EOF'
+            cat /tmp/changed-files.txt
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Run dependency-free HTML security smoke checks
+        shell: bash
+        env:
+          CHANGED_PATHS: ${{ steps.changed.outputs.paths }}
+        run: |
+          set -euo pipefail
+          mapfile -t files <<< "$CHANGED_PATHS"
+          python3 scripts/security/public_html_smoke_check.py "${files[@]}"
