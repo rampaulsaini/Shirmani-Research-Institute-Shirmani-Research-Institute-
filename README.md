@@ -484,3 +484,7 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 - [Open browser-local Institutional Outreach Studio](showroom/institutional-outreach-studio.html) — prepares tailored first-contact drafts for research labs, education, nature organisations, creators, commerce, public institutions and AI/software teams; tracks prospect status; exports a CSV.
 - **Current boundary:** it does not send email/WhatsApp, scrape contacts, verify recipients, process payments or claim revenue. Contact details must be checked against official sources; actual outreach and paid orders must be recorded only after they occur.
 - **Production objective:** measure prospects researched → messages actually sent → replies → proposals → accepted work → delivered work → payments confirmed.
+
+## Revenue Execution Runbook — 2026-10-11
+
+- [Open the measurable revenue execution runbook](docs/production/REVENUE-EXECUTION-RUNBOOK-2026-10-11.md) — reuses existing Hindi/English writing and research tools; defines official-source prospecting, human-reviewed outreach, evidence-backed funnel metrics, product production states, and security boundaries. No outreach, sales, payment, or income is claimed.
