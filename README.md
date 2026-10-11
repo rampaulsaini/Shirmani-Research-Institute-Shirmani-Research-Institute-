@@ -2,6 +2,9 @@
 
 # Shirmani Research Institute
 
+- **Heart-View Explainer & Research Studio (SRI-THINK-001):** [open the working browser-local tool](showroom/heart-view-explainer-research-studio.html) — turns a submitted idea into beginner-friendly explanations, an analogy, a science/evidence boundary, source-ledger prompts and a research-paper outline, with copy/TXT export. No external research, connected AI, independent verification, email sending, or payment integration is claimed.
+
+
 - **Product Media Launch Kit (SRI-MEDIA-002):** [open browser tool](showroom/product-media-launch-kit.html) — creates a downloadable SVG cover, five-scene demo storyboard, usage guide, product passport JSON and QR destination preview. Browser-local draft tool; does not render MP4, publish listings, certify QC, send outreach or process payments.
 
 

@@ -465,6 +465,34 @@
         "Evidence state is user-selected and does not independently verify claims",
         "Manual browser testing and QC acceptance remain pending"
       ]
+    },
+    {
+      "id": "SRI-THINK-001",
+      "category": "research",
+      "name": "Heart-View Explainer & Research Studio",
+      "short_description": "Turn a submitted idea into beginner-friendly explanations, a story analogy, a science/evidence boundary, source ledger and research-paper outline.",
+      "description": "Browser-local drafting utility. Includes Hindi/English audience and purpose options, text export, source ledger placeholders, a research-paper outline and an explicit evidence gate. It does not perform external research, independently verify sources, generate scientific proof, or connect to an AI service.",
+      "price_inr": 0,
+      "status": "PRODUCED_PUBLIC",
+      "store_url": "showroom/heart-view-explainer-research-studio.html",
+      "artifact_url": "showroom/heart-view-explainer-research-studio.html",
+      "demo_url": "showroom/heart-view-explainer-research-studio.html",
+      "offer": "Free browser demo; optional human-edited writing/research service quoted separately after scope agreement.",
+      "qc_gate": "QC-LOCAL-INTERACTION",
+      "dispatch": "PUBLIC",
+      "version": "1.0",
+      "artifact_evidence": "REPOSITORY_FILE_CREATED_QC_PENDING",
+      "usage_guide": "Enter an idea, choose language/audience/purpose, optionally add source URLs and limitations, generate the pack, then copy or download it. Review every claim and verify sources manually.",
+      "demo_video_status": "NOT_CREATED",
+      "vip_screenshot_status": "NOT_CREATED",
+      "qr_status": "DESTINATION_ONLY_NO_QR_IMAGE",
+      "limitations": [
+        "No connected AI",
+        "No external research",
+        "No independent source verification",
+        "No email sending or payment processing"
+      ],
+      "qc_note": "Interactive source file committed on feature branch; browser execution and deployed Pages publication still require testing/merge/deploy."
     }
   ]
 }
