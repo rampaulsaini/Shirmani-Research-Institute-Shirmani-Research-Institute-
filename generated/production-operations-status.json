@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "generated_at": "2026-10-12T17:46:54.888723+00:00",
+  "generated_at": "2026-10-12T18:06:56.522509+00:00",
   "source_of_truth": "generated/concrete-production-overlay.json",
   "production": {
     "catalog_products": 5000,
