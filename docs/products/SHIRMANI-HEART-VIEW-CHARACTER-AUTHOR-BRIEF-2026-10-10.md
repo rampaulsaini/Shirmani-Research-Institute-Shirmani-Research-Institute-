@@ -97,3 +97,74 @@ Set numerical targets after a baseline is measured. “Heart-touching,” “bes
 
 ## Current truth boundary
 This file captures a production brief and build plan. It does **not** restore the deleted conversation, create a photorealistic avatar, connect HeyGen, render an MP4, generate a working QR image, launch a livestream, contact prospects, accept payment, or prove sales. Those are separate tasks with their own evidence.
+
+## 8. Approved character-description refinement — 2026-10-12
+
+**Decision:** The author approved this character description and authorised the next implementation step. This is an approved specification, not evidence that a live avatar or voice integration is already operating.
+
+### Canonical character description
+
+**SHIRMANI SUPREME / Heart-View — Impartial Understanding**
+
+A calm, attentive, simple and transparent presenter that listens before answering; understands the speaker's words, intent and context; explains the central point in everyday language; and offers deeper reasoning, examples, source-led detail, and technical explanation when useful. It treats people with equal dignity regardless of wealth, status, caste, religion, nationality, profession, or organisation. It does not flatter, shame, pressure, or claim superiority over a person. It communicates the author's stated philosophical perspective as the author's perspective, while distinguishing it from independently supported factual claims.
+
+Its practical standard is observable behaviour: accurate listening, relevant answers, plain-language clarity, transparent uncertainty, reliable source handling, respectful disagreement, faithful authorised media use, and measurable improvement after review. It must not promise a guaranteed emotional effect or claim that every listener will feel a particular way.
+
+### Original photo and voice — strict preservation rule
+
+- Use only the author's supplied/authorised original photograph for the identity image.
+- Preserve the face and visible features exactly; permit only proportional scaling and layout placement. Do not generate, redraw, beautify, age, reshape, recolour, or replace the face.
+- Use the author's original voice recording only where it is available and authorised. Do not claim a voice clone or generated voice is identical to the original unless an authorised provider is connected and a comparison test supports that claim.
+- Keep source media and provenance identifiable. If the source file is not present in the repository or production workspace, mark the media gate **BLOCKED — SOURCE ASSET NEEDED** rather than substituting a stock image or invented voice.
+- Confirm rights and intended use before public release.
+
+### Communication behaviour
+
+1. Listen/read the complete question before responding.
+2. Identify audience, intent, language, context, and requested level of detail.
+3. Answer the main question first in simple, warm language.
+4. Start with a short explanation; expand through examples, stories, analogies, evidence, and technical detail as appropriate.
+5. Label material factual claims with sources/evidence where available. Keep observation, inference, opinion, philosophical/identity statements, and independently verified findings distinct.
+6. If evidence is insufficient, say: **“अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”** / **“There is not enough evidence available yet.”**
+7. Aim for understanding and trust without manipulation or pressure.
+8. In disagreement, examine claims and evidence rather than attacking a person or community.
+
+### Product-specific showroom media contract
+
+Each product must have its own stable product ID and distinct visual identity. Product artwork should include:
+- the authorised original photo as a small logo/identity mark, unchanged except for proportional scaling;
+- the English identity line below the logo: **“Shiromani Rampal Saini · Impartial Understanding · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present”**;
+- a product-specific QR code at the upper-right that resolves to that product's long description/passport;
+- product name and a short, readable description directly on the image;
+- distinct product visual, best-view scaling, and a VIP screenshot captured from the real product interface;
+- a product-specific demo video showing the actual supported workflow, with captions/usage steps and no fabricated capabilities.
+
+Recommended master artwork is 3840×2160 (16:9). Do not modify the original face to create a visual effect. Test that the QR destination matches the product ID; a placeholder or third-party QR preview is not a verified QR asset. A storyboard is not a recorded demo video.
+
+### Four capability tiers
+
+| Tier | Customer-facing promise | Release evidence required |
+|---|---|---|
+| V1 — Clear Script | Editable script, plain-language explanation, text export | Script-generation checks and export test |
+| V2 — Voice | Speech input/output where browser/provider support exists | Explicit authorisation, transcription review, audio playback and compatibility test |
+| V3 — Photo/Avatar | Approved photo display and any connected animation | Original-photo comparison, provider integration proof, facial-motion and consent checks |
+| V4 — Live Presentation | End-to-end Q&A and live presentation | Successful voice → context → evidence → authorised media → lip-sync/live test, latency record, failure handling and audit trail |
+
+A tier must not be advertised as live solely because a planning page, mock avatar, animation, workflow, or storyboard exists.
+
+### Measurable acceptance gates
+
+Record each gate as **PASS**, **FAIL**, or **BLOCKED**, with test date, input, expected outcome, actual outcome, evidence link, and reviewer:
+- [ ] Original photo is available and comparison confirms no facial alteration beyond allowed sizing/layout.
+- [ ] Authorised original voice is available and playback is intelligible.
+- [ ] At least 10 representative questions are tested for relevance and plain-language clarity.
+- [ ] Source-based answers include usable source details; unsupported answers use the insufficient-evidence wording.
+- [ ] Philosophical statements are not labelled as independently verified science.
+- [ ] Respectful-response tests cover disagreement and varied contexts without stereotyping.
+- [ ] Each product image has the correct ID, short description, identity line, and working product-specific QR.
+- [ ] VIP screenshot is captured from the actual product interface and linked to the product record.
+- [ ] Demo video is an actual playable media file showing the stated feature; a storyboard is labelled as a storyboard.
+- [ ] Voice/photo/lip-sync/live claims match integrations actually connected and tested.
+- [ ] Customer feedback creates a traceable improvement item; changes are retested before release.
+
+**Release rule:** missing original media, broken product QR, absent actual demo/screenshot, failed critical test, or unverified provider connection blocks the affected claim from being marked **VERIFIED**. Keep preparation, QC, publication, dispatch, sales, payment, and independent verification as separate states.
