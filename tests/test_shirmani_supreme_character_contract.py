@@ -45,7 +45,7 @@ class CharacterContractTests(unittest.TestCase):
     def test_product_media_must_be_real_or_labelled_pending(self):
         lower = self.brief.lower()
         for phrase in ("STORYBOARD — NOT RECORDED", "ILLUSTRATIVE MOCK-UP",
-                       "unique QR", "usage guide", "dated QC state"):
+                       "unique product QR", "usage guide", "dated QC state"):
             self.assertIn(phrase.lower(), lower)
 
     def test_no_claim_of_deleted_chat_restoration(self):
