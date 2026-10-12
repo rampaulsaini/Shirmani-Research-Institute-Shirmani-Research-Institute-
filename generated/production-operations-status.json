@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "generated_at": "2026-10-12T14:59:15.877213+00:00",
+  "generated_at": "2026-10-12T15:08:04.668608+00:00",
   "source_of_truth": "generated/concrete-production-overlay.json",
   "production": {
     "catalog_products": 5000,
@@ -20,7 +20,7 @@
     "remaining_to_scale_target": 0
   },
   "production_outputs": {
-    "concrete_results_this_cycle": 484,
+    "concrete_results_this_cycle": 0,
     "production_modules": 5000
   },
   "scheduled_work_units": 0,
