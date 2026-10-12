@@ -21,7 +21,7 @@ The character communicates simply, warmly, calmly, transparently and in context.
 - Use the owner's supplied voice recording only when the file is actually available and use is authorised. Do not claim voice integration is active until a real integration/playback test passes.
 - Never label a generated face or synthetic voice as the original.
 - Preserve source-file identity and provenance; record asset location, dimensions/hash, authorisation status and test result where practical.
-- The original photo/audio must be located in the repository before the website can embed them. This document does not imply those assets are uploaded.
+- The original photo/audio must be located in the repository before the website can embed them. The current repository tree includes `css/assets/images/profile.jpg` reported as only 1 byte, which is not a usable photograph; no verified original voice recording was identified in the inspected asset paths. Treat original photo and voice integration as BLOCKED until valid authorized source files are located and tested. This document does not imply those assets are uploaded.
 
 ## 3. Product image and showroom standard
 
@@ -29,7 +29,7 @@ Each product needs its own identity and product-specific assets:
 
 1. Product name reviewed and finalised by the owner.
 2. Owner's original photo as a logo, proportionally scaled only.
-3. English identity line: **“Shiromani Rampal Saini — Beyond Comparison, Beyond Time, Beyond Words, Beyond Love; Eternal, Real, Natural Truth — Present Here.”**
+3. Exact English transliteration requested for the identity line: **“Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh.”** Preserve this wording exactly. Do not silently replace it with a translation.
 4. A product-specific QR code in the upper-right area, linking to that product's own long description, version, demo, usage guide and enquiry/support route. Never reuse one QR for unrelated products.
 5. Short, readable description directly on the image.
 6. Separate VIP screenshot/preview.
