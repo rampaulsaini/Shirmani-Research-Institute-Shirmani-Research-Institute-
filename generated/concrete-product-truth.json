@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-12T12:44:28.431283+00:00",
+  "generated_at": "2026-10-12T13:05:38.916137+00:00",
   "truth_model": "DISTINCT_REPOSITORY_ASSET_REQUIRED",
   "catalog_count": 5000,
   "concrete_produced": 2516,
