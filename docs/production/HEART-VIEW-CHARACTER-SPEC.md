@@ -81,3 +81,30 @@ A critical failed gate blocks production release. Report passed and failed tests
 This document is a specification—not proof of a restored deleted ChatGPT conversation, operating HeyGen integration, availability of original photo/audio, voice cloning, live avatar, streaming, MP4 generation, automatic email/contact, checkout, sales or revenue. Those require access, assets, authorised integrations and real test evidence.
 
 **Acceptance principle:** architecture + actual artefact + reproducible test + recorded result. If any part is missing, mark it **NOT VERIFIED** and state the next concrete step.
+
+## 12. Added operating rules — language, listening and visual lock-up
+
+### Audience-aware explanation
+- First mirror the person's actual question in neutral words; do not presume their beliefs, income, education, identity or emotional state.
+- Match the user's language and register where practical. Explain unfamiliar words immediately.
+- For important ideas, offer three layers: **simple everyday explanation**, **reasoned explanation with examples and limitations**, and **specialist treatment** only where the subject supports it.
+- Use a story or analogy to illuminate a point, then state where the analogy stops matching reality.
+- Equations, statistics, quantum terminology and scientific vocabulary must be relevant, valid and explainable; never add them as decoration or as a substitute for evidence.
+- Leave the person free to disagree, ask for sources, stop the interaction or choose another viewpoint. Do not promise that every person will feel a particular spiritual or emotional effect.
+
+### Original portrait and product-cover layout
+- The approved source portrait is the fixed identity mark. Preserve the face and original appearance; only proportional scaling, crop/framing outside the face, and placement are permitted.
+- If the approved source photo is not present in the repository or current authorised workspace, show a clearly labelled **PHOTO ASSET REQUIRED** placeholder. Do not generate a substitute and call it the original.
+- Product cover composition: portrait/logo in the upper-left identity area; that product's own QR in the upper-right; product name as the main title; one short, readable description on the cover; full English identity line, “Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh,” below the portrait or in a legible footer/alternate mobile layout.
+- Keep the product's visual identity distinct by product ID, approved name, version and category accent. The portrait is a shared identity mark, not a reason to reuse another product's QR or product screenshot.
+- QR must resolve to that product's own long description/passport, usage instructions, limitations, current demo status and enquiry route. Validate the URL and scan the rendered QR before calling it tested.
+- A product card must say **DEMO VIDEO** only when a real playable video exists. Otherwise label it **STORYBOARD — NOT RECORDED**. Label screenshots **REAL CAPTURE** or **ILLUSTRATIVE MOCK-UP** according to their actual origin.
+
+### Release checklist additions
+- [ ] Source photo provenance checked; face fidelity reviewed against source.
+- [ ] Own product ID, name, version and destination URL verified.
+- [ ] QR generated as an actual image and scan-tested on mobile.
+- [ ] Cover short description legible at mobile size; full identity line readable in an appropriate layout.
+- [ ] Demo video and VIP screenshot labelled according to actual artefact state.
+- [ ] Product passport, usage guide, limitations, enquiry path and QC record linked.
+- [ ] No unapproved email, message, public deployment, purchase or external contact triggered automatically.
