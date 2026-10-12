@@ -1,6 +1,6 @@
 {
   "schema_version": 5,
-  "generated_at": "2026-10-12T09:31:59.484458+00:00",
+  "generated_at": "2026-10-12T09:45:22.105178+00:00",
   "title": "SHIRMANI 5000 Digital Product Factory",
   "principle": "Production first: every catalog identity maps to a concrete product asset, category, price, offer, description, QC passport, gate and dispatch state.",
   "product_count": 5000,
@@ -135173,7 +135173,5 @@
     "ready_for_qc": 5000,
     "dispatch": 0
   },
-  "truth_boundary": "QC/gate/dispatch and independent verification remain downstream of production.",
-  "catalog_target": 5000,
-  "catalog_generation": "5K_READY"
+  "truth_boundary": "QC/gate/dispatch and independent verification remain downstream of production."
 }
