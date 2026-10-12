@@ -10,6 +10,9 @@
 
 - **Product Release Pack Builder (SRI-MEDIA-003):** [open working browser tool](showroom/product-release-pack-builder.html) — generates a product-specific QR code, downloadable cover SVG, passport JSON, usage guide and demo storyboard. Browser-local; QR library loads from a public CDN. It does not record MP4, publish listings, certify QC, send outreach, process payments or claim sales.
 
+
+- **SHIRMANI SUPREME — Public Product Descriptions v1 (2026-10-12):** [read clearer customer-facing descriptions, exact prototype limits, and the required per-product QR/demo/screenshot/passport release standard](docs/production/SHIRMANI-SUPREME-PUBLIC-PRODUCT-DESCRIPTIONS-2026-10-12.md).
+
 # Shirmani Research Institute
 
 - **SRI-PRES-001 — Heart-View Character Studio:** [open browser-local character brief and rehearsal tool](showroom/heart-view-character-studio.html) · [product cover](assets/products/SRI-PRES-001-heart-view-character-studio.svg) · [product passport](docs/products/SRI-PRES-001-product-passport.md). This is a brief/checklist generator, not an integrated AI avatar, voice-cloning, lip-sync or MP4 service.
