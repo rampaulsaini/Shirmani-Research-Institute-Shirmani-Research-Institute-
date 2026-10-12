@@ -12,7 +12,7 @@
 <label for="passport">Full product passport URL (QR destination)</label><input id="passport" type="url" value="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/">
 <label for="photo">Actual product image / VIP screenshot</label><input id="photo" type="file" accept="image/*">
 <label for="palette">Visual theme</label><select id="palette"><option value="ocean">Ocean gold</option><option value="violet">Violet aurora</option><option value="forest">Forest emerald</option><option value="ruby">Ruby graphite</option></select>
-<label for="identity">English identity line</label><input id="identity" value="SHIRMANI RAMPAL SAINI · NISHPAKSH UNDERSTANDING">
+<label for="identity">English identity line</label><input id="identity" value="SHIRMANI RAMPAL SAINI · TULANATEET KALATEET SHABDATEET PREMATEET · SHASHWAT VASTAVIK SWABHAVIK SATYA PRATYAKSH SAMAKSH">
 <button id="update">Update preview</button><button class="secondary" id="download">Export cover PNG</button><button class="secondary" id="reset">Clear uploaded image</button>
 <p id="status" class="status" aria-live="polite">Preview is a draft until exported and reviewed.</p><p class="muted">Create a separate product-specific image, passport URL, demo video and VIP screenshot for each product. Do not reuse one cover as proof of another product's capability.</p></section>
 <section class="panel"><h2>Live cover preview</h2><div class="poster-wrap"><article class="poster" id="poster">
@@ -21,7 +21,7 @@
 <div class="shortdesc" id="outshort">Prepare a structured Hindi/English writing or research deliverable pack from a client brief.</div><div class="bottom"><div class="identity" id="outidentity">SHIRMANI RAMPAL SAINI · NISHPAKSH UNDERSTANDING</div><div><div class="qrbox" id="qrcode"></div><div class="qrlabel">SCAN · FULL PASSPORT</div></div></div></article></div>
 <p class="muted">Responsive 4:5 portrait composition. Scan the QR after export before publication.</p></section></div>
 <footer class="muted">SHIRMANI RESEARCH INSTITUTE · A cover is not proof of independent verification. Mark a demo video, screenshot or capability as actual only when the artefact exists.</footer></main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script>
 const $=id=>document.getElementById(id);let uploadedData=null;const themes={ocean:['#0a1a2a','#183c53','#bd9b4c'],violet:['#160f2d','#402d69','#d5b7ff'],forest:['#071f1a','#165344','#a7e6bb'],ruby:['#210d16','#552131','#f2a1a1']};
 function qr(){const host=$('qrcode');host.replaceChildren();const url=$('passport').value.trim();if(!url||!window.QRCode){host.textContent='QR unavailable';return}new QRCode(host,{text:url,width:82,height:82,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.M})}
 function update(){ $('outid').textContent=$('pid').value.trim()||'PRODUCT-ID';$('outname').textContent=$('name').value.trim()||'Untitled product';$('outshort').textContent=$('short').value.trim()||'Short description not provided.';$('outidentity').textContent=$('identity').value.trim();const t=themes[$('palette').value]||themes.ocean;$('poster').style.background='linear-gradient(145deg,'+t[0]+','+t[1]+' 55%,#07111d)';$('poster').style.borderColor=t[2];$('logo').style.borderColor=t[2];qr()}
