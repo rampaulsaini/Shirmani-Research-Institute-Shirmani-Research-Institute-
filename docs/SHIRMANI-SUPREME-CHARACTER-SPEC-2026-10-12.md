@@ -86,3 +86,20 @@ Report separately: implemented, locally tested, deployed, externally integrated,
 This specification does not prove that the original photograph/audio is available, an external voice provider is connected, product-specific QR destinations work, demo media exists, or lip-sync/live streaming works. Those require asset inspection, integration, deployment, and end-to-end tests.
 
 The character description is approved as a design specification. Implementation is complete only for individual features whose code, assets, integration, deployment, and test evidence have been checked. A document, workflow run, commit, or pull request alone is not proof of a working live system.
+
+
+## Preserved measurable acceptance criteria from the base branch
+
+The following checks remain mandatory in addition to the requirements above:
+- Plain-language comprehension: at least 4 of 5 test readers correctly paraphrase the central answer.
+- Evidence classification: representative prompts must be correctly separated into source-based, philosophical/personal perspective, and insufficient-evidence cases.
+- Respect regression: no insulting or stereotyping content in the defined test set.
+- Unsupported prompts must return “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।” or an equally clear limitation.
+- Portrait fidelity must be checked against the supplied original; only proportional scaling/display transformations are allowed.
+- Scan each product QR on a second device and confirm it opens the matching product page.
+- Verify that demo video actually plays and screenshots come from the real product; mock-ups must remain labelled.
+- Voice, lip-sync, and live output pass only after an authorized end-to-end test artifact and result are recorded.
+- Confirm no secrets are exposed in client code; document consent, retention, and deletion expectations.
+- Save release version, test date, results, known defects, and rollback plan.
+
+The base branch's earlier implementation plan and existing acceptance documents are preserved in the merged repository tree. This consolidated specification remains documentation of requirements, not proof of a deployed or verified product.
