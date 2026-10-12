@@ -108,3 +108,40 @@ This document is a specification—not proof of a restored deleted ChatGPT conve
 - [ ] Demo video and VIP screenshot labelled according to actual artefact state.
 - [ ] Product passport, usage guide, limitations, enquiry path and QC record linked.
 - [ ] No unapproved email, message, public deployment, purchase or external contact triggered automatically.
+
+
+## 13. Product-cover implementation contract (v3)
+
+This section converts the visual requirements into an implementable and reviewable contract. It does not claim that any image, QR, video or deployment exists until the artifact is present and checked.
+
+### Canonical cover hierarchy
+1. **Identity area (upper-left):** use the exact approved owner-supplied portrait as a logo/identity mark. Preserve facial pixels and proportions; only scale and surrounding layout may change. If unavailable, render a neutral `PHOTO ASSET REQUIRED` placeholder.
+2. **QR area (upper-right):** use a QR generated from that product's canonical public passport URL. Do not use a decorative, guessed, shared or placeholder QR in a published product cover.
+3. **Product title:** unique approved product name, product ID and version.
+4. **Short description:** one or two plain-language sentences stating what the tool does, who it helps and its current capability boundary.
+5. **Identity footer:** show the full English identity line in a readable size. If the layout cannot fit it legibly, use a clearly linked alternate cover/footer variant rather than shrinking it to unreadable text.
+6. **Status strip:** label demo as `VIDEO AVAILABLE` only when a playable MP4/web video is linked; otherwise `STORYBOARD — NOT RECORDED`. Label screenshots `REAL CAPTURE` or `ILLUSTRATIVE MOCK-UP` according to their origin.
+
+### Responsive export profiles
+- **Product-card / showroom:** 4:5 portrait canvas; keep the portrait, QR and product name inside safe margins.
+- **Video / presentation:** 16:9 landscape canvas; retain the same identity, title, QR destination and product ID.
+- **Social preview:** 1.91:1 landscape crop with a tested alternate layout; do not crop the face, QR or product name.
+- Export a high-resolution master plus web-sized derivatives. Check legibility at a 360 CSS-pixel-wide mobile viewport.
+
+### Product passport minimum fields
+`product_id`, `approved_name`, `version`, `short_description`, `long_description`, `intended_users`, `use_cases`, `limitations`, `usage_steps`, `demo_status`, `demo_url`, `screenshot_status`, `screenshot_url`, `qr_target_url`, `owner_photo_asset_ref`, `asset_authorization_status`, `last_tested_at`, `test_method`, `test_result`, `known_issues`, `enquiry_route`.
+
+### Per-product release gate
+- [ ] Product ID, approved name and version are unique.
+- [ ] Original photo asset and permission are confirmed; otherwise placeholder remains.
+- [ ] Passport URL opens and matches the displayed product.
+- [ ] QR is generated from that exact URL and successfully scan-tested on a phone.
+- [ ] Short description is understandable without opening the QR destination.
+- [ ] Full identity line is legible in the selected cover variant.
+- [ ] Demo and screenshot labels match real artifacts.
+- [ ] Usage steps, limitations, test record and enquiry route are present.
+- [ ] Desktop and mobile layouts have been visually reviewed.
+- [ ] Failed gates remain visible; no publication or completion claim is made until all critical gates pass.
+
+### Measurement and reporting
+Report counts with a fixed denominator: `products registered`, `covers rendered`, `QRs scan-tested`, `real demos linked`, `passports complete`, and `critical gates passed`. Never report a percentage without showing the numerator, denominator, and test evidence. A generated cover or workflow run alone does not establish product quality, originality, sales, or revenue.
