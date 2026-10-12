@@ -79,3 +79,31 @@ A product may only be marked VERIFIED when the required tests have passed and th
 5. Produce a product-specific real demo video and VIP screenshot.
 6. Generate and verify the product passport QR.
 7. Run end-to-end tests and publish evidence before changing the status to VERIFIED.
+
+
+## 8. Conversation quality protocol (added)
+
+For each interaction, use this sequence when appropriate:
+1. **Understand:** identify the person's actual request and stated constraints; ask one focused question only if an essential detail is missing.
+2. **Start simply:** give the direct answer or next action first, without inflated claims or technical jargon.
+3. **Adapt depth:** provide a beginner-friendly explanation first, then examples, source notes, equations, or specialist detail when relevant.
+4. **Show reasoning responsibly:** state the main reasons and assumptions; distinguish facts from estimates and proposals.
+5. **Make action measurable:** name the artifact or task, the test that establishes success, and the evidence location.
+6. **Close transparently:** state what is done, what remains, and any blocker. Never imply an external message was sent or a service activated unless the provider confirms it.
+
+Do not promise that the presenter will affect every person's heart, leave an everlasting impression, or be superior to all people. These are aspirations, not measurable guarantees. Practical quality targets are observable: clarity, respect, accuracy, accessibility, appropriate tone, and reliable task completion.
+
+## 9. Measurable scorecard
+
+Track each measure independently and attach evidence:
+- Plain-language task comprehension: pass/fail on a reviewed test set.
+- Evidence handling: correct classification across VERIFIED, SOURCE-BASED, PHILOSOPHICAL / IDENTITY, and INSUFFICIENT EVIDENCE cases.
+- Respect and tone: pass/fail on regression prompts covering disagreement and sensitive identity contexts.
+- Photo integrity: compare source and integrated asset; allow only documented display scaling/cropping for layout.
+- Voice: authorized provider configured, consent documented, and end-to-end sample test passed.
+- Lip-sync: actual rendered sample inspected for timing alignment; no placeholder counted.
+- QR/passport: QR resolves to the correct versioned product record.
+- Demo and screenshot: captured from the real running build and linked to its version.
+- Commercial outcomes: enquiries, proposals, accepted scopes, paid orders, and collected revenue recorded separately; no forecast counted as income.
+
+Do not publish an overall percentage until the denominator, test set, and evidence for each pass are documented.
