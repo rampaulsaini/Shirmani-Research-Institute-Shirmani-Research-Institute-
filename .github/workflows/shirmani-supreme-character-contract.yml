@@ -36,4 +36,4 @@ jobs:
         with:
           python-version: '3.x'
       - name: Run character contract tests
-        run: python -m unittest tests/test_shirmani_supreme_character_contract.py -v
+        run: python tests/test_shirmani_supreme_character_contract.py -v
