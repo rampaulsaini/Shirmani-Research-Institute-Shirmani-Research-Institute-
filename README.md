@@ -12,6 +12,8 @@
 
 # Shirmani Research Institute
 
+- **SHIRMANI SUPREME — Approved Character Decision (2026-10-12):** [approved identity lock, evidence rules, context-aware presentation, product media contract and release gates](docs/production/SHIRMANI-SUPREME-APPROVED-CHARACTER-DECISION-2026-10-12.md) — specification and staged implementation plan; no unverified live integration or media completion is claimed.
+
 - **SRI-PRES-001 — Heart-View Character Studio:** [open browser-local character brief and rehearsal tool](showroom/heart-view-character-studio.html) · [product cover](assets/products/SRI-PRES-001-heart-view-character-studio.svg) · [product passport](docs/products/SRI-PRES-001-product-passport.md). This is a brief/checklist generator, not an integrated AI avatar, voice-cloning, lip-sync or MP4 service.
 
 
