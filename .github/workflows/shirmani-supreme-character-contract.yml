@@ -1,0 +1,39 @@
+name: SHIRMANI Supreme Character Contract
+
+on:
+  push:
+    paths:
+      - 'docs/production/SHIRMANI-SUPREME-*.md'
+      - 'showroom/heart-view-character-studio.html'
+      - 'tests/test_shirmani_supreme_character_contract.py'
+      - '.github/workflows/shirmani-supreme-character-contract.yml'
+  pull_request:
+    paths:
+      - 'docs/production/SHIRMANI-SUPREME-*.md'
+      - 'showroom/heart-view-character-studio.html'
+      - 'tests/test_shirmani_supreme_character_contract.py'
+      - '.github/workflows/shirmani-supreme-character-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-character-contract-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  character-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Run character contract tests
+        run: python -m unittest tests/test_shirmani_supreme_character_contract.py -v
