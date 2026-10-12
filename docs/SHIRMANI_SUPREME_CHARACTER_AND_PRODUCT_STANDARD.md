@@ -1,6 +1,6 @@
 # SHIRMANI SUPREME — Character & Product Presentation Standard
 
-**Status:** Specification drafted; implementation and production tests are not yet verified.
+**Status:** Character description approved by user on 2026-10-12; specification recorded. Implementation and production tests are not yet verified.
 
 ## 1. Approved character description
 
