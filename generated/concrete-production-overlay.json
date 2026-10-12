@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-12T12:25:43.126426+00:00",
+  "generated_at": "2026-10-12T12:30:29.502633+00:00",
   "architecture": [
     "INSTITUTE",
     "FACTORY",
@@ -9,7 +9,7 @@
   ],
   "production_first": true,
   "verification_is_downstream": true,
-  "batch": "BATCH-20261012T122543Z",
+  "batch": "BATCH-20261012T123029Z",
   "product_count": 5000,
   "produced_count": 5000,
   "remaining_count": 0,
