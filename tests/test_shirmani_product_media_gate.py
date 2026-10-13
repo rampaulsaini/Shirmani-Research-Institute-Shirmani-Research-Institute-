@@ -1,6 +1,4 @@
 import importlib.util
-import json
-import tempfile
 import unittest
 from pathlib import Path
 
@@ -56,5 +54,5 @@ class ProductMediaGateTests(unittest.TestCase):
         self.assertTrue(any("missing fields" in e for e in MODULE.validate([item])))
 
 
-if __ (name__ == "__main__"):
+if __name__ == "__main__":
     unittest.main()
