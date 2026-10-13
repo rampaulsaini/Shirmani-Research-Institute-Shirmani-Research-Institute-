@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T10:19:35.590234+00:00",
+  "generated_at": "2026-10-13T10:25:41.317372+00:00",
   "shard_strategy": "one JSONL file per production cycle",
   "cycle_shards": 677,
   "files": [
