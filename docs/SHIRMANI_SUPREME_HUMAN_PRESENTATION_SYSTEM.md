@@ -56,3 +56,41 @@ A failed critical gate blocks a `VERIFIED / production-ready` label. Workflow ex
 
 ## Current implementation status
 This file records the approved specification only. It does not prove that face/voice integration, lip-sync, live presentation, QR assets, product demos, or production tests have been implemented. Mark items complete only after verifying the actual repository artifact or running the relevant test.
+
+## Product-specific showroom and demo contract
+Every product listing must show its own real identity and evidence:
+- Product-specific screenshot/VIP visual; never label a generic illustration as a real screenshot.
+- Short description on the product visual, with the authorized original portrait/logo at the top, the English identity line below it, and a QR code in the upper-right where the layout permits.
+- QR must resolve to the matching stable product passport containing the long description, intended use, setup steps, limitations, version history, and test evidence.
+- Product-specific demo video must show the actual product operating. Until available, show **Demo pending**; never fabricate a demo or imply a feature exists when it does not.
+- Preserve the original portrait's identity and proportions; only resize/crop for layout. If the original asset is unavailable to the build, use a labeled placeholder and mark the gate **BLOCKED — ASSET REQUIRED**.
+- Every release needs a feedback/rating loop, a way to report problems, and a traceable update/upgrade history.
+
+## Security and external communication
+- Keep API keys, SMTP credentials, voice-provider secrets, and tokens in encrypted repository secrets or server-side environment variables. Never put secrets in committed files or public client code.
+- Apply least privilege, input validation, dependency checks, rate limits, consent controls, and auditable administrative changes.
+- Outreach stages: `Prospect → source/fit checked → message drafted → human approval → sent via authorized channel → response recorded → scope/price agreed → work delivered → payment verified`.
+- A draft is not a sent email. A sent message is not a sale. Revenue is recorded only after evidence of payment. Do not contact organizations or send WhatsApp/email messages without a configured, authorized channel and approval.
+- For currently offered services, use only the stated capabilities: Hindi/English writing, research summaries, and website/blog content. Before work begins, confirm deliverables, language, word limit, source requirements, deadline, revisions, price, and payment terms in writing.
+
+## Readiness labels
+- **BLOCKED:** required asset, credential, permission, or dependency is missing.
+- **READY FOR TEST:** implementation exists but acceptance tests remain.
+- **TESTED:** named tests ran and their results are recorded.
+- **VERIFIED:** acceptance criteria passed with reproducible/auditable evidence.
+- **LIVE:** deployed to a reachable environment and passed a recorded smoke test.
+
+Never infer progress percentages from workflow run counts. A running workflow, commit, or specification is not by itself evidence of a working production feature.
+
+## First vertical-slice milestone
+Before scaling to thousands of products, demonstrate one real service/product end-to-end:
+1. Public listing and transparent scope/price enquiry.
+2. Original authorized photo/logo and identity line.
+3. Product-specific screenshot.
+4. QR-linked passport page.
+5. Actual demo video, or an explicit pending state.
+6. Form validation and written scope/price confirmation.
+7. Automated link/content checks and a test report.
+8. A verifiable enquiry/outreach log that does not claim contact or revenue without evidence.
+
+**Status note:** This document is a specification. It does not, by itself, implement a live voice provider, generate facial animation, deploy a site, contact organizations, or prove sales. Each capability requires a separate implementation and test artifact.
