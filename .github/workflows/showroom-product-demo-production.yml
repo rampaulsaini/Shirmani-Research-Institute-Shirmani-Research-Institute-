@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: shirmani-product-demo-production
@@ -32,17 +33,21 @@ jobs:
         run: |
           python3 -c 'import json; from pathlib import Path; m=json.loads(Path("generated/product-demo-video-manifest.json").read_text(encoding="utf-8")); assert m["catalog_count"] > 0; assert all(x["demo_route"].startswith("product-demo.html?id=") for x in m["products"]); assert all(x["fallback_demo"] for x in m["products"]); print("DEMO_ROUTES:",m["catalog_count"]); print("ENGINES:",m["engine_count"]); print("DEMO_ROUTE_GATE: PASS")'
 
-      - name: Publish customer-facing demo manifest
-        run: |
-          git config user.name "SHIRMANI Product Demo Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/product-demo-video-manifest.json generated/product-demo-video-manifest.md
-          if git diff --cached --quiet; then
-            echo "No demo-manifest delta."
-          else
-            git commit -m "automission: publish complete product demo manifest"
-            git push
-          fi
+      - name: Publish customer-facing demo manifest through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automission/product-demo-manifest
+          delete-branch: false
+          commit-message: "automission: publish complete product demo manifest"
+          title: "Automission: publish product demo manifest"
+          body: |
+            Automated product-demo manifest update.
+            
+            The generated manifest confirms product demo routes and fallback behavior only; it does not claim recorded MP4 videos or independently verified product performance.
+          add-paths: |
+            generated/product-demo-video-manifest.json
+            generated/product-demo-video-manifest.md
 
       - name: Demo production summary
         run: |
