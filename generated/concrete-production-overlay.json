@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-13T17:59:26.333846+00:00",
+  "generated_at": "2026-10-13T18:06:53.890965+00:00",
   "architecture": [
     "INSTITUTE",
     "FACTORY",
@@ -9,11 +9,11 @@
   ],
   "production_first": true,
   "verification_is_downstream": true,
-  "batch": "BATCH-20261013T175926Z",
+  "batch": "BATCH-20261013T180653Z",
   "product_count": 5000,
   "produced_count": 5000,
   "remaining_count": 0,
-  "batch_size": 484,
+  "batch_size": 0,
   "products": [
     {
       "id": "SP-0001",
