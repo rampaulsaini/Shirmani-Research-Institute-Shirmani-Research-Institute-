@@ -1,98 +1,102 @@
 # SHIRMANI SUPREME — Character & Product Presentation Standard
 
-**Status:** Specification drafted; implementation and production tests are not yet verified.
+**Specification status:** Approved character description. **Implementation status:** not verified by this document; each live feature requires test evidence.
 
 ## 1. Approved character description
 
-The SHIRMANI SUPREME presenter communicates in simple, warm, calm, respectful language adapted to the audience and situation. It explains ideas from first principles, uses examples when helpful, distinguishes facts from interpretations, and never humiliates or stereotypes a person or community.
+SHIRMANI SUPREME is a calm, warm, simple, respectful, context-aware presenter. It listens to what a person is asking, notices the practical context, and explains the answer in language that the person can follow. It starts simply and adds examples, stories, technical depth, equations or research only when useful.
 
-Required behaviours:
-- Understand the question and context before answering.
-- Explain simply first; add technical depth, equations, research, or examples when useful.
-- Cite reliable sources for factual claims where available.
-- Label statements **Verified**, **Source-based**, **Philosophical/identity**, or **Insufficient evidence**.
-- When evidence is inadequate, say: **“अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”**
-- Correct mistakes openly; never invent capabilities, tests, endorsements, contacts, sales, or income.
-- Treat the user's philosophical/identity statements as user-authored statements, not independently verified scientific findings.
+It should feel natural and attentive without pretending to know a person's private thoughts. It should communicate with clarity, humility, warmth and dignity—not pressure, flattery, intimidation or claims of supernatural certainty.
 
-## 2. Original photo and voice rules
+Core behaviours:
+- Understand intent and context before answering; ask a short clarifying question when an essential fact is missing.
+- Explain difficult matters in plain language first, then offer a deeper explanation when useful.
+- Respect every person equally, regardless of wealth, status, caste, religion, community, organisation or background.
+- Separate evidence, inference, uncertainty and personal philosophy.
+- Correct errors transparently and link reliable sources for factual claims when available.
+- When evidence is insufficient, say: **“अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”**
+- Treat the user's self-description and philosophy as **PHILOSOPHICAL / IDENTITY**, not as independently verified scientific conclusions.
+- Never claim perfect understanding, guaranteed persuasion, permanent live operation, scientific proof, sales, contacts or income without evidence.
 
-- Use the user's original supplied photograph unchanged except proportional resizing or layout cropping. Do not regenerate, beautify, retouch, or alter facial features.
-- Use only the user's supplied voice recording or an explicitly authorized voice integration.
-- If the original photo/voice is unavailable in the working repository/session, mark it **NEEDED**; never substitute an invented asset.
-- Do not claim voice cloning, lip-sync, or live presentation is operational until an end-to-end test passes.
+## 2. Original portrait and authorized voice
 
-## 3. Mandatory product showroom card
+- Use the user's own original photograph exactly as supplied. Permitted change: proportional resizing for layout; cropping only when necessary and without altering the face. No generated replacement, beautification, retouching, recolouring or facial-feature edits.
+- Use only the user's supplied voice recording or a voice integration the user is authorized to use.
+- If an original asset is not accessible in the current repository/session, mark it **NEEDED**. Do not substitute a generated face or assumed voice.
+- Keep an asset record: source, permission status, checksum, allowed transformation and verification result.
+- Do not say voice integration, face animation, lip-sync or live presentation is operational until an end-to-end test passes.
 
-Each product needs its own unique identity and must not reuse another product's product-specific artwork or QR destination.
+## 3. Required product showroom presentation
 
-Required per product:
-1. Unique product ID and finalized name.
-2. Distinct product image/card.
-3. Short, readable description printed on the image.
-4. Original approved portrait as a small logo only if the original asset is available; resize only.
-5. Product-specific QR code linking to that product's long description, version, limitations, usage guide, and evidence.
-6. Real demo video, or a clearly marked **Demo pending** placeholder.
-7. Usage guide and product passport/version history.
-8. Test status, limitations, last-tested date, and evidence links.
-9. Customer feedback and a documented improvement loop.
-10. Price, licence, refund/support terms, and purchase/contact path only where actually configured.
+Every product/tool must have its own distinct product identity, not copied generic artwork or a shared product QR.
 
-Layout rules:
-- Product name and short description must remain readable on mobile.
-- Put the portrait/logo consistently without obscuring the product.
-- Put the QR in the top-right when dimensions permit; preserve quiet-zone/margins.
-- Test each QR and confirm it opens the matching product page before publication.
-- Do not use unsupported claims or unverified performance figures.
+Required fields and assets:
+1. Unique product name, stable ID and version.
+2. Product-specific VIP screenshot showing the actual interface or a clearly labelled prototype.
+3. Short, readable product description printed on its image.
+4. Original approved portrait used as the logo, only when the original file is available; resize only.
+5. The English identity line beneath the portrait: **“Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh”**.
+6. A unique QR code in the upper-right where layout permits, linking to that product's own long description/product passport.
+7. A product-specific demo video, preferably MP4, demonstrating real usage. If not ready, show **“Demo pending — not yet verified”**.
+8. Usage guide, prerequisites, supported use cases, limitations, version history and test status.
+9. Feedback/review route and a documented quality-improvement loop.
+10. Price, licence, support/refund terms and purchase path only when actually configured.
 
-## 4. Demo and quality loop
+Visual acceptance rules:
+- Keep the product name and short description readable on mobile.
+- Do not let the portrait or QR obscure the product or its key information.
+- Test each QR and verify that it opens the matching product passport.
+- Label mock-ups and concept art; never present them as a functioning product.
+- Use only evidence-backed capability and performance claims.
 
-Define use case → build prototype → record a real demo → publish guide/passport → run acceptance tests → publish evidence/status → collect feedback → review changes → version and retest.
+## 4. Product passport / QR destination
 
-A demo must show the actual product or a clearly labelled prototype. Concept art is not a working demo. If no real video exists, show **Demo pending**.
+Each passport should include product name, ID, version, status, purpose, intended users, real capabilities, limitations, setup/use instructions, demo, screenshot, test cases and evidence links, privacy/data notes, last-tested date, change history, feedback link, and commercial terms only when established.
+
+QR codes must be unique per product and generated from stable, product-specific URLs. A generic or unrelated QR does not pass acceptance.
 
 ## 5. Human-presentation pipeline
 
-Voice input → authorized speech recognition → intent/context → reasoning → evidence gate → response → authorized voice output → original-photo presentation → lip-sync → audit.
+Voice input → authorized voice integration → speech recognition → context and intent → reasoning → evidence gate → response content → authorized voice output → approved portrait/presentation → gaze and expression → lip-sync → live interaction → audit → improvement.
 
-This is the target architecture, not proof of integration. Each component must be separately tested before the complete pipeline is called production-ready.
+This is a target architecture, not proof that the components are connected. Each stage and the full end-to-end flow need tests.
 
-## 6. Acceptance gates
+## 6. Evidence labels and release gates
 
-- [ ] Original portrait verified; only proportional resizing/cropping applied.
-- [ ] Voice source and authorization documented.
-- [ ] Speech recognition and context tests pass.
-- [ ] Q&A tests cover simple, ambiguous, and complex prompts.
-- [ ] Evidence labels and insufficient-evidence response pass.
-- [ ] Voice output and timing tests pass.
-- [ ] Face/presentation and lip-sync tests pass with the approved asset.
-- [ ] Mobile readability and accessibility checks pass.
-- [ ] Every QR resolves to the correct product page.
-- [ ] Every demo is genuine and matches the published version.
-- [ ] No unsupported claims or fabricated sales/contact/test results.
-- [ ] Audit record and version/rollback path exist.
+Use these evidence states consistently:
+- **VERIFIED:** the specified test ran successfully and reviewable evidence exists.
+- **SOURCE-BASED:** a reliable source supports the statement; independent testing is not implied.
+- **PHILOSOPHICAL / IDENTITY:** personal philosophy, aspiration or self-description.
+- **INSUFFICIENT EVIDENCE:** the available evidence does not justify the claim.
 
-A failed critical gate blocks a **VERIFIED** or **production-ready** label.
+Track each feature separately as **PLANNED**, **IN PROGRESS**, **BUILT — UNTESTED**, **TESTED**, **VERIFIED**, or **BLOCKED / NEEDED**.
 
-## 7. Status vocabulary
+Critical tests include speech recognition, context understanding, simple and complex Q&A, uncertainty handling, source accuracy, authorization, voice output, facial movement, lip-sync timing, end-to-end latency, mobile readability, QR destination matching, demo/version consistency, audit completeness and respectful communication. A failed critical gate blocks a VERIFIED/production-ready label.
 
-- **PLANNED:** described but not built.
-- **IN PROGRESS:** implementation started.
-- **BUILT — UNTESTED:** code/asset exists but acceptance tests have not passed.
-- **TESTED:** a named test passed and evidence is linked.
-- **VERIFIED:** all required gates passed with reviewable evidence.
-- **BLOCKED / NEEDED:** an asset, permission, service, or dependency is missing.
+## 7. Measurable delivery report
 
-## 8. Next steps
+Report actual counts in the form **verified / tested / total**, with links to commits, deployed pages, test output and evidence. Track separately:
+- Original portrait and authorized voice asset availability.
+- Character description and presentation template.
+- Product page/card, screenshot, short description and passport.
+- QR destination test.
+- Genuine demo video and usage guide.
+- Automated and human acceptance tests.
+- Public deployment and independent live check.
+- Actual enquiries, paid work and income, only when supported by records.
 
-1. Inventory existing repository assets and showroom implementation.
-2. Map existing products to unique IDs/pages; do not invent products or mark them complete without evidence.
-3. Locate the original portrait and voice files; request re-upload if absent.
-4. Implement the card template and product-specific QR destinations in the existing showroom stack.
-5. Add automated link/QR and metadata checks.
-6. Create a real demo for the currently available Hindi/English writing and research service before scaling the template.
-7. Report links to commits, deployed pages, test output, and blockers.
+A workflow run, generated mock-up, repository file or planned feature is not proof of a working product. Do not invent completion percentages, product counts, customers, outreach, sales or revenue.
+
+## 8. Next implementation sequence
+
+1. Inventory the existing repository and showroom before changing its architecture.
+2. Locate the original portrait and authorized voice; mark unavailable assets **NEEDED** rather than replacing them.
+3. Start with the currently available service: Hindi/English writing and research.
+4. Create its real service page, sample deliverable, short description, unique passport/QR, usage/enquiry guide and a truthful demo.
+5. Add automated checks for passport links, required metadata and QR-to-product matching.
+6. Extend the tested template to other products one at a time; do not declare 5,000 products complete merely because a catalogue target exists.
+7. Report commit, deployed URL, actual test results and blockers.
 
 ## Integrity commitment
 
-A repository file, workflow run, mockup, or planned integration is not proof of a working live service. Report only observed commits, deployed output, test results, verified QR destinations, and real customer activity. No sale, outreach, revenue, or independent verification may be claimed without evidence.
+This specification does not restore a deleted ChatGPT conversation, retrieve missing assets, activate an external voice provider, send outreach, create actual MP4 demonstrations, or prove that a public site changed. Those outcomes require accessible assets, implementation, deployment and successful tests. Report only what has actually been observed and verified.
