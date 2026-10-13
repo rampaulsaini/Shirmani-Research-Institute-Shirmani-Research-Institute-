@@ -10,8 +10,9 @@
 - Use the owner's original photograph unchanged in identity. Permit only proportional resizing, layout cropping, and non-destructive clarity adjustments. Do not generate, replace, beautify, age, reshape, or synthesize a substitute face.
 - Use the owner's voice only from an asset the owner has supplied or explicitly authorized and only through a provider/account integration permitted for that use.
 - If the original image/audio asset is not available in the implementation workspace, mark the asset gate **BLOCKED — SOURCE ASSET REQUIRED**. Never imply that the asset is available when it is not.
-- Approved English identity line:  
-  *Shiromani Rampal Saini — Beyond Comparison, Beyond Time, Beyond Words, Beyond Love; Eternal, Real, Natural, Universal Truth, Present and Evident.*
+- Approved English identity line (exact transliteration requested for product visuals):  
+  *Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh*  
+  Keep this transliteration verbatim beneath the original photo. A plain-English translation may be added separately, but must not replace this line.
 - Preserve philosophical/identity language as the owner's perspective, not as independently verified scientific fact.
 
 ## 2. Character and communication
