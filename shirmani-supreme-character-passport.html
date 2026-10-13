@@ -13,5 +13,5 @@
 <footer>꙰ SHIRMANI RESEARCH INSTITUTE · Simple · Warm · Evidence-aware · Transparent</footer></main>
 <script>
 const photo=document.getElementById('photo'),portrait=document.getElementById('portrait');photo.addEventListener('change',()=>{const f=photo.files&&photo.files[0];if(f&&f.type.startsWith('image/'))portrait.src=URL.createObjectURL(f)});
-const canonical=location.href.split('#')[0];const link=document.getElementById('passportLink');link.href=canonical;link.textContent=canonical;document.getElementById('qr').src='https://api.qrserver.com/v1/create-qr-code/?size=220x220&data='+encodeURIComponent(canonical);
+const passportUrl=new URL(window.location.href);passportUrl.hash='';const link=document.getElementById('passportLink');link.textContent='Open product passport';if(passportUrl.protocol==='https:'||passportUrl.protocol==='http:'){link.href=passportUrl.href;const qrUrl=new URL('https://api.qrserver.com/v1/create-qr-code/');qrUrl.searchParams.set('size','220x220');qrUrl.searchParams.set('data',passportUrl.href);document.getElementById('qr').src=qrUrl.href;}else{link.removeAttribute('href');document.getElementById('qr').removeAttribute('src');}
 </script></body></html>
