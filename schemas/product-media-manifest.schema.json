@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/product-media-manifest.schema.json",
+  "title": "SHIRMANI SUPREME Product Media Manifest",
+  "description": "Release contract for one product's identity, QR passport, real screenshot, demo video, usage guide, and evidence-based validation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "product_id",
+    "version",
+    "name",
+    "short_description",
+    "passport_url",
+    "qr",
+    "screenshot",
+    "demo_video",
+    "usage_guide",
+    "identity_assets",
+    "validation"
+  ],
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9._-]{2,63}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "name": { "type": "string", "minLength": 2 },
+    "short_description": { "type": "string", "minLength": 10, "maxLength": 220 },
+    "passport_url": { "type": "string", "format": "uri" },
+    "qr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset_path", "destination_url", "mobile_scan_test"],
+      "properties": {
+        "asset_path": { "type": "string", "minLength": 1 },
+        "destination_url": { "type": "string", "format": "uri" },
+        "mobile_scan_test": { "enum": ["PASS", "FAIL", "NOT_RUN"] }
+      }
+    },
+    "screenshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset_path", "state"],
+      "properties": {
+        "asset_path": { "type": "string", "minLength": 1 },
+        "state": { "enum": ["REAL_PRODUCT_SCREENSHOT", "ILLUSTRATIVE MOCK-UP", "MISSING"] }
+      }
+    },
+    "demo_video": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset_path", "state", "product_specific", "playback_test"],
+      "properties": {
+        "asset_path": { "type": "string" },
+        "state": { "enum": ["RECORDED", "STORYBOARD — NOT RECORDED", "MISSING"] },
+        "product_specific": { "type": "boolean" },
+        "playback_test": { "enum": ["PASS", "FAIL", "NOT_RUN"] }
+      }
+    },
+    "usage_guide": { "type": "string", "minLength": 1 },
+    "identity_assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["photo_state", "voice_state", "photo_transform_policy"],
+      "properties": {
+        "photo_state": { "enum": ["AVAILABLE_AND_AUTHORIZED", "BLOCKED — PHOTO ASSET REQUIRED"] },
+        "voice_state": { "enum": ["AVAILABLE_AND_AUTHORIZED", "BLOCKED — VOICE ASSET REQUIRED"] },
+        "photo_transform_policy": {
+          "const": "Original photo unchanged; proportional resize/display scaling only"
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["validator_version", "result", "checked_at", "evidence"],
+      "properties": {
+        "validator_version": { "type": "string", "minLength": 1 },
+        "result": { "enum": ["PASS", "FAIL", "BLOCKED", "NOT_RUN"] },
+        "checked_at": { "type": ["string", "null"], "format": "date-time" },
+        "evidence": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
