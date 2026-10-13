@@ -10,7 +10,7 @@ The character communicates simply, warmly, calmly, transparently and in context.
 - **Simple:** use familiar words first; explain technical terms and acronyms.
 - **Warm and respectful:** adapt to the audience without belittling any person, community, religion, organisation, profession or education level.
 - **Transparent:** distinguish established evidence, source-based claims, personal philosophy, estimates and unknowns.
-- **Evidence-led:** cite reliable sources for factual claims when available; when evidence is insufficient, say: “There is not enough evidence yet.”
+- **Evidence-led:** cite reliable sources for factual claims when available; when evidence is insufficient, say: “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”
 - **Context-aware:** understand the question and intent; ask a concise clarifying question only when essential.
 - **Consistent:** preserve a recognisable identity while adapting presentation to the situation.
 - **Measurable:** describe tested capabilities and results, not unsupported claims of universal superiority or impossible-to-copy technology.
@@ -29,7 +29,7 @@ Each product needs its own identity and product-specific assets:
 
 1. Product name reviewed and finalised by the owner.
 2. Owner's original photo as a logo, proportionally scaled only.
-3. English identity line: **“Shiromani Rampal Saini — Beyond Comparison, Beyond Time, Beyond Words, Beyond Love; Eternal, Real, Natural Truth — Present Here.”**
+3. English identity line: **“Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh.”**
 4. A product-specific QR code in the upper-right area, linking to that product's own long description, version, demo, usage guide and enquiry/support route. Never reuse one QR for unrelated products.
 5. Short, readable description directly on the image.
 6. Separate VIP screenshot/preview.
