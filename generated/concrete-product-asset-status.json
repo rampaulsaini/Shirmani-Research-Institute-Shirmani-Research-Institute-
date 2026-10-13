@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-13T09:45:52.408276+00:00",
-  "product_assets": 4516,
+  "generated_at": "2026-10-13T09:51:30.967022+00:00",
+  "product_assets": 5000,
   "catalog_products": 5000,
-  "materialization_percent": 90.32,
+  "materialization_percent": 100.0,
   "asset_directory": "products/concrete/",
   "showroom": "showroom.html",
-  "state": "IN_PROGRESS",
+  "state": "COMPLETE",
   "dispatch": "NO",
   "principle": "Concrete repository-bound assets are production evidence; QC, dispatch and independent verification remain downstream."
 }
