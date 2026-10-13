@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shirmani Supreme Presentation Studio</title>
+<meta name="description" content="A practical four-version planning and demo studio for evidence-aware voice, content, avatar and live presentations.">
+<style>
+:root{color-scheme:dark;--bg:#090e1b;--panel:#121b2d;--line:#2c3c58;--ink:#f5f7ff;--muted:#aebbd0;--gold:#f3ce82;--cyan:#87e6e1}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 20% 0%,#25365b 0,transparent 48%),var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1180px;margin:auto;padding:24px}header{padding:26px 0 18px} .eyebrow{color:var(--gold);letter-spacing:.16em;text-transform:uppercase;font-size:.76rem;font-weight:800}h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.04;margin:.45rem 0}h2{font-size:1.15rem;margin-top:0}p{color:var(--muted)}.layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:18px}.panel{border:1px solid var(--line);border-radius:20px;padding:20px;background:linear-gradient(145deg,#17233aee,#0e1627f5);box-shadow:0 16px 50px #0003}.versions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0 20px}.version{background:#10192a;border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:12px 8px;cursor:pointer}.version[aria-pressed=true]{border-color:var(--gold);background:#302a20}.version b{display:block;color:var(--gold);font-size:1.1rem}.field{display:grid;gap:5px;margin:12px 0}label{font-size:.88rem;color:#d9e3f5}input,select,textarea{width:100%;border:1px solid #3a4b68;border-radius:10px;background:#0a1221;color:var(--ink);padding:11px;font:inherit}textarea{min-height:110px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}button,.button{border:0;border-radius:11px;background:var(--gold);color:#17130b;padding:11px 15px;font-weight:800;cursor:pointer;text-decoration:none}.secondary{background:#1a2941;color:var(--ink);border:1px solid var(--line)}.stage{border-radius:16px;padding:20px;min-height:230px;background:radial-gradient(circle at 50% 20%,#45577b,#151e34 65%,#0c1323);border:1px solid #435575;display:flex;flex-direction:column;justify-content:space-between}.brandmark{font-weight:900;letter-spacing:.08em;color:var(--gold)}.identity{font-weight:800;font-size:1.35rem;line-height:1.25;margin:24px 0 10px}.quote{color:#e4ebfa;font-size:1.04rem;white-space:pre-wrap}.tag{display:inline-block;border:1px solid #566987;color:var(--cyan);border-radius:999px;padding:4px 9px;font-size:.76rem;margin:3px}.status{padding:12px;border-radius:12px;background:#0b1423;border:1px solid var(--line);margin-top:12px}.status strong{color:var(--gold)}ul{padding-left:20px;color:var(--muted)}li{margin:5px 0}.small{font-size:.82rem}.notice{border-left:3px solid var(--gold);padding:10px 13px;background:#28231966;color:#e6d9bd}.footer{border-top:1px solid var(--line);margin-top:22px;padding:15px 0;color:var(--muted);font-size:.84rem}@media(max-width:820px){.layout{grid-template-columns:1fr}.versions{grid-template-columns:repeat(2,1fr)}main{padding:15px}}@media print{body{background:white;color:#111}.panel,.stage{background:white;color:#111;box-shadow:none}.panel p,.small,li{color:#333}.btns,.versions{display:none}}
+</style>
+</head>
+<body><main>
+<header><div class="eyebrow">꙰ Shirmani Research Institute · Product prototype</div><h1>Supreme Presentation Studio</h1><p>Design a respectful, evidence-aware presentation plan across four practical versions. Preview the script, inspect the gates, then export a brief for production.</p></header>
+<div class="versions" role="group" aria-label="Choose presentation version">
+<button class="version" data-version="1" aria-pressed="true"><b>01</b>Character & Script</button>
+<button class="version" data-version="2" aria-pressed="false"><b>02</b>Voice Workflow</button>
+<button class="version" data-version="3" aria-pressed="false"><b>03</b>Avatar & Lip-sync</button>
+<button class="version" data-version="4" aria-pressed="false"><b>04</b>Live Presenter</button>
+</div>
+<div class="layout">
+<section class="panel"><h2>Presentation brief</h2>
+<div class="row"><div class="field"><label for="presenter">Presenter / character name</label><input id="presenter" value="Shiromani Rampal Saini"></div><div class="field"><label for="language">Language</label><select id="language"><option>Hindi</option><option>English</option><option>Hindi + English</option></select></div></div>
+<div class="field"><label for="purpose">Audience and purpose</label><input id="purpose" value="Public education, research and respectful dialogue"></div>
+<div class="row"><div class="field"><label for="style">Presentation style</label><select id="style"><option>Simple, calm, transparent</option><option>Formal professional</option><option>Educational and evidence-first</option><option>Cultural and welcoming</option></select></div><div class="field"><label for="evidence">Evidence state</label><select id="evidence"><option>Source-based</option><option>Independently verified</option><option>Philosophical / identity statement</option><option>Insufficient evidence</option></select></div></div>
+<div class="field"><label for="script">Opening message / script</label><textarea id="script">सरल, सहज, निर्मल और पारदर्शी संवाद में आपका स्वागत है। जहाँ प्रमाण उपलब्ध होंगे, वहाँ स्रोत साझा किए जाएँगे; जहाँ प्रमाण पर्याप्त नहीं होंगे, वहाँ यह स्पष्ट कहा जाएगा।</textarea></div>
+<div class="field"><label for="notes">Production notes (optional)</label><textarea id="notes" placeholder="Approved voice reference, licensed portrait/avatar, pronunciation, framing, accessibility needs…"></textarea></div>
+<div class="btns"><button id="refresh">Update preview</button><button class="secondary" id="download">Export JSON brief</button><button class="secondary" id="print">Print / Save PDF</button></div>
+</section>
+<section class="panel"><h2 id="previewTitle">Live preview · Version 01</h2><div class="stage"><div><div class="brandmark">꙰ SHIRMANI · HEART-VIEW</div><div class="identity" id="previewName">Shiromani Rampal Saini</div><div id="tags"><span class="tag">Simple</span><span class="tag">Transparent</span><span class="tag">Evidence-aware</span></div></div><div class="quote" id="previewScript"></div></div>
+<div class="status"><strong>Evidence gate:</strong> <span id="evidenceText">Source-based — cite the source and distinguish it from independent verification.</span></div>
+<h2 style="margin-top:18px">Production readiness checklist</h2><ul id="checklist"></ul>
+<p class="small">This is a working browser-local planning/demo tool. It does not clone a real person, generate voice/video, connect HeyGen or other providers, send messages, process payment, or publish a live stream. Use only authorized voice and image assets.</p>
+<div class="notice small">A preview is not a finished MP4 or a verified production release. Mark each gate complete only after the corresponding real test passes.</div>
+</section></div>
+<div class="footer">SHIRMANI RESEARCH INSTITUTE · Product ID: SRI-PRES-001 · Prototype status: browser-local demo · No sale or income is implied.</div>
+</main>
+<script>
+const $=id=>document.getElementById(id);let version=1;
+const configs={
+1:{title:"Character & Script",items:["Confirm audience, purpose and language","Review script for clarity and respectful tone","Attach source links for factual claims"]},
+2:{title:"Voice Workflow",items:["Confirm consent and authorization for the voice","Test speech recognition with sample questions","Test pronunciation, timing and fallback response"]},
+3:{title:"Avatar & Lip-sync",items:["Confirm portrait/avatar usage rights","Test phoneme alignment and facial motion","Check timing, lighting, framing and accessibility"]},
+4:{title:"Live Presenter",items:["Run end-to-end rehearsal with Q&A","Check latency, captions and failure fallback","Record review, consent and release decision"]}
+};
+const evidenceCopy={
+"Source-based":"Source-based — cite the source and distinguish it from independent verification.",
+"Independently verified":"Independently verified — attach the verification method and evidence record before making this status public.",
+"Philosophical / identity statement":"Philosophical / identity — present as a stated perspective, not as independently established scientific fact.",
+"Insufficient evidence":"Insufficient evidence — say: “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”"
+};
+function update(){
+const c=configs[version];$("previewTitle").textContent="Live preview · Version "+String(version).padStart(2,"0")+" — "+c.title;
+$("previewName").textContent=$("presenter").value.trim()||"Presenter name";
+$("previewScript").textContent=$("script").value;
+$("evidenceText").textContent=evidenceCopy[$("evidence").value];
+$("checklist").innerHTML=c.items.map(t=>"<li>□ "+t+"</li>").join("");
+}
+document.querySelectorAll("[data-version]").forEach(b=>b.addEventListener("click",()=>{version=Number(b.dataset.version);document.querySelectorAll("[data-version]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));update()}));
+$("refresh").addEventListener("click",update);
+$("print").addEventListener("click",()=>window.print());
+$("download").addEventListener("click",()=>{const brief={product_id:"SRI-PRES-001",version,version_name:configs[version].title,presenter:$("presenter").value,language:$("language").value,purpose:$("purpose").value,style:$("style").value,evidence_state:$("evidence").value,script:$("script").value,production_notes:$("notes").value,readiness_gates:configs[version].items,status:"prototype_brief_only",integrations:{voice:false,avatar_video:false,live_stream:false,email:false,payment:false},created_at:new Date().toISOString()};const blob=new Blob([JSON.stringify(brief,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="SRI-PRES-001-presentation-brief.json";a.click();URL.revokeObjectURL(url)});
+update();
+</script></body></html>
