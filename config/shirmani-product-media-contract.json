@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "One record per real product; blank or missing media remains blocked, never fabricated.",
+  "required_fields": [
+    "product_id", "name", "version", "short_description",
+    "passport_url", "qr_asset_path", "vip_screenshot_path",
+    "demo_video_path", "usage_guide_url", "original_logo_asset_path",
+    "evidence_state", "release_state"
+  ],
+  "media_rules": {
+    "artwork_target": "3840x2160",
+    "original_logo": "Use owner-provided original photo unchanged; proportional resizing/layout placement only.",
+    "qr": "Unique per product, upper-right on artwork, points to that product's passport, scan-tested on mobile.",
+    "demo": "Actual product-specific recording only; storyboard is not a demo video.",
+    "screenshot": "Real product screenshot only; mockups must be explicitly labelled illustrative.",
+    "identity_line": "Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh"
+  },
+  "allowed_evidence_states": [
+    "INDEPENDENTLY VERIFIED",
+    "SOURCE-BASED",
+    "PHILOSOPHICAL / PERSONAL PERSPECTIVE",
+    "INSUFFICIENT EVIDENCE"
+  ],
+  "allowed_release_states": ["DRAFT", "BLOCKED", "TESTING", "VERIFIED", "PUBLISHED"],
+  "example_record": {
+    "product_id": "SRI-WRITING-RESEARCH-001",
+    "name": "Hindi-English Writing & Research",
+    "version": "0.1.0",
+    "short_description": "Clear Hindi/English writing, research summaries, and website/blog content.",
+    "passport_url": "",
+    "qr_asset_path": "",
+    "vip_screenshot_path": "",
+    "demo_video_path": "",
+    "usage_guide_url": "",
+    "original_logo_asset_path": "",
+    "evidence_state": "SOURCE-BASED",
+    "release_state": "BLOCKED",
+    "notes": "Initial service offer; actual delivery, QR scan, screenshot, and demo recording still required."
+  }
+}
