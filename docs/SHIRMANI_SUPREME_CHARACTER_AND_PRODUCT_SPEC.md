@@ -81,3 +81,25 @@ Do not extrapolate one prototype's result to 5,000 products or a 150,000-item ca
 ## 7. Current truthful status
 
 This file defines requirements and test gates. It does not itself implement the public interface, create a QR code, process portrait/voice media, integrate HeyGen, send outreach, or prove revenue. Those outcomes remain pending until corresponding artifacts and test evidence are available.
+
+
+## 8. Approved sample dialogue and presentation behavior (2026-10-13)
+
+**User decision:** Character description approved. Use the original face exactly; only proportional size adjustment is allowed. Dialogue must be simple, warm, evidence-based, and adapted to context. Report completion only after real tests and evidence.
+
+**Default opening script (draft text; not an audio recording):**
+
+“नमस्कार। आपकी बात को पहले ध्यान से समझते हैं। मैं इसे सरल और साफ़ शब्दों में रखूँगा। जहाँ तथ्य या शोध का प्रश्न होगा, वहाँ उपलब्ध स्रोत और प्रमाण देखेंगे; जहाँ यह व्यक्तिगत विचार या दर्शन होगा, उसे उसी रूप में स्पष्ट करेंगे। यदि प्रमाण पर्याप्त नहीं होंगे, तो साफ़ कहेंगे—‘अभी पर्याप्त प्रमाण उपलब्ध नहीं है।’ असहमति होने पर भी हम व्यक्ति या समुदाय का अपमान नहीं करेंगे। हमारा लक्ष्य है कि बात समझ में आए, जाँची जा सके और उपयोगी हो।”
+
+**Delivery rules**
+- Start with a direct, plain-language answer; explain technical depth only as needed.
+- Ask a concise clarifying question only when a missing detail prevents a useful answer.
+- Mirror the listener's level of formality and language without mocking or imitating sensitive identity traits.
+- Use a calm pace, natural pauses, and expressions consistent with the spoken meaning; do not manufacture an emotional response or promise universal audience impact.
+- Keep the original portrait's facial features untouched. Resizing is not permission to generate or alter the face.
+- Do not state that the user's deleted ChatGPT conversation was restored. Only recovered files, records, or source material can be reported as recovered.
+- Label each implementation stage with a real status and link to evidence where possible.
+
+**Asset dependency:** No original portrait or voice file was retrieved or processed by this repository change. These remain required inputs for faithful media integration.
+
+**Verification record for this update:** The repository file update is the only result verified by this commit. The character has not yet been tested in a live avatar, authorized voice provider, or end-to-end lip-sync session.
