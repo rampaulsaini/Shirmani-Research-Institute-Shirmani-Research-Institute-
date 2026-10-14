@@ -54,10 +54,17 @@
 <section class="panel" id="release-scorecard"><h2>8. Measurable release scorecard</h2>
 <ul class="steps"><li><strong>Photo integrity:</strong> exact original file identified; only proportional layout scaling permitted; no retouching or face alteration.</li><li><strong>Voice authorization:</strong> owner authorization recorded and provider upload/test output retained.</li><li><strong>Q&amp;A:</strong> at least 20 representative prompts including ambiguity, respectful disagreement, multilingual input, and insufficient-evidence cases.</li><li><strong>Evidence:</strong> every factual answer links to its source or states “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</li><li><strong>Video:</strong> generated output is playable; inspect face consistency, gaze, facial motion, and lip-sync against audio.</li><li><strong>Timing:</strong> record measured end-to-end latency and audio/video offset; do not claim a pass without numeric results and a reproducible test.</li><li><strong>Live safety:</strong> disclose AI presentation, provide a stop/fallback path, protect secrets, and log only necessary interaction data.</li><li><strong>Release:</strong> any missing critical evidence remains BLOCKED / NOT VERIFIED, never silently marked complete.</li></ul>
 </section>
+
+<section class="panel" id="presentation-script"><h2>9. Live character presentation script — owner-approved draft</h2>
+<p class="small">यह संवाद-स्क्रिप्ट है, वास्तविक live avatar नहीं। इसे voice/face generation में इस्तेमाल करने से पहले मालिक स्वयं शब्द, आवाज़ और provider output की समीक्षा करें।</p>
+<div class="output" id="opening-script">नमस्कार। मैं आपकी बात पहले ध्यान से समझने का प्रयास करूँगा। फिर सरल भाषा में उत्तर दूँगा और ज़रूरत हो तो उदाहरण, तर्क तथा उपलब्ध स्रोत भी दिखाऊँगा। जहाँ तथ्य की पुष्टि नहीं होगी, वहाँ स्पष्ट कहूँगा—“अभी पर्याप्त प्रमाण उपलब्ध नहीं है।” मैं व्यक्ति की गरिमा का सम्मान करते हुए विचार, दावे और प्रमाण पर बात करूँगा। आप चाहें तो मैं इसी उत्तर को और सरल, अधिक विस्तार से, या तकनीकी/शोध स्तर पर समझा सकता हूँ।</div>
+<div class="actions"><button id="copy-script" type="button">स्क्रिप्ट कॉपी करें</button></div>
+<p class="small">व्यक्तिगत दर्शन/पहचान को दर्शन के रूप में प्रस्तुत करें; वैज्ञानिक, ऐतिहासिक या सार्वभौमिक तथ्य तभी कहें जब पर्याप्त स्वतंत्र प्रमाण मौजूद हों। Natural gaze, facial movement, accurate lip-sync और live response तभी पास माने जाएँ जब वास्तविक generated output का परीक्षण रिकॉर्ड उपलब्ध हो।</p>
+</section>
 </main><footer>Shirmani Research Institute · Evidence-first prototype · No external service is represented as connected unless separately tested and documented.</footer>
 <script>
 (function(){
-const $=id=>document.getElementById(id);let latest='';
+const $=id=>document.getElementById(id);let latest='';\nconst scriptButton=$('copy-script');if(scriptButton)scriptButton.addEventListener('click',async()=>{const s=$('opening-script').textContent;try{await navigator.clipboard.writeText(s);scriptButton.textContent='कॉपी किया गया';}catch(e){scriptButton.textContent='टेक्स्ट चुनकर कॉपी करें';}});
 function make(){
 const q=$('question').value.trim(), ev=$('evidence').value.trim(), depth=$('depth').value;
 if(!q){$('output').textContent='पहले प्रश्न / विषय लिखें।';return;}
