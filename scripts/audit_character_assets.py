@@ -35,7 +35,7 @@ def iter_candidates(root: Path, extensions: set[str]) -> Iterable[Path]:
         dirs[:] = sorted(d for d in dirs if d not in SKIP_DIRS)
         for name in sorted(files):
             path = Path(current) / name
-            if path.suffix.lower() in extensions and not path.is_symlink():
+            if path.suffix.lower() in extensions and not path.is_symlink() and path.is_file() and path.stat().st_size > 0:
                 yield path
 
 
