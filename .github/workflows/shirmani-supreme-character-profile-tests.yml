@@ -1,0 +1,41 @@
+name: SHIRMANI SUPREME Character Profile Contract Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "config/shirmani-supreme-character-profile.json"
+      - "tests/test_shirmani_supreme_character_profile.py"
+      - ".github/workflows/shirmani-supreme-character-profile-tests.yml"
+  pull_request:
+    paths:
+      - "config/shirmani-supreme-character-profile.json"
+      - "tests/test_shirmani_supreme_character_profile.py"
+      - ".github/workflows/shirmani-supreme-character-profile-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-character-profile-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract-tests:
+    name: Validate approved character and media contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate profile JSON
+        run: python -m json.tool config/shirmani-supreme-character-profile.json > /dev/null
+      - name: Run deterministic contract tests
+        run: python -m unittest discover -s tests -p "test_shirmani_supreme_character_profile.py" -v
