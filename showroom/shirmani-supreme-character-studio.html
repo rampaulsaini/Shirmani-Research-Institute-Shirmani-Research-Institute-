@@ -75,7 +75,7 @@ mediaBindings.forEach(item => {
     }
     const allowed = item.kind === 'image' ? file.type.startsWith('image/') :
       item.kind === 'audio' ? file.type.startsWith('audio/') :
-      (file.type.startsWith('video/') || /\\.(mp4|webm|mov)$/i.test(file.name));
+      (file.type.startsWith('video/') || ['.mp4','.webm','.mov'].some(ext => file.name.toLowerCase().endsWith(ext)))
     if (!allowed) { input.value=''; meta.textContent='FILE TYPE REJECTED — choose a supported ' + item.kind + ' file.'; return; }
     const url = URL.createObjectURL(file);
     mediaUrls[item.input] = url;
