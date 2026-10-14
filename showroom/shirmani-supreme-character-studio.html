@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SHIRMANI SUPREME Character Studio — consent-first, evidence-aware presenter rehearsal and local asset preview.">
+<title>SHIRMANI SUPREME — Character Studio</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#131c30;--line:#2d3b55;--ink:#f2f6ff;--muted:#b8c5d9;--accent:#64d8c8;--warn:#ffd27a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#182746,var(--bg) 58%);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}main{max-width:1120px;margin:auto;padding:24px}header{padding:30px 0 18px}h1{font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;margin:.2em 0}h2{font-size:1.2rem;margin-top:0}p{color:var(--muted)}.identity{font-weight:650;color:var(--accent);max-width:850px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:16px}.panel{background:color-mix(in srgb,var(--panel) 94%,transparent);border:1px solid var(--line);border-radius:18px;padding:20px;min-width:0}.status{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:.82rem;color:var(--warn)}label{display:block;font-weight:650;margin:12px 0 6px}input,select,textarea,button{font:inherit}input[type=text],select,textarea{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#0b1324;color:var(--ink)}input[type=file]{max-width:100%;color:var(--muted)}textarea{min-height:100px;resize:vertical}.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}button{border:1px solid #458e89;background:#164e50;color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:650}button.secondary{background:#202c43;border-color:var(--line)}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.preview{width:100%;max-height:420px;object-fit:contain;background:#080d18;border-radius:12px;margin-top:12px}.small{font-size:.9rem}.gate{border-left:3px solid var(--accent);padding:8px 12px;background:#101c2a;border-radius:0 8px 8px 0}.result{white-space:pre-wrap;background:#0b1324;border:1px solid var(--line);padding:14px;border-radius:12px;min-height:100px}.foot{border-top:1px solid var(--line);margin-top:24px;padding-top:16px}.checklist label{font-weight:400;display:flex;gap:10px;align-items:flex-start}.checklist input{margin-top:6px}a{color:var(--accent)}.danger{color:#ffcfb9}
+</style>
+</head>
+<body><main>
+<header>
+<div class="status">V1 · Browser-local rehearsal</div>
+<h1>SHIRMANI SUPREME<br>Character Studio</h1>
+<p class="identity">Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh</p>
+<p>Simple first. Respectful always. Evidence before certainty. This page helps prepare and review a presentation; it is not a connected AI avatar, voice-cloning service, lip-sync engine, or live-stream system.</p>
+</header>
+<section class="grid">
+<article class="panel"><h2>1 · Original portrait preview</h2><p class="small">Choose the authorised original image yourself. It stays in this browser page and is not uploaded. The preview uses proportional fit only; no retouching or face generation.</p>
+<label for="photo">Select original photo</label><input id="photo" type="file" accept="image/*"><img id="portrait" class="preview" alt="Portrait preview will appear here" hidden><p id="photoState" class="small">PHOTO ASSET REQUIRED — no original portrait is embedded in this page.</p></article>
+<article class="panel"><h2>2 · Authorised voice reference</h2><p class="small">Select your own authorised voice recording for local reference. This page does not clone, transform, upload, or send audio to a provider.</p>
+<label for="voice">Select voice recording</label><input id="voice" type="file" accept="audio/*"><audio id="audio" controls hidden style="width:100%;margin-top:12px"></audio><p id="voiceState" class="small">VOICE ASSET REQUIRED — provider connection and voice authorisation have not been verified.</p>
+<div class="gate small">Never put API keys or passwords in this page. Any future provider integration must use a secured server endpoint and explicit consent.</div></article>
+</section>
+<section class="grid" style="margin-top:16px">
+<article class="panel"><h2>3 · Question and response rehearsal</h2><label for="audience">Audience level</label><select id="audience"><option value="simple">Simple everyday language</option><option value="general">General audience + example</option><option value="expert">Technical / research audience</option></select>
+<label for="question">Question or topic</label><textarea id="question" placeholder="Enter a question or topic to rehearse."></textarea>
+<label for="evidence">Evidence / source notes (optional)</label><textarea id="evidence" placeholder="Add source title, URL, date, or test observations. Do not paste secrets or sensitive personal data."></textarea>
+<label for="kind">Claim type</label><select id="kind"><option>Source-based factual claim</option><option>Philosophical / personal perspective</option><option>Observed test result</option><option>Uncertain / not yet evidenced</option></select>
+<div class="btns"><button id="draft">Prepare rehearsal script</button><button class="secondary" id="copy">Copy script</button><button class="secondary" id="download">Export TXT</button></div></article>
+<article class="panel"><h2>4 · Prepared script</h2><div id="output" class="result" aria-live="polite">Your rehearsal script will appear here. The tool uses your inputs and a fixed template; it does not independently research or verify claims.</div><p id="scriptState" class="small">SCRIPT NOT PREPARED</p><div class="gate small">Evidence labels: INDEPENDENTLY VERIFIED (only after a recorded check) · SOURCE-BASED · PHILOSOPHICAL / PERSONAL PERSPECTIVE · INSUFFICIENT EVIDENCE.</div></article>
+</section>
+<section class="panel" style="margin-top:16px"><h2>5 · Release checklist</h2><p>Mark a gate only after a person has performed and recorded the check. These checkboxes are a local checklist, not automatic verification.</p>
+<div class="checklist">
+<label><input type="checkbox"> The exact original portrait was selected and visually compared; only proportional display scaling is used.</label>
+<label><input type="checkbox"> The voice asset is original/authorised and its consent or permission is recorded.</label>
+<label><input type="checkbox"> Factual claims have source notes; opinions and philosophy are labelled separately.</label>
+<label><input type="checkbox"> A reviewer checked clarity, respect, uncertainty and factual accuracy.</label>
+<label><input type="checkbox"> Any provider voice/avatar job has a real job ID and a playable output that was reviewed.</label>
+<label><input type="checkbox"> Lip-sync, timing, captions, latency and failure handling passed an end-to-end test.</label>
+<label><input type="checkbox"> Product-specific screenshot, real demo video, passport/QR destination and usage guide were tested.</label>
+</div><p class="danger small">Current status: V1 rehearsal scaffold only. V2 authorised voice, V3 avatar/lip-sync and V4 live presentation remain NOT VERIFIED until actual integrations and test evidence exist.</p>
+</section>
+<footer class="foot"><p class="small">Privacy note: selected image/audio are previewed locally in this browser page and are not sent by this tool. Refreshing the page clears the working session. Do not use public/shared devices for private assets.</p><p class="small">Research Institute · Evidence-first prototype · No sales, income, external outreach, provider integration, or deployment claim is made by this page.</p></footer>
+</main>
+<script>
+(()=> {
+const $=id=>document.getElementById(id);
+let photoUrl=null,audioUrl=null;
+$('photo').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;if(photoUrl)URL.revokeObjectURL(photoUrl);photoUrl=URL.createObjectURL(f);$('portrait').src=photoUrl;$('portrait').hidden=false;$('photoState').textContent='LOCAL PREVIEW ONLY — '+f.name+' ('+Math.round(f.size/1024)+' KB). Verify the source and identity manually.';});
+$('voice').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(f);$('audio').src=audioUrl;$('audio').hidden=false;$('voiceState').textContent='LOCAL AUDIO PREVIEW ONLY — '+f.name+'. This does not prove consent or provider compatibility.';});
+function makeScript(){
+const q=$('question').value.trim(), ev=$('evidence').value.trim(), level=$('audience').value, kind=$('kind').value;
+if(!q){$('scriptState').textContent='BLOCKED — enter a question or topic first.';$('output').textContent='Please enter a question or topic.';return;}
+let label=kind==='Philosophical / personal perspective'?'PHILOSOPHICAL / PERSONAL PERSPECTIVE':kind==='Observed test result'?'INDEPENDENTLY VERIFIED only if the test was actually performed and recorded':'SOURCE-BASED';
+if(kind==='Uncertain / not yet evidenced'||(!ev&&kind==='Source-based factual claim'))label='INSUFFICIENT EVIDENCE';
+let out='QUESTION / TOPIC\n'+q+'\n\nDIRECT ANSWER\n'+(label==='INSUFFICIENT EVIDENCE'?'अभी पर्याप्त प्रमाण उपलब्ध नहीं है। पहले उपलब्ध प्रमाण और आवश्यक जाँच स्पष्ट करें।':'इस विषय पर निष्पक्ष और स्पष्ट उत्तर देने के लिए नीचे उपलब्ध आधार और उसकी सीमा अलग-अलग रखें।')+'\n\nEVIDENCE STATE\n'+label+'\n';
+if(level!=='simple')out+='\nEVERYDAY EXPLANATION\nएक सरल उदाहरण दें, और स्पष्ट रखें कि उदाहरण समझाने के लिए है—अपने आप में प्रमाण नहीं।\n';
+if(level==='expert')out+='\nREASONING / TECHNICAL REVIEW\nपरिभाषाएँ, मान्यताएँ, विधि, माप की इकाइयाँ, स्रोत, संभावित प्रतिवाद और सीमाएँ दर्ज करें। बिना जाँच के आँकड़े या समीकरण न जोड़ें।\n';
+out+='\nAVAILABLE SOURCE / TEST NOTES\n'+(ev||'अभी कोई स्रोत या परीक्षण नोट नहीं दिया गया।')+'\n\nLIMITATION\nयह स्क्रिप्ट दिए गए इनपुट से तैयार की गई है। इस टूल ने स्वतंत्र वेब रिसर्च, तथ्य-जाँच, वैज्ञानिक सत्यापन, आवाज़ निर्माण, avatar, lip-sync या live प्रस्तुति नहीं की।\n\nNEXT ACTION\nकिसी योग्य मानव समीक्षक से स्रोत, स्पष्टता, सम्मानजनक भाषा और अनिश्चितता की जाँच कराएँ; जाँच का परिणाम और तारीख दर्ज करें।';
+$('output').textContent=out;$('scriptState').textContent='DRAFT PREPARED — TEMPLATE OUTPUT; NOT INDEPENDENTLY VERIFIED.';
+}
+$('draft').addEventListener('click',makeScript);
+$('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('output').textContent);$('scriptState').textContent='Copy requested. If blocked by browser permissions, select the text manually.'}catch(e){$('scriptState').textContent='Clipboard unavailable; select and copy the script manually.'}});
+$('download').addEventListener('click',()=>{const blob=new Blob([$('output').textContent+'\n'],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='shirmani-character-rehearsal.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);});
+})();
+</script></body></html>
