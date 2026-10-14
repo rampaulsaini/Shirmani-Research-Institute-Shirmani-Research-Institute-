@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SHIRMANI SUPREME Character Studio — evidence-gated photo, voice, video and presentation readiness workspace.">
+<title>SHIRMANI SUPREME Character Studio</title>
+<style>
+:root{color-scheme:dark;--bg:#0a1020;--panel:#111b31;--line:#2b3a56;--ink:#f3f6ff;--muted:#b2bfd5;--gold:#e8c77a;--green:#a7e6c1;--red:#ffb4b4}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b2c4a 0,#0a1020 58%);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+header,main,footer{max-width:1120px;margin:auto;padding:22px}header{padding-top:34px}h1{font-size:clamp(1.8rem,5vw,3.3rem);line-height:1.08;margin:.3rem 0 1rem}h2{font-size:1.2rem;margin-top:0}.eyebrow{color:var(--gold);letter-spacing:.13em;text-transform:uppercase;font-size:.78rem;font-weight:700}.sub{max-width:780px;color:var(--muted)}.notice{border:1px solid #8b6b30;background:#2a2418;padding:14px 16px;border-radius:14px;margin:18px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:16px}.card{background:linear-gradient(145deg,#15213a,#10182a);border:1px solid var(--line);border-radius:18px;padding:20px;min-width:0}.tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--muted);font-size:.8rem}.state{font-weight:750;color:var(--gold)}label{display:block;font-weight:650;margin:12px 0 6px}input,select,textarea,button{font:inherit}input[type=text],input[type=url],select,textarea{width:100%;background:#0a1222;color:var(--ink);border:1px solid #41516d;border-radius:10px;padding:11px}input[type=file]{max-width:100%;width:100%;padding:8px;border:1px dashed #526482;border-radius:10px;background:#0a1222}button{border:1px solid #a58b4c;background:#e8c77a;color:#172033;font-weight:750;border-radius:11px;padding:11px 15px;cursor:pointer}button.secondary{background:transparent;color:var(--ink);border-color:#526482}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #e8c77a;outline-offset:2px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.preview{margin-top:12px;min-height:70px;border:1px dashed #41516d;border-radius:12px;padding:10px;color:var(--muted);overflow:hidden}.preview img,.preview video{display:block;max-width:100%;max-height:420px;margin:auto;border-radius:8px}.check{display:flex;gap:10px;align-items:flex-start;margin:9px 0}.check input{margin-top:6px}.check label{font-weight:400;margin:0}.small{font-size:.9rem;color:var(--muted)}.result{white-space:pre-wrap;background:#09111f;border:1px solid var(--line);padding:14px;border-radius:12px;overflow-wrap:anywhere}.status-list{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.pill{font-size:.78rem;border-radius:99px;padding:3px 9px;border:1px solid #526482;color:var(--gold)}footer{color:var(--muted);font-size:.85rem;padding-bottom:40px}a{color:#f3d995}
+</style></head>
+<body>
+<header><div class="eyebrow">Shirmani Research Institute · Showroom / Studio</div>
+<h1>SHIRMANI SUPREME<br>Character Studio</h1>
+<p class="sub">A practical workspace for the human-presentation pipeline: authorized source media → context and evidence → voice/video checks → review → release decision. It makes readiness visible without pretending an integration has passed.</p>
+<div class="notice"><strong>Current evidence state: <span class="state">NOT VERIFIED</span></strong><br>This page is a browser-side review workspace. Selecting files previews them on this device only; it does not upload them to GitHub, HeyGen, or any provider. No original portrait or voice asset is embedded here because the repository scan has not established a verified canonical asset path.</div>
+</header>
+<main>
+<section class="grid">
+<article class="card"><span class="tag">01 · Source identity</span><h2>Original photo</h2><p class="small">Use the owner's exact original photo. No face alteration, beautification, replacement, or generative reconstruction. Only proportional scaling/cropping needed for layout.</p>
+<label for="photo">Choose original photo (local preview)</label><input id="photo" type="file" accept="image/*">
+<div id="photoPreview" class="preview" aria-live="polite">No photo selected. Nothing is uploaded.</div>
+<label class="check"><input id="photoAuth" type="checkbox"><span>I confirm I own or am authorized to use this photo and have checked that it is the exact source file.</span></label>
+</article>
+<article class="card"><span class="tag">02 · Voice authorization</span><h2>Original voice</h2><p class="small">Voice cloning or provider upload must be explicitly authorized and performed in the selected provider account. Do not expose API keys in this page.</p>
+<label for="voice">Choose voice sample (local metadata only)</label><input id="voice" type="file" accept="audio/*">
+<div id="voicePreview" class="preview" aria-live="polite">No voice sample selected. Nothing is uploaded.</div>
+<label class="check"><input id="voiceAuth" type="checkbox"><span>I confirm the voice sample is mine or that I have explicit permission for this use.</span></label>
+</article>
+<article class="card"><span class="tag">03 · Video evidence</span><h2>MP4 / avatar sample</h2><p class="small">The user-supplied MP4 was inspected separately: H.264 video, AAC audio, portrait 888×1920, approximately 35.98 seconds. It shows a HeyGen promotional/tutorial screen with a face/avatar preview; it does not by itself prove the user's avatar or voice integration is connected.</p>
+<label for="video">Choose video (local playback)</label><input id="video" type="file" accept="video/mp4,video/*">
+<div id="videoPreview" class="preview" aria-live="polite">No video selected. Nothing is uploaded.</div>
+</article>
+<article class="card"><span class="tag">04 · Provider evidence</span><h2>Connection record</h2><p class="small">Record provider and test references without placing secrets in this page. A login alone is not proof of a working API integration.</p>
+<label for="provider">Provider / service</label><select id="provider"><option>HeyGen</option><option>Other authorized provider</option><option>Local-only / not connected</option></select>
+<label for="testRef">Successful test run URL or evidence reference</label><input id="testRef" type="url" placeholder="https://… (optional)">
+<label for="testNotes">Test notes / limitations</label><textarea id="testNotes" rows="3" placeholder="e.g. Q&A sample reviewed; lip-sync not yet tested"></textarea>
+</article>
+</section>
+<section class="card" style="margin-top:16px"><span class="tag">05 · Acceptance gates</span><h2>Human-reviewed readiness checklist</h2><p class="small">Tick only after performing the test. This checklist does not run the tests for you.</p>
+<div class="grid">
+<div>
+<div class="check"><input id="g1" type="checkbox"><label for="g1">Original photo visually matches the approved source.</label></div>
+<div class="check"><input id="g2" type="checkbox"><label for="g2">Voice authorization documented; sample quality checked.</label></div>
+<div class="check"><input id="g3" type="checkbox"><label for="g3">Speech recognition checked with a known test phrase.</label></div>
+<div class="check"><input id="g4" type="checkbox"><label for="g4">Context/Q&A reviewed against a written expected answer.</label></div>
+<div class="check"><input id="g5" type="checkbox"><label for="g5">Evidence labels and uncertainty behavior tested.</label></div>
+</div><div>
+<div class="check"><input id="g6" type="checkbox"><label for="g6">Authorized voice output played and reviewed.</label></div>
+<div class="check"><input id="g7" type="checkbox"><label for="g7">Facial motion and gaze reviewed in the generated sample.</label></div>
+<div class="check"><input id="g8" type="checkbox"><label for="g8">Lip-sync checked on multiple phrases, not a still frame.</label></div>
+<div class="check"><input id="g9" type="checkbox"><label for="g9">Voice/face timing and end-to-end latency measured.</label></div>
+<div class="check"><input id="g10" type="checkbox"><label for="g10">Final output reviewed by a human and source links retained.</label></div>
+</div></div>
+<div class="actions"><button id="evaluate">Evaluate gates</button><button id="export" class="secondary">Export review record (.json)</button><button id="reset" class="secondary">Reset checklist</button></div>
+<div id="gateResult" class="result" role="status" aria-live="polite" style="margin-top:14px">NOT RUN — select “Evaluate gates” after reviewing evidence.</div>
+</section>
+<section class="grid" style="margin-top:16px">
+<article class="card"><span class="tag">Evidence vocabulary</span><h2>Truthful status labels</h2><div class="status-list"><span>Independently tested with retained evidence</span><span class="pill">VERIFIED</span><span>Source available, not independently reproduced</span><span class="pill">SOURCE-BASED</span><span>Personal philosophy / identity description</span><span class="pill">PHILOSOPHICAL / IDENTITY</span><span>Required evidence missing</span><span class="pill">INSUFFICIENT EVIDENCE</span></div></article>
+<article class="card"><span class="tag">Release stages</span><h2>V1 → V4</h2><p><strong>V1 · Specification:</strong> character profile, evidence labels, acceptance tests.</p><p><strong>V2 · Local prototype:</strong> local media preview and manual checklist.</p><p><strong>V3 · Provider integration:</strong> authorized provider connection, API/configuration, successful Q&A and media generation evidence.</p><p><strong>V4 · Live release:</strong> latency, privacy, accessibility, security, human review, rollback and monitoring gates pass.</p><p class="small">This page currently provides a V2-style local review interface only; it does not assert V3 or V4 completion.</p></article>
+</section>
+</main>
+<footer>SHIRMANI SUPREME · Evidence-first implementation. Never put passwords, access tokens, API keys, or private identity documents into this page. Local previews are cleared when the page is closed or reset.</footer>
+<script>
+const byId=id=>document.getElementById(id);
+function localPreview(inputId,previewId,kind){
+ const input=byId(inputId),target=byId(previewId);let previous=null;
+ input.addEventListener('change',()=>{
+  if(previous)URL.revokeObjectURL(previous);
+  const f=input.files&&input.files[0];target.replaceChildren();
+  if(!f){target.textContent='No file selected. Nothing is uploaded.';return}
+  previous=URL.createObjectURL(f);
+  const meta=document.createElement('p');meta.className='small';meta.textContent=f.name+' · '+f.type+' · '+f.size.toLocaleString()+' bytes (local only)';
+  target.append(meta);
+  if(kind==='image'||kind==='video'){const el=document.createElement(kind);el.src=previous;if(kind==='video')el.controls=true;else el.alt='Local preview of selected source photo';target.append(el)}
+  if(kind==='audio'){const el=document.createElement('audio');el.src=previous;el.controls=true;el.style.width='100%';target.append(el)}
+ });
+}
+localPreview('photo','photoPreview','image');localPreview('voice','voicePreview','audio');localPreview('video','videoPreview','video');
+const gateIds=['g1','g2','g3','g4','g5','g6','g7','g8','g9','g10'];
+function record(){return {schema:'shirmani-character-review/v1',createdAt:new Date().toISOString(),scope:'local review only; no provider integration is performed by this page',photo:{file:byId('photo').files[0]?.name||null,authorizationConfirmed:byId('photoAuth').checked},voice:{file:byId('voice').files[0]?.name||null,authorizationConfirmed:byId('voiceAuth').checked},video:{file:byId('video').files[0]?.name||null},provider:byId('provider').value,testEvidenceUrl:byId('testRef').value||null,testNotes:byId('testNotes').value,acceptance:Object.fromEntries(gateIds.map(id=>[id,byId(id).checked])),status:'NOT VERIFIED',warning:'Checkboxes are human attestations, not automated tests. Verify provider runs and source assets independently.'}}
+byId('evaluate').addEventListener('click',()=>{
+ const r=record(),done=gateIds.filter(id=>r.acceptance[id]).length,missing=gateIds.filter(id=>!r.acceptance[id]).length;
+ let state='NOT VERIFIED';
+ if(done===gateIds.length&&r.photo.authorizationConfirmed&&r.voice.authorizationConfirmed&&r.photo.file&&r.voice.file&&r.video.file&&r.testEvidenceUrl)state='READY FOR INDEPENDENT REVIEW — NOT AUTOMATICALLY VERIFIED';
+ byId('gateResult').textContent='Status: '+state+'\nGates checked: '+done+'/10\nMissing gate IDs: '+(missing.join(', ')||'none')+'\nPhoto: '+(r.photo.file||'not supplied')+'; authorization: '+r.photo.authorizationConfirmed+'\nVoice: '+(r.voice.file||'not supplied')+'; authorization: '+r.voice.authorizationConfirmed+'\nVideo: '+(r.video.file||'not supplied')+'\nProvider evidence: '+(r.testEvidenceUrl||'not supplied')+'\n\nThis page cannot verify the truth of attestations or confirm a remote provider run.';
+});
+byId('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(record(),null,2)],{type:'application/json'});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download='shirmani-character-review-record.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)});
+byId('reset').addEventListener('click',()=>{gateIds.forEach(id=>byId(id).checked=false);byId('photoAuth').checked=false;byId('voiceAuth').checked=false;byId('gateResult').textContent='NOT RUN — select “Evaluate gates” after reviewing evidence.'});
+</script>
+</body></html>
