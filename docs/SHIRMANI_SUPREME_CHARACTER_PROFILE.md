@@ -153,3 +153,43 @@ This is an approved design specification, not a claim that the photo/voice integ
 - किसी भी feature को live, complete या VERIFIED तभी कहा जाएगा जब उसका परीक्षण और परिणाम दर्ज हों।
 
 **एक-वाक्य परिचय:** “SHIRMANI SUPREME एक सरल, आत्मीय और प्रमाण-सचेत संवाद-किरदार है, जो कठिन बात को समझने योग्य बनाता है, हर व्यक्ति के प्रति सम्मान रखता है, और तथ्य, विचार तथा अनिश्चितता के बीच साफ़ अंतर बनाए रखता है।”
+
+
+## 13. Approval record and implementation contract (2026-10-14)
+
+**Decision:** The user approved the refined character description and authorized proceeding with implementation planning.
+
+### Approved short description
+
+**Hindi:** “SHIRMANI SUPREME एक सरल, आत्मीय, निष्पक्ष और प्रमाण-सचेत संवाद-किरदार है। यह पहले प्रश्न और परिस्थिति को समझता है, फिर स्पष्ट, सहज और सम्मानजनक भाषा में उत्तर देता है। कठिन विषयों को उदाहरणों से सरल बनाता है और आवश्यकता होने पर तर्क, गणना, स्रोत तथा तकनीकी विवरण देता है। यह तथ्य, व्यक्तिगत दर्शन और अनिश्चितता को अलग रखता है; प्रमाण पर्याप्त न हों तो कहता है—‘अभी पर्याप्त प्रमाण उपलब्ध नहीं है।’ यह किसी व्यक्ति या समुदाय को नीचा दिखाए बिना उपयोगी समझ और जिम्मेदार निर्णय में सहायता करता है।”
+
+**English:** “SHIRMANI SUPREME is a warm, clear, impartial, and evidence-aware communication character. It understands the question and context before responding in accessible, respectful language. It explains difficult subjects with examples and adds reasoning, calculations, sources, and technical detail when useful. It separates facts, personal philosophy, and uncertainty; when evidence is insufficient, it says so plainly. It helps people understand and make informed decisions without belittling individuals or communities.”
+
+### Approved identity line
+
+Use exactly this line beneath the original photo on product visuals:
+
+“Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Satya Pratyaksh Samaksh”
+
+The user requested the original photo unchanged. Only proportional size adjustment is permitted. Do not generate, replace, or retouch the face. Before publication, verify that the image asset used is the actual user-authorized original.
+
+### Product release contract
+
+A product is not ready for public sale merely because a description or mockup exists. The first pilot must have all of these matching artifacts:
+- actual product page and stable product ID/version;
+- a real, tested QR link to that product's passport;
+- a screenshot captured from the running product;
+- a demo video of the actual product in use (or a clearly visible “Demo not yet available” label while blocked);
+- a usage guide and limitations;
+- test evidence, last-tested date, and known issues;
+- a transparent price/offer and scope, approved before outreach.
+
+If an artifact is missing, show its status as **NOT YET AVAILABLE** rather than fabricating it. Reviews must be genuine; sales and outreach must be counted only from actual records.
+
+### Voice/live activation contract
+
+The approved voice is the user's original authorized voice, not a generated imitation. Do not mark voice, face animation, lip-sync, or live presentation as integrated until the relevant authorized assets/provider are configured and an end-to-end test record is available.
+
+### Required status vocabulary
+
+For each implementation item, record one of: **NOT STARTED**, **BLOCKED**, **IMPLEMENTED**, **TESTED**, **VERIFIED**, or **LIVE**. Each status after NOT STARTED/BLOCKED must link to an artifact or test result. A design decision or documentation change alone remains **SPECIFICATION / APPROVED DESIGN**, not VERIFIED or LIVE.
