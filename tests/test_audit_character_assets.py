@@ -51,13 +51,13 @@ class CharacterAssetAuditTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 find_hash_matches(Path(temp), "not-a-hash", "photo")
 
-    def test_ignores_svg_and_non_media_placeholders(self):
+    def test_ignores_svg_and_empty_media_placeholders(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             (root / "logo.svg").write_text("<svg/>", encoding="utf-8")
             (root / "profile.jpg").write_bytes(b"")
             expected = hashlib.sha256(b"").hexdigest()
-            self.assertEqual(find_hash_matches(root, expected, "photo"), ["profile.jpg"])
+            self.assertEqual(find_hash_matches(root, expected, "photo"), [])
 
 
 if __name__ == "__main__":
