@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Audit SHIRMANI SUPREME source media without treating candidates as authorised assets.
 
-Usage: python scripts/audit_character_assets.py [--root PATH]
-Exit codes: 0 = inventory generated (assets may remain blocked); 2 = invalid config.
+Usage:
+  python scripts/audit_character_assets.py
+  python scripts/audit_character_assets.py --external-media /path/to/recording.mp4
+
+Exit codes: 0 = inventory generated (assets may remain blocked); 2 = invalid config/input.
 This tool never uploads media, contacts providers, or changes asset files.
 """
 from __future__ import annotations
@@ -24,7 +27,17 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def audit(root: Path) -> dict:
+def _media_record(path: Path, display_path: str, origin: str) -> dict:
+    return {
+        "path": display_path,
+        "origin": origin,
+        "sha256": sha256(path),
+        "bytes": path.stat().st_size,
+        "suffix": path.suffix.lower(),
+    }
+
+
+def audit(root: Path, external_media: list[Path] | None = None) -> dict:
     config_path = root / "config" / "authorized-voice-integration.json"
     if not config_path.is_file():
         raise ValueError(f"Missing config: {config_path.relative_to(root)}")
@@ -42,11 +55,21 @@ def audit(root: Path) -> dict:
         if path.suffix.lower() not in MEDIA_SUFFIXES:
             continue
         relative = path.relative_to(root).as_posix()
-        item = {"path": relative, "sha256": sha256(path), "bytes": path.stat().st_size}
-        candidates.append(item)
+        candidates.append(_media_record(path, relative, "repository"))
+    for index, raw_path in enumerate(external_media or [], start=1):
+        path = raw_path.expanduser().resolve()
+        if not path.is_file():
+            raise ValueError(f"External media file not found: {path.name}")
+        if path.suffix.lower() not in MEDIA_SUFFIXES:
+            raise ValueError(f"Unsupported external media type: {path.suffix or '(no extension)'}")
+        # Avoid exposing the caller's full local filesystem path in the report.
+        display_path = f"EXTERNAL_MEDIA/{index}-{path.name}"
+        candidates.append(_media_record(path, display_path, "external_input"))
+
+    for item in candidates:
         for kind, expected_hash in expected_hashes.items():
             if expected_hash and item["sha256"].lower() == str(expected_hash).lower():
-                matched[kind].append(relative)
+                matched[kind].append(item["path"])
 
     consent = config.get("consent", {})
     photo_state = "HASH_MATCH_FOUND — AUTHORISATION STILL REQUIRES HUMAN CONFIRMATION" if matched["photo"] else "BLOCKED — SOURCE PHOTO HASH NOT FOUND"
@@ -62,6 +85,8 @@ def audit(root: Path) -> dict:
         "candidate_media": sorted(candidates, key=lambda x: x["path"]),
         "limitations": [
             "A filename, file hash, or matching hash does not establish ownership, consent, or provider authorisation.",
+            "An MP4 container hash is not the same as the hash of its embedded audio track; extract and authorise a source audio file separately if needed.",
+            "External media are read-only inputs; their bytes are not copied into the repository or uploaded.",
             "No provider API, avatar, voice clone, lip-sync, or live presentation is tested.",
             "No media file is modified, uploaded, or published by this audit."
         ]
@@ -71,10 +96,14 @@ def audit(root: Path) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
+    parser.add_argument(
+        "--external-media", type=Path, action="append", default=[],
+        help="Optional local media file outside the repository to hash as an untrusted candidate. Repeat for multiple files."
+    )
     args = parser.parse_args()
     root = args.root.resolve()
     try:
-        report = audit(root)
+        report = audit(root, args.external_media)
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         print(json.dumps({"status": "AUDIT_ERROR", "error": str(exc)}, ensure_ascii=False, indent=2))
         return 2
