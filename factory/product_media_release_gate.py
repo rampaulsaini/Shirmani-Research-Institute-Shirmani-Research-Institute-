@@ -35,8 +35,8 @@ def has_raster_signature(path: Path) -> bool:
     except OSError:
         return False
     return (
-        head.startswith(b"\\x89PNG\\r\\n\\x1a\\n")
-        or head.startswith(b"\\xff\\xd8\\xff")
+        head.startswith(b"\x89PNG\r\n\x1a\n")
+        or head.startswith(b"\xff\\xd8\xff")
         or (len(head) >= 12 and head[:4] == b"RIFF" and head[8:12] == b"WEBP")
     )
 
