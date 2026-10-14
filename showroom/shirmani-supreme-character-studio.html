@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI SUPREME Character Studio</title>
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#596579;--line:#d9e0ea;--paper:#f4f7fb;--blue:#075985}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:28px max(18px,calc((100% - 1120px)/2));background:#10243b;color:#fff}header p{max-width:900px;color:#d8e6f5}main{max-width:1120px;margin:22px auto;padding:0 16px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px}.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}h1{font-size:clamp(1.65rem,4vw,2.5rem);line-height:1.15;margin:0 0 10px}h2{font-size:1.15rem;margin:0 0 12px}label{display:block;font-weight:650;margin:12px 0 5px}input,select,textarea,button{font:inherit}input,select,textarea{width:100%;border:1px solid #aebaca;border-radius:8px;padding:10px;background:#fff;color:var(--ink)}textarea{min-height:125px;resize:vertical}button{border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:#fff;font-weight:650;cursor:pointer;margin:8px 8px 0 0}button.secondary{background:#e7eef6;color:#14253a;border:1px solid #c7d3e1}.note{border-left:4px solid #b7791f;background:#fff8e8;padding:12px;border-radius:6px}.state{display:inline-block;border-radius:99px;background:#edf2f7;padding:3px 9px;font-size:.82rem;font-weight:700}.preview{width:100%;max-height:360px;object-fit:contain;background:#edf1f6;border-radius:8px;margin-top:8px}.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#f7f9fc;border:1px solid var(--line);padding:12px;border-radius:8px;min-height:120px}small,.muted{color:var(--muted)}footer{max-width:1120px;margin:20px auto;padding:0 16px 28px;color:var(--muted)}a{color:#075985}
+</style>
+</head>
+<body>
+<header><h1>꙰ SHIRMANI SUPREME Character Studio</h1>
+<p><strong>Simple · सहज · निर्मल · पारदर्शी · स्पष्ट · evidence-aware.</strong> A browser-local workspace for the character brief, media review, evidence labels and V1–V4 acceptance record.</p>
+<p><strong>Identity line:</strong> Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh</p>
+<p>This page does not connect to HeyGen or another provider, upload media, generate voice/video, or activate a live avatar. No source photo or authorised voice file was located and verified in the repository during this implementation check.</p></header>
+<main>
+<div class="note"><strong>Release truth gate:</strong> A local preview is not proof of asset authenticity, provider integration, lip-sync, live service or scientific verification. Do not label a capability VERIFIED until its test and evidence are recorded. If evidence is missing, say: “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</div>
+<div class="grid" style="margin-top:16px">
+<section class="panel"><h2>1 · Character and audience</h2>
+<label for="context">Presentation context</label><select id="context"><option>Research / education</option><option>Professional client meeting</option><option>Product demonstration</option><option>Nature / Earth protection</option><option>Public / cultural programme</option><option>Live Q&A rehearsal</option><option>Fictional educational role-play</option></select>
+<label for="audience">Audience / language</label><input id="audience" value="Hindi-speaking general audience" />
+<label for="depth">Explanation depth</label><select id="depth"><option>Very simple</option><option>Everyday example / short story</option><option>Reasoning, facts and limitations</option><option>Expert / research detail</option><option>All layers, only where useful</option></select>
+<label for="message">Core message or question</label><textarea id="message">Listen carefully. Explain the actual point in simple, respectful language. Separate personal philosophy from factual claims. Give sources when available and state uncertainty honestly.</textarea>
+<label for="evidence">Evidence state</label><select id="evidence"><option>PHILOSOPHICAL / PERSONAL PERSPECTIVE</option><option>SOURCE-BASED — independent verification incomplete</option><option>INDEPENDENTLY VERIFIED — evidence recorded</option><option>INSUFFICIENT EVIDENCE</option></select>
+<label for="version">Capability tier</label><select id="version"><option>V1 — Clear Script</option><option>V2 — Authorised Voice</option><option>V3 — Original Photo / Avatar</option><option>V4 — Live Presentation</option></select>
+<button id="build">Build brief</button><button class="secondary" id="copy">Copy brief</button><button class="secondary" id="download">Download TXT</button>
+</section>
+<section class="panel"><h2>2 · Generated brief</h2><div id="out" class="output" aria-live="polite">Choose “Build brief” to prepare a reviewable script and acceptance checklist.</div><h2 style="margin-top:16px">Five-layer explanation ladder</h2><ol><li>Direct answer in everyday words.</li><li>Define unfamiliar words; add an example if useful.</li><li>Explain reasons, assumptions, evidence and counterpoints.</li><li>Add technical terms, equations or statistics only when valid and explain them.</li><li>Give a next step and state what was actually checked.</li></ol></section>
+<section class="panel"><h2>3 · Review original media locally</h2><p class="muted">Choose files on this device for a temporary browser preview. The page does not upload or save them to GitHub. Use only media you own or are authorised to use.</p>
+<label for="photo">Original photo</label><input id="photo" type="file" accept="image/*"><div id="photoState" class="state">BLOCKED — ASSET NOT SELECTED</div><img id="photoPreview" class="preview" alt="Local photo preview" hidden>
+<label for="voice">Authorised voice recording</label><input id="voice" type="file" accept="audio/*"><div id="voiceState" class="state">BLOCKED — ASSET NOT SELECTED</div><audio id="voicePreview" controls hidden style="width:100%;margin-top:8px"></audio>
+<label for="video">Actual demo video (MP4 or other browser-supported video)</label><input id="video" type="file" accept="video/*"><div id="videoState" class="state">NOT VERIFIED — VIDEO NOT SELECTED</div><video id="videoPreview" class="preview" controls playsinline hidden></video>
+<p class="note">A selected file is only locally previewed. Its identity, consent, provenance, completeness and external provider compatibility still require separate review.</p></section>
+<section class="panel"><h2>4 · Acceptance and audit record</h2><p>Mark only checks you actually performed. Checked boxes are not automatic proof of a passing test.</p>
+<div id="checks">
+<label><input type="checkbox" value="script" style="width:auto"> V1: script reviewed for clarity and respectful communication</label>
+<label><input type="checkbox" value="evidence" style="width:auto"> Evidence state and sources reviewed</label>
+<label><input type="checkbox" value="photo" style="width:auto"> Original photo provenance and unchanged appearance reviewed</label>
+<label><input type="checkbox" value="voice" style="width:auto"> Voice authorisation and audio playback reviewed</label>
+<label><input type="checkbox" value="sync" style="width:auto"> Real voice/face timing and lip-sync test observed</label>
+<label><input type="checkbox" value="live" style="width:auto"> End-to-end Q&A/live test and latency recorded</label>
+<label><input type="checkbox" value="media" style="width:auto"> Product-specific screenshot, passport/QR, guide and actual demo reviewed</label>
+</div>
+<label for="notes">Observed result / evidence links / limitations</label><textarea id="notes" placeholder="Record exact test, date, observed result and evidence URL. Do not enter secrets."></textarea>
+<button id="audit">Create audit record</button><button class="secondary" id="auditDownload">Download audit TXT</button><div id="auditOut" class="output" aria-live="polite">No audit record generated yet.</div></section>
+</div>
+</main>
+<footer>SHIRMANI RESEARCH INSTITUTE · Browser-local prototype · No backend, provider integration, automatic outreach, payment, or live-avatar service is claimed. <a href="../showroom.html">Showroom</a> · <a href="heart-view-character-studio.html">Existing Heart-View Character Studio</a></footer>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);let auditText='';const urls=[];
+function localPreview(inputId,previewId,stateId,kind){$(inputId).addEventListener('change',()=>{const f=$(inputId).files&&$(inputId).files[0];if(!f){$(stateId).textContent='BLOCKED — ASSET NOT SELECTED';$(previewId).hidden=true;return;}if($(previewId).dataset.objectUrl)URL.revokeObjectURL($(previewId).dataset.objectUrl);const u=URL.createObjectURL(f);$(previewId).dataset.objectUrl=u;$(previewId).src=u;$(previewId).hidden=false;$(stateId).textContent='LOCAL PREVIEW ONLY — '+f.name+' ('+f.size+' bytes)';});}
+localPreview('photo','photoPreview','photoState','image');localPreview('voice','voicePreview','voiceState','audio');localPreview('video','videoPreview','videoState','video');
+function makeBrief(){const ev=$('evidence').value;const rule=ev==='INSUFFICIENT EVIDENCE'?'Say “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।” Do not present the unsupported claim as fact.':ev.startsWith('PHILOSOPHICAL')?'Label this as personal philosophy/identity, not independently proven science.':ev.startsWith('SOURCE-BASED')?'Name the source and state that independent verification is incomplete.':'Attach the actual evidence and method reviewed; do not infer verification from a workflow run.';
+return 'SHIRMANI SUPREME — CHARACTER BRIEF\nIdentity: Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh\nContext: '+$('context').value+'\nAudience: '+$('audience').value+'\nExplanation depth: '+$('depth').value+'\nCapability: '+$('version').value+'\nEvidence: '+ev+'\n\nCore message / question:\n'+$('message').value+'\n\nEvidence rule: '+rule+'\n\nDelivery contract:\n1. Listen fully and answer the actual question first.\n2. Use simple words before examples and technical detail.\n3. Respect every person; disagree with ideas without humiliation or pressure.\n4. Separate observations, source-based claims, interpretation and philosophy.\n5. State uncertainty and limitations plainly.\n6. Do not promise that every listener will feel a particular emotion.\n\nRelease state: V1 brief-generation UI only; V2–V4 require separate authorised assets, provider integration and successful end-to-end tests.\nMedia: local preview is not authenticity verification. No external upload/provider connection is performed.';}
+$('build').onclick=()=>{$('out').textContent=makeBrief();};
+$('copy').onclick=async()=>{const t=$('out').textContent.includes('Choose “Build brief”')?makeBrief():$('out').textContent;try{await navigator.clipboard.writeText(t);$('copy').textContent='Copied';}catch(e){$('out').textContent=t+'\n\nClipboard API unavailable; select and copy this text manually.';}};
+function saveText(name,t){const a=document.createElement('a');const u=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'}));a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+$('download').onclick=()=>saveText('shirmani-supreme-character-brief.txt',$('out').textContent.includes('Choose “Build brief”')?makeBrief():$('out').textContent);
+function makeAudit(){const selected=[...document.querySelectorAll('#checks input:checked')].map(x=>x.parentElement.textContent.trim());const files=['photo','voice','video'].map(id=>{const f=$(id).files&&$(id).files[0];return id+': '+(f?'selected locally — '+f.name:'not selected');});const all=['SHIRMANI SUPREME — AUDIT RECORD','Generated at: '+new Date().toISOString(),'Capability tier: '+$('version').value,'Evidence state: '+$('evidence').value,'Checks selected (self-reported, not independently validated):',...(selected.length?selected.map(x=>'- '+x):['- None selected']),'Local file selection:',...files,'Observed result / evidence / limitations:',$('notes').value||'Not provided','Automated integration status: NOT CONNECTED / NOT VERIFIED','Note: selected checkboxes are not proof of passing tests. A real test result and evidence link are required.'].join('\n');return all;}
+$('audit').onclick=()=>{auditText=makeAudit();$('auditOut').textContent=auditText;};
+$('auditDownload').onclick=()=>{if(!auditText)auditText=makeAudit();saveText('shirmani-supreme-audit-record.txt',auditText);};
+})();
+</script>
+</body></html>
