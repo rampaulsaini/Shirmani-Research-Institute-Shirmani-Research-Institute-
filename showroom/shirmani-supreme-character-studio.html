@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101a2b">
+<title>SHIRMANI SUPREME — Character Studio</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#121e31;--line:#2a3a52;--ink:#eef4ff;--muted:#aab9ce;--gold:#e7c77c;--green:#8bd6b0;--red:#ffb1a8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172743 0,#0b1220 60%);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}main{max-width:1100px;margin:auto;padding:24px 16px 60px}header{padding:26px 0 20px;border-bottom:1px solid var(--line)}.eyebrow{color:var(--gold);letter-spacing:.13em;text-transform:uppercase;font-size:.76rem;font-weight:800}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin:.5rem 0}h2{font-size:1.25rem;margin:0 0 12px}p{margin:.4rem 0 1rem}.muted{color:var(--muted)}.identity{font-size:.88rem;color:#d9e4f4;max-width:850px}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:.78rem;color:var(--muted);margin:3px 5px 3px 0}.status{border-left:3px solid var(--gold);background:#1a2638;padding:12px 14px;border-radius:8px;margin:18px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}.card{background:rgba(18,30,49,.94);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}.wide{grid-column:1/-1}label{display:block;font-weight:650;margin:10px 0 6px}input,select,textarea,button{font:inherit}input[type=file],input[type=text],textarea,select{width:100%;border:1px solid #40536d;border-radius:9px;padding:10px;background:#0c1626;color:var(--ink)}textarea{min-height:100px;resize:vertical}button{border:1px solid #8b774c;border-radius:10px;background:var(--gold);color:#171b24;padding:10px 15px;font-weight:800;cursor:pointer}button.secondary{background:#17263b;color:var(--ink);border-color:#40536d}button:focus,input:focus,textarea:focus,select:focus{outline:2px solid var(--gold);outline-offset:2px}.preview{display:block;max-width:100%;max-height:430px;margin:12px auto;border-radius:10px;background:#07101d}.placeholder{border:1px dashed #50627c;border-radius:12px;padding:25px;text-align:center;color:var(--muted)}.result{white-space:pre-wrap;background:#0a1423;border:1px solid var(--line);border-radius:10px;padding:14px;min-height:80px}.checks{display:grid;gap:9px}.check{display:flex;gap:10px;align-items:flex-start}.check input{margin-top:6px}.badge{font-size:.75rem;font-weight:800;padding:3px 8px;border-radius:5px;background:#26364d;color:#dbe7f8}.warn{color:var(--red)}.ok{color:var(--green)}footer{border-top:1px solid var(--line);margin-top:24px;padding-top:16px;color:var(--muted);font-size:.88rem}a{color:#c7dcff}.small{font-size:.88rem}@media(max-width:720px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}main{padding:16px 12px 40px}}
+</style>
+</head>
+<body><main>
+<header>
+<div class="eyebrow">Shirmani Research Institute · SRI-PRES-001</div>
+<h1>SHIRMANI SUPREME<br>Character Studio</h1>
+<p class="identity"><strong>Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh</strong></p>
+<span class="pill">V1 · Local rehearsal</span><span class="pill">Evidence-aware</span><span class="pill">Original media first</span>
+<div class="status"><strong>Honest implementation state:</strong> This page is a browser-local review and rehearsal tool. It does not connect to HeyGen or another provider, upload media, synthesize a voice, generate lip-sync, or start a live stream. Those capabilities remain <strong>NOT VERIFIED / BLOCKED</strong> until a real integration and its tests are supplied.</div>
+</header>
+<section class="grid">
+<div class="card">
+<h2>1 · Original photo — identity lock</h2>
+<p class="muted small">Choose the exact original image yourself. Preview stays in this browser tab; no retouching or face generation is performed.</p>
+<label for="portrait">Select original photo</label><input id="portrait" type="file" accept="image/*">
+<div id="portraitStatus" class="placeholder">No original photo selected · BLOCKED — ASSET REQUIRED</div><img id="portraitPreview" class="preview" alt="Local preview of selected original portrait" hidden>
+<p class="small muted">Rule: use proportional scaling/layout only. Do not describe this preview as the source asset stored in GitHub.</p>
+</div>
+<div class="card">
+<h2>2 · Authorised voice asset</h2>
+<p class="muted small">Select a voice recording you own or are authorised to use. This tool only plays the supplied file locally.</p>
+<label for="voice">Select audio file</label><input id="voice" type="file" accept="audio/*">
+<div id="voiceStatus" class="placeholder">No voice asset selected · BLOCKED — ASSET REQUIRED</div><audio id="voicePreview" class="preview" controls hidden></audio>
+<p class="small muted">No voice cloning, text-to-speech, or external provider request is made by this page.</p>
+</div>
+<div class="card wide">
+<h2>3 · Review attached MP4 demo</h2>
+<p class="muted small">The MP4 attached to the ChatGPT conversation is not automatically stored in this repository. Select the file here to inspect playback and basic metadata in your browser.</p>
+<label for="video">Select MP4 / video file</label><input id="video" type="file" accept="video/mp4,video/*">
+<div id="videoStatus" class="placeholder">No video selected · NOT VERIFIED</div><video id="videoPreview" class="preview" controls playsinline hidden></video>
+<p id="videoMeta" class="small muted">Metadata will appear after you select a local video.</p>
+</div>
+<div class="card">
+<h2>4 · Simple-to-deep answer rehearsal</h2>
+<label for="question">Question or topic</label><textarea id="question" placeholder="Write one question. The local rehearsal will structure a response; it does not verify facts or call an AI API."></textarea>
+<label for="evidence">Evidence state</label><select id="evidence"><option value="INSUFFICIENT EVIDENCE">INSUFFICIENT EVIDENCE</option><option value="SOURCE-BASED">SOURCE-BASED</option><option value="INDEPENDENTLY VERIFIED">INDEPENDENTLY VERIFIED</option><option value="PHILOSOPHICAL / PERSONAL PERSPECTIVE">PHILOSOPHICAL / PERSONAL PERSPECTIVE</option></select>
+<label for="source">Source / test note (optional)</label><input id="source" type="text" placeholder="URL, document name, test record, or leave blank">
+<button id="draft" type="button">Build rehearsal outline</button>
+<p class="small muted">This is a transparent template, not a factual answer generator.</p>
+</div>
+<div class="card">
+<h2>5 · Rehearsal output</h2>
+<div id="output" class="result" aria-live="polite">Your structured rehearsal outline will appear here.</div>
+<button id="copy" type="button" class="secondary">Copy outline</button>
+<span id="copyStatus" class="small muted" role="status"></span>
+</div>
+<div class="card wide">
+<h2>6 · Measurable release gates</h2>
+<div class="checks">
+<label class="check"><input type="checkbox" data-gate> Original photo provenance checked; visual comparison confirms no identity-altering edits.</label>
+<label class="check"><input type="checkbox" data-gate> Voice asset permission and provenance documented; audio quality reviewed.</label>
+<label class="check"><input type="checkbox" data-gate> Speech-to-text and context/Q&A tests actually run; results recorded.</label>
+<label class="check"><input type="checkbox" data-gate> Evidence/source and insufficient-evidence regression tests passed.</label>
+<label class="check"><input type="checkbox" data-gate> Provider integration configured securely server-side and a real sample job succeeded.</label>
+<label class="check"><input type="checkbox" data-gate> Face/voice timing and lip-sync reviewed against a real generated output.</label>
+<label class="check"><input type="checkbox" data-gate> End-to-end live rehearsal, latency, failure handling and audit log verified.</label>
+</div>
+<div class="status"><strong id="gateSummary">Release status: NOT VERIFIED — 0 of 7 gates checked.</strong><br><span class="small">Checkboxes are a local checklist only. Ticking a box does not prove a test ran; link each checked gate to evidence before production release.</span></div>
+</div>
+</section>
+<footer>
+<p><strong>Release discipline:</strong> a storyboard is not a recorded demo; a file preview is not an integration; a checklist is not test evidence. Keep missing stages labelled “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</p>
+<p><a href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/pulls">Review repository pull requests</a> · Page state: prototype pending review; no deployment claimed.</p>
+</footer>
+</main>
+<script>
+(() => {
+ const byId = id => document.getElementById(id);
+ const revoke = el => { if (el.dataset.objectUrl) URL.revokeObjectURL(el.dataset.objectUrl); };
+ function previewFile(inputId, mediaId, statusId, kind) {
+   byId(inputId).addEventListener('change', () => {
+     const file = byId(inputId).files && byId(inputId).files[0];
+     const media = byId(mediaId), status = byId(statusId);
+     revoke(media);
+     if (!file) { media.hidden = true; status.hidden = false; status.textContent = 'No ' + kind + ' selected · BLOCKED — ASSET REQUIRED'; return; }
+     const url = URL.createObjectURL(file); media.dataset.objectUrl = url; media.src = url; media.hidden = false;
+     status.className = 'status'; status.textContent = 'Selected locally: ' + file.name + ' (' + (file.size / 1048576).toFixed(2) + ' MiB). File is not uploaded to GitHub.';
+   });
+ }
+ previewFile('portrait','portraitPreview','portraitStatus','photo');
+ previewFile('voice','voicePreview','voiceStatus','voice');
+ byId('video').addEventListener('change', () => {
+   const file = byId('video').files && byId('video').files[0], video = byId('videoPreview');
+   revoke(video);
+   if (!file) { video.hidden = true; byId('videoStatus').textContent = 'No video selected · NOT VERIFIED'; byId('videoMeta').textContent = 'Metadata will appear after you select a local video.'; return; }
+   const url = URL.createObjectURL(file); video.dataset.objectUrl = url; video.src = url; video.hidden = false;
+   byId('videoStatus').className = 'status'; byId('videoStatus').textContent = 'Selected locally: ' + file.name + ' (' + (file.size / 1048576).toFixed(2) + ' MiB). Playback must be reviewed; no repo upload occurred.';
+   video.onloadedmetadata = () => { byId('videoMeta').textContent = 'Browser metadata: ' + video.videoWidth + '×' + video.videoHeight + ' pixels; duration ' + (Number.isFinite(video.duration) ? video.duration.toFixed(2) + ' s' : 'unknown') + '. Codec details are not exposed consistently by browsers.'; };
+ });
+ byId('draft').addEventListener('click', () => {
+   const q = byId('question').value.trim(), state = byId('evidence').value, source = byId('source').value.trim();
+   if (!q) { byId('output').textContent = 'Please enter a question or topic first.'; return; }
+   const stateNote = state === 'INSUFFICIENT EVIDENCE' ? 'अभी पर्याप्त प्रमाण उपलब्ध नहीं है। Do not present an unverified conclusion as fact.' : state === 'PHILOSOPHICAL / PERSONAL PERSPECTIVE' ? 'Present this as a stated philosophy or personal perspective, not as independently established science.' : state === 'SOURCE-BASED' ? 'Attribute claims to the cited source; independent verification is not implied.' : 'Use “INDEPENDENTLY VERIFIED” only if the check was actually performed and its evidence is recorded.';
+   byId('output').textContent = 'QUESTION / TOPIC\n' + q + '\n\n1. SIMPLE ANSWER\nState the central point in one or two plain sentences. Do not invent missing facts.\n\n2. EVERYDAY EXAMPLE\nAdd a relatable example only if it accurately represents the topic.\n\n3. REASONING & LIMITS\nExplain the logic, assumptions, alternative explanations and what remains uncertain.\n\n4. EVIDENCE STATE\n' + state + '\n' + stateNote + (source ? '\nSource/test note: ' + source : '\nSource/test note: none supplied') + '\n\n5. NEXT ACTION\nFind and inspect suitable sources, test any technical claim, and record reproducible evidence before release.\n\nSTATUS: REHEARSAL TEMPLATE ONLY — not AI-generated, not independently fact-checked, and not a live presentation.';
+ });
+ byId('copy').addEventListener('click', async () => {
+   const text = byId('output').textContent;
+   try { await navigator.clipboard.writeText(text); byId('copyStatus').textContent = 'Copied.'; }
+   catch (_) { byId('copyStatus').textContent = 'Clipboard access unavailable. Select and copy the text manually.'; }
+ });
+ const gates = [...document.querySelectorAll('[data-gate]')];
+ function updateGates() { const n = gates.filter(g => g.checked).length; byId('gateSummary').textContent = 'Checklist progress: ' + n + ' of ' + gates.length + ' checked · production status remains NOT VERIFIED until evidence is linked.'; }
+ gates.forEach(g => g.addEventListener('change', updateGates));
+ window.addEventListener('beforeunload', () => [byId('portraitPreview'),byId('voicePreview'),byId('videoPreview')].forEach(revoke));
+})();
+</script>
+</body></html>
