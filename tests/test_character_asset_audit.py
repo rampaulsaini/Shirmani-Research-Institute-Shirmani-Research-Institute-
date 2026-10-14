@@ -43,6 +43,33 @@ class CharacterAssetAuditTests(unittest.TestCase):
             self.assertIn("AUTHORISATION STILL REQUIRES HUMAN CONFIRMATION", report["photo"]["state"])
             self.assertTrue(report["audio"]["state"].startswith("BLOCKED"))
 
+    def test_external_media_is_hashed_without_copying_or_leaking_full_path(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "repo"
+            outside = Path(temp) / "private" / "recording.mp4"
+            (root / "config").mkdir(parents=True)
+            outside.parent.mkdir()
+            outside.write_bytes(b"video-container-fixture")
+            (root / "config" / "authorized-voice-integration.json").write_text(
+                json.dumps({"source_assets": {"photo_sha256": "a" * 64, "audio_sha256": "b" * 64},
+                            "consent": {"status": "UNCONFIRMED"}}),
+                encoding="utf-8")
+            report = MODULE.audit(root, [outside])
+            self.assertEqual(report["candidate_media_count"], 1)
+            self.assertEqual(report["candidate_media"][0]["origin"], "external_input")
+            self.assertEqual(report["candidate_media"][0]["path"], "EXTERNAL_MEDIA/1-recording.mp4")
+            self.assertNotIn(str(outside.parent), json.dumps(report))
+            self.assertTrue(report["audio"]["state"].startswith("BLOCKED"))
+
+    def test_missing_external_media_returns_clear_error(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "config").mkdir()
+            (root / "config" / "authorized-voice-integration.json").write_text(
+                json.dumps({"source_assets": {}}), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "External media file not found"):
+                MODULE.audit(root, [root / "absent.mp4"])
+
 
 if __name__ == "__main__":
     unittest.main()
