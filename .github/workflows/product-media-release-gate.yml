@@ -1,0 +1,34 @@
+name: Product Media Release Gate
+
+on:
+  pull_request:
+    paths:
+      - "factory/product_media_release_gate.py"
+      - "tests/test_product_media_release_gate.py"
+      - "docs/showroom/product-media-release-gate.md"
+      - ".github/workflows/product-media-release-gate.yml"
+  push:
+    branches: [main]
+    paths:
+      - "factory/product_media_release_gate.py"
+      - "tests/test_product_media_release_gate.py"
+      - "docs/showroom/product-media-release-gate.md"
+      - ".github/workflows/product-media-release-gate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run product media release gate tests
+        run: python -m unittest tests/test_product_media_release_gate.py -v
