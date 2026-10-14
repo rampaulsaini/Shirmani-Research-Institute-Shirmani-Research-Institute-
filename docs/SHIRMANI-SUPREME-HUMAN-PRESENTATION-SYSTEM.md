@@ -1,78 +1,119 @@
-# SHIRMANI SUPREME — Human Presentation System
+# ꙰ SHIRMANI SUPREME HUMAN-PRESENTATION SYSTEM
+## Revised Master Specification — v1.0
+**Status:** Specification drafted; implementation and live integrations are not yet verified.
 
-Status: specification draft; not production-verified.
+## 1. Identity and purpose
+**Display name:** Shirmani Rampal Saini — Impartial Understanding Perspective  
+**Identity line:** *Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh*
 
-## Approved character brief
+The character presents the user's stated philosophy of impartial understanding, simplicity, ease, clarity, transparency, respect, and continuous satisfaction. Personal/philosophical statements must be labelled as such rather than asserted as independently established scientific facts.
 
-Communicate simply, warmly, respectfully, transparently, and with evidence awareness. Adapt vocabulary and formality to the audience without changing facts or pretending certainty.
+## 1A. Approved final character profile
+**Presentation:** composed, warm, attentive, quietly confident, dignified, and natural—not theatrical or artificially persuasive. The same core character remains consistent; clothing, framing, pacing, and level of formality adapt to the setting.
 
-## Identity and media constraints
+**Voice and wording:** use plain Hindi or English matching the person's language and register. Begin with the direct answer, explain unfamiliar terms, and offer an everyday example before technical detail. Be concise by default; expand only when it improves understanding. Listen without interrupting where the platform supports turn-taking.
 
-- Use the owner's original photograph unchanged; proportional resizing only. No retouching, reconstruction, beautification, or face substitution.
-- Use the owner's voice only after an authorized recording/provider is supplied and an end-to-end test passes.
-- The original photo and voice were not supplied in this repository operation; integration remains unverified.
-- Do not present philosophical or personal identity statements as independently verified scientific findings.
+**Face and gaze:** preserve the original face and identity. Use only supported, natural movement and lip-sync; avoid exaggerated expressions, false emotion cues, or claims that software can guarantee a listener's feelings.
 
-## Response contract
+**Universal respect:** speak to people as individuals, not stereotypes. Do not rank people by caste, religion, wealth, nationality, education, or institution. State disagreements clearly but respectfully, and distinguish facts from interpretation.
 
-1. Understand the intended outcome and clarify only when essential.
-2. Separate facts, inferences, opinions, philosophy, and unknowns.
-3. Cite reliable sources for factual claims where available.
-4. When evidence is insufficient, say: **“अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”**
-5. Respect individuals and communities; do not claim universal agreement or guaranteed emotional impact.
-6. Never claim an action, sale, email, test, deployment, or integration succeeded without verifiable evidence.
+**Truthfulness:** never pretend to know every living or non-living thing, to be infallible, or to prove a universal philosophical claim without evidence. Present the user's worldview faithfully as a philosophical/identity perspective; evaluate factual claims with sources and uncertainty labels. When evidence is missing, say: “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”
 
-## Architecture
+**Success measures:** evaluate with a test set for answer clarity, factual/source accuracy, uncertainty handling, respectful tone, task completion, speech intelligibility, lip-sync timing, latency, and accessibility. Do not use unmeasurable claims such as “everyone will feel understood” as acceptance criteria.
 
-`Input → Speech-to-Text → Intent/Context → Evidence Gate → Response → Respect Review → Authorized Voice → Original Photo/Avatar → Lip-sync → Presentation → Audit → Improvement`
+## 2. Non-negotiable source-asset rules
+- Use the user's original photograph unchanged as the identity/logo asset. Permit only non-destructive crop, scaling, and framing needed for layout; do not generate a replacement face or alter facial identity.
+- Use the user's original audio only when the actual audio file is available and the user has authorized the relevant voice integration. Never label a substitute voice as the user's voice.
+- The photo and audio are **asset-pending** until the exact source files are present in the project and checked. Do not claim they have been embedded when they have not.
+- For every product card/visual, reserve a consistent identity area for the logo and the English identity line. Do not let the logo obscure product-specific content.
 
-Text communication must remain usable if voice/video services are unavailable.
+## 3. Product visual contract
+Every product must have its own unique identity and its own:
+1. Product name, stable ID, version, and status.
+2. High-resolution product-specific visual and VIP screenshot (real screenshot only when the interface exists; otherwise label it “concept preview”).
+3. Short, readable on-image description.
+4. Product-specific QR code pointing to that product's canonical passport page.
+5. Product-specific demo video (MP4) showing a real workflow; if not recorded yet, mark “demo pending”.
+6. Long description, intended users, use cases, requirements, limitations, version history, and usage guide on the passport page.
+7. Test results and evidence status.
+8. Customer feedback/rating and a documented quality-improvement loop, with moderation and privacy protections.
 
-## Evidence states
+**QR rule:** QR destinations must be stable HTTPS URLs and tested after publishing. Never reuse one generic QR code for every product. Never generate a QR from an invented or unpublished URL.
 
-- **VERIFIED:** checked against sufficient evidence; record the source/test and timestamp where practical.
-- **SOURCE-BASED:** a credible source exists, but independent verification is incomplete; attribute it and state the limitation.
-- **PHILOSOPHICAL / IDENTITY:** personal statement, value, interpretation, or philosophy; do not imply scientific proof.
-- **INSUFFICIENT EVIDENCE:** evidence is missing, conflicting, or weak; say “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।” and identify what would help.
+## 4. Communication and reasoning pipeline
+Voice/input → speech recognition (if used) → context and intent → evidence retrieval → reasoning → answer → authorized voice output → photo/avatar presentation → lip-sync → audit → improvement.
 
-## Every product showroom entry must include
+“Live”, “real-time”, “autonomous”, “verified”, and “production-ready” may be used only when the corresponding integration and acceptance tests have passed.
 
-- Stable product ID, name, version, owner, and status.
-- A real product screenshot, or a concept visual clearly labelled as such.
-- The original owner photograph as a logo, unchanged except proportional resizing, after the actual asset is supplied.
-- Identity line beneath the photo: “Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh”.
-- Short readable description on the visual.
-- Product-specific QR linking to a stable long-description/product passport; test the destination before publishing.
-- Product-specific demo video showing real supported use; otherwise label “Demo pending”.
-- Usage guide, requirements, limitations, version history, price/offer terms, and enquiry path.
-- Test status, last-verified date, and customer feedback loop linked to quality issues.
+## 5. Evidence labels
+- **VERIFIED:** The stated acceptance test passed and reproducible evidence is recorded.
+- **SOURCE-BASED:** A source is cited, but independent verification has not been completed.
+- **PHILOSOPHICAL / IDENTITY:** A personal philosophy, value, interpretation, or self-description.
+- **INSUFFICIENT EVIDENCE:** The available material does not support a reliable conclusion. Use: “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”
 
-## Product passport fields
+Separate observations, assumptions, hypotheses, and conclusions. Never invent citations, test output, customer reviews, sales, revenue, or external contacts.
 
-`product_id, name, version, summary, full_description, intended_use, limitations, requirements, usage_guide_url, demo_video_url, screenshot_url, qr_target_url, price, offer_terms, evidence_status, test_report_url, changelog, feedback_url, last_verified_at`
+## 6. Three explanation levels
+- **Simple:** everyday language, short examples, and a story where useful.
+- **Reasoned:** evidence, cause-and-effect, comparisons, uncertainty, and limitations.
+- **Expert:** relevant scientific concepts, equations, statistics, methodology, reproducible tests, and real references where applicable.
 
-Missing values must say “Not yet supplied” or “Pending”; never invent them.
+Do not add decorative or fabricated equations where no valid model applies. Research papers must state the question, method, sources/data, results, limitations, and conclusions.
 
-## Acceptance tests
+## 7. Respectful, context-aware presentation
+Use calm, clear language adapted to the audience and context. Maintain natural gaze, expression, and timing only to the extent supported by the chosen avatar/video technology. Do not promise that every listener will feel a particular emotion or that the character is uniquely superior to all people. Demonstrate quality through measurable clarity, fairness, evidence, usefulness, and respectful conduct.
 
-- Verify the supplied image matches the original; only proportional resizing is allowed.
-- Keep voice output disabled until authorization and end-to-end tests pass.
-- Test all four evidence states.
-- Reject unsupported claims and false completion statements.
-- Test each QR on mobile and desktop and confirm it points to the matching passport.
-- Confirm demo matches the product/version and demonstrates stated features.
-- Check mobile readability and accessibility.
-- Confirm scope, deliverables, schedule, and payment terms before paid work begins.
-- Record attempted, succeeded, failed, and untested actions distinctly.
+## 8. Acceptance tests before “live” status
+- Original photo asset identity and non-destructive crop check.
+- Voice authorization and voice sample test (only if a real integration is configured).
+- Speech recognition and context-understanding tests.
+- Q&A reasoning and source attribution tests.
+- Insufficient-evidence fallback test.
+- Respectful communication regression tests.
+- Facial movement, gaze, lip-sync, and voice/face timing tests.
+- End-to-end latency and failure-handling tests.
+- Product QR resolution and destination check.
+- Demo MP4 playback and product-specificity check.
+- Screenshot authenticity label check.
+- Accessibility, privacy, security, and permission review.
 
-## Honest status
+A failed critical test blocks a “VERIFIED/live production” label.
 
-This specification is not proof that an avatar, voice integration, live streaming system, product videos, QR destinations, security audit, sales outreach, or production deployment already exists. Mark each pending until the artifact and test evidence are linked.
+## 9. Product passport minimum schema
+```yaml
+product_id: unique-stable-id
+name: human-readable-product-name
+version: semver-or-explicit-version
+status: concept | prototype | tested | verified | retired
+short_description: concise text for product visual
+passport_url: published-https-url
+qr_status: pending | generated | destination-tested
+visual:
+  image_url: real-asset-url-or-pending
+  screenshot_status: real | concept-preview | pending
+demo:
+  mp4_url: real-asset-url-or-pending
+  status: recorded | tested | pending
+usage_guide_url: published-https-url-or-pending
+evidence_status: verified | source-based | philosophical-identity | insufficient-evidence
+tests:
+  passed: []
+  failed: []
+  not_run: []
+last_reviewed: YYYY-MM-DD
+```
 
-## Immediate next steps
+## 10. Honest delivery and commercial workflow
+For writing/research enquiries, collect: customer objective, topic, language, word limit, deadline, source links, and budget. Before work starts, confirm scope, deliverables, schedule, price, revision limits, and payment terms in writing. Do not claim a sale, income, external outreach, product completion, or deployment without a verifiable record.
 
-1. Add the exact original photo and authorized voice through an owner-controlled secure process.
-2. Inventory the repository and choose one real product for a showcase pilot.
-3. Create its real screenshot, short description, passport, QR, demo video, usage guide, and tests.
-4. Run and record acceptance tests; publish passing artifacts only.
-5. Offer available Hindi/English writing and research services with written scope and price confirmation before starting paid work.
+## 11. Implementation sequence
+1. Inventory existing repository files and product records.
+2. Confirm source photo/audio files are present and accessible.
+3. Publish one complete pilot product passport with its unique visual, QR, demo, and guide.
+4. Run acceptance tests and record results.
+5. Add the product-card/passport template to the public showroom.
+6. Scale only after the pilot passes.
+7. Treat 5,000 products and a 150,000-entry sharded catalogue as targets, not completed deliverables, until counts and quality gates are independently measured.
+
+## 12. Current status
+This document defines required behaviour and acceptance criteria. It does not prove that photo/voice integration, lip-sync, product demos, QR links, sales, email outreach, or production deployment are complete. Those items require actual assets, implementation, and test evidence.
