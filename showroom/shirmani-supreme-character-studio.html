@@ -64,7 +64,8 @@
 </main><footer>Shirmani Research Institute · Evidence-first prototype · No external service is represented as connected unless separately tested and documented.</footer>
 <script>
 (function(){
-const $=id=>document.getElementById(id);let latest='';\nconst scriptButton=$('copy-script');if(scriptButton)scriptButton.addEventListener('click',async()=>{const s=$('opening-script').textContent;try{await navigator.clipboard.writeText(s);scriptButton.textContent='कॉपी किया गया';}catch(e){scriptButton.textContent='टेक्स्ट चुनकर कॉपी करें';}});
+const $=id=>document.getElementById(id);let latest='';
+const scriptButton=$('copy-script');if(scriptButton)scriptButton.addEventListener('click',async()=>{const s=$('opening-script').textContent;try{await navigator.clipboard.writeText(s);scriptButton.textContent='कॉपी किया गया';}catch(e){scriptButton.textContent='टेक्स्ट चुनकर कॉपी करें';}});
 function make(){
 const q=$('question').value.trim(), ev=$('evidence').value.trim(), depth=$('depth').value;
 if(!q){$('output').textContent='पहले प्रश्न / विषय लिखें।';return;}
