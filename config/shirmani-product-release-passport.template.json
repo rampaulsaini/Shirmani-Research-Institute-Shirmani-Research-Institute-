@@ -1,0 +1,110 @@
+{
+  "contract_id": "SHIRMANI-PRODUCT-RELEASE-PASSPORT-001",
+  "schema_version": "1.0.0",
+  "status": "TEMPLATE_ONLY",
+  "purpose": "A release gate and evidence manifest for every Shirmani Research Institute digital tool or product. This template is not proof that a product exists, works, or has been sold.",
+  "identity_requirements": {
+    "product_id": "REQUIRED_UNIQUE_ID",
+    "product_name": "REQUIRED",
+    "version": "0.1.0",
+    "owner": "Shirmani Research Institute",
+    "short_description_hi": "REQUIRED_FOR_ARTWORK",
+    "short_description_en": "REQUIRED_FOR_ARTWORK",
+    "long_description": "REQUIRED_FOR_PRODUCT_PASSPORT",
+    "use_cases": [],
+    "limitations": [],
+    "price": {
+      "currency": "INR",
+      "amount": null,
+      "status": "NOT_SET"
+    }
+  },
+  "brand_media": {
+    "original_photo_asset": {
+      "path_or_authorized_asset_id": null,
+      "status": "BLOCKED — PHOTO ASSET REQUIRED",
+      "allowed_changes": ["proportional_resize", "display_scaling", "layout_placement"],
+      "forbidden_changes": ["generate", "redraw", "retouch", "recolour", "beautify", "reshape", "replace"]
+    },
+    "english_identity_line": "Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh",
+    "artwork_target_dimensions": "3840x2160",
+    "dimensions_verified": false
+  },
+  "required_product_assets": {
+    "product_artwork": {
+      "path": null,
+      "status": "NOT_PROVIDED",
+      "requirements": [
+        "unique_product_name_and_version_visible",
+        "unaltered_original_photo_logo_except_proportional_scaling",
+        "english_identity_line_below_photo",
+        "product_specific_qr_code_in_upper_right",
+        "short_description_on_artwork",
+        "mobile_readable_best_view_scaling"
+      ]
+    },
+    "qr_passport": {
+      "target_url": null,
+      "status": "BLOCKED — PASSPORT URL REQUIRED",
+      "mobile_scan_test": "NOT_RUN",
+      "scan_test_evidence": null
+    },
+    "vip_screenshot": {
+      "path": null,
+      "status": "BLOCKED — REAL PRODUCT SCREENSHOT REQUIRED",
+      "placeholder_label": "ILLUSTRATIVE MOCK-UP"
+    },
+    "demo_video": {
+      "path": null,
+      "format": "MP4",
+      "status": "BLOCKED — PRODUCT-SPECIFIC DEMO REQUIRED",
+      "placeholder_label": "STORYBOARD — NOT RECORDED",
+      "must_demonstrate": [
+        "the_real_product_running",
+        "a_reproducible_user_task",
+        "actual_inputs_and_outputs",
+        "known_limitations",
+        "version_shown_in_video"
+      ]
+    },
+    "usage_guide": {
+      "path": null,
+      "status": "NOT_PROVIDED"
+    }
+  },
+  "verification": {
+    "product_build_or_demo_run": "NOT_RUN",
+    "functional_test_command": null,
+    "functional_test_result": "NOT_RUN",
+    "security_review": "NOT_RUN",
+    "accessibility_review": "NOT_RUN",
+    "evidence_links": [],
+    "reviewed_by": null,
+    "reviewed_at_utc": null
+  },
+  "customer_feedback_loop": {
+    "enabled": false,
+    "review_form_url": null,
+    "rating_scale": "1-5",
+    "privacy_notice_url": null,
+    "issue_tracking_url": null,
+    "release_notes_url": null
+  },
+  "release_gate": {
+    "required_before_public_sale": [
+      "unique_product_id_and_version",
+      "working_product_or_reproducible_demo",
+      "clear_scope_and_limitations",
+      "real_vip_screenshot",
+      "actual_product_specific_demo_video",
+      "usage_guide",
+      "product_specific_qr_scanned_on_mobile",
+      "functional_test_evidence",
+      "price_and_payment_terms_confirmed",
+      "delivery_and_support_terms_confirmed"
+    ],
+    "sales_claim_status": "NO_SALES_CLAIM_WITHOUT_VERIFIABLE_TRANSACTION_EVIDENCE",
+    "release_decision": "BLOCKED_UNTIL_REQUIRED_GATES_PASS",
+    "last_audit_evidence": null
+  }
+}
