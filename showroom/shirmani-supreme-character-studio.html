@@ -61,8 +61,14 @@
 <button id="generate">Brief तैयार करें</button><button class="secondary" id="copy">Copy</button><button class="secondary" id="download">TXT export</button>
 <div id="result" class="output" aria-live="polite">आपका brief यहाँ दिखाई देगा।</div>
 </section>
+<section class="panel" style="margin-top:16px">
+<h2>6. HeyGen / media evidence status</h2>
+<p><strong>Reviewed input:</strong> user-provided vertical screen recording, approximately 36 seconds long. Visible screens show a HeyGen recording/capture flow and the on-screen prompt about recording speech to capture voice, expressions and motion.</p>
+<p><strong>Evidence classification:</strong> SOURCE-BASED — the recording supports that a capture/setup screen was being used. It does not by itself prove that a HeyGen avatar was successfully created, that an exported MP4 exists, or that voice cloning, lip-sync or live presentation passed an end-to-end test.</p>
+<p><strong>Release record:</strong> keep avatar render, exported product MP4, original photo asset, authorized voice asset, and end-to-end playback/timing tests as NOT VERIFIED until each actual artefact is available and inspected. This chat-uploaded recording is not automatically a repository asset.</p>
+</section>
 <section class="panel checks" style="margin-top:16px">
-<h2>6. Production acceptance gates</h2>
+<h2>7. Production acceptance gates</h2>
 <p>हर परीक्षण के लिए वास्तविक परिणाम दर्ज किए बिना LIVE / VERIFIED स्थिति न दें।</p>
 <label><input type="checkbox"> Hindi/English clarity और audience-level test पास</label>
 <label><input type="checkbox"> Intent/context capture expected output से मेल खाता है</label>
@@ -85,6 +91,6 @@ $('voice').addEventListener('change',()=>{if(voiceURL)URL.revokeObjectURL(voiceU
 function build(){const q=$('question').value.trim();const src=$('sources').value.trim();const ev=$('evidence').value;const language=$('language').value;const audience=$('audience').value;const context=$('context').value;const uncertainty=ev==='INSUFFICIENT EVIDENCE'?'अभी पर्याप्त प्रमाण उपलब्ध नहीं है।':'दावे, स्रोत, अनुमान और लेखक के दृष्टिकोण को अलग-अलग रखें।';return 'SHIRMANI SUPREME — PRESENTATION BRIEF\n\nLanguage: '+language+'\nAudience: '+audience+'\nContext: '+context+'\nEvidence state: '+ev+'\n\nMAIN QUESTION / MESSAGE\n'+(q||'[अभी संदेश नहीं दिया गया]')+'\n\nSOURCE NOTES\n'+(src||'[कोई स्रोत नहीं दिया गया; तथ्यात्मक दावों की पुष्टि बाकी है]')+'\n\nRESPONSE PLAN\n1. प्रश्न और संदर्भ को सरल शब्दों में दोहराएँ।\n2. पहले सीधा उत्तर दें; फिर रोजमर्रा का उदाहरण दें।\n3. स्रोत-आधारित तथ्य, inference और philosophical/identity statement अलग रखें।\n4. '+uncertainty+'\n5. सीमाएँ बताएँ; दबाव, अतिशयोक्ति या भावनात्मक निर्भरता न बनाएँ।\n6. समझ की पुष्टि करें और audit के लिए परिणाम दर्ज करें।\n\nMEDIA / RELEASE\nOriginal photo selected in this browser: '+($('portrait').files[0]?'YES — local preview only':'NO')+'\nAuthorized voice asset selected: '+($('voice').files[0]?'YES — local preview only; authorization still must be confirmed':'NO')+'\nLive provider / lip-sync / streaming: NOT CONNECTED OR NOT VERIFIED BY THIS PAGE\nRelease state: PLANNING / DEMO until all critical tests pass.\n';}
 $('generate').addEventListener('click',()=>{$('result').textContent=build()});
 $('copy').addEventListener('click',async()=>{const t=$('result').textContent;if(!t||t==='आपका brief यहाँ दिखाई देगा।'){ $('result').textContent=build();return;}try{await navigator.clipboard.writeText(t);$('copy').textContent='Copied';setTimeout(()=>$('copy').textContent='Copy',1200)}catch(e){$('result').textContent+='\n\nClipboard permission unavailable; select and copy this text manually.'}});
-$('download').addEventListener('click',()=>{const t=$('result').textContent==='आपका brief यहाँ दिखाई देगा。'?build():$('result').textContent;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'}));a.download='shirmani-supreme-presentation-brief.txt';a.click();URL.revokeObjectURL(a.href)});
+$('download').addEventListener('click',()=>{const placeholder='आपका brief यहाँ दिखाई देगा।';const current=$('result').textContent;const t=(!current||current===placeholder)?build():current;const url=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='shirmani-supreme-presentation-brief.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);});
 </script>
 </body></html>
