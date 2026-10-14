@@ -5,7 +5,7 @@
 <title>SHIRMANI SUPREME Character Studio — Evidence-Gated Prototype</title>
 <meta name="description" content="A transparent, evidence-gated character presentation prototype for Shirmani Research Institute.">
 <style>
-:root{color-scheme:dark;--bg:#080d17;--panel:#111b2b;--line:#31415a;--gold:#e8c66a;--cyan:#73e3ed;--ink:#f4f6fb;--muted:#c0cada;--warn:#ffd48a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1a2b42,var(--bg) 60%);color:var(--ink);font:16px/1.6 system-ui,sans-serif}header,main,footer{max-width:1080px;margin:auto;padding:24px}header{padding-top:42px;text-align:center;border-bottom:1px solid var(--line)}.mark{color:var(--gold);font-size:2.4rem}h1,h2{line-height:1.2}h1{color:var(--gold);font-size:clamp(1.8rem,5vw,3rem)}h2{font-size:1.25rem}.identity{color:var(--cyan);font-weight:650}.muted,.small{color:var(--muted)}.small{font-size:.9rem}.banner,.panel{border:1px solid var(--line);background:#111b2bdd;border-radius:16px;padding:18px;margin:16px 0}.banner{border-color:#8d7740}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:14px}.pill{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:3px 9px;font-size:.78rem;margin:2px}.state{color:var(--warn);font-weight:750}label{display:block;margin:10px 0 5px;color:var(--muted)}input,select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:#080f1c;color:var(--ink);font:inherit}textarea{min-height:105px}button{border:1px solid #8d7740;border-radius:9px;background:linear-gradient(100deg,#e8c66a,#b9913f);color:#17130a;font-weight:750;padding:10px 14px;cursor:pointer;font:inherit}button.secondary{background:#101b2b;color:var(--ink);border-color:var(--line)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#070c14;border:1px solid var(--line);border-radius:9px;padding:14px;min-height:80px}.steps{padding-left:1.3rem}.steps li{margin:.45rem 0}footer{border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}.no-asset{border:1px dashed #8d7740;border-radius:12px;padding:16px;text-align:center;color:var(--muted)}a{color:var(--cyan)}
+:root{color-scheme:dark;--bg:#080d17;--panel:#111b2b;--line:#31415a;--gold:#e8c66a;--cyan:#73e3ed;--ink:#f4f6fb;--muted:#c0cada;--warn:#ffd48a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1a2b42,var(--bg) 60%);color:var(--ink);font:16px/1.6 system-ui,sans-serif}header,main,footer{max-width:1080px;margin:auto;padding:24px}header{padding-top:42px;text-align:center;border-bottom:1px solid var(--line)}.mark{color:var(--gold);font-size:2.4rem}h1,h2{line-height:1.2}h1{color:var(--gold);font-size:clamp(1.8rem,5vw,3rem)}h2{font-size:1.25rem}.identity{color:var(--cyan);font-weight:650}.muted,.small{color:var(--muted)}.small{font-size:.9rem}.banner,.panel{border:1px solid var(--line);background:#111b2bdd;border-radius:16px;padding:18px;margin:16px 0}.banner{border-color:#8d7740}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:14px}.pill{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:3px 9px;font-size:.78rem;margin:2px}.state{color:var(--warn);font-weight:750}label{display:block;margin:10px 0 5px;color:var(--muted)}input,select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:#080f1c;color:var(--ink);font:inherit}textarea{min-height:105px}button{border:1px solid #8d7740;border-radius:9px;background:linear-gradient(100deg,#e8c66a,#b9913f);color:#17130a;font-weight:750;padding:10px 14px;cursor:pointer;font:inherit}button.secondary{background:#101b2b;color:var(--ink);border-color:var(--line)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#070c14;border:1px solid var(--line);border-radius:9px;padding:14px;min-height:80px}.steps{padding-left:1.3rem}.steps li{margin:.45rem 0}footer{border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}.no-asset{border:1px dashed #8d7740;border-radius:12px;padding:16px;text-align:center;color:var(--muted)}.asset-preview{display:block;width:100%;max-height:420px;object-fit:contain;background:#070c14;border:1px solid var(--line);border-radius:10px;margin-top:10px}.asset-meta{font-size:.9rem;color:var(--muted);overflow-wrap:anywhere}.file-label{display:block;margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:#0b1422}a{color:var(--cyan)}
 </style>
 </head>
 <body>
@@ -23,7 +23,19 @@
 <div class="actions"><button id="generate">रूपरेखा बनाएँ</button><button class="secondary" id="copy">कॉपी करें</button><button class="secondary" id="download">.txt डाउनलोड</button></div>
 <div id="output" class="output" aria-live="polite">आपका तैयार किया गया उत्तर यहाँ दिखेगा।</div>
 <p class="small">Evidence label स्वतः वैज्ञानिक सत्यापन नहीं है। बिना प्रमाण के परिणाम को VERIFIED न मानें।</p></section>
-<section class="panel"><h2>4. Acceptance gates</h2><ol class="steps"><li>मूल portrait और authorized voice asset की पुष्टि।</li><li>Speech recognition और test Q&amp;A के वास्तविक outputs सुरक्षित करें।</li><li>स्रोत/प्रमाण और “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।” वाला negative test पास करें।</li><li>फोटो पहचान, natural movement, gaze, lip-sync और audio/video timing का end-to-end परीक्षण।</li><li>QR, product passport, वास्तविक screenshot और playable product-specific demo जाँचें।</li><li>सभी परिणाम, तारीख, failure और reviewer के साथ audit record रखें।</li></ol><p class="state">Release rule: critical gate fail = NOT VERIFIED.</p></section>
+<section class="panel"><h2>4. Local media verification bench</h2>
+<p class="muted">अपनी मूल फोटो, अधिकृत आवाज़ और MP4 को अपने डिवाइस से चुनकर यहीं preview करें। फाइलें browser में स्थानीय रूप से खुलेंगी; यह पेज उन्हें server पर upload नहीं करता। Preview सफल होना मूल provenance, voice authorization, HeyGen connection या live avatar का प्रमाण नहीं है।</p>
+<label class="file-label" for="photoFile">मूल फोटो चुनें (सिर्फ preview; कोई retouch नहीं)<input id="photoFile" type="file" accept="image/jpeg,image/png,image/webp,image/avif"></label>
+<p id="photoMeta" class="asset-meta" aria-live="polite">PHOTO ASSET REQUIRED — अभी कोई फोटो चुनी नहीं गई।</p>
+<img id="photoPreview" class="asset-preview" alt="स्थानीय मूल फोटो का preview" hidden>
+<label class="file-label" for="voiceFile">अधिकृत मूल आवाज़ चुनें<input id="voiceFile" type="file" accept="audio/*"></label>
+<p id="voiceMeta" class="asset-meta" aria-live="polite">VOICE ASSET REQUIRED — अभी कोई audio file चुनी नहीं गई।</p>
+<audio id="voicePreview" class="asset-preview" controls hidden></audio>
+<label class="file-label" for="videoFile">MP4 reference / demo चुनें<input id="videoFile" type="file" accept="video/mp4,video/webm,video/quicktime"></label>
+<p id="videoMeta" class="asset-meta" aria-live="polite">VIDEO NOT CHECKED — अभी कोई video चुना नहीं गया।</p>
+<video id="videoPreview" class="asset-preview" controls playsinline hidden></video>
+<p class="small">सुरक्षा: निजी/अधिकृत मीडिया ही चुनें। इस prototype में कोई file upload endpoint नहीं है। Refresh करने पर स्थानीय selections हट जाएँगे।</p></section>
+<section class="panel"><h2>5. Acceptance gates</h2><ol class="steps"><li>मूल portrait और authorized voice asset की पुष्टि।</li><li>Speech recognition और test Q&amp;A के वास्तविक outputs सुरक्षित करें।</li><li>स्रोत/प्रमाण और “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।” वाला negative test पास करें।</li><li>फोटो पहचान, natural movement, gaze, lip-sync और audio/video timing का end-to-end परीक्षण।</li><li>QR, product passport, वास्तविक screenshot और playable product-specific demo जाँचें।</li><li>सभी परिणाम, तारीख, failure और reviewer के साथ audit record रखें।</li></ol><p class="state">Release rule: critical gate fail = NOT VERIFIED.</p></section>
 <section class="panel"><h2>5. Evidence labels</h2><p><span class="pill">INDEPENDENTLY VERIFIED</span> जाँच वास्तव में हुई और रिकॉर्ड उपलब्ध है।</p><p><span class="pill">SOURCE-BASED</span> स्रोत मिला, लेकिन स्वतंत्र पुष्टि बाकी है।</p><p><span class="pill">PHILOSOPHICAL / PERSONAL PERSPECTIVE</span> व्यक्तिगत दर्शन या आत्म-वर्णन; इसे अपने-आप वैज्ञानिक तथ्य न कहें।</p><p><span class="pill">INSUFFICIENT EVIDENCE</span> <strong>“अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</strong></p></section>
 </main><footer>Shirmani Research Institute · Evidence-first prototype · No external service is represented as connected unless separately tested and documented.</footer>
 <script>
@@ -42,5 +54,36 @@ latest=lines.join('\n');$('output').textContent=latest;
 $('generate').addEventListener('click',make);
 $('copy').addEventListener('click',async()=>{if(!latest){make();}if(latest){try{await navigator.clipboard.writeText(latest);$('copy').textContent='कॉपी किया गया';}catch(e){$('output').textContent=latest+'\n\nClipboard access उपलब्ध नहीं; टेक्स्ट चुनकर कॉपी करें।';}}});
 $('download').addEventListener('click',()=>{if(!latest)make();if(!latest)return;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([latest],{type:'text/plain;charset=utf-8'}));a.download='shirmani-supreme-response-outline.txt';a.click();URL.revokeObjectURL(a.href);});
+
+// Local-only media preview. Object URLs stay in this browser tab and are revoked on replacement.
+const mediaBindings = [
+  {input:'photoFile', preview:'photoPreview', meta:'photoMeta', kind:'image', ready:'PHOTO PREVIEW LOADED — provenance/identity still NOT VERIFIED.'},
+  {input:'voiceFile', preview:'voicePreview', meta:'voiceMeta', kind:'audio', ready:'AUDIO PREVIEW LOADED — authorization/provider integration still NOT VERIFIED.'},
+  {input:'videoFile', preview:'videoPreview', meta:'videoMeta', kind:'video', ready:'VIDEO PREVIEW LOADED — this does not prove the video demonstrates a working live avatar.'}
+];
+const mediaUrls = {};
+mediaBindings.forEach(item => {
+  const input = $(item.input), preview = $(item.preview), meta = $(item.meta);
+  if (!input || !preview || !meta) return;
+  input.addEventListener('change', () => {
+    const file = input.files && input.files[0];
+    if (mediaUrls[item.input]) { URL.revokeObjectURL(mediaUrls[item.input]); delete mediaUrls[item.input]; }
+    preview.removeAttribute('src'); preview.hidden = true;
+    if (!file) {
+      meta.textContent = item.kind.toUpperCase() + ' NOT PROVIDED — select a local file to preview.';
+      return;
+    }
+    const allowed = item.kind === 'image' ? file.type.startsWith('image/') :
+      item.kind === 'audio' ? file.type.startsWith('audio/') :
+      (file.type.startsWith('video/') || /\\.(mp4|webm|mov)$/i.test(file.name));
+    if (!allowed) { input.value=''; meta.textContent='FILE TYPE REJECTED — choose a supported ' + item.kind + ' file.'; return; }
+    const url = URL.createObjectURL(file);
+    mediaUrls[item.input] = url;
+    preview.src = url; preview.hidden = false;
+    meta.textContent = item.ready + ' File: ' + file.name + ' · ' + (file.size / (1024*1024)).toFixed(2) + ' MiB';
+    if (item.kind === 'image') preview.alt = 'Selected local photo preview; original pixels are displayed without retouching.';
+  });
+});
+window.addEventListener('pagehide', () => Object.values(mediaUrls).forEach(url => URL.revokeObjectURL(url)));
 })();
 </script></body></html>
