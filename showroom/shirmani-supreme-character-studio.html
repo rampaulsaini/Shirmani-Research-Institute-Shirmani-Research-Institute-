@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SHIRMANI SUPREME Character Studio — V1 script rehearsal, plain-language explanation and evidence-state checklist.">
+<title>SHIRMANI SUPREME — Character Studio V1</title>
+<style>
+:root{color-scheme:dark;--bg:#090d16;--panel:#111a2a;--gold:#e8c66a;--cyan:#73e3ed;--ink:#f5f7fb;--muted:#b9c4d7;--line:#30405b;--amber:#ffd18a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1c2940,var(--bg) 60%);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}a{color:var(--cyan)}header{text-align:center;padding:32px 18px 24px;border-bottom:1px solid var(--line)}.mark{display:inline-grid;place-items:center;width:58px;height:58px;border:2px solid var(--gold);border-radius:50%;color:var(--gold);font-size:28px}h1{font-size:clamp(1.8rem,5vw,3rem);line-height:1.12;color:var(--gold);margin:14px 0 8px}header p{max-width:850px;margin:auto;color:var(--muted)}main{max-width:1120px;margin:auto;padding:22px 16px 50px}.notice{border:1px solid #8d7740;background:#282419;border-radius:12px;padding:14px 16px;margin-bottom:18px}.notice strong{color:var(--amber)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}.panel h2{font-size:1.15rem;color:var(--gold);margin:0 0 12px}label{display:block;font-weight:650;margin:12px 0 6px}input,select,textarea{width:100%;background:#080d17;color:var(--ink);border:1px solid #536580;border-radius:9px;padding:11px;font:inherit}textarea{min-height:110px;resize:vertical}button{background:var(--gold);color:#16130a;border:0;border-radius:9px;padding:10px 14px;font-weight:750;font:inherit;cursor:pointer;margin:8px 6px 0 0}button.secondary{background:#26354c;color:var(--ink);border:1px solid #536580}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}.output{white-space:pre-wrap;background:#080d17;border:1px solid var(--line);padding:13px;border-radius:10px;min-height:72px;overflow-wrap:anywhere}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-size:.82rem;color:var(--muted)}.state{font-weight:750}.state.blocked{color:var(--amber)}.checklist label{font-weight:400;display:flex;gap:9px;align-items:flex-start}.checklist input{width:auto;margin-top:6px}.small{font-size:.9rem;color:var(--muted)}footer{border-top:1px solid var(--line);padding:18px;color:var(--muted);text-align:center}.identity{color:var(--gold);font-size:.92rem;max-width:900px;margin:14px auto 0}.statusline{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.bar{height:8px;background:#26354c;border-radius:99px;overflow:hidden}.bar span{display:block;height:100%;width:0;background:var(--cyan);transition:width .15s}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="mark" aria-hidden="true">꙰</div><h1>SHIRMANI SUPREME<br>Character Studio</h1><p>V1 — clear scripts, five-level explanations, evidence labels and a rehearsal checklist. Designed to be understandable, respectful and transparent.</p><p class="identity">Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh</p></header>
+<main>
+<div class="notice"><strong>Honest readiness:</strong> This page is a browser-local V1 rehearsal tool. It does not connect to HeyGen, generate voice, animate a face, create lip-sync or start a live stream. Original photo/voice are not embedded because their authorised source files have not yet been verified in this repository. Do not treat this page as a verified avatar.</div>
+<div class="grid">
+<section class="panel"><h2>1. Create a clear response script</h2>
+<label for="audience">Who is this explanation for?</label><select id="audience"><option value="everyday">Everyday / beginner</option><option value="student">Student</option><option value="professional">Professional</option><option value="expert">Technical / research audience</option></select>
+<label for="topic">Question or topic</label><textarea id="topic" placeholder="Write the question or topic in Hindi or English."></textarea>
+<label for="facts">Evidence, source links or facts you already have (optional)</label><textarea id="facts" placeholder="Paste source titles, URLs or verified facts. Do not paste private credentials or sensitive personal data."></textarea>
+<label for="claim">Evidence state</label><select id="claim"><option value="INSUFFICIENT EVIDENCE">INSUFFICIENT EVIDENCE — not enough proof yet</option><option value="SOURCE-BASED">SOURCE-BASED — source supplied, independent check not completed</option><option value="INDEPENDENTLY VERIFIED">INDEPENDENTLY VERIFIED — check actually performed and recorded</option><option value="PHILOSOPHICAL / PERSONAL PERSPECTIVE">PHILOSOPHICAL / PERSONAL PERSPECTIVE</option></select>
+<button id="generate">Build explanation</button><button id="copy" class="secondary">Copy script</button>
+<div class="statusline"><span class="pill">Local processing</span><span class="pill">No server request</span><span class="pill">No auto-save</span></div>
+<label for="script">Generated rehearsal script</label><div id="script" class="output" aria-live="polite">Enter a topic and select “Build explanation”.</div>
+<p class="small">This tool structures your input; it does not independently verify pasted claims or research the web.</p></section>
+<section class="panel"><h2>2. Five explanation layers</h2><ol><li><b>Plain answer:</b> answer the main question directly.</li><li><b>Everyday understanding:</b> explain unfamiliar words with a simple example.</li><li><b>Reasoning and evidence:</b> separate facts, assumptions and interpretation.</li><li><b>Expert view:</b> add technical terms or equations only when supported and useful.</li><li><b>Action and audit:</b> say what to do next and what remains untested.</li></ol>
+<label for="layer">Choose a layer to include</label><select id="layer"><option value="all">All five layers</option><option value="plain">Plain answer only</option><option value="simple">Plain answer + everyday example</option><option value="evidence">Reasoning and evidence</option><option value="expert">Expert view</option><option value="audit">Action and audit</option></select>
+<div class="notice"><strong>Required uncertainty phrase</strong><br>अभी पर्याप्त प्रमाण उपलब्ध नहीं है।</div>
+<h2>3. Release checklist</h2><div class="checklist" id="checks">
+<label><input type="checkbox"> Script answers the actual question in plain language</label>
+<label><input type="checkbox"> Factual claims have sources or a clear uncertainty label</label>
+<label><input type="checkbox"> Personal philosophy is not presented as proven science</label>
+<label><input type="checkbox"> Original photo source and permission have been checked</label>
+<label><input type="checkbox"> Original voice source and permission have been checked</label>
+<label><input type="checkbox"> Voice, face and lip-sync have been tested end-to-end (required for V3/V4)</label>
+<label><input type="checkbox"> Real product screenshot and playable product-specific demo exist</label>
+</div><div class="bar" aria-label="Checklist completion"><span id="progress"></span></div><p class="small" id="progressText" aria-live="polite">0 of 7 checks completed. Checklist completion is not proof of production readiness.</p>
+<button id="reset" class="secondary">Reset checklist</button></section>
+</div>
+<section class="panel" style="margin-top:16px"><h2>4. Version gates</h2><div class="grid">
+<div><span class="pill">V1</span><h3>Character brief & rehearsal</h3><p>Script drafting and checklist. This page provides this limited browser-local capability; manual human review is still required.</p><p class="state">Status: PROTOTYPE — NOT INDEPENDENTLY VERIFIED</p></div>
+<div><span class="pill">V2</span><h3>Evidence-aware presenter</h3><p>Requires source ledger, citation workflow, captions/export and repeatable quality tests.</p><p class="state blocked">Status: NOT VERIFIED</p></div>
+<div><span class="pill">V3</span><h3>Authorised voice + avatar</h3><p>Requires verified original assets, consent, configured provider credentials and actual generated output.</p><p class="state blocked">Status: BLOCKED — ASSET / PROVIDER EVIDENCE REQUIRED</p></div>
+<div><span class="pill">V4</span><h3>Live studio</h3><p>Requires end-to-end live Q&A, timing/latency measurements, moderation, failure handling and audit.</p><p class="state blocked">Status: BLOCKED — END-TO-END TEST REQUIRED</p></div>
+</div></section>
+</main><footer>SHIRMANI RESEARCH INSTITUTE · Evidence before claims · Respect without manipulation · V1 rehearsal page</footer>
+<script>
+(function(){
+'use strict';
+const byId=id=>document.getElementById(id);
+const value=id=>byId(id).value.trim();
+function makeScript(){
+ const topic=value('topic');
+ if(!topic){byId('script').textContent='Please enter a question or topic first.';return;}
+ const evidence=value('facts'),state=value('claim'),audience=value('audience'),layer=value('layer');
+ const plain='PLAIN ANSWER\nTopic: '+topic+'\n\nStart with the clearest answer that the available evidence supports.';
+ const everyday='\n\nEVERYDAY UNDERSTANDING\nExplain any difficult word in familiar language. Add a short real-world example only when it helps; do not invent an example as evidence.';
+ const reasoning='\n\nREASONING & EVIDENCE\nEvidence state: '+state+'\n'+(evidence?'Supplied material to examine:\n'+evidence:'No source or supporting fact was supplied.')+'\nSeparate observation, inference, assumption and personal interpretation.';
+ const expert='\n\nEXPERT VIEW\nAdd domain-specific terms, equations, units or statistics only when relevant and supported by reliable sources. Explain every symbol and limitation; do not invent precision.';
+ const audit='\n\nACTION & AUDIT\nNext step: identify the claim that matters most, obtain a suitable source, and record the check performed and its result. Status: this script was structured in the browser; claims have not been independently checked.';
+ let parts=[plain,everyday,reasoning,expert,audit];
+ if(layer==='plain')parts=[plain];if(layer==='simple')parts=[plain,everyday];if(layer==='evidence')parts=[reasoning];if(layer==='expert')parts=[expert];if(layer==='audit')parts=[audit];
+ const opener=audience==='everyday'?'Use everyday words and short sentences.':audience==='student'?'Define key terms and show the steps.':audience==='professional'?'State the recommendation, rationale and limitations.':'Use precise terminology, explicit assumptions and reproducible evidence.';
+ let result=opener+'\n\n'+parts.join('');
+ if(state==='INSUFFICIENT EVIDENCE')result+='\n\nअभी पर्याप्त प्रमाण उपलब्ध नहीं है।';
+ byId('script').textContent=result;
+}
+byId('generate').addEventListener('click',makeScript);
+byId('copy').addEventListener('click',async function(){const text=byId('script').textContent;try{await navigator.clipboard.writeText(text);this.textContent='Copied';setTimeout(()=>this.textContent='Copy script',1200);}catch(e){const range=document.createRange();range.selectNodeContents(byId('script'));const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);this.textContent='Select text, then copy';}});
+function updateProgress(){const all=[...byId('checks').querySelectorAll('input[type=checkbox]')],count=all.filter(x=>x.checked).length;byId('progress').style.width=(count/all.length*100)+'%';byId('progressText').textContent=count+' of '+all.length+' checks completed. Checklist completion is not proof of production readiness.';}
+byId('checks').addEventListener('change',updateProgress);byId('reset').addEventListener('click',()=>{byId('checks').querySelectorAll('input').forEach(x=>x.checked=false);updateProgress();});updateProgress();
+})();
+</script>
+</body></html>
