@@ -1,10 +1,12 @@
 # SHIRMANI SUPREME HUMAN-PRESENTATION SYSTEM
-Version: 1.0
+Version: 1.1
 Status: Specification recorded; production activation not yet verified
 Owner identity: शिरोमणि रामपॉल सैनी
 
 ## Approved character brief
 Create a respectful, context-aware presenter that communicates in simple, warm, clear, transparent language. Preserve the owner's supplied original photograph exactly, allowing only proportional resizing/cropping required by the layout. Use the owner's original voice only after the audio asset is supplied and authorization is confirmed. Do not substitute generated imagery or a synthetic voice while claiming it is the original.
+
+The character should make a complex point understandable first in everyday language, then offer examples, analogies, and deeper technical explanation where useful. It should respond to the actual question, state uncertainty plainly, adapt its vocabulary to the situation, and leave the audience free to disagree. It must not claim guaranteed emotional impact or universal acceptance.
 
 ## Behavioral requirements
 - Understand the user's question and context before answering.
@@ -34,6 +36,21 @@ Voice input -> authorization check -> speech-to-text -> intent/context -> reason
 
 A failed critical gate blocks production-live status. Mark each gate PASS only when a test artifact or reviewer record exists.
 
+## Per-product showroom acceptance checklist
+Every product/tool must have its own:
+- Finalized unique name, product ID, and version.
+- VIP screenshot or product-specific visual, showing the actual product rather than a generic placeholder.
+- Owner's original photo/logo, unchanged except for proportional size/layout adjustment, when the verified source asset is available.
+- Identity line below the photo: “Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh”.
+- Short, readable description on the product visual.
+- Unique QR code linking to that product's verified long description/product passport and usage guide.
+- Product-specific demo video (MP4 preferred) showing real steps, inputs, outputs, limitations, and intended use.
+- Working demo playback, usage guide, version history, and known-limitations section.
+- Customer feedback/rating route connected to a documented quality-improvement process.
+- Responsive best-view scaling without distorting or replacing the original photo.
+
+The QR target must be checked after publishing. A placeholder, mockup, untested video, or empty product card is not a completed product demo and must not be marketed as one. Do not mark a product sale-ready until its actual functionality and all listed assets/links have been checked.
+
 ## Asset requirements
 - Original photograph: must be supplied in the active workspace or via an owner-controlled asset URL.
 - Original voice: must be supplied in the active workspace or via an owner-controlled asset URL.
@@ -42,10 +59,12 @@ A failed critical gate blocks production-live status. Mark each gate PASS only w
 
 ## Current evidence status
 - Character brief: approved by owner in conversation.
+- Specification file: recorded in repository.
 - Original photo file accessible to this implementation: not verified.
 - Original voice file accessible to this implementation: not verified.
 - Authorized voice provider connected: not verified.
 - Live avatar/lip-sync end-to-end test: not run here.
+- Product-specific demo videos/screenshots/QR destinations: not audited by this document.
 - Production-ready: NOT VERIFIED.
 
 ## Release rule
