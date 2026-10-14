@@ -28,7 +28,7 @@ try{
  const products=Array.isArray(cat)?cat:(cat.products||cat.items||[]);
  const mediaList=Array.isArray(manifest)?manifest:(manifest.products||manifest.items||manifest.records||[]);
  const mediaMap=new Map(mediaList.map(x=>[String(x.id||x.product_id||"").toUpperCase(),x]));
- results=await Promise.all(products.map(async p=>{
+ results=[];for(let i=0;i<products.length;i+=20){const batch=products.slice(i,i+20);const checked=await Promise.all(batch.map(async p=>{
  const id=String(p.id||p.product_id||"").toUpperCase();const key=id.toLowerCase();
  const visual=p.visual_asset||p.visual||("products/visuals/"+key+".svg");
  const passport="product-passport.html?id="+encodeURIComponent(id);
@@ -39,7 +39,7 @@ try{
  const [v,ps,d,mp,vs]=await Promise.all([exists(visual),exists(passport),exists(demo),video.toLowerCase().split("?")[0].endsWith(".mp4")?exists(video):Promise.resolve(false),exists(vip)]);
  const missing=[];if(!v)missing.push("visual");if(!ps)missing.push("passport");if(!d)missing.push("demo route");if(!mp)missing.push("real MP4");if(!vs)missing.push("VIP screenshot");
  return {id,name:p.name||p.title||id,visual,passport,demo,video,vip,visualOk:v,passportOk:ps,demoOk:d,mp4Ok:mp,vipOk:vs,missing};
- }));
+ }));results.push(...checked);$("status").textContent="Checked "+Math.min(i+batch.length,products.length)+" / "+products.length+" products…";}
  $("status").textContent="Audit finished. Checked "+results.length+" catalogue records. Missing assets are listed rather than inferred as complete.";
  render();
 }catch(e){$("status").textContent="Audit could not complete: "+e.message;$("rows").innerHTML="<tr><td colspan='7'>Check the catalogue path and GitHub Pages deployment, then retry.</td></tr>"}}
