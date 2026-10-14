@@ -56,13 +56,13 @@ function inspectFile(inputId,statusId,kind,previewId){
  input.addEventListener('change',()=>{
   const file=input.files&&input.files[0];
   if(!file){assetFiles[kind]=null;status.textContent='NOT CHECKED — कोई फाइल नहीं चुनी गई।';preview.hidden=true;preview.removeAttribute('src');return;}
-  const allowed=kind==='portrait'?file.type.startsWith('image/'):kind==='voice'?file.type.startsWith('audio/'):(file.type.startsWith('video/')||/\\.mp4$/i.test(file.name));
+  const allowed=kind==='portrait'?file.type.startsWith('image/'):kind==='voice'?file.type.startsWith('audio/'):(file.type.startsWith('video/')||/\.mp4$/i.test(file.name));
   if(!allowed){assetFiles[kind]=null;status.textContent='BLOCKED — फाइल का MIME/type अपेक्षित प्रकार से मेल नहीं खाता।';preview.hidden=true;return;}
   assetFiles[kind]=file;
   const url=URL.createObjectURL(file);preview.src=url;preview.hidden=false;
-  const base='SOURCE-BASED — स्थानीय फाइल चुनी गई; पहचान/अनुमति सत्यापित नहीं।\\nनाम: '+file.name+'\\nप्रकार: '+(file.type||'browser ने type नहीं बताया')+'\\nआकार: '+file.size+' bytes';
+  const base='SOURCE-BASED — स्थानीय फाइल चुनी गई; पहचान/अनुमति सत्यापित नहीं।\nनाम: '+file.name+'\nप्रकार: '+(file.type||'browser ने type नहीं बताया')+'\nआकार: '+file.size+' bytes';
   status.textContent=base;
-  if(kind==='video'||kind==='voice')preview.onloadedmetadata=()=>{status.textContent=base+'\\nअवधि: '+(Number.isFinite(preview.duration)?preview.duration.toFixed(2)+' seconds':'उपलब्ध नहीं');};
+  if(kind==='video'||kind==='voice')preview.onloadedmetadata=()=>{status.textContent=base+'\nअवधि: '+(Number.isFinite(preview.duration)?preview.duration.toFixed(2)+' seconds':'उपलब्ध नहीं');};
  });
 }
 inspectFile('portraitFile','portraitStatus','portrait','portraitPreview');
@@ -72,7 +72,7 @@ $('assetReport').addEventListener('click',()=>{
  const rows=['SHIRMANI SUPREME — LOCAL ASSET INSPECTION','Generated: '+new Date().toISOString(),'Processing: browser-local only; no upload performed.'];
  for(const [kind,file] of Object.entries(assetFiles))rows.push(kind.toUpperCase()+': '+(file?('SOURCE-BASED / NOT VERIFIED | '+file.name+' | '+(file.type||'unknown MIME')+' | '+file.size+' bytes'):'NOT PROVIDED'));
  rows.push('Authorization/identity: NOT VERIFIED','HeyGen integration: NOT CONNECTED / NOT VERIFIED','Voice clone, generated avatar, lip-sync, live stream: NOT TESTED','This report records file selection metadata only; it is not proof of authenticity or consent.');
- $('assetReportOutput').textContent=rows.join('\\n');
+ $('assetReportOutput').textContent=rows.join('\n');
 });
 $('clearAssets').addEventListener('click',()=>{
  for(const id of ['portraitFile','voiceFile','videoFile'])$(id).value='';
