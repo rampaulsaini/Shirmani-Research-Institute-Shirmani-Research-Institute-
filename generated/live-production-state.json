@@ -1,23 +1,18 @@
 {
-  "schema_version": 3,
-  "generated_at": "2026-10-14T11:49:37.676873+00:00",
+  "schema_version": 1,
+  "generated_at": "2026-10-14T11:50:14.305596+00:00",
   "production_first": true,
   "catalog_identities": 5000,
-  "concrete_repository_assets": 5000,
-  "production_browser_assets": 5000,
-  "public_4k_visual_assets": 5000,
-  "product_qr_assets": 5000,
-  "current_catalog_pending": 0,
+  "concrete_repository_assets": 3516,
+  "current_catalog_pending": 1484,
   "five_thousand_scale_target": 5000,
-  "remaining_to_scale_target": 0,
-  "concrete_materialization_percent_of_catalog": 100.0,
-  "concrete_materialization_percent_of_scale_target": 100.0,
-  "module_products_generated": 5000,
+  "remaining_to_scale_target": 1484,
+  "concrete_materialization_percent_of_catalog": 70.32,
+  "concrete_materialization_percent_of_scale_target": 70.32,
+  "module_products_generated": 3516,
   "dispatch_released": 0,
   "sales_claimed": 0,
   "payment_claimed": 0,
   "independent_verification_claimed": 0,
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG",
-  "qc_state": "READY_FOR_QC",
-  "truth_boundary": "Produced artifacts, QC, dispatch and independent verification are distinct states."
-}\n
+  "state": "PRODUCTION_IN_PROGRESS"
+}
