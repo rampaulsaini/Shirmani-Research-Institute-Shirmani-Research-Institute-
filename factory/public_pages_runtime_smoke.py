@@ -91,9 +91,20 @@ target = int(os.environ.get("PRODUCT_TARGET", "5000"))
 produced = overlay.get("produced_count")
 overlay_rows = overlay.get("products")
 if live.get("catalog_identities") != target:
-    raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: deployed catalog target is {live.get('catalog_identities')!r}, expected {target}")
+    raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: deployed live catalog target is {live.get('catalog_identities')!r}, expected {target}")
+if overlay.get("product_count") != target:
+    raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: deployed overlay target is {overlay.get('product_count')!r}, expected {target}")
 if not isinstance(produced, int) or not isinstance(overlay_rows, list) or produced != len(overlay_rows):
-    raise SystemExit("PAGES_RUNTIME_SMOKE_FAIL: deployed overlay count does not match its product rows")
+    raise SystemExit("PAGES_RUNTIME_SMOKE_FAIL: deployed overlay produced_count does not match its products rows")
+catalog_lanes = catalog.get("lanes")
+catalog_results = catalog.get("cycle_results")
+if not isinstance(catalog_lanes, dict) or not isinstance(catalog_results, int):
+    raise SystemExit("PAGES_RUNTIME_SMOKE_FAIL: deployed production catalog has an unexpected schema")
+if sum(value for value in catalog_lanes.values() if isinstance(value, int)) != catalog_results:
+    raise SystemExit("PAGES_RUNTIME_SMOKE_FAIL: deployed production catalog lane counts do not match cycle_results")
+module_rows = modules.get("modules")
+if not isinstance(module_rows, dict) or modules.get("module_count") != len(module_rows):
+    raise SystemExit("PAGES_RUNTIME_SMOKE_FAIL: deployed module index count does not match its modules")
 if live.get("public_production_assets") != produced:
     raise SystemExit("PAGES_RUNTIME_SMOKE_FAIL: deployed live status and overlay produced_count disagree")
 if live.get("independent_verification_claimed", 0) != 0:
