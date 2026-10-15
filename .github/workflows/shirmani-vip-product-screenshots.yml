@@ -2,7 +2,7 @@ name: SHIRMANI VIP Product Screenshot Factory
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "2-59/5 * * * *"
   workflow_dispatch:
     inputs:
       batch_size:
