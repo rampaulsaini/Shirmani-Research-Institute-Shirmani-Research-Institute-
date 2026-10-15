@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-import json,os,subprocess
+import json,os,subprocess,sys
 from pathlib import Path
 from datetime import datetime,timezone
 from PIL import Image,ImageDraw,ImageFont
 import qrcode
-R=Path(__file__).resolve().parents[1]; B=int(os.getenv("MEDIA_BATCH_SIZE","10"))
+R=Path(__file__).resolve().parents[1]
+# Direct script execution sets sys.path[0] to scripts/, not the repository root.
+# Add the root explicitly so sibling factory modules remain importable in CI.
+if str(R) not in sys.path: sys.path.insert(0, str(R))
+B=int(os.getenv("MEDIA_BATCH_SIZE","10"))
 V=R/"products/demos"; S=R/"products/vip-screenshots"; V.mkdir(parents=True,exist_ok=True); S.mkdir(parents=True,exist_ok=True)
 REG=R/"generated/concrete-production-overlay.json"; PAS=R/"generated/PRODUCT-PASSPORTS.jsonl"; MM=R/"generated/product-media-production-manifest.json"; VM=R/"generated/product-vip-screenshot-manifest.json"
 def ft(n,b=False): return ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if b else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",n)
@@ -38,6 +42,6 @@ def main():
   vid(p); vip(p); pid=str(p["id"]); rows[pid]={"product_id":pid,"video_asset":f"products/demos/{pid.lower()}.mp4","vip_screenshot":f"products/vip-screenshots/{pid.lower()}.png","interactive_demo":f"demo-video.html?id={pid}","passport":f"product-passport.html?id={pid}","status":"PRODUCED_MEDIA"}; made+=1
  total=len(products); mp4=sum(bool(x.get("video_asset")) for x in rows.values()); vipc=sum(bool(x.get("vip_screenshot")) for x in rows.values()); now=datetime.now(timezone.utc).isoformat()
  MM.write_text(json.dumps({**m,"schema_version":2,"generated_at":now,"catalog_count":total,"interactive_demo_count":total,"real_mp4_count":mp4,"remaining_real_mp4":max(0,total-mp4),"vip_screenshot_count":vipc,"remaining_vip_screenshots":max(0,total-vipc),"created_this_cycle":made,"batch_size":B,"mode":"PRODUCT_SPECIFIC_MP4_FACTORY","truth_boundary":"Demo media demonstrates product usage flow; it is not scientific verification.","products":sorted(rows.values(),key=lambda x:x["product_id"])},ensure_ascii=False,indent=2)+"\n")
- VM.write_text(json.dumps({"schema_version":1,"generated_at":now,"vip_screenshot_count":vipc,"remaining_vip_screenshots":max(0,total-vipc),"products":sorted([{"product_id":k,"screenshot":v["vip_screenshot"]} for k,v in rows.items()],key=lambda x:x["product_id"])},ensure_ascii=False,indent=2)+"\n")
+ VM.write_text(json.dumps({"schema_version":1,"generated_at":now,"vip_screenshot_count":vipc,"remaining_vip_screenshots":max(0,total-vipc),"products":sorted([{"product_id":k,"screenshot":v.get("vip_screenshot") or f"products/vip-screenshots/{k.lower()}.png","status":"READY" if (S/(k.lower()+".png")).is_file() else "PENDING"} for k,v in rows.items()],key=lambda x:x["product_id"])},ensure_ascii=False,indent=2)+"\n")
  print(f"MEDIA_FACTORY products={total} created={made} mp4={mp4} vip={vipc}")
 if __name__=="__main__": main()
