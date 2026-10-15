@@ -14,7 +14,7 @@ on:
 
 permissions:
   contents: write
-
+  pull-requests: write
 concurrency:
   group: shirmani-sharded-catalog-production
   cancel-in-progress: false
@@ -58,13 +58,17 @@ jobs:
           manifest={"generated_at_utc":datetime.now(timezone.utc).isoformat(),"materialized_products":len(products),"shard_size":shard_size,"materialized_shards":shard_count,"catalogue_capacity":target_capacity,"remaining_capacity":max(0,target_capacity-len(products)),"directory_contract":"global-product-usage-directory.html","source":"generated/1000-digital-products.json"}
           (root/"generated/catalog-shard-manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(manifest,ensure_ascii=False))
-      - name: Publish sharded catalogue state
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "SHIRMANI Sharded Catalogue Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/catalog-shards generated/catalog-shard-manifest.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "feat(catalog): maintain 150000-scale sharded product directory"
-          git push origin HEAD:main
+      - name: Publish sharded catalogue state through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automission/sharded-catalog-state
+          delete-branch: false
+          commit-message: "feat(catalog): maintain 150000-scale sharded product directory"
+          title: "Automission: update sharded product catalogue"
+          body: |
+            Automated sharded catalogue and manifest update.
+            This PR publishes generated catalogue state; it does not assert independent verification or sales.
+          add-paths: |
+            generated/catalog-shards
+            generated/catalog-shard-manifest.json
