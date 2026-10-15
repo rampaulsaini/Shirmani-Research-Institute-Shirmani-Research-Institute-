@@ -14,7 +14,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: shirmani-public-production-pages
+  group: pages
   cancel-in-progress: false
 
 jobs:
@@ -109,7 +109,7 @@ jobs:
                    "source":"products/production + PRODUCT-PASSPORTS.jsonl",
                    "product_count":target,"produced_count":produced,
                    "remaining_count":max(0,target-produced),"products":assets}
-          (root/"public-production-asset-overlay.json").write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          (root/"public-production-asset-overlay.json").write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           live={"schema_version":2,"generated_at":ts,"production_first":True,
                 "catalog_identities":target,"public_production_assets":produced,
                 "concrete_repository_assets":produced,"current_catalog_pending":max(0,target-produced),
@@ -120,7 +120,7 @@ jobs:
                 "payment_claimed":0,"independent_verification_claimed":0,
                 "state":"PRODUCTION_COMPLETE_CURRENT_CATALOG" if produced==target else "PRODUCTION_IN_PROGRESS",
                 "qc_state":"READY_FOR_QC","truth_boundary":"Produced assets are not automatically QC-passed or independently verified."}
-          (root/"live-production-state.json").write_text(json.dumps(live,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          (root/"live-production-state.json").write_text(json.dumps(live,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(f"PUBLIC PRODUCTION ASSETS: {produced}/{target} ({(100*produced/target if target else 0):.2f}%)")
           PY
 
