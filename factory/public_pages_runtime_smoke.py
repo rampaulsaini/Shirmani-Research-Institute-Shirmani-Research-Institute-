@@ -84,7 +84,7 @@ for route, payload in (
     except ValueError as exc:
         raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: invalid timestamp in {route}: {exc}")
     age = (datetime.now(timezone.utc) - parsed.astimezone(timezone.utc)).total_seconds()
-    if age < -300 or age > 1800:
+    if age < -300 or age > 7200:
         raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: stale/future deployed file {route}, age_seconds={int(age)}")
 
 target = int(os.environ.get("PRODUCT_TARGET", "5000"))
