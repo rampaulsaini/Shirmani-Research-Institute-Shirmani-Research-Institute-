@@ -65,6 +65,8 @@ jobs:
         env:
                     PRODUCT_DEMO_BATCH: ${{ github.event.inputs.batch_size || '50' }}
         run: python3 factory/product_specific_demo_video_factory.py
+      - name: Restore source catalog after bounded media generation
+        run: git checkout -- generated/1000-digital-products.json
       - name: Publish customer-facing demo media through PR
         id: publish_media
         uses: peter-evans/create-pull-request@v7
@@ -80,6 +82,7 @@ jobs:
           add-paths: |
             products/demos/products
             generated/product-specific-demo-video-manifest.json
+            generated/product-media-production-manifest.json
 
       - name: Auto-merge published production media
         if: steps.publish_media.outputs.pull-request-number != ''

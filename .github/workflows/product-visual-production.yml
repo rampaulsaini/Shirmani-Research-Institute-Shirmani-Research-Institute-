@@ -65,6 +65,7 @@ jobs:
           git fetch origin automation/production-state
           git diff --binary HEAD^ -- products/visuals generated/product-visual-assets-v2.json generated/product-qr-assets.json factory/product_qr_asset_factory.py factory/product_visual_identity_factory_v2.py factory/product_visual_qc_gate.py assets/shirmani-perspective-logo.svg > /tmp/visual-production.patch || true
           git checkout -B production-state origin/automation/production-state
+          git clean -fd -- products/visuals/qr
           if [ -s /tmp/visual-production.patch ]; then git apply /tmp/visual-production.patch; fi
           git add products/visuals generated/product-visual-assets-v2.json generated/product-qr-assets.json factory/product_qr_asset_factory.py factory/product_visual_identity_factory_v2.py factory/product_visual_qc_gate.py assets/shirmani-perspective-logo.svg
           if git diff --cached --quiet; then
