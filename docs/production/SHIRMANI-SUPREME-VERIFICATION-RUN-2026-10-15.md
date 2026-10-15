@@ -19,7 +19,7 @@
 - Video stream: H.264, 888 × 1920
 - Audio stream: AAC, 44,100 Hz, 2 channels
 
-These are media-container facts only. They do not prove that the video is an exported HeyGen avatar, that the portrait is the exact original photo, that the voice is authorized, or that lip-sync/live integration works. The MP4 is not committed as a binary asset by this record.
+Visual frame inspection at approximately 5 s and 18 s shows a close-up portrait with on-screen HeyGen recording guidance and a visible “Done Recording” control. This is consistent with a recording/capture step, not evidence of a finished generated avatar output. The video metadata and sampled frames do not prove original-photo identity, voice authorization, successful lip-sync, or live integration. The MP4 is not committed as a binary asset by this record.
 
 ## 3. Acceptance gate results
 
@@ -39,7 +39,7 @@ These are media-container facts only. They do not prove that the video is an exp
 | Production release | BLOCKED | Critical gates above remain incomplete |
 
 ## 4. Next execution sequence — continue from this point
-1. Inspect the existing recording and identify whether it contains a provider-generated result or only a setup/reference screen; do not infer from filename alone.
+1. Initial frame inspection is complete: the recording shows a HeyGen capture/recording interface with “Done Recording”; classify it as a reference/capture-step recording unless a separate generated output is found.
 2. Locate the standalone original portrait and authorized voice asset among already available project/session assets. Match files by SHA-256 and record provenance; preserve the portrait unchanged.
 3. If either asset cannot be located, request only that missing item once. Do not ask for the existing MP4 again.
 4. Verify provider connection through a real authenticated test. Never put API keys or access tokens in this repository, logs, screenshots, or chat.
