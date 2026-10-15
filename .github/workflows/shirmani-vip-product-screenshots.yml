@@ -60,26 +60,16 @@ jobs:
           VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.batch_size || '25' }}
           SHOWROOM_BASE: http://127.0.0.1:8765
         run: python3 factory/product_vip_screenshot_factory.py
-      - name: Publish VIP screenshots through PR
-        id: publish_media
-        uses: peter-evans/create-pull-request@v7
-        with:
-          commit-message: "feat(showroom): publish VIP product screenshot batch"
-          title: "Automission: publish VIP product screenshot batch"
-          body: |
-            Continuous customer-facing presentation production.
-            Each concrete product receives a real browser screenshot of its Product Passport,
-            plus the existing unique 4K visual and demo route.
-            Presentation media is not scientific verification.
-          branch: "automission/vip-product-screenshots"
-          delete-branch: true
-          add-paths: |
-            products/vip-screenshots
-            generated/product-vip-screenshot-manifest.json
-
-      - name: Auto-merge published production media
-        if: steps.publish_media.outputs.pull-request-number != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish generated screenshots without PR-token dependency
+        shell: bash
         run: |
-          gh pr merge "${{ steps.publish_media.outputs.pull-request-number }}" --auto --squash --delete-branch || true
+          set -euo pipefail
+          git config user.name "SHIRMANI VIP Screenshot Factory"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/vip-screenshots generated/product-vip-screenshot-manifest.json
+          if git diff --cached --quiet; then
+            echo "No screenshot delta to publish."
+            exit 0
+          fi
+          git commit -m "feat(showroom): publish VIP product screenshot batch"
+          git push origin HEAD:main
