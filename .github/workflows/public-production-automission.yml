@@ -233,3 +233,9 @@ jobs:
       - name: Deploy generated production site
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Verify deployed public routes and production JSON
+        env:
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+          PRODUCT_TARGET: ${{ env.PRODUCT_TARGET }}
+        run: python3 factory/public_pages_runtime_smoke.py
