@@ -52,8 +52,29 @@ stamp=datetime.now(timezone.utc).isoformat()
 manifest={"schema_version":"production-first-conveyor.v1","generated_at":stamp,"catalog_identities":len(rows),
           "fully_gap_free_records":sum(not r["gaps"] for r in rows),"records_with_production_gaps":sum(bool(r["gaps"]) for r in rows),
           "gap_counts":counts,"queue":rows[:5000],"principle":"Production first: workflow execution is not counted as a product."}
-(OUT/"production-first-conveyor.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
-(OUT/"production-first-state.json").write_text(json.dumps({"generated_at":stamp,"catalog_identities":len(rows),
- "production_gap_records":manifest["records_with_production_gaps"],"fully_gap_free_records":manifest["fully_gap_free_records"],
- "top_gap":max(counts,key=counts.get) if counts else None,"top_gap_count":max(counts.values()) if counts else 0},ensure_ascii=False,indent=2),encoding="utf-8")
+state={"generated_at":stamp,"catalog_identities":len(rows),
+       "production_gap_records":manifest["records_with_production_gaps"],
+       "fully_gap_free_records":manifest["fully_gap_free_records"],
+       "top_gap":max(counts,key=counts.get) if counts else None,
+       "top_gap_count":max(counts.values()) if counts else 0}
+manifest_path=OUT/"production-first-conveyor.json"
+state_path=OUT/"production-first-state.json"
+def same_payload(path,current):
+    try:
+        previous=json.loads(path.read_text(encoding="utf-8"))
+    except (OSError,ValueError):
+        return False,None
+    previous_payload={k:v for k,v in previous.items() if k!="generated_at"}
+    current_payload={k:v for k,v in current.items() if k!="generated_at"}
+    return previous_payload==current_payload,previous.get("generated_at")
+manifest_same,previous_stamp=same_payload(manifest_path,manifest)
+state_same,_=same_payload(state_path,state)
+# Keep generated_at stable when only the clock changed. This prevents a scheduled
+# run from creating a telemetry-only commit every five minutes.
+if manifest_same and state_same and previous_stamp:
+    stamp=previous_stamp
+    manifest["generated_at"]=stamp
+    state["generated_at"]=stamp
+manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+state_path.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
 print(json.dumps(manifest["gap_counts"],ensure_ascii=False))

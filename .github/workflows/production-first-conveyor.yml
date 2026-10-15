@@ -5,9 +5,10 @@ on:
     - cron: "*/5 * * * *"
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: production-first-conveyor
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   production-conveyor:
     runs-on: ubuntu-latest
@@ -16,10 +17,18 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build production queue and public telemetry
         run: python scripts/production_first_conveyor.py
-      - name: Publish production telemetry
-        run: |
-          git config user.name "SHIRMANI Production Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/production-first-conveyor.json generated/production-first-state.json
-          git diff --cached --quiet || git commit -m "chore: update production-first conveyor telemetry"
-          git push
+      - name: Propose telemetry through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/production-first-conveyor-telemetry
+          delete-branch: false
+          add-paths: |
+            generated/production-first-conveyor.json
+            generated/production-first-state.json
+          commit-message: "chore: update production-first conveyor telemetry"
+          title: "chore: update production-first conveyor telemetry"
+          body: |
+            Automated proposal of production queue telemetry.
+            This PR preserves protected-branch rules and keeps generated state reviewable.
+            Workflow execution and generated queue counts are not proof of product completion or independent verification.
