@@ -36,12 +36,33 @@ def vid(p):
  for i,(h,b) in enumerate(st):
   im=Image.new("RGB",(1280,720),(5,10,16)); d=ImageDraw.Draw(im); d.rectangle((30,30,1250,690),outline=(240,207,90),width=4); d.text((70,65),"꙰ SHIRMANI PRODUCT DEMO",font=ft(34,1),fill=(240,207,90)); d.text((70,125),pid,font=ft(26,1),fill=(102,221,255)); d.text((70,205),h,font=ft(58,1),fill=(245,247,251)); d.text((70,300),b[:70],font=ft(34),fill=(121,226,162)); d.text((70,380),desc[:105],font=ft(26),fill=(190,202,216)); d.text((70,600),"Interactive guide + Product Passport + customer feedback loop",font=ft(24),fill=(174,186,202)); im.save(w/f"{i:02d}.png")
  subprocess.run(["ffmpeg","-y","-loglevel","error","-framerate","1/2","-i",str(w/"%02d.png"),"-c:v","libx264","-pix_fmt","yuv420p","-movflags","+faststart",str(V/(pid.lower()+".mp4"))],check=True)
+def normalize_manifest_rows(manifest):
+ # Migrate legacy records without vip_screenshot (or product_id) safely.
+ # A record with no stable identity cannot be attached to a product, so skip it.
+ normalized = {}
+ products = manifest.get("products", []) if isinstance(manifest, dict) else []
+ if not isinstance(products, list):
+  return normalized
+ for item in products:
+  if not isinstance(item, dict):
+   continue
+  pid = str(item.get("product_id") or item.get("id") or "").strip()
+  if not pid:
+   continue
+  row = dict(item)
+  row["product_id"] = pid
+  row.setdefault("vip_screenshot", f"products/vip-screenshots/{pid.lower()}.png")
+  row.setdefault("video_asset", f"products/demos/{pid.lower()}.mp4")
+  normalized[pid] = row
+ return normalized
+
 def main():
- m=json.loads(MM.read_text()) if MM.exists() else {}; rows={x["product_id"]:x for x in m.get("products",[])}; made=0; products=ps()
- for p in [x for x in products if x["id"] not in rows][:B]:
+ m=json.loads(MM.read_text(encoding="utf-8")) if MM.exists() and MM.read_text(encoding="utf-8").strip() else {}
+ rows=normalize_manifest_rows(m); made=0; products=ps()
+ for p in [x for x in products if str(x.get("id", "")).strip() and str(x.get("id")).strip() not in rows][:B]:
   vid(p); vip(p); pid=str(p["id"]); rows[pid]={"product_id":pid,"video_asset":f"products/demos/{pid.lower()}.mp4","vip_screenshot":f"products/vip-screenshots/{pid.lower()}.png","interactive_demo":f"demo-video.html?id={pid}","passport":f"product-passport.html?id={pid}","status":"PRODUCED_MEDIA"}; made+=1
  total=len(products); mp4=sum(bool(x.get("video_asset")) for x in rows.values()); vipc=sum(bool(x.get("vip_screenshot")) for x in rows.values()); now=datetime.now(timezone.utc).isoformat()
- MM.write_text(json.dumps({**m,"schema_version":2,"generated_at":now,"catalog_count":total,"interactive_demo_count":total,"real_mp4_count":mp4,"remaining_real_mp4":max(0,total-mp4),"vip_screenshot_count":vipc,"remaining_vip_screenshots":max(0,total-vipc),"created_this_cycle":made,"batch_size":B,"mode":"PRODUCT_SPECIFIC_MP4_FACTORY","truth_boundary":"Demo media demonstrates product usage flow; it is not scientific verification.","products":sorted(rows.values(),key=lambda x:x["product_id"])},ensure_ascii=False,indent=2)+"\n")
+ MM.write_text(json.dumps({**m,"schema_version":2,"generated_at":now,"catalog_count":total,"interactive_demo_count":total,"real_mp4_count":mp4,"remaining_real_mp4":max(0,total-mp4),"vip_screenshot_count":vipc,"remaining_vip_screenshots":max(0,total-vipc),"created_this_cycle":made,"batch_size":B,"mode":"PRODUCT_SPECIFIC_MP4_FACTORY","truth_boundary":"Demo media demonstrates product usage flow; it is not scientific verification.","products":sorted(rows.values(),key=lambda x:str(x.get("product_id", "")))},ensure_ascii=False,indent=2)+"\n")
  VM.write_text(json.dumps({"schema_version":1,"generated_at":now,"vip_screenshot_count":vipc,"remaining_vip_screenshots":max(0,total-vipc),"products":sorted([{"product_id":k,"screenshot":v.get("vip_screenshot") or f"products/vip-screenshots/{k.lower()}.png","status":"READY" if (S/(k.lower()+".png")).is_file() else "PENDING"} for k,v in rows.items()],key=lambda x:x["product_id"])},ensure_ascii=False,indent=2)+"\n")
  print(f"MEDIA_FACTORY products={total} created={made} mp4={mp4} vip={vipc}")
 if __name__=="__main__": main()
