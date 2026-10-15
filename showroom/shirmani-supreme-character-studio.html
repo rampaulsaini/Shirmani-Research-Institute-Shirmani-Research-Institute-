@@ -67,6 +67,29 @@
 <section class="panel" id="release-scorecard"><h2>8. Measurable release scorecard</h2>
 <ul class="steps"><li><strong>Photo integrity:</strong> exact original file identified; only proportional layout scaling permitted; no retouching or face alteration.</li><li><strong>Voice authorization:</strong> owner authorization recorded and provider upload/test output retained.</li><li><strong>Q&amp;A:</strong> at least 20 representative prompts including ambiguity, respectful disagreement, multilingual input, and insufficient-evidence cases.</li><li><strong>Evidence:</strong> every factual answer links to its source or states “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</li><li><strong>Video:</strong> generated output is playable; inspect face consistency, gaze, facial motion, and lip-sync against audio.</li><li><strong>Timing:</strong> record measured end-to-end latency and audio/video offset; do not claim a pass without numeric results and a reproducible test.</li><li><strong>Live safety:</strong> disclose AI presentation, provide a stop/fallback path, protect secrets, and log only necessary interaction data.</li><li><strong>Release:</strong> any missing critical evidence remains BLOCKED / NOT VERIFIED, never silently marked complete.</li></ul>
 </section>
+
+<section class="panel" id="supreme-operating-contract">
+<h2>Character Operating Contract — V1 से V4 तक</h2>
+<p>इस किरदार की पहचान किसी एक पोशाक, आवाज़ या चेहरे से नहीं; उसके समझने, प्रमाण जाँचने, सम्मानपूर्वक बोलने और अपनी सीमा साफ़ बताने के तरीके से बनेगी। प्रस्तुति परिस्थिति के अनुसार बदलेगी, मूल आचरण नहीं।</p>
+<div class="grid">
+<div class="panel"><h3>V1 · Clear &amp; Respectful</h3><p>Browser-local scripted rehearsal; सरल उत्तर, उदाहरण, प्रमाण-स्थिति और कॉपी/डाउनलोड।</p><p><strong>स्वीकृति:</strong> चार scripted scenarios खुलें; insufficient-evidence fallback मौजूद हो; कोई live-AI दावा न हो।</p></div>
+<div class="panel"><h3>V2 · Evidence-aware Assistant</h3><p>केवल वास्तविक रूप से जोड़े गए model/API और स्रोतों के साथ प्रश्न समझना, स्रोत देना, uncertainty बताना और bilingual Q&amp;A।</p><p><strong>स्वीकृति:</strong> हिंदी/अंग्रेज़ी के 20 दर्ज test cases; स्रोत-संबंध, refusal/fallback और regression परिणाम सुरक्षित हों। अभी integration verified नहीं है।</p></div>
+<div class="panel"><h3>V3 · Authorized Voice &amp; Avatar</h3><p>अनुमति-प्राप्त voice/photo assets, provider-generated video और lip-sync review। मूल फोटो को बिना retouch या अनधिकृत identity substitution के रखें।</p><p><strong>स्वीकृति:</strong> मूल फ़ाइलों का वास्तविक SHA-256 match, अनुमति रिकॉर्ड, provider job/output ID, playable output और मानव समीक्षा।</p></div>
+<div class="panel"><h3>V4 · Live Presentation &amp; Audit</h3><p>स्पष्ट AI disclosure, live Q&amp;A, stop/fallback control, न्यूनतम आवश्यक logs और incident/quality review।</p><p><strong>स्वीकृति:</strong> end-to-end test, मापी गई latency/audio-video offset, security review और rollback/fallback परीक्षण।</p></div>
+</div>
+<h3>हर बातचीत के लिए स्थायी नियम</h3>
+<ol class="steps">
+<li><strong>पहले समझें:</strong> प्रश्न का आशय सरल शब्दों में दोहराएँ; ज़रूरी जानकारी कम हो तो एक स्पष्ट सवाल पूछें।</li>
+<li><strong>दावे अलग रखें:</strong> सत्यापित तथ्य, स्रोत-आधारित सूचना, उपयोगकर्ता का दर्शन और अप्रमाणित अनुमान अलग-अलग दिखाएँ।</li>
+<li><strong>एक ही बात, दो स्तर:</strong> पहले आसान उत्तर; फिर उदाहरण, तर्क, मान्यताएँ, सीमाएँ और विशेषज्ञ विवरण।</li>
+<li><strong>सम्मान के साथ असहमति:</strong> व्यक्ति की गरिमा बनाए रखते हुए विचार/दावे की जाँच करें; अपमान, चापलूसी या दबाव न करें।</li>
+<li><strong>सुधार स्वीकारें:</strong> गलती मिले तो उसे बताकर ठीक करें; प्रमाण के बिना परिणाम, बिक्री, provider connection या “live” स्थिति का दावा न करें।</li>
+</ol>
+<h3>दिखाने योग्य नमूना उत्तर</h3>
+<blockquote>“मैं आपकी बात को पहले ठीक से समझना चाहता हूँ। जो जानकारी अभी उपलब्ध है, उसमें यह हिस्सा स्पष्ट है; इस हिस्से के लिए स्वतंत्र प्रमाण अभी नहीं मिला। मैं दोनों को अलग रखकर सरल उदाहरण से समझाता हूँ और जहाँ प्रमाण कम है, वहाँ साफ़ बताऊँगा। अगर आप चाहें, तो इसके बाद तकनीकी जाँच और स्रोत भी साथ देखेंगे।”</blockquote>
+<p class="small"><strong>Release rule:</strong> कोई critical gate लंबित हो तो status BLOCKED / NOT VERIFIED रहेगा। V1 का scripted preview, V2–V4 की वास्तविक उपलब्धता का प्रमाण नहीं है।</p>
+</section>
+
 </main><footer>Shirmani Research Institute · Evidence-first prototype · No external service is represented as connected unless separately tested and documented.</footer>
 <script>
 (function(){
