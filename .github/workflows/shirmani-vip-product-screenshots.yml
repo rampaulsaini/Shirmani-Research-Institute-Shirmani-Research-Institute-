@@ -75,6 +75,3 @@ jobs:
             Automated, bounded VIP screenshot batch with its generated manifest.
 
             This PR publishes presentation assets only. Screenshot existence is not independent QC, scientific verification, or proof of a live avatar integration.
-          labels: |
-            automation
-            product-media
