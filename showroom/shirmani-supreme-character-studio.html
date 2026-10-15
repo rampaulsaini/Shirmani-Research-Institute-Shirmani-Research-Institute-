@@ -67,6 +67,45 @@
 <section class="panel" id="release-scorecard"><h2>8. Measurable release scorecard</h2>
 <ul class="steps"><li><strong>Photo integrity:</strong> exact original file identified; only proportional layout scaling permitted; no retouching or face alteration.</li><li><strong>Voice authorization:</strong> owner authorization recorded and provider upload/test output retained.</li><li><strong>Q&amp;A:</strong> at least 20 representative prompts including ambiguity, respectful disagreement, multilingual input, and insufficient-evidence cases.</li><li><strong>Evidence:</strong> every factual answer links to its source or states “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</li><li><strong>Video:</strong> generated output is playable; inspect face consistency, gaze, facial motion, and lip-sync against audio.</li><li><strong>Timing:</strong> record measured end-to-end latency and audio/video offset; do not claim a pass without numeric results and a reproducible test.</li><li><strong>Live safety:</strong> disclose AI presentation, provide a stop/fallback path, protect secrets, and log only necessary interaction data.</li><li><strong>Release:</strong> any missing critical evidence remains BLOCKED / NOT VERIFIED, never silently marked complete.</li></ul>
 </section>
+
+<section class="panel" id="continuation-evidence-ledger">
+<h2>9. Continuation checkpoint — वास्तविक media और परीक्षण रिकॉर्ड</h2>
+<p>यह मौजूदा स्टूडियो को आगे बढ़ाने वाला evidence ledger है; नया प्रोजेक्ट शुरू नहीं करता। स्थानीय फ़ाइल चुनना अपने-आप upload, identity confirmation या test pass नहीं है। कोई asset server पर नहीं भेजा जाता।</p>
+<div class="grid">
+<div class="stat"><label for="ledgerPortrait">मूल फ़ोटो (स्थानीय फ़ाइल)</label><input id="ledgerPortrait" type="file" accept="image/*"><p id="ledgerPortraitMeta" class="small">अभी फ़ाइल चुनी नहीं गई।</p></div>
+<div class="stat"><label for="ledgerVoice">अधिकृत आवाज़ (स्थानीय फ़ाइल)</label><input id="ledgerVoice" type="file" accept="audio/*"><p id="ledgerVoiceMeta" class="small">अभी फ़ाइल चुनी नहीं गई।</p></div>
+<div class="stat"><label for="ledgerVideo">HeyGen/अन्य वास्तविक output (स्थानीय फ़ाइल)</label><input id="ledgerVideo" type="file" accept="video/mp4,video/*"><p id="ledgerVideoMeta" class="small">अभी फ़ाइल चुनी नहीं गई।</p></div>
+</div>
+<h3>स्वीकृति परीक्षण — परिणाम केवल वास्तविक निरीक्षण के बाद दर्ज करें</h3>
+<div class="grid">
+<div class="stat"><label><input type="checkbox" data-gate="photo"> मूल फ़ोटो की हूबहू पहचान की पुष्टि</label><label><input type="checkbox" data-gate="voice"> आवाज़ के मालिक की अनुमति और provider output की पुष्टि</label><label><input type="checkbox" data-gate="qa"> वास्तविक test Q&amp;A चलाया और उत्तर सुरक्षित किया</label></div>
+<div class="stat"><label><input type="checkbox" data-gate="evidence"> तथ्य/स्रोत और insufficient-evidence test पास</label><label><input type="checkbox" data-gate="lip"> वीडियो में lip-sync को आवाज़ के साथ देखा</label><label><input type="checkbox" data-gate="timing"> timing/latency माप दर्ज किए</label></div>
+</div>
+<label for="ledgerNotes">वास्तविक परिणाम, तारीख, माप, असफलता और reviewer नोट</label><textarea id="ledgerNotes" placeholder="केवल वही लिखें जो वास्तव में जाँचा गया हो।"></textarea>
+<p class="notice" id="ledgerStatus">स्थिति: NOT VERIFIED — अभी कोई परीक्षण परिणाम दर्ज नहीं हुआ। सभी critical gates और वास्तविक नोट्स की समीक्षा आवश्यक है।</p>
+<button type="button" id="ledgerExport">Evidence ledger JSON निर्यात करें</button>
+<p class="small">निर्यात में केवल इस पेज पर दर्ज metadata और test selections होंगे; फ़ोटो/आवाज़/वीडियो की सामग्री शामिल या अपलोड नहीं होगी। यह स्वतंत्र सत्यापन का विकल्प नहीं है।</p>
+</section>
+<script>
+(()=> {
+const records={};
+async function digest(file){try{if(!crypto.subtle)return 'SHA-256 उपलब्ध नहीं';const b=await file.arrayBuffer();const h=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,'0')).join('');}catch(e){return 'hash उपलब्ध नहीं';}}
+[['ledgerPortrait','portrait'],['ledgerVoice','voice'],['ledgerVideo','video']].forEach(([id,key])=>{
+const el=document.getElementById(id),meta=document.getElementById(id+'Meta');
+el.addEventListener('change',async()=>{
+const f=el.files&&el.files[0];if(!f)return;
+records[key]={file_name:f.name,mime_type:f.type||'unknown',bytes:f.size,last_modified:new Date(f.lastModified).toISOString(),sha256:await digest(f),local_only:true};
+meta.textContent=f.name+' · '+(f.type||'unknown')+' · '+f.size.toLocaleString()+' bytes · SHA-256: '+records[key].sha256+' · local only';
+});
+});
+function refresh(){const gates=[...document.querySelectorAll('[data-gate]')];const pass=gates.filter(x=>x.checked).length;document.getElementById('ledgerStatus').textContent=pass===gates.length?'स्थिति: REVIEW REQUIRED — सभी gates चुने गए हैं; VERIFIED केवल वास्तविक evidence और reviewer confirmation के बाद ही करें.':'स्थिति: NOT VERIFIED — '+pass+'/'+gates.length+' gates चुने गए; चयन अपने-आप परीक्षण का प्रमाण नहीं है।';}
+document.querySelectorAll('[data-gate]').forEach(x=>x.addEventListener('change',refresh));
+document.getElementById('ledgerExport').addEventListener('click',()=>{
+const payload={schema:'shirmani-character-studio-evidence-ledger-v1',exported_at:new Date().toISOString(),assets:records,gates:Object.fromEntries([...document.querySelectorAll('[data-gate]')].map(x=>[x.dataset.gate,x.checked])),notes:document.getElementById('ledgerNotes').value,verification_status:'NOT_INDEPENDENTLY_VERIFIED',notice:'Local self-report only; checkboxes do not prove tests passed. Files are not embedded or uploaded.'};
+const url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='shirmani-character-evidence-ledger.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+})();
+</script>
 </main><footer>Shirmani Research Institute · Evidence-first prototype · No external service is represented as connected unless separately tested and documented.</footer>
 <script>
 (function(){
