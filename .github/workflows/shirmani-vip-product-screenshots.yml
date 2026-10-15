@@ -60,7 +60,25 @@ jobs:
           VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.batch_size || '25' }}
           SHOWROOM_BASE: http://127.0.0.1:8765
         run: python3 factory/product_vip_screenshot_factory.py
-      - name: Publish generated screenshots without PR-token dependency
+      - name: Publish VIP screenshots through pull request when permitted
+        id: publish_media
+        continue-on-error: true
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "feat(showroom): publish VIP product screenshot batch"
+          title: "Automission: publish VIP product screenshot batch"
+          body: |
+            Continuous customer-facing presentation production.
+            This change publishes product-specific screenshot assets and their manifest.
+            Presentation media is not scientific verification.
+          branch: "automission/vip-product-screenshots"
+          delete-branch: false
+          add-paths: |
+            products/vip-screenshots
+            generated/product-vip-screenshot-manifest.json
+
+      - name: Preserve screenshot batch on a review branch if PR creation is blocked
+        if: steps.publish_media.outcome == 'failure'
         shell: bash
         run: |
           set -euo pipefail
@@ -68,8 +86,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add products/vip-screenshots generated/product-vip-screenshot-manifest.json
           if git diff --cached --quiet; then
-            echo "No screenshot delta to publish."
+            echo "No screenshot delta to preserve."
             exit 0
           fi
-          git commit -m "feat(showroom): publish VIP product screenshot batch"
-          git push origin HEAD:main
+          git commit -m "feat(showroom): preserve VIP screenshot batch for review"
+          git push origin HEAD:refs/heads/automation/vip-screenshots-review-fallback
+          echo "PR creation was blocked; generated assets were preserved on automation/vip-screenshots-review-fallback."
