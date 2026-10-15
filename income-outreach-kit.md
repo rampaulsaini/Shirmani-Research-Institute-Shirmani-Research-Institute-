@@ -1,16 +1,28 @@
 # SHIRMANI RESEARCH INSTITUTE — Immediate Revenue Outreach Kit
-_Last updated: 2026-10-10_
+_Last updated: 2026-10-16_
 
 ## Purpose
 Turn the currently advertised Hindi/English writing and research services into trackable, ethical enquiries. This kit is an operating document, not evidence that leads were contacted or revenue earned.
 
-## Public service offer
-- **ClearText Edit — proposed pilot ₹299:** proofread/clarity edit up to 1,000 words.
-- **Short Article / Product Copy — proposed pilot ₹599+:** 600–900 words in Hindi or English.
-- **Source-organized Research Brief — proposed pilot ₹999+:** up to 3 pages, source links, claim/evidence distinction, uncertainty notes.
-- **Research-to-Presentation Outline — proposed pilot ₹799:** 8–10-slide outline and source notes.
+## Canonical public service offer
+The public-facing services-writing-research.html page is the canonical menu. Keep outreach quotes aligned to it unless a custom scope is explicitly quoted and accepted in writing.
 
-Prices are proposals, not guaranteed final quotes. Confirm scope, deadline, deliverables, revision count, price, and payment terms in writing before starting. Do not promise expertise, citations, outcomes, or delivery capacity that cannot be supported.
+- **Editing / Proofreading — proposed from ₹499:** up to 700 words; one edited version; one revision within the original brief.
+- **Article / Website Copy — proposed from ₹999:** up to 1,000 words; title/headings; one revision.
+- **Source-based Research Brief — proposed from ₹1,499:** about 800–1,200 words; 3–5 credible sources where available; separate facts, interpretation and evidence gaps.
+- **Custom work:** quote only after scope review.
+
+These are proposed introductory rates, not market-validated prices or guaranteed final quotes. Confirm scope, deadline, deliverables, revision count, source expectations, any applicable taxes, and payment terms in writing before starting. Do not promise expertise, citations, outcomes, or delivery capacity that cannot be supported.
+
+**Pricing consistency rule:** do not use the legacy ₹299 / ₹599 / ₹999 menu or any alternative menu as the current public writing/research offer. If a genuinely different product or custom scope uses another price, label it separately and explain the scope.
+
+## Existing portfolio assets
+Repository search found existing illustrative samples:
+- showroom/writing-research-sample-portfolio.html
+- portfolio/writing-research-sample.html
+- writing-research-portfolio.html
+
+These can be reviewed and linked as examples; they are illustrative samples, not commissioned client work, endorsements, or proof of results. Before sending a proposal, open the relevant page and verify its deployed URL works.
 
 ## Best initial customer segments
 1. Local small businesses and service providers needing Hindi/English website or product copy.
@@ -36,7 +48,7 @@ Regards,
 SHIRMANI RESEARCH INSTITUTE  
 Writing & Research  
 Website: https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/  
-Service details: https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/writing-research-service-offer.html
+Service details: https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/services-writing-research.html
 
 ## Outreach message — WhatsApp / contact form
 Hello. I’m reaching out from SHIRMANI RESEARCH INSTITUTE. We provide Hindi/English editing, website/product copy, source-organised research briefs, and presentation outlines. I saw [specific public need] and can send a small, scoped proposal. Deliverables, timeline, price, and payment terms are confirmed before work begins. Would this be relevant to your team?
@@ -48,9 +60,9 @@ Never count a drafted message as sent, a sent message as a lead, a lead as a sal
 
 ## First 7-day operating target
 This is a proposed work target, not a promise of results:
-- Day 1: prepare 3 genuine portfolio samples and a one-page service menu.
-- Day 2: identify 10 relevant organisations with official public contact routes.
-- Day 3: personalise and send up to 5 high-fit enquiries.
+- Day 1: inspect and test the existing three portfolio routes; choose the best two samples for first outreach.
+- Day 2: identify 10 relevant organisations with official public contact routes and one specific need each.
+- Day 3: personalise and send up to 5 high-fit enquiries manually, only where appropriate.
 - Day 4: identify 5 more high-fit prospects; improve samples and landing-page clarity.
 - Day 5: send up to 5 further personalised enquiries, respecting opt-outs and contact policies.
 - Day 6: respond to replies; quote only work whose scope and deadline are feasible.
@@ -72,4 +84,4 @@ Track prospects researched, qualified prospects, messages actually sent, replies
 - For voice/presentation products, use only authorised voices, likenesses, and assets; disclose synthetic presentation where relevant.
 
 ## Immediate next action
-Prepare three genuine portfolio samples, then contact the first five carefully selected prospects through official public channels and record each action and outcome. This is the most direct low-cost way to test demand with the service currently available.
+The repository already contains illustrative portfolio pages and an enquiry page. The next revenue step is not to create another generic pitch: verify the public pages and pricing, then build a small prospect list from official public sources and manually contact only relevant recipients. Keep actual contact, reply, quote, order, delivery and payment evidence separate.
