@@ -66,3 +66,14 @@ timestamp, request_id, input/transcript, consent/authorization state, evidence s
 
 ## Acceptance rule
 “Supreme Ready” requires working code, executable tests, evidence, passed critical gates, documented limitations and auditable results—not branding or workflow count alone.
+
+## Source recording fingerprint — 2026-10-15
+A fresh local inspection of the video attached in this conversation recorded the following reproducible file facts:
+- Exact local filename: `Video.Guru_20261013-080950532.mp4`
+- File size: 52,076,438 bytes
+- Duration: 35.982993 seconds
+- Video: H.264, 888 × 1920, approximately 30 fps
+- Audio: AAC, 44.1 kHz, 2 channels
+- SHA-256: `a9f7872659ff6f7ceded7624b0f41c04163a395ae1dfb96fd03c209f32566f99`
+
+This fingerprint identifies this exact conversation attachment and can be compared against a separately available copy. It does **not** prove the source portrait is a standalone original, that the audio is clean/authorized for cloning, that the file was uploaded to HeyGen, or that an avatar render/lip-sync/live session succeeded. The file is not hosted by this documentation change, so no public MP4 link is claimed. Keep provider credentials private; never put access tokens in Git history.
