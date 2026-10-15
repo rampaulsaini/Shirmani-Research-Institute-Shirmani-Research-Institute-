@@ -64,7 +64,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: automation/vip-screenshot-batch
+          branch: automation/vip-screenshot-batch-${{ github.sha }}
           delete-branch: false
           add-paths: |
             products/vip-screenshots
