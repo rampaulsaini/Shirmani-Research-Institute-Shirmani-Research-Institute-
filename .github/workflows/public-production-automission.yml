@@ -219,6 +219,9 @@ jobs:
       - name: Materialize public production status
         run: python3 factory/public_production_materializer.py
 
+      - name: Validate public production truth and asset completeness
+        run: python3 factory/public_production_truth_smoke_gate.py
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
