@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-10-07T00:33:43.585093+00:00",
+  "generated_at": "2026-10-15T17:15:12.355277+00:00",
   "engine": "SHIRMANI Multi-Layer Production Dispatcher",
   "mode": "production-first",
-  "discovered_modules": 381,
+  "discovered_modules": 410,
   "cycle_capacity": 500,
   "last_cycle_tasks": 500,
   "new_tasks_added": 500,
   "total_queued_tasks": 500,
-  "scheduled_work_units": 80500,
+  "scheduled_work_units": 828500,
   "lanes": [
     "ai-ml-nlp",
     "automation",
@@ -20,15 +20,15 @@
     "social-media"
   ],
   "lane_counts_last_cycle": {
-    "federation": 20,
-    "automation": 239,
-    "platform": 132,
-    "research": 20,
-    "security-quality": 24,
-    "ai-ml-nlp": 44,
+    "automation": 247,
+    "social-media": 13,
+    "security-quality": 22,
+    "economic": 15,
+    "platform": 118,
+    "research": 18,
+    "federation": 15,
     "content": 9,
-    "social-media": 4,
-    "economic": 8
+    "ai-ml-nlp": 43
   },
   "production_outputs": {
     "verses": 0,
@@ -41,21 +41,21 @@
     "certificates": 1000,
     "verification_queue": 100200,
     "verified_records": 0,
-    "concrete_results_this_cycle": 1000,
+    "concrete_results_this_cycle": 500,
     "lane_artifacts": {
-      "ai-ml-nlp": 463,
-      "automation": 239,
-      "content": 35,
-      "economic": 9,
-      "federation": 22,
-      "platform": 154,
-      "research": 24,
-      "security-quality": 47,
-      "social-media": 7
+      "ai-ml-nlp": 43,
+      "automation": 247,
+      "content": 9,
+      "economic": 15,
+      "federation": 15,
+      "platform": 118,
+      "research": 18,
+      "security-quality": 22,
+      "social-media": 13
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
-    "production_modules": 812,
+    "production_modules": 410,
     "module_index": "generated/public-production-by-module.html"
   },
   "routing": {
@@ -64,7 +64,7 @@
     "verification": "downstream result-quality/promotion layer"
   },
   "truth_boundary": "Generated production output is not automatically independently verified.",
-  "last_cycle_concrete_results": 1000,
+  "last_cycle_concrete_results": 500,
   "artifacts": [
     "generated/production-results.jsonl",
     "generated/production-work-queue.jsonl",
