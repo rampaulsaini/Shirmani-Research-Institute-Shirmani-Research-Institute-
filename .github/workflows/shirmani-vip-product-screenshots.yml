@@ -60,16 +60,18 @@ jobs:
           VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.batch_size || '25' }}
           SHOWROOM_BASE: http://127.0.0.1:8765
         run: python3 factory/product_vip_screenshot_factory.py
-      - name: Publish generated screenshots without PR-token dependency
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "SHIRMANI VIP Screenshot Factory"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add products/vip-screenshots generated/product-vip-screenshot-manifest.json
-          if git diff --cached --quiet; then
-            echo "No screenshot delta to publish."
-            exit 0
-          fi
-          git commit -m "feat(showroom): publish VIP product screenshot batch"
-          git push origin HEAD:main
+      - name: Publish generated screenshots as a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/vip-screenshot-batch
+          delete-branch: false
+          add-paths: |
+            products/vip-screenshots
+            generated/product-vip-screenshot-manifest.json
+          commit-message: "feat(showroom): publish VIP product screenshot batch"
+          title: "feat(showroom): publish VIP product screenshot batch"
+          body: |
+            Automated, bounded VIP screenshot batch with its generated manifest.
+
+            This PR publishes presentation assets only. Screenshot existence is not independent QC, scientific verification, or proof of a live avatar integration.
