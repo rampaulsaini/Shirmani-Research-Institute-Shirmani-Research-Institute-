@@ -2,7 +2,7 @@ name: SHIRMANI Production Surface + 150K Catalogue Factory
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/30 * * * *"
 permissions:
   contents: write
   pull-requests: write
