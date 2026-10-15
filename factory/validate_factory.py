@@ -6,6 +6,12 @@ from pathlib import Path
 import tempfile
 import sys
 
+# Direct execution sets sys.path[0] to factory/, so the repository root must
+# be added before any factory.* package imports (including test helpers).
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 AGENTS = [
     "contracts", "source_agent", "corpus_agent", "research_agent",
     "verification_agent", "writing_agent", "book_agent",
@@ -25,7 +31,6 @@ def _read_jsonl(path):
             raise AssertionError(f"Invalid JSONL {path}:{line_no}: {exc}") from exc
 
 def main():
-    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
     for name in AGENTS:
         importlib.import_module("agents." + name)
 
