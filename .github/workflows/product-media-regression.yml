@@ -1,0 +1,37 @@
+name: Product Media Regression Checks
+
+on:
+  pull_request:
+    paths:
+      - "scripts/product_media_factory.py"
+      - "factory/validate_factory.py"
+      - "tests/test_media_manifest_compat.py"
+      - ".github/workflows/product-media-regression.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/product_media_factory.py"
+      - "factory/validate_factory.py"
+      - "tests/test_media_manifest_compat.py"
+      - ".github/workflows/product-media-regression.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install media Python dependencies
+        run: python -m pip install --disable-pip-version-check pillow qrcode
+      - name: Compile changed Python modules
+        run: python -m py_compile scripts/product_media_factory.py factory/validate_factory.py
+      - name: Run legacy media manifest regression tests
+        run: python -m unittest tests/test_media_manifest_compat.py -v
