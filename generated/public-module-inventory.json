@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-10-16T01:09:55.755307+00:00",
+  "generated_at": "2026-10-16T01:38:00.885547+00:00",
   "purpose": "public-first production module map",
-  "module_count": 10765,
+  "module_count": 10766,
   "lane_counts": {
-    "ai_ml_nlp": 9047,
+    "ai_ml_nlp": 9048,
     "automation": 5,
     "content": 8,
     "economic": 5,
@@ -19,7 +19,7 @@
     "PLANNED": 6,
     "READY": 10084,
     "RECORDED": 29,
-    "UNAVAILABLE": 27,
+    "UNAVAILABLE": 28,
     "UNSPECIFIED": 475
   },
   "integrity": {
@@ -62201,6 +62201,13 @@
       "lane": "ai_ml_nlp",
       "status": "UNAVAILABLE",
       "bytes": 2702
+    },
+    {
+      "path": "factory/public_pages_runtime_smoke.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNAVAILABLE",
+      "bytes": 5942
     },
     {
       "path": "product-order.html",
