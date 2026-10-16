@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "system": "SHIRMANI Supreme Human-Presentation System",
+  "purpose": "Stage-by-stage acceptance matrix for authorized voice, avatar, lip-sync and live presentation.",
+  "production_status": "NOT_VERIFIED",
+  "important": "These are test definitions, not test results. All stages remain NOT_RUN until evidence is captured from the real provider and deployed environment.",
+  "shared_fields_required_for_each_run": [
+    "test_id",
+    "stage",
+    "status",
+    "started_at",
+    "completed_at",
+    "build_or_commit",
+    "provider",
+    "provider_resource_id",
+    "input_fixture_id",
+    "expected_result",
+    "actual_result",
+    "evidence_urls",
+    "error",
+    "reviewer"
+  ],
+  "status_enum": ["NOT_RUN", "PASS", "FAIL", "BLOCKED"],
+  "stages": [
+    {
+      "stage_id": "voice_authorization",
+      "sequence": 1,
+      "status": "NOT_RUN",
+      "purpose": "Confirm the selected voice is owned by or explicitly authorized by the subject and is available through the permitted provider workflow.",
+      "pass_criteria": [
+        "Authorization evidence is recorded without exposing private identity documents.",
+        "Provider resource ID and connection status are captured.",
+        "A short sample can be generated and played back.",
+        "No API key or secret appears in browser code, logs, or evidence."
+      ],
+      "fail_closed_if": ["authorization_missing", "provider_unavailable", "sample_playback_failed", "secret_exposed"]
+    },
+    {
+      "stage_id": "voice_test_qa",
+      "sequence": 2,
+      "status": "NOT_RUN",
+      "purpose": "Exercise fixed Hindi and English prompts against the approved voice pipeline.",
+      "pass_criteria": [
+        "At least 5 versioned prompts per supported language are run.",
+        "Prompt, response, duration, and error are logged under the same test ID.",
+        "Answers are checked for factual support and clearly stated uncertainty.",
+        "Generated speech is reviewed for intelligibility and unauthorized voice substitution."
+      ],
+      "fail_closed_if": ["missing_transcript", "unlogged_answer", "unsupported_claim_presented_as_verified", "wrong_voice"]
+    },
+    {
+      "stage_id": "content_evidence",
+      "sequence": 3,
+      "status": "NOT_RUN",
+      "purpose": "Ensure the spoken script separates sourced facts, interpretation, and personal philosophy.",
+      "pass_criteria": [
+        "Material factual claims have traceable sources.",
+        "Uncertainty and meaningful counterviews are included where relevant.",
+        "The 99.9999% / 0.0001% ratio is labelled a philosophical target, not a scientifically measured score.",
+        "Hindi and English renderings preserve meaning without adding unsupported claims."
+      ],
+      "fail_closed_if": ["sources_missing_for_factual_claims", "counterview_omitted_when_material", "philosophical_target_misrepresented_as_measurement"]
+    },
+    {
+      "stage_id": "authorized_photo_face",
+      "sequence": 4,
+      "status": "NOT_RUN",
+      "purpose": "Verify the provider uses the already supplied, authorized avatar asset; do not request the user to upload the same photo or video again.",
+      "pass_criteria": [
+        "Existing provider asset ID is resolved in the authenticated account.",
+        "Asset identity and permitted use are reviewed.",
+        "Consent and retention/deletion rules are recorded.",
+        "Only the minimum required asset reference is included in logs."
+      ],
+      "fail_closed_if": ["asset_id_unresolved", "wrong_asset", "authorization_unclear", "privacy_policy_missing"]
+    },
+    {
+      "stage_id": "lip_sync",
+      "sequence": 5,
+      "status": "NOT_RUN",
+      "purpose": "Generate and review a short clip using the authorized voice and avatar.",
+      "pass_criteria": [
+        "The generated clip and source audio share a correlation test ID.",
+        "Speech content matches the approved script.",
+        "Reviewer records synchronization, pronunciation, visual artifacts, and audio quality.",
+        "Synthetic-media disclosure is present where viewers could mistake it for a real live recording."
+      ],
+      "fail_closed_if": ["script_mismatch", "major_sync_error", "wrong_asset_or_voice", "review_missing"]
+    },
+    {
+      "stage_id": "live_presentation",
+      "sequence": 6,
+      "status": "NOT_RUN",
+      "purpose": "Verify an actual interactive provider session, not a prerecorded avatar video.",
+      "pass_criteria": [
+        "A real session ID and provider request/response trace are captured.",
+        "At least 5 live questions are submitted and responses are recorded.",
+        "Latency, interruption, timeout, and recovery behavior are measured.",
+        "The interface clearly distinguishes live interaction from prerecorded playback."
+      ],
+      "fail_closed_if": ["session_id_missing", "only_prerecorded_video", "no_request_response_trace", "recovery_not_tested"]
+    },
+    {
+      "stage_id": "end_to_end",
+      "sequence": 7,
+      "status": "NOT_RUN",
+      "purpose": "Prove the complete Voice → Authorized Voice → Test Q&A → Evidence-backed Content → Authorized Face → Lip-sync → Live Presentation chain.",
+      "pass_criteria": [
+        "Every stage passes in the same correlated test run.",
+        "Evidence references and timestamps connect all stage records.",
+        "Production deployment commit and URL are recorded.",
+        "A second reviewer can reproduce the test and inspect the evidence."
+      ],
+      "fail_closed_if": ["any_stage_not_pass", "correlation_broken", "deployed_build_unidentified", "evidence_missing"]
+    }
+  ],
+  "release_gate": {
+    "required_status": "PASS",
+    "must_not_infer_success_from": [
+      "A provider dashboard link alone",
+      "A generated video alone",
+      "A workflow run without provider traces",
+      "A local test without deployed URL verification"
+    ],
+    "current_result": "NOT_VERIFIED",
+    "current_blockers": [
+      "No real provider traces were supplied in this change.",
+      "No completed live session evidence is recorded here.",
+      "No deployed end-to-end verification is recorded here."
+    ]
+  }
+}
