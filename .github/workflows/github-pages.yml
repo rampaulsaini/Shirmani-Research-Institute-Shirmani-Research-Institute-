@@ -1,9 +1,10 @@
 name: Deploy GitHub Pages — Production State
 
+# The production automission owns automatic push/scheduled publication and
+# materializes canonical production state before deployment. Keep this workflow
+# as a manual recovery path so a raw-source deploy cannot race or overwrite the
+# production-materialized Pages artifact on every main push.
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
