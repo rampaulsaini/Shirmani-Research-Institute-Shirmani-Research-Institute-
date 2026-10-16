@@ -19,6 +19,8 @@ ROUTES = (
     "",
     "showroom/public-product-showroom.html",
     "showroom-public.html",
+    "showroom/shirmani-supreme-character-studio.html",
+    "showroom/shirmani-supreme-heart-view-preview.html",
     "generated/live-production-state.json",
     "generated/public-production-asset-overlay.json",
     "generated/public-production-index.html",
