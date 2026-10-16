@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import datetime, timezone
 import json, html
 ROOT=Path(__file__).resolve().parents[1]
 GEN=ROOT/"generated"; OUT=ROOT/"products/production"
@@ -66,6 +67,6 @@ def make(p):
 def main():
  c=json.loads((GEN/"1000-digital-products.json").read_text(encoding="utf-8")); OUT.mkdir(parents=True,exist_ok=True)
  for p in c["products"]:(OUT/(p["id"].lower()+".html")).write_text(make(p),encoding="utf-8")
- s={"product_assets":len(c["products"]),"asset_directory":"products/production/","showroom":"products.html","state":"READY_FOR_QC","dispatch":"NO","principle":"Every catalog identity has a concrete browser product asset; QC/dispatch remain downstream."}
+ s={"generated_at":datetime.now(timezone.utc).isoformat(),"product_assets":len(c["products"]),"asset_directory":"products/production/","showroom":"products.html","state":"READY_FOR_QC","dispatch":"NO","principle":"Every catalog identity has a concrete browser product asset; QC/dispatch remain downstream."}
  (GEN/"concrete-product-asset-status.json").write_text(json.dumps(s,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 if __name__=="__main__":main()
