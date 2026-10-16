@@ -46,7 +46,7 @@ out.textContent=[
 'Purpose and requirements: '+value('brief-purpose'),
 '',
 'Please confirm scope, deliverables, price, deadline, revision count and payment terms in writing before work starts.'
-].join('\\n');
+].join('\n');
 email.href='mailto:sainirampaul60@gmail.com?subject='+encodeURIComponent('Writing and Research Enquiry — '+value('brief-topic'))+'&body='+encodeURIComponent(out.textContent);
 wrap.hidden=false;status.textContent='Review the brief before copying or opening your email app.';
 });
