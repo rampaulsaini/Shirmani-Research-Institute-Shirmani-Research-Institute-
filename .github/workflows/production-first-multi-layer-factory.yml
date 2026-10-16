@@ -26,9 +26,9 @@ jobs:
           families=sorted({x.get("family","Unknown") for x in products})
           engines=sorted({x.get("engine","Unknown") for x in products})
           print(f"product_count={len(products)}")
-          with open(os.environ["GITHUB_OUTPUT"],"a") as o: o.write(f"product_count={len(products)}\\n")
+          with open(os.environ["GITHUB_OUTPUT"],"a") as o: o.write(f"product_count={len(products)}\n")
           out={"updated_at_utc":datetime.now(timezone.utc).isoformat(),"stage":"INSTITUTE_DISCOVERY","product_count":len(products),"family_count":len(families),"engine_count":len(engines),"next_stage":"FACTORY_PRODUCT_PACKAGE"}
-          with open("generated/production-first-discovery.json","w",encoding="utf-8") as o: json.dump(out,o,ensure_ascii=False,indent=2);o.write("\\n")
+          with open("generated/production-first-discovery.json","w",encoding="utf-8") as o: json.dump(out,o,ensure_ascii=False,indent=2);o.write("\n")
           PY
   factory-production:
     needs: institute-discovery
@@ -47,7 +47,7 @@ jobs:
               pid=str(p.get("id",""))
               rows.append({"id":pid,"name":p.get("name",pid),"family":p.get("family","Digital Product"),"engine":p.get("engine","browser"),"production_stage":"FACTORY_PRODUCT_PACKAGE","visual_identity":"READY_BY_PRODUCT_ID","short_description":"REQUIRED","long_description_qr":"REQUIRED","price":"REQUIRED","offer":"REQUIRED","dispatch_route":"REQUIRED","public_result_route":"products/1000-digital-product-factory.html?id="+pid})
           result={"updated_at_utc":datetime.now(timezone.utc).isoformat(),"principle":"production-first","total_candidates":len(rows),"factory_queue":rows,"next_action":"materialize concrete packages in priority order"}
-          with open("generated/production-first-backlog-live.json","w",encoding="utf-8") as f: json.dump(result,f,ensure_ascii=False,indent=2);f.write("\\n")
+          with open("generated/production-first-backlog-live.json","w",encoding="utf-8") as f: json.dump(result,f,ensure_ascii=False,indent=2);f.write("\n")
           PY
       - name: Commit production result
         shell: bash
