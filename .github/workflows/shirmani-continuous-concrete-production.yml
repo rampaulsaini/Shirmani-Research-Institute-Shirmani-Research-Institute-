@@ -1,7 +1,7 @@
 name: SHIRMANI Continuous Concrete Product Production
 on:
-  push:
-    branches: [main]
+  # Avoid duplicate production cycles on every main-branch commit.
+  # Keep scheduled production and manual dispatch available.
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
