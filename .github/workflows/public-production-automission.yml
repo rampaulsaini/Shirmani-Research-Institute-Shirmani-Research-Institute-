@@ -217,8 +217,9 @@ jobs:
           print("PRODUCTION PRINCIPLE: product output first; verification remains downstream.")
 
       - name: Test concrete production status contract
-        run: python3 -m unittest discover -s tests -p 'public_production_status_test.py'
-        run: python3 -m unittest discover -s tests -p 'public_pages_route_diagnostics_test.py'
+        run: |
+          python3 -m unittest discover -s tests -p 'public_production_status_test.py'
+          python3 -m unittest discover -s tests -p 'public_pages_route_diagnostics_test.py'
 
       - name: Materialize public production status
         run: python3 factory/public_production_materializer.py
