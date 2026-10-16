@@ -11,22 +11,22 @@ from pathlib import Path
 
 
 def _top_level_value(text: str, key: str) -> str | None:
-    match = re.search(rf"(?m)^{re.escape(key)}:\\s*(.*?)\\s*$", text)
+    match = re.search(rf"(?m)^{re.escape(key)}:\s*(.*?)\s*$", text)
     return match.group(1) if match else None
 
 
 def _events(text: str) -> list[str]:
     """Read only top-level workflow event keys; conservative for YAML variants."""
     lines = text.splitlines()
-    start = next((i for i, line in enumerate(lines) if re.match(r"^on:\\s*(?:#.*)?$", line)), None)
+    start = next((i for i, line in enumerate(lines) if re.match(r"^on:\s*(?:#.*)?$", line)), None)
     if start is None:
-        inline = re.search(r"(?m)^on:\\s*\\[([^]]*)\\]", text)
-        return sorted(x.strip().strip("\\\"'") for x in inline.group(1).split(",") if x.strip()) if inline else []
+        inline = re.search(r"(?m)^on:\s*\[([^]]*)\]", text)
+        return sorted(x.strip().strip("\"'") for x in inline.group(1).split(",") if x.strip()) if inline else []
     events: list[str] = []
     for line in lines[start + 1:]:
         if line and not line[0].isspace() and not line.startswith("#"):
             break
-        match = re.match(r"^  ([A-Za-z_][A-Za-z0-9_-]*):(?:\\s|$)", line)
+        match = re.match(r"^  ([A-Za-z_][A-Za-z0-9_-]*):(?:\s|$)", line)
         if match:
             events.append(match.group(1))
     return sorted(set(events))
@@ -37,10 +37,10 @@ def inspect_workflow(path: Path, root: Path) -> dict:
     text = raw.decode("utf-8", errors="replace")
     name = _top_level_value(text, "name") or path.stem
     events = _events(text)
-    permissions = re.search(r"(?ms)^permissions:\\s*\\n((?:^[ \\t]+.*\\n?)*)", text)
+    permissions = re.search(r"(?ms)^permissions:\s*\n((?:^[ \t]+.*\n?)*)", text)
     permission_block = permissions.group(1) if permissions else ""
-    write_permissions = bool(re.search(r"(?m)^\\s+[A-Za-z0-9_-]+:\\s*write\\s*$", permission_block))
-    cancel = re.search(r"(?m)^\\s+cancel-in-progress:\\s*(true|false)\\s*$", text)
+    write_permissions = bool(re.search(r"(?m)^\s+[A-Za-z0-9_-]+:\s*write\s*$", permission_block))
+    cancel = re.search(r"(?m)^\s+cancel-in-progress:\s*(true|false)\s*$", text)
     cancel_in_progress = cancel.group(1).lower() == "true" if cancel else None
     review_reasons = []
     if events == ["workflow_dispatch"]:
@@ -51,7 +51,7 @@ def inspect_workflow(path: Path, root: Path) -> dict:
         review_reasons.append("cancels-in-progress: inspect concurrency group and critical-work impact")
     return {
         "path": path.relative_to(root).as_posix(),
-        "name": name.strip().strip('"').strip("'"),
+        "name": name.strip().strip("\"'"),
         "events": events,
         "sha256": hashlib.sha256(raw).hexdigest(),
         "write_permissions": write_permissions,
