@@ -1,8 +1,8 @@
 name: SHIRMANI Production-First Multi-Layer Factory
+# This workflow only refreshes discovery/backlog JSON; it does not materialize
+# customer-usable product artifacts. Keep it manual to avoid recurring queue noise.
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "11,26,41,56 * * * *"
 permissions:
   contents: write
 concurrency:
