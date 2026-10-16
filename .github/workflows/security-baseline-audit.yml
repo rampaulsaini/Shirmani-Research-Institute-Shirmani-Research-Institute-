@@ -19,7 +19,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: security-baseline-${{ github.ref }}
+  group: read-only-security-baseline-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   static-baseline:
