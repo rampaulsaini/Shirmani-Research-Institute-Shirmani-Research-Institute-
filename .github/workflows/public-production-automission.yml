@@ -228,6 +228,28 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Assert required public JSON is present in the Pages payload
+        run: |
+          set -euo pipefail
+          test -s generated/public-production-asset-overlay.json
+          test -s generated/live-production-state.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          required = (
+              Path("generated/public-production-asset-overlay.json"),
+              Path("generated/live-production-state.json"),
+          )
+          for path in required:
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              if not isinstance(payload, dict):
+                  raise SystemExit(f"PUBLIC_PAGES_PAYLOAD_FAIL: {path} must be a JSON object")
+              print(f"PUBLIC_PAGES_PAYLOAD_PASS {path} bytes={path.stat().st_size}")
+          # The Pages artifact must publish the generated directory as-is;
+          # keep Jekyll from treating generated paths as build inputs.
+          Path(".nojekyll").touch()
+          PY
+
       - name: Upload generated production site
         uses: actions/upload-pages-artifact@v4
         with:
