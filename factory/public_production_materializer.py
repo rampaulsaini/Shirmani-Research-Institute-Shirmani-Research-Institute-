@@ -80,6 +80,63 @@ def deliverable(task,source):
         base.update(artifact_type="automation-work-card",execution_plan=["queue","produce","persist","publish","measure"],next_action="next cycle")
     return base
 
+def materialize_concrete_asset_status(root=ROOT, generated_at=None):
+    """Refresh derived concrete-asset status from files that actually exist.
+
+    The public truth gate consumes this status. Count only non-empty,
+    repository-contained asset files; QC and dispatch remain downstream.
+    """
+    root = Path(root).resolve()
+    generated = root / "generated"
+    catalog_path = generated / "1000-digital-products.json"
+    status_path = generated / "concrete-product-asset-status.json"
+    if not catalog_path.is_file():
+        return None
+
+    catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+    products = catalog.get("products")
+    if not isinstance(products, list):
+        raise ValueError("Product catalog must contain a products list")
+
+    actual_assets = 0
+    for product in products:
+        if not isinstance(product, dict):
+            continue
+        asset = product.get("asset")
+        if not isinstance(asset, str) or not asset:
+            continue
+        path = (root / asset).resolve()
+        if path.is_relative_to(root) and path.is_file() and path.stat().st_size > 0:
+            actual_assets += 1
+
+    status = {}
+    if status_path.is_file():
+        try:
+            loaded = json.loads(status_path.read_text(encoding="utf-8"))
+            if isinstance(loaded, dict):
+                status = loaded
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            # This file is derived telemetry; rebuild it from catalog/assets.
+            status = {}
+
+    target = int(catalog.get("product_count", len(products)))
+    status.update({
+        "generated_at": generated_at or now(),
+        "product_assets": actual_assets,
+        "concrete_product_assets": actual_assets,
+        "catalog_products": target,
+        "materialization_percent": round(100 * actual_assets / target, 2) if target else 0,
+        "asset_directory": status.get("asset_directory", "products/production/"),
+        "showroom": status.get("showroom", "products.html"),
+        "state": "READY_FOR_QC" if actual_assets == target else "IN_PROGRESS",
+        "dispatch": "NO",
+        "principle": "Concrete non-empty repository assets are production evidence; QC, dispatch, payment and independent verification remain downstream."
+    })
+    status_path.write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    materialize_concrete_asset_status(ROOT)
+    return status
+
+
 def main():
     GEN.mkdir(parents=True,exist_ok=True); ARTIFACT_DIR.mkdir(parents=True,exist_ok=True); ARCHIVE_DIR.mkdir(parents=True,exist_ok=True)
     tasks=load_tasks(); results=[]; counts=Counter(); rows=defaultdict(list)
