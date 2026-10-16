@@ -78,11 +78,10 @@ jobs:
             }
 
             if (!targets.length) {
-              targets = [{
-                repository: 'rampaulsaini/yatharth-music-ai',
-                event_type: 'yatharth_studio_request',
-                enabled: true
-              }];
+              core.setFailed(
+                'SHIRMANI_REPOSITORIES is empty; refusing to dispatch to any default downstream repository.'
+              );
+              return;
             }
 
             const brief =
