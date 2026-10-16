@@ -1,8 +1,6 @@
 name: SHIRMANI Live Presentation Subsystem QC
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -13,7 +11,7 @@ on:
       - ".github/workflows/shirmani-live-presentation-qc.yml"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: shirmani-live-presentation-qc
@@ -48,7 +46,7 @@ jobs:
           from pathlib import Path
           p=Path("shirmani-live-presentation.html").read_text(encoding="utf-8")
           checks=[
-            "Voice → Authorized Voice Integration → Test Q&A → Lip-Sync → Live Presentation",
+            "Voice → Authorized Voice → Test Q&A → Lip-Sync → Live Presentation",
             "अभी पर्याप्त प्रमाण उपलब्ध नहीं है",
             "EXPLICIT AUTH REQUIRED",
             "NOT CLAIMED",
@@ -59,33 +57,15 @@ jobs:
             raise SystemExit("LIVE_PRESENTATION_UI_QC_FAIL: "+repr(missing))
           print("LIVE_PRESENTATION_UI_QC_PASS")
 
-      - name: Publish QC state
-        shell: python
-        run: |
-          import json
-          from pathlib import Path
-          from datetime import datetime, timezone
-          out={
-            "generated_at":datetime.now(timezone.utc).isoformat(),
-            "subsystem":"voice-authorized-live-presentation",
-            "qc":"PASS",
-            "dynamic_external_voice_provider":"NOT_CONNECTED",
-            "lip_sync":"AUDIO_REACTIVE_DEMO",
-            "phoneme_accurate_sync":"NOT_YET_ESTABLISHED",
-            "evidence_gate":"ENABLED",
-            "independent_verification":"SEPARATE_DOWNSTREAM_GATE"
-          }
-          p=Path("generated/live-presentation-qc.json")
-          p.write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-          print(json.dumps(out,ensure_ascii=False))
-          Path("generated").mkdir(exist_ok=True)
-
-      - name: Commit QC state
+      - name: Summarize verified subsystem boundary
         shell: bash
         run: |
-          git config user.name "SHIRMANI Live Presentation Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/live-presentation-qc.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "automission: publish live presentation subsystem QC"
-          git push origin HEAD:main
+          {
+            echo "## SHIRMANI Live Presentation Subsystem QC"
+            echo "- Static contract and UI checks: PASS"
+            echo "- External voice provider: NOT CONNECTED"
+            echo "- Lip-sync: AUDIO_REACTIVE_DEMO"
+            echo "- Phoneme-accurate sync: NOT YET ESTABLISHED"
+            echo "- Independent verification: SEPARATE DOWNSTREAM GATE"
+            echo "- This workflow is read-only and does not write generated production state."
+          } >> "$GITHUB_STEP_SUMMARY"
