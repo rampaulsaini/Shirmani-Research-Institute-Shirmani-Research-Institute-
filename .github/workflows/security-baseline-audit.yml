@@ -24,7 +24,8 @@ permissions:
   contents: read
 concurrency:
   group: read-only-security-baseline-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
+  queue: max
 jobs:
   static-baseline:
     runs-on: ubuntu-latest
