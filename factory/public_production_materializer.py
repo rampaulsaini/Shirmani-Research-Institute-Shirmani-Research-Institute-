@@ -80,6 +80,62 @@ def deliverable(task,source):
         base.update(artifact_type="automation-work-card",execution_plan=["queue","produce","persist","publish","measure"],next_action="next cycle")
     return base
 
+def materialize_concrete_asset_status(root=ROOT, generated_at=None):
+    """Refresh derived concrete-asset status from files that actually exist.
+
+    The public truth gate consumes this status. Count only non-empty,
+    repository-contained asset files; QC and dispatch remain downstream.
+    """
+    root = Path(root).resolve()
+    generated = root / "generated"
+    catalog_path = generated / "1000-digital-products.json"
+    status_path = generated / "concrete-product-asset-status.json"
+    if not catalog_path.is_file():
+        return None
+
+    catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+    products = catalog.get("products")
+    if not isinstance(products, list):
+        raise ValueError("Product catalog must contain a products list")
+
+    actual_assets = 0
+    for product in products:
+        if not isinstance(product, dict):
+            continue
+        asset = product.get("asset")
+        if not isinstance(asset, str) or not asset:
+            continue
+        path = (root / asset).resolve()
+        if path.is_relative_to(root) and path.is_file() and path.stat().st_size > 0:
+            actual_assets += 1
+
+    status = {}
+    if status_path.is_file():
+        try:
+            loaded = json.loads(status_path.read_text(encoding="utf-8"))
+            if isinstance(loaded, dict):
+                status = loaded
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            # This file is derived telemetry; rebuild it from catalog/assets.
+            status = {}
+
+    target = int(catalog.get("product_count", len(products)))
+    status.update({
+        "generated_at": generated_at or now(),
+        "product_assets": actual_assets,
+        "concrete_product_assets": actual_assets,
+        "catalog_products": target,
+        "materialization_percent": round(100 * actual_assets / target, 2) if target else 0,
+        "asset_directory": status.get("asset_directory", "products/production/"),
+        "showroom": status.get("showroom", "products.html"),
+        "state": "READY_FOR_QC" if actual_assets == target else "IN_PROGRESS",
+        "dispatch": "NO",
+        "principle": "Concrete non-empty repository assets are production evidence; QC, dispatch, payment and independent verification remain downstream."
+    })
+    status_path.write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return status
+
+
 def main():
     GEN.mkdir(parents=True,exist_ok=True); ARTIFACT_DIR.mkdir(parents=True,exist_ok=True); ARCHIVE_DIR.mkdir(parents=True,exist_ok=True)
     tasks=load_tasks(); results=[]; counts=Counter(); rows=defaultdict(list)
@@ -144,5 +200,7 @@ def main():
     links="".join(f"<a href='public-production/{html.escape(l)}.jsonl'>{html.escape(l)} · {n:,} outputs</a>" for l,n in sorted(counts.items()))
     page=f"""<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI Public Production</title><style>body{{margin:0;background:#0b0d14;color:#f5f5f5;font-family:system-ui,sans-serif;line-height:1.5}}main{{max-width:1250px;margin:auto;padding:24px}}h1,h2{{color:#d4af37}}.hero,article,.links{{background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.25);border-radius:14px;padding:18px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}}.links{{display:flex;flex-wrap:wrap;gap:10px}}a{{color:#67e8f9;text-decoration:none;padding:8px 12px;border:1px solid #365;border-radius:9px}}small{{color:#aeb5c2}}b{{color:#6ee7b7}}</style></head><body><main><section class="hero"><h1>꙰ SHIRMANI Public Production</h1><p><strong>Production-first Automission:</strong> every queued work unit becomes a concrete source-bound production card. Verification is downstream.</p><h2>{len(results):,} concrete results this cycle</h2><p>Generated: {catalog["generated_at"]}</p><p><a href="public-production-catalog.json">Catalog</a> · <a href="multi-layer-production-status.json">Status</a> · <a href="production-results.jsonl">Latest cycle stream</a> · <a href="public-production/archive/index.json">Cycle archive index</a> · <a href="../index.html">Main Hub</a></p></section><h2>Production lanes</h2><div class="links">{links}</div><h2>Actual production cards</h2><div class="grid">{''.join(cards)}</div><section class="hero"><strong>Integrity:</strong> PRODUCED means a concrete artifact was generated from a repository-bound source. It is not automatically scientifically verified, commercially sold, or independently validated.</section></main></body></html>"""
     DASHBOARD.write_text(page,encoding="utf-8")
+    # Refresh derived product-asset telemetry after production outputs are materialized.
+    materialize_concrete_asset_status(ROOT)
     print(json.dumps({"produced":len(results),"lanes":dict(counts)},ensure_ascii=False))
 if __name__=="__main__": main()
