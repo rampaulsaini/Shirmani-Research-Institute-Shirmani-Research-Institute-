@@ -16,7 +16,8 @@ permissions:
 
 concurrency:
   group: shirmani-security-baseline-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
+  queue: max
 
 jobs:
   workflow-hardening-audit:
