@@ -7,7 +7,7 @@ import os
 import time
 from datetime import datetime, timezone
 from urllib.error import HTTPError, URLError
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit, urlunsplit, parse_qsl, urlencode
 from urllib.request import Request, urlopen
 
 BASE = os.environ.get("PAGES_URL", "").strip()
@@ -34,7 +34,24 @@ def fetch(route: str) -> tuple[bytes, str]:
     last_error = "no response"
     for attempt in range(1, 9):
         try:
-            request = Request(url, headers={"User-Agent": "SHIRMANI-Pages-Runtime-Smoke/1.0", "Cache-Control": "no-cache"})
+            # GitHub Pages/CDN can briefly serve an older deployment after the
+            # deploy action reports success. Give every request a unique query
+            # key as well as Cache-Control so the smoke gate checks the newest
+            # published representation rather than a cached JSON response.
+            parts = urlsplit(url)
+            query = dict(parse_qsl(parts.query, keep_blank_values=True))
+            query["_shirmani_runtime_smoke"] = f"{time.time_ns()}-{attempt}"
+            request_url = urlunsplit(
+                (parts.scheme, parts.netloc, parts.path, urlencode(query), parts.fragment)
+            )
+            request = Request(
+                request_url,
+                headers={
+                    "User-Agent": "SHIRMANI-Pages-Runtime-Smoke/1.0",
+                    "Cache-Control": "no-cache, no-store, max-age=0",
+                    "Pragma": "no-cache",
+                },
+            )
             with urlopen(request, timeout=20) as response:
                 body = response.read()
                 if response.status != 200:
@@ -56,6 +73,7 @@ for route in ROUTES:
     responses[route] = body
     print(f"ROUTE_PASS {route or '/'} bytes={len(body)} content_type={content_type}")
 
+
 def read_json(route: str) -> dict:
     try:
         value = json.loads(responses[route].decode("utf-8"))
@@ -64,6 +82,7 @@ def read_json(route: str) -> dict:
     if not isinstance(value, dict):
         raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: deployed JSON {route} must be an object")
     return value
+
 
 live = read_json("generated/live-production-state.json")
 overlay = read_json("generated/public-production-asset-overlay.json")
