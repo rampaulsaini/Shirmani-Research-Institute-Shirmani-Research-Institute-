@@ -32,6 +32,10 @@ ROUTES = (
 def fetch(route: str) -> tuple[bytes, str]:
     url = urljoin(BASE, route)
     last_error = "no response"
+    last_url = url
+    last_status = "no response"
+    last_content_type = "unknown"
+    last_body_snippet = ""
     for attempt in range(1, 9):
         try:
             # GitHub Pages/CDN can briefly serve an older deployment after the
@@ -52,19 +56,41 @@ def fetch(route: str) -> tuple[bytes, str]:
                     "Pragma": "no-cache",
                 },
             )
+            last_url = request_url
             with urlopen(request, timeout=20) as response:
                 body = response.read()
+                last_status = str(response.status)
+                last_content_type = response.headers.get("Content-Type", "unknown")
+                last_body_snippet = body[:240].decode("utf-8", errors="replace").replace("\n", " ")
                 if response.status != 200:
                     last_error = f"HTTP {response.status}"
                 elif not body:
                     last_error = "empty response"
                 else:
-                    return body, response.headers.get("Content-Type", "")
-        except (HTTPError, URLError, TimeoutError, OSError) as exc:
+                    print(
+                        f"ROUTE_HTTP route={route or '/'} status={response.status} "
+                        f"requested_url={request_url} final_url={response.geturl()} "
+                        f"content_type={last_content_type} bytes={len(body)}"
+                    )
+                    return body, last_content_type
+        except HTTPError as exc:
+            last_url = exc.geturl()
+            last_status = str(exc.code)
+            last_content_type = exc.headers.get("Content-Type", "unknown")
+            try:
+                last_body_snippet = exc.read(240).decode("utf-8", errors="replace").replace("\n", " ")
+            except OSError:
+                last_body_snippet = ""
+            last_error = f"HTTP {exc.code}"
+        except (URLError, TimeoutError, OSError) as exc:
             last_error = str(exc)
         if attempt < 8:
             time.sleep(8)
-    raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: {route or '/'} unavailable after retries: {last_error}")
+    raise SystemExit(
+        f"PAGES_RUNTIME_SMOKE_FAIL: route={route or '/'} base_url={BASE} "
+        f"last_url={last_url} status={last_status} content_type={last_content_type} "
+        f"body_snippet={last_body_snippet!r} error={last_error}"
+    )
 
 
 responses = {}
