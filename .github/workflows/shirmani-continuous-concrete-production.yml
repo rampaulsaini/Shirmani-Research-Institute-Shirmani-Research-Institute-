@@ -3,7 +3,7 @@ on:
   # Avoid duplicate production cycles on every main-branch commit.
   # Keep scheduled production and manual dispatch available.
   schedule:
-    - cron: "17 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
