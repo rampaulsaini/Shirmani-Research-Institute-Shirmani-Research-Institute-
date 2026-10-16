@@ -63,8 +63,18 @@ jobs:
           PY
       - name: Produce next bounded product-specific video batch
         env:
-                    PRODUCT_DEMO_BATCH: ${{ github.event.inputs.batch_size || '50' }}
+          PRODUCT_DEMO_BATCH: ${{ github.event.inputs.batch_size || '50' }}
         run: python3 factory/product_specific_demo_video_factory.py
+      - name: Restore intermediate catalog before opening media PR
+        shell: bash
+        run: |
+          set -euo pipefail
+          # The production-state catalog is an input to this batch, not an output
+          # of the media PR. Restore the main-branch copy so the PR action cannot
+          # stash/replay a large, unrelated catalog diff onto its long-lived branch.
+          git restore --source=origin/main --staged --worktree -- generated/1000-digital-products.json
+          git diff --cached --exit-code -- generated/1000-digital-products.json
+          git diff --exit-code -- generated/1000-digital-products.json
       - name: Publish customer-facing demo media through PR
         id: publish_media
         uses: peter-evans/create-pull-request@v7
