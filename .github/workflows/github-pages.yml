@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages — Production State
+name: SHIRMANI Public Route Guard — No Deployment
 
 on:
   push:
@@ -8,27 +8,13 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
-  deploy:
+  route-guard:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout the triggering commit
         uses: actions/checkout@v4
-        # IMPORTANT: deploy the commit that triggered this workflow.
-        # Do not replace the working tree with automation/production-state:
-        # that branch can lag behind main and silently omit public routes/assets.
-        # Persisted state should be read/merged as specific data, not deployed as
-        # a replacement source tree.
 
       - name: Check public entry routes exist
         run: |
@@ -39,14 +25,5 @@ jobs:
           test -s writing-research-enquiry.html
           echo "Public showroom and writing/research entry files exist in the Pages artifact source."
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Confirm canonical publisher owns deployment
+        run: echo "Route guard only; public-production-automission.yml is the sole Pages publisher."

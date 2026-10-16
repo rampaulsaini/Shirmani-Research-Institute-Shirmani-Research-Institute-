@@ -9,8 +9,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: shirmani-multi-layer-production
@@ -20,8 +18,6 @@ jobs:
   production:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    environment:
-      name: github-pages
     steps:
       - uses: actions/checkout@v4
 
@@ -90,18 +86,5 @@ jobs:
             generated/public-module-production-map.html
           retention-days: 30
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload live platform
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: .
-
-      - name: Deploy live production dashboard
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-      - name: Report live platform URL
-        run: |
-          echo "Live production dashboard: ${{ steps.deployment.outputs.page_url }}"
+      - name: Public deployment ownership
+        run: echo "Production telemetry only; public-production-automission.yml owns GitHub Pages deployment."
