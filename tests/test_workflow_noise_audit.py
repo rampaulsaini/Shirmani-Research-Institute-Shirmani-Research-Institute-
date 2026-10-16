@@ -18,6 +18,7 @@ class WorkflowNoiseAuditTests(unittest.TestCase):
             report = build_report(root)
             self.assertEqual(report["workflow_count"], 1)
             self.assertFalse(report["deletion_performed"])
+            self.assertFalse(report["automatic_deletion_enabled"])
             self.assertEqual(report["mode"], "read-only")
             self.assertTrue(any("manual-dispatch-only" in x["reason"] for x in report["review_candidates"]))
 
@@ -48,6 +49,27 @@ class WorkflowNoiseAuditTests(unittest.TestCase):
             reasons = report["workflows"][0]["review_reasons"]
             self.assertTrue(any("write-permission" in x for x in reasons))
             self.assertTrue(any("cancels-in-progress" in x for x in reasons))
+            self.assertEqual(report["workflows"][0]["retention_class"], "protected-critical")
+
+    def test_production_and_security_workflows_are_protected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            workflow_dir = root / ".github" / "workflows"
+            workflow_dir.mkdir(parents=True)
+            (workflow_dir / "truth-gate.yml").write_text(
+                "name: Production Truth Gate\non:\n  schedule:\n    - cron: \"*/15 * * * *\"\n",
+                encoding="utf-8",
+            )
+            (workflow_dir / "security.yml").write_text(
+                "name: Security Scan\non:\n  push:\n",
+                encoding="utf-8",
+            )
+            report = build_report(root)
+            self.assertEqual(report["protected_critical_count"], 2)
+            self.assertEqual(report["review_candidate_count"], 0)
+            self.assertTrue(all(x["triage_action"] == "retain-and-verify-replacement-before-any-retirement"
+                                for x in report["workflows"]))
+            self.assertFalse(report["deletion_performed"])
 
 
 if __name__ == "__main__":
