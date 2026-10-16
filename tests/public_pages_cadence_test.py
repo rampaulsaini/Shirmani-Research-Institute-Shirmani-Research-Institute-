@@ -1,6 +1,5 @@
 """Guard the Pages rebuild cadence against unnecessary full production cycles."""
 from pathlib import Path
-import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
