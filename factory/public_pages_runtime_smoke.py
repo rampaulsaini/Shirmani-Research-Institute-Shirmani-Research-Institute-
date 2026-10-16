@@ -2,6 +2,7 @@
 """Check the deployed GitHub Pages runtime, not just the pre-deploy workspace."""
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import time
@@ -111,6 +112,25 @@ def read_json(route: str) -> dict:
 
 
 live = read_json("generated/live-production-state.json")
+expected_live_sha256 = os.environ.get("EXPECTED_LIVE_STATE_SHA256", "").strip()
+expected_live_generated_at = os.environ.get("EXPECTED_LIVE_STATE_GENERATED_AT", "").strip()
+actual_live_sha256 = hashlib.sha256(responses["generated/live-production-state.json"]).hexdigest()
+actual_live_generated_at = str(live.get("generated_at", ""))
+print(
+    "PUBLIC_STATE_FINGERPRINT "
+    f"expected_generated_at={expected_live_generated_at or 'NOT_PROVIDED'} "
+    f"expected_sha256={expected_live_sha256 or 'NOT_PROVIDED'} "
+    f"actual_generated_at={actual_live_generated_at or 'MISSING'} "
+    f"actual_sha256={actual_live_sha256}"
+)
+if expected_live_sha256 and actual_live_sha256 != expected_live_sha256:
+    raise SystemExit(
+        "PAGES_RUNTIME_SMOKE_FAIL: deployed live-production-state.json does not match "
+        "the pre-upload artifact fingerprint; compare deployment ordering/artifact contents "
+        f"(expected_generated_at={expected_live_generated_at or 'NOT_PROVIDED'}, "
+        f"actual_generated_at={actual_live_generated_at or 'MISSING'}, "
+        f"expected_sha256={expected_live_sha256}, actual_sha256={actual_live_sha256})"
+    )
 overlay = read_json("generated/public-production-asset-overlay.json")
 catalog = read_json("generated/public-production-catalog.json")
 modules = read_json("generated/public-production-module-index.json")
