@@ -4,8 +4,10 @@ on:
     branches: [main]
     paths-ignore:
       - "generated/**"
+  # Full 5,000-product build is expensive; hourly refresh stays within the 2-hour runtime freshness gate.
+  # Code changes still deploy immediately through the main-branch push trigger.
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
