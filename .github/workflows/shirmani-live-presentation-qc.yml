@@ -81,7 +81,7 @@ jobs:
           print(json.dumps(out,ensure_ascii=False))
 
       - name: Publish QC state through a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "automission: publish live presentation subsystem QC"
           title: "Automission: publish live presentation QC evidence"
