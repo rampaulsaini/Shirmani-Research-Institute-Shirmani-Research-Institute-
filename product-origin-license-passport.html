@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI — Product Origin & License Passport</title>
+<meta name="description" content="A practical provenance, version, license, verification and update passport for every Shirmani digital product.">
+<style>
+:root{color-scheme:dark;--bg:#07101b;--panel:#101d2b;--line:#29445d;--gold:#f5d36c;--cyan:#75e5f5;--text:#f5f7fa;--muted:#b5c4d2;--warn:#ffd18a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b3450,#07101b 62%);font:16px/1.65 system-ui,"Noto Sans Devanagari",sans-serif;color:var(--text)}main{max-width:1080px;margin:auto;padding:20px 16px 64px}header,.panel{border:1px solid var(--line);border-radius:18px;background:#101d2bf2;padding:20px;margin-bottom:14px}header{text-align:center;border:2px solid var(--gold);padding:clamp(22px,4vw,42px)}h1,h2{color:var(--gold);line-height:1.2}h1{font-size:clamp(2rem,6vw,3.2rem)}h3{color:var(--cyan)}p,.muted{color:var(--muted)}.tag{display:inline-block;border:1px solid var(--cyan);border-radius:999px;padding:3px 10px;color:var(--cyan);font-size:.82rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.tile{border:1px solid var(--line);background:#091522;border-radius:13px;padding:15px}.btn{display:inline-block;background:var(--gold);color:#111827;text-decoration:none;font-weight:850;border-radius:10px;padding:10px 14px;margin:5px 5px 5px 0}.secondary{background:#132a3d;border:1px solid #41617b;color:var(--text)}.note{border-left:4px solid var(--cyan);padding:12px 15px;background:#0b1a27;border-radius:8px}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--gold)}.pill{display:inline-block;border:1px solid var(--warn);color:var(--warn);border-radius:8px;padding:3px 8px;font-size:.8rem;font-weight:800}label{display:block;font-weight:700;margin:10px 0 4px}input,select,textarea{width:100%;padding:11px;border-radius:9px;border:1px solid #42566d;background:#070d16;color:#fff;font:inherit}textarea{min-height:70px}.result{white-space:pre-wrap;overflow-wrap:anywhere;background:#070d16;border:1px dashed #42566d;border-radius:10px;padding:13px;min-height:90px}footer{text-align:center;color:var(--muted);padding:20px}
+</style></head><body><main>
+<header><span class="tag">SHIRMANI RESEARCH INSTITUTE · TRUST & PROVENANCE</span><h1>Product Origin & License Passport</h1><p>हर product की अलग पहचान, version history, स्पष्ट usage rights, test evidence और upgrade record — ग्राहक के भरोसे और creator के काम की सुरक्षा के लिए।</p><a class="btn" href="showroom-public.html">← Public Showroom</a><a class="btn secondary" href="supreme-showroom.html">Product Catalogue</a></header>
+<section class="panel"><h2>एक product passport में क्या होना चाहिए?</h2><div class="grid">
+<article class="tile"><h3>01 · Identity & provenance</h3><p>स्थिर Product ID, नाम, निर्माता/अधिकार धारक का रिकॉर्ड, first release date और version-specific release note।</p></article>
+<article class="tile"><h3>02 · Rights & license</h3><p>किस उपयोग की अनुमति है, commercial use, redistribution, modification, seat/user limits और termination/renewal terms।</p></article>
+<article class="tile"><h3>03 · Integrity & evidence</h3><p>जहाँ उपलब्ध हो, release artifact का cryptographic hash, signed release record, source commit और dated test report। Hash पहचानने में मदद करता है; अपने-आप ownership या originality सिद्ध नहीं करता।</p></article>
+<article class="tile"><h3>04 · Capability & limits</h3><p>वास्तव में काम करने वाली सुविधाएँ, supported formats, known limitations, accessibility/privacy notes और external integrations की स्थिति।</p></article>
+<article class="tile"><h3>05 · Upgrade & support</h3><p>Version changelog, bug-report route, support window, backward compatibility और update/rollback procedure।</p></article>
+<article class="tile"><h3>06 · Buyer transparency</h3><p>Demo status, price and offer validity, refund/support terms, delivery format और buyer acceptance checklist।</p></article>
+</div></section>
+<section class="panel"><h2>Product record — template generator</h2><p>यह browser-local template है। इससे record बनाया जा सकता है, लेकिन यह अपने-आप server पर save, digital signature, license enforcement या hash verification नहीं करता। केवल पुष्टि किए गए तथ्य भरें।</p>
+<form id="passport">
+<label for="pid">Product ID</label><input id="pid" placeholder="जैसे SRI-WRITE-006">
+<label for="name">Product name</label><input id="name" placeholder="सटीक product नाम">
+<label for="version">Version / release date</label><input id="version" placeholder="जैसे v1.0 · YYYY-MM-DD">
+<label for="owner">Rights holder / ownership record</label><input id="owner" placeholder="कानूनी रूप से पुष्टि किया गया नाम/संस्था">
+<label for="license">License model</label><select id="license"><option>Evaluation / demo only</option><option>Single user</option><option>Team / organization</option><option>Commercial use</option><option>Custom written agreement</option><option>Not yet decided</option></select>
+<label for="capabilities">Verified capabilities</label><textarea id="capabilities" placeholder="केवल वास्तविक परीक्षण से पुष्ट सुविधाएँ"></textarea>
+<label for="evidence">Evidence links / release commit / test IDs</label><textarea id="evidence" placeholder="सत्यापित URLs, commit SHA, test result IDs; उपलब्ध न हो तो Not yet recorded लिखें"></textarea>
+<label for="limits">Known limits / pending checks</label><textarea id="limits" placeholder="जो सुविधा अभी बनी या जाँची नहीं गई है"></textarea>
+<label for="support">Support / update terms</label><textarea id="support" placeholder="सहमति से तय शर्तें; अज्ञात हों तो To be agreed"></textarea>
+<button class="btn" type="submit">Passport record बनाएँ</button><button class="btn secondary" type="button" id="copy">Record कॉपी करें</button>
+</form><h3>तैयार रिकॉर्ड</h3><div id="result" class="result" aria-live="polite">फॉर्म भरकर record तैयार करें।</div>
+</section>
+<section class="panel"><h2>Integrity levels — दावा उतना ही जितना प्रमाण</h2><table><thead><tr><th>Level</th><th>अर्थ</th><th>स्वीकार्य प्रमाण का उदाहरण</th></tr></thead><tbody>
+<tr><td>Draft</td><td>योजना या प्रस्ताव</td><td>Brief, specification या backlog entry</td></tr>
+<tr><td>Built</td><td>Artifact मौजूद है</td><td>Versioned file/build और source commit</td></tr>
+<tr><td>Tested</td><td>निर्धारित test चलाया गया</td><td>Test steps, actual result, date और environment</td></tr>
+<tr><td>Verified</td><td>स्वतंत्र/दोहराने योग्य जाँच में अपेक्षित परिणाम मिला</td><td>Evidence artifact, reviewer और reproducible test record</td></tr>
+<tr><td>Released</td><td>लक्षित उपयोगकर्ताओं के लिए प्रकाशित</td><td>Live release URL/version और deployment check</td></tr>
+</tbody></table><p class="note"><strong>Anti-copy policy:</strong> access control, clear license terms, signed releases, audit trails and selective disclosure can reduce unauthorized copying and improve attribution. They cannot make copying physically impossible. Do not publish secrets, private keys, customer data or confidential source code inside a public passport.</p></section>
+<footer>SHIRMANI RESEARCH INSTITUTE · Traceable claims · Clear rights · Continuous improvement</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function record(){return [
+"SHIRMANI RESEARCH INSTITUTE — PRODUCT ORIGIN & LICENSE PASSPORT",
+"Product ID: "+($("pid").value.trim()||"Not recorded"),
+"Product name: "+($("name").value.trim()||"Not recorded"),
+"Version / release date: "+($("version").value.trim()||"Not recorded"),
+"Rights holder / ownership record: "+($("owner").value.trim()||"Not confirmed"),
+"License model: "+$("license").value,
+"Verified capabilities: "+($("capabilities").value.trim()||"Not yet verified"),
+"Evidence links / release commit / test IDs: "+($("evidence").value.trim()||"Not yet recorded"),
+"Known limits / pending checks: "+($("limits").value.trim()||"Not yet recorded"),
+"Support / update terms: "+($("support").value.trim()||"To be agreed"),
+"Status: Draft record — not a legal opinion, digital signature, ownership adjudication, or automated license enforcement."
+].join("\n")}
+$("passport").addEventListener("submit",e=>{e.preventDefault();$("result").textContent=record()});
+$("copy").addEventListener("click",async()=>{const value=$("result").textContent;if(value==="फॉर्म भरकर record तैयार करें।"){$("result").textContent=record()}try{await navigator.clipboard.writeText($("result").textContent)}catch(e){const area=document.createElement("textarea");area.value=$("result").textContent;document.body.appendChild(area);area.select();document.execCommand("copy");area.remove()}});
+</script></body></html>
