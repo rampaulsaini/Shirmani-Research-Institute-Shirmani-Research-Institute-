@@ -14,7 +14,7 @@ WORKFLOW = ROOT / ".github" / "workflows" / "unique-tool-automission.yml"
 
 def validation_script():
     workflow = WORKFLOW.read_text(encoding="utf-8")
-    match = re.search(r"(?ms)^        run: \|\n(?P<block>(?:^          .*\n?)+)", workflow)
+    match = re.search(r"(?ms)^        run: \|\n(?P<block>.*?^          PY\s*$)", workflow)
     if not match:
         raise AssertionError("Could not locate the unique-tool validation run block")
     lines = textwrap.dedent(match.group("block")).splitlines()
