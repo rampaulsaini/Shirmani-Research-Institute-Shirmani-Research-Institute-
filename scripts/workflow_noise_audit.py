@@ -56,7 +56,7 @@ def _schedule_crons(text: str) -> list[str]:
         if in_schedule:
             match = re.match(r"^\s+-\s+cron:\s*(.*?)\s*(?:#.*)?$", line)
             if match:
-                value = match.group(1).strip().strip("\\"'")
+                value = match.group(1).strip().strip(chr(34) + "'")
                 if value:
                     crons.append(value)
     return crons
