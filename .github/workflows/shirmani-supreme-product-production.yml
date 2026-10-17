@@ -62,7 +62,7 @@ jobs:
 
           print("PASS: product artifact exists; JSON documents valid; JSONL parsed line-by-line; IDs unique; counts aligned.")
       - name: Open/update production artifact PR (repository requires PR-based writes)
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automission/product-production

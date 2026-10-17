@@ -34,7 +34,7 @@ jobs:
           python3 -c 'import json; from pathlib import Path; m=json.loads(Path("generated/product-demo-video-manifest.json").read_text(encoding="utf-8")); assert m["catalog_count"] > 0; assert all(x["demo_route"].startswith("product-demo.html?id=") for x in m["products"]); assert all(x["fallback_demo"] for x in m["products"]); print("DEMO_ROUTES:",m["catalog_count"]); print("ENGINES:",m["engine_count"]); print("DEMO_ROUTE_GATE: PASS")'
 
       - name: Publish customer-facing demo manifest through a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automission/product-demo-manifest
