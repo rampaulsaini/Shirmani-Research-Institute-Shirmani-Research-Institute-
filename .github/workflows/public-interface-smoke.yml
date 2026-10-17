@@ -5,6 +5,7 @@ on:
     paths:
       - "showroom-public.html"
       - "heart-view-preview.html"
+      - "outreach-income-workbench.html"
       - "tests/public_interface_smoke.py"
       - ".github/workflows/public-interface-smoke.yml"
   push:
