@@ -3,8 +3,11 @@
 from __future__ import annotations
 from datetime import datetime, timezone
 from pathlib import Path
-import json, os
+import json, os, sys
 ROOT=Path(__file__).resolve().parents[1]
+# Direct script execution puts factory/ rather than the repository root on sys.path.
+# Add the root before any factory.* imports are evaluated.
+sys.path.insert(0, str(ROOT))
 GEN=ROOT/"generated"; CAT=GEN/"1000-digital-products.json"
 OUT=ROOT/"products/production"; VIS=ROOT/"products/visuals"
 LIVE=GEN/"live-production-state.json"; OVERLAY=GEN/"concrete-production-overlay.json"
