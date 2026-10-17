@@ -6,6 +6,8 @@ on:
       - ".github/workflows/**"
       - "scripts/workflow_noise_audit.py"
       - "tests/test_workflow_noise_audit.py"
+      - "tests/test_production_first_conveyor.py"
+      - "scripts/production_first_conveyor.py"
       - "docs/WORKFLOW-NOISE-FILTER-ZERO-LOSS.md"
   workflow_dispatch:
 
@@ -31,7 +33,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Run audit tests
-        run: python -m unittest tests/test_workflow_noise_audit.py -v
+        run: python -m unittest tests/test_workflow_noise_audit.py tests/test_production_first_conveyor.py -v
       - name: Build read-only workflow inventory
         run: python scripts/workflow_noise_audit.py > workflow-noise-audit.json
       - name: Upload audit report

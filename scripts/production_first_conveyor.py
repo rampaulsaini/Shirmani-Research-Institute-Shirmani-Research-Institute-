@@ -49,9 +49,12 @@ for p in products():
                  "gaps":gaps,"priority":len(gaps)})
 rows.sort(key=lambda x:(-x["priority"],x["id"]))
 stamp=datetime.now(timezone.utc).isoformat()
+QUEUE_LIMIT=250
 manifest={"schema_version":"production-first-conveyor.v1","generated_at":stamp,"catalog_identities":len(rows),
           "fully_gap_free_records":sum(not r["gaps"] for r in rows),"records_with_production_gaps":sum(bool(r["gaps"]) for r in rows),
-          "gap_counts":counts,"queue":rows[:5000],"principle":"Production first: workflow execution is not counted as a product."}
+          "gap_counts":counts,"queue_limit":QUEUE_LIMIT,"queue_records":min(len(rows),QUEUE_LIMIT),
+          "queue_truncated":len(rows)>QUEUE_LIMIT,"queue":rows[:QUEUE_LIMIT],
+          "principle":"Production first: workflow execution is not counted as a product. Queue is a bounded priority sample; catalog and gap totals cover all records."}
 state={"generated_at":stamp,"catalog_identities":len(rows),
        "production_gap_records":manifest["records_with_production_gaps"],
        "fully_gap_free_records":manifest["fully_gap_free_records"],
@@ -75,6 +78,6 @@ if manifest_same and state_same and previous_stamp:
     stamp=previous_stamp
     manifest["generated_at"]=stamp
     state["generated_at"]=stamp
-manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
-state_path.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+state_path.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print(json.dumps(manifest["gap_counts"],ensure_ascii=False))
