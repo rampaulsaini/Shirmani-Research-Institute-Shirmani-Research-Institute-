@@ -15,7 +15,9 @@ permissions:
   contents: read
 concurrency:
   group: shirmani-resilience-watchdog
-  cancel-in-progress: true
+  # Never cancel an active watchdog: it may be performing the bounded recovery retry below.
+  # GitHub keeps one running and at most one pending run per group; newer pending runs may replace older pending runs.
+  cancel-in-progress: false
 jobs:
   watchdog:
     runs-on: ubuntu-latest
