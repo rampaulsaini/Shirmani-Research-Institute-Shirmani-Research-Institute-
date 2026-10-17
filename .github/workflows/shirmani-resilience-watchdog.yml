@@ -15,7 +15,10 @@ permissions:
   contents: read
 concurrency:
   group: shirmani-resilience-watchdog
-  cancel-in-progress: true
+  # Do not interrupt an active recovery/API request when another event arrives.
+  cancel-in-progress: false
+  # Retain queued watchdog events instead of silently replacing pending recovery checks.
+  queue: max
 jobs:
   watchdog:
     runs-on: ubuntu-latest
