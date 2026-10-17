@@ -31,7 +31,7 @@ jobs:
       VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.vip_batch || '50' }}
       QR_BATCH: "500"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Install media dependencies

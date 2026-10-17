@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Reconcile concrete products to media queues
         run: python3 factory/product_media_reconciler.py
       - name: Build scalable catalogue shard index
