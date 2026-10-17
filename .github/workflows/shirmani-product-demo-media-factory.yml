@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: shirmani-product-demo-media
@@ -27,20 +28,28 @@ jobs:
         uses: actions/checkout@v4
       - name: Build engine-family demo MP4s and product media manifest
         run: python3 factory/product_demo_video_factory.py
-      - name: Publish demo media
-        run: |
-          git config user.name "SHIRMANI Product Demo Media Factory"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add products/demos generated/product-media-production-manifest.json
-          if git diff --cached --quiet; then
-            echo "No demo-media delta"
-          else
-            git commit -m "chore(media): materialize product demo videos and media manifest"
-            git push origin HEAD:main
-          fi
+      - name: Publish demo media through a reviewable pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/product-demo-media
+          delete-branch: false
+          title: "chore(media): publish product demo media and manifest"
+          commit-message: "chore(media): materialize product demo videos and media manifest"
+          body: |
+            Automated product demo media and manifest update.
+
+            Review requirements:
+            - Confirm generated assets are bounded and relevant.
+            - Confirm manifest entries have stable product identity.
+            - Confirm no timestamp-only or otherwise meaningless churn.
+            - Verify generated media before treating it as product-specific evidence.
+          add-paths: |
+            products/demos
+            generated/product-media-production-manifest.json
       - name: Summary
         run: |
           echo "## SHIRMANI Demo Media" >> "$GITHUB_STEP_SUMMARY"
           echo "- Interactive demo route: demo-video.html?id=PRODUCT_ID" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Engine-family MP4s: generated continuously" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Engine-family MP4s: generated; publication is proposed through a reviewable PR" >> "$GITHUB_STEP_SUMMARY"
           echo "- Product-specific identity remains separate from reusable engine-family demo media" >> "$GITHUB_STEP_SUMMARY"
