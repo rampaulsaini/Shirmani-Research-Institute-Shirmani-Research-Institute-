@@ -108,19 +108,25 @@ jobs:
               had_manifest=manifest_path.exists()
               if had_out:
                   os.replace(out,backup_out)
+              installed_out=False
+              installed_manifest=False
               try:
                   if had_manifest:
                       os.replace(manifest_path,backup_manifest)
                   os.replace(staged_out,out)
+                  installed_out=True
                   os.replace(staged_manifest,manifest_path)
+                  installed_manifest=True
               except Exception:
-                  if out.exists():
+                  if installed_out and out.exists():
                       shutil.rmtree(out)
-                  if manifest_path.exists():
+                  if installed_manifest and manifest_path.exists():
                       manifest_path.unlink()
                   if had_out and backup_out.exists():
                       os.replace(backup_out,out)
                   if had_manifest and backup_manifest.exists():
+                      if manifest_path.exists():
+                          manifest_path.unlink()
                       os.replace(backup_manifest,manifest_path)
                   raise
           print(json.dumps(manifest,ensure_ascii=False))
