@@ -51,6 +51,19 @@ class ProductionFirstConveyorTests(unittest.TestCase):
             self.assertEqual(state["catalog_identities"], 300)
             self.assertEqual(state["production_gap_records"], 300)
 
+            manifest_path = generated / "production-first-conveyor.json"
+            state_path = generated / "production-first-state.json"
+            manifest_bytes = manifest_path.read_bytes()
+            state_bytes = state_path.read_bytes()
+            subprocess.run(
+                [sys.executable, str(copied_script)],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(manifest_path.read_bytes(), manifest_bytes)
+            self.assertEqual(state_path.read_bytes(), state_bytes)
+
 
 if __name__ == "__main__":
     unittest.main()
