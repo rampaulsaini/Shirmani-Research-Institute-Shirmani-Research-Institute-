@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-unique-tool-automission
   cancel-in-progress: false
@@ -13,25 +14,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Validate unique tool production set
         run: |
           python - <<'PY'
           import json, pathlib, hashlib, datetime
           root=pathlib.Path(".")
-          cat=json.loads((root/"factory/unique-tool-catalog.json").read_text())
+          cat=json.loads((root/"factory/unique-tool-catalog.json").read_text(encoding="utf-8"))
           rows=[]
+          seen=set()
           for p in cat["tools"]:
-              f=root/p["path"]
-              ok=f.exists() and f.stat().st_size>250
-              rows.append({"id":p["id"],"name":p["name"],"path":p["path"],"status":"PRODUCED" if ok else "MISSING","sha256":hashlib.sha256(f.read_bytes()).hexdigest() if ok else None})
+              pid=str(p.get("id","")).strip()
+              rel=str(p.get("path","")).strip()
+              if not pid or pid in seen:
+                  raise SystemExit(f"Missing or duplicate tool id: {pid!r}")
+              seen.add(pid)
+              f=root/rel
+              ok=f.is_file() and f.stat().st_size>250
+              rows.append({"id":pid,"name":p.get("name"),"path":rel,"status":"PRODUCED" if ok else "MISSING","sha256":hashlib.sha256(f.read_bytes()).hexdigest() if ok else None})
+          if not rows:
+              raise SystemExit("Unique tool catalog is empty; refusing to publish an empty manifest.")
           out={"schema_version":1,"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"cycle":"UNIQUE_TOOL_AUTOMISSION","tool_count":len(rows),"produced_count":sum(x["status"]=="PRODUCED" for x in rows),"remaining_count":sum(x["status"]!="PRODUCED" for x in rows),"tools":rows,"verification":"DOWNSTREAM"}
           (root/"generated").mkdir(exist_ok=True)
-          (root/"generated/unique-tool-production-manifest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n")
+          (root/"generated/unique-tool-production-manifest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(out,ensure_ascii=False,indent=2))
           PY
-      - name: Commit production manifest
-        run: |
-          git config user.name "SHIRMANI Unique Tool Automission"
-          git config user.email "actions@users.noreply.github.com"
-          git add generated/unique-tool-production-manifest.json
-          git diff --cached --quiet || (git commit -m "automission: update unique tool production manifest" && git push)
+      - name: Publish manifest through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "automission: update unique tool production manifest"
+          title: "Automission: update unique digital tool manifest"
+          body: |
+            Refreshes the unique-tool production manifest from the six catalogued source files.
+            The manifest records file existence and SHA-256 only; functional verification remains downstream.
+          branch: "automission/unique-tool-production-manifest"
+          delete-branch: true
+          add-paths: generated/unique-tool-production-manifest.json
