@@ -12,7 +12,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = (ROOT / "showroom-public.html", ROOT / "heart-view-preview.html")
+PAGES = (ROOT / "showroom-public.html", ROOT / "heart-view-preview.html", ROOT / "outreach-income-workbench.html")
 REQUIRED_TEXT = {
     "showroom-public.html": (
         "Public Showroom",
@@ -25,6 +25,12 @@ REQUIRED_TEXT = {
         "Voice-to-Presentation Studio",
         "Lip-sync",
         "Live question-and-answer",
+    ),
+    "outreach-income-workbench.html": (
+        "Outreach & Income Workbench",
+        "Payment confirmed",
+        "Recorded receipts (INR)",
+        "non-sensitive receipt reference",
     ),
 }
 REQUIRED_SHOWROOM_ROUTES = (
