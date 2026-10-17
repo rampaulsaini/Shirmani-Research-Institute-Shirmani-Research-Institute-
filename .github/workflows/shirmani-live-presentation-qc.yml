@@ -79,7 +79,6 @@ jobs:
           p=Path("generated/live-presentation-qc.json")
           p.write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(out,ensure_ascii=False))
-          Path("generated").mkdir(exist_ok=True)
 
       - name: Publish QC state through a pull request
         uses: peter-evans/create-pull-request@v7
