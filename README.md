@@ -1,3 +1,5 @@
+- **Organized Public Interface Hub:** [open the simplified, searchable public entry point](public-interface-hub.html) — groups existing service, showroom, writing, research and presentation routes; it preserves existing pages and labels prototype/integration boundaries honestly.
+
 - **SHIRMANI SUPREME — Character Description v2 (2026-10-13):** [approved character behaviour, original-photo/voice lock, evidence states, layered explanations and product-media release tests](docs/production/SHIRMANI-SUPREME-CHARACTER-DESCRIPTION-V2-2026-10-13.md) — written specification only; connected voice/avatar/MP4/live states require real assets and recorded tests.
 
 - **SHIRMANI SUPREME — Final Character Brief (2026-10-12):** [approved character, original-photo/voice identity lock, evidence states, product media contract and measurable release gates](docs/production/SHIRMANI-SUPREME-FINAL-CHARACTER-BRIEF-2026-10-12.md) — documented brief; live integrations/media count as complete only when backed by actual tests and artefacts.
