@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-unique-tool-automission
   cancel-in-progress: false
@@ -26,12 +27,28 @@ jobs:
               rows.append({"id":p["id"],"name":p["name"],"path":p["path"],"status":"PRODUCED" if ok else "MISSING","sha256":hashlib.sha256(f.read_bytes()).hexdigest() if ok else None})
           out={"schema_version":1,"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"cycle":"UNIQUE_TOOL_AUTOMISSION","tool_count":len(rows),"produced_count":sum(x["status"]=="PRODUCED" for x in rows),"remaining_count":sum(x["status"]!="PRODUCED" for x in rows),"tools":rows,"verification":"DOWNSTREAM"}
           (root/"generated").mkdir(exist_ok=True)
-          (root/"generated/unique-tool-production-manifest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n")
+          manifest=root/"generated/unique-tool-production-manifest.json"
+          if manifest.exists():
+              try:
+                  previous=json.loads(manifest.read_text(encoding="utf-8"))
+                  stable_previous={k:v for k,v in previous.items() if k!="generated_at"}
+                  stable_current={k:v for k,v in out.items() if k!="generated_at"}
+                  if stable_previous==stable_current:
+                      print("Unique-tool manifest unchanged; avoiding timestamp-only publication.")
+                      raise SystemExit(0)
+              except (json.JSONDecodeError, OSError):
+                  pass
+          manifest.write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(out,ensure_ascii=False,indent=2))
           PY
-      - name: Commit production manifest
-        run: |
-          git config user.name "SHIRMANI Unique Tool Automission"
-          git config user.email "actions@users.noreply.github.com"
-          git add generated/unique-tool-production-manifest.json
-          git diff --cached --quiet || (git commit -m "automission: update unique tool production manifest" && git push)
+      - name: Publish production manifest through pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "automission: update unique tool production manifest"
+          title: "Automission: update unique digital tool production manifest"
+          body: |
+            Automated evidence manifest for the six catalogued unique digital tools.
+            The report records file presence and SHA-256 hashes; independent functional verification remains downstream.
+          branch: "automation/unique-tool-production-manifest"
+          delete-branch: true
+          add-paths: generated/unique-tool-production-manifest.json
