@@ -1,0 +1,83 @@
+name: SHIRMANI Truth-First Automission Watchdog
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: shirmani-truth-first-watchdog-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    name: Read-only continuity and workflow health audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Summarize recent workflow health without changing production
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+            const response = await github.rest.actions.listWorkflowRunsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100
+            });
+            const runs = response.data.workflow_runs.filter(run =>
+              Date.parse(run.created_at) >= cutoff
+            );
+            const counts = { success: 0, failure: 0, cancelled: 0, queued: 0, in_progress: 0, waiting: 0, other: 0 };
+            for (const run of runs) {
+              const status = run.status === "completed" ? (run.conclusion || "other") : run.status;
+              if (Object.hasOwn(counts, status)) counts[status]++;
+              else counts.other++;
+            }
+            const attention = runs.filter(run =>
+              run.status !== "completed" ||
+              ["failure", "cancelled", "timed_out", "action_required", "startup_failure"].includes(run.conclusion)
+            ).slice(0, 30);
+            const lines = [
+              "# SHIRMANI Truth-First Automission Watchdog",
+              "",
+              "> Read-only audit. This workflow does not cancel, rerun, delete, merge, or deploy anything.",
+              "",
+              "- Window: last 24 hours (from the latest 100 repository workflow runs returned by GitHub).",
+              "- Runs inspected in window: **" + runs.length + "**",
+              "",
+              "## Status counts",
+              "",
+              "| Status | Count |",
+              "|---|---:|",
+              ...Object.entries(counts).map(([key, value]) => "| " + key + " | " + value + " |"),
+              "",
+              "## Runs needing attention",
+              ""
+            ];
+            if (!attention.length) {
+              lines.push("No pending, active, or non-success completed runs were found in the inspected window.");
+            } else {
+              lines.push("| Workflow | Run | Status / conclusion | Branch | Created (UTC) |");
+              lines.push("|---|---:|---|---|---|");
+              for (const run of attention) {
+                const status = run.status === "completed" ? (run.conclusion || "unknown") : run.status;
+                lines.push("| [" + run.name.replace(/\|/g, "\\|") + "](" + run.html_url + ") | #" + run.run_number + " | " + status + " | " + (run.head_branch || "—").replace(/\|/g, "\\|") + " | " + run.created_at + " |");
+              }
+            }
+            lines.push(
+              "",
+              "## Guardrails",
+              "",
+              "- A cancelled run is not automatically a failure; inspect its event, concurrency group, and logs before retrying.",
+              "- A queued or in-progress serialized run is not labelled failed.",
+              "- No run is automatically rerun or cancelled; preserve production safety and avoid duplicate work.",
+              "- This report covers only the latest 100 runs returned by the API and is not a guarantee of complete repository-wide history."
+            );
+            await core.summary.addRaw(lines.join("\n")).write();
+            core.notice("Read-only workflow health audit complete; see the job summary.");
