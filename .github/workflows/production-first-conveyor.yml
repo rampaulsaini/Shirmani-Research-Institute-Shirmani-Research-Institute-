@@ -17,6 +17,8 @@ jobs:
       PYTHONPATH: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v4
+      - name: Test bounded queue and valid JSON output
+        run: python -m unittest tests/test_production_first_conveyor.py -v
       - name: Build production queue and public telemetry
         run: python scripts/production_first_conveyor.py
       - name: Propose telemetry update through a pull request
