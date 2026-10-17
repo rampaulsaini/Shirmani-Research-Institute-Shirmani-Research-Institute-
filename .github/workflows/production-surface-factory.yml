@@ -5,6 +5,7 @@ on:
     - cron: "*/5 * * * *"
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-production-surface-factory
   cancel-in-progress: false
@@ -20,11 +21,24 @@ jobs:
         env:
           PRODUCT_SURFACE_BATCH: "25"
         run: python3 factory/product_surface_factory.py
-      - name: Publish production result
-        run: |
-          git config user.name "SHIRMANI Production Surface Factory"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add catalog generated/product-surface-manifest.json products/live
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "feat(production): materialize public product surfaces and catalog shards"
-          git push origin HEAD:main
+      - name: Publish production result through pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          add-paths: |
+            catalog/**
+            generated/product-surface-manifest.json
+            products/live/**
+          branch: automation/production-surface-factory
+          delete-branch: true
+          base: main
+          title: "chore(factory): publish production surfaces and catalogue shards"
+          commit-message: "feat(production): materialize public product surfaces and catalog shards"
+          body: |
+            ## Automated production batch
+
+            - Refreshes catalogue shards and a bounded batch of product surfaces.
+            - Keeps publication behind the repository's required pull-request review path.
+            - Generated public surfaces are not evidence of sale, delivery, payment, scientific verification, or independent human review.
+
+            Please review generated changes and the product manifest before merging.
