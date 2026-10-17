@@ -71,7 +71,8 @@ jobs:
           python3 factory/public_module_inventory.py
           python3 factory/real_product_factory.py
           python3 factory/materialize_all_product_assets.py
-          rm -rf products/concrete
+          # Preserve existing concrete assets. Never wipe this production directory
+          # during an automated repair; reconcile removals in a separate reviewed change.
           mkdir -p products/concrete
           cp -a products/production/. products/concrete/
           python3 - <<'PY'
@@ -191,4 +192,9 @@ jobs:
           git add generated products factory assets
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "fix(production): repair production-state conflicts and rebuild public outputs"
+          # Another production writer may have advanced the branch since the
+          # initial fetch. Integrate its commit before publishing; if files
+          # conflict, stop safely instead of overwriting remote production state.
+          git fetch origin automation/production-state
+          git merge --no-edit FETCH_HEAD
           git push origin HEAD:automation/production-state
