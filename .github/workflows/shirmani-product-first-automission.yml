@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build product-first catalog
         run: python3 factory/product_orchestrator.py
       - name: Run product catalog integrity checks
