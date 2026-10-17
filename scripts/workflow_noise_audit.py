@@ -148,7 +148,7 @@ def build_report(root: Path) -> dict:
         "review_candidates": candidates,
         "policy": [
             "A candidate is a human-review lead, never an automatic deletion instruction.",
-            "A literal reference is evidence to inspect; no detected reference is not proof that a workflow is unused.",
+            "A literal reference is evidence to inspect; absence of a detected reference is not proof that a workflow is unused.",
             "Do not retire security, deployment, persistence, data-integrity, or recovery workflows based on names or run counts.",
             "Before any removal, prove replacement coverage, inspect dependencies and recent run history, preserve the file in version control, and test on a branch.",
             "Skipped, cancelled, pending, and successful runs are distinct states and must not be conflated.",
