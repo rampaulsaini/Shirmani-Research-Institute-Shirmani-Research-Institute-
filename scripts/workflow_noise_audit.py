@@ -9,6 +9,15 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+# These workflow roles are protected from being treated as disposable noise.
+# The heuristic is intentionally conservative: matches require human review,
+# and no classification in this tool ever authorizes deletion.
+PROTECTED_TERMS = (
+    "security", "deploy", "deployment", "persist", "production", "state",
+    "integrity", "backup", "restore", "rollback", "recovery", "truth",
+    "release", "publish", "pages", "gate", "watchdog", "smoke",
+)
+
 
 def _top_level_value(text: str, key: str) -> str | None:
     match = re.search(rf"(?m)^{re.escape(key)}:\s*(.*?)\s*$", text)
@@ -32,16 +41,27 @@ def _events(text: str) -> list[str]:
     return sorted(set(events))
 
 
+def _triage(path: str, name: str) -> tuple[str, str]:
+    """Return a conservative retention class and action; never recommend deletion."""
+    identity = f"{path} {name}".casefold()
+    if any(term in identity for term in PROTECTED_TERMS):
+        return "protected-critical", "retain-and-verify-replacement-before-any-retirement"
+    return "review-candidate", "human-review-only-no-automatic-deletion"
+
+
 def inspect_workflow(path: Path, root: Path) -> dict:
     raw = path.read_bytes()
     text = raw.decode("utf-8", errors="replace")
     name = _top_level_value(text, "name") or path.stem
+    name = name.strip().strip("\"'")
+    relative_path = path.relative_to(root).as_posix()
     events = _events(text)
     permissions = re.search(r"(?ms)^permissions:\s*\n((?:^[ \t]+.*\n?)*)", text)
     permission_block = permissions.group(1) if permissions else ""
     write_permissions = bool(re.search(r"(?m)^\s+[A-Za-z0-9_-]+:\s*write\s*$", permission_block))
     cancel = re.search(r"(?m)^\s+cancel-in-progress:\s*(true|false)\s*$", text)
     cancel_in_progress = cancel.group(1).lower() == "true" if cancel else None
+    retention_class, triage_action = _triage(relative_path, name)
     review_reasons = []
     if events == ["workflow_dispatch"]:
         review_reasons.append("manual-dispatch-only: confirm this is still needed; not a deletion recommendation")
@@ -49,13 +69,17 @@ def inspect_workflow(path: Path, root: Path) -> dict:
         review_reasons.append("write-permission: retain unless a documented least-privilege replacement is verified")
     if cancel_in_progress is True:
         review_reasons.append("cancels-in-progress: inspect concurrency group and critical-work impact")
+    if retention_class == "protected-critical":
+        review_reasons.append("protected-critical: preserve unless replacement coverage and rollback are proven")
     return {
-        "path": path.relative_to(root).as_posix(),
-        "name": name.strip().strip("\"'"),
+        "path": relative_path,
+        "name": name,
         "events": events,
         "sha256": hashlib.sha256(raw).hexdigest(),
         "write_permissions": write_permissions,
         "cancel_in_progress": cancel_in_progress,
+        "retention_class": retention_class,
+        "triage_action": triage_action,
         "review_reasons": review_reasons,
     }
 
@@ -75,30 +99,47 @@ def build_report(root: Path) -> dict:
     candidates = []
     for digest, paths in sorted(by_hash.items()):
         if len(paths) > 1:
-            candidates.append({"type": "exact-content-duplicate-review", "paths": paths,
-                               "reason": "byte-identical files; verify references and triggers before any retirement"})
+            candidates.append({
+                "type": "exact-content-duplicate-review",
+                "paths": paths,
+                "recommended_action": "compare references, triggers, run history, and dependencies; do not delete automatically",
+                "reason": "byte-identical files; verify references and triggers before any retirement",
+            })
     for name, paths in sorted(by_name.items()):
         if len(paths) > 1:
-            candidates.append({"type": "duplicate-name-review", "paths": paths,
-                               "reason": "same declared workflow name; inspect behavior and triggers manually"})
+            candidates.append({
+                "type": "duplicate-name-review",
+                "paths": paths,
+                "recommended_action": "compare behavior and dependencies; do not delete automatically",
+                "reason": "same declared workflow name; inspect behavior and triggers manually",
+            })
     for item in entries:
         if item["review_reasons"]:
-            candidates.append({"type": "workflow-risk-review", "paths": [item["path"]],
-                               "reason": "; ".join(item["review_reasons"])})
+            candidates.append({
+                "type": "workflow-risk-review",
+                "paths": [item["path"]],
+                "recommended_action": item["triage_action"],
+                "reason": "; ".join(item["review_reasons"]),
+            })
+    protected_count = sum(1 for item in entries if item["retention_class"] == "protected-critical")
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "mode": "read-only",
         "deletion_performed": False,
+        "automatic_deletion_enabled": False,
         "scope": ".github/workflows/*.yml and *.yaml in the checked-out repository",
         "workflow_count": len(entries),
+        "protected_critical_count": protected_count,
+        "review_candidate_count": len(entries) - protected_count,
         "exact_duplicate_groups": sum(1 for paths in by_hash.values() if len(paths) > 1),
         "duplicate_name_groups": sum(1 for paths in by_name.values() if len(paths) > 1),
         "workflows": entries,
         "review_candidates": candidates,
         "policy": [
             "A candidate is a human-review lead, never an automatic deletion instruction.",
-            "Do not retire security, deployment, persistence, data-integrity, or recovery workflows based on names or run counts.",
-            "Before any removal, prove replacement coverage, inspect dependencies and recent run history, preserve the file in version control, and test on a branch.",
+            "Security, deployment, persistence, production state, data-integrity, backup, rollback, and recovery paths are protected by conservative name/path heuristics.",
+            "A protected classification is not proof of correctness; verify the workflow and its dependencies.",
+            "Do not retire any workflow until replacement coverage, dependencies, run history, branch-only tests, reviewer approval, and rollback are documented.",
             "Skipped, cancelled, pending, and successful runs are distinct states and must not be conflated.",
         ],
     }
