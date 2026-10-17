@@ -13,7 +13,7 @@ on:
       - "generated/concrete-production-overlay.json"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: shirmani-product-media-coverage
@@ -27,11 +27,34 @@ jobs:
       - uses: actions/checkout@v4
       - name: Measure customer-facing product media coverage
         run: python3 factory/product_media_coverage.py
-      - name: Publish coverage telemetry
-        uses: stefanzweifel/git-auto-commit-action@v7
+      - name: Emit concise coverage summary
+        shell: python
+        run: |
+          import json, os
+          from pathlib import Path
+          report = json.loads(Path("generated/product-media-coverage.json").read_text(encoding="utf-8"))
+          summary = Path(os.environ["GITHUB_STEP_SUMMARY"])
+          lines = [
+              "## SHIRMANI Product Media Coverage",
+              "",
+              f"- Products measured: **{report['product_count']}**",
+              f"- Complete media packages: **{report['complete_media_package_count']}** ({report['complete_media_package_percent']}%)",
+              f"- Catalog source: `{report['catalog_source']}`",
+              f"- Generated at (UTC): `{report['generated_at']}`",
+              "",
+              "| Asset check | Present | Coverage |",
+              "|---|---:|---:|",
+          ]
+          for key, count in report["summary"].items():
+              lines.append(f"| {key} | {count} | {report['coverage_percent'][key]}% |")
+          lines += ["", f"> {report['truth_boundary']}", ""]
+          with summary.open("a", encoding="utf-8") as f:
+              f.write("\n".join(lines))
+      - name: Archive detailed report for manual review only
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
         with:
-          commit_message: "chore(showroom): refresh product media coverage"
-          file_pattern: "generated/product-media-coverage.json"
-          commit_user_name: "SHIRMANI Automission"
-          commit_user_email: "actions@users.noreply.github.com"
-          commit_author: "SHIRMANI Automission <actions@users.noreply.github.com>"
+          name: product-media-coverage-${{ github.run_id }}
+          path: generated/product-media-coverage.json
+          if-no-files-found: error
+          retention-days: 3
