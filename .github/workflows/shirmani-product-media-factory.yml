@@ -1,9 +1,10 @@
 name: SHIRMANI Product Media Factory
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "47 3 * * *"
   workflow_dispatch:
 concurrency:
+  # Serialize this writer with any other media publisher using this group.
   group: shirmani-product-media-factory
   cancel-in-progress: false
 permissions:
@@ -17,6 +18,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 1
+          persist-credentials: false
       - name: Install media tools
         run: |
           sudo apt-get update
