@@ -54,12 +54,34 @@ jobs:
           root=Path(".")
           overlay=root/"generated/concrete-production-overlay.json"
           catalog=root/"generated/1000-digital-products.json"
-          data=json.loads(overlay.read_text(encoding="utf-8"))
-          rows=data.get("products",[])
-          if not rows:
-              raise SystemExit("Concrete production overlay is empty; refusing media production.")
+          raw=overlay.read_text(encoding="utf-8")
+          decoder=json.JSONDecoder()
+          snapshots=[]
+          pos=0
+          while pos < len(raw):
+              while pos < len(raw) and raw[pos].isspace():
+                  pos += 1
+              if pos >= len(raw):
+                  break
+              try:
+                  item,end=decoder.raw_decode(raw,pos)
+              except json.JSONDecodeError as exc:
+                  if snapshots:
+                      print(f"WARNING: recovered {len(snapshots)} complete JSON snapshot(s); ignored invalid trailing data at offset {exc.pos}.")
+                      break
+                  raise SystemExit(f"Production overlay has no complete valid JSON snapshot: {exc}") from exc
+              if isinstance(item,dict) and isinstance(item.get("products"),list) and item["products"]:
+                  snapshots.append(item)
+              pos=end
+          if not snapshots:
+              raise SystemExit("No complete non-empty production overlay snapshot; refusing media production.")
+          # A shared production-state file may contain concatenated snapshots after
+          # concurrent writers. Choose the newest complete snapshot, then prefer the
+          # larger product set when timestamps are identical. Never publish zero rows.
+          data=max(snapshots,key=lambda item:(str(item.get("generated_at","")),len(item["products"])))
+          rows=data["products"]
           catalog.write_text(json.dumps({"schema_version":2,"products":rows},ensure_ascii=False),encoding="utf-8")
-          print("media catalog rows:",len(rows))
+          print("media catalog rows:",len(rows),"complete snapshots recovered:",len(snapshots))
           PY
       - name: Produce next bounded product-specific video batch
         env:
@@ -90,6 +112,7 @@ jobs:
           add-paths: |
             products/demos/products
             generated/product-specific-demo-video-manifest.json
+            generated/product-media-production-manifest.json
 
       - name: Auto-merge published production media
         if: steps.publish_media.outputs.pull-request-number != ''
