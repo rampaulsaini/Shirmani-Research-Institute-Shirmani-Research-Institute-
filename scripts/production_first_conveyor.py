@@ -78,6 +78,6 @@ if manifest_same and state_same and previous_stamp:
     stamp=previous_stamp
     manifest["generated_at"]=stamp
     state["generated_at"]=stamp
-manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
-state_path.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+state_path.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print(json.dumps(manifest["gap_counts"],ensure_ascii=False))
