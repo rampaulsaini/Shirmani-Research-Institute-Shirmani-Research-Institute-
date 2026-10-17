@@ -1,12 +1,11 @@
 {
-  "generated_at": "2026-10-17T18:41:12.630329+00:00",
-  "product_assets": 5000,
+  "generated_at": "2026-10-17T18:47:39.518156+00:00",
+  "product_assets": 3516,
   "catalog_products": 5000,
-  "materialization_percent": 100.0,
+  "materialization_percent": 70.32,
   "asset_directory": "products/concrete/",
   "showroom": "showroom.html",
-  "state": "READY_FOR_QC",
+  "state": "IN_PROGRESS",
   "dispatch": "NO",
-  "principle": "Concrete non-empty repository assets are production evidence; QC, dispatch, payment and independent verification remain downstream.",
-  "concrete_product_assets": 5000
+  "principle": "Concrete repository-bound assets are production evidence; QC, dispatch and independent verification remain downstream."
 }
