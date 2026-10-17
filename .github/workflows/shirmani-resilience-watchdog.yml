@@ -15,7 +15,7 @@ permissions:
   contents: read
 concurrency:
   group: shirmani-resilience-watchdog
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   watchdog:
     runs-on: ubuntu-latest
