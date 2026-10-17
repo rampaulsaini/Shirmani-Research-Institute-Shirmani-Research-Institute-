@@ -35,7 +35,9 @@ jobs:
           git fetch origin automation/production-state
           git fetch origin main
           git checkout -B automation/production-state origin/automation/production-state
-          git checkout origin/main -- factory/incremental_product_production.py factory/materialize_all_product_assets.py factory/product_visual_identity_factory_v2.py
+          # The persistent branch owns generated state, while executable code and
+          # its regression tests must always come from the reviewed main commit.
+          git checkout origin/main -- factory/incremental_product_production.py factory/materialize_all_product_assets.py factory/product_visual_identity_factory_v2.py scripts/ensure_product_catalog.py tests/test_catalog_recovery.py
       - name: Test catalog recovery safety gates
         run: python3 -m unittest tests/test_catalog_recovery.py -v
       - name: Ensure the persistent branch has a usable product catalog
