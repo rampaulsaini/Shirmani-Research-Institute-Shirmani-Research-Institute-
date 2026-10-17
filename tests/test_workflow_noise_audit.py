@@ -40,8 +40,8 @@ class WorkflowNoiseAuditTests(unittest.TestCase):
             workflow_dir = root / ".github" / "workflows"
             workflow_dir.mkdir(parents=True)
             (workflow_dir / "frequent.yml").write_text(
-                'name: Frequent worker\\non:\\n  schedule:\\n    - cron: "*/5 * * * *"\\n'
-                '  workflow_dispatch:\\npermissions:\\n  contents: read\\n',
+                'name: Frequent worker\non:\n  schedule:\n    - cron: "*/5 * * * *"\n'
+                '  workflow_dispatch:\npermissions:\n  contents: read\n',
                 encoding="utf-8",
             )
             report = build_report(root)
