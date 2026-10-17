@@ -1,13 +1,15 @@
-name: SHIRMANI Product Media Factory
+name: SHIRMANI Product Media Factory — Legacy Renderer
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "47 3 * * *"
   workflow_dispatch:
 concurrency:
+  # Shared with the primary media factory so overlapping writers stay serialized.
   group: shirmani-product-media-factory
   cancel-in-progress: false
 permissions:
   contents: write
+  pull-requests: write
 jobs:
   media-production:
     runs-on: ubuntu-latest
@@ -16,6 +18,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 1
+          persist-credentials: false
       - name: Install media tools
         run: |
           sudo apt-get update
@@ -24,10 +27,33 @@ jobs:
         env:
           MEDIA_BATCH: "10"
         run: python3 factory/product_media_factory.py
-      - name: Commit production media
+      - name: Propose generated media through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/shirmani-product-media-factory-output
+          delete-branch: false
+          add-paths: |
+            factory/product_media_factory.py
+            generated/product-specific-demo-video-manifest.json
+            products/demos
+            products/vip-screenshots
+          commit-message: "production: materialize product demo media batch"
+          title: "production: propose legacy media factory batch"
+          body: |
+            Automated proposal for the legacy renderer's product-demo MP4 and VIP screenshot batch.
+            This workflow preserves protected-main rules and does not push directly to main.
+            Review manifest-to-file consistency, media hashes, rendered playback, and screenshot QC before merging.
+            Generated media existence alone is not proof of a genuine UI-captured demo or production readiness.
+          labels: |
+            automation
+            verification
+      - name: Report publication policy
+        if: always()
         run: |
-          git config user.name "SHIRMANI Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add factory/product_media_factory.py generated/product-specific-demo-video-manifest.json products/demos products/vip-screenshots
-          git diff --cached --quiet || git commit -m "production: materialize product demo media batch"
-          git push
+          {
+            echo "## SHIRMANI Legacy Media Factory"
+            echo "- Generated output is proposed through a pull request."
+            echo "- Protected main is never pushed directly."
+            echo "- Media integrity and playback QC require separate evidence."
+          } >> "$GITHUB_STEP_SUMMARY"
