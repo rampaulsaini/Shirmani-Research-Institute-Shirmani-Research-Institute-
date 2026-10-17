@@ -37,7 +37,18 @@ jobs:
               raise SystemExit("Unique tool catalog is empty; refusing to publish an empty manifest.")
           out={"schema_version":1,"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"cycle":"UNIQUE_TOOL_AUTOMISSION","tool_count":len(rows),"produced_count":sum(x["status"]=="PRODUCED" for x in rows),"remaining_count":sum(x["status"]!="PRODUCED" for x in rows),"tools":rows,"verification":"DOWNSTREAM"}
           (root/"generated").mkdir(exist_ok=True)
-          (root/"generated/unique-tool-production-manifest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          manifest=root/"generated/unique-tool-production-manifest.json"
+          if manifest.exists():
+              try:
+                  previous=json.loads(manifest.read_text(encoding="utf-8"))
+                  stable_previous={k:v for k,v in previous.items() if k!="generated_at"}
+                  stable_current={k:v for k,v in out.items() if k!="generated_at"}
+                  if stable_previous==stable_current:
+                      print("Unique-tool manifest unchanged; avoiding timestamp-only publication.")
+                      raise SystemExit(0)
+              except (json.JSONDecodeError, OSError):
+                  pass
+          manifest.write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(out,ensure_ascii=False,indent=2))
           PY
       - name: Publish manifest through a pull request
