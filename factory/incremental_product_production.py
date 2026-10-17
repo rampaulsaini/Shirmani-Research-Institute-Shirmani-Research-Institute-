@@ -3,7 +3,10 @@
 from __future__ import annotations
 from datetime import datetime, timezone
 from pathlib import Path
-import json, os
+import json, os, sys
+ROOT=Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 ROOT=Path(__file__).resolve().parents[1]
 GEN=ROOT/"generated"; CAT=GEN/"1000-digital-products.json"
 OUT=ROOT/"products/production"; VIS=ROOT/"products/visuals"
