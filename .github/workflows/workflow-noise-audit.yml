@@ -8,6 +8,9 @@ on:
       - "tests/test_workflow_noise_audit.py"
       - "docs/WORKFLOW-NOISE-FILTER-ZERO-LOSS.md"
   workflow_dispatch:
+  # Daily read-only inventory catches workflow drift without competing with production writers.
+  schedule:
+    - cron: "17 2 * * *"
 
 permissions:
   contents: read
