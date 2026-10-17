@@ -15,7 +15,9 @@ permissions:
   contents: read
 concurrency:
   group: shirmani-resilience-watchdog
-  cancel-in-progress: true
+  # Never cancel an active watchdog while it is handling a bounded recovery action.
+  # Newer queued runs may coalesce, but an in-progress recovery must finish.
+  cancel-in-progress: false
 jobs:
   watchdog:
     runs-on: ubuntu-latest
