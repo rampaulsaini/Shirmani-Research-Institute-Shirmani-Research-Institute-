@@ -39,7 +39,7 @@ def _schedule_crons(text: str) -> list[str]:
     in_schedule = False
     crons: list[str] = []
     for line in lines:
-        if re.match(r"^on:\\s*(?:#.*)?$", line):
+        if re.match(r"^on:\s*(?:#.*)?$", line):
             in_on = True
             in_schedule = False
             continue
@@ -48,15 +48,15 @@ def _schedule_crons(text: str) -> list[str]:
             in_schedule = False
         if not in_on:
             continue
-        if re.match(r"^  schedule:\\s*(?:#.*)?$", line):
+        if re.match(r"^  schedule:\s*(?:#.*)?$", line):
             in_schedule = True
             continue
         if in_schedule and re.match(r"^  [A-Za-z_][A-Za-z0-9_-]*:", line):
             in_schedule = False
         if in_schedule:
-            match = re.match(r"^\\s+-\\s+cron:\\s*(.*?)\\s*(?:#.*)?$", line)
+            match = re.match(r"^\s+-\s+cron:\s*(.*?)\s*(?:#.*)?$", line)
             if match:
-                value = match.group(1).strip().strip("\\\"'")
+                value = match.group(1).strip().strip("\\"'")
                 if value:
                     crons.append(value)
     return crons
@@ -70,7 +70,7 @@ def _is_high_frequency_cron(cron: str) -> bool:
     minute = fields[0]
     if minute == "*":
         return True
-    interval = re.fullmatch(r"\\*/(\\d+)", minute)
+    interval = re.fullmatch(r"\*/(\d+)", minute)
     return bool(interval and 1 <= int(interval.group(1)) <= 15)
 
 
