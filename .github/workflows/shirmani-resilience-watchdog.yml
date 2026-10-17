@@ -15,7 +15,9 @@ permissions:
   contents: read
 concurrency:
   group: shirmani-resilience-watchdog
-  cancel-in-progress: true
+  # Queue watchdog events instead of cancelling an in-flight inspection/recovery run.
+  # The bounded retry below still limits recovery to one attempt per source run.
+  cancel-in-progress: false
 jobs:
   watchdog:
     runs-on: ubuntu-latest
