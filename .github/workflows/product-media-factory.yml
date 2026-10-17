@@ -10,6 +10,7 @@ on:
         default: "10"
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-product-media-factory
   cancel-in-progress: false
