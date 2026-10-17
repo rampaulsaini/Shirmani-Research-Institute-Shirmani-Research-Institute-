@@ -19,7 +19,7 @@ jobs:
       - name: Evaluate real delivery evidence
         run: python3 factory/production_reality_gate.py
       - name: Publish reality gate artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: shirmani-production-reality-gate
           path: generated/production-reality-gate.json

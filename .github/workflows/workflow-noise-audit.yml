@@ -35,7 +35,7 @@ jobs:
       - name: Build read-only workflow inventory
         run: python scripts/workflow_noise_audit.py > workflow-noise-audit.json
       - name: Upload audit report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: shirmani-workflow-noise-audit
           path: workflow-noise-audit.json
