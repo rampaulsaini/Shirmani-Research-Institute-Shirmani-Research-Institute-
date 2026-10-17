@@ -32,7 +32,8 @@ class WorkflowNoiseAuditTests(unittest.TestCase):
             report = build_report(root)
             self.assertEqual(report["exact_duplicate_groups"], 1)
             self.assertFalse(report["deletion_performed"])
-            self.assertTrue(any(x["type"] == "exact-content-duplicate-review" for x in report["review_candidates"]))
+            candidate = next(x for x in report["review_candidates"] if x["type"] == "exact-content-duplicate-review")
+            self.assertEqual(set(candidate["paths"]), {".github/workflows/a.yml", ".github/workflows/b.yaml"})
 
     def test_write_permissions_and_cancel_are_flagged(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -48,6 +49,28 @@ class WorkflowNoiseAuditTests(unittest.TestCase):
             reasons = report["workflows"][0]["review_reasons"]
             self.assertTrue(any("write-permission" in x for x in reasons))
             self.assertTrue(any("cancels-in-progress" in x for x in reasons))
+            self.assertEqual(report["workflows"][0]["concurrency_group"], "shared")
+
+    def test_literal_references_are_reported_and_never_trigger_deletion(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            workflow_dir = root / ".github" / "workflows"
+            workflow_dir.mkdir(parents=True)
+            (workflow_dir / "critical-writer.yml").write_text(
+                "name: Critical writer\non:\n  workflow_dispatch:\npermissions:\n  contents: write\n",
+                encoding="utf-8",
+            )
+            docs = root / "docs"
+            docs.mkdir()
+            (docs / "runbook.md").write_text(
+                "Critical writer is used by .github/workflows/critical-writer.yml and must be preserved.\n",
+                encoding="utf-8",
+            )
+            report = build_report(root)
+            item = report["workflows"][0]
+            self.assertIn("docs/runbook.md", item["referenced_by"])
+            self.assertFalse(report["deletion_performed"])
+            self.assertTrue(any("absence is not proof" in rule for rule in report["policy"]))
 
 
 if __name__ == "__main__":
