@@ -2,11 +2,17 @@ name: SHIRMANI Showroom Visual Production Publisher
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "showroom-products.json"
+      - "generated/live-production-state.json"
+      - "scripts/build_showroom_visual_manifest.py"
+      - ".github/workflows/showroom-visual-production-publisher.yml"
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: showroom-visual-production
@@ -15,19 +21,30 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          persist-credentials: false
 
       - name: Build visual production manifest
         run: python3 scripts/build_showroom_visual_manifest.py
 
-      - name: Publish customer-visible manifest
-        run: |
-          git config user.name "SHIRMANI Showroom Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/showroom-visual-manifest.json generated/showroom-visual-manifest.md
-          git diff --cached --quiet || git commit -m "chore: publish showroom visual production state"
-          git push
+      - name: Propose customer-visible manifest through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/showroom-visual-production
+          delete-branch: false
+          add-paths: |
+            generated/showroom-visual-manifest.json
+            generated/showroom-visual-manifest.md
+          commit-message: "chore: publish showroom visual production state"
+          title: "chore: propose showroom visual manifest refresh"
+          body: |
+            Automated showroom visual manifest proposal.
+            Review product identity/route mapping and snapshot values before merging.
+            Visual readiness is not independent scientific verification.
+            This workflow does not push directly to protected main.

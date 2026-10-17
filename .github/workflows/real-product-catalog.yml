@@ -1,33 +1,40 @@
 name: SHIRMANI Real Product Catalog Production
 on:
-  schedule:
-    - cron: "*/10 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
     paths:
       - "factory/product-catalog.json"
       - "factory/product_catalog_materializer.py"
+      - ".github/workflows/real-product-catalog.yml"
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-real-product-catalog
   cancel-in-progress: false
 jobs:
   materialize:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Materialize real product catalog
         run: python3 factory/product_catalog_materializer.py
-      - name: Publish catalog artifacts
-        run: |
-          git config user.name "SHIRMANI Product Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add products.html generated/product-catalog-public.json
-          if git diff --cached --quiet; then
-            echo "No product catalog changes."
-          else
-            git commit -m "chore: materialize real product catalog"
-            git push
-          fi
+      - name: Propose catalog artifacts through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/real-product-catalog-output
+          delete-branch: false
+          add-paths: |
+            products.html
+            generated/product-catalog-public.json
+          commit-message: "chore: materialize real product catalog"
+          title: "chore: propose real product catalog refresh"
+          body: |
+            Automated catalog materialization proposal.
+            Review catalog rows and generated output before merging.
+            This workflow does not push directly to protected main.
