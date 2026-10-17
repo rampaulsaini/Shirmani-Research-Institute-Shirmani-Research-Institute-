@@ -5,7 +5,8 @@ on:
   workflow_dispatch:
 concurrency:
   group: shirmani-production-first-operations
-  cancel-in-progress: true
+  # Do not cancel an active production-state writer; preserve continuity during recovery and scheduled overlap.
+  cancel-in-progress: false
 permissions:
   contents: write
   pull-requests: write
