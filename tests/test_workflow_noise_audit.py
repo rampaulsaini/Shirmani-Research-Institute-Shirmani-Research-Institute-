@@ -41,7 +41,7 @@ class WorkflowNoiseAuditTests(unittest.TestCase):
             workflow_dir = root / ".github" / "workflows"
             workflow_dir.mkdir(parents=True)
             (workflow_dir / "risky.yml").write_text(
-                "name: Critical writer\non:\n  push:\npermissions:\n  contents: write\n"
+                "name: Critical production writer\non:\n  push:\npermissions:\n  contents: write\n"
                 "concurrency:\n  group: shared\n  cancel-in-progress: true\n",
                 encoding="utf-8",
             )
