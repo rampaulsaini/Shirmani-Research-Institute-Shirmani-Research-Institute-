@@ -34,6 +34,22 @@ class WorkflowNoiseAuditTests(unittest.TestCase):
             self.assertFalse(report["deletion_performed"])
             self.assertTrue(any(x["type"] == "exact-content-duplicate-review" for x in report["review_candidates"]))
 
+    def test_high_frequency_schedule_is_flagged_without_modification(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            workflow_dir = root / ".github" / "workflows"
+            workflow_dir.mkdir(parents=True)
+            (workflow_dir / "frequent.yml").write_text(
+                'name: Frequent worker\\non:\\n  schedule:\\n    - cron: "*/5 * * * *"\\n'
+                '  workflow_dispatch:\\npermissions:\\n  contents: read\\n',
+                encoding="utf-8",
+            )
+            report = build_report(root)
+            workflow = report["workflows"][0]
+            self.assertEqual(workflow["schedule_crons"], ["*/5 * * * *"])
+            self.assertTrue(any("high-frequency-schedule" in reason for reason in workflow["review_reasons"]))
+            self.assertFalse(report["deletion_performed"])
+
     def test_write_permissions_and_cancel_are_flagged(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
