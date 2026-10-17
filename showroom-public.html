@@ -37,11 +37,12 @@ const count=document.getElementById('showroomCount');
 const reset=document.getElementById('showroomReset');
 function classify(card){
  const t=(card.innerText+' '+card.querySelector('a')?.getAttribute('href')).toLowerCase();
- if(/writing|research|enquiry|client|service|content|blog|offer|order|customer/.test(t))return /research summary|research|education|library|institute/.test(t)?'research':'service';
  if(/voice|avatar|lip-sync|heart-view|presentation|heygen|character/.test(t))return 'presentation';
  if(/social|community|feed|creator platform/.test(t))return 'social';
  if(/security|production|quality|qc|progress|media mission|release|gate/.test(t))return 'production';
  if(/catalogue|catalog|product|commerce|pricing|showroom|demo|test-drive/.test(t))return 'commerce';
+ if(/research summary|research|education|library|institute|source/.test(t))return 'research';
+ if(/writing|enquiry|client|service|content|blog|offer|order|customer/.test(t))return 'service';
  return 'research';
 }
 function update(){
