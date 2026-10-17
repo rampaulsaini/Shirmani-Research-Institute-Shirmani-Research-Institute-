@@ -1,7 +1,5 @@
 name: SHIRMANI Product Media Factory
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       batch_size:
@@ -41,7 +39,7 @@ jobs:
             Publishes the bounded product-media factory output through the repository's required pull-request path.
             Manifest compatibility tests run before generation; media functionality and rendered-output QC remain separate checks.
           branch: "automission/product-media-factory-batch"
-          delete-branch: true
+          delete-branch: false
           add-paths: |
             products/demos
             products/vip-screenshots
