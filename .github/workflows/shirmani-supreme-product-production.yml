@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: shirmani-supreme-product-production
@@ -27,20 +28,39 @@ jobs:
       - name: Produce one concrete tool, passport and product visual
         run: python scripts/production_factory_cycle.py
       - name: Validate production outputs
+        shell: python
         run: |
-          python -m json.tool generated/concrete-production-overlay.json >/dev/null
-          python -m json.tool generated/live-production-state.json >/dev/null
-          python -m json.tool products/visuals/manifest.json >/dev/null
-          python - <<'PY'
           import json
           from pathlib import Path
-          rows=[json.loads(s) for s in Path('generated/PRODUCT-PASSPORTS.jsonl').read_text().splitlines() if s.strip()]
-          assert len(rows)==len({x['id'] for x in rows}), 'duplicate passport IDs'
-          overlay=json.loads(Path('generated/concrete-production-overlay.json').read_text())
-          assert overlay['produced_count']==len(overlay['products']), 'overlay count mismatch'
-          assert Path(overlay['products'][-1]['artifact_url']).exists(), 'last product artifact missing'
-          print('PASS: product artifact exists; JSON valid; IDs unique; counts aligned.')
-          PY
+
+          overlay = json.loads(Path("generated/concrete-production-overlay.json").read_text(encoding="utf-8"))
+          json.loads(Path("generated/live-production-state.json").read_text(encoding="utf-8"))
+          json.loads(Path("products/visuals/manifest.json").read_text(encoding="utf-8"))
+
+          passport_path = Path("generated/PRODUCT-PASSPORTS.jsonl")
+          rows = [
+              json.loads(line)
+              for line in passport_path.read_text(encoding="utf-8").splitlines()
+              if line.strip()
+          ]
+          ids = [row.get("id") for row in rows]
+          assert rows, "passport JSONL must contain at least one record"
+          assert all(isinstance(pid, str) and pid.strip() for pid in ids), "passport IDs must be non-empty strings"
+          assert len(ids) == len(set(ids)), "duplicate passport IDs"
+
+          products = overlay.get("products")
+          assert isinstance(products, list) and products, "production overlay must contain products"
+          assert overlay.get("produced_count") == len(products), "overlay count mismatch"
+
+          artifact_value = products[-1].get("artifact_url")
+          assert isinstance(artifact_value, str) and artifact_value.strip(), "last product artifact_url missing"
+          artifact = Path(artifact_value)
+          assert not artifact.is_absolute(), "artifact_url must be repository-relative"
+          assert ".." not in artifact.parts, "artifact_url must not traverse outside the repository"
+          assert not artifact_value.startswith(("http://", "https://")), "artifact_url must be a local repository path"
+          assert artifact.is_file(), f"last product artifact missing: {artifact_value}"
+
+          print("PASS: product artifact exists; JSON documents valid; JSONL parsed line-by-line; IDs unique; counts aligned.")
       - name: Open/update production artifact PR (repository requires PR-based writes)
         uses: peter-evans/create-pull-request@v7
         with:
@@ -51,7 +71,7 @@ jobs:
           commit-message: "Produce next SHIRMANI concrete digital product"
           body: |
             Scheduled production cycle generated one concrete browser-usable product artifact, its passport entry, and a unique 4K-ready SVG visual.
-            
+
             State boundary: QC remains pending, dispatch is NO, and no sale, payment, or independent verification is claimed. Review generated artifacts and checks before merging.
           labels: |
             automission
