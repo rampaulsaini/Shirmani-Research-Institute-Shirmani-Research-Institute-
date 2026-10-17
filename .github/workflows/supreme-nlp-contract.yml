@@ -21,7 +21,7 @@ permissions:
 
 concurrency:
   group: shirmani-supreme-nlp-contract
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   contract:

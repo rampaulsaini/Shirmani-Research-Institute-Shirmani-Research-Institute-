@@ -10,7 +10,7 @@ permissions:
   contents: read
 concurrency:
   group: shirmani-supreme-total-automission
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   supreme-control-plane:
     runs-on: ubuntu-latest
