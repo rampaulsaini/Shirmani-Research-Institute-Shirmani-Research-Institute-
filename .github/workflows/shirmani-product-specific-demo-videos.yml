@@ -89,7 +89,9 @@ jobs:
           delete-branch: true
           add-paths: |
             products/demos/products
+            products/demos/vip
             generated/product-specific-demo-video-manifest.json
+            generated/product-media-production-manifest.json
 
       - name: Auto-merge published production media
         if: steps.publish_media.outputs.pull-request-number != ''
