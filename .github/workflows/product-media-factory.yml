@@ -1,7 +1,5 @@
 name: SHIRMANI Product Media Factory
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       batch_size:
@@ -10,6 +8,7 @@ on:
         default: "10"
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-product-media-factory
   cancel-in-progress: false
@@ -31,11 +30,18 @@ jobs:
         env:
           MEDIA_BATCH_SIZE: ${{ github.event.inputs.batch_size || '10' }}
         run: python scripts/product_media_factory.py
-      - name: Commit generated media
-        run: |
-          git config user.name "SHIRMANI Product Media Factory"
-          git config user.email "actions@users.noreply.github.com"
-          git add products/demos products/vip-screenshots generated/product-media-production-manifest.json generated/product-vip-screenshot-manifest.json
-          if git diff --cached --quiet; then echo "No new media generated."; exit 0; fi
-          git commit -m "production: materialize product demo media batch"
-          git push
+      - name: Publish generated media through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "production: materialize product demo media batch"
+          title: "Automission: publish product demo media batch"
+          body: |
+            Publishes the bounded product-media factory output through the repository's required pull-request path.
+            Manifest compatibility tests run before generation; media functionality and rendered-output QC remain separate checks.
+          branch: "automission/product-media-factory-batch"
+          delete-branch: false
+          add-paths: |
+            products/demos
+            products/vip-screenshots
+            generated/product-media-production-manifest.json
+            generated/product-vip-screenshot-manifest.json
