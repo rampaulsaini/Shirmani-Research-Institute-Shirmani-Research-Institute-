@@ -41,7 +41,23 @@ Regards,
 Shirmani Research Institute
 </textarea><button id="copyEmail" type="button">Copy email draft</button><p class="muted">Review every line and send manually through an authorized email account. This page does not send email or WhatsApp messages.</p></section>
 <section class="card"><h2>4. Pipeline dashboard</h2><div class="metrics"><div class="metric"><span class="muted">Prospects saved</span><strong id="mTotal">0</strong></div><div class="metric"><span class="muted">Contacted</span><strong id="mContacted">0</strong></div><div class="metric"><span class="muted">Replies</span><strong id="mReplies">0</strong></div><div class="metric"><span class="muted">Won / paid</span><strong id="mWon">0</strong></div></div><p class="muted">These are records entered by you, not independently verified business outcomes. Revenue is not inferred from a status.</p><div class="tablewrap"><table><thead><tr><th>Prospect</th><th>Sector</th><th>Service</th><th>Status</th><th>Next date</th><th>Contact / notes</th><th>Action</th></tr></thead><tbody id="leadRows"><tr><td colspan="7">No prospects saved in this browser yet.</td></tr></tbody></table></div><button id="exportCsv" type="button">Export CSV</button><button id="exportJson" type="button" class="secondary">Export JSON backup</button><button id="clearAll" type="button" class="secondary">Clear all local records</button></section>
-<section class="card"><h2>5. Seven-day execution loop</h2><ol class="checklist"><li><strong>Day 1:</strong> Publish one accurate service page and two clearly labelled sample pieces (one Hindi, one English).</li><li><strong>Day 2:</strong> Identify 15 relevant organisations from official sites; record why each is a fit and the official contact route.</li><li><strong>Day 3:</strong> Personalize 5–8 messages; attach or link only a relevant sample.</li><li><strong>Day 4:</strong> Prepare one sample research brief with source links, dates, caveats and clear formatting.</li><li><strong>Day 5:</strong> Follow up once where appropriate; stop immediately if asked not to contact again.</li><li><strong>Day 6:</strong> Record replies, objections, quotes requested and time spent. Improve the offer based on evidence.</li><li><strong>Day 7:</strong> Review actual enquiries, paid work and feedback; do not count drafts, workflow runs or sent messages as revenue.</li></ol><p class="notice"><strong>Measurement:</strong> track prospects researched → relevant contacts → messages sent → replies → qualified enquiries → quotes → paid projects → on-time delivery → client feedback. Income is recorded only after payment is actually received.</p></section>
+<section class="card" id="paymentLedger"><h2>5. Payment evidence ledger</h2>
+<p class="muted">Record a paid project only after you personally confirm the payment arrived. This browser-local ledger is a self-reported record, not bank verification. Do not enter passwords, full account numbers, card details or other secrets.</p>
+<div class="metrics"><div class="metric"><span class="muted">Projects recorded</span><strong id="payCount">0</strong></div><div class="metric"><span class="muted">User-confirmed receipts</span><strong id="payTotal">₹0</strong></div><div class="metric"><span class="muted">Needs evidence</span><strong id="payPending">0</strong></div><div class="metric"><span class="muted">Latest receipt</span><strong id="payLatest">—</strong></div></div>
+<form id="paymentForm"><div class="row">
+<div><label for="payClient">Client / organisation</label><input id="payClient" required maxlength="140" placeholder="Client or organisation name"></div>
+<div><label for="payProject">Project / agreed deliverable</label><input id="payProject" required maxlength="180" placeholder="e.g. 800-word research brief"></div>
+<div><label for="payAmount">Amount received (INR)</label><input id="payAmount" type="number" min="1" step="0.01" required placeholder="0.00"></div>
+<div><label for="payDate">Date received</label><input id="payDate" type="date" required></div>
+<div><label for="payEvidence">Evidence reference (optional until verified)</label><input id="payEvidence" maxlength="180" placeholder="Redacted transaction reference / receipt filename"></div>
+</div>
+<label><input id="payConfirmed" type="checkbox" style="width:auto;margin-right:8px">I personally confirmed the payment arrived and the amount matches the agreement.</label>
+<p class="small muted">Only checked entries with a date, positive amount and evidence reference contribute to the “User-confirmed receipts” total. The check is your attestation; the tool does not contact a bank or payment provider.</p>
+<button type="submit">Save payment record</button><button type="button" class="secondary" id="exportPayments">Export payment ledger CSV</button><button type="button" class="secondary" id="clearPayments">Clear payment records</button>
+<p id="payStatus" class="muted small" aria-live="polite"></p></form>
+<div class="tablewrap"><table><thead><tr><th>Client / project</th><th>Amount</th><th>Date</th><th>Evidence ref</th><th>State</th><th>Action</th></tr></thead><tbody id="paymentRows"><tr><td colspan="6">No payment records yet.</td></tr></tbody></table></div>
+</section>
+<section class="card"><h2>6. Seven-day execution loop</h2><ol class="checklist"><li><strong>Day 1:</strong> Publish one accurate service page and two clearly labelled sample pieces (one Hindi, one English).</li><li><strong>Day 2:</strong> Identify 15 relevant organisations from official sites; record why each is a fit and the official contact route.</li><li><strong>Day 3:</strong> Personalize 5–8 messages; attach or link only a relevant sample.</li><li><strong>Day 4:</strong> Prepare one sample research brief with source links, dates, caveats and clear formatting.</li><li><strong>Day 5:</strong> Follow up once where appropriate; stop immediately if asked not to contact again.</li><li><strong>Day 6:</strong> Record replies, objections, quotes requested and time spent. Improve the offer based on evidence.</li><li><strong>Day 7:</strong> Review actual enquiries, paid work and feedback; do not count drafts, workflow runs or sent messages as revenue.</li></ol><p class="notice"><strong>Measurement:</strong> track prospects researched → relevant contacts → messages sent → replies → qualified enquiries → quotes → paid projects → on-time delivery → client feedback. Income is recorded only after payment is actually received.</p></section>
 <footer>Privacy note: prospect records are stored in this browser's local storage on this device. They are not synchronized, backed up or sent to the Institute automatically. Export a backup and avoid storing sensitive personal data. This is a prototype, not a CRM or payment system.</footer>
 </main>
 <script>
@@ -63,7 +79,37 @@ function download(name,data,type){const a=document.createElement('a');a.href=URL
 $('exportJson').onclick=()=>download('sri-outreach-backup.json',JSON.stringify(leads,null,2),'application/json');
 $('exportCsv').onclick=()=>{const cols=['org','sector','contact','service','status','next','notes','createdAt'];const csv=[cols.join(','),...leads.map(x=>cols.map(k=>'"'+String(x[k]??'').replace(/"/g,'""')+'"').join(','))].join('\r\n');download('sri-outreach-prospects.csv',csv,'text/csv;charset=utf-8')};
 $('clearAll').onclick=()=>{if(confirm('Delete all prospect records saved in this browser? Export a backup first if needed.')){leads=[];save()}};
+
+const PAYKEY='sri-payment-evidence-ledger-v1';let payments=[];
+function loadPayments(){try{payments=JSON.parse(localStorage.getItem(PAYKEY)||'[]');if(!Array.isArray(payments))payments=[]}catch{payments=[]}renderPayments()}
+function confirmedPayment(p){return p.confirmed===true && Number(p.amount)>0 && !!p.date && !!String(p.evidence||'').trim()}
+function renderPayments(){
+ const confirmed=payments.filter(confirmedPayment);
+ $('payCount').textContent=payments.length;
+ $('payTotal').textContent='₹'+confirmed.reduce((sum,p)=>sum+Number(p.amount),0).toLocaleString('en-IN',{maximumFractionDigits:2});
+ $('payPending').textContent=payments.length-confirmed.length;
+ $('payLatest').textContent=confirmed.map(p=>p.date).sort().slice(-1)[0]||'—';
+ $('paymentRows').innerHTML=payments.length?payments.map((p,i)=>'<tr><td>'+esc(p.client)+'<br><span class="muted">'+esc(p.project)+'</span></td><td>₹'+Number(p.amount).toLocaleString('en-IN',{maximumFractionDigits:2})+'</td><td>'+esc(p.date)+'</td><td>'+esc(p.evidence||'Not recorded')+'</td><td>'+(confirmedPayment(p)?'<span class="tag">User-confirmed</span>':'<span class="tag">Pending evidence</span>')+'</td><td><button type="button" class="secondary" data-pay-delete="'+i+'">Delete</button></td></tr>').join(''):'<tr><td colspan="6">No payment records yet.</td></tr>';
+}
+$('paymentForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const client=$('payClient').value.trim(),project=$('payProject').value.trim(),amount=Number($('payAmount').value),date=$('payDate').value,evidence=$('payEvidence').value.trim(),confirmed=$('payConfirmed').checked;
+ if(!client||!project||!Number.isFinite(amount)||amount<=0||!date){$('payStatus').textContent='Client, project, positive amount and received date are required.';return}
+ if(confirmed&&!evidence){$('payStatus').textContent='Add an evidence reference before marking this receipt user-confirmed.';return}
+ payments.push({client,project,amount,date,evidence,confirmed,recordedAt:new Date().toISOString()});
+ try{localStorage.setItem(PAYKEY,JSON.stringify(payments));renderPayments();e.target.reset();$('payStatus').textContent='Saved on this device only. Export a CSV backup if needed.'}
+ catch(err){payments.pop();$('payStatus').textContent='Could not save locally. Export or check browser storage availability.'}
+});
+$('paymentRows').addEventListener('click',e=>{if(e.target.dataset.payDelete!==undefined){payments.splice(Number(e.target.dataset.payDelete),1);localStorage.setItem(PAYKEY,JSON.stringify(payments));renderPayments();$('payStatus').textContent='Record deleted from this browser.'}});
+$('exportPayments').addEventListener('click',()=>{
+ const cols=['client','project','amount','date','evidence','confirmed','recordedAt'];
+ const csv=[cols.join(','),...payments.map(p=>cols.map(k=>'"'+String(p[k]??'').replace(/"/g,'""')+'"').join(','))].join('\r\n');
+ download('sri-payment-evidence-ledger.csv',csv,'text/csv;charset=utf-8');
+});
+$('clearPayments').addEventListener('click',()=>{if(confirm('Delete all payment ledger records from this browser? Export a CSV backup first if needed.')){payments=[];localStorage.removeItem(PAYKEY);renderPayments();$('payStatus').textContent='Local payment ledger cleared.'}});
+
 load();
+loadPayments();
 })();
 </script>
 </body></html>
