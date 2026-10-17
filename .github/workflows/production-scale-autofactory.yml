@@ -11,6 +11,8 @@ on:
       - "factory/materialize_all_product_assets.py"
       - "factory/product_visual_identity_factory_v2.py"
       - "generated/1000-digital-products.json"
+      - "scripts/ensure_product_catalog.py"
+      - "tests/test_catalog_recovery.py"
 permissions:
   contents: write
 concurrency:
@@ -34,46 +36,14 @@ jobs:
           git fetch origin main
           git checkout -B automation/production-state origin/automation/production-state
           git checkout origin/main -- factory/incremental_product_production.py factory/materialize_all_product_assets.py factory/product_visual_identity_factory_v2.py
+      - name: Test catalog recovery safety gates
+        run: python3 -m unittest tests/test_catalog_recovery.py -v
       - name: Ensure the persistent branch has a usable product catalog
         run: |
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          root = Path(".")
-          target = root / "generated/1000-digital-products.json"
-          def load_rows(path):
-              try:
-                  data = json.loads(path.read_text(encoding="utf-8"))
-              except (OSError, json.JSONDecodeError):
-                  return []
-              rows = data.get("products", []) if isinstance(data, dict) else []
-              return rows if isinstance(rows, list) else []
-          def validate(rows, source):
-              ids = [str(row.get("id", "")).strip() for row in rows if isinstance(row, dict)]
-              if len(ids) != len(rows) or any(not value for value in ids):
-                  raise SystemExit(f"{source} contains rows without a stable product ID; refusing production.")
-              if len(ids) != len(set(ids)):
-                  raise SystemExit(f"{source} contains duplicate product IDs; refusing production.")
-          rows = load_rows(target)
-          if rows:
-              validate(rows, str(target))
-              print(f"Using existing canonical catalog: {len(rows)} products.")
-          else:
-              registry = root / "generated/production-registry.json"
-              rows = load_rows(registry)
-              if not rows:
-                  raise SystemExit(
-                      "Canonical catalog is empty and generated/production-registry.json "
-                      "is missing or empty; refusing to produce a misleading batch."
-                  )
-              validate(rows, str(registry))
-              target.parent.mkdir(parents=True, exist_ok=True)
-              target.write_text(
-                  json.dumps({"schema_version": 2, "products": rows}, ensure_ascii=False, indent=2),
-                  encoding="utf-8",
-              )
-              print(f"Restored canonical catalog from production registry: {len(rows)} products.")
-          PY
+          set -euo pipefail
+          python3 scripts/ensure_product_catalog.py \
+            --catalog generated/1000-digital-products.json \
+            --registry generated/production-registry.json
       - name: Materialize next concrete product batch
         run: python3 factory/incremental_product_production.py
       - name: Publish production state
@@ -81,7 +51,7 @@ jobs:
           set -euo pipefail
           git config user.name "SHIRMANI Production AutoFactory"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add products/production products/visuals generated/live-production-state.json generated/concrete-production-overlay.json generated/incremental-production-ledger.jsonl
+          git add generated/1000-digital-products.json products/production products/visuals generated/live-production-state.json generated/concrete-production-overlay.json generated/incremental-production-ledger.jsonl
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "automission: materialize next concrete product batch"
           git push origin HEAD:automation/production-state
