@@ -50,12 +50,16 @@ class EnsureProductCatalogTests(unittest.TestCase):
             ensure_catalog(self.catalog, self.registry)
         self.assertEqual(self.catalog.read_text(encoding="utf-8"), "")
 
-    def test_duplicate_or_missing_ids_fail_closed(self):
-        for bad_rows in (
+    def test_duplicate_case_colliding_missing_or_unsafe_ids_fail_closed(self):
+        invalid_rows = (
             [{"id": "DUP"}, {"id": "DUP"}],
+            [{"id": "SP-1"}, {"id": "sp-1"}],
             [{"id": "OK"}, {"name": "missing ID"}],
             [{"id": "OK"}, None],
-        ):
+            [{"id": "../escape"}],
+            [{"id": "bad/id"}],
+        )
+        for bad_rows in invalid_rows:
             with self.subTest(bad_rows=bad_rows):
                 self.catalog.write_text("", encoding="utf-8")
                 self.write_json(self.registry, {"products": bad_rows})
