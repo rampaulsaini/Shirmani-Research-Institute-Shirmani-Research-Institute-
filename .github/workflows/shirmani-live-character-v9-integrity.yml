@@ -23,9 +23,17 @@ jobs:
       - name: Validate V9
         shell: python
         run: |
-          import json,pathlib
-          p=pathlib.Path("shirmani-supreme-live-character-v9.html").read_text(encoding="utf-8")
-          c=json.loads(pathlib.Path("generated/shirmani-live-character-v9.json").read_text(encoding="utf-8"))
-          required=["Voice → Authorized Voice → Context → Evidence → Reasoning → Answer → Face → Gaze → Lip Timing → Live → Audit → Improve","अभी पर्याप्त प्रमाण उपलब्ध नहीं है。","EXPLICIT AUTH REQUIRED","NOT YET ESTABLISHED"]
-          assert c["version"]=="V9" and c["evidence"]["workflow_success_is_not_independent_verification"] and all(x in p for x in required)
+          import json, pathlib
+          page = pathlib.Path("shirmani-supreme-live-character-v9.html").read_text(encoding="utf-8")
+          contract = json.loads(pathlib.Path("generated/shirmani-live-character-v9.json").read_text(encoding="utf-8"))
+          required = [
+              "Voice → Authorized Voice → Context → Evidence → Reasoning → Answer → Face → Gaze → Lip Timing → Live → Audit → Improve",
+              contract["evidence"]["insufficient_phrase"],
+              "EXPLICIT AUTH REQUIRED",
+              "NOT YET ESTABLISHED",
+          ]
+          assert contract["version"] == "V9", "Unexpected character contract version"
+          assert contract["evidence"]["workflow_success_is_not_independent_verification"] is True
+          missing = [phrase for phrase in required if phrase not in page]
+          assert not missing, f"V9 page is missing required contract phrases: {missing!r}"
           print("SHIRMANI_V9_INTEGRITY_PASS")
