@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "generated_at": "2026-10-17T09:09:56.244154+00:00",
+  "generated_at": "2026-10-17T13:01:03.404081+00:00",
   "purpose": "public-first production module map",
-  "module_count": 13308,
+  "module_count": 13310,
   "lane_counts": {
-    "ai_ml_nlp": 11244,
+    "ai_ml_nlp": 11245,
     "automation": 5,
     "content": 8,
-    "economic": 5,
+    "economic": 6,
     "platform": 3,
     "research": 2006,
     "security_quality": 37
@@ -20,7 +20,7 @@
     "READY": 12608,
     "RECORDED": 31,
     "UNAVAILABLE": 31,
-    "UNSPECIFIED": 486
+    "UNSPECIFIED": 488
   },
   "integrity": {
     "source": "repository files",
@@ -78625,6 +78625,13 @@
       "bytes": 3393
     },
     {
+      "path": "scripts/ensure_product_catalog.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3094
+    },
+    {
       "path": "scripts/generate_independent_verification_progress_map.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -78861,6 +78868,13 @@
       "lane": "economic",
       "status": "UNSPECIFIED",
       "bytes": 259
+    },
+    {
+      "path": "tests/test_catalog_recovery.py",
+      "type": "py",
+      "lane": "economic",
+      "status": "UNSPECIFIED",
+      "bytes": 3852
     },
     {
       "path": "schemas/concept-record.schema.json",
