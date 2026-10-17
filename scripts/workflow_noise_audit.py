@@ -32,11 +32,54 @@ def _events(text: str) -> list[str]:
     return sorted(set(events))
 
 
+def _schedule_crons(text: str) -> list[str]:
+    """Extract cron expressions only from the top-level 'on.schedule' block."""
+    lines = text.splitlines()
+    in_on = False
+    in_schedule = False
+    crons: list[str] = []
+    for line in lines:
+        if re.match(r"^on:\s*(?:#.*)?$", line):
+            in_on = True
+            in_schedule = False
+            continue
+        if in_on and line and not line[0].isspace() and not line.startswith("#"):
+            in_on = False
+            in_schedule = False
+        if not in_on:
+            continue
+        if re.match(r"^  schedule:\s*(?:#.*)?$", line):
+            in_schedule = True
+            continue
+        if in_schedule and re.match(r"^  [A-Za-z_][A-Za-z0-9_-]*:", line):
+            in_schedule = False
+        if in_schedule:
+            match = re.match(r"^\s+-\s+cron:\s*(.*?)\s*(?:#.*)?$", line)
+            if match:
+                value = match.group(1).strip().strip(chr(34) + "'")
+                if value:
+                    crons.append(value)
+    return crons
+
+
+def _is_high_frequency_cron(cron: str) -> bool:
+    """Flag minute schedules every 15 minutes or faster for human review."""
+    fields = cron.split()
+    if len(fields) != 5:
+        return False
+    minute = fields[0]
+    if minute == "*":
+        return True
+    interval = re.fullmatch(r"\*/(\d+)", minute)
+    return bool(interval and 1 <= int(interval.group(1)) <= 15)
+
+
 def inspect_workflow(path: Path, root: Path) -> dict:
     raw = path.read_bytes()
     text = raw.decode("utf-8", errors="replace")
     name = _top_level_value(text, "name") or path.stem
     events = _events(text)
+    schedule_crons = _schedule_crons(text)
     permissions = re.search(r"(?ms)^permissions:\s*\n((?:^[ \t]+.*\n?)*)", text)
     permission_block = permissions.group(1) if permissions else ""
     write_permissions = bool(re.search(r"(?m)^\s+[A-Za-z0-9_-]+:\s*write\s*$", permission_block))
@@ -49,10 +92,13 @@ def inspect_workflow(path: Path, root: Path) -> dict:
         review_reasons.append("write-permission: retain unless a documented least-privilege replacement is verified")
     if cancel_in_progress is True:
         review_reasons.append("cancels-in-progress: inspect concurrency group and critical-work impact")
+    if any(_is_high_frequency_cron(cron) for cron in schedule_crons):
+        review_reasons.append("high-frequency-schedule: inspect product value, churn, and consumers before changing cadence")
     return {
         "path": path.relative_to(root).as_posix(),
         "name": name.strip().strip("\"'"),
         "events": events,
+        "schedule_crons": schedule_crons,
         "sha256": hashlib.sha256(raw).hexdigest(),
         "write_permissions": write_permissions,
         "cancel_in_progress": cancel_in_progress,
