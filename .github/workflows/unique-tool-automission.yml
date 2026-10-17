@@ -36,8 +36,22 @@ jobs:
           if not rows:
               raise SystemExit("Unique tool catalog is empty; refusing to publish an empty manifest.")
           out={"schema_version":1,"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"cycle":"UNIQUE_TOOL_AUTOMISSION","tool_count":len(rows),"produced_count":sum(x["status"]=="PRODUCED" for x in rows),"remaining_count":sum(x["status"]!="PRODUCED" for x in rows),"tools":rows,"verification":"DOWNSTREAM"}
+          target=root/"generated/unique-tool-production-manifest.json"
+          # Do not publish timestamp-only changes. Preserve the existing manifest and its
+          # timestamp when all meaningful production fields are identical.
+          if target.is_file():
+              try:
+                  previous=json.loads(target.read_text(encoding="utf-8"))
+              except (OSError, json.JSONDecodeError):
+                  previous=None
+              if isinstance(previous,dict):
+                  previous_meaningful={k:v for k,v in previous.items() if k!="generated_at"}
+                  current_meaningful={k:v for k,v in out.items() if k!="generated_at"}
+                  if previous_meaningful==current_meaningful:
+                      print("No meaningful unique-tool manifest change; skipping timestamp-only publication.")
+                      raise SystemExit(0)
           (root/"generated").mkdir(exist_ok=True)
-          (root/"generated/unique-tool-production-manifest.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          target.write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(out,ensure_ascii=False,indent=2))
           PY
       - name: Publish manifest through a pull request
