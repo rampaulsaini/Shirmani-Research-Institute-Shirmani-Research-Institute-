@@ -52,7 +52,7 @@ Shirmani Research Institute
 (()=>{'use strict';
 const KEY='sri-outreach-workbench-v1';let leads=[];
 const $=id=>document.getElementById(id);
-function load(){try{leads=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(leads))leads=[]}catch{leads=[]}render()}
+function load(){try{leads=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(leads))leads=[];leads=leads.map(x=>({...x,status:x.status==='Won / paid'?'Quote accepted':x.status}))}catch{leads=[]}render()}
 function save(){localStorage.setItem(KEY,JSON.stringify(leads));render()}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function render(){const contacted=['Contacted','Replied','Quote sent','Quote accepted','Payment confirmed','Delivered','Refunded','Closed / no response'];const replies=['Replied','Quote sent','Quote accepted','Payment confirmed','Delivered','Refunded'];const paid=leads.filter(x=>['Payment confirmed','Delivered'].includes(x.status)&&Number(x.paidAmount)>0&&x.paidDate&&String(x.paymentRef||'').trim());const money=n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2});$('mTotal').textContent=leads.length;$('mContacted').textContent=leads.filter(x=>contacted.includes(x.status)).length;$('mReplies').textContent=leads.filter(x=>replies.includes(x.status)).length;$('mWon').textContent=paid.length;$('mRevenue').textContent=money(paid.reduce((sum,x)=>sum+Number(x.paidAmount),0));
