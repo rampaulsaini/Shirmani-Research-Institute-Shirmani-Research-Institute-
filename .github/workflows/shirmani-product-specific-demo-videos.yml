@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
       - name: Load persistent production-state catalog when available
         shell: bash
         run: |
@@ -45,7 +45,9 @@ jobs:
             echo "PRODUCTION_STATE_SOURCE=main"
           fi
       - name: Install FFmpeg
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
       - name: Reconcile concrete catalog for media production
         run: |
           python3 - <<'PY'
@@ -54,24 +56,75 @@ jobs:
           root=Path(".")
           overlay=root/"generated/concrete-production-overlay.json"
           catalog=root/"generated/1000-digital-products.json"
-          data=json.loads(overlay.read_text(encoding="utf-8"))
-          rows=data.get("products",[])
-          if not rows:
-              raise SystemExit("Concrete production overlay is empty; refusing media production.")
-          catalog.write_text(json.dumps({"schema_version":2,"products":rows},ensure_ascii=False),encoding="utf-8")
+          if not overlay.is_file():
+              raise SystemExit("Concrete production overlay is missing; refusing media production.")
+          raw=overlay.read_text(encoding="utf-8")
+          decoder=json.JSONDecoder()
+          candidates=[]
+          # Some legacy production-state revisions contain concatenated JSON
+          # documents. Recover complete top-level catalog objects, but never
+          # silently publish an empty or unparseable catalog.
+          pos=0
+          while pos < len(raw):
+              start=raw.find("{",pos)
+              if start < 0:
+                  break
+              try:
+                  value,end=decoder.raw_decode(raw,start)
+                  pos=end
+                  if isinstance(value,dict) and isinstance(value.get("products"),list) and value["products"]:
+                      candidates.append(value)
+              except json.JSONDecodeError:
+                  pos=start+1
+          if not candidates:
+              raise SystemExit("No complete non-empty product catalog found in production overlay; refusing media production.")
+          data=max(candidates,key=lambda item: str(item.get("generated_at","")))
+          rows=data["products"]
+          seen=set()
+          for row in rows:
+              pid=str(row.get("id","")).strip()
+              if not pid:
+                  raise SystemExit("Production overlay contains a product without a stable id.")
+              if pid in seen:
+                  raise SystemExit(f"Duplicate product id in production overlay: {pid}")
+              seen.add(pid)
+          catalog.write_text(json.dumps({"schema_version":2,"products":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print("media catalog rows:",len(rows))
+          print("selected catalog timestamp:",data.get("generated_at","unknown"))
           PY
       - name: Produce next bounded product-specific video batch
         env:
           PRODUCT_DEMO_BATCH: ${{ github.event.inputs.batch_size || '50' }}
         run: python3 factory/product_specific_demo_video_factory.py
+      - name: Verify generated MP4 and manifest before publication
+        run: |
+          python3 - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          root=Path(".")
+          manifest=root/"generated/product-specific-demo-video-manifest.json"
+          data=json.loads(manifest.read_text(encoding="utf-8"))
+          rows=data.get("products",[])
+          if not rows:
+              raise SystemExit("Demo manifest is empty; refusing publication.")
+          created=0
+          for row in rows:
+              if row.get("real_mp4"):
+                  p=root/row["video_url"]
+                  if not p.is_file() or p.stat().st_size < 1024:
+                      raise SystemExit(f"Manifest MP4 missing or too small: {row.get('product_id')}")
+                  probe=subprocess.run(["ffprobe","-v","error","-show_entries","format=duration","-of","default=noprint_wrappers=1:nokey=1",str(p)],capture_output=True,text=True)
+                  if probe.returncode or not probe.stdout.strip():
+                      raise SystemExit(f"Invalid MP4 container: {row.get('product_id')}")
+                  created+=1
+          print(f"manifest_products={len(rows)}; real_mp4s={created}; created_this_cycle={data.get('created_videos_this_cycle',0)}")
+          if data.get("created_videos_this_cycle",0) and created == 0:
+              raise SystemExit("Factory reported new videos but manifest contains no valid MP4s.")
+          PY
       - name: Restore intermediate catalog before opening media PR
         shell: bash
         run: |
           set -euo pipefail
-          # The production-state catalog is an input to this batch, not an output
-          # of the media PR. Restore the main-branch copy so the PR action cannot
-          # stash/replay a large, unrelated catalog diff onto its long-lived branch.
           git restore --source=origin/main --staged --worktree -- generated/1000-digital-products.json
           git diff --cached --exit-code -- generated/1000-digital-products.json
           git diff --exit-code -- generated/1000-digital-products.json
@@ -82,18 +135,18 @@ jobs:
           commit-message: "feat(showroom): publish product-specific demo video batch"
           title: "Automission: publish product-specific demo video batch"
           body: |
-            Automated production batch for customer-facing product demos.
-            Includes product-specific MP4 assets and manifest routes.
-            Demo readiness is production output, not scientific verification.
+            Automated bounded batch of product-specific MP4 demo assets and manifests.
+            The workflow verifies MP4 container readability before opening this PR.
+            These generated step-card videos demonstrate a usage outline, not a live screen recording of every product.
+            Product functionality and QC remain separate acceptance checks.
           branch: "automission/product-demo-media"
           delete-branch: true
           add-paths: |
             products/demos/products
+            products/demos/vip
             generated/product-specific-demo-video-manifest.json
-
-      - name: Auto-merge published production media
-        if: steps.publish_media.outputs.pull-request-number != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            generated/product-media-production-manifest.json
+      - name: Report publication outcome
+        if: always()
         run: |
-          gh pr merge "${{ steps.publish_media.outputs.pull-request-number }}" --auto --squash --delete-branch || true
+          echo "Media factory run finished. Review the job summary and generated manifest for actual MP4 coverage." >> "$GITHUB_STEP_SUMMARY"
