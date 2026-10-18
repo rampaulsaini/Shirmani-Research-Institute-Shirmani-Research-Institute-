@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Shirmani Swarup Drishtikon: transparent production telemetry and independently gated Heart-View evidence.">
+<title>Shirmani Swarup Drishtikon — Production & Heart-View</title>
+<style>
+:root{color-scheme:dark;--bg:#07111e;--panel:#102238;--line:#30485e;--gold:#f1d27b;--cyan:#8be8ef;--muted:#b9c7d7;--green:#a6e8c0;--amber:#ffd28a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#21425b,transparent 55%),var(--bg);color:#f5f7fb;font:16px/1.65 system-ui,sans-serif}main{max-width:1120px;margin:auto;padding:16px}header,section{background:linear-gradient(145deg,#142a40,#0a1726);border:1px solid var(--line);border-radius:18px;padding:clamp(16px,3vw,26px);margin:14px 0}header{border-color:#8f7940}h1,h2,h3{line-height:1.25}h1,h2{color:var(--gold)}h1{font-size:clamp(1.9rem,5vw,3.2rem);margin:.25em 0}a{color:var(--cyan);overflow-wrap:anywhere}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}.tile{background:#081522;border:1px solid var(--line);border-radius:13px;padding:15px;min-width:0}.value{font-size:1.55rem;font-weight:850;color:var(--gold);overflow-wrap:anywhere}.status{display:inline-block;border:1px solid #557086;border-radius:99px;padding:3px 9px;font-size:.8rem}.pending{color:var(--amber)}.ok{color:var(--green)}.btn{display:inline-block;background:var(--gold);color:#121821;border-radius:9px;padding:10px 14px;text-decoration:none;font-weight:800;margin:5px 5px 5px 0}.secondary{background:transparent;border:1px solid #8f7940;color:var(--gold)}.note{border-left:3px solid var(--cyan);padding:10px 13px;background:#8be8ef0c}.chain{counter-reset:stage}.chain .tile{position:relative}.chain .tile h3{color:var(--cyan)}footer{text-align:center;color:var(--muted);padding:22px 4px}button{font:inherit;cursor:pointer}.small{font-size:.9rem}ul{padding-left:1.2rem}
+</style></head>
+<body><main>
+<header>
+<div class="muted">꙰ SHIRMANI RESEARCH INSTITUTE · TRANSPARENCY VIEW</div>
+<h1>शिरोमणि स्वरूप दृष्टिकोण</h1>
+<p>साफ़ सार्वजनिक अनुभव: पहले उपयोगी सेवाएँ और demos, फिर शोध, Heart-View, सीखने की सामग्री और संस्थागत समाधान। हर आँकड़ा अपने स्रोत और सीमा के साथ दिखेगा।</p>
+<a class="btn" href="public-showroom.html">उत्पाद देखें / demo आज़माएँ</a>
+<a class="btn secondary" href="showroom/revenue-first-service-desk.html">सेवा का प्रस्ताव माँगें</a>
+<a class="btn secondary" href="public-production-command-center.html">Production command centre</a>
+<p class="note">यह पृष्ठ मौजूदा telemetry files पढ़ने की कोशिश करता है। यदि किसी अवधि के लिए माप उपलब्ध नहीं है, तो “Not instrumented” दिखेगा—बनावटी शून्य, प्रतिशत, बिक्री या 24/7 activity नहीं।</p>
+</header>
+<section><h2>24/7/365 उत्पादन रिपोर्ट</h2><p class="muted">आज की तारीख, चुनी हुई अवधि, source और last-updated समय सहित वास्तविक event logs होने पर ही अवधि-आधारित counters विश्वसनीय होंगे। अभी यह पृष्ठ उपलब्ध repository snapshots और missing instrumentation को अलग रखता है।</p>
+<div class="grid">
+<div class="tile"><h3>पिछले 24 घंटे</h3><div class="value" id="c24">Not instrumented</div><div class="muted small">Started / completed / failed cycles</div></div>
+<div class="tile"><h3>पिछले 7 दिन</h3><div class="value" id="c7">Not instrumented</div><div class="muted small">Cycle event history आवश्यक</div></div>
+<div class="tile"><h3>पिछले 365 दिन</h3><div class="value" id="c365">Not instrumented</div><div class="muted small">पूरे वर्ष के निरंतर logs आवश्यक</div></div>
+<div class="tile"><h3>आख़िरी snapshot refresh</h3><div class="value" id="updated">—</div><div class="muted small">इस browser ने status file कब पढ़ी</div></div>
+</div>
+<div class="grid" style="margin-top:12px">
+<div class="tile"><h3>Catalog identities</h3><div class="value" id="catalog">Not instrumented</div><p class="muted small">Source: concrete-product status snapshot</p></div>
+<div class="tile"><h3>Concrete products produced</h3><div class="value" id="produced">Not instrumented</div><p class="muted small">Production count ≠ QC pass ≠ deployed feature</p></div>
+<div class="tile"><h3>QC records</h3><div class="value" id="qc">Not instrumented</div><p class="muted small">Only reported values; no inferred pass rate</p></div>
+<div class="tile"><h3>Health / uptime</h3><div class="value">Not instrumented</div><p class="muted small">Requires scheduled external health checks</p></div>
+</div><p id="snapshot-note" class="note" aria-live="polite">Telemetry source files को पढ़ा जा रहा है…</p>
+<p class="small"><a href="generated/concrete-product-production-status.json">Concrete production status</a> · <a href="generated/product-qc-gate.json">QC gate data</a> · <a href="generated/multi-layer-production-status.json">Multi-layer status</a> · <a href="generated/production-results.jsonl">Production result stream</a></p>
+</section>
+<section><h2>Heart-View Preview — प्रमाण की अलग-अलग कड़ियाँ</h2>
+<p>एक stage का प्रमाण दूसरी stage को अपने-आप PASS नहीं करता। उपलब्ध HeyGen link को reference के रूप में रखा गया है; link अकेले आवाज़ की provenance, सही lip-sync, live Q&A या end-to-end connection सिद्ध नहीं करता।</p>
+<div class="grid chain">
+<div class="tile"><h3>1 · Reference video</h3><span class="status pending">REFERENCE_LINK_UNCHECKED</span><p class="small">पहले से दिया गया reference:</p><a href="https://app.heygen.com/videos/avatar-v-video-5d938b91bb6841e9a9ddd93948c781b7" target="_blank" rel="noopener noreferrer">HeyGen video reference खोलें</a><p class="muted small">Provider job/export और जाँच का timestamp अभी इस पृष्ठ पर दर्ज नहीं।</p></div>
+<div class="tile"><h3>2 · Voice</h3><span class="status pending">VOICE_NOT_VERIFIED</span><p class="small">Actual playable audio, source/permission record और test result आवश्यक।</p></div>
+<div class="tile"><h3>3 · Dialogue / content</h3><span class="status pending">CONTENT_NOT_VERIFIED</span><p class="small">ठीक prompt/script, वास्तविक generated response और timestamp सुरक्षित होने चाहिए।</p></div>
+<div class="tile"><h3>4 · Photo / avatar</h3><span class="status pending">AVATAR_ASSET_NOT_VERIFIED</span><p class="small">स्वीकृत asset की पहचान और अनुमति का record; निजी asset सार्वजनिक रूप से उजागर नहीं।</p></div>
+<div class="tile"><h3>5 · Lip-sync / rendered video</h3><span class="status pending">LIPSYNC_NOT_VERIFIED</span><p class="small">वास्तविक playable output, जाँचा गया sample, tolerance और परिणाम आवश्यक।</p></div>
+<div class="tile"><h3>6 · Live presentation</h3><span class="status pending">LIVE_NOT_VERIFIED</span><p class="small">Mock interface नहीं; वास्तविक provider session/test result चाहिए।</p></div>
+<div class="tile"><h3>7 · Live Q&A</h3><span class="status pending">QA_NOT_VERIFIED</span><p class="small">Timestamped prompts/responses, failures, latency और safety fallback log हों।</p></div>
+<div class="tile"><h3>8 · External provider</h3><span class="status pending">PROVIDER_NOT_VERIFIED</span><p class="small">Provider job ID/export, timestamp और error details अलग से दर्ज हों।</p></div>
+</div>
+<p class="note">ये labels failure का दावा नहीं हैं; इनका अर्थ है कि इस public page से PASS सिद्ध करने वाला प्रमाण अभी उपलब्ध नहीं।</p>
+</section>
+<section><h2>काम का क्रम — बिना दोहराव के completion gates</h2>
+<div class="grid">
+<div class="tile"><h3>01 · Discover</h3><p>Repository, existing tools, pages और materials की सूची; कुछ भी चुपचाप delete नहीं।</p></div>
+<div class="tile"><h3>02 · Build</h3><p>एक चुने हुए काम का वास्तविक output, source links और version record।</p></div>
+<div class="tile"><h3>03 · Test</h3><p>Acceptance checks, defects, test date और evidence; बिना test के “complete” नहीं।</p></div>
+<div class="tile"><h3>04 · Publish</h3><p>Public page, demo, guide और enquiry path; deployment और बिक्री अलग-अलग मापें।</p></div>
+</div>
+<p class="muted">यह क्रम कार्य-नीति है, अपने-आप चलने वाला background agent या 24/7 scheduler होने का दावा नहीं। इस page को खुला रखने से GitHub Actions, server jobs या external provider jobs अपने-आप शुरू नहीं होते।</p>
+</section>
+<section><h2>विश्वसनीयता और गुणवत्ता के माप</h2><ul>
+<li><strong>Cycle completion %</strong> = completed cycles ÷ started cycles × 100; उसी अवधि के logs और स्पष्ट retry नियम होने पर।</li>
+<li><strong>Acceptance pass %</strong> = passed checks ÷ executed checks × 100; test suite/version और sample size साथ दिखें।</li>
+<li><strong>Evidence coverage %</strong> = sampled claims with linked evidence ÷ sampled claims × 100; audit window और exclusions दर्ज हों।</li>
+<li><strong>Sales conversion %</strong> = paid orders ÷ qualified leads × 100; payment-confirmed events से ही।</li>
+</ul><p class="note">99.9999% जैसे किसी भी quality, निष्पक्षता, वैज्ञानिक सत्य या uptime प्रतिशत को तभी दिखाया जाए जब पुनरुत्पादित मापन उसे समर्थन दे। दर्शन/लेखक का निजी दृष्टिकोण, परिकल्पना, वैज्ञानिक परिणाम और स्वतंत्र रूप से दोहराया गया प्रमाण अलग-अलग श्रेणियाँ हैं।</p></section>
+<footer>SHIRMANI RESEARCH INSTITUTE · स्पष्टता · प्रमाण · निरंतर सुधार<br><a href="public-showroom.html">Public showroom</a> · <a href="index.html">मुख्य पृष्ठ</a></footer>
+</main>
+<script>
+'use strict';
+const fmt=n=>Number.isFinite(Number(n))?Number(n).toLocaleString('en-IN'):'Not instrumented';
+async function readJson(path){const r=await fetch(path+'?ts='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error(path+' HTTP '+r.status);return r.json()}
+(async()=>{const issues=[];let p=null,q=null,m=null;
+try{p=await readJson('generated/concrete-product-production-status.json')}catch(e){issues.push('Concrete status unavailable')}
+try{q=await readJson('generated/product-qc-gate.json')}catch(e){issues.push('QC status unavailable')}
+try{m=await readJson('generated/multi-layer-production-status.json')}catch(e){issues.push('Multi-layer status unavailable')}
+if(p){if(p.target!==undefined)document.getElementById('catalog').textContent=fmt(p.target);if(p.concrete_produced!==undefined)document.getElementById('produced').textContent=fmt(p.concrete_produced)}
+if(q){const pass=q.qc_passed,all=q.produced_count;if(pass!==undefined&&all!==undefined)document.getElementById('qc').textContent=fmt(pass)+' / '+fmt(all)}
+document.getElementById('updated').textContent=new Date().toLocaleString();
+document.getElementById('snapshot-note').textContent=(issues.length?issues.join('; ')+'. ':'')+'24h/7d/365d cycle counters are not instrumented by these snapshots. Windowed event logs and a scheduler/monitor are required before interval counts or percentages can be reported. Snapshot values may describe the last generated file, not live runtime activity.';
+})();
+</script>
+</body></html>
