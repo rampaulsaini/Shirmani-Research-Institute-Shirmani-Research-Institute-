@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Voice-to-live presentation workflow with separate evidence gates, status counters, and honest integration verification.">
+<meta name="theme-color" content="#09111e">
+<title>Presentation Chain & Evidence Console | Shirmani Research Institute</title>
+<style>
+:root{color-scheme:dark;--bg:#09111e;--panel:#111e30;--line:#30445a;--gold:#f2d17b;--cyan:#8be7ed;--green:#a4e2bb;--amber:#ffdb9b;--text:#f6f8fb;--muted:#c1ccd9}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#172c43,#09111e 35rem);color:var(--text);font:16px/1.65 system-ui,"Noto Sans Devanagari",sans-serif}
+main{max-width:1120px;margin:auto;padding:20px 15px 64px}header,.panel{border:1px solid var(--line);border-radius:18px;background:#111e30f2;padding:clamp(17px,3vw,28px);margin-bottom:15px}
+header{border:2px solid #8b7947;background:linear-gradient(135deg,#1d374f,#101c2a)}h1,h2{color:var(--gold);line-height:1.2}h1{font-size:clamp(2rem,5vw,3.5rem);margin:.3em 0}h2{font-size:1.35rem;margin:0 0 9px}p{color:var(--muted)}a{color:var(--cyan)}.nav,.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.nav a,.btn{border:1px solid var(--line);border-radius:999px;padding:7px 11px;text-decoration:none;color:var(--text)}.btn{display:inline-block;border-radius:10px;background:var(--gold);color:#18202a;font-weight:800}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:11px}.stage,.metric{border:1px solid var(--line);border-radius:13px;padding:14px;background:#091421}.stage h3{color:var(--cyan);margin:0 0 4px}.status{display:inline-block;border:1px solid #8d7042;border-radius:999px;padding:2px 9px;color:var(--amber);font-size:.82rem;font-weight:800}.metric b{display:block;font-size:1.65rem;color:var(--gold)}.notice{border-left:4px solid var(--cyan);background:#0b1927;padding:12px 14px}.small{font-size:.9rem}.muted{color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--gold)}.checklist label{display:flex;gap:9px;align-items:flex-start;padding:9px 0;border-bottom:1px solid #26394d}.checklist input{margin-top:6px;accent-color:#a4e2bb}button{padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:#0b1927;color:var(--text);font:inherit;cursor:pointer}.footer{color:var(--muted);font-size:.88rem}@media(max-width:600px){table{font-size:.88rem}th,td{padding:7px}}
+</style></head>
+<body><main>
+<header>
+<div class="status">EVIDENCE-GATED WORKFLOW · PROVIDER STATUS UNVERIFIED</div>
+<h1>Voice → Live Presentation</h1>
+<p><strong>शिरोमणि स्वरूप दृष्टिकोण · Shirmani Research Institute</strong></p>
+<p>एक साफ़, क्रमबद्ध मार्ग: पहले source asset और consent, फिर voice system, content, visual/lip-sync, live presentation और अंत में स्वतंत्र परीक्षण। हर चरण का अपना प्रमाण होगा। पहले से साझा किए गए HeyGen reference को दर्ज रखा गया है; वही फोटो/वीडियो दोबारा माँगने का कोई कदम इस पेज में नहीं है।</p>
+<div class="actions"><a class="btn" href="https://app.heygen.com/videos/avatar-v-video-5d938b91bb6841e9a9ddd93948c781b7" target="_blank" rel="noopener">पहले से दिया HeyGen reference खोलें</a><a class="nav" href="../index.html">मुख्य प्लेटफॉर्म पर लौटें</a></div>
+</header>
+<nav class="nav" aria-label="पेज नेविगेशन"><a href="#chain">Pipeline</a><a href="#evidence">Evidence rules</a><a href="#counters">Counters</a><a href="#checklist">Review checklist</a></nav>
+<section class="panel" id="chain"><h2>1. एकल measurable chain</h2>
+<div class="grid">
+<div class="stage"><h3>01 · Voice input</h3><span class="status">SOURCE REFERENCED</span><p class="small">पहले से दी गई सामग्री का संदर्भ सुरक्षित। मूल फ़ाइल, अनुमति और source hash को वास्तविक asset record से जोड़ना बाकी है।</p></div>
+<div class="stage"><h3>02 · Voice system / STT</h3><span class="status">NOT TESTED</span><p class="small">Speech-to-text या authorized voice processing का run ID, transcript और quality review चाहिए।</p></div>
+<div class="stage"><h3>03 · Content / response</h3><span class="status">PROTOTYPE ONLY</span><p class="small">उत्तर की भाषा, संदर्भ, safety और स्रोतों की समीक्षा अलग से दर्ज हो। केवल तैयार script को AI/API execution न मानें।</p></div>
+<div class="stage"><h3>04 · Photo / avatar</h3><span class="status">REFERENCE LINKED</span><p class="small">HeyGen reference उपलब्ध है; इसका होना provider integration या asset acceptance की पुष्टि नहीं है।</p></div>
+<div class="stage"><h3>05 · Lip-sync output</h3><span class="status">NOT TESTED</span><p class="small">Generated video ID, audio-video alignment review और output link आवश्यक हैं।</p></div>
+<div class="stage"><h3>06 · Live presentation / Q&amp;A</h3><span class="status">NOT TESTED</span><p class="small">वास्तविक live session, प्रश्न-उत्तर log, latency और failure test के बिना verified नहीं कहा जाएगा।</p></div>
+<div class="stage"><h3>07 · Independent review</h3><span class="status">PENDING</span><p class="small">दूसरे reviewer द्वारा evidence, consent, accessibility और mobile playback की जाँच।</p></div>
+<div class="stage"><h3>08 · Release gate</h3><span class="status">BLOCKED UNTIL EVIDENCE</span><p class="small">सभी अनिवार्य gates पास हों, तभी “verified” और release status अपडेट हो।</p></div>
+</div></section>
+<section class="panel" id="counters"><h2>2. प्रमाण-आधारित counters</h2><p class="notice">ये इस page में उपलब्ध evidence की स्थिति है, production-volume का दावा नहीं। किसी stage को पूरा दिखाने के लिए log, output और reviewer evidence जोड़ना होगा।</p>
+<div class="grid">
+<div class="metric">Pipeline stages<b>8</b><span class="small">परिभाषित चरण</span></div>
+<div class="metric">Evidence-verified stages<b id="verified">0 / 8</b><span class="small">अभी उपलब्ध प्रमाण के आधार पर</span></div>
+<div class="metric">Verified completion<b id="percent">0%</b><span class="small">verified stages ÷ 8 × 100</span></div>
+<div class="metric">End-to-end tests<b>0</b><span class="small">इस रिकॉर्ड में स्वतंत्र रूप से सत्यापित</span></div>
+</div>
+<p class="small">यह static evidence summary है, live telemetry या provider API से जुड़ा हुआ counter नहीं। यह किसी remote service को call नहीं करता और कोई user data कहीं भेजता नहीं है।</p></section>
+<section class="panel" id="evidence"><h2>3. हर चरण के लिए न्यूनतम प्रमाण</h2>
+<table><thead><tr><th>चरण</th><th>कौन-सा प्रमाण जोड़ना है</th><th>कब पास माना जाए</th></tr></thead><tbody>
+<tr><td>Voice input</td><td>Asset identifier, consent/rights record, file hash, format/duration</td><td>Source और उपयोग-अनुमति की जाँच दर्ज हो</td></tr>
+<tr><td>Voice system / STT</td><td>Run ID, transcript, language, error/word accuracy review</td><td>Sample output सुना/पढ़ा और reviewer ने स्वीकार किया हो</td></tr>
+<tr><td>Content</td><td>Prompt/version, answer, source references, moderation result</td><td>उत्तर स्रोत-सम्मत, समझने योग्य और उचित हो</td></tr>
+<tr><td>Photo / avatar</td><td>Provider project/video ID, selected asset ID, provider result</td><td>वास्तविक provider-side generation सफल हो</td></tr>
+<tr><td>Lip-sync</td><td>Output URL, timestamped visual/audio review, failure notes</td><td>आवाज़ और होंठों का मेल sample review में स्वीकार हो</td></tr>
+<tr><td>Live Q&amp;A</td><td>Session ID, test questions, responses, latency/errors</td><td>वास्तविक session दोहराकर सफल हो</td></tr>
+<tr><td>Independent review</td><td>Reviewer, date, checklist, defects and fixes</td><td>Open critical defects शून्य हों</td></tr>
+<tr><td>Release</td><td>Commit/PR, deployment URL, mobile smoke test</td><td>Published page और end-to-end evidence एक ही release से मेल खाएँ</td></tr>
+</tbody></table></section>
+<section class="panel" id="checklist"><h2>4. Manual review checklist</h2><p class="small">यह checklist केवल इसी browser tab में अस्थायी है। यह GitHub, database या provider को status save नहीं करती; reload करने पर reset हो सकती है। Tick करना अपने-आप परीक्षण का प्रमाण नहीं है।</p>
+<div class="checklist" id="checks">
+<label><input type="checkbox"> वास्तविक source asset और अनुमति की समीक्षा का प्रमाण संलग्न है।</label>
+<label><input type="checkbox"> Voice/STT test run और transcript उपलब्ध हैं।</label>
+<label><input type="checkbox"> Content output और स्रोत/quality review दर्ज हैं।</label>
+<label><input type="checkbox"> Provider-side avatar output ID और URL उपलब्ध हैं।</label>
+<label><input type="checkbox"> Lip-sync का वास्तविक audio-video review पूरा है।</label>
+<label><input type="checkbox"> Live Q&amp;A session और error/latency log उपलब्ध हैं।</label>
+<label><input type="checkbox"> स्वतंत्र reviewer ने critical defects बंद किए हैं।</label>
+<label><input type="checkbox"> PR/commit, published URL और mobile smoke test मिलाए गए हैं।</label>
+</div><div class="actions"><button id="reset" type="button">Checklist reset</button><button id="copy" type="button">Checklist summary दिखाएँ</button></div><pre id="summary" class="notice" hidden></pre></section>
+<footer class="footer">Honest status principle: reference link ≠ provider integration; page exists ≠ service is live; generated template ≠ independently verified product; enquiry ≠ sale; sale ≠ confirmed payment.</footer>
+</main><script>
+const boxes=[...document.querySelectorAll('#checks input')],summary=document.getElementById('summary');
+document.getElementById('reset').addEventListener('click',()=>{boxes.forEach(b=>b.checked=false);summary.hidden=true;});
+document.getElementById('copy').addEventListener('click',()=>{const done=boxes.filter(b=>b.checked).length;summary.textContent='Manual checklist: '+done+' / '+boxes.length+' marked.\nThis is a local self-report only, not independently verified evidence.\n'+boxes.map((b,i)=>(b.checked?'[x] ':'[ ] ')+(i+1)+'. '+b.parentElement.textContent.trim()).join('\n');summary.hidden=false;});
+</script></body></html>
