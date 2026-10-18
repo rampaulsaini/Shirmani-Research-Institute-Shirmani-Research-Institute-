@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fast integrity checks for the public showroom's customer-facing routes.
+"""Fast integrity checks for the public showroom and guided entry routes.
 
 Run from the repository root: python3 tests/public_interface_smoke.py
 This is not a browser rendering, accessibility, deployment, or security audit.
@@ -12,7 +12,11 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = (ROOT / "showroom-public.html", ROOT / "heart-view-preview.html")
+PAGES = (
+    ROOT / "showroom-public.html",
+    ROOT / "heart-view-preview.html",
+    ROOT / "start-here.html",
+)
 REQUIRED_TEXT = {
     "showroom-public.html": (
         "Public Showroom",
@@ -25,6 +29,13 @@ REQUIRED_TEXT = {
         "Voice-to-Presentation Studio",
         "Lip-sync",
         "Live question-and-answer",
+    ),
+    "start-here.html": (
+        "शिरोमणि स्वरूप दृष्टिकोण",
+        "Hindi/English लेखन व शोध के लिए पूछें",
+        "Heart-View",
+        "Login / Signup",
+        "Production command centre",
     ),
 }
 REQUIRED_SHOWROOM_ROUTES = (
@@ -106,8 +117,7 @@ def main() -> int:
             if required not in local_paths:
                 errors.append(f"showroom-public.html is missing a required customer route: {required}")
 
-    # Check every local target and every fragment on HTML pages, not only the
-    # two pages that are the main focus of this smoke suite.
+    # Check every local target and every fragment on the primary public pages.
     checked_links = 0
     for page, parser in list(parsed.items()):
         for href in parser.links:
@@ -127,20 +137,17 @@ def main() -> int:
                 if target_parser and unquote(target.fragment) not in set(target_parser.ids):
                     errors.append(f"{page.relative_to(ROOT)} links to missing anchor: {href}")
 
-    # Basic label association check on the primary public pages. This catches
-    # regressions that can make forms harder to use with assistive technology.
+    # Basic label association check on the primary public pages.
     for page in PAGES:
         parser = parsed.get(page)
         if not parser:
             continue
         orphan_controls = sorted(set(parser.input_ids) - set(parser.label_for))
-        # Some controls can have accessible names via aria-label; account for them
-        # without trying to approximate the complete accessibility tree.
         source = page.read_text(encoding="utf-8")
         for control_id in orphan_controls:
             if f'id="{control_id}"' in source:
                 import re
-                pattern = rf'<(?:input|select|textarea)\\b(?=[^>]*\\bid="{re.escape(control_id)}")[^>]*aria-label='
+                pattern = rf'<(?:input|select|textarea)\b(?=[^>]*\bid="{re.escape(control_id)}")[^>]*aria-label='
                 if re.search(pattern, source, flags=re.IGNORECASE):
                     continue
                 errors.append(f"{page.relative_to(ROOT)} has a form control without a matching label/aria-label: {control_id}")
@@ -152,7 +159,7 @@ def main() -> int:
         return 1
 
     print(f"PUBLIC INTERFACE SMOKE CHECK: PASS ({len(parsed)} HTML pages parsed; {checked_links} local links checked)")
-    print("Checked duplicate IDs, required customer routes, local targets/fragments, and basic form labels.")
+    print("Checked required content, duplicate IDs, customer routes, local targets/fragments, and basic form labels.")
     print("Note: this is not a browser, full accessibility, deployment, or provider-integration test.")
     return 0
 
