@@ -3,54 +3,107 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Shirmani Research Institute का व्यवस्थित public hub: सेवाएँ, रिसर्च, उत्पाद डेमो और प्रमाणित प्रगति।">
+<meta name="description" content="शिरोमणि स्वरूप दृष्टिकोण — सेवाएँ, डिजिटल उत्पाद, डेमो, रिसर्च, प्रमाण और संस्थागत समाधान के लिए व्यवस्थित प्रवेश-द्वार।">
 <title>शिरोमणि स्वरूप दृष्टिकोण — Public Hub</title>
 <style>
-:root{color-scheme:dark;--bg:#0b1020;--panel:#131d31;--line:#34455f;--gold:#e8c76a;--cyan:#85e3ed;--text:#f4f6fb;--muted:#c4cedd}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#152541,var(--bg) 48%);color:var(--text);font:16px/1.65 system-ui,"Noto Sans Devanagari",sans-serif}
-a{color:var(--cyan);overflow-wrap:anywhere}a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.wrap{width:min(1120px,100% - 28px);margin:auto}header{padding:clamp(28px,7vw,76px) 0 28px;text-align:center}
-.kicker{color:var(--cyan);letter-spacing:.08em;font-size:.82rem;font-weight:700}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.12;color:var(--gold);margin:.5rem 0}h2{color:var(--gold);font-size:1.45rem;margin-top:0}p{color:var(--muted)}.lead{font-size:1.1rem;max-width:760px;margin:16px auto}
-.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:22px 0}.btn{display:inline-block;background:var(--gold);color:#111827;font-weight:800;text-decoration:none;padding:11px 16px;border-radius:10px}.btn.alt{background:transparent;color:var(--text);border:1px solid var(--cyan)}
-section{margin:18px 0;padding:clamp(18px,3vw,28px);border:1px solid var(--line);border-radius:18px;background:#131d31eF}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}.tile{padding:18px;border:1px solid var(--line);border-radius:14px;background:#0b1425}.tile h3{margin:.1rem 0 .5rem;font-size:1.08rem}.tile p{margin:.4rem 0 1rem}.eyebrow{font-size:.78rem;color:var(--cyan);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-.steps{counter-reset:step;list-style:none;padding:0;display:grid;gap:12px}.steps li{counter-increment:step;padding:14px 14px 14px 54px;position:relative;background:#0b1425;border-radius:10px;color:var(--muted)}.steps li:before{content:counter(step);position:absolute;left:14px;top:12px;width:27px;height:27px;display:grid;place-items:center;border-radius:50%;background:var(--gold);color:#111827;font-weight:800}
-.notice{padding:14px;border-left:4px solid var(--cyan);background:#0b1425;color:var(--muted)}footer{text-align:center;padding:26px 0 44px;color:var(--muted);font-size:.9rem}
+:root{color-scheme:dark;--bg:#09101d;--panel:#121e31;--panel2:#0c1627;--line:#31445e;--gold:#f0ce70;--cyan:#86e5ee;--text:#f4f6fb;--muted:#c3cede;--green:#a9e6c2}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#172844 0,#09101d 48%);color:var(--text);font:16px/1.65 system-ui,"Noto Sans Devanagari",sans-serif}
+a{color:var(--cyan);overflow-wrap:anywhere}a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{width:min(1160px,100% - 28px);margin:auto}header{padding:clamp(30px,7vw,78px) 0 30px;text-align:center}
+.kicker,.eyebrow{color:var(--cyan);font-size:.8rem;font-weight:800;letter-spacing:.07em}.kicker{letter-spacing:.12em}
+h1{font-size:clamp(2rem,5.5vw,4rem);line-height:1.12;color:var(--gold);margin:.55rem 0}h2{color:var(--gold);font-size:clamp(1.25rem,3vw,1.7rem);line-height:1.25;margin:0 0 10px}h3{font-size:1.08rem;line-height:1.35;margin:.3rem 0 .55rem}
+p{color:var(--muted)}.lead{font-size:1.1rem;max-width:780px;margin:16px auto}
+.nav{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:18px 0}.nav a{padding:7px 11px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:.9rem;background:#0c1627}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:22px 0}.btn{display:inline-block;background:var(--gold);color:#111827;font-weight:850;text-decoration:none;padding:11px 16px;border-radius:10px}.btn.alt{background:transparent;color:var(--text);border:1px solid var(--cyan)}
+.statusline{display:inline-block;border:1px solid #54745f;color:var(--green);border-radius:999px;padding:6px 12px;font-size:.86rem}
+section{margin:18px 0;padding:clamp(18px,3vw,28px);border:1px solid var(--line);border-radius:18px;background:#121e31ed;scroll-margin-top:14px}
+.section-intro{margin-top:0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:14px}.tile{padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--panel2);display:flex;flex-direction:column;align-items:flex-start}.tile p{margin:.35rem 0 1rem}.tile a{margin-top:auto;font-weight:750}.eyebrow{text-transform:uppercase;font-size:.74rem}.number{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#101827;font-weight:900;margin-right:7px}
+.steps{counter-reset:step;list-style:none;padding:0;display:grid;gap:12px}.steps li{counter-increment:step;padding:14px 14px 14px 54px;position:relative;background:var(--panel2);border-radius:10px;color:var(--muted)}.steps li:before{content:counter(step);position:absolute;left:14px;top:12px;width:27px;height:27px;display:grid;place-items:center;border-radius:50%;background:var(--gold);color:#111827;font-weight:900}
+.notice{padding:14px;border-left:4px solid var(--cyan);background:var(--panel2);color:var(--muted)}.notice strong{color:var(--text)}.pending{border-left-color:var(--gold)}footer{text-align:center;padding:26px 0 44px;color:var(--muted);font-size:.9rem}
+@media(max-width:600px){.wrap{width:min(100% - 20px,1160px)}section{padding:16px}.tile{padding:15px}.actions .btn{width:100%;text-align:center;max-width:420px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
-<div class="kicker">SHIRMANI RESEARCH INSTITUTE · PUBLIC HUB</div>
+<div class="kicker">SHIRMANI RESEARCH INSTITUTE · ꙰</div>
 <h1>शिरोमणि स्वरूप दृष्टिकोण</h1>
-<p class="lead">एक साफ़ रास्ता: पहले सेवाएँ और काम शुरू करने का तरीका, फिर रिसर्च, उत्पादों के डेमो और प्रस्तुति-प्रणाली। मूल सामग्री को हटाए बिना उसे व्यवस्थित रूप से खोजने के लिए यह प्रवेश-द्वार है।</p>
-<div class="actions"><a class="btn" href="writing-research-sales.html">लेखन व रिसर्च सेवाएँ देखें</a><a class="btn alt" href="writing-research-enquiry.html">काम के लिए enquiry भेजें</a></div>
+<p class="lead">सरल • सहज • निर्मल • पारदर्शी — सेवाएँ, डिजिटल उत्पाद, रिसर्च और प्रस्तुति-उपकरण एक स्पष्ट रास्ते पर। पहले उपयोगी काम और ग्राहक सेवा; फिर डेमो, प्रमाण और व्यापक शोध।</p>
+<div class="actions"><a class="btn" href="writing-research-sales.html">सेवा चुनें / कीमत देखें</a><a class="btn alt" href="writing-research-enquiry.html">अपना काम बताएँ</a><a class="btn alt" href="showroom/first-client-deliverable-studio.html">पहला deliverable बनाएँ</a></div>
+<span class="statusline">स्पष्ट स्थिति · कोई बिक्री या integration बिना प्रमाण के घोषित नहीं</span>
+<nav class="nav" aria-label="मुख्य नेविगेशन">
+<a href="#start">शुरुआत</a><a href="#services">सेवाएँ</a><a href="#products">उत्पाद व डेमो</a><a href="#research">रिसर्च</a><a href="#media">मीडिया स्टूडियो</a><a href="#institutions">संस्थाएँ</a><a href="#trust">प्रमाण व स्थिति</a>
+</nav>
 </header>
 <main>
-<section aria-labelledby="start"><h2 id="start">सबसे पहले यहाँ से शुरू करें</h2><div class="grid">
-<article class="tile"><div class="eyebrow">01 · सेवा</div><h3>Hindi/English Writing & Research</h3><p>लेखन, संपादन, रिसर्च-सारांश और वेबसाइट/ब्लॉग सामग्री। काम शुरू होने से पहले scope, कीमत, समय और भुगतान लिखित रूप में तय होंगे।</p><a href="writing-research-sales.html">सेवा और शुरुआती पैकेज →</a></article>
-<article class="tile"><div class="eyebrow">02 · Brief</div><h3>अपनी आवश्यकता स्पष्ट करें</h3><p>विषय, भाषा, शब्द-सीमा, समय-सीमा, स्रोत, बजट और अपेक्षित परिणाम एक जगह दर्ज करने का प्रारूप।</p><a href="writing-research-enquiry.html">Enquiry form →</a></article>
-<article class="tile"><div class="eyebrow">03 · Research</div><h3>Research Brief Builder</h3><p>काम की सीमा और अपेक्षित deliverables को व्यवस्थित करने के लिए उपलब्ध builder।</p><a href="research-brief-builder.html">Builder खोलें →</a></article>
-</div></section>
-<section aria-labelledby="showroom"><h2 id="showroom">उत्पाद, डेमो और प्रस्तुति</h2><div class="grid">
-<article class="tile"><div class="eyebrow">Showroom</div><h3>डिजिटल उत्पादों के डेमो</h3><p>उत्पाद देखने, आज़माने और खरीद से पहले उसकी सीमाएँ व उपलब्ध सुविधाएँ जाँचने का रास्ता।</p><a href="showroom/digital-literacy-research-brief-demo.html">Research Brief demo →</a></article>
-<article class="tile"><div class="eyebrow">Character Studio</div><h3>किरदार और प्रस्तुति</h3><p>किरदार-आधारित प्रस्तुति की उपलब्ध सामग्री; specification, implementation और स्वतंत्र परीक्षण को अलग-अलग समझें।</p><a href="showroom/shirmani-supreme-character-studio.html">Character Studio →</a></article>
-<article class="tile"><div class="eyebrow">Voice → Video</div><h3>Human-Presentation System</h3><p>वास्तविक आवाज़, संवाद, वीडियो और lip-sync के दावों को अलग-अलग परीक्षण प्रमाणों से जाँचना आवश्यक है।</p><a href="docs/SHIRMANI_SUPREME_HUMAN_PRESENTATION_SPEC.md">प्रस्तुति विनिर्देश →</a></article>
-</div></section>
-<section aria-labelledby="research"><h2 id="research">रिसर्च और प्रमाण</h2><div class="grid">
-<article class="tile"><h3>Heart-View / निष्पक्ष समझ</h3><p>मूल विचार, व्याख्या, स्रोत-आधारित तथ्य और स्वतंत्र रूप से सत्यापित परिणाम अलग-अलग दिखाए जाएँ।</p><a href="factory/agents/shirmani-heart-view-agent.md">Heart-View agent framework →</a></article>
-<article class="tile"><h3>स्थिति और प्रगति</h3><p>केवल जाँचे गए repository state और परीक्षणों को verified कहा जाए; specification अपने आप production readiness का प्रमाण नहीं है।</p><a href="docs/SHIRMANI-RESEARCH-STATUS-2026-09-21.md">स्थिति दस्तावेज़ →</a></article>
-<article class="tile"><h3>स्रोत संरक्षण</h3><p>मूल सामग्री सुरक्षित रखते हुए derived work, index, interpretation और review को अलग पहचान देना।</p><a href="docs/SHIRMANI-SOURCE-PRESERVATION-PROTOCOL.md">Source-preservation protocol →</a></article>
-</div></section>
-<section aria-labelledby="workflow"><h2 id="workflow">काम का स्पष्ट क्रम</h2><ol class="steps">
-<li><strong>चुनें:</strong> सेवा, रिसर्च विषय या उत्पाद डेमो।</li>
-<li><strong>बताएँ:</strong> अपेक्षित परिणाम, भाषा, सीमा, समय और उपलब्ध स्रोत।</li>
-<li><strong>लिखित सहमति:</strong> कीमत, deliverables, समय-सीमा, संशोधन और भुगतान की शर्तें तय करें।</li>
-<li><strong>काम और जाँच:</strong> सहमत deliverables दें; जहाँ लागू हो स्रोत, सीमाएँ और परीक्षण परिणाम साथ रखें।</li>
-<li><strong>सुधार का loop:</strong> ग्राहक प्रतिक्रिया और सत्यापित त्रुटियों के आधार पर अगला संस्करण बनाएँ।</li>
-</ol><p class="notice"><strong>पारदर्शिता:</strong> यह पेज एक navigation hub है, login/signup, भुगतान, live avatar Q&A या बाहरी सेवा-सत्यापन का प्रमाण नहीं। इन सुविधाओं को तभी उपलब्ध दिखाया जाना चाहिए जब वास्तविक integration और end-to-end tests सफल हों। कोई enquiry अपने-आप order, payment या बिक्री नहीं बनती।</p></section>
+<section id="start">
+<h2><span class="number">1</span>सबसे पहले यहाँ से शुरू करें</h2>
+<p class="section-intro">यदि आप पहली बार आए हैं, तो अपनी ज़रूरत के अनुसार एक रास्ता चुनें।</p>
+<div class="grid">
+<article class="tile"><div class="eyebrow">ग्राहक सेवा</div><h3>लेखन और रिसर्च</h3><p>Hindi/English लेखन, संपादन, वेबसाइट सामग्री और स्रोत-आधारित रिसर्च-सारांश।</p><a href="writing-research-sales.html">सेवा और प्रस्तावित शुरुआती पैकेज →</a></article>
+<article class="tile"><div class="eyebrow">अपना काम</div><h3>Enquiry / project brief</h3><p>उद्देश्य, भाषा, deliverables, समय-सीमा, स्रोत और बजट का brief तैयार करें।</p><a href="writing-research-enquiry.html">Enquiry brief बनाएँ →</a></article>
+<article class="tile"><div class="eyebrow">उत्पादन</div><h3>First Client Deliverable Studio</h3><p>क्लाइंट के brief से व्यवस्थित शुरुआती draft, checklist और export तैयार करें।</p><a href="showroom/first-client-deliverable-studio.html">Studio खोलें →</a></article>
+</div>
+</section>
+<section id="services">
+<h2><span class="number">2</span>सेवाएँ और कमाई का पहला रास्ता</h2>
+<div class="grid">
+<article class="tile"><h3>Writing & Research Services</h3><p>दायरा, deliverables, संशोधन और समय पहले तय करके काम लें। दिखाई गई कीमतें प्रस्तावित शुरुआती दरें हैं; अन्य sales pages से मिलान आवश्यक हो सकता है।</p><a href="writing-research-services.html">सेवा विवरण →</a></article>
+<article class="tile"><h3>ग्राहक outreach और delivery</h3><p>Prospect, संपर्क, जवाब, quote, order, delivery और प्राप्त भुगतान अलग-अलग दर्ज करने के लिए उपलब्ध workbench देखें।</p><a href="income-client-outreach-desk.html">Client Outreach & Delivery Desk →</a></article>
+<article class="tile"><h3>Portfolio samples</h3><p>ग्राहक को गुणवत्ता दिखाने के लिए नमूने और source-based काम व्यवस्थित करें। नमूना वास्तविक ग्राहक-कार्य या कमाई का प्रमाण नहीं होता।</p><a href="writing-research-portfolio.html">लेखन व रिसर्च नमूने →</a></article>
+</div>
+<p class="notice"><strong>Income First:</strong> प्राथमिकता पहले एक स्पष्ट सेवा, नमूना, सहमत कीमत, ग्राहक brief और प्रमाणित delivery/payment funnel को चलाने की है। लक्ष्य को हासिल हुआ परिणाम तभी कहा जाएगा जब उसका वास्तविक प्रमाण हो।</p>
+</section>
+<section id="products">
+<h2><span class="number">3</span>डिजिटल उत्पाद, टूल्स और डेमो</h2>
+<div class="grid">
+<article class="tile"><div class="eyebrow">Showroom</div><h3>Research Brief Demo</h3><p>उत्पाद के उपयोग और सीमाओं को खरीद से पहले समझने का प्रारंभिक डेमो।</p><a href="showroom/digital-literacy-research-brief-demo.html">डेमो आज़माएँ →</a></article>
+<article class="tile"><div class="eyebrow">Product operations</div><h3>Production Control Centre</h3><p>उत्पादों को Discovery → Build → QC → Published चरणों में दर्ज करें; browser-local records की सीमा लागू है।</p><a href="showroom/production-control-centre.html">उत्पादन डैशबोर्ड →</a></article>
+<article class="tile"><div class="eyebrow">Release pack</div><h3>Product Release Pack Builder</h3><p>उत्पाद के लिए QR, cover SVG, passport, उपयोग-गाइड और demo storyboard तैयार करें।</p><a href="showroom/product-release-pack-builder.html">Release pack बनाएँ →</a></article>
+<article class="tile"><div class="eyebrow">Website copy</div><h3>Bilingual Website Copy Pack</h3><p>Hindi, English या दोनों भाषाओं में homepage, about, service और CTA का editable starter pack।</p><a href="products/concrete/SRI-WRITE-007-bilingual-website-copy-pack-studio.html">Copy pack studio →</a></article>
+</div>
+</section>
+<section id="research">
+<h2><span class="number">4</span>रिसर्च, ज्ञान और प्रमाण</h2>
+<div class="grid">
+<article class="tile"><h3>Heart-View / निष्पक्ष समझ</h3><p>विचार, परिभाषा, व्याख्या, स्रोत-आधारित तथ्य और स्वतंत्र रूप से जाँचे परिणाम अलग-अलग दिखें।</p><a href="factory/agents/shirmani-heart-view-agent.md">Heart-View framework →</a></article>
+<article class="tile"><h3>Heart-View Evidence Desk</h3><p>दावों को स्पष्ट, जाँचने योग्य प्रश्नों और उपलब्ध प्रमाणों में व्यवस्थित करें।</p><a href="showroom/heart-view-claim-clarity-tool.html">Evidence Desk खोलें →</a></article>
+<article class="tile"><h3>Research Brief Builder</h3><p>रिसर्च का प्रश्न, दायरा और अपेक्षित deliverables तय करें।</p><a href="research-brief-builder.html">Research brief बनाएँ →</a></article>
+<article class="tile"><h3>स्थिति और प्रगति</h3><p>repository, परीक्षण और deployment की स्थिति देखें; लिखित specification अपने-आप live implementation का प्रमाण नहीं है।</p><a href="production-progress-map.html">Production Progress Map →</a></article>
+<article class="tile"><h3>स्रोत संरक्षण</h3><p>मूल सामग्री, व्याख्या, derived work और समीक्षा को अलग पहचान के साथ सुरक्षित रखें।</p><a href="docs/SHIRMANI-SOURCE-PRESERVATION-PROTOCOL.md">Source-preservation protocol →</a></article>
+<article class="tile"><h3>Research Institute</h3><p>अनुसंधान, अभिलेख, स्वचालन और सत्यापन के व्यापक ढाँचे तक पहुँचें।</p><a href="README.md">संस्थान का README और project map →</a></article>
+</div>
+</section>
+<section id="media">
+<h2><span class="number">5</span>किरदार, आवाज़, वीडियो और प्रस्तुति</h2>
+<div class="grid">
+<article class="tile"><h3>Shirmani Supreme Character Studio</h3><p>किरदार की प्रस्तुति, शैली और उपयोग-सीमा से संबंधित उपलब्ध सामग्री।</p><a href="showroom/shirmani-supreme-character-studio.html">Character Studio →</a></article>
+<article class="tile"><h3>Heart-View rehearsal & cue deck</h3><p>कार्यक्रम का क्रम, वक्तव्य, Q&A संकेत और प्रस्तुति checklist तैयार करें। यह rehearsal tool है, live avatar नहीं।</p><a href="showroom/heart-view-live-rehearsal-cue-deck.html">Rehearsal tool →</a></article>
+<article class="tile"><h3>वास्तविक मीडिया सत्यापन</h3><p>स्रोत फोटो/आवाज़ की अनुमति, provider job, rendered video/audio, voice match, lip-sync, live Q&A और end-to-end परीक्षण अलग-अलग प्रमाणित हों।</p><a href="docs/SHIRMANI_SUPREME_HUMAN_PRESENTATION_SPEC.md">Human-presentation specification →</a><p><a href="https://app.heygen.com/videos/avatar-v-video-5d938b91bb6841e9a9ddd93948c781b7" target="_blank" rel="noopener noreferrer">मौजूदा HeyGen reference खोलें →</a></p></article>
+</div>
+<p class="notice pending"><strong>स्थिति साफ़ रखें:</strong> उपलब्ध HeyGen लिंक reference है। जब तक रिकॉर्ड किया हुआ end-to-end प्रमाण उपलब्ध न हो, वास्तविक आवाज़ की समानता, lip-sync की गुणवत्ता या live Q&A को verified नहीं कहा जाएगा।</p>
+</section>
+<section id="institutions">
+<h2><span class="number">6</span>संस्थाएँ, शिक्षा, प्रकृति और वैश्विक समाधान</h2>
+<div class="grid">
+<article class="tile"><h3>सरकारी व निजी संस्थानों के समाधान</h3><p>प्रत्येक क्षेत्र के लिए अलग आवश्यकता, उपयोग, गुणवत्ता, मूल्य, demo और support तय करने का roadmap। बड़े पैमाने पर बिक्री या संपर्क तभी दर्ज हो जब वास्तविक गतिविधि का प्रमाण हो।</p><a href="income-outreach-workbench.html">Offer & Outreach Workbench →</a></article>
+<article class="tile"><h3>शिक्षा और ज्ञान-संग्रह</h3><p>शिक्षण सामग्री, शोध-सारांश और विषयवार संग्रह के लिए प्रवेश-द्वार। पूरी विश्व-लाइब्रेरी होने का दावा केवल indexed और traceable सामग्री के आधार पर किया जाएगा।</p><a href="research-brief-builder.html">शोध से शुरुआत →</a></article>
+<article class="tile"><h3>Creator & media studio</h3><p>रचनात्मक सामग्री, लेखन और प्रस्तुति के लिए उपलब्ध शुरुआती उपकरण; विस्तृत studio क्षमताएँ अलग से विकसित और परीक्षण की जाएँगी।</p><a href="showroom/">Showroom directory →</a></article>
+<article class="tile"><h3>Nature & human well-being</h3><p>प्रकृति संरक्षण, मानव कल्याण और मूल सुविधाओं से जुड़े शोध/उत्पाद प्रस्तावों को प्रमाण, व्यावहारिकता और असर के आधार पर व्यवस्थित करें।</p><a href="docs/">Research documents →</a></article>
+</div>
+</section>
+<section id="trust">
+<h2><span class="number">7</span>खाता, सुरक्षा और सत्यापन की स्थिति</h2>
+<div class="grid">
+<article class="tile"><h3>Login / Signup</h3><p>सार्वजनिक पेज अभी वास्तविक account creation या authentication का प्रमाण नहीं देता। सुरक्षित account सुविधा को backend, privacy controls और end-to-end tests के बाद ही चालू घोषित किया जाएगा।</p><span class="eyebrow">Integration pending · not presented as live</span></article>
+<article class="tile"><h3>ऑर्डर और भुगतान</h3><p>Enquiry form brief बनाता है; यह अपने-आप ईमेल नहीं भेजता, order स्वीकार नहीं करता या भुगतान संसाधित नहीं करता। भुगतान स्थिति केवल वास्तविक पुष्टि पर दर्ज हो।</p><a href="writing-research-enquiry.html">काम का brief तैयार करें →</a></article>
+<article class="tile"><h3>सुरक्षा और निरंतरता</h3><p>स्रोत सामग्री सुरक्षित रखें, परीक्षण और audit log बनाएँ, और रुकावट का कारण पहचानें। किसी सुरक्षा जाँच को सिर्फ़ सुविधा के लिए बंद न करें।</p><a href="PROJECT-CONTINUITY.md">Project continuity →</a></article>
+</div>
+<div class="notice"><strong>काम का क्रम:</strong> चुनें → brief दें → scope/price लिखित तय करें → deliverable बनाएँ → QC करें → ग्राहक को दें → भुगतान का प्रमाण दर्ज करें → feedback से सुधारें। हर चरण का प्रमाण अलग रखा जाएगा।</div>
+</section>
 </main>
-<footer>Shirmani Research Institute · सामग्री को सुरक्षित रखते हुए सरल नेविगेशन और प्रमाण-आधारित प्रगति।</footer>
+<footer>Shirmani Research Institute · सामग्री को सुरक्षित रखते हुए स्पष्ट नेविगेशन, वास्तविक परिणाम और प्रमाण-आधारित प्रगति।</footer>
 </div>
 </body>
 </html>
