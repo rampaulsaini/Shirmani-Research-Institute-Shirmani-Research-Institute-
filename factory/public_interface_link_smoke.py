@@ -17,8 +17,8 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PAGES = (
-    "public-interface.html",
-    "showroom-public.html",
+    "index.html",
+    "public-showroom.html",
 )
 
 
