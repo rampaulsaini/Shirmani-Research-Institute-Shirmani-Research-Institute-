@@ -53,16 +53,32 @@ def main():
       "produced_count":len(products),"remaining_count":max(0,5000-len(products)),
       "last_cycle_product_id":pid,"last_cycle_concrete_results":1,"verification_is_downstream":True})
     overlay_path.write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    lines=passport_path.read_text(encoding="utf-8").splitlines() if passport_path.exists() else []
+    # Recover legacy JSONL files accidentally written with literal \\n separators.
+    # Parse concatenated JSON objects, then canonicalize to one object per physical line.
+    raw=passport_path.read_text(encoding="utf-8") if passport_path.exists() else ""
+    decoder=json.JSONDecoder()
+    lines=[]
+    pos=0
+    while pos < len(raw):
+        while pos < len(raw) and raw[pos].isspace():
+            pos += 1
+        if pos >= len(raw):
+            break
+        if raw.startswith("\\n",pos):
+            pos += 2
+            continue
+        obj,next_pos=decoder.raw_decode(raw,pos)
+        lines.append(json.dumps(obj,ensure_ascii=False))
+        pos=next_pos
     replaced=False
     for i,line in enumerate(lines):
-        if line.strip() and json.loads(line).get("id")==pid:
+        if json.loads(line).get("id")==pid:
             lines[i]=json.dumps(passport,ensure_ascii=False)
             replaced=True
             break
     if not replaced:
         lines.append(json.dumps(passport,ensure_ascii=False))
-    passport_path.write_text("\\n".join(lines)+"\\n",encoding="utf-8")
+    passport_path.write_text("\n".join(lines)+"\n",encoding="utf-8")
     state=load(state_path,{})
     state.update({"generated_at":now,"catalog_identities":max(int(state.get("catalog_identities",5000)),len(products)),
       "concrete_repository_assets":len(products),"current_catalog_pending":max(0,5000-len(products)),
