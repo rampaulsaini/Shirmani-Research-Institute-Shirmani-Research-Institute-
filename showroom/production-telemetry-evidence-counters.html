@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Shirmani Research Institute production telemetry: cycle counters, evidence-backed quality, blockers and daily reports.">
+<meta name="theme-color" content="#0b1220">
+<title>उत्पादन एवं प्रमाण नियंत्रण | शिरोमणि स्वरूप दृष्टिकोण</title>
+<style>
+:root{color-scheme:dark;--bg:#09111e;--panel:#111e30;--line:#2a4059;--gold:#f2d17b;--cyan:#8be7ed;--text:#f6f8fb;--muted:#c1ccd9;--green:#a4e2bb;--red:#ffb4a8}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#162a42,#09111e 38rem);color:var(--text);font:16px/1.6 system-ui,"Noto Sans Devanagari",sans-serif}a{color:var(--cyan)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--gold);background:var(--gold);color:#15202b;border-radius:10px;padding:9px 13px;font-weight:800}button.secondary{background:#0b1928;color:var(--text);border-color:#48617b}button.danger{background:#321c22;color:#ffd9d3;border-color:#8c5050}.wrap{max-width:1180px;margin:auto;padding:20px 15px 55px}header,.panel,.metric{border:1px solid var(--line);border-radius:16px;background:#111e30f2;padding:20px;margin-bottom:14px}header{border-color:#8b7947;background:linear-gradient(135deg,#1d374f,#101c2a)}h1{font-size:clamp(1.9rem,5vw,3.5rem);line-height:1.15;color:var(--gold);margin:.25em 0}h2{font-size:1.35rem;color:var(--gold);margin:0 0 10px}h3{color:var(--cyan);margin:.2em 0}.muted{color:var(--muted)}.notice{border-left:4px solid var(--cyan);background:#0b1927;padding:12px 14px;border-radius:8px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,205px),1fr));gap:12px}.metric{margin:0;padding:15px}.metric .num{font-size:2rem;font-weight:900;color:var(--gold);font-variant-numeric:tabular-nums}.metric .label{color:var(--muted);font-size:.9rem}.status{display:inline-block;border:1px solid #526b82;border-radius:99px;padding:3px 9px;font-size:.8rem;color:var(--cyan)}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:0 1 auto}.fieldgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}label{display:block;color:var(--muted);font-size:.9rem;margin-bottom:5px}input,select,textarea{width:100%;background:#091522;color:var(--text);border:1px solid #40556f;border-radius:9px;padding:10px}textarea{min-height:75px;resize:vertical}.field{min-width:0}table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px;vertical-align:top}th{color:var(--cyan)}.tablewrap{overflow:auto}.small{font-size:.86rem}.bar{height:9px;background:#26364b;border-radius:99px;overflow:hidden;margin-top:6px}.bar span{display:block;height:100%;background:var(--cyan);width:0}.pill{border:1px solid var(--line);border-radius:99px;padding:3px 8px;font-size:.8rem}.good{color:var(--green)}.warn{color:#ffdb9b}.bad{color:var(--red)}footer{padding:15px;text-align:center;color:var(--muted)}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}@media(max-width:620px){.wrap{padding:10px}.panel,header{padding:15px}.row button{flex:1}.tablewrap table{min-width:650px}}
+</style>
+</head>
+<body><main class="wrap">
+<header>
+<div class="status">SRI · Production telemetry</div>
+<h1>उत्पादन, गुणवत्ता और प्रमाण नियंत्रण</h1>
+<p class="muted">हर चक्र का लेखा • हर दावे के पीछे प्रमाण • हर रुकावट का स्पष्ट कारण</p>
+<div class="row"><a href="../index.html">मुख्य पेज</a><a href="production-control-centre.html">उत्पादन नियंत्रण केंद्र</a><a href="heart-view-live-rehearsal-cue-deck.html">Heart-View rehearsal</a></div>
+</header>
+<section class="panel">
+<h2>पहले सत्य की सीमा</h2>
+<p class="notice">यह पेज इस ब्राउज़र में दर्ज किए गए रिकॉर्ड का स्थानीय नियंत्रण-पटल है। यह अपने-आप GitHub Actions, server, HeyGen, भुगतान, ईमेल या live platform telemetry से जुड़ा नहीं है। बिना वास्तविक स्रोत से मिले आँकड़ों को live counter नहीं कहा जाएगा। नीचे के काउंटर केवल इस पेज में दर्ज रिकॉर्ड से गणना करते हैं; नए ब्राउज़र/डिवाइस पर ये रिकॉर्ड स्वतः साझा नहीं होंगे।</p>
+<div class="grid" id="metrics">
+<div class="metric"><div class="label">कुल दर्ज चक्र</div><div class="num" id="cycles">0</div><div class="small muted">इस स्थानीय रिकॉर्ड में</div></div>
+<div class="metric"><div class="label">आज दर्ज चक्र</div><div class="num" id="todayCycles">0</div><div class="small muted">स्थानीय तारीख के अनुसार</div></div>
+<div class="metric"><div class="label">सफल चक्र (%)</div><div class="num" id="successRate">—</div><div class="bar"><span id="successBar"></span></div></div>
+<div class="metric"><div class="label">प्रमाण-सहित पास (%)</div><div class="num" id="evidenceRate">—</div><div class="bar"><span id="evidenceBar"></span></div></div>
+<div class="metric"><div class="label">खुली रुकावटें</div><div class="num" id="blockers">0</div><div class="small muted">अभी हल नहीं हुई</div></div>
+<div class="metric"><div class="label">वास्तविक आय दर्ज</div><div class="num" id="income">₹0</div><div class="small muted">केवल भुगतान-प्रमाण वाले रिकॉर्ड</div></div>
+</div>
+<p id="lastUpdated" class="small muted">अभी कोई स्थानीय रिकॉर्ड नहीं।</p>
+</section>
+<section class="panel">
+<h2>नया उत्पादन / परीक्षण रिकॉर्ड</h2>
+<p class="muted">एक बार काम पूरा होने या परीक्षण चलने पर एक रिकॉर्ड दर्ज करें। सफलता और प्रमाण अलग-अलग हैं; प्रमाण लिंक/ID के बिना कोई चक्र प्रमाण-सहित पास नहीं गिना जाएगा।</p>
+<form id="recordForm">
+<div class="fieldgrid">
+<div class="field"><label for="work">काम / component</label><input id="work" required placeholder="जैसे Heart-View lip-sync gate"></div>
+<div class="field"><label for="stage">चरण</label><select id="stage"><option>Discovery</option><option>Build</option><option>Test</option><option>Quality check</option><option>Published</option><option>Blocked</option></select></div>
+<div class="field"><label for="result">परिणाम</label><select id="result"><option value="success">सफल</option><option value="failed">विफल</option><option value="blocked">रुका हुआ</option><option value="running">चल रहा है</option></select></div>
+<div class="field"><label for="evidence">प्रमाण URL / run ID / artifact</label><input id="evidence" placeholder="https://… या CI run ID"></div>
+<div class="field"><label for="quality">QC स्कोर (%) — मापा गया हो तभी</label><input id="quality" type="number" min="0" max="100" step="0.1" placeholder="खाली छोड़ सकते हैं"></div>
+<div class="field"><label for="paid">भुगतान सत्यापित?</label><select id="paid"><option value="no">नहीं / अभी प्रमाण नहीं</option><option value="yes">हाँ — भुगतान प्रमाण उपलब्ध</option></select></div>
+<div class="field"><label for="amount">प्राप्त राशि (₹)</label><input id="amount" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="blocker">रुकावट / अगला सुधार</label><input id="blocker" placeholder="कारण या अगला कदम"></div>
+</div>
+<p class="small muted">भुगतान को आय में तभी जोड़ा जाएगा जब “हाँ” चुना गया हो और राशि शून्य से अधिक हो। गुणवत्ता स्कोर उपयोगकर्ता द्वारा दर्ज माप है, स्वतः स्वतंत्र प्रमाणन नहीं।</p>
+<div class="row"><button type="submit">रिकॉर्ड जोड़ें</button><button type="button" class="secondary" id="exportJson">JSON रिपोर्ट निर्यात</button><button type="button" class="secondary" id="exportCsv">CSV निर्यात</button><button type="button" class="secondary" id="printReport">रिपोर्ट प्रिंट / PDF</button></div>
+</form>
+</section>
+<section class="panel">
+<h2>गुणवत्ता एवं प्रमाण के मानक</h2>
+<div class="grid">
+<div class="metric"><h3>सफलता दर</h3><p class="small muted">सफल दर्ज चक्र ÷ कुल दर्ज चक्र × 100। चल रहे/रुके/विफल चक्र हर बार denominator में हैं।</p></div>
+<div class="metric"><h3>प्रमाण-सहित पास</h3><p class="small muted">सफल चक्र जिनके साथ प्रमाण लिंक या run ID है ÷ कुल दर्ज चक्र × 100। यह बाहरी प्रमाण की वैधता अपने-आप नहीं जाँचता।</p></div>
+<div class="metric"><h3>औसत QC स्कोर</h3><p class="small muted">केवल भरे गए QC स्कोर का औसत। खाली स्कोर को शून्य नहीं माना जाता।</p><div class="num" id="avgQuality">—</div></div>
+<div class="metric"><h3>स्रोत सत्यापन</h3><p class="small muted">GitHub CI, HeyGen वीडियो, voice, lip-sync, dialogue, live Q&A और भुगतान के लिए अलग-अलग प्रमाण दर्ज करें। एक का प्रमाण दूसरे का प्रमाण नहीं है।</p></div>
+</div>
+</section>
+<section class="panel">
+<div class="row" style="justify-content:space-between"><div><h2>चक्र लॉग एवं दैनिक रिपोर्ट</h2><p class="muted small">नवीनतम रिकॉर्ड पहले। रिपोर्ट दिन के अनुसार रिकॉर्ड गिनती दिखाती है, 24/7/365 uptime का दावा नहीं।</p></div><button type="button" class="danger" id="clearRecords">स्थानीय रिकॉर्ड साफ़ करें</button></div>
+<div class="tablewrap"><table><thead><tr><th>समय</th><th>काम</th><th>चरण</th><th>परिणाम</th><th>प्रमाण</th><th>QC %</th><th>रुकावट / नोट</th><th>आय</th></tr></thead><tbody id="recordsBody"><tr><td colspan="8" class="muted">अभी रिकॉर्ड नहीं।</td></tr></tbody></table></div>
+<h3 style="margin-top:20px">दैनिक उत्पादन सारांश</h3><div class="tablewrap"><table><thead><tr><th>दिन</th><th>कुल चक्र</th><th>सफल</th><th>विफल</th><th>रुके</th><th>प्रमाण-सहित सफल</th><th>प्राप्त आय</th></tr></thead><tbody id="dailyBody"><tr><td colspan="7" class="muted">रिकॉर्ड जोड़ने पर सारांश बनेगा।</td></tr></tbody></table></div>
+</section>
+<section class="panel">
+<h2>सुरक्षित संचालन नियम</h2>
+<ul class="muted">
+<li>कोई रिकॉर्ड हटाने से पहले JSON निर्यात रखें; यह पेज केवल इस ब्राउज़र की स्थानीय प्रतिलिपि रखता है।</li>
+<li>पासवर्ड, API keys, access tokens, निजी ग्राहक डेटा या भुगतान कार्ड विवरण प्रमाण फ़ील्ड में न डालें। केवल सार्वजनिक artifact URL या गैर-संवेदनशील run ID दें।</li>
+<li>रुकावट को हटाने से पहले उसका कारण और निर्भरता दर्ज करें। सुरक्षा जाँच को निष्क्रिय करना सुधार नहीं है।</li>
+<li>वास्तविक live counters के लिए authenticated server/API, access control, timestamps, audit log, retention policy और monitoring integration की आवश्यकता होगी।</li>
+</ul>
+</section>
+<footer>शिरोमणि स्वरूप दृष्टिकोण · रिकॉर्ड-आधारित पारदर्शिता · कोई बनावटी live आँकड़ा नहीं</footer>
+</main>
+<script>
+(function(){
+'use strict';
+const KEY='sri.production.telemetry.v1';
+const $=id=>document.getElementById(id);
+let records=[];
+try{const saved=localStorage.getItem(KEY);if(saved){const parsed=JSON.parse(saved);if(Array.isArray(parsed))records=parsed;}}catch(e){records=[];}
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dayOf=s=>{const d=new Date(s);return Number.isNaN(d.getTime())?'अज्ञात':d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
+const money=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:2}).format(n||0);
+function save(){try{localStorage.setItem(KEY,JSON.stringify(records));}catch(e){alert('इस ब्राउज़र में रिकॉर्ड सुरक्षित नहीं हो पाया। JSON निर्यात कर लें।');}}
+function render(){
+const total=records.length,success=records.filter(r=>r.result==='success').length;
+const evidenced=records.filter(r=>r.result==='success'&&String(r.evidence||'').trim()).length;
+const blockers=records.filter(r=>['blocked','failed'].includes(r.result)|| (r.result!=='success'&&String(r.blocker||'').trim())).length;
+const today=dayOf(new Date().toISOString());
+const todayCount=records.filter(r=>dayOf(r.time)===today).length;
+const paid=records.filter(r=>r.paid===true&&Number(r.amount)>0).reduce((a,r)=>a+Number(r.amount),0);
+const scores=records.filter(r=>r.quality!==null&&r.quality!==''&&Number.isFinite(Number(r.quality))).map(r=>Number(r.quality));
+const rate=total?success/total*100:null,evRate=total?evidenced/total*100:null;
+$('cycles').textContent=total;$('todayCycles').textContent=todayCount;$('successRate').textContent=rate===null?'—':rate.toFixed(1)+'%';$('evidenceRate').textContent=evRate===null?'—':evRate.toFixed(1)+'%';$('blockers').textContent=blockers;$('income').textContent=money(paid);$('avgQuality').textContent=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1)+'%':'—';
+$('successBar').style.width=(rate||0)+'%';$('evidenceBar').style.width=(evRate||0)+'%';
+$('lastUpdated').textContent=records.length?'स्थानीय रिकॉर्ड आख़िरी बार अपडेट: '+new Date().toLocaleString('hi-IN'):'अभी कोई स्थानीय रिकॉर्ड नहीं।';
+const sorted=[...records].sort((a,b)=>b.time.localeCompare(a.time));
+$('recordsBody').innerHTML=sorted.length?sorted.map(r=>'<tr><td>'+esc(new Date(r.time).toLocaleString('hi-IN'))+'</td><td>'+esc(r.work)+'</td><td>'+esc(r.stage)+'</td><td>'+esc(({success:'सफल',failed:'विफल',blocked:'रुका',running:'चल रहा है'})[r.result]||r.result)+'</td><td>'+(r.evidence?'<a href="'+esc(r.evidence)+'" target="_blank" rel="noopener noreferrer">प्रमाण खोलें</a>':'<span class="warn">नहीं दिया</span>')+'</td><td>'+(r.quality==null||r.quality===''?'—':esc(r.quality)+'%')+'</td><td>'+esc(r.blocker||'—')+'</td><td>'+((r.paid&&Number(r.amount)>0)?esc(money(Number(r.amount))):'—')+'</td></tr>').join(''):'<tr><td colspan="8" class="muted">अभी रिकॉर्ड नहीं।</td></tr>';
+const days={};for(const r of records){const d=dayOf(r.time);days[d]??={total:0,success:0,failed:0,blocked:0,evidence:0,income:0};const x=days[d];x.total++;if(r.result==='success')x.success++;if(r.result==='failed')x.failed++;if(r.result==='blocked'||(r.result!=='success'&&r.blocker))x.blocked++;if(r.result==='success'&&r.evidence)x.evidence++;if(r.paid&&Number(r.amount)>0)x.income+=Number(r.amount);}
+const daily=Object.entries(days).sort((a,b)=>b[0].localeCompare(a[0]));
+$('dailyBody').innerHTML=daily.length?daily.map(([d,x])=>'<tr><td>'+esc(d)+'</td><td>'+x.total+'</td><td>'+x.success+'</td><td>'+x.failed+'</td><td>'+x.blocked+'</td><td>'+x.evidence+'</td><td>'+esc(money(x.income))+'</td></tr>').join(''):'<tr><td colspan="7" class="muted">रिकॉर्ड जोड़ने पर सारांश बनेगा।</td></tr>';
+}
+$('recordForm').addEventListener('submit',e=>{e.preventDefault();const quality=$('quality').value;const paid=$('paid').value==='yes';const amount=Math.max(0,Number($('amount').value)||0);if(paid&&amount<=0){alert('भुगतान-सत्यापित आय दर्ज करने के लिए प्राप्त राशि शून्य से अधिक होनी चाहिए।');return;}records.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),time:new Date().toISOString(),work:$('work').value.trim(),stage:$('stage').value,result:$('result').value,evidence:$('evidence').value.trim(),quality:quality===''?null:Math.max(0,Math.min(100,Number(quality))),blocker:$('blocker').value.trim(),paid:paid&&amount>0,amount:paid?amount:0});save();render();e.target.reset();$('amount').value='0';});
+function download(name,data,type){const blob=new Blob([data],{type:type+';charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+$('exportJson').addEventListener('click',()=>download('sri-production-report-'+dayOf(new Date().toISOString())+'.json',JSON.stringify({generated_at:new Date().toISOString(),scope:'browser-local records only',records},null,2),'application/json'));
+$('exportCsv').addEventListener('click',()=>{const cols=['time','work','stage','result','evidence','quality','blocker','paid','amount'];const cell=v=>'"'+String(v??'').replace(/"/g,'""')+'"';download('sri-production-report-'+dayOf(new Date().toISOString())+'.csv',[cols.join(','),...records.map(r=>cols.map(c=>cell(r[c])).join(','))].join('\r\n'),'text/csv');});
+$('printReport').addEventListener('click',()=>window.print());
+$('clearRecords').addEventListener('click',()=>{if(confirm('क्या आप इस ब्राउज़र के सभी स्थानीय telemetry रिकॉर्ड साफ़ करना चाहते हैं? पहले JSON निर्यात कर लें।')){records=[];save();render();}});
+render();
+})();
+</script>
+</body></html>
