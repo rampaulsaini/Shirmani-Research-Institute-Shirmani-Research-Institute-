@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-10-18T14:40:40.043874+00:00",
+  "generated_at": "2026-10-18T16:37:27.835012+00:00",
   "principle": "Production first; verification downstream.",
   "cycle_results": 500,
   "lanes": {
-    "ai-ml-nlp": 65,
-    "automation": 228,
-    "content": 13,
-    "economic": 9,
-    "federation": 15,
-    "platform": 116,
-    "research": 24,
+    "ai-ml-nlp": 43,
+    "automation": 237,
+    "content": 10,
+    "economic": 8,
+    "federation": 23,
+    "platform": 132,
+    "research": 17,
     "security-quality": 21,
     "social-media": 9
   },
