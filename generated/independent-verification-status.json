@@ -6,7 +6,7 @@
   },
   "queue_total": 100200,
   "registry_total": 100200,
-  "prepared_review_records": 17950,
+  "prepared_review_records": 18950,
   "verified_records": 0,
   "review_records": 0,
   "unverified_records": 100200,
@@ -235,9 +235,13 @@
     [
       16951,
       17950
+    ],
+    [
+      17951,
+      18950
     ]
   ],
-  "prepared_percent": 17.91,
+  "prepared_percent": 18.91,
   "verified_percent_of_queue": 0.0,
   "state": "READY_FOR_REVIEW"
 }
