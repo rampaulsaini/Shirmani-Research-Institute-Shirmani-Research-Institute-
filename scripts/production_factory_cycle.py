@@ -64,7 +64,7 @@ def main():
             pos += 1
         if pos >= len(raw):
             break
-        if raw.startswith("\\\\n",pos):
+        if raw.startswith("\\n",pos):
             pos += 2
             continue
         obj,next_pos=decoder.raw_decode(raw,pos)
@@ -78,7 +78,7 @@ def main():
             break
     if not replaced:
         lines.append(json.dumps(passport,ensure_ascii=False))
-    passport_path.write_text("\\n".join(lines)+"\\n",encoding="utf-8")
+    passport_path.write_text("\n".join(lines)+"\n",encoding="utf-8")
     state=load(state_path,{})
     state.update({"generated_at":now,"catalog_identities":max(int(state.get("catalog_identities",5000)),len(products)),
       "concrete_repository_assets":len(products),"current_catalog_pending":max(0,5000-len(products)),
