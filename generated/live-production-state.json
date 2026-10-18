@@ -1,23 +1,23 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-10-18T01:08:21.653832+00:00",
+  "generated_at": "2026-10-18T04:42:55.126691+00:00",
   "production_first": true,
   "catalog_identities": 5000,
   "concrete_repository_assets": 5000,
-  "production_browser_assets": 5000,
-  "public_4k_visual_assets": 5000,
-  "product_qr_assets": 5000,
   "current_catalog_pending": 0,
   "five_thousand_scale_target": 5000,
   "remaining_to_scale_target": 0,
   "concrete_materialization_percent_of_catalog": 100.0,
   "concrete_materialization_percent_of_scale_target": 100.0,
   "module_products_generated": 5000,
+  "visual_assets_observed": 5000,
+  "visual_coverage_of_produced": 100.0,
+  "last_batch_requested": 500,
+  "last_batch_produced": 0,
   "dispatch_released": 0,
   "sales_claimed": 0,
   "payment_claimed": 0,
   "independent_verification_claimed": 0,
   "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG",
-  "qc_state": "READY_FOR_QC",
-  "truth_boundary": "Produced artifacts, QC, dispatch and independent verification are distinct states."
-}\n
+  "truth_boundary": "Production is observable from repository assets; QC, dispatch, payment, sales and independent verification are separate downstream states."
+}
