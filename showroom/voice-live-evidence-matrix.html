@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Voice → Live Evidence Matrix | SHIRMANI</title>
+<style>
+:root{color-scheme:dark;--bg:#08111f;--panel:#101d30;--line:#2a3b52;--ink:#f4f6fb;--muted:#b5c2d4;--gold:#e9c76d;--cyan:#78dce8;--pending:#f4cc73}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#0a1526,#060b13);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}header,main,footer{max-width:1100px;margin:auto;padding:22px}header{border-bottom:1px solid var(--line)}.eyebrow{color:var(--gold);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}h1{font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;margin:.5rem 0}h2{font-size:1.25rem}p,.muted{color:var(--muted)}a{color:var(--cyan);overflow-wrap:anywhere}.panel,.stage{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:12px}.status{display:inline-block;border:1px solid var(--pending);color:var(--pending);border-radius:99px;padding:3px 9px;font-size:.78rem;font-weight:800}.number{font-size:2rem;font-weight:850;color:var(--gold)}.chain{counter-reset:stage}.stage{position:relative}.stage h3{margin:.5rem 0}.stage h3:before{counter-increment:stage;content:counter(stage,decimal-leading-zero) " · ";color:var(--gold)}.checklist label{display:flex;gap:10px;align-items:flex-start;margin:12px 0}.checklist input{margin-top:6px;accent-color:var(--gold);width:18px;height:18px}.meter{height:10px;background:#26364c;border-radius:99px;overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--gold);transition:width .15s}.warning{border-left:4px solid var(--pending);padding:12px 14px;background:#231e12;border-radius:6px}.actions{display:flex;flex-wrap:wrap;gap:10px}.button{display:inline-block;padding:10px 14px;border-radius:9px;border:1px solid var(--gold);background:var(--gold);color:#15120a;text-decoration:none;font-weight:800}footer{border-top:1px solid var(--line);font-size:.9rem}@media(max-width:520px){header,main,footer{padding:15px}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">SHIRMANI RESEARCH INSTITUTE · Evidence-first production</div><h1>Voice → Voice System → Content → Avatar/Lip-sync → Live Presentation</h1><p>एक स्पष्ट, मापने योग्य जाँच-पथ। हर चरण का प्रमाण अलग है; किसी एक चरण की सफलता पूरी chain को अपने-आप PASS नहीं करती।</p><div class="actions"><a class="button" href="../heart-view-preview.html">Heart-View Preview</a><a class="button" href="../showroom-public-interface.html">मुख्य Showroom</a></div></header>
+<main>
+<section class="grid" aria-label="Evidence counters">
+<div class="panel"><div class="muted">Stages defined</div><div class="number">8</div><p>इस पृष्ठ में परिभाषित acceptance gates</p></div>
+<div class="panel"><div class="muted">Evidence accepted</div><div class="number" id="passed">0 / 8</div><p>केवल नीचे के review checkboxes इस स्थानीय दृश्य में गिने जाते हैं; यह बाहरी verification नहीं है।</p></div>
+<div class="panel"><div class="muted">Chain completion</div><div class="number" id="percent">0%</div><div class="meter"><span id="bar"></span></div><p>स्थानीय checklist progress — production success, accuracy या live-service uptime का दावा नहीं।</p></div>
+</section>
+<section><h2>सत्यापन के आठ अलग चरण</h2><div class="grid chain">
+<article class="stage"><h3>Voice source & consent</h3><span class="status">NOT VERIFIED</span><p>मौजूदा अधिकृत voice source का reference, अनुमति/अधिकार और source provenance दर्ज करें।</p><p><b>Evidence:</b> source ID, consent/rights record, reviewer और timestamp.</p></article>
+<article class="stage"><h3>Voice system</h3><span class="status">NOT VERIFIED</span><p>वास्तविक audio input/output, language handling, intelligibility और error behavior को चलाकर जाँचें।</p><p><b>Evidence:</b> test ID, input/output artifact, transcript, latency और reviewer.</p></article>
+<article class="stage"><h3>Content & dialogue</h3><span class="status">NOT VERIFIED</span><p>उत्तर की सटीकता, संदर्भ, सरल भाषा, स्रोत/अनिश्चितता और harmful output checks जाँचें।</p><p><b>Evidence:</b> prompt, transcript, expected criteria, actual result.</p></article>
+<article class="stage"><h3>Authorized avatar asset</h3><span class="status">REFERENCE ONLY</span><p>पहले से दिया गया HeyGen video reference रखा गया है। इस लिंक से अकेले source image/audio rights या identity fidelity प्रमाणित नहीं होती।</p><p><a href="https://app.heygen.com/videos/avatar-v-video-5d938b91bb6841e9a9ddd93948c781b7" target="_blank" rel="noopener noreferrer">पहले से उपलब्ध HeyGen reference खोलें</a></p></article>
+<article class="stage"><h3>Rendered media artifact</h3><span class="status">NOT VERIFIED</span><p>Provider job/export को चलाकर वास्तविक output video/audio file और playable URL दर्ज करें।</p><p><b>Evidence:</b> job ID, artifact URL/hash, export timestamp, duration.</p></article>
+<article class="stage"><h3>Lip-sync & audio QC</h3><span class="status">NOT VERIFIED</span><p>Actual video पर mouth/audio alignment, clipping, intelligibility, captions और mobile playback review करें।</p><p><b>Evidence:</b> reviewer result, defects, retest and artifact reference.</p></article>
+<article class="stage"><h3>Live Q&amp;A</h3><span class="status">NOT VERIFIED</span><p>वास्तविक live session में spoken question → recognized text → answer → spoken response → avatar playback जाँचें।</p><p><b>Evidence:</b> session ID, timestamps, transcript, latency, failure/recovery test.</p></article>
+<article class="stage"><h3>End-to-end release gate</h3><span class="status">BLOCKED UNTIL EVIDENCE</span><p>एक ही test run में सभी कड़ियों के IDs/artifacts आपस में जुड़ें; कोई missing gate हो तो release रोकें।</p><p><b>Evidence:</b> run ID, all artifact references, independent reviewer and signed release decision.</p></article>
+</div></section>
+<section class="panel checklist"><h2>Review checklist (इस browser page का अस्थायी progress)</h2><p>किसी box को तभी चुनें जब संबंधित वास्तविक प्रमाण उपलब्ध हो और reviewer ने उसे देखा हो। यह checklist server पर save नहीं होती और अपने-आप प्रमाण उत्पन्न नहीं करती।</p>
+<div id="checks">
+<label><input type="checkbox"> 1. Voice source, rights/consent और provenance प्रमाण दर्ज</label>
+<label><input type="checkbox"> 2. वास्तविक voice-system input/output test artifact उपलब्ध</label>
+<label><input type="checkbox"> 3. Content/dialogue test transcript और acceptance review उपलब्ध</label>
+<label><input type="checkbox"> 4. Avatar asset authorization और source review दर्ज</label>
+<label><input type="checkbox"> 5. वास्तविक rendered video/audio artifact खुलकर चलता है</label>
+<label><input type="checkbox"> 6. Lip-sync, audio, captions और mobile playback QC पास</label>
+<label><input type="checkbox"> 7. वास्तविक live Q&amp;A session end-to-end रिकॉर्ड हुआ</label>
+<label><input type="checkbox"> 8. Independent reviewer ने सभी linked evidence पर release decision दर्ज किया</label>
+</div><p id="check-note" aria-live="polite">अभी 0/8 स्थानीय checklist items चुने गए हैं।</p></section>
+<section class="warning"><b>Integrity rule:</b> Reference link, design/mockup, workflow run, generated counter या checklist completion अपने-आप में वास्तविक आवाज़, lip-sync, live Q&amp;A, independent verification, sales या income का प्रमाण नहीं है। वास्तविक artifacts और test records के बिना स्थिति <b>NOT VERIFIED</b> ही रहेगी।</section>
+</main>
+<footer><p>SHIRMANI · Voice-to-Live Evidence Matrix · Browser-local checklist, not a connected provider console. Existing work and original assets are not deleted or replaced.</p></footer>
+<script>
+(function(){const boxes=[...document.querySelectorAll('#checks input')];function update(){const n=boxes.filter(x=>x.checked).length;document.getElementById('passed').textContent=n+' / 8';document.getElementById('percent').textContent=Math.round(n/8*100)+'%';document.getElementById('bar').style.width=(n/8*100)+'%';document.getElementById('check-note').textContent='अभी '+n+'/8 स्थानीय checklist items चुने गए हैं। यह केवल इस browser session का दृश्य progress है; बाहरी सेवा या independent verification का status नहीं।'}boxes.forEach(x=>x.addEventListener('change',update));update();})();
+</script>
+</body></html>
