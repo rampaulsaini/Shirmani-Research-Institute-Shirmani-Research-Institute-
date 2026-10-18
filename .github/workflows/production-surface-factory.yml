@@ -5,6 +5,7 @@ on:
     - cron: "*/5 * * * *"
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-production-surface-factory
   cancel-in-progress: false
@@ -14,17 +15,68 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - name: Build 150K-scale catalogue shards
         run: python3 factory/catalog_sharder.py
       - name: Materialize public product surfaces
         env:
           PRODUCT_SURFACE_BATCH: "25"
         run: python3 factory/product_surface_factory.py
-      - name: Publish production result
+      - name: Validate and normalize generated catalogue outputs
         run: |
-          git config user.name "SHIRMANI Production Surface Factory"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add catalog generated/product-surface-manifest.json products/live
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "feat(production): materialize public product surfaces and catalog shards"
-          git push origin HEAD:main
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          required = (
+              Path("catalog/manifest.json"),
+              Path("generated/product-surface-manifest.json"),
+          )
+          for path in required:
+              if not path.is_file():
+                  raise SystemExit(f"Missing required output: {path}")
+              data = json.loads(path.read_text(encoding="utf-8"))
+              if not isinstance(data, dict):
+                  raise SystemExit(f"Expected a JSON object: {path}")
+              # Workflow history provides the cycle timestamp. Removing the
+              # volatile top-level timestamp prevents empty PR churn after
+              # product counts and catalogue content stop changing.
+              data.pop("generated_at", None)
+              path.write_text(
+                  json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+                  encoding="utf-8",
+              )
+              print(f"{path}: valid JSON; keys={len(data)}")
+
+          shards = sorted(Path("catalog/shards").glob("*.json"))
+          if not shards:
+              raise SystemExit("No catalogue shards were produced")
+          for path in shards:
+              data = json.loads(path.read_text(encoding="utf-8"))
+              if not isinstance(data, (dict, list)):
+                  raise SystemExit(f"Unexpected shard shape: {path}")
+          surfaces = sorted(Path("products/live").glob("*/index.html"))
+          print(f"Catalogue shards validated: {len(shards)}")
+          print(f"Public product surfaces present: {len(surfaces)}")
+          PY
+      - name: Propose production output through a reviewed pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/production-surface-factory
+          delete-branch: false
+          commit-message: "feat(production): materialize public product surfaces and catalog shards"
+          title: "chore(production): publish validated product surfaces and catalogue shards"
+          body: |
+            Automated proposal from the production surface factory.
+
+            Review the generated catalogue shards, product surfaces, and manifest
+            before merging. Workflow execution and generated pages are not proof
+            of product sales, independent verification, external integration,
+            or customer delivery. The run timestamp is available in GitHub Actions.
+          add-paths: |
+            catalog/
+            generated/product-surface-manifest.json
+            products/live/
