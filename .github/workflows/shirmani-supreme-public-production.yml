@@ -33,6 +33,43 @@ jobs:
         run: python3 factory/product_qc_gate.py
       - name: Publish showroom production telemetry
         run: python3 factory/production_dashboard.py
+      - name: Normalize generated outputs to prevent timestamp-only churn
+        run: |
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          files = (
+              "generated/production-status.json",
+              "generated/production-registry.json",
+              "generated/concrete-production-overlay.json",
+              "generated/product-qc-gate.json",
+          )
+          for name in files:
+              path = Path(name)
+              if not path.is_file():
+                  raise SystemExit(f"Missing required production output: {name}")
+              data = json.loads(path.read_text(encoding="utf-8"))
+              data.pop("generated_at", None)
+              for product in data.get("products", []):
+                  product.pop("produced_at", None)
+              path.write_text(
+                  json.dumps(data, ensure_ascii=False, indent=2) + "\\n",
+                  encoding="utf-8",
+              )
+          dashboard = Path("production-dashboard.html")
+          if not dashboard.is_file():
+              raise SystemExit("Missing production-dashboard.html")
+          html = dashboard.read_text(encoding="utf-8")
+          html = re.sub(
+              r'<p class="muted">Updated .*?</p>',
+              '<p class="muted">Generated from the current repository catalogue; run history is available in GitHub Actions.</p>',
+              html,
+          )
+          dashboard.write_text(html, encoding="utf-8")
+          print("Normalized generated timestamps; real product counts and QC results are preserved.")
+          PY
       - name: Validate generated telemetry
         run: |
           python3 - <<'PY'
@@ -42,6 +79,7 @@ jobs:
               "generated/production-status.json",
               "generated/production-registry.json",
               "generated/concrete-production-overlay.json",
+              "generated/product-qc-gate.json",
           ):
               path = Path(name)
               if not path.is_file():
@@ -63,9 +101,11 @@ jobs:
             Automated production telemetry proposal.
             
             This change is proposed for review; it is not a claim of independent verification or completed sales.
+            Timestamp-only changes are normalized to avoid noisy PR churn.
             Merge only after reviewing product artifacts, QC evidence, and the generated counters.
           add-paths: |
             production-dashboard.html
             generated/production-status.json
             generated/production-registry.json
             generated/concrete-production-overlay.json
+            generated/product-qc-gate.json
