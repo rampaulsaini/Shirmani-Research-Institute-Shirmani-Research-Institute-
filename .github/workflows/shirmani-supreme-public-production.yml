@@ -55,7 +55,7 @@ jobs:
               for product in data.get("products", []):
                   product.pop("produced_at", None)
               path.write_text(
-                  json.dumps(data, ensure_ascii=False, indent=2) + "\\n",
+                  json.dumps(data, ensure_ascii=False, indent=2) + "\n",
                   encoding="utf-8",
               )
           dashboard = Path("production-dashboard.html")
