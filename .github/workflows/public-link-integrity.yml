@@ -1,0 +1,35 @@
+name: Public link integrity
+
+on:
+  pull_request:
+    paths:
+      - "**/*.html"
+      - "**/*.htm"
+      - ".github/scripts/check_public_links.py"
+      - ".github/workflows/public-link-integrity.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  local-links:
+    name: Check newly added public links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source and base history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate newly added local HTML links
+        if: github.event_name == 'pull_request'
+        run: python .github/scripts/check_public_links.py "${{ github.event.pull_request.base.sha }}"
+      - name: Explain manual run
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "Manual runs validate pull requests when triggered by pull_request."
+          echo "Open a pull request containing HTML changes to run the base-aware check."
