@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-10-18T01:08:18.419929+00:00",
+  "generated_at": "2026-10-18T05:59:44.526467+00:00",
   "purpose": "public-first production module map",
-  "module_count": 13310,
+  "module_count": 13311,
   "lane_counts": {
-    "ai_ml_nlp": 11245,
+    "ai_ml_nlp": 11246,
     "automation": 5,
     "content": 8,
     "economic": 6,
@@ -20,7 +20,7 @@
     "READY": 12608,
     "RECORDED": 31,
     "UNAVAILABLE": 31,
-    "UNSPECIFIED": 488
+    "UNSPECIFIED": 489
   },
   "integrity": {
     "source": "repository files",
@@ -78077,6 +78077,13 @@
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
       "bytes": 3643
+    },
+    {
+      "path": "factory/public_interface_link_smoke.py",
+      "type": "py",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 3406
     },
     {
       "path": "factory/public_pages_runtime_smoke.py",
