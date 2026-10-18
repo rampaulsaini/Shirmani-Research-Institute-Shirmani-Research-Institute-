@@ -14,6 +14,9 @@
 
 - **Product Release Pack Builder (SRI-MEDIA-003):** [open working browser tool](showroom/product-release-pack-builder.html) — generates a product-specific QR code, downloadable cover SVG, passport JSON, usage guide and demo storyboard. Browser-local; QR library loads from a public CDN. It does not record MP4, publish listings, certify QC, send outreach, process payments or claim sales.
 
+
+- **SHIRMANI SUPREME — Public Product Descriptions v1 (2026-10-12):** [read clearer customer-facing descriptions, exact prototype limits, and the required per-product QR/demo/screenshot/passport release standard](docs/production/SHIRMANI-SUPREME-PUBLIC-PRODUCT-DESCRIPTIONS-2026-10-12.md).
+
 # Shirmani Research Institute
 
 - **SHIRMANI SUPREME — Approved Character Decision (2026-10-12):** [approved identity lock, evidence rules, context-aware presentation, product media contract and release gates](docs/production/SHIRMANI-SUPREME-APPROVED-CHARACTER-DECISION-2026-10-12.md) — specification and staged implementation plan; no unverified live integration or media completion is claimed.
