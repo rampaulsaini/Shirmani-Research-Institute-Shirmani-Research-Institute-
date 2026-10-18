@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Shirmani Research Institute live public GitHub Actions activity, observed automation cycles, workflow outcomes and evidence boundaries.">
+<meta name="theme-color" content="#0b1220">
+<title>Live Platform Activity | Shirmani Research Institute</title>
+<style>
+:root{color-scheme:dark;--bg:#09111e;--panel:#111e30;--line:#2a4059;--gold:#f2d17b;--cyan:#8be7ed;--text:#f6f8fb;--muted:#c1ccd9;--green:#a4e2bb;--red:#ffb4a8;--amber:#ffdb9b}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#162a42,#09111e 38rem);color:var(--text);font:16px/1.6 system-ui,"Noto Sans Devanagari",sans-serif}a{color:var(--cyan)}button{font:inherit;cursor:pointer;border:1px solid var(--gold);border-radius:10px;background:var(--gold);color:#15202b;padding:9px 13px;font-weight:800}a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1200px;margin:auto;padding:18px 14px 50px}header,.panel,.metric{border:1px solid var(--line);border-radius:16px;background:#111e30f2;padding:clamp(15px,3vw,24px);margin-bottom:14px}header{border-color:#8b7947;background:linear-gradient(135deg,#1d374f,#101c2a)}h1{font-size:clamp(1.8rem,5vw,3.5rem);line-height:1.15;color:var(--gold);margin:.3em 0}h2{font-size:1.3rem;color:var(--gold);margin:0 0 10px}p{color:var(--muted)}.nav,.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.nav a{padding:6px 10px;border:1px solid var(--line);border-radius:99px;text-decoration:none;color:var(--text)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),1fr));gap:10px}.metric{margin:0;padding:14px}.label{font-size:.9rem;color:var(--muted)}.num{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:900;color:var(--gold);font-variant-numeric:tabular-nums}.small{font-size:.88rem;color:var(--muted)}.notice{border-left:4px solid var(--cyan);background:#0b1927;border-radius:8px;padding:11px 13px}.state{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:3px 9px;font-size:.82rem}.ok{color:var(--green)}.bad{color:var(--red)}.warn{color:var(--amber)}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:9px}th{color:var(--cyan)}code{overflow-wrap:anywhere}.bar{height:8px;background:#26364b;border-radius:99px;overflow:hidden;margin-top:6px}.bar span{display:block;height:100%;background:var(--cyan);width:0}footer{text-align:center;color:var(--muted);padding:14px}@media(max-width:620px){.wrap{padding:10px}.nav a{flex:1;text-align:center}.row button{width:100%}}
+</style>
+</head>
+<body><main class="wrap">
+<header>
+<div class="small">SHIRMANI RESEARCH INSTITUTE · PUBLIC OPERATIONS</div>
+<h1>Live Platform Activity</h1>
+<p>GitHub Actions से प्राप्त वास्तविक सार्वजनिक workflow गतिविधि — चक्र, परिणाम, हाल की runs और स्पष्ट प्रमाण-सीमाएँ।</p>
+<div class="row"><button id="refresh" type="button">अभी ताज़ा करें</button><span id="status" class="state warn" role="status" aria-live="polite">डेटा लोड हो रहा है…</span><span id="updated" class="small">अभी तक अपडेट नहीं</span></div>
+<nav class="nav" aria-label="मुख्य नेविगेशन" style="margin-top:14px"><a href="index.html">मुख्य पेज</a><a href="showroom/production-telemetry-evidence-counters.html">Production Evidence Counters</a><a href="production-progress-map.html">Progress Map</a><a href="showroom/public-product-showroom.html">Product Showroom</a><a href="heart-view-preview.html">Heart-View Preview</a></nav>
+</header>
+<section class="panel">
+<h2>मापे गए संचालन काउंटर</h2>
+<p class="notice">ये आँकड़े सार्वजनिक GitHub Actions API से पढ़ी गई नवीनतम अधिकतम 100 workflow runs पर आधारित हैं। API का कुल historical count अलग दिखाया गया है। यदि एक दिन में 100 से अधिक runs हों, तो 24 घंटे का आँकड़ा केवल लोड किए गए नमूने में दिखी runs का है। Workflow success का अर्थ केवल job/run का सफल होना है—यह उत्पाद गुणवत्ता, वैज्ञानिक सत्यापन, HeyGen voice/lip-sync, ग्राहक delivery, बिक्री या आय का प्रमाण नहीं है।</p>
+<div class="grid">
+<article class="metric"><div class="label">GitHub पर कुल workflow runs</div><div class="num" id="total">—</div><div class="small">API का historical total</div></article>
+<article class="metric"><div class="label">लोड किया गया नमूना</div><div class="num" id="sample">—</div><div class="small">अधिकतम 100 नवीनतम runs</div></article>
+<article class="metric"><div class="label">पिछले 24 घंटे में देखे चक्र</div><div class="num" id="day">—</div><div class="small">नमूने में मिले UTC समयानुसार</div></article>
+<article class="metric"><div class="label">नमूने में सफल runs</div><div class="num" id="success">—</div><div class="bar"><span id="successBar"></span></div></article>
+<article class="metric"><div class="label">नमूने में विफल runs</div><div class="num" id="failed">—</div><div class="small">failure / cancelled / timed out</div></article>
+<article class="metric"><div class="label">अभी चल रही runs</div><div class="num" id="running">—</div><div class="small">queued या in progress</div></article>
+</div>
+<p id="coverage" class="small"></p>
+</section>
+<section class="panel">
+<h2>हाल की workflow गतिविधि</h2>
+<p class="small">प्रत्येक शीर्षक GitHub की run details से जुड़ा है। समय UTC में दिखता है।</p>
+<div class="tablewrap"><table><thead><tr><th>Workflow / Run</th><th>स्थिति</th><th>शाखा</th><th>शुरू हुआ (UTC)</th><th>अवधि</th></tr></thead><tbody id="runs"><tr><td colspan="5">लोड हो रहा है…</td></tr></tbody></table></div>
+</section>
+<section class="panel">
+<h2>प्रमाण, गुणवत्ता और अगला कदम</h2>
+<ul>
+<li><strong>संचालन प्रमाण:</strong> GitHub Actions run ID, status, conclusion और timestamps।</li>
+<li><strong>उत्पाद/QC प्रमाण:</strong> अलग परीक्षण रिपोर्ट, वास्तविक output, acceptance criteria और reviewer evidence चाहिए।</li>
+<li><strong>Heart-View:</strong> वास्तविक वीडियो, आवाज़, lip-sync, संवाद और बाहरी HeyGen सेवा की जाँच अलग-अलग end-to-end evidence से ही VERIFIED होगी।</li>
+<li><strong>आय:</strong> भुगतान/settlement evidence और deliverable record के बिना आय शून्य/अप्रमाणित ही रहेगी; workflow run से आय का अनुमान नहीं लगाया जाएगा।</li>
+<li><strong>गोपनीयता/सुरक्षा:</strong> यह पृष्ठ कोई token या secret इस्तेमाल नहीं करता; केवल सार्वजनिक repository API पढ़ता है। API rate limit या नेटवर्क विफलता होने पर error दिखेगा, काल्पनिक live आँकड़े नहीं।</li>
+</ul>
+<p class="small">Data source: <a href="https://api.github.com/repos/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/runs?per_page=100">Public GitHub Actions API</a> · <a href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions">GitHub Actions history</a></p>
+</section>
+<footer>Shirmani Research Institute · पारदर्शी संचालन · वास्तविक माप और स्वतंत्र सत्यापन अलग-अलग</footer>
+</main>
+<script>
+(function(){
+"use strict";
+const API="https://api.github.com/repos/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/runs?per_page=100";
+const $=id=>document.getElementById(id);
+const fmtDate=v=>v?new Date(v).toISOString().replace("T"," ").replace(/\.\d{3}Z$/," UTC"):"—";
+const duration=(a,b)=>{if(!a)return "—";const sec=Math.max(0,Math.round(((b?Date.parse(b):Date.now())-Date.parse(a))/1000));return sec<60?sec+"s":Math.floor(sec/60)+"m "+(sec%60)+"s"};
+function setStatus(message,kind){$("status").textContent=message;$("status").className="state "+kind}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+async function refresh(){
+ $("refresh").disabled=true;setStatus("डेटा लोड हो रहा है…","warn");
+ try{
+  const response=await fetch(API,{headers:{Accept:"application/vnd.github+json"}});
+  if(!response.ok)throw new Error("GitHub API HTTP "+response.status+(response.status===403?" — rate limit/permission संभव है":""));
+  const payload=await response.json(),runs=Array.isArray(payload.workflow_runs)?payload.workflow_runs:[];
+  const now=Date.now(),dayAgo=now-86400000,dayRuns=runs.filter(r=>Date.parse(r.created_at)>=dayAgo);
+  const successes=runs.filter(r=>r.conclusion==="success").length;
+  const failures=runs.filter(r=>["failure","cancelled","timed_out","action_required","startup_failure"].includes(r.conclusion)).length;
+  const active=runs.filter(r=>["queued","in_progress","waiting","requested","pending"].includes(r.status)).length;
+  $("total").textContent=Number(payload.total_count??0).toLocaleString("en-IN");
+  $("sample").textContent=runs.length.toLocaleString("en-IN");
+  $("day").textContent=dayRuns.length.toLocaleString("en-IN");
+  $("success").textContent=runs.length?successes+" / "+runs.length+" ("+(100*successes/runs.length).toFixed(1)+"%)":"—";
+  $("failed").textContent=failures.toLocaleString("en-IN");$("running").textContent=active.toLocaleString("en-IN");
+  $("successBar").style.width=(runs.length?100*successes/runs.length:0)+"%";
+  $("coverage").textContent="नमूना कवरेज: "+(runs.length?fmtDate(runs[runs.length-1].created_at):"कोई run नहीं")+" से "+(runs.length?fmtDate(runs[0].created_at):"—")+" तक। पिछले 24 घंटे की गिनती लोड किए गए नमूने में "+dayRuns.length+" है; यह पूर्ण दैनिक संख्या तभी मानी जा सकती है जब नमूना पूरे 24 घंटे को कवर करता हो।";
+  $("runs").innerHTML=runs.slice(0,30).map(r=>{
+   const outcome=r.conclusion||r.status||"unknown",kind=outcome==="success"?"ok":(["failure","cancelled","timed_out"].includes(outcome)?"bad":"warn");
+   const url=r.html_url||"https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions";
+   return "<tr><td><a href=\""+esc(url)+"\" target=\"_blank\" rel=\"noopener noreferrer\">"+esc(r.name||"Unnamed workflow")+"</a><div class=\"small\">Run #"+esc(r.run_number)+" · ID "+esc(r.id)+"</div></td><td><span class=\"state "+kind+"\">"+esc(outcome)+"</span></td><td>"+esc(r.head_branch||"—")+"</td><td>"+esc(fmtDate(r.created_at))+"</td><td>"+esc(duration(r.run_started_at||r.created_at,r.updated_at))+"</td></tr>"
+  }).join("")||"<tr><td colspan=\"5\">अभी कोई workflow run उपलब्ध नहीं।</td></tr>";
+  $("updated").textContent="डेटा पढ़ा गया: "+fmtDate(new Date().toISOString());
+  setStatus("सार्वजनिक API से अपडेट सफल","ok");
+ }catch(error){
+  setStatus("लाइव डेटा उपलब्ध नहीं","bad");
+  $("runs").innerHTML="<tr><td colspan=\"5\">डेटा नहीं मिला: "+esc(error.message)+"। बाद में फिर प्रयास करें या GitHub Actions history खोलें।</td></tr>";
+  $("coverage").textContent="कोई नया आँकड़ा नहीं दिखाया गया क्योंकि स्रोत से पुष्टि नहीं हो सकी।";
+ }finally{$("refresh").disabled=false}
+}
+$("refresh").addEventListener("click",refresh);
+refresh();
+})();
+</script>
+</body></html>
