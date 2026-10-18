@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-production-main-writer
   cancel-in-progress: false
@@ -14,10 +15,13 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Institute → Factory — materialize all catalog products
+      - name: Institute → Factory — materialize catalog products
         env:
           PRODUCT_TARGET: "5000"
         run: |
@@ -28,9 +32,40 @@ jobs:
       - name: Product QC gate
         run: python3 factory/product_qc_gate.py
       - name: Publish showroom production telemetry
+        run: python3 factory/production_dashboard.py
+      - name: Validate generated telemetry
         run: |
-          python3 factory/production_dashboard.py
-          git config user.name "SHIRMANI Supreme Production"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then echo "No production delta."; else git commit -m "automission: publish concrete public product production"; COMMIT_SHA="$(git rev-parse HEAD)"; for attempt in 1 2 3; do git fetch origin main; git reset --hard origin/main; git cherry-pick "$COMMIT_SHA" || { git cherry-pick --abort || true; }; if git push origin HEAD:main; then exit 0; fi; echo "main moved; retrying push ($attempt/3)"; done; echo "Unable to publish production commit after 3 attempts"; exit 1; fi
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for name in (
+              "generated/production-status.json",
+              "generated/production-registry.json",
+              "generated/concrete-production-overlay.json",
+          ):
+              path = Path(name)
+              if not path.is_file():
+                  raise SystemExit(f"Missing required production output: {name}")
+              data = json.loads(path.read_text(encoding="utf-8"))
+              print(f"{name}: valid JSON; keys={len(data)}")
+          if not Path("production-dashboard.html").is_file():
+              raise SystemExit("Missing production-dashboard.html")
+          PY
+      - name: Propose production update through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/supreme-public-production
+          delete-branch: false
+          commit-message: "automission: publish validated production telemetry"
+          title: "chore(production): publish validated production telemetry"
+          body: |
+            Automated production telemetry proposal.
+            
+            This change is proposed for review; it is not a claim of independent verification or completed sales.
+            Merge only after reviewing product artifacts, QC evidence, and the generated counters.
+          add-paths: |
+            production-dashboard.html
+            generated/production-status.json
+            generated/production-registry.json
+            generated/concrete-production-overlay.json
