@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-19T19:34:42.888718+00:00",
+  "architecture": "SHARDED_PRODUCT_CATALOG",
+  "capacity": 150000,
+  "shard_size": 1000,
+  "planned_shards": 150,
+  "populated_shards": 5,
+  "actual_product_records": 5000,
+  "empty_capacity_slots": 145000,
+  "source": "generated/1000-digital-products.json",
+  "truth_boundary": "Capacity is an architecture target; empty slots are not products.",
+  "shards": [
+    {
+      "shard_id": "0000",
+      "path": "generated/catalog-shards/shard-0000.json",
+      "record_count": 1000,
+      "capacity": 1000,
+      "state": "POPULATED"
+    },
+    {
+      "shard_id": "0001",
+      "path": "generated/catalog-shards/shard-0001.json",
+      "record_count": 1000,
+      "capacity": 1000,
+      "state": "POPULATED"
+    },
+    {
+      "shard_id": "0002",
+      "path": "generated/catalog-shards/shard-0002.json",
+      "record_count": 1000,
+      "capacity": 1000,
+      "state": "POPULATED"
+    },
+    {
+      "shard_id": "0003",
+      "path": "generated/catalog-shards/shard-0003.json",
+      "record_count": 1000,
+      "capacity": 1000,
+      "state": "POPULATED"
+    },
+    {
+      "shard_id": "0004",
+      "path": "generated/catalog-shards/shard-0004.json",
+      "record_count": 1000,
+      "capacity": 1000,
+      "state": "POPULATED"
+    }
+  ]
+}
