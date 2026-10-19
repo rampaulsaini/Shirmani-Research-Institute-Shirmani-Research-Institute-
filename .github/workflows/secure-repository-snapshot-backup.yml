@@ -1,0 +1,63 @@
+name: Secure Repository Snapshot Backup
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * *" # Daily at 02:17 UTC
+
+permissions:
+  contents: read
+
+concurrency:
+  group: secure-repository-snapshot-backup
+  cancel-in-progress: false
+
+jobs:
+  snapshot-and-restore-check:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout source without persisted credentials
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Create and verify source snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="$RUNNER_TEMP/shirmani-source-${GITHUB_SHA}.tar.gz"
+          checksum="$archive.sha256"
+          manifest="$RUNNER_TEMP/backup-manifest.txt"
+          git archive --format=tar.gz --output="$archive" "$GITHUB_SHA"
+          sha256sum "$archive" > "$checksum"
+          mkdir "$RUNNER_TEMP/restore-check"
+          tar -xzf "$archive" -C "$RUNNER_TEMP/restore-check"
+          test -s "$RUNNER_TEMP/restore-check/README.md"
+          git archive --format=tar "$GITHUB_SHA" | tar -tf - | sort > "$RUNNER_TEMP/expected-files.txt"
+          (cd "$RUNNER_TEMP/restore-check" && find . -type f -printf '%P\n' | sort) > "$RUNNER_TEMP/restored-files.txt"
+          sed 's#^#./#' "$RUNNER_TEMP/expected-files.txt" > "$RUNNER_TEMP/expected-files-normalized.txt"
+          diff -u "$RUNNER_TEMP/expected-files-normalized.txt" "$RUNNER_TEMP/restored-files.txt"
+          {
+            printf 'repository=%s\n' "$GITHUB_REPOSITORY"
+            printf 'ref=refs/heads/main\n'
+            printf 'commit=%s\n' "$GITHUB_SHA"
+            printf 'created_utc=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            printf 'tracked_files=%s\n' "$(wc -l < "$RUNNER_TEMP/expected-files.txt" | tr -d ' ')"
+            printf 'restore_file_list_check=PASS\n'
+          } > "$manifest"
+          cp "$checksum" "$RUNNER_TEMP/backup-checksum.sha256"
+          echo "Snapshot created; checksum and extracted file-list verification passed."
+
+      - name: Retain encrypted-platform artifact for 14 days
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-source-backup-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/shirmani-source-${{ github.sha }}.tar.gz
+            ${{ runner.temp }}/backup-checksum.sha256
+            ${{ runner.temp }}/backup-manifest.txt
+          if-no-files-found: error
+          retention-days: 14
