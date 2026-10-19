@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T12:42:22.705517+00:00",
+  "generated_at": "2026-10-19T19:52:16.661729+00:00",
   "stages": [
     {
       "stage": 1,
@@ -23,9 +23,9 @@
     }
   ],
   "products": {
-    "catalog": 1016,
-    "produced": 1016,
-    "qc_passed": 1016,
+    "catalog": 5000,
+    "produced": 5000,
+    "qc_passed": 1516,
     "dispatch": 0
   },
   "showroom": "supreme-showroom.html",
