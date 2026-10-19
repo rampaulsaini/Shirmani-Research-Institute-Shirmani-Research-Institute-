@@ -24,8 +24,9 @@ permissions:
   contents: write
   pull-requests: write
 
+# Share the lock with production-state repair; both touch generated production outputs.
 concurrency:
-  group: shirmani-factory-publish
+  group: shirmani-generated-production-publish
   cancel-in-progress: false
 
 jobs:
