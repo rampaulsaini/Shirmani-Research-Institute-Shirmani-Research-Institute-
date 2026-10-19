@@ -5,6 +5,13 @@ on:
   schedule:
     - cron: "17 * * * *"
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "config/shirmani-character-v2.json"
+      - "docs/SHIRMANI-CHARACTER-V2.md"
+      - "shirmani-live-presentation.html"
+      - ".github/workflows/shirmani-character-v2-audit.yml"
   push:
     branches: [main]
     paths:
