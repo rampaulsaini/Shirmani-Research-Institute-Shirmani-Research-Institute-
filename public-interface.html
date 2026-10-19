@@ -37,6 +37,18 @@ section{margin:18px 0;padding:clamp(18px,3vw,28px);border:1px solid var(--line);
 </nav>
 </header>
 <main>
+<section id="production-evidence" aria-labelledby="production-evidence-title">
+<h2 id="production-evidence-title"><span class="number">0</span>24/7 उत्पादन और प्रमाण डैशबोर्ड</h2>
+<p class="section-intro">यह पैनल प्रकाशित उत्पादन-स्थिति फ़ाइल से आँकड़े पढ़ता है। यह workflow success, स्वतंत्र सत्यापन, बिक्री या भुगतान का विकल्प नहीं है। डेटा उपलब्ध न हो तो अनुमान के बजाय स्थिति स्पष्ट दिखाई जाएगी।</p>
+<div class="grid" aria-live="polite">
+<article class="tile"><div class="eyebrow">ठोस उत्पादन</div><h3 id="prod-assets">लोड हो रहा है…</h3><p>रिपोर्ट में दर्ज ठोस repository assets</p></article>
+<article class="tile"><div class="eyebrow">लक्ष्य प्रगति</div><h3 id="prod-percent">—</h3><p id="prod-target">5,000 के पैमाने के विरुद्ध; रिपोर्ट उपलब्ध होने पर</p></article>
+<article class="tile"><div class="eyebrow">स्वतंत्र सत्यापन</div><h3 id="prod-verified">—</h3><p>केवल रिपोर्ट में दर्ज सत्यापित रिकॉर्ड</p></article>
+<article class="tile"><div class="eyebrow">वास्तविक बिक्री / भुगतान</div><h3 id="prod-sales">— / —</h3><p>रिपोर्ट के दावे; वास्तविक ग्राहक प्रमाण अलग से आवश्यक</p></article>
+</div>
+<p id="prod-status" class="notice pending" role="status">उत्पादन रिपोर्ट पढ़ी जा रही है; अभी कोई प्रतिशत अनुमान से नहीं दिखाया जाएगा।</p>
+<div class="actions"><a class="btn alt" href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions">GitHub Actions के वास्तविक workflow runs देखें →</a><a class="btn alt" href="generated/live-production-state.json">उत्पादन स्थिति JSON →</a></div>
+</section>
 <section id="start">
 <h2><span class="number">1</span>सबसे पहले यहाँ से शुरू करें</h2>
 <p class="section-intro">यदि आप पहली बार आए हैं, तो अपनी ज़रूरत के अनुसार एक रास्ता चुनें।</p>
@@ -106,5 +118,30 @@ section{margin:18px 0;padding:clamp(18px,3vw,28px);border:1px solid var(--line);
 </main>
 <footer>Shirmani Research Institute · सामग्री को सुरक्षित रखते हुए स्पष्ट नेविगेशन, वास्तविक परिणाम और प्रमाण-आधारित प्रगति।</footer>
 </div>
+<script>
+(function(){
+ const byId=id=>document.getElementById(id);
+ const num=v=>Number.isFinite(Number(v))?Number(v).toLocaleString('en-IN'):'—';
+ const pct=v=>Number.isFinite(Number(v))?Number(v).toFixed(2)+'%':'—';
+ fetch('generated/live-production-state.json',{cache:'no-store'})
+  .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+  .then(d=>{
+   byId('prod-assets').textContent=num(d.concrete_repository_assets);
+   byId('prod-percent').textContent=pct(d.concrete_materialization_percent_of_scale_target);
+   byId('prod-target').textContent=num(d.concrete_repository_assets)+' / '+num(d.five_thousand_scale_target)+' ठोस assets';
+   byId('prod-verified').textContent=num(d.independent_verification_claimed);
+   byId('prod-sales').textContent=num(d.sales_claimed)+' / '+num(d.payment_claimed);
+   byId('prod-status').textContent='रिपोर्ट समय: '+(d.generated_at||'रिपोर्ट में समय उपलब्ध नहीं')+' · स्थिति: '+(d.state||'अज्ञात')+' · QC: '+(d.qc_state||'अज्ञात')+'. उत्पाद बनना, QC पास होना, स्वतंत्र सत्यापन, बिक्री और भुगतान अलग-अलग अवस्थाएँ हैं.';
+   byId('prod-status').classList.remove('pending');
+  })
+  .catch(e=>{
+   byId('prod-assets').textContent='डेटा उपलब्ध नहीं';
+   byId('prod-percent').textContent='—';
+   byId('prod-verified').textContent='—';
+   byId('prod-sales').textContent='— / —';
+   byId('prod-status').textContent='रिपोर्ट अभी पढ़ी नहीं जा सकी ('+e.message+'). कोई आँकड़ा या प्रतिशत गढ़ा नहीं गया। GitHub Actions और प्रकाशित JSON लिंक से स्थिति जाँचें.';
+  });
+})();
+</script>
 </body>
 </html>
