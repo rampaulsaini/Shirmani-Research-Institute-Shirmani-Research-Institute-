@@ -2,9 +2,10 @@ name: SHIRMANI Production Surface + 150K Catalogue Factory
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "0 * * * *"
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-production-surface-factory
   cancel-in-progress: false
@@ -20,11 +21,23 @@ jobs:
         env:
           PRODUCT_SURFACE_BATCH: "25"
         run: python3 factory/product_surface_factory.py
-      - name: Publish production result
-        run: |
-          git config user.name "SHIRMANI Production Surface Factory"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add catalog generated/product-surface-manifest.json products/live
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "feat(production): materialize public product surfaces and catalog shards"
-          git push origin HEAD:main
+      - name: Create or update reviewed production PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automission/production-surface-refresh
+          delete-branch: false
+          commit-message: "feat(production): materialize public product surfaces and catalog shards"
+          title: "Automission: refresh public product surfaces and catalogue"
+          body: |
+            ## Automated production refresh
+
+            This PR contains the generated catalogue shards, product-surface manifest, and up to 25 new public product pages from one factory cycle.
+
+            - Generated output is reviewed through a pull request; this workflow never pushes directly to protected `main`.
+            - A generated page is not evidence of a customer sale, payment, successful delivery, scientific validation, or independent human review.
+            - Merge only after required checks pass and the public page/link checks succeed.
+          add-paths: |
+            catalog/**
+            generated/product-surface-manifest.json
+            products/live/**
