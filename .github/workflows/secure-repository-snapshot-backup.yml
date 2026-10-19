@@ -33,6 +33,7 @@ jobs:
           manifest="$RUNNER_TEMP/backup-manifest.txt"
           git archive --format=tar.gz --output="$archive" "$GITHUB_SHA"
           sha256sum "$archive" > "$checksum"
+          sha256sum -c "$checksum"
           mkdir "$RUNNER_TEMP/restore-check"
           tar -xzf "$archive" -C "$RUNNER_TEMP/restore-check"
           test -s "$RUNNER_TEMP/restore-check/README.md"
@@ -49,9 +50,9 @@ jobs:
             printf 'restore_file_list_check=PASS\n'
           } > "$manifest"
           cp "$checksum" "$RUNNER_TEMP/backup-checksum.sha256"
-          echo "Snapshot created; checksum and extracted file-list verification passed."
+          echo "Snapshot created; checksum verification and extracted file-list comparison passed."
 
-      - name: Retain encrypted-platform artifact for 14 days
+      - name: Upload snapshot artifact with 14-day retention
         uses: actions/upload-artifact@v4
         with:
           name: shirmani-source-backup-${{ github.sha }}
