@@ -25,6 +25,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends ffmpeg
       - name: Build engine-family demo MP4s and product media manifest
         run: python3 factory/product_demo_video_factory.py
       - name: Publish demo media
