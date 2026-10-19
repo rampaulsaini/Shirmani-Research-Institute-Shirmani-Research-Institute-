@@ -3,11 +3,12 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-product-media-factory
   cancel-in-progress: false
-permissions:
-  contents: write
 jobs:
   media-production:
     runs-on: ubuntu-latest
@@ -24,10 +25,13 @@ jobs:
         env:
           MEDIA_BATCH: "10"
         run: python3 factory/product_media_factory.py
-      - name: Commit production media
-        run: |
-          git config user.name "SHIRMANI Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add factory/product_media_factory.py generated/product-specific-demo-video-manifest.json products/demos products/vip-screenshots
-          git diff --cached --quiet || git commit -m "production: materialize product demo media batch"
-          git push
+      - name: Publish generated media through pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "production: materialize product demo media batch"
+          title: "Automission: publish product demo media batch"
+          body: |
+            Publishes generated media through the repository's required pull-request path.
+            Generated media is not treated as proof of live voice, lip-sync, customer sales, or delivery.
+          branch: "automission/product-media-factory"
+          delete-branch: true
