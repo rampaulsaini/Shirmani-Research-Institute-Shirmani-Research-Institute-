@@ -191,4 +191,8 @@ jobs:
           git add generated products factory assets
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "fix(production): repair production-state conflicts and rebuild public outputs"
+          # Another production cycle may update this branch while repair runs.
+          # Integrate the latest remote head before pushing; never force-push production state.
+          git fetch origin automation/production-state
+          git merge --no-edit FETCH_HEAD
           git push origin HEAD:automation/production-state
