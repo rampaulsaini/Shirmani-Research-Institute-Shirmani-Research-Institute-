@@ -1,9 +1,17 @@
 name: SHIRMANI Character V2 Continuous Audit
 
 on:
+  # Hourly monitoring preserves 24/7 coverage without flooding Actions with a run every five minutes.
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "config/shirmani-character-v2.json"
+      - "docs/SHIRMANI-CHARACTER-V2.md"
+      - "shirmani-live-presentation.html"
+      - ".github/workflows/shirmani-character-v2-audit.yml"
   push:
     branches: [main]
     paths:
@@ -13,7 +21,7 @@ on:
       - ".github/workflows/shirmani-character-v2-audit.yml"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: shirmani-character-v2-audit
@@ -61,33 +69,55 @@ jobs:
           if missing: raise SystemExit("CHARACTER_V2_UI_AUDIT_FAIL: "+repr(missing))
           print("CHARACTER_V2_UI_AUDIT_PASS")
 
-      - name: Publish audit state
+      - name: Generate machine-readable audit evidence
         shell: python
         run: |
-          import json
+          import json, os
           from pathlib import Path
           from datetime import datetime, timezone
           out={
             "generated_at": datetime.now(timezone.utc).isoformat(),
+            "workflow_run_number": os.environ.get("GITHUB_RUN_NUMBER"),
+            "workflow_run_id": os.environ.get("GITHUB_RUN_ID"),
             "character_contract": "SHIRMANI Character V2",
-            "contract": "PASS",
-            "live_release": "FAIL_CLOSED_UNTIL_UPSTREAM_GATES_PASS",
+            "contract_checks": "PASS",
+            "presentation_integration_checks": "PASS",
+            "automated_checks_passed": 2,
+            "automated_checks_total": 2,
+            "automated_check_pass_rate_percent": 100,
+            "live_release": "NOT_VERIFIED",
             "independent_verification": "REQUIRED",
             "external_voice_provider": "NOT_CONNECTED_BY_THIS_AUDIT",
             "phoneme_accurate_lipsync": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+            "live_question_answering": "NOT_TESTED_BY_THIS_AUDIT",
             "evidence_uncertainty": "FAIL_CLOSED",
-            "source_of_truth": "config/shirmani-character-v2.json"
+            "source_of_truth": "config/shirmani-character-v2.json",
+            "note": "Passing automated contract checks is not proof of public deployment, live voice, lip-sync, or external-provider operation."
           }
           Path("generated").mkdir(exist_ok=True)
           Path("generated/shirmani-character-v2-audit.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          summary = [
+            "# SHIRMANI Character V2 — Production audit",
+            "",
+            f"- UTC timestamp: {out['generated_at']}",
+            f"- Workflow run: {out['workflow_run_number']} (ID {out['workflow_run_id']})",
+            "- Contract checks: PASS",
+            "- Presentation integration checks: PASS",
+            "- Automated checks: 2/2 (100%)",
+            "- Public/live release: NOT VERIFIED",
+            "- External voice provider: NOT CONNECTED BY THIS AUDIT",
+            "- Phoneme-accurate lip-sync: NOT ESTABLISHED BY THIS AUDIT",
+            "- Live question answering: NOT TESTED BY THIS AUDIT",
+            "",
+            "> These counters measure only the automated checks run here. They do not claim platform-wide completion or external-service verification."
+          ]
+          Path(os.environ["GITHUB_STEP_SUMMARY"]).write_text("\n".join(summary)+"\n",encoding="utf-8")
           print(json.dumps(out,ensure_ascii=False,indent=2))
 
-      - name: Commit audit state
-        shell: bash
-        run: |
-          git config user.name "SHIRMANI Character V2 Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/shirmani-character-v2-audit.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "automission: publish SHIRMANI Character V2 audit state"
-          git push origin HEAD:main
+      - name: Preserve audit evidence as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-character-v2-audit-${{ github.run_number }}
+          path: generated/shirmani-character-v2-audit.json
+          if-no-files-found: error
+          retention-days: 30
