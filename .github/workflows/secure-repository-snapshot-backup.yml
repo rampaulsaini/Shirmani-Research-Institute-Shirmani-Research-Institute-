@@ -39,8 +39,8 @@ jobs:
           test -s "$RUNNER_TEMP/restore-check/README.md"
           git archive --format=tar "$GITHUB_SHA" | tar -tf - | sort > "$RUNNER_TEMP/expected-files.txt"
           (cd "$RUNNER_TEMP/restore-check" && find . -type f -printf '%P\n' | sort) > "$RUNNER_TEMP/restored-files.txt"
-          sed 's#^#./#' "$RUNNER_TEMP/expected-files.txt" > "$RUNNER_TEMP/expected-files-normalized.txt"
-          diff -u "$RUNNER_TEMP/expected-files-normalized.txt" "$RUNNER_TEMP/restored-files.txt"
+          # Both lists use repository-relative paths without a leading ./.
+          diff -u "$RUNNER_TEMP/expected-files.txt" "$RUNNER_TEMP/restored-files.txt"
           {
             printf 'repository=%s\n' "$GITHUB_REPOSITORY"
             printf 'ref=refs/heads/main\n'
