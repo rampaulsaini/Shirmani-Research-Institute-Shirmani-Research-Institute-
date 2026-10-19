@@ -1,13 +1,15 @@
 {
-  "strategy": "CONCRETE_PRODUCT_ASSET_PRODUCTION",
-  "concrete_product_mvp": 1016,
-  "catalog_products": 1016,
-  "concrete_product_assets": 1016,
-  "family_modules": 25,
-  "public_showroom": "products.html",
-  "product_launch_center": "products/production-launch-center.html",
-  "passport": "generated/PRODUCT-PASSPORTS.jsonl",
-  "state": "READY_FOR_QC",
-  "dispatch": "NO",
-  "verification": "DOWNSTREAM"
+  "strategy": "CONCRETE_PRODUCT_FIRST",
+  "target_products": 5000,
+  "concrete_product_mvp": 5000,
+  "families": 25,
+  "concrete_product_asset_target": 5000,
+  "catalog": "generated/1000-digital-products.json",
+  "passports": "generated/PRODUCT-PASSPORTS.jsonl",
+  "public_product_center": "products/production-launch-center.html",
+  "qc_gate": "READY_FOR_QC",
+  "dispatch": 0,
+  "verification_status": "DOWNSTREAM",
+  "commercial_metadata": "PRICE_OFFER_DESCRIPTION_GUARANTEE_PACKING_QR",
+  "expansion_mode": "ENV_PRODUCT_TARGET"
 }
