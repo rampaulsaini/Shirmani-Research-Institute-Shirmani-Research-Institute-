@@ -58,6 +58,3 @@ jobs:
             - Review catalog and generated artifacts before merging.
             - QC remains pending unless backed by actual test evidence.
             - This PR does not claim deployment, external delivery, or revenue.
-          labels: |
-            automation
-            production
