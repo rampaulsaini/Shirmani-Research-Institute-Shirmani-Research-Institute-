@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generated_at": "2026-10-19T17:12:49.800027+00:00",
+  "generated_at": "2026-10-19T21:36:05.739200+00:00",
   "purpose": "public-first production module map",
   "module_count": 13411,
   "lane_counts": {
-    "ai_ml_nlp": 11330,
+    "ai_ml_nlp": 11334,
     "automation": 5,
     "content": 8,
     "economic": 6,
     "platform": 3,
-    "research": 2022,
+    "research": 2018,
     "security_quality": 37
   },
   "status_counts": {
@@ -78370,588 +78370,616 @@
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1645
+      "bytes": 1672
     },
     {
       "path": "products/concrete/SP-1518.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1655
-    },
-    {
-      "path": "products/concrete/SP-1519.html",
-      "type": "html",
-      "lane": "ai_ml_nlp",
-      "status": "UNSPECIFIED",
-      "bytes": 1598
-    },
-    {
-      "path": "products/concrete/SP-1520.html",
-      "type": "html",
-      "lane": "ai_ml_nlp",
-      "status": "UNSPECIFIED",
-      "bytes": 1590
+      "bytes": 1690
     },
     {
       "path": "products/concrete/SP-1521.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1633
+      "bytes": 1702
     },
     {
       "path": "products/concrete/SP-1522.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1686
+      "bytes": 1697
     },
     {
       "path": "products/concrete/SP-1523.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1616
+      "bytes": 1645
     },
     {
       "path": "products/concrete/SP-1524.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1611
+      "bytes": 1672
+    },
+    {
+      "path": "products/concrete/SP-1525.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1690
     },
     {
       "path": "products/concrete/SP-1526.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1625
+      "bytes": 1710
     },
     {
       "path": "products/concrete/SP-1527.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1648
+      "bytes": 1696
     },
     {
       "path": "products/concrete/SP-1528.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1605
+      "bytes": 1671
     },
     {
-      "path": "products/concrete/SP-1530.html",
+      "path": "products/concrete/SP-1529.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1623
+      "bytes": 1657
     },
     {
       "path": "products/concrete/SP-1531.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1658
+      "bytes": 1734
     },
     {
       "path": "products/concrete/SP-1532.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1610
+      "bytes": 1654
     },
     {
-      "path": "products/concrete/SP-1534.html",
+      "path": "products/concrete/SP-1533.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1642
+      "bytes": 1649
     },
     {
       "path": "products/concrete/SP-1535.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1639
+      "bytes": 1675
+    },
+    {
+      "path": "products/concrete/SP-1536.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1693
     },
     {
       "path": "products/concrete/SP-1537.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1644
+      "bytes": 1657
     },
     {
       "path": "products/concrete/SP-1538.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1645
+      "bytes": 1677
     },
     {
       "path": "products/concrete/SP-1539.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1610
+      "bytes": 1674
     },
     {
       "path": "products/concrete/SP-1540.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1624
+      "bytes": 1708
     },
     {
       "path": "products/concrete/SP-1541.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1645
+      "bytes": 1686
     },
     {
       "path": "products/concrete/SP-1542.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1649
+      "bytes": 1672
     },
     {
       "path": "products/concrete/SP-1543.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1651
+      "bytes": 1693
     },
     {
       "path": "products/concrete/SP-1544.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1600
-    },
-    {
-      "path": "products/concrete/SP-1545.html",
-      "type": "html",
-      "lane": "ai_ml_nlp",
-      "status": "UNSPECIFIED",
-      "bytes": 1590
+      "bytes": 1669
     },
     {
       "path": "products/concrete/SP-1546.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1629
+      "bytes": 1708
     },
     {
       "path": "products/concrete/SP-1547.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1686
+      "bytes": 1706
     },
     {
       "path": "products/concrete/SP-1548.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1612
+      "bytes": 1651
     },
     {
       "path": "products/concrete/SP-1549.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1617
+      "bytes": 1675
+    },
+    {
+      "path": "products/concrete/SP-1550.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1705
     },
     {
       "path": "products/concrete/SP-1551.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1621
+      "bytes": 1707
     },
     {
       "path": "products/concrete/SP-1552.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1650
+      "bytes": 1702
     },
     {
       "path": "products/concrete/SP-1553.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1605
+      "bytes": 1668
     },
     {
-      "path": "products/concrete/SP-1555.html",
-      "type": "html",
-      "lane": "ai_ml_nlp",
-      "status": "UNSPECIFIED",
-      "bytes": 1623
-    },
-    {
-      "path": "products/concrete/SP-1556.html",
+      "path": "products/concrete/SP-1554.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
       "bytes": 1654
     },
     {
+      "path": "products/concrete/SP-1555.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1713
+    },
+    {
+      "path": "products/concrete/SP-1556.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1728
+    },
+    {
       "path": "products/concrete/SP-1557.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1616
+      "bytes": 1663
     },
     {
-      "path": "products/concrete/SP-1559.html",
+      "path": "products/concrete/SP-1558.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1638
+      "bytes": 1652
     },
     {
       "path": "products/concrete/SP-1560.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1641
+      "bytes": 1681
+    },
+    {
+      "path": "products/concrete/SP-1561.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1693
     },
     {
       "path": "products/concrete/SP-1562.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1640
+      "bytes": 1645
     },
     {
       "path": "products/concrete/SP-1563.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1645
+      "bytes": 1662
     },
     {
       "path": "products/concrete/SP-1564.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1606
+      "bytes": 1671
     },
     {
       "path": "products/concrete/SP-1565.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1630
+      "bytes": 1711
     },
     {
       "path": "products/concrete/SP-1566.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1649
+      "bytes": 1683
     },
     {
       "path": "products/concrete/SP-1567.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1645
+      "bytes": 1660
     },
     {
       "path": "products/concrete/SP-1568.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1653
+      "bytes": 1690
     },
     {
       "path": "products/concrete/SP-1569.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1600
-    },
-    {
-      "path": "products/concrete/SP-1570.html",
-      "type": "html",
-      "lane": "ai_ml_nlp",
-      "status": "UNSPECIFIED",
-      "bytes": 1586
+      "bytes": 1669
     },
     {
       "path": "products/concrete/SP-1571.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1629
+      "bytes": 1708
     },
     {
       "path": "products/concrete/SP-1572.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1682
+      "bytes": 1700
     },
     {
       "path": "products/concrete/SP-1573.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1618
+      "bytes": 1654
     },
     {
       "path": "products/concrete/SP-1574.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1621
+      "bytes": 1669
+    },
+    {
+      "path": "products/concrete/SP-1575.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1699
     },
     {
       "path": "products/concrete/SP-1576.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1623
+      "bytes": 1707
     },
     {
       "path": "products/concrete/SP-1577.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1650
+      "bytes": 1708
     },
     {
       "path": "products/concrete/SP-1578.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1601
+      "bytes": 1674
+    },
+    {
+      "path": "products/concrete/SP-1579.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1657
     },
     {
       "path": "products/concrete/SP-1580.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1619
+      "bytes": 1695
     },
     {
       "path": "products/concrete/SP-1581.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1660
+      "bytes": 1734
     },
     {
       "path": "products/concrete/SP-1582.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1620
+      "bytes": 1663
     },
     {
-      "path": "products/concrete/SP-1584.html",
+      "path": "products/concrete/SP-1583.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1640
+      "bytes": 1655
     },
     {
       "path": "products/concrete/SP-1585.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1641
+      "bytes": 1681
+    },
+    {
+      "path": "products/concrete/SP-1586.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1699
     },
     {
       "path": "products/concrete/SP-1587.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1640
+      "bytes": 1654
     },
     {
       "path": "products/concrete/SP-1588.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1641
+      "bytes": 1668
     },
     {
       "path": "products/concrete/SP-1589.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1612
+      "bytes": 1674
     },
     {
       "path": "products/concrete/SP-1590.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1634
+      "bytes": 1726
     },
     {
       "path": "products/concrete/SP-1591.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1645
+      "bytes": 1680
     },
     {
       "path": "products/concrete/SP-1592.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1647
+      "bytes": 1666
     },
     {
       "path": "products/concrete/SP-1593.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1653
+      "bytes": 1687
     },
     {
       "path": "products/concrete/SP-1594.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1596
-    },
-    {
-      "path": "products/concrete/SP-1595.html",
-      "type": "html",
-      "lane": "ai_ml_nlp",
-      "status": "UNSPECIFIED",
-      "bytes": 1586
+      "bytes": 1666
     },
     {
       "path": "products/concrete/SP-1596.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1625
+      "bytes": 1702
     },
     {
       "path": "products/concrete/SP-1597.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1688
+      "bytes": 1709
     },
     {
       "path": "products/concrete/SP-1598.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1622
+      "bytes": 1657
     },
     {
-      "path": "products/concrete/SP-1599.html",
+      "path": "products/concrete/SP-1600.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1617
+      "bytes": 1705
     },
     {
       "path": "products/concrete/SP-1601.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1623
+      "bytes": 1707
     },
     {
       "path": "products/concrete/SP-1602.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1646
+      "bytes": 1696
     },
     {
       "path": "products/concrete/SP-1603.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1601
+      "bytes": 1659
+    },
+    {
+      "path": "products/concrete/SP-1604.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1654
     },
     {
       "path": "products/concrete/SP-1605.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1625
+      "bytes": 1698
     },
     {
       "path": "products/concrete/SP-1606.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1664
+      "bytes": 1731
     },
     {
       "path": "products/concrete/SP-1607.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1616
+      "bytes": 1651
     },
     {
-      "path": "products/concrete/SP-1609.html",
+      "path": "products/concrete/SP-1608.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1640
+      "bytes": 1652
     },
     {
-      "path": "products/concrete/SP-1610.html",
+      "path": "products/concrete/SP-1611.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1637
+      "bytes": 1699
     },
     {
       "path": "products/concrete/SP-1612.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1636
+      "bytes": 1648
     },
     {
       "path": "products/concrete/SP-1613.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1647
+      "bytes": 1671
     },
     {
       "path": "products/concrete/SP-1614.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1616
+      "bytes": 1668
     },
     {
       "path": "products/concrete/SP-1615.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1630
+      "bytes": 1720
     },
     {
       "path": "products/concrete/SP-1616.html",
       "type": "html",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 1647
+      "bytes": 1680
     },
     {
       "path": "products/concrete/SR-CUSTOMER-VOICE-QUALITY-LOOP-0001.html",
@@ -92968,116 +92996,88 @@
       "bytes": 37539
     },
     {
-      "path": "products/concrete/SP-1525.html",
+      "path": "products/concrete/SP-1519.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1600
+      "bytes": 1669
     },
     {
-      "path": "products/concrete/SP-1529.html",
+      "path": "products/concrete/SP-1520.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1624
+      "bytes": 1663
     },
     {
-      "path": "products/concrete/SP-1533.html",
+      "path": "products/concrete/SP-1530.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1615
+      "bytes": 1710
     },
     {
-      "path": "products/concrete/SP-1536.html",
+      "path": "products/concrete/SP-1534.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1614
+      "bytes": 1645
     },
     {
-      "path": "products/concrete/SP-1550.html",
+      "path": "products/concrete/SP-1545.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1604
+      "bytes": 1663
     },
     {
-      "path": "products/concrete/SP-1554.html",
+      "path": "products/concrete/SP-1559.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1620
+      "bytes": 1651
     },
     {
-      "path": "products/concrete/SP-1558.html",
+      "path": "products/concrete/SP-1570.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1619
+      "bytes": 1660
     },
     {
-      "path": "products/concrete/SP-1561.html",
+      "path": "products/concrete/SP-1584.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1614
+      "bytes": 1651
     },
     {
-      "path": "products/concrete/SP-1575.html",
+      "path": "products/concrete/SP-1595.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1600
+      "bytes": 1663
     },
     {
-      "path": "products/concrete/SP-1579.html",
+      "path": "products/concrete/SP-1599.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1620
+      "bytes": 1675
     },
     {
-      "path": "products/concrete/SP-1583.html",
+      "path": "products/concrete/SP-1609.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1615
+      "bytes": 1651
     },
     {
-      "path": "products/concrete/SP-1586.html",
+      "path": "products/concrete/SP-1610.html",
       "type": "html",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 1610
-    },
-    {
-      "path": "products/concrete/SP-1600.html",
-      "type": "html",
-      "lane": "research",
-      "status": "UNSPECIFIED",
-      "bytes": 1602
-    },
-    {
-      "path": "products/concrete/SP-1604.html",
-      "type": "html",
-      "lane": "research",
-      "status": "UNSPECIFIED",
-      "bytes": 1616
-    },
-    {
-      "path": "products/concrete/SP-1608.html",
-      "type": "html",
-      "lane": "research",
-      "status": "UNSPECIFIED",
-      "bytes": 1617
-    },
-    {
-      "path": "products/concrete/SP-1611.html",
-      "type": "html",
-      "lane": "research",
-      "status": "UNSPECIFIED",
-      "bytes": 1610
+      "bytes": 1678
     },
     {
       "path": "products/concrete/SR-WRITE-002-product-passport.html",
