@@ -127,7 +127,7 @@ function render(saved){
 const d=read();
 $("ire-total").textContent=Number.isFinite(d.revenue)&&d.revenue>=0?new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:2}).format(d.revenue)+" entered":"Invalid amount";
 $("ire-verification").textContent=(d.revenue>0 && d.evidence && d.errors.length===0)?"Evidence reference entered — manual reconciliation still required":"Not independently verified; match any amount against the original payment/provider record.";
-$("ire-conversion").textContent="Lead-to-paid conversion (same cohort only): "+(d.leads>0&&d.orders>=0&&d.errors.length===0?((d.orders/d.leads)*100).toFixed(2)+"%":"— (enter valid counts)");
+$("ire-conversion").textContent="Lead-to-paid conversion (same cohort only): "+(d.errors.length?"— (correct invalid counts)":d.leads<=0?"— (enter qualified leads)":d.orders>d.leads?"— (paid orders exceed leads; check cohort/date range)":((d.orders/d.leads)*100).toFixed(2)+"%");
 $("ire-average").textContent="Entered amount per paid order: "+(d.orders>0&&d.errors.length===0?new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:2}).format(d.revenue/d.orders):"— (enter valid paid-order count)");
 $("ire-reconcile").textContent=d.errors.length?"Check inputs: "+d.errors.join("; "):(d.evidence?"Reference entered, not verified by this page. Match it to the original receipt/provider record.":"No evidence reference entered; do not treat the amount as verified income.");
 if(saved)$("ire-saved").textContent="Saved in this browser on "+new Date().toLocaleString()+"; not uploaded to a server.";
