@@ -73,5 +73,87 @@
 <article class="card"><span class="tag">STEP 04</span><h3>Evidence ledger</h3><p>Leads, enquiries, orders, payments और delivery को वास्तविक evidence के साथ track करें.</p></article>
 </div>
 </section>
+
+<section class="section" id="income-first-engine" aria-labelledby="income-engine-title">
+<h2 id="income-engine-title">7. INCOME-FIRST CONTROL LAYER · वास्तविक परिणाम पहले</h2>
+<div class="flow">
+<p><strong>नियम:</strong> पहले buyer intent और payment-ready route; उसके बाद production scale. केवल copies, workflow runs या generated files को income नहीं माना जाएगा.</p>
+<p class="note">यह dashboard में चलने वाला local decision helper है—यह स्वयं AI model, NVIDIA GPU, external API, outreach, checkout या payment processor से जुड़ा नहीं है। किसी भी provider integration को अलग backend, authorized credentials, tests और cost/rate limits के बाद ही live माना जाएगा.</p>
+<div class="grid">
+<article class="card">
+<label for="if-kind">काम का प्रकार</label>
+<select id="if-kind" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
+<option value="service">ग्राहक सेवा / freelance</option><option value="digital">मौजूदा digital product</option><option value="job">भुगतान वाला रोजगार / task</option>
+</select>
+<label for="if-proof" style="margin-top:12px">अभी का सबसे मजबूत वास्तविक संकेत</label>
+<select id="if-proof" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
+<option value="none">अभी कोई buyer signal नहीं</option><option value="view">केवल views / visits</option><option value="inquiry">वास्तविक enquiry / buyer reply</option><option value="quote">भुगतान/quote की स्पष्ट माँग</option><option value="paid">भुगतान का सत्यापित प्रमाण</option>
+</select>
+<label for="if-ready" style="margin-top:12px">Deliverable की स्थिति</label>
+<select id="if-ready" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
+<option value="ready">तुरंत दिखाने/देने योग्य</option><option value="needsqc">QC / demo बाकी</option><option value="blocked">checkout / delivery route अवरुद्ध</option>
+</select>
+<button class="btn" id="if-run" type="button" style="cursor:pointer;margin-top:16px">मुख्य अगला कदम निकालें</button>
+</article>
+<article class="card" aria-live="polite">
+<span class="tag">RESULT · RULE-BASED ROUTING</span>
+<h3 id="if-result-title">पहले वास्तविक संकेत प्राप्त करें</h3>
+<p id="if-result">यदि कोई buyer signal नहीं है, तो million-copy production को प्राथमिकता देने के बजाय एक मौजूदा offer और वास्तविक ग्राहक-प्रतिक्रिया पर ध्यान दें।</p>
+<p id="if-state" class="note">आय की पुष्टि नहीं हुई</p>
+<a class="btn" id="if-route" href="income-command-center.html#income-workbench">मौजूदा आय कार्यक्षेत्र खोलें</a>
+</article>
+</div>
+</div>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+function route(){
+const kind=$("if-kind").value, proof=$("if-proof").value, ready=$("if-ready").value;
+let title="", detail="", href="income-command-center.html#income-workbench", state="अभी भुगतान/आय का दावा नहीं";
+if(proof==="paid"){
+title="भुगतान रिकॉर्ड और delivery मिलाएँ";
+detail="भुगतान का प्रमाण सुरक्षित रखें, order ID से मिलान करें, फिर तय deliverable ग्राहक को दें और delivery evidence दर्ज करें.";
+href="https://rampaulsaini.github.io/my-omniverse-store/";
+state="भुगतान चुना गया—यह helper स्वयं प्रमाण सत्यापित नहीं करता";
+}else if(ready==="blocked"){
+title="पहले checkout / delivery अवरोध दूर करें";
+detail="खरीदार से संपर्क बढ़ाने से पहले वास्तविक checkout, payment confirmation और delivery route को end-to-end जाँचें.";
+href=kind==="digital"?"https://rampaulsaini.github.io/my-omniverse-store/":"production-first-mvp.html";
+}else if(ready==="needsqc"){
+title="न्यूनतम उपयोगी demo और QC पूरा करें";
+detail="एक स्पष्ट deliverable, वास्तविक sample input/output, price/scope और delivery conditions तैयार करें. QC पास होने तक इसे verified न कहें.";
+href="production-execution-board.html";
+}else if(proof==="quote"){
+title="सीमित scope और भुगतान शर्तें तय करें";
+detail="खरीदार की माँग के अनुरूप एक deliverable, निश्चित समयसीमा, कुल कीमत और भुगतान-पूर्व शर्तें लिखित में पुष्ट करें.";
+href="showroom/public-order-scope-builder.html";
+}else if(proof==="inquiry"){
+title="वास्तविक enquiry का उत्तर दें";
+detail="ग्राहक की जरूरत समझकर scope, sample, deadline और price पर केंद्रित जवाब दें; mass copy के बजाय उसी buyer की जरूरत पर काम करें.";
+href="showroom/first-client-deliverable-studio.html";
+}else if(kind==="job"){
+title="पात्रता मिलाकर भुगतान वाला task चुनें";
+detail="आवेदन से पहले eligibility, payment terms, task availability और payout method जाँचें. कोई application या income इस dashboard से submit नहीं होती.";
+href="employment.html";
+}else if(kind==="digital"){
+title="एक मौजूदा product का buyer path जाँचें";
+detail="एक product चुनें, उसका वास्तविक preview और checkout खोलकर जाँचें, फिर targeted traffic/buyer feedback मापें. Copies बनना sales नहीं है.";
+href="https://rampaulsaini.github.io/my-omniverse-store/";
+}else{
+title="एक scoped service को buyer तक पहुँचाएँ";
+detail="मौजूदा writing/research/automation service में से एक चुनें; sample, fixed scope, price और response path के साथ वास्तविक prospective buyer की जरूरत से मिलाएँ.";
+href="writing-research-services.html";
+}
+$("if-result-title").textContent=title;
+$("if-result").textContent=detail;
+$("if-state").textContent=state;
+$("if-route").href=href;
+}
+$("if-run").addEventListener("click",route);
+route();
+})();
+</script>
+</section>
+
 <footer>शिरोमणि रामपॉल सैनी — Omniverse public income/work interface · 2026</footer>
 </main></body></html>
