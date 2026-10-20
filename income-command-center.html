@@ -74,4 +74,93 @@
 </div>
 </section>
 <footer>शिरोमणि रामपॉल सैनी — Omniverse public income/work interface · 2026</footer>
+
+<section class="section" id="income-result-engine" aria-labelledby="income-result-title">
+<style>
+#income-result-engine .engine-shell{border:2px solid var(--gold);border-radius:20px;padding:clamp(16px,3vw,28px);background:linear-gradient(140deg,rgba(212,175,55,.12),rgba(0,210,255,.055))}
+#income-result-engine .engine-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+#income-result-engine label{display:block;font-weight:700;margin:10px 0 5px}
+#income-result-engine input,#income-result-engine select,#income-result-engine textarea{width:100%;box-sizing:border-box;padding:11px;border-radius:9px;border:1px solid rgba(212,175,55,.55);background:#10131b;color:var(--text);font:inherit}
+#income-result-engine .engine-output{white-space:pre-wrap;overflow-wrap:anywhere;background:#10131b;border:1px solid rgba(0,210,255,.3);padding:14px;border-radius:12px;min-height:110px}
+#income-result-engine .engine-actions{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
+#income-result-engine .engine-btn{cursor:pointer;font:inherit;font-weight:800;padding:10px 14px;border-radius:9px;border:1px solid var(--gold);background:rgba(212,175,55,.12);color:var(--text)}
+#income-result-engine .engine-btn.primary{background:var(--gold);color:#111}
+#income-result-engine .engine-note{border-left:4px solid var(--cyan);padding:12px;background:rgba(0,210,255,.055);border-radius:8px}
+</style>
+<div class="engine-shell">
+<span class="tag">INCOME-FIRST · RESULT ENGINE · SINGLE CONTROL POINT</span>
+<h2 id="income-result-title">पहले वास्तविक आय — फिर विस्तार</h2>
+<p>एक मुख्य नियंत्रण-बिंदु: उपलब्ध उत्पाद/सेवा चुनें, वास्तविक लाभ स्पष्ट करें, खरीदार के लिए संदेश बनाएँ, और सीधे संबंधित store या client-work channel पर जाएँ। छोटे, उपयोगी variants बनाए जा सकते हैं; काल्पनिक बिक्री, नकली scarcity और अप्रमाणित दावे नहीं।</p>
+<div class="engine-grid">
+<div>
+<label for="ire-offer">आय का रास्ता</label>
+<select id="ire-offer">
+<option value="service">Client service — writing / research / digital production</option>
+<option value="audio">Audio / digital product</option>
+<option value="music">Yatharth AI Music — creative service / licensing</option>
+<option value="tool">SHIRMANI digital tool</option>
+</select>
+<label for="ire-name">वास्तविक offer / product name</label>
+<input id="ire-name" maxlength="120" value="Bilingual website content and publishing support">
+<label for="ire-benefit">खरीदार को मिलने वाला ठोस परिणाम</label>
+<textarea id="ire-benefit" rows="3" maxlength="500">Clear, publish-ready Hindi–English website copy with page structure and metadata.</textarea>
+<label for="ire-price">कीमत (₹) — केवल यदि तय और सही हो</label>
+<input id="ire-price" type="number" min="0" step="1" placeholder="खाली छोड़ें यदि तय नहीं">
+<label for="ire-url">वास्तविक order / portfolio URL</label>
+<input id="ire-url" type="url" placeholder="https://…">
+</div>
+<div>
+<h3>एक offer से तीन उपयोगी रूप</h3>
+<p>1. खरीदार-केंद्रित संक्षिप्त pitch<br>2. सार्वजनिक product/service listing<br>3. सीधा outreach संदेश</p>
+<p class="engine-note"><strong>Truth Gate:</strong> कीमत, delivery time, customer results, testimonials, guarantee और payment status तभी प्रकाशित करें जब वे वास्तविक हों। यह local browser-side rules/templates हैं—इससे live AI/ML model, payment gateway, automatic outreach या बिक्री का दावा नहीं होता।</p>
+<div class="engine-actions">
+<button type="button" class="engine-btn primary" id="ire-generate">तीन संदेश तैयार करें</button>
+<button type="button" class="engine-btn" id="ire-store">Store खोलें</button>
+<button type="button" class="engine-btn" id="ire-work">Client work खोलें</button>
+</div>
+<p id="ire-status" role="status" aria-live="polite" class="note">पहले offer की जानकारी जाँचें। कोई संदेश अपने-आप भेजा नहीं जाएगा।</p>
+</div>
+</div>
+<div class="section">
+<h3>1 · खरीदार-केंद्रित pitch</h3><div id="ire-out1" class="engine-output">यहाँ पहला संदेश बनेगा।</div>
+<div class="engine-actions"><button type="button" class="engine-btn" data-copy="ire-out1">Pitch कॉपी करें</button></div>
+<h3>2 · सार्वजनिक listing</h3><div id="ire-out2" class="engine-output">यहाँ listing बनेगी।</div>
+<div class="engine-actions"><button type="button" class="engine-btn" data-copy="ire-out2">Listing कॉपी करें</button></div>
+<h3>3 · व्यक्तिगत outreach draft</h3><div id="ire-out3" class="engine-output">यहाँ outreach draft बनेगा।</div>
+<div class="engine-actions"><button type="button" class="engine-btn" data-copy="ire-out3">Outreach कॉपी करें</button></div>
+<p class="note">यह इंजन संदेशों के drafts बनाता है; recipient चयन, व्यक्तिगत जाँच और आपकी अनुमति के बिना ईमेल/DM नहीं भेजता। Link जोड़ने से पहले उसकी जाँच करें। “उत्पाद बना” का अर्थ “बिका” नहीं है; बिक्री और भुगतान अलग evidence states हैं।</p>
+</div>
+</div>
+<script>
+(function(){
+ const root=document.getElementById('income-result-engine'); if(!root)return;
+ const $=id=>document.getElementById(id);
+ const channels={
+  service:{label:'client-service',url:'https://www.upwork.com/'},
+  audio:{label:'digital audio product',url:'https://rampaulsaini.github.io/my-omniverse-store/'},
+  music:{label:'music / audio creative service',url:'https://rampaulsaini.github.io/yatharth-music-ai/'},
+  tool:{label:'digital tool',url:'https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/'}
+ };
+ function clean(v){return String(v||'').trim().replace(/[<>]/g,'');}
+ function generate(){
+  const kind=$('ire-offer').value, c=channels[kind], name=clean($('ire-name').value), benefit=clean($('ire-benefit').value), price=clean($('ire-price').value), url=clean($('ire-url').value);
+  if(!name||!benefit){$('ire-status').textContent='पहले offer का नाम और खरीदार का ठोस लाभ भरें।';return;}
+  const priceLine=price?'Indicative price: ₹'+price+'. Please confirm the final scope and price before ordering.':'Price: shared after confirming scope; no price is being asserted here.';
+  const linkLine=url?'Details / portfolio: '+url:'Relevant starting point: '+c.url;
+  $('ire-out1').textContent=name+'\n\n'+benefit+'\n\n'+priceLine+'\n'+linkLine+'\n\nNo outcome, delivery date or guarantee is promised unless agreed in writing.';
+  $('ire-out2').textContent=name+' — '+c.label+'\n\nWhat you get: '+benefit+'\n\nScope, delivery format, timeline and price are confirmed before work begins.\n'+priceLine+'\n'+linkLine;
+  $('ire-out3').textContent='Hello,\n\nI am offering '+name+'. The concrete outcome is: '+benefit+'\n\nIf this matches a current need, may I send a short sample or confirm a small, paid scope before starting?\n'+priceLine+'\n'+linkLine+'\n\nRegards,\nShirmani';
+  $('ire-status').textContent='तीन drafts तैयार हैं। भेजने से पहले recipient, offer, मूल्य और link की जाँच करें। कोई संदेश भेजा नहीं गया।';
+ }
+ $('ire-generate').addEventListener('click',generate);
+ $('ire-store').addEventListener('click',()=>window.open(channels[$('ire-offer').value].url,'_blank','noopener'));
+ $('ire-work').addEventListener('click',()=>window.open('https://www.upwork.com/','_blank','noopener'));
+ root.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{
+  const target=$(btn.getAttribute('data-copy'));
+  try{await navigator.clipboard.writeText(target.textContent);$('ire-status').textContent='चुना हुआ draft clipboard में कॉपी हुआ।';}
+  catch(e){$('ire-status').textContent='Clipboard access उपलब्ध नहीं; संदेश को चुनकर manually copy करें।';}
+ }));
+})();
+</script>
+
 </main></body></html>
