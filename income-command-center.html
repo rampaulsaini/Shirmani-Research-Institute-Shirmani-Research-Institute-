@@ -95,7 +95,7 @@
 <label for="mx-url">वास्तविक service / order URL</label>
 <input id="mx-url" type="url" value="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/writing-research-sales.html" maxlength="500">
 <label for="mx-proof">सबूत की वास्तविक स्थिति</label>
-<select id="mx-proof"><option value="demo">Deliverable/demo तैयार; independent verification का दावा नहीं</option><option value="pending">QC / demo अभी बाकी</option><option value="paid">भुगतान का प्रमाण मेरे पास है</option></select>
+<select id="mx-proof"><option value="pending" selected>QC / demo अभी बाकी</option><option value="demo">Deliverable/demo तैयार; independent verification का दावा नहीं</option><option value="paid">भुगतान का प्रमाण मेरे पास है</option></select>
 <label for="mx-batch">एक बार में कितने draft variants?</label>
 <select id="mx-batch"><option value="4">4 · छोटा परीक्षण</option><option value="8" selected>8 · संतुलित batch</option><option value="16">16 · विस्तृत batch</option><option value="32">32 · अधिक variants</option></select>
 <button class="btn" id="mx-generate" type="button" style="cursor:pointer">Income-first pack बनाएँ</button>
@@ -135,7 +135,7 @@ const validUrl=s=>{try{const u=new URL(s);return u.protocol==="https:"||u.protoc
 function safeDownload(name,blob){const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
 function makePack(){
 const offer=esc($("mx-offer").value),aud=esc($("mx-audience").value),problem=esc($("mx-problem").value),deliver=esc($("mx-deliverable").value),price=esc($("mx-price").value),url=esc($("mx-url").value),proof=$("mx-proof").value,n=Number($("mx-batch").value);
-if(!offer||!aud||!problem||!deliver||!validUrl(url)){ $("mx-title").textContent="Inputs ठीक करें";$("mx-summary").textContent="Offer, audience, problem, deliverable और valid HTTP(S) URL आवश्यक हैं।";return}
+if(!offer||!aud||!problem||!deliver||!validUrl(url)){ lastPack=null; $("mx-title").textContent="Inputs ठीक करें";$("mx-summary").textContent="Offer, audience, problem, deliverable और valid HTTP(S) URL आवश्यक हैं।";return}
 const ready=proof!=="pending";
 const priceLine=price?("Indicative quote: ₹"+Number(price).toLocaleString("en-IN")+" INR, subject to written scope confirmation. "):"Price is confirmed only after scope review and written agreement. ";
 const ctas=[
