@@ -41,7 +41,7 @@ try{records=JSON.parse(localStorage.getItem(key)||"[]");if(!Array.isArray(record
 const saveStore=()=>{try{localStorage.setItem(key,JSON.stringify(records));return true;}catch(e){return false;}};
 const scoreNow=()=>{
 const name=$("ie-client").value.trim(), source=+$("ie-source").value, need=+$("ie-need").value, budget=+$("ie-budget").value, time=+$("ie-time").value, scope=$("ie-scope").value.trim();
-const score=source*20+need*35+budget*25+time*10+(scope?10:0);
+const score=source*20+need*35+budget*12.5+time*5+(scope?10:0);
 let level=score>=75?"Priority A — verify fit and propose a paid, fixed-scope task":score>=45?"Priority B — clarify need, budget and deadline":"Priority C — research first; do not spend heavily on outreach";
 $("ie-points").textContent=score+"/100";$("ie-level").textContent=level;
 $("ie-reason").textContent="Evidence: official contact "+(source?"verified":"not verified")+"; specific need "+(need?"identified":"not identified")+"; budget "+(["unknown","possible","prospect-confirmed"][budget])+"; timeline "+(["unknown","within 30 days","urgent/this week"][time])+"; scoped deliverable "+(scope?"provided":"missing")+".";
