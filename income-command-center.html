@@ -155,5 +155,80 @@ route();
 </script>
 </section>
 
+
+<section class="section" id="revenue-first-fanout" aria-labelledby="rf-title">
+<h2 id="rf-title">8. Revenue-First Multichannel Launchpad</h2>
+<div class="flow">
+<p><strong>एक वास्तविक offer → अलग-अलग buyer-facing drafts → मानव समीक्षा → अधिकृत संपर्क/checkout → प्रमाणित परिणाम।</strong></p>
+<p class="note">यह इसी Income Command Center में चलने वाला lightweight local production tool है। यह templates से पाँच channel drafts बनाता है; कोई external LLM, NVIDIA GPU, AES/J-mini provider, email sender, marketplace API या payment gateway अभी इससे जुड़ा हुआ होने का दावा नहीं है। कोई draft अपने-आप publish या send नहीं होता।</p>
+<div class="grid">
+<article class="card">
+<label for="rf-name">Product / service का स्पष्ट नाम</label>
+<input id="rf-name" type="text" maxlength="120" placeholder="उदा. Bilingual Website Copy Pack" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
+<label for="rf-buyer">किस buyer की कौन-सी समस्या?</label>
+<input id="rf-buyer" type="text" maxlength="180" placeholder="उदा. छोटे व्यवसाय जिन्हें हिंदी-अंग्रेज़ी वेबसाइट copy चाहिए" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
+<label for="rf-outcome">ठोस deliverable / परिणाम</label>
+<textarea id="rf-outcome" rows="3" maxlength="400" placeholder="क्या मिलेगा, किस format में, कितने पृष्ठ/शब्द, किस समय में" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37"></textarea>
+<label for="rf-price">कीमत (INR; यदि तय है)</label>
+<input id="rf-price" type="number" min="0" step="1" placeholder="जैसे 1499" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
+<label for="rf-proof">वास्तविक proof / demo URL (वैकल्पिक)</label>
+<input id="rf-proof" type="url" maxlength="400" placeholder="https://..." style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
+<label for="rf-cta">अगला कदम / वास्तविक checkout या inquiry URL</label>
+<input id="rf-cta" type="url" maxlength="400" placeholder="https://..." style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
+<button class="btn" id="rf-generate" type="button">5 channel drafts बनाएं</button>
+<p id="rf-status" class="note" role="status" aria-live="polite">कोई draft नहीं बना है। पहले offer की वास्तविक जानकारी भरें।</p>
+</article>
+<article class="card">
+<span class="tag">REVENUE EVIDENCE GATE</span>
+<h3>किसे income माना जाएगा?</h3>
+<ul>
+<li>Generated copy = production output, sale नहीं।</li>
+<li>Sent message = outreach activity, customer नहीं।</li>
+<li>Order confirmation = order evidence, payment नहीं।</li>
+<li>Payment receipt / processor confirmation = payment evidence.</li>
+<li>Delivery proof और customer acceptance अलग दर्ज करें।</li>
+</ul>
+<p class="note">भ्रामक claims, नकली testimonials, fabricated scarcity और unsupported guarantees शामिल न करें। सार्वजनिक रूप से भेजने से पहले copy, price, rights और link सत्यापित करें।</p>
+</article>
+</div>
+<div id="rf-output" class="grid" aria-live="polite"></div>
+</div>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const fields=["rf-name","rf-buyer","rf-outcome","rf-price","rf-proof","rf-cta"];
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function validUrl(s){if(!s)return "";try{const u=new URL(s);return (u.protocol==="https:"||u.protocol==="http:")?u.href:"";}catch(_){return "";}}
+function build(){
+const name=$("rf-name").value.trim(), buyer=$("rf-buyer").value.trim(), outcome=$("rf-outcome").value.trim(), price=$("rf-price").value.trim(), proof=validUrl($("rf-proof").value.trim()), cta=validUrl($("rf-cta").value.trim());
+if(!name||!buyer||!outcome){$("rf-status").textContent="नाम, buyer/problem और deliverable भरना आवश्यक है।";return;}
+if($("rf-proof").value.trim()&&!proof){$("rf-status").textContent="Proof URL वैध http/https लिंक होना चाहिए।";return;}
+if($("rf-cta").value.trim()&&!cta){$("rf-status").textContent="CTA URL वैध http/https लिंक होना चाहिए।";return;}
+const priceLine=price?("मूल्य: ₹"+Number(price).toLocaleString("en-IN")+"."):"कीमत और scope पहले लिखित रूप में तय करें।";
+const proofLine=proof?("Demo / proof: "+proof):"नमूना उपलब्ध होने पर साझा करें; अभी कोई proof link नहीं दिया गया है।";
+const action=cta?("अगला कदम: "+cta):"उत्तर दें ताकि scope और अगला कदम तय किया जा सके।";
+const plain=[
+["Store / Product Page",name+"\n\nकिसके लिए: "+buyer+"\n\nक्या मिलेगा: "+outcome+"\n\n"+priceLine+"\n"+proofLine+"\n"+action],
+["LinkedIn", "मैं "+buyer+" के लिए एक स्पष्ट, सीमित deliverable पेश कर रहा/रही हूँ: "+name+".\n\nDeliverable: "+outcome+"\n"+priceLine+"\n"+proofLine+"\n\nयदि यह आपकी मौजूदा आवश्यकता से मेल खाता है: "+(cta||"scope पर चर्चा के लिए उत्तर दें।")],
+["Direct Email","Subject: "+name+" — "+buyer+" के लिए scoped offer\n\nनमस्कार,\n\nमैं "+name+" के माध्यम से "+buyer+" की आवश्यकता के लिए यह deliverable उपलब्ध करा सकता/सकती हूँ: "+outcome+"\n\n"+priceLine+"\n"+proofLine+"\n\n"+action+"\n\nयदि यह आपकी जरूरत से संबंधित नहीं है, तो इस संदेश को अनदेखा कर सकते हैं।"],
+["WhatsApp / Short Message","नमस्ते! "+name+" — "+buyer+" के लिए। Deliverable: "+outcome+" "+priceLine+" "+(proof?("Demo: "+proof+" "):"Demo उपलब्ध होने पर साझा करूँगा/करूँगी। ")+(cta?("विवरण: "+cta):"क्या यह आपकी मौजूदा जरूरत से मेल खाता है?")],
+["Short Social Post",name+"\n\n"+buyer+" के लिए:\n• Deliverable: "+outcome+"\n• "+priceLine+"\n• "+proofLine+"\n\n"+action]
+];
+const output=$("rf-output");output.innerHTML="";
+plain.forEach((item,i)=>{
+const card=document.createElement("article");card.className="card";
+const h=document.createElement("h3");h.textContent=item[0];
+const pre=document.createElement("textarea");pre.rows=8;pre.readOnly=true;pre.value=item[1];pre.setAttribute("aria-label",item[0]+" draft");
+const copy=document.createElement("button");copy.type="button";copy.className="btn";copy.textContent="Draft copy करें";
+copy.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(pre.value);$("rf-status").textContent=item[0]+" draft clipboard में copy हुआ।";}catch(e){pre.focus();pre.select();$("rf-status").textContent="इस browser में clipboard अनुमति नहीं मिली; text select करके copy करें।";}});
+card.append(h,pre,copy);output.appendChild(card);
+});
+$("rf-status").textContent="5 drafts तैयार हैं। ये local templates हैं, AI-generated claims नहीं। भेजने से पहले जाँचें; कोई संदेश स्वतः नहीं भेजा गया।";
+}
+$("rf-generate").addEventListener("click",build);
+})();
+</script>
+</section>
+
 <footer>शिरोमणि रामपॉल सैनी — Omniverse public income/work interface · 2026</footer>
 </main></body></html>
