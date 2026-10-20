@@ -103,6 +103,20 @@
 <a class="btn" id="if-route" href="income-command-center.html#income-workbench">मौजूदा आय कार्यक्षेत्र खोलें</a>
 </article>
 </div>
+<section class="card" aria-labelledby="multi-engine-gate-title" style="margin-top:16px;border:1px solid rgba(0,210,255,.55)">
+<span class="tag">MULTI-ENGINE · BOUNDED SCALE · INCOME-FIRST</span>
+<h3 id="multi-engine-gate-title">एक मुख्य आय-इंजन, कई नियंत्रित उत्पादन स्तर</h3>
+<p>लक्ष्य: एक सत्यापित उपयोगी deliverable को दोहराने योग्य उत्पादन-कार्य में बदलना—पहले buyer signal, फिर सीमित batch, QC, delivery और भुगतान-साक्ष्य। लाखों jobs को queue में भेजना तकनीकी रूप से संभव हो सकता है; लाखों पूर्ण, जाँचे हुए और ग्राहकों तक पहुँचे उत्पादों को milli/microsecond में पूरा करने का दावा वास्तविक माप के बिना नहीं किया जाएगा।</p>
+<div class="grid">
+<article class="card"><span class="tag">AES / SECURITY</span><h3>सुरक्षित secrets</h3><p>AES encryption डेटा की सुरक्षा के लिए है, AI model नहीं। API keys और payment credentials browser या repository में नहीं रखे जाएँ; encryption, access control और key rotation backend पर लागू हों।</p></article>
+<article class="card"><span class="tag">MODEL ADAPTERS</span><h3>Gemini Mini / अन्य AI providers</h3><p>हर provider के लिए अलग adapter, timeout, fallback, token budget और usage logging। कोई provider तभी LIVE माना जाए जब अधिकृत credentials, backend call और integration test सफल हों।</p></article>
+<article class="card"><span class="tag">NVIDIA / ACCELERATION</span><h3>GPU जहाँ वास्तव में उपलब्ध हो</h3><p>NVIDIA acceleration केवल समर्थित workload और उपलब्ध/configured GPU backend पर निर्भर है। नाम, workflow run या HTML page अपने-आप GPU access का प्रमाण नहीं है।</p></article>
+<article class="card"><span class="tag">QUEUE / RELIABILITY</span><h3>बहु-स्तरीय job orchestration</h3><p>1 → 10 → 100 → 1,000 → बड़े batches: queue, bounded concurrency, idempotency key, retries, dead-letter handling, cancellation और cost/rate limits के साथ। हर चरण के परिणाम मापे जाएँ।</p></article>
+<article class="card"><span class="tag">QUALITY / IDENTITY</span><h3>हर output की अलग पहचान</h3><p>Unique product ID/version, schema validation, duplicate detection, automated tests और release gate। QC पास न होने पर public dispatch रोकें; बड़े batches से पहले छोटे canary batch सत्यापित करें।</p></article>
+<article class="card"><span class="tag">INCOME / EVIDENCE</span><h3>पैमाना तभी बढ़े जब मूल्य सिद्ध हो</h3><p>मुख्य माप: qualified enquiries, accepted orders, successful delivery, verified payment और net revenue। Generated files, copies, impressions या workflow runs को income न गिनें। पहले एक buyer path सफल करें, फिर उसी प्रमाणित प्रक्रिया को scale करें।</p></article>
+</div>
+<p class="note"><strong>वर्तमान स्थिति:</strong> यह इस पृष्ठ पर architecture/gating specification है, live multi-provider integration नहीं। अभी इस UI से Gemini/NVIDIA/AES service, external outreach, job queue या payment processor चालू नहीं होता। LIVE status केवल deployed backend, secrets, successful tests और auditable evidence के बाद ही दिखाया जाए।</p>
+</section>
 </div>
 <script>
 (function(){
