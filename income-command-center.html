@@ -64,6 +64,85 @@
 </div>
 </section>
 
+
+<section class="section" id="income-first-production-cockpit">
+<h2>⚡ Income-First Production Cockpit</h2>
+<div class="flow">
+<p><strong>एक वास्तविक offer → अलग buyer angles → channel-ready copy → human review → actual enquiry/order → payment evidence</strong></p>
+<p class="note">यह मौजूदा Income Command Center के भीतर चलने वाला local batch-copy tool है। यह अपने-आप AI/NVIDIA API नहीं चलाता, ग्राहक को संदेश नहीं भेजता, विज्ञापन नहीं खरीदता और बिक्री/भुगतान का दावा नहीं करता। यह 12 अलग copy angles तैयार करता है; बड़े पैमाने के लिए queue, rate limits, deduplication, external model/API credentials और review gates अलग से चाहिए।</p>
+<div class="grid">
+<article class="card">
+<label for="ifpc-offer">Offer / product / service</label>
+<input id="ifpc-offer" value="Hindi-English digital content and research support" style="width:100%;padding:10px;border-radius:8px;margin:6px 0 12px">
+<label for="ifpc-audience">किस खरीदार के लिए?</label>
+<input id="ifpc-audience" value="small businesses and creators" style="width:100%;padding:10px;border-radius:8px;margin:6px 0 12px">
+<label for="ifpc-deliverable">ठोस deliverable</label>
+<input id="ifpc-deliverable" value="one reviewed bilingual content pack" style="width:100%;padding:10px;border-radius:8px;margin:6px 0 12px">
+<label for="ifpc-price">मूल्य (₹; वैकल्पिक)</label>
+<input id="ifpc-price" type="number" min="0" placeholder="e.g. 1499" style="width:100%;padding:10px;border-radius:8px;margin:6px 0 12px">
+<label for="ifpc-link">वास्तविक order / portfolio URL</label>
+<input id="ifpc-link" type="url" placeholder="https://..." style="width:100%;padding:10px;border-radius:8px;margin:6px 0 12px">
+<button class="btn" type="button" id="ifpc-generate">Generate 12 copy variants</button>
+<button class="btn" type="button" id="ifpc-json">Export JSON</button>
+<button class="btn" type="button" id="ifpc-csv">Export CSV</button>
+<p id="ifpc-status" class="note" aria-live="polite">अपने वास्तविक offer के अनुसार fields बदलें। कोई भी परिणाम भेजने से पहले जाँचें।</p>
+</article>
+<article class="card">
+<h3>Output rules</h3>
+<ul>
+<li>कोई नकली testimonial, fake scarcity या guaranteed income claim नहीं।</li>
+<li>कीमत तभी दिखाई जाएगी जब आप दर्ज करें।</li>
+<li>खरीद/portfolio URL खाली हो तो tool काल्पनिक link नहीं बनाएगा।</li>
+<li>सभी variants local browser में बनते हैं; कहीं स्वतः upload नहीं होते।</li>
+<li>हर variant को buyer, deliverable और channel के अनुसार review करें; mass spam न करें।</li>
+</ul>
+</article>
+</div>
+<div id="ifpc-output" class="grid" aria-live="polite"></div>
+</div>
+</section>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+let rows=[];
+const angles=[
+["Problem-first","If your team needs {deliverable}, this offer is designed to make the next step clearer."],
+["Outcome-first","For {audience}: get {deliverable} through a clearly scoped {offer}."],
+["Time-saving","Reduce the back-and-forth around {deliverable} with a defined {offer} for {audience}."],
+["Clarity-first","Know what is included before you commit: {offer} delivers {deliverable} for {audience}."],
+["Bilingual","Hindi + English support for {audience}: {offer}, with {deliverable} clearly defined."],
+["Small-business","A practical option for {audience} who need {deliverable} without an oversized project."],
+["Creator-focused","Creators: make your next publishing step easier with {offer} and {deliverable}."],
+["Research-led","For {audience} who value careful wording and source-aware work: {offer} includes {deliverable}."],
+["Scope-first","Clear scope, clear output: {deliverable}. Explore this {offer} if it fits your needs."],
+["Portfolio-led","See whether {offer} fits your workflow for {deliverable}; review the sample or order details before deciding."],
+["Direct invitation","Need {deliverable}? If you are part of {audience}, review the scope for {offer} and ask questions before ordering."],
+["Low-pressure","If {deliverable} is on your list, this {offer} may suit {audience}. Check the details and decide without pressure."]
+];
+function val(id,fallback){return ($(id).value||"").trim()||fallback}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function generate(){
+const offer=val("ifpc-offer","the offer"),audience=val("ifpc-audience","interested customers"),deliverable=val("ifpc-deliverable","the agreed deliverable"),price=val("ifpc-price",""),link=val("ifpc-link","");
+rows=angles.map((a,i)=>({id:"IFPC-"+String(i+1).padStart(2,"0"),angle:a[0],offer,audience,deliverable,price_inr:price?Number(price):null,copy:a[1].replaceAll("{offer}",offer).replaceAll("{audience}",audience).replaceAll("{deliverable}",deliverable),cta:link?"Review details: "+link:"Add your real order or portfolio URL before publishing",url:link||null,review_status:"DRAFT_NEEDS_HUMAN_REVIEW"}));
+$("ifpc-output").replaceChildren();
+rows.forEach(r=>{
+const card=document.createElement("article");card.className="card";
+const h=document.createElement("h3");h.textContent=r.id+" · "+r.angle;
+const p=document.createElement("p");p.textContent=r.copy;
+const c=document.createElement("p");c.className="note";c.textContent=(r.price_inr!==null?"Price entered: ₹"+r.price_inr+" · ":"")+r.cta;
+const b=document.createElement("button");b.type="button";b.className="btn";b.textContent="Copy variant";
+b.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(r.copy+"\n"+r.cta);$("ifpc-status").textContent=r.id+" copied. Verify the claims and recipient before sending."}catch(e){$("ifpc-status").textContent="Clipboard access unavailable; select and copy the text manually."}});
+card.append(h,p,c,b);$("ifpc-output").append(card);
+});
+$("ifpc-status").textContent="Created "+rows.length+" draft variants locally. Nothing was sent, published, ordered or paid.";
+}
+function download(name,type,text){const blob=new Blob([text],{type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url)}
+$("ifpc-generate").addEventListener("click",generate);
+$("ifpc-json").addEventListener("click",()=>{if(!rows.length)generate();download("shirmani-income-copy-variants.json","application/json",JSON.stringify({schema_version:1,generated_at:new Date().toISOString(),status:"DRAFT_NEEDS_HUMAN_REVIEW",variants:rows},null,2))});
+$("ifpc-csv").addEventListener("click",()=>{if(!rows.length)generate();const cols=["id","angle","offer","audience","deliverable","price_inr","copy","cta","url","review_status"];const cell=v=>'"'+String(v??"").replace(/"/g,'""')+'"';download("shirmani-income-copy-variants.csv","text/csv;charset=utf-8",[cols.join(","),...rows.map(r=>cols.map(k=>cell(r[k])).join(","))].join("\r\n"))});
+})();
+</script>
+
 <section class="section">
 <h2>6. अभी का कार्य क्रम</h2>
 <div class="grid">
