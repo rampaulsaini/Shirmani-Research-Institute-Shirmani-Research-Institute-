@@ -51,7 +51,7 @@ jobs:
           print("CONFLICT_MARKER_FILES",len(hits))
           for x in hits[:50]: print("CONFLICT",x)
           with open(os.environ["GITHUB_OUTPUT"],"a") as out:
-              out.write("repair_needed="+("true" if hits else "false")+"\\n")
+              out.write("repair_needed="+("true" if hits else "false")+"\n")
           PY
       - name: Repair and rebuild production-state
         if: \${{ steps.detect.outputs.repair_needed == 'true' }}
@@ -85,7 +85,7 @@ jobs:
               if asset.is_file():
                   rows.append({**p,"production_state":"PRODUCED","status":"READY_FOR_QC"})
           overlay={"schema_version":1,"production_first":True,"product_count":len(cat.get("products",[])),"produced_count":len(rows),"products":rows}
-          (gen/"concrete-production-overlay.json").write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          (gen/"concrete-production-overlay.json").write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print("CONCRETE_PRODUCTION_OVERLAY",len(rows))
           PY
           python3 - <<'PY'
@@ -141,7 +141,7 @@ jobs:
             "qc_state":"READY_FOR_QC",
             "truth_boundary":"Produced artifacts, QC, dispatch and independent verification are distinct states."
           }
-          (gen/"live-production-state.json").write_text(json.dumps(live,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          (gen/"live-production-state.json").write_text(json.dumps(live,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           four={
             "generated_at":now,"mode":"CONTINUOUS_FOUR_STAGE_PRODUCTION",
             "chat_required_for_continuity":False,
@@ -154,7 +154,7 @@ jobs:
             ],
             "production_contract":{"schedule":"every 5 minutes","continuity_without_chat":True,"verification":"downstream"}
           }
-          (gen/"four-stage-production-status.json").write_text(json.dumps(four,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          (gen/"four-stage-production-status.json").write_text(json.dumps(four,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           for filename,payload in {
               "concrete-product-production-status.json":{"generated_at":now,"catalog_products":target,"concrete_product_assets":concrete,"state":"COMPLETE" if concrete>=target else "IN_PROGRESS","dispatch":"NO"},
               "concrete-product-depth-status.json":{"generated_at":now,"catalog_products":target,"depth_upgraded":production,"state":"READY"},
@@ -176,7 +176,7 @@ jobs:
               except (UnicodeDecodeError,OSError): continue
               if any(m in text for m in markers): hits.append(str(p))
           if hits:
-              print("\\n".join(hits[:100]))
+              print("\n".join(hits[:100]))
               raise SystemExit("PRODUCTION_STATE_INTEGRITY_FAIL")
           print("PRODUCTION_STATE_INTEGRITY_CLEAN")
           PY
