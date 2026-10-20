@@ -270,9 +270,16 @@ jobs:
           fi
           git commit -m "chore(factory): refresh product-first research outputs"
           BRANCH="factory/generated-refresh"
-          git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
-          git branch -f "$BRANCH" HEAD
-          git push --force-with-lease origin "HEAD:$BRANCH"
+          # Never rewrite an existing factory branch. If an earlier generated PR is still
+          # unmerged, stop safely and let that PR be reviewed/merged before the next refresh.
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch origin "$BRANCH"
+            if ! git merge-base --is-ancestor "origin/$BRANCH" HEAD; then
+              echo "::error::Refusing to overwrite a divergent $BRANCH. Review or merge its open PR first."
+              exit 1
+            fi
+          fi
+          git push origin "HEAD:$BRANCH"
           if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
             if ! gh pr create --base main --head "$BRANCH" --title "chore(factory): publish product-first generated outputs" --body "Automated publication PR for product-first generated research outputs. Product creation precedes downstream verification. Protected source material is not rewritten; generated outputs remain subject to independent verification before any VERIFIED promotion."; then
               echo "Publication PR creation was deferred; generated outputs remain on $BRANCH."
