@@ -17,6 +17,82 @@
 <p><a class="btn" href="index.html">← मुख्य Omniverse Hub</a></p>
 </section>
 
+<section class="section" id="income-engine">
+<h2>⚡ Income-First Multi-Output Engine</h2>
+<div class="flow">
+<p><strong>एक वास्तविक offer → एक स्पष्ट buyer problem → सीमित multi-format production → evidence gate → ग्राहक संपर्क → paid order → delivery → payment record</strong></p>
+<p class="note">यह मौजूदा Income Command Center में जोड़ा गया browser-local planning engine है। यह लाखों copies प्रति millisecond, autonomous AI inference, NVIDIA GPU execution, automatic outreach या income की गारंटी का दावा नहीं करता। अभी कोई hosted model/API या NVIDIA backend इस पेज से जुड़ा नहीं है।</p>
+<div class="grid">
+<article class="card"><span class="tag">PRONTO · RAPID TRIAGE</span><h3>तेज़ प्राथमिकता</h3><p>एक समय में एक income offer चुनें; पहले वही काम जो ग्राहक के लिए स्पष्ट, सीमित और deliverable हो।</p></article>
+<article class="card"><span class="tag">NEUTRO · TRUTH GATE</span><h3>दावे की जाँच</h3><p>केवल सत्यापित सुविधाएँ लिखें। enquiry, proposal, sale, delivery और payment को अलग-अलग रखें।</p></article>
+<article class="card"><span class="tag">ELECTRO · OUTPUT MULTIPLIER</span><h3>एक brief से कई formats</h3><p>Offer summary, buyer benefit, scope checklist, outreach opener, social variants और evidence checklist का structured pack तैयार करें।</p></article>
+<article class="card"><span class="tag">NVIDIA / GPU · OPTIONAL ACCELERATION</span><h3>भविष्य का compute adapter</h3><p>NVIDIA GPU/CUDA तभी उपयोगी होंगे जब उपयुक्त hardware, compatible model, backend, credentials और परीक्षण उपलब्ध हों। इस पेज में वे connected नहीं हैं।</p></article>
+</div>
+</div>
+<div class="card">
+<h3>एक brief डालें — structured income pack बनाएँ</h3>
+<p class="note">यह deterministic browser-local template generator है, live AI model नहीं। इसका उद्देश्य काम को एक स्पष्ट, reusable package में व्यवस्थित करना है।</p>
+<label for="incomeOffer">Offer / product / service</label><input id="incomeOffer" placeholder="उदाहरण: Hindi-English website copy pack">
+<label for="incomeBuyer">किस ग्राहक की कौन-सी समस्या हल होती है?</label><textarea id="incomeBuyer" placeholder="उदाहरण: छोटे व्यवसाय को साफ़, भरोसेमंद bilingual service page चाहिए"></textarea>
+<div class="grid">
+<div><label for="incomeDeliverable">ग्राहक को क्या मिलेगा?</label><input id="incomeDeliverable" placeholder="उदाहरण: 4 page drafts + revision"></div>
+<div><label for="incomePrice">प्रस्तावित कीमत (INR)</label><input id="incomePrice" type="number" min="0" placeholder="उदाहरण: 999"></div>
+</div>
+<div class="row">
+<button class="btn" type="button" onclick="buildIncomePack()">Build structured pack</button>
+<button class="btn" type="button" onclick="downloadIncomePack()">Export JSON</button>
+</div>
+<div id="incomePackStatus" class="note" role="status" aria-live="polite">अभी कोई pack नहीं बना है।</div>
+<pre id="incomePackOutput" style="white-space:pre-wrap;overflow-wrap:anywhere;background:#090d15;border:1px solid rgba(212,175,55,.35);border-radius:10px;padding:14px;min-height:80px">Offer details भरकर Build structured pack दबाएँ।</pre>
+</div>
+<script>
+let incomePack = null;
+function buildIncomePack(){
+ const offer=document.getElementById('incomeOffer').value.trim();
+ const buyer=document.getElementById('incomeBuyer').value.trim();
+ const deliverable=document.getElementById('incomeDeliverable').value.trim();
+ const priceRaw=document.getElementById('incomePrice').value.trim();
+ const price=priceRaw===''?null:Number(priceRaw);
+ const status=document.getElementById('incomePackStatus');
+ if(!offer||!buyer||!deliverable||(priceRaw!==''&&(!Number.isFinite(price)||price<0))){
+  status.textContent='पहले offer, buyer problem और deliverable भरें; कीमत खाली छोड़ी जा सकती है या शून्य से बड़ी/बराबर संख्या दें।';
+  return;
+ }
+ incomePack={
+  schema_version:1,
+  generated_locally_at:new Date().toISOString(),
+  engine_mode:{pronto:'rapid prioritization',neutro:'truth and evidence gate',electro:'bounded multi-format packaging',nvidia:'not connected; optional future compute adapter'},
+  offer,
+  buyer_problem:buyer,
+  deliverable,
+  proposed_price_inr:price,
+  outputs:{
+   core_offer:offer+' — '+deliverable+'.',
+   buyer_benefit:'ग्राहक की समस्या: '+buyer+'. परिणाम और सीमाएँ प्रस्ताव में स्पष्ट करें।',
+   scope_checklist:['लिखित deliverable और मात्रा तय करें','समय-सीमा और revision सीमा तय करें','ग्राहक की सामग्री/inputs की पुष्टि करें','स्वीकृति मानदंड और भुगतान चरण लिखित में तय करें'],
+   outreach_opener:'नमस्ते, '+buyer+' के लिए मैं '+offer+' उपलब्ध कराता/कराती हूँ। प्रस्तावित deliverable: '+deliverable+'. क्या मैं संक्षिप्त scope और मूल्य भेजूँ?',
+   channel_variants:[
+    {channel:'Direct email',angle:'समस्या → deliverable → स्पष्ट अगला कदम'},
+    {channel:'LinkedIn',angle:'छोटा परिचय → उपयोगिता → अनुमति लेकर विवरण भेजना'},
+    {channel:'Portfolio/product page',angle:'किसके लिए → क्या मिलता है → sample → contact/order route'}
+   ],
+   evidence_gate:['दावा प्रकाशित करने से पहले तथ्य जाँचें','Enquiry को sale न गिनें','Order और agreed scope दर्ज करें','Payment evidence के बाद ही paid status दें','Delivery confirmation और feedback अलग दर्ज करें'],
+   next_action:'एक उपयुक्त वास्तविक prospect चुनें, उसके संदर्भ में प्रस्ताव जाँचें और उपयुक्त channel से संपर्क करें।'
+  },
+  limitations:['यह template-generated package है, AI-generated market research नहीं।','कोई outreach, order, sale, delivery या payment अपने-आप नहीं हुआ।','प्रस्तावित कीमत ग्राहक की स्वीकृति या बाजार सत्यापन नहीं है।']
+ };
+ document.getElementById('incomePackOutput').textContent=JSON.stringify(incomePack,null,2);
+ status.textContent='Pack तैयार है — browser में बनाया गया; कोई संदेश नहीं भेजा गया और कोई बिक्री/भुगतान दर्ज नहीं हुआ।';
+}
+function downloadIncomePack(){
+ if(!incomePack){buildIncomePack();if(!incomePack)return;}
+ const blob=new Blob([JSON.stringify(incomePack,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob);const a=document.createElement('a');
+ a.href=url;a.download='shirmani-income-output-pack.json';a.click();URL.revokeObjectURL(url);
+}
+</script>
+</section>
+
 <section class="section">
 <h2>1. सबसे पहले — तैयार आय के रास्ते</h2>
 <div class="grid">
