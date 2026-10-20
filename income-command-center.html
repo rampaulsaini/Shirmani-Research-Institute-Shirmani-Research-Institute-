@@ -73,5 +73,64 @@
 <article class="card"><span class="tag">STEP 04</span><h3>Evidence ledger</h3><p>Leads, enquiries, orders, payments और delivery को वास्तविक evidence के साथ track करें.</p></article>
 </div>
 </section>
+
+<section class="section" id="income-result-engine">
+<h2>7. Income Result Engine — वास्तविक परिणाम, प्रमाण के साथ</h2>
+<div class="flow">
+<p><strong>Asset → Offer → Qualified lead → Proposal → Confirmed order → Payment received → Delivery evidence → Repeat / referral</strong></p>
+<p class="note">यह browser-local tracking panel है, कोई AI/GPU service, payment gateway या automatic outreach connection नहीं। आँकड़े इसी browser में save होते हैं; वे स्वतंत्र रूप से सत्यापित नहीं होते। केवल वास्तव में प्राप्त और दर्ज भुगतान को collected income में शामिल करें।</p>
+</div>
+<div class="grid">
+<article class="card">
+<span class="tag">PIPELINE INPUTS</span><h3>इस अवधि के परिणाम</h3>
+<label for="ire-leads">Qualified leads</label><input id="ire-leads" type="number" min="0" step="1" value="0" style="width:100%;padding:10px;border-radius:8px;margin:5px 0 10px">
+<label for="ire-proposals">Proposals sent</label><input id="ire-proposals" type="number" min="0" step="1" value="0" style="width:100%;padding:10px;border-radius:8px;margin:5px 0 10px">
+<label for="ire-orders">Confirmed paid orders</label><input id="ire-orders" type="number" min="0" step="1" value="0" style="width:100%;padding:10px;border-radius:8px;margin:5px 0 10px">
+<label for="ire-revenue">Payment actually received (₹)</label><input id="ire-revenue" type="number" min="0" step="0.01" value="0" style="width:100%;padding:10px;border-radius:8px;margin:5px 0 10px">
+<label for="ire-evidence">Evidence reference (order/receipt IDs; no passwords or payment secrets)</label><textarea id="ire-evidence" rows="3" style="width:100%;padding:10px;border-radius:8px;margin:5px 0 10px" placeholder="Example: invoice ID, order page, receipt reference"></textarea>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" type="button" id="ire-save" style="cursor:pointer;background:transparent">Save locally & calculate</button><button class="btn" type="button" id="ire-reset" style="cursor:pointer;background:transparent">Reset fields</button></div>
+</article>
+<article class="card">
+<span class="tag">RESULTS · CALCULATED FROM YOUR INPUT</span><h3>Revenue outcome</h3>
+<p class="price" style="font-size:1.7rem" id="ire-total">₹0 received</p>
+<p id="ire-conversion">Lead-to-paid conversion: —</p>
+<p id="ire-average">Average received per paid order: —</p>
+<p id="ire-reconcile">Evidence status: no evidence reference entered.</p>
+<p class="note" id="ire-saved">Local status: not saved yet.</p>
+<p class="note">These calculations are only as reliable as the entries and supporting records. Unpaid orders, catalogue prices, clicks and generated files are not income received.</p>
+</article>
+</div>
+<div class="flow">
+<h3>Automation architecture — capability boundaries</h3>
+<ul>
+<li><strong>AI / ML / NLP:</strong> can help classify assets, draft product-specific messages, summarize customer needs and analyze outcomes once an actual model endpoint is configured.</li>
+<li><strong>Batch production:</strong> can create many deterministic variants from approved templates; each output still needs deduplication, quality checks, rate limits and human review before publication.</li>
+<li><strong>AES:</strong> is an encryption standard, not a content-generation engine. Sensitive records need an appropriate secure backend and key management; this static page does not encrypt or transmit the tracker data.</li>
+<li><strong>NVIDIA / GPU inference:</strong> requires compatible compute, deployed model/runtime, credentials and monitoring. This page does not claim an NVIDIA system is connected.</li>
+<li><strong>Revenue proof:</strong> connect checkout, payment webhooks and delivery logs only after the relevant provider and secure credentials are configured. Never store API keys or payment secrets in this public repository.</li>
+</ul>
+</div>
+<script>
+(function(){
+const ids=["ire-leads","ire-proposals","ire-orders","ire-revenue","ire-evidence"];
+const $=id=>document.getElementById(id);
+const key="shirmani-income-result-engine-v1";
+function read(){return {leads:Math.max(0,Number($("ire-leads").value)||0),proposals:Math.max(0,Number($("ire-proposals").value)||0),orders:Math.max(0,Number($("ire-orders").value)||0),revenue:Math.max(0,Number($("ire-revenue").value)||0),evidence:$("ire-evidence").value.trim()};}
+function render(saved){
+const d=read();
+$("ire-total").textContent=new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:2}).format(d.revenue)+" received";
+$("ire-conversion").textContent="Lead-to-paid conversion: "+(d.leads?((d.orders/d.leads)*100).toFixed(2)+"%":"— (enter qualified leads)");
+$("ire-average").textContent="Average received per paid order: "+(d.orders?new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:2}).format(d.revenue/d.orders):"— (enter paid orders)");
+$("ire-reconcile").textContent=d.evidence?"Evidence reference entered; verify it against the original receipt/order record.":"Evidence status: no evidence reference entered.";
+if(saved)$("ire-saved").textContent="Saved in this browser on "+new Date().toLocaleString()+"; not uploaded to a server.";
+}
+try{const d=JSON.parse(localStorage.getItem(key)||"null");if(d){$("ire-leads").value=d.leads??0;$("ire-proposals").value=d.proposals??0;$("ire-orders").value=d.orders??0;$("ire-revenue").value=d.revenue??0;$("ire-evidence").value=d.evidence??"";render(false);$("ire-saved").textContent="Loaded saved values from this browser; not uploaded to a server.";}}catch(e){$("ire-saved").textContent="Browser storage unavailable; values will remain only until this page is closed.";}
+$("ire-save").addEventListener("click",function(){const d=read();try{localStorage.setItem(key,JSON.stringify(d));render(true);}catch(e){render(false);$("ire-saved").textContent="Could not save in browser storage; verify entries before leaving this page.";}});
+$("ire-reset").addEventListener("click",function(){ids.forEach(id=>$(id).value=id==="ire-evidence"?"":0);try{localStorage.removeItem(key);}catch(e){}render(false);$("ire-saved").textContent="Fields reset. Nothing was sent to a server.";});
+ids.forEach(id=>$(id).addEventListener("input",()=>render(false)));
+render(false);
+})();
+</script>
+
 <footer>शिरोमणि रामपॉल सैनी — Omniverse public income/work interface · 2026</footer>
 </main></body></html>
