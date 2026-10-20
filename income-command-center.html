@@ -75,32 +75,41 @@
 </section>
 
 <section class="section" id="income-first-engine" aria-labelledby="income-engine-title">
-<h2 id="income-engine-title">7. INCOME-FIRST CONTROL LAYER · वास्तविक परिणाम पहले</h2>
+<h2 id="income-engine-title">7. INCOME-FIRST MULTI-ENGINE ROUTER · उत्पादन नहीं, पहले आय-परिणाम</h2>
 <div class="flow">
-<p><strong>नियम:</strong> पहले buyer intent और payment-ready route; उसके बाद production scale. केवल copies, workflow runs या generated files को income नहीं माना जाएगा.</p>
-<p class="note">यह dashboard में चलने वाला local decision helper है—यह स्वयं AI model, NVIDIA GPU, external API, outreach, checkout या payment processor से जुड़ा नहीं है। किसी भी provider integration को अलग backend, authorized credentials, tests और cost/rate limits के बाद ही live माना जाएगा.</p>
+<p><strong>मुख्य नियम:</strong> buyer signal → स्पष्ट offer → QC → checkout/payment → delivery → reconciliation. जब तक यह loop प्रमाणित न हो, अधिक copies बनाना आय का विकल्प नहीं है.</p>
+<p class="note">यह पृष्ठ अभी local, rule-based decision router चलाता है। कोई live AI/ML/NLP model, NVIDIA/CUDA GPU, AES service, external API, mass outreach, checkout या payment processor इस UI से जुड़ा हुआ घोषित नहीं है। Provider जोड़ने के लिए अलग backend, authorized credentials, rate/cost limits, security review और end-to-end tests चाहिए।</p>
 <div class="grid">
 <article class="card">
-<label for="if-kind">काम का प्रकार</label>
+<span class="tag">INPUT · REAL BUSINESS STATE</span>
+<label for="if-kind">आय का रास्ता</label>
 <select id="if-kind" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
 <option value="service">ग्राहक सेवा / freelance</option><option value="digital">मौजूदा digital product</option><option value="job">भुगतान वाला रोजगार / task</option>
 </select>
-<label for="if-proof" style="margin-top:12px">अभी का सबसे मजबूत वास्तविक संकेत</label>
+<label for="if-proof" style="margin-top:12px">सबसे मजबूत वास्तविक buyer संकेत</label>
 <select id="if-proof" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
-<option value="none">अभी कोई buyer signal नहीं</option><option value="view">केवल views / visits</option><option value="inquiry">वास्तविक enquiry / buyer reply</option><option value="quote">भुगतान/quote की स्पष्ट माँग</option><option value="paid">भुगतान का सत्यापित प्रमाण</option>
+<option value="none">अभी कोई buyer signal नहीं</option><option value="view">केवल views / visits</option><option value="inquiry">वास्तविक enquiry / buyer reply</option><option value="quote">स्पष्ट quote / भुगतान की माँग</option><option value="paid">भुगतान का रिकॉर्ड उपलब्ध</option>
 </select>
-<label for="if-ready" style="margin-top:12px">Deliverable की स्थिति</label>
+<label for="if-ready" style="margin-top:12px">उत्पाद/सेवा की readiness</label>
 <select id="if-ready" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
-<option value="ready">तुरंत दिखाने/देने योग्य</option><option value="needsqc">QC / demo बाकी</option><option value="blocked">checkout / delivery route अवरुद्ध</option>
+<option value="ready">Demo/QC/वितरण जाँच पूरी</option><option value="needsqc">QC या demo बाकी</option><option value="blocked">Checkout / payment / delivery route अवरुद्ध</option>
 </select>
-<button class="btn" id="if-run" type="button" style="cursor:pointer;margin-top:16px">मुख्य अगला कदम निकालें</button>
+<label for="if-scale" style="margin-top:12px">उत्पादन का इच्छित स्तर</label>
+<select id="if-scale" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
+<option value="one">एक उपयोगी परिणाम / एक buyer</option><option value="batch">सीमित batch / कई variants</option><option value="large">बड़ा batch / लाखों copies का लक्ष्य</option>
+</select>
+<button class="btn" id="if-run" type="button" style="cursor:pointer;margin-top:16px">आय-प्रथम निर्णय निकालें</button>
 </article>
 <article class="card" aria-live="polite">
-<span class="tag">RESULT · RULE-BASED ROUTING</span>
-<h3 id="if-result-title">पहले वास्तविक संकेत प्राप्त करें</h3>
-<p id="if-result">यदि कोई buyer signal नहीं है, तो million-copy production को प्राथमिकता देने के बजाय एक मौजूदा offer और वास्तविक ग्राहक-प्रतिक्रिया पर ध्यान दें।</p>
-<p id="if-state" class="note">आय की पुष्टि नहीं हुई</p>
-<a class="btn" id="if-route" href="income-command-center.html#income-workbench">मौजूदा आय कार्यक्षेत्र खोलें</a>
+<span class="tag">RESULT · CONTROLLED ROUTING</span>
+<h3 id="if-result-title">पहले buyer signal प्राप्त करें</h3>
+<p id="if-result">बिना वास्तविक buyer signal के बड़े batch को रोकें; पहले एक मौजूदा offer का sample और buyer response जाँचें.</p>
+<p id="if-state" class="note">आय/भुगतान की पुष्टि नहीं हुई</p>
+<a class="btn" id="if-route" href="income-command-center.html#income-workbench">संबंधित मौजूदा कार्यक्षेत्र खोलें</a>
+<hr>
+<p><strong>Engine status</strong></p>
+<p class="note">RULE ROUTER: ACTIVE · AI/ML/NLP API: NOT CONNECTED · NVIDIA/CUDA: NOT CONNECTED · PAYMENT EVIDENCE: MANUAL/EXTERNAL</p>
+<p id="if-scale-policy" class="note">Scale policy: पहले गुणवत्ता और buyer demand; फिर नियंत्रित batch.</p>
 </article>
 </div>
 </div>
@@ -108,46 +117,59 @@
 (function(){
 const $=id=>document.getElementById(id);
 function route(){
-const kind=$("if-kind").value, proof=$("if-proof").value, ready=$("if-ready").value;
+const kind=$("if-kind").value, proof=$("if-proof").value, ready=$("if-ready").value, scale=$("if-scale").value;
 let title="", detail="", href="income-command-center.html#income-workbench", state="अभी भुगतान/आय का दावा नहीं";
 if(proof==="paid"){
-title="भुगतान रिकॉर्ड और delivery मिलाएँ";
-detail="भुगतान का प्रमाण सुरक्षित रखें, order ID से मिलान करें, फिर तय deliverable ग्राहक को दें और delivery evidence दर्ज करें.";
+title="Payment reconciliation और delivery मिलाएँ";
+detail="Order ID, प्राप्त राशि, payment reference और deliverable का मिलान करें। केवल चुने गए dropdown से भुगतान सत्यापित नहीं होता; वास्तविक transaction evidence जाँचें.";
 href="https://rampaulsaini.github.io/my-omniverse-store/";
-state="भुगतान चुना गया—यह helper स्वयं प्रमाण सत्यापित नहीं करता";
+state="Payment evidence review आवश्यक; यह router स्वयं payment verify नहीं करता";
 }else if(ready==="blocked"){
-title="पहले checkout / delivery अवरोध दूर करें";
-detail="खरीदार से संपर्क बढ़ाने से पहले वास्तविक checkout, payment confirmation और delivery route को end-to-end जाँचें.";
+title="पहले checkout / payment / delivery का अवरोध हटाएँ";
+detail="बड़े production या outreach से पहले public buyer path को end-to-end जाँचें: offer → checkout → payment confirmation → delivery.";
 href=kind==="digital"?"https://rampaulsaini.github.io/my-omniverse-store/":"production-first-mvp.html";
 }else if(ready==="needsqc"){
-title="न्यूनतम उपयोगी demo और QC पूरा करें";
-detail="एक स्पष्ट deliverable, वास्तविक sample input/output, price/scope और delivery conditions तैयार करें. QC पास होने तक इसे verified न कहें.";
+title="एक demonstrable sample और QC पूरा करें";
+detail="एक स्पष्ट input/output, deliverable, scope, deadline और support conditions तैयार करें। QC evidence के बिना VERIFIED या production-ready का दावा न करें.";
 href="production-execution-board.html";
 }else if(proof==="quote"){
-title="सीमित scope और भुगतान शर्तें तय करें";
-detail="खरीदार की माँग के अनुरूप एक deliverable, निश्चित समयसीमा, कुल कीमत और भुगतान-पूर्व शर्तें लिखित में पुष्ट करें.";
+title="खरीदार की माँग को paid scope में बदलें";
+detail="Deliverable, price, deadline, revisions और payment terms लिखित में स्पष्ट करें। ग्राहक की सहमति से पहले production batch न बढ़ाएँ.";
 href="showroom/public-order-scope-builder.html";
 }else if(proof==="inquiry"){
-title="वास्तविक enquiry का उत्तर दें";
-detail="ग्राहक की जरूरत समझकर scope, sample, deadline और price पर केंद्रित जवाब दें; mass copy के बजाय उसी buyer की जरूरत पर काम करें.";
+title="वास्तविक enquiry का जवाब दें";
+detail="उसी buyer की आवश्यकता के अनुसार sample, scope, price और deadline दें। mass-copy outreach के बजाय व्यक्तिगत, प्रासंगिक जवाब दें.";
 href="showroom/first-client-deliverable-studio.html";
 }else if(kind==="job"){
-title="पात्रता मिलाकर भुगतान वाला task चुनें";
-detail="आवेदन से पहले eligibility, payment terms, task availability और payout method जाँचें. कोई application या income इस dashboard से submit नहीं होती.";
+title="पात्रता और payout जाँचकर paid task चुनें";
+detail="Eligibility, task availability, contract terms और payout method की पुष्टि करें। यह dashboard किसी नौकरी के लिए आवेदन या आय submit नहीं करता.";
 href="employment.html";
 }else if(kind==="digital"){
-title="एक मौजूदा product का buyer path जाँचें";
-detail="एक product चुनें, उसका वास्तविक preview और checkout खोलकर जाँचें, फिर targeted traffic/buyer feedback मापें. Copies बनना sales नहीं है.";
+title="एक मौजूदा product का buyer path सत्यापित करें";
+detail="Product page, real preview, price, checkout और delivery को खोलकर जाँचें; फिर वास्तविक buyer response मापें। Generated copies sales नहीं हैं.";
 href="https://rampaulsaini.github.io/my-omniverse-store/";
 }else{
-title="एक scoped service को buyer तक पहुँचाएँ";
-detail="मौजूदा writing/research/automation service में से एक चुनें; sample, fixed scope, price और response path के साथ वास्तविक prospective buyer की जरूरत से मिलाएँ.";
+title="एक सीमित service offer को buyer तक पहुँचाएँ";
+detail="मौजूदा writing/research/automation सेवा से एक offer चुनें; sample, fixed scope, price और delivery conditions के साथ एक उपयुक्त buyer को लक्ष्य करें.";
 href="writing-research-services.html";
+}
+let policy="";
+if(scale==="large"){
+if(proof!=="paid" || ready!=="ready"){
+policy="LARGE-BATCH BLOCKED: अभी buyer/payment evidence या readiness पर्याप्त नहीं है। पहले एक वास्तविक transaction loop पूरा करें; लाखों copies/millisecond का दावा इस UI से नहीं किया जा सकता.";
+}else{
+policy="LARGE-BATCH GATED: readiness चुनी गई है, पर batch तभी बढ़ाएँ जब QC records, buyer demand, compute capacity, cost limits, idempotency और rollback tests अलग से सत्यापित हों.";
+}
+}else if(scale==="batch"){
+policy=(proof==="inquiry"||proof==="quote"||proof==="paid")&&ready==="ready"?"LIMITED BATCH MAY BE PLANNED: पहले छोटा नियंत्रित batch, duplicate prevention, QC sampling और cost ceiling सत्यापित करें.":"LIMITED BATCH DEFERRED: पहले buyer signal और deliverable readiness मजबूत करें.";
+}else{
+policy="SINGLE-RESULT PRIORITY: पहले एक उपयोगी deliverable और एक सत्यापन योग्य buyer outcome; उसके बाद ही scale.";
 }
 $("if-result-title").textContent=title;
 $("if-result").textContent=detail;
 $("if-state").textContent=state;
 $("if-route").href=href;
+$("if-scale-policy").textContent=policy;
 }
 $("if-run").addEventListener("click",route);
 route();
