@@ -1,15 +1,131 @@
 from pathlib import Path
-import json,os,html
-from datetime import datetime,timezone
-ROOT=Path(__file__).resolve().parents[1]; CAT=ROOT/"generated/1000-digital-products.json"; OUT=ROOT/"products/live"; MAN=ROOT/"generated/product-surface-manifest.json"
-def e(x): return html.escape(str(x or ""),quote=True)
-def page(p):
- pid=str(p["id"]); name=p.get("name") or pid; fam=p.get("family") or p.get("category") or "Digital Product"; eng=p.get("engine") or "SHIRMANI"; desc=p.get("short_description") or p.get("description") or "Customer-facing digital product."; price=p.get("offer_price_inr",p.get("price_inr",""))
- return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(name)} · SHIRMANI</title><style>body{{margin:0;background:#030812;color:#eef6ff;font-family:system-ui}}main{{max-width:1050px;margin:auto;padding:24px}}.card{{border:2px solid #e7c85b;border-radius:28px;padding:28px;background:linear-gradient(135deg,#07131d,#0a1c2d)}}h1{{color:#f6d35f;font-size:clamp(2rem,5vw,4rem)}}.tag{{color:#66ddff;font-weight:800}}a{{display:inline-block;padding:13px;margin:5px;border:1px solid #e7c85b;border-radius:12px;color:white;text-decoration:none}}.price{{color:#72e6aa;font-size:2rem;font-weight:900}}</style></head><body><main><section class="card"><div class="tag">SHIRMANI HEART-VIEW · PUBLIC PRODUCT</div><h1>{e(name)}</h1><p class="tag">{e(pid)} · {e(fam)} · {e(eng)}</p><p>{e(desc)}</p><p class="price">₹{e(price) if str(price) else "See offer"}</p><a href="../../product-passport.html?id={e(pid)}">📘 Passport / Long Description</a><a href="../../demos/vip/{e(pid.lower())}.svg">🖼️ VIP Screenshot</a><a href="../../demos/products/{e(pid.lower())}.mp4">🎬 Demo MP4</a><h2>How to use</h2><p>Open → enter task/input → run module → inspect result → reuse/export.</p><h2>Production state</h2><p>Public product surface, identity, description and offer slot. Sale, payment, delivery and independent verification are separate states.</p></section></main></body></html>"""
+from urllib.parse import quote
+import html
+import json
+import os
+import re
+from datetime import datetime, timezone
+
+ROOT = Path(__file__).resolve().parents[1]
+CAT = ROOT / "generated/1000-digital-products.json"
+OUT = ROOT / "products/live"
+MAN = ROOT / "generated/product-surface-manifest.json"
+CONTACT_EMAIL = "sainirampaul60@gmail.com"
+WHATSAPP_NUMBER = "918082935186"
+
+
+def e(value):
+    return html.escape(str(value or ""), quote=True)
+
+
+def slug_for(product_id):
+    return re.sub(r"[^a-zA-Z0-9._-]", "-", str(product_id)).lower()
+
+
+def page(product, root=ROOT):
+    pid = str(product["id"])
+    slug = slug_for(pid)
+    name = product.get("name") or pid
+    family = product.get("family") or product.get("category") or "Digital Product"
+    engine = product.get("engine") or "SHIRMANI"
+    description = product.get("short_description") or product.get("description") or "Customer-facing digital product."
+    price = product.get("offer_price_inr", product.get("price_inr", ""))
+
+    passport_href = f"../../../product-passport.html?id={quote(pid, safe='')}"
+    showroom_href = "../../../showroom-public.html"
+    vip_rel = f"demos/vip/{slug}.svg"
+    video_rel = f"demos/products/{slug}.mp4"
+    vip_exists = (root / vip_rel).is_file()
+    video_exists = (root / video_rel).is_file()
+
+    media_links = []
+    if vip_exists:
+        media_links.append(f'<a href="../../../{e(vip_rel)}">Open product screenshot</a>')
+    if video_exists:
+        media_links.append(f'<a href="../../../{e(video_rel)}">Watch product demo video</a>')
+    media_html = "".join(media_links) if media_links else (
+        '<p class="notice">Demo media is not published for this product yet. '
+        'This page is a catalogue listing, not proof of a runnable product demo.</p>'
+    )
+
+    enquiry_text = f"Hello Shirmani Research Institute, I want to enquire about {name} (Product ID: {pid}). Please confirm the actual demo, deliverables, price, delivery time, support and payment terms before I place an order."
+    whatsapp_href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + quote(enquiry_text, safe="")
+    email_subject = quote(f"Product enquiry: {name} ({pid})", safe="")
+    email_body = quote(enquiry_text, safe="")
+    email_href = f"mailto:{CONTACT_EMAIL}?subject={email_subject}&body={email_body}"
+
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="{e(name)} — public catalogue listing from Shirmani Research Institute. Confirm demo, scope and terms before purchase.">
+<title>{e(name)} · SHIRMANI</title>
+<style>
+:root{{color-scheme:dark;--bg:#07101b;--panel:#101d2b;--line:#29445d;--gold:#f5d36c;--cyan:#75e5f5;--text:#f5f7fa;--muted:#b5c4d2}}
+*{{box-sizing:border-box}}body{{margin:0;background:radial-gradient(ellipse at top,#1b3450,#07101b 62%);color:var(--text);font:16px/1.65 system-ui,sans-serif}}
+main{{max-width:1000px;margin:auto;padding:20px 16px 56px}}.card{{border:1px solid var(--line);border-radius:20px;padding:clamp(18px,4vw,34px);background:var(--panel);margin:14px 0}}
+h1,h2{{color:var(--gold)}}h1{{font-size:clamp(2rem,5vw,3.5rem);line-height:1.12}}.tag{{color:var(--cyan);font-weight:800}}.price{{color:#72e6aa;font-size:2rem;font-weight:900}}p{{color:var(--muted)}}
+a{{display:inline-block;padding:11px 14px;margin:5px 5px 5px 0;border:1px solid #41617b;border-radius:10px;color:var(--text);text-decoration:none}}a.primary{{background:var(--gold);color:#111827;border-color:var(--gold);font-weight:850}}.notice{{border-left:4px solid var(--cyan);padding:12px 14px;background:#0a1724}}
+</style>
+</head>
+<body><main>
+<p><a href="{e(showroom_href)}">← Public showroom</a></p>
+<section class="card">
+<div class="tag">SHIRMANI RESEARCH INSTITUTE · PUBLIC CATALOGUE</div>
+<h1>{e(name)}</h1>
+<p class="tag">{e(pid)} · {e(family)} · {e(engine)}</p>
+<p>{e(description)}</p>
+<p class="price">{"₹" + e(price) if str(price) else "Price to be confirmed"}</p>
+<p class="notice">Catalogue listing only. Confirm that the demo works, what is delivered, the final price, delivery date, support and payment terms before ordering. A listed price or generated page is not evidence of a sale or successful delivery.</p>
+<h2>Demo and product evidence</h2>
+{media_html}
+<p><a href="{e(passport_href)}">Product passport / details</a></p>
+<h2>Ask about this product</h2>
+<p>Use either contact option to request a working demo and a written scope. Nothing is sent automatically from this page.</p>
+<a class="primary" href="{e(whatsapp_href)}" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
+<a href="{e(email_href)}">Prepare email enquiry</a>
+</section>
+<footer><a href="{e(showroom_href)}">Browse public showroom</a> · SHIRMANI Research Institute</footer>
+</main></body></html>
+"""
+
+
 def main():
- data=json.loads(CAT.read_text(encoding="utf-8")); rows=[p for p in data.get("products",[]) if str(p.get("id","")).strip()]
- batch=max(1,min(100,int(os.getenv("PRODUCT_SURFACE_BATCH","25")))); OUT.mkdir(parents=True,exist_ok=True); existing={p.parent.name for p in OUT.glob("*/index.html")}; selected=[p for p in rows if str(p["id"]).lower() not in existing][:batch]
- for p in selected:
-  d=OUT/str(p["id"]).lower(); d.mkdir(parents=True,exist_ok=True); (d/"index.html").write_text(page(p),encoding="utf-8")
- count=sum((OUT/str(p["id"]).lower()/"index.html").exists() for p in rows); payload={"schema_version":1,"generated_at":datetime.now(timezone.utc).isoformat(),"catalog_count":len(rows),"public_surface_count":count,"remaining_public_surfaces":len(rows)-count,"created_this_cycle":len(selected),"batch_size":batch,"state":"OPERATIONAL_SURFACE","truth_boundary":"Public surface is not evidence of sale, delivery, payment, scientific verification, or independent human review."}; MAN.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"); print(json.dumps(payload,ensure_ascii=False))
-if __name__=="__main__": main()
+    data = json.loads(CAT.read_text(encoding="utf-8"))
+    rows = [product for product in data.get("products", []) if str(product.get("id", "")).strip()]
+    batch = max(1, min(100, int(os.getenv("PRODUCT_SURFACE_BATCH", "25"))))
+    OUT.mkdir(parents=True, exist_ok=True)
+
+    existing = {path.parent.name for path in OUT.glob("*/index.html")}
+    selected = [product for product in rows if slug_for(product["id"]) not in existing][:batch]
+    for product in selected:
+        (OUT / slug_for(product["id"])).mkdir(parents=True, exist_ok=True)
+
+    # Refresh all existing surfaces as well as adding the next batch. This ensures
+    # fixed navigation, contact CTAs, and honest demo availability reach old pages.
+    published = 0
+    for product in rows:
+        destination = OUT / slug_for(product["id"]) / "index.html"
+        if destination.parent.exists() or product in selected:
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_text(page(product), encoding="utf-8")
+            published += 1
+
+    payload = {
+        "schema_version": 1,
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "catalog_count": len(rows),
+        "public_surface_count": published,
+        "remaining_public_surfaces": len(rows) - published,
+        "created_this_cycle": len(selected),
+        "batch_size": batch,
+        "state": "OPERATIONAL_SURFACE",
+        "truth_boundary": "A catalogue page is not evidence of a working demo, sale, payment, delivery, scientific validation, or independent human review."
+    }
+    MAN.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(payload, ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    main()
