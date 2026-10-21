@@ -191,10 +191,21 @@ jobs:
           git add generated products factory assets
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "fix(production): repair production-state conflicts and rebuild public outputs"
-          # Another production cycle may update this branch while repair runs.
-          # Integrate the latest remote head before pushing; never force-push production state.
-          git fetch origin automation/production-state
-          # Prefer this run's freshly rebuilt production outputs for overlapping generated files,
-          # while retaining non-conflicting updates from a concurrent production cycle.
-          git merge --no-edit -X ours FETCH_HEAD
-          git push origin HEAD:automation/production-state
+          # Production cycles may update this branch between fetch and push.
+          # Retry with a fresh fetch/merge; never force-push production state.
+          for attempt in $(seq 1 8); do
+            git fetch origin automation/production-state
+            # Prefer this repair run's rebuilt outputs for overlapping generated files,
+            # while retaining non-conflicting updates from concurrent production cycles.
+            if ! git merge-base --is-ancestor FETCH_HEAD HEAD; then
+              git merge --no-edit -X ours FETCH_HEAD
+            fi
+            if git push origin HEAD:automation/production-state; then
+              echo "PRODUCTION_STATE_PUBLISH_SUCCESS attempt=$attempt"
+              exit 0
+            fi
+            echo "PRODUCTION_STATE_PUSH_RACE attempt=$attempt; refreshing remote head"
+            sleep 2
+          done
+          echo "PRODUCTION_STATE_PUBLISH_FAILED_AFTER_RETRIES"
+          exit 1
