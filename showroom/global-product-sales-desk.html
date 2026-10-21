@@ -31,6 +31,15 @@ main section{margin:30px 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:1
 <article class="card"><span class="tag">SRI-WEB-001</span><h3>Website / Blog Content</h3><p>Structured content built around a defined reader and purpose.</p><ul><li>Page outline and key message</li><li>Draft with headings and call to action</li><li>Source and revision scope agreed first</li></ul><button type="button" data-service="Website / Blog Content">Choose service</button></article>
 </div>
 </section>
+<section>
+<h2>Transparent starter prices</h2>
+<p class="notice">These are proposed starting prices, not a confirmed quote or guarantee of results. Confirm exact scope, deadline, source requirements, revision limit and payment terms in writing before work starts.</p>
+<div class="grid">
+<article class="card"><span class="tag">SRI-EDIT-001</span><h3>Editing / proofreading</h3><p><strong>₹499</strong> · up to 700 words</p><ul><li>Language and clarity review</li><li>One agreed revision pass</li><li>Edited text delivered in agreed format</li></ul><button type="button" data-service="Hindi / English Writing" data-offer="Editing / proofreading — proposed ₹499 for up to 700 words">Choose ₹499 pilot</button></article>
+<article class="card"><span class="tag">SRI-WRITE-001</span><h3>Article / website copy</h3><p><strong>₹999</strong> · up to 1,000 words</p><ul><li>Agreed audience and outline</li><li>Structured first draft</li><li>One agreed revision pass</li></ul><button type="button" data-service="Website / Blog Content" data-offer="Article / website copy — proposed ₹999 for up to 1,000 words">Choose ₹999 pilot</button></article>
+<article class="card"><span class="tag">SRI-RES-001</span><h3>Source-based research brief</h3><p><strong>₹1,499</strong> · about 800–1,200 words</p><ul><li>3–5 credible sources where available</li><li>Source-linked summary and limitations</li><li>One agreed revision pass</li></ul><button type="button" data-service="Research Summary" data-offer="Source-based research brief — proposed ₹1,499 for about 800–1,200 words with 3–5 credible sources where available">Choose ₹1,499 pilot</button></article>
+</div>
+</section>
 <section class="two">
 <div>
 <h2>Build your enquiry</h2>
@@ -76,7 +85,7 @@ main section{margin:30px 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:1
 const form=document.getElementById('brief'), preview=document.getElementById('preview'), status=document.getElementById('status');
 let current='';
 const value=id=>document.getElementById(id).value.trim();
-document.querySelectorAll('[data-service]').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById('service').value=btn.dataset.service;document.getElementById('goal').focus();}));
+document.querySelectorAll('[data-service]').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById('service').value=btn.dataset.service;const offer=btn.dataset.offer||'';if(offer){const goal=document.getElementById('goal');goal.value=(goal.value?goal.value+'\n\n':'')+'Requested pilot: '+offer+'\nPlease confirm exact deliverables, deadline, revisions and payment terms in writing.';document.getElementById('budget').value=offer.match(/₹[0-9,]+/)?.[0]||'';}document.getElementById('goal').focus();}));
 function build(){
 const fields=[
 ['Service',value('service')],['Customer objective',value('goal')],['Topic',value('topic')],['Language',value('language')],['Audience',value('audience')||'To be agreed'],['Approximate length',value('words')||'To be agreed'],['Preferred deadline',value('deadline')||'To be agreed'],['Sources / links',value('sources')||'To be supplied or agreed'],['Proposed budget',value('budget')||'To be quoted after scope review'],['Reply email',value('contact')||'Not supplied'],['Requirements / exclusions',value('constraints')||'To be agreed'],
