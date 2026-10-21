@@ -54,9 +54,9 @@ main section{margin:30px 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:1
 <div>
 <h2>Review before sending</h2>
 <div id="preview" class="preview" aria-live="polite">Your enquiry draft will appear here. Check every field and remove any private information you do not want to share.</div>
-<div class="actions"><button id="download" type="button" class="secondary">Download TXT</button><button id="copy" type="button" class="secondary">Copy brief</button><button id="email" type="button">Open email draft</button></div>
+<div class="actions"><button id="download" type="button" class="secondary">Download TXT</button><button id="copy" type="button" class="secondary">Copy brief</button><button id="email" type="button">Open email draft</button><button id="whatsapp" type="button">Open WhatsApp draft</button></div>
 <p id="status" class="status" role="status"></p>
-<p class="small">These actions operate in your browser. “Open email draft” opens your own mail app with a draft for you to review; it does not send it. No backend, automatic outreach, payment gateway or shared lead database is connected.</p>
+<p class="small">These actions operate in your browser. Email drafts are addressed to the published service email; WhatsApp opens a draft to the institute contact. Review the recipient and message, then send manually. Nothing is sent automatically. No backend, payment gateway or shared lead database is connected.</p>
 </div>
 </section>
 <section>
@@ -90,7 +90,8 @@ form.addEventListener('submit',e=>{e.preventDefault();build();});
 form.addEventListener('reset',()=>{current='';preview.textContent='Your enquiry draft will appear here. Check every field and remove any private information you do not want to share.';status.textContent='Form cleared.';});
 document.getElementById('download').addEventListener('click',()=>{if(!current){status.textContent='Create the brief preview first.';return;}const blob=new Blob([current],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='shirmani-writing-research-enquiry.txt';a.click();URL.revokeObjectURL(url);status.textContent='TXT export prepared by your browser.';});
 document.getElementById('copy').addEventListener('click',async()=>{if(!current){status.textContent='Create the brief preview first.';return;}try{await navigator.clipboard.writeText(current);status.textContent='Brief copied.';}catch(e){status.textContent='Clipboard unavailable in this browser. Use the preview and copy it manually.';}});
-document.getElementById('email').addEventListener('click',()=>{if(!current){status.textContent='Create the brief preview first.';return;}const subject=encodeURIComponent('SHIRMANI Writing & Research Enquiry — '+value('service'));const body=encodeURIComponent(current);window.location.href='mailto:?subject='+subject+'&body='+body;status.textContent='Email app requested. Check the recipient and review before sending.';});
+document.getElementById('email').addEventListener('click',()=>{if(!current){status.textContent='Create the brief preview first.';return;}const subject=encodeURIComponent('SHIRMANI Writing & Research Enquiry — '+value('service'));const body=encodeURIComponent(current);window.location.href='mailto:sainirampaul60@gmail.com?subject='+subject+'&body='+body;status.textContent='Email draft requested for sainirampaul60@gmail.com. Review and send it yourself.';});
+document.getElementById('whatsapp').addEventListener('click',()=>{if(!current){status.textContent='Create the brief preview first.';return;}const body=encodeURIComponent(current);window.open('https://wa.me/918082935186?text='+body,'_blank','noopener,noreferrer');status.textContent='WhatsApp draft requested for the published institute contact. Review and send it yourself.';});
 })();
 </script>
 </body>
