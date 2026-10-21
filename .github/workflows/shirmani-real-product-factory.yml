@@ -13,6 +13,7 @@ on:
     - cron: "*/5 * * * *"
   workflow_dispatch:
 permissions:
+  actions: read
   contents: write
   pull-requests: write
 concurrency:
@@ -73,6 +74,88 @@ jobs:
           print("dispatch: NO")
           print("verification: DOWNSTREAM")
           PY
+      - name: Generate daily automission report from GitHub run evidence
+        env:
+          GH_TOKEN: \${{ github.token }}
+          GITHUB_REPOSITORY: \${{ github.repository }}
+          GITHUB_RUN_ID: \${{ github.run_id }}
+          GITHUB_RUN_NUMBER: \${{ github.run_number }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.parse, urllib.request
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          now = datetime.now(timezone.utc)
+          day = now.date().isoformat()
+          repo = os.environ["GITHUB_REPOSITORY"]
+          token = os.environ["GH_TOKEN"]
+          page = 1
+          runs = []
+          while True:
+              query = urllib.parse.urlencode({"created": f">={day}", "per_page": 100, "page": page})
+              url = f"https://api.github.com/repos/{repo}/actions/workflows/shirmani-real-product-factory.yml/runs?{query}"
+              req = urllib.request.Request(url, headers={
+                  "Accept": "application/vnd.github+json",
+                  "Authorization": f"Bearer {token}",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              })
+              with urllib.request.urlopen(req, timeout=20) as response:
+                  payload = json.load(response)
+              batch = payload.get("workflow_runs", [])
+              runs.extend(x for x in batch if str(x.get("created_at", "")).startswith(day))
+              if len(batch) < 100:
+                  break
+              page += 1
+          current_id = int(os.environ["GITHUB_RUN_ID"])
+          prior = [r for r in runs if int(r.get("id", 0)) != current_id]
+          successes = [r for r in prior if r.get("status") == "completed" and r.get("conclusion") == "success"]
+          failures = [r for r in prior if r.get("status") == "completed" and r.get("conclusion") == "failure"]
+          cancelled = [r for r in prior if r.get("status") == "completed" and r.get("conclusion") == "cancelled"]
+          running = [r for r in runs if r.get("status") in ("queued", "in_progress", "waiting", "pending", "requested")]
+          catalog_path = Path("generated/1000-digital-products.json")
+          catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+          target = int(catalog.get("product_count", len(catalog.get("products", []))))
+          produced = len(list(Path("products/production").glob("*.html")))
+          report = {
+              "schema_version": 1,
+              "generated_at_utc": now.isoformat(),
+              "utc_date": day,
+              "workflow": "SHIRMANI Real Product Factory — Continuous Production",
+              "count_source": "GitHub Actions workflow-runs API; successful completed runs only",
+              "successful_completed_cycles_today_before_current_run": len(successes),
+              "failed_completed_cycles_today_before_current_run": len(failures),
+              "cancelled_completed_cycles_today_before_current_run": len(cancelled),
+              "runs_in_progress_at_report_time": len(running),
+              "current_run": {
+                  "id": current_id,
+                  "run_number": int(os.environ["GITHUB_RUN_NUMBER"]),
+                  "state_at_report_time": "IN_PROGRESS",
+                  "url": f"https://github.com/{repo}/actions/runs/{current_id}"
+              },
+              "catalog_target": target,
+              "concrete_production_assets_present": produced,
+              "asset_count_check": "PASS" if produced == target else "MISMATCH",
+              "sales_claimed": 0,
+              "payment_claimed": 0,
+              "dispatch_released": 0,
+              "independent_verification_claimed": 0,
+              "truth_boundary": "A workflow run or produced asset is not a customer order, payment, dispatch, or independent verification."
+          }
+          out = Path("generated/daily-automission-report.json")
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print("DAILY_AUTOMISSION_REPORT", json.dumps({
+              "utc_date": day,
+              "successful_completed_cycles_today_before_current_run": len(successes),
+              "failed_completed_cycles_today_before_current_run": len(failures),
+              "catalog_target": target,
+              "concrete_production_assets_present": produced,
+              "asset_count_check": report["asset_count_check"]
+          }, sort_keys=True))
+          if produced != target:
+              raise SystemExit("DAILY_AUTOMISSION_REPORT_ASSET_COUNT_MISMATCH")
+          PY
       - name: Publish production results through PR
         uses: peter-evans/create-pull-request@v7
         with:
@@ -90,6 +173,7 @@ jobs:
             generated/PRODUCT-PASSPORTS.jsonl
             generated/product-visual-assets.json
             generated/vip-screenshot-assets.json
+            generated/daily-automission-report.json
             products/modules
             products/production
             products/visuals
