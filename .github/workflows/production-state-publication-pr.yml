@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Fetch repaired production-state branch
+      - name: Fetch repaired production-state
         shell: bash
         run: |
           set -euo pipefail
@@ -45,20 +45,52 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          root=Path(".")
-          cat=json.loads((root/"generated/1000-digital-products.json").read_text(encoding="utf-8"))
-          state=json.loads((root/"generated/live-production-state.json").read_text(encoding="utf-8"))
-          overlay=json.loads((root/"generated/concrete-production-overlay.json").read_text(encoding="utf-8"))
-          target=int(cat.get("product_count",len(cat.get("products",[]))))
-          concrete=len(list((root/"products/concrete").glob("*.html")))
-          qrs=len(list((root/"products/visuals/qr").glob("*.svg")))
-          rows=len(overlay.get("products",[]))
-          print(json.dumps({"catalog_target":target,"concrete_assets":concrete,"qr_assets":qrs,"overlay_rows":rows,"state_concrete_assets":state.get("concrete_repository_assets")},sort_keys=True))
-          if concrete != target or rows != target:
-              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: concrete assets and overlay rows must match catalog target")
-          if int(state.get("concrete_repository_assets",-1)) != concrete:
-              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: state count does not match actual concrete assets")
-          if qrs != int(state.get("product_qr_assets",-1)):
+
+          root = Path(".")
+          catalog = json.loads((root / "generated/1000-digital-products.json").read_text(encoding="utf-8"))
+          state = json.loads((root / "generated/live-production-state.json").read_text(encoding="utf-8"))
+          overlay = json.loads((root / "generated/concrete-production-overlay.json").read_text(encoding="utf-8"))
+          products = catalog.get("products", [])
+          target = int(catalog.get("product_count", len(products)))
+          ids = [str(p.get("id", "")).strip() for p in products if isinstance(p, dict) and p.get("id")]
+          if len(ids) != target or len(set(ids)) != target:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: catalog IDs are missing or duplicated")
+
+          # Count the catalog's actual product identities, not every historical
+          # HTML page that happens to live in products/concrete.
+          concrete_ids = {
+              path.stem.casefold()
+              for path in (root / "products/concrete").glob("*.html")
+              if path.is_file() and path.stat().st_size > 0
+          }
+          matched_ids = sum(1 for product_id in ids if product_id.casefold() in concrete_ids)
+          qrs = len(list((root / "products/visuals/qr").glob("*.svg")))
+          overlay_rows = overlay.get("products", [])
+          overlay_ids = [
+              str(p.get("id", "")).strip()
+              for p in overlay_rows
+              if isinstance(p, dict) and p.get("id")
+          ]
+          rows = len(overlay_rows)
+          print(json.dumps({
+              "catalog_target": target,
+              "unique_catalog_ids": len(set(ids)),
+              "matched_concrete_catalog_assets": matched_ids,
+              "concrete_html_files_including_non_catalog": len(list((root / "products/concrete").glob("*.html"))),
+              "qr_assets": qrs,
+              "overlay_rows": rows,
+              "unique_overlay_ids": len(set(overlay_ids)),
+              "state_concrete_assets": state.get("concrete_repository_assets"),
+              "state_qr_assets": state.get("product_qr_assets")
+          }, sort_keys=True))
+
+          if matched_ids != target:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: catalog product files do not all exist")
+          if rows != target or len(set(overlay_ids)) != target or set(overlay_ids) != set(ids):
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: overlay rows must map one-to-one to catalog IDs")
+          if int(state.get("concrete_repository_assets", -1)) != matched_ids:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: live-state concrete count does not match catalog assets")
+          if qrs != int(state.get("product_qr_assets", -1)):
               raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: QR file count does not match production state")
           PY
       - name: Open/update pull request for public production state
@@ -67,9 +99,9 @@ jobs:
           commit-message: "chore(production): publish repaired concrete assets and truthful state"
           title: "Automission: publish repaired production assets and state"
           body: |
-            Publishes the validated automation/production-state outputs to the public main branch through the repository's required pull-request path.
+            Publishes validated automation/production-state outputs to the public main branch through the repository's required pull-request path.
 
-            The workflow verifies concrete asset count, overlay rows, QR assets, and live-state counts against the catalog before opening/updating this PR.
+            The gate validates unique catalog IDs, a one-to-one overlay-to-catalog mapping, actual catalog asset files, QR files, and live-state counts. Historical/non-catalog HTML files are not miscounted as catalog products.
 
             Production assets are not proof of independent verification, sales, payment, or dispatch. Those remain separate downstream states.
           branch: "automission/public-production-state-sync"
