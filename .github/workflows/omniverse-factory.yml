@@ -110,7 +110,7 @@ jobs:
           print(
               "queued={queue_total} reviewed={reviewed_records} "
               "verified={independent_verified_records} "
-              "verification_pct={verification_completion_pct}".format(**p)
+              "verification_pct={verification_completion_pct}".format(verification_completion_pct=p.get("verification_completion_pct", "not-reported"), **p)
           )
           PY
 
