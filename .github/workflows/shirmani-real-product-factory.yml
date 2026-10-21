@@ -76,10 +76,10 @@ jobs:
           PY
       - name: Generate daily automission report from GitHub run evidence
         env:
-          GH_TOKEN: \${{ github.token }}
-          GITHUB_REPOSITORY: \${{ github.repository }}
-          GITHUB_RUN_ID: \${{ github.run_id }}
-          GITHUB_RUN_NUMBER: \${{ github.run_number }}
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
         run: |
           python3 - <<'PY'
           import json, os, urllib.parse, urllib.request
