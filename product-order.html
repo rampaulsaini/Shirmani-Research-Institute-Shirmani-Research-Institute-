@@ -36,11 +36,14 @@ async function load(){
     const amount=Number(p.price_inr);
     document.getElementById("price").textContent=money(amount);
     document.getElementById("offer").textContent="Approved published price";
-    document.getElementById("commercialNote").textContent="Price is explicitly marked PRICE_APPROVED in the product record. Verify payee and amount in your payment app before paying.";
+    document.getElementById("commercialNote").textContent="यह price product record में PRICE_APPROVED है। भुगतान से पहले Product ID, deliverables, delivery timeline, support/revisions और refund/payment terms की लिखित पुष्टि email से लें; payee और amount अपने payment app में verify करें।";
     document.getElementById("paymentSection").hidden=false;
     const upi="upi://pay?pa=9622254967@ptyes&pn=Shirmani%20Research%20Institute&am="+amount+"&cu=INR&tn="+encodeURIComponent("SHIRMANI "+p.id);
     document.getElementById("upi").href=upi;
-    document.getElementById("enquiry").hidden=true;
+    document.getElementById("enquiry").textContent="Confirm order details by email";
+    const subject="SHIRMANI order confirmation request — "+p.id;
+    const body="Before I pay, please confirm in writing:\nProduct ID: "+p.id+"\nProduct: "+(p.name||"Not recorded")+"\nPublished approved price: INR "+amount+"\n\nPlease confirm exact deliverables, delivery timeline, support/revisions, payment recipient, payment terms and refund/cancellation policy. I will pay only after reviewing your reply.\n\nCustomer name: [fill in]\nPreferred reply email: [fill in]\nAdditional requirements: [fill in]";
+    document.getElementById("enquiry").href="mailto:sainirampaul60@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
   }else{
     document.getElementById("price").textContent="Quote required";
     document.getElementById("offer").textContent="PAYMENT PAUSED · NO APPROVED PRICE RECORD";
