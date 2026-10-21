@@ -1,0 +1,91 @@
+name: SHIRMANI Publish Repaired Production State Through PR
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/production-state-publication-pr.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: shirmani-production-state-publication-pr
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Fetch repaired production-state branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin automation/production-state:refs/remotes/origin/automation/production-state
+          git checkout origin/automation/production-state -- \
+            products/concrete \
+            products/visuals/qr \
+            generated/concrete-production-overlay.json \
+            generated/live-production-state.json \
+            generated/product-qc-gate.json \
+            generated/concrete-product-asset-status.json \
+            generated/concrete-product-production-status.json \
+            generated/concrete-product-depth-status.json \
+            generated/continuous-production-batch-status.json \
+            generated/four-stage-production-status.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path(".")
+          cat=json.loads((root/"generated/1000-digital-products.json").read_text(encoding="utf-8"))
+          state=json.loads((root/"generated/live-production-state.json").read_text(encoding="utf-8"))
+          overlay=json.loads((root/"generated/concrete-production-overlay.json").read_text(encoding="utf-8"))
+          target=int(cat.get("product_count",len(cat.get("products",[]))))
+          concrete=len(list((root/"products/concrete").glob("*.html")))
+          qrs=len(list((root/"products/visuals/qr").glob("*.svg")))
+          rows=len(overlay.get("products",[]))
+          print(json.dumps({"catalog_target":target,"concrete_assets":concrete,"qr_assets":qrs,"overlay_rows":rows,"state_concrete_assets":state.get("concrete_repository_assets")},sort_keys=True))
+          if concrete != target or rows != target:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: concrete assets and overlay rows must match catalog target")
+          if int(state.get("concrete_repository_assets",-1)) != concrete:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: state count does not match actual concrete assets")
+          if qrs != int(state.get("product_qr_assets",-1)):
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: QR file count does not match production state")
+          PY
+      - name: Open/update pull request for public production state
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(production): publish repaired concrete assets and truthful state"
+          title: "Automission: publish repaired production assets and state"
+          body: |
+            Publishes the validated automation/production-state outputs to the public main branch through the repository's required pull-request path.
+
+            The workflow verifies concrete asset count, overlay rows, QR assets, and live-state counts against the catalog before opening/updating this PR.
+
+            Production assets are not proof of independent verification, sales, payment, or dispatch. Those remain separate downstream states.
+          branch: "automission/public-production-state-sync"
+          delete-branch: true
+          add-paths: |
+            products/concrete
+            products/visuals/qr
+            generated/concrete-production-overlay.json
+            generated/live-production-state.json
+            generated/product-qc-gate.json
+            generated/concrete-product-asset-status.json
+            generated/concrete-product-production-status.json
+            generated/concrete-product-depth-status.json
+            generated/continuous-production-batch-status.json
+            generated/four-stage-production-status.json
+      - name: Summary
+        if: always()
+        run: |
+          echo "Production-state synchronization is PR-based; this workflow never pushes directly to main." >> "$GITHUB_STEP_SUMMARY"
