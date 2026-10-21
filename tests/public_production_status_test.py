@@ -89,5 +89,5 @@ class CommercialReadinessTests(unittest.TestCase):
             self.assertFalse(row["payment_enabled"])
 
 
-if __same__ == "__main__":
+if __name__ == "__main__":
     unittest.main()
