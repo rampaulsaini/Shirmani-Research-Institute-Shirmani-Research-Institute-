@@ -18,6 +18,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: shirmani-product-specific-demo-media
@@ -35,17 +36,26 @@ jobs:
         env:
           PRODUCT_DEMO_BATCH: ${{ github.event.inputs.batch_size || '50' }}
         run: python3 factory/product_specific_demo_video_factory.py
-      - name: Publish product-specific demo media
-        run: |
-          git config user.name "SHIRMANI Product-Specific Demo Factory"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add products/demos/products products/demos/vip generated/product-specific-demo-video-manifest.json generated/product-media-production-manifest.json
-          if git diff --cached --quiet; then
-            echo "No new product-specific demo media."
-            exit 0
-          fi
-          git commit -m "feat(media): publish product-specific demo MP4 batch"
-          git push origin HEAD:main
+      - name: Propose product-specific demo media through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/product-specific-demo-media
+          delete-branch: false
+          add-paths: |
+            products/demos/products
+            products/demos/vip
+            generated/product-specific-demo-video-manifest.json
+            generated/product-media-production-manifest.json
+          commit-message: "feat(media): publish product-specific demo MP4 batch"
+          title: "feat(media): publish product-specific demo MP4 batch"
+          body: |
+            Automated product-specific demo media batch.
+
+            Review generated MP4 assets and manifests before merging.
+          labels: |
+            automated
+            product-media
       - name: Publish production telemetry
         run: |
           python3 - <<'PY'
