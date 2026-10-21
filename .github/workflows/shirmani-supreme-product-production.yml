@@ -61,12 +61,13 @@ jobs:
               assert artifact.is_file(), f"last product artifact missing: {artifact_value}"
               print(f"PASS: latest product artifact exists: {artifact_value}")
           else:
-              # A completed 5,000-item catalogue is a valid no-op cycle; do not
-              # demand an artifact_url field from legacy final rows.
-              assert overlay.get("remaining_count") == 0 and int(overlay.get("produced_count", 0)) >= 5000, (
-                  "last product artifact_url missing before the 5,000-product target is reached"
+              # Legacy completed catalogue rows may not carry artifact_url or remaining_count.
+              # Use the concrete overlay itself as the source of truth for a no-op cycle.
+              produced_count = int(overlay.get("produced_count", 0))
+              assert produced_count >= 5000 and len(products) >= 5000, (
+                  "last product artifact_url missing and the concrete 5,000-product target is not proven"
               )
-              print("PASS: 5,000-product target already reached; no new artifact expected.")
+              print("PASS: concrete 5,000-product target already reached; no new artifact expected.")
 
           print("PASS: JSON documents valid; JSONL parsed line-by-line; IDs unique; counts aligned.")
       - name: Open/update production artifact PR (repository requires PR-based writes)
