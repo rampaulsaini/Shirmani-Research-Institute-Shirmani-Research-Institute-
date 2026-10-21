@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: shirmani-product-demo-media
@@ -31,17 +32,19 @@ jobs:
           sudo apt-get install --yes --no-install-recommends ffmpeg
       - name: Build engine-family demo MP4s and product media manifest
         run: python3 factory/product_demo_video_factory.py
-      - name: Publish demo media
-        run: |
-          git config user.name "SHIRMANI Product Demo Media Factory"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add products/demos generated/product-media-production-manifest.json
-          if git diff --cached --quiet; then
-            echo "No demo-media delta"
-          else
-            git commit -m "chore(media): materialize product demo videos and media manifest"
-            git push origin HEAD:main
-          fi
+      - name: Publish demo media through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(media): materialize product demo videos and media manifest"
+          title: "Automission: publish product demo media"
+          body: |
+            Publishes generated engine-family MP4 demo media and its production manifest through the repository's required pull-request path.
+            The generated MP4s are reusable engine-family demos, not proof of product-specific recordings, independent QC, customer sales, payment, or dispatch.
+          branch: "automission/product-demo-media"
+          delete-branch: true
+          add-paths: |
+            products/demos
+            generated/product-media-production-manifest.json
       - name: Summary
         run: |
           echo "## SHIRMANI Demo Media" >> "$GITHUB_STEP_SUMMARY"
