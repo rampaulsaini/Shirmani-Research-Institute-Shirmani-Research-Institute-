@@ -1,76 +1,247 @@
 {
-  "schema_version": "1.0",
-  "generated_at": "2026-10-06T17:59:10.079Z",
-  "mode": "PRODUCTION_FIRST",
-  "pipeline": [
-    "INSTITUTE_RESEARCH",
-    "FACTORY_PRODUCTION",
-    "QC_GATE",
-    "PUBLIC_SHOWROOM_SALE"
-  ],
+  "schema_version": "2.0",
+  "generated_at": "2026-10-20T23:39:19.665804+00:00",
+  "source_of_truth": "generated/concrete-production-overlay.json",
   "production": {
-    "catalog_products": 1016,
-    "produced_public": 1016,
-    "pricing_published": 1016,
+    "catalog_products": 5000,
+    "produced_public": 2616,
+    "pricing_published": 5000,
     "sold_evidence": 0,
     "next_scale_target": 5000,
-    "remaining_to_scale_target": 3984
+    "remaining_to_scale_target": 2384,
+    "production_lanes": 25,
+    "families": 25,
+    "module_products_generated": 2616
   },
-  "customer_loop": [
-    "DISCOVER",
-    "BUILD",
-    "QC/GATE",
-    "SHOW",
-    "USE",
-    "REVIEW/RATE",
-    "IMPROVE",
-    "BUILD_AGAIN"
-  ],
-  "verification_boundary": "Independent verification is downstream and is not a substitute for production.",
+  "summary": {
+    "priority_units": 2384,
+    "families": 25,
+    "production_lanes": 25,
+    "remaining_to_scale_target": 2384
+  },
+  "production_outputs": {
+    "concrete_results_this_cycle": 1000,
+    "production_modules": 2616
+  },
+  "scheduled_work_units": 2384,
   "next_work_units": [
     {
-      "product_id": "SP-0001",
-      "name": "SHIRMANI Starter Counting & Math 0001",
+      "priority": 1,
+      "product_id": "SP-2617",
+      "name": "SHIRMANI Generator ML/NLP Tools 2617",
+      "family": "ML/NLP Tools",
+      "engine": "nlp",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2617"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2618",
+      "name": "SHIRMANI Analyzer Quantum-Inspired 2618",
+      "family": "Quantum-Inspired",
+      "engine": "quantum",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2618"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2619",
+      "name": "SHIRMANI Planner Engineering 2619",
+      "family": "Engineering",
+      "engine": "engineering",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2619"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2620",
+      "name": "SHIRMANI Lab Knowledge 2620",
+      "family": "Knowledge",
+      "engine": "knowledge",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2620"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2621",
+      "name": "SHIRMANI Workspace Calendar & Time 2621",
+      "family": "Calendar & Time",
+      "engine": "time",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2621"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2622",
+      "name": "SHIRMANI Dashboard Files & Formats 2622",
+      "family": "Files & Formats",
+      "engine": "files",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2622"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2623",
+      "name": "SHIRMANI Explorer Marketing 2623",
+      "family": "Marketing",
+      "engine": "marketing",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2623"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2624",
+      "name": "SHIRMANI Builder Creator Tools 2624",
+      "family": "Creator Tools",
+      "engine": "creator",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2624"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2625",
+      "name": "SHIRMANI Converter Nature & Earth 2625",
+      "family": "Nature & Earth",
+      "engine": "nature",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2625"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2626",
+      "name": "SHIRMANI Inspector Counting & Math 2626",
       "family": "Counting & Math",
       "engine": "calculator",
-      "priority": 4,
-      "action": "DEPTH_UPGRADE",
-      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
-      "public_route": "products/concrete/SP-0001.html"
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2626"
     },
     {
-      "product_id": "SP-0002",
-      "name": "SHIRMANI Quick Text & Language 0002",
+      "priority": 1,
+      "product_id": "SP-2627",
+      "name": "SHIRMANI Composer Text & Language 2627",
       "family": "Text & Language",
       "engine": "text",
-      "priority": 4,
-      "action": "DEPTH_UPGRADE",
-      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
-      "public_route": "products/concrete/SP-0002.html"
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2627"
     },
     {
-      "product_id": "SP-0003",
-      "name": "SHIRMANI Pro SEO & Web 0003",
+      "priority": 1,
+      "product_id": "SP-2628",
+      "name": "SHIRMANI Maker SEO & Web 2628",
       "family": "SEO & Web",
       "engine": "seo",
-      "priority": 4,
-      "action": "DEPTH_UPGRADE",
-      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
-      "public_route": "products/concrete/SP-0003.html"
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2628"
     },
     {
-      "product_id": "SP-0004",
-      "name": "SHIRMANI Studio Data Tools 0004",
+      "priority": 1,
+      "product_id": "SP-2629",
+      "name": "SHIRMANI Trainer Data Tools 2629",
       "family": "Data Tools",
       "engine": "data",
-      "priority": 4,
-      "action": "DEPTH_UPGRADE",
-      "goal": "product-specific examples, richer inputs/outputs, export and customer guidance",
-      "public_route": "products/concrete/SP-0004.html"
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2629"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2630",
+      "name": "SHIRMANI Simulator Sketch & Drawing 2630",
+      "family": "Sketch & Drawing",
+      "engine": "draw",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2630"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2631",
+      "name": "SHIRMANI Manager Painting & Pixel Art 2631",
+      "family": "Painting & Pixel Art",
+      "engine": "pixel",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2631"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2632",
+      "name": "SHIRMANI Tracker Mini Games 2632",
+      "family": "Mini Games",
+      "engine": "game",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2632"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2633",
+      "name": "SHIRMANI Mapper Education 2633",
+      "family": "Education",
+      "engine": "quiz",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2633"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2634",
+      "name": "SHIRMANI Canvas Research 2634",
+      "family": "Research",
+      "engine": "research",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2634"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2635",
+      "name": "SHIRMANI Workbench Productivity 2635",
+      "family": "Productivity",
+      "engine": "productivity",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2635"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2636",
+      "name": "SHIRMANI Console Audio & Media 2636",
+      "family": "Audio & Media",
+      "engine": "media",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2636"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2637",
+      "name": "SHIRMANI Assistant Commerce 2637",
+      "family": "Commerce",
+      "engine": "commerce",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2637"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2638",
+      "name": "SHIRMANI Monitor Accessibility 2638",
+      "family": "Accessibility",
+      "engine": "access",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2638"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2639",
+      "name": "SHIRMANI Archive Visualization 2639",
+      "family": "Visualization",
+      "engine": "visual",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2639"
+    },
+    {
+      "priority": 1,
+      "product_id": "SP-2640",
+      "name": "SHIRMANI Universal Security & Quality 2640",
+      "family": "Security & Quality",
+      "engine": "quality",
+      "goal": "Materialize concrete product module and publish it to the public showroom.",
+      "public_route": "products/1000-digital-product-factory.html?id=SP-2640"
     }
   ],
-  "summary": {
-    "families": 25,
-    "priority_units": 0
-  }
+  "principle": "Production first: research → factory → QC/gate → public showroom/sale. Reviews improve products; verification remains downstream.",
+  "commercial_truth": "No sale or settlement is claimed without transaction evidence."
 }
