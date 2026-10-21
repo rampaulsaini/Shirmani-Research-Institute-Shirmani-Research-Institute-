@@ -48,7 +48,7 @@
       "",
       "Message:",
       String(data.get("message") || "").trim()
-    ].join("\\n");
+    ].join(String.fromCharCode(10));
     window.location.href = "mailto:sainirampaul60@gmail.com?subject="
       + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
   });
