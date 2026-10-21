@@ -115,7 +115,7 @@ def main() -> int:
         for required in (
             'id="cycles24h"', 'id="success24h"', 'id="failed24h"',
             'id="activeRuns"', 'id="productionFreshness"',
-            'api.github.com/repos/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/runs',
+            'api.github.com/repos/', '/actions/runs?branch=main',
             'generated/live-production-state.json', 'NOT CONNECTED',
             'स्वतंत्र QC', 'शून्य नहीं माना गया',
         ):
