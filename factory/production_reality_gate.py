@@ -28,6 +28,5 @@ payload={"schema_version":1,"principle":"A workflow run is not a product sale; a
          "generated_from":"factory/product-catalog.json","offer_count":len(rows),"states":counts,"offers":rows,
          "launch_rule":"Only ASSET_VERIFIED may be labeled DELIVERY_READY. EXTERNAL_PATH_UNVERIFIED requires external delivery evidence. Paid offers without verified delivery assets remain blocked.",
          "independent_verification":"NOT_CLAIMED"}
-OUT.parent.mkdir(exist_ok=True); OUT.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"
-",encoding="utf-8")
+OUT.parent.mkdir(exist_ok=True); OUT.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print(json.dumps({"offer_count":len(rows),"states":counts},ensure_ascii=False))
