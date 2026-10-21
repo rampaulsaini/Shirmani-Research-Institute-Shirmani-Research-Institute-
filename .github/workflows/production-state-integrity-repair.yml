@@ -194,5 +194,7 @@ jobs:
           # Another production cycle may update this branch while repair runs.
           # Integrate the latest remote head before pushing; never force-push production state.
           git fetch origin automation/production-state
-          git merge --no-edit FETCH_HEAD
+          # Prefer this run's freshly rebuilt production outputs for overlapping generated files,
+          # while retaining non-conflicting updates from a concurrent production cycle.
+          git merge --no-edit -X ours FETCH_HEAD
           git push origin HEAD:automation/production-state
