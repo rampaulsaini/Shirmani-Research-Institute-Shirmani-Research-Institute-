@@ -271,15 +271,23 @@ jobs:
           fi
           git commit -m "chore(factory): refresh product-first research outputs"
           BRANCH="factory/generated-refresh"
-          # Reconcile an existing generated-output PR branch instead of failing every
-          # scheduled run. Preserve non-conflicting branch work and prefer this run's
-          # freshly validated generated outputs for overlapping files.
+          # This branch is an automation-owned snapshot of generated outputs. It may
+          # have unrelated history from older factory runs, so never merge it into
+          # the validated main-based commit. Update it with an explicit lease instead.
           for attempt in 1 2 3 4 5; do
-            if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
-              git fetch origin "$BRANCH"
-              git merge --no-edit -X ours "origin/$BRANCH"
+            git fetch origin main
+            if ! git merge-base --is-ancestor origin/main HEAD; then
+              # The generated snapshot was built against an older main. Rebase the
+              # generated commit onto the latest main without importing branch history.
+              git rebase --onto origin/main "$(git merge-base HEAD origin/main)" HEAD
             fi
-            if git push origin "HEAD:$BRANCH"; then
+            remote_sha="$(git ls-remote origin "refs/heads/$BRANCH" | awk 'NR==1 {print $1}')"
+            if [ -n "$remote_sha" ]; then
+              if git push --force-with-lease="refs/heads/$BRANCH:$remote_sha" origin "HEAD:$BRANCH"; then
+                echo "FACTORY_OUTPUT_PUBLISH_OK attempt=$attempt"
+                break
+              fi
+            elif git push origin "HEAD:$BRANCH"; then
               echo "FACTORY_OUTPUT_PUBLISH_OK attempt=$attempt"
               break
             fi
@@ -288,8 +296,6 @@ jobs:
               exit 1
             fi
             echo "FACTORY_OUTPUT_PUBLISH_RETRY attempt=$attempt"
-            git fetch origin main
-            git merge --no-edit -X ours origin/main
             sleep "$((attempt * 2))"
           done
           if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
