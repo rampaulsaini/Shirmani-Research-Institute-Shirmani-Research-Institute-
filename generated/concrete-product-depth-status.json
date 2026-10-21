@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0",
-  "template": "ENGINE_MODULE_V2",
-  "generated_at": "2026-10-07T00:33:56.557296+00:00",
+  "template": "ENGINE_MODULE_V4_VISUAL_QR",
+  "generated_at": "2026-10-20T23:39:19.419056+00:00",
   "catalog_products": 5000,
   "stale_before": 5000,
   "upgraded_this_cycle": 500,
