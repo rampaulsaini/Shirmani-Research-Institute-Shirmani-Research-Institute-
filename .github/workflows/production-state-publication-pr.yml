@@ -41,7 +41,17 @@ jobs:
             generated/concrete-product-production-status.json \
             generated/concrete-product-depth-status.json \
             generated/continuous-production-batch-status.json \
-            generated/four-stage-production-status.json
+            generated/four-stage-production-status.json \
+            generated/continuous-production-manifest.json \
+            generated/continuous-production-state.json \
+            products/continuous \
+            products/visuals/continuous \
+            products/demos/continuous \
+            generated/continuous-production-manifest.json \
+            generated/continuous-production-state.json \
+            products/continuous \
+            products/visuals/continuous \
+            products/demos/continuous
           python - <<'PY'
           import json
           from pathlib import Path
