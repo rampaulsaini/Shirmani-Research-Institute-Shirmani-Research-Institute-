@@ -27,7 +27,7 @@ def page(product, root=ROOT):
     slug = slug_for(pid)
     name = product.get("name") or pid
     family = product.get("family") or product.get("category") or "Digital Product"
-    engine = product.get("engine") or "SHIRMANI"
+    engine = product.get("engine") or "package"
     description = product.get("short_description") or product.get("description") or "Customer-facing digital product."
     price = product.get("offer_price_inr", product.get("price_inr", ""))
 
