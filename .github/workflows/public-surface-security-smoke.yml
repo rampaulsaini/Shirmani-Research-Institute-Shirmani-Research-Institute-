@@ -34,7 +34,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ "$EVENT_NAME" == "pull_request" ]]; then
-            git fetch origin "$BASE_REF" --depth=1
+            git fetch origin "$BASE_REF"
             git diff --name-only "origin/$BASE_REF...HEAD" > /tmp/changed-files.txt
           elif [[ "$EVENT_NAME" == "push" && "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]]; then
             git diff --name-only "$BEFORE_SHA" HEAD > /tmp/changed-files.txt
