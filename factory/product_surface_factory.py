@@ -39,11 +39,13 @@ def page(product, root=ROOT):
     vip_exists = (root / vip_disk_rel).is_file()
     video_exists = Path(video_name).name == video_name and (root / video_disk_rel).is_file()
 
+    vip_href = quote(slug + ".svg", safe="")
+    video_href = quote(video_name, safe="")
     media_links = []
     if vip_exists:
-        media_links.append(f'<a href="../../demos/vip/{quote(slug + ".svg", safe="")}">Open product screenshot</a>')
+        media_links.append(f'<a href="../../demos/vip/{vip_href}">Open product screenshot</a>')
     if video_exists:
-        media_links.append(f'<a href="../../demos/{quote(video_name, safe="")}">Watch {e(engine)} demo video</a>')
+        media_links.append(f'<a href="../../demos/{video_href}">Watch {e(engine)} demo video</a>')
     media_html = "".join(media_links) if media_links else (
         '<p class="notice">Demo media is not published for this product yet. '
         'This page is a catalogue listing, not proof of a runnable product demo.</p>'
