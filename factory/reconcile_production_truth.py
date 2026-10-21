@@ -58,5 +58,5 @@ if existing:
     comparable_state.pop("generated_at", None)
     if comparable_existing == comparable_state:
         state = existing
-state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(state, ensure_ascii=False))
