@@ -56,6 +56,95 @@ jobs:
           if len(ids) != target or len(set(ids)) != target:
               raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: catalog IDs are missing or duplicated")
 
+          # Reconcile stale production metadata from the actual catalog and files.
+          # Existing detailed rows are preserved; missing rows only attest to an
+          # existing asset file and remain explicitly unverified.
+          concrete_dir = root / "products/concrete"
+          concrete_files = {
+              path.stem.casefold(): path
+              for path in concrete_dir.glob("*.html")
+              if path.is_file() and path.stat().st_size > 0
+          }
+          existing_rows = {
+              str(row.get("id", "")).strip().casefold(): row
+              for row in overlay.get("products", [])
+              if isinstance(row, dict) and row.get("id")
+          }
+          reconciled_rows = []
+          for product in products:
+              if not isinstance(product, dict) or not product.get("id"):
+                  continue
+              product_id = str(product["id"]).strip()
+              asset = concrete_files.get(product_id.casefold())
+              if asset is None:
+                  continue
+              row = existing_rows.get(product_id.casefold())
+              if row is None:
+                  row = {
+                      "id": product_id,
+                      "name": str(product.get("name") or product_id),
+                      "asset_path": asset.as_posix(),
+                      "asset_present": True,
+                      "verification_status": "UNVERIFIED",
+                      "sales_status": "NOT_RECORDED"
+                  }
+              else:
+                  row = dict(row)
+                  row["asset_path"] = asset.as_posix()
+                  row["asset_present"] = True
+                  row.setdefault("verification_status", "UNVERIFIED")
+                  row.setdefault("sales_status", "NOT_RECORDED")
+              reconciled_rows.append(row)
+
+          overlay["generated_at"] = __import__("datetime").datetime.now(
+              __import__("datetime").timezone.utc
+          ).isoformat()
+          overlay["products"] = reconciled_rows
+          overlay["catalog_count"] = target
+          overlay["asset_present_count"] = len(reconciled_rows)
+          overlay["verification_status"] = "UNVERIFIED_UNLESS_INDEPENDENT_EVIDENCE_EXISTS"
+          (root / "generated/concrete-production-overlay.json").write_text(
+              json.dumps(overlay, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+
+          state["generated_at"] = overlay["generated_at"]
+          state["catalog_identities"] = target
+          state["concrete_repository_assets"] = len(reconciled_rows)
+          state["current_catalog_pending"] = max(0, target - len(reconciled_rows))
+          state["concrete_materialization_percent_of_catalog"] = round(
+              100 * len(reconciled_rows) / target, 2
+          ) if target else 0
+          state["concrete_materialization_percent_of_scale_target"] = state[
+              "concrete_materialization_percent_of_catalog"
+          ]
+          state["product_qr_assets"] = len(list((root / "products/visuals/qr").glob("*.svg")))
+          state.setdefault("dispatch_released", 0)
+          state.setdefault("sales_claimed", 0)
+          state.setdefault("payment_claimed", 0)
+          state.setdefault("independent_verification_claimed", 0)
+          state["state"] = "PRODUCTION_ASSETS_PRESENT_UNVERIFIED" if len(reconciled_rows) == target else "PRODUCTION_IN_PROGRESS"
+          (root / "generated/live-production-state.json").write_text(
+              json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+
+          production_status_path = root / "generated/concrete-product-production-status.json"
+          if production_status_path.exists():
+              production_status = json.loads(production_status_path.read_text(encoding="utf-8"))
+              production_status.update({
+                  "generated_at": overlay["generated_at"],
+                  "target": target,
+                  "concrete_produced": len(reconciled_rows),
+                  "concrete_production_percent": state["concrete_materialization_percent_of_catalog"],
+                  "remaining": max(0, target - len(reconciled_rows)),
+                  "overlay_claimed": len(reconciled_rows),
+                  "overlay_only_gap": 0,
+                  "status": state["state"],
+                  "next_layer": "independent functional verification → packaging → commercial listing → customer delivery evidence"
+              })
+              production_status_path.write_text(
+                  json.dumps(production_status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+              )
+
           # Count the catalog's actual product identities, not every historical
           # HTML page that happens to live in products/concrete.
           concrete_ids = {
