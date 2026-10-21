@@ -296,9 +296,3 @@ jobs:
             if ! gh pr create --base main --head "$BRANCH" --title "chore(factory): publish product-first generated outputs" --body "Automated publication PR for product-first generated research outputs. Product creation precedes downstream verification. Protected source material is not rewritten; generated outputs remain subject to independent verification before any VERIFIED promotion."; then
               echo "Publication PR creation was deferred; generated outputs remain on $BRANCH."
             fi
-          fi
-; then
-            if ! gh pr create --base main --head "$BRANCH" --title "chore(factory): publish product-first generated outputs" --body "Automated publication PR for product-first generated research outputs. Product creation precedes downstream verification. Protected source material is not rewritten; generated outputs remain subject to independent verification before any VERIFIED promotion."; then
-              echo "Publication PR creation was deferred; generated outputs remain on $BRANCH."
-            fi
-          fi
