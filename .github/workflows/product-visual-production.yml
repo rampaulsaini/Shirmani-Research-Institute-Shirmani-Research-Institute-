@@ -62,10 +62,27 @@ jobs:
             exit 0
           fi
           git commit -m "feat(showroom): publish v2 product visual identity batch"
+          visual_commit="$(git rev-parse HEAD)"
+          git diff --name-status --no-renames HEAD^ HEAD -- products/visuals generated/product-visual-assets-v2.json generated/product-qr-assets.json factory/product_qr_asset_factory.py factory/product_visual_identity_factory_v2.py factory/product_visual_qc_gate.py assets/shirmani-perspective-logo.svg > /tmp/visual-production-changes.tsv
           git fetch origin automation/production-state
-          git diff --binary HEAD^ -- products/visuals generated/product-visual-assets-v2.json generated/product-qr-assets.json factory/product_qr_asset_factory.py factory/product_visual_identity_factory_v2.py factory/product_visual_qc_gate.py assets/shirmani-perspective-logo.svg > /tmp/visual-production.patch || true
           git checkout -B production-state origin/automation/production-state
-          if [ -s /tmp/visual-production.patch ]; then git apply /tmp/visual-production.patch; fi
+          # Apply the generated commit's changed paths onto the production branch.
+          # A patch with newly-added QR files fails when those paths already exist there.
+          while IFS=
+          if git diff --cached --quiet; then
+            echo "No production-state visual delta."
+            exit 0
+          fi
+          git commit -m "automission: publish product visual production state"
+          git push origin HEAD:automation/production-state
+\t' read -r change path; do
+            [ -n "${path:-}" ] || continue
+            if [ "$change" = "D" ]; then
+              git rm -f --ignore-unmatch -- "$path"
+            else
+              git checkout "$visual_commit" -- "$path"
+            fi
+          done < /tmp/visual-production-changes.tsv
           git add products/visuals generated/product-visual-assets-v2.json generated/product-qr-assets.json factory/product_qr_asset_factory.py factory/product_visual_identity_factory_v2.py factory/product_visual_qc_gate.py assets/shirmani-perspective-logo.svg
           if git diff --cached --quiet; then
             echo "No production-state visual delta."
