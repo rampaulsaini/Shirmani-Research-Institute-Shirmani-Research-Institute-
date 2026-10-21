@@ -106,11 +106,12 @@ jobs:
               raise SystemExit("Verification progress queue/registry mismatch")
           if p.get("promotion_allowed_by_this_report") is not False:
               raise SystemExit("Progress telemetry cannot authorize promotion")
+          p.setdefault("verification_completion_pct", "not-reported")
           print("Verification progress telemetry: PASS")
           print(
               "queued={queue_total} reviewed={reviewed_records} "
               "verified={independent_verified_records} "
-              "verification_pct={verification_completion_pct}".format(verification_completion_pct=p.get("verification_completion_pct", "not-reported"), **p)
+              "verification_pct={verification_completion_pct}".format(**p)
           )
           PY
 
