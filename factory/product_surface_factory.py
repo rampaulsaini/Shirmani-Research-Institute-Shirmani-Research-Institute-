@@ -33,16 +33,17 @@ def page(product, root=ROOT):
 
     passport_href = f"../../../product-passport.html?id={quote(pid, safe='')}"
     showroom_href = "../../../showroom-public.html"
-    vip_rel = f"demos/vip/{slug}.svg"
-    video_rel = f"demos/products/{slug}.mp4"
-    vip_exists = (root / vip_rel).is_file()
-    video_exists = (root / video_rel).is_file()
+    vip_disk_rel = f"products/demos/vip/{slug}.svg"
+    video_name = str(engine) + ".mp4"
+    video_disk_rel = f"products/demos/{video_name}"
+    vip_exists = (root / vip_disk_rel).is_file()
+    video_exists = Path(video_name).name == video_name and (root / video_disk_rel).is_file()
 
     media_links = []
     if vip_exists:
-        media_links.append(f'<a href="../../../{e(vip_rel)}">Open product screenshot</a>')
+        media_links.append(f'<a href="../../demos/vip/{quote(slug + ".svg", safe="")}">Open product screenshot</a>')
     if video_exists:
-        media_links.append(f'<a href="../../../{e(video_rel)}">Watch product demo video</a>')
+        media_links.append(f'<a href="../../demos/{quote(video_name, safe="")}">Watch {e(engine)} demo video</a>')
     media_html = "".join(media_links) if media_links else (
         '<p class="notice">Demo media is not published for this product yet. '
         'This page is a catalogue listing, not proof of a runnable product demo.</p>'
