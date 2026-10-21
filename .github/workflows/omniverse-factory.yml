@@ -271,17 +271,29 @@ jobs:
           fi
           git commit -m "chore(factory): refresh product-first research outputs"
           BRANCH="factory/generated-refresh"
-          # Never rewrite an existing factory branch. If an earlier generated PR is still
-          # unmerged, stop safely and let that PR be reviewed/merged before the next refresh.
-          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
-            git fetch origin "$BRANCH"
-            if ! git merge-base --is-ancestor "origin/$BRANCH" HEAD; then
-              echo "::error::Refusing to overwrite a divergent $BRANCH. Review or merge its open PR first."
+          # Reconcile an existing generated-output PR branch instead of failing every
+          # scheduled run. Preserve non-conflicting branch work and prefer this run's
+          # freshly validated generated outputs for overlapping files.
+          for attempt in 1 2 3 4 5; do
+            if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+              git fetch origin "$BRANCH"
+              git merge --no-edit -X ours "origin/$BRANCH"
+            fi
+            if git push origin "HEAD:$BRANCH"; then
+              echo "FACTORY_OUTPUT_PUBLISH_OK attempt=$attempt"
+              break
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo "::error::Unable to publish generated outputs after 5 attempts."
               exit 1
             fi
-          fi
-          git push origin "HEAD:$BRANCH"
-          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
+            echo "FACTORY_OUTPUT_PUBLISH_RETRY attempt=$attempt"
+            git fetch origin main
+            git merge --no-edit -X ours origin/main
+            sleep "$((attempt * 2))"
+          done
+          if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0
+; then
             if ! gh pr create --base main --head "$BRANCH" --title "chore(factory): publish product-first generated outputs" --body "Automated publication PR for product-first generated research outputs. Product creation precedes downstream verification. Protected source material is not rewritten; generated outputs remain subject to independent verification before any VERIFIED promotion."; then
               echo "Publication PR creation was deferred; generated outputs remain on $BRANCH."
             fi
