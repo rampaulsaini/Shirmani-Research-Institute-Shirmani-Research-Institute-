@@ -75,8 +75,7 @@ jobs:
           print("dispatch: NO")
           print("verification: DOWNSTREAM")
           PY
-      - name: Generate daily automission report from GitHub run evidence
-        if: ${{ github.event_name == 'schedule' && github.event.schedule == '17 * * * *' }}
+      - name: Generate daily automission report from GitHub run evidence on every cycle
         env:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
