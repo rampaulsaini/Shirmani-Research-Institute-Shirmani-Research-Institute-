@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from factory.public_production_materializer import materialize_concrete_asset_status
+from factory.supreme_public_production_sync import build_product_row, has_approved_price
 
 
 class ConcreteAssetStatusTests(unittest.TestCase):
@@ -61,5 +62,32 @@ class ConcreteAssetStatusTests(unittest.TestCase):
         self.assertEqual(status["product_assets"], 1)
 
 
-if __name__ == "__main__":
+class CommercialReadinessTests(unittest.TestCase):
+    def test_unapproved_price_is_quote_required(self):
+        product = {"id": "SP-0001", "name": "Starter Tool", "price_inr": 99}
+        row = build_product_row(product, "products/production/sp-0001.html", "2026-10-21T00:00:00+00:00")
+        self.assertEqual(row["name"], "Starter Tool")
+        self.assertEqual(row["sale_state"], "QUOTE_REQUIRED")
+        self.assertEqual(row["commercial_status"], "QUOTE_REQUIRED")
+        self.assertFalse(row["payment_enabled"])
+        self.assertFalse(has_approved_price(product))
+
+    def test_approved_price_requires_explicit_flag_and_positive_amount(self):
+        approved = {"id": "SP-0002", "name": "Research Tool", "price_inr": 199, "commercial_status": "PRICE_APPROVED"}
+        row = build_product_row(approved, "products/production/sp-0002.html", "2026-10-21T00:00:00+00:00")
+        self.assertEqual(row["sale_state"], "READY_FOR_ORDER")
+        self.assertEqual(row["commercial_status"], "PRICE_APPROVED")
+        self.assertTrue(row["payment_enabled"])
+        self.assertTrue(has_approved_price(approved))
+
+    def test_zero_or_invalid_price_cannot_be_approved(self):
+        for amount in (0, -1, None, "not-a-price", float("nan"), float("inf")):
+            product = {"id": "SP-0003", "commercial_status": "PRICE_APPROVED", "price_inr": amount}
+            self.assertFalse(has_approved_price(product), msg=f"unexpectedly approved price: {amount!r}")
+            row = build_product_row(product, "products/production/sp-0003.html", "2026-10-21T00:00:00+00:00")
+            self.assertEqual(row["sale_state"], "QUOTE_REQUIRED")
+            self.assertFalse(row["payment_enabled"])
+
+
+if __same__ == "__main__":
     unittest.main()
