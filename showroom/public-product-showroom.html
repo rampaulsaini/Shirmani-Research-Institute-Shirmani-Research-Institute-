@@ -25,7 +25,7 @@ enquiry.href="mailto:sainirampaul60@gmail.com?subject="+encodeURIComponent(enqui
 enquiry.textContent="Enquire by email";enquiry.setAttribute("aria-label","Enquire about "+enquiryName+" by email");actions.append(enquiry);
 const whatsapp=document.createElement("a");
 whatsapp.className="btn alt";
-const whatsappBody="Namaste SHIRMANI Research Institute. I am enquiring about: "+enquiryName+"\\nProduct ID: "+(p.id||"Not recorded")+"\\nListing status: "+(p.status||p.production_state||"Not recorded")+"\\nListed price: "+(typeof p.price_inr==="number"?"INR "+p.price_inr:"Not recorded")+"\\nPlease confirm current availability, exact deliverables, delivery timeline, final price, and payment terms before I decide.";
+const whatsappBody="Namaste SHIRMANI Research Institute. I am enquiring about: "+enquiryName+"\nProduct ID: "+(p.id||"Not recorded")+"\nListing status: "+(p.status||p.production_state||"Not recorded")+"\nListed price: "+(typeof p.price_inr==="number"?"INR "+p.price_inr:"Not recorded")+"\nPlease confirm current availability, exact deliverables, delivery timeline, final price, and payment terms before I decide.";
 whatsapp.href="https://wa.me/918082935186?text="+encodeURIComponent(whatsappBody);
 whatsapp.textContent="Enquire on WhatsApp";
 whatsapp.setAttribute("aria-label","Prepare a WhatsApp enquiry about "+enquiryName);
