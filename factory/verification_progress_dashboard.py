@@ -29,18 +29,20 @@ def bar(percent: float, width: int = 30) -> str:
     return "█" * filled + "░" * (width - filled)
 
 def validate_preparation_status(prep: dict, target: int) -> int:
+    """Validate the status producer's current schema without promoting records."""
     if prep.get("version") != 1:
         raise SystemExit("PREPARATION_STATUS_SCHEMA_VERSION_UNSUPPORTED")
-    if prep.get("state") != "NOT_VERIFIED":
-        raise SystemExit("PREPARATION_STATUS_STATE_MUST_REMAIN_NOT_VERIFIED")
-    if prep.get("promotion_eligible") != 0:
-        raise SystemExit("PREPARATION_STATUS_PROMOTION_ELIGIBLE_MUST_BE_ZERO")
+    if prep.get("verification_policy") != "FAIL_CLOSED":
+        raise SystemExit("PREPARATION_STATUS_POLICY_NOT_FAIL_CLOSED")
+    if prep.get("workflow_success_is_not_independent_verification") is not True:
+        raise SystemExit("PREPARATION_STATUS_WORKFLOW_SUCCESS_BOUNDARY_MISSING")
+    if prep.get("human_review_required_for_verified_promotion") is not True:
+        raise SystemExit("PREPARATION_STATUS_HUMAN_REVIEW_BOUNDARY_MISSING")
 
     integer_fields = (
-        "queue_total", "queued_records", "prepared_review_records",
-        "reviewed_records", "verified_records", "packet_qc_checked_items",
-        "queue_qc_error_count", "registry_qc_error_count",
-        "promotion_qc_error_count"
+        "queue_total", "registry_total", "prepared_review_records",
+        "verified_records", "review_records", "unverified_records",
+        "blocked_records", "other_registry_status_records"
     )
     for field in integer_fields:
         value = prep.get(field)
@@ -48,32 +50,31 @@ def validate_preparation_status(prep: dict, target: int) -> int:
             raise SystemExit(f"PREPARATION_STATUS_INVALID_{field.upper()}")
 
     queue_total = prep["queue_total"]
-    queued = prep["queued_records"]
+    registry_total = prep["registry_total"]
     prepared = prep["prepared_review_records"]
-    reviewed = prep["reviewed_records"]
     verified = prep["verified_records"]
+    reviewed = prep["review_records"]
 
-    if any(prep[field] != 0 for field in (
-        "queue_qc_error_count", "registry_qc_error_count", "promotion_qc_error_count"
-    )):
-        raise SystemExit("PREPARATION_STATUS_QC_ERRORS_PRESENT")
-    if prep["packet_qc_checked_items"] > prepared:
-        raise SystemExit("PREPARATION_STATUS_PACKET_QC_EXCEEDS_PREPARED")
-
-    if not (prepared <= queued <= queue_total <= target):
+    if queue_total != registry_total:
+        raise SystemExit("PREPARATION_STATUS_QUEUE_REGISTRY_COUNT_MISMATCH")
+    if not (prepared <= queue_total <= target):
         raise SystemExit("PREPARATION_STATUS_QUEUE_INVARIANT_FAILED")
-    if not (verified <= reviewed <= prepared):
-        raise SystemExit("PREPARATION_STATUS_REVIEW_INVARIANT_FAILED")
-    if prep.get("prepared_percent") != round(prepared / target * 100, 6):
+    if verified > registry_total or reviewed > registry_total:
+        raise SystemExit("PREPARATION_STATUS_REVIEW_COUNT_EXCEEDS_REGISTRY")
+    expected_prepared_pct = round(prepared / queue_total * 100, 2) if queue_total else 0.0
+    expected_verified_pct = round(verified / queue_total * 100, 2) if queue_total else 0.0
+    if prep.get("prepared_percent") != expected_prepared_pct:
         raise SystemExit("PREPARATION_STATUS_PREPARED_PERCENT_MISMATCH")
-    expected_verified_pct = round(verified / queue_total * 100, 6) if queue_total else 0
     if prep.get("verified_percent_of_queue") != expected_verified_pct:
         raise SystemExit("PREPARATION_STATUS_VERIFIED_PERCENT_MISMATCH")
+    expected_state = "VERIFIED_PROGRESS_AVAILABLE" if verified else "READY_FOR_REVIEW"
+    if prep.get("state") != expected_state:
+        raise SystemExit("PREPARATION_STATUS_STATE_INCONSISTENT_WITH_REGISTRY")
     return prepared
 
 def validate_record_counts(prep: dict, reviewed: int, verified: int) -> None:
-    """Ensure generated preparation metadata cannot override actual review records."""
-    if prep.get("reviewed_records") != reviewed:
+    """Actual review records remain authoritative for dashboard review counters."""
+    if prep.get("review_records") != reviewed:
         raise SystemExit("PREPARATION_STATUS_REVIEWED_COUNT_STALE_OR_INFLATED")
     if prep.get("verified_records") != verified:
         raise SystemExit("PREPARATION_STATUS_VERIFIED_COUNT_STALE_OR_INFLATED")
