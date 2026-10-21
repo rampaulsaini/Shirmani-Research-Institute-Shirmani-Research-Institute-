@@ -104,7 +104,7 @@ jobs:
           overlay["asset_present_count"] = len(reconciled_rows)
           overlay["verification_status"] = "UNVERIFIED_UNLESS_INDEPENDENT_EVIDENCE_EXISTS"
           (root / "generated/concrete-production-overlay.json").write_text(
-              json.dumps(overlay, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8"
+              json.dumps(overlay, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
           )
 
           state["generated_at"] = overlay["generated_at"]
@@ -124,7 +124,7 @@ jobs:
           state.setdefault("independent_verification_claimed", 0)
           state["state"] = "PRODUCTION_ASSETS_PRESENT_UNVERIFIED" if len(reconciled_rows) == target else "PRODUCTION_IN_PROGRESS"
           (root / "generated/live-production-state.json").write_text(
-              json.dumps(state, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8"
+              json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
           )
 
           production_status_path = root / "generated/concrete-product-production-status.json"
@@ -142,7 +142,7 @@ jobs:
                   "next_layer": "independent functional verification → packaging → commercial listing → customer delivery evidence"
               })
               production_status_path.write_text(
-                  json.dumps(production_status, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8"
+                  json.dumps(production_status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
               )
 
           # Count the catalog's actual product identities, not every historical
