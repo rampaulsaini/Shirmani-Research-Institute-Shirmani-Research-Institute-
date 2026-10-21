@@ -24,7 +24,7 @@
 <section>
   <h1>Contact IHDM</h1>
   <p>Submitting this form opens your device's email app. Review the message and press Send there; this website does not send email automatically.</p>
-  <form action="mailto:sainirampaul60@gmail.com" method="post" enctype="text/plain">
+  <form id="contactForm" action="mailto:sainirampaul60@gmail.com" method="post" enctype="text/plain">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
     <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
@@ -36,5 +36,22 @@
   <p>© 2026 IHDM | Initiator: Shirmani RamPal Saini</p>
 </footer>
 <script src="assets/js/script.js"></script>
+<script>
+  // Compose a readable email from the form fields; the visitor still reviews and sends it.
+  document.getElementById("contactForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const data = new FormData(this);
+    const subject = "Website enquiry — " + String(data.get("name") || "").trim();
+    const body = [
+      "Name: " + String(data.get("name") || "").trim(),
+      "Reply email: " + String(data.get("email") || "").trim(),
+      "",
+      "Message:",
+      String(data.get("message") || "").trim()
+    ].join(String.fromCharCode(10));
+    window.location.href = "mailto:sainirampaul60@gmail.com?subject="
+      + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  });
+</script>
 </body>
 </html>
