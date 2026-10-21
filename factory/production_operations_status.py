@@ -8,7 +8,6 @@ import json
 ROOT=Path(__file__).resolve().parents[1]
 GEN=ROOT/"generated"
 CAT=GEN/"1000-digital-products.json"
-OVERLAY=GEN/"concrete-production-overlay.json"
 LIVE=GEN/"live-production-state.json"
 BATCH=GEN/"continuous-production-batch-status.json"
 OUT=GEN/"production-operations-status.json"
@@ -19,18 +18,31 @@ def load(path, default):
 
 def main():
     catalog=load(CAT,{"products":[]})
-    overlay=load(OVERLAY,{"products":[]})
     live=load(LIVE,{})
     batch=load(BATCH,{})
     products=catalog.get("products",[])
-    produced={x.get("id"):x for x in overlay.get("products",[]) if x.get("production_state")=="PRODUCED"}
+    # Count only catalog entries whose repository-bound asset currently exists and is non-empty.
+    # The production overlay can lag behind materialization, so it must not override filesystem evidence.
+    produced={}
+    for product in products:
+        product_id=product.get("id")
+        asset=product.get("asset")
+        if not isinstance(product_id,str) or not product_id or not isinstance(asset,str) or not asset:
+            continue
+        asset_path=(ROOT/asset).resolve()
+        try:
+            asset_path.relative_to(ROOT)
+        except ValueError:
+            continue
+        if asset_path.is_file() and asset_path.stat().st_size>0:
+            produced[product_id]=product
     families=sorted({str(x.get("family") or "Unclassified") for x in products})
     lanes=sorted({(str(x.get("family") or "Unclassified"),str(x.get("engine") or "digital")) for x in products})
     pricing=sum(1 for x in products if float(x.get("offer_price_inr",x.get("price_inr",0)) or 0)>0)
     pending=[x for x in products if x.get("id") not in produced]
     target=5000
-    # Canonical concrete state comes from the production overlay. Never use workflow-run counts as product counts.
-    produced_count=len(produced) if produced else int(live.get("concrete_repository_assets",live.get("public_production_assets",0)) or 0)
+    # Never substitute workflow-run counts or stale overlay rows for concrete asset evidence.
+    produced_count=len(produced)
     catalog_count=int(live.get("catalog_identities",len(products)) or len(products))
     target=int(live.get("five_thousand_scale_target",5000) or 5000)
     next_units=[]
@@ -43,7 +55,7 @@ def main():
         })
     state={
       "schema_version":"2.0","generated_at":datetime.now(timezone.utc).isoformat(),
-      "source_of_truth":"generated/concrete-production-overlay.json",
+      "source_of_truth":"catalog asset paths checked against non-empty repository files",
       "production":{
         "catalog_products":catalog_count,"produced_public":produced_count,
         "pricing_published":pricing,"sold_evidence":0,
