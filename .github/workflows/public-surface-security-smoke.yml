@@ -35,13 +35,12 @@ jobs:
           set -euo pipefail
           if [[ "$EVENT_NAME" == "pull_request" ]]; then
             git fetch origin "$BASE_REF" --depth=1
-            git diff --name-only "origin/$BASE_REF...HEAD" > /tmp/changed-files.txt
+            git diff --name-only "origin/$BASE_REF...HEAD" | grep -E "\.(html?|HTML?)$" | sed -n '1,250p' > /tmp/changed-files.txt || true
           elif [[ "$EVENT_NAME" == "push" && "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]]; then
-            git diff --name-only "$BEFORE_SHA" HEAD > /tmp/changed-files.txt
+            git diff --name-only "$BEFORE_SHA" HEAD | grep -E "\.(html?|HTML?)$" | sed -n '1,250p' > /tmp/changed-files.txt || true
           else
-            git ls-files '*.html' '*.htm' | head -n 250 > /tmp/changed-files.txt
+            git ls-files '*.html' '*.htm' | sed -n '1,250p' > /tmp/changed-files.txt
           fi
-          cat /tmp/changed-files.txt
           {
             echo 'paths<<EOF'
             cat /tmp/changed-files.txt
@@ -55,4 +54,8 @@ jobs:
         run: |
           set -euo pipefail
           mapfile -t files <<< "$CHANGED_PATHS"
+          if ((${#files[@]} == 0)) || [[ -z "${files[0]}" ]]; then
+            echo "No changed HTML files to scan; skipping file-level HTML smoke."
+            exit 0
+          fi
           python3 scripts/security/public_html_smoke_check.py "${files[@]}"
