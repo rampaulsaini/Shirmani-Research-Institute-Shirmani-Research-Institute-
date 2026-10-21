@@ -32,17 +32,17 @@ class ProductSurfaceFactoryTests(unittest.TestCase):
         rendered = factory.page(self.product, root=self.root)
         self.assertIn("Demo media is not published", rendered)
         self.assertIn("not proof of a runnable product demo", rendered)
-        self.assertNotIn('href="../../../demos/vip/sp-0001.svg"', rendered)
-        self.assertNotIn('href="../../../demos/products/sp-0001.mp4"', rendered)
+        self.assertNotIn('href="../../demos/vip/sp-0001.svg"', rendered)
+        self.assertNotIn('href="../../demos/calculator.mp4"', rendered)
 
     def test_existing_media_links_are_root_relative_from_nested_page(self):
-        (self.root / "demos/vip").mkdir(parents=True)
-        (self.root / "demos/products").mkdir(parents=True)
-        (self.root / "demos/vip/sp-0001.svg").write_text("<svg/>", encoding="utf-8")
-        (self.root / "demos/products/sp-0001.mp4").write_bytes(b"demo")
+        (self.root / "products/demos/vip").mkdir(parents=True)
+        (self.root / "products/demos").mkdir(parents=True, exist_ok=True)
+        (self.root / "products/demos/vip/sp-0001.svg").write_text("<svg/>", encoding="utf-8")
+        (self.root / "products/demos/calculator.mp4").write_bytes(b"demo")
         rendered = factory.page(self.product, root=self.root)
-        self.assertIn('href="../../../demos/vip/sp-0001.svg"', rendered)
-        self.assertIn('href="../../../demos/products/sp-0001.mp4"', rendered)
+        self.assertIn('href="../../demos/vip/sp-0001.svg"', rendered)
+        self.assertIn('href="../../demos/calculator.mp4"', rendered)
         self.assertNotIn("Demo media is not published", rendered)
 
 
