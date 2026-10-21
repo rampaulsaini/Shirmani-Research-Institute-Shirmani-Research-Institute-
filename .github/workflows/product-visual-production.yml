@@ -66,16 +66,8 @@ jobs:
           git diff --name-status --no-renames HEAD^ HEAD -- products/visuals generated/product-visual-assets-v2.json generated/product-qr-assets.json factory/product_qr_asset_factory.py factory/product_visual_identity_factory_v2.py factory/product_visual_qc_gate.py assets/shirmani-perspective-logo.svg > /tmp/visual-production-changes.tsv
           git fetch origin automation/production-state
           git checkout -B production-state origin/automation/production-state
-          # Apply the generated commit's changed paths onto the production branch.
-          # A patch with newly-added QR files fails when those paths already exist there.
-          while IFS=
-          if git diff --cached --quiet; then
-            echo "No production-state visual delta."
-            exit 0
-          fi
-          git commit -m "automission: publish product visual production state"
-          git push origin HEAD:automation/production-state
-\t' read -r change path; do
+          # Copy changed paths from the generated commit, replacing existing files safely.
+          while read -r change path; do
             [ -n "${path:-}" ] || continue
             if [ "$change" = "D" ]; then
               git rm -f --ignore-unmatch -- "$path"
