@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generated_at": "2026-10-21T08:04:11.505918+00:00",
+  "generated_at": "2026-10-21T08:06:30.493217+00:00",
   "purpose": "public-first production module map",
   "module_count": 10769,
   "lane_counts": {
-    "ai_ml_nlp": 9049,
+    "ai_ml_nlp": 9048,
     "automation": 5,
     "content": 8,
     "economic": 6,
     "platform": 3,
-    "research": 1661,
+    "research": 1662,
     "security_quality": 37
   },
   "status_counts": {
@@ -62749,13 +62749,6 @@
       "bytes": 1910
     },
     {
-      "path": "factory/reconcile_production_truth.py",
-      "type": "py",
-      "lane": "ai_ml_nlp",
-      "status": "UNSPECIFIED",
-      "bytes": 2727
-    },
-    {
       "path": "factory/run_nvidia_batch.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -74227,6 +74220,13 @@
       "lane": "research",
       "status": "UNSPECIFIED",
       "bytes": 8276
+    },
+    {
+      "path": "factory/reconcile_production_truth.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 3190
     },
     {
       "path": "factory/repos.json",
