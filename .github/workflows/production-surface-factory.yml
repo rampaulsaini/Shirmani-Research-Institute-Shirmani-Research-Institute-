@@ -15,9 +15,11 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - name: Test product surface links and demo truth
+        run: python3 -m unittest factory/test_product_surface_factory.py
       - name: Build 150K-scale catalogue shards
         run: python3 factory/catalog_sharder.py
-      - name: Materialize public product surfaces
+      - name: Materialize and refresh public product surfaces
         env:
           PRODUCT_SURFACE_BATCH: "25"
         run: python3 factory/product_surface_factory.py
@@ -27,16 +29,18 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automission/production-surface-refresh
           delete-branch: false
-          commit-message: "feat(production): materialize public product surfaces and catalog shards"
+          commit-message: "fix(production): repair product links and enquiry paths"
           title: "Automission: refresh public product surfaces and catalogue"
           body: |
             ## Automated production refresh
 
-            This PR contains the generated catalogue shards, product-surface manifest, and up to 25 new public product pages from one factory cycle.
+            This PR refreshes existing public product pages as well as adding the next batch.
 
-            - Generated output is reviewed through a pull request; this workflow never pushes directly to protected `main`.
-            - A generated page is not evidence of a customer sale, payment, successful delivery, scientific validation, or independent human review.
-            - Merge only after required checks pass and the public page/link checks succeed.
+            - Product passport and showroom links are resolved from nested public URLs.
+            - Product enquiry CTAs open a customer-controlled WhatsApp or email draft.
+            - Screenshot/video links are shown only when the corresponding media file exists.
+            - Missing demo media is labelled honestly; catalogue presence is not a working-demo or sales claim.
+            - Generated output remains reviewed through a pull request.
           add-paths: |
             catalog/**
             generated/product-surface-manifest.json
