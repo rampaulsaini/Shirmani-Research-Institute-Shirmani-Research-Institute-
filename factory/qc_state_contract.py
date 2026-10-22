@@ -45,7 +45,7 @@ def sync_public_qc_state(root: Path, catalog_count: int) -> bool:
             "qc_generated_at": qc.get("generated_at"),
             "dispatch": "NO",
         })
-        status_path.write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+        status_path.write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     live_path = gen / "live-production-state.json"
     if live_path.is_file():
         live = json.loads(live_path.read_text(encoding="utf-8"))
@@ -61,5 +61,5 @@ def sync_public_qc_state(root: Path, catalog_count: int) -> bool:
             "payment_claimed": 0,
             "independent_verification_claimed": 0,
         })
-        live_path.write_text(json.dumps(live, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+        live_path.write_text(json.dumps(live, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return passed
