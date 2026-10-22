@@ -1,1 +1,80 @@
-<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI Production Dashboard</title><style>body{margin:0;background:#080b12;color:#f5f7fa;font-family:system-ui,sans-serif;line-height:1.55}main{max-width:1200px;margin:auto;padding:24px}h1,h2{color:#e6c76a}.hero,.card{background:#111722;border:1px solid #293647;border-radius:16px;padding:20px;margin:14px 0}.hero{border:2px solid #e6c76a}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.metric{font-size:1.8rem;font-weight:900;color:#e6c76a}.muted{color:#aab5c4}.tag{display:inline-block;border:1px solid #293647;border-radius:999px;padding:6px 10px;margin:4px;color:#6bd7d0}a{color:#e6c76a}pre{white-space:pre-wrap;overflow:auto;background:#070a0f;padding:14px;border-radius:10px}</style></head><body><main><section class="hero"><h1>꙰ SHIRMANI Production Dashboard</h1><p><strong>Production-first Automission:</strong> research, AI/ML/NLP, content, platform, economic, social-media, federation, security-quality and automation work is produced first. Verification is downstream.</p><p id="state">Loading production telemetry…</p></section><section class="grid"><div class="card"><div class="metric" id="modules">—</div><div class="muted">discovered modules</div></div><div class="card"><div class="metric" id="cycle">—</div><div class="muted">tasks this cycle</div></div><div class="card"><div class="metric" id="results">—</div><div class="muted">concrete results</div></div><div class="card"><div class="metric" id="scheduled">—</div><div class="muted">scheduled work units</div></div></section><h2>Production lanes</h2><section class="card" id="lanes">Loading…</section><h2>Live telemetry</h2><section class="card"><pre id="telemetry">Loading…</pre></section><h2>Concrete public outputs</h2><section class="grid"><div class="card"><h3>Result stream</h3><a href="generated/production-results.jsonl">production-results.jsonl →</a></div><div class="card"><h3>Work queue</h3><a href="generated/production-work-queue.jsonl">production-work-queue.jsonl →</a></div><div class="card"><h3>Status JSON</h3><a href="generated/multi-layer-production-status.json">live status →</a></div><div class="card"><h3>Result index</h3><a href="generated/public-production-index.html">public result cards →</a></div></section><div class="card"><strong>Source → Multi-layer work → Concrete output → Public presentation → QC/evidence → downstream independent verification.</strong><p class="muted">Workflow activity is not automatically verification. Quantum-ready means orchestration readiness; real quantum execution requires a configured backend.</p></div><p><a href="public-production-command-center.html">Production Command Center</a> · <a href="public-platform-hub.html">Public Hub</a> · <a href="index.html">Main Hub</a></p><script>async function load(){try{const r=await fetch('generated/multi-layer-production-status.json?ts='+Date.now());if(!r.ok)throw Error(r.status);const p=await r.json();modules.textContent=(p.discovered_modules||0).toLocaleString();cycle.textContent=(p.last_cycle_tasks||0).toLocaleString();results.textContent=(p.last_cycle_concrete_results||0).toLocaleString();scheduled.textContent=(p.scheduled_work_units||0).toLocaleString();state.textContent='LIVE PRODUCTION TELEMETRY';const l=p.lane_counts_last_cycle||{};lanes.innerHTML=Object.keys(l).sort().map(k=>'<span class="tag">'+k+' · '+l[k]+' tasks</span>').join('');telemetry.textContent=JSON.stringify(p,null,2)}catch(e){state.textContent='PRODUCTION TELEMETRY NOT YET AVAILABLE';telemetry.textContent='No current telemetry has been published yet. This page does not invent values. '+e}}load();setInterval(load,30000)</script></main></body></html>
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SHIRMANI public production dashboard: live catalogue truth, automation telemetry, evidence and revenue status.">
+<meta name="theme-color" content="#080b12">
+<title>SHIRMANI — Production & Evidence Dashboard</title>
+<style>
+:root{color-scheme:dark;--bg:#080b12;--panel:#111722;--line:#293647;--gold:#e6c76a;--cyan:#6bd7d0;--muted:#aab5c4;--green:#83e2ad;--amber:#ffdc91;--red:#ffb2a8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1a2b41,var(--bg) 55%);color:#f5f7fa;font:16px/1.6 system-ui,"Noto Sans Devanagari",sans-serif}main{max-width:1240px;margin:auto;padding:18px 14px 60px}header,.panel,.metric{background:#111722;border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}header{border:2px solid #8b7947;background:linear-gradient(135deg,#1d3046,#101722)}h1,h2,h3{color:var(--gold);line-height:1.25}h1{font-size:clamp(2rem,5vw,3.5rem);margin:.25em 0}h2{font-size:1.35rem;margin:0 0 10px}p,.muted{color:var(--muted)}a{color:var(--cyan)}.actions,.tags{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.btn{display:inline-block;padding:9px 12px;border:1px solid #52647b;border-radius:10px;background:#0b1724;color:#f5f7fa;text-decoration:none;font-weight:800}.btn.primary{background:var(--gold);color:#111}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,205px),1fr));gap:10px}.metric{margin:0;padding:15px}.num{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:950;color:var(--gold);overflow-wrap:anywhere}.label{color:var(--muted);font-size:.9rem}.pill{display:inline-block;border:1px solid #42566e;border-radius:99px;padding:4px 9px;font-size:.82rem}.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}pre{white-space:pre-wrap;overflow-wrap:anywhere;overflow:auto;background:#080e16;border:1px solid var(--line);padding:12px;border-radius:10px;max-height:480px}ul{padding-left:1.25rem}footer{text-align:center;color:var(--muted);padding:18px}button{font:inherit;cursor:pointer;border:1px solid var(--gold);background:var(--gold);color:#111;border-radius:10px;padding:8px 12px;font-weight:850}
+</style>
+</head>
+<body><main>
+<header>
+<div class="pill">SHIRMANI · PUBLIC PRODUCTION & EVIDENCE</div>
+<h1>उत्पादन और वास्तविक प्रगति</h1>
+<p>सबसे पहले प्रकाशित catalog की स्थिति। Automation के cycle आँकड़े अलग दिखते हैं और उनकी तारीख़ भी स्पष्ट है। किसी workflow run को बिक्री, भुगतान, dispatch या स्वतंत्र सत्यापन नहीं माना जाता।</p>
+<div class="actions"><a class="btn primary" href="showroom-public-interface.html">Public Showroom</a><a class="btn" href="showroom/public-product-showroom.html">Product Catalogue</a><a class="btn" href="showroom/production-telemetry-evidence-counters.html">Daily counters & evidence</a><a class="btn" href="production-progress-map.html">Production progress map</a><a class="btn" href="index.html">Main platform</a><button id="refresh" type="button">अभी Refresh करें</button></div>
+<p id="updated" aria-live="polite">प्रकाशित स्थिति लोड हो रही है…</p>
+</header>
+<section class="panel"><h2>1 · प्रकाशित catalog की स्थिति</h2><div class="grid">
+<div class="metric"><div class="num" id="assets">—</div><div class="label">Concrete repository assets</div></div>
+<div class="metric"><div class="num" id="target">—</div><div class="label">Catalog scale target</div></div>
+<div class="metric"><div class="num" id="remaining">—</div><div class="label">Target तक शेष</div></div>
+<div class="metric"><div class="num" id="percent">—</div><div class="label">Catalog materialization</div></div>
+<div class="metric"><div class="num" id="dispatch">—</div><div class="label">Dispatch released</div></div>
+<div class="metric"><div class="num" id="sales">—</div><div class="label">Sales claimed</div></div>
+<div class="metric"><div class="num" id="payment">—</div><div class="label">Payment claimed</div></div>
+<div class="metric"><div class="num" id="verified">—</div><div class="label">Independent verification claimed</div></div>
+</div><p id="catalogState" class="muted">Catalog state पढ़ी जा रही है…</p><p class="muted">Asset मौजूद होना अपने-आप में product quality approval, customer order, payment, dispatch या independent verification का प्रमाण नहीं है।</p></section>
+<section class="panel"><h2>2 · Automation telemetry — cycle और freshness</h2><div class="grid">
+<div class="metric"><div class="num" id="modules">—</div><div class="label">Discovered modules · telemetry</div></div>
+<div class="metric"><div class="num" id="tasks">—</div><div class="label">Last-cycle tasks · telemetry</div></div>
+<div class="metric"><div class="num" id="results">—</div><div class="label">Last-cycle concrete results · telemetry</div></div>
+<div class="metric"><div class="num" id="units">—</div><div class="label">Scheduled work units · telemetry</div></div>
+</div><p id="telemetryFresh" class="warn">Automation telemetry की तारीख़ जाँची जा रही है…</p><div id="lanes" class="tags"></div><p class="muted">यह cycle telemetry है, live catalog count नहीं। पुरानी तारीख़ होने पर इसे स्पष्ट रूप से stale दिखाया जाएगा; इसे आज का परिणाम न मानें।</p><details><summary>Raw telemetry JSON देखें</summary><pre id="raw">Loading…</pre></details></section>
+<section class="panel"><h2>3 · आय और बाहरी सत्यापन</h2><ul>
+<li>वास्तविक आय केवल ग्राहक से प्राप्त भुगतान के प्रमाण पर दर्ज होनी चाहिए।</li>
+<li>Enquiry, quote, proposal और workflow success अपने-आप आय नहीं हैं।</li>
+<li>Voice, avatar, lip-sync, live Q&amp;A, checkout और third-party services के प्रमाण अलग से चाहिए।</li>
+<li>स्थानीय browser रिकॉर्ड और सार्वजनिक GitHub workflow रिकॉर्ड अलग-अलग स्रोत हैं।</li>
+</ul><p><a href="showroom/first-customer-launch-desk.html">Customer enquiry / proposal desk</a> · <a href="showroom/institutional-sales-workbench.html">Institutional sales workbench</a> · <a href="showroom/voice-to-live-evidence-console.html">Voice-to-live evidence</a></p></section>
+<footer>SHIRMANI Research Institute · Evidence first · Refreshes published JSON every 30 seconds while this page is open.</footer>
+</main>
+<script>
+(() => {
+"use strict";
+const $=id=>document.getElementById(id);
+const fmt=v=>Number.isFinite(Number(v))?Number(v).toLocaleString("en-IN"):"—";
+const ageLabel=iso=>{if(!iso)return "तारीख़ उपलब्ध नहीं";const d=new Date(iso);if(Number.isNaN(d.getTime()))return "तारीख़ अमान्य";const hours=(Date.now()-d.getTime())/3600000;const when=d.toLocaleString("hi-IN");if(hours>48)return "STALE · अंतिम जनरेशन "+when+" ("+Math.floor(hours/24)+" दिन पुराना)";if(hours>24)return "पुराना snapshot · अंतिम जनरेशन "+when;return "हालिया snapshot · अंतिम जनरेशन "+when};
+async function json(path){const response=await fetch(path+"?ts="+Date.now(),{cache:"no-store"});if(!response.ok)throw Error(path+" HTTP "+response.status);return response.json()}
+async function load(){
+ $("refresh").disabled=true;$("updated").textContent="प्रकाशित JSON refresh हो रहा है…";
+ try{
+  const s=await json("generated/live-production-state.json");
+  const count=Number(s.concrete_repository_assets??s.catalog_identities);
+  const target=Number(s.five_thousand_scale_target??5000);
+  $("assets").textContent=fmt(count);$("target").textContent=fmt(target);
+  $("remaining").textContent=fmt(s.remaining_to_scale_target??Math.max(0,target-count));
+  $("percent").textContent=Number.isFinite(Number(s.concrete_materialization_percent_of_catalog))?Number(s.concrete_materialization_percent_of_catalog).toFixed(2)+"%":"—";
+  $("dispatch").textContent=fmt(s.dispatch_released);$("sales").textContent=fmt(s.sales_claimed);
+  $("payment").textContent=fmt(s.payment_claimed);$("verified").textContent=fmt(s.independent_verification_claimed);
+  $("catalogState").textContent="State: "+(s.state||"NOT RECORDED")+" · QC: "+(s.qc_state||"NOT RECORDED")+" · "+(s.truth_boundary||"No additional truth boundary recorded.");
+  $("updated").textContent="Catalog snapshot: "+(s.generated_at?new Date(s.generated_at).toLocaleString("hi-IN"):"तारीख़ उपलब्ध नहीं");
+ }catch(e){$("catalogState").textContent="प्रकाशित catalog state लोड नहीं हुई: "+e.message;$("updated").textContent="Live catalog snapshot उपलब्ध नहीं — अनुमानित आँकड़े नहीं दिखाए जा रहे।"}
+ try{
+  const m=await json("generated/multi-layer-production-status.json");
+  $("modules").textContent=fmt(m.discovered_modules);$("tasks").textContent=fmt(m.last_cycle_tasks);
+  $("results").textContent=fmt(m.last_cycle_concrete_results??m.production_outputs?.concrete_results_this_cycle);
+  $("units").textContent=fmt(m.scheduled_work_units);
+  $("telemetryFresh").textContent=ageLabel(m.generated_at);
+  $("telemetryFresh").className=(Date.now()-new Date(m.generated_at||0).getTime()>48*3600000)?"bad":"ok";
+  const lanes=m.lane_counts_last_cycle||{};
+  $("lanes").replaceChildren();
+  for(const [name,value] of Object.entries(lanes).sort((a,b)=>a[0].localeCompare(b[0]))){const span=document.createElement("span");span.className="pill";span.textContent=name+" · "+fmt(value)+" tasks";$("lanes").append(span)}
+  $("raw").textContent=JSON.stringify(m,null,2);
+ }catch(e){$("telemetryFresh").textContent="Automation telemetry उपलब्ध नहीं: "+e.message;$("telemetryFresh").className="bad";$("raw").textContent="No current telemetry. The dashboard will not invent values."}
+}
+$("refresh").addEventListener("click",load);load();setInterval(load,30000);
+})();
+</script></body></html>
