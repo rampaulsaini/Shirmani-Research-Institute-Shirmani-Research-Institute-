@@ -17,6 +17,78 @@
 <p><a class="btn" href="index.html">← मुख्य Omniverse Hub</a></p>
 </section>
 
+
+<style>
+/* Income Result Engine: deterministic local execution layer; no external AI/API claims. */
+.ire{margin:26px 0;padding:22px;border:1px solid rgba(0,210,255,.5);border-radius:18px;background:linear-gradient(145deg,rgba(0,210,255,.08),rgba(212,175,55,.07))}
+.ire h2{margin-top:0}.ire-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.ire label{display:block;font-weight:700;margin:8px 0 4px}.ire input,.ire textarea,.ire select{width:100%;box-sizing:border-box;padding:10px;border:1px solid #667085;border-radius:8px;background:#10131c;color:var(--text);font:inherit}
+.ire .ire-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}.ire button{padding:11px 14px;border:1px solid var(--gold);border-radius:9px;background:var(--gold);color:#111;font-weight:800;cursor:pointer}.ire button.secondary{background:transparent;color:var(--gold)}
+.ire .ire-output{margin-top:16px}.ire .ire-item{padding:14px;margin:10px 0;border:1px solid rgba(212,175,55,.3);border-radius:12px;background:rgba(0,0,0,.2);overflow-wrap:anywhere}.ire .ire-item h3{margin:0 0 8px}.ire .ire-note{font-size:.92rem;color:var(--muted)}
+</style>
+<section class="ire" id="income-result-engine" aria-labelledby="ire-title">
+  <span class="tag">INCOME-FIRST · EXECUTION LAYER</span>
+  <h2 id="ire-title">मुख्य आय परिणाम इंजन | Income Result Engine</h2>
+  <p><strong>एक वास्तविक offer → स्पष्ट buyer value → कई channel-ready drafts → मानव समीक्षा → ग्राहक संपर्क → order → delivery → payment evidence.</strong></p>
+  <p class="ire-note">यह मौजूदा Income Command Center के भीतर चलने वाला local offer-variant builder है। यह अभी template-based है—यह अपने-आप NVIDIA GPU, बाहरी AI/ML/NLP मॉडल, marketplace account, customer outreach, checkout या payment gateway से जुड़ा होने का दावा नहीं करता। वास्तविक मॉडल/हार्डवेयर तभी इस्तेमाल होंगे जब उनके runtime, API credentials और permissions अलग से configure व verify हों।</p>
+  <div class="ire-grid">
+    <div><label for="ire-offer">Offer / product</label><input id="ire-offer" maxlength="180" value="Hindi–English website content and product copy"></div>
+    <div><label for="ire-buyer">किसके लिए?</label><input id="ire-buyer" maxlength="160" value="small businesses and digital agencies"></div>
+    <div><label for="ire-benefit">ठोस लाभ / deliverable</label><input id="ire-benefit" maxlength="220" value="clear bilingual copy for one agreed website page"></div>
+    <div><label for="ire-cta">संपर्क का अगला कदम</label><input id="ire-cta" maxlength="120" value="Reply with the page URL and brief"></div>
+    <div><label for="ire-language">भाषा</label><select id="ire-language"><option value="en">English</option><option value="hi">हिंदी</option><option value="both" selected>हिंदी + English</option></select></div>
+    <div><label for="ire-count">Draft variants</label><select id="ire-count"><option value="3">3 focused variants</option><option value="5" selected>5 channel variants</option><option value="10">10 variants</option><option value="20">20 variants</option><option value="50">50 variants</option></select></div>
+  </div>
+  <div class="ire-actions"><button type="button" id="ire-build">Generate offer variants</button><button type="button" class="secondary" id="ire-export">Export drafts as JSON</button><button type="button" class="secondary" id="ire-copy">Copy combined drafts</button></div>
+  <div class="ire-output" id="ire-output" aria-live="polite"><p class="ire-note">अपना वास्तविक offer, buyer और deliverable दर्ज करें। परिणाम स्थानीय browser में template rules से बनेगा; प्रकाशित या भेजा नहीं जाएगा।</p></div>
+  <p class="ire-note"><strong>Revenue truth gate:</strong> generated drafts ≠ sent outreach ≠ qualified lead ≠ order ≠ delivered work ≠ received payment. हर चरण का प्रमाण अलग दर्ज करें। “लाखों copies प्रति millisecond” का दावा इस पेज से नहीं किया जाता; वास्तविक throughput compute, model, network और platform limits पर निर्भर है।</p>
+</section>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const channels=[
+    {name:"Direct email",en:"I help {buyer} with {offer}. The concrete deliverable is {benefit}. {cta}.",hi:"मैं {buyer} के लिए {offer} में सहायता करता/करती हूँ। तय deliverable है: {benefit}। {cta}।"},
+    {name:"LinkedIn message",en:"A focused offer for {buyer}: {benefit}. If {offer} is relevant to your current work, {cta}.",hi:"{buyer} के लिए एक स्पष्ट प्रस्ताव: {benefit}। यदि {offer} आपके वर्तमान काम के लिए उपयोगी हो, तो {cta}।"},
+    {name:"Marketplace service",en:"Service: {offer}. You receive {benefit}. Scope and delivery date are agreed before work begins.",hi:"सेवा: {offer}। आपको मिलेगा: {benefit}। काम शुरू होने से पहले scope और delivery date तय होंगे।"},
+    {name:"Short social post",en:"Need {offer}? I provide {benefit}. Clear scope, human review and transparent delivery. {cta}.",hi:"क्या आपको {offer} चाहिए? मैं {benefit} उपलब्ध कराता/कराती हूँ। स्पष्ट scope, मानवीय समीक्षा और पारदर्शी delivery। {cta}।"},
+    {name:"Follow-up",en:"Following up on {offer} for {buyer}. The proposed deliverable is {benefit}. If useful, {cta}; if not, no further follow-up is needed.",hi:"{buyer} के लिए {offer} के बारे में विनम्र follow-up। प्रस्तावित deliverable: {benefit}। उपयोगी हो तो {cta}; अन्यथा आगे follow-up नहीं करूँगा/करूँगी।"}
+  ];
+  let drafts=[];
+  function value(id){return $(id).value.trim();}
+  function renderText(template,vars){return template.replace(/\{(buyer|offer|benefit|cta)\}/g,(_,k)=>vars[k]);}
+  function build(){
+    const vars={offer:value("ire-offer"),buyer:value("ire-buyer"),benefit:value("ire-benefit"),cta:value("ire-cta")};
+    if(!vars.offer||!vars.buyer||!vars.benefit||!vars.cta){$("ire-output").innerHTML="<p>Please fill in all four fields.</p>";return;}
+    const language=value("ire-language"),count=Number(value("ire-count"));
+    drafts=Array.from({length:count},(_,i)=>{
+      const t=channels[i%channels.length];
+      const en=renderText(t.en,vars),hi=renderText(t.hi,vars);
+      return {variant:i+1,channel:t.name,offer:vars.offer,buyer:vars.buyer,deliverable:vars.benefit,language,copy:language==="en"?en:language==="hi"?hi:en+"\n\nहिंदी संस्करण:\n"+hi,review_status:"DRAFT_ONLY",sent:false,order_confirmed:false,payment_confirmed:false};
+    });
+    $("ire-output").replaceChildren();
+    drafts.forEach(d=>{
+      const article=document.createElement("article");article.className="ire-item";
+      const h=document.createElement("h3");h.textContent=d.variant+". "+d.channel;
+      const p=document.createElement("p");p.textContent=d.copy;
+      const note=document.createElement("p");note.className="ire-note";note.textContent="DRAFT ONLY · Not sent · No sale/payment claimed";
+      article.append(h,p,note);$("ire-output").append(article);
+    });
+  }
+  $("ire-build").addEventListener("click",build);
+  $("ire-export").addEventListener("click",()=>{
+    if(!drafts.length)build();if(!drafts.length)return;
+    const blob=new Blob([JSON.stringify({schema:"shirmani-income-drafts-v1",generated_at:new Date().toISOString(),execution:"local-template-only",drafts},null,2)],{type:"application/json"});
+    const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="shirmani-income-drafts.json";a.click();URL.revokeObjectURL(a.href);
+  });
+  $("ire-copy").addEventListener("click",()=>{
+    if(!drafts.length)build();if(!drafts.length)return;
+    const text=drafts.map(d=>d.variant+". "+d.channel+"\n"+d.copy).join("\n\n---\n\n");
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(()=>{$("ire-copy").textContent="Copied";}).catch(()=>window.prompt("Copy drafts:",text));
+    else window.prompt("Copy drafts:",text);
+  });
+})();
+</script>
+
 <section class="section">
 <h2>1. सबसे पहले — तैयार आय के रास्ते</h2>
 <div class="grid">
