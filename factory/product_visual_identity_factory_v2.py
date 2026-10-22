@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-22-production-visual-v12-local-logo-verified-qr-word-boundary-description"
+VERSION="2026-10-22-production-visual-v13-long-token-safe-description"
 SHOWROOM_BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
 LOGO="../../assets/shirmani-perspective-logo.svg"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
@@ -21,33 +21,40 @@ def make(p):
     pid=str(p["id"]); name=str(p.get("name","SHIRMANI Digital Product"))
     family=str(p.get("family",p.get("category","Digital Product"))); engine=str(p.get("engine","digital"))
     desc=" ".join(str(p.get("description","Unique customer-facing digital product")).split())
-    # The visible area allows one 51-character description segment after its label and
-    # one 70-character continuation. Clamp to that two-line budget at word boundaries;
-    # any shortening is marked with an ellipsis, never silently clipped mid-word.
+    # Fit the description into the actual two-line SVG contract. Long unbroken
+    # tokens are shortened explicitly so one unusual catalogue row cannot abort a
+    # 5,000-product batch; any omitted source text is marked with an ellipsis.
     prefix="SHORT DESCRIPTION · "
-    max_desc_chars=(70-len(prefix))+70-3
-    words=desc.split(); kept=[]; length=0
-    for word in words:
-        extra=len(word)+(1 if kept else 0)
-        if length+extra>max_desc_chars-1: break
-        kept.append(word); length+=extra
-    if len(kept)<len(words):
-        desc=" ".join(kept).rstrip(" .,:;-")+"…"
-    else:
-        desc=" ".join(kept)
-    if not desc:
-        desc="See product passport for full description."
-    desc_lines=[]; line=""; limits=[70-len(prefix),70]
-    for word in desc.split():
-        limit=limits[min(len(desc_lines),1)]
+    limits=[70-len(prefix),70]
+    words=desc.split()
+    desc_lines=[]; line=""; word_index=0; truncated=False
+    while word_index < len(words) and len(desc_lines) < 2:
+        limit=limits[len(desc_lines)]
+        word=words[word_index]
+        if len(word)>limit:
+            word=word[:limit-1].rstrip(" .,:;-")+"…"
+            truncated=True
         candidate=(line+" "+word).strip()
-        if len(candidate)>limit and line:
-            desc_lines.append(line); line=word
-        else:
+        if len(candidate)<=limit:
             line=candidate
-    if line: desc_lines.append(line)
-    if len(desc_lines)>2:
-        raise ValueError(f"{pid}: short description exceeds two-line display budget")
+            word_index+=1
+        elif line:
+            desc_lines.append(line)
+            line=""
+        else:
+            desc_lines.append(word[:limit-1].rstrip(" .,:;-")+"…")
+            word_index+=1
+            truncated=True
+    if line and len(desc_lines)<2:
+        desc_lines.append(line)
+    if word_index < len(words):
+        truncated=True
+    if not desc_lines:
+        desc_lines=["See product passport for full description."]
+    if truncated:
+        last_limit=limits[len(desc_lines)-1]
+        last=desc_lines[-1].rstrip(" .,:;-")
+        desc_lines[-1]=last[:last_limit-1].rstrip(" .,:;-")+"…"
     desc_svg="".join(f'<tspan x="520" dy="{0 if i==0 else 56}">{esc((prefix if i==0 else "")+line)}</tspan>' for i,line in enumerate(desc_lines))
     price=int(p.get("offer_price_inr",p.get("price_inr",0)) or 0)
     offer=str(p.get("offer","PUBLIC LAUNCH PRICE"))[:48]
