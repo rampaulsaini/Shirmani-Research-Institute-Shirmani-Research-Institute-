@@ -65,11 +65,13 @@
       if(responses.some(r=>!r.ok))throw new Error("One or more source snapshots could not be fetched.");
       const s=await responses[0].json(),v=await responses[1].json();
       const requiredProduction=["concrete_repository_assets","five_thousand_scale_target","qc_passed","qc_failed","dispatch_released","sales_claimed","payment_claimed"];
-      if(requiredProduction.some(k=>!Number.isFinite(Number(s[k]))) ||
-         !Number.isFinite(Number(v.verified_records)) ||
-         !Number.isFinite(Number(v.prepared_review_records)) ||
-         !Number.isFinite(Number(v.registry_total??v.queue_total)) ||
-         !s.generated_at || !s.qc_state || !s.state) {
+      if(requiredProduction.some(k=>typeof s[k]!=="number" || !Number.isFinite(s[k])) ||
+         typeof v.verified_records!=="number" || !Number.isFinite(v.verified_records) ||
+         typeof v.prepared_review_records!=="number" || !Number.isFinite(v.prepared_review_records) ||
+         typeof (v.registry_total??v.queue_total)!=="number" || !Number.isFinite(v.registry_total??v.queue_total) ||
+         typeof s.generated_at!=="string" || !s.generated_at ||
+         typeof s.qc_state!=="string" || !s.qc_state ||
+         typeof s.state!=="string" || !s.state) {
         throw new Error("Source schema is incomplete; counters cannot be safely asserted.");
       }
       const assets=Number(s.concrete_repository_assets??s.catalog_identities);
