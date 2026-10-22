@@ -4,6 +4,18 @@ on:
   pull_request:
     paths:
       - "showroom-public.html"
+      - "index.html"
+      - "income-command-center.html"
+      - "supreme-showroom.html"
+      - "supreme-public-production-showroom.html"
+      - "writing-research-enquiry.html"
+      - "first-paid-pilot-offer.html"
+      - "index.html"
+      - "income-command-center.html"
+      - "supreme-showroom.html"
+      - "supreme-public-production-showroom.html"
+      - "writing-research-enquiry.html"
+      - "first-paid-pilot-offer.html"
       - "public-interface-v3.html"
       - "heart-view-preview.html"
       - "tests/public_interface_smoke.py"
