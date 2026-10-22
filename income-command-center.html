@@ -64,6 +64,14 @@
       ]);
       if(responses.some(r=>!r.ok))throw new Error("One or more source snapshots could not be fetched.");
       const s=await responses[0].json(),v=await responses[1].json();
+      const requiredProduction=["concrete_repository_assets","five_thousand_scale_target","qc_passed","qc_failed","dispatch_released","sales_claimed","payment_claimed"];
+      if(requiredProduction.some(k=>!Number.isFinite(Number(s[k]))) ||
+         !Number.isFinite(Number(v.verified_records)) ||
+         !Number.isFinite(Number(v.prepared_review_records)) ||
+         !Number.isFinite(Number(v.registry_total??v.queue_total)) ||
+         !s.generated_at || !s.qc_state || !s.state) {
+        throw new Error("Source schema is incomplete; counters cannot be safely asserted.");
+      }
       const assets=Number(s.concrete_repository_assets??s.catalog_identities);
       const target=Number(s.five_thousand_scale_target??5000);
       const passed=Number(s.qc_passed??0),failed=Number(s.qc_failed??0);
