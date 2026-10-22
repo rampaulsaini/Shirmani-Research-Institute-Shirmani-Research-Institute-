@@ -133,6 +133,36 @@ def main() -> int:
         if "setInterval(" in source:
             errors.append("public-interface-v3.html must not poll GitHub API continuously and risk exhausting unauthenticated rate limits")
 
+    # Check the current canonical income funnel's direct links too. Keep this
+    # deliberately one level deep: legacy pages linked from these entry points
+    # are not recursively crawled, but every CTA target must exist in the repo.
+    direct_customer_pages = (
+        ROOT / "public-interface-v3.html",
+        ROOT / "showroom/first-client-pilot-desk.html",
+        ROOT / "income-action-center.html",
+        ROOT / "showroom/global-product-sales-desk.html",
+        ROOT / "services-writing-research.html",
+    )
+    for page in direct_customer_pages:
+        parse_html(page, errors, parsed)
+
+    # The primary public entry must keep the paid-pilot path visible and honest.
+    public_v3_source = (ROOT / "public-interface-v3.html").read_text(encoding="utf-8")
+    for required in (
+        "id=\"income-first\"",
+        "₹499",
+        "₹999",
+        "₹1,499",
+        "showroom/first-client-pilot-desk.html",
+        "income-action-center.html",
+        "wa.me/918082935186",
+        "mailto:sainirampaul60@gmail.com",
+        "वे अपने-आप संदेश नहीं भेजते",
+        "ग्राहक की स्वीकृति",
+    ):
+        if required.casefold() not in public_v3_source.casefold():
+            errors.append(f"public-interface-v3.html is missing income-funnel requirement: {required}")
+
     # Check every local target and every fragment on HTML pages, not only the
     # two pages that are the main focus of this smoke suite.
     checked_links = 0
