@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: "3.x"
       - name: Install QR dependency
-        run: python -m pip install --disable-pip-version-check "qrcode>=8,<9"
+        run: python -m pip install --disable-pip-version-check "qrcode>=8,<9" "CairoSVG>=2.7,<3"
       - name: Materialize a validation batch
         env:
           VISUAL_BATCH: "5"
