@@ -25,6 +25,12 @@ ROUTES = (
     "showroom/public-order-scope-builder.html",
     "showroom/global-product-sales-desk.html",
     "writing-research-enquiry.html",
+    "writing-research-sales.html",
+    "services-writing-research.html",
+    "writing-research-portfolio.html",
+    "global-outreach-and-service-sales-workbench.html",
+    "outreach-income-workbench.html",
+    "showroom/first-client-deliverable-studio.html",
     "generated/live-production-state.json",
     "generated/public-production-asset-overlay.json",
     "generated/public-production-index.html",
@@ -114,6 +120,51 @@ enquiry_html = responses["showroom/public-order-scope-builder.html"].decode("utf
 for required in ("Enquiry draft only", "not sent", "no payment recorded"):
     if required.lower() not in enquiry_html.lower():
         raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: public order scope builder missing truth disclosure {required!r}")
+
+# Verify the actual public income path as well as the production catalogue.
+# These checks prove that the pages are reachable and contain the expected
+# human-operated contact paths and honest capability boundaries; they do not
+# prove a customer replied, a sale occurred, or payment was received.
+commercial_checks = {
+    "services-writing-research.html": (
+        "mailto:sainirampaul60@gmail.com",
+        "wa.me/918082935186",
+        "proposed starting",
+    ),
+    "writing-research-sales.html": (
+        "writing-research-enquiry.html",
+        "not verified market rates",
+    ),
+    "writing-research-portfolio.html": (
+        "illustrative",
+        "writing-research-enquiry.html",
+    ),
+    "global-outreach-and-service-sales-workbench.html": (
+        "does not contact customers",
+        "does not verify bank receipts",
+    ),
+    "outreach-income-workbench.html": (
+        "nothing is sent automatically",
+        "no backend",
+    ),
+    "showroom/first-client-deliverable-studio.html": (
+        "does not independently research the web",
+        "does not accept payments",
+    ),
+}
+for route, required_markers in commercial_checks.items():
+    html = responses[route].decode("utf-8", errors="replace").lower()
+    for marker in required_markers:
+        if marker.lower() not in html:
+            raise SystemExit(
+                f"PAGES_RUNTIME_SMOKE_FAIL: {route} missing commercial-path marker {marker!r}"
+            )
+print(json.dumps({
+    "gate": "PUBLIC_INCOME_FUNNEL_SMOKE",
+    "result": "PASS",
+    "commercial_routes_checked": len(commercial_checks),
+    "truth_boundary": "route/content checks do not establish customer response, order, payment or delivery",
+}, ensure_ascii=False))
 
 
 def read_json(route: str) -> dict:
