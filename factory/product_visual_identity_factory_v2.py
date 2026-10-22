@@ -10,9 +10,9 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-07-production-visual-v11-centered-logo-local-qr-short-description"
+VERSION="2026-10-22-production-visual-v13-long-token-safe-description"
 SHOWROOM_BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
-LOGO=SHOWROOM_BASE+"assets/shirmani-perspective-logo.svg"
+LOGO="../../assets/shirmani-perspective-logo.svg"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
 
 def esc(v): return html.escape(str(v), quote=True)
@@ -20,7 +20,42 @@ def esc(v): return html.escape(str(v), quote=True)
 def make(p):
     pid=str(p["id"]); name=str(p.get("name","SHIRMANI Digital Product"))
     family=str(p.get("family",p.get("category","Digital Product"))); engine=str(p.get("engine","digital"))
-    desc=" ".join(str(p.get("description","Unique customer-facing digital product")).split())[:135]
+    desc=" ".join(str(p.get("description","Unique customer-facing digital product")).split())
+    # Fit the description into the actual two-line SVG contract. Long unbroken
+    # tokens are shortened explicitly so one unusual catalogue row cannot abort a
+    # 5,000-product batch; any omitted source text is marked with an ellipsis.
+    prefix="SHORT DESCRIPTION · "
+    limits=[70-len(prefix),70]
+    words=desc.split()
+    desc_lines=[]; line=""; word_index=0; truncated=False
+    while word_index < len(words) and len(desc_lines) < 2:
+        limit=limits[len(desc_lines)]
+        word=words[word_index]
+        if len(word)>limit:
+            word=word[:limit-1].rstrip(" .,:;-")+"…"
+            truncated=True
+        candidate=(line+" "+word).strip()
+        if len(candidate)<=limit:
+            line=candidate
+            word_index+=1
+        elif line:
+            desc_lines.append(line)
+            line=""
+        else:
+            desc_lines.append(word[:limit-1].rstrip(" .,:;-")+"…")
+            word_index+=1
+            truncated=True
+    if line and len(desc_lines)<2:
+        desc_lines.append(line)
+    if word_index < len(words):
+        truncated=True
+    if not desc_lines:
+        desc_lines=["See product passport for full description."]
+    if truncated:
+        last_limit=limits[len(desc_lines)-1]
+        last=desc_lines[-1].rstrip(" .,:;-")
+        desc_lines[-1]=last[:last_limit-1].rstrip(" .,:;-")+"…"
+    desc_svg="".join(f'<tspan x="520" dy="{0 if i==0 else 56}">{esc((prefix if i==0 else "")+line)}</tspan>' for i,line in enumerate(desc_lines))
     price=int(p.get("offer_price_inr",p.get("price_inr",0)) or 0)
     offer=str(p.get("offer","PUBLIC LAUNCH PRICE"))[:48]
     h=hashlib.sha256(pid.encode()).hexdigest(); c1="#"+h[:6]; c2="#"+h[6:12]
