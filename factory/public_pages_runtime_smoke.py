@@ -21,6 +21,10 @@ ROUTES = (
     "showroom-public.html",
     "showroom/shirmani-supreme-character-studio.html",
     "showroom/shirmani-supreme-heart-view-preview.html",
+    "product-order.html",
+    "showroom/public-order-scope-builder.html",
+    "showroom/global-product-sales-desk.html",
+    "writing-research-enquiry.html",
     "generated/live-production-state.json",
     "generated/public-production-asset-overlay.json",
     "generated/public-production-index.html",
@@ -98,6 +102,18 @@ for route in ROUTES:
     body, content_type = fetch(route)
     responses[route] = body
     print(f"ROUTE_PASS {route or '/'} bytes={len(body)} content_type={content_type}")
+
+# Exercise the customer-facing commercial path as part of the deployed smoke:
+# product pages must gate payment on an explicitly approved price, and the
+# enquiry builder must clearly disclose that it does not send or confirm orders.
+order_html = responses["product-order.html"].decode("utf-8", errors="replace")
+for required in ('function approvedPrice(p)', 'p.commercial_status==="PRICE_APPROVED"', "PAYMENT PAUSED"):
+    if required not in order_html:
+        raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: product-order.html missing commercial guard {required!r}")
+enquiry_html = responses["showroom/public-order-scope-builder.html"].decode("utf-8", errors="replace")
+for required in ("Enquiry draft only", "not sent", "no payment recorded"):
+    if required.lower() not in enquiry_html.lower():
+        raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: public order scope builder missing truth disclosure {required!r}")
 
 
 def read_json(route: str) -> dict:
