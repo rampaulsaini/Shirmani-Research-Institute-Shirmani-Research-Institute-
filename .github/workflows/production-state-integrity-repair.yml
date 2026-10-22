@@ -8,7 +8,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: shirmani-production-state-integrity-repair
+  group: shirmani-production-state-writer
   cancel-in-progress: false
 jobs:
   repair:
