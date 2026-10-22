@@ -21,7 +21,7 @@ for p in products:
 ids={e["id"] for e in errors}
 payload={"generated_at":datetime.now(timezone.utc).isoformat(),"gate":"PRODUCT-QC-GATE","scope":"PRODUCED_PRODUCTS_ONLY","catalog_count":len(catalog.get("products",[])),"produced_count":len(products),"qc_passed":passed,"qc_failed":len(ids),"pass_percent":round(passed/len(products)*100,2) if products else 0,"dispatch_default":"NO","release_state":"QC_PASS_READY_FOR_DISPATCH" if not errors else "QC_REVIEW_REQUIRED","checks":["catalog fields","browser asset","QR QC code","Gate No.","Dispatch No.","offer price","description","guarantee","packing"],"integrity":{"deterministic_qc":True,"independent_scientific_verification":False,"sale_claim":False},"errors":errors[:500]}
 (GEN/"product-qc-gate.json").write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-from factory.qc_state_contract import sync_public_qc_state
+import sys\nsys.path.insert(0, str(ROOT))\nfrom factory.qc_state_contract import sync_public_qc_state
 sync_public_qc_state(ROOT, len(catalog.get("products", [])))
 print(json.dumps(payload,ensure_ascii=False))
 if errors: raise SystemExit(1)
