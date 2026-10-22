@@ -30,12 +30,26 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          open_pr="$(gh pr list --state open --json number,headRefName --jq '.[] | select(.headRefName | startswith("automation/production-first-continuous-factory-")) | "\(.number) \(.headRefName)"' | head -n 1)"
+          git fetch origin main
+          open_prs="$(gh pr list --state open --json number,headRefName --jq '.[] | select(.headRefName | startswith("automation/production-first-continuous-factory-")) | "\(.number) \(.headRefName)"')"
+          open_pr=""
+          while IFS= read -r candidate; do
+            [[ -z "$candidate" ]] && continue
+            candidate_branch="${candidate#* }"
+            if ! git fetch origin "$candidate_branch"; then
+              echo "Ignoring unavailable production PR branch: $candidate_branch"
+              continue
+            fi
+            if git merge-base origin/main "origin/$candidate_branch" >/dev/null 2>&1; then
+              open_pr="$candidate"
+              break
+            fi
+            echo "Ignoring production PR branch without a merge base against main: $candidate_branch"
+          done <<< "$open_prs"
+
           if [[ -n "$open_pr" ]]; then
             pr_number="${open_pr%% *}"
             branch="${open_pr#* }"
-            git fetch origin main
-            git fetch origin "$branch"
             git checkout -B "$branch" "origin/$branch"
             if ! git merge-base origin/main HEAD >/dev/null 2>&1; then
               echo "skip=true" >> "$GITHUB_OUTPUT"
@@ -49,7 +63,6 @@ jobs:
               exit 0
             fi
           else
-            git fetch origin main
             branch="automation/production-first-continuous-factory-$(date -u +%Y%m%d%H%M%S)"
             git checkout -B "$branch" origin/main
           fi
