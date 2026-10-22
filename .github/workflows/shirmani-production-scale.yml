@@ -45,33 +45,27 @@ jobs:
           print("Production QC: PASS")
           print("catalog=",len(c.get("products",[])),"produced=",s.get("product_count"))
           PY
-      - name: Publish production result to main
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          git config user.name "shirmani-production[bot]"
-          git config user.email "shirmani-production@users.noreply.github.com"
-          git add generated factory/production_scale.py
-          git add products/concrete products/production || true
-          if git diff --cached --quiet; then
-            echo "No new production output."
-            exit 0
-          fi
-          git commit -m "chore(production): materialize next public product batch"
-          for attempt in 1 2 3 4 5 6 7; do
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
-                echo "Production batch published directly to main on attempt=$attempt."
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-            echo "Main moved or publication was rejected; retrying attempt=$attempt"
-            sleep $((attempt * 2))
-          done
-          echo "::warning::Direct main publication unavailable after retries; generated batch remains in this run workspace."
-          exit 0
+      - name: Publish production batch through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/production-scale-batch
+          delete-branch: false
+          add-paths: |
+            generated/**
+            factory/production_scale.py
+            products/concrete/**
+            products/production/**
+          commit-message: "chore(production): materialize next public product batch"
+          title: "chore(production): publish next production batch"
+          body: |
+            ## Automated production batch
+
+            This pull request publishes the output of the production-scale workflow after the local production QC gate passes.
+
+            - Review generated catalogue and product asset changes before merging.
+            - A successful workflow run does not mean this batch is live until this PR is merged and deployment is verified.
+            - Asset creation is not independent quality verification, a customer order, dispatch, or payment evidence.
+          labels: |
+            automated
+            production
