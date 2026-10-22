@@ -35,7 +35,9 @@ def make(p):
     desc_lines=[]; line=""
     for word in desc.split():
         candidate=(line+" "+word).strip()
-        if len(candidate)>70 and line:
+        # Measure XML-escaped width, because &, < and similar characters expand in SVG text.
+        # Reserve room for the first-line label added below; QC measures the serialized SVG text.
+        if len(html.escape(candidate))>65 and line:
             desc_lines.append(line); line=word
         else: line=candidate
     if line: desc_lines.append(line)
