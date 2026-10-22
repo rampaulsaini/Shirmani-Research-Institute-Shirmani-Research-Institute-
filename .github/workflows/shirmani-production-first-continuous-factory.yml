@@ -10,6 +10,7 @@ on:
         default: "25"
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: shirmani-production-first-continuous-factory
   cancel-in-progress: false
@@ -22,7 +23,35 @@ jobs:
         with:
           fetch-depth: 1
           ref: main
+      - name: Prepare PR publishing branch
+        id: publish_branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          open_pr="$(gh pr list --state open --json number,headRefName --jq '.[] | select(.headRefName | startswith("automation/production-first-continuous-factory-")) | "\(.number) \(.headRefName)"' | head -n 1)"
+          if [[ -n "$open_pr" ]]; then
+            pr_number="${open_pr%% *}"
+            branch="${open_pr#* }"
+            git fetch origin main
+            git fetch origin "$branch"
+            git checkout -B "$branch" "origin/$branch"
+            new_files="$(git diff --name-only origin/main...HEAD -- 'products/concrete/SP-*.html' | wc -l | tr -d ' ')"
+            if (( new_files >= 250 )); then
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              echo "Production PR #$pr_number has $new_files concrete product files; waiting for its merge before creating more."
+              exit 0
+            fi
+          else
+            git fetch origin main
+            branch="automation/production-first-continuous-factory-$(date -u +%Y%m%d%H%M%S)"
+            git checkout -B "$branch" origin/main
+          fi
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
       - name: Materialize concrete product batch
+        if: steps.publish_branch.outputs.skip != 'true'
         env:
           REQUESTED_BATCH: ${{ github.event.inputs.batch_size || '25' }}
         shell: python
@@ -40,6 +69,9 @@ jobs:
           families=[("AI & NLP","nlp"),("AI & ML","ai"),("Research","research"),("Creator","creator"),("Education","education"),("Nature & Earth","nature"),("Commerce","commerce"),("Productivity","productivity"),("Data & Files","data"),("Security & Quality","security"),("Audio & Media","audio"),("Visual Lab","visual"),("Engineering","engineering"),("Knowledge","knowledge"),("Automation","automation")]
           prices=[89,149,249,495,799,999,1500,2500,5000]; offers=["PUBLIC LAUNCH PRICE","SUPREME 20% OFFER","EARLY ACCESS OFFER","SHOWROOM FEATURED"]
           now=datetime.now(timezone.utc).isoformat(); created=[]
+          if count <= 0:
+            print(f"catalog target reached; produced_total={start-1}")
+            raise SystemExit(0)
           for n in range(start,start+count):
             pid=f"SP-{n:04d}"; family,engine=families[(n-1)%len(families)]; price=prices[(n-1)%len(prices)]; offer=offers[(n-1)%len(offers)]
             qc=f"QC-PROD-{pid}"
@@ -59,27 +91,23 @@ jobs:
           status.update({"observed_at":now,"last_cycle_concrete_results":len(created),"scheduled_work_units":batch,"production_outputs":po})
           mp.write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n")
           print(f"created={len(created)} produced_total={total} remaining={max(0,target-total)}")
-      - name: Publish production result
+      - name: Publish production result through pull request
+        if: steps.publish_branch.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.publish_branch.outputs.branch }}
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add products/concrete generated/concrete-production-overlay.json generated/live-production-state.json generated/multi-layer-production-status.json
-          git diff --cached --quiet && exit 0
+          git diff --cached --quiet && { echo "No new production output to publish."; exit 0; }
           git commit -m "feat(production): materialize next concrete product batch"
-          for attempt in 1 2 3 4 5; do
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
-                echo "Production batch published on attempt=$attempt."
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-            echo "Main moved or push was rejected; retrying attempt=$attempt"
-            sleep $((attempt * 2))
-          done
-          echo "::warning::Production batch could not publish after retries; run output remains in this workflow workspace."
-          exit 0
+          git push origin "HEAD:$BRANCH"
+          pr_number="$(gh pr list --state open --head "$BRANCH" --json number --jq '.[0].number // empty')"
+          if [[ -z "$pr_number" ]]; then
+            gh pr create --base main --head "$BRANCH" --title "Production batch: concrete product assets" --body "Automated batch of concrete product pages and production state. This PR accumulates up to 250 new product pages before pausing for merge. Generated assets alone do not prove independent QC, dispatch, payment, sales, or revenue."
+          else
+            echo "Updated existing production batch PR #$pr_number."
+          fi
