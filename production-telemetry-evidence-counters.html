@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Shirmani production, QC, dispatch, sales, payment and independent-verification evidence counters.">
+<title>Production & Evidence Counters — Shirmani Research Institute</title>
+<style>
+:root{color-scheme:dark;--bg:#07101a;--panel:#101c2a;--line:#30475c;--gold:#f2d16b;--cyan:#70e7f5;--green:#8be0ac;--muted:#b7c5d4;--red:#ff9c9c}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b2d43,var(--bg) 62%);color:#f7f9fc;font:16px/1.6 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+main{max-width:1180px;margin:auto;padding:18px}.hero,.panel{border:1px solid var(--line);border-radius:18px;background:rgba(16,28,42,.95);padding:20px;margin:14px 0}.hero{text-align:center;border:2px solid var(--gold)}h1,h2{color:var(--gold)}h1{font-size:clamp(1.8rem,5vw,3rem);margin:.2em 0}.muted,.note{color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.metric{border:1px solid var(--line);border-radius:14px;padding:16px;background:#08131f;min-width:0}.metric .label{color:var(--muted);font-size:.92rem}.metric strong{display:block;color:var(--gold);font-size:clamp(1.5rem,4vw,2.2rem);overflow-wrap:anywhere}.metric small{display:block;color:var(--muted);margin-top:5px}.bar{height:8px;background:#26384a;border-radius:99px;overflow:hidden;margin-top:10px}.bar span{display:block;height:100%;width:0;background:var(--cyan)}.links{display:flex;gap:10px;flex-wrap:wrap}.btn{display:inline-block;padding:11px 15px;border-radius:10px;background:var(--gold);color:#111;font-weight:850;text-decoration:none}.btn.alt{background:#13283a;color:var(--cyan);border:1px solid #38566e}.status{padding:12px;border-left:4px solid var(--cyan);background:#0a1825}.error{border-left-color:var(--red)}footer{padding:20px 0;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<p class="muted">SHIRMANI RESEARCH INSTITUTE · EVIDENCE-FIRST OPERATIONS</p>
+<h1>Production & Evidence Counters</h1>
+<p>उत्पादन → गुणवत्ता जाँच → डिस्पैच → बिक्री/भुगतान → स्वतंत्र सत्यापन</p>
+<p class="note">यह पेज repository के प्रकाशित JSON रिकॉर्ड पढ़ता है। यह बैंक, UPI, ग्राहक संदेश या बाहरी सेवा को स्वयं सत्यापित नहीं करता।</p>
+<div class="links" style="justify-content:center">
+<a class="btn" href="income-command-center.html">Income Command Center</a>
+<a class="btn alt" href="supreme-showroom.html">Public Showroom</a>
+<a class="btn alt" href="index.html">मुख्य प्लेटफॉर्म</a>
+</div>
+</section>
+<section class="panel">
+<h2>वर्तमान रिकॉर्ड</h2>
+<p id="load-status" class="status" role="status" aria-live="polite">प्रकाशित उत्पादन रिकॉर्ड पढ़े जा रहे हैं…</p>
+<div class="metrics">
+<article class="metric"><span class="label">कैटलॉग / ठोस एसेट</span><strong id="assets">—</strong><small id="assets-note">स्रोत की प्रतीक्षा</small><div class="bar"><span id="assets-bar"></span></div></article>
+<article class="metric"><span class="label">निर्धारित QC पास</span><strong id="qc">—</strong><small id="qc-note">यह संरचनात्मक QC है, स्वतंत्र सत्यापन नहीं</small><div class="bar"><span id="qc-bar"></span></div></article>
+<article class="metric"><span class="label">डिस्पैच जारी</span><strong id="dispatch">—</strong><small>अलग dispatch evidence आवश्यक</small></article>
+<article class="metric"><span class="label">दर्ज बिक्री</span><strong id="sales">—</strong><small>सिर्फ दर्ज रिकॉर्ड; ग्राहक आदेश का स्वतंत्र प्रमाण नहीं</small></article>
+<article class="metric"><span class="label">दर्ज भुगतान</span><strong id="payments">—</strong><small>वास्तविक भुगतान की पुष्टि अलग प्रमाण से होगी</small></article>
+<article class="metric"><span class="label">स्वतंत्र सत्यापित रिकॉर्ड</span><strong id="verified">—</strong><small id="verified-note">मानवीय/स्वतंत्र समीक्षा के बिना रिकॉर्ड सत्यापित नहीं माना जाएगा</small><div class="bar"><span id="verified-bar"></span></div></article>
+<article class="metric"><span class="label">समीक्षा के लिए तैयार</span><strong id="prepared">—</strong><small id="prepared-note">सत्यापित रिकॉर्ड से अलग स्थिति</small><div class="bar"><span id="prepared-bar"></span></div></article>
+</div>
+</section>
+<section class="panel">
+<h2>समय और सीमाएँ</h2>
+<p id="timestamps" class="note">स्रोत टाइमस्टैम्प लोड होने की प्रतीक्षा।</p>
+<p class="status">PASS का अर्थ केवल संबंधित परीक्षण के निर्धारित दायरे में पास होना है। क्लिक, खुले हुए WhatsApp/ईमेल ड्राफ्ट, सफल CI, या बने हुए उत्पाद बिक्री/भुगतान/डिस्पैच अथवा स्वतंत्र सत्यापन का प्रमाण नहीं हैं।</p>
+</section>
+<footer>डेटा स्रोत: <a href="generated/live-production-state.json">live-production-state.json</a> · <a href="generated/independent-verification-status.json">independent-verification-status.json</a>. डेटा उपलब्ध न हो तो यह पेज अनुमानित मान नहीं दिखाएगा।</footer>
+</main>
+<script>
+(function(){
+ const fmt=n=>Number.isFinite(Number(n))?Number(n).toLocaleString("en-IN"):"—";
+ const pct=n=>Math.max(0,Math.min(100,Number(n)||0));
+ const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
+ const bar=(id,value)=>{const el=document.getElementById(id);if(el)el.style.width=pct(value)+"%";};
+ async function json(path){const r=await fetch(path,{cache:"no-store"});if(!r.ok)throw new Error(path+" returned HTTP "+r.status);return r.json();}
+ async function load(){
+  try{
+   const [p,v]=await Promise.all([json("generated/live-production-state.json"),json("generated/independent-verification-status.json")]);
+   const catalog=Number(p.catalog_identities??p.five_thousand_scale_target??0);
+   const assets=Number(p.concrete_repository_assets??p.production_browser_assets??0);
+   const passed=Number(p.qc_passed??0),failed=Number(p.qc_failed??0);
+   const dispatch=Number(p.dispatch_released??0),sales=Number(p.sales_claimed??0),payments=Number(p.payment_claimed??0);
+   const total=Number(v.registry_total??v.queue_total??0),verified=Number(v.verified_records??0),prepared=Number(v.prepared_review_records??0);
+   set("assets",fmt(assets)+" / "+fmt(catalog));set("assets-note",catalog?fmt(assets)+" एसेट · "+pct(assets/catalog*100).toFixed(2)+"% लक्ष्य":"लक्ष्य उपलब्ध नहीं");
+   set("qc",fmt(passed)+" पास / "+fmt(failed)+" विफल");set("qc-note",fmt(p.qc_pass_percent??(passed+failed?passed/(passed+failed)*100:0))+"% निर्धारित QC; स्वतंत्र सत्यापन नहीं");
+   set("dispatch",fmt(dispatch));set("sales",fmt(sales));set("payments",fmt(payments));
+   set("verified",fmt(verified)+" / "+fmt(total));set("verified-note",total?pct(verified/total*100).toFixed(2)+"% सत्यापित":"कुल रिकॉर्ड उपलब्ध नहीं");
+   set("prepared",fmt(prepared)+" / "+fmt(total));set("prepared-note",total?pct(prepared/total*100).toFixed(2)+"% समीक्षा हेतु तैयार; अभी सत्यापित नहीं":"कुल रिकॉर्ड उपलब्ध नहीं");
+   bar("assets-bar",catalog?assets/catalog*100:0);bar("qc-bar",passed+failed?passed/(passed+failed)*100:0);bar("verified-bar",total?verified/total*100:0);bar("prepared-bar",total?prepared/total*100:0);
+   set("load-status","दोनों JSON स्रोत सफलतापूर्वक पढ़े गए। यह स्रोत-आधारित snapshot है, सेकंड-दर-सेकंड मॉनिटरिंग नहीं।");
+   set("timestamps","उत्पादन रिकॉर्ड: "+(p.generated_at||"टाइमस्टैम्प उपलब्ध नहीं")+" · QC evidence: "+(p.qc_evidence_generated_at||"टाइमस्टैम्प उपलब्ध नहीं")+" · समीक्षा रिकॉर्ड: "+(v.generated_at||"टाइमस्टैम्प उपलब्ध नहीं")+" · पेज जाँच: "+new Date().toISOString());
+  }catch(e){
+   set("load-status","डेटा लोड नहीं हो सका: "+e.message+". कोई अनुमानित संख्या नहीं दिखाई गई।");
+   document.getElementById("load-status").classList.add("error");
+  }
+ }
+ load();
+})();
+</script>
+</body>
+</html>
