@@ -64,7 +64,7 @@ jobs:
               value = value.strip()
               # Only repository-relative POSIX paths are accepted; reject URL, absolute,
               # traversal, Windows separators, and paths that resolve outside the checkout.
-              if value.startswith(("http://", "https://", "//")) or "\\" in value:
+              if value.startswith(("//",)) or re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", value) or "\\" in value:
                   raise AssertionError(f"unsafe artifact path: {value!r}")
               rel = PurePosixPath(value)
               if rel.is_absolute() or any(part in (".", "..") for part in rel.parts):
@@ -86,7 +86,7 @@ jobs:
                   product.get("module"),
                   product.get("asset"),
               ]
-              candidates = [safe_local_artifact(value) for value in values if value]
+              candidates = [path for value in values if value for path in [safe_local_artifact(value)] if path is not None]
               if not candidates:
                   pid = product.get("id")
                   match = re.fullmatch(r"SP-(\d{1,6})", str(pid or ""))
@@ -110,7 +110,7 @@ jobs:
           if produced_count < 5000:
               latest = products[-1]
               latest_values = [latest.get("artifact_url"), latest.get("module"), latest.get("asset")]
-              latest_candidates = [safe_local_artifact(v) for v in latest_values if v]
+              latest_candidates = [path for value in latest_values if value for path in [safe_local_artifact(value)] if path is not None]
               if not latest_candidates:
                   pid = latest.get("id")
                   match = re.fullmatch(r"SP-(\d{1,6})", str(pid or ""))
