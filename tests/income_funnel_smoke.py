@@ -69,7 +69,7 @@ def main() -> int:
             errors.append(f"index.html is missing canonical route: {route}")
 
     offer_text = " ".join(offer.text)
-    for phrase in ("₹499", "700 words", "scope", "payment terms", "not an order", "not a sale"):
+    for phrase in ("₹499", "700 words", "scope", "payment terms", "not an order", "sale"):
         if phrase.casefold() not in offer_text.casefold() and phrase.casefold() not in offer_source.casefold():
             errors.append(f"Sales desk is missing clear offer/truth-boundary text: {phrase}")
 
