@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generated_at": "2026-10-22T15:36:55.677488+00:00",
+  "generated_at": "2026-10-22T16:18:56.885465+00:00",
   "purpose": "public-first production module map",
   "module_count": 10818,
   "lane_counts": {
-    "ai_ml_nlp": 9061,
+    "ai_ml_nlp": 9060,
     "automation": 5,
     "content": 8,
     "economic": 6,
     "platform": 3,
-    "research": 1698,
+    "research": 1699,
     "security_quality": 37
   },
   "status_counts": {
@@ -356,13 +356,6 @@
       "lane": "ai_ml_nlp",
       "status": "READY",
       "bytes": 2664
-    },
-    {
-      "path": "factory/product_visual_qc_gate.py",
-      "type": "py",
-      "lane": "ai_ml_nlp",
-      "status": "READY",
-      "bytes": 3953
     },
     {
       "path": "factory/production_dashboard.py",
@@ -64573,7 +64566,7 @@
       "type": "py",
       "lane": "research",
       "status": "READY",
-      "bytes": 8205
+      "bytes": 9296
     },
     {
       "path": "factory/product_visual_materializer.py",
@@ -64581,6 +64574,13 @@
       "lane": "research",
       "status": "READY",
       "bytes": 7911
+    },
+    {
+      "path": "factory/product_visual_qc_gate.py",
+      "type": "py",
+      "lane": "research",
+      "status": "READY",
+      "bytes": 5837
     },
     {
       "path": "factory/recovery.py",
