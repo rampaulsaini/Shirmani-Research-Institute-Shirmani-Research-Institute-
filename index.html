@@ -147,6 +147,7 @@ footer{text-align:center;color:var(--muted);padding:18px}
 <div class="grid">
 <article class="card"><span class="pill">LAST 24 HOURS</span><h3 id="liveRuns24">—</h3><p>GitHub API का total workflow-run count</p></article>
 <article class="card"><span class="pill">SAMPLE SUCCESS</span><h3 id="liveSuccess">—</h3><p>नवीनतम अधिकतम 100 runs के sample में successful completed runs</p></article>
+<article class="card"><span class="pill">SAMPLE SUCCESS RATE</span><h3 id="liveSuccessRate">—</h3><p>पिछले 24 घंटे के अधिकतम 100 sampled records में completed runs का success प्रतिशत</p></article>
 <article class="card"><span class="pill">SAMPLE FAILED</span><h3 id="liveFailed">—</h3><p>Sample में failed / timed-out runs</p></article>
 <article class="card"><span class="pill">ACTIVE</span><h3 id="liveActive">—</h3><p>Sample में queued / running runs</p></article>
 </div>
@@ -202,6 +203,7 @@ const all=await allRes.json(),day=await dayRes.json(),runs=Array.isArray(all.wor
 const done=dayRuns.filter(r=>r.status==='completed'),ok=done.filter(r=>r.conclusion==='success').length,failed=done.filter(r=>['failure','timed_out','startup_failure','action_required'].includes(r.conclusion)).length,active=dayRuns.filter(r=>activeStatus(r.status));
 $('liveRuns24').textContent=fmt(day.total_count??dayRuns.length);
 $('liveSuccess').textContent=fmt(ok)+' / '+fmt(done.length)+' completed';
+$('liveSuccessRate').textContent=done.length?((ok/done.length)*100).toFixed(1)+'%':'—';
 $('liveFailed').textContent=fmt(failed);
 $('liveActive').textContent=fmt(active.length);
 $('liveRunsUpdated').textContent='GitHub API snapshot: '+date(new Date().toISOString())+' UTC · 24h total_count='+(day.total_count??dayRuns.length)+'; status breakdown uses '+dayRuns.length+' recent records (maximum 100).';
@@ -219,7 +221,7 @@ if(activeStatus(r.status))days[key].active++;
 const dayKeys=Array.from({length:7},(_,i)=>new Date(Date.now()-i*86400000).toISOString().slice(0,10)).reverse();
 $('liveDailyRows').innerHTML=dayKeys.map(k=>{const x=days[k]||{total:0,success:0,failed:0,active:0};return '<tr><td style="padding:9px;border-bottom:1px solid #2a4059">'+k+'</td><td style="padding:9px;border-bottom:1px solid #2a4059">'+x.total+'</td><td style="padding:9px;border-bottom:1px solid #2a4059">'+x.success+'</td><td style="padding:9px;border-bottom:1px solid #2a4059">'+x.failed+'</td><td style="padding:9px;border-bottom:1px solid #2a4059">'+x.active+'</td></tr>'}).join('');
 $('liveRecentRows').innerHTML=runs.slice(0,15).map(r=>'<tr><td style="padding:9px;border-bottom:1px solid #2a4059">'+esc(r.name||r.display_title||'Workflow')+' #'+esc(r.run_number)+'</td><td style="padding:9px;border-bottom:1px solid #2a4059">'+esc(r.status+' / '+(r.conclusion||'not concluded'))+'</td><td style="padding:9px;border-bottom:1px solid #2a4059">'+esc(date(r.run_started_at||r.created_at))+'</td><td style="padding:9px;border-bottom:1px solid #2a4059"><a href="'+esc(r.html_url)+'" target="_blank" rel="noopener noreferrer">Run खोलें</a></td></tr>').join('')||'<tr><td colspan="4" style="padding:9px">कोई run record नहीं मिला।</td></tr>';
-}catch(e){$('liveRunsUpdated').textContent='GitHub live data उपलब्ध नहीं: '+e.message+'. सीधे GitHub Actions पेज खोलकर देखें.';$('liveDailyRows').innerHTML='<tr><td colspan="5" style="padding:9px">API data unavailable; zero activity का निष्कर्ष न निकालें।</td></tr>';$('liveRecentRows').innerHTML='<tr><td colspan="4" style="padding:9px">API data unavailable; <a href="https://github.com/'+owner+'/'+repo+'/actions">GitHub Actions खोलें</a>.</td></tr>';$('liveRuns24').textContent='—';$('liveSuccess').textContent='—';$('liveFailed').textContent='—';$('liveActive').textContent='—'}
+}catch(e){$('liveRunsUpdated').textContent='GitHub live data उपलब्ध नहीं: '+e.message+'. सीधे GitHub Actions पेज खोलकर देखें.';$('liveDailyRows').innerHTML='<tr><td colspan="5" style="padding:9px">API data unavailable; zero activity का निष्कर्ष न निकालें।</td></tr>';$('liveRecentRows').innerHTML='<tr><td colspan="4" style="padding:9px">API data unavailable; <a href="https://github.com/'+owner+'/'+repo+'/actions">GitHub Actions खोलें</a>.</td></tr>';$('liveRuns24').textContent='—';$('liveSuccess').textContent='—';$('liveSuccessRate').textContent='—';$('liveFailed').textContent='—';$('liveActive').textContent='—'}
 finally{$('refreshLiveResults').disabled=false}
 }
 $('refreshLiveResults').addEventListener('click',loadLiveResults);
