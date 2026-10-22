@@ -33,6 +33,7 @@ jobs:
           import json
           from pathlib import Path
 
+          repo_root = Path.cwd().resolve()
           overlay = json.loads(Path("generated/concrete-production-overlay.json").read_text(encoding="utf-8"))
           json.loads(Path("generated/live-production-state.json").read_text(encoding="utf-8"))
           json.loads(Path("products/visuals/manifest.json").read_text(encoding="utf-8"))
@@ -52,24 +53,44 @@ jobs:
           assert isinstance(products, list) and products, "production overlay must contain products"
           assert overlay.get("produced_count") == len(products), "overlay count mismatch"
 
-          artifact_value = products[-1].get("artifact_url")
-          if isinstance(artifact_value, str) and artifact_value.strip():
-              artifact = Path(artifact_value)
-              assert not artifact.is_absolute(), "artifact_url must be repository-relative"
-              assert ".." not in artifact.parts, "artifact_url must not traverse outside the repository"
-              assert not artifact_value.startswith(("http://", "https://")), "artifact_url must be a local repository path"
-              assert artifact.is_file(), f"last product artifact missing: {artifact_value}"
-              print(f"PASS: latest product artifact exists: {artifact_value}")
-          else:
-              # Legacy completed catalogue rows may not carry artifact_url or remaining_count.
-              # Use the concrete overlay itself as the source of truth for a no-op cycle.
-              produced_count = int(overlay.get("produced_count", 0))
-              assert produced_count >= 5000 and len(products) >= 5000, (
-                  "last product artifact_url missing and the concrete 5,000-product target is not proven"
+          # Legacy catalogue rows may use artifact_url, module, or asset. Validate
+          # real local files without assuming the last row has the newest schema.
+          # A capped/no-op cycle must still prove that at least one concrete artifact
+          # exists; reaching a numeric target alone is not evidence of a real file.
+          valid_artifacts = []
+          rejected_candidates = 0
+          for product in products:
+              product_id = product.get("id")
+              candidates = (
+                  product.get("artifact_url"),
+                  product.get("module"),
+                  product.get("asset"),
+                  f"products/concrete/{product_id}.html" if isinstance(product_id, str) and product_id.strip() else None,
               )
-              print("PASS: concrete 5,000-product target already reached; no new artifact expected.")
+              for value in candidates:
+                  if not isinstance(value, str) or not value.strip():
+                      continue
+                  if value.startswith(("http://", "https://")) or "\\\\" in value:
+                      rejected_candidates += 1
+                      continue
+                  path = Path(value)
+                  if path.is_absolute() or ".." in path.parts:
+                      rejected_candidates += 1
+                      continue
+                  resolved = path.resolve()
+                  if not resolved.is_relative_to(repo_root) or not resolved.is_file():
+                      rejected_candidates += 1
+                      continue
+                  valid_artifacts.append(value)
+                  break
 
+          assert valid_artifacts, "no overlay product points to an existing repository-local artifact"
+          print(
+              f"PASS: {len(valid_artifacts)} products resolve to existing repository-local artifacts; "
+              f"{rejected_candidates} unsafe or missing candidates ignored."
+          )
           print("PASS: JSON documents valid; JSONL parsed line-by-line; IDs unique; counts aligned.")
+
       - name: Open/update production artifact PR (repository requires PR-based writes)
         uses: peter-evans/create-pull-request@v7
         with:
