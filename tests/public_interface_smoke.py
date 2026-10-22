@@ -167,7 +167,7 @@ def main() -> int:
         for control_id in orphan_controls:
             if f'id="{control_id}"' in source:
                 import re
-                pattern = rf'<(?:input|select|textarea)\\b(?=[^>]*\\bid="{re.escape(control_id)}")[^>]*aria-label='
+                pattern = rf'<(?:input|select|textarea)\b(?=[^>]*\bid="{re.escape(control_id)}")[^>]*aria-label='
                 if re.search(pattern, source, flags=re.IGNORECASE):
                     continue
                 errors.append(f"{page.relative_to(ROOT)} has a form control without a matching label/aria-label: {control_id}")
