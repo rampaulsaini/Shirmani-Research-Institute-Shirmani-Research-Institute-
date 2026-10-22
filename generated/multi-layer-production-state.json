@@ -1,25 +1,25 @@
 {
   "version": 2,
-  "cursor": 304,
-  "cycles": 2059,
+  "cursor": 391,
+  "cycles": 2060,
   "queued_tasks": 500,
-  "generated_at": "2026-10-22T04:20:51.395184+00:00",
+  "generated_at": "2026-10-22T04:30:41.308941+00:00",
   "discovered_modules": 413,
   "cycle_capacity": 500,
   "last_cycle_tasks": 500,
   "last_cycle_new_tasks": 500,
-  "scheduled_work_units": 1029500,
-  "run_number": 2059,
+  "scheduled_work_units": 1030000,
+  "run_number": 2060,
   "lane_counts_last_cycle": {
-    "automation": 246,
-    "security-quality": 22,
-    "economic": 15,
-    "platform": 120,
-    "social-media": 12,
-    "research": 18,
+    "automation": 230,
+    "economic": 9,
+    "content": 13,
+    "platform": 114,
+    "research": 24,
+    "ai-ml-nlp": 65,
     "federation": 15,
-    "content": 9,
-    "ai-ml-nlp": 43
+    "security-quality": 21,
+    "social-media": 9
   },
   "policy": "production-first; verification is downstream quality evidence, not the production objective"
 }
