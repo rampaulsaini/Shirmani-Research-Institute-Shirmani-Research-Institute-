@@ -59,4 +59,7 @@ if existing:
     if comparable_existing == comparable_state:
         state = existing
 state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+from factory.qc_state_contract import sync_public_qc_state
+sync_public_qc_state(ROOT, catalog)
+state = json.loads(state_path.read_text(encoding="utf-8"))
 print(json.dumps(state, ensure_ascii=False))
