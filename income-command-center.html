@@ -33,6 +33,60 @@
 </div>
 </section>
 
+
+<section class="ire" id="production-truth" aria-labelledby="truth-title">
+  <span class="tag">SOURCE-BOUND · PRODUCTION & INCOME</span>
+  <h2 id="truth-title">वास्तविक स्थिति काउंटर | Operational Truth Counters</h2>
+  <p class="ire-note">यह पैनल GitHub के प्रकाशित generated JSON snapshots पढ़ता है। ये हर सेकंड अपडेट होने वाले आँकड़े नहीं हैं। स्रोत न पढ़ पाने पर काउंटर “Unavailable” दिखेंगे—शून्य मानकर अनुमान नहीं लगाया जाएगा।</p>
+  <div class="ire-grid">
+    <article class="ire-item"><h3>Catalog assets</h3><p><strong id="truth-assets">Loading…</strong></p><p class="ire-note">Defined target: <span id="truth-target">—</span></p></article>
+    <article class="ire-item"><h3>Deterministic QC</h3><p><strong id="truth-qc">Loading…</strong></p><p class="ire-note">Pass rate: <span id="truth-qc-pct">—</span></p></article>
+    <article class="ire-item"><h3>Dispatch released</h3><p><strong id="truth-dispatch">Loading…</strong></p><p class="ire-note">QC is not delivery evidence.</p></article>
+    <article class="ire-item"><h3>Sales / payment claimed</h3><p><strong id="truth-sales-payment">Loading…</strong></p><p class="ire-note">Claims are not independently verified receipts.</p></article>
+    <article class="ire-item"><h3>Independently verified</h3><p><strong id="truth-verified">Loading…</strong></p><p class="ire-note">Verified rate: <span id="truth-verified-pct">—</span></p></article>
+    <article class="ire-item"><h3>Prepared for review</h3><p><strong id="truth-review">Loading…</strong></p><p class="ire-note">Prepared does not mean verified.</p></article>
+  </div>
+  <p class="ire-note" id="truth-source-status" role="status" aria-live="polite">Reading the production and verification snapshots…</p>
+  <p class="ire-note">Sources: <a href="generated/live-production-state.json">production state JSON</a> · <a href="generated/independent-verification-status.json">verification state JSON</a> · <a href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions">GitHub Actions runs</a>.</p>
+</section>
+<script>
+(function(){
+  const ids=["truth-assets","truth-target","truth-qc","truth-qc-pct","truth-dispatch","truth-sales-payment","truth-verified","truth-verified-pct","truth-review","truth-source-status"];
+  const el=id=>document.getElementById(id);
+  const fmt=n=>Number(n||0).toLocaleString("en-IN");
+  const pct=n=>Number.isFinite(Number(n))?Number(n).toFixed(2)+"%":"Unavailable";
+  function unavailable(message){ids.forEach(id=>{if(id!=="truth-source-status")el(id).textContent="Unavailable";});el("truth-source-status").textContent=message;}
+  async function load(){
+    try{
+      const responses=await Promise.all([
+        fetch("generated/live-production-state.json",{cache:"no-store"}),
+        fetch("generated/independent-verification-status.json",{cache:"no-store"})
+      ]);
+      if(responses.some(r=>!r.ok))throw new Error("One or more source snapshots could not be fetched.");
+      const s=await responses[0].json(),v=await responses[1].json();
+      const assets=Number(s.concrete_repository_assets??s.catalog_identities);
+      const target=Number(s.five_thousand_scale_target??5000);
+      const passed=Number(s.qc_passed??0),failed=Number(s.qc_failed??0);
+      const qcRate=(passed+failed)>0?100*passed/(passed+failed):Number(s.qc_pass_percent);
+      const total=Number(v.registry_total??v.queue_total??0);
+      const verified=Number(v.verified_records??0);
+      const prepared=Number(v.prepared_review_records??0);
+      el("truth-assets").textContent=fmt(assets)+" / "+fmt(target);
+      el("truth-target").textContent=fmt(target);
+      el("truth-qc").textContent=fmt(passed)+" passed / "+fmt(failed)+" failed";
+      el("truth-qc-pct").textContent=pct(qcRate);
+      el("truth-dispatch").textContent=fmt(s.dispatch_released);
+      el("truth-sales-payment").textContent=fmt(s.sales_claimed)+" / "+fmt(s.payment_claimed);
+      el("truth-verified").textContent=fmt(verified)+" / "+fmt(total);
+      el("truth-verified-pct").textContent=pct(total>0?100*verified/total:0);
+      el("truth-review").textContent=fmt(prepared)+" / "+fmt(total)+" ("+pct(total>0?100*prepared/total:0)+")";
+      el("truth-source-status").textContent="Source snapshots loaded. Production timestamp: "+String(s.generated_at||"not supplied")+" · QC state: "+String(s.qc_state||"not supplied")+" · State: "+String(s.state||"not supplied")+". Not a second-by-second live feed.";
+    }catch(e){unavailable("Source unavailable — counters are not asserted. Check the published JSON paths and deployment.");}
+  }
+  load();
+})();
+</script>
+
 <style>
 /* Income Result Engine: deterministic local execution layer; no external AI/API claims. */
 .ire{margin:26px 0;padding:22px;border:1px solid rgba(0,210,255,.5);border-radius:18px;background:linear-gradient(145deg,rgba(0,210,255,.08),rgba(212,175,55,.07))}
