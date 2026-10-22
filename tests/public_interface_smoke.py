@@ -106,6 +106,24 @@ def main() -> int:
             if required not in local_paths:
                 errors.append(f"showroom-public.html is missing a required customer route: {required}")
 
+    # Public Interface v3 live telemetry contract (without recursively crawling its legacy links).
+    public_v3 = ROOT / "public-interface-v3.html"
+    if not public_v3.is_file():
+        errors.append("Missing required public entry point: public-interface-v3.html")
+    else:
+        source = public_v3.read_text(encoding="utf-8")
+        for required in (
+            'id="cycles24h"', 'id="success24h"', 'id="failed24h"',
+            'id="activeRuns"', 'id="productionFreshness"',
+            'api.github.com/repos/', '/actions/runs?branch=main',
+            'generated/live-production-state.json', 'NOT CONNECTED',
+            'स्वतंत्र QC', 'शून्य नहीं माना गया',
+        ):
+            if required.casefold() not in source.casefold():
+                errors.append(f"public-interface-v3.html is missing telemetry/truth-boundary requirement: {required}")
+        if "setInterval(" in source:
+            errors.append("public-interface-v3.html must not poll GitHub API continuously and risk exhausting unauthenticated rate limits")
+
     # Check every local target and every fragment on HTML pages, not only the
     # two pages that are the main focus of this smoke suite.
     checked_links = 0
