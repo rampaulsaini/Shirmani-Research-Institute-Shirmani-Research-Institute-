@@ -1,6 +1,6 @@
 {
-  "schema_version": 3,
-  "generated_at": "2026-10-22T04:53:18.022Z",
+  "schema_version": 1,
+  "generated_at": "2026-10-22T06:02:16.675398+00:00",
   "production_first": true,
   "catalog_identities": 5000,
   "concrete_repository_assets": 5000,
@@ -10,8 +10,8 @@
   "current_catalog_pending": 0,
   "five_thousand_scale_target": 5000,
   "remaining_to_scale_target": 0,
-  "concrete_materialization_percent_of_catalog": 100,
-  "concrete_materialization_percent_of_scale_target": 100,
+  "concrete_materialization_percent_of_catalog": 100.0,
+  "concrete_materialization_percent_of_scale_target": 100.0,
   "module_products_generated": 5000,
   "qc_passed": 5000,
   "qc_failed": 0,
@@ -22,7 +22,8 @@
   "sales_claimed": 0,
   "payment_claimed": 0,
   "independent_verification_claimed": 0,
-  "state": "QC_PASSED_AWAITING_DISPATCH",
+  "state": "PRODUCTION_COMPLETE",
   "qc_state": "QC_PASSED",
-  "truth_boundary": "Deterministic QC covers the defined structural checks only. Produced assets, QC, dispatch, sales, payment and independent verification are distinct states. QC does not prove customer acceptance, delivery, payment or independent verification."
+  "truth_boundary": "Deterministic QC covers the defined structural checks only. Produced assets, QC, dispatch, sales, payment and independent verification are distinct states. QC does not prove customer acceptance, delivery, payment or independent verification.",
+  "last_cycle_concrete_results": 25
 }
