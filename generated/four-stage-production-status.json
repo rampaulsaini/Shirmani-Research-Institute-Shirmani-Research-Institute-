@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T02:36:06.463915+00:00",
+  "generated_at": "2026-10-22T02:54:52.041712+00:00",
   "mode": "CONTINUOUS_FOUR_STAGE_PRODUCTION",
   "chat_required_for_continuity": false,
   "principle": "Production first; QC is the release gate; downstream verification evaluates results.",
