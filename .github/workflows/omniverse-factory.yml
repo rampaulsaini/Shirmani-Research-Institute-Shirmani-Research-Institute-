@@ -271,15 +271,15 @@ jobs:
           fi
           git commit -m "chore(factory): refresh product-first research outputs"
           BRANCH="factory/generated-refresh"
-          # The branch is an automation-owned generated snapshot. Refresh it from this
-          # validated main-based commit using a lease, so a stale parent history does not
-          # block scheduled runs. The lease prevents racing with another publisher.
-          remote_sha="$(git ls-remote origin "refs/heads/$BRANCH" | awk 'NR==1 {print $1}')"
-          if [ -n "$remote_sha" ]; then
-            git push --force-with-lease="refs/heads/$BRANCH:$remote_sha" origin "HEAD:$BRANCH"
-          else
-            git push origin "HEAD:$BRANCH"
+          # Preserve generated-branch history without force-pushing. The current run's
+          # validated main-based output tree wins when branch histories have diverged.
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch origin "$BRANCH"
+            if ! git merge-base --is-ancestor "origin/$BRANCH" HEAD; then
+              git merge -s ours --no-edit "origin/$BRANCH" -m "chore(factory): reconcile generated refresh branch history"
+            fi
           fi
+          git push origin "HEAD:$BRANCH"
           if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
             if ! gh pr create --base main --head "$BRANCH" --title "chore(factory): publish product-first generated outputs" --body "Automated publication PR for product-first generated research outputs. Product creation precedes downstream verification. Protected source material is not rewritten; generated outputs remain subject to independent verification before any VERIFIED promotion."; then
               echo "Publication PR creation was deferred; generated outputs remain on $BRANCH."
