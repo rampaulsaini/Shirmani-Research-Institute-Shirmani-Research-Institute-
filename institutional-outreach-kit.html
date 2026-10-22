@@ -44,7 +44,7 @@ function build(){
 }
 $('outreachForm').addEventListener('submit',e=>{e.preventDefault();if(!$('outreachForm').reportValidity())return;build()});
 $('copy').addEventListener('click',async()=>{if(!current)build();try{await navigator.clipboard.writeText(current);$('copy').textContent='Copied';setTimeout(()=>$('copy').textContent='Draft कॉपी करें',1500)}catch{$('result').focus();}});
-$('openEmail').addEventListener('click',()=>{if(!current)build();const recipient=$('contact').value.trim();if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(recipient)){alert('पहले सत्यापित सार्वजनिक ईमेल पता दर्ज करें। फोन नंबर या वेबसाइट यहाँ ईमेल प्राप्तकर्ता नहीं है।');return;}const subject='A small, clearly scoped writing/research support proposal';window.location.href='mailto:'+recipient+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(current.replace(/^To:.*\\nSubject:.*\\n\\n/,''));});
+$('openEmail').addEventListener('click',()=>{if(!current)build();const recipient=$('contact').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)){alert('पहले सत्यापित सार्वजनिक ईमेल पता दर्ज करें। फोन नंबर या वेबसाइट यहाँ ईमेल प्राप्तकर्ता नहीं है।');return;}const subject='A small, clearly scoped writing/research support proposal';window.location.href='mailto:'+recipient+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(current.replace(/^To:.*\nSubject:.*\n\n/,''));});
 $('reset').addEventListener('click',()=>{$('outreachForm').reset();current='';$('result').textContent='विवरण भरकर draft तैयार करें।'});
 })();
 </script></body></html>
