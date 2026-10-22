@@ -45,33 +45,35 @@ jobs:
           print("Production QC: PASS")
           print("catalog=",len(c.get("products",[])),"produced=",s.get("product_count"))
           PY
-      - name: Publish production result to main
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Propose production batch through pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/production-scale-publication
+          delete-branch: false
+          draft: true
+          title: "chore(production): materialize next public product batch"
+          commit-message: "chore(production): materialize next public product batch"
+          add-paths: |
+            generated/**
+            products/concrete/**
+            products/production/**
+            factory/production_scale.py
+          body: |
+            ## Automated production batch — review required
+
+            This pull request captures the current workflow's generated product batch without bypassing the repository's protected `main` branch.
+
+            - Production QC gate must pass before this step.
+            - Review generated catalogue/status/asset changes before merging.
+            - Product asset generation and deterministic QC are not independent verification.
+            - Dispatch, customer acceptance, sales and payment remain unclaimed until separately evidenced.
+
+            This PR is intentionally created as a draft. Merge only after reviewing the generated diff and required checks.
+      - name: Write run summary
         run: |
-          set -euo pipefail
-          git config user.name "shirmani-production[bot]"
-          git config user.email "shirmani-production@users.noreply.github.com"
-          git add generated factory/production_scale.py
-          git add products/concrete products/production || true
-          if git diff --cached --quiet; then
-            echo "No new production output."
-            exit 0
-          fi
-          git commit -m "chore(production): materialize next public product batch"
-          for attempt in 1 2 3 4 5 6 7; do
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
-                echo "Production batch published directly to main on attempt=$attempt."
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-            echo "Main moved or publication was rejected; retrying attempt=$attempt"
-            sleep $((attempt * 2))
-          done
-          echo "::warning::Direct main publication unavailable after retries; generated batch remains in this run workspace."
-          exit 0
+          echo "## SHIRMANI Production Scale Automission" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Target catalogue: 5,000" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Batch default: 250 concrete product artifacts" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Publication: draft PR; protected main is not pushed directly" >> "$GITHUB_STEP_SUMMARY"
+          echo "- QC, independent verification, dispatch, sales and payment are separate states." >> "$GITHUB_STEP_SUMMARY"
