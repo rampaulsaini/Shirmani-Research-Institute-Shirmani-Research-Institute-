@@ -40,13 +40,13 @@ jobs:
                   return False
               candidate = candidate.strip()
               parsed = urlparse(candidate)
-              if parsed.scheme or parsed.netloc or candidate.startswith("//") or "\\\\" in candidate:
+              if parsed.scheme or parsed.netloc or candidate.startswith("//") or chr(92) in candidate:
                   return False
               artifact = Path(candidate)
               if artifact.is_absolute() or ".." in artifact.parts:
                   return False
               root = Path(repo_root).resolve()
-              resolved = artifact.resolve()
+              resolved = (root / artifact).resolve()
               return resolved.is_relative_to(root) and resolved.is_file()
 
           def find_repository_artifact(product, repo_root):
