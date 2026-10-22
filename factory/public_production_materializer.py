@@ -120,6 +120,22 @@ def materialize_concrete_asset_status(root=ROOT, generated_at=None):
             status = {}
 
     target = int(catalog.get("product_count", len(products)))
+    # QC is authoritative only when its evidence matches the current catalog and
+    # the real asset count. A stale PASS must never promote a changed catalog.
+    qc_path = generated / "product-qc-gate.json"
+    qc_passed = False
+    if qc_path.is_file() and actual_assets == target and target > 0:
+        try:
+            qc = json.loads(qc_path.read_text(encoding="utf-8"))
+            qc_passed = (
+                int(qc.get("catalog_count", -1)) == target
+                and int(qc.get("produced_count", -1)) == actual_assets
+                and int(qc.get("qc_passed", -1)) == target
+                and int(qc.get("qc_failed", -1)) == 0
+                and qc.get("release_state") == "QC_PASS_READY_FOR_DISPATCH"
+            )
+        except (UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError):
+            qc_passed = False
     status.update({
         "generated_at": generated_at or now(),
         "product_assets": actual_assets,
@@ -128,9 +144,11 @@ def materialize_concrete_asset_status(root=ROOT, generated_at=None):
         "materialization_percent": round(100 * actual_assets / target, 2) if target else 0,
         "asset_directory": status.get("asset_directory", "products/production/"),
         "showroom": status.get("showroom", "products.html"),
-        "state": "READY_FOR_QC" if actual_assets == target else "IN_PROGRESS",
+        "state": ("QC_PASSED_AWAITING_DISPATCH" if qc_passed else
+                  "READY_FOR_QC" if actual_assets == target else "IN_PROGRESS"),
+        "qc_state": "QC_PASSED" if qc_passed else "READY_FOR_QC",
         "dispatch": "NO",
-        "principle": "Concrete non-empty repository assets are production evidence; QC, dispatch, payment and independent verification remain downstream."
+        "principle": "Concrete assets and matching deterministic QC are separate evidence; dispatch, sales, payment and independent verification remain downstream."
     })
     status_path.write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return status
