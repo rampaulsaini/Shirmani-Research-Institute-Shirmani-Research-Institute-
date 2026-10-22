@@ -27,12 +27,68 @@ jobs:
           python-version: "3.12"
       - name: Produce one concrete tool, passport and product visual
         run: python scripts/production_factory_cycle.py
-      - name: Validate production outputs
+      - name: Validate production outputs and path-guard regression cases
         shell: python
         run: |
           import json
+          import tempfile
           from pathlib import Path
           from urllib.parse import urlparse
+
+          def is_repository_file(candidate, repo_root):
+              if not isinstance(candidate, str) or not candidate.strip():
+                  return False
+              candidate = candidate.strip()
+              parsed = urlparse(candidate)
+              if parsed.scheme or parsed.netloc or candidate.startswith("//") or "\\\\" in candidate:
+                  return False
+              artifact = Path(candidate)
+              if artifact.is_absolute() or ".." in artifact.parts:
+                  return False
+              root = Path(repo_root).resolve()
+              resolved = artifact.resolve()
+              return resolved.is_relative_to(root) and resolved.is_file()
+
+          def find_repository_artifact(product, repo_root):
+              product_id = product.get("id")
+              candidates = (
+                  product.get("artifact_url"),
+                  product.get("module"),
+                  product.get("asset"),
+                  f"products/concrete/{product_id}.html"
+                  if isinstance(product_id, str) and product_id.strip()
+                  else None,
+              )
+              return next((candidate.strip() for candidate in candidates
+                           if isinstance(candidate, str) and candidate.strip()
+                           and is_repository_file(candidate, repo_root)), None)
+
+          # Regression tests use isolated temporary files and never touch production assets.
+          with tempfile.TemporaryDirectory() as temp:
+              root = Path(temp).resolve()
+              (root / "products/concrete").mkdir(parents=True)
+              (root / "ok.html").write_text("ok", encoding="utf-8")
+              (root / "legacy-module.html").write_text("module", encoding="utf-8")
+              (root / "legacy-asset.html").write_text("asset", encoding="utf-8")
+              (root / "products/concrete/stable-id.html").write_text("stable", encoding="utf-8")
+              outside = root.parent / (root.name + "-outside.html")
+              outside.write_text("outside", encoding="utf-8")
+              try:
+                  (root / "escape.html").symlink_to(outside)
+                  assert is_repository_file("escape.html", root) is False, "symlink escape must fail"
+              finally:
+                  outside.unlink(missing_ok=True)
+
+              assert is_repository_file("ok.html", root), "repository-local file should pass"
+              assert find_repository_artifact({"artifact_url": "ok.html"}, root) == "ok.html"
+              assert find_repository_artifact({"module": "legacy-module.html"}, root) == "legacy-module.html"
+              assert find_repository_artifact({"asset": "legacy-asset.html"}, root) == "legacy-asset.html"
+              assert find_repository_artifact({"id": "stable-id"}, root) == "products/concrete/stable-id.html"
+              for unsafe in ("https://example.com/file.html", "//example.com/file.html",
+                             "/etc/passwd", "../outside.html", "missing.html", r"products\\bad.html"):
+                  assert not is_repository_file(unsafe, root), f"unsafe/missing path must fail: {unsafe}"
+              assert find_repository_artifact({"artifact_url": "../bad", "module": "legacy-module.html"}, root) == "legacy-module.html"
+          print("PASS: artifact_url/module/asset/stable-ID fallback and unsafe-path regression tests")
 
           overlay = json.loads(Path("generated/concrete-production-overlay.json").read_text(encoding="utf-8"))
           json.loads(Path("generated/live-production-state.json").read_text(encoding="utf-8"))
@@ -53,40 +109,16 @@ jobs:
           assert isinstance(products, list) and products, "production overlay must contain products"
           assert overlay.get("produced_count") == len(products), "overlay count mismatch"
 
-          # Validate the overlay as a collection. Legacy rows may use module/asset
-          # instead of artifact_url, and a capped no-op cycle need not add a new row.
-          # Only repository-local files count; unsafe or missing paths are ignored.
+          # Deliberate policy: at least one existing local artifact is required for a
+          # no-op/legacy overlay. This is NOT proof that every row or all 5,000 assets pass QC.
           repo_root = Path.cwd().resolve()
-          valid_artifacts = []
-          for product in products:
-              product_id = product.get("id")
-              candidates = (
-                  product.get("artifact_url"),
-                  product.get("module"),
-                  product.get("asset"),
-                  f"products/concrete/{product_id}.html"
-                  if isinstance(product_id, str) and product_id.strip()
-                  else None,
-              )
-              for candidate in candidates:
-                  if not isinstance(candidate, str) or not candidate.strip():
-                      continue
-                  candidate = candidate.strip()
-                  parsed = urlparse(candidate)
-                  if parsed.scheme or parsed.netloc or candidate.startswith("//") or "\\" in candidate:
-                      continue
-                  artifact = Path(candidate)
-                  if artifact.is_absolute() or ".." in artifact.parts:
-                      continue
-                  resolved = artifact.resolve()
-                  if not resolved.is_relative_to(repo_root) or not resolved.is_file():
-                      continue
-                  valid_artifacts.append(candidate)
-                  break
-
+          valid_artifacts = [
+              artifact for product in products
+              if (artifact := find_repository_artifact(product, repo_root)) is not None
+          ]
           assert valid_artifacts, "no overlay product points to an existing repository-local artifact"
           print(
-              f"PASS: {len(valid_artifacts)} repository-local product artifacts exist; "
+              f"PASS: {len(valid_artifacts)} overlay rows resolve to repository-local artifacts; "
               "JSON documents valid; JSONL parsed line-by-line; IDs unique; counts aligned."
           )
       - name: Open/update production artifact PR (repository requires PR-based writes)
