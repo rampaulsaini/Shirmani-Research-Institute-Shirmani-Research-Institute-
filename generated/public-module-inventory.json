@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generated_at": "2026-10-22T16:28:43.679721+00:00",
+  "generated_at": "2026-10-22T17:31:09.971735+00:00",
   "purpose": "public-first production module map",
   "module_count": 10818,
   "lane_counts": {
-    "ai_ml_nlp": 9060,
+    "ai_ml_nlp": 9059,
     "automation": 5,
     "content": 8,
     "economic": 6,
     "platform": 3,
-    "research": 1699,
+    "research": 1700,
     "security_quality": 37
   },
   "status_counts": {
@@ -18,9 +18,9 @@
     "DESIGN": 15,
     "PLANNED": 6,
     "READY": 10084,
-    "RECORDED": 30,
+    "RECORDED": 31,
     "UNAVAILABLE": 27,
-    "UNSPECIFIED": 528
+    "UNSPECIFIED": 527
   },
   "integrity": {
     "source": "repository files",
@@ -62714,13 +62714,6 @@
       "bytes": 3406
     },
     {
-      "path": "factory/public_pages_runtime_smoke.py",
-      "type": "py",
-      "lane": "ai_ml_nlp",
-      "status": "UNSPECIFIED",
-      "bytes": 8013
-    },
-    {
       "path": "factory/public_production_truth_smoke_gate.py",
       "type": "py",
       "lane": "ai_ml_nlp",
@@ -73205,6 +73198,13 @@
       "lane": "research",
       "status": "RECORDED",
       "bytes": 6976
+    },
+    {
+      "path": "factory/public_pages_runtime_smoke.py",
+      "type": "py",
+      "lane": "research",
+      "status": "RECORDED",
+      "bytes": 9090
     },
     {
       "path": "factory/research_evidence_graph.py",
