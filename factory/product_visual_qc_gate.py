@@ -82,7 +82,7 @@ def main() -> None:
             failures.append(f"{pid}: QR target does not match this product passport")
         elif str(qr_row.get("qr_asset_path", "")) != expected_qr_path:
             failures.append(f"{pid}: QR manifest path mismatch")
-        description_match = re.search(r'<text[^>]*>\\s*(<tspan[^>]*>SHORT DESCRIPTION · .*?</tspan>(?:<tspan[^>]*>.*?</tspan>)?)\\s*</text>', text)
+        description_match = re.search(r'<text[^>]*>\s*(<tspan[^>]*>SHORT DESCRIPTION · .*?</tspan>(?:<tspan[^>]*>.*?</tspan>)?)\s*</text>', text)
         if not description_match:
             failures.append(f"{pid}: short description is not rendered in wrapped SVG text")
         else:
