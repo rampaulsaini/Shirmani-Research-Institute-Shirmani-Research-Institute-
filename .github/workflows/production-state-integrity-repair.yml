@@ -8,7 +8,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: shirmani-production-state-integrity-repair
+  group: shirmani-production-state-writer
   cancel-in-progress: false
 jobs:
   repair:
@@ -188,6 +188,45 @@ jobs:
               "continuous-production-batch-status.json":{"generated_at":now,"catalog_products":target,"produced_total":concrete,"produced_this_cycle":concrete,"remaining":max(0,target-concrete),"dispatch_released":0,"verification":"DOWNSTREAM"}
           }.items():
               (gen/filename).write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          PY
+      - name: Validate coherent production cycle before publish
+        if: ${{ steps.detect.outputs.repair_needed == 'true' }}
+        working-directory: /tmp/shirmani-production-state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          gen = Path("generated")
+          def rows(path):
+              p = gen / path
+              return [json.loads(line) for line in p.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+          queue = rows("production-work-queue.jsonl")
+          results = rows("production-results.jsonl")
+          if not queue or not results:
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: queue/results must both be non-empty")
+          qids = [str(row.get("task_id", "")) for row in queue]
+          rids = [str(row.get("task_id", "")) for row in results]
+          if len(qids) != len(set(qids)) or len(rids) != len(set(rids)):
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: duplicate task IDs")
+          if set(qids) != set(rids) or len(queue) != len(results):
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: queue and results do not match one-to-one")
+          qcycles = {int(row.get("cycle", -1)) for row in queue}
+          rcycles = {int(row.get("cycle", -1)) for row in results}
+          if len(qcycles) != 1 or qcycles != rcycles:
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: queue/results cycle mismatch")
+          cycle = next(iter(qcycles))
+          archive = json.loads((gen / "public-production/archive/index.json").read_text(encoding="utf-8"))
+          if int(archive.get("latest_cycle", -1)) != cycle:
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: archive latest cycle does not match active results")
+          shard = gen / "public-production" / "archive" / f"production-cycle-{cycle:06d}.jsonl"
+          shard_rows = rows(str(shard.relative_to(gen)))
+          if len(shard_rows) != len(results) or {str(x.get("task_id", "")) for x in shard_rows} != set(rids):
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: latest archive shard does not match active results")
+          print(json.dumps({"cycle": cycle, "queue_rows": len(queue), "result_rows": len(results), "archive_rows": len(shard_rows), "gate": "PASS"}, sort_keys=True))
           PY
       - name: Fail if conflict markers remain
         if: \${{ steps.detect.outputs.repair_needed == 'true' }}
