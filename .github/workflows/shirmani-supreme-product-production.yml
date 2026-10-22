@@ -71,7 +71,7 @@ jobs:
               for candidate in candidates:
                   if not isinstance(candidate, str) or not candidate.strip():
                       continue
-                  if candidate.startswith(("http://", "https://")) or "\\\\" in candidate:
+                  if candidate.startswith(("http://", "https://")) or chr(92) in candidate:
                       rejected_candidates += 1
                       continue
                   path = Path(candidate)
