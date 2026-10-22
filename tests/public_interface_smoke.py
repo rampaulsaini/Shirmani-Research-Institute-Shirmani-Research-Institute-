@@ -16,6 +16,7 @@ PAGES = (
     ROOT / "showroom-public.html",
     ROOT / "heart-view-preview.html",
     ROOT / "index.html",
+    ROOT / "public-interface-v3.html",
     ROOT / "income-command-center.html",
     ROOT / "supreme-showroom.html",
     ROOT / "supreme-public-production-showroom.html",
