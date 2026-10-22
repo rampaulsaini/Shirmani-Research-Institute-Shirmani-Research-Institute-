@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - "index.html"
+      - "income-command-center.html"
+      - "supreme-showroom.html"
+      - "supreme-public-production-showroom.html"
       - "showroom-public.html"
       - "showroom-public-interface.html"
       - "showroom/global-product-sales-desk.html"
@@ -50,6 +53,9 @@ jobs:
         run: >-
           python factory/public_interface_link_smoke.py
           index.html
+          income-command-center.html
+          supreme-showroom.html
+          supreme-public-production-showroom.html
           showroom-public-interface.html
           showroom/global-product-sales-desk.html
           contact.html
