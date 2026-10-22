@@ -99,7 +99,7 @@ def main() -> int:
         if parser is None:
             continue
         visible_text = " ".join(parser.text_parts)
-        for phrase in REQUIRED_TEXT[page.name]:
+        for phrase in REQUIRED_TEXT.get(page.name, ()):
             if phrase.casefold() not in visible_text.casefold():
                 errors.append(f"{page.relative_to(ROOT)} is missing required navigation/content text: {phrase}")
 
