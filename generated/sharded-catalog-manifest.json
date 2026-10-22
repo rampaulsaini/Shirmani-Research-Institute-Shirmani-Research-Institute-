@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-22T02:03:11.166954+00:00",
+  "generated_at": "2026-10-22T07:38:20.503484+00:00",
   "architecture": "SHARDED_PRODUCT_CATALOG",
   "capacity": 150000,
   "shard_size": 1000,
