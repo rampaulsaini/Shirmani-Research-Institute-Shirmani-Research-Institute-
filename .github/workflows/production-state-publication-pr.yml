@@ -42,6 +42,28 @@ jobs:
             generated/concrete-product-depth-status.json \
             generated/continuous-production-batch-status.json \
             generated/four-stage-production-status.json
+            generated/production-work-queue.jsonl
+            generated/production-results.jsonl
+            generated/public-production-catalog.json
+            generated/public-production-index.html
+            generated/public-production-module-index.json
+            generated/public-production-by-module.html
+            generated/PRODUCTION-TRUTH.json
+            generated/multi-layer-production-state.json
+            generated/multi-layer-production-status.json
+            generated/MULTI-LAYER-PRODUCTION.md
+            generated/public-production \
+            generated/production-work-queue.jsonl \
+            generated/production-results.jsonl \
+            generated/public-production-catalog.json \
+            generated/public-production-index.html \
+            generated/public-production-module-index.json \
+            generated/public-production-by-module.html \
+            generated/PRODUCTION-TRUTH.json \
+            generated/multi-layer-production-state.json \
+            generated/multi-layer-production-status.json \
+            generated/MULTI-LAYER-PRODUCTION.md \
+            generated/public-production
           python - <<'PY'
           import json
           from pathlib import Path
@@ -188,7 +210,7 @@ jobs:
           commit-message: "chore(production): publish repaired concrete assets and truthful state"
           title: "Automission: publish repaired production assets and state"
           body: |
-            Publishes validated automation/production-state outputs to the public main branch through the repository's required pull-request path.
+            Publishes validated concrete assets, the latest multi-layer production cycle, per-lane JSONL records, public indexes and truthful live-state counters to the public main branch through the repository's required pull-request path.
 
             The gate validates unique catalog IDs, a one-to-one overlay-to-catalog mapping, actual catalog asset files, QR files, and live-state counts. Historical/non-catalog HTML files are not miscounted as catalog products.
 
