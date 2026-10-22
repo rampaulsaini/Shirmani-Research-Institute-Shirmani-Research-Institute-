@@ -16,13 +16,13 @@
   "qc_passed": 5000,
   "qc_failed": 0,
   "qc_pass_percent": 100,
-  "qc_evidence_generated_at": "2026-10-22T01:58:43.003519+00:00",
+  "qc_evidence_generated_at": "2026-10-22T18:02:33.513872+00:00",
   "qc_evidence_source": "generated/product-qc-gate.json",
   "dispatch_released": 0,
   "sales_claimed": 0,
   "payment_claimed": 0,
   "independent_verification_claimed": 0,
-  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG",
-  "qc_state": "READY_FOR_QC",
-  "truth_boundary": "Produced artifacts, QC, dispatch and independent verification are distinct states."
+  "state": "QC_PASSED_AWAITING_DISPATCH",
+  "qc_state": "QC_PASSED",
+  "truth_boundary": "Deterministic QC covers the defined structural checks only. Produced assets, QC, dispatch, sales, payment and independent verification are distinct states. QC does not prove customer acceptance, delivery, payment or independent verification."
 }
