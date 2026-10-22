@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-07-production-visual-v11-centered-logo-local-qr-short-description"
+VERSION="2026-10-22-production-visual-v14-wrapped-description-qr-identity-qc"
 SHOWROOM_BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
 LOGO=SHOWROOM_BASE+"assets/shirmani-perspective-logo.svg"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
@@ -20,7 +20,43 @@ def esc(v): return html.escape(str(v), quote=True)
 def make(p):
     pid=str(p["id"]); name=str(p.get("name","SHIRMANI Digital Product"))
     family=str(p.get("family",p.get("category","Digital Product"))); engine=str(p.get("engine","digital"))
-    desc=" ".join(str(p.get("description","Unique customer-facing digital product")).split())[:135]
+    desc=" ".join(str(p.get("description","Unique customer-facing digital product")).split())
+    # Fit the description into the actual two-line SVG contract. Long unbroken
+    # tokens are shortened explicitly so one unusual catalogue row cannot abort a
+    # 5,000-product batch; any omitted source text is marked with an ellipsis.
+    prefix="SHORT DESCRIPTION · "
+    limits=[70-len(prefix),70]
+    words=desc.split()
+    desc_lines=[]; line=""; word_index=0; truncated=False
+    while word_index < len(words) and len(desc_lines) < 2:
+        limit=limits[len(desc_lines)]
+        word=words[word_index]
+        if len(word)>limit:
+            word=word[:limit-1].rstrip(" .,:;-")+"…"
+            truncated=True
+        candidate=(line+" "+word).strip()
+        if len(candidate)<=limit:
+            line=candidate
+            word_index+=1
+        elif line:
+            desc_lines.append(line)
+            line=""
+        else:
+            # Defensive fallback for any unexpected width edge case.
+            desc_lines.append(word[:limit-1].rstrip(" .,:;-")+"…")
+            word_index+=1
+            truncated=True
+    if line and len(desc_lines)<2:
+        desc_lines.append(line)
+    if word_index < len(words):
+        truncated=True
+    if not desc_lines:
+        desc_lines=["See product passport for full description."]
+    if truncated:
+        last_limit=limits[len(desc_lines)-1]
+        last=desc_lines[-1].rstrip(" .,:;-")
+        desc_lines[-1]=(last[:last_limit-1].rstrip(" .,:;-")+"…")
+    desc_svg="".join(f'<tspan x="520" dy="{0 if i==0 else 56}">{esc((prefix if i==0 else "")+line)}</tspan>' for i,line in enumerate(desc_lines))
     price=int(p.get("offer_price_inr",p.get("price_inr",0)) or 0)
     offer=str(p.get("offer","PUBLIC LAUNCH PRICE"))[:48]
     h=hashlib.sha256(pid.encode()).hexdigest(); c1="#"+h[:6]; c2="#"+h[6:12]
@@ -44,8 +80,8 @@ def make(p):
 <text x="520" y="820" fill="#66ddff" font-family="system-ui,sans-serif" font-size="76" font-weight="900">{esc(pid)}</text>
 <text x="520" y="1040" fill="#fff" font-family="system-ui,sans-serif" font-size="125" font-weight="900">{esc(name)}</text>
 <text x="520" y="1170" fill="#72e6aa" font-family="system-ui,sans-serif" font-size="62" font-weight="800">{esc(family)} · {esc(engine)}</text>
-<text x="520" y="1300" fill="#fff" font-family="system-ui,sans-serif" font-size="43" font-weight="650">SHORT DESCRIPTION · {esc(desc)}</text>
-<rect x="520" y="1390" width="730" height="125" rx="62" fill="#03060d" stroke="#e7c85b" stroke-width="5"/><text x="590" y="1475" fill="#fff" font-family="system-ui,sans-serif" font-size="62" font-weight="900">₹{price:,}</text><text x="1340" y="1475" fill="#66ddff" font-family="system-ui,sans-serif" font-size="44" font-weight="800">{esc(offer)}</text>
+<text x="520" y="1270" fill="#fff" font-family="system-ui,sans-serif" font-size="43" font-weight="650">{desc_svg}</text>
+<rect x="520" y="1430" width="730" height="125" rx="62" fill="#03060d" stroke="#e7c85b" stroke-width="5"/><text x="590" y="1515" fill="#fff" font-family="system-ui,sans-serif" font-size="62" font-weight="900">₹{price:,}</text><text x="1340" y="1515" fill="#66ddff" font-family="system-ui,sans-serif" font-size="44" font-weight="800">{esc(offer)}</text>
 <text x="520" y="1710" fill="#fff" opacity=".82" font-family="system-ui,sans-serif" font-size="35" font-weight="800">UNIQUE PRODUCT IDENTITY · 3840×2160 · 16:9 · 4K-READY · SHORT DESCRIPTION + QR LONG DESCRIPTION</text>
 <text x="520" y="1780" fill="#e7c85b" opacity=".92" font-family="system-ui,sans-serif" font-size="32" font-weight="700">QC · {esc(qc)} · GATE · {esc(gate)} · DISPATCH · {esc(dispatch)}</text>
 </svg>'''
