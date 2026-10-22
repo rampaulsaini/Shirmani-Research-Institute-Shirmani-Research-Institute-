@@ -37,6 +37,11 @@ jobs:
             git fetch origin main
             git fetch origin "$branch"
             git checkout -B "$branch" "origin/$branch"
+            if ! git merge-base origin/main HEAD >/dev/null 2>&1; then
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              echo "::warning::Production PR #$pr_number branch '$branch' has no merge base with origin/main. Skipping this cycle safely; reconcile the existing PR branch before generating another batch."
+              exit 0
+            fi
             new_files="$(git diff --name-only origin/main...HEAD -- 'products/concrete/SP-*.html' | wc -l | tr -d ' ')"
             if (( new_files >= 250 )); then
               echo "skip=true" >> "$GITHUB_OUTPUT"
