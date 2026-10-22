@@ -36,7 +36,7 @@ def sync_public_qc_state(root: Path, catalog_count: int) -> bool:
     """Update existing public status files only; never claim dispatch, sales, or payment."""
     root = Path(root)
     qc, passed = read_qc(root, catalog_count)
-    state = "QC_PASSED" if passed else "READY_FOR_QC"
+    state = "QC_PASSED" if passed else ("QC_REVIEW_REQUIRED" if qc.get("release_state") == "QC_REVIEW_REQUIRED" else "READY_FOR_QC")
     gen = root / "generated"
     status_path = gen / "concrete-product-asset-status.json"
     if status_path.is_file():
