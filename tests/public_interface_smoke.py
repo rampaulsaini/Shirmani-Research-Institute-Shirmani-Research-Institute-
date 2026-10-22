@@ -164,6 +164,22 @@ def main() -> int:
         if required.casefold() not in public_v3_source.casefold():
             errors.append(f"public-interface-v3.html is missing income-funnel requirement: {required}")
 
+    # Institutional outreach must offer a manual email-app handoff while
+    # rejecting non-email contacts; draft creation is not message delivery.
+    outreach = ROOT / "institutional-outreach-kit.html"
+    outreach_parser = parse_html(outreach, errors, parsed)
+    if outreach_parser:
+        outreach_source = outreach.read_text(encoding="utf-8")
+        for required in (
+            'id="openEmail"',
+            "$('openEmail').addEventListener",
+            "window.location.href='mailto:'+recipient",
+            "सत्यापित सार्वजनिक ईमेल पता",
+            "mailto:",
+        ):
+            if required.casefold() not in outreach_source.casefold():
+                errors.append(f"institutional-outreach-kit.html is missing safe email handoff requirement: {required}")
+
     # Check every local target and every fragment on HTML pages, not only the
     # two pages that are the main focus of this smoke suite.
     checked_links = 0
