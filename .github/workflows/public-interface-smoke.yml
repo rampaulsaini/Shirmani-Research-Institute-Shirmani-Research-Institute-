@@ -21,6 +21,9 @@ on:
     branches: [main]
     paths:
       - "index.html"
+      - "income-command-center.html"
+      - "supreme-showroom.html"
+      - "supreme-public-production-showroom.html"
       - "showroom-public.html"
       - "showroom-public-interface.html"
       - "showroom/global-product-sales-desk.html"
