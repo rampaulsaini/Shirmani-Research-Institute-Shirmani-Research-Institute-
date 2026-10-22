@@ -25,6 +25,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Load canonical production state and refresh factory code
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="automation/production-state"
+          git fetch origin main:refs/remotes/origin/main "$branch:refs/remotes/origin/$branch"
+          # Continue from previously persisted outputs; otherwise every scheduled
+          # run would restart at SRI-AUTO-00001 and overwrite the same batch.
+          git reset --hard "origin/$branch"
+          # Use the newest reviewed factory implementation, not stale branch code.
+          git checkout origin/main -- factory/
+          echo "Loaded canonical state from $branch and refreshed factory code from main."
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("generated/continuous-production-state.json")
+          if p.exists():
+              d = json.loads(p.read_text(encoding="utf-8"))
+              print(f"Prior continuous products: {d.get('concrete_products', 0)}; remaining: {d.get('remaining_to_5000', 5000)}")
+          else:
+              print("No prior continuous state found; starting initial batch.")
+          PY
       - name: Produce next concrete batch
         env:
           PRODUCT_BATCH: '12'
