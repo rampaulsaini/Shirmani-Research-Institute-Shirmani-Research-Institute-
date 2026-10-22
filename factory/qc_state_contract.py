@@ -15,8 +15,8 @@ def qc_passed(qc: object, catalog_count: int) -> bool:
         and qc.get("qc_passed") == catalog_count
         and qc.get("qc_failed") == 0
         and qc.get("release_state") == PASS_STATE
-        and qc.get("integrity", {}).get("deterministic_qc") is True
-        and qc.get("integrity", {}).get("sale_claim") is False
+        and integrity.get("deterministic_qc") is True
+        and integrity.get("sale_claim") is False
     )
 
 
