@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-10-22T17:57:05.838120+00:00",
+  "generated_at": "2026-10-22T18:02:33.513872+00:00",
   "gate": "PRODUCT-QC-GATE",
   "scope": "PRODUCED_PRODUCTS_ONLY",
   "catalog_count": 5000,
   "produced_count": 5000,
   "qc_passed": 5000,
   "qc_failed": 0,
-  "pass_percent": 100.0,
+  "pass_percent": 100,
   "dispatch_default": "NO",
   "release_state": "QC_PASS_READY_FOR_DISPATCH",
   "checks": [
