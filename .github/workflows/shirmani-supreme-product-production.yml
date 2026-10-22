@@ -85,7 +85,7 @@ jobs:
               assert find_repository_artifact({"asset": "legacy-asset.html"}, root) == "legacy-asset.html"
               assert find_repository_artifact({"id": "stable-id"}, root) == "products/concrete/stable-id.html"
               for unsafe in ("https://example.com/file.html", "//example.com/file.html",
-                             "/etc/passwd", "../outside.html", "missing.html", r"products\\bad.html"):
+                             "/etc/passwd", "../outside.html", "missing.html", "products" + chr(92) + "bad.html"):
                   assert not is_repository_file(unsafe, root), f"unsafe/missing path must fail: {unsafe}"
               assert find_repository_artifact({"artifact_url": "../bad", "module": "legacy-module.html"}, root) == "legacy-module.html"
           print("PASS: artifact_url/module/asset/stable-ID fallback and unsafe-path regression tests")
