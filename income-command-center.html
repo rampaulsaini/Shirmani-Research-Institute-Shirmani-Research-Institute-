@@ -162,82 +162,103 @@
 </section>
 
 <section class="section" id="income-first-engine" aria-labelledby="income-engine-title">
-<h2 id="income-engine-title">7. INCOME-FIRST CONTROL LAYER · वास्तविक परिणाम पहले</h2>
+<h2 id="income-engine-title">7. INCOME-FIRST MULTI-CHANNEL ENGINE · परिणाम पहले, उत्पादन बाद में</h2>
 <div class="flow">
-<p><strong>नियम:</strong> पहले buyer intent और payment-ready route; उसके बाद production scale. केवल copies, workflow runs या generated files को income नहीं माना जाएगा.</p>
-<p class="note">यह dashboard में चलने वाला local decision helper है—यह स्वयं AI model, NVIDIA GPU, external API, outreach, checkout या payment processor से जुड़ा नहीं है। किसी भी provider integration को अलग backend, authorized credentials, tests और cost/rate limits के बाद ही live माना जाएगा.</p>
+<p><strong>मुख्य नियम:</strong> एक वास्तविक, स्पष्ट offer → buyer की विशिष्ट समस्या → प्रमाणित deliverable → चैनल-अनुकूल सामग्री → वास्तविक enquiry/order → भुगतान का प्रमाण → delivery. केवल generated copies, workflow runs या views को income नहीं माना जाएगा।</p>
+<p class="note">यह मौजूदा Income Command Center में चलने वाला local campaign-pack builder है। यह कोई live AI/NVIDIA service, customer outreach, checkout या payment processor नहीं है। यह बिना बाहरी credentials के deterministic drafts बनाता है; इसे वास्तविक AI/ML/NLP inference या लाखों records प्रति millisecond के रूप में प्रस्तुत नहीं किया जाता।</p>
 <div class="grid">
 <article class="card">
-<label for="if-kind">काम का प्रकार</label>
-<select id="if-kind" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
-<option value="service">ग्राहक सेवा / freelance</option><option value="digital">मौजूदा digital product</option><option value="job">भुगतान वाला रोजगार / task</option>
-</select>
-<label for="if-proof" style="margin-top:12px">अभी का सबसे मजबूत वास्तविक संकेत</label>
-<select id="if-proof" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
-<option value="none">अभी कोई buyer signal नहीं</option><option value="view">केवल views / visits</option><option value="inquiry">वास्तविक enquiry / buyer reply</option><option value="quote">भुगतान/quote की स्पष्ट माँग</option><option value="paid">भुगतान का सत्यापित प्रमाण</option>
-</select>
-<label for="if-ready" style="margin-top:12px">Deliverable की स्थिति</label>
-<select id="if-ready" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
-<option value="ready">तुरंत दिखाने/देने योग्य</option><option value="needsqc">QC / demo बाकी</option><option value="blocked">checkout / delivery route अवरुद्ध</option>
-</select>
-<button class="btn" id="if-run" type="button" style="cursor:pointer;margin-top:16px">मुख्य अगला कदम निकालें</button>
+<span class="tag">01 · VERIFIED OFFER INPUT</span>
+<label for="mx-offer">एक मौजूदा offer / product</label>
+<input id="mx-offer" value="Hindi-English research and content support" maxlength="120">
+<label for="mx-audience">किस खरीदार के लिए?</label>
+<input id="mx-audience" value="Small agencies, founders and educators" maxlength="180">
+<label for="mx-problem">खरीदार की वास्तविक समस्या</label>
+<textarea id="mx-problem" maxlength="400">Clear, well-structured bilingual content and source-linked research takes time to prepare.</textarea>
+<label for="mx-deliverable">वास्तव में क्या deliver होगा?</label>
+<textarea id="mx-deliverable" maxlength="400">One scoped writing or research deliverable, agreed language and format, source notes where applicable, and one agreed revision round.</textarea>
+<label for="mx-price">लिखित quote / price (INR; वैकल्पिक)</label>
+<input id="mx-price" type="number" min="0" step="1" placeholder="Quote after scope review">
+<label for="mx-url">वास्तविक service / order URL</label>
+<input id="mx-url" type="url" value="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/writing-research-sales.html" maxlength="500">
+<label for="mx-proof">सबूत की वास्तविक स्थिति</label>
+<select id="mx-proof"><option value="pending" selected>QC / demo अभी बाकी</option><option value="demo">Deliverable/demo तैयार; independent verification का दावा नहीं</option><option value="paid">भुगतान का प्रमाण मेरे पास है</option></select>
+<label for="mx-batch">एक बार में कितने draft variants?</label>
+<select id="mx-batch"><option value="4">4 · छोटा परीक्षण</option><option value="8" selected>8 · संतुलित batch</option><option value="16">16 · विस्तृत batch</option><option value="32">32 · अधिक variants</option></select>
+<button class="btn" id="mx-generate" type="button" style="cursor:pointer">Income-first pack बनाएँ</button>
 </article>
 <article class="card" aria-live="polite">
-<span class="tag">RESULT · RULE-BASED ROUTING</span>
-<h3 id="if-result-title">पहले वास्तविक संकेत प्राप्त करें</h3>
-<p id="if-result">यदि कोई buyer signal नहीं है, तो million-copy production को प्राथमिकता देने के बजाय एक मौजूदा offer और वास्तविक ग्राहक-प्रतिक्रिया पर ध्यान दें।</p>
-<p id="if-state" class="note">आय की पुष्टि नहीं हुई</p>
-<a class="btn" id="if-route" href="income-command-center.html#income-workbench">मौजूदा आय कार्यक्षेत्र खोलें</a>
+<span class="tag">02 · RESULT / NEXT ACTION</span>
+<h3 id="mx-title">एक offer को buyer-ready बनाएँ</h3>
+<p id="mx-summary">पहले स्पष्ट deliverable और सही buyer चुनें। उत्पादन की मात्रा से पहले उपयोगिता, quality और order route जाँचें।</p>
+<p id="mx-gate" class="note">Status: अभी कोई बिक्री या भुगतान इस tool से सत्यापित नहीं होता।</p>
+<div class="grid">
+<div class="card"><span class="tag">GENERATED</span><div class="metric" id="mx-count">0</div><p class="muted">Draft variants in this session</p></div>
+<div class="card"><span class="tag">REVENUE</span><div class="metric" id="mx-revenue">₹0</div><p class="muted">Confirmed income recorded by this tool: ₹0</p></div>
+</div>
+<button class="btn" id="mx-copy" type="button">Copy pack</button>
+<button class="btn" id="mx-download" type="button">Download JSON</button>
+<div class="row" style="margin-top:12px"><div><label for="mx-pass">AES-GCM export passphrase (optional)</label><input id="mx-pass" type="password" autocomplete="new-password" placeholder="Use a strong passphrase"></div><div style="align-self:end"><button class="btn" id="mx-encrypt" type="button">Encrypt JSON export</button></div></div>
+<p class="muted" id="mx-crypto-note">Encryption is performed in this browser when Web Crypto is available. Keep your passphrase safe; it cannot be recovered. No customer secrets are requested here.</p>
 </article>
 </div>
+<h3>03 · Generated campaign pack</h3>
+<div class="result" id="mx-output" aria-live="polite">आपकी inputs के आधार पर drafts यहाँ आएँगे। कोई संदेश स्वतः भेजा नहीं जाता।</div>
+<h3>04 · Scale architecture — connected होने का झूठा दावा नहीं</h3>
+<ul>
+<li><strong>Mini/micro-batches:</strong> छोटे validated batches, unique IDs, retry और idempotency—पहले correctness, फिर throughput.</li>
+<li><strong>AI/ML/NLP:</strong> भविष्य के authorized backend adapter से model-generated variants, language QA और buyer-intent classification; इस static page में live model connection नहीं है।</li>
+<li><strong>AES-256-GCM:</strong> इस page में optional encrypted export; production secrets के लिए server-side key management और access controls अलग चाहिए।</li>
+<li><strong>NVIDIA/GPU:</strong> optional inference backend only when compatible hardware, drivers, deployed model, monitoring and budget are actually configured. GitHub Pages स्वयं GPU compute नहीं देता।</li>
+<li><strong>Revenue gate:</strong> buyer reply → agreed scope/quote → order → confirmed payment → delivery. कोई भी चरण अपने-आप अगले चरण का प्रमाण नहीं है।</li>
+</ul>
 </div>
 <script>
 (function(){
 const $=id=>document.getElementById(id);
-function route(){
-const kind=$("if-kind").value, proof=$("if-proof").value, ready=$("if-ready").value;
-let title="", detail="", href="income-command-center.html#income-workbench", state="अभी भुगतान/आय का दावा नहीं";
-if(proof==="paid"){
-title="भुगतान रिकॉर्ड और delivery मिलाएँ";
-detail="भुगतान का प्रमाण सुरक्षित रखें, order ID से मिलान करें, फिर तय deliverable ग्राहक को दें और delivery evidence दर्ज करें.";
-href="https://rampaulsaini.github.io/my-omniverse-store/";
-state="भुगतान चुना गया—यह helper स्वयं प्रमाण सत्यापित नहीं करता";
-}else if(ready==="blocked"){
-title="पहले checkout / delivery अवरोध दूर करें";
-detail="खरीदार से संपर्क बढ़ाने से पहले वास्तविक checkout, payment confirmation और delivery route को end-to-end जाँचें.";
-href=kind==="digital"?"https://rampaulsaini.github.io/my-omniverse-store/":"production-first-mvp.html";
-}else if(ready==="needsqc"){
-title="न्यूनतम उपयोगी demo और QC पूरा करें";
-detail="एक स्पष्ट deliverable, वास्तविक sample input/output, price/scope और delivery conditions तैयार करें. QC पास होने तक इसे verified न कहें.";
-href="production-execution-board.html";
-}else if(proof==="quote"){
-title="सीमित scope और भुगतान शर्तें तय करें";
-detail="खरीदार की माँग के अनुरूप एक deliverable, निश्चित समयसीमा, कुल कीमत और भुगतान-पूर्व शर्तें लिखित में पुष्ट करें.";
-href="showroom/public-order-scope-builder.html";
-}else if(proof==="inquiry"){
-title="वास्तविक enquiry का उत्तर दें";
-detail="ग्राहक की जरूरत समझकर scope, sample, deadline और price पर केंद्रित जवाब दें; mass copy के बजाय उसी buyer की जरूरत पर काम करें.";
-href="showroom/first-client-deliverable-studio.html";
-}else if(kind==="job"){
-title="पात्रता मिलाकर भुगतान वाला task चुनें";
-detail="आवेदन से पहले eligibility, payment terms, task availability और payout method जाँचें. कोई application या income इस dashboard से submit नहीं होती.";
-href="employment.html";
-}else if(kind==="digital"){
-title="एक मौजूदा product का buyer path जाँचें";
-detail="एक product चुनें, उसका वास्तविक preview और checkout खोलकर जाँचें, फिर targeted traffic/buyer feedback मापें. Copies बनना sales नहीं है.";
-href="https://rampaulsaini.github.io/my-omniverse-store/";
-}else{
-title="एक scoped service को buyer तक पहुँचाएँ";
-detail="मौजूदा writing/research/automation service में से एक चुनें; sample, fixed scope, price और response path के साथ वास्तविक prospective buyer की जरूरत से मिलाएँ.";
-href="writing-research-services.html";
+let lastPack=null;
+const esc=s=>String(s||"").trim();
+const validUrl=s=>{try{const u=new URL(s);return u.protocol==="https:"||u.protocol==="http:"}catch(_){return false}};
+function safeDownload(name,blob){const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+function makePack(){
+const offer=esc($("mx-offer").value),aud=esc($("mx-audience").value),problem=esc($("mx-problem").value),deliver=esc($("mx-deliverable").value),price=esc($("mx-price").value),url=esc($("mx-url").value),proof=$("mx-proof").value,n=Number($("mx-batch").value);
+if(!offer||!aud||!problem||!deliver||!validUrl(url)){ lastPack=null; $("mx-title").textContent="Inputs ठीक करें";$("mx-summary").textContent="Offer, audience, problem, deliverable और valid HTTP(S) URL आवश्यक हैं।";return}
+const ready=proof!=="pending";
+const priceLine=price?("Indicative quote: ₹"+Number(price).toLocaleString("en-IN")+" INR, subject to written scope confirmation. "):"Price is confirmed only after scope review and written agreement. ";
+const ctas=[
+{channel:"Email",subject:"A scoped content/research option for "+aud,body:"Hello,\n\nI’m reaching out about "+offer+". "+problem+"\n\nA possible scoped deliverable: "+deliver+" "+priceLine+"Details: "+url+"\n\nIf this matches a current need, I can confirm scope, timing and terms before work begins. If not relevant, no follow-up is needed.\n\nRegards,\nSHIRMANI Research Institute"},
+{channel:"LinkedIn",subject:"Practical support for "+aud,body:"For "+aud+": "+problem+" SHIRMANI can discuss a clearly scoped deliverable: "+deliver+" "+priceLine+"Details: "+url+" No outcome is guaranteed; scope and terms are agreed before work starts."},
+{channel:"WhatsApp / contact form",subject:"",body:"Hello. SHIRMANI Research Institute offers "+offer+". If useful for your current need, the proposed scope is: "+deliver+" "+priceLine+"Details: "+url+". If this is not relevant, I will not follow up."},
+{channel:"Landing page",subject:offer,body:offer+"\n\nFor: "+aud+"\n\nProblem addressed: "+problem+"\n\nWhat you receive: "+deliver+"\n\n"+priceLine+"Next step: review the scope and contact us through the published service route: "+url+"\n\nNo guaranteed results or unverified testimonials are claimed."}
+];
+const variants=[];
+for(let i=0;i<n;i++){const t=ctas[i%ctas.length];const style=i<ctas.length?"direct":i%3===0?"problem-led":i%3===1?"deliverable-led":"concise";variants.push({variant_id:"SRI-INCOME-"+new Date().toISOString().slice(0,10).replace(/-/g,"")+"-"+String(i+1).padStart(3,"0"),channel:t.channel,style,subject:t.subject,body:t.body,review_required:true,auto_sent:false})}
+lastPack={schema_version:"1.0",generated_at:new Date().toISOString(),engine:"local-deterministic-template-v1",offer:{name:offer,audience:aud,problem,deliverable,price_inr:price?Number(price):null,public_url:url,proof_state:proof},production:{requested_variants:n,generated_variants:variants.length,quality_gate:ready?"DRAFT_READY_FOR_HUMAN_REVIEW":"BLOCKED_PENDING_QC",auto_publish:false,auto_send:false},revenue:{confirmed_payment_inr:0,source:"No payment integration; zero means this tool has recorded none, not an audit of external accounts."},variants};
+$("mx-title").textContent=ready?"Pack तैयार · human review आवश्यक":"QC gate बंद · पहले demo/quality review";
+$("mx-summary").textContent=ready?"एक ही वास्तविक offer से "+variants.length+" channel-ready draft variants बने। प्रत्येक message को recipient के अनुसार personalize करके ही भेजें.":"Drafts बने हैं, लेकिन QC/demo pending है; इन्हें verified या customer-ready न कहें।";
+$("mx-gate").textContent=proof==="paid"?"आपने paid-proof status चुना है; यह helper receipt नहीं देखता और payment स्वतंत्र रूप से सत्यापित नहीं करता.":proof==="pending"?"QC PENDING · सार्वजनिक उपयोग/विक्रय से पहले वास्तविक demo और quality check करें.":"DRAFTS ONLY · कोई outreach, order, sale या payment स्वतः नहीं हुआ.";
+$("mx-count").textContent=variants.length;$("mx-output").textContent=variants.map(v=>"["+v.variant_id+"] "+v.channel+" · "+v.style+(v.subject?"\n"+v.subject:"")+"\n"+v.body).join("\n\n——————————\n\n");
 }
-$("if-result-title").textContent=title;
-$("if-result").textContent=detail;
-$("if-state").textContent=state;
-$("if-route").href=href;
-}
-$("if-run").addEventListener("click",route);
-route();
+$("mx-generate").addEventListener("click",makePack);
+$("mx-copy").addEventListener("click",async()=>{if(!lastPack)makePack();if(!lastPack)return;const s=JSON.stringify(lastPack,null,2);try{await navigator.clipboard.writeText(s);$("mx-crypto-note").textContent="Pack copied. Review and personalize before use."}catch(_){$("mx-crypto-note").textContent="Copy was unavailable; use Download JSON instead."}});
+$("mx-download").addEventListener("click",()=>{if(!lastPack)makePack();if(lastPack)safeDownload("shirmani-income-campaign-pack.json",new Blob([JSON.stringify(lastPack,null,2)],{type:"application/json"}))});
+$("mx-encrypt").addEventListener("click",async()=>{
+if(!lastPack)makePack();if(!lastPack)return;
+const pass=$("mx-pass").value;
+if(pass.length<12){$("mx-crypto-note").textContent="कृपया कम-से-कम 12 characters का passphrase दें; इसे सुरक्षित रखें.";return}
+if(!window.crypto||!crypto.subtle){$("mx-crypto-note").textContent="इस browser/context में Web Crypto उपलब्ध नहीं; plain JSON download उपयोग करें.";return}
+try{
+const enc=new TextEncoder(),salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+const material=await crypto.subtle.importKey("raw",enc.encode(pass),"PBKDF2",false,["deriveKey"]);
+const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:250000,hash:"SHA-256"},material,{name:"AES-GCM",length:256},false,["encrypt"]);
+const cipher=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,enc.encode(JSON.stringify(lastPack)));
+const b64=b=>btoa(String.fromCharCode(...b));
+const payload={format:"SRI-AES-256-GCM-v1",kdf:"PBKDF2-SHA-256",iterations:250000,salt:b64(salt),iv:b64(iv),ciphertext:b64(new Uint8Array(cipher)),warning:"Keep the passphrase safe. This file cannot be decrypted without it."};
+safeDownload("shirmani-income-campaign-pack.aes.json",new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}));
+$("mx-crypto-note").textContent="AES-256-GCM encrypted export created in this browser. Keep the passphrase safe; no copy is stored by this page.";
+}catch(e){$("mx-crypto-note").textContent="Encryption failed in this browser. Use JSON download or a supported secure browser."}
+});
+makePack();
 })();
 </script>
 </section>
