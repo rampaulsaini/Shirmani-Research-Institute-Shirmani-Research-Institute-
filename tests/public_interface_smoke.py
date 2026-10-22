@@ -12,7 +12,16 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = (ROOT / "showroom-public.html", ROOT / "heart-view-preview.html")
+PAGES = (
+    ROOT / "showroom-public.html",
+    ROOT / "heart-view-preview.html",
+    ROOT / "index.html",
+    ROOT / "income-command-center.html",
+    ROOT / "supreme-showroom.html",
+    ROOT / "supreme-public-production-showroom.html",
+    ROOT / "writing-research-enquiry.html",
+    ROOT / "first-paid-pilot-offer.html",
+)
 REQUIRED_TEXT = {
     "showroom-public.html": (
         "Public Showroom",
@@ -90,7 +99,7 @@ def main() -> int:
         if parser is None:
             continue
         visible_text = " ".join(parser.text_parts)
-        for phrase in REQUIRED_TEXT[page.name]:
+        for phrase in REQUIRED_TEXT.get(page.name, ()):
             if phrase.casefold() not in visible_text.casefold():
                 errors.append(f"{page.relative_to(ROOT)} is missing required navigation/content text: {phrase}")
 
@@ -158,7 +167,7 @@ def main() -> int:
         for control_id in orphan_controls:
             if f'id="{control_id}"' in source:
                 import re
-                pattern = rf'<(?:input|select|textarea)\\b(?=[^>]*\\bid="{re.escape(control_id)}")[^>]*aria-label='
+                pattern = rf'<(?:input|select|textarea)\b(?=[^>]*\bid="{re.escape(control_id)}")[^>]*aria-label='
                 if re.search(pattern, source, flags=re.IGNORECASE):
                     continue
                 errors.append(f"{page.relative_to(ROOT)} has a form control without a matching label/aria-label: {control_id}")
