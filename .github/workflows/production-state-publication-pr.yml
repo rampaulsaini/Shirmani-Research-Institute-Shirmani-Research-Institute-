@@ -193,6 +193,55 @@ jobs:
           if qrs != int(state.get("product_qr_assets", -1)):
               raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: QR file count does not match production state")
           PY
+      - name: Require fresh production cycle before public sync
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          now = datetime.now(timezone.utc)
+          required = {
+              "live_state": Path("generated/live-production-state.json"),
+              "multi_layer_status": Path("generated/multi-layer-production-status.json"),
+              "public_catalog": Path("generated/public-production-catalog.json"),
+              "lane_archive_index": Path("generated/public-production/archive/index.json"),
+          }
+          stamps = {}
+          errors = []
+          for label, path in required.items():
+              try:
+                  data = json.loads(path.read_text(encoding="utf-8"))
+                  stamp = datetime.fromisoformat(str(data["generated_at"]).replace("Z", "+00:00"))
+                  if stamp.tzinfo is None:
+                      stamp = stamp.replace(tzinfo=timezone.utc)
+                  age = (now - stamp.astimezone(timezone.utc)).total_seconds()
+                  stamps[label] = {"generated_at": stamp.isoformat(), "age_seconds": round(age)}
+                  if age < -120 or age > 1800:
+                      errors.append(f"{label} is stale or future-dated ({round(age)} seconds)")
+              except Exception as exc:
+                  errors.append(f"{label} missing or unreadable: {exc}")
+
+          for label in ("generated/production-work-queue.jsonl", "generated/production-results.jsonl"):
+              try:
+                  rows = sum(1 for line in Path(label).read_text(encoding="utf-8").splitlines() if line.strip())
+                  print(f"{label}: {rows} non-empty rows")
+                  if rows == 0:
+                      errors.append(f"{label} has no production rows")
+              except OSError as exc:
+                  errors.append(f"{label} unavailable: {exc}")
+
+          lane_files = list(Path("generated/public-production").glob("*.jsonl"))
+          print(f"Public production lane files: {len(lane_files)}")
+          if not lane_files:
+              errors.append("No public production lane JSONL files found")
+
+          print(json.dumps({"freshness": stamps, "errors": errors}, sort_keys=True))
+          if errors:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: " + "; ".join(errors))
+          PY
       - name: Open/update pull request for public production state
         uses: peter-evans/create-pull-request@v7
         with:
