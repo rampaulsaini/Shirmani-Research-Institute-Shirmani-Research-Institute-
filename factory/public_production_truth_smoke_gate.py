@@ -48,7 +48,9 @@ def main() -> None:
     live = read_json("live-production-state.json")
     overlay = read_json("public-production-asset-overlay.json")
     qc = read_json("product-qc-gate.json")
-    import sys\n    sys.path.insert(0, str(ROOT))\n    from factory.qc_state_contract import qc_passed
+    import sys
+    sys.path.insert(0, str(ROOT))
+    from factory.qc_state_contract import qc_passed
     expected_qc_state = "QC_PASSED" if qc_passed(qc, target) else "READY_FOR_QC"
     if status.get("state") != expected_qc_state:
         raise SystemExit(f"PUBLIC_PRODUCTION_GATE_FAIL: concrete status state={status.get('state')!r} expected {expected_qc_state}")
