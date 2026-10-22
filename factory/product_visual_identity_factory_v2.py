@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CAT=ROOT/"generated/1000-digital-products.json"
 OUT=ROOT/"products/visuals"
 MAN=ROOT/"generated/product-visual-assets-v2.json"
-VERSION="2026-10-22-production-visual-v12-wrapped-description-verified-qr"
+VERSION="2026-10-22-production-visual-v14-asset-marker-wrapped-description"
 SHOWROOM_BASE="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/"
 LOGO=SHOWROOM_BASE+"assets/shirmani-perspective-logo.svg"
 IDENTITY="Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
@@ -21,28 +21,42 @@ def make(p):
     pid=str(p["id"]); name=str(p.get("name","SHIRMANI Digital Product"))
     family=str(p.get("family",p.get("category","Digital Product"))); engine=str(p.get("engine","digital"))
     desc=" ".join(str(p.get("description","Unique customer-facing digital product")).split())
-    # Keep the complete short description readable across two SVG lines; if the source is
-    # exceptionally long, end only at a word boundary and make the shortening explicit.
-    words=desc.split(); kept=[]; length=0
-    for word in words:
-        extra=len(word)+(1 if kept else 0)
-        if length+extra>145: break
-        kept.append(word); length+=extra
-    if len(kept)<len(words):
-        desc=" ".join(kept).rstrip(" .,:;-")+"…"
-    else:
-        desc=" ".join(kept)
-    desc_lines=[]; line=""
-    for word in desc.split():
+    # Fit the description into the actual two-line SVG contract. Long unbroken
+    # tokens are shortened explicitly so one unusual catalogue row cannot abort a
+    # 5,000-product batch; any omitted source text is marked with an ellipsis.
+    prefix="SHORT DESCRIPTION · "
+    limits=[70-len(prefix),70]
+    words=desc.split()
+    desc_lines=[]; line=""; word_index=0; truncated=False
+    while word_index < len(words) and len(desc_lines) < 2:
+        limit=limits[len(desc_lines)]
+        word=words[word_index]
+        if len(word)>limit:
+            word=word[:limit-1].rstrip(" .,:;-")+"…"
+            truncated=True
         candidate=(line+" "+word).strip()
-        # Measure XML-escaped width, because &, < and similar characters expand in SVG text.
-        # Reserve room for the first-line label added below; QC measures the serialized SVG text.
-        if len(html.escape(candidate))>65 and line:
-            desc_lines.append(line); line=word
-        else: line=candidate
-    if line: desc_lines.append(line)
-    desc_lines=desc_lines[:2]
-    desc_svg="".join(f'<tspan x="520" dy="{0 if i==0 else 56}">{esc(("SHORT DESCRIPTION · " if i==0 else "")+line)}</tspan>' for i,line in enumerate(desc_lines))
+        if len(candidate)<=limit:
+            line=candidate
+            word_index+=1
+        elif line:
+            desc_lines.append(line)
+            line=""
+        else:
+            # Defensive fallback for any unexpected width edge case.
+            desc_lines.append(word[:limit-1].rstrip(" .,:;-")+"…")
+            word_index+=1
+            truncated=True
+    if line and len(desc_lines)<2:
+        desc_lines.append(line)
+    if word_index < len(words):
+        truncated=True
+    if not desc_lines:
+        desc_lines=["See product passport for full description."]
+    if truncated:
+        last_limit=limits[len(desc_lines)-1]
+        last=desc_lines[-1].rstrip(" .,:;-")
+        desc_lines[-1]=(last[:last_limit-1].rstrip(" .,:;-")+"…")
+    desc_svg="".join(f'<tspan x="520" dy="{0 if i==0 else 56}">{esc((prefix if i==0 else "")+line)}</tspan>' for i,line in enumerate(desc_lines))
     price=int(p.get("offer_price_inr",p.get("price_inr",0)) or 0)
     offer=str(p.get("offer","PUBLIC LAUNCH PRICE"))[:48]
     h=hashlib.sha256(pid.encode()).hexdigest(); c1="#"+h[:6]; c2="#"+h[6:12]
@@ -50,6 +64,7 @@ def make(p):
     qr_target=SHOWROOM_BASE+"product-passport.html?id="+quote(pid)
     qr_asset=f"qr/{pid.lower()}.svg"
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
+<!-- SHIRMANI_VISUAL_VERSION: {VERSION} -->
 <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{c1}"/><stop offset=".55" stop-color="{c2}"/><stop offset="1" stop-color="#050910"/></linearGradient></defs>
 <rect width="3840" height="2160" fill="url(#b)"/><title>{esc(name)} — {esc(pid)}</title><desc>{esc(IDENTITY)} · Short description on image · QR for long product description · 3840×2160 4K-ready product identity.</desc><rect x="70" y="70" width="3700" height="2020" rx="120" fill="none" stroke="#e7c85b" stroke-width="10"/>
 <circle cx="1920" cy="285" r="205" fill="#061016" stroke="#e7c85b" stroke-width="14"/><image href="{LOGO}" x="1735" y="100" width="370" height="370" preserveAspectRatio="xMidYMid slice"/>
@@ -86,6 +101,7 @@ def main():
     todo=[p for p in products if (
         not (OUT/(str(p["id"]).lower()+".svg")).exists()
         or previous_rows.get(str(p["id"]),{}).get("visual_version")!=VERSION
+        or f"SHIRMANI_VISUAL_VERSION: {VERSION}" not in (OUT/(str(p["id"]).lower()+".svg")).read_text(encoding="utf-8", errors="ignore")
     )]
     chosen={id(p) for p in todo[:batch]}
     rows=[]; changed=0
