@@ -54,9 +54,10 @@ def sync_public_qc_state(root: Path, catalog_count: int) -> bool:
         live = json.loads(live_path.read_text(encoding="utf-8"))
         live.update({
             "qc_state": state,
-            "state": "QC_PASSED_AWAITING_DISPATCH" if passed else (
-                "PRODUCTION_COMPLETE_CURRENT_CATALOG"
-                if int(live.get("current_catalog_pending", 0)) == 0
+            "state": (
+                "QC_PASSED_AWAITING_DISPATCH" if passed
+                else "QC_REVIEW_REQUIRED" if qc.get("release_state") == "QC_REVIEW_REQUIRED"
+                else "PRODUCTION_COMPLETE_CURRENT_CATALOG" if int(live.get("current_catalog_pending", 0)) == 0
                 else "PRODUCTION_IN_PROGRESS"
             ),
             "dispatch_released": 0,
