@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-23T00:49:22.295795+00:00",
-  "cycle_id": "f0d746e2",
-  "seed_products": 24,
-  "materialized_products": 32,
+  "generated_at": "2026-10-23T05:27:00.078671+00:00",
+  "cycle_id": "717dd942",
+  "seed_products": 32,
+  "materialized_products": 40,
   "new_products_this_cycle": 8,
   "factory_mode": "CONTINUOUS_MULTI_LAYER",
   "next_stage": "QC_GATE_THEN_SHOWROOM",
