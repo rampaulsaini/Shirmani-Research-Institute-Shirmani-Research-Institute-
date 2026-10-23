@@ -147,6 +147,22 @@ class QCStateContractTests(unittest.TestCase):
         self.assertEqual(live["payment_claimed"], 0)
 
 
+    def test_integrity_repair_reconciles_qc_after_placeholder_write(self):
+        root = Path(__file__).resolve().parents[1]
+        workflow = (root / ".github" / "workflows" / "production-state-integrity-repair.yml").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(
+            'cp "$GITHUB_WORKSPACE/factory/qc_state_contract.py" factory/qc_state_contract.py',
+            workflow,
+        )
+        self.assertLess(
+            workflow.index('(gen/"four-stage-production-status.json")'),
+            workflow.index("sync_public_qc_state"),
+        )
+        self.assertIn("PUBLIC_STATE_FAIL", workflow)
+
+
 class CommercialReadinessTests(unittest.TestCase):
     def test_unapproved_price_is_quote_required(self):
         product = {"id": "SP-0001", "name": "Starter Tool", "price_inr": 99}
