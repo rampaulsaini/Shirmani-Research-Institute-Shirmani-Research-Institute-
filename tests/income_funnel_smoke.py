@@ -51,7 +51,8 @@ def main() -> int:
 
     try:
         index_source, index = load("index.html")
-        offer_source, offer = load("showroom/global-product-sales-desk.html")
+        offer_source, offer = load("first-paid-pilot-offer.html")
+        sales_desk_source, sales_desk = load("showroom/global-product-sales-desk.html")
         enquiry_source, enquiry = load("writing-research-enquiry.html")
         showroom_source, showroom = load("showroom-public-interface.html")
         load("income-action-center.html")
@@ -61,7 +62,7 @@ def main() -> int:
 
     # One canonical entry page must point to the live offer, showroom and income workspace.
     for route in (
-        "showroom/global-product-sales-desk.html",
+        "first-paid-pilot-offer.html",
         "showroom-public-interface.html",
         "income-action-center.html",
     ):
@@ -74,18 +75,22 @@ def main() -> int:
             errors.append(f"Sales desk is missing clear offer/truth-boundary text: {phrase}")
 
     # Keep a single canonical offer section so mobile visitors do not see duplicate prices/CTAs.
-    if "<h2>Service menu</h2>" in offer_source:
-        errors.append("Sales desk repeats the starter offers in a second service-menu section")
-    if offer_source.count("data-offer=") != 3:
-        errors.append("Sales desk must expose exactly three canonical priced offer actions")
+    if "<h2>Service menu</h2>" in sales_desk_source:
+        errors.append("Legacy sales desk repeats the starter offers in a second service-menu section")
+    if offer_source.count('<article class="offer">') != 3:
+        errors.append("Canonical first-client offer must expose exactly three priced starter offers")
+    if sales_desk_source.count("data-offer=") != 3:
+        errors.append("Legacy sales desk must retain exactly three canonical priced offer actions")
 
     offer_urls = offer.links
     if not any(urlsplit(link).scheme == "mailto" for link in offer_urls):
         errors.append("Sales desk has no email enquiry action")
     if not any("wa.me/" in link for link in offer_urls):
         errors.append("Sales desk has no WhatsApp enquiry action")
-    if "No order is placed" not in offer_source or "no message is sent automatically" not in offer_source:
-        errors.append("Sales desk must disclose that contact drafts do not auto-send or place orders")
+    if not any(phrase in offer_source.casefold() for phrase in ("no order is placed", "no order is claimed", "does not create an order")):
+        errors.append("Canonical offer must disclose that it does not create/claim an order")
+    if not any(phrase in offer_source.casefold() for phrase in ("no message is sent automatically", "does not send email/whatsapp", "do not automatically send")):
+        errors.append("Canonical offer must disclose that contact drafts are not automatically sent")
 
     enquiry_text = " ".join(enquiry.text)
     for phrase in ("₹499", "₹999", "₹1,499", "WhatsApp", "लिखित", "भुगतान"):
