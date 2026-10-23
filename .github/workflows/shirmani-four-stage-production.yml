@@ -94,7 +94,7 @@ jobs:
           git config user.name "shirmani-production[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$BRANCH"
-          for path in generated/1000-digital-products.json generated/PRODUCT-PASSPORTS.jsonl generated/real-product-factory-status.json generated/concrete-product-asset-status.json generated/product-qc-gate.json generated/four-stage-production-status.json generated/production-release-map.json generated/public-showroom-status.json generated/showroom-entry-fees.json generated/production-throughput.json products/production supreme-showroom.html docs/four-stage-production-contract.md; do
+          for path in generated/1000-digital-products.json generated/PRODUCT-PASSPORTS.jsonl generated/real-product-factory-status.json generated/concrete-product-asset-status.json generated/product-qc-gate.json generated/live-production-state.json generated/four-stage-production-status.json generated/production-release-map.json generated/public-showroom-status.json generated/showroom-entry-fees.json generated/production-throughput.json products/production supreme-showroom.html docs/four-stage-production-contract.md; do
             if [[ -e "$path" ]]; then
               git add -A -- "$path"
             fi
