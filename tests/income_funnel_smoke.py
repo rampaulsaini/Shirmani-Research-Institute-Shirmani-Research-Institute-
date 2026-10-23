@@ -73,6 +73,12 @@ def main() -> int:
         if phrase.casefold() not in offer_text.casefold() and phrase.casefold() not in offer_source.casefold():
             errors.append(f"Sales desk is missing clear offer/truth-boundary text: {phrase}")
 
+    # Keep a single canonical offer section so mobile visitors do not see duplicate prices/CTAs.
+    if "<h2>Service menu</h2>" in offer_source:
+        errors.append("Sales desk repeats the starter offers in a second service-menu section")
+    if offer_source.count("data-offer=") != 3:
+        errors.append("Sales desk must expose exactly three canonical priced offer actions")
+
     offer_urls = offer.links
     if not any(urlsplit(link).scheme == "mailto" for link in offer_urls):
         errors.append("Sales desk has no email enquiry action")
