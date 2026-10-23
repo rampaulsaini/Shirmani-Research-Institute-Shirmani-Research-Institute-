@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T05:59:12.990460+00:00",
+  "generated_at": "2026-10-23T15:56:32.107366+00:00",
   "catalog_products": 5000,
   "concrete_product_assets": 5000,
   "state": "COMPLETE",
@@ -10,6 +10,6 @@
   "remaining": 0,
   "overlay_claimed": 5000,
   "overlay_only_gap": 0,
-  "status": "PRODUCTION_ASSETS_PRESENT_UNVERIFIED",
+  "status": "QC_PASSED_AWAITING_DISPATCH",
   "next_layer": "independent functional verification → packaging → commercial listing → customer delivery evidence"
 }
