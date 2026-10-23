@@ -180,6 +180,35 @@ def main() -> int:
             if required.casefold() not in outreach_source.casefold():
                 errors.append(f"institutional-outreach-kit.html is missing safe email handoff requirement: {required}")
 
+    # The production showroom is a second high-traffic entry point. Keep its
+    # visible counters, paid-service route, and commercial truth boundary under
+    # regression test without pretending a source check proves live deployment.
+    showroom_path = ROOT / "showroom-public-interface.html"
+    if not showroom_path.is_file():
+        errors.append("Missing production showroom: showroom-public-interface.html")
+    else:
+        showroom_source = showroom_path.read_text(encoding="utf-8")
+        for required in (
+            'id="count"',
+            'id="produced"',
+            'id="qc"',
+            'id="dispatch"',
+            'id="cyclesToday"',
+            'id="dailyTelemetry"',
+            'id="continuousTelemetry"',
+            'generated/daily-automission-report.json',
+            'first-paid-pilot-offer.html',
+            'writing-research-enquiry.html',
+            'wa.me/918082935186',
+            'PRODUCED ≠ SOLD',
+            'QC PASS ≠ PAYMENT',
+        ):
+            if required.casefold() not in showroom_source.casefold():
+                errors.append(
+                    "showroom-public-interface.html is missing production/income contract: "
+                    + required
+                )
+
     # Check every local target and every fragment on HTML pages, not only the
     # two pages that are the main focus of this smoke suite.
     checked_links = 0
