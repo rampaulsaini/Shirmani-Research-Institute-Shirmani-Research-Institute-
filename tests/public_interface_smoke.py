@@ -12,7 +12,17 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = (ROOT / "showroom-public.html", ROOT / "heart-view-preview.html")
+PAGES = (
+    ROOT / "showroom-public.html",
+    ROOT / "heart-view-preview.html",
+    ROOT / "index.html",
+    ROOT / "public-interface-v3.html",
+    ROOT / "income-command-center.html",
+    ROOT / "supreme-showroom.html",
+    ROOT / "supreme-public-production-showroom.html",
+    ROOT / "writing-research-enquiry.html",
+    ROOT / "first-paid-pilot-offer.html",
+)
 REQUIRED_TEXT = {
     "showroom-public.html": (
         "Public Showroom",
@@ -90,7 +100,7 @@ def main() -> int:
         if parser is None:
             continue
         visible_text = " ".join(parser.text_parts)
-        for phrase in REQUIRED_TEXT[page.name]:
+        for phrase in REQUIRED_TEXT.get(page.name, ()):
             if phrase.casefold() not in visible_text.casefold():
                 errors.append(f"{page.relative_to(ROOT)} is missing required navigation/content text: {phrase}")
 
@@ -105,6 +115,99 @@ def main() -> int:
         for required in REQUIRED_SHOWROOM_ROUTES:
             if required not in local_paths:
                 errors.append(f"showroom-public.html is missing a required customer route: {required}")
+
+    # Public Interface v3 live telemetry contract (without recursively crawling its legacy links).
+    public_v3 = ROOT / "public-interface-v3.html"
+    if not public_v3.is_file():
+        errors.append("Missing required public entry point: public-interface-v3.html")
+    else:
+        source = public_v3.read_text(encoding="utf-8")
+        for required in (
+            'id="cycles24h"', 'id="success24h"', 'id="failed24h"',
+            'id="activeRuns"', 'id="productionFreshness"',
+            'api.github.com/repos/', '/actions/runs?branch=main',
+            'generated/live-production-state.json', 'NOT CONNECTED',
+            'स्वतंत्र QC', 'शून्य नहीं माना गया',
+        ):
+            if required.casefold() not in source.casefold():
+                errors.append(f"public-interface-v3.html is missing telemetry/truth-boundary requirement: {required}")
+        if "setInterval(" in source:
+            errors.append("public-interface-v3.html must not poll GitHub API continuously and risk exhausting unauthenticated rate limits")
+
+    # Check the current canonical income funnel's direct links too. Keep this
+    # deliberately one level deep: legacy pages linked from these entry points
+    # are not recursively crawled, but every CTA target must exist in the repo.
+    direct_customer_pages = (
+        ROOT / "public-interface-v3.html",
+        ROOT / "showroom/first-client-pilot-desk.html",
+        ROOT / "income-action-center.html",
+        ROOT / "showroom/global-product-sales-desk.html",
+        ROOT / "services-writing-research.html",
+    )
+    for page in direct_customer_pages:
+        parse_html(page, errors, parsed)
+
+    # The primary public entry must keep the paid-pilot path visible and honest.
+    public_v3_source = (ROOT / "public-interface-v3.html").read_text(encoding="utf-8")
+    for required in (
+        "id=\"income-first\"",
+        "₹499",
+        "₹999",
+        "₹1,499",
+        "showroom/first-client-pilot-desk.html",
+        "income-action-center.html",
+        "wa.me/918082935186",
+        "mailto:sainirampaul60@gmail.com",
+        "वे अपने-आप संदेश नहीं भेजते",
+        "ग्राहक की स्वीकृति",
+    ):
+        if required.casefold() not in public_v3_source.casefold():
+            errors.append(f"public-interface-v3.html is missing income-funnel requirement: {required}")
+
+    # Institutional outreach must offer a manual email-app handoff while
+    # rejecting non-email contacts; draft creation is not message delivery.
+    outreach = ROOT / "institutional-outreach-kit.html"
+    outreach_parser = parse_html(outreach, errors, parsed)
+    if outreach_parser:
+        outreach_source = outreach.read_text(encoding="utf-8")
+        for required in (
+            'id="openEmail"',
+            "$('openEmail').addEventListener",
+            "window.location.href='mailto:'+recipient",
+            "सत्यापित सार्वजनिक ईमेल पता",
+            "mailto:",
+        ):
+            if required.casefold() not in outreach_source.casefold():
+                errors.append(f"institutional-outreach-kit.html is missing safe email handoff requirement: {required}")
+
+    # The production showroom is a second high-traffic entry point. Keep its
+    # visible counters, paid-service route, and commercial truth boundary under
+    # regression test without pretending a source check proves live deployment.
+    showroom_path = ROOT / "showroom-public-interface.html"
+    if not showroom_path.is_file():
+        errors.append("Missing production showroom: showroom-public-interface.html")
+    else:
+        showroom_source = showroom_path.read_text(encoding="utf-8")
+        for required in (
+            'id="count"',
+            'id="produced"',
+            'id="qc"',
+            'id="dispatch"',
+            'id="cyclesToday"',
+            'id="dailyTelemetry"',
+            'id="continuousTelemetry"',
+            'generated/daily-automission-report.json',
+            'first-paid-pilot-offer.html',
+            'writing-research-enquiry.html',
+            'wa.me/918082935186',
+            'PRODUCED ≠ SOLD',
+            'QC PASS ≠ PAYMENT',
+        ):
+            if required.casefold() not in showroom_source.casefold():
+                errors.append(
+                    "showroom-public-interface.html is missing production/income contract: "
+                    + required
+                )
 
     # Check every local target and every fragment on HTML pages, not only the
     # two pages that are the main focus of this smoke suite.
@@ -140,7 +243,7 @@ def main() -> int:
         for control_id in orphan_controls:
             if f'id="{control_id}"' in source:
                 import re
-                pattern = rf'<(?:input|select|textarea)\\b(?=[^>]*\\bid="{re.escape(control_id)}")[^>]*aria-label='
+                pattern = rf'<(?:input|select|textarea)\b(?=[^>]*\bid="{re.escape(control_id)}")[^>]*aria-label='
                 if re.search(pattern, source, flags=re.IGNORECASE):
                     continue
                 errors.append(f"{page.relative_to(ROOT)} has a form control without a matching label/aria-label: {control_id}")

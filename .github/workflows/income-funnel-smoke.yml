@@ -1,0 +1,42 @@
+name: Income Funnel Smoke Gate
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "first-paid-pilot-offer.html"
+      - "showroom/global-product-sales-desk.html"
+      - "showroom-public-interface.html"
+      - "writing-research-enquiry.html"
+      - "income-action-center.html"
+      - "tests/income_funnel_smoke.py"
+      - ".github/workflows/income-funnel-smoke.yml"
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "first-paid-pilot-offer.html"
+      - "showroom/global-product-sales-desk.html"
+      - "showroom-public-interface.html"
+      - "writing-research-enquiry.html"
+      - "income-action-center.html"
+      - "tests/income_funnel_smoke.py"
+      - ".github/workflows/income-funnel-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  income-funnel-smoke:
+    name: Validate public customer-to-income path
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Check canonical offer and enquiry routes
+        run: python tests/income_funnel_smoke.py

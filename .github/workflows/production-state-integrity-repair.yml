@@ -8,7 +8,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: shirmani-production-state-integrity-repair
+  group: shirmani-production-state-writer
   cancel-in-progress: false
 jobs:
   repair:
@@ -32,15 +32,15 @@ jobs:
           git fetch origin automation/production-state
           git worktree add --detach /tmp/shirmani-production-state FETCH_HEAD
           echo "PRODUCTION_STATE_HEAD=$(git rev-parse FETCH_HEAD)" >> "$GITHUB_ENV"
-      - name: Detect conflict markers
+      - name: Detect conflict markers and missing production assets
         id: detect
         shell: bash
         run: |
           python - <<'PY'
-          import os
+          import json, os
           from pathlib import Path
           root=Path("/tmp/shirmani-production-state")
-          markers=("<<<<<<< ","======= ",">>>>>>> ")
+          markers=("<<<<<<< ", "======= ", ">>>>>>> ")
           hits=[]
           for p in root.rglob("*"):
               if not p.is_file() or ".git" in p.parts or p.stat().st_size>8_000_000:
@@ -48,10 +48,37 @@ jobs:
               try: text=p.read_text(encoding="utf-8")
               except (UnicodeDecodeError,OSError): continue
               if any(m in text for m in markers): hits.append(str(p.relative_to(root)))
+          gen=root/"generated"
+          reasons=[]
+          if hits:
+              reasons.append("conflict_markers")
+          try:
+              catalog=json.loads((gen/"1000-digital-products.json").read_text(encoding="utf-8"))
+              target=int(catalog.get("product_count",len(catalog.get("products",[]))))
+              concrete=len(list((root/"products/concrete").glob("*.html")))
+              production=len(list((root/"products/production").glob("*.html")))
+              overlay=json.loads((gen/"concrete-production-overlay.json").read_text(encoding="utf-8"))
+              overlay_rows=len(overlay.get("products",[]))
+              print("PRODUCTION_ASSET_COUNTS",json.dumps({
+                  "catalog_target":target,
+                  "concrete_assets":concrete,
+                  "production_assets":production,
+                  "overlay_rows":overlay_rows
+              },sort_keys=True))
+              if concrete != target:
+                  reasons.append("concrete_asset_count_mismatch")
+              if production != target:
+                  reasons.append("production_asset_count_mismatch")
+              if overlay_rows != target:
+                  reasons.append("overlay_row_count_mismatch")
+          except (OSError,ValueError,TypeError,json.JSONDecodeError) as exc:
+              reasons.append("production_state_unreadable")
+              print("PRODUCTION_STATE_READ_ERROR",str(exc))
           print("CONFLICT_MARKER_FILES",len(hits))
           for x in hits[:50]: print("CONFLICT",x)
+          print("REPAIR_REASONS",json.dumps(reasons))
           with open(os.environ["GITHUB_OUTPUT"],"a") as out:
-              out.write("repair_needed="+("true" if hits else "false")+"\\n")
+              out.write("repair_needed="+("true" if reasons else "false")+"\n")
           PY
       - name: Repair and rebuild production-state
         if: \${{ steps.detect.outputs.repair_needed == 'true' }}
@@ -67,6 +94,7 @@ jobs:
           cp "$GITHUB_WORKSPACE/factory/product_qr_asset_factory.py" factory/product_qr_asset_factory.py
           cp "$GITHUB_WORKSPACE/factory/product_visual_qc_gate.py" factory/product_visual_qc_gate.py
           cp "$GITHUB_WORKSPACE/factory/public_production_materializer.py" factory/public_production_materializer.py
+          cp "$GITHUB_WORKSPACE/factory/qc_state_contract.py" factory/qc_state_contract.py
           cp "$GITHUB_WORKSPACE/assets/shirmani-perspective-logo.svg" assets/shirmani-perspective-logo.svg
           python3 factory/public_module_inventory.py
           python3 factory/real_product_factory.py
@@ -85,7 +113,7 @@ jobs:
               if asset.is_file():
                   rows.append({**p,"production_state":"PRODUCED","status":"READY_FOR_QC"})
           overlay={"schema_version":1,"production_first":True,"product_count":len(cat.get("products",[])),"produced_count":len(rows),"products":rows}
-          (gen/"concrete-production-overlay.json").write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          (gen/"concrete-production-overlay.json").write_text(json.dumps(overlay,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print("CONCRETE_PRODUCTION_OVERLAY",len(rows))
           PY
           python3 - <<'PY'
@@ -141,7 +169,7 @@ jobs:
             "qc_state":"READY_FOR_QC",
             "truth_boundary":"Produced artifacts, QC, dispatch and independent verification are distinct states."
           }
-          (gen/"live-production-state.json").write_text(json.dumps(live,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          (gen/"live-production-state.json").write_text(json.dumps(live,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           four={
             "generated_at":now,"mode":"CONTINUOUS_FOUR_STAGE_PRODUCTION",
             "chat_required_for_continuity":False,
@@ -154,13 +182,75 @@ jobs:
             ],
             "production_contract":{"schedule":"every 5 minutes","continuity_without_chat":True,"verification":"downstream"}
           }
-          (gen/"four-stage-production-status.json").write_text(json.dumps(four,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+          (gen/"four-stage-production-status.json").write_text(json.dumps(four,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           for filename,payload in {
               "concrete-product-production-status.json":{"generated_at":now,"catalog_products":target,"concrete_product_assets":concrete,"state":"COMPLETE" if concrete>=target else "IN_PROGRESS","dispatch":"NO"},
               "concrete-product-depth-status.json":{"generated_at":now,"catalog_products":target,"depth_upgraded":production,"state":"READY"},
               "continuous-production-batch-status.json":{"generated_at":now,"catalog_products":target,"produced_total":concrete,"produced_this_cycle":concrete,"remaining":max(0,target-concrete),"dispatch_released":0,"verification":"DOWNSTREAM"}
           }.items():
               (gen/filename).write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          PY
+          # Reconcile the freshly generated QC gate into public state after the
+          # repair workflow writes its initial READY_FOR_QC placeholder.
+          python3 - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path.cwd()))
+          from factory.qc_state_contract import sync_public_qc_state
+          gen = Path("generated")
+          catalog = json.loads((gen / "1000-digital-products.json").read_text(encoding="utf-8"))
+          passed = sync_public_qc_state(Path("."), int(catalog.get("product_count", 0)))
+          live = json.loads((gen / "live-production-state.json").read_text(encoding="utf-8"))
+          print(json.dumps({
+              "qc_passed": passed,
+              "qc_state": live.get("qc_state"),
+              "state": live.get("state"),
+              "dispatch_released": live.get("dispatch_released"),
+              "sales_claimed": live.get("sales_claimed"),
+              "payment_claimed": live.get("payment_claimed"),
+          }, sort_keys=True))
+          if any(live.get(key, 0) != 0 for key in ("dispatch_released", "sales_claimed", "payment_claimed")):
+              raise SystemExit("PUBLIC_STATE_FAIL: QC reconciliation must not infer downstream commercial events")
+          PY
+      - name: Validate coherent production cycle before publish
+        if: ${{ steps.detect.outputs.repair_needed == 'true' }}
+        working-directory: /tmp/shirmani-production-state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          gen = Path("generated")
+          def rows(path):
+              p = gen / path
+              return [json.loads(line) for line in p.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+          queue = rows("production-work-queue.jsonl")
+          results = rows("production-results.jsonl")
+          if not queue or not results:
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: queue/results must both be non-empty")
+          qids = [str(row.get("task_id", "")) for row in queue]
+          rids = [str(row.get("task_id", "")) for row in results]
+          if len(qids) != len(set(qids)) or len(rids) != len(set(rids)):
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: duplicate task IDs")
+          if set(qids) != set(rids) or len(queue) != len(results):
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: queue and results do not match one-to-one")
+          qcycles = {int(row.get("cycle", -1)) for row in queue}
+          rcycles = {int(row.get("cycle", -1)) for row in results}
+          if len(qcycles) != 1 or qcycles != rcycles:
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: queue/results cycle mismatch")
+          cycle = next(iter(qcycles))
+          archive = json.loads((gen / "public-production/archive/index.json").read_text(encoding="utf-8"))
+          if int(archive.get("latest_cycle", -1)) != cycle:
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: archive latest cycle does not match active results")
+          shard = gen / "public-production" / "archive" / f"production-cycle-{cycle:06d}.jsonl"
+          shard_rows = rows(str(shard.relative_to(gen)))
+          if len(shard_rows) != len(results) or {str(x.get("task_id", "")) for x in shard_rows} != set(rids):
+              raise SystemExit("PRODUCTION_CYCLE_GATE_FAIL: latest archive shard does not match active results")
+          print(json.dumps({"cycle": cycle, "queue_rows": len(queue), "result_rows": len(results), "archive_rows": len(shard_rows), "gate": "PASS"}, sort_keys=True))
           PY
       - name: Fail if conflict markers remain
         if: \${{ steps.detect.outputs.repair_needed == 'true' }}
@@ -176,7 +266,7 @@ jobs:
               except (UnicodeDecodeError,OSError): continue
               if any(m in text for m in markers): hits.append(str(p))
           if hits:
-              print("\\n".join(hits[:100]))
+              print("\n".join(hits[:100]))
               raise SystemExit("PRODUCTION_STATE_INTEGRITY_FAIL")
           print("PRODUCTION_STATE_INTEGRITY_CLEAN")
           PY
@@ -191,8 +281,19 @@ jobs:
           git add generated products factory assets
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "fix(production): repair production-state conflicts and rebuild public outputs"
-          # Another production cycle may update this branch while repair runs.
-          # Integrate the latest remote head before pushing; never force-push production state.
-          git fetch origin automation/production-state
-          git merge --no-edit FETCH_HEAD
-          git push origin HEAD:automation/production-state
+          # Another production cycle can update this branch between fetch and push.
+          # Retry with the latest head; never force-push production state.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin automation/production-state
+            # Prefer this run's freshly rebuilt outputs for overlapping generated files.
+            # Keep non-conflicting updates from concurrent production cycles.
+            git merge --no-edit -X ours FETCH_HEAD
+            if git push origin HEAD:automation/production-state; then
+              echo "PRODUCTION_STATE_PUBLISH_OK attempt=$attempt"
+              exit 0
+            fi
+            echo "PRODUCTION_STATE_PUBLISH_RETRY attempt=$attempt"
+            sleep "$((attempt * 2))"
+          done
+          echo "PRODUCTION_STATE_PUBLISH_FAILED after 5 attempts"
+          exit 1

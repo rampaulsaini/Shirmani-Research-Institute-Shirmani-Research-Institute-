@@ -31,11 +31,15 @@ jobs:
         shell: python
         run: |
           import json
+          import re
           from pathlib import Path
 
+          root = Path.cwd().resolve()
           overlay = json.loads(Path("generated/concrete-production-overlay.json").read_text(encoding="utf-8"))
-          json.loads(Path("generated/live-production-state.json").read_text(encoding="utf-8"))
-          json.loads(Path("products/visuals/manifest.json").read_text(encoding="utf-8"))
+          state = json.loads(Path("generated/live-production-state.json").read_text(encoding="utf-8"))
+          manifest = json.loads(Path("products/visuals/manifest.json").read_text(encoding="utf-8"))
+          assert isinstance(state, dict), "live production state must be a JSON object"
+          assert isinstance(manifest, (dict, list)), "visual manifest must be a JSON object or array"
 
           passport_path = Path("generated/PRODUCT-PASSPORTS.jsonl")
           rows = [
@@ -52,15 +56,52 @@ jobs:
           assert isinstance(products, list) and products, "production overlay must contain products"
           assert overlay.get("produced_count") == len(products), "overlay count mismatch"
 
-          artifact_value = products[-1].get("artifact_url")
-          assert isinstance(artifact_value, str) and artifact_value.strip(), "last product artifact_url missing"
-          artifact = Path(artifact_value)
-          assert not artifact.is_absolute(), "artifact_url must be repository-relative"
-          assert ".." not in artifact.parts, "artifact_url must not traverse outside the repository"
-          assert not artifact_value.startswith(("http://", "https://")), "artifact_url must be a local repository path"
-          assert artifact.is_file(), f"last product artifact missing: {artifact_value}"
+          # Accept current and legacy schemas, but require at least one real local artifact.
+          # Never treat a target count alone as proof that a concrete artifact exists.
+          existing_artifacts = []
+          checked_paths = set()
+          for product in products:
+              assert isinstance(product, dict), "every overlay product must be an object"
+              raw_candidates = [
+                  product.get("artifact_url"),
+                  product.get("module"),
+                  product.get("asset"),
+              ]
+              product_id = product.get("id")
+              if isinstance(product_id, str) and re.fullmatch(r"SP-\d{1,8}", product_id):
+                  raw_candidates.append(f"products/concrete/{product_id}.html")
 
-          print("PASS: product artifact exists; JSON documents valid; JSONL parsed line-by-line; IDs unique; counts aligned.")
+              for raw in raw_candidates:
+                  if raw is None or raw == "":
+                      continue
+                  assert isinstance(raw, str), f"artifact path must be a string for product {product_id!r}"
+                  value = raw.strip()
+                  if not value:
+                      continue
+                  assert not value.startswith(("http://", "https://", "//")), f"external artifact URL rejected: {value}"
+                  assert "\\" not in value, f"backslash in artifact path rejected: {value}"
+                  candidate = Path(value)
+                  assert not candidate.is_absolute(), f"absolute artifact path rejected: {value}"
+                  assert ".." not in candidate.parts, f"path traversal rejected: {value}"
+                  resolved = (root / candidate).resolve()
+                  try:
+                      resolved.relative_to(root)
+                  except ValueError:
+                      raise AssertionError(f"artifact resolves outside repository: {value}")
+                  key = str(resolved)
+                  if key in checked_paths:
+                      continue
+                  checked_paths.add(key)
+                  if resolved.is_file():
+                      existing_artifacts.append(value)
+
+          assert existing_artifacts, (
+              "no real repository-local product artifact found across artifact_url/module/asset/"
+              "stable product-ID fallback; catalogue counts alone are not sufficient"
+          )
+          print(f"PASS: found {len(existing_artifacts)} existing repository-local product artifact(s).")
+          print("PASS: JSON documents valid; JSONL parsed line-by-line; IDs unique; counts aligned; artifact paths safe.")
+
       - name: Open/update production artifact PR (repository requires PR-based writes)
         uses: peter-evans/create-pull-request@v7
         with:

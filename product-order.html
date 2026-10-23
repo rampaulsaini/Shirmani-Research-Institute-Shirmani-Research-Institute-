@@ -4,8 +4,8 @@
 <style>
 body{margin:0;background:#060a12;color:#f4f7fb;font:16px/1.65 system-ui,sans-serif}.wrap{max-width:980px;margin:auto;padding:22px}.hero,.card{background:#101925;border:1px solid #33485d;border-radius:18px;padding:22px;margin:14px 0}h1,h2{color:#ffd84a}.price{font-size:2.2rem;font-weight:900;color:#ffd84a}.offer{color:#72e6aa;font-weight:800}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.kv{padding:13px;border:1px solid #33485d;border-radius:12px;background:#0a121d}.btn{display:inline-block;padding:11px 15px;border-radius:10px;text-decoration:none;font-weight:900;background:#ffd84a;color:#111;margin:5px}.alt{background:#12283a;color:#67e8f9;border:1px solid #3c6680}.muted{color:#aeb9c7}.qr{text-align:center}.qr img{width:220px;max-width:90%;background:#fff;padding:10px;border-radius:14px}code{color:#67e8f9}
 </style></head><body><main class="wrap">
-<section class="hero"><a class="btn alt" href="showroom.html">← Showroom</a><h1 id="name">Product Order</h1><p id="desc" class="muted">Loading…</p><div id="price" class="price"></div><div id="offer" class="offer"></div></section>
-<section class="card"><h2>🛒 Order / Payment</h2><p>Product ID को payment note/reference में लिखें। Payment से पहले अपने app में payee name, UPI ID और amount स्वयं verify करें।</p>
+<section class="hero"><a class="btn alt" href="showroom.html">← Showroom</a><h1 id="name">Product Order</h1><p id="desc" class="muted">Loading…</p><div id="price" class="price"></div><div id="offer" class="offer"></div><p id="commercialNote" class="muted">Payment stays unavailable until an approved product price and order terms are recorded.</p><a id="enquiry" class="btn alt" href="mailto:sainirampaul60@gmail.com">Ask for a written quote</a><a id="whatsappEnquiry" class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/918082935186?text=Namaste%2C%20please%20send%20a%20written%20quote%20and%20confirm%20terms%20before%20payment.">WhatsApp पर पूछताछ</a></section>
+<section class="card" id="paymentSection" hidden><h2>🛒 Order / Payment</h2><p>केवल प्रकाशित approved price और लिखित order terms के बाद भुगतान करें। Payment से पहले अपने app में payee name, UPI ID और amount स्वयं verify करें।</p>
 <div class="grid"><div class="kv"><b>Paytm / UPI</b><br><code>9622254967@ptyes</code><br><a id="upi" class="btn" href="#">📲 UPI से भुगतान</a></div>
 <div class="kv"><b>PayPal</b><br><code>sainirampaul60@gmail.com</code><br><a class="btn alt" href="https://paypal.me/sainirampaul60" target="_blank" rel="noopener">PayPal खोलें</a></div>
 <div class="kv qr"><b>Funding / Support QR</b><br><img src="assets/funding-upi-qr.svg" alt="Paytm UPI QR"><br><span class="muted">Generic UPI support QR</span></div></div></section>
@@ -15,7 +15,7 @@ body{margin:0;background:#060a12;color:#f4f7fb;font:16px/1.65 system-ui,sans-ser
 const id=new URLSearchParams(location.search).get("id")||"";
 const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
-function pricing(p,i){const f=(p.family||"").toLowerCase();let base=f.includes("commerce")?499:f.includes("research")?799:(f.includes("ai")||f.includes("ml")||f.includes("nlp"))?699:f.includes("creator")?399:f.includes("education")?299:f.includes("nature")?499:f.includes("seo")?199:f.includes("text")?149:f.includes("math")?99:199;let offer=i%20===0?Math.round(base*.8):i%5===0?Math.round(base*.9):base;return{base,offer,text:i%20===0?"SUPREME 20% OFFER":i%5===0?"LIMITED 10% OFFER":"PUBLIC LAUNCH PRICE"}}
+function approvedPrice(p){const amount=Number(p.price_inr);return p.commercial_status==="PRICE_APPROVED" && Number.isFinite(amount) && amount>0;}
 async function load(){
   let products=[];
   try{
@@ -30,6 +30,33 @@ async function load(){
     document.getElementById("offer").textContent="NOT READY FOR ORDER";
     return;
   }
-  const q=pricing(p,i);document.getElementById("name").textContent=p.name;document.getElementById("desc").textContent=p.description||"Concrete public digital product.";document.getElementById("price").textContent=money(q.offer);document.getElementById("offer").textContent=q.text+(q.offer<q.base?" · regular "+money(q.base):"");const upi="upi://pay?pa=9622254967@ptyes&pn=Shirmani%20Research%20Institute&am="+q.offer+"&cu=INR&tn="+encodeURIComponent("SHIRMANI "+p.id);document.getElementById("upi").href=upi;document.getElementById("passport").innerHTML=[["Product ID",p.id],["Family",p.family],["Engine",p.engine],["Production",p.production_state||p.status],["QC",p.qc_code||"QC-PENDING"],["Gate",p.gate_no||"GATE-PRODUCTION"],["Dispatch",p.dispatch_no||"NO"],["Commercial","PAYMENT_ROUTE_CONFIGURED"]].map(x=>'<div class="kv"><small class="muted">'+esc(x[0])+'</small><br><code>'+esc(x[1])+'</code></div>').join("")}
+  document.getElementById("name").textContent=p.name||("Product "+p.id);document.getElementById("desc").textContent=p.description||"Concrete public digital product. Confirm exact deliverables and terms before ordering.";
+  const hasApprovedPrice=approvedPrice(p);
+  if(hasApprovedPrice){
+    const amount=Number(p.price_inr);
+    document.getElementById("price").textContent=money(amount);
+    document.getElementById("offer").textContent="Approved published price";
+    document.getElementById("commercialNote").textContent="यह price product record में PRICE_APPROVED है। भुगतान से पहले Product ID, deliverables, delivery timeline, support/revisions और refund/payment terms की लिखित पुष्टि email से लें; payee और amount अपने payment app में verify करें।";
+    document.getElementById("paymentSection").hidden=false;
+    const upi="upi://pay?pa=9622254967@ptyes&pn=Shirmani%20Research%20Institute&am="+amount+"&cu=INR&tn="+encodeURIComponent("SHIRMANI "+p.id);
+    document.getElementById("upi").href=upi;
+    document.getElementById("enquiry").textContent="Confirm order details by email";
+    const subject="SHIRMANI order confirmation request — "+p.id;
+    const body="Before I pay, please confirm in writing:\nProduct ID: "+p.id+"\nProduct: "+(p.name||"Not recorded")+"\nPublished approved price: INR "+amount+"\n\nPlease confirm exact deliverables, delivery timeline, support/revisions, payment recipient, payment terms and refund/cancellation policy. I will pay only after reviewing your reply.\n\nCustomer name: [fill in]\nPreferred reply email: [fill in]\nAdditional requirements: [fill in]";
+    document.getElementById("enquiry").href="mailto:sainirampaul60@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+    const waBody="Namaste, please confirm this product order before payment. Product ID: "+p.id+"; Product: "+(p.name||"Not recorded")+"; approved published price: INR "+amount+". Please confirm deliverables, delivery timeline, support/revisions, payment recipient, payment terms and refund/cancellation policy in writing. I will pay only after reviewing your reply.";
+    document.getElementById("whatsappEnquiry").href="https://wa.me/918082935186?text="+encodeURIComponent(waBody);
+  }else{
+    document.getElementById("price").textContent="Quote required";
+    document.getElementById("offer").textContent="PAYMENT PAUSED · NO APPROVED PRICE RECORD";
+    document.getElementById("commercialNote").textContent="इस product के लिए approved price record उपलब्ध नहीं है। कृपया पहले लिखित quote, deliverables, delivery time और refund/payment terms तय करें। इस पेज से भुगतान शुरू न करें।";
+    document.getElementById("paymentSection").hidden=true;
+    const subject="SHIRMANI quote request — "+p.id;
+    const body="Please provide a written quote for product "+p.id+". Confirm deliverables, delivery timeline, support/revisions, payment terms and refund policy before I decide.";
+    document.getElementById("enquiry").href="mailto:sainirampaul60@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+    const waBody="Namaste, please provide a written quote for product "+p.id+". Confirm deliverables, delivery timeline, support/revisions, payment terms and refund policy before I decide. No payment until the terms are agreed.";
+    document.getElementById("whatsappEnquiry").href="https://wa.me/918082935186?text="+encodeURIComponent(waBody);
+  }
+  document.getElementById("passport").innerHTML=[["Product ID",p.id],["Family",p.family||"Not recorded"],["Engine",p.engine||"Not recorded"],["Production",p.production_state||p.status||"Not recorded"],["QC",p.qc_code||"QC-PENDING"],["Gate",p.gate_no||"GATE-PRODUCTION"],["Dispatch",p.dispatch_no||"NO"],["Commercial",hasApprovedPrice?"PRICE_APPROVED":"QUOTE_REQUIRED"]].map(x=>'<div class="kv"><small class="muted">'+esc(x[0])+'</small><br><code>'+esc(x[1])+'</code></div>').join("")}
 load().catch(e=>document.getElementById("desc").textContent="Product data unavailable: "+e.message);
 </script></main></body></html>

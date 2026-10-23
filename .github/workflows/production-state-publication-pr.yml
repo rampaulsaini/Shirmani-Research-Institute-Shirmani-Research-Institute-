@@ -1,0 +1,314 @@
+name: SHIRMANI Publish Repaired Production State Through PR
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/production-state-publication-pr.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: shirmani-production-state-publication-pr
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Fetch repaired production-state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin automation/production-state:refs/remotes/origin/automation/production-state
+          git checkout origin/automation/production-state -- \
+            products/concrete \
+            products/visuals/qr \
+            generated/concrete-production-overlay.json \
+            generated/live-production-state.json \
+            generated/product-qc-gate.json \
+            generated/concrete-product-asset-status.json \
+            generated/concrete-product-production-status.json \
+            generated/concrete-product-depth-status.json \
+            generated/continuous-production-batch-status.json \
+            generated/four-stage-production-status.json \
+            generated/production-work-queue.jsonl \
+            generated/production-results.jsonl \
+            generated/public-production-catalog.json \
+            generated/public-production-index.html \
+            generated/public-production-module-index.json \
+            generated/public-production-by-module.html \
+            generated/PRODUCTION-TRUTH.json \
+            generated/multi-layer-production-state.json \
+            generated/multi-layer-production-status.json \
+            generated/MULTI-LAYER-PRODUCTION.md \
+            generated/public-production
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path(".")
+          catalog = json.loads((root / "generated/1000-digital-products.json").read_text(encoding="utf-8"))
+          state = json.loads((root / "generated/live-production-state.json").read_text(encoding="utf-8"))
+          overlay = json.loads((root / "generated/concrete-production-overlay.json").read_text(encoding="utf-8"))
+          products = catalog.get("products", [])
+          target = int(catalog.get("product_count", len(products)))
+          ids = [str(p.get("id", "")).strip() for p in products if isinstance(p, dict) and p.get("id")]
+          if len(ids) != target or len(set(ids)) != target:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: catalog IDs are missing or duplicated")
+
+          # Reconcile stale production metadata from the actual catalog and files.
+          # Existing detailed rows are preserved; missing rows only attest to an
+          # existing asset file and remain explicitly unverified.
+          concrete_dir = root / "products/concrete"
+          concrete_files = {
+              path.stem.casefold(): path
+              for path in concrete_dir.glob("*.html")
+              if path.is_file() and path.stat().st_size > 0
+          }
+          existing_rows = {
+              str(row.get("id", "")).strip().casefold(): row
+              for row in overlay.get("products", [])
+              if isinstance(row, dict) and row.get("id")
+          }
+          reconciled_rows = []
+          for product in products:
+              if not isinstance(product, dict) or not product.get("id"):
+                  continue
+              product_id = str(product["id"]).strip()
+              asset = concrete_files.get(product_id.casefold())
+              if asset is None:
+                  continue
+              row = existing_rows.get(product_id.casefold())
+              if row is None:
+                  row = {
+                      "id": product_id,
+                      "name": str(product.get("name") or product_id),
+                      "asset_path": asset.as_posix(),
+                      "asset_present": True,
+                      "verification_status": "UNVERIFIED",
+                      "sales_status": "NOT_RECORDED"
+                  }
+              else:
+                  row = dict(row)
+                  row["asset_path"] = asset.as_posix()
+                  row["asset_present"] = True
+                  row.setdefault("verification_status", "UNVERIFIED")
+                  row.setdefault("sales_status", "NOT_RECORDED")
+              reconciled_rows.append(row)
+
+          overlay["generated_at"] = __import__("datetime").datetime.now(
+              __import__("datetime").timezone.utc
+          ).isoformat()
+          overlay["products"] = reconciled_rows
+          overlay["catalog_count"] = target
+          overlay["asset_present_count"] = len(reconciled_rows)
+          overlay["verification_status"] = "UNVERIFIED_UNLESS_INDEPENDENT_EVIDENCE_EXISTS"
+          (root / "generated/concrete-production-overlay.json").write_text(
+              json.dumps(overlay, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+
+          state["generated_at"] = overlay["generated_at"]
+          state["catalog_identities"] = target
+          state["concrete_repository_assets"] = len(reconciled_rows)
+          state["current_catalog_pending"] = max(0, target - len(reconciled_rows))
+          state["concrete_materialization_percent_of_catalog"] = round(
+              100 * len(reconciled_rows) / target, 2
+          ) if target else 0
+          state["concrete_materialization_percent_of_scale_target"] = state[
+              "concrete_materialization_percent_of_catalog"
+          ]
+          state["product_qr_assets"] = len(list((root / "products/visuals/qr").glob("*.svg")))
+          state.setdefault("dispatch_released", 0)
+          state.setdefault("sales_claimed", 0)
+          state.setdefault("payment_claimed", 0)
+          state.setdefault("independent_verification_claimed", 0)
+          state["state"] = "PRODUCTION_ASSETS_PRESENT_UNVERIFIED" if len(reconciled_rows) == target else "PRODUCTION_IN_PROGRESS"
+          (root / "generated/live-production-state.json").write_text(
+              json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+
+          # The source branch may contain a stale READY_FOR_QC placeholder even
+          # when the QC artifact has already passed. Reconcile QC only after all
+          # production-state rewrites, so the public state cannot lag its QC gate.
+          import sys
+          sys.path.insert(0, str(root))
+          from factory.qc_state_contract import sync_public_qc_state
+          qc_passed = sync_public_qc_state(root, target)
+          state = json.loads((root / "generated/live-production-state.json").read_text(encoding="utf-8"))
+          status_path = root / "generated/concrete-product-asset-status.json"
+          status = json.loads(status_path.read_text(encoding="utf-8")) if status_path.is_file() else {}
+          expected_qc_state = "QC_PASSED" if qc_passed else (
+              "QC_REVIEW_REQUIRED" if state.get("qc_state") == "QC_REVIEW_REQUIRED" else "READY_FOR_QC"
+          )
+          if state.get("qc_state") != expected_qc_state:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_FAILED: live QC state is inconsistent")
+          if status and status.get("qc_state") != expected_qc_state:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_FAILED: concrete asset QC state is inconsistent")
+          if any(state.get(key, 0) != 0 for key in (
+              "dispatch_released", "sales_claimed", "payment_claimed", "independent_verification_claimed"
+          )):
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_FAILED: QC must not imply dispatch, sales, payment, or verification")
+          print(json.dumps({
+              "qc_passed": qc_passed,
+              "qc_state": state.get("qc_state"),
+              "production_state": state.get("state"),
+              "dispatch_released": state.get("dispatch_released", 0),
+              "sales_claimed": state.get("sales_claimed", 0),
+              "payment_claimed": state.get("payment_claimed", 0),
+              "independent_verification_claimed": state.get("independent_verification_claimed", 0)
+          }, sort_keys=True))
+
+          production_status_path = root / "generated/concrete-product-production-status.json"
+          if production_status_path.exists():
+              production_status = json.loads(production_status_path.read_text(encoding="utf-8"))
+              production_status.update({
+                  "generated_at": overlay["generated_at"],
+                  "target": target,
+                  "concrete_produced": len(reconciled_rows),
+                  "concrete_production_percent": state["concrete_materialization_percent_of_catalog"],
+                  "remaining": max(0, target - len(reconciled_rows)),
+                  "overlay_claimed": len(reconciled_rows),
+                  "overlay_only_gap": 0,
+                  "status": state["state"],
+                  "next_layer": "independent functional verification → packaging → commercial listing → customer delivery evidence"
+              })
+              production_status_path.write_text(
+                  json.dumps(production_status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+              )
+
+          # Count the catalog's actual product identities, not every historical
+          # HTML page that happens to live in products/concrete.
+          concrete_ids = {
+              path.stem.casefold()
+              for path in (root / "products/concrete").glob("*.html")
+              if path.is_file() and path.stat().st_size > 0
+          }
+          matched_ids = sum(1 for product_id in ids if product_id.casefold() in concrete_ids)
+          qrs = len(list((root / "products/visuals/qr").glob("*.svg")))
+          overlay_rows = overlay.get("products", [])
+          overlay_ids = [
+              str(p.get("id", "")).strip()
+              for p in overlay_rows
+              if isinstance(p, dict) and p.get("id")
+          ]
+          rows = len(overlay_rows)
+          print(json.dumps({
+              "catalog_target": target,
+              "unique_catalog_ids": len(set(ids)),
+              "matched_concrete_catalog_assets": matched_ids,
+              "concrete_html_files_including_non_catalog": len(list((root / "products/concrete").glob("*.html"))),
+              "qr_assets": qrs,
+              "overlay_rows": rows,
+              "unique_overlay_ids": len(set(overlay_ids)),
+              "state_concrete_assets": state.get("concrete_repository_assets"),
+              "state_qr_assets": state.get("product_qr_assets")
+          }, sort_keys=True))
+
+          if matched_ids != target:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: catalog product files do not all exist")
+          if rows != target or len(set(overlay_ids)) != target or set(overlay_ids) != set(ids):
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: overlay rows must map one-to-one to catalog IDs")
+          if int(state.get("concrete_repository_assets", -1)) != matched_ids:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: live-state concrete count does not match catalog assets")
+          if qrs != int(state.get("product_qr_assets", -1)):
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: QR file count does not match production state")
+          PY
+      - name: Require fresh production cycle before public sync
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          now = datetime.now(timezone.utc)
+          required = {
+              "live_state": Path("generated/live-production-state.json"),
+              "multi_layer_status": Path("generated/multi-layer-production-status.json"),
+              "public_catalog": Path("generated/public-production-catalog.json"),
+              "lane_archive_index": Path("generated/public-production/archive/index.json"),
+          }
+          stamps = {}
+          errors = []
+          for label, path in required.items():
+              try:
+                  data = json.loads(path.read_text(encoding="utf-8"))
+                  stamp = datetime.fromisoformat(str(data["generated_at"]).replace("Z", "+00:00"))
+                  if stamp.tzinfo is None:
+                      stamp = stamp.replace(tzinfo=timezone.utc)
+                  age = (now - stamp.astimezone(timezone.utc)).total_seconds()
+                  stamps[label] = {"generated_at": stamp.isoformat(), "age_seconds": round(age)}
+                  if age < -120 or age > 1800:
+                      errors.append(f"{label} is stale or future-dated ({round(age)} seconds)")
+              except Exception as exc:
+                  errors.append(f"{label} missing or unreadable: {exc}")
+
+          for label in ("generated/production-work-queue.jsonl", "generated/production-results.jsonl"):
+              try:
+                  rows = sum(1 for line in Path(label).read_text(encoding="utf-8").splitlines() if line.strip())
+                  print(f"{label}: {rows} non-empty rows")
+                  if rows == 0:
+                      errors.append(f"{label} has no production rows")
+              except OSError as exc:
+                  errors.append(f"{label} unavailable: {exc}")
+
+          lane_files = list(Path("generated/public-production").glob("*.jsonl"))
+          print(f"Public production lane files: {len(lane_files)}")
+          if not lane_files:
+              errors.append("No public production lane JSONL files found")
+
+          print(json.dumps({"freshness": stamps, "errors": errors}, sort_keys=True))
+          if errors:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: " + "; ".join(errors))
+          PY
+      - name: Open/update pull request for public production state
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(production): publish repaired concrete assets and truthful state"
+          title: "Automission: publish repaired production assets and state"
+          body: |
+            Publishes validated concrete assets, the latest multi-layer production cycle, per-lane JSONL records, public indexes and truthful live-state counters to the public main branch through the repository's required pull-request path.
+
+            The gate validates unique catalog IDs, a one-to-one overlay-to-catalog mapping, actual catalog asset files, QR files, and live-state counts. Historical/non-catalog HTML files are not miscounted as catalog products.
+
+            Production assets are not proof of independent verification, sales, payment, or dispatch. Those remain separate downstream states.
+          branch: "automission/public-production-state-sync"
+          delete-branch: true
+          add-paths: |
+            products/concrete
+            products/visuals/qr
+            generated/concrete-production-overlay.json
+            generated/live-production-state.json
+            generated/product-qc-gate.json
+            generated/concrete-product-asset-status.json
+            generated/concrete-product-production-status.json
+            generated/concrete-product-depth-status.json
+            generated/continuous-production-batch-status.json
+            generated/four-stage-production-status.json
+            generated/production-work-queue.jsonl
+            generated/production-results.jsonl
+            generated/public-production-catalog.json
+            generated/public-production-index.html
+            generated/public-production-module-index.json
+            generated/public-production-by-module.html
+            generated/PRODUCTION-TRUTH.json
+            generated/multi-layer-production-state.json
+            generated/multi-layer-production-status.json
+            generated/MULTI-LAYER-PRODUCTION.md
+            generated/public-production
+      - name: Summary
+        if: always()
+        run: |
+          echo "Production-state synchronization is PR-based; this workflow never pushes directly to main." >> "$GITHUB_STEP_SUMMARY"

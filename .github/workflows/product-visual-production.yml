@@ -48,28 +48,27 @@ jobs:
         run: python3 factory/product_qr_asset_factory.py
       - name: Run fail-closed product visual QC gate
         run: python3 factory/product_visual_qc_gate.py
-      - name: Publish visual assets through PR and merge
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          git config user.name "SHIRMANI Product Visual Automission"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add products/visuals generated/product-visual-assets-v2.json generated/product-qr-assets.json factory/product_qr_asset_factory.py factory/product_visual_identity_factory_v2.py factory/product_visual_qc_gate.py assets/shirmani-perspective-logo.svg
-          if git diff --cached --quiet; then
-            echo "No visual production delta in this cycle."
-            exit 0
-          fi
-          git commit -m "feat(showroom): publish v2 product visual identity batch"
-          git fetch origin automation/production-state
-          git diff --binary HEAD^ -- products/visuals generated/product-visual-assets-v2.json generated/product-qr-assets.json factory/product_qr_asset_factory.py factory/product_visual_identity_factory_v2.py factory/product_visual_qc_gate.py assets/shirmani-perspective-logo.svg > /tmp/visual-production.patch || true
-          git checkout -B production-state origin/automation/production-state
-          if [ -s /tmp/visual-production.patch ]; then git apply /tmp/visual-production.patch; fi
-          git add products/visuals generated/product-visual-assets-v2.json generated/product-qr-assets.json factory/product_qr_asset_factory.py factory/product_visual_identity_factory_v2.py factory/product_visual_qc_gate.py assets/shirmani-perspective-logo.svg
-          if git diff --cached --quiet; then
-            echo "No production-state visual delta."
-            exit 0
-          fi
-          git commit -m "automission: publish product visual production state"
-          git push origin HEAD:automation/production-state
+      - name: Propose visual assets through a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/product-visual-production
+          delete-branch: false
+          add-paths: |
+            products/visuals
+            generated/product-visual-assets-v2.json
+            generated/product-qr-assets.json
+            factory/product_qr_asset_factory.py
+            factory/product_visual_identity_factory_v2.py
+            factory/product_visual_qc_gate.py
+            assets/shirmani-perspective-logo.svg
+          commit-message: "feat(showroom): publish v2 product visual identity batch"
+          title: "feat(showroom): publish v2 product visual identity batch"
+          body: |
+            Automated product visual and QR asset batch.
+
+            The workflow runs the fail-closed visual QC gate before opening this PR.
+            Review generated assets and manifests before merging.
+          labels: |
+            automated
+            product-media

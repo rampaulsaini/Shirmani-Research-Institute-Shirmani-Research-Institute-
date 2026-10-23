@@ -3,16 +3,52 @@ name: Public Interface Smoke Check
 on:
   pull_request:
     paths:
+      - "index.html"
+      - "income-command-center.html"
+      - "supreme-showroom.html"
+      - "supreme-public-production-showroom.html"
       - "showroom-public.html"
+      - "showroom-public-interface.html"
+      - "showroom/global-product-sales-desk.html"
+      - "contact.html"
+      - "writing-research-enquiry.html"
+      - "public-interface-v3.html"
       - "heart-view-preview.html"
+      - "index.html"
+      - "income-command-center.html"
+      - "supreme-showroom.html"
+      - "supreme-public-production-showroom.html"
+      - "writing-research-enquiry.html"
+      - "first-paid-pilot-offer.html"
       - "tests/public_interface_smoke.py"
+      - "factory/public_interface_link_smoke.py"
+      - "factory/production_completion_gate.py"
+      - "tests/test_production_completion_gate.py"
+      - "generated/live-production-state.json"
+      - "generated/product-qc-gate.json"
       - ".github/workflows/public-interface-smoke.yml"
   push:
     branches: [main]
     paths:
+      - "index.html"
+      - "income-command-center.html"
+      - "supreme-showroom.html"
+      - "supreme-public-production-showroom.html"
       - "showroom-public.html"
+      - "showroom-public-interface.html"
+      - "showroom/global-product-sales-desk.html"
+      - "contact.html"
+      - "writing-research-enquiry.html"
+      - "public-interface-v3.html"
       - "heart-view-preview.html"
+      - "index.html"
+      - "income-command-center.html"
+      - "supreme-showroom.html"
+      - "supreme-public-production-showroom.html"
+      - "writing-research-enquiry.html"
+      - "first-paid-pilot-offer.html"
       - "tests/public_interface_smoke.py"
+      - "factory/public_interface_link_smoke.py"
       - ".github/workflows/public-interface-smoke.yml"
   workflow_dispatch:
 
@@ -21,7 +57,7 @@ permissions:
 
 jobs:
   smoke-check:
-    name: Check public navigation and local links
+    name: Check public navigation and income funnel links
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -30,5 +66,20 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-      - name: Validate public pages
+      - name: Test production completion gate
+        run: python3 -m unittest discover -s tests -p 'test_production_completion_gate.py'
+      - name: Validate existing public-interface contract
         run: python tests/public_interface_smoke.py
+      - name: Check public entry and income funnel local links
+        run: >-
+          python factory/public_interface_link_smoke.py
+          index.html
+          public-interface-v3.html
+          first-paid-pilot-offer.html
+          income-command-center.html
+          supreme-showroom.html
+          supreme-public-production-showroom.html
+          showroom-public-interface.html
+          showroom/global-product-sales-desk.html
+          contact.html
+          writing-research-enquiry.html

@@ -1,11 +1,15 @@
 {
-  "generated_at": "2026-10-07T00:33:56.668047+00:00",
+  "generated_at": "2026-10-23T15:56:32.107366+00:00",
+  "catalog_products": 5000,
+  "concrete_product_assets": 5000,
+  "state": "COMPLETE",
+  "dispatch": "NO",
   "target": 5000,
-  "concrete_produced": 1516,
-  "concrete_production_percent": 30.32,
-  "remaining": 3484,
-  "overlay_claimed": 1516,
+  "concrete_produced": 5000,
+  "concrete_production_percent": 100.0,
+  "remaining": 0,
+  "overlay_claimed": 5000,
   "overlay_only_gap": 0,
-  "status": "IN_PROGRESS",
-  "next_layer": "QC → packaging → commercial listing → delivery evidence → independent review"
+  "status": "QC_PASSED_AWAITING_DISPATCH",
+  "next_layer": "independent functional verification → packaging → commercial listing → customer delivery evidence"
 }

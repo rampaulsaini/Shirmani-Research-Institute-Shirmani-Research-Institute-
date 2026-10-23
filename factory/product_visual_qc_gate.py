@@ -18,6 +18,7 @@ VISUAL_ROOT = ROOT / "products" / "visuals"
 QR_ROOT = VISUAL_ROOT / "qr"
 
 IDENTITY = "Shiromani Rampal Saini — Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present"
+PASSPORT_BASE = "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/product-passport.html?id="
 
 
 def load(path: Path) -> dict:
@@ -41,7 +42,8 @@ def main() -> None:
         if row.get("visual_version") != expected_version:
             continue
         checked += 1
-        pid = str(row.get("product_id", "")).lower()
+        product_id = str(row.get("product_id", ""))
+        pid = product_id.lower()
         visual_path = ROOT / str(row.get("asset_path", ""))
         qr_path = ROOT / str(row.get("qr_asset_path", ""))
 
@@ -49,21 +51,30 @@ def main() -> None:
             failures.append(f"{pid}: visual missing")
             continue
         text = visual_path.read_text(encoding="utf-8", errors="ignore")
+        if f"SHIRMANI_VISUAL_VERSION: {expected_version}" not in text:
+            failures.append(f"{pid}: rendered SVG does not match manifest version")
         if 'width="3840" height="2160"' not in text:
             failures.append(f"{pid}: visual canvas is not 3840x2160")
         if IDENTITY not in text:
             failures.append(f"{pid}: English identity line missing")
-        if "SHORT DESCRIPTION" not in text:
-            failures.append(f"{pid}: short-description label missing")
+        if "SHORT DESCRIPTION" not in text or '<tspan x="520"' not in text:
+            failures.append(f"{pid}: short description is missing wrapped/clamped text")
         if "SCAN FOR LONG DESCRIPTION" not in text:
             failures.append(f"{pid}: QR long-description label missing")
         if "i.ibb.co/" in text:
             failures.append(f"{pid}: external legacy image host still embedded")
         if not qr_path.is_file():
             failures.append(f"{pid}: product QR missing")
-        qr_row = qr_rows.get(str(row.get("product_id")))
+        if f'href="qr/{pid}.svg"' not in text:
+            failures.append(f"{pid}: visual QR reference does not match product-specific QR path")
+        qr_row = qr_rows.get(product_id)
         if not qr_row or not qr_row.get("exists"):
             failures.append(f"{pid}: QR manifest is not READY")
+        else:
+            if qr_row.get("long_description_url") != PASSPORT_BASE + product_id:
+                failures.append(f"{pid}: QR manifest target is not the matching product passport")
+            if qr_row.get("qr_asset_path") != str(qr_path.relative_to(ROOT)):
+                failures.append(f"{pid}: QR manifest path differs from visual manifest path")
 
     if checked == 0:
         raise SystemExit("QC_FAIL: no current-version visual assets were checked")

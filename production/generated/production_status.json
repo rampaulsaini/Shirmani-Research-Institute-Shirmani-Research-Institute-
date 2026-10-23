@@ -1,17 +1,13 @@
 {
-  "platform": "SHIRMANI Research Institute",
-  "mode": "production-first",
-  "pipeline": [
-    "INSTITUTE_DISCOVERY",
-    "FACTORY_PRODUCTION",
-    "QC_GATE",
-    "PUBLIC_SHOWROOM"
-  ],
-  "automation_interval_minutes": 5,
-  "seed_products": 24,
-  "production_target": "continuous multi-category digital product expansion",
-  "qc_role": "release gate after production",
-  "showroom_role": "public catalog and final sale presentation",
-  "purchase_destination": "https://rampaulsaini.github.io/my-omniverse-store/",
-  "generated_at": "AUTO"
+  "generated_at": "2026-10-23T05:27:00.078671+00:00",
+  "cycle_id": "717dd942",
+  "seed_products": 32,
+  "materialized_products": 40,
+  "new_products_this_cycle": 8,
+  "factory_mode": "CONTINUOUS_MULTI_LAYER",
+  "next_stage": "QC_GATE_THEN_SHOWROOM",
+  "verification_is_downstream": "true",
+  "production_target": "continuous expansion",
+  "bounded_catalog_window": 5000,
+  "parametric_factory": "enabled"
 }
