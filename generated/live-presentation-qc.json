@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-10-23T18:22:30.286437+00:00",
+  "subsystem": "voice-authorized-live-presentation",
+  "qc": "PASS",
+  "dynamic_external_voice_provider": "NOT_CONNECTED",
+  "lip_sync": "AUDIO_REACTIVE_DEMO",
+  "phoneme_accurate_sync": "NOT_YET_ESTABLISHED",
+  "evidence_gate": "ENABLED",
+  "independent_verification": "SEPARATE_DOWNSTREAM_GATE"
+}
