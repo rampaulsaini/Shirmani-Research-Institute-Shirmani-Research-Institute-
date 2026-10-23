@@ -162,7 +162,7 @@ jobs:
           if any(row.get("production_state") != "PRODUCED" for row in rows):
               raise SystemExit("QC refresh blocked: overlay contains non-produced rows")
           (gen / "concrete-production-overlay.json").write_text(
-              json.dumps(concrete, ensure_ascii=False, indent=2) + "\\n",
+              json.dumps(concrete, ensure_ascii=False, indent=2) + "\n",
               encoding="utf-8",
           )
           PY
