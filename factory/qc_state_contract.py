@@ -43,6 +43,7 @@ def sync_public_qc_state(root: Path, catalog_count: int) -> bool:
         status = json.loads(status_path.read_text(encoding="utf-8"))
         status.update({
             "state": state,
+            "qc_state": state,
             "qc_passed": qc.get("qc_passed", 0) if passed else 0,
             "qc_failed": qc.get("qc_failed", 0) if passed else qc.get("qc_failed", 0),
             "qc_generated_at": qc.get("generated_at"),
