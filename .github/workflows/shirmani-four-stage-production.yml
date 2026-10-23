@@ -39,18 +39,30 @@ jobs:
           live = json.loads(live_path.read_text(encoding="utf-8")) if live_path.is_file() else {}
           qc = json.loads(qc_path.read_text(encoding="utf-8")) if qc_path.is_file() else {}
 
-          target = int(live.get("five_thousand_scale_target", 5000) or 5000)
-          produced = int(live.get("concrete_repository_assets", 0) or 0)
-          passed = int(qc.get("qc_passed", live.get("qc_passed", 0)) or 0)
-          failed = int(qc.get("qc_failed", live.get("qc_failed", 0)) or 0)
-          qc_state = str(live.get("qc_state", ""))
+          def nonnegative_int(mapping, key):
+              value = mapping.get(key)
+              # Missing, null, booleans, strings, and negative values must never
+              # satisfy the completed-target gate.
+              if type(value) is not int or value < 0:
+                  return None
+              return value
+
+          target = nonnegative_int(live, "five_thousand_scale_target")
+          produced = nonnegative_int(live, "concrete_repository_assets")
+          remaining = nonnegative_int(live, "remaining_to_scale_target")
+          passed = nonnegative_int(qc, "qc_passed")
+          failed = nonnegative_int(qc, "qc_failed")
+          qc_state = live.get("qc_state")
           force = os.environ.get("FORCE_REFRESH", "false").strip().lower() == "true"
 
           complete = (
-              target > 0
+              target is not None
+              and target > 0
+              and produced is not None
               and produced >= target
-              and int(live.get("remaining_to_scale_target", max(0, target - produced)) or 0) == 0
+              and remaining == 0
               and qc_state == "QC_PASSED"
+              and passed is not None
               and passed >= target
               and failed == 0
           )
