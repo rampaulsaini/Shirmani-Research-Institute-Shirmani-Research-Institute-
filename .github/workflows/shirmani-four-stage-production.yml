@@ -53,6 +53,14 @@ jobs:
           passed = nonnegative_int(qc, "qc_passed")
           failed = nonnegative_int(qc, "qc_failed")
           qc_state = live.get("qc_state")
+          # The state marker can lag behind a completed QC artifact when separate
+          # publication workflows race. Count actual, non-empty product files so
+          # a stale marker cannot trigger duplicate 5,000-item production.
+          concrete_dir = Path("products/concrete")
+          actual_assets = sum(
+              1 for path in concrete_dir.glob("*.html")
+              if path.is_file() and path.stat().st_size > 0
+          )
           force = os.environ.get("FORCE_REFRESH", "false").strip().lower() == "true"
 
           complete = (
@@ -60,11 +68,12 @@ jobs:
               and target > 0
               and produced is not None
               and produced >= target
+              and actual_assets >= target
               and remaining == 0
-              and qc_state == "QC_PASSED"
               and passed is not None
               and passed >= target
               and failed == 0
+              and qc.get("release_state") == "QC_PASS_READY_FOR_DISPATCH"
           )
           skip = complete and not force
           reason = (
