@@ -56,6 +56,7 @@ def main() -> int:
         enquiry_source, enquiry = load("writing-research-enquiry.html")
         showroom_source, showroom = load("showroom-public-interface.html")
         load("income-action-center.html")
+        outreach_source, outreach = load("global-client-outreach-workbench.html")
     except (AssertionError, OSError, UnicodeError) as exc:
         print(f"INCOME FUNNEL SMOKE CHECK: FAILED\n- {exc}")
         return 1
@@ -96,6 +97,15 @@ def main() -> int:
         errors.append("Canonical offer must disclose that it does not create/claim an order")
     if not any(phrase in offer_source.casefold() for phrase in ("no message is sent automatically", "does not send email/whatsapp", "do not automatically send")):
         errors.append("Canonical offer must disclose that contact drafts are not automatically sent")
+
+    # Outreach must use the same prices as the canonical first-client offer.
+    # Editing is ₹499, website/blog copy is ₹999, and source-based research is ₹1,499.
+    if "Source-linked Research Summary — proposed ₹1,499 pilot" not in outreach_source:
+        errors.append("Outreach research-summary price must match the canonical ₹1,499 offer")
+    if "Website / Blog Content — proposed ₹999 pilot" not in outreach_source:
+        errors.append("Outreach website/blog price must match the canonical ₹999 offer")
+    if "Hindi/English Writing & Editing — proposed ₹499 pilot" not in outreach_source:
+        errors.append("Outreach editing price must match the canonical ₹499 offer")
 
     # Payment guidance must remain consent-first and must not prefill an amount.
     offer_lower = offer_source.casefold()
