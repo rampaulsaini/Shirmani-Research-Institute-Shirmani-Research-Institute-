@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "index.html"
+      - "first-paid-pilot-offer.html"
       - "showroom/global-product-sales-desk.html"
       - "showroom-public-interface.html"
       - "writing-research-enquiry.html"
@@ -14,6 +15,7 @@ on:
     branches: [main]
     paths:
       - "index.html"
+      - "first-paid-pilot-offer.html"
       - "showroom/global-product-sales-desk.html"
       - "showroom-public-interface.html"
       - "writing-research-enquiry.html"
