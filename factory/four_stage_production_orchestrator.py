@@ -36,7 +36,10 @@ def main() -> None:
     report["stages"].append({"stage":2,"name":"FACTORY_PRODUCTION","status":"PASS" if not factory_failed and stage1["exit_code"]==0 else "FAIL","steps":factory_steps,"catalog":read_json("real-product-factory-status.json"),"asset_status":read_json("concrete-product-asset-status.json"),"module_engine":read_json("production-engine-status.json")})
 
     qc_run=run(STEPS[-1]); qc=read_json("product-qc-gate.json")
-    report["stages"].append({"stage":3,"name":"PRODUCT_QC_GATE","status":"PASS" if qc_run["exit_code"]==0 else "FAIL","qc":qc,"run":qc_run})
+    # Reconcile public production state only after the current QC artifact exists.
+    # This keeps the dashboard and the next cycle's duplicate-production gate aligned.
+    state_sync=run("factory/reconcile_production_truth.py")
+    report["stages"].append({"stage":3,"name":"PRODUCT_QC_GATE","status":"PASS" if qc_run["exit_code"]==0 and state_sync["exit_code"]==0 else "FAIL","qc":qc,"run":qc_run,"public_state_sync":state_sync})
 
     showroom = "supreme-showroom.html"
     showroom_exists=(ROOT/showroom).exists()
