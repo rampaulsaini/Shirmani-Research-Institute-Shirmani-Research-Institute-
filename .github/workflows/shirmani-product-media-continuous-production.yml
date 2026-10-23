@@ -89,4 +89,20 @@ jobs:
           git add generated products/production products/visuals products/demos/products products/demos/vip products/vip-screenshots
           if git diff --cached --quiet; then echo "No production delta."; exit 0; fi
           git commit -m "automission: advance concrete product media and catalogue production"
-          git push origin HEAD:automation/production-state
+          # Other automissions also publish to automation/production-state. Retry a
+          # rejected non-fast-forward push by merging the remote state, preserving
+          # non-conflicting concurrent outputs, and preferring this run's validated
+          # generated files only where the same file changed in both runs.
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:automation/production-state; then
+              echo "Production media state published on attempt ${attempt}."
+              exit 0
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo "Production media publish failed after 5 attempts." >&2
+              exit 1
+            fi
+            git fetch origin automation/production-state
+            git merge --no-edit -X ours FETCH_HEAD
+            echo "Concurrent production-state update merged; retrying push (${attempt}/5)."
+          done
