@@ -1,99 +1,111 @@
 {
   "version": 1,
-  "generated_at": "2026-09-22T15:32:30.744581+00:00",
-  "active_records": 3537,
+  "generated_at": "2026-10-23T16:51:45.534008+00:00",
+  "active_records": 4111,
   "batch_size": 250,
-  "batch_count": 15,
+  "batch_count": 17,
   "batches": [
     {
       "id": "batch-0001",
       "records": 250,
-      "sha256": "10984e5e3fda6b08a268af917c6c27132c814d9c85d03fe4bbf72187948d2e5f",
+      "sha256": "1cf5a2b6413ef566c3b54d0db5cec8be29259852ae0adef9bc82482e94f49672",
       "path": "generated/canonical-batches/batch-0001.jsonl"
     },
     {
       "id": "batch-0002",
       "records": 250,
-      "sha256": "8901e6076d90b8f065298d919bbb9d65bf22b09bdcd73e4f50c43dbe79eadb12",
+      "sha256": "49ab38eed2c905483948774866b27dff330593d64816aaa34714aa9a79007c70",
       "path": "generated/canonical-batches/batch-0002.jsonl"
     },
     {
       "id": "batch-0003",
       "records": 250,
-      "sha256": "ffbb3982adb9928617d65caa4e7aed9523db6260f311abfa58d172ef32e1f03d",
+      "sha256": "ee6c2db970dbf0a1862ff311770426c5e0a645a212f3f51544945136d8b779d6",
       "path": "generated/canonical-batches/batch-0003.jsonl"
     },
     {
       "id": "batch-0004",
       "records": 250,
-      "sha256": "8b5cdb8829592e7d275029195ad7b7a19d99cd2ff825369edd148cd3f5db4a40",
+      "sha256": "d87655a2cbd387b925c44e977771fc1a030a9ab102661ef347f1d3fcd87ecc27",
       "path": "generated/canonical-batches/batch-0004.jsonl"
     },
     {
       "id": "batch-0005",
       "records": 250,
-      "sha256": "6238683cb3c3342355dfed837ffca30d9ec8059bbe0384a121fef252f1fd887d",
+      "sha256": "1cb4e6bd7f684be8589447c38cd1da0839a6086040c2efa90ac2913376d08a03",
       "path": "generated/canonical-batches/batch-0005.jsonl"
     },
     {
       "id": "batch-0006",
       "records": 250,
-      "sha256": "8c372eb5f81f46edb5d2d0890f325c2c6421e69a90e72ddc6fa9af742ecc19fe",
+      "sha256": "b591638accd6fbe859ccf2af1749f28ed0fea7a78f51d1960392ca393a07e265",
       "path": "generated/canonical-batches/batch-0006.jsonl"
     },
     {
       "id": "batch-0007",
       "records": 250,
-      "sha256": "4594c24280afe8ae10b77f3958940c1ede02d93cb13ef5192135465d0b2cf8f2",
+      "sha256": "4c7068bce1be74fbe211932f31166066118ba555a9e8f66a29e0bb00d6787f17",
       "path": "generated/canonical-batches/batch-0007.jsonl"
     },
     {
       "id": "batch-0008",
       "records": 250,
-      "sha256": "74c5ee0e263841c6124a582909c5e30eb5757c2da9e9235e880c8a2d7d628ed2",
+      "sha256": "b7ad456b42b6d2a1c589353e2fc5ecbf402a55fa77abbccf3b65defe23dc0860",
       "path": "generated/canonical-batches/batch-0008.jsonl"
     },
     {
       "id": "batch-0009",
       "records": 250,
-      "sha256": "ae42f3567a4f06029717ff89aeb03958a8015f98feb6f4bf4bac390216cc20b0",
+      "sha256": "010d7cef5bce907f46cae89fb880b5095be5c752bb2cb194f45142d790d6764e",
       "path": "generated/canonical-batches/batch-0009.jsonl"
     },
     {
       "id": "batch-0010",
       "records": 250,
-      "sha256": "598925752138133d9af743aa9843f53fa739766c32470bee0cd06cfb2a445c9d",
+      "sha256": "022bf3ab8990d89da451f7ffcb1bdfdfa15daa73d0f135fd2283f8e2c07c37ea",
       "path": "generated/canonical-batches/batch-0010.jsonl"
     },
     {
       "id": "batch-0011",
       "records": 250,
-      "sha256": "41bb5733c894b456eedfa312cf571e1338a4cb3d9add05f72a4228af74e19d96",
+      "sha256": "9fd047a5beb36c329ed416c69b0d74bfbb6117f43c8ef85554b8ef506d559c9f",
       "path": "generated/canonical-batches/batch-0011.jsonl"
     },
     {
       "id": "batch-0012",
       "records": 250,
-      "sha256": "ce756e83ec84dc06d5c6445f838f0d06ddd516bca83aaaaef9b3ee45ab421b94",
+      "sha256": "6cc2050b7cec04c33b4827dd29d4947a17faa3364e6f214fb61abc14de88225b",
       "path": "generated/canonical-batches/batch-0012.jsonl"
     },
     {
       "id": "batch-0013",
       "records": 250,
-      "sha256": "f697e4131ada45c931ce27b201fe59a22a02eedf2fd5c14fa08929c2bb760972",
+      "sha256": "919f23398d1b5051a8e719091b95c8e33dea07e789bdeb5a2a6435e1f6144f38",
       "path": "generated/canonical-batches/batch-0013.jsonl"
     },
     {
       "id": "batch-0014",
       "records": 250,
-      "sha256": "63343df39bbff5c9f8c29aed01c1e1d90febec58d83d028199972fa8252b7c66",
+      "sha256": "5060dff6e298fdd94fbeb7082df45a7124bf00e4d3770062c209a5495ce429ea",
       "path": "generated/canonical-batches/batch-0014.jsonl"
     },
     {
       "id": "batch-0015",
-      "records": 37,
-      "sha256": "b4d34c689c5aeb09138f9a66dde91be7ac6ac7e4512655881b4a430574e0f8b6",
+      "records": 250,
+      "sha256": "26781c161d47b7f816004f523b0b9c72e4223357c11577599fdb6b30f1080266",
       "path": "generated/canonical-batches/batch-0015.jsonl"
+    },
+    {
+      "id": "batch-0016",
+      "records": 250,
+      "sha256": "ed533cb44ad927cfe521f979f3a1cde6e65e8b0480ee35e072376194d8073c80",
+      "path": "generated/canonical-batches/batch-0016.jsonl"
+    },
+    {
+      "id": "batch-0017",
+      "records": 111,
+      "sha256": "8922188cbae8b1e4330dada93b1f71dc965c352d02522f377bc19abe8a00ba88",
+      "path": "generated/canonical-batches/batch-0017.jsonl"
     }
   ],
   "source": "generated/canonical-knowledge.jsonl",
