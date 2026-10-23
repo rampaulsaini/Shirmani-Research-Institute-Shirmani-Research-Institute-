@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T21:13:41.427359+00:00",
+  "generated_at": "2026-10-23T05:45:58.256899+00:00",
   "gate": "PRODUCT-QC-GATE",
   "scope": "PRODUCED_PRODUCTS_ONLY",
   "catalog_count": 5000,
@@ -9,17 +9,6 @@
   "pass_percent": 100.0,
   "dispatch_default": "NO",
   "release_state": "QC_PASS_READY_FOR_DISPATCH",
-  "checks": [
-    "catalog fields",
-    "browser asset",
-    "QR QC code",
-    "Gate No.",
-    "Dispatch No.",
-    "offer price",
-    "description",
-    "guarantee",
-    "packing"
-  ],
   "integrity": {
     "deterministic_qc": true,
     "independent_scientific_verification": false,

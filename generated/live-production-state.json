@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-10-22T18:02:34.809908+00:00",
+  "generated_at": "2026-10-23T05:59:12.990460+00:00",
   "production_first": true,
   "catalog_identities": 5000,
   "concrete_repository_assets": 5000,
@@ -10,19 +10,14 @@
   "current_catalog_pending": 0,
   "five_thousand_scale_target": 5000,
   "remaining_to_scale_target": 0,
-  "concrete_materialization_percent_of_catalog": 100,
-  "concrete_materialization_percent_of_scale_target": 100,
+  "concrete_materialization_percent_of_catalog": 100.0,
+  "concrete_materialization_percent_of_scale_target": 100.0,
   "module_products_generated": 5000,
-  "qc_passed": 5000,
-  "qc_failed": 0,
-  "qc_pass_percent": 100,
-  "qc_evidence_generated_at": "2026-10-22T18:02:33.513872+00:00",
-  "qc_evidence_source": "generated/product-qc-gate.json",
   "dispatch_released": 0,
   "sales_claimed": 0,
   "payment_claimed": 0,
   "independent_verification_claimed": 0,
-  "state": "QC_PASSED_AWAITING_DISPATCH",
-  "qc_state": "QC_PASSED",
-  "truth_boundary": "Deterministic QC covers the defined structural checks only. Produced assets, QC, dispatch, sales, payment and independent verification are distinct states. QC does not prove customer acceptance, delivery, payment or independent verification."
+  "state": "PRODUCTION_ASSETS_PRESENT_UNVERIFIED",
+  "qc_state": "READY_FOR_QC",
+  "truth_boundary": "Produced artifacts, QC, dispatch and independent verification are distinct states."
 }
