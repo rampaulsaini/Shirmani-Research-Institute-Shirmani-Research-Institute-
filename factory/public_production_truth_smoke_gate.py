@@ -52,8 +52,8 @@ def main() -> None:
     sys.path.insert(0, str(ROOT))
     from factory.qc_state_contract import qc_passed
     expected_qc_state = "QC_PASSED" if qc_passed(qc, target) else ("QC_REVIEW_REQUIRED" if qc.get("release_state") == "QC_REVIEW_REQUIRED" else "READY_FOR_QC")
-    if status.get("state") != expected_qc_state:
-        raise SystemExit(f"PUBLIC_PRODUCTION_GATE_FAIL: concrete status state={status.get('state')!r} expected {expected_qc_state}")
+    if status.get("qc_state") != expected_qc_state:
+        raise SystemExit(f"PUBLIC_PRODUCTION_GATE_FAIL: concrete status qc_state={status.get('qc_state')!r} expected {expected_qc_state}")
     if live.get("qc_state") != expected_qc_state:
         raise SystemExit(f"PUBLIC_PRODUCTION_GATE_FAIL: live qc_state={live.get('qc_state')!r} expected {expected_qc_state}")
     if qc.get("dispatch_default") != "NO" or live.get("dispatch_released", 0) != 0:
