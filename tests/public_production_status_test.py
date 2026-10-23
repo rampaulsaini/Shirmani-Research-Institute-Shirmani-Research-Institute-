@@ -47,6 +47,26 @@ class ConcreteAssetStatusTests(unittest.TestCase):
         self.assertEqual(status["state"], "READY_FOR_QC")
         self.assertEqual(status["dispatch"], "NO")
 
+    def test_matching_qc_gate_promotes_only_qc_state_not_dispatch(self):
+        (self.root / "generated" / "product-qc-gate.json").write_text(json.dumps({
+            "catalog_count": 2, "produced_count": 2, "qc_passed": 2,
+            "qc_failed": 0, "release_state": "QC_PASS_READY_FOR_DISPATCH"
+        }), encoding="utf-8")
+        status = materialize_concrete_asset_status(self.root, generated_at="2026-10-16T00:00:00+00:00")
+        self.assertEqual(status["state"], "QC_PASSED_AWAITING_DISPATCH")
+        self.assertEqual(status["qc_state"], "QC_PASSED")
+        self.assertEqual(status["dispatch"], "NO")
+
+    def test_stale_or_mismatched_qc_does_not_promote_status(self):
+        (self.root / "generated" / "product-qc-gate.json").write_text(json.dumps({
+            "catalog_count": 2, "produced_count": 2, "qc_passed": 1,
+            "qc_failed": 0, "release_state": "QC_PASS_READY_FOR_DISPATCH"
+        }), encoding="utf-8")
+        status = materialize_concrete_asset_status(self.root, generated_at="2026-10-16T00:00:00+00:00")
+        self.assertEqual(status["state"], "READY_FOR_QC")
+        self.assertEqual(status["qc_state"], "READY_FOR_QC")
+        self.assertEqual(status["dispatch"], "NO")
+
     def test_missing_asset_is_not_counted_as_produced(self):
         (self.root / "products" / "production" / "b.html").unlink()
         status = materialize_concrete_asset_status(self.root, generated_at="2026-10-16T00:00:00+00:00")
