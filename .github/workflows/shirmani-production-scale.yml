@@ -21,15 +21,24 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+      - name: Test production completion gate
+        run: python3 -m unittest discover -s tests -p 'test_production_completion_gate.py'
+      - name: Check whether the 5,000-item target is already complete
+        id: target_gate
+        run: python3 factory/production_completion_gate.py
       - name: Expand public production catalogue
+        if: steps.target_gate.outputs.complete != 'true'
         run: python3 factory/production_scale.py
       - name: Materialize concrete product artifacts
+        if: steps.target_gate.outputs.complete != 'true'
         env:
           BATCH_SIZE: ${{ inputs.batch_size }}
         run: python3 factory/production_materializer.py --batch-size ${BATCH_SIZE:-250}
       - name: Refresh product asset surfaces
+        if: steps.target_gate.outputs.complete != 'true'
         run: python3 factory/product_asset_expander.py
       - name: Production QC gate
+        if: steps.target_gate.outputs.complete != 'true'
         run: |
           test -s generated/production-registry.json
           test -s generated/production-status.json
@@ -46,6 +55,7 @@ jobs:
           print("catalog=",len(c.get("products",[])),"produced=",s.get("product_count"))
           PY
       - name: Propose production batch through pull request
+        if: steps.target_gate.outputs.complete != 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -59,21 +69,24 @@ jobs:
             products/concrete/**
             products/production/**
             factory/production_scale.py
+            factory/production_completion_gate.py
           body: |
             ## Automated production batch — review required
 
-            This pull request captures the current workflow's generated product batch without bypassing the repository's protected `main` branch.
+            This pull request captures generated product output without bypassing the protected `main` branch.
 
-            - Production QC gate must pass before this step.
-            - Review generated catalogue/status/asset changes before merging.
+            - Production QC gate must pass before publication.
+            - The 5,000-item completion gate skips further generation only when catalog, concrete assets, QR assets, and deterministic QC all meet target.
             - Product asset generation and deterministic QC are not independent verification.
             - Dispatch, customer acceptance, sales and payment remain unclaimed until separately evidenced.
 
             This PR is intentionally created as a draft. Merge only after reviewing the generated diff and required checks.
       - name: Write run summary
+        if: always()
         run: |
           echo "## SHIRMANI Production Scale Automission" >> "$GITHUB_STEP_SUMMARY"
           echo "- Target catalogue: 5,000" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Batch default: 250 concrete product artifacts" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Publication: draft PR; protected main is not pushed directly" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Target already complete: ${{ steps.target_gate.outputs.complete || 'unknown' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Complete target means no duplicate batch is generated." >> "$GITHUB_STEP_SUMMARY"
+          echo "- Publication: draft PR; protected main is not pushed directly." >> "$GITHUB_STEP_SUMMARY"
           echo "- QC, independent verification, dispatch, sales and payment are separate states." >> "$GITHUB_STEP_SUMMARY"
