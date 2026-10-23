@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T15:32:30.724119+00:00",
+  "generated_at": "2026-10-23T16:11:22.463345+00:00",
   "engine": "SHIRMANI Multi-Layer Production Dispatcher",
   "mode": "production-first",
   "discovered_modules": 415,
@@ -7,7 +7,7 @@
   "last_cycle_tasks": 500,
   "new_tasks_added": 500,
   "total_queued_tasks": 500,
-  "scheduled_work_units": 1096000,
+  "scheduled_work_units": 1098000,
   "lanes": [
     "ai-ml-nlp",
     "automation",
@@ -20,15 +20,15 @@
     "social-media"
   ],
   "lane_counts_last_cycle": {
-    "automation": 227,
-    "platform": 113,
-    "research": 24,
-    "ai-ml-nlp": 65,
-    "federation": 20,
-    "content": 12,
+    "automation": 245,
+    "social-media": 12,
+    "platform": 119,
+    "economic": 13,
     "security-quality": 22,
-    "social-media": 9,
-    "economic": 8
+    "research": 21,
+    "federation": 15,
+    "content": 10,
+    "ai-ml-nlp": 43
   },
   "production_outputs": {
     "verses": 0,
@@ -43,15 +43,15 @@
     "verified_records": 0,
     "concrete_results_this_cycle": 500,
     "lane_artifacts": {
-      "ai-ml-nlp": 65,
-      "automation": 227,
-      "content": 12,
-      "economic": 8,
-      "federation": 20,
-      "platform": 113,
-      "research": 24,
+      "ai-ml-nlp": 43,
+      "automation": 245,
+      "content": 10,
+      "economic": 13,
+      "federation": 15,
+      "platform": 119,
+      "research": 21,
       "security-quality": 22,
-      "social-media": 9
+      "social-media": 12
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
