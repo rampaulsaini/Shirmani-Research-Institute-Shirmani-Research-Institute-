@@ -590,4 +590,61 @@ $("rf-generate").addEventListener("click",build);
 </div>
 </section>
 
+
+<section class="section" id="income-evidence-ledger">
+  <h2>आय प्रमाण लेजर | Income Evidence Ledger</h2>
+  <p class="note">यह browser-local रिकॉर्ड है, payment gateway नहीं। दर्ज रकम स्वयं-सत्यापित नहीं होती; उसे बैंक/UPI/provider रिकॉर्ड से मिलाएँ। केवल receipt reference रखें—password, OTP, API key या पूरा account/card विवरण नहीं।</p>
+  <div class="grid">
+    <article class="card">
+      <h3>वास्तविक परिणाम दर्ज करें</h3>
+      <label for="iel-leads">योग्य ग्राहक पूछताछ</label><input id="iel-leads" type="number" min="0" step="1" value="0">
+      <label for="iel-proposals">लिखित प्रस्ताव भेजे</label><input id="iel-proposals" type="number" min="0" step="1" value="0">
+      <label for="iel-orders">पुष्टि किए गए ऑर्डर</label><input id="iel-orders" type="number" min="0" step="1" value="0">
+      <label for="iel-received">वास्तव में प्राप्त बताई गई रकम (₹)</label><input id="iel-received" type="number" min="0" step="0.01" value="0">
+      <label for="iel-ref">रसीद / transaction reference</label><input id="iel-ref" maxlength="180" placeholder="Invoice ID या receipt reference">
+      <label for="iel-date">प्राप्ति की तारीख</label><input id="iel-date" type="date">
+      <div class="actions"><button class="btn" id="iel-save" type="button">स्थानीय रूप से सुरक्षित करें</button><button class="btn secondary" id="iel-export" type="button">JSON export</button><button class="btn secondary" id="iel-clear" type="button">स्थानीय रिकॉर्ड मिटाएँ</button></div>
+    </article>
+    <article class="card">
+      <h3>गणना और सत्यापन स्थिति</h3>
+      <p><strong>दर्ज रकम:</strong> <span id="iel-total">₹0</span></p>
+      <p><strong>Lead → order:</strong> <span id="iel-lead-rate">—</span></p>
+      <p><strong>Proposal → order:</strong> <span id="iel-proposal-rate">—</span></p>
+      <p><strong>प्रति order औसत:</strong> <span id="iel-average">—</span></p>
+      <p><strong>रसीद संदर्भ:</strong> <span id="iel-evidence">नहीं दिया गया</span></p>
+      <p class="note" id="iel-status" role="status" aria-live="polite">स्थानीय प्रारंभिक मान; स्वतंत्र सत्यापन नहीं।</p>
+      <p class="muted">Conversion तभी अर्थपूर्ण है जब counts एक ही अवधि/cohort के हों। यह panel receipt को स्वतंत्र रूप से verify नहीं करता और data server पर upload नहीं करता।</p>
+    </article>
+  </div>
+</section>
+<script>
+(function(){
+  "use strict";
+  const ids=["iel-leads","iel-proposals","iel-orders","iel-received","iel-ref","iel-date"],key="shirmani-income-evidence-ledger-v1";
+  const $=id=>document.getElementById(id);
+  const currency=n=>new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:2}).format(n);
+  function read(){
+    const d={leads:$("iel-leads").value,proposals:$("iel-proposals").value,orders:$("iel-orders").value,received:$("iel-received").value,reference:$("iel-ref").value.trim(),date:$("iel-date").value},errors=[];
+    for(const k of ["leads","proposals","orders"]){const n=Number(d[k]);if(d[k].trim()===""||!Number.isFinite(n)||n<0||!Number.isInteger(n))errors.push(k+" must be a whole number >= 0");else d[k]=n;}
+    const n=Number(d.received);if(d.received.trim()===""||!Number.isFinite(n)||n<0)errors.push("received amount must be >= 0");else d.received=n;
+    return {d,errors};
+  }
+  function ratio(n,d){return d===0?"— (शून्य denominator)":n>d?"— (counts जाँचें)":(n/d*100).toFixed(2)+"%";}
+  function render(message){
+    const {d,errors}=read();$("iel-total").textContent=Number.isFinite(d.received)&&d.received>=0?currency(d.received):"अमान्य रकम";
+    $("iel-lead-rate").textContent=errors.length?"—":ratio(d.orders,d.leads);$("iel-proposal-rate").textContent=errors.length?"—":ratio(d.orders,d.proposals);
+    $("iel-average").textContent=!errors.length&&d.orders>0?currency(d.received/d.orders):"—";
+    $("iel-evidence").textContent=d.reference?(d.reference+(d.date?" · "+d.date:"")+" (दर्ज, सत्यापित नहीं)"):"नहीं दिया गया";
+    $("iel-status").textContent=message||(errors.length?"अमान्य input: "+errors.join("; "):"Preview only · रकम को provider record से मिलाना बाकी है।");
+  }
+  try{const d=JSON.parse(localStorage.getItem(key)||"null");if(d){$("iel-leads").value=d.leads??0;$("iel-proposals").value=d.proposals??0;$("iel-orders").value=d.orders??0;$("iel-received").value=d.received??0;$("iel-ref").value=d.reference??"";$("iel-date").value=d.date??"";}}
+  catch(e){render("Browser storage उपलब्ध नहीं; values पेज बंद होने पर खो सकती हैं।");}
+  $("iel-save").addEventListener("click",()=>{const {d,errors}=read();if(errors.length){render("Save नहीं हुआ: "+errors.join("; "));return;}try{localStorage.setItem(key,JSON.stringify({...d,saved_at:new Date().toISOString(),verification_status:"NOT_INDEPENDENTLY_VERIFIED"}));render("इस browser में सुरक्षित; server upload और independent verification नहीं हुआ।");}catch(e){render("Local save विफल; रिकॉर्ड सुरक्षित मानकर न चलें।");}});
+  $("iel-export").addEventListener("click",()=>{const {d,errors}=read();if(errors.length){render("Export रोक दिया: "+errors.join("; "));return;}const blob=new Blob([JSON.stringify({schema_version:1,...d,exported_at:new Date().toISOString(),verification_status:"NOT_INDEPENDENTLY_VERIFIED"},null,2)],{type:"application/json"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="shirmani-income-evidence-ledger.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);render("JSON export बनाया गया; यह verified income का प्रमाण नहीं है।");});
+  $("iel-clear").addEventListener("click",()=>{try{localStorage.removeItem(key);}catch(e){}ids.forEach(id=>$(id).value=(id==="iel-ref"||id==="iel-date")?"":0);render("इस browser का local ledger हटाया गया।");});
+  ids.forEach(id=>$(id).addEventListener("input",()=>render("बदलाव केवल preview हैं; Save दबाकर सुरक्षित करें।")));
+  render();
+})();
+</script>
+
 </main></body></html>
