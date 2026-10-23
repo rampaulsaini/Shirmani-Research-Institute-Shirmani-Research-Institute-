@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-23T02:01:05.973461+00:00",
+  "generated_at": "2026-10-23T02:16:43.241547+00:00",
   "purpose": "public-first production module map",
   "module_count": 10891,
   "lane_counts": {
@@ -74457,7 +74457,7 @@
       "type": "py",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 3385
+      "bytes": 4202
     },
     {
       "path": "factory/repos.json",
