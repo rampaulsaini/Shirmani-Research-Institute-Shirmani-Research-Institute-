@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib, html, json, re
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -44,46 +45,85 @@ def load_tasks():
         task.setdefault("objective",f"Produce a concrete, provenance-linked output for {module}")
         out.append(task)
     return out
+class _PublicHTMLTextParser(HTMLParser):
+    """Extract safe, visible metadata/text from HTML, excluding executable content."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.hidden_depth = 0
+        self.capture = []
+        self.fields = {"title": [], "description": [], "h1": [], "h2": [], "h3": []}
+        self.text_parts = []
+
+    def handle_starttag(self, tag, attrs):
+        tag = tag.lower()
+        if tag in ("script", "style", "noscript", "template"):
+            self.hidden_depth += 1
+        if tag in ("title", "h1", "h2", "h3"):
+            self.capture.append(tag)
+        if tag == "meta":
+            values = {str(k).lower(): (v or "") for k, v in attrs}
+            if values.get("name", "").lower() == "description" and values.get("content"):
+                self.fields["description"].append(values["content"])
+        if tag in ("p", "div", "section", "article", "li", "h1", "h2", "h3", "br"):
+            self.text_parts.append(" ")
+
+    def handle_endtag(self, tag):
+        tag = tag.lower()
+        if tag in ("script", "style", "noscript", "template") and self.hidden_depth:
+            self.hidden_depth -= 1
+        if tag in ("title", "h1", "h2", "h3"):
+            for index in range(len(self.capture) - 1, -1, -1):
+                if self.capture[index] == tag:
+                    del self.capture[index]
+                    break
+        if tag in ("p", "div", "section", "article", "li", "h1", "h2", "h3", "br"):
+            self.text_parts.append(" ")
+
+    def handle_data(self, data):
+        if self.hidden_depth:
+            return
+        cleaned = " ".join(data.split())
+        if not cleaned:
+            return
+        self.text_parts.append(cleaned)
+        for field in self.capture:
+            self.fields[field].append(cleaned)
+
+def _parse_public_html(source):
+    parser = _PublicHTMLTextParser()
+    try:
+        parser.feed(source or "")
+        parser.close()
+    except Exception:
+        # Malformed source is metadata input; it must not abort a production cycle.
+        pass
+    fields = {key: " ".join(values).strip() for key, values in parser.fields.items()}
+    fields["text"] = " ".join(" ".join(parser.text_parts).split())
+    return fields
+
 def title(text,fallback):
     raw = text or ""
-    if re.search(r"<(?:!doctype|html|head|body)\b", raw, re.I):
-        match = re.search(r"<title\b[^>]*>(.*?)</title>", raw, re.I | re.S)
-        if not match:
-            match = re.search(r"<h1\b[^>]*>(.*?)</h1>", raw, re.I | re.S)
-        raw = html.unescape(re.sub(r"<[^>]+>", " ", match.group(1))) if match else fallback
+    lower = raw.lower()
+    if "<!doctype" in lower or "<html" in lower or "<head" in lower or "<body" in lower:
+        fields = _parse_public_html(raw)
+        raw = fields["title"] or fields["h1"] or fallback
     return (re.sub(r"\s+", " ", raw).strip()[:110] or fallback).strip()
 
 def readable_excerpt(source, limit=1400):
     """Turn HTML sources into readable metadata instead of dumping raw markup."""
     raw = source or ""
-    if not re.search(r"<(?:!doctype|html|head|body)\b", raw, re.I):
+    lower = raw.lower()
+    if not ("<!doctype" in lower or "<html" in lower or "<head" in lower or "<body" in lower):
         return " ".join(raw.split())[:limit]
 
+    fields = _parse_public_html(raw)
     parts = []
-    source_title = title(raw, "")
-    if source_title:
-        parts.append(source_title)
-
-    for tag in re.findall(r"<meta\b[^>]*>", raw, re.I):
-        if re.search(r"""name\s*=\s*["']description["']""", tag, re.I):
-            content = re.search(r"""content\s*=\s*["'](.*?)["']""", tag, re.I | re.S)
-            if content:
-                description = html.unescape(content.group(1)).strip()
-                if description and description not in parts:
-                    parts.append(description)
-                break
-
-    headings = re.findall(r"<h[1-3]\b[^>]*>(.*?)</h[1-3]>", raw, re.I | re.S)
-    for heading in headings[:3]:
-        clean = html.unescape(re.sub(r"<[^>]+>", " ", heading))
-        clean = re.sub(r"\s+", " ", clean).strip()
-        if clean and clean not in parts:
-            parts.append(clean)
-
-    if not parts:
-        clean = re.sub(r"<(script|style)\b[^>]*>.*?</\1>", " ", raw, flags=re.I | re.S)
-        clean = html.unescape(re.sub(r"<[^>]+>", " ", clean))
-        parts.append(re.sub(r"\s+", " ", clean).strip())
+    for key in ("title", "description", "h1", "h2", "h3"):
+        value = fields[key]
+        if value and value not in parts:
+            parts.append(value)
+    if not parts and fields["text"]:
+        parts.append(fields["text"])
     return " · ".join(parts)[:limit]
 
 def deliverable(task,source):
