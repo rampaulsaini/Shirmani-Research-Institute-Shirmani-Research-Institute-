@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generated_at": "2026-10-23T09:28:27.400892+00:00",
+  "generated_at": "2026-10-23T09:54:46.821290+00:00",
   "purpose": "public-first production module map",
-  "module_count": 10915,
+  "module_count": 10916,
   "lane_counts": {
     "ai_ml_nlp": 9090,
     "automation": 5,
     "content": 8,
     "economic": 6,
     "platform": 3,
-    "research": 1766,
+    "research": 1767,
     "security_quality": 37
   },
   "status_counts": {
@@ -20,7 +20,7 @@
     "READY": 10084,
     "RECORDED": 31,
     "UNAVAILABLE": 27,
-    "UNSPECIFIED": 624
+    "UNSPECIFIED": 625
   },
   "integrity": {
     "source": "repository files",
@@ -74451,6 +74451,13 @@
       "lane": "research",
       "status": "UNSPECIFIED",
       "bytes": 13868
+    },
+    {
+      "path": "factory/production_completion_gate.py",
+      "type": "py",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2893
     },
     {
       "path": "factory/production_operations_status.py",
