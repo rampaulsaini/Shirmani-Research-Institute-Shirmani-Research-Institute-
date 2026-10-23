@@ -77,8 +77,13 @@ def main() -> int:
     # Keep a single canonical offer section so mobile visitors do not see duplicate prices/CTAs.
     if "<h2>Service menu</h2>" in sales_desk_source:
         errors.append("Legacy sales desk repeats the starter offers in a second service-menu section")
-    if offer_source.count('<article class="offer">') != 3:
-        errors.append("Canonical first-client offer must expose exactly three priced starter offers")
+    starter_section = offer_source.split("<h2>Starter offers</h2>", 1)
+    if len(starter_section) != 2:
+        errors.append("Canonical first-client offer is missing the starter-offers section")
+    else:
+        starter_cards = starter_section[1].split("<h2>Prepare a client enquiry</h2>", 1)[0]
+        if starter_cards.count('<article class="offer">') != 3:
+            errors.append("Canonical first-client offer must expose exactly three priced starter offers")
     if sales_desk_source.count("data-offer=") != 3:
         errors.append("Legacy sales desk must retain exactly three canonical priced offer actions")
 
