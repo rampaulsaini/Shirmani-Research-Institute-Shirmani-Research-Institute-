@@ -3,6 +3,12 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+    inputs:
+      force_refresh:
+        description: "Run a deliberate production refresh even when the current scale target and QC gate are complete"
+        required: false
+        default: false
+        type: boolean
 permissions:
   contents: write
   pull-requests: write
@@ -18,9 +24,56 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Check production target and QC before generating another batch
+        id: target_gate
+        env:
+          FORCE_REFRESH: ${{ github.event.inputs.force_refresh || 'false' }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          live_path = Path("generated/live-production-state.json")
+          qc_path = Path("generated/product-qc-gate.json")
+          live = json.loads(live_path.read_text(encoding="utf-8")) if live_path.is_file() else {}
+          qc = json.loads(qc_path.read_text(encoding="utf-8")) if qc_path.is_file() else {}
+
+          target = int(live.get("five_thousand_scale_target", 5000) or 5000)
+          produced = int(live.get("concrete_repository_assets", 0) or 0)
+          passed = int(qc.get("qc_passed", live.get("qc_passed", 0)) or 0)
+          failed = int(qc.get("qc_failed", live.get("qc_failed", 0)) or 0)
+          qc_state = str(live.get("qc_state", ""))
+          force = os.environ.get("FORCE_REFRESH", "false").strip().lower() == "true"
+
+          complete = (
+              target > 0
+              and produced >= target
+              and int(live.get("remaining_to_scale_target", max(0, target - produced)) or 0) == 0
+              and qc_state == "QC_PASSED"
+              and passed >= target
+              and failed == 0
+          )
+          skip = complete and not force
+          reason = (
+              f"Target reached ({produced}/{target}); QC passed={passed}, failed={failed}. "
+              "Skip duplicate production and prioritize downstream customer, dispatch, payment and verification work."
+              if skip else
+              "Manual force refresh requested; run the normal production/QC flow."
+              if force else
+              f"Production/QC target is not complete (produced={produced}/{target}, qc_state={qc_state!r}, passed={passed}, failed={failed}); run the normal flow."
+          )
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"skip={'true' if skip else 'false'}\n")
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              summary.write("## Production target gate\n\n" + reason + "\n")
+          print(reason)
+          PY
       - name: Institute → Factory → QC → Showroom
+        if: steps.target_gate.outputs.skip != 'true'
         run: python3 factory/four_stage_production_orchestrator.py
       - name: Publish production state through PR
+        if: steps.target_gate.outputs.skip != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
