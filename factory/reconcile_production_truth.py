@@ -17,12 +17,28 @@ state_path = ROOT / "generated" / "live-production-state.json"
 overlay = json.loads(overlay_path.read_text(encoding="utf-8"))
 catalog = int(overlay.get("product_count", 0))
 overlay_rows = len(overlay.get("products", []))
+qc_path = ROOT / "generated" / "product-qc-gate.json"
+qc = {}
+if qc_path.is_file():
+    try:
+        qc = json.loads(qc_path.read_text(encoding="utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        qc = {}
 # Count actual files in this checkout; do not trust stale generated totals as filesystem evidence.
 concrete_assets = len(list((ROOT / "products" / "concrete").glob("*.html")))
 browser_assets = len(list((ROOT / "products" / "production").glob("*.html")))
 visual_assets = len(list((ROOT / "products" / "visuals").glob("*.svg")))
 qr_assets = len(list((ROOT / "products" / "visuals" / "qr").glob("*.svg")))
 pending = max(0, catalog - concrete_assets)
+qc_passed = (
+    catalog > 0
+    and concrete_assets == catalog
+    and int(qc.get("catalog_count", -1)) == catalog
+    and int(qc.get("produced_count", -1)) == concrete_assets
+    and int(qc.get("qc_passed", -1)) == catalog
+    and int(qc.get("qc_failed", -1)) == 0
+    and qc.get("release_state") == "QC_PASS_READY_FOR_DISPATCH"
+)
 scale_target = 5000
 state = {
     "schema_version": 3,
@@ -44,9 +60,12 @@ state = {
     "sales_claimed": 0,
     "payment_claimed": 0,
     "independent_verification_claimed": 0,
-    "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG" if pending == 0 else "PRODUCTION_IN_PROGRESS",
-    "qc_state": "READY_FOR_QC",
-    "truth_boundary": "Concrete assets, overlay rows, visual assets, QC, dispatch, sales, payment and independent verification are separate states.",
+    "state": ("QC_PASSED_AWAITING_DISPATCH" if qc_passed else
+              "PRODUCTION_COMPLETE_CURRENT_CATALOG" if pending == 0 else "PRODUCTION_IN_PROGRESS"),
+    "qc_state": "QC_PASSED" if qc_passed else "READY_FOR_QC",
+    "qc_passed": int(qc.get("qc_passed", 0)) if qc_passed else 0,
+    "qc_failed": int(qc.get("qc_failed", 0)) if qc_passed else 0,
+    "truth_boundary": "QC is promoted only when its counts match the current catalog and real assets. Dispatch, sales, payment and independent verification remain separate states.",
     "rule": "Filesystem counts are measured from repository files; overlay rows are reported separately and workflow execution is not counted as a product.",
 }
 existing = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else None
