@@ -139,7 +139,7 @@ jobs:
             The workflow verifies MP4 container readability before opening this PR.
             These generated step-card videos demonstrate a usage outline, not a live screen recording of every product.
             Product functionality and QC remain separate acceptance checks.
-          branch: "automission/product-demo-media"
+          branch: "automission/product-specific-demo-video-batch"
           delete-branch: true
           add-paths: |
             products/demos/products
