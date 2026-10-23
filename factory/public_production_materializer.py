@@ -87,7 +87,7 @@ def readable_excerpt(source, limit=1400):
     return " · ".join(parts)[:limit]
 
 def deliverable(task,source):
-    lane=task["lane"]; t=title(source,task["module"]); excerpt=" ".join(source.split())[:1400]
+    lane=task["lane"]; t=title(source,task["module"]); excerpt=readable_excerpt(source)
     base={"production_objective":task["objective"],"source_title":t,"source_excerpt":readable_excerpt(source),
           "source_fingerprint":digest(source)[:16],"verification_state":"PENDING_DOWNSTREAM"}
     if lane=="research":
