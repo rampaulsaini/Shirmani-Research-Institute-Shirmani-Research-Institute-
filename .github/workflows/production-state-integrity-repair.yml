@@ -94,6 +94,7 @@ jobs:
           cp "$GITHUB_WORKSPACE/factory/product_qr_asset_factory.py" factory/product_qr_asset_factory.py
           cp "$GITHUB_WORKSPACE/factory/product_visual_qc_gate.py" factory/product_visual_qc_gate.py
           cp "$GITHUB_WORKSPACE/factory/public_production_materializer.py" factory/public_production_materializer.py
+          cp "$GITHUB_WORKSPACE/factory/qc_state_contract.py" factory/qc_state_contract.py
           cp "$GITHUB_WORKSPACE/assets/shirmani-perspective-logo.svg" assets/shirmani-perspective-logo.svg
           python3 factory/public_module_inventory.py
           python3 factory/real_product_factory.py
@@ -188,6 +189,29 @@ jobs:
               "continuous-production-batch-status.json":{"generated_at":now,"catalog_products":target,"produced_total":concrete,"produced_this_cycle":concrete,"remaining":max(0,target-concrete),"dispatch_released":0,"verification":"DOWNSTREAM"}
           }.items():
               (gen/filename).write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          PY
+          # Reconcile the freshly generated QC gate into public state after the
+          # repair workflow writes its initial READY_FOR_QC placeholder.
+          python3 - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path.cwd()))
+          from factory.qc_state_contract import sync_public_qc_state
+          gen = Path("generated")
+          catalog = json.loads((gen / "1000-digital-products.json").read_text(encoding="utf-8"))
+          passed = sync_public_qc_state(Path("."), int(catalog.get("product_count", 0)))
+          live = json.loads((gen / "live-production-state.json").read_text(encoding="utf-8"))
+          print(json.dumps({
+              "qc_passed": passed,
+              "qc_state": live.get("qc_state"),
+              "state": live.get("state"),
+              "dispatch_released": live.get("dispatch_released"),
+              "sales_claimed": live.get("sales_claimed"),
+              "payment_claimed": live.get("payment_claimed"),
+          }, sort_keys=True))
+          if any(live.get(key, 0) != 0 for key in ("dispatch_released", "sales_claimed", "payment_claimed")):
+              raise SystemExit("PUBLIC_STATE_FAIL: QC reconciliation must not infer downstream commercial events")
           PY
       - name: Validate coherent production cycle before publish
         if: ${{ steps.detect.outputs.repair_needed == 'true' }}
