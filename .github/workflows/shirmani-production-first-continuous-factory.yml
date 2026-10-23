@@ -31,6 +31,36 @@ jobs:
         run: |
           set -euo pipefail
           git fetch origin main
+
+          # Stop the recurring factory before it creates a second catalog.
+          # The canonical 5,000-product target is already complete on main;
+          # count all concrete HTML assets, not only SP-*.html names, because
+          # a filename-prefix-only count can restart production from 1.
+          canonical_gate="$(python3 - <<'PY'
+          import json
+          from pathlib import Path
+          target = 5000
+          live_path = Path("generated/live-production-state.json")
+          try:
+              live = json.loads(live_path.read_text(encoding="utf-8"))
+          except (OSError, UnicodeError, json.JSONDecodeError):
+              live = {}
+          actual_assets = sum(1 for p in Path("products/concrete").glob("*.html") if p.is_file() and p.stat().st_size > 0)
+          catalog = int(live.get("catalog_identities", 0) or 0)
+          declared_assets = int(live.get("concrete_repository_assets", 0) or 0)
+          pending = int(live.get("current_catalog_pending", target) or 0)
+          if catalog >= target and declared_assets >= target and actual_assets >= target and pending == 0:
+              print("complete")
+          else:
+              print("continue")
+          PY
+          )"
+          if [[ "$canonical_gate" == "complete" ]]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Canonical target is already complete: catalog/assets/files all meet 5000 and pending=0. Skipping duplicate production; next work is customer conversion, dispatch and payment evidence."
+            exit 0
+          fi
+
           open_prs="$(gh pr list --state open --json number,headRefName --jq '.[] | select(.headRefName | startswith("automation/production-first-continuous-factory-")) | "\(.number) \(.headRefName)"')"
           open_pr=""
           while IFS= read -r candidate; do
