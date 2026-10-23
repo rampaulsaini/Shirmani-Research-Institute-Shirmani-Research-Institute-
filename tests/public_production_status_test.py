@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from factory.public_production_materializer import materialize_concrete_asset_status
+from factory.qc_state_contract import qc_passed, sync_public_qc_state
 from factory.supreme_public_production_sync import build_product_row, has_approved_price
 
 
@@ -60,6 +61,70 @@ class ConcreteAssetStatusTests(unittest.TestCase):
         catalog_path.write_text(json.dumps(catalog), encoding="utf-8")
         status = materialize_concrete_asset_status(self.root, generated_at="2026-10-16T00:00:00+00:00")
         self.assertEqual(status["product_assets"], 1)
+
+
+
+class QCStateContractTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.root = Path(self.temp.name)
+        (self.root / "generated").mkdir()
+        (self.root / "generated" / "concrete-product-asset-status.json").write_text(
+            json.dumps({"state": "READY_FOR_QC", "dispatch": "NO"}), encoding="utf-8"
+        )
+        (self.root / "generated" / "live-production-state.json").write_text(
+            json.dumps({
+                "current_catalog_pending": 0,
+                "dispatch_released": 0,
+                "sales_claimed": 0,
+                "payment_claimed": 0,
+                "independent_verification_claimed": 0,
+            }), encoding="utf-8"
+        )
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def test_qc_pass_promotes_only_qc_state_not_dispatch_or_revenue(self):
+        qc = {
+            "catalog_count": 2, "produced_count": 2, "qc_passed": 2, "qc_failed": 0,
+            "release_state": "QC_PASS_READY_FOR_DISPATCH", "dispatch_default": "NO",
+            "generated_at": "2026-10-23T00:00:00+00:00",
+            "integrity": {"deterministic_qc": True, "sale_claim": False},
+        }
+        self.assertTrue(qc_passed(qc, 2))
+        (self.root / "generated" / "product-qc-gate.json").write_text(
+            json.dumps(qc), encoding="utf-8"
+        )
+        self.assertTrue(sync_public_qc_state(self.root, 2))
+        status = json.loads((self.root / "generated" / "concrete-product-asset-status.json").read_text())
+        live = json.loads((self.root / "generated" / "live-production-state.json").read_text())
+        self.assertEqual(status["state"], "QC_PASSED")
+        self.assertEqual(live["qc_state"], "QC_PASSED")
+        self.assertEqual(live["state"], "QC_PASSED_AWAITING_DISPATCH")
+        self.assertEqual(live["dispatch_released"], 0)
+        self.assertEqual(live["sales_claimed"], 0)
+        self.assertEqual(live["payment_claimed"], 0)
+        self.assertEqual(live["independent_verification_claimed"], 0)
+
+    def test_incomplete_or_failed_qc_never_promotes_public_state(self):
+        qc = {
+            "catalog_count": 2, "produced_count": 2, "qc_passed": 1, "qc_failed": 1,
+            "release_state": "QC_REVIEW_REQUIRED", "dispatch_default": "NO",
+            "integrity": {"deterministic_qc": True, "sale_claim": False},
+        }
+        self.assertFalse(qc_passed(qc, 2))
+        (self.root / "generated" / "product-qc-gate.json").write_text(
+            json.dumps(qc), encoding="utf-8"
+        )
+        self.assertFalse(sync_public_qc_state(self.root, 2))
+        status = json.loads((self.root / "generated" / "concrete-product-asset-status.json").read_text())
+        live = json.loads((self.root / "generated" / "live-production-state.json").read_text())
+        self.assertEqual(status["state"], "QC_REVIEW_REQUIRED")
+        self.assertEqual(live["qc_state"], "QC_REVIEW_REQUIRED")
+        self.assertEqual(live["dispatch_released"], 0)
+        self.assertEqual(live["sales_claimed"], 0)
+        self.assertEqual(live["payment_claimed"], 0)
 
 
 class CommercialReadinessTests(unittest.TestCase):
