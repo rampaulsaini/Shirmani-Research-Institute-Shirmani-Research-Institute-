@@ -21,15 +21,24 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+      - name: Test production completion gate
+        run: python3 -m unittest discover -s tests -p 'test_production_completion_gate.py'
+      - name: Check canonical 5,000-item completion state
+        id: target_gate
+        run: python3 factory/production_completion_gate.py
       - name: Expand public production catalogue
+        if: steps.target_gate.outputs.complete != 'true'
         run: python3 factory/production_scale.py
       - name: Materialize concrete product artifacts
+        if: steps.target_gate.outputs.complete != 'true'
         env:
           BATCH_SIZE: ${{ inputs.batch_size }}
         run: python3 factory/production_materializer.py --batch-size ${BATCH_SIZE:-250}
       - name: Refresh product asset surfaces
+        if: steps.target_gate.outputs.complete != 'true'
         run: python3 factory/product_asset_expander.py
       - name: Production QC gate
+        if: steps.target_gate.outputs.complete != 'true'
         run: |
           test -s generated/production-registry.json
           test -s generated/production-status.json
@@ -46,6 +55,7 @@ jobs:
           print("catalog=",len(c.get("products",[])),"produced=",s.get("product_count"))
           PY
       - name: Publish production batch through a pull request
+        if: steps.target_gate.outputs.complete != 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -69,3 +79,14 @@ jobs:
           labels: |
             automated
             production
+
+      - name: Report production completion decision
+        if: always()
+        run: |
+          echo "## Production completion gate" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ steps.target_gate.outputs.complete }}" = "true" ]; then
+            echo "Canonical catalogue, concrete assets, QR assets, and deterministic QC already meet the 5,000-item target. Duplicate production skipped." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Production target is incomplete or canonical evidence is insufficient. Bounded production path was eligible to run." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "Dispatch, sales, payment, and independent verification are separate downstream states." >> "$GITHUB_STEP_SUMMARY"
