@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-23T08:41:54.572920+00:00",
+  "generated_at": "2026-10-23T09:00:29.909938+00:00",
   "purpose": "public-first production module map",
   "module_count": 10915,
   "lane_counts": {
@@ -62732,7 +62732,7 @@
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 2914
+      "bytes": 2945
     },
     {
       "path": "factory/queue_worker.py",
