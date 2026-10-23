@@ -47,6 +47,17 @@ def main() -> None:
     status = read_json("concrete-product-asset-status.json")
     live = read_json("live-production-state.json")
     overlay = read_json("public-production-asset-overlay.json")
+    qc = read_json("product-qc-gate.json")
+    import sys
+    sys.path.insert(0, str(ROOT))
+    from factory.qc_state_contract import qc_passed
+    expected_qc_state = "QC_PASSED" if qc_passed(qc, target) else ("QC_REVIEW_REQUIRED" if qc.get("release_state") == "QC_REVIEW_REQUIRED" else "READY_FOR_QC")
+    if status.get("state") != expected_qc_state:
+        raise SystemExit(f"PUBLIC_PRODUCTION_GATE_FAIL: concrete status state={status.get('state')!r} expected {expected_qc_state}")
+    if live.get("qc_state") != expected_qc_state:
+        raise SystemExit(f"PUBLIC_PRODUCTION_GATE_FAIL: live qc_state={live.get('qc_state')!r} expected {expected_qc_state}")
+    if qc.get("dispatch_default") != "NO" or live.get("dispatch_released", 0) != 0:
+        raise SystemExit("PUBLIC_PRODUCTION_GATE_FAIL: QC must not imply dispatch release")
 
     products = catalog.get("products")
     if not isinstance(products, list) or catalog.get("product_count") != target or len(products) != target:
@@ -121,6 +132,7 @@ def main() -> None:
         ("concrete-product-asset-status.json", status),
         ("live-production-state.json", live),
         ("public-production-asset-overlay.json", overlay),
+        ("product-qc-gate.json", qc),
     ):
         fresh_timestamp(payload.get("generated_at"), filename)
 
