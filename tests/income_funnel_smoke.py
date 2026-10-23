@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -91,6 +91,22 @@ def main() -> int:
         errors.append("Canonical offer must disclose that it does not create/claim an order")
     if not any(phrase in offer_source.casefold() for phrase in ("no message is sent automatically", "does not send email/whatsapp", "do not automatically send")):
         errors.append("Canonical offer must disclose that contact drafts are not automatically sent")
+
+    # Payment guidance must remain consent-first and must not prefill an amount.
+    offer_lower = offer_source.casefold()
+    if "payment — only after written agreement" not in offer_lower:
+        errors.append("Canonical offer must label payment as occurring only after written agreement")
+    if "पहले लिखित सहमति" not in offer_source:
+        errors.append("Canonical offer must explain written consent before payment")
+    upi_links = [link for link in offer_urls if urlsplit(link).scheme == "upi"]
+    if not upi_links:
+        errors.append("Canonical offer must expose the documented UPI payment-intent link")
+    elif any("am" in parse_qs(urlsplit(link).query) for link in upi_links):
+        errors.append("UPI payment intent must not prefill an amount before written agreement")
+    if "paypal" not in offer_lower or "transaction reference" not in offer_lower:
+        errors.append("Canonical offer must include PayPal guidance and transaction-reference follow-up")
+    if "does not" not in offer_lower or "process payments" not in offer_lower:
+        errors.append("Canonical offer must disclose that the static page does not process payments")
 
     enquiry_text = " ".join(enquiry.text)
     for phrase in ("₹499", "₹999", "₹1,499", "WhatsApp", "लिखित", "भुगतान"):
