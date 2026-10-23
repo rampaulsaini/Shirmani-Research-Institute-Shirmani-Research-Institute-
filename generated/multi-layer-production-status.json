@@ -7,7 +7,7 @@
   "last_cycle_tasks": 500,
   "new_tasks_added": 500,
   "total_queued_tasks": 500,
-  "scheduled_work_units": 1050500,
+  "scheduled_work_units": 25,
   "lanes": [
     "ai-ml-nlp",
     "automation",
@@ -41,7 +41,7 @@
     "certificates": 1000,
     "verification_queue": 100200,
     "verified_records": 0,
-    "concrete_results_this_cycle": 500,
+    "concrete_results_this_cycle": 25,
     "lane_artifacts": {
       "ai-ml-nlp": 54,
       "automation": 253,
@@ -55,7 +55,7 @@
     },
     "public_catalog": "generated/public-production-catalog.json",
     "verification": "downstream",
-    "production_modules": 413,
+    "production_modules": 5000,
     "module_index": "generated/public-production-by-module.html"
   },
   "routing": {
@@ -64,12 +64,13 @@
     "verification": "downstream result-quality/promotion layer"
   },
   "truth_boundary": "Generated production output is not automatically independently verified.",
-  "last_cycle_concrete_results": 500,
+  "last_cycle_concrete_results": 25,
   "artifacts": [
     "generated/production-results.jsonl",
     "generated/production-work-queue.jsonl",
     "generated/public-production-catalog.json",
     "generated/public-production-module-index.json",
     "generated/public-production-by-module.html"
-  ]
+  ],
+  "observed_at": "2026-10-23T06:34:06.839660+00:00"
 }
