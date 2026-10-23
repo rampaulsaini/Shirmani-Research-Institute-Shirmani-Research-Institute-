@@ -45,10 +45,28 @@ def load_tasks():
         out.append(task)
     return out
 def title(text,fallback):
-    return (re.sub(r"\\s+"," ",text or "").strip()[:110] or fallback).strip()
+    raw = text or ""
+    match = re.search(r"(?is)<title\\b[^>]*>(.*?)</title\\s*>", raw)
+    if match:
+        raw = match.group(1)
+    raw = re.sub(r"(?is)<script\\b.*?</script\\s*>", " ", raw)
+    raw = re.sub(r"(?is)<style\\b.*?</style\\s*>", " ", raw)
+    raw = re.sub(r"(?s)<[^>]+>", " ", raw)
+    raw = html.unescape(raw)
+    return (re.sub(r"\\s+", " ", raw).strip()[:110] or fallback).strip()
+
+def readable_excerpt(source, limit=1400):
+    raw = source or ""
+    raw = re.sub(r"(?is)<script\\b.*?</script\\s*>", " ", raw)
+    raw = re.sub(r"(?is)<style\\b.*?</style\\s*>", " ", raw)
+    raw = re.sub(r"(?s)<!--.*?-->", " ", raw)
+    if re.search(r"(?is)<(?:!doctype|html\\b|head\\b|body\\b|title\\b|meta\\b|div\\b|section\\b|article\\b|p\\b|h[1-6]\\b)", raw):
+        raw = re.sub(r"(?s)<[^>]+>", " ", raw)
+        raw = html.unescape(raw)
+    return " ".join(raw.split())[:limit]
 
 def deliverable(task,source):
-    lane=task["lane"]; t=title(source,task["module"]); excerpt=" ".join(source.split())[:1400]
+    lane=task["lane"]; t=title(source,task["module"]); excerpt=readable_excerpt(source)
     base={"production_objective":task["objective"],"source_excerpt":excerpt,
           "source_fingerprint":digest(source)[:16],"verification_state":"PENDING_DOWNSTREAM"}
     if lane=="research":
