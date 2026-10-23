@@ -44,24 +44,61 @@ def load_tasks():
         task.setdefault("objective",f"Produce a concrete, provenance-linked output for {module}")
         out.append(task)
     return out
+class _VisibleTextParser(HTMLParser):
+    """Extract visible HTML text without regex-based script/style filtering."""
+    def __init__(self, title_only=False):
+        super().__init__(convert_charrefs=True)
+        self.title_only = title_only
+        self.title_depth = 0
+        self.hidden_depth = 0
+        self.parts = []
+
+    def handle_starttag(self, tag, attrs):
+        tag = tag.lower()
+        if tag in ("script", "style", "noscript", "template"):
+            self.hidden_depth += 1
+        if tag == "title":
+            self.title_depth += 1
+        if not self.title_only and tag in ("p", "div", "section", "article", "li", "h1", "h2", "h3", "h4", "h5", "h6", "br"):
+            self.parts.append(" ")
+
+    def handle_endtag(self, tag):
+        tag = tag.lower()
+        if tag in ("script", "style", "noscript", "template") and self.hidden_depth:
+            self.hidden_depth -= 1
+        if tag == "title" and self.title_depth:
+            self.title_depth -= 1
+        if not self.title_only and tag in ("p", "div", "section", "article", "li", "h1", "h2", "h3", "h4", "h5", "h6", "br"):
+            self.parts.append(" ")
+
+    def handle_data(self, data):
+        if self.hidden_depth:
+            return
+        if self.title_only and not self.title_depth:
+            return
+        self.parts.append(data)
+
+def _visible_text(source, title_only=False):
+    parser = _VisibleTextParser(title_only=title_only)
+    try:
+        parser.feed(source or "")
+        parser.close()
+    except Exception:
+        # Malformed source must not abort the production cycle.
+        return ""
+    return " ".join(" ".join(parser.parts).split())
+
 def title(text,fallback):
-    raw = text or ""
-    match = re.search(r"(?is)<title\b[^>]*>(.*?)</title\s*>", raw)
-    if match:
-        raw = match.group(1)
-    raw = re.sub(r"(?is)<script\b.*?</script\s*>", " ", raw)
-    raw = re.sub(r"(?is)<style\b.*?</style\s*>", " ", raw)
-    raw = re.sub(r"(?s)<[^>]+>", " ", raw)
-    raw = html.unescape(raw)
-    return (re.sub(r"\s+", " ", raw).strip()[:110] or fallback).strip()
+    raw = _visible_text(text, title_only=True)
+    if not raw:
+        raw = _visible_text(text)
+    return (raw[:110] or fallback).strip()
 
 def readable_excerpt(source, limit=1400):
     raw = source or ""
-    raw = re.sub(r"(?is)<script\b.*?</script\s*>", " ", raw)
-    raw = re.sub(r"(?is)<style\b.*?</style\s*>", " ", raw)
-    raw = re.sub(r"(?s)<!--.*?-->", " ", raw)
-    if re.search(r"(?is)<(?:!doctype|html\b|head\b|body\b|title\b|meta\b|div\b|section\b|article\b|p\b|h[1-6]\b)", raw):
-        raw = re.sub(r"(?s)<[^>]+>", " ", raw)
+    if re.search(r"(?is)<(?:!doctype|html\\b|head\\b|body\\b|title\\b|meta\\b|div\\b|section\\b|article\\b|p\\b|h[1-6]\\b)", raw):
+        raw = _visible_text(raw)
+    else:
         raw = html.unescape(raw)
     return " ".join(raw.split())[:limit]
 
