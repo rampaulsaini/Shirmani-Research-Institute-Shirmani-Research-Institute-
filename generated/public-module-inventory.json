@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-23T02:16:43.241547+00:00",
+  "generated_at": "2026-10-23T02:25:38.966893+00:00",
   "purpose": "public-first production module map",
   "module_count": 10891,
   "lane_counts": {
@@ -62718,7 +62718,7 @@
       "type": "py",
       "lane": "ai_ml_nlp",
       "status": "UNSPECIFIED",
-      "bytes": 7506
+      "bytes": 7515
     },
     {
       "path": "factory/public_showroom.py",
