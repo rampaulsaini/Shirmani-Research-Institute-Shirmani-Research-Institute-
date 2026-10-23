@@ -45,11 +45,59 @@ def load_tasks():
         out.append(task)
     return out
 def title(text,fallback):
-    return (re.sub(r"\\s+"," ",text or "").strip()[:110] or fallback).strip()
+    raw = text or ""
+    if re.search(r"<(?:!doctype|html|head|body)\\b", raw, re.I):
+        match = re.search(r"<title\\b[^>]*>(.*?)</title>", raw, re.I | re.S)
+        if not match:
+            match = re.search(r"<h1\\b[^>]*>(.*?)</h1>", raw, re.I | re.S)
+        raw = html.unescape(re.sub(r"<[^>]+>", " ", match.group(1))) if match else fallback
+    return (re.sub(r"\\s+", " ", raw).strip()[:110] or fallback).strip()
+
+def readable_excerpt(source, limit=1400):
+    """Turn HTML sources into readable metadata instead of dumping raw markup."""
+    raw = source or ""
+    if re.search(r"<(?:!doctype|html|head|body)\\b", raw, re.I):
+        parts = []
+        source_title = title(raw, "")
+        if source_title:
+            parts.append(source_title)
+        meta = re.search(r"<meta\\b[^>]*>", raw, re.I)
+        while meta:
+            tag = meta.group(0)
+            if re.search(r"""name\\s*=\\s*["']description["']""", tag, re.I):
+                content = re.search(r"""content\\s*=\\s*["'](.*?)["']""", tag, re.I | re.S)
+                if content:
+                    parts.append(html.unescape(content.group(1)))
+                    break
+            meta = re.search(r"<meta\\b[^>]*>", raw[meta.end():], re.I)
+            if meta:
+                # Convert the next match's span back to the original source.
+                meta = re.match(r"<meta\\b[^>]*>", raw[raw.find(meta.group(0), meta.start()):], re.I)
+                # Simpler complete scan below handles all remaining tags.
+                break
+        if not any("description" in part.lower() for part in parts):
+            for tag in re.findall(r"<meta\\b[^>]*>", raw, re.I):
+                if re.search(r"""name\\s*=\\s*["']description["']""", tag, re.I):
+                    content = re.search(r"""content\\s*=\\s*["'](.*?)["']""", tag, re.I | re.S)
+                    if content:
+                        parts.append(html.unescape(content.group(1)))
+                        break
+        headings = re.findall(r"<h[1-3]\\b[^>]*>(.*?)</h[1-3]>", raw, re.I | re.S)
+        for heading in headings[:3]:
+            clean = html.unescape(re.sub(r"<[^>]+>", " ", heading))
+            clean = re.sub(r"\\s+", " ", clean).strip()
+            if clean and clean not in parts:
+                parts.append(clean)
+        if not parts:
+            clean = re.sub(r"<(script|style)\\b[^>]*>.*?</\\1>", " ", raw, flags=re.I | re.S)
+            clean = html.unescape(re.sub(r"<[^>]+>", " ", clean))
+            parts.append(re.sub(r"\\s+", " ", clean).strip())
+        return " · ".join(parts)[:limit]
+    return " ".join(raw.split())[:limit]
 
 def deliverable(task,source):
     lane=task["lane"]; t=title(source,task["module"]); excerpt=" ".join(source.split())[:1400]
-    base={"production_objective":task["objective"],"source_excerpt":excerpt,
+    base={"production_objective":task["objective"],"source_title":t,"source_excerpt":readable_excerpt(source),
           "source_fingerprint":digest(source)[:16],"verification_state":"PENDING_DOWNSTREAM"}
     if lane=="research":
         base.update(artifact_type="research-work-card",question=f"What concrete research output can be developed from: {t}?",
@@ -214,7 +262,7 @@ def main():
     cards=[]
     for r in results[:120]:
         d=r["deliverable"]; preview=html.escape((d.get("draft") or d.get("source_excerpt") or d.get("production_objective") or "")[:500])
-        cards.append(f"<article><h3>{html.escape(r['lane'].upper())}</h3><small>{html.escape(r['module'])}</small><h4>{html.escape(str(d.get('title') or d.get('offer_title') or d.get('artifact_type')))}</h4><p>{preview}</p><b>PRODUCED</b> · downstream verification</article>")
+        cards.append(f"<article><h3>{html.escape(r['lane'].upper())}</h3><small>{html.escape(r['module'])}</small><h4>{html.escape(str(d.get('title') or d.get('offer_title') or d.get('source_title') or d.get('artifact_type')))}</h4><p>{preview}</p><b>PRODUCED</b> · downstream verification</article>")
     links="".join(f"<a href='public-production/{html.escape(l)}.jsonl'>{html.escape(l)} · {n:,} outputs</a>" for l,n in sorted(counts.items()))
     page=f"""<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI Public Production</title><style>body{{margin:0;background:#0b0d14;color:#f5f5f5;font-family:system-ui,sans-serif;line-height:1.5}}main{{max-width:1250px;margin:auto;padding:24px}}h1,h2{{color:#d4af37}}.hero,article,.links{{background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.25);border-radius:14px;padding:18px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}}.links{{display:flex;flex-wrap:wrap;gap:10px}}a{{color:#67e8f9;text-decoration:none;padding:8px 12px;border:1px solid #365;border-radius:9px}}small{{color:#aeb5c2}}b{{color:#6ee7b7}}</style></head><body><main><section class="hero"><h1>꙰ SHIRMANI Public Production</h1><p><strong>Production-first Automission:</strong> every queued work unit becomes a concrete source-bound production card. Verification is downstream.</p><h2>{len(results):,} concrete results this cycle</h2><p>Generated: {catalog["generated_at"]}</p><p><a href="public-production-catalog.json">Catalog</a> · <a href="multi-layer-production-status.json">Status</a> · <a href="production-results.jsonl">Latest cycle stream</a> · <a href="public-production/archive/index.json">Cycle archive index</a> · <a href="../index.html">Main Hub</a></p></section><h2>Production lanes</h2><div class="links">{links}</div><h2>Actual production cards</h2><div class="grid">{''.join(cards)}</div><section class="hero"><strong>Integrity:</strong> PRODUCED means a concrete artifact was generated from a repository-bound source. It is not automatically scientifically verified, commercially sold, or independently validated.</section></main></body></html>"""
     DASHBOARD.write_text(page,encoding="utf-8")
