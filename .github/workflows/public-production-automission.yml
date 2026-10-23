@@ -235,6 +235,17 @@ jobs:
       - name: Materialize public production status
         run: python3 factory/public_production_materializer.py
 
+      - name: Reconcile deterministic QC into the live public state
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from factory.qc_state_contract import sync_public_qc_state
+
+          # QC may promote QC state only; dispatch, sales, payment and
+          # independent verification remain unchanged and fail-closed.
+          sync_public_qc_state(Path('.'), int(__import__('os').environ.get('PRODUCT_TARGET', '5000')))
+          PY
+
       - name: Validate public production truth and asset completeness
         run: python3 factory/public_production_truth_smoke_gate.py
 
