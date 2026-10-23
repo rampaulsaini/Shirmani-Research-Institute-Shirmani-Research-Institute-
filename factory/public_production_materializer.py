@@ -46,54 +46,45 @@ def load_tasks():
     return out
 def title(text,fallback):
     raw = text or ""
-    if re.search(r"<(?:!doctype|html|head|body)\\b", raw, re.I):
-        match = re.search(r"<title\\b[^>]*>(.*?)</title>", raw, re.I | re.S)
+    if re.search(r"<(?:!doctype|html|head|body)\b", raw, re.I):
+        match = re.search(r"<title\b[^>]*>(.*?)</title>", raw, re.I | re.S)
         if not match:
-            match = re.search(r"<h1\\b[^>]*>(.*?)</h1>", raw, re.I | re.S)
+            match = re.search(r"<h1\b[^>]*>(.*?)</h1>", raw, re.I | re.S)
         raw = html.unescape(re.sub(r"<[^>]+>", " ", match.group(1))) if match else fallback
-    return (re.sub(r"\\s+", " ", raw).strip()[:110] or fallback).strip()
+    return (re.sub(r"\s+", " ", raw).strip()[:110] or fallback).strip()
 
 def readable_excerpt(source, limit=1400):
     """Turn HTML sources into readable metadata instead of dumping raw markup."""
     raw = source or ""
-    if re.search(r"<(?:!doctype|html|head|body)\\b", raw, re.I):
-        parts = []
-        source_title = title(raw, "")
-        if source_title:
-            parts.append(source_title)
-        meta = re.search(r"<meta\\b[^>]*>", raw, re.I)
-        while meta:
-            tag = meta.group(0)
-            if re.search(r"""name\\s*=\\s*["']description["']""", tag, re.I):
-                content = re.search(r"""content\\s*=\\s*["'](.*?)["']""", tag, re.I | re.S)
-                if content:
-                    parts.append(html.unescape(content.group(1)))
-                    break
-            meta = re.search(r"<meta\\b[^>]*>", raw[meta.end():], re.I)
-            if meta:
-                # Convert the next match's span back to the original source.
-                meta = re.match(r"<meta\\b[^>]*>", raw[raw.find(meta.group(0), meta.start()):], re.I)
-                # Simpler complete scan below handles all remaining tags.
+    if not re.search(r"<(?:!doctype|html|head|body)\b", raw, re.I):
+        return " ".join(raw.split())[:limit]
+
+    parts = []
+    source_title = title(raw, "")
+    if source_title:
+        parts.append(source_title)
+
+    for tag in re.findall(r"<meta\b[^>]*>", raw, re.I):
+        if re.search(r"""name\s*=\s*["']description["']""", tag, re.I):
+            content = re.search(r"""content\s*=\s*["'](.*?)["']""", tag, re.I | re.S)
+            if content:
+                description = html.unescape(content.group(1)).strip()
+                if description and description not in parts:
+                    parts.append(description)
                 break
-        if not any("description" in part.lower() for part in parts):
-            for tag in re.findall(r"<meta\\b[^>]*>", raw, re.I):
-                if re.search(r"""name\\s*=\\s*["']description["']""", tag, re.I):
-                    content = re.search(r"""content\\s*=\\s*["'](.*?)["']""", tag, re.I | re.S)
-                    if content:
-                        parts.append(html.unescape(content.group(1)))
-                        break
-        headings = re.findall(r"<h[1-3]\\b[^>]*>(.*?)</h[1-3]>", raw, re.I | re.S)
-        for heading in headings[:3]:
-            clean = html.unescape(re.sub(r"<[^>]+>", " ", heading))
-            clean = re.sub(r"\\s+", " ", clean).strip()
-            if clean and clean not in parts:
-                parts.append(clean)
-        if not parts:
-            clean = re.sub(r"<(script|style)\\b[^>]*>.*?</\\1>", " ", raw, flags=re.I | re.S)
-            clean = html.unescape(re.sub(r"<[^>]+>", " ", clean))
-            parts.append(re.sub(r"\\s+", " ", clean).strip())
-        return " · ".join(parts)[:limit]
-    return " ".join(raw.split())[:limit]
+
+    headings = re.findall(r"<h[1-3]\b[^>]*>(.*?)</h[1-3]>", raw, re.I | re.S)
+    for heading in headings[:3]:
+        clean = html.unescape(re.sub(r"<[^>]+>", " ", heading))
+        clean = re.sub(r"\s+", " ", clean).strip()
+        if clean and clean not in parts:
+            parts.append(clean)
+
+    if not parts:
+        clean = re.sub(r"<(script|style)\b[^>]*>.*?</\1>", " ", raw, flags=re.I | re.S)
+        clean = html.unescape(re.sub(r"<[^>]+>", " ", clean))
+        parts.append(re.sub(r"\s+", " ", clean).strip())
+    return " · ".join(parts)[:limit]
 
 def deliverable(task,source):
     lane=task["lane"]; t=title(source,task["module"]); excerpt=" ".join(source.split())[:1400]
