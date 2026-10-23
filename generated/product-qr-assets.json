@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generated_at": "2026-10-23T04:39:54.149664+00:00",
+  "generated_at": "2026-10-23T04:46:41.263715+00:00",
   "target": 5000,
   "qr_assets": 5000,
   "created_this_cycle": 0,
   "remaining": 0,
-  "batch_size": 500,
+  "batch_size": 5000,
   "state": "READY",
   "purpose": "Per-product QR for long description / product details",
   "products": [
