@@ -120,6 +120,9 @@ class QCStateContractTests(unittest.TestCase):
         status = json.loads((self.root / "generated" / "concrete-product-asset-status.json").read_text())
         live = json.loads((self.root / "generated" / "live-production-state.json").read_text())
         self.assertEqual(status["state"], "QC_PASSED")
+        self.assertEqual(status["qc_state"], "QC_PASSED")
+        self.assertEqual(status["qc_passed"], 2)
+        self.assertEqual(status["qc_failed"], 0)
         self.assertEqual(live["qc_state"], "QC_PASSED")
         self.assertEqual(live["state"], "QC_PASSED_AWAITING_DISPATCH")
         self.assertEqual(live["dispatch_released"], 0)
@@ -161,6 +164,18 @@ class QCStateContractTests(unittest.TestCase):
             workflow.index("sync_public_qc_state"),
         )
         self.assertIn("PUBLIC_STATE_FAIL", workflow)
+
+    def test_publication_pr_reconciles_qc_after_final_live_state_write(self):
+        root = Path(__file__).resolve().parents[1]
+        workflow = (root / ".github" / "workflows" / "production-state-publication-pr.yml").read_text(
+            encoding="utf-8"
+        )
+        self.assertLess(
+            workflow.index('(root / "generated/live-production-state.json").write_text'),
+            workflow.index("sync_public_qc_state(root, target)"),
+        )
+        self.assertIn('status.get("qc_state") != expected_qc_state', workflow)
+        self.assertIn("QC must not imply dispatch, sales, payment, or verification", workflow)
 
 
 class CommercialReadinessTests(unittest.TestCase):
