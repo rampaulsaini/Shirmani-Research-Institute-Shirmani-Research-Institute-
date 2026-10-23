@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-23T16:09:28.218351+00:00",
+  "generated_at": "2026-10-23T16:54:06.622644+00:00",
   "purpose": "public-first production module map",
   "module_count": 10964,
   "lane_counts": {
@@ -74632,7 +74632,7 @@
       "type": "py",
       "lane": "research",
       "status": "UNSPECIFIED",
-      "bytes": 17289
+      "bytes": 19053
     },
     {
       "path": "factory/public_production_queue_self_heal.py",
