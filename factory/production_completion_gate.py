@@ -57,7 +57,7 @@ def main() -> int:
     output = os.environ.get("GITHUB_OUTPUT")
     if output:
         with open(output, "a", encoding="utf-8") as handle:
-            handle.write(f"complete={'true' if complete else 'false'}\\n")
+            handle.write(f"complete={'true' if complete else 'false'}\n")
     if complete:
         print("Production target already complete from canonical QC evidence; skipping duplicate generation.")
     else:
