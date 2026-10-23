@@ -46,21 +46,21 @@ def load_tasks():
     return out
 def title(text,fallback):
     raw = text or ""
-    match = re.search(r"(?is)<title\\b[^>]*>(.*?)</title\\s*>", raw)
+    match = re.search(r"(?is)<title\b[^>]*>(.*?)</title\s*>", raw)
     if match:
         raw = match.group(1)
-    raw = re.sub(r"(?is)<script\\b.*?</script\\s*>", " ", raw)
-    raw = re.sub(r"(?is)<style\\b.*?</style\\s*>", " ", raw)
+    raw = re.sub(r"(?is)<script\b.*?</script\s*>", " ", raw)
+    raw = re.sub(r"(?is)<style\b.*?</style\s*>", " ", raw)
     raw = re.sub(r"(?s)<[^>]+>", " ", raw)
     raw = html.unescape(raw)
-    return (re.sub(r"\\s+", " ", raw).strip()[:110] or fallback).strip()
+    return (re.sub(r"\s+", " ", raw).strip()[:110] or fallback).strip()
 
 def readable_excerpt(source, limit=1400):
     raw = source or ""
-    raw = re.sub(r"(?is)<script\\b.*?</script\\s*>", " ", raw)
-    raw = re.sub(r"(?is)<style\\b.*?</style\\s*>", " ", raw)
+    raw = re.sub(r"(?is)<script\b.*?</script\s*>", " ", raw)
+    raw = re.sub(r"(?is)<style\b.*?</style\s*>", " ", raw)
     raw = re.sub(r"(?s)<!--.*?-->", " ", raw)
-    if re.search(r"(?is)<(?:!doctype|html\\b|head\\b|body\\b|title\\b|meta\\b|div\\b|section\\b|article\\b|p\\b|h[1-6]\\b)", raw):
+    if re.search(r"(?is)<(?:!doctype|html\b|head\b|body\b|title\b|meta\b|div\b|section\b|article\b|p\b|h[1-6]\b)", raw):
         raw = re.sub(r"(?s)<[^>]+>", " ", raw)
         raw = html.unescape(raw)
     return " ".join(raw.split())[:limit]
