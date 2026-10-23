@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib, html, json, re
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -96,7 +97,7 @@ def title(text,fallback):
 
 def readable_excerpt(source, limit=1400):
     raw = source or ""
-    if re.search(r"(?is)<(?:!doctype|html\\b|head\\b|body\\b|title\\b|meta\\b|div\\b|section\\b|article\\b|p\\b|h[1-6]\\b)", raw):
+    if re.search(r"(?is)<(?:!doctype|html\b|head\b|body\b|title\b|meta\b|div\b|section\b|article\b|p\b|h[1-6]\b)", raw):
         raw = _visible_text(raw)
     else:
         raw = html.unescape(raw)
