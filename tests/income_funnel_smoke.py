@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -77,8 +77,13 @@ def main() -> int:
     # Keep a single canonical offer section so mobile visitors do not see duplicate prices/CTAs.
     if "<h2>Service menu</h2>" in sales_desk_source:
         errors.append("Legacy sales desk repeats the starter offers in a second service-menu section")
-    if offer_source.count('<article class="offer">') != 3:
-        errors.append("Canonical first-client offer must expose exactly three priced starter offers")
+    starter_section = offer_source.split("<h2>Starter offers</h2>", 1)
+    if len(starter_section) != 2:
+        errors.append("Canonical first-client offer is missing the starter-offers section")
+    else:
+        starter_cards = starter_section[1].split("<h2>Prepare a client enquiry</h2>", 1)[0]
+        if starter_cards.count('<article class="offer">') != 3:
+            errors.append("Canonical first-client offer must expose exactly three priced starter offers")
     if sales_desk_source.count("data-offer=") != 3:
         errors.append("Legacy sales desk must retain exactly three canonical priced offer actions")
 
@@ -91,6 +96,22 @@ def main() -> int:
         errors.append("Canonical offer must disclose that it does not create/claim an order")
     if not any(phrase in offer_source.casefold() for phrase in ("no message is sent automatically", "does not send email/whatsapp", "do not automatically send")):
         errors.append("Canonical offer must disclose that contact drafts are not automatically sent")
+
+    # Payment guidance must remain consent-first and must not prefill an amount.
+    offer_lower = offer_source.casefold()
+    if "payment — only after written agreement" not in offer_lower:
+        errors.append("Canonical offer must label payment as occurring only after written agreement")
+    if "पहले लिखित सहमति" not in offer_source:
+        errors.append("Canonical offer must explain written consent before payment")
+    upi_links = [link for link in offer_urls if urlsplit(link).scheme == "upi"]
+    if not upi_links:
+        errors.append("Canonical offer must expose the documented UPI payment-intent link")
+    elif any("am" in parse_qs(urlsplit(link).query) for link in upi_links):
+        errors.append("UPI payment intent must not prefill an amount before written agreement")
+    if "paypal" not in offer_lower or "transaction reference" not in offer_lower:
+        errors.append("Canonical offer must include PayPal guidance and transaction-reference follow-up")
+    if "does not" not in offer_lower or "process payments" not in offer_lower:
+        errors.append("Canonical offer must disclose that the static page does not process payments")
 
     enquiry_text = " ".join(enquiry.text)
     for phrase in ("₹499", "₹999", "₹1,499", "WhatsApp", "लिखित", "भुगतान"):
