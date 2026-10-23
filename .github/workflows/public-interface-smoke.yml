@@ -22,6 +22,10 @@ on:
       - "first-paid-pilot-offer.html"
       - "tests/public_interface_smoke.py"
       - "factory/public_interface_link_smoke.py"
+      - "factory/production_completion_gate.py"
+      - "tests/test_production_completion_gate.py"
+      - "generated/live-production-state.json"
+      - "generated/product-qc-gate.json"
       - ".github/workflows/public-interface-smoke.yml"
   push:
     branches: [main]
@@ -62,6 +66,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+      - name: Test production completion gate
+        run: python3 -m unittest discover -s tests -p 'test_production_completion_gate.py'
       - name: Validate existing public-interface contract
         run: python tests/public_interface_smoke.py
       - name: Check public entry and income funnel local links
