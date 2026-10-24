@@ -27,6 +27,7 @@ on:
       - "services-writing-research.html"
       - "institutional-outreach-kit.html"
       - "tests/public_interface_smoke.py"
+      - "outreach-income-workbench.html"
       - "factory/public_interface_link_smoke.py"
       - "factory/production_completion_gate.py"
       - "tests/test_production_completion_gate.py"
@@ -60,6 +61,7 @@ on:
       - "services-writing-research.html"
       - "institutional-outreach-kit.html"
       - "tests/public_interface_smoke.py"
+      - "outreach-income-workbench.html"
       - "factory/public_interface_link_smoke.py"
       - ".github/workflows/public-interface-smoke.yml"
   workflow_dispatch:
