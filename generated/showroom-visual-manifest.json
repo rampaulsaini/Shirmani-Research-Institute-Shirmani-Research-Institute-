@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-24T16:55:38.626749+00:00",
+  "production_first": true,
+  "visual_standard": {
+    "resolution": "3840x2160",
+    "aspect_ratio": "16:9",
+    "scaling": "contain / center / no crop",
+    "identity": "deterministic product-specific visual identity",
+    "image_short_description": true,
+    "qr_long_description": true
+  },
+  "platform_snapshot": {
+    "catalog_identities": 5000,
+    "concrete_repository_assets": 5000,
+    "concrete_materialization_percent": 100.0,
+    "production_modules": 5000
+  },
+  "showroom_seed_products": 27,
+  "products": [
+    {
+      "product_id": "SRI-AUD-001",
+      "visual_identity": "SRI-VIS-461C187EE165",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "price_inr": 10000,
+      "category": "audio",
+      "source_status": "CATALOG_EXTERNAL"
+    },
+    {
+      "product_id": "SRI-AUD-002",
+      "visual_identity": "SRI-VIS-DFC5723635C1",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "price_inr": 1500,
+      "category": "audio",
+      "source_status": "CATALOG_EXTERNAL"
+    },
+    {
+      "product_id": "SRI-CERT-001",
+      "visual_identity": "SRI-VIS-214D56462542",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "price_inr": 495,
+      "category": "certificate",
+      "source_status": "CATALOG_EXTERNAL"
+    },
+    {
+      "product_id": "SRI-SHORT-001",
+      "visual_identity": "SRI-VIS-F4EE4C7A0577",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "price_inr": 89,
+      "category": "short",
+      "source_status": "CATALOG_EXTERNAL"
+    },
+    {
+      "product_id": "SRI-BOOK-001",
+      "visual_identity": "SRI-VIS-7A48A35EE8C6",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "research-paper.html",
+      "price_inr": 0,
+      "category": "research",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-TOOL-001",
+      "visual_identity": "SRI-VIS-6555FB3ED905",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/micro/word-counter.html",
+      "price_inr": 0,
+      "category": "tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-TOOL-002",
+      "visual_identity": "SRI-VIS-8E6A16391099",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/micro/percentage-calculator.html",
+      "price_inr": 0,
+      "category": "tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-TOOL-003",
+      "visual_identity": "SRI-VIS-4E6C27B4A101",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/micro/unit-converter.html",
+      "price_inr": 0,
+      "category": "tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-TOOL-004",
+      "visual_identity": "SRI-VIS-3130CFC37D4E",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/micro/json-formatter.html",
+      "price_inr": 0,
+      "category": "tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-TOOL-005",
+      "visual_identity": "SRI-VIS-282AE12779DC",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/micro/color-palette-generator.html",
+      "price_inr": 0,
+      "category": "tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-TOOL-006",
+      "visual_identity": "SRI-VIS-436C991F3394",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/micro/drawing-board.html",
+      "price_inr": 0,
+      "category": "tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-TOOL-007",
+      "visual_identity": "SRI-VIS-0E0D7234F56D",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/micro/markdown-preview.html",
+      "price_inr": 0,
+      "category": "tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-TOOL-008",
+      "visual_identity": "SRI-VIS-01B5E5FB2097",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/micro/seo-meta-generator.html",
+      "price_inr": 0,
+      "category": "tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-TOOL-015",
+      "visual_identity": "SRI-VIS-53DA93B05E3C",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/micro/yatharth-clarity-evidence-mapper.html",
+      "price_inr": 0,
+      "category": "tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-TOOL-016",
+      "visual_identity": "SRI-VIS-7599AA86FC5D",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/micro/yatharth-product-passport-studio.html",
+      "price_inr": 0,
+      "category": "tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-TOOL-017",
+      "visual_identity": "SRI-VIS-CDB897D2BD56",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/micro/yatharth-listing-offer-studio.html",
+      "price_inr": 0,
+      "category": "tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-V2-SUITE-001",
+      "visual_identity": "SRI-VIS-878FD61DEF37",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "supreme-compound-automission-production-v2.html",
+      "price_inr": 0,
+      "category": "tool-suite",
+      "source_status": "PRODUCED_PUBLIC_PENDING_MERGE"
+    },
+    {
+      "product_id": "SRI-SRC-001",
+      "visual_identity": "SRI-VIS-6578A1DA95FB",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/concrete/SRI-SRC-001-source-ledger.html",
+      "price_inr": 0,
+      "category": "research-tool",
+      "source_status": "PRODUCED_PUBLIC"
+    },
+    {
+      "product_id": "SRI-WRITE-005",
+      "visual_identity": "SRI-VIS-BEC7BEB921E6",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/concrete/SRI-WRITE-005-bilingual-content-quality-desk.html",
+      "price_inr": 0,
+      "category": "writing-tool",
+      "source_status": "PROTOTYPE_QC_PENDING"
+    },
+    {
+      "product_id": "SRI-RES-002",
+      "visual_identity": "SRI-VIS-CC2AA34A243A",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/concrete/SRI-RES-002-claim-evidence-mapper.html",
+      "price_inr": 0,
+      "category": "research-tool",
+      "source_status": "PROTOTYPE_QC_PENDING"
+    },
+    {
+      "product_id": "SRI-RESEARCH-WORKBENCH-001",
+      "visual_identity": "SRI-VIS-6FEF0E8D360A",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/concrete/SRI-RESEARCH-WRITING-WORKBENCH-001.html",
+      "price_inr": null,
+      "category": "research",
+      "source_status": "PRODUCED_REVIEW_PENDING"
+    },
+    {
+      "product_id": "SRI-RES-003",
+      "visual_identity": "SRI-VIS-27456F30EDFA",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "products/concrete/SRI-RES-003-research-deliverable-pack-builder.html",
+      "price_inr": 0,
+      "category": "research-tool",
+      "source_status": "PROTOTYPE_QC_PENDING"
+    },
+    {
+      "product_id": "SRI-REV-003",
+      "visual_identity": "SRI-VIS-F60F78C0B2C0",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "showroom/revenue-quote-calculator.html",
+      "price_inr": 0,
+      "category": "writing",
+      "source_status": "PROTOTYPE_READY"
+    },
+    {
+      "product_id": "SRI-MEDIA-002",
+      "visual_identity": "SRI-VIS-1F53200A810D",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "showroom/product-media-launch-kit.html",
+      "price_inr": 0,
+      "category": "media",
+      "source_status": "WORKING_BROWSER_DEMO_DRAFT"
+    },
+    {
+      "product_id": "SRI-PRES-001",
+      "visual_identity": "SRI-VIS-8C8DCA358321",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "voice-to-presentation-studio.html",
+      "price_inr": 0,
+      "category": "presentation",
+      "source_status": "WORKING_BROWSER_DEMO_QC_PENDING"
+    },
+    {
+      "product_id": "SRI-THINK-001",
+      "visual_identity": "SRI-VIS-B663BE9D2D02",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "showroom/heart-view-explainer-research-studio.html",
+      "price_inr": 0,
+      "category": "research",
+      "source_status": "WORKING_BROWSER_DEMO_DRAFT"
+    },
+    {
+      "product_id": "SRI-SVC-001",
+      "visual_identity": "SRI-VIS-7E371F6109E7",
+      "visual_format": "3840x2160 SVG / 16:9 / contain",
+      "short_description_on_image": true,
+      "long_description_qr": true,
+      "long_description_route": "first-paid-pilot-offer.html",
+      "price_inr": null,
+      "category": "writing",
+      "source_status": "REVIEW_REQUIRED_SERVICE_OFFER"
+    }
+  ],
+  "truth_boundary": "Visual production readiness is not independent scientific verification."
+}
