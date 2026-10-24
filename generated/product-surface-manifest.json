@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-24T10:29:59.514385+00:00",
+  "catalog_count": 5000,
+  "public_surface_count": 25,
+  "remaining_public_surfaces": 4975,
+  "created_this_cycle": 25,
+  "batch_size": 25,
+  "state": "OPERATIONAL_SURFACE",
+  "truth_boundary": "A catalogue page is not evidence of a working demo, sale, payment, delivery, scientific validation, or independent human review."
+}
