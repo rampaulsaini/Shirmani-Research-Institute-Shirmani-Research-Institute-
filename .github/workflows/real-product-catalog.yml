@@ -26,6 +26,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/real-product-catalog
+          base: main
           delete-branch: false
           commit-message: "chore: materialize real product catalog"
           title: "Automission: refresh public product catalog"
