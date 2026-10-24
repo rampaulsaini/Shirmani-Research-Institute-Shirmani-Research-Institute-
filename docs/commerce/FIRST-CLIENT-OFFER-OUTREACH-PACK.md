@@ -5,7 +5,7 @@
 ## Current service scope
 Hindi/English writing, research summaries, and website/blog content.
 
-## Pilot offers — suggested prices, not yet approved or published
+## Pilot offers — proposed public starting prices, subject to written scope confirmation
 | Offer | Scope | Suggested starting price |
 |---|---|---:|
 | Editing / Proofreading | Up to 700 words, one language, one revision | ₹499 from |
@@ -14,7 +14,7 @@ Hindi/English writing, research summaries, and website/blog content.
 | Custom writing / research | Scope, source access, rights, deadline and capacity confirmed first | Quote after scope |
 | Custom work | Scope and quote agreed first | Quote first |
 
-Prices are test proposals only. Owner approval is required before public use. Confirm deliverables, deadline, revision count, price, applicable taxes, and payment terms in writing before work starts. Do not guarantee sales, scientific novelty, ranking, or results.
+The public service pages display these as proposed pilot starting prices, not market-validated benchmarks or guaranteed quotes. Before accepting any order, confirm capacity, exact deliverables, deadline, revision count, final price, applicable taxes, and payment terms in writing. Do not guarantee sales, scientific novelty, ranking, or results.
 
 ## Client intake
 - Client/organisation:
