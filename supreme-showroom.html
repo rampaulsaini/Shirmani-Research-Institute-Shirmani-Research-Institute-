@@ -35,7 +35,7 @@
     const slice=ids.slice(page*pageSize,(page+1)*pageSize);
     links.innerHTML=slice.map(n=>{
       const id="SP-"+String(n).padStart(4,"0");
-      const href="products/live/sp-"+String(n).padStart(4,"0")+"/index.html";
+      const href=["products","live","sp-"+String(n).padStart(4,"0"),"index.html"].join("/");
       return '<a href="'+href+'" style="display:block;padding:12px;border:1px solid #34465b;border-radius:10px;background:#08101a;color:#f5f7fb;text-decoration:none"><strong style="color:#83e7ed">'+id+'</strong><br><span style="font-size:.88rem;color:#aeb9c8">Product page खोलें →</span></a>';
     }).join("");
     status.textContent=ids.length+" public pages · "+(ids.length?page+1:0)+"/"+pages+" page";
