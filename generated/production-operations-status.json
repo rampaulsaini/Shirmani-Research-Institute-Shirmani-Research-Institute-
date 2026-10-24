@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "generated_at": "2026-10-24T13:36:35.213384+00:00",
+  "generated_at": "2026-10-24T16:57:59.252217+00:00",
   "source_of_truth": "catalog asset paths checked against non-empty repository files",
   "production": {
     "catalog_products": 5000,
