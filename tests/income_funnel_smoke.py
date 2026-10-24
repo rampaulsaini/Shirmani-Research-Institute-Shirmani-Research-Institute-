@@ -57,6 +57,7 @@ def main() -> int:
         showroom_source, showroom = load("showroom-public-interface.html")
         income_source, _ = load("income-action-center.html")
         outreach_source, outreach = load("global-client-outreach-workbench.html")
+        pipeline_source, _ = load("income-client-pipeline.html")
     except (AssertionError, OSError, UnicodeError) as exc:
         print(f"INCOME FUNNEL SMOKE CHECK: FAILED\n- {exc}")
         return 1
@@ -113,6 +114,19 @@ def main() -> int:
                    'not independently verified'):
         if marker.casefold() not in income_source.casefold():
             errors.append(f"Income Action Center is missing backup/truth-boundary marker: {marker}")
+
+    # The client pipeline must not count work-stage labels as proof of payment.
+    for marker in (
+        'id="paymentStatus"',
+        'id="paymentRef"',
+        "const hasPaymentProof=x=>x.paymentStatus==='Payment received — reference recorded'&&String(x.paymentRef||'').trim().length>0",
+        "q('p').textContent=data.filter(hasPaymentProof).length",
+        "q('r').textContent='₹'+data.filter(hasPaymentProof).reduce",
+    ):
+        if marker.casefold() not in pipeline_source.casefold():
+            errors.append(f"Client pipeline is missing payment-evidence gate: {marker}")
+    if "q('p').textContent=data.filter(x=>paid.includes(x.stage)).length" in pipeline_source:
+        errors.append("Client pipeline must not count paid jobs from stage labels alone")
 
     # Payment guidance must remain consent-first and must not prefill an amount.
     offer_lower = offer_source.casefold()
