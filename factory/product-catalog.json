@@ -13,7 +13,9 @@
           "price_inr": 10000,
           "delivery": "digital-audio",
           "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-          "asset_evidence": "NOT_IN_REPOSITORY"
+          "asset_evidence": "VERIFIED_EXTERNAL_STORE_MANIFEST",
+          "external_product_id": "SV1001",
+          "external_evidence_url": "https://rampaulsaini.github.io/my-omniverse-store/production-catalog.html"
         },
         {
           "id": "P002",
@@ -21,7 +23,9 @@
           "price_inr": 1500,
           "delivery": "digital-audio",
           "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-          "asset_evidence": "NOT_IN_REPOSITORY"
+          "asset_evidence": "VERIFIED_EXTERNAL_STORE_MANIFEST",
+          "external_product_id": "SV1002",
+          "external_evidence_url": "https://rampaulsaini.github.io/my-omniverse-store/production-catalog.html"
         },
         {
           "id": "P003",
@@ -53,7 +57,9 @@
           "price_inr": 89,
           "delivery": "digital-audio",
           "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-          "asset_evidence": "NOT_IN_REPOSITORY"
+          "asset_evidence": "VERIFIED_EXTERNAL_STORE_MANIFEST",
+          "external_product_id": "SV1004",
+          "external_evidence_url": "https://rampaulsaini.github.io/my-omniverse-store/production-catalog.html"
         }
       ]
     },
@@ -67,7 +73,9 @@
           "price_inr": 495,
           "delivery": "digital-asset",
           "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-          "asset_evidence": "GENERATED_CERTIFICATES_EXIST"
+          "asset_evidence": "VERIFIED_EXTERNAL_STORE_MANIFEST",
+          "external_product_id": "SV1003",
+          "external_evidence_url": "https://rampaulsaini.github.io/my-omniverse-store/production-catalog.html"
         },
         {
           "id": "P008",
