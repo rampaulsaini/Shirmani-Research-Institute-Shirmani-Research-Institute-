@@ -45,7 +45,7 @@ jobs:
               raise SystemExit("Main-branch product catalog is empty; refusing screenshot production.")
           print("Published main-branch catalog rows:", len(rows))
           PY
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Install Playwright
