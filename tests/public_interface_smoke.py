@@ -22,6 +22,7 @@ PAGES = (
     ROOT / "supreme-public-production-showroom.html",
     ROOT / "writing-research-enquiry.html",
     ROOT / "first-paid-pilot-offer.html",
+    ROOT / "outreach-income-workbench.html",
 )
 REQUIRED_TEXT = {
     "showroom-public.html": (
@@ -35,6 +36,12 @@ REQUIRED_TEXT = {
         "Voice-to-Presentation Studio",
         "Lip-sync",
         "Live question-and-answer",
+    ),
+    "outreach-income-workbench.html": (
+        "Outreach & Income Workbench",
+        "Payment confirmed",
+        "Recorded receipts (INR)",
+        "non-sensitive receipt reference",
     ),
 }
 REQUIRED_SHOWROOM_ROUTES = (
