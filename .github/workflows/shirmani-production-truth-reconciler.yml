@@ -15,12 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Reconcile public production state
-        run: python3 factory/reconcile_production_truth.py
+        run: |
+          python3 factory/reconcile_production_truth.py
+          python3 factory/production_truth_gate.py
       - name: Commit reconciled production state
         run: |
           git config user.name "shirmani-production[bot]"
           git config user.email "shirmani-production@users.noreply.github.com"
-          git add generated/live-production-state.json factory/reconcile_production_truth.py
+          git add generated/live-production-state.json generated/PRODUCTION-TRUTH.json factory/reconcile_production_truth.py factory/production_truth_gate.py
           if git diff --cached --quiet; then
             echo "Production truth already current."
             exit 0
