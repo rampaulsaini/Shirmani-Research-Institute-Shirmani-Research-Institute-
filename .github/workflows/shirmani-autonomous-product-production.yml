@@ -74,5 +74,25 @@ jobs:
             exit 0
           fi
           git commit -m "production: persist concrete products with QR and product-specific demo media"
-          git push --force-with-lease="refs/heads/$branch:$remote_sha" origin HEAD:"$branch"
+          # Other production cycles can update this branch while media assets are being built.
+          # Merge those non-conflicting updates and retry the guarded push instead of losing this batch.
+          pushed=0
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "$branch"
+            remote_sha="$(git rev-parse "origin/$branch")"
+            if [[ "$(git rev-parse HEAD^)" != "$remote_sha" ]] && ! git merge-base --is-ancestor "$remote_sha" HEAD; then
+              git merge --no-edit -X ours "$remote_sha"
+            fi
+            if git push --force-with-lease="refs/heads/$branch:$remote_sha" origin HEAD:"$branch"; then
+              pushed=1
+              echo "Product artifacts persisted to $branch on attempt $attempt."
+              break
+            fi
+            echo "Production branch moved during attempt $attempt; retrying."
+            sleep 2
+          done
+          if [[ "$pushed" != "1" ]]; then
+            echo "Unable to persist product artifacts after 5 guarded attempts." >&2
+            exit 1
+          fi
           echo "Product artifacts persisted to $branch; main remains protected by pull-request rules."

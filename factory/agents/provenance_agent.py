@@ -2,7 +2,7 @@
 import hashlib,json
 from pathlib import Path
 from datetime import datetime,timezone
-ROOT=Path(__file__).resolve().parents[1]; G=ROOT/"generated"; G.mkdir(parents=True,exist_ok=True)
+ROOT=Path(__file__).resolve().parents[2]; G=ROOT/"generated"; G.mkdir(parents=True,exist_ok=True)
 src=G/"canonical-corpus.jsonl"; ev=G/"evidence-index.jsonl"; out=G/"provenance-ledger.jsonl"
 evidence={}
 if ev.exists():

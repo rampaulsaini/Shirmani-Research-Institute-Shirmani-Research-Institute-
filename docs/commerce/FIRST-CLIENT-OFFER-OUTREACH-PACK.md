@@ -1,20 +1,20 @@
 # First Client Offer & Outreach Pack
 
-**Status:** Draft for owner review. This document does not claim publication, outreach, sales, or income.
+**Status:** Internal outreach pack; service rates and scopes reconciled to `services-writing-research.html` on 24 October 2026. Rates remain proposed pilot rates, not market-validated benchmarks. This document does not claim outreach, sales, or income.
 
 ## Current service scope
 Hindi/English writing, research summaries, and website/blog content.
 
-## Pilot offers — suggested prices, not yet approved or published
+## Pilot offers — proposed public starting prices, subject to written scope confirmation
 | Offer | Scope | Suggested starting price |
 |---|---|---:|
-| Quick Clarity | Up to 500 words, one language | ₹799 |
-| Source-Led Summary | Up to 1,000 words, one language, source list and uncertainty notes | ₹1,999 |
-| Website/Blog Starter | One page/post up to 800 words, headline and editorial checklist | ₹1,499 |
-| Bilingual Starter | Up to 600 words per language from one brief | ₹2,999 |
+| Editing / Proofreading | Up to 700 words, one language, one revision | ₹499 from |
+| Source-based Research Brief | About 800–1,200 words, 3–5 credible sources where available, evidence gaps noted | ₹1,499 from |
+| Article / Website Copy | One page/post up to 1,000 words, headings and one revision | ₹999 from |
+| Custom writing / research | Scope, source access, rights, deadline and capacity confirmed first | Quote after scope |
 | Custom work | Scope and quote agreed first | Quote first |
 
-Prices are test proposals only. Owner approval is required before public use. Confirm deliverables, deadline, revision count, price, applicable taxes, and payment terms in writing before work starts. Do not guarantee sales, scientific novelty, ranking, or results.
+The public service pages display these as proposed pilot starting prices, not market-validated benchmarks or guaranteed quotes. Before accepting any order, confirm capacity, exact deliverables, deadline, revision count, final price, applicable taxes, and payment terms in writing. Do not guarantee sales, scientific novelty, ranking, or results.
 
 ## Client intake
 - Client/organisation:

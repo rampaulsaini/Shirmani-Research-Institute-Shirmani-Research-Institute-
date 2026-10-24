@@ -22,6 +22,7 @@ PAGES = (
     ROOT / "supreme-public-production-showroom.html",
     ROOT / "writing-research-enquiry.html",
     ROOT / "first-paid-pilot-offer.html",
+    ROOT / "outreach-income-workbench.html",
 )
 REQUIRED_TEXT = {
     "showroom-public.html": (
@@ -35,6 +36,20 @@ REQUIRED_TEXT = {
         "Voice-to-Presentation Studio",
         "Lip-sync",
         "Live question-and-answer",
+    ),
+    "outreach-income-workbench.html": (
+        "Outreach & Income Workbench",
+        "Payment evidence ledger",
+        "User-confirmed receipts",
+        "I personally confirmed the payment arrived",
+        "Quote accepted",
+        "Payment confirmed",
+        "Evidence-complete receipts",
+        "quotedFee",
+        "paidAmount",
+        "paidDate",
+        "receiptRef",
+        "Won / paid",
     ),
 }
 REQUIRED_SHOWROOM_ROUTES = (
@@ -143,6 +158,7 @@ def main() -> int:
         ROOT / "income-action-center.html",
         ROOT / "showroom/global-product-sales-desk.html",
         ROOT / "services-writing-research.html",
+        ROOT / "income-client-outreach-desk.html",
     )
     for page in direct_customer_pages:
         parse_html(page, errors, parsed)
@@ -197,6 +213,10 @@ def main() -> int:
             'id="dailyTelemetry"',
             'id="continuousTelemetry"',
             'generated/daily-automission-report.json',
+            'generated/product-qc-gate.json',
+            'const qcGateValid=',
+            'const qcPassed=',
+            '$("qc").textContent=qcPassed',
             'first-paid-pilot-offer.html',
             'writing-research-enquiry.html',
             'wa.me/918082935186',

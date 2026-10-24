@@ -9,6 +9,7 @@ on:
       - "showroom-public-interface.html"
       - "writing-research-enquiry.html"
       - "income-action-center.html"
+      - "income-client-pipeline.html"
       - "tests/income_funnel_smoke.py"
       - ".github/workflows/income-funnel-smoke.yml"
   push:
@@ -20,6 +21,7 @@ on:
       - "showroom-public-interface.html"
       - "writing-research-enquiry.html"
       - "income-action-center.html"
+      - "income-client-pipeline.html"
       - "tests/income_funnel_smoke.py"
       - ".github/workflows/income-funnel-smoke.yml"
   workflow_dispatch:

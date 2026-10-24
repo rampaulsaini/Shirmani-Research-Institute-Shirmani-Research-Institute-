@@ -9,6 +9,7 @@ on:
       - "supreme-public-production-showroom.html"
       - "showroom-public.html"
       - "showroom-public-interface.html"
+      - "showroom/public-gateway-v2.html"
       - "showroom/global-product-sales-desk.html"
       - "contact.html"
       - "writing-research-enquiry.html"
@@ -20,7 +21,13 @@ on:
       - "supreme-public-production-showroom.html"
       - "writing-research-enquiry.html"
       - "first-paid-pilot-offer.html"
+      - "showroom/first-client-pilot-desk.html"
+      - "income-action-center.html"
+      - "income-client-outreach-desk.html"
+      - "services-writing-research.html"
+      - "institutional-outreach-kit.html"
       - "tests/public_interface_smoke.py"
+      - "outreach-income-workbench.html"
       - "factory/public_interface_link_smoke.py"
       - "factory/production_completion_gate.py"
       - "tests/test_production_completion_gate.py"
@@ -36,6 +43,7 @@ on:
       - "supreme-public-production-showroom.html"
       - "showroom-public.html"
       - "showroom-public-interface.html"
+      - "showroom/public-gateway-v2.html"
       - "showroom/global-product-sales-desk.html"
       - "contact.html"
       - "writing-research-enquiry.html"
@@ -47,7 +55,13 @@ on:
       - "supreme-public-production-showroom.html"
       - "writing-research-enquiry.html"
       - "first-paid-pilot-offer.html"
+      - "showroom/first-client-pilot-desk.html"
+      - "income-action-center.html"
+      - "income-client-outreach-desk.html"
+      - "services-writing-research.html"
+      - "institutional-outreach-kit.html"
       - "tests/public_interface_smoke.py"
+      - "outreach-income-workbench.html"
       - "factory/public_interface_link_smoke.py"
       - ".github/workflows/public-interface-smoke.yml"
   workflow_dispatch:
@@ -80,6 +94,12 @@ jobs:
           supreme-showroom.html
           supreme-public-production-showroom.html
           showroom-public-interface.html
+          showroom/public-gateway-v2.html
           showroom/global-product-sales-desk.html
           contact.html
           writing-research-enquiry.html
+          showroom/first-client-pilot-desk.html
+          income-action-center.html
+          income-client-outreach-desk.html
+          services-writing-research.html
+          institutional-outreach-kit.html

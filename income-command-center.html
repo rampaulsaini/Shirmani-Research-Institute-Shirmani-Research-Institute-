@@ -136,24 +136,28 @@ function downloadIncomePack(){
     try{
       const responses=await Promise.all([
         fetch("generated/live-production-state.json",{cache:"no-store"}),
-        fetch("generated/independent-verification-status.json",{cache:"no-store"})
+        fetch("generated/independent-verification-status.json",{cache:"no-store"}),
+        fetch("generated/product-qc-gate.json",{cache:"no-store"})
       ]);
       if(responses.some(r=>!r.ok))throw new Error("One or more source snapshots could not be fetched.");
-      const s=await responses[0].json(),v=await responses[1].json();
-      const requiredProduction=["concrete_repository_assets","five_thousand_scale_target","qc_passed","qc_failed","dispatch_released","sales_claimed","payment_claimed"];
+      const s=await responses[0].json(),v=await responses[1].json(),q=await responses[2].json();
+      const requiredProduction=["concrete_repository_assets","five_thousand_scale_target","dispatch_released","sales_claimed","payment_claimed"];
       if(requiredProduction.some(k=>typeof s[k]!=="number" || !Number.isFinite(s[k])) ||
+         typeof q.qc_passed!=="number" || !Number.isFinite(q.qc_passed) ||
+         typeof q.qc_failed!=="number" || !Number.isFinite(q.qc_failed) ||
          typeof v.verified_records!=="number" || !Number.isFinite(v.verified_records) ||
          typeof v.prepared_review_records!=="number" || !Number.isFinite(v.prepared_review_records) ||
          typeof (v.registry_total??v.queue_total)!=="number" || !Number.isFinite(v.registry_total??v.queue_total) ||
          typeof s.generated_at!=="string" || !s.generated_at ||
          typeof s.qc_state!=="string" || !s.qc_state ||
-         typeof s.state!=="string" || !s.state) {
+         typeof s.state!=="string" || !s.state ||
+         typeof q.generated_at!=="string" || !q.generated_at) {
         throw new Error("Source schema is incomplete; counters cannot be safely asserted.");
       }
       const assets=Number(s.concrete_repository_assets??s.catalog_identities);
       const target=Number(s.five_thousand_scale_target??5000);
-      const passed=Number(s.qc_passed??0),failed=Number(s.qc_failed??0);
-      const qcRate=(passed+failed)>0?100*passed/(passed+failed):Number(s.qc_pass_percent);
+      const passed=Number(q.qc_passed),failed=Number(q.qc_failed);
+      const qcRate=(passed+failed)>0?100*passed/(passed+failed):null;
       const total=Number(v.registry_total??v.queue_total??0);
       const verified=Number(v.verified_records??0);
       const prepared=Number(v.prepared_review_records??0);
@@ -166,7 +170,7 @@ function downloadIncomePack(){
       el("truth-verified").textContent=fmt(verified)+" / "+fmt(total);
       el("truth-verified-pct").textContent=pct(total>0?100*verified/total:0);
       el("truth-review").textContent=fmt(prepared)+" / "+fmt(total)+" ("+pct(total>0?100*prepared/total:0)+")";
-      el("truth-source-status").textContent="Source snapshots loaded. Production timestamp: "+String(s.generated_at||"not supplied")+" · QC state: "+String(s.qc_state||"not supplied")+" · State: "+String(s.state||"not supplied")+". Not a second-by-second live feed.";
+      el("truth-source-status").textContent="Source snapshots loaded. Production timestamp: "+String(s.generated_at||"not supplied")+" · QC timestamp: "+String(q.generated_at||"not supplied")+" · QC state: "+String(q.release_state||s.qc_state||"not supplied")+" · State: "+String(s.state||"not supplied")+". Not a second-by-second live feed.";
     }catch(e){unavailable("Source unavailable — counters are not asserted. Check the published JSON paths and deployment.");}
   }
   load();
@@ -535,11 +539,22 @@ route();
 </article>
 </div>
 <div id="rf-output" class="grid" aria-live="polite"></div>
+<div class="card" id="rf-export-controls" aria-labelledby="rf-export-title">
+<h3 id="rf-export-title">Draft pack export · local-only</h3>
+<p class="note">Export only the drafts you generated. Plain JSON is unencrypted. Encrypted export uses browser Web Crypto (AES-256-GCM + PBKDF2); it does not upload or send anything.</p>
+<label for="rf-passphrase">Encryption passphrase (12+ characters)</label>
+<input id="rf-passphrase" type="password" minlength="12" autocomplete="new-password" placeholder="Use a unique strong passphrase">
+<button class="btn" id="rf-export-json" type="button">Download JSON</button>
+<button class="btn" id="rf-encrypt-json" type="button">Encrypt & download</button>
+<p class="note" id="rf-export-status" role="status" aria-live="polite">पहले drafts बनाएं; फिर export करें।</p>
+</div>
 </div>
 <script>
 (function(){
 const $=id=>document.getElementById(id);
 const fields=["rf-name","rf-buyer","rf-outcome","rf-price","rf-proof","rf-cta"];
+let lastDrafts=[];
+
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function validUrl(s){if(!s)return "";try{const u=new URL(s);return (u.protocol==="https:"||u.protocol==="http:")?u.href:"";}catch(_){return "";}}
 function build(){
@@ -557,6 +572,7 @@ const plain=[
 ["WhatsApp / Short Message","नमस्ते! "+name+" — "+buyer+" के लिए। Deliverable: "+outcome+" "+priceLine+" "+(proof?("Demo: "+proof+" "):"Demo उपलब्ध होने पर साझा करूँगा/करूँगी। ")+(cta?("विवरण: "+cta):"क्या यह आपकी मौजूदा जरूरत से मेल खाता है?")],
 ["Short Social Post",name+"\n\n"+buyer+" के लिए:\n• Deliverable: "+outcome+"\n• "+priceLine+"\n• "+proofLine+"\n\n"+action]
 ];
+lastDrafts=plain.map(item=>({channel:item[0],text:item[1]}));
 const output=$("rf-output");output.innerHTML="";
 plain.forEach((item,i)=>{
 const card=document.createElement("article");card.className="card";
@@ -569,6 +585,33 @@ card.append(h,pre,copy);output.appendChild(card);
 $("rf-status").textContent="5 drafts तैयार हैं। ये local templates हैं, AI-generated claims नहीं। भेजने से पहले जाँचें; कोई संदेश स्वतः नहीं भेजा गया।";
 }
 $("rf-generate").addEventListener("click",build);
+function downloadFile(name,blob){const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function setExportStatus(message){$("rf-export-status").textContent=message;}
+function base64(bytes){let binary="";for(const b of bytes)binary+=String.fromCharCode(b);return btoa(binary);}
+function requireDrafts(){if(!lastDrafts.length){setExportStatus("पहले पाँच-channel draft pack बनाएं।");return false;}return true;}
+$("rf-export-json").addEventListener("click",()=>{
+ if(!requireDrafts())return;
+ const payload={schema_version:1,created_at:new Date().toISOString(),export_type:"UNENCRYPTED_DRAFTS",warning:"Contains unencrypted campaign drafts; store securely.",drafts:lastDrafts};
+ downloadFile("shirmani-campaign-drafts.json",new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}));
+ setExportStatus("JSON export डाउनलोड हुआ; यह unencrypted है।");
+});
+$("rf-encrypt-json").addEventListener("click",async()=>{
+ if(!requireDrafts())return;
+ const pass=$("rf-passphrase").value;
+ if(pass.length<12){setExportStatus("Encryption के लिए कम-से-कम 12 characters का passphrase दें।");return;}
+ if(!window.crypto||!crypto.subtle){setExportStatus("इस browser में Web Crypto उपलब्ध नहीं है; encrypted export नहीं बनाया।");return;}
+ try{
+  const encoder=new TextEncoder(),salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+  const material=await crypto.subtle.importKey("raw",encoder.encode(pass),"PBKDF2",false,["deriveKey"]);
+  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:310000,hash:"SHA-256"},material,{name:"AES-GCM",length:256},false,["encrypt"]);
+  const payload={schema_version:1,created_at:new Date().toISOString(),export_type:"ENCRYPTED_CAMPAIGN_DRAFTS",drafts:lastDrafts};
+  const ciphertext=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,encoder.encode(JSON.stringify(payload)));
+  const envelope={format:"SRI-AES-GCM-EXPORT-V1",kdf:{name:"PBKDF2",hash:"SHA-256",iterations:310000,salt:base64(salt)},cipher:{name:"AES-256-GCM",iv:base64(iv),ciphertext:base64(new Uint8Array(ciphertext))},warning:"Keep the passphrase separately. It cannot be recovered."};
+  downloadFile("shirmani-campaign-drafts.encrypted.json",new Blob([JSON.stringify(envelope,null,2)],{type:"application/json"}));
+  $("rf-passphrase").value="";
+  setExportStatus("AES-256-GCM encrypted export डाउनलोड हुआ। Passphrase अलग सुरक्षित रखें; यह tool उसे store नहीं करता।");
+ }catch(e){setExportStatus("Encryption विफल हुआ; कोई encrypted file घोषित नहीं की गई। Browser support जाँचें और फिर प्रयास करें.");}
+});
 })();
 </script>
 </section>
@@ -589,5 +632,62 @@ $("rf-generate").addEventListener("click",build);
 <p class="note">नोट: browser-local heuristic, AI/ML/NLP backend, automatic email sending, server CRM और payment gateway अलग-अलग चीजें हैं। कोई live model या payment integration जुड़ा हुआ होने का दावा नहीं है। यह लिंक उसी PR में जोड़े गए engine तक जाता है।</p>
 </div>
 </section>
+
+
+<section class="section" id="income-evidence-ledger">
+  <h2>आय प्रमाण लेजर | Income Evidence Ledger</h2>
+  <p class="note">यह browser-local रिकॉर्ड है, payment gateway नहीं। दर्ज रकम स्वयं-सत्यापित नहीं होती; उसे बैंक/UPI/provider रिकॉर्ड से मिलाएँ। केवल receipt reference रखें—password, OTP, API key या पूरा account/card विवरण नहीं।</p>
+  <div class="grid">
+    <article class="card">
+      <h3>वास्तविक परिणाम दर्ज करें</h3>
+      <label for="iel-leads">योग्य ग्राहक पूछताछ</label><input id="iel-leads" type="number" min="0" step="1" value="0">
+      <label for="iel-proposals">लिखित प्रस्ताव भेजे</label><input id="iel-proposals" type="number" min="0" step="1" value="0">
+      <label for="iel-orders">पुष्टि किए गए ऑर्डर</label><input id="iel-orders" type="number" min="0" step="1" value="0">
+      <label for="iel-received">वास्तव में प्राप्त बताई गई रकम (₹)</label><input id="iel-received" type="number" min="0" step="0.01" value="0">
+      <label for="iel-ref">रसीद / transaction reference</label><input id="iel-ref" maxlength="180" placeholder="Invoice ID या receipt reference">
+      <label for="iel-date">प्राप्ति की तारीख</label><input id="iel-date" type="date">
+      <div class="actions"><button class="btn" id="iel-save" type="button">स्थानीय रूप से सुरक्षित करें</button><button class="btn secondary" id="iel-export" type="button">JSON export</button><button class="btn secondary" id="iel-clear" type="button">स्थानीय रिकॉर्ड मिटाएँ</button></div>
+    </article>
+    <article class="card">
+      <h3>गणना और सत्यापन स्थिति</h3>
+      <p><strong>दर्ज रकम:</strong> <span id="iel-total">₹0</span></p>
+      <p><strong>Lead → order:</strong> <span id="iel-lead-rate">—</span></p>
+      <p><strong>Proposal → order:</strong> <span id="iel-proposal-rate">—</span></p>
+      <p><strong>प्रति order औसत:</strong> <span id="iel-average">—</span></p>
+      <p><strong>रसीद संदर्भ:</strong> <span id="iel-evidence">नहीं दिया गया</span></p>
+      <p class="note" id="iel-status" role="status" aria-live="polite">स्थानीय प्रारंभिक मान; स्वतंत्र सत्यापन नहीं।</p>
+      <p class="muted">Conversion तभी अर्थपूर्ण है जब counts एक ही अवधि/cohort के हों। यह panel receipt को स्वतंत्र रूप से verify नहीं करता और data server पर upload नहीं करता।</p>
+    </article>
+  </div>
+</section>
+<script>
+(function(){
+  "use strict";
+  const ids=["iel-leads","iel-proposals","iel-orders","iel-received","iel-ref","iel-date"],key="shirmani-income-evidence-ledger-v1";
+  const $=id=>document.getElementById(id);
+  const currency=n=>new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:2}).format(n);
+  function read(){
+    const d={leads:$("iel-leads").value,proposals:$("iel-proposals").value,orders:$("iel-orders").value,received:$("iel-received").value,reference:$("iel-ref").value.trim(),date:$("iel-date").value},errors=[];
+    for(const k of ["leads","proposals","orders"]){const n=Number(d[k]);if(d[k].trim()===""||!Number.isFinite(n)||n<0||!Number.isInteger(n))errors.push(k+" must be a whole number >= 0");else d[k]=n;}
+    const n=Number(d.received);if(d.received.trim()===""||!Number.isFinite(n)||n<0)errors.push("received amount must be >= 0");else d.received=n;
+    return {d,errors};
+  }
+  function ratio(n,d){return d===0?"— (शून्य denominator)":n>d?"— (counts जाँचें)":(n/d*100).toFixed(2)+"%";}
+  function render(message){
+    const {d,errors}=read();$("iel-total").textContent=Number.isFinite(d.received)&&d.received>=0?currency(d.received):"अमान्य रकम";
+    $("iel-lead-rate").textContent=errors.length?"—":ratio(d.orders,d.leads);$("iel-proposal-rate").textContent=errors.length?"—":ratio(d.orders,d.proposals);
+    $("iel-average").textContent=!errors.length&&d.orders>0?currency(d.received/d.orders):"—";
+    $("iel-evidence").textContent=d.reference?(d.reference+(d.date?" · "+d.date:"")+" (दर्ज, सत्यापित नहीं)"):"नहीं दिया गया";
+    $("iel-status").textContent=message||(errors.length?"अमान्य input: "+errors.join("; "):"Preview only · रकम को provider record से मिलाना बाकी है।");
+  }
+  try{const d=JSON.parse(localStorage.getItem(key)||"null");if(d){$("iel-leads").value=d.leads??0;$("iel-proposals").value=d.proposals??0;$("iel-orders").value=d.orders??0;$("iel-received").value=d.received??0;$("iel-ref").value=d.reference??"";$("iel-date").value=d.date??"";}}
+  catch(e){render("Browser storage उपलब्ध नहीं; values पेज बंद होने पर खो सकती हैं।");}
+  $("iel-save").addEventListener("click",()=>{const {d,errors}=read();if(errors.length){render("Save नहीं हुआ: "+errors.join("; "));return;}try{localStorage.setItem(key,JSON.stringify({...d,saved_at:new Date().toISOString(),verification_status:"NOT_INDEPENDENTLY_VERIFIED"}));render("इस browser में सुरक्षित; server upload और independent verification नहीं हुआ।");}catch(e){render("Local save विफल; रिकॉर्ड सुरक्षित मानकर न चलें।");}});
+  $("iel-export").addEventListener("click",()=>{const {d,errors}=read();if(errors.length){render("Export रोक दिया: "+errors.join("; "));return;}const blob=new Blob([JSON.stringify({schema_version:1,...d,exported_at:new Date().toISOString(),verification_status:"NOT_INDEPENDENTLY_VERIFIED"},null,2)],{type:"application/json"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="shirmani-income-evidence-ledger.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);render("JSON export बनाया गया; यह verified income का प्रमाण नहीं है।");});
+  $("iel-clear").addEventListener("click",()=>{try{localStorage.removeItem(key);}catch(e){}ids.forEach(id=>$(id).value=(id==="iel-ref"||id==="iel-date")?"":0);render("इस browser का local ledger हटाया गया।");});
+  ids.forEach(id=>$(id).addEventListener("input",()=>render("बदलाव केवल preview हैं; Save दबाकर सुरक्षित करें।")));
+  render();
+})();
+</script>
 
 </main></body></html>

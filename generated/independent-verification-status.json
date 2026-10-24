@@ -6,7 +6,7 @@
   },
   "queue_total": 100200,
   "registry_total": 100200,
-  "prepared_review_records": 43950,
+  "prepared_review_records": 49950,
   "verified_records": 0,
   "review_records": 0,
   "unverified_records": 100200,
@@ -339,9 +339,33 @@
     [
       42951,
       43950
+    ],
+    [
+      43951,
+      44950
+    ],
+    [
+      44951,
+      45950
+    ],
+    [
+      45951,
+      46950
+    ],
+    [
+      46951,
+      47950
+    ],
+    [
+      47951,
+      48950
+    ],
+    [
+      48951,
+      49950
     ]
   ],
-  "prepared_percent": 43.86,
+  "prepared_percent": 49.85,
   "verified_percent_of_queue": 0.0,
   "state": "READY_FOR_REVIEW"
 }
