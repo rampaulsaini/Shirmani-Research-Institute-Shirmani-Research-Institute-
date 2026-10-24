@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-24T10:29:59.330400+00:00",
+  "capacity": 150000,
+  "shard_size": 500,
+  "catalog_count": 5000,
+  "shard_count": 10,
+  "remaining_capacity": 145000,
+  "scale_status": "READY_FOR_150K_CATALOG_SHARDS",
+  "source": "generated/1000-digital-products.json",
+  "shards": [
+    {
+      "shard": 0,
+      "path": "catalog/shards/shard-0000.json",
+      "count": 500,
+      "sha256": "d293263987a326fc88bb5f21c1915462c5229274c1f445277718d8813b31487e"
+    },
+    {
+      "shard": 1,
+      "path": "catalog/shards/shard-0001.json",
+      "count": 500,
+      "sha256": "f48dc045e0871fa7b13ebc801a8e4dd39914a69ba9d2afa107e15c1bf493181c"
+    },
+    {
+      "shard": 2,
+      "path": "catalog/shards/shard-0002.json",
+      "count": 500,
+      "sha256": "ef7476727a34e54a4e8fa29935f44678c7ce734ec5114b46b9d6e0f76d8c8565"
+    },
+    {
+      "shard": 3,
+      "path": "catalog/shards/shard-0003.json",
+      "count": 500,
+      "sha256": "3e8add52e6201250d8fb43eeb965a8332daf34919c92f24021c2100d4d63c7c2"
+    },
+    {
+      "shard": 4,
+      "path": "catalog/shards/shard-0004.json",
+      "count": 500,
+      "sha256": "f8218288bdb0ffb50b28bf68d994e01825ed71a14e21e72128b8434af5c826cf"
+    },
+    {
+      "shard": 5,
+      "path": "catalog/shards/shard-0005.json",
+      "count": 500,
+      "sha256": "3ad12cad68815bad9ac38d6e78b5f3e1c770672794edd751a090cedd7d106701"
+    },
+    {
+      "shard": 6,
+      "path": "catalog/shards/shard-0006.json",
+      "count": 500,
+      "sha256": "13e3504a9e3b01495b558ce983a739f56617c23e10eabbaee4e2c8419c3ee3da"
+    },
+    {
+      "shard": 7,
+      "path": "catalog/shards/shard-0007.json",
+      "count": 500,
+      "sha256": "c803c4c5fdb33cb7265fb92e469ca24ad991a478a39faeb1c9a0d6f2dd8a0463"
+    },
+    {
+      "shard": 8,
+      "path": "catalog/shards/shard-0008.json",
+      "count": 500,
+      "sha256": "b6742b5395a13261f0eb250080e051495216d1922bb4b80b4231d1f606dc824b"
+    },
+    {
+      "shard": 9,
+      "path": "catalog/shards/shard-0009.json",
+      "count": 500,
+      "sha256": "c35d354b06c96f485a19c8e9e43ba6cff576cbd5a9dacce054c689763d79dc15"
+    }
+  ]
+}
