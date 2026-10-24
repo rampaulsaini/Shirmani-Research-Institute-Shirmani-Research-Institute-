@@ -62,6 +62,21 @@
 <div class="tablewrap"><table><thead><tr><th>समय</th><th>काम</th><th>चरण</th><th>परिणाम</th><th>प्रमाण</th><th>QC %</th><th>रुकावट / नोट</th><th>आय</th></tr></thead><tbody id="recordsBody"><tr><td colspan="8" class="muted">अभी रिकॉर्ड नहीं।</td></tr></tbody></table></div>
 <h3 style="margin-top:20px">दैनिक उत्पादन सारांश</h3><div class="tablewrap"><table><thead><tr><th>दिन</th><th>कुल चक्र</th><th>सफल</th><th>विफल</th><th>रुके</th><th>प्रमाण-सहित सफल</th><th>प्राप्त आय</th></tr></thead><tbody id="dailyBody"><tr><td colspan="7" class="muted">रिकॉर्ड जोड़ने पर सारांश बनेगा।</td></tr></tbody></table></div>
 </section>
+<section class="panel" id="productionSnapshotPanel">
+<h2>Generated production snapshot — सार्वजनिक वास्तविक स्थिति</h2>
+<p class="muted">ये GitHub Pages पर प्रकाशित generated JSON फ़ाइलों का timestamped snapshot है, per-second live telemetry नहीं। डेटा न मिल पाने पर पुराने या शून्य मानों को ताज़ा स्थिति नहीं माना जाएगा।</p>
+<div class="grid">
+<div class="metric"><div class="label">कैटलॉग / concrete assets</div><div class="num" id="snapCatalog">—</div><div class="small muted" id="snapCatalogNote">स्रोत लोड होना शेष</div></div>
+<div class="metric"><div class="label">Deterministic QC पास</div><div class="num" id="snapQc">—</div><div class="small muted" id="snapQcNote">QC और स्वतंत्र सत्यापन अलग हैं</div></div>
+<div class="metric"><div class="label">Dispatch जारी</div><div class="num" id="snapDispatch">—</div></div>
+<div class="metric"><div class="label">दर्ज बिक्री / भुगतान</div><div class="num" id="snapSalesPayment">—</div></div>
+<div class="metric"><div class="label">Review के लिए तैयार</div><div class="num" id="snapPrepared">—</div><div class="small muted" id="snapPreparedPercent">—</div></div>
+<div class="metric"><div class="label">स्वतंत्र सत्यापित रिकॉर्ड</div><div class="num" id="snapVerified">—</div><div class="small muted" id="snapVerifiedPercent">—</div></div>
+</div>
+<p id="snapUpdated" class="muted" aria-live="polite">Generated sources अभी प्राप्त नहीं हुए।</p>
+<div class="row"><button type="button" id="refreshProductionSnapshot">Production snapshot refresh करें</button><a href="../generated/live-production-state.json">Production JSON</a><a href="../generated/product-qc-gate.json">QC JSON</a><a href="../generated/independent-verification-status.json">Verification JSON</a></div>
+<p id="snapWarning" class="notice">जब तक स्रोत सफलतापूर्वक लोड न हों, इन counters को live या verified नहीं माना जाएगा। QC pass अपने-आप dispatch, sale, payment या independent verification नहीं है।</p>
+</section>
 <section class="panel" id="githubLivePanel">
 <h2>GitHub Actions — वास्तविक workflow स्थिति</h2>
 <p class="muted">यह सार्वजनिक GitHub API से प्राप्त हाल के workflow runs का snapshot है—पूरे platform के सभी internal events या 24/7 uptime का दावा नहीं। नीचे का refresh नया snapshot माँगता है।</p>
@@ -123,6 +138,43 @@ async function refreshGitHubRuns(){
  }finally{button.disabled=false;button.textContent='GitHub status refresh करें';}
 }
 $('refreshGitHubRuns').addEventListener('click',refreshGitHubRuns);
+async function refreshProductionSnapshot(){
+ const button=$('refreshProductionSnapshot');
+ button.disabled=true;button.textContent='Snapshot प्राप्त हो रहा है…';
+ $('snapUpdated').textContent='Generated JSON स्रोतों से timestamped snapshot प्राप्त किया जा रहा है…';
+ $('snapWarning').textContent='स्रोत प्राप्त होने तक counters को ताज़ा नहीं माना जाएगा।';
+ try{
+  const base='../generated/';
+  const paths=['live-production-state.json','product-qc-gate.json','independent-verification-status.json','four-stage-production-status.json'];
+  const responses=await Promise.all(paths.map(path=>fetch(base+path,{cache:'no-store'})));
+  const bad=responses.findIndex(r=>!r.ok);
+  if(bad!==-1)throw new Error(paths[bad]+' HTTP '+responses[bad].status);
+  const [state,qc,verification,stages]=await Promise.all(responses.map(r=>r.json()));
+  const fmt=n=>Number.isFinite(Number(n))?Number(n).toLocaleString('en-IN'):'—';
+  const total=Number(verification.registry_total??verification.queue_total??0);
+  const prepared=Number(verification.prepared_review_records??0);
+  const verified=Number(verification.verified_records??0);
+  $('snapCatalog').textContent=fmt(state.concrete_repository_assets??state.catalog_identities);
+  $('snapCatalogNote').textContent=fmt(state.concrete_repository_assets??state.catalog_identities)+' concrete assets · लक्ष्य '+fmt(state.five_thousand_scale_target??5000);
+  $('snapQc').textContent=fmt(qc.qc_passed)+' / '+fmt(qc.catalog_count);
+  $('snapQcNote').textContent=fmt(qc.qc_failed)+' QC विफल · '+fmt(qc.pass_percent)+'% deterministic QC';
+  $('snapDispatch').textContent=fmt(state.dispatch_released??0);
+  $('snapSalesPayment').textContent=fmt(state.sales_claimed??0)+' / '+fmt(state.payment_claimed??0);
+  $('snapPrepared').textContent=fmt(prepared)+' / '+fmt(total);
+  $('snapPreparedPercent').textContent=(Number(verification.prepared_percent??(total?prepared/total*100:0))).toFixed(2)+'% review के लिए तैयार';
+  $('snapVerified').textContent=fmt(verified)+' / '+fmt(total);
+  $('snapVerifiedPercent').textContent=(Number(verification.verified_percent_of_queue??(total?verified/total*100:0))).toFixed(2)+'% स्वतंत्र रूप से सत्यापित';
+  const stamp=[state.generated_at,qc.generated_at,verification.generated_at,stages.generated_at].filter(Boolean).sort().at(-1);
+  $('snapUpdated').textContent='Snapshot सफलतापूर्वक लोड · सबसे नया स्रोत timestamp: '+(stamp?new Date(stamp).toLocaleString('hi-IN',{timeZone:'Asia/Kolkata'}):'स्रोत timestamp उपलब्ध नहीं')+' · '+new Date().toLocaleString('hi-IN',{timeZone:'Asia/Kolkata'})+' पर पेज ने डेटा पढ़ा।';
+  $('snapWarning').textContent='महत्वपूर्ण: '+String(state.state||'स्थिति उपलब्ध नहीं')+'; '+String(qc.release_state||'QC release state उपलब्ध नहीं')+'. Deterministic QC, वास्तविक dispatch, बिक्री, भुगतान और स्वतंत्र सत्यापन अलग-अलग अवस्थाएँ हैं। Workflow सफलता इनका विकल्प नहीं है।';
+ }catch(error){
+  ['snapCatalog','snapQc','snapDispatch','snapSalesPayment','snapPrepared','snapVerified'].forEach(id=>$(id).textContent='—');
+  $('snapUpdated').textContent='Production snapshot उपलब्ध नहीं: '+String(error.message||error);
+  $('snapWarning').textContent='स्रोत लोड नहीं हुए। पुरानी cached संख्या को नई स्थिति न मानें; GitHub generated JSON लिंक सीधे खोलकर जाँचें।';
+ }finally{button.disabled=false;button.textContent='Production snapshot refresh करें';}
+}
+$('refreshProductionSnapshot').addEventListener('click',refreshProductionSnapshot);
+refreshProductionSnapshot();
 refreshGitHubRuns();
 function render(){
 const total=records.length,success=records.filter(r=>r.result==='success').length;
