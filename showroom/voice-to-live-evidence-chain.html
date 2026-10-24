@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SHIRMANI voice-to-live evidence chain: measurable, evidence-gated status for voice, content, media, lip-sync, dialogue and external provider tests.">
+<title>SHIRMANI — Voice → Live Evidence Chain</title>
+<style>
+:root{color-scheme:dark;--bg:#08111d;--panel:#101e2d;--line:#29445c;--gold:#f4d16b;--cyan:#75e4f3;--text:#f4f7fb;--muted:#b7c5d3;--good:#79d9a6;--warn:#ffce75}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#19334b,#08111d 64%);font:16px/1.55 system-ui,"Noto Sans Devanagari",sans-serif;color:var(--text)}main{max-width:1120px;margin:auto;padding:22px 16px 60px}header,.panel,.stage,.gate{background:#101e2df2;border:1px solid var(--line);border-radius:16px;padding:18px}header{border:2px solid var(--gold);text-align:center;padding:clamp(22px,4vw,40px)}h1{font-size:clamp(1.8rem,5vw,3.1rem);line-height:1.15;color:var(--gold);margin:.35em 0}h2{color:var(--gold);font-size:1.35rem}h3{color:var(--cyan);margin:.2em 0 .5em}.muted,small{color:var(--muted)}a{color:var(--cyan);overflow-wrap:anywhere}.button,button{display:inline-block;border:1px solid #45627c;border-radius:10px;background:#183047;color:var(--text);padding:10px 13px;text-decoration:none;font:inherit;font-weight:750;cursor:pointer}.button.primary{background:var(--gold);color:#111827;border-color:var(--gold)}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:16px 0}.stat{background:#0a1724;border:1px solid var(--line);border-radius:12px;padding:14px}.stat strong{display:block;color:var(--gold);font-size:1.65rem}.pipeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:9px}.stage{position:relative}.stage .num{color:var(--gold);font-weight:900}.stage p{font-size:.92rem;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:12px}.gate{display:flex;flex-direction:column;gap:9px}.gate label{display:block;font-size:.92rem;color:var(--muted)}input,select,textarea{width:100%;margin-top:4px;border:1px solid var(--line);border-radius:8px;background:#071522;color:var(--text);padding:10px;font:inherit}textarea{min-height:64px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pill{display:inline-block;border:1px solid var(--cyan);border-radius:999px;padding:3px 9px;font-size:.8rem;color:var(--cyan)}.warning{border-left:4px solid var(--warn);padding:10px 12px;background:#2a2113;border-radius:8px;color:#ffe6b7}.good{color:var(--good)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.bar{height:10px;background:#27384a;border-radius:99px;overflow:hidden}.bar span{display:block;height:100%;width:0;background:var(--good);transition:width .2s}footer{text-align:center;color:var(--muted);padding:24px 8px}details{border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:10px}summary{cursor:pointer;font-weight:750;color:var(--cyan)}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}@media(max-width:560px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<header>
+<span class="pill">SHIRMANI RESEARCH INSTITUTE · EVIDENCE-GATED</span>
+<h1>Voice → Voice System → Content → Photo / Lip-sync → Live Presentation</h1>
+<p class="muted">एक साफ़, मापने योग्य रास्ता। हर चरण का status वास्तविक प्रमाण से बदलेगा—सिर्फ़ बटन दबाने या योजना लिखने से नहीं।</p>
+<div class="actions" style="justify-content:center"><a class="button primary" href="https://app.heygen.com/videos/avatar-v-video-5d938b91bb6841e9a9ddd93948c781b7" target="_blank" rel="noopener noreferrer">पहले से दिया गया HeyGen वीडियो खोलें ↗</a><a class="button" href="../showroom/shirmani-supreme-character-studio.html">Character Studio</a></div>
+</header>
+<section class="stats" aria-label="Evidence counters">
+<div class="stat"><span class="muted">Verified gates</span><strong id="verified">0 / 5</strong><small>साक्ष्य सहित सत्यापित चरण</small></div>
+<div class="stat"><span class="muted">Evidence coverage</span><strong id="coverage">0%</strong><small>प्रमाण-सहित चरण ÷ कुल चरण</small></div>
+<div class="stat"><span class="muted">Open blockers</span><strong id="blockers">5</strong><small>जिनका प्रमाण अभी पूरा नहीं</small></div>
+<div class="stat"><span class="muted">Last local review</span><strong id="reviewed" style="font-size:1rem">अभी नहीं</strong><small>इस ब्राउज़र में दर्ज समय</small></div>
+</section>
+<section class="panel">
+<h2>01 · मुख्य production chain</h2>
+<div class="bar" aria-label="Verified evidence coverage"><span id="progress"></span></div>
+<p class="muted">किसी चरण को VERIFIED तभी चुनें जब परीक्षण वास्तव में किया गया हो और प्रमाण लिंक/रिकॉर्ड जोड़ा गया हो। अन्यथा status को NOT TESTED या BLOCKED रखें।</p>
+<div class="pipeline">
+<div class="stage"><span class="num">01</span><h3>Voice source</h3><p>मूल आवाज़ की पहचान, अधिकार/सहमति और source record.</p></div>
+<div class="stage"><span class="num">02</span><h3>Voice system</h3><p>Provider configuration, request/response और audio output test.</p></div>
+<div class="stage"><span class="num">03</span><h3>Content & Q&A</h3><p>Hindi/English prompt, factual checks, response और transcript.</p></div>
+<div class="stage"><span class="num">04</span><h3>Photo / lip-sync</h3><p>मूल portrait की पुष्टि, video frame और audio-visual timing.</p></div>
+<div class="stage"><span class="num">05</span><h3>Live presentation</h3><p>End-to-end session, latency, failure handling और audit log.</p></div>
+</div>
+</section>
+<section class="panel">
+<h2>02 · हर चरण का evidence record</h2>
+<p class="muted">यह पैनल स्थानीय tracking register है। यह अपने-आप HeyGen API नहीं चलाता, किसी सेवा को कॉल नहीं करता और दर्ज जानकारी की स्वतंत्र पुष्टि नहीं करता।</p>
+<div id="gates" class="grid"></div>
+<div class="actions"><button id="save">इस ब्राउज़र में सहेजें</button><button id="export">JSON रिपोर्ट निर्यात</button><button id="importBtn">JSON रिपोर्ट आयात</button><button id="reset">स्थानीय रिकॉर्ड रीसेट</button><input id="importFile" type="file" accept="application/json" hidden></div>
+<p id="message" role="status" aria-live="polite" class="muted"></p>
+</section>
+<section class="panel">
+<h2>03 · अलग-अलग acceptance gates</h2>
+<div class="grid">
+<div class="gate"><h3>Video file</h3><p class="muted">वास्तविक file/URL, अवधि, resolution, playback test और checksum/metadata record.</p><span class="pill">स्वतंत्र प्रमाण आवश्यक</span></div>
+<div class="gate"><h3>Voice output</h3><p class="muted">वास्तविक audio sample, consent/authorization, intelligibility test और output record.</p><span class="pill">स्वतंत्र प्रमाण आवश्यक</span></div>
+<div class="gate"><h3>Lip-sync</h3><p class="muted">वीडियो में बोले गए शब्दों और होंठों के समय का sampled/manual review या measured sync report.</p><span class="pill">स्वतंत्र प्रमाण आवश्यक</span></div>
+<div class="gate"><h3>Dialogue / live Q&A</h3><p class="muted">कम-से-कम एक वास्तविक प्रश्न और उत्तर, transcript, timestamp तथा error/latency record.</p><span class="pill">स्वतंत्र प्रमाण आवश्यक</span></div>
+<div class="gate"><h3>External provider</h3><p class="muted">Provider-side run/result, request ID या dashboard record; केवल लिंक खुलना integration test नहीं है.</p><span class="pill">स्वतंत्र प्रमाण आवश्यक</span></div>
+</div>
+<div class="warning" style="margin-top:14px"><strong>सत्यनिष्ठा नियम:</strong> दिए गए HeyGen लिंक को पहले से उपलब्ध रखा गया है; यहाँ उसे फिर माँगा नहीं जा रहा। लिंक की मौजूदगी अकेले live voice, lip-sync, संवाद या end-to-end integration का प्रमाण नहीं है। इस समय इन परीक्षणों का प्रमाण इस dashboard में स्वतः प्राप्त नहीं होता।</div>
+</section>
+<section class="panel">
+<h2>04 · माप का अर्थ</h2>
+<ul>
+<li><strong>Evidence coverage</strong> = VERIFIED और evidence reference वाले चरण ÷ कुल 5 चरण × 100.</li>
+<li><strong>Open blockers</strong> = ऐसे चरण जो VERIFIED नहीं हैं या जिनका evidence reference खाली है.</li>
+<li><strong>Production cycles</strong> इस पृष्ठ पर स्वतः नहीं गिने जाते। वास्तविक scheduled automation run और timestamped workflow logs के बिना 24/7/365 production का दावा नहीं किया जाएगा.</li>
+<li>इन प्रतिशतों का अर्थ केवल दर्ज workflow evidence है—गुणवत्ता, सत्य, बुद्धिमत्ता या किसी व्यक्ति के हृदय का वैज्ञानिक माप नहीं.</li>
+</ul>
+<details><summary>Technical acceptance checklist</summary>
+<ul><li>Original asset provenance/permission documented.</li><li>Voice provider request succeeds and actual audio is saved.</li><li>Prompt/response transcript is timestamped and reviewed.</li><li>Actual video plays; audio track is present and readable.</li><li>Lip-sync checked on representative timestamps.</li><li>End-to-end Q&A passes with latency and failure logging.</li><li>Secrets remain server-side; no API keys in this static page.</li><li>Independent reviewer records pass/fail and test date.</li></ul>
+</details>
+</section>
+<footer>SHIRMANI · Evidence before claims · Local register v1.0</footer>
+</main>
+<script>
+const KEY='shirmani.voiceLiveEvidence.v1';
+const definitions=[
+{id:'voice',title:'01 · Voice source',detail:'Original voice source and authorization/provenance.',status:'NOT TESTED'},
+{id:'system',title:'02 · Voice system',detail:'Real provider request and actual audio output.',status:'NOT TESTED'},
+{id:'content',title:'03 · Content & dialogue',detail:'Real prompt, response transcript and review.',status:'NOT TESTED'},
+{id:'media',title:'04 · Photo / video / lip-sync',detail:'Actual video playback and sync review.',status:'NOT TESTED'},
+{id:'live',title:'05 · Live presentation & provider',detail:'End-to-end session and external provider evidence.',status:'NOT TESTED'}
+];
+const options=['NOT TESTED','BLOCKED','IN PROGRESS','VERIFIED'];
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function blank(){return {gates:Object.fromEntries(definitions.map(d=>[d.id,{status:d.status,evidence:'',notes:'',reviewer:'',date:''}]))}}
+let data=blank();
+function render(){
+ const root=document.getElementById('gates');
+ root.innerHTML=definitions.map(d=>{const g=data.gates[d.id]||{status:'NOT TESTED',evidence:'',notes:'',reviewer:'',date:''};return '<article class="gate" data-id="'+d.id+'"><h3>'+d.title+'</h3><p class="muted">'+d.detail+'</p><label>Status<select data-field="status">'+options.map(o=>'<option'+(g.status===o?' selected':'')+'>'+o+'</option>').join('')+'</select></label><label>Evidence reference (URL, workflow run, file hash or test record)<input data-field="evidence" value="'+esc(g.evidence)+'" placeholder="https://… or test-run-id"></label><div class="row"><label>Test date<input type="date" data-field="date" value="'+esc(g.date)+'"></label><label>Reviewer / owner<input data-field="reviewer" value="'+esc(g.reviewer)+'" placeholder="नाम / role"></label></div><label>Notes / observed result<textarea data-field="notes" placeholder="क्या वास्तव में चलाया, परिणाम, timestamp, failures…">'+esc(g.notes)+'</textarea></label></article>'}).join('');
+ root.querySelectorAll('[data-field]').forEach(el=>el.addEventListener('change',()=>{const id=el.closest('[data-id]').dataset.id;data.gates[id][el.dataset.field]=el.value;updateStats();}));
+ root.querySelectorAll('textarea,input').forEach(el=>el.addEventListener('input',()=>{const id=el.closest('[data-id]').dataset.id;data.gates[id][el.dataset.field]=el.value;updateStats();}));
+ updateStats();
+}
+function isVerified(g){return g&&g.status==='VERIFIED'&&String(g.evidence||'').trim().length>0}
+function updateStats(){const vals=definitions.map(d=>data.gates[d.id]||{});const count=vals.filter(isVerified).length;const blockers=vals.length-count;document.getElementById('verified').textContent=count+' / '+vals.length;document.getElementById('coverage').textContent=Math.round(count/vals.length*100)+'%';document.getElementById('blockers').textContent=blockers;document.getElementById('progress').style.width=(count/vals.length*100)+'%';}
+function msg(s){document.getElementById('message').textContent=s}
+document.getElementById('save').addEventListener('click',()=>{try{localStorage.setItem(KEY,JSON.stringify(data));const now=new Date();document.getElementById('reviewed').textContent=now.toLocaleString();msg('स्थानीय ब्राउज़र में रिकॉर्ड सहेजा गया। यह server backup या external verification नहीं है.')}catch(e){msg('इस ब्राउज़र में सहेजना उपलब्ध नहीं हुआ; JSON रिपोर्ट निर्यात करें.')}});
+document.getElementById('export').addEventListener('click',()=>{const report={schema:'shirmani-voice-live-evidence-v1',exportedAt:new Date().toISOString(),scope:'local self-reported evidence register; not independent verification',metrics:{verified:definitions.filter(d=>isVerified(data.gates[d.id])).length,total:definitions.length},gates:data.gates};const blob=new Blob([JSON.stringify(report,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='shirmani-voice-live-evidence-report.json';a.click();URL.revokeObjectURL(a.href);msg('JSON रिपोर्ट तैयार हुई; प्रमाण की स्वतंत्र पुष्टि अलग से आवश्यक है.')});
+document.getElementById('importBtn').addEventListener('click',()=>document.getElementById('importFile').click());
+document.getElementById('importFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());const incoming=obj.gates||obj;if(!incoming||typeof incoming!=='object')throw Error('invalid');data=blank();for(const d of definitions){if(incoming[d.id])data.gates[d.id]={...data.gates[d.id],...incoming[d.id]};}render();msg('JSON आयात हुआ; रिकॉर्ड के स्रोत और सत्यता की जाँच करें.')}catch(err){msg('JSON पढ़ा नहीं जा सका; सही export file चुनें.')}e.target.value=''});
+document.getElementById('reset').addEventListener('click',()=>{if(!confirm('इस पृष्ठ के स्थानीय रिकॉर्ड हटाएँ? पहले export करना चाहें तो Cancel चुनें.'))return;data=blank();try{localStorage.removeItem(KEY)}catch(e){}document.getElementById('reviewed').textContent='अभी नहीं';render();msg('स्थानीय रिकॉर्ड रीसेट हुआ.')});
+try{const saved=localStorage.getItem(KEY);if(saved){const parsed=JSON.parse(saved);if(parsed&&parsed.gates)data=parsed;}}catch(e){}
+render();
+</script>
+</body></html>
