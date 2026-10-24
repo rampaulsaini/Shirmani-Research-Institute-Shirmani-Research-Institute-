@@ -56,6 +56,19 @@ def main():
       },
       "rule":"A workflow run, catalog entry, generated card or public page is not a sale, delivery, accreditation, court authority, currency deployment or independent verification."
     }
+    # Keep the public truth artifact stable when only the generation timestamp changes.
+    # This prevents the five-minute reconciler from creating a new PR on every run.
+    if OUT.is_file():
+        try:
+            existing=json.loads(OUT.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            existing={}
+        comparable_existing=dict(existing)
+        comparable_payload=dict(payload)
+        comparable_existing.pop("generated_at", None)
+        comparable_payload.pop("generated_at", None)
+        if comparable_existing == comparable_payload and existing.get("generated_at"):
+            payload["generated_at"]=existing["generated_at"]
     OUT.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(payload,ensure_ascii=False))
 
