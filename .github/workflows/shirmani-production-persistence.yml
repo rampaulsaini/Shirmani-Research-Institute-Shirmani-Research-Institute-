@@ -147,12 +147,37 @@ jobs:
           git commit -m "fix(production): persist showroom and per-lane artifacts"
 
           branch="automation/production-state"
-          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
-            git fetch origin "$branch"
-            remote_sha="$(git rev-parse FETCH_HEAD)"
-            git push --force-with-lease="refs/heads/$branch:$remote_sha" origin HEAD:"$branch"
-          else
-            git push origin HEAD:"$branch"
+          published=false
+
+          # Multiple production workflows can update the shared state branch.
+          # Rebase onto the latest remote tip and retry instead of force-pushing
+          # a stale snapshot over another workflow's newer production evidence.
+          for attempt in 1 2 3 4; do
+            echo "Publish attempt $attempt/4 for $branch"
+            if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+              git fetch origin "$branch"
+              remote_sha="$(git rev-parse FETCH_HEAD)"
+              if ! git rebase "$remote_sha"; then
+                git rebase --abort || true
+                echo "::error::Production state branch has a rebase conflict; no remote data was overwritten."
+                exit 1
+              fi
+              if git push origin HEAD:"$branch"; then
+                published=true
+                break
+              fi
+            else
+              if git push origin HEAD:"$branch"; then
+                published=true
+                break
+              fi
+            fi
+            sleep $((attempt * 2))
+          done
+
+          if [[ "$published" != true ]]; then
+            echo "::error::Could not publish production state after four concurrency-safe attempts."
+            exit 1
           fi
           echo "Production state persisted to canonical branch: $branch"
 
