@@ -293,7 +293,7 @@ jobs:
 
       - name: Deploy generated production site
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
       - name: Verify deployed public routes and production JSON
         env:
