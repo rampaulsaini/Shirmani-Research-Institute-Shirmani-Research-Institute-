@@ -35,6 +35,22 @@
 </form>
 </section>
 
+<section class="card" id="quote-builder"><h2>स्पष्ट प्रस्ताव बनाएँ · Client Quote Builder</h2>
+<p>यह tool ग्राहक के लिए प्रस्ताव का draft बनाता है। दरें इस पेज की प्रस्तावित शुरुआती दरों से ली जाती हैं; ये अंतिम quote, market-validated rate या भुगतान का प्रमाण नहीं हैं। Custom scope के लिए कीमत लिखित समीक्षा के बाद तय करें।</p>
+<div class="grid">
+<label>सेवा / Package<select id="quoteService"><option value="edit">Editing / Proofreading — proposed from ₹499</option><option value="article">Article / Website Copy — proposed from ₹999</option><option value="research">Source-based Research Brief — proposed from ₹1,499</option><option value="custom">Custom scope — price to be confirmed</option></select></label>
+<label>ग्राहक / Client or organisation<input id="quoteClient" maxlength="160" placeholder="ग्राहक / संस्था का नाम"></label>
+<label>विषय / Topic<input id="quoteTopic" maxlength="220" placeholder="काम का विषय"></label>
+<label>भाषा / Language<select id="quoteLanguage"><option>Hindi</option><option>English</option><option>Hindi + English</option></select></label>
+<label>प्रस्तावित delivery date<input id="quoteDeadline" type="date"></label>
+<label>अंतिम शुल्क (₹) — custom/confirmed quote<input id="quoteAmount" inputmode="decimal" placeholder="Custom या बदली हुई कीमत; पुष्टि जरूरी"></label>
+</div>
+<label>सहमति वाला scope और deliverables<textarea id="quoteScope" rows="3" maxlength="1400" placeholder="जैसे 700 शब्द तक संपादन, एक संशोधन, Word document"></textarea></label>
+<label>भुगतान और अन्य शर्तें<textarea id="quoteTerms" rows="3" maxlength="1000" placeholder="जैसे लिखित स्वीकृति के बाद 50% advance; शेष delivery पर — केवल यदि दोनों पक्ष सहमत हों"></textarea></label>
+<p class="note">काम शुरू होने से पहले ग्राहक की लिखित स्वीकृति, अंतिम कीमत, deliverables, समय-सीमा, revision सीमा, cancellation/refund और payment terms तय करें। प्रस्ताव में अनावश्यक निजी जानकारी शामिल न करें।</p>
+<button class="btn" type="button" id="generateQuote">Proposal draft बनाएँ</button><button class="btn alt" type="button" id="copyQuote">Proposal कॉपी करें</button><button class="btn alt" type="button" id="emailQuote">Email draft खोलें</button>
+<label for="quoteOutput">तैयार प्रस्ताव / Proposal draft</label><textarea id="quoteOutput" rows="15" readonly placeholder="ऊपर विवरण भरें और Proposal draft बनाएँ दबाएँ।"></textarea><p class="small muted" id="quoteStatus" aria-live="polite">Draft इसी browser page में तैयार होगा; कोई email अपने-आप नहीं भेजा जाएगा।</p>
+</section>
 <section class="card"><h2>भरोसा और सीमाएँ</h2><ul><li>काम शुरू होने से पहले scope, price, deadline और revision लिखित रूप में तय करें।</li><li>किसी payment को received नहीं कहा जाएगा जब तक transaction evidence न हो; recipient और amount अपने payment app में verify करें।</li><li>मनगढ़ंत citations या परिणाम नहीं; uncertainty और source limitations स्पष्ट होंगी।</li><li>Proofreading, research guidance और source organization उपलब्ध हैं; academic cheating या किसी के behalf पर जमा करने योग्य graded work नहीं।</li></ul><p class="small muted">Repository में Paytm/UPI और PayPal routes सूचीबद्ध हैं; किसी specific order के लिए recipient और agreed amount की पुष्टि आवश्यक है।</p></section>
 <footer>꙰ Shirmani Research Institute · Writing & Research Services · प्रस्तावित दरें; बिक्री/आय का दावा नहीं</footer></main>
 <script>
@@ -76,6 +92,41 @@
   try { await navigator.clipboard.writeText(text); status.textContent='Enquiry brief clipboard में copy हो गया।'; }
   catch(e) { const box=document.createElement('textarea'); box.value=text; box.style.width='100%'; box.rows=10; form.appendChild(box); box.select(); status.textContent='Auto-copy उपलब्ध नहीं था; नीचे के text को manually copy करें।'; }
  });
+})();
+</script>
+
+<script>
+(function(){
+ const $=id=>document.getElementById(id);
+ const packages={
+  edit:{name:'Editing / Proofreading',price:499,scope:'Up to 700 words; one edited version; one revision within the agreed brief.'},
+  article:{name:'Article / Website Copy',price:999,scope:'Up to 1,000 words; title and headings; one revision.'},
+  research:{name:'Source-based Research Brief',price:1499,scope:'Approximately 800–1,200 words; 3–5 credible sources where available; findings, limitations and open questions separated.'},
+  custom:{name:'Custom scope',price:null,scope:'Deliverables and final fee to be confirmed in writing after reviewing the brief.'}
+ };
+ function makeQuote(){
+  const p=packages[$('quoteService').value];
+  const amount=$('quoteAmount').value.trim();
+  const price=p.price===null?(amount?'Proposed fee entered: ₹'+amount+' (requires written confirmation)':'Fee: to be quoted after scope review'):(amount?'Proposed fee entered: ₹'+amount+' (requires written confirmation)':'Proposed starting fee: ₹'+p.price+' (not a final quote)');
+  return [
+   'SHIRMANI RESEARCH INSTITUTE — SERVICE PROPOSAL (DRAFT)','',
+   'Client / Organisation: '+($('quoteClient').value.trim()||'To be confirmed'),
+   'Topic: '+($('quoteTopic').value.trim()||'To be confirmed'),
+   'Service: '+p.name,
+   'Language: '+$('quoteLanguage').value,
+   'Scope / deliverables: '+($('quoteScope').value.trim()||p.scope),
+   price,
+   'Proposed delivery date: '+($('quoteDeadline').value||'To be agreed in writing'),
+   'Payment and other terms: '+($('quoteTerms').value.trim()||'To be agreed in writing before work starts'),
+   '',
+   'Acceptance required: Both parties must confirm the final scope, price, deliverables, deadline, revision limit, cancellation/refund terms and payment terms in writing before production begins.',
+   'Status: Draft only. This is not proof of a sale, accepted order, payment, guaranteed outcome or revenue.'
+  ].join('\n');
+ }
+ $('generateQuote').addEventListener('click',()=>{$('quoteOutput').value=makeQuote();$('quoteStatus').textContent='Draft तैयार है। भेजने से पहले हर विवरण और कीमत की पुष्टि करें।'});
+ $('quoteService').addEventListener('change',()=>{const p=packages[$('quoteService').value];$('quoteScope').placeholder=p.scope;$('quoteAmount').placeholder=p.price===null?'Custom price after review':'Leave blank to show proposed starting fee; enter only a discussed amount';});
+ $('copyQuote').addEventListener('click',async()=>{if(!$('quoteOutput').value)$('quoteOutput').value=makeQuote();try{await navigator.clipboard.writeText($('quoteOutput').value);$('quoteStatus').textContent='Proposal clipboard में copy हो गया।';}catch(e){$('quoteOutput').focus();$('quoteOutput').select();$('quoteStatus').textContent='Auto-copy उपलब्ध नहीं था; selected text को manually copy करें।';}});
+ $('emailQuote').addEventListener('click',()=>{if(!$('quoteOutput').value)$('quoteOutput').value=makeQuote();const subject=encodeURIComponent('Shirmani Research Institute — Service Proposal Draft');const body=encodeURIComponent($('quoteOutput').value);window.location.href='mailto:sainirampaul60@gmail.com?subject='+subject+'&body='+body;$('quoteStatus').textContent='Mail app में draft खुलना चाहिए। भेजने से पहले recipient और सभी शर्तें जाँचें।';});
 })();
 </script>
 
