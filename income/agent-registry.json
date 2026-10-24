@@ -1,0 +1,20 @@
+{
+  "schema_version":"1.0.0",
+  "orchestrator":"income-command-center",
+  "agents":[
+    {"id":"source-librarian","layer":"L1","capabilities":["source discovery","source freshness"]},
+    {"id":"opportunity-dedup","layer":"L1","capabilities":["normalization","deduplication"]},
+    {"id":"evidence-verifier","layer":"L1","capabilities":["evidence checks","source provenance"]},
+    {"id":"employment-agent","layer":"L2","channel":"employment","capabilities":["job discovery","requirement extraction","application drafting"]},
+    {"id":"freelancing-agent","layer":"L2","channel":"freelancing","capabilities":["gig discovery","proposal drafting","portfolio matching"]},
+    {"id":"ai-marketing-agent","layer":"L2","channel":"ai_marketing","capabilities":["service packaging","lead research","content drafting"]},
+    {"id":"digital-store-agent","layer":"L2","channel":"digital_store","capabilities":["product ideation","listing drafting","catalog QA"]},
+    {"id":"yatharth-music-agent","layer":"L2","channel":"yatharth_ai_music","capabilities":["music workflow planning","metadata drafting","release checklist"]},
+    {"id":"economic-vision-agent","layer":"L2","channel":"economic_vision","capabilities":["scenario modeling","channel diversification","long-horizon planning"]},
+    {"id":"execution-router","layer":"L3","capabilities":["queue creation","priority routing","approval routing"]},
+    {"id":"revenue-intelligence","layer":"L4","capabilities":["verified revenue ledger","funnel metrics","time-to-income"]},
+    {"id":"ml-learning-loop","layer":"L5","capabilities":["outcome features","conversion learning","ranking calibration"]}
+  ],
+  "parallelism":"channel-agents may run independently; irreversible actions remain approval-gated",
+  "failure_policy":"fail-closed"
+}

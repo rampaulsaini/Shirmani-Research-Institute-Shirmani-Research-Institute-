@@ -1,0 +1,69 @@
+name: Income Automission — 24/7 Heartbeat and Recovery
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: income-automission-heartbeat
+  cancel-in-progress: false
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate runtime contracts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          required = [
+              Path("income/command-center.json"),
+              Path("income/agent-registry.json"),
+              Path("income/master-orchestrator.yml"),
+              Path("income/runtime-contract.json"),
+              Path("income/runtime-state.json"),
+          ]
+          for p in required:
+              assert p.exists(), f"missing: {p}"
+          runtime = json.loads(Path("income/runtime-contract.json").read_text())
+          state = json.loads(Path("income/runtime-state.json").read_text())
+          assert runtime["mode"] == "continuous"
+          assert state["desired_state"] == "RUNNING_24_7_365"
+          assert runtime["safety"]["fabrication_forbidden"] is True
+          assert runtime["safety"]["irreversible_actions_require_authorization"] is True
+          print("Automission runtime contract: VALID")
+
+      - name: Emit heartbeat receipt
+        run: |
+          mkdir -p artifacts
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          receipt = {
+            "status": "HEARTBEAT_OK",
+            "runtime": "income-command-center",
+            "mode": "continuous",
+            "desired_state": "RUNNING_24_7_365",
+            "commit": os.environ["GITHUB_SHA"],
+            "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+            "safety": "fail-closed",
+            "income_claims": "verified-only"
+          }
+          with open("artifacts/automission-heartbeat.json","w") as f:
+              json.dump(receipt,f,indent=2)
+          PY
+
+      - name: Upload heartbeat
+        uses: actions/upload-artifact@v4
+        with:
+          name: automission-heartbeat
+          path: artifacts/automission-heartbeat.json
