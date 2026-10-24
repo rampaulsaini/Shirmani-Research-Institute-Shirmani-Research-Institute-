@@ -287,7 +287,14 @@ jobs:
             git fetch origin automation/production-state
             # Prefer this run's freshly rebuilt outputs for overlapping generated files.
             # Keep non-conflicting updates from concurrent production cycles.
-            git merge --no-edit -X ours FETCH_HEAD
+            if ! git merge --no-edit -X ours FETCH_HEAD; then
+              # A merge conflict must not terminate the retry loop under set -e.
+              # Abort the failed merge so the next attempt can fetch the newest head.
+              git merge --abort || true
+              echo "PRODUCTION_STATE_MERGE_RETRY attempt=$attempt"
+              sleep "$((attempt * 2))"
+              continue
+            fi
             if git push origin HEAD:automation/production-state; then
               echo "PRODUCTION_STATE_PUBLISH_OK attempt=$attempt"
               exit 0
