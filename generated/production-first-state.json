@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-10-24T16:40:39.744162+00:00",
+  "catalog_identities": 5000,
+  "production_gap_records": 5000,
+  "fully_gap_free_records": 0,
+  "top_gap": "DEMO_ROUTE",
+  "top_gap_count": 5000
+}
