@@ -21,15 +21,24 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+      - name: Test production completion gate
+        run: python3 -m unittest discover -s tests -p 'test_production_completion_gate.py'
+      - name: Check canonical 5,000-item completion state
+        id: target_gate
+        run: python3 factory/production_completion_gate.py
       - name: Expand public production catalogue
+        if: steps.target_gate.outputs.complete != 'true'
         run: python3 factory/production_scale.py
       - name: Materialize concrete product artifacts
+        if: steps.target_gate.outputs.complete != 'true'
         env:
           BATCH_SIZE: ${{ inputs.batch_size }}
         run: python3 factory/production_materializer.py --batch-size ${BATCH_SIZE:-250}
       - name: Refresh product asset surfaces
+        if: steps.target_gate.outputs.complete != 'true'
         run: python3 factory/product_asset_expander.py
       - name: Production QC gate
+        if: steps.target_gate.outputs.complete != 'true'
         run: |
           test -s generated/production-registry.json
           test -s generated/production-status.json
@@ -45,33 +54,39 @@ jobs:
           print("Production QC: PASS")
           print("catalog=",len(c.get("products",[])),"produced=",s.get("product_count"))
           PY
-      - name: Publish production result to main
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish production batch through a pull request
+        if: steps.target_gate.outputs.complete != 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/production-scale-batch
+          delete-branch: false
+          add-paths: |
+            generated/**
+            factory/production_scale.py
+            products/concrete/**
+            products/production/**
+          commit-message: "chore(production): materialize next public product batch"
+          title: "chore(production): publish next production batch"
+          body: |
+            ## Automated production batch
+
+            This pull request publishes the output of the production-scale workflow after the local production QC gate passes.
+
+            - Review generated catalogue and product asset changes before merging.
+            - A successful workflow run does not mean this batch is live until this PR is merged and deployment is verified.
+            - Asset creation is not independent quality verification, a customer order, dispatch, or payment evidence.
+          labels: |
+            automated
+            production
+
+      - name: Report production completion decision
+        if: always()
         run: |
-          set -euo pipefail
-          git config user.name "shirmani-production[bot]"
-          git config user.email "shirmani-production@users.noreply.github.com"
-          git add generated factory/production_scale.py
-          git add products/concrete products/production || true
-          if git diff --cached --quiet; then
-            echo "No new production output."
-            exit 0
+          echo "## Production completion gate" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ steps.target_gate.outputs.complete }}" = "true" ]; then
+            echo "Canonical catalogue, concrete assets, QR assets, and deterministic QC already meet the 5,000-item target. Duplicate production skipped." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Production target is incomplete or canonical evidence is insufficient. Bounded production path was eligible to run." >> "$GITHUB_STEP_SUMMARY"
           fi
-          git commit -m "chore(production): materialize next public product batch"
-          for attempt in 1 2 3 4 5 6 7; do
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
-                echo "Production batch published directly to main on attempt=$attempt."
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-            echo "Main moved or publication was rejected; retrying attempt=$attempt"
-            sleep $((attempt * 2))
-          done
-          echo "::warning::Direct main publication unavailable after retries; generated batch remains in this run workspace."
-          exit 0
+          echo "Dispatch, sales, payment, and independent verification are separate downstream states." >> "$GITHUB_STEP_SUMMARY"

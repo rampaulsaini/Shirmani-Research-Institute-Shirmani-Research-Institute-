@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib, html, json, re
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -44,12 +45,90 @@ def load_tasks():
         task.setdefault("objective",f"Produce a concrete, provenance-linked output for {module}")
         out.append(task)
     return out
+class _PublicHTMLTextParser(HTMLParser):
+    """Extract safe, visible metadata/text from HTML, excluding executable content."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.hidden_depth = 0
+        self.capture = []
+        self.fields = {"title": [], "description": [], "h1": [], "h2": [], "h3": []}
+        self.text_parts = []
+
+    def handle_starttag(self, tag, attrs):
+        tag = tag.lower()
+        if tag in ("script", "style", "noscript", "template"):
+            self.hidden_depth += 1
+        if tag in ("title", "h1", "h2", "h3"):
+            self.capture.append(tag)
+        if tag == "meta":
+            values = {str(k).lower(): (v or "") for k, v in attrs}
+            if values.get("name", "").lower() == "description" and values.get("content"):
+                self.fields["description"].append(values["content"])
+        if tag in ("p", "div", "section", "article", "li", "h1", "h2", "h3", "br"):
+            self.text_parts.append(" ")
+
+    def handle_endtag(self, tag):
+        tag = tag.lower()
+        if tag in ("script", "style", "noscript", "template") and self.hidden_depth:
+            self.hidden_depth -= 1
+        if tag in ("title", "h1", "h2", "h3"):
+            for index in range(len(self.capture) - 1, -1, -1):
+                if self.capture[index] == tag:
+                    del self.capture[index]
+                    break
+        if tag in ("p", "div", "section", "article", "li", "h1", "h2", "h3", "br"):
+            self.text_parts.append(" ")
+
+    def handle_data(self, data):
+        if self.hidden_depth:
+            return
+        cleaned = " ".join(data.split())
+        if not cleaned:
+            return
+        self.text_parts.append(cleaned)
+        for field in self.capture:
+            self.fields[field].append(cleaned)
+
+def _parse_public_html(source):
+    parser = _PublicHTMLTextParser()
+    try:
+        parser.feed(source or "")
+        parser.close()
+    except Exception:
+        # Malformed source is metadata input; it must not abort a production cycle.
+        pass
+    fields = {key: " ".join(values).strip() for key, values in parser.fields.items()}
+    fields["text"] = " ".join(" ".join(parser.text_parts).split())
+    return fields
+
 def title(text,fallback):
-    return (re.sub(r"\\s+"," ",text or "").strip()[:110] or fallback).strip()
+    raw = text or ""
+    lower = raw.lower()
+    if "<!doctype" in lower or "<html" in lower or "<head" in lower or "<body" in lower:
+        fields = _parse_public_html(raw)
+        raw = fields["title"] or fields["h1"] or fallback
+    return (re.sub(r"\s+", " ", raw).strip()[:110] or fallback).strip()
+
+def readable_excerpt(source, limit=1400):
+    """Turn HTML sources into readable metadata instead of dumping raw markup."""
+    raw = source or ""
+    lower = raw.lower()
+    if not ("<!doctype" in lower or "<html" in lower or "<head" in lower or "<body" in lower):
+        return " ".join(raw.split())[:limit]
+
+    fields = _parse_public_html(raw)
+    parts = []
+    for key in ("title", "description", "h1", "h2", "h3"):
+        value = fields[key]
+        if value and value not in parts:
+            parts.append(value)
+    if not parts and fields["text"]:
+        parts.append(fields["text"])
+    return " · ".join(parts)[:limit]
 
 def deliverable(task,source):
-    lane=task["lane"]; t=title(source,task["module"]); excerpt=" ".join(source.split())[:1400]
-    base={"production_objective":task["objective"],"source_excerpt":excerpt,
+    lane=task["lane"]; t=title(source,task["module"]); excerpt=readable_excerpt(source)
+    base={"production_objective":task["objective"],"source_title":t,"source_excerpt":readable_excerpt(source),
           "source_fingerprint":digest(source)[:16],"verification_state":"PENDING_DOWNSTREAM"}
     if lane=="research":
         base.update(artifact_type="research-work-card",question=f"What concrete research output can be developed from: {t}?",
@@ -120,6 +199,22 @@ def materialize_concrete_asset_status(root=ROOT, generated_at=None):
             status = {}
 
     target = int(catalog.get("product_count", len(products)))
+    # QC is authoritative only when its evidence matches the current catalog and
+    # the real asset count. A stale PASS must never promote a changed catalog.
+    qc_path = generated / "product-qc-gate.json"
+    qc_passed = False
+    if qc_path.is_file() and actual_assets == target and target > 0:
+        try:
+            qc = json.loads(qc_path.read_text(encoding="utf-8"))
+            qc_passed = (
+                int(qc.get("catalog_count", -1)) == target
+                and int(qc.get("produced_count", -1)) == actual_assets
+                and int(qc.get("qc_passed", -1)) == target
+                and int(qc.get("qc_failed", -1)) == 0
+                and qc.get("release_state") == "QC_PASS_READY_FOR_DISPATCH"
+            )
+        except (UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError):
+            qc_passed = False
     status.update({
         "generated_at": generated_at or now(),
         "product_assets": actual_assets,
@@ -128,9 +223,11 @@ def materialize_concrete_asset_status(root=ROOT, generated_at=None):
         "materialization_percent": round(100 * actual_assets / target, 2) if target else 0,
         "asset_directory": status.get("asset_directory", "products/production/"),
         "showroom": status.get("showroom", "products.html"),
-        "state": "READY_FOR_QC" if actual_assets == target else "IN_PROGRESS",
+        "state": ("QC_PASSED_AWAITING_DISPATCH" if qc_passed else
+                  "READY_FOR_QC" if actual_assets == target else "IN_PROGRESS"),
+        "qc_state": "QC_PASSED" if qc_passed else "READY_FOR_QC",
         "dispatch": "NO",
-        "principle": "Concrete non-empty repository assets are production evidence; QC, dispatch, payment and independent verification remain downstream."
+        "principle": "Concrete assets and matching deterministic QC are separate evidence; dispatch, sales, payment and independent verification remain downstream."
     })
     status_path.write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return status
@@ -196,7 +293,7 @@ def main():
     cards=[]
     for r in results[:120]:
         d=r["deliverable"]; preview=html.escape((d.get("draft") or d.get("source_excerpt") or d.get("production_objective") or "")[:500])
-        cards.append(f"<article><h3>{html.escape(r['lane'].upper())}</h3><small>{html.escape(r['module'])}</small><h4>{html.escape(str(d.get('title') or d.get('offer_title') or d.get('artifact_type')))}</h4><p>{preview}</p><b>PRODUCED</b> · downstream verification</article>")
+        cards.append(f"<article><h3>{html.escape(r['lane'].upper())}</h3><small>{html.escape(r['module'])}</small><h4>{html.escape(str(d.get('title') or d.get('offer_title') or d.get('source_title') or d.get('artifact_type')))}</h4><p>{preview}</p><b>PRODUCED</b> · downstream verification</article>")
     links="".join(f"<a href='public-production/{html.escape(l)}.jsonl'>{html.escape(l)} · {n:,} outputs</a>" for l,n in sorted(counts.items()))
     page=f"""<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI Public Production</title><style>body{{margin:0;background:#0b0d14;color:#f5f5f5;font-family:system-ui,sans-serif;line-height:1.5}}main{{max-width:1250px;margin:auto;padding:24px}}h1,h2{{color:#d4af37}}.hero,article,.links{{background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.25);border-radius:14px;padding:18px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}}.links{{display:flex;flex-wrap:wrap;gap:10px}}a{{color:#67e8f9;text-decoration:none;padding:8px 12px;border:1px solid #365;border-radius:9px}}small{{color:#aeb5c2}}b{{color:#6ee7b7}}</style></head><body><main><section class="hero"><h1>꙰ SHIRMANI Public Production</h1><p><strong>Production-first Automission:</strong> every queued work unit becomes a concrete source-bound production card. Verification is downstream.</p><h2>{len(results):,} concrete results this cycle</h2><p>Generated: {catalog["generated_at"]}</p><p><a href="public-production-catalog.json">Catalog</a> · <a href="multi-layer-production-status.json">Status</a> · <a href="production-results.jsonl">Latest cycle stream</a> · <a href="public-production/archive/index.json">Cycle archive index</a> · <a href="../index.html">Main Hub</a></p></section><h2>Production lanes</h2><div class="links">{links}</div><h2>Actual production cards</h2><div class="grid">{''.join(cards)}</div><section class="hero"><strong>Integrity:</strong> PRODUCED means a concrete artifact was generated from a repository-bound source. It is not automatically scientifically verified, commercially sold, or independently validated.</section></main></body></html>"""
     DASHBOARD.write_text(page,encoding="utf-8")

@@ -9,11 +9,40 @@ public={"schema_version":1,"mode":"REAL_PRODUCT_CATALOG","principle":"A product 
 (out/"product-catalog-public.json").write_text(json.dumps(public,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 cards=[]
 for o in offers:
-    paid="price_inr" in o
-    status="CATALOG_READY / EXTERNAL_CHECKOUT" if paid else "SERVICE_READY / INQUIRY_REQUIRED"
-    cta=o.get("store") or o.get("destination") or "https://wa.me/918082935186"
-    label="Store / order path" if paid else "Service inquiry"
-    price=(f"₹{o['price_inr']:,}" + (" · "+o["price_note"] if o.get("price_note") else "")) if paid else "Service"
+    price_value=float(o.get("price_inr",0) or 0)
+    paid=price_value > 0
+    evidence=o.get("asset_evidence","NOT_VERIFIED")
+    verified_repo=evidence=="VERIFIED_IN_REPOSITORY"
+    verified_external=evidence=="VERIFIED_EXTERNAL_STORE_MANIFEST"
+    is_tool=o.get("delivery")=="browser-tool" and bool(o.get("asset_path")) and verified_repo
+    is_free_resource=price_value==0 and bool(o.get("store") or o.get("asset_path")) and verified_repo
+
+    if is_tool:
+        status="TOOL AVAILABLE / OPEN IN BROWSER"
+        cta=o["asset_path"]
+        label="Open tool"
+    elif is_free_resource:
+        status="FREE RESOURCE / REPOSITORY ASSET"
+        cta=o.get("store") or o.get("asset_path")
+        label="Open free resource"
+    elif paid and verified_external:
+        status="LISTED IN EXTERNAL STORE / CONFIRM CURRENT AVAILABILITY"
+        cta=o.get("store") or "https://wa.me/918082935186"
+        label="Open external store"
+    elif paid:
+        status="INQUIRY ONLY / PRODUCT ASSET NOT VERIFIED"
+        cta="https://wa.me/918082935186"
+        label="Ask about availability"
+    elif o.get("destination"):
+        status="SERVICE PAGE / CONFIRM SCOPE AND PRICE"
+        cta=o["destination"]
+        label="View service page"
+    else:
+        status="SERVICE INQUIRY / QUOTE REQUIRED"
+        cta="https://wa.me/918082935186"
+        label="Ask for a quote"
+
+    price=(f"₹{o['price_inr']:,}" + (" · "+o["price_note"] if o.get("price_note") else "")) if "price_inr" in o else "Service"
     cards.append(f'<article class="card"><div class="tag">{html.escape(o["lane"])}</div><h2>{html.escape(o["name"])}</h2><div class="price">{price}</div><p>Delivery: <b>{html.escape(o.get("delivery",""))}</b></p><p class="status">{status}</p><a class="btn" href="{html.escape(cta)}" target="_blank" rel="noopener">{label}</a></article>')
 page=f'''<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI — Real Product Catalog</title><meta name="description" content="SHIRMANI real product and service catalog generated from the repository product registry."><style>
 body{{margin:0;background:#080b11;color:#eef2f7;font-family:system-ui,sans-serif;line-height:1.55}}main{{max-width:1200px;margin:auto;padding:24px 16px 70px}}h1,h2{{color:#d4af37}}.hero,.card,.rule{{background:#111827;border:1px solid #334155;border-radius:16px;padding:18px}}.hero{{margin-bottom:18px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}}.tag{{display:inline-block;border:1px solid #475569;border-radius:999px;padding:4px 8px;color:#67e8f9;font-size:.76rem}}.price{{font-size:1.25rem;font-weight:800;color:#f5d76e;margin:8px 0}}.status{{color:#6ee7b7;font-weight:700;font-size:.88rem}}.btn{{display:inline-block;background:#d4af37;color:#111;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:800;margin-top:10px}}.muted{{color:#aeb8c8}}a{{color:#67e8f9}}footer{{margin-top:24px;color:#aeb8c8}}</style></head><body><main>

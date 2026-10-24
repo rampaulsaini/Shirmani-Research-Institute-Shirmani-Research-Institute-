@@ -22,6 +22,7 @@ PAGES = (
     ROOT / "supreme-public-production-showroom.html",
     ROOT / "writing-research-enquiry.html",
     ROOT / "first-paid-pilot-offer.html",
+    ROOT / "outreach-income-workbench.html",
 )
 REQUIRED_TEXT = {
     "showroom-public.html": (
@@ -35,6 +36,20 @@ REQUIRED_TEXT = {
         "Voice-to-Presentation Studio",
         "Lip-sync",
         "Live question-and-answer",
+    ),
+    "outreach-income-workbench.html": (
+        "Outreach & Income Workbench",
+        "Payment evidence ledger",
+        "User-confirmed receipts",
+        "I personally confirmed the payment arrived",
+        "Quote accepted",
+        "Payment confirmed",
+        "Evidence-complete receipts",
+        "quotedFee",
+        "paidAmount",
+        "paidDate",
+        "receiptRef",
+        "Won / paid",
     ),
 }
 REQUIRED_SHOWROOM_ROUTES = (
@@ -143,6 +158,7 @@ def main() -> int:
         ROOT / "income-action-center.html",
         ROOT / "showroom/global-product-sales-desk.html",
         ROOT / "services-writing-research.html",
+        ROOT / "income-client-outreach-desk.html",
     )
     for page in direct_customer_pages:
         parse_html(page, errors, parsed)
@@ -179,6 +195,39 @@ def main() -> int:
         ):
             if required.casefold() not in outreach_source.casefold():
                 errors.append(f"institutional-outreach-kit.html is missing safe email handoff requirement: {required}")
+
+    # The production showroom is a second high-traffic entry point. Keep its
+    # visible counters, paid-service route, and commercial truth boundary under
+    # regression test without pretending a source check proves live deployment.
+    showroom_path = ROOT / "showroom-public-interface.html"
+    if not showroom_path.is_file():
+        errors.append("Missing production showroom: showroom-public-interface.html")
+    else:
+        showroom_source = showroom_path.read_text(encoding="utf-8")
+        for required in (
+            'id="count"',
+            'id="produced"',
+            'id="qc"',
+            'id="dispatch"',
+            'id="cyclesToday"',
+            'id="dailyTelemetry"',
+            'id="continuousTelemetry"',
+            'generated/daily-automission-report.json',
+            'generated/product-qc-gate.json',
+            'const qcGateValid=',
+            'const qcPassed=',
+            '$("qc").textContent=qcPassed',
+            'first-paid-pilot-offer.html',
+            'writing-research-enquiry.html',
+            'wa.me/918082935186',
+            'PRODUCED ≠ SOLD',
+            'QC PASS ≠ PAYMENT',
+        ):
+            if required.casefold() not in showroom_source.casefold():
+                errors.append(
+                    "showroom-public-interface.html is missing production/income contract: "
+                    + required
+                )
 
     # Check every local target and every fragment on HTML pages, not only the
     # two pages that are the main focus of this smoke suite.

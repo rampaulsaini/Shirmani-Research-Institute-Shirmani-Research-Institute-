@@ -41,9 +41,11 @@ footer{text-align:center;color:var(--muted);padding:18px}
 <p><strong>सरल • सहज • निर्मल • पारदर्शी</strong></p>
 <p>यह मुख्य प्रवेश-द्वार है। पहले अपनी जरूरत चुनें, फिर उसी से जुड़ी सेवा, tool, research या प्रमाण-पृष्ठ खोलें। बड़े प्रोजेक्ट और आंतरिक काम हटाए नहीं गए हैं—उन्हें अलग, स्पष्ट रास्तों में रखा गया है।</p>
 <div class="actions" aria-label="मुख्य कार्य">
-<a class="btn" href="showroom/global-product-sales-desk.html">पहला paid-service offer · ₹499 Editing Pilot</a>
-<a class="btn alt" href="showroom-public-interface.html">Products और Showroom देखें</a>
+<a class="btn" href="first-paid-pilot-offer.html">पहला paid-service offer · ₹499 Editing Pilot</a>
+<a class="btn alt" href="showroom/public-gateway-v2.html">सरल Public Gateway · Services और Products</a>
 <a class="btn alt" href="income-action-center.html">ग्राहक प्रस्ताव और आय कार्यक्षेत्र</a>
+<a class="btn alt" href="income-client-pipeline.html">Client pipeline · ग्राहक से भुगतान और डिलीवरी तक</a>
+<a class="btn alt" href="income-client-outreach-desk.html">ग्राहक संपर्क और प्रस्ताव दर्ज करें</a>
 </div>
 </header>
 <nav class="nav" aria-label="मुख्य नेविगेशन">
@@ -134,9 +136,14 @@ footer{text-align:center;color:var(--muted);padding:18px}
 <article class="card"><span class="pill">VISUAL ASSETS</span><h3 id="liveVisuals">—</h3><p>Public visual assets — उपलब्ध state के अनुसार</p></article>
 <article class="card"><span class="pill">QR ASSETS</span><h3 id="liveQr">—</h3><p>Product QR assets — उपलब्ध state के अनुसार</p></article>
 <article class="card"><span class="pill">MATERIALIZATION</span><h3 id="liveMaterialized">—</h3><p>Assets / catalogue target; यह QC score नहीं है</p></article>
+<article class="card"><span class="pill">QC PASSED</span><h3 id="liveQcPassed">—</h3><p>Deterministic checks passed; independent verification नहीं</p></article>
+<article class="card"><span class="pill">QC FAILED</span><h3 id="liveQcFailed">—</h3><p>Deterministic product QC failures</p></article>
+<article class="card"><span class="pill">QC PASS RATE</span><h3 id="liveQcRate">—</h3><p>Passed / defined QC checks; QC rate ≠ delivery or sale</p></article>
 <article class="card"><span class="pill">DISPATCH</span><h3 id="liveDispatch">—</h3><p>Released dispatch count</p></article>
 <article class="card"><span class="pill">SALES / PAYMENTS</span><h3 id="liveSales">—</h3><p>दर्ज sales और payment claims</p></article>
 <article class="card"><span class="pill">INDEPENDENT REVIEW</span><h3 id="liveIndependent">—</h3><p>State file में दर्ज verification claims</p></article>
+<article class="card"><span class="pill">REVIEW PREPARED</span><h3 id="liveReviewPrepared">—</h3><p>समीक्षा हेतु तैयार रिकॉर्ड / कुल registry</p></article>
+<article class="card"><span class="pill">REVIEW PREPARATION</span><h3 id="liveReviewPreparedRate">—</h3><p>तैयार रिकॉर्ड का कुल registry में प्रतिशत; verified नहीं</p></article>
 </div>
 <p id="liveProductionUpdated" class="notice" aria-live="polite">Production state प्राप्त हो रही है…</p>
 <div class="grid">
@@ -181,11 +188,23 @@ $('liveAssets').textContent=fmt(assets);
 $('liveVisuals').textContent=p.public_4k_visual_assets==null?'इस state में दर्ज नहीं':fmt(p.public_4k_visual_assets);
 $('liveQr').textContent=p.product_qr_assets==null?'इस state में दर्ज नहीं':fmt(p.product_qr_assets);
 $('liveMaterialized').textContent=(p.concrete_materialization_percent_of_catalog??(catalog?assets/catalog*100:null))==null?'—':Number(p.concrete_materialization_percent_of_catalog??assets/catalog*100).toFixed(2)+'%';
+$('liveQcPassed').textContent=p.qc_passed==null?'इस state में दर्ज नहीं':fmt(p.qc_passed);
+$('liveQcFailed').textContent=p.qc_failed==null?'इस state में दर्ज नहीं':fmt(p.qc_failed);
+$('liveQcRate').textContent=p.qc_pass_percent==null?'इस state में दर्ज नहीं':Number(p.qc_pass_percent).toFixed(2)+'%';
 $('liveDispatch').textContent=fmt(p.dispatch_released||0);
 $('liveSales').textContent=fmt(p.sales_claimed||0)+' sales · '+fmt(p.payment_claimed||0)+' payment claims';
 $('liveIndependent').textContent=fmt(p.independent_verification_claimed||0);
 $('liveProductionUpdated').textContent='Production state updated: '+date(p.generated_at)+' UTC · state: '+String(p.state||'not specified')+' · QC: '+String(p.qc_state||'not specified')+'. Assets/target = '+(catalog?((assets/catalog)*100).toFixed(2):'—')+'%; यह quality pass rate नहीं है.';
 }catch(e){$('liveProductionUpdated').textContent='Production state उपलब्ध नहीं: '+e.message+'. कोई संख्या अनुमान से नहीं दिखाई गई.'}
+try{
+const verificationResponse=await fetch('generated/independent-verification-status.json?ts='+Date.now(),{cache:'no-store'});
+if(!verificationResponse.ok)throw new Error('Verification state HTTP '+verificationResponse.status);
+const v=await verificationResponse.json();
+const total=Number(v.registry_total||0),prepared=Number(v.prepared_review_records||0),verified=Number(v.verified_records||0);
+$('liveIndependent').textContent=fmt(verified)+' / '+fmt(total)+' · '+(total?(verified/total*100).toFixed(2):'—')+'% verified';
+$('liveReviewPrepared').textContent=fmt(prepared)+' / '+fmt(total);
+$('liveReviewPreparedRate').textContent=total?(prepared/total*100).toFixed(2)+'%':'—';
+}catch(e){$('liveIndependent').textContent='सत्यापन state उपलब्ध नहीं';$('liveReviewPrepared').textContent='—';$('liveReviewPreparedRate').textContent='—'}
 try{
 const base='https://api.github.com/repos/'+owner+'/'+repo+'/actions/runs';
 const since=new Date(Date.now()-86400000).toISOString();
