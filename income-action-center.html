@@ -30,7 +30,7 @@ Shirmani Research Institute
 Services: https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/services-writing-research.html</div><button id="copy" type="button">संदेश कॉपी करें</button><a class="btn alt" href="mailto:sainirampaul60@gmail.com?subject=Hindi%2FEnglish%20Writing%20and%20Research%20Support&amp;body=Namaste%20Shirmani%20Research%20Institute%2C%0A%0AI%20would%20like%20to%20discuss%20a%20writing%2C%20editing%2C%20or%20source-based%20research%20brief.%0A%0APlease%20confirm%20scope%2C%20deliverables%2C%20price%2C%20deadline%2C%20revision%20limit%2C%20and%20payment%20terms%20in%20writing%20before%20work%20starts.%0A%0AThank%20you.">Addressed email draft खोलें</a> <a class="btn alt" href="https://wa.me/918082935186?text=Namaste%20Shirmani%20Research%20Institute%2C%20I%20would%20like%20to%20discuss%20a%20writing%2C%20editing%2C%20or%20source-based%20research%20brief.%20Please%20confirm%20scope%2C%20price%2C%20deadline%2C%20revision%20limit%2C%20and%20payment%20terms%20before%20work%20starts." target="_blank" rel="noopener noreferrer">WhatsApp enquiry खोलें</a><p id="copyState" class="muted" aria-live="polite"></p></section>
 <section><h2>4 · सात दिन के activity targets</h2><div class="grid"><div class="item"><div class="metric">20</div><b>Qualified prospects researched</b></div><div class="item"><div class="metric">10</div><b>Personalized proposals sent</b></div><div class="item"><div class="metric">3</div><b>Relevant follow-ups</b></div><div class="item"><div class="metric">1</div><b>Paid pilot target</b><p class="muted">लक्ष्य है, गारंटी नहीं।</p></div></div></section>
 <section><h2>5 · Pipeline tracker</h2><p class="muted">यह tracker इसी browser/device पर local storage में रिकॉर्ड रखता है। shared device पर ग्राहक की संवेदनशील जानकारी न रखें।</p><div class="grid">
-<label>Prospects researched<input id="prospects" type="number" min="0" value="0"></label><label>Proposals actually sent<input id="sent" type="number" min="0" value="0"></label><label>Replies received<input id="replies" type="number" min="0" value="0"></label><label>Scopes accepted<input id="accepted" type="number" min="0" value="0"></label><label>Paid orders confirmed<input id="orders" type="number" min="0" value="0"></label><label>Payments received (₹)<input id="revenue" type="number" min="0" value="0"></label></div><button id="save">इस device पर save करें</button><button id="reset" class="alt">Reset</button><div class="grid"><div class="item">Reply rate<div id="rr" class="metric">0%</div></div><div class="item">Acceptance rate<div id="ar" class="metric">0%</div></div><div class="item">Recorded revenue<div id="rv" class="metric">₹0</div></div></div><p id="status" class="muted" aria-live="polite">अभी कोई परिणाम दर्ज नहीं।</p></section>
+<label>Prospects researched<input id="prospects" type="number" min="0" value="0"></label><label>Proposals actually sent<input id="sent" type="number" min="0" value="0"></label><label>Replies received<input id="replies" type="number" min="0" value="0"></label><label>Scopes accepted<input id="accepted" type="number" min="0" value="0"></label><label>Paid orders confirmed<input id="orders" type="number" min="0" value="0"></label><label>Payments received (₹)<input id="revenue" type="number" min="0" value="0"></label></div><button id="save">इस device पर save करें</button><button id="export" class="alt" type="button">CSV प्रमाण-बैकअप डाउनलोड करें</button><button id="reset" class="alt">Reset</button><p class="muted">CSV में केवल इस tracker के दर्ज किए गए आँकड़े और export timestamp होंगे। यह बैंक/UPI से स्वतंत्र भुगतान सत्यापन नहीं है।</p><div class="grid"><div class="item">Reply rate<div id="rr" class="metric">0%</div></div><div class="item">Acceptance rate<div id="ar" class="metric">0%</div></div><div class="item">Recorded revenue<div id="rv" class="metric">₹0</div></div></div><p id="status" class="muted" aria-live="polite">अभी कोई परिणाम दर्ज नहीं।</p></section>
 <section><h2>6 · Complete measurable chain</h2><p><b>Prospect identified → personalized proposal sent → reply → written quote/scope → customer approval → delivery → payment evidence → review → improvement.</b></p><p class="note">Sent, reply, accepted, delivered और paid अलग-अलग अवस्थाएँ हैं। अनुमानित या बकाया रकम को received income में न जोड़ें।</p></section><footer>꙰ Shirmani Research Institute · Transparent service delivery · No fabricated sales or income</footer>
 </main><script>
 const ids=["prospects","sent","replies","accepted","orders","revenue"];
@@ -38,6 +38,30 @@ function update(){let v={};ids.forEach(id=>v[id]=Math.max(0,Number(document.getE
 ids.forEach(id=>document.getElementById(id).addEventListener("input",update));
 document.getElementById("save").onclick=()=>{try{localStorage.setItem("sri-income-action-tracker-v1",JSON.stringify(update()));document.getElementById("status").textContent="Saved on this device. User-entered values are not independently confirmed."}catch(e){document.getElementById("status").textContent="Local save unavailable; record values manually."}};
 document.getElementById("reset").onclick=()=>{ids.forEach(id=>document.getElementById(id).value=0);try{localStorage.removeItem("sri-income-action-tracker-v1")}catch(e){}update();document.getElementById("status").textContent="Tracker cleared."};
+document.getElementById("export").onclick=()=>{
+  const v=update();
+  const rows=[
+    ["field","value"],
+    ["exported_at_utc",new Date().toISOString()],
+    ["prospects_researched",v.prospects],
+    ["proposals_actually_sent",v.sent],
+    ["replies_received",v.replies],
+    ["scopes_accepted",v.accepted],
+    ["paid_orders_user_recorded",v.orders],
+    ["payments_user_recorded_inr",v.revenue],
+    ["reply_rate_percent",v.sent?Math.round(v.replies/v.sent*100):0],
+    ["acceptance_rate_percent",v.sent?Math.round(v.accepted/v.sent*100):0],
+    ["evidence_boundary","User-entered local tracker values only; not independently verified; not bank/UPI proof."]
+  ];
+  const csv=rows.map(row=>row.map(value=>'"'+String(value).replace(/"/g,'""')+'"').join(",")).join("\r\n")+"\r\n";
+  const blob=new Blob(["\\uFEFF",csv],{type:"text/csv;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="shirmani-income-tracker-"+new Date().toISOString().slice(0,10)+".csv";
+  document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  document.getElementById("status").textContent="CSV backup downloaded. Values remain user-entered and are not independently verified.";
+};
 try{let v=JSON.parse(localStorage.getItem("sri-income-action-tracker-v1")||"null");if(v)ids.forEach(id=>{if(Number.isFinite(Number(v[id])))document.getElementById(id).value=v[id]})}catch(e){}update();
 document.getElementById("copy").onclick=async()=>{try{await navigator.clipboard.writeText(document.getElementById("msg").textContent);document.getElementById("copyState").textContent="कॉपी हो गया; भेजने से पहले template संपादित करें।"}catch(e){document.getElementById("copyState").textContent="Clipboard unavailable; text manually select करके copy करें।"}};
 </script></body></html>
