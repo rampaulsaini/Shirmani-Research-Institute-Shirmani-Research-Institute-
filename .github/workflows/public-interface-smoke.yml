@@ -21,6 +21,11 @@ on:
       - "supreme-public-production-showroom.html"
       - "writing-research-enquiry.html"
       - "first-paid-pilot-offer.html"
+      - "showroom/first-client-pilot-desk.html"
+      - "income-action-center.html"
+      - "income-client-outreach-desk.html"
+      - "services-writing-research.html"
+      - "institutional-outreach-kit.html"
       - "tests/public_interface_smoke.py"
       - "factory/public_interface_link_smoke.py"
       - "factory/production_completion_gate.py"
@@ -49,6 +54,11 @@ on:
       - "supreme-public-production-showroom.html"
       - "writing-research-enquiry.html"
       - "first-paid-pilot-offer.html"
+      - "showroom/first-client-pilot-desk.html"
+      - "income-action-center.html"
+      - "income-client-outreach-desk.html"
+      - "services-writing-research.html"
+      - "institutional-outreach-kit.html"
       - "tests/public_interface_smoke.py"
       - "factory/public_interface_link_smoke.py"
       - ".github/workflows/public-interface-smoke.yml"
@@ -86,3 +96,8 @@ jobs:
           showroom/global-product-sales-desk.html
           contact.html
           writing-research-enquiry.html
+          showroom/first-client-pilot-desk.html
+          income-action-center.html
+          income-client-outreach-desk.html
+          services-writing-research.html
+          institutional-outreach-kit.html
