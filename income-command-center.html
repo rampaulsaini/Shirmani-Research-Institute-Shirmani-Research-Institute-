@@ -539,11 +539,22 @@ route();
 </article>
 </div>
 <div id="rf-output" class="grid" aria-live="polite"></div>
+<div class="card" id="rf-export-controls" aria-labelledby="rf-export-title">
+<h3 id="rf-export-title">Draft pack export · local-only</h3>
+<p class="note">Export only the drafts you generated. Plain JSON is unencrypted. Encrypted export uses browser Web Crypto (AES-256-GCM + PBKDF2); it does not upload or send anything.</p>
+<label for="rf-passphrase">Encryption passphrase (12+ characters)</label>
+<input id="rf-passphrase" type="password" minlength="12" autocomplete="new-password" placeholder="Use a unique strong passphrase">
+<button class="btn" id="rf-export-json" type="button">Download JSON</button>
+<button class="btn" id="rf-encrypt-json" type="button">Encrypt & download</button>
+<p class="note" id="rf-export-status" role="status" aria-live="polite">पहले drafts बनाएं; फिर export करें।</p>
+</div>
 </div>
 <script>
 (function(){
 const $=id=>document.getElementById(id);
 const fields=["rf-name","rf-buyer","rf-outcome","rf-price","rf-proof","rf-cta"];
+let lastDrafts=[];
+
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function validUrl(s){if(!s)return "";try{const u=new URL(s);return (u.protocol==="https:"||u.protocol==="http:")?u.href:"";}catch(_){return "";}}
 function build(){
@@ -561,6 +572,7 @@ const plain=[
 ["WhatsApp / Short Message","नमस्ते! "+name+" — "+buyer+" के लिए। Deliverable: "+outcome+" "+priceLine+" "+(proof?("Demo: "+proof+" "):"Demo उपलब्ध होने पर साझा करूँगा/करूँगी। ")+(cta?("विवरण: "+cta):"क्या यह आपकी मौजूदा जरूरत से मेल खाता है?")],
 ["Short Social Post",name+"\n\n"+buyer+" के लिए:\n• Deliverable: "+outcome+"\n• "+priceLine+"\n• "+proofLine+"\n\n"+action]
 ];
+lastDrafts=plain.map(item=>({channel:item[0],text:item[1]}));
 const output=$("rf-output");output.innerHTML="";
 plain.forEach((item,i)=>{
 const card=document.createElement("article");card.className="card";
@@ -573,6 +585,33 @@ card.append(h,pre,copy);output.appendChild(card);
 $("rf-status").textContent="5 drafts तैयार हैं। ये local templates हैं, AI-generated claims नहीं। भेजने से पहले जाँचें; कोई संदेश स्वतः नहीं भेजा गया।";
 }
 $("rf-generate").addEventListener("click",build);
+function downloadFile(name,blob){const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function setExportStatus(message){$("rf-export-status").textContent=message;}
+function base64(bytes){let binary="";for(const b of bytes)binary+=String.fromCharCode(b);return btoa(binary);}
+function requireDrafts(){if(!lastDrafts.length){setExportStatus("पहले पाँच-channel draft pack बनाएं।");return false;}return true;}
+$("rf-export-json").addEventListener("click",()=>{
+ if(!requireDrafts())return;
+ const payload={schema_version:1,created_at:new Date().toISOString(),export_type:"UNENCRYPTED_DRAFTS",warning:"Contains unencrypted campaign drafts; store securely.",drafts:lastDrafts};
+ downloadFile("shirmani-campaign-drafts.json",new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}));
+ setExportStatus("JSON export डाउनलोड हुआ; यह unencrypted है।");
+});
+$("rf-encrypt-json").addEventListener("click",async()=>{
+ if(!requireDrafts())return;
+ const pass=$("rf-passphrase").value;
+ if(pass.length<12){setExportStatus("Encryption के लिए कम-से-कम 12 characters का passphrase दें।");return;}
+ if(!window.crypto||!crypto.subtle){setExportStatus("इस browser में Web Crypto उपलब्ध नहीं है; encrypted export नहीं बनाया।");return;}
+ try{
+  const encoder=new TextEncoder(),salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+  const material=await crypto.subtle.importKey("raw",encoder.encode(pass),"PBKDF2",false,["deriveKey"]);
+  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:310000,hash:"SHA-256"},material,{name:"AES-GCM",length:256},false,["encrypt"]);
+  const payload={schema_version:1,created_at:new Date().toISOString(),export_type:"ENCRYPTED_CAMPAIGN_DRAFTS",drafts:lastDrafts};
+  const ciphertext=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,encoder.encode(JSON.stringify(payload)));
+  const envelope={format:"SRI-AES-GCM-EXPORT-V1",kdf:{name:"PBKDF2",hash:"SHA-256",iterations:310000,salt:base64(salt)},cipher:{name:"AES-256-GCM",iv:base64(iv),ciphertext:base64(new Uint8Array(ciphertext))},warning:"Keep the passphrase separately. It cannot be recovered."};
+  downloadFile("shirmani-campaign-drafts.encrypted.json",new Blob([JSON.stringify(envelope,null,2)],{type:"application/json"}));
+  $("rf-passphrase").value="";
+  setExportStatus("AES-256-GCM encrypted export डाउनलोड हुआ। Passphrase अलग सुरक्षित रखें; यह tool उसे store नहीं करता।");
+ }catch(e){setExportStatus("Encryption विफल हुआ; कोई encrypted file घोषित नहीं की गई। Browser support जाँचें और फिर प्रयास करें.");}
+});
 })();
 </script>
 </section>
