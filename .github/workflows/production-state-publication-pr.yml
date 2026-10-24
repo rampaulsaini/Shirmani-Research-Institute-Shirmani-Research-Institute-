@@ -274,7 +274,7 @@ jobs:
               raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: " + "; ".join(errors))
           PY
       - name: Open/update pull request for public production state
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "chore(production): publish repaired concrete assets and truthful state"
           title: "Automission: publish repaired production assets and state"
