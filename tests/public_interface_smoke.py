@@ -143,6 +143,8 @@ def main() -> int:
         ROOT / "income-action-center.html",
         ROOT / "showroom/global-product-sales-desk.html",
         ROOT / "services-writing-research.html",
+        ROOT / "showroom/first-client-pilot-desk.html",
+        ROOT / "income-client-outreach-desk.html",
     )
     for page in direct_customer_pages:
         parse_html(page, errors, parsed)
