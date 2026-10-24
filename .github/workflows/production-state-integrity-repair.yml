@@ -81,7 +81,7 @@ jobs:
               out.write("repair_needed="+("true" if reasons else "false")+"\n")
           PY
       - name: Repair and rebuild production-state
-        if: steps.detect.outputs.repair_needed == 'true'
+        if: ${{ steps.detect.outputs.repair_needed == 'true' }}
         shell: bash
         working-directory: /tmp/shirmani-production-state
         run: |
@@ -214,7 +214,7 @@ jobs:
               raise SystemExit("PUBLIC_STATE_FAIL: QC reconciliation must not infer downstream commercial events")
           PY
       - name: Validate coherent production cycle before publish
-        if: steps.detect.outputs.repair_needed == 'true'
+        if: ${{ steps.detect.outputs.repair_needed == 'true' }}
         working-directory: /tmp/shirmani-production-state
         shell: bash
         run: |
@@ -253,7 +253,7 @@ jobs:
           print(json.dumps({"cycle": cycle, "queue_rows": len(queue), "result_rows": len(results), "archive_rows": len(shard_rows), "gate": "PASS"}, sort_keys=True))
           PY
       - name: Fail if conflict markers remain
-        if: steps.detect.outputs.repair_needed == 'true'
+        if: ${{ steps.detect.outputs.repair_needed == 'true' }}
         working-directory: /tmp/shirmani-production-state
         run: |
           python - <<'PY'
@@ -271,7 +271,7 @@ jobs:
           print("PRODUCTION_STATE_INTEGRITY_CLEAN")
           PY
       - name: Publish repaired production-state
-        if: steps.detect.outputs.repair_needed == 'true'
+        if: ${{ steps.detect.outputs.repair_needed == 'true' }}
         working-directory: /tmp/shirmani-production-state
         shell: bash
         run: |
