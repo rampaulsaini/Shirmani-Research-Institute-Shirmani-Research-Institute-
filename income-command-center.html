@@ -136,24 +136,28 @@ function downloadIncomePack(){
     try{
       const responses=await Promise.all([
         fetch("generated/live-production-state.json",{cache:"no-store"}),
-        fetch("generated/independent-verification-status.json",{cache:"no-store"})
+        fetch("generated/independent-verification-status.json",{cache:"no-store"}),
+        fetch("generated/product-qc-gate.json",{cache:"no-store"})
       ]);
       if(responses.some(r=>!r.ok))throw new Error("One or more source snapshots could not be fetched.");
-      const s=await responses[0].json(),v=await responses[1].json();
-      const requiredProduction=["concrete_repository_assets","five_thousand_scale_target","qc_passed","qc_failed","dispatch_released","sales_claimed","payment_claimed"];
+      const s=await responses[0].json(),v=await responses[1].json(),q=await responses[2].json();
+      const requiredProduction=["concrete_repository_assets","five_thousand_scale_target","dispatch_released","sales_claimed","payment_claimed"];
       if(requiredProduction.some(k=>typeof s[k]!=="number" || !Number.isFinite(s[k])) ||
+         typeof q.qc_passed!=="number" || !Number.isFinite(q.qc_passed) ||
+         typeof q.qc_failed!=="number" || !Number.isFinite(q.qc_failed) ||
          typeof v.verified_records!=="number" || !Number.isFinite(v.verified_records) ||
          typeof v.prepared_review_records!=="number" || !Number.isFinite(v.prepared_review_records) ||
          typeof (v.registry_total??v.queue_total)!=="number" || !Number.isFinite(v.registry_total??v.queue_total) ||
          typeof s.generated_at!=="string" || !s.generated_at ||
          typeof s.qc_state!=="string" || !s.qc_state ||
-         typeof s.state!=="string" || !s.state) {
+         typeof s.state!=="string" || !s.state ||
+         typeof q.generated_at!=="string" || !q.generated_at) {
         throw new Error("Source schema is incomplete; counters cannot be safely asserted.");
       }
       const assets=Number(s.concrete_repository_assets??s.catalog_identities);
       const target=Number(s.five_thousand_scale_target??5000);
-      const passed=Number(s.qc_passed??0),failed=Number(s.qc_failed??0);
-      const qcRate=(passed+failed)>0?100*passed/(passed+failed):Number(s.qc_pass_percent);
+      const passed=Number(q.qc_passed),failed=Number(q.qc_failed);
+      const qcRate=(passed+failed)>0?100*passed/(passed+failed):null;
       const total=Number(v.registry_total??v.queue_total??0);
       const verified=Number(v.verified_records??0);
       const prepared=Number(v.prepared_review_records??0);
@@ -166,7 +170,7 @@ function downloadIncomePack(){
       el("truth-verified").textContent=fmt(verified)+" / "+fmt(total);
       el("truth-verified-pct").textContent=pct(total>0?100*verified/total:0);
       el("truth-review").textContent=fmt(prepared)+" / "+fmt(total)+" ("+pct(total>0?100*prepared/total:0)+")";
-      el("truth-source-status").textContent="Source snapshots loaded. Production timestamp: "+String(s.generated_at||"not supplied")+" · QC state: "+String(s.qc_state||"not supplied")+" · State: "+String(s.state||"not supplied")+". Not a second-by-second live feed.";
+      el("truth-source-status").textContent="Source snapshots loaded. Production timestamp: "+String(s.generated_at||"not supplied")+" · QC timestamp: "+String(q.generated_at||"not supplied")+" · QC state: "+String(q.release_state||s.qc_state||"not supplied")+" · State: "+String(s.state||"not supplied")+". Not a second-by-second live feed.";
     }catch(e){unavailable("Source unavailable — counters are not asserted. Check the published JSON paths and deployment.");}
   }
   load();
