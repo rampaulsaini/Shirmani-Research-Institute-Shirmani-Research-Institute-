@@ -39,9 +39,9 @@ REQUIRED_TEXT = {
     ),
     "outreach-income-workbench.html": (
         "Outreach & Income Workbench",
-        "Payment confirmed",
-        "Recorded receipts (INR)",
-        "non-sensitive receipt reference",
+        "Payment evidence ledger",
+        "User-confirmed receipts",
+        "I personally confirmed the payment arrived",
     ),
 }
 REQUIRED_SHOWROOM_ROUTES = (
