@@ -51,7 +51,7 @@ Shirmani Research Institute
 <div><label for="payDate">Date received</label><input id="payDate" type="date" required></div>
 <div><label for="payEvidence">Evidence reference (optional until verified)</label><input id="payEvidence" maxlength="180" placeholder="Redacted transaction reference / receipt filename"></div>
 </div>
-<label><input id="payConfirmed" type="checkbox" style="width:auto;margin-right:8px">I personally confirmed the payment arrived and the amount matches the agreement.</label>
+<label><input id="payConfirmed" type="checkbox" aria-label="I personally confirmed the payment arrived and the amount matches the agreement" style="width:auto;margin-right:8px">I personally confirmed the payment arrived and the amount matches the agreement.</label>
 <p class="small muted">Only checked entries with a date, positive amount and evidence reference contribute to the “User-confirmed receipts” total. The check is your attestation; the tool does not contact a bank or payment provider.</p>
 <button type="submit">Save payment record</button><button type="button" class="secondary" id="exportPayments">Export payment ledger CSV</button><button type="button" class="secondary" id="clearPayments">Clear payment records</button>
 <p id="payStatus" class="muted small" aria-live="polite"></p></form>
