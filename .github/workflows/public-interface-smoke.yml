@@ -24,6 +24,7 @@ on:
       - "showroom/first-client-pilot-desk.html"
       - "income-action-center.html"
       - "income-client-outreach-desk.html"
+      - "docs/income-first-delivery-control.html"
       - "services-writing-research.html"
       - "institutional-outreach-kit.html"
       - "tests/public_interface_smoke.py"
@@ -58,6 +59,7 @@ on:
       - "showroom/first-client-pilot-desk.html"
       - "income-action-center.html"
       - "income-client-outreach-desk.html"
+      - "docs/income-first-delivery-control.html"
       - "services-writing-research.html"
       - "institutional-outreach-kit.html"
       - "tests/public_interface_smoke.py"
@@ -103,3 +105,4 @@ jobs:
           income-client-outreach-desk.html
           services-writing-research.html
           institutional-outreach-kit.html
+          docs/income-first-delivery-control.html
