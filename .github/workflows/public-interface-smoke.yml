@@ -9,6 +9,7 @@ on:
       - "supreme-public-production-showroom.html"
       - "showroom-public.html"
       - "showroom-public-interface.html"
+      - "showroom/public-gateway-v2.html"
       - "showroom/global-product-sales-desk.html"
       - "contact.html"
       - "writing-research-enquiry.html"
@@ -36,6 +37,7 @@ on:
       - "supreme-public-production-showroom.html"
       - "showroom-public.html"
       - "showroom-public-interface.html"
+      - "showroom/public-gateway-v2.html"
       - "showroom/global-product-sales-desk.html"
       - "contact.html"
       - "writing-research-enquiry.html"
@@ -80,6 +82,7 @@ jobs:
           supreme-showroom.html
           supreme-public-production-showroom.html
           showroom-public-interface.html
+          showroom/public-gateway-v2.html
           showroom/global-product-sales-desk.html
           contact.html
           writing-research-enquiry.html
