@@ -52,7 +52,7 @@ jobs:
           print(json.dumps(out,ensure_ascii=False,indent=2))
           PY
       - name: Publish manifest through a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "automission: update unique tool production manifest"
           title: "Automission: update unique digital tool manifest"
