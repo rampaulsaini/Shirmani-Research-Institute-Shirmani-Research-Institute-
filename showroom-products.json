@@ -509,7 +509,7 @@
       "store_url": "first-paid-pilot-offer.html",
       "description": "A concrete starter service for Hindi/English editing, source-aware research summaries, and website/blog drafts. Confirm exact scope, deadline, revisions, final price and payment terms in writing before work begins.",
       "short_description": "Proposed services: editing ₹499, website/blog draft ₹999, research summary ₹1,499. Human-confirmed scope and price required.",
-      "offer": "Proposed starter prices only; no order, dispatch, payment, or revenue is implied.",
+      "offer": "Quote required: proposed starter prices only; confirm scope and final price in writing. No order, dispatch, payment, or revenue is implied.",
       "qc_gate": "SCOPE_AND_PRICE_AGREEMENT_REQUIRED",
       "dispatch": "NO_AUTOMATIC_DISPATCH",
       "version": "service-offer-1",
