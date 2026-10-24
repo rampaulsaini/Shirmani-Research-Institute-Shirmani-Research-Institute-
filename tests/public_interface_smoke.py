@@ -42,6 +42,14 @@ REQUIRED_TEXT = {
         "Payment evidence ledger",
         "User-confirmed receipts",
         "I personally confirmed the payment arrived",
+        "Quote accepted",
+        "Payment confirmed",
+        "Evidence-complete receipts",
+        "quotedFee",
+        "paidAmount",
+        "paidDate",
+        "receiptRef",
+        "Won / paid",
     ),
 }
 REQUIRED_SHOWROOM_ROUTES = (
