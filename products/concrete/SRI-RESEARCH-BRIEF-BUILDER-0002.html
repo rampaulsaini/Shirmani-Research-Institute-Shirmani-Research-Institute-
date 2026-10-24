@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Research Brief Builder · SRI-RBB-002</title>
+<meta name="description" content="A practical bilingual research and writing brief builder from Shirmani Research Institute. Create a clear project scope before work begins.">
+<style>
+:root{color-scheme:dark;--bg:#071019;--panel:#101e2b;--line:#30495c;--gold:#f0cf69;--cyan:#7de8f3;--muted:#b4c1cd}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#1a3044,var(--bg) 55%);color:#f6f8fb;font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{max-width:1120px;margin:auto;padding:20px}.hero,.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:16px}.hero{border:2px solid var(--gold)}h1,h2{color:var(--gold)}.tag{display:inline-block;border:1px solid #557080;border-radius:99px;padding:4px 10px;color:var(--cyan);font-size:.82rem}p,small{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}label{display:block;font-weight:700;margin-bottom:5px}input,select,textarea{width:100%;background:#07121d;color:#fff;border:1px solid #466075;border-radius:10px;padding:11px;font:inherit}textarea{min-height:95px;resize:vertical}.wide{grid-column:1/-1}.btn{border:0;border-radius:10px;padding:11px 15px;font-weight:800;cursor:pointer;background:var(--gold);color:#111}.btn.secondary{background:#152c3d;color:var(--cyan);border:1px solid #466075}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#07121d;border:1px solid var(--line);padding:15px;border-radius:12px;min-height:130px}.note{border-left:4px solid var(--cyan);padding:10px 14px;background:#0a1722}footer{text-align:center;padding:18px;color:var(--muted)}@media(max-width:680px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.wrap{padding:12px}.hero,.panel{padding:16px}}
+</style>
+</head>
+<body><main class="wrap">
+<section class="hero"><span class="tag">꙰ SHIRMANI RESEARCH INSTITUTE · CONCRETE PRODUCT</span><h1>Research Brief Builder</h1><p>Build a clear Hindi/English writing or research brief before requesting a quote. This browser tool does not send data to a server; your entries stay in this page unless you choose to copy them.</p><p><strong>Product ID:</strong> SRI-RBB-002 · <strong>Version:</strong> 1.0.0 · <strong>QC:</strong> QC-LOCAL-INTERACTION-01 · <strong>Dispatch:</strong> BROWSER TOOL</p></section>
+<section class="panel"><h2>01 · Project details</h2><form id="briefForm"><div class="grid">
+<div><label for="service">Service</label><select id="service"><option>Hindi/English writing</option><option>Research summary</option><option>Website / blog content</option><option>Literature review outline</option><option>Editing and proofreading</option></select></div>
+<div><label for="language">Preferred language</label><select id="language"><option>Hindi</option><option>English</option><option>Hindi + English</option></select></div>
+<div class="wide"><label for="goal">Customer objective</label><textarea id="goal" required placeholder="What should the finished work help you accomplish?"></textarea></div>
+<div class="wide"><label for="topic">Topic / working title</label><input id="topic" required placeholder="Enter the subject or working title"></div>
+<div><label for="words">Word limit / scope</label><input id="words" placeholder="e.g. 1,000 words or 4-page summary"></div>
+<div><label for="deadline">Requested deadline</label><input id="deadline" type="date"></div>
+<div class="wide"><label for="sources">Sources, links, or files to consider</label><textarea id="sources" placeholder="Paste links and identify any supplied materials. Do not include passwords or confidential personal data."></textarea></div>
+<div><label for="budget">Budget (optional)</label><input id="budget" placeholder="Currency and range, if known"></div>
+<div><label for="audience">Intended audience</label><input id="audience" placeholder="e.g. general readers, students, customers"></div>
+<div class="wide"><label for="constraints">Special requirements / exclusions</label><textarea id="constraints" placeholder="Citation style, tone, format, must-have sections, things to avoid"></textarea></div>
+</div><div class="actions"><button class="btn" type="submit">Generate project brief</button><button class="btn secondary" type="reset">Clear form</button></div></form></section>
+<section class="panel"><h2>02 · Generated brief</h2><p>Review the scope before sending it to a provider. Generating this brief does not place an order, confirm a price, or start work.</p><pre id="output" aria-live="polite">Your project brief will appear here after you select “Generate project brief”.</pre><div class="actions"><button class="btn" id="copyBtn" type="button">Copy brief</button><a class="btn secondary" href="../../writing-research-enquiry.html">Open enquiry page</a></div><p id="status" role="status"></p></section>
+<section class="panel"><h2>03 · Before work starts</h2><div class="note">Confirm the deliverables, source/citation expectations, revision limit, deadline, final price, payment schedule, and ownership/use terms in writing. No sale or income is claimed by this tool.</div><p><strong>Suggested measurable handoff:</strong> approved brief → written quote → customer approval → agreed delivery → customer review → documented improvement.</p><p><strong>Privacy:</strong> this page has no network submission code. Copy the generated brief yourself and share it only with the intended recipient.</p></section>
+<footer>शिरमानी अनुसंधान संस्थान · सरल • सहज • निर्मल • पारदर्शी</footer>
+</main>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const fields=[["Service","service"],["Language","language"],["Customer objective","goal"],["Topic","topic"],["Word limit / scope","words"],["Deadline","deadline"],["Sources / links","sources"],["Budget","budget"],["Audience","audience"],["Special requirements","constraints"]];
+$("briefForm").addEventListener("submit",function(e){e.preventDefault();const lines=["SHIRMANI RESEARCH INSTITUTE — WRITING & RESEARCH BRIEF","Product: SRI-RBB-002 · Version 1.0.0",""];fields.forEach(([label,id])=>lines.push(label+": "+($(id).value.trim()||"Not supplied")));lines.push("","NEXT STEP: Confirm deliverables, final price, timeline, revisions, and payment terms in writing before work begins.","STATUS: Brief generated locally; no order submitted and no provider contacted.");$("output").textContent=lines.join("\n");$("status").textContent="Brief generated in this browser. Review it before copying.";});
+$("copyBtn").addEventListener("click",async function(){const value=$("output").textContent;try{await navigator.clipboard.writeText(value);$("status").textContent="Copied. You can now paste the brief into your enquiry."; }catch(e){const range=document.createRange();range.selectNodeContents($("output"));const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);$("status").textContent="Clipboard access was blocked. The brief is selected; copy it manually."; }});
+$("briefForm").addEventListener("reset",function(){$("output").textContent="Your project brief will appear here after you select “Generate project brief”."; $("status").textContent="";});
+})();
+</script></body></html>
