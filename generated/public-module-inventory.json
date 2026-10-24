@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generated_at": "2026-10-24T06:48:01.981061+00:00",
+  "generated_at": "2026-10-24T06:58:05.851524+00:00",
   "purpose": "public-first production module map",
   "module_count": 11060,
   "lane_counts": {
-    "ai_ml_nlp": 9153,
+    "ai_ml_nlp": 9152,
     "automation": 5,
     "content": 8,
     "economic": 6,
     "platform": 3,
-    "research": 1848,
+    "research": 1849,
     "security_quality": 37
   },
   "status_counts": {
@@ -132,13 +132,6 @@
       "lane": "ai_ml_nlp",
       "status": "ARCHITECTURE",
       "bytes": 4529
-    },
-    {
-      "path": "factory/product_catalog_materializer.py",
-      "type": "py",
-      "lane": "ai_ml_nlp",
-      "status": "ARCHITECTURE",
-      "bytes": 3804
     },
     {
       "path": "factory/supreme_ai_qc.py",
@@ -64835,6 +64828,13 @@
       "bytes": 10961
     },
     {
+      "path": "factory/product_catalog_materializer.py",
+      "type": "py",
+      "lane": "research",
+      "status": "ARCHITECTURE",
+      "bytes": 4922
+    },
+    {
       "path": "factory/production_reality_gate.py",
       "type": "py",
       "lane": "research",
@@ -65196,7 +65196,7 @@
       "type": "json",
       "lane": "research",
       "status": "READY",
-      "bytes": 7398
+      "bytes": 8068
     },
     {
       "path": "factory/product_qr_asset_factory.py",
