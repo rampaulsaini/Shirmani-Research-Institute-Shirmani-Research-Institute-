@@ -115,24 +115,36 @@ def main():
 
     # Refresh all existing surfaces as well as adding the next batch. This ensures
     # fixed navigation, contact CTAs, and honest demo availability reach old pages.
-    published = 0
+    public_products = []
     for product in rows:
         destination = OUT / slug_for(product["id"]) / "index.html"
         if destination.parent.exists() or product in selected:
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_text(page(product), encoding="utf-8")
-            published += 1
+            public_products.append({
+                "id": str(product["id"]),
+                "name": product.get("name") or str(product["id"]),
+                "category": product.get("family") or product.get("category") or "Digital Product",
+                "engine": product.get("engine") or "package",
+                "price_inr": product.get("offer_price_inr", product.get("price_inr", "")),
+                "offer_price_inr": product.get("offer_price_inr", product.get("price_inr", "")),
+                "description": product.get("short_description") or product.get("description") or "Customer-facing digital product.",
+                "product_url": f"products/live/{slug_for(product['id'])}/index.html",
+                "public_surface": True,
+                "listing_state": "LISTED_NOT_SALE_VERIFIED"
+            })
 
     payload = {
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "catalog_count": len(rows),
-        "public_surface_count": published,
-        "remaining_public_surfaces": len(rows) - published,
+        "public_surface_count": len(public_products),
+        "remaining_public_surfaces": len(rows) - len(public_products),
         "created_this_cycle": len(selected),
         "batch_size": batch,
         "state": "OPERATIONAL_SURFACE",
-        "truth_boundary": "A catalogue page is not evidence of a working demo, sale, payment, delivery, scientific validation, or independent human review."
+        "truth_boundary": "A catalogue page is not evidence of a working demo, sale, payment, delivery, scientific validation, or independent human review.",
+        "products": public_products
     }
     MAN.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(payload, ensure_ascii=False))
