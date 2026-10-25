@@ -50,7 +50,8 @@ async function loadProductionTelemetry(){
     set('productionAssetsCount',fmt(production.concrete_repository_assets));
     set('verifiedCount',fmt(verification.verified_records));
     set('preparedReviewCount',fmt(verification.prepared_review_records));
-    set('preparedReviewPercent',fmt(verification.prepared_percent)+'% of '+fmt(verification.queue_total)+' queued records; preparation is not verification');
+    const queued=Number(verification.queue_total||0),prepared=Number(verification.prepared_review_records||0); const preparedPercent=queued>0?(100*prepared/queued).toFixed(2):'Unavailable';
+    set('preparedReviewPercent',preparedPercent+'% of '+fmt(queued)+' queued records; preparation is not verification');
     set('dispatchCount',fmt(production.dispatch_released));
     set('salesPaymentCount',fmt(production.sales_claimed)+' / '+fmt(production.payment_claimed));
     const generated=production.generated_at?new Date(production.generated_at):null;
