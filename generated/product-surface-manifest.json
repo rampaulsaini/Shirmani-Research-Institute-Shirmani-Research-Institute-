@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-25T01:00:20.777452+00:00",
+  "generated_at": "2026-10-25T11:11:30.249227+00:00",
   "catalog_count": 5000,
-  "public_surface_count": 75,
-  "remaining_public_surfaces": 4925,
+  "public_surface_count": 100,
+  "remaining_public_surfaces": 4900,
   "created_this_cycle": 25,
   "batch_size": 25,
   "state": "OPERATIONAL_SURFACE",
