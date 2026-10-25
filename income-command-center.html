@@ -145,7 +145,15 @@ const ctas=[
 {channel:"Landing page",subject:offer,body:offer+"\n\nFor: "+aud+"\n\nProblem addressed: "+problem+"\n\nWhat you receive: "+deliver+"\n\n"+priceLine+"Next step: review the scope and contact us through the published service route: "+url+"\n\nNo guaranteed results or unverified testimonials are claimed."}
 ];
 const variants=[];
-for(let i=0;i<n;i++){const t=ctas[i%ctas.length];const style=i<ctas.length?"direct":i%3===0?"problem-led":i%3===1?"deliverable-led":"concise";variants.push({variant_id:"SRI-INCOME-"+new Date().toISOString().slice(0,10).replace(/-/g,"")+"-"+String(i+1).padStart(3,"0"),channel:t.channel,style,subject:t.subject,body:t.body,review_required:true,auto_sent:false})}
+for(let i=0;i<n;i++){
+const t=ctas[i%ctas.length];
+const style=i<ctas.length?"direct":i%3===0?"problem-led":i%3===1?"deliverable-led":"concise";
+let body=t.body;
+if(style==="problem-led") body="Context: "+problem+"\n\n"+t.body;
+else if(style==="deliverable-led") body="Proposed deliverable: "+deliver+"\n\n"+priceLine+"\n\n"+t.body;
+else if(style==="concise") body=[offer+" for "+aud+".",deliver+".",priceLine,"Details: "+url,"If relevant, reply with the desired scope; otherwise no follow-up is needed."].join("\n\n");
+variants.push({variant_id:"SRI-INCOME-"+new Date().toISOString().slice(0,10).replace(/-/g,"")+"-"+String(i+1).padStart(3,"0"),channel:t.channel,style,subject:t.subject,body,review_required:true,recipient_personalization_required:true,auto_sent:false})
+}
 lastPack={schema_version:"1.0",generated_at:new Date().toISOString(),engine:"local-deterministic-template-v1",offer:{name:offer,audience:aud,problem,deliverable,price_inr:price?Number(price):null,public_url:url,proof_state:proof},production:{requested_variants:n,generated_variants:variants.length,quality_gate:ready?"DRAFT_READY_FOR_HUMAN_REVIEW":"BLOCKED_PENDING_QC",auto_publish:false,auto_send:false},revenue:{confirmed_payment_inr:0,source:"No payment integration; zero means this tool has recorded none, not an audit of external accounts."},variants};
 $("mx-title").textContent=ready?"Pack तैयार · human review आवश्यक":"QC gate बंद · पहले demo/quality review";
 $("mx-summary").textContent=ready?"एक ही वास्तविक offer से "+variants.length+" channel-ready draft variants बने। प्रत्येक message को recipient के अनुसार personalize करके ही भेजें.":"Drafts बने हैं, लेकिन QC/demo pending है; इन्हें verified या customer-ready न कहें।";
