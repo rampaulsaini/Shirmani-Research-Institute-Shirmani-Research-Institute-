@@ -26,6 +26,9 @@ ROUTES = [
     ("character studio", BASE + "/showroom/heart-view-character-studio.html", ("<html",)),
     ("human presentation studio", BASE + "/showroom/shirmani-human-presentation-studio.html", ("<html",)),
     ("product demo production desk", BASE + "/showroom/product-demo-video-production-desk.html", ("<html",)),
+    ("global service and sales desk", BASE + "/showroom/global-product-sales-desk.html", ("SHIRMANI | Global Service & Sales Desk", "Open First Client Pilot Desk")),
+    ("first-client enquiry desk", BASE + "/writing-research-enquiry.html", ("SHIRMANI Research Institute", "Writing & Research Enquiry")),
+    ("product order page", BASE + "/product-order.html", ("SHIRMANI Product Order", "Order / Payment")),
 ]
 
 class PageParser(HTMLParser):
