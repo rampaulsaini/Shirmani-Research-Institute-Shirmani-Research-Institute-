@@ -40,7 +40,7 @@ def email_from_row(row: dict[str, Any]) -> str:
     matches = {
         address.casefold()
         for value in row.values()
-        for address in re.findall(r"[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}", str(value or ""), re.IGNORECASE)
+        for address in re.findall(r"[A-Z0-9._%+-]+@[A-Z0-9.-]+[.][A-Z]{2,}", str(value or ""), re.IGNORECASE)
     }
     return next(iter(matches)) if len(matches) == 1 else ""
 
