@@ -68,7 +68,7 @@
 <article class="tile"><h3>Prepared for review</h3><p class="status" id="ps-prepared">डेटा लोड हो रहा है…</p></article>
 </div>
 <p class="note" id="ps-updated">स्रोत रिकॉर्ड का timestamp पढ़ा जा रहा है…</p>
-<p class="status">स्रोत: <a href="generated/live-production-state.json">Production state JSON</a> · <a href="generated/independent-verification-status.json">Independent verification JSON</a>. JSON न खुलने या schema बदलने पर “डेटा उपलब्ध नहीं” दिखेगा; अनुमानित सफलता नहीं।</p>
+<p class="status">स्रोत: <a href="generated/live-production-state.json">Production state JSON</a> · <a href="generated/product-qc-gate.json">Product QC gate JSON</a> · <a href="generated/independent-verification-status.json">Independent verification JSON</a>. JSON न खुलने या schema बदलने पर “डेटा उपलब्ध नहीं” दिखेगा; अनुमानित सफलता नहीं।</p>
 </section>
 <script>
 (async function loadPublicProductionStatus(){
@@ -76,16 +76,17 @@
   const fmt=value=>value===null||value===undefined||value===''?'डेटा उपलब्ध नहीं':Number.isFinite(Number(value))?Number(value).toLocaleString('en-IN'):'डेटा उपलब्ध नहीं';
   const pct=(part,total)=>Number.isFinite(Number(part))&&Number(total)>0?(100*Number(part)/Number(total)).toFixed(2)+'%':'—';
   try{
-    const [productionResponse,verificationResponse]=await Promise.all([
+    const [productionResponse,qcResponse,verificationResponse]=await Promise.all([
       fetch('generated/live-production-state.json',{cache:'no-store'}),
+      fetch('generated/product-qc-gate.json',{cache:'no-store'}),
       fetch('generated/independent-verification-status.json',{cache:'no-store'})
     ]);
-    if(!productionResponse.ok||!verificationResponse.ok)throw new Error('HTTP '+productionResponse.status+'/'+verificationResponse.status);
-    const [production,verification]=await Promise.all([productionResponse.json(),verificationResponse.json()]);
+    if(!productionResponse.ok||!qcResponse.ok||!verificationResponse.ok)throw new Error('HTTP '+productionResponse.status+'/'+qcResponse.status+'/'+verificationResponse.status);
+    const [production,qcGate,verification]=await Promise.all([productionResponse.json(),qcResponse.json(),verificationResponse.json()]);
     const catalog=production.catalog_identities??production.catalog_assets??production.catalog_total;
-    const qc=production.qc_passed??production.deterministic_qc_passed??(production.qc_state==='QC_PASSED'?production.concrete_repository_assets:null);
+    const qc=qcGate.qc_passed??production.qc_passed??production.deterministic_qc_passed;
     set('ps-catalog',fmt(catalog)+' / '+fmt(production.five_thousand_scale_target??production.catalog_identities??5000));
-    set('ps-qc',qc===null||qc===undefined?'स्पष्ट QC count उपलब्ध नहीं':fmt(qc)+' पास · '+(production.qc_state||'state उपलब्ध नहीं'));
+    set('ps-qc',qc===null||qc===undefined?'स्पष्ट QC count उपलब्ध नहीं':fmt(qc)+' पास / '+fmt(qcGate.produced_count??production.concrete_repository_assets)+' · '+(qcGate.release_state||production.qc_state||'state उपलब्ध नहीं'));
     set('ps-dispatch',fmt(production.dispatch_released));
     set('ps-sales',fmt(production.sales_claimed));
     set('ps-payment',fmt(production.payment_claimed));
