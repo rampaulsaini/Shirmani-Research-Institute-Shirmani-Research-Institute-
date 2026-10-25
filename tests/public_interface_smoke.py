@@ -18,6 +18,7 @@ PAGES = (
     ROOT / "heart-view-preview.html",
     ROOT / "index.html",
     ROOT / "public-interface-v3.html",
+    ROOT / "showroom-supreme-public-view.html",
     ROOT / "income-command-center.html",
     ROOT / "supreme-showroom.html",
     ROOT / "supreme-public-production-showroom.html",
@@ -163,6 +164,7 @@ def main() -> int:
     # are not recursively crawled, but every CTA target must exist in the repo.
     direct_customer_pages = (
         ROOT / "public-interface-v3.html",
+        ROOT / "showroom-supreme-public-view.html",
         ROOT / "showroom/first-client-pilot-desk.html",
         ROOT / "income-action-center.html",
         ROOT / "showroom/global-product-sales-desk.html",
@@ -171,6 +173,21 @@ def main() -> int:
     )
     for page in direct_customer_pages:
         parse_html(page, errors, parsed)
+
+    # Canonical supreme showroom: validate every relative route instead of
+    # allowing a visually polished card to lead visitors to a 404 page.
+    supreme_showroom = ROOT / "showroom-supreme-public-view.html"
+    supreme_parser = parsed.get(supreme_showroom)
+    if supreme_parser:
+        for href in supreme_parser.links:
+            parts = urlsplit(href)
+            if parts.scheme or parts.netloc or not parts.path:
+                continue
+            target = (supreme_showroom.parent / unquote(parts.path)).resolve()
+            if ROOT not in target.parents and target != ROOT:
+                errors.append(f"showroom-supreme-public-view.html has a route outside the repository: {href}")
+            elif not target.is_file():
+                errors.append(f"showroom-supreme-public-view.html has a broken local route: {href}")
 
     # The primary public entry must keep the paid-pilot path visible and honest.
     public_v3_source = (ROOT / "public-interface-v3.html").read_text(encoding="utf-8")
