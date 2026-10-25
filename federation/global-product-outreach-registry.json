@@ -3,8 +3,8 @@
   "purpose": "Public reference and authorized outreach routing for SHIRMANI digital products.",
   "long_term_catalogue_target": 150000,
   "current_scale_target": 5000,
-  "current_concrete_products": 1516,
-  "current_concrete_percent_of_target": 30.32,
+  "current_concrete_products": 5000,
+  "current_concrete_percent_of_target": 100,
   "rule": "Do not claim an external organization was contacted unless an authorized communication channel actually sent the message.",
   "routes": [
     {
@@ -38,5 +38,8 @@
     "official product URL",
     "customer review link"
   ],
-  "contact_status": "NOT_CLAIMED"
+  "contact_status": "NOT_CLAIMED",
+  "current_concrete_percent_of_long_term_catalogue_target": 3.33,
+  "count_basis": "Latest successful SHIRMANI Public Production Automission run 40163209694: public production truth smoke gate reported 5000 unique product IDs, 5000 concrete product files, and 5000 overlay rows.",
+  "truth_boundary": "Produced asset counts do not establish independent scientific verification, customer demand, dispatch, sale, payment, or delivery."
 }
