@@ -14,6 +14,7 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = (
     ROOT / "showroom-public.html",
+    ROOT / "public-showroom.html",
     ROOT / "heart-view-preview.html",
     ROOT / "index.html",
     ROOT / "public-interface-v3.html",
@@ -30,6 +31,14 @@ REQUIRED_TEXT = {
         "Writing / Research काम दें",
         "Heart-View Preview",
         "Product Catalogue",
+    ),
+    "public-showroom.html": (
+        "SHIRMANI Supreme Public Showroom",
+        "Start a writing/research enquiry",
+        "WhatsApp: discuss a paid pilot",
+        "Production command centre",
+        "Heart-View & evidence dashboard",
+        "Indicative prices are not binding quotes.",
     ),
     "heart-view-preview.html": (
         "Heart-View Preview",
