@@ -50014,5 +50014,12 @@
       "dispatch_no": "NO",
       "production_batch": "40192150137"
     }
-  ]
+  ],
+  "generated_at": "2026-10-25T12:14:27.848525+00:00",
+  "catalog_count": 5000,
+  "asset_present_count": 5000,
+  "verification_status": "UNVERIFIED_UNLESS_INDEPENDENT_EVIDENCE_EXISTS",
+  "batch": "BATCH-20261025T121427Z",
+  "remaining_count": 0,
+  "batch_size": 100
 }
