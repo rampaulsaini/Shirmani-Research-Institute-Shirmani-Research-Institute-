@@ -694,7 +694,7 @@ $("rf-encrypt-json").addEventListener("click",async()=>{
     return {d,errors};
   }
   function ratio(n,d){return d===0?"— (शून्य denominator)":n>d?"— (counts जाँचें)":(n/d*100).toFixed(2)+"%";}
-  function hasPaymentEvidence(d){return Number(d.received)>0&&/^\\d{4}-\\d{2}-\\d{2}$/.test(String(d.date||""))&&String(d.reference||"").trim().length>0;}
+  function hasPaymentEvidence(d){return Number(d.received)>0&&/^\d{4}-\d{2}-\d{2}$/.test(String(d.date||""))&&String(d.reference||"").trim().length>0;}
   function render(message){
     const {d,errors}=read(),evidenceRequired=Number(d.received)>0&&!hasPaymentEvidence(d);
     $("iel-total").textContent=!Number.isFinite(d.received)||d.received<0?"अमान्य रकम":evidenceRequired?"Evidence needed — "+currency(d.received)+" (कुल में शामिल नहीं)":currency(d.received);
