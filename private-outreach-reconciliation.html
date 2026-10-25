@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Privacy-first local reconciliation of outreach sent-mail and reply CSV exports against the existing prospect queue. Files remain in this browser.">
+<title>Private Outreach Evidence Reconciliation — SHIRMANI</title>
+<style>
+:root{color-scheme:dark;--bg:#07101b;--panel:#101d2b;--line:#29445d;--gold:#f5d36c;--cyan:#75e5f5;--text:#f5f7fa;--muted:#b5c4d2;--good:#8ee6b1;--warn:#ffcf80}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b3450,#07101b 62%);font:16px/1.6 system-ui,sans-serif;color:var(--text)}main{max-width:1000px;margin:auto;padding:22px 16px 60px}header,.panel{border:1px solid var(--line);border-radius:18px;background:#101d2bf2;padding:22px;margin:14px 0}header{border:2px solid var(--gold);text-align:center}h1,h2{color:var(--gold)}p,.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}label{display:block;font-weight:750;margin:12px 0 5px}input[type=file]{width:100%;padding:12px;border:1px dashed #64819a;border-radius:10px;background:#081421;color:white}button,.btn{border:0;display:inline-block;padding:11px 15px;border-radius:10px;background:var(--gold);color:#111827;text-decoration:none;font-weight:850;cursor:pointer;margin:5px 5px 5px 0}button:disabled{opacity:.45;cursor:not-allowed}.alt{background:#132a3d;border:1px solid #41617b;color:var(--text)}.note{border-left:3px solid var(--cyan);padding:10px 14px;background:#0a1724}.warning{border-left-color:var(--warn)}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.stat{background:#081421;border:1px solid var(--line);border-radius:12px;padding:14px}.stat strong{display:block;color:var(--cyan);font-size:1.65rem}table{border-collapse:collapse;width:100%;margin-top:12px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px 8px;font-size:.92rem}th{color:var(--gold)}.table-wrap{overflow:auto}#status{white-space:pre-wrap;color:var(--good)}footer{text-align:center;color:var(--muted);padding:18px}
+</style></head>
+<body><main>
+<header><div class="muted">SHIRMANI RESEARCH INSTITUTE · INCOME EVIDENCE</div><h1>Private Outreach Evidence Reconciliation</h1><p>पहले से भेजे गए ईमेल और प्राप्त जवाबों को मौजूदा prospect queue से मिलाने का निजी, browser-only उपकरण। यह कोई नया outreach campaign नहीं चलाता।</p><a class="btn alt" href="income-hub.html">Income Hub</a><a class="btn alt" href="docs/revenue/FIRST-10-OUTREACH-QUEUE-2026-10-10.csv">Existing prospect queue CSV</a></header>
+<section class="panel"><h2>1 · Existing records select करें</h2><p class="note">Privacy: sent/reply CSV इसी browser tab में पढ़े जाते हैं। उनकी सामग्री किसी server पर upload नहीं होती, save नहीं होती और report में email addresses, subject या message body नहीं आते। यह पेज public है—यहाँ कोई private export या report upload न करें।</p><div class="grid"><div><label for="sent">Sent mail export (CSV)</label><input id="sent" type="file" accept=".csv,text/csv"></div><div><label for="replies">Received replies export (CSV)</label><input id="replies" type="file" accept=".csv,text/csv"></div></div><p class="muted">Queue public repository से पढ़ी जाएगी। Export में header row और sent/received date column होना चाहिए। CSV को पहले खोलकर public repo में commit न करें।</p><button id="run" type="button">Reconcile existing evidence</button><span id="status" role="status"></span></section>
+<section class="panel"><h2>2 · Evidence summary</h2><div id="summary" class="muted">अभी reconciliation नहीं चला है।</div><div id="table" class="table-wrap"></div><button id="download" type="button" disabled>Download sanitized JSON report</button><button id="downloadCsv" type="button" disabled>Download sanitized CSV summary</button></section>
+<section class="panel"><h2>3 · इस report का अर्थ</h2><ul><li>Sent evidence = export में timestamp वाला message मिला और prospect से unambiguous match हुआ।</li><li>Reply evidence = received-message evidence मिला; यह qualified enquiry या खरीदने की इच्छा का प्रमाण नहीं है।</li><li>Order, payment, delivery और client acceptance अलग-अलग evidence से ही दर्ज होंगे।</li><li>Ambiguous / unmatched records को अनुमान से किसी institution से नहीं जोड़ा जाएगा।</li></ul><p class="note warning">यह tool ईमेल account तक पहुँच नहीं सकता और कोई email नहीं भेजता। अगर sent/reply exports उपलब्ध नहीं हैं, तो यहाँ 195 देशों में communication हुआ या नहीं—यह अपने-आप सत्यापित नहीं हो सकता।</p></section>
+<footer>© 2026 Shirmani Research Institute · Local processing only · No message sending · No sales/payment claims</footer>
+</main>
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+const queueUrl="docs/revenue/FIRST-10-OUTREACH-QUEUE-2026-10-10.csv";
+let lastReport=null;
+function norm(s){return String(s||"").trim().toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_+|_+$/g,"")}
+function parseCSV(text){
+ const rows=[];let row=[],cell="",quoted=false;
+ text=String(text||"").replace(/^\uFEFF/,"");
+ for(let i=0;i<text.length;i++){const c=text[i];
+  if(quoted){if(c==='"'&&text[i+1]==='"'){cell+='"';i++}else if(c==='"'){quoted=false}else{cell+=c}}
+  else if(c==='"'){quoted=true}
+  else if(c===","){row.push(cell);cell=""}
+  else if(c==="\n"){row.push(cell);if(row.some(v=>v.trim()!==""))rows.push(row);row=[];cell=""}
+  else if(c!=="\r"){cell+=c}
+ }
+ row.push(cell);if(row.some(v=>v.trim()!==""))rows.push(row);
+ if(!rows.length)return [];
+ const headers=rows.shift().map(norm);
+ return rows.map(values=>{const o={};headers.forEach((h,i)=>{if(h)o[h]=String(values[i]||"").trim()});return o});
+}
+function first(o,names){for(const n of names){const v=o[norm(n)];if(v)return v.trim()}return ""}
+function allEmails(row){const found=new Set();Object.values(row).forEach(v=>(String(v||"").match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/ig)||[]).forEach(e=>found.add(e.toLowerCase()));return found.size===1?[...found][0]:""}
+function emailField(row,kind){const keys=kind==="sent"?["to","recipient","recipient_email","to_email","email"]:["from","sender","sender_email","from_email","email"];return (first(row,keys)||allEmails(row)).toLowerCase()}
+function timestamp(row){return first(row,["date","sent_at","sent_date","date_sent","timestamp","received_at","reply_date","delivery_date"])}
+function idField(row){return first(row,["prospect_id","prospect id","lead_id","lead id"])}
+function msgId(row){return first(row,["message_id","message-id","internet_message_id"]).toLowerCase()}
+function threadId(row){return first(row,["thread_id","conversation_id","conversation id"]).toLowerCase()}
+function inReplyTo(row){return first(row,["in_reply_to","in-reply-to","reply_to_message_id"]).toLowerCase()}
+function subj(row){return first(row,["subject","topic"]).toLowerCase()}
+function dedupe(row,prefix,mail){return msgId(row)?prefix+"|"+msgId(row):[prefix,idField(row),mail,timestamp(row),threadId(row),inReplyTo(row),subj(row)].join("|")}
+function download(filename,blob){const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+async function readFile(input){if(!input.files||!input.files[0])throw new Error("दोनों CSV files चुनना आवश्यक है।");return parseCSV(await input.files[0].text())}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function reconcile(queue,sent,replies){
+ const qRows=queue.map(r=>({raw:r,id:first(r,["prospect_id","lead_id"]),email:allEmails(r)})).filter(x=>x.id);
+ if(!qRows.length)throw new Error("Queue में prospect_id column या IDs नहीं मिले।");
+ const ids=new Set(qRows.map(x=>x.id)), emailMap=new Map(), ambiguous=new Set();
+ qRows.forEach(q=>{if(!q.email)return;if(emailMap.has(q.email)&&emailMap.get(q.email)!==q.id){ambiguous.add(q.email);emailMap.delete(q.email)}else if(!ambiguous.has(q.email))emailMap.set(q.email,q.id)});
+ function match(row,email){const direct=idField(row);if(ids.has(direct))return direct;return emailMap.get(email)||null}
+ const sentSeen=new Set(), sentByProspect=new Map(), sentThreads=new Map(), sentMessages=new Map();let unmatchedSent=0,invalidSent=0,uniqueSent=0;
+ sent.forEach(r=>{const date=timestamp(r);if(!date){invalidSent++;return}const email=emailField(r,"sent"),key=dedupe(r,"sent",email);if(sentSeen.has(key))return;sentSeen.add(key);const pid=match(r,email);if(!pid){unmatchedSent++;return}uniqueSent++;sentByProspect.set(pid,(sentByProspect.get(pid)||0)+1);const th=threadId(r),mi=msgId(r);if(th){if(!sentThreads.has(th))sentThreads.set(th,new Set());sentThreads.get(th).add(pid)}if(mi){if(!sentMessages.has(mi))sentMessages.set(mi,new Set());sentMessages.get(mi).add(pid)}});
+ const replySeen=new Set(), replyByProspect=new Map();let unmatchedReplies=0,invalidReplies=0,uniqueReplies=0;
+ replies.forEach(r=>{if(!timestamp(r)){invalidReplies++;return}const email=emailField(r,"reply"),key=dedupe(r,"reply",email);if(replySeen.has(key))return;replySeen.add(key);const candidates=new Set(),ir=inReplyTo(r),th=threadId(r);if(ir&&sentMessages.has(ir))sentMessages.get(ir).forEach(x=>candidates.add(x));if(th&&sentThreads.has(th))sentThreads.get(th).forEach(x=>candidates.add(x));let pid=candidates.size===1?[...candidates][0]:null;if(!pid)pid=match(r,email);if(!pid){unmatchedReplies++;return}uniqueReplies++;replyByProspect.set(pid,(replyByProspect.get(pid)||0)+1)});
+ const prospects=qRows.map(q=>{const s=sentByProspect.get(q.id)||0,r=replyByProspect.get(q.id)||0;return{prospect_id:q.id,sent_message_count:s,reply_message_count:r,evidence_status:r?"REPLY_EVIDENCE":s?"SENT_EVIDENCE":"NO_MATCHED_EVIDENCE"}}).sort((a,b)=>a.prospect_id.localeCompare(b.prospect_id));
+ return {schema_version:1,report_type:"private_outreach_export_reconciliation",processed_locally:true,input_rows:{queue:queue.length,sent_export:sent.length,received_replies_export:replies.length},matched_evidence:{unique_sent_messages:uniqueSent,prospects_with_sent_evidence:prospects.filter(p=>p.sent_message_count>0).length,unique_received_replies:uniqueReplies,prospects_with_reply_evidence:prospects.filter(p=>p.reply_message_count>0).length},unmatched_or_invalid:{unmatched_sent_rows:unmatchedSent,sent_rows_missing_timestamp:invalidSent,unmatched_reply_rows:unmatchedReplies,reply_rows_missing_timestamp:invalidReplies},prospects:prospects,claims_not_established:["qualified enquiry","accepted proposal or order","payment received","delivery or client acceptance","independent verification"],privacy_note:"Source exports were processed in this browser only. Raw addresses, subjects, bodies and filenames are not included. Keep this report private; do not commit private records to a public repository.",matching_note:"Matches require a prospect ID or unique email from the public queue. Ambiguous and unmatched records are not guessed. Replies alone do not prove purchase intent."};
+}
+function render(report){
+ const m=report.matched_evidence,u=report.unmatched_or_invalid;
+ $("summary").innerHTML='<div class="stats">'+[
+ ["Queue rows",report.input_rows.queue],["Matched sent",m.unique_sent_messages],["Prospects with sent",m.prospects_with_sent_evidence],["Matched replies",m.unique_received_replies],["Prospects with replies",m.prospects_with_reply_evidence],["Unmatched / invalid",u.unmatched_sent_rows+u.sent_rows_missing_timestamp+u.unmatched_reply_rows+u.reply_rows_missing_timestamp]
+ ].map(x=>'<div class="stat"><strong>'+esc(x[1])+'</strong>'+esc(x[0])+'</div>').join("")+'</div><p class="note warning">यह केवल communication evidence है। Qualified enquiry, accepted order, payment और delivery इस report से स्थापित नहीं होते।</p>';
+ $("table").innerHTML='<table><thead><tr><th>Prospect ID</th><th>Sent count</th><th>Reply count</th><th>Evidence status</th></tr></thead><tbody>'+report.prospects.map(p=>'<tr><td>'+esc(p.prospect_id)+'</td><td>'+p.sent_message_count+'</td><td>'+p.reply_message_count+'</td><td>'+esc(p.evidence_status)+'</td></tr>').join("")+'</tbody></table>';
+ $("download").disabled=false;$("downloadCsv").disabled=false;
+}
+$("run").addEventListener("click",async()=>{
+ $("status").textContent="Working…";$("run").disabled=true;
+ try{const queueText=await fetch(queueUrl,{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("Public prospect queue load नहीं हुई ("+r.status+")");return r.text()});const queue=parseCSV(queueText),sent=await readFile($("sent")),replies=await readFile($("replies"));lastReport=reconcile(queue,sent,replies);render(lastReport);$("status").textContent="Reconciliation complete. कोई message भेजा नहीं गया; कोई income/order claim नहीं बनाया गया।"}
+ catch(e){$("status").textContent="FAILED: "+e.message;lastReport=null;$("download").disabled=true;$("downloadCsv").disabled=true}
+ finally{$("run").disabled=false}
+});
+$("download").addEventListener("click",()=>{if(lastReport)download("shirmani-private-outreach-reconciliation.json",new Blob([JSON.stringify(lastReport,null,2)],{type:"application/json;charset=utf-8"}))});
+$("downloadCsv").addEventListener("click",()=>{if(!lastReport)return;const rows=[["prospect_id","sent_message_count","reply_message_count","evidence_status"],...lastReport.prospects.map(p=>[p.prospect_id,p.sent_message_count,p.reply_message_count,p.evidence_status])];const csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(",")).join("\r\n");download("shirmani-private-outreach-summary.csv",new Blob([csv],{type:"text/csv;charset=utf-8"}))});
+})();
+</script></body></html>
