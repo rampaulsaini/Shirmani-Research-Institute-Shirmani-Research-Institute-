@@ -33,6 +33,16 @@ ALIASES = {
 def norm_header(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", value.strip().casefold()).strip("_")
 
+def email_from_row(row: dict[str, Any]) -> str:
+    # Some existing queue records store a published contact address in a notes cell
+    # instead of a dedicated email column. Only use a single unambiguous address.
+    matches = {
+        address.casefold()
+        for value in row.values()
+        for address in re.findall(r"[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}", str(value or ""), re.IGNORECASE)
+    }
+    return next(iter(matches)) if len(matches) == 1 else ""
+
 
 def read_csv(path: Path) -> tuple[list[dict[str, str]], list[str]]:
     with path.open("r", encoding="utf-8-sig", newline="") as stream:
@@ -47,7 +57,7 @@ def read_csv(path: Path) -> tuple[list[dict[str, str]], list[str]]:
                 for key in {alias for aliases in ALIASES.values() for alias in aliases}
             } | {
                 "_prospect_id": get_field(raw, header_map, "prospect_id"),
-                "_email": get_field(raw, header_map, "email").casefold(),
+                "_email": get_field(raw, header_map, "email").casefold() or email_from_row(raw),
                 "_sent_at": get_field(raw, header_map, "sent_at"),
                 "_message_id": get_field(raw, header_map, "message_id").casefold(),
                 "_thread_id": get_field(raw, header_map, "thread_id").casefold(),
