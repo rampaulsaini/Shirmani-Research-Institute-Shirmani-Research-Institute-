@@ -16,26 +16,46 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-        with: {fetch-depth: 1}
-      - name: Build production operations state
-        run: python3 scripts/production_first_cycle.py
-      - name: Publish state
+        with:
+          fetch-depth: 0
+      - name: Reuse the canonical production-state PR branch
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "SHIRMANI Production Automission"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          BRANCH="automation/production-operations-current"
+          REMOTE_BRANCH_EXISTS=false
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            REMOTE_BRANCH_EXISTS=true
+            git fetch origin "$BRANCH"
+            git switch --force-create "$BRANCH" "origin/$BRANCH"
+            # Keep the reusable PR branch based on current main. If a conflict occurs,
+            # fail safely and require reconciliation rather than creating another PR.
+            git merge --no-edit origin/main
+          else
+            git switch --create "$BRANCH" origin/main
+          fi
+          python3 scripts/production_first_cycle.py
           git add generated/production-operations-status.json
-          if git diff --cached --quiet; then echo "No change"; exit 0; fi
-          BRANCH="automation/production-operations-${GITHUB_RUN_ID}"
-          git switch -c "$BRANCH"
+          if git diff --cached --quiet; then
+            # If main advanced, publish the merge commit even when the telemetry file
+            # itself did not change. Never force-push and never open a duplicate PR.
+            if [ "$REMOTE_BRANCH_EXISTS" = true ] && [ "$(git rev-parse HEAD)" != "$(git rev-parse "origin/$BRANCH")" ]; then
+              git push --set-upstream origin "$BRANCH"
+            fi
+            echo "No telemetry change; canonical branch reconciled without creating a duplicate PR."
+            exit 0
+          fi
           git commit -m "chore(production): refresh production-first operations state"
           git push --set-upstream origin "$BRANCH"
-          if command -v gh >/dev/null 2>&1; then
-            export GH_TOKEN="${{ github.token }}"
-            if gh pr view "$BRANCH" --repo "${{ github.repository }}" >/dev/null 2>&1; then
-              echo "PR already exists for $BRANCH"
-            elif gh pr create --base main --head "$BRANCH" --title "chore(production): refresh production-first operations state" --body "Automated production operations telemetry. Governed through the repository PR gate."; then
-              echo "Production operations PR created."
-            else
-              echo "PR creation unavailable; branch telemetry was published successfully."
-            fi
+          export GH_TOKEN="${{ github.token }}"
+          OPEN_PR_COUNT="$(gh pr list --repo "${{ github.repository }}" --head "$BRANCH" --base main --state open --json number --jq 'length')"
+          if [ "$OPEN_PR_COUNT" -eq 0 ]; then
+            gh pr create --base main --head "$BRANCH" \
+              --title "chore(production): refresh production-first operations state" \
+              --body "Canonical automated production-operations telemetry PR. Reuses one branch to avoid opening a new PR for every scheduled cycle. Production state is not evidence of dispatch, sales, payment, or independent verification."
+          else
+            echo "Updated existing canonical production operations PR; no duplicate PR created."
           fi
