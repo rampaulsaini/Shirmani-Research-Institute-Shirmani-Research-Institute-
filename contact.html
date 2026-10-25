@@ -18,11 +18,35 @@
 <p class="muted">ये links आपके अपने WhatsApp या email app में draft खोलते हैं। संदेश अपने-आप नहीं भेजा जाता और इससे order/payment confirm नहीं होता।</p>
 </header>
 <section>
-<h2>सीधा संपर्क</h2>
-<div class="grid">
-<div class="tile"><strong>Product / tool showroom</strong><p>उपलब्ध tools देखें और demo/उपयोग की जानकारी लें।</p><a href="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/showroom/public-product-showroom.html">Public showroom खोलें →</a></div>
-<div class="tile"><strong>Writing & Research services</strong><p>Editing, article writing और source-based research brief की प्रस्तावित सेवाएं देखें।</p><a href="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/showroom/global-product-sales-desk.html">Service enquiry desk खोलें →</a></div>
-</div>
+  <h1>Contact Shirmani Research Institute</h1>
+  <p>For writing, research summaries, website content, or product enquiries, please include the requested outcome, deadline, deliverables and your budget. We will confirm scope, delivery time, revision limits and payment terms in writing before any paid work begins.</p>
+  <p><a href="showroom/global-product-sales-desk.html">Open the Service & Sales Desk</a></p>
+  <div>
+    <h2>Direct enquiry</h2>
+    <p><a href="mailto:sainirampaul60@gmail.com?subject=SHIRMANI%20Service%20Enquiry">Email: sainirampaul60@gmail.com</a></p>
+    <p><a href="https://wa.me/918082935186?text=Namaste%20Shirmani%20Research%20Institute%2C%20I%20would%20like%20to%20discuss%20a%20service%20or%20product%20enquiry." target="_blank" rel="noopener noreferrer">WhatsApp: +91 80829 35186</a></p>
+  </div>
+  <form id="contactForm">
+    <label for="name">Your name</label><br>
+    <input id="name" name="name" type="text" autocomplete="name" required><br>
+    <label for="email">Your email</label><br>
+    <input id="email" name="email" type="email" autocomplete="email" required><br>
+    <label for="message">Your message / enquiry</label><br>
+    <textarea id="message" name="message" rows="6" required></textarea><br>
+    <button type="submit">Prepare email draft</button>
+    <p id="status" role="status">This form prepares an email draft in your email app; it does not send automatically.</p>
+  </form>
+  <script>
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const subject = encodeURIComponent('SHIRMANI service enquiry from ' + name);
+    const body = encodeURIComponent('Name: ' + name + '\\nReply email: ' + email + '\\n\\nEnquiry:\\n' + message + '\\n\\nPlease confirm scope, deadline, revisions and payment terms in writing.');
+    window.location.href = 'mailto:sainirampaul60@gmail.com?subject=' + subject + '&body=' + body;
+  });
+  </script>
 </section>
 <section>
 <h2>Enquiry draft बनाएं</h2>
