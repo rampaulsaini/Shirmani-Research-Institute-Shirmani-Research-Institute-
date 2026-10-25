@@ -581,7 +581,7 @@ const angles=[
 {key:"problem-led",opener:"पहले यह जाँचना उपयोगी होगा कि यह आपकी वर्तमान आवश्यकता से मेल खाता है या नहीं।"},
 {key:"deliverable-led",opener:"प्रस्तावित काम का दायरा स्पष्ट रखा जाएगा; अंतिम scope और deadline लिखित सहमति से तय होंगे।"}
 ];
-const batchId=new Date().toISOString().slice(0,10).replace(/-/g,"");
+const batchId=new Date().toISOString().replace(/[-:.TZ]/g,"").slice(0,14)+"-"+Math.random().toString(36).slice(2,8);
 lastDrafts=Array.from({length:count},(_,i)=>{
 const base=templates[i%templates.length],angle=angles[Math.floor(i/templates.length)%angles.length];
 let text=base[1];
