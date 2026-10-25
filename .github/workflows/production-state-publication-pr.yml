@@ -236,10 +236,17 @@ jobs:
           now = datetime.now(timezone.utc)
           required = {
               "live_state": Path("generated/live-production-state.json"),
-              "multi_layer_status": Path("generated/multi-layer-production-status.json"),
               "public_catalog": Path("generated/public-production-catalog.json"),
               "lane_archive_index": Path("generated/public-production/archive/index.json"),
           }
+          # This summary file is not refreshed by every concrete production cycle.
+          # Validate it separately, but do not use its timestamp as the production clock.
+          multi_layer_status = Path("generated/multi-layer-production-status.json")
+          try:
+              json.loads(multi_layer_status.read_text(encoding="utf-8"))
+              print("multi_layer_status: parseable summary; freshness is measured from live production artifacts")
+          except Exception as exc:
+              raise SystemExit(f"multi_layer_status missing or unreadable: {exc}")
           stamps = {}
           errors = []
           for label, path in required.items():
