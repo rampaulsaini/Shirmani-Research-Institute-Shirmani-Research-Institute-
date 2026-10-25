@@ -55,6 +55,51 @@
 <article class="tile"><h3>Production & Security Control Room</h3><p>Security-hardening checklist और evidence notes व्यवस्थित करें। Browser-local checklist वास्तविक infrastructure scan या security certification नहीं है।</p><a class="button" href="showroom/supreme-production-security-control-room.html">Control room →</a></article>
 <article class="tile"><h3>Product Factory Board</h3><p>Institute → Factory → QC → Showroom workflow के product records को track करें।</p><a class="button" href="showroom/product-factory-board.html">Factory board →</a></article>
 </div><p class="note">सुरक्षा नियम: कोई सामग्री या product सिर्फ़ अप्रासंगिक होने के अनुमान पर delete नहीं किया जाएगा। पहले duplicate/unused status, inbound links, dependencies और backup की जाँच करें; फिर reversible change और regression tests करें।</p></section>
+<section class="section" id="public-production-status" aria-labelledby="production-status-title">
+<h2 id="production-status-title">वास्तविक उत्पादन और आय स्थिति</h2>
+<p>यह पैनल repository के प्रकाशित JSON records से पढ़ता है। यह page-load पर उपलब्ध snapshot दिखाता है—हर सेकंड का live feed नहीं। Production/QC, dispatch, sales, payment और independent verification अलग-अलग परिणाम हैं।</p>
+<div class="grid" aria-live="polite">
+<article class="tile"><h3>Catalog assets</h3><p class="status" id="ps-catalog">डेटा लोड हो रहा है…</p></article>
+<article class="tile"><h3>Deterministic QC</h3><p class="status" id="ps-qc">डेटा लोड हो रहा है…</p></article>
+<article class="tile"><h3>Dispatch released</h3><p class="status" id="ps-dispatch">डेटा लोड हो रहा है…</p></article>
+<article class="tile"><h3>Sales claimed</h3><p class="status" id="ps-sales">डेटा लोड हो रहा है…</p></article>
+<article class="tile"><h3>Payment claimed</h3><p class="status" id="ps-payment">डेटा लोड हो रहा है…</p></article>
+<article class="tile"><h3>Independent verification</h3><p class="status" id="ps-verified">डेटा लोड हो रहा है…</p></article>
+<article class="tile"><h3>Prepared for review</h3><p class="status" id="ps-prepared">डेटा लोड हो रहा है…</p></article>
+</div>
+<p class="note" id="ps-updated">स्रोत रिकॉर्ड का timestamp पढ़ा जा रहा है…</p>
+<p class="status">स्रोत: <a href="generated/live-production-state.json">Production state JSON</a> · <a href="generated/product-qc-gate.json">Product QC gate JSON</a> · <a href="generated/independent-verification-status.json">Independent verification JSON</a>. JSON न खुलने या schema बदलने पर “डेटा उपलब्ध नहीं” दिखेगा; अनुमानित सफलता नहीं।</p>
+</section>
+<script>
+(async function loadPublicProductionStatus(){
+  const set=(id,value)=>{const node=document.getElementById(id);if(node)node.textContent=value;};
+  const fmt=value=>value===null||value===undefined||value===''?'डेटा उपलब्ध नहीं':Number.isFinite(Number(value))?Number(value).toLocaleString('en-IN'):'डेटा उपलब्ध नहीं';
+  const pct=(part,total)=>Number.isFinite(Number(part))&&Number(total)>0?(100*Number(part)/Number(total)).toFixed(2)+'%':'—';
+  try{
+    const [productionResponse,qcResponse,verificationResponse]=await Promise.all([
+      fetch('generated/live-production-state.json',{cache:'no-store'}),
+      fetch('generated/product-qc-gate.json',{cache:'no-store'}),
+      fetch('generated/independent-verification-status.json',{cache:'no-store'})
+    ]);
+    if(!productionResponse.ok||!qcResponse.ok||!verificationResponse.ok)throw new Error('HTTP '+productionResponse.status+'/'+qcResponse.status+'/'+verificationResponse.status);
+    const [production,qcGate,verification]=await Promise.all([productionResponse.json(),qcResponse.json(),verificationResponse.json()]);
+    const catalog=production.catalog_identities??production.catalog_assets??production.catalog_total;
+    const qc=qcGate.qc_passed??production.qc_passed??production.deterministic_qc_passed;
+    set('ps-catalog',fmt(catalog)+' / '+fmt(production.five_thousand_scale_target??production.catalog_identities??5000));
+    set('ps-qc',qc===null||qc===undefined?'स्पष्ट QC count उपलब्ध नहीं':fmt(qc)+' पास / '+fmt(qcGate.produced_count??production.concrete_repository_assets)+' · '+(qcGate.release_state||production.qc_state||'state उपलब्ध नहीं'));
+    set('ps-dispatch',fmt(production.dispatch_released));
+    set('ps-sales',fmt(production.sales_claimed));
+    set('ps-payment',fmt(production.payment_claimed));
+    set('ps-verified',fmt(verification.verified_records)+' / '+fmt(verification.registry_total)+' ('+pct(verification.verified_records,verification.registry_total)+')');
+    set('ps-prepared',fmt(verification.prepared_review_records)+' / '+fmt(verification.queue_total??verification.registry_total)+' ('+pct(verification.prepared_review_records,verification.queue_total??verification.registry_total)+')');
+    const stamp=production.generated_at||production.timestamp||'timestamp उपलब्ध नहीं';
+    set('ps-updated','Production snapshot: '+stamp+' · Verification prepared: '+(verification.generated_at||verification.updated_at||'timestamp उपलब्ध नहीं')+'. यह snapshot है, live-second counter नहीं।');
+  }catch(error){
+    ['ps-catalog','ps-qc','ps-dispatch','ps-sales','ps-payment','ps-verified','ps-prepared'].forEach(id=>set(id,'डेटा उपलब्ध नहीं'));
+    set('ps-updated','प्रकाशित status JSON पढ़ा नहीं जा सका। कोई संख्या अनुमान से नहीं दिखाई गई।');
+  }
+})();
+</script>
 <section class="section" id="income-first">
 <h2>पहले वास्तविक सेवा, फिर वास्तविक आय</h2>
 <p>यह प्रवेश-द्वार सीधे उपलब्ध ग्राहक-कार्य सेवाओं तक ले जाता है। पहले आवश्यकता और deliverables तय करें; फिर लिखित scope, price, deadline, revisions और payment terms पर सहमति लें। भुगतान केवल प्राप्त होने पर दर्ज करें।</p>
