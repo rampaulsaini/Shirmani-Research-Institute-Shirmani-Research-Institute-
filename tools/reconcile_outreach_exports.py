@@ -184,11 +184,7 @@ def reconcile(queue_path: Path, sent_path: Path, replies_path: Path) -> dict[str
     return {
         "schema_version": 1,
         "report_type": "private_outreach_export_reconciliation",
-        "source_files": {
-            "queue": queue_path.name,
-            "sent_export": sent_path.name,
-            "received_replies_export": replies_path.name,
-        },
+        "source_file_roles": ["prospect_queue_csv", "sent_export_csv", "received_replies_csv"],
         "input_rows": {
             "queue": len(queue),
             "sent_export": len(sent),
