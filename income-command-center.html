@@ -522,7 +522,10 @@ route();
 <input id="rf-proof" type="url" maxlength="400" placeholder="https://..." style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
 <label for="rf-cta">अगला कदम / वास्तविक checkout या inquiry URL</label>
 <input id="rf-cta" type="url" maxlength="400" placeholder="https://..." style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
-<button class="btn" id="rf-generate" type="button">5 channel drafts बनाएं</button>
+<label for="rf-batch">कितने अलग draft variants चाहिए?</label>
+<select id="rf-batch" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37"><option value="5">5 · एक प्रति चैनल</option><option value="10">10 · दो अलग angles प्रति चैनल</option><option value="15">15 · तीन अलग angles प्रति चैनल</option></select>
+<p class="note">हर draft केवल template-based है। भेजने से पहले recipient के वास्तविक संदर्भ के अनुसार संपादित करें। कोई संदेश स्वतः नहीं भेजा जाता।</p>
+<button class="btn" id="rf-generate" type="button">Human-review draft pack बनाएं</button>
 <p id="rf-status" class="note" role="status" aria-live="polite">कोई draft नहीं बना है। पहले offer की वास्तविक जानकारी भरें।</p>
 </article>
 <article class="card">
@@ -565,21 +568,36 @@ if($("rf-cta").value.trim()&&!cta){$("rf-status").textContent="CTA URL वैध
 const priceLine=price?("मूल्य: ₹"+Number(price).toLocaleString("en-IN")+"."):"कीमत और scope पहले लिखित रूप में तय करें।";
 const proofLine=proof?("Demo / proof: "+proof):"नमूना उपलब्ध होने पर साझा करें; अभी कोई proof link नहीं दिया गया है।";
 const action=cta?("अगला कदम: "+cta):"उत्तर दें ताकि scope और अगला कदम तय किया जा सके।";
-const plain=[
+const templates=[
 ["Store / Product Page",name+"\n\nकिसके लिए: "+buyer+"\n\nक्या मिलेगा: "+outcome+"\n\n"+priceLine+"\n"+proofLine+"\n"+action],
 ["LinkedIn", "मैं "+buyer+" के लिए एक स्पष्ट, सीमित deliverable पेश कर रहा/रही हूँ: "+name+".\n\nDeliverable: "+outcome+"\n"+priceLine+"\n"+proofLine+"\n\nयदि यह आपकी मौजूदा आवश्यकता से मेल खाता है: "+(cta||"scope पर चर्चा के लिए उत्तर दें।")],
 ["Direct Email","Subject: "+name+" — "+buyer+" के लिए scoped offer\n\nनमस्कार,\n\nमैं "+name+" के माध्यम से "+buyer+" की आवश्यकता के लिए यह deliverable उपलब्ध करा सकता/सकती हूँ: "+outcome+"\n\n"+priceLine+"\n"+proofLine+"\n\n"+action+"\n\nयदि यह आपकी जरूरत से संबंधित नहीं है, तो इस संदेश को अनदेखा कर सकते हैं।"],
 ["WhatsApp / Short Message","नमस्ते! "+name+" — "+buyer+" के लिए। Deliverable: "+outcome+" "+priceLine+" "+(proof?("Demo: "+proof+" "):"Demo उपलब्ध होने पर साझा करूँगा/करूँगी। ")+(cta?("विवरण: "+cta):"क्या यह आपकी मौजूदा जरूरत से मेल खाता है?")],
 ["Short Social Post",name+"\n\n"+buyer+" के लिए:\n• Deliverable: "+outcome+"\n• "+priceLine+"\n• "+proofLine+"\n\n"+action]
 ];
-lastDrafts=plain.map(item=>({channel:item[0],text:item[1]}));
+const count=Math.max(5,Math.min(15,Number($("rf-batch").value)||5));
+const angles=[
+{key:"direct",opener:""},
+{key:"problem-led",opener:"पहले यह जाँचना उपयोगी होगा कि यह आपकी वर्तमान आवश्यकता से मेल खाता है या नहीं।"},
+{key:"deliverable-led",opener:"प्रस्तावित काम का दायरा स्पष्ट रखा जाएगा; अंतिम scope और deadline लिखित सहमति से तय होंगे।"}
+];
+const batchId=new Date().toISOString().slice(0,10).replace(/-/g,"");
+lastDrafts=Array.from({length:count},(_,i)=>{
+const base=templates[i%templates.length],angle=angles[Math.floor(i/templates.length)%angles.length];
+let text=base[1];
+if(angle.opener){
+if(base[0]==="Direct Email"&&text.startsWith("Subject:")){const lineEnd=text.indexOf("\n\n");text=lineEnd>=0?text.slice(0,lineEnd+2)+angle.opener+"\n\n"+text.slice(lineEnd+2):angle.opener+"\n\n"+text;}
+else{text=angle.opener+"\n\n"+text;}
+}
+return {draft_id:"SRI-CAMPAIGN-"+batchId+"-"+String(i+1).padStart(3,"0"),channel:base[0],style:angle.key,text,review_required:true,recipient_personalization_required:true,auto_sent:false};
+});
 const output=$("rf-output");output.innerHTML="";
-plain.forEach((item,i)=>{
+lastDrafts.forEach((item,i)=>{
 const card=document.createElement("article");card.className="card";
-const h=document.createElement("h3");h.textContent=item[0];
-const pre=document.createElement("textarea");pre.rows=8;pre.readOnly=true;pre.value=item[1];pre.setAttribute("aria-label",item[0]+" draft");
+const h=document.createElement("h3");h.textContent=item.channel+" · "+item.style;
+const pre=document.createElement("textarea");pre.rows=8;pre.readOnly=true;pre.value=item.text;pre.setAttribute("aria-label",item.channel+" draft");
 const copy=document.createElement("button");copy.type="button";copy.className="btn";copy.textContent="Draft copy करें";
-copy.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(pre.value);$("rf-status").textContent=item[0]+" draft clipboard में copy हुआ।";}catch(e){pre.focus();pre.select();$("rf-status").textContent="इस browser में clipboard अनुमति नहीं मिली; text select करके copy करें।";}});
+copy.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(pre.value);$("rf-status").textContent=item.channel+" draft clipboard में copy हुआ।";}catch(e){pre.focus();pre.select();$("rf-status").textContent="इस browser में clipboard अनुमति नहीं मिली; text select करके copy करें।";}});
 card.append(h,pre,copy);output.appendChild(card);
 });
 $("rf-status").textContent="5 drafts तैयार हैं। ये local templates हैं, AI-generated claims नहीं। भेजने से पहले जाँचें; कोई संदेश स्वतः नहीं भेजा गया।";
@@ -588,7 +606,7 @@ $("rf-generate").addEventListener("click",build);
 function downloadFile(name,blob){const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function setExportStatus(message){$("rf-export-status").textContent=message;}
 function base64(bytes){let binary="";for(const b of bytes)binary+=String.fromCharCode(b);return btoa(binary);}
-function requireDrafts(){if(!lastDrafts.length){setExportStatus("पहले पाँच-channel draft pack बनाएं।");return false;}return true;}
+function requireDrafts(){if(!lastDrafts.length){setExportStatus("पहले campaign draft pack बनाएं।");return false;}return true;}
 $("rf-export-json").addEventListener("click",()=>{
  if(!requireDrafts())return;
  const payload={schema_version:1,created_at:new Date().toISOString(),export_type:"UNENCRYPTED_DRAFTS",warning:"Contains unencrypted campaign drafts; store securely.",drafts:lastDrafts};
