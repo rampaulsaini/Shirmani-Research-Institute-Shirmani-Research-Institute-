@@ -38,7 +38,7 @@ function parseCSV(text){
 }
 function first(o,names){for(const n of names){const v=o[norm(n)];if(v)return v.trim()}return ""}
 function allEmails(row){const found=new Set();Object.values(row).forEach(v=>(String(v||"").match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/ig)||[]).forEach(e=>found.add(e.toLowerCase()));return found.size===1?[...found][0]:""}
-function emailField(row,kind){const keys=kind==="sent"?["to","recipient","recipient_email","to_email","email"]:["from","sender","sender_email","from_email","email"];return (first(row,keys)||allEmails(row)).toLowerCase()}
+function emailField(row,kind){const keys=kind==="sent"?["to","recipient","recipient_email","to_email","email"]:["from","sender","sender_email","from_email","email"];const raw=first(row,keys)||allEmails(row);const matches=String(raw).match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/ig)||[];return matches.length===1?matches[0].toLowerCase():""}
 function timestamp(row){return first(row,["date","sent_at","sent_date","date_sent","timestamp","received_at","reply_date","delivery_date"])}
 function idField(row){return first(row,["prospect_id","prospect id","lead_id","lead id"])}
 function msgId(row){return first(row,["message_id","message-id","internet_message_id"]).toLowerCase()}
