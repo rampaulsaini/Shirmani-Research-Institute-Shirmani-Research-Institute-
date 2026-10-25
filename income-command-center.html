@@ -694,16 +694,18 @@ $("rf-encrypt-json").addEventListener("click",async()=>{
     return {d,errors};
   }
   function ratio(n,d){return d===0?"— (शून्य denominator)":n>d?"— (counts जाँचें)":(n/d*100).toFixed(2)+"%";}
+  function hasPaymentEvidence(d){return Number(d.received)>0&&/^\\d{4}-\\d{2}-\\d{2}$/.test(String(d.date||""))&&String(d.reference||"").trim().length>0;}
   function render(message){
-    const {d,errors}=read();$("iel-total").textContent=Number.isFinite(d.received)&&d.received>=0?currency(d.received):"अमान्य रकम";
+    const {d,errors}=read(),evidenceRequired=Number(d.received)>0&&!hasPaymentEvidence(d);
+    $("iel-total").textContent=!Number.isFinite(d.received)||d.received<0?"अमान्य रकम":evidenceRequired?"Evidence needed — "+currency(d.received)+" (कुल में शामिल नहीं)":currency(d.received);
     $("iel-lead-rate").textContent=errors.length?"—":ratio(d.orders,d.leads);$("iel-proposal-rate").textContent=errors.length?"—":ratio(d.orders,d.proposals);
-    $("iel-average").textContent=!errors.length&&d.orders>0?currency(d.received/d.orders):"—";
-    $("iel-evidence").textContent=d.reference?(d.reference+(d.date?" · "+d.date:"")+" (दर्ज, सत्यापित नहीं)"):"नहीं दिया गया";
-    $("iel-status").textContent=message||(errors.length?"अमान्य input: "+errors.join("; "):"Preview only · रकम को provider record से मिलाना बाकी है।");
+    $("iel-average").textContent=!errors.length&&!evidenceRequired&&d.orders>0?currency(d.received/d.orders):"—";
+    $("iel-evidence").textContent=d.reference?(d.reference+(d.date?" · "+d.date:"")+" (दर्ज, स्वतंत्र सत्यापन नहीं)"):"नहीं दिया गया";
+    $("iel-status").textContent=message||(errors.length?"अमान्य input: "+errors.join("; "):evidenceRequired?"रकम को received total में गिनने से पहले भुगतान की तारीख और रसीद/transaction reference दें।":"Preview only · receipt reference दर्ज होना स्वतंत्र payment verification नहीं है।");
   }
   try{const d=JSON.parse(localStorage.getItem(key)||"null");if(d){$("iel-leads").value=d.leads??0;$("iel-proposals").value=d.proposals??0;$("iel-orders").value=d.orders??0;$("iel-received").value=d.received??0;$("iel-ref").value=d.reference??"";$("iel-date").value=d.date??"";}}
   catch(e){render("Browser storage उपलब्ध नहीं; values पेज बंद होने पर खो सकती हैं।");}
-  $("iel-save").addEventListener("click",()=>{const {d,errors}=read();if(errors.length){render("Save नहीं हुआ: "+errors.join("; "));return;}try{localStorage.setItem(key,JSON.stringify({...d,saved_at:new Date().toISOString(),verification_status:"NOT_INDEPENDENTLY_VERIFIED"}));render("इस browser में सुरक्षित; server upload और independent verification नहीं हुआ।");}catch(e){render("Local save विफल; रिकॉर्ड सुरक्षित मानकर न चलें।");}});
+  $("iel-save").addEventListener("click",()=>{const {d,errors}=read();if(errors.length){render("Save नहीं हुआ: "+errors.join("; "));return;}if(Number(d.received)>0&&!hasPaymentEvidence(d)){render("Save नहीं हुआ: received amount के लिए YYYY-MM-DD payment date और receipt/transaction reference आवश्यक हैं। यह फिर भी independent verification नहीं होगा।");return;}try{localStorage.setItem(key,JSON.stringify({...d,saved_at:new Date().toISOString(),verification_status:"NOT_INDEPENDENTLY_VERIFIED"}));render("इस browser में सुरक्षित; receipt reference दर्ज है, लेकिन server upload और independent verification नहीं हुआ।");}catch(e){render("Local save विफल; रिकॉर्ड सुरक्षित मानकर न चलें।");}});
   $("iel-export").addEventListener("click",()=>{const {d,errors}=read();if(errors.length){render("Export रोक दिया: "+errors.join("; "));return;}const blob=new Blob([JSON.stringify({schema_version:1,...d,exported_at:new Date().toISOString(),verification_status:"NOT_INDEPENDENTLY_VERIFIED"},null,2)],{type:"application/json"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="shirmani-income-evidence-ledger.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);render("JSON export बनाया गया; यह verified income का प्रमाण नहीं है।");});
   $("iel-clear").addEventListener("click",()=>{try{localStorage.removeItem(key);}catch(e){}ids.forEach(id=>$(id).value=(id==="iel-ref"||id==="iel-date")?"":0);render("इस browser का local ledger हटाया गया।");});
   ids.forEach(id=>$(id).addEventListener("input",()=>render("बदलाव केवल preview हैं; Save दबाकर सुरक्षित करें।")));
