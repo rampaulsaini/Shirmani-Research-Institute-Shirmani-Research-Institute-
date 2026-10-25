@@ -600,7 +600,7 @@ const copy=document.createElement("button");copy.type="button";copy.className="b
 copy.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(pre.value);$("rf-status").textContent=item.channel+" draft clipboard में copy हुआ।";}catch(e){pre.focus();pre.select();$("rf-status").textContent="इस browser में clipboard अनुमति नहीं मिली; text select करके copy करें।";}});
 card.append(h,pre,copy);output.appendChild(card);
 });
-$("rf-status").textContent="5 drafts तैयार हैं। ये local templates हैं, AI-generated claims नहीं। भेजने से पहले जाँचें; कोई संदेश स्वतः नहीं भेजा गया।";
+$("rf-status").textContent=lastDrafts.length+" drafts तैयार हैं। ये local templates हैं, AI-generated claims नहीं। हर recipient के लिए edit करें; कोई संदेश स्वतः नहीं भेजा गया।";
 }
 $("rf-generate").addEventListener("click",build);
 function downloadFile(name,blob){const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
