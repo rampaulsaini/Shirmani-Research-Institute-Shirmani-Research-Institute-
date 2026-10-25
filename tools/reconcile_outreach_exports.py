@@ -19,7 +19,9 @@ from typing import Any
 
 ALIASES = {
     "prospect_id": ("prospect_id", "prospect id", "lead_id", "lead id"),
-    "email": ("email", "recipient", "recipient_email", "to", "to_email", "from", "from_email", "sender_email"),
+    "email": ("email", "contact_email", "recipient_email", "recipient", "to", "to_email", "from", "from_email", "sender_email"),
+    "recipient": ("recipient_email", "recipient", "to", "to_email", "email"),
+    "sender": ("sender_email", "sender", "from", "from_email", "email"),
     "sent_at": ("sent_at", "sent date", "date_sent", "timestamp", "date", "received_at", "reply_date"),
     "message_id": ("message_id", "message-id", "internet_message_id"),
     "thread_id": ("thread_id", "conversation_id", "conversation id"),
@@ -104,6 +106,11 @@ def reconcile(queue_path: Path, sent_path: Path, replies_path: Path) -> dict[str
         raise ValueError("Queue must contain a prospect_id column and at least one ID")
 
     email_index = unique_email_index(queue)
+    for row in sent:
+        row["_email"] = row["_recipient_email"] or row["_email"]
+    for row in replies:
+        row["_email"] = row["_sender_email"] or row["_email"]
+
     sent_seen: set[tuple[str, ...]] = set()
     sent_by_prospect: Counter[str] = Counter()
     sent_by_thread: dict[str, set[str]] = defaultdict(set)
