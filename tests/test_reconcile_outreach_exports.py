@@ -70,5 +70,22 @@ class ReconcileOutreachExportsTests(unittest.TestCase):
             self.assertEqual(report["unmatched_or_invalid"]["unmatched_sent_rows"], 1)
 
 
+    def test_uses_single_public_email_in_queue_notes(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            queue, sent, replies = root / "queue.csv", root / "sent.csv", root / "replies.csv"
+            write_csv(queue, ["prospect_id", "notes"], [
+                ["P-003", "Published outreach contact: outreach@example.org; verify before sending"],
+            ])
+            write_csv(sent, ["To", "Date", "Message-ID"], [
+                ["outreach@example.org", "2026-10-25", "<m1>"],
+            ])
+            write_csv(replies, ["From", "Date", "Message-ID"], [])
+            report = reconcile(queue, sent, replies)
+            self.assertEqual(report["matched_evidence"]["unique_sent_messages"], 1)
+            self.assertEqual(report["prospects"][0]["evidence_status"], "SENT_EVIDENCE")
+
+
+
 if __name__ == "__main__":
     unittest.main()
