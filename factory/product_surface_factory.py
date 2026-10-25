@@ -22,6 +22,11 @@ def slug_for(product_id):
     return re.sub(r"[^a-zA-Z0-9._-]", "-", str(product_id)).lower()
 
 
+def relative_href(target, page_dir):
+    """Build a repository-local href from the real nested product-page directory."""
+    return Path(os.path.relpath(target, start=page_dir)).as_posix()
+
+
 def page(product, root=ROOT):
     pid = str(product["id"])
     slug = slug_for(pid)
@@ -31,21 +36,24 @@ def page(product, root=ROOT):
     description = product.get("short_description") or product.get("description") or "Customer-facing digital product."
     price = product.get("offer_price_inr", product.get("price_inr", ""))
 
-    passport_href = f"../../../product-passport.html?id={quote(pid, safe='')}"
-    showroom_href = "../../../showroom-public.html"
+    # These pages are emitted at products/live/<slug>/index.html. Resolve each
+    # local link from that actual directory rather than maintaining fragile ../ counts.
+    page_dir = root / "products/live" / slug
+    passport_href = f"{relative_href(root / 'product-passport.html', page_dir)}?id={quote(pid, safe='')}"
+    showroom_href = relative_href(root / "showroom-public.html", page_dir)
     vip_disk_rel = f"products/demos/vip/{slug}.svg"
     video_name = str(engine) + ".mp4"
     video_disk_rel = f"products/demos/{video_name}"
     vip_exists = (root / vip_disk_rel).is_file()
     video_exists = Path(video_name).name == video_name and (root / video_disk_rel).is_file()
 
-    vip_href = quote(slug + ".svg", safe="")
-    video_href = quote(video_name, safe="")
+    vip_href = quote(relative_href(root / vip_disk_rel, page_dir), safe="/")
+    video_href = quote(relative_href(root / video_disk_rel, page_dir), safe="/")
     media_links = []
     if vip_exists:
-        media_links.append(f'<a href="../../demos/vip/{vip_href}">Open product screenshot</a>')
+        media_links.append(f'<a href="{e(vip_href)}">Open product screenshot</a>')
     if video_exists:
-        media_links.append(f'<a href="../../demos/{video_href}">Watch {e(engine)} demo video</a>')
+        media_links.append(f'<a href="{e(video_href)}">Watch {e(engine)} demo video</a>')
     media_html = "".join(media_links) if media_links else (
         '<p class="notice">Demo media is not published for this product yet. '
         'This page is a catalogue listing, not proof of a runnable product demo.</p>'
