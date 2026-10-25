@@ -33,6 +33,7 @@ ALIASES = {
 def norm_header(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", value.strip().casefold()).strip("_")
 
+
 def email_from_row(row: dict[str, Any]) -> str:
     # Some existing queue records store a published contact address in a notes cell
     # instead of a dedicated email column. Only use a single unambiguous address.
