@@ -58,6 +58,8 @@ def read_csv(path: Path) -> tuple[list[dict[str, str]], list[str]]:
                 for key in {alias for aliases in ALIASES.values() for alias in aliases}
             } | {
                 "_prospect_id": get_field(raw, header_map, "prospect_id"),
+                "_recipient_email": get_field(raw, header_map, "recipient").casefold(),
+                "_sender_email": get_field(raw, header_map, "sender").casefold(),
                 "_email": get_field(raw, header_map, "email").casefold() or email_from_row(raw),
                 "_sent_at": get_field(raw, header_map, "sent_at"),
                 "_message_id": get_field(raw, header_map, "message_id").casefold(),
