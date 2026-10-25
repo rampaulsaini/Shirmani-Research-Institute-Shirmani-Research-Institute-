@@ -8,6 +8,7 @@ on:
       - "supreme-showroom.html"
       - "supreme-public-production-showroom.html"
       - "showroom-public.html"
+      - "public-showroom.html"
       - "showroom-public-interface.html"
       - "showroom/public-gateway-v2.html"
       - "showroom/global-product-sales-desk.html"
@@ -95,6 +96,7 @@ jobs:
           income-command-center.html
           supreme-showroom.html
           supreme-public-production-showroom.html
+          public-showroom.html
           showroom-public-interface.html
           showroom/public-gateway-v2.html
           showroom/global-product-sales-desk.html
