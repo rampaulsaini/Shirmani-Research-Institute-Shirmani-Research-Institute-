@@ -31,6 +31,9 @@ ROUTES = [
     ("first-client pilot desk", BASE + "/showroom/first-client-pilot-desk.html", ("SHIRMANI — First Client Pilot Desk", "WhatsApp")),
     ("writing and research service enquiry", BASE + "/services/writing-research-enquiry.html", ("Writing & Research Services", "Writing & Research Enquiry")),
     ("product order page", BASE + "/product-order.html", ("SHIRMANI Product Order", "Order / Payment")),
+    ("income-first revenue control center", BASE + "/revenue-first-control-center.html", ("उत्पादन से वास्तविक आय तक", "₹1,499 · Research summary", "₹999 · Website/blog draft")),
+    ("first paid pilot offer", BASE + "/first-paid-pilot-offer.html", ("Research & Writing — First Client Pilot", "₹1,499", "₹999")),
+    ("writing and research enquiry", BASE + "/writing-research-enquiry.html", ("Writing & Research Enquiry", "₹499", "₹1,499")),
 ]
 
 class PageParser(HTMLParser):
