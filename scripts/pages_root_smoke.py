@@ -42,6 +42,8 @@ ROUTES = [
         ),
     ),
     ("first paid pilot offer", BASE + "/first-paid-pilot-offer.html", ("Research & Writing — First Client Pilot", "₹499", "₹1,499", "₹999")),
+    ("income client pipeline", BASE + "/income-client-pipeline.html", ("Client Pipeline & Delivery Tracker", "Measurable pipeline", "Add a real prospect / customer")),
+    ("income client outreach desk", BASE + "/income-client-outreach-desk.html", ("Client Outreach & Delivery Desk", "Current service offer", "Seven-day measurable sprint")),
     ("writing and research enquiry", BASE + "/writing-research-enquiry.html", ("Writing & Research Enquiry", "₹499", "₹1,499")),
 ]
 
