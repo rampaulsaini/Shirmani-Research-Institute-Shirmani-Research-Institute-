@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-25T23:47:07.381709+00:00",
+  "generated_at": "2026-10-26T01:47:22.382135+00:00",
   "target": 5000,
-  "vip_screenshot_count": 2550,
+  "vip_screenshot_count": 2600,
   "created_this_cycle": 50,
-  "remaining": 2450,
+  "remaining": 2400,
   "batch_size": 50,
   "screenshot_standard": {
     "viewport": "1600x1000",
@@ -22967,7 +22967,7 @@
     {
       "product_id": "SP-2551",
       "screenshot_asset": "products/vip-screenshots/sp-2551.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2551",
       "passport_route": "product-passport.html?id=SP-2551",
       "visual_asset": "products/visuals/sp-2551.svg",
@@ -22976,7 +22976,7 @@
     {
       "product_id": "SP-2552",
       "screenshot_asset": "products/vip-screenshots/sp-2552.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2552",
       "passport_route": "product-passport.html?id=SP-2552",
       "visual_asset": "products/visuals/sp-2552.svg",
@@ -22985,7 +22985,7 @@
     {
       "product_id": "SP-2553",
       "screenshot_asset": "products/vip-screenshots/sp-2553.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2553",
       "passport_route": "product-passport.html?id=SP-2553",
       "visual_asset": "products/visuals/sp-2553.svg",
@@ -22994,7 +22994,7 @@
     {
       "product_id": "SP-2554",
       "screenshot_asset": "products/vip-screenshots/sp-2554.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2554",
       "passport_route": "product-passport.html?id=SP-2554",
       "visual_asset": "products/visuals/sp-2554.svg",
@@ -23003,7 +23003,7 @@
     {
       "product_id": "SP-2555",
       "screenshot_asset": "products/vip-screenshots/sp-2555.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2555",
       "passport_route": "product-passport.html?id=SP-2555",
       "visual_asset": "products/visuals/sp-2555.svg",
@@ -23012,7 +23012,7 @@
     {
       "product_id": "SP-2556",
       "screenshot_asset": "products/vip-screenshots/sp-2556.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2556",
       "passport_route": "product-passport.html?id=SP-2556",
       "visual_asset": "products/visuals/sp-2556.svg",
@@ -23021,7 +23021,7 @@
     {
       "product_id": "SP-2557",
       "screenshot_asset": "products/vip-screenshots/sp-2557.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2557",
       "passport_route": "product-passport.html?id=SP-2557",
       "visual_asset": "products/visuals/sp-2557.svg",
@@ -23030,7 +23030,7 @@
     {
       "product_id": "SP-2558",
       "screenshot_asset": "products/vip-screenshots/sp-2558.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2558",
       "passport_route": "product-passport.html?id=SP-2558",
       "visual_asset": "products/visuals/sp-2558.svg",
@@ -23039,7 +23039,7 @@
     {
       "product_id": "SP-2559",
       "screenshot_asset": "products/vip-screenshots/sp-2559.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2559",
       "passport_route": "product-passport.html?id=SP-2559",
       "visual_asset": "products/visuals/sp-2559.svg",
@@ -23048,7 +23048,7 @@
     {
       "product_id": "SP-2560",
       "screenshot_asset": "products/vip-screenshots/sp-2560.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2560",
       "passport_route": "product-passport.html?id=SP-2560",
       "visual_asset": "products/visuals/sp-2560.svg",
@@ -23057,7 +23057,7 @@
     {
       "product_id": "SP-2561",
       "screenshot_asset": "products/vip-screenshots/sp-2561.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2561",
       "passport_route": "product-passport.html?id=SP-2561",
       "visual_asset": "products/visuals/sp-2561.svg",
@@ -23066,7 +23066,7 @@
     {
       "product_id": "SP-2562",
       "screenshot_asset": "products/vip-screenshots/sp-2562.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2562",
       "passport_route": "product-passport.html?id=SP-2562",
       "visual_asset": "products/visuals/sp-2562.svg",
@@ -23075,7 +23075,7 @@
     {
       "product_id": "SP-2563",
       "screenshot_asset": "products/vip-screenshots/sp-2563.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2563",
       "passport_route": "product-passport.html?id=SP-2563",
       "visual_asset": "products/visuals/sp-2563.svg",
@@ -23084,7 +23084,7 @@
     {
       "product_id": "SP-2564",
       "screenshot_asset": "products/vip-screenshots/sp-2564.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2564",
       "passport_route": "product-passport.html?id=SP-2564",
       "visual_asset": "products/visuals/sp-2564.svg",
@@ -23093,7 +23093,7 @@
     {
       "product_id": "SP-2565",
       "screenshot_asset": "products/vip-screenshots/sp-2565.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2565",
       "passport_route": "product-passport.html?id=SP-2565",
       "visual_asset": "products/visuals/sp-2565.svg",
@@ -23102,7 +23102,7 @@
     {
       "product_id": "SP-2566",
       "screenshot_asset": "products/vip-screenshots/sp-2566.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2566",
       "passport_route": "product-passport.html?id=SP-2566",
       "visual_asset": "products/visuals/sp-2566.svg",
@@ -23111,7 +23111,7 @@
     {
       "product_id": "SP-2567",
       "screenshot_asset": "products/vip-screenshots/sp-2567.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2567",
       "passport_route": "product-passport.html?id=SP-2567",
       "visual_asset": "products/visuals/sp-2567.svg",
@@ -23120,7 +23120,7 @@
     {
       "product_id": "SP-2568",
       "screenshot_asset": "products/vip-screenshots/sp-2568.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2568",
       "passport_route": "product-passport.html?id=SP-2568",
       "visual_asset": "products/visuals/sp-2568.svg",
@@ -23129,7 +23129,7 @@
     {
       "product_id": "SP-2569",
       "screenshot_asset": "products/vip-screenshots/sp-2569.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2569",
       "passport_route": "product-passport.html?id=SP-2569",
       "visual_asset": "products/visuals/sp-2569.svg",
@@ -23138,7 +23138,7 @@
     {
       "product_id": "SP-2570",
       "screenshot_asset": "products/vip-screenshots/sp-2570.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2570",
       "passport_route": "product-passport.html?id=SP-2570",
       "visual_asset": "products/visuals/sp-2570.svg",
@@ -23147,7 +23147,7 @@
     {
       "product_id": "SP-2571",
       "screenshot_asset": "products/vip-screenshots/sp-2571.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2571",
       "passport_route": "product-passport.html?id=SP-2571",
       "visual_asset": "products/visuals/sp-2571.svg",
@@ -23156,7 +23156,7 @@
     {
       "product_id": "SP-2572",
       "screenshot_asset": "products/vip-screenshots/sp-2572.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2572",
       "passport_route": "product-passport.html?id=SP-2572",
       "visual_asset": "products/visuals/sp-2572.svg",
@@ -23165,7 +23165,7 @@
     {
       "product_id": "SP-2573",
       "screenshot_asset": "products/vip-screenshots/sp-2573.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2573",
       "passport_route": "product-passport.html?id=SP-2573",
       "visual_asset": "products/visuals/sp-2573.svg",
@@ -23174,7 +23174,7 @@
     {
       "product_id": "SP-2574",
       "screenshot_asset": "products/vip-screenshots/sp-2574.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2574",
       "passport_route": "product-passport.html?id=SP-2574",
       "visual_asset": "products/visuals/sp-2574.svg",
@@ -23183,7 +23183,7 @@
     {
       "product_id": "SP-2575",
       "screenshot_asset": "products/vip-screenshots/sp-2575.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2575",
       "passport_route": "product-passport.html?id=SP-2575",
       "visual_asset": "products/visuals/sp-2575.svg",
@@ -23192,7 +23192,7 @@
     {
       "product_id": "SP-2576",
       "screenshot_asset": "products/vip-screenshots/sp-2576.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2576",
       "passport_route": "product-passport.html?id=SP-2576",
       "visual_asset": "products/visuals/sp-2576.svg",
@@ -23201,7 +23201,7 @@
     {
       "product_id": "SP-2577",
       "screenshot_asset": "products/vip-screenshots/sp-2577.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2577",
       "passport_route": "product-passport.html?id=SP-2577",
       "visual_asset": "products/visuals/sp-2577.svg",
@@ -23210,7 +23210,7 @@
     {
       "product_id": "SP-2578",
       "screenshot_asset": "products/vip-screenshots/sp-2578.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2578",
       "passport_route": "product-passport.html?id=SP-2578",
       "visual_asset": "products/visuals/sp-2578.svg",
@@ -23219,7 +23219,7 @@
     {
       "product_id": "SP-2579",
       "screenshot_asset": "products/vip-screenshots/sp-2579.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2579",
       "passport_route": "product-passport.html?id=SP-2579",
       "visual_asset": "products/visuals/sp-2579.svg",
@@ -23228,7 +23228,7 @@
     {
       "product_id": "SP-2580",
       "screenshot_asset": "products/vip-screenshots/sp-2580.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2580",
       "passport_route": "product-passport.html?id=SP-2580",
       "visual_asset": "products/visuals/sp-2580.svg",
@@ -23237,7 +23237,7 @@
     {
       "product_id": "SP-2581",
       "screenshot_asset": "products/vip-screenshots/sp-2581.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2581",
       "passport_route": "product-passport.html?id=SP-2581",
       "visual_asset": "products/visuals/sp-2581.svg",
@@ -23246,7 +23246,7 @@
     {
       "product_id": "SP-2582",
       "screenshot_asset": "products/vip-screenshots/sp-2582.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2582",
       "passport_route": "product-passport.html?id=SP-2582",
       "visual_asset": "products/visuals/sp-2582.svg",
@@ -23255,7 +23255,7 @@
     {
       "product_id": "SP-2583",
       "screenshot_asset": "products/vip-screenshots/sp-2583.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2583",
       "passport_route": "product-passport.html?id=SP-2583",
       "visual_asset": "products/visuals/sp-2583.svg",
@@ -23264,7 +23264,7 @@
     {
       "product_id": "SP-2584",
       "screenshot_asset": "products/vip-screenshots/sp-2584.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2584",
       "passport_route": "product-passport.html?id=SP-2584",
       "visual_asset": "products/visuals/sp-2584.svg",
@@ -23273,7 +23273,7 @@
     {
       "product_id": "SP-2585",
       "screenshot_asset": "products/vip-screenshots/sp-2585.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2585",
       "passport_route": "product-passport.html?id=SP-2585",
       "visual_asset": "products/visuals/sp-2585.svg",
@@ -23282,7 +23282,7 @@
     {
       "product_id": "SP-2586",
       "screenshot_asset": "products/vip-screenshots/sp-2586.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2586",
       "passport_route": "product-passport.html?id=SP-2586",
       "visual_asset": "products/visuals/sp-2586.svg",
@@ -23291,7 +23291,7 @@
     {
       "product_id": "SP-2587",
       "screenshot_asset": "products/vip-screenshots/sp-2587.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2587",
       "passport_route": "product-passport.html?id=SP-2587",
       "visual_asset": "products/visuals/sp-2587.svg",
@@ -23300,7 +23300,7 @@
     {
       "product_id": "SP-2588",
       "screenshot_asset": "products/vip-screenshots/sp-2588.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2588",
       "passport_route": "product-passport.html?id=SP-2588",
       "visual_asset": "products/visuals/sp-2588.svg",
@@ -23309,7 +23309,7 @@
     {
       "product_id": "SP-2589",
       "screenshot_asset": "products/vip-screenshots/sp-2589.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2589",
       "passport_route": "product-passport.html?id=SP-2589",
       "visual_asset": "products/visuals/sp-2589.svg",
@@ -23318,7 +23318,7 @@
     {
       "product_id": "SP-2590",
       "screenshot_asset": "products/vip-screenshots/sp-2590.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2590",
       "passport_route": "product-passport.html?id=SP-2590",
       "visual_asset": "products/visuals/sp-2590.svg",
@@ -23327,7 +23327,7 @@
     {
       "product_id": "SP-2591",
       "screenshot_asset": "products/vip-screenshots/sp-2591.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2591",
       "passport_route": "product-passport.html?id=SP-2591",
       "visual_asset": "products/visuals/sp-2591.svg",
@@ -23336,7 +23336,7 @@
     {
       "product_id": "SP-2592",
       "screenshot_asset": "products/vip-screenshots/sp-2592.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2592",
       "passport_route": "product-passport.html?id=SP-2592",
       "visual_asset": "products/visuals/sp-2592.svg",
@@ -23345,7 +23345,7 @@
     {
       "product_id": "SP-2593",
       "screenshot_asset": "products/vip-screenshots/sp-2593.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2593",
       "passport_route": "product-passport.html?id=SP-2593",
       "visual_asset": "products/visuals/sp-2593.svg",
@@ -23354,7 +23354,7 @@
     {
       "product_id": "SP-2594",
       "screenshot_asset": "products/vip-screenshots/sp-2594.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2594",
       "passport_route": "product-passport.html?id=SP-2594",
       "visual_asset": "products/visuals/sp-2594.svg",
@@ -23363,7 +23363,7 @@
     {
       "product_id": "SP-2595",
       "screenshot_asset": "products/vip-screenshots/sp-2595.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2595",
       "passport_route": "product-passport.html?id=SP-2595",
       "visual_asset": "products/visuals/sp-2595.svg",
@@ -23372,7 +23372,7 @@
     {
       "product_id": "SP-2596",
       "screenshot_asset": "products/vip-screenshots/sp-2596.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2596",
       "passport_route": "product-passport.html?id=SP-2596",
       "visual_asset": "products/visuals/sp-2596.svg",
@@ -23381,7 +23381,7 @@
     {
       "product_id": "SP-2597",
       "screenshot_asset": "products/vip-screenshots/sp-2597.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2597",
       "passport_route": "product-passport.html?id=SP-2597",
       "visual_asset": "products/visuals/sp-2597.svg",
@@ -23390,7 +23390,7 @@
     {
       "product_id": "SP-2598",
       "screenshot_asset": "products/vip-screenshots/sp-2598.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2598",
       "passport_route": "product-passport.html?id=SP-2598",
       "visual_asset": "products/visuals/sp-2598.svg",
@@ -23399,7 +23399,7 @@
     {
       "product_id": "SP-2599",
       "screenshot_asset": "products/vip-screenshots/sp-2599.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2599",
       "passport_route": "product-passport.html?id=SP-2599",
       "visual_asset": "products/visuals/sp-2599.svg",
@@ -23408,7 +23408,7 @@
     {
       "product_id": "SP-2600",
       "screenshot_asset": "products/vip-screenshots/sp-2600.png",
-      "exists": false,
+      "exists": true,
       "demo_route": "product-demo.html?id=SP-2600",
       "passport_route": "product-passport.html?id=SP-2600",
       "visual_asset": "products/visuals/sp-2600.svg",
