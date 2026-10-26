@@ -24,6 +24,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/product-media-reconciliation
+          base: main
           delete-branch: false
           commit-message: "chore(automission): reconcile product media and catalogue shards"
           title: "Automission: reconcile product media and catalog shards"
