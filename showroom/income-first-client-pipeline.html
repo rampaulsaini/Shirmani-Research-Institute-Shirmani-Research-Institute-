@@ -54,11 +54,13 @@
 <div class="row">
 <div class="field"><label for="name">संपर्क व्यक्ति (यदि ज्ञात हो)</label><input id="name" placeholder="Hello / नमस्ते"></div>
 <div class="field"><label for="company">संस्था</label><input id="company" placeholder="संस्था का नाम"></div>
+<div class="field"><label for="recipientEmail">ग्राहक का ईमेल (सत्यापित)</label><input id="recipientEmail" type="email" autocomplete="email" placeholder="customer@example.com"></div>
 <div class="field"><label for="offer">सेवा प्रस्ताव</label><select id="offer"><option value="Editing / proofreading|499">Editing / proofreading — ₹499</option><option value="Website / article copy|999">Website / article copy — ₹999</option><option value="Source-based research brief|1499">Research brief — ₹1,499</option></select></div>
 </div>
 <div class="field"><label for="message">संदेश (भेजने से पहले सत्यापित व personalize करें)</label><textarea id="message"></textarea></div>
-<button class="primary" id="generate" type="button">संदेश तैयार करें</button><button id="copyMessage" type="button">संदेश copy करें</button>
-<p class="small">इसे केवल उन संस्थाओं/व्यक्तियों को भेजें जिनके लिए सेवा प्रासंगिक हो; spam न करें। इस पेज से कोई संदेश अपने-आप नहीं भेजा जाता।</p>
+<button class="primary" id="generate" type="button">संदेश तैयार करें</button><button id="copyMessage" type="button">संदेश copy करें</button><button id="openEmail" type="button">Email में खोलें</button>
+<p id="emailStatus" class="status" role="status" aria-live="polite"></p>
+<p class="small">Email में खोलें दबाने पर आपके device का email app recipient, subject और draft भरकर खुलेगा; आपको स्वयं जाँचकर Send दबाना होगा। ईमेल पता पहले सत्यापित करें। कोई संदेश अपने-आप नहीं भेजा जाता। केवल प्रासंगिक, व्यक्तिगत outreach करें; spam न करें।</p>
 </section>
 <footer>आय प्रमाण तभी: वास्तविक ग्राहक की स्वीकृति + भुगतान का सत्यापन + सहमत deliverable + डिलीवरी रिकॉर्ड। इस पेज के आँकड़े स्थानीय user-entered records हैं, बाहरी रूप से सत्यापित बिक्री नहीं।</footer>
 </div>
@@ -77,6 +79,7 @@ $('export').onclick=()=>{const cols=['org','contact','service','proposed','stage
 $('clear').onclick=()=>{if(confirm('क्या इस ब्राउज़र के सभी स्थानीय lead records मिटाने हैं? पहले CSV export कर लें।')){leads=[];persist();}};
 function message(){const nm=$('name').value.trim()||'नमस्ते',co=$('company').value.trim()||'आपकी संस्था';const [svc,price]=$('offer').value.split('|');return nm+',\n\nमैं Shirmani Research Institute की ओर से संपर्क कर रहा/रही हूँ। '+co+' के लिए '+svc+' उपयोगी हो सकती है। प्रस्तावित शुरुआती दर ₹'+price+' है; काम शुरू करने से पहले scope, deadline, revision और payment terms लिखित रूप में तय होंगे।\n\nयदि यह आपकी वर्तमान ज़रूरत से मेल खाता है, तो कृपया बताएं कि किस प्रकार का काम और समय-सीमा चाहिए। मैं उसके आधार पर स्पष्ट प्रस्ताव साझा करूँगा/करूँगी।\n\nधन्यवाद,\nShirmani Research Institute';}
 $('generate').onclick=()=>$('message').value=message();
+$('openEmail').onclick=()=>{const to=$('recipientEmail').value.trim();const status=$('emailStatus');if(!to||!$('recipientEmail').checkValidity()){status.textContent='पहले ग्राहक का सही ईमेल पता भरें और सत्यापित करें।';$('recipientEmail').focus();return;}if(!$('message').value.trim())$('generate').click();const subject='Service proposal — '+($('offer').value.split('|')[0]);const href='mailto:'+encodeURIComponent(to)+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent($('message').value);status.textContent='आपके email app में draft खुलना चाहिए। भेजने से पहले recipient, scope और कीमत जाँचें।';window.location.href=href;};
 async function copyText(el,status){try{await navigator.clipboard.writeText(el.value);status.textContent='Copy हो गया।';}catch(e){el.focus();el.select();status.textContent='Auto-copy उपलब्ध नहीं; चुने हुए संदेश को manually copy करें।';}}
 $('copyMessage').onclick=()=>copyText($('message'),$('formStatus'));$('copy').onclick=()=>copyText($('message'),$('formStatus'));
 document.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{$('offer').value=b.dataset.pick+'|'+b.dataset.price;$('generate').click();$('message').scrollIntoView({behavior:'smooth',block:'center'});});
