@@ -83,11 +83,11 @@ document.getElementById("emailProspect").onclick=()=>{
  const input=document.getElementById("prospectEmail"),recipient=input.value.trim(),status=document.getElementById("copyState");
  if(!recipient||!input.checkValidity()){status.textContent="पहले prospect का valid public business email दर्ज करें।";input.focus();return;}
  const subject="Writing / editing / research support enquiry";
- window.location.href="mailto:"+encodeURIComponent(recipient)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(document.getElementById("msg").value);
+ window.location.href="mailto:"+recipient+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(document.getElementById("msg").value);
  status.textContent="Email draft खुलने का अनुरोध किया गया; recipient और message जाँचकर स्वयं भेजें।";
 };
 document.getElementById("whatsappProspect").onclick=()=>{
- const raw=document.getElementById("prospectPhone").value.trim(),digits=raw.replace(/\\D/g,""),status=document.getElementById("copyState");
+ const raw=document.getElementById("prospectPhone").value.trim(),digits=raw.replace(/\D/g,""),status=document.getElementById("copyState");
  if(digits.length<10||digits.length>15){status.textContent="Prospect का country code सहित public WhatsApp number दर्ज करें (10–15 digits)।";document.getElementById("prospectPhone").focus();return;}
  const a=document.createElement("a");a.href="https://wa.me/"+digits+"?text="+encodeURIComponent(document.getElementById("msg").value);a.target="_blank";a.rel="noopener noreferrer";document.body.appendChild(a);a.click();a.remove();
  status.textContent="WhatsApp draft खोलने का अनुरोध किया गया; recipient और message जाँचकर स्वयं भेजें।";
