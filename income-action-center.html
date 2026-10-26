@@ -78,7 +78,7 @@ document.getElementById("export").onclick=()=>{
   document.getElementById("status").textContent="CSV backup downloaded. Values remain user-entered and are not independently verified.";
 };
 try{let v=JSON.parse(localStorage.getItem("sri-income-action-tracker-v1")||"null");if(v)ids.forEach(id=>{if(Number.isFinite(Number(v[id])))document.getElementById(id).value=v[id]})}catch(e){}update();
-document.getElementById("copy").onclick=async()=>{try{await navigator.clipboard.writeText(document.getElementById("msg").textContent);document.getElementById("copyState").textContent="कॉपी हो गया; भेजने से पहले template संपादित करें।"}catch(e){document.getElementById("copyState").textContent="Clipboard unavailable; text manually select करके copy करें।"}};
+document.getElementById("copy").onclick=async()=>{try{await navigator.clipboard.writeText(document.getElementById("msg").value);document.getElementById("copyState").textContent="कॉपी हो गया; भेजने से पहले template संपादित करें।"}catch(e){document.getElementById("copyState").textContent="Clipboard unavailable; text manually select करके copy करें।"}};
 document.getElementById("emailProspect").onclick=()=>{
  const input=document.getElementById("prospectEmail"),recipient=input.value.trim(),status=document.getElementById("copyState");
  if(!recipient||!input.checkValidity()){status.textContent="पहले prospect का valid public business email दर्ज करें।";input.focus();return;}
