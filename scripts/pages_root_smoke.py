@@ -29,7 +29,7 @@ ROUTES = [
     ("public product catalog", BASE + "/products.html", ("SHIRMANI Real Product Catalog", "24 registered offers")),
     ("global service and sales desk", BASE + "/showroom/global-product-sales-desk.html", ("SHIRMANI | Global Service & Sales Desk", "Open First Client Pilot Desk")),
     ("first-client pilot desk", BASE + "/showroom/first-client-pilot-desk.html", ("SHIRMANI — First Client Pilot Desk", "WhatsApp")),
-    ("writing and research service enquiry", BASE + "/services/writing-research-enquiry.html", ("Writing & Research Services", "Writing & Research Enquiry")),
+    ("writing and research service enquiry", BASE + "/services/writing-research-enquiry.html", ("Writing & Research Services", "Writing & Research Enquiry", 'data-offer="research-summary" data-price="₹1,499"', 'data-offer="website-blog" data-price="₹999"')),
     ("product order page", BASE + "/product-order.html", ("SHIRMANI Product Order", "Order / Payment")),
     (
         "income-first revenue control center",
