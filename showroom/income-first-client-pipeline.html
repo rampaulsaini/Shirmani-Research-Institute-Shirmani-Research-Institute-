@@ -31,11 +31,11 @@
 <form id="leadForm">
 <div class="row">
 <div class="field"><label for="org">संस्था / ग्राहक का नाम</label><input id="org" required maxlength="120" placeholder="नाम या संस्था"></div>
-<div class="field"><label for="contact">संपर्क विवरण (वैकल्पिक)</label><input id="contact" maxlength="160" placeholder="ईमेल / फोन / संपर्क पेज"></div>
+<div class="field"><label for="contact">ग्राहक का सत्यापित email या WhatsApp नंबर (वैकल्पिक)</label><input id="contact" maxlength="160" placeholder="Email या country code सहित नंबर"></div>
 <div class="field"><label for="service">सेवा</label><select id="service"><option value="Editing / proofreading|499">Editing / proofreading — ₹499 प्रस्ताव</option><option value="Website / article copy|999">Website / article copy — ₹999 प्रस्ताव</option><option value="Source-based research brief|1499">Research brief — ₹1,499 प्रस्ताव</option><option value="Custom scope|0">Custom scope — पहले quote तय करें</option></select></div>
 <div class="field"><label for="stage">वास्तविक स्थिति</label><select id="stage"><option>Lead to contact</option><option>Message prepared</option><option>Enquiry received</option><option>Scope / quote agreed</option><option>Payment verified</option><option>Delivered</option><option>Closed / no response</option></select></div>
 <div class="field"><label for="follow">अगली follow-up तारीख</label><input id="follow" type="date"></div>
-<div class="field"><label for="amount">वास्तविक प्राप्त भुगतान (₹)</label><input id="amount" type="number" min="0" step="1" value="0"></div>
+<div class="field"><label for="amount">दर्ज प्राप्त राशि (₹; receipt स्वयं सत्यापित करें)</label><input id="amount" type="number" min="0" step="1" value="0"></div>
 </div>
 <div class="field"><label for="need">ग्राहक की ज़रूरत / अगला कदम</label><textarea id="need" maxlength="1500" placeholder="केवल तथ्य लिखें; संवेदनशील निजी जानकारी न रखें।"></textarea></div>
 <button class="primary" type="submit">रिकॉर्ड सुरक्षित करें</button><button type="button" id="reset">फॉर्म साफ़ करें</button>
@@ -43,7 +43,7 @@
 </form>
 <div class="row">
 <div class="offer"><span class="muted">रिकॉर्डेड ग्राहक / leads</span><div id="leadCount" class="price">0</div></div>
-<div class="offer"><span class="muted">सत्यापित भुगतान (केवल आपके दर्ज प्रमाण पर आधारित)</span><div id="revenue" class="price">₹0</div></div>
+<div class="offer"><span class="muted">दर्ज भुगतान राशि (स्वयं दर्ज; स्वतंत्र सत्यापन नहीं)</span><div id="revenue" class="price">₹0</div></div>
 <div class="offer"><span class="muted">अगले follow-up बाकी</span><div id="dueCount" class="price">0</div></div>
 </div>
 <div class="actions"><button id="export">CSV export</button><button id="copy">संदेश copy करें</button><button id="clear">सभी स्थानीय रिकॉर्ड मिटाएँ</button></div>
@@ -57,7 +57,7 @@
 <div class="field"><label for="offer">सेवा प्रस्ताव</label><select id="offer"><option value="Editing / proofreading|499">Editing / proofreading — ₹499</option><option value="Website / article copy|999">Website / article copy — ₹999</option><option value="Source-based research brief|1499">Research brief — ₹1,499</option></select></div>
 </div>
 <div class="field"><label for="message">संदेश (भेजने से पहले सत्यापित व personalize करें)</label><textarea id="message"></textarea></div>
-<button class="primary" id="generate" type="button">संदेश तैयार करें</button><button id="copyMessage" type="button">संदेश copy करें</button>
+<button class="primary" id="generate" type="button">संदेश तैयार करें</button><button id="copyMessage" type="button">संदेश copy करें</button><button id="openEmail" type="button">Email draft खोलें</button><button id="openWhatsApp" type="button">WhatsApp draft खोलें</button><p class="small">Email/WhatsApp केवल आपके डिवाइस पर draft खोलते हैं; संदेश अपने-आप नहीं भेजा जाता। गलत या अपुष्ट संपर्क पर न भेजें।</p>
 <p class="small">इसे केवल उन संस्थाओं/व्यक्तियों को भेजें जिनके लिए सेवा प्रासंगिक हो; spam न करें। इस पेज से कोई संदेश अपने-आप नहीं भेजा जाता।</p>
 </section>
 <footer>आय प्रमाण तभी: वास्तविक ग्राहक की स्वीकृति + भुगतान का सत्यापन + सहमत deliverable + डिलीवरी रिकॉर्ड। इस पेज के आँकड़े स्थानीय user-entered records हैं, बाहरी रूप से सत्यापित बिक्री नहीं।</footer>
@@ -77,6 +77,8 @@ $('export').onclick=()=>{const cols=['org','contact','service','proposed','stage
 $('clear').onclick=()=>{if(confirm('क्या इस ब्राउज़र के सभी स्थानीय lead records मिटाने हैं? पहले CSV export कर लें।')){leads=[];persist();}};
 function message(){const nm=$('name').value.trim()||'नमस्ते',co=$('company').value.trim()||'आपकी संस्था';const [svc,price]=$('offer').value.split('|');return nm+',\n\nमैं Shirmani Research Institute की ओर से संपर्क कर रहा/रही हूँ। '+co+' के लिए '+svc+' उपयोगी हो सकती है। प्रस्तावित शुरुआती दर ₹'+price+' है; काम शुरू करने से पहले scope, deadline, revision और payment terms लिखित रूप में तय होंगे।\n\nयदि यह आपकी वर्तमान ज़रूरत से मेल खाता है, तो कृपया बताएं कि किस प्रकार का काम और समय-सीमा चाहिए। मैं उसके आधार पर स्पष्ट प्रस्ताव साझा करूँगा/करूँगी।\n\nधन्यवाद,\nShirmani Research Institute';}
 $('generate').onclick=()=>$('message').value=message();
+$('openEmail').onclick=()=>{const to=$('contact').value.trim();if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(to)){ $('formStatus').textContent='पहले ग्राहक का सही और सत्यापित email दर्ज करें।'; return; }const body=$('message').value.trim()||message();window.location.href='mailto:'+to+'?subject='+encodeURIComponent('SHIRMANI service enquiry')+'&body='+encodeURIComponent(body);};
+$('openWhatsApp').onclick=()=>{let n=$('contact').value.trim().replace(/[\s().+-]/g,'');if(/^\d{10}$/.test(n))n='91'+n;if(!/^\d{11,15}$/.test(n)){ $('formStatus').textContent='WhatsApp के लिए सत्यापित नंबर country code सहित दर्ज करें; भारत के 10 अंकों के नंबर में +91 स्वतः जोड़ा जाएगा।'; return; }const body=$('message').value.trim()||message();window.open('https://wa.me/'+n+'?text='+encodeURIComponent(body),'_blank','noopener,noreferrer');};
 async function copyText(el,status){try{await navigator.clipboard.writeText(el.value);status.textContent='Copy हो गया।';}catch(e){el.focus();el.select();status.textContent='Auto-copy उपलब्ध नहीं; चुने हुए संदेश को manually copy करें।';}}
 $('copyMessage').onclick=()=>copyText($('message'),$('formStatus'));$('copy').onclick=()=>copyText($('message'),$('formStatus'));
 document.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{$('offer').value=b.dataset.pick+'|'+b.dataset.price;$('generate').click();$('message').scrollIntoView({behavior:'smooth',block:'center'});});
