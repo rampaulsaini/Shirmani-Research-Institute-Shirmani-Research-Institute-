@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-25T16:30:43.252Z",
+  "generated_at": "2026-10-26T09:52:50.869911+00:00",
   "catalog_count": 5000,
-  "public_surface_count": 125,
-  "remaining_public_surfaces": 4875,
+  "public_surface_count": 150,
+  "remaining_public_surfaces": 4850,
   "created_this_cycle": 25,
   "batch_size": 25,
   "state": "OPERATIONAL_SURFACE",
@@ -16,7 +16,7 @@
       "engine": "calculator",
       "price_inr": 79,
       "offer_price_inr": 79,
-      "description": "SHIRMANI Starter Counting & Math 0001: produce reusable Counting & Math work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Starter Counting & Math 0001: produce reusable Counting & Math work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0001/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -28,7 +28,7 @@
       "engine": "text",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Quick Text & Language 0002: produce reusable Text & Language work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Quick Text & Language 0002: produce reusable Text & Language work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0002/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -40,7 +40,7 @@
       "engine": "seo",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Pro SEO & Web 0003: produce reusable SEO & Web work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Pro SEO & Web 0003: produce reusable SEO & Web work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0003/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -52,7 +52,7 @@
       "engine": "data",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Studio Data Tools 0004: produce reusable Data Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Studio Data Tools 0004: produce reusable Data Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0004/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -64,7 +64,7 @@
       "engine": "draw",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Mini Sketch & Drawing 0005: produce reusable Sketch & Drawing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Mini Sketch & Drawing 0005: produce reusable Sketch & Drawing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0005/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -76,7 +76,7 @@
       "engine": "pixel",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Advanced Painting & Pixel Art 0006: produce reusable Painting & Pixel Art work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Advanced Painting & Pixel Art 0006: produce reusable Painting & Pixel Art work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0006/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -88,7 +88,7 @@
       "engine": "game",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Smart Mini Games 0007: produce reusable Mini Games work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Smart Mini Games 0007: produce reusable Mini Games work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0007/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -100,7 +100,7 @@
       "engine": "quiz",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Express Education 0008: produce reusable Education work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Express Education 0008: produce reusable Education work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0008/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -112,7 +112,7 @@
       "engine": "research",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Creator Research 0009: produce reusable Research work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Creator Research 0009: produce reusable Research work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0009/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -124,7 +124,7 @@
       "engine": "productivity",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Research Productivity 0010: produce reusable Productivity work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Research Productivity 0010: produce reusable Productivity work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0010/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -136,7 +136,7 @@
       "engine": "media",
       "price_inr": 319,
       "offer_price_inr": 319,
-      "description": "SHIRMANI Classroom Audio & Media 0011: produce reusable Audio & Media work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Classroom Audio & Media 0011: produce reusable Audio & Media work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0011/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -148,7 +148,7 @@
       "engine": "commerce",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Mobile Commerce 0012: produce reusable Commerce work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Mobile Commerce 0012: produce reusable Commerce work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0012/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -160,7 +160,7 @@
       "engine": "access",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Visual Accessibility 0013: produce reusable Accessibility work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Visual Accessibility 0013: produce reusable Accessibility work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0013/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -172,7 +172,7 @@
       "engine": "visual",
       "price_inr": 279,
       "offer_price_inr": 279,
-      "description": "SHIRMANI Batch Visualization 0014: produce reusable Visualization work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Batch Visualization 0014: produce reusable Visualization work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0014/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -184,7 +184,7 @@
       "engine": "quality",
       "price_inr": 479,
       "offer_price_inr": 479,
-      "description": "SHIRMANI Insight Security & Quality 0015: produce reusable Security & Quality work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Insight Security & Quality 0015: produce reusable Security & Quality work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0015/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -196,7 +196,7 @@
       "engine": "ai",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Toolkit AI Prompt Tools 0016: produce reusable AI Prompt Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Toolkit AI Prompt Tools 0016: produce reusable AI Prompt Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0016/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -208,7 +208,7 @@
       "engine": "nlp",
       "price_inr": 559,
       "offer_price_inr": 559,
-      "description": "SHIRMANI Generator ML/NLP Tools 0017: produce reusable ML/NLP Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Generator ML/NLP Tools 0017: produce reusable ML/NLP Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0017/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -220,7 +220,7 @@
       "engine": "quantum",
       "price_inr": 639,
       "offer_price_inr": 639,
-      "description": "SHIRMANI Analyzer Quantum-Inspired 0018: produce reusable Quantum-Inspired work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Analyzer Quantum-Inspired 0018: produce reusable Quantum-Inspired work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0018/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -232,7 +232,7 @@
       "engine": "engineering",
       "price_inr": 559,
       "offer_price_inr": 559,
-      "description": "SHIRMANI Planner Engineering 0019: produce reusable Engineering work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Planner Engineering 0019: produce reusable Engineering work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0019/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -244,7 +244,7 @@
       "engine": "knowledge",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Lab Knowledge 0020: produce reusable Knowledge work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Lab Knowledge 0020: produce reusable Knowledge work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0020/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -256,7 +256,7 @@
       "engine": "time",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Workspace Calendar & Time 0021: produce reusable Calendar & Time work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Workspace Calendar & Time 0021: produce reusable Calendar & Time work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0021/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -268,7 +268,7 @@
       "engine": "files",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Dashboard Files & Formats 0022: produce reusable Files & Formats work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Dashboard Files & Formats 0022: produce reusable Files & Formats work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0022/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -280,7 +280,7 @@
       "engine": "marketing",
       "price_inr": 319,
       "offer_price_inr": 319,
-      "description": "SHIRMANI Explorer Marketing 0023: produce reusable Marketing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Explorer Marketing 0023: produce reusable Marketing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0023/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -292,7 +292,7 @@
       "engine": "creator",
       "price_inr": 279,
       "offer_price_inr": 279,
-      "description": "SHIRMANI Builder Creator Tools 0024: produce reusable Creator Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Builder Creator Tools 0024: produce reusable Creator Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0024/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -304,7 +304,7 @@
       "engine": "nature",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Converter Nature & Earth 0025: produce reusable Nature & Earth work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Converter Nature & Earth 0025: produce reusable Nature & Earth work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0025/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -316,7 +316,7 @@
       "engine": "calculator",
       "price_inr": 79,
       "offer_price_inr": 79,
-      "description": "SHIRMANI Inspector Counting & Math 0026: produce reusable Counting & Math work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Inspector Counting & Math 0026: produce reusable Counting & Math work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0026/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -328,7 +328,7 @@
       "engine": "text",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Composer Text & Language 0027: produce reusable Text & Language work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Composer Text & Language 0027: produce reusable Text & Language work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0027/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -340,7 +340,7 @@
       "engine": "seo",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Maker SEO & Web 0028: produce reusable SEO & Web work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Maker SEO & Web 0028: produce reusable SEO & Web work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0028/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -352,7 +352,7 @@
       "engine": "data",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Trainer Data Tools 0029: produce reusable Data Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Trainer Data Tools 0029: produce reusable Data Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0029/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -364,7 +364,7 @@
       "engine": "draw",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Simulator Sketch & Drawing 0030: produce reusable Sketch & Drawing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Simulator Sketch & Drawing 0030: produce reusable Sketch & Drawing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0030/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -376,7 +376,7 @@
       "engine": "pixel",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Manager Painting & Pixel Art 0031: produce reusable Painting & Pixel Art work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Manager Painting & Pixel Art 0031: produce reusable Painting & Pixel Art work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0031/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -388,7 +388,7 @@
       "engine": "game",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Tracker Mini Games 0032: produce reusable Mini Games work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Tracker Mini Games 0032: produce reusable Mini Games work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0032/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -400,7 +400,7 @@
       "engine": "quiz",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Mapper Education 0033: produce reusable Education work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Mapper Education 0033: produce reusable Education work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0033/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -412,7 +412,7 @@
       "engine": "research",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Canvas Research 0034: produce reusable Research work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Canvas Research 0034: produce reusable Research work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0034/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -424,7 +424,7 @@
       "engine": "productivity",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Workbench Productivity 0035: produce reusable Productivity work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Workbench Productivity 0035: produce reusable Productivity work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0035/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -436,7 +436,7 @@
       "engine": "media",
       "price_inr": 319,
       "offer_price_inr": 319,
-      "description": "SHIRMANI Console Audio & Media 0036: produce reusable Audio & Media work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Console Audio & Media 0036: produce reusable Audio & Media work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0036/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -448,7 +448,7 @@
       "engine": "commerce",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Assistant Commerce 0037: produce reusable Commerce work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Assistant Commerce 0037: produce reusable Commerce work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0037/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -460,7 +460,7 @@
       "engine": "access",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Monitor Accessibility 0038: produce reusable Accessibility work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Monitor Accessibility 0038: produce reusable Accessibility work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0038/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -472,7 +472,7 @@
       "engine": "visual",
       "price_inr": 279,
       "offer_price_inr": 279,
-      "description": "SHIRMANI Archive Visualization 0039: produce reusable Visualization work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Archive Visualization 0039: produce reusable Visualization work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0039/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -484,7 +484,7 @@
       "engine": "quality",
       "price_inr": 479,
       "offer_price_inr": 479,
-      "description": "SHIRMANI Universal Security & Quality 0040: produce reusable Security & Quality work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Universal Security & Quality 0040: produce reusable Security & Quality work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0040/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -496,7 +496,7 @@
       "engine": "ai",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Starter AI Prompt Tools 0041: produce reusable AI Prompt Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Starter AI Prompt Tools 0041: produce reusable AI Prompt Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0041/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -508,7 +508,7 @@
       "engine": "nlp",
       "price_inr": 559,
       "offer_price_inr": 559,
-      "description": "SHIRMANI Quick ML/NLP Tools 0042: produce reusable ML/NLP Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Quick ML/NLP Tools 0042: produce reusable ML/NLP Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0042/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -520,7 +520,7 @@
       "engine": "quantum",
       "price_inr": 639,
       "offer_price_inr": 639,
-      "description": "SHIRMANI Pro Quantum-Inspired 0043: produce reusable Quantum-Inspired work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Pro Quantum-Inspired 0043: produce reusable Quantum-Inspired work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0043/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -532,7 +532,7 @@
       "engine": "engineering",
       "price_inr": 559,
       "offer_price_inr": 559,
-      "description": "SHIRMANI Studio Engineering 0044: produce reusable Engineering work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Studio Engineering 0044: produce reusable Engineering work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0044/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -544,7 +544,7 @@
       "engine": "knowledge",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Mini Knowledge 0045: produce reusable Knowledge work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Mini Knowledge 0045: produce reusable Knowledge work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0045/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -556,7 +556,7 @@
       "engine": "time",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Advanced Calendar & Time 0046: produce reusable Calendar & Time work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Advanced Calendar & Time 0046: produce reusable Calendar & Time work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0046/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -568,7 +568,7 @@
       "engine": "files",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Smart Files & Formats 0047: produce reusable Files & Formats work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Smart Files & Formats 0047: produce reusable Files & Formats work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0047/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -580,7 +580,7 @@
       "engine": "marketing",
       "price_inr": 319,
       "offer_price_inr": 319,
-      "description": "SHIRMANI Express Marketing 0048: produce reusable Marketing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Express Marketing 0048: produce reusable Marketing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0048/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -592,7 +592,7 @@
       "engine": "creator",
       "price_inr": 279,
       "offer_price_inr": 279,
-      "description": "SHIRMANI Creator Creator Tools 0049: produce reusable Creator Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Creator Creator Tools 0049: produce reusable Creator Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0049/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -604,7 +604,7 @@
       "engine": "nature",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Research Nature & Earth 0050: produce reusable Nature & Earth work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Research Nature & Earth 0050: produce reusable Nature & Earth work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0050/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -616,7 +616,7 @@
       "engine": "calculator",
       "price_inr": 79,
       "offer_price_inr": 79,
-      "description": "SHIRMANI Classroom Counting & Math 0051: produce reusable Counting & Math work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Classroom Counting & Math 0051: produce reusable Counting & Math work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0051/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -628,7 +628,7 @@
       "engine": "text",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Mobile Text & Language 0052: produce reusable Text & Language work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Mobile Text & Language 0052: produce reusable Text & Language work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0052/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -640,7 +640,7 @@
       "engine": "seo",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Visual SEO & Web 0053: produce reusable SEO & Web work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Visual SEO & Web 0053: produce reusable SEO & Web work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0053/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -652,7 +652,7 @@
       "engine": "data",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Batch Data Tools 0054: produce reusable Data Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Batch Data Tools 0054: produce reusable Data Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0054/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -664,7 +664,7 @@
       "engine": "draw",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Insight Sketch & Drawing 0055: produce reusable Sketch & Drawing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Insight Sketch & Drawing 0055: produce reusable Sketch & Drawing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0055/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -676,7 +676,7 @@
       "engine": "pixel",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Toolkit Painting & Pixel Art 0056: produce reusable Painting & Pixel Art work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Toolkit Painting & Pixel Art 0056: produce reusable Painting & Pixel Art work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0056/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -688,7 +688,7 @@
       "engine": "game",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Generator Mini Games 0057: produce reusable Mini Games work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Generator Mini Games 0057: produce reusable Mini Games work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0057/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -700,7 +700,7 @@
       "engine": "quiz",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Analyzer Education 0058: produce reusable Education work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Analyzer Education 0058: produce reusable Education work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0058/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -712,7 +712,7 @@
       "engine": "research",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Planner Research 0059: produce reusable Research work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Planner Research 0059: produce reusable Research work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0059/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -724,7 +724,7 @@
       "engine": "productivity",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Lab Productivity 0060: produce reusable Productivity work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Lab Productivity 0060: produce reusable Productivity work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0060/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -736,7 +736,7 @@
       "engine": "media",
       "price_inr": 319,
       "offer_price_inr": 319,
-      "description": "SHIRMANI Workspace Audio & Media 0061: produce reusable Audio & Media work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Workspace Audio & Media 0061: produce reusable Audio & Media work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0061/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -748,7 +748,7 @@
       "engine": "commerce",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Dashboard Commerce 0062: produce reusable Commerce work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Dashboard Commerce 0062: produce reusable Commerce work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0062/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -760,7 +760,7 @@
       "engine": "access",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Explorer Accessibility 0063: produce reusable Accessibility work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Explorer Accessibility 0063: produce reusable Accessibility work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0063/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -772,7 +772,7 @@
       "engine": "visual",
       "price_inr": 279,
       "offer_price_inr": 279,
-      "description": "SHIRMANI Builder Visualization 0064: produce reusable Visualization work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Builder Visualization 0064: produce reusable Visualization work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0064/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -784,7 +784,7 @@
       "engine": "quality",
       "price_inr": 479,
       "offer_price_inr": 479,
-      "description": "SHIRMANI Converter Security & Quality 0065: produce reusable Security & Quality work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Converter Security & Quality 0065: produce reusable Security & Quality work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0065/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -796,7 +796,7 @@
       "engine": "ai",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Inspector AI Prompt Tools 0066: produce reusable AI Prompt Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Inspector AI Prompt Tools 0066: produce reusable AI Prompt Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0066/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -808,7 +808,7 @@
       "engine": "nlp",
       "price_inr": 559,
       "offer_price_inr": 559,
-      "description": "SHIRMANI Composer ML/NLP Tools 0067: produce reusable ML/NLP Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Composer ML/NLP Tools 0067: produce reusable ML/NLP Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0067/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -820,7 +820,7 @@
       "engine": "quantum",
       "price_inr": 639,
       "offer_price_inr": 639,
-      "description": "SHIRMANI Maker Quantum-Inspired 0068: produce reusable Quantum-Inspired work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Maker Quantum-Inspired 0068: produce reusable Quantum-Inspired work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0068/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -832,7 +832,7 @@
       "engine": "engineering",
       "price_inr": 559,
       "offer_price_inr": 559,
-      "description": "SHIRMANI Trainer Engineering 0069: produce reusable Engineering work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Trainer Engineering 0069: produce reusable Engineering work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0069/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -844,7 +844,7 @@
       "engine": "knowledge",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Simulator Knowledge 0070: produce reusable Knowledge work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Simulator Knowledge 0070: produce reusable Knowledge work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0070/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -856,7 +856,7 @@
       "engine": "time",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Manager Calendar & Time 0071: produce reusable Calendar & Time work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Manager Calendar & Time 0071: produce reusable Calendar & Time work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0071/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -868,7 +868,7 @@
       "engine": "files",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Tracker Files & Formats 0072: produce reusable Files & Formats work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Tracker Files & Formats 0072: produce reusable Files & Formats work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0072/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -880,7 +880,7 @@
       "engine": "marketing",
       "price_inr": 319,
       "offer_price_inr": 319,
-      "description": "SHIRMANI Mapper Marketing 0073: produce reusable Marketing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Mapper Marketing 0073: produce reusable Marketing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0073/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -892,7 +892,7 @@
       "engine": "creator",
       "price_inr": 279,
       "offer_price_inr": 279,
-      "description": "SHIRMANI Canvas Creator Tools 0074: produce reusable Creator Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Canvas Creator Tools 0074: produce reusable Creator Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0074/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -904,7 +904,7 @@
       "engine": "nature",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Workbench Nature & Earth 0075: produce reusable Nature & Earth work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Workbench Nature & Earth 0075: produce reusable Nature & Earth work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0075/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -916,7 +916,7 @@
       "engine": "calculator",
       "price_inr": 79,
       "offer_price_inr": 79,
-      "description": "SHIRMANI Console Counting & Math 0076: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Console Counting & Math 0076: produce reusable Counting & Math work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0076/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -928,7 +928,7 @@
       "engine": "text",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Assistant Text & Language 0077: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Assistant Text & Language 0077: produce reusable Text & Language work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0077/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -940,7 +940,7 @@
       "engine": "seo",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Monitor SEO & Web 0078: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Monitor SEO & Web 0078: produce reusable SEO & Web work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0078/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -952,7 +952,7 @@
       "engine": "data",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Archive Data Tools 0079: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Archive Data Tools 0079: produce reusable Data Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0079/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -964,7 +964,7 @@
       "engine": "draw",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Universal Sketch & Drawing 0080: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Universal Sketch & Drawing 0080: produce reusable Sketch & Drawing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0080/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -976,7 +976,7 @@
       "engine": "pixel",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Starter Painting & Pixel Art 0081: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Starter Painting & Pixel Art 0081: produce reusable Painting & Pixel Art work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0081/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -988,7 +988,7 @@
       "engine": "game",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Quick Mini Games 0082: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Quick Mini Games 0082: produce reusable Mini Games work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0082/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1000,7 +1000,7 @@
       "engine": "quiz",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Pro Education 0083: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Pro Education 0083: produce reusable Education work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0083/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1012,7 +1012,7 @@
       "engine": "research",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Studio Research 0084: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Studio Research 0084: produce reusable Research work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0084/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1024,7 +1024,7 @@
       "engine": "productivity",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Mini Productivity 0085: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Mini Productivity 0085: produce reusable Productivity work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0085/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1036,7 +1036,7 @@
       "engine": "media",
       "price_inr": 319,
       "offer_price_inr": 319,
-      "description": "SHIRMANI Advanced Audio & Media 0086: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Advanced Audio & Media 0086: produce reusable Audio & Media work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0086/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1048,7 +1048,7 @@
       "engine": "commerce",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Smart Commerce 0087: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Smart Commerce 0087: produce reusable Commerce work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0087/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1060,7 +1060,7 @@
       "engine": "access",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Express Accessibility 0088: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Express Accessibility 0088: produce reusable Accessibility work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0088/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1072,7 +1072,7 @@
       "engine": "visual",
       "price_inr": 279,
       "offer_price_inr": 279,
-      "description": "SHIRMANI Creator Visualization 0089: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Creator Visualization 0089: produce reusable Visualization work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0089/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1084,7 +1084,7 @@
       "engine": "quality",
       "price_inr": 479,
       "offer_price_inr": 479,
-      "description": "SHIRMANI Research Security & Quality 0090: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Research Security & Quality 0090: produce reusable Security & Quality work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0090/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1096,7 +1096,7 @@
       "engine": "ai",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Classroom AI Prompt Tools 0091: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Classroom AI Prompt Tools 0091: produce reusable AI Prompt Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0091/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1108,7 +1108,7 @@
       "engine": "nlp",
       "price_inr": 559,
       "offer_price_inr": 559,
-      "description": "SHIRMANI Mobile ML/NLP Tools 0092: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Mobile ML/NLP Tools 0092: produce reusable ML/NLP Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0092/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1120,7 +1120,7 @@
       "engine": "quantum",
       "price_inr": 639,
       "offer_price_inr": 639,
-      "description": "SHIRMANI Visual Quantum-Inspired 0093: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Visual Quantum-Inspired 0093: produce reusable Quantum-Inspired work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0093/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1132,7 +1132,7 @@
       "engine": "engineering",
       "price_inr": 559,
       "offer_price_inr": 559,
-      "description": "SHIRMANI Batch Engineering 0094: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Batch Engineering 0094: produce reusable Engineering work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0094/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1144,7 +1144,7 @@
       "engine": "knowledge",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Insight Knowledge 0095: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Insight Knowledge 0095: produce reusable Knowledge work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0095/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1156,7 +1156,7 @@
       "engine": "time",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Toolkit Calendar & Time 0096: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Toolkit Calendar & Time 0096: produce reusable Calendar & Time work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0096/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1168,7 +1168,7 @@
       "engine": "files",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Generator Files & Formats 0097: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Generator Files & Formats 0097: produce reusable Files & Formats work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0097/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1180,7 +1180,7 @@
       "engine": "marketing",
       "price_inr": 319,
       "offer_price_inr": 319,
-      "description": "SHIRMANI Analyzer Marketing 0098: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Analyzer Marketing 0098: produce reusable Marketing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0098/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1192,7 +1192,7 @@
       "engine": "creator",
       "price_inr": 279,
       "offer_price_inr": 279,
-      "description": "SHIRMANI Planner Creator Tools 0099: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Planner Creator Tools 0099: produce reusable Creator Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0099/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1204,7 +1204,7 @@
       "engine": "nature",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Lab Nature & Earth 0100: public catalogue listing. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Lab Nature & Earth 0100: produce reusable Nature & Earth work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0100/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1216,7 +1216,7 @@
       "engine": "calculator",
       "price_inr": 79,
       "offer_price_inr": 79,
-      "description": "SHIRMANI Workspace Counting & Math 0101: produce reusable Counting & Math work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Workspace Counting & Math 0101: produce reusable Counting & Math work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0101/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1228,7 +1228,7 @@
       "engine": "text",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Dashboard Text & Language 0102: produce reusable Text & Language work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Dashboard Text & Language 0102: produce reusable Text & Language work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0102/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1240,7 +1240,7 @@
       "engine": "seo",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Explorer SEO & Web 0103: produce reusable SEO & Web work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Explorer SEO & Web 0103: produce reusable SEO & Web work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0103/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1252,7 +1252,7 @@
       "engine": "data",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Builder Data Tools 0104: produce reusable Data Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Builder Data Tools 0104: produce reusable Data Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0104/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1264,7 +1264,7 @@
       "engine": "draw",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Converter Sketch & Drawing 0105: produce reusable Sketch & Drawing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Converter Sketch & Drawing 0105: produce reusable Sketch & Drawing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0105/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1276,7 +1276,7 @@
       "engine": "pixel",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Inspector Painting & Pixel Art 0106: produce reusable Painting & Pixel Art work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Inspector Painting & Pixel Art 0106: produce reusable Painting & Pixel Art work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0106/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1288,7 +1288,7 @@
       "engine": "game",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Composer Mini Games 0107: produce reusable Mini Games work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Composer Mini Games 0107: produce reusable Mini Games work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0107/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1300,7 +1300,7 @@
       "engine": "quiz",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Maker Education 0108: produce reusable Education work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Maker Education 0108: produce reusable Education work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0108/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1312,7 +1312,7 @@
       "engine": "research",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Trainer Research 0109: produce reusable Research work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Trainer Research 0109: produce reusable Research work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0109/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1324,7 +1324,7 @@
       "engine": "productivity",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Simulator Productivity 0110: produce reusable Productivity work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Simulator Productivity 0110: produce reusable Productivity work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0110/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1336,7 +1336,7 @@
       "engine": "media",
       "price_inr": 319,
       "offer_price_inr": 319,
-      "description": "SHIRMANI Manager Audio & Media 0111: produce reusable Audio & Media work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Manager Audio & Media 0111: produce reusable Audio & Media work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0111/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1348,7 +1348,7 @@
       "engine": "commerce",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Tracker Commerce 0112: produce reusable Commerce work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Tracker Commerce 0112: produce reusable Commerce work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0112/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1360,7 +1360,7 @@
       "engine": "access",
       "price_inr": 159,
       "offer_price_inr": 159,
-      "description": "SHIRMANI Mapper Accessibility 0113: produce reusable Accessibility work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Mapper Accessibility 0113: produce reusable Accessibility work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0113/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1372,7 +1372,7 @@
       "engine": "visual",
       "price_inr": 279,
       "offer_price_inr": 279,
-      "description": "SHIRMANI Canvas Visualization 0114: produce reusable Visualization work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Canvas Visualization 0114: produce reusable Visualization work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0114/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1384,7 +1384,7 @@
       "engine": "quality",
       "price_inr": 479,
       "offer_price_inr": 479,
-      "description": "SHIRMANI Workbench Security & Quality 0115: produce reusable Security & Quality work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Workbench Security & Quality 0115: produce reusable Security & Quality work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0115/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1396,7 +1396,7 @@
       "engine": "ai",
       "price_inr": 399,
       "offer_price_inr": 399,
-      "description": "SHIRMANI Console AI Prompt Tools 0116: produce reusable AI Prompt Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Console AI Prompt Tools 0116: produce reusable AI Prompt Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0116/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1408,7 +1408,7 @@
       "engine": "nlp",
       "price_inr": 559,
       "offer_price_inr": 559,
-      "description": "SHIRMANI Assistant ML/NLP Tools 0117: produce reusable ML/NLP Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Assistant ML/NLP Tools 0117: produce reusable ML/NLP Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0117/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1420,7 +1420,7 @@
       "engine": "quantum",
       "price_inr": 639,
       "offer_price_inr": 639,
-      "description": "SHIRMANI Monitor Quantum-Inspired 0118: produce reusable Quantum-Inspired work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Monitor Quantum-Inspired 0118: produce reusable Quantum-Inspired work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0118/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1432,7 +1432,7 @@
       "engine": "engineering",
       "price_inr": 559,
       "offer_price_inr": 559,
-      "description": "SHIRMANI Archive Engineering 0119: produce reusable Engineering work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Archive Engineering 0119: produce reusable Engineering work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0119/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1444,7 +1444,7 @@
       "engine": "knowledge",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Universal Knowledge 0120: produce reusable Knowledge work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Universal Knowledge 0120: produce reusable Knowledge work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0120/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1456,7 +1456,7 @@
       "engine": "time",
       "price_inr": 119,
       "offer_price_inr": 119,
-      "description": "SHIRMANI Starter Calendar & Time 0121: produce reusable Calendar & Time work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Starter Calendar & Time 0121: produce reusable Calendar & Time work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0121/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1468,7 +1468,7 @@
       "engine": "files",
       "price_inr": 199,
       "offer_price_inr": 199,
-      "description": "SHIRMANI Quick Files & Formats 0122: produce reusable Files & Formats work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Quick Files & Formats 0122: produce reusable Files & Formats work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0122/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1480,7 +1480,7 @@
       "engine": "marketing",
       "price_inr": 319,
       "offer_price_inr": 319,
-      "description": "SHIRMANI Pro Marketing 0123: produce reusable Marketing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Pro Marketing 0123: produce reusable Marketing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0123/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1492,7 +1492,7 @@
       "engine": "creator",
       "price_inr": 279,
       "offer_price_inr": 279,
-      "description": "SHIRMANI Studio Creator Tools 0124: produce reusable Creator Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Studio Creator Tools 0124: produce reusable Creator Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0124/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
@@ -1504,8 +1504,308 @@
       "engine": "nature",
       "price_inr": 239,
       "offer_price_inr": 239,
-      "description": "SHIRMANI Mini Nature & Earth 0125: produce reusable Nature & Earth work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control. Confirm the working demo, exact scope, delivery date, support and payment terms before ordering.",
+      "description": "SHIRMANI Mini Nature & Earth 0125: produce reusable Nature & Earth work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
       "product_url": "products/live/sp-0125/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0126",
+      "name": "SHIRMANI Advanced Counting & Math 0126",
+      "category": "Counting & Math",
+      "engine": "calculator",
+      "price_inr": 79,
+      "offer_price_inr": 79,
+      "description": "SHIRMANI Advanced Counting & Math 0126: produce reusable Counting & Math work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0126/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0127",
+      "name": "SHIRMANI Smart Text & Language 0127",
+      "category": "Text & Language",
+      "engine": "text",
+      "price_inr": 119,
+      "offer_price_inr": 119,
+      "description": "SHIRMANI Smart Text & Language 0127: produce reusable Text & Language work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0127/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0128",
+      "name": "SHIRMANI Express SEO & Web 0128",
+      "category": "SEO & Web",
+      "engine": "seo",
+      "price_inr": 159,
+      "offer_price_inr": 159,
+      "description": "SHIRMANI Express SEO & Web 0128: produce reusable SEO & Web work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0128/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0129",
+      "name": "SHIRMANI Creator Data Tools 0129",
+      "category": "Data Tools",
+      "engine": "data",
+      "price_inr": 199,
+      "offer_price_inr": 199,
+      "description": "SHIRMANI Creator Data Tools 0129: produce reusable Data Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0129/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0130",
+      "name": "SHIRMANI Research Sketch & Drawing 0130",
+      "category": "Sketch & Drawing",
+      "engine": "draw",
+      "price_inr": 239,
+      "offer_price_inr": 239,
+      "description": "SHIRMANI Research Sketch & Drawing 0130: produce reusable Sketch & Drawing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0130/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0131",
+      "name": "SHIRMANI Classroom Painting & Pixel Art 0131",
+      "category": "Painting & Pixel Art",
+      "engine": "pixel",
+      "price_inr": 239,
+      "offer_price_inr": 239,
+      "description": "SHIRMANI Classroom Painting & Pixel Art 0131: produce reusable Painting & Pixel Art work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0131/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0132",
+      "name": "SHIRMANI Mobile Mini Games 0132",
+      "category": "Mini Games",
+      "engine": "game",
+      "price_inr": 119,
+      "offer_price_inr": 119,
+      "description": "SHIRMANI Mobile Mini Games 0132: produce reusable Mini Games work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0132/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0133",
+      "name": "SHIRMANI Visual Education 0133",
+      "category": "Education",
+      "engine": "quiz",
+      "price_inr": 159,
+      "offer_price_inr": 159,
+      "description": "SHIRMANI Visual Education 0133: produce reusable Education work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0133/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0134",
+      "name": "SHIRMANI Batch Research 0134",
+      "category": "Research",
+      "engine": "research",
+      "price_inr": 399,
+      "offer_price_inr": 399,
+      "description": "SHIRMANI Batch Research 0134: produce reusable Research work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0134/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0135",
+      "name": "SHIRMANI Insight Productivity 0135",
+      "category": "Productivity",
+      "engine": "productivity",
+      "price_inr": 199,
+      "offer_price_inr": 199,
+      "description": "SHIRMANI Insight Productivity 0135: produce reusable Productivity work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0135/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0136",
+      "name": "SHIRMANI Toolkit Audio & Media 0136",
+      "category": "Audio & Media",
+      "engine": "media",
+      "price_inr": 319,
+      "offer_price_inr": 319,
+      "description": "SHIRMANI Toolkit Audio & Media 0136: produce reusable Audio & Media work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0136/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0137",
+      "name": "SHIRMANI Generator Commerce 0137",
+      "category": "Commerce",
+      "engine": "commerce",
+      "price_inr": 399,
+      "offer_price_inr": 399,
+      "description": "SHIRMANI Generator Commerce 0137: produce reusable Commerce work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0137/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0138",
+      "name": "SHIRMANI Analyzer Accessibility 0138",
+      "category": "Accessibility",
+      "engine": "access",
+      "price_inr": 159,
+      "offer_price_inr": 159,
+      "description": "SHIRMANI Analyzer Accessibility 0138: produce reusable Accessibility work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0138/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0139",
+      "name": "SHIRMANI Planner Visualization 0139",
+      "category": "Visualization",
+      "engine": "visual",
+      "price_inr": 279,
+      "offer_price_inr": 279,
+      "description": "SHIRMANI Planner Visualization 0139: produce reusable Visualization work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0139/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0140",
+      "name": "SHIRMANI Lab Security & Quality 0140",
+      "category": "Security & Quality",
+      "engine": "quality",
+      "price_inr": 479,
+      "offer_price_inr": 479,
+      "description": "SHIRMANI Lab Security & Quality 0140: produce reusable Security & Quality work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0140/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0141",
+      "name": "SHIRMANI Workspace AI Prompt Tools 0141",
+      "category": "AI Prompt Tools",
+      "engine": "ai",
+      "price_inr": 399,
+      "offer_price_inr": 399,
+      "description": "SHIRMANI Workspace AI Prompt Tools 0141: produce reusable AI Prompt Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0141/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0142",
+      "name": "SHIRMANI Dashboard ML/NLP Tools 0142",
+      "category": "ML/NLP Tools",
+      "engine": "nlp",
+      "price_inr": 559,
+      "offer_price_inr": 559,
+      "description": "SHIRMANI Dashboard ML/NLP Tools 0142: produce reusable ML/NLP Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0142/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0143",
+      "name": "SHIRMANI Explorer Quantum-Inspired 0143",
+      "category": "Quantum-Inspired",
+      "engine": "quantum",
+      "price_inr": 639,
+      "offer_price_inr": 639,
+      "description": "SHIRMANI Explorer Quantum-Inspired 0143: produce reusable Quantum-Inspired work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0143/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0144",
+      "name": "SHIRMANI Builder Engineering 0144",
+      "category": "Engineering",
+      "engine": "engineering",
+      "price_inr": 559,
+      "offer_price_inr": 559,
+      "description": "SHIRMANI Builder Engineering 0144: produce reusable Engineering work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0144/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0145",
+      "name": "SHIRMANI Converter Knowledge 0145",
+      "category": "Knowledge",
+      "engine": "knowledge",
+      "price_inr": 239,
+      "offer_price_inr": 239,
+      "description": "SHIRMANI Converter Knowledge 0145: produce reusable Knowledge work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0145/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0146",
+      "name": "SHIRMANI Inspector Calendar & Time 0146",
+      "category": "Calendar & Time",
+      "engine": "time",
+      "price_inr": 119,
+      "offer_price_inr": 119,
+      "description": "SHIRMANI Inspector Calendar & Time 0146: produce reusable Calendar & Time work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0146/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0147",
+      "name": "SHIRMANI Composer Files & Formats 0147",
+      "category": "Files & Formats",
+      "engine": "files",
+      "price_inr": 199,
+      "offer_price_inr": 199,
+      "description": "SHIRMANI Composer Files & Formats 0147: produce reusable Files & Formats work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0147/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0148",
+      "name": "SHIRMANI Maker Marketing 0148",
+      "category": "Marketing",
+      "engine": "marketing",
+      "price_inr": 319,
+      "offer_price_inr": 319,
+      "description": "SHIRMANI Maker Marketing 0148: produce reusable Marketing work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0148/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0149",
+      "name": "SHIRMANI Trainer Creator Tools 0149",
+      "category": "Creator Tools",
+      "engine": "creator",
+      "price_inr": 279,
+      "offer_price_inr": 279,
+      "description": "SHIRMANI Trainer Creator Tools 0149: produce reusable Creator Tools work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0149/index.html",
+      "public_surface": true,
+      "listing_state": "LISTED_NOT_SALE_VERIFIED"
+    },
+    {
+      "id": "SP-0150",
+      "name": "SHIRMANI Simulator Nature & Earth 0150",
+      "category": "Nature & Earth",
+      "engine": "nature",
+      "price_inr": 239,
+      "offer_price_inr": 239,
+      "description": "SHIRMANI Simulator Nature & Earth 0150: produce reusable Nature & Earth work with a concrete browser-executable result. Clean production package with product passport, QC gate and dispatch control.",
+      "product_url": "products/live/sp-0150/index.html",
       "public_surface": true,
       "listing_state": "LISTED_NOT_SALE_VERIFIED"
     }
