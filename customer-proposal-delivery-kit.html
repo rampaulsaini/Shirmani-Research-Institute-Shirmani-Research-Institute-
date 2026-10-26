@@ -61,5 +61,5 @@ val("notes"),
 $("proposal").addEventListener("submit",e=>{e.preventDefault();build()});
 $("copy").addEventListener("click",async()=>{if(!draft)build();try{await navigator.clipboard.writeText(draft);$("copy").textContent="कॉपी का अनुरोध पूरा";}catch(e){$("result").textContent=draft+"\n\nCopy unavailable in this browser. Select the text manually."; }});
 $("download").addEventListener("click",()=>{if(!draft)build();const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([draft],{type:"text/plain;charset=utf-8"}));a.download="shirmani-customer-proposal.txt";a.click();URL.revokeObjectURL(a.href)});
-$("mail").addEventListener("click",()=>{if(!draft)build();location.href="mailto:?subject="+encodeURIComponent("SHIRMANI Research Institute — Proposal draft for review")+"&body="+encodeURIComponent(draft)});
+$("mail").addEventListener("click",()=>{if(!draft)build();location.href="mailto:sainirampaul60@gmail.com?subject="+encodeURIComponent("SHIRMANI Research Institute — Proposal draft for review")+"&body="+encodeURIComponent(draft)});
 </script></body></html>
