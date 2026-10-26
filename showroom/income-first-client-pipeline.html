@@ -43,7 +43,7 @@
 </form>
 <div class="row">
 <div class="offer"><span class="muted">रिकॉर्डेड ग्राहक / leads</span><div id="leadCount" class="price">0</div></div>
-<div class="offer"><span class="muted">दर्ज भुगतान राशि (Payment verified/Delivered + reference; स्वतंत्र बैंक सत्यापन नहीं)</span><div id="revenue" class="price">₹0</div></div>
+<div class="offer"><span class="muted">दर्ज भुगतान राशि (केवल Payment verified + reference; स्वतंत्र बैंक सत्यापन नहीं)</span><div id="revenue" class="price">₹0</div></div>
 <div class="offer"><span class="muted">अगले follow-up बाकी</span><div id="dueCount" class="price">0</div></div>
 </div>
 <div class="actions"><button id="export">CSV export</button><button id="copy">संदेश copy करें</button><button id="clear">सभी स्थानीय रिकॉर्ड मिटाएँ</button></div>
@@ -69,7 +69,7 @@ try{leads=JSON.parse(localStorage.getItem(key)||'[]');if(!Array.isArray(leads))l
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let editingId=null;
 function persist(){try{localStorage.setItem(key,JSON.stringify(leads));$('formStatus').textContent='इस ब्राउज़र में स्थानीय रूप से सुरक्षित। अलग device पर अपने-आप sync नहीं होगा।';}catch(e){$('formStatus').textContent='ब्राउज़र में save नहीं हो सका। CSV export करके रिकॉर्ड सुरक्षित करें।';}render();}
-function render(){ $('leadCount').textContent=leads.length; $('revenue').textContent='₹'+leads.filter(x=>Number(x.amount)>0&&String(x.paymentRef||'').trim()!==''&&['Payment verified','Delivered'].includes(x.stage)).reduce((s,x)=>s+Number(x.amount),0).toLocaleString('en-IN');const today=new Date().toISOString().slice(0,10);$('dueCount').textContent=leads.filter(x=>x.follow&&x.follow<=today&&!['Delivered','Closed / no response'].includes(x.stage)).length;
+function render(){ $('leadCount').textContent=leads.length; $('revenue').textContent='₹'+leads.filter(x=>Number(x.amount)>0&&String(x.paymentRef||'').trim()!==''&&x.stage==='Payment verified').reduce((s,x)=>s+Number(x.amount),0).toLocaleString('en-IN');const today=new Date().toISOString().slice(0,10);$('dueCount').textContent=leads.filter(x=>x.follow&&x.follow<=today&&!['Delivered','Closed / no response'].includes(x.stage)).length;
 $('leadRows').innerHTML=leads.length?leads.map((x,i)=>'<tr><td>'+esc(x.org)+'</td><td>'+esc(x.service)+'<br><span class="muted">'+esc(x.stage)+'</span></td><td>₹'+Number(x.amount||0).toLocaleString('en-IN')+'</td><td>'+esc(x.follow||'—')+'</td><td><button type="button" data-edit="'+i+'">लोड करें</button> <button type="button" data-del="'+i+'">हटाएँ</button></td></tr>').join(''):'<tr><td colspan="5">अभी कोई lead दर्ज नहीं है।</td></tr>';}
 $('leadForm').addEventListener('submit',e=>{e.preventDefault();const sel=$('service').value.split('|');const record={id:editingId||Date.now(),org:$('org').value.trim(),contact:$('contact').value.trim(),service:sel[0],proposed:Number(sel[1]),stage:$('stage').value,follow:$('follow').value,amount:Number($('amount').value||0),paymentRef:$('paymentRef').value.trim(),need:$('need').value.trim(),updated:new Date().toISOString()};if(editingId!==null){const index=leads.findIndex(x=>x.id===editingId);if(index>=0)leads[index]=record;editingId=null;$('saveRecord').textContent='रिकॉर्ड सुरक्षित करें';}else{leads.push(record);}persist();$('leadForm').reset();$('amount').value='0';});
 $('reset').onclick=()=>{editingId=null;$('leadForm').reset();$('amount').value='0';$('saveRecord').textContent='रिकॉर्ड सुरक्षित करें';$('formStatus').textContent='';};
