@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>निष्पक्ष समझ निरीक्षण — Yatharth Inspection Framework</title>
+<meta name="description" content="Evidence-first, privacy-preserving framework for self-observation, education, work and role-specific assessment.">
+<style>
+body{font-family:system-ui,sans-serif;line-height:1.6;margin:0;background:#f6f7f9;color:#17202a}
+main{max-width:1100px;margin:auto;padding:32px 18px}section{background:#fff;padding:22px;margin:16px 0;border-radius:14px;border:1px solid #dfe4ea}
+h1,h2{line-height:1.2} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.card{padding:16px;border:1px solid #e1e6eb;border-radius:12px;background:#fafbfc}
+.badge{display:inline-block;padding:4px 9px;border-radius:999px;background:#e9eef3;font-size:.85rem}
+.notice{border-left:4px solid #59636e;padding-left:14px}
+ol{padding-left:24px}
+</style>
+</head>
+<body>
+<main>
+<header>
+<span class="badge">Design specification • not a certification authority</span>
+<h1>निष्पक्ष समझ निरीक्षण</h1>
+<p><strong>Yatharth Inspection Framework</strong> — व्यक्ति को किसी एक पहचान, पद या विचार से परिभाषित करने के बजाय घोषित उद्देश्य के अनुसार evidence, reasoning, behaviour, knowledge और self-observation को अलग-अलग देखना।</p>
+</header>
+
+<section>
+<h2>1. निरीक्षण पहले किस लिए?</h2>
+<p>हर assessment session में उद्देश्य पहले चुना जाएगा। एक ही परीक्षण को सभी उद्देश्यों पर लागू नहीं किया जाएगा।</p>
+<div class="grid">
+<div class="card"><b>स्व-निरीक्षण</b><br>Self-observation, reflection, consistency और संतुष्टि के व्यक्तिगत संकेत।</div>
+<div class="card"><b>शिक्षा</b><br>ज्ञान, समझ, reasoning, स्रोतों का उपयोग और सीखने की क्षमता।</div>
+<div class="card"><b>कार्य/पद</b><br>Role-specific competencies, documented work और reproducible tasks।</div>
+<div class="card"><b>सार्वजनिक पद</b><br>कानून, घोषित duties, सार्वजनिक record और स्वतंत्र human review के अनुरूप assessment।</div>
+<div class="card"><b>मानव-केंद्रित प्रमाण</b><br>किसी व्यक्ति के चुने हुए प्रश्न/दावे को evidence के विरुद्ध परखना; किसी को “पूर्ण मानव” प्रमाणित करने का दावा नहीं।</div>
+</div>
+</section>
+
+<section>
+<h2>2. निरीक्षण पाइपलाइन</h2>
+<p><strong>Purpose → Consent → Scope → Inputs → Normalize → Multi-angle Analysis → Evidence → Human Review → Result → Appeal → Audit</strong></p>
+<ol>
+<li><b>Purpose:</b> assessment का उद्देश्य और उपयोग स्पष्ट।</li>
+<li><b>Consent & legal basis:</b> विशेषकर biometric data के लिए स्पष्ट सहमति और लागू कानून।</li>
+<li><b>Scope:</b> कौन-से प्रश्न और कौन-से निष्कर्ष अनुमत हैं।</li>
+<li><b>Inputs:</b> text, answers, work samples, references और optional authorized signals।</li>
+<li><b>Analysis:</b> NLP, reasoning checks, contradiction detection, provenance और task performance।</li>
+<li><b>Evidence:</b> हर substantive claim के साथ source/provenance और uncertainty।</li>
+<li><b>Human review:</b> consequential decisions में AI अकेला निर्णायक नहीं।</li>
+<li><b>Result:</b> PASS/CHECK/NOT_VERIFIED/INSUFFICIENT_EVIDENCE जैसे bounded states।</li>
+<li><b>Appeal:</b> व्यक्ति को correction, explanation और पुनरीक्षण का रास्ता।</li>
+<li><b>Audit:</b> model/version, evidence lineage और decision record का सुरक्षित audit trail।</li>
+</ol>
+</section>
+
+<section>
+<h2>3. Multi-angle reasoning matrix</h2>
+<div class="grid">
+<div class="card">शब्दार्थ और संदर्भ</div><div class="card">तर्क और आंतरिक consistency</div>
+<div class="card">तथ्य और स्वतंत्र स्रोत</div><div class="card">वैकल्पिक व्याख्याएँ</div>
+<div class="card">समय/परिस्थिति</div><div class="card">व्यवहारिक/कार्य evidence</div>
+<div class="card">अनिश्चितता और missing evidence</div><div class="card">हित-संघर्ष और provenance</div>
+</div>
+<p class="notice">AI किसी निष्कर्ष को केवल इसलिए सत्य नहीं बनाएगा क्योंकि model confidence अधिक है। confidence, evidence का विकल्प नहीं है।</p>
+</section>
+
+<section>
+<h2>4. Biometric & multimodal boundary</h2>
+<p>Finger-vein, eye/iris, face, voice या अन्य biometric signals केवल स्पष्ट, वैध और उद्देश्य-सीमित उपयोग में प्रस्तावित हैं। जहां संभव हो processing device पर, न्यूनतम data के साथ और raw biometric retention के बिना होगी। Biometric match को व्यक्ति के चरित्र, सत्यता, बुद्धिमत्ता, नैतिकता या “पूर्ण संतुष्टि” का प्रमाण नहीं माना जाएगा।</p>
+</section>
+
+<section>
+<h2>5. Certificate model</h2>
+<p>Certificate किसी व्यक्ति की सार्वभौमिक अंतिम सत्यता का प्रमाण नहीं होगा। यह केवल <em>एक निश्चित scope, समय, evidence set, assessment version और reviewer process</em> के लिए जारी होने वाला bounded record होगा।</p>
+<div class="grid">
+<div class="card"><b>VERIFIED</b><br>परिभाषित criterion के लिए पर्याप्त reviewed evidence।</div>
+<div class="card"><b>CHECK</b><br>आंशिक/सीमित evidence; आगे review आवश्यक।</div>
+<div class="card"><b>NOT_VERIFIED</b><br>उपलब्ध evidence स्वतंत्र निष्कर्ष के लिए पर्याप्त नहीं।</div>
+<div class="card"><b>DISPUTED</b><br>साक्ष्य या interpretation पर documented disagreement।</div>
+</div>
+</section>
+
+<section>
+<h2>6. मानव सभ्यता का comparative research layer</h2>
+<p>ऐतिहासिक विभूतियों और आधुनिक संस्थाओं की तुलना को “श्रेष्ठता ranking” के रूप में नहीं, बल्कि समान research dimensions में evidence mapping के रूप में किया जाएगा:</p>
+<p><strong>दावा → संदर्भ → प्राथमिक स्रोत → स्वतंत्र corroboration → प्रभाव → सीमाएँ → विरोधी evidence → अनिश्चितता</strong></p>
+<p>इससे किसी विचार की उपयोगिता या ऐतिहासिक प्रभाव का अध्ययन किया जा सकता है, बिना किसी व्यक्ति या युग को एक सार्वभौमिक score देने के।</p>
+</section>
+
+<section>
+<h2>7. 850 करोड़ उपयोगकर्ताओं के लिए architecture</h2>
+<div class="grid">
+<div class="card"><b>Identity</b><br>passkeys/authorized identity; biometric optional and purpose-bound.</div>
+<div class="card"><b>Language</b><br>multilingual NLP with local-language preservation.</div>
+<div class="card"><b>Privacy</b><br>data minimization, encryption, retention controls and deletion workflows.</div>
+<div class="card"><b>Safety</b><br>human review, appeals, rate limits and abuse monitoring.</div>
+<div class="card"><b>Evidence</b><br>provenance graph, source versioning and immutable audit events.</div>
+<div class="card"><b>Accessibility</b><br>low-bandwidth, mobile-first, assistive technology and offline-capable assessment packets.</div>
+</div>
+</section>
+
+<section>
+<h2>8. Income & livelihood connection</h2>
+<p>आय को assessment का लक्ष्य नहीं, बल्कि verified skills/work को वास्तविक livelihood opportunities से जोड़ने वाली downstream layer माना जाएगा। Assessment record अपने-आप income, payment या employment guarantee नहीं बनाता।</p>
+<p><strong>Skill evidence → verified work → fulfillment evidence → contribution record → authorized settlement</strong></p>
+</section>
+
+<section>
+<h2>9. Core integrity rule</h2>
+<p class="notice"><strong>जहाँ evidence नहीं है वहाँ value नहीं गढ़ी जाएगी।</strong> Automation/QC, model confidence और generated output को स्वतंत्र वैज्ञानिक या सामाजिक सत्यापन के बराबर नहीं माना जाएगा। Consequential decisions में लागू कानून, संस्थागत प्रक्रिया और मानव उत्तरदायित्व बने रहेंगे।</p>
+</section>
+</main>
+</body>
+</html>
