@@ -58,3 +58,26 @@
 **यथार्थ युग = इस दृष्टिकोण का व्यापक मानव-सामाजिक/पर्यावरणीय विस्तार।**
 
 **संरक्षण = इस दृष्टिकोण का व्यावहारिक सार्वजनिक उद्देश्य।**
+
+
+## 29. स्वतंत्र सत्यापन की नई संरचना
+इस repository में अब लेखक-प्रस्ताव और independent verification को अलग layers में रखा जाएगा:
+
+**AUTHOR_SOURCE → CLAIM_LEDGER → OPERATIONALIZATION → EXTERNAL_EVIDENCE → COUNTER_EVIDENCE → REPRODUCIBLE_TEST → INDEPENDENT_REVIEW → STATUS**
+
+किसी workflow का सफल होना, किसी AI agent का सहमत होना, या स्वयं लेखक का विस्तृत तर्क देना अपने-आप **VERIFIED** status नहीं बनाता।
+
+### विशेष रूप से परीक्षण योग्य domains
+- astronomy/cosmology: मानव scale बनाम cosmic scale के factual propositions;
+- neuroscience/cognitive science: “मस्तक” और “हृदय” के operational meanings;
+- psychology: self-knowledge, wellbeing, attachment, authority/dependence और lasting personality change;
+- philosophy: self-knowledge, autonomy, phenomenology, ethics और metaphysical claims;
+- environmental science: human–nature relationships और conservation outcomes;
+- historical comparison: primary texts और scholarly interpretation;
+- logic: internal consistency, definitions, inference rules और counterexamples।
+
+### Integrity boundary
+**लेखक की आवाज़ सुरक्षित रहे। स्रोत की आवाज़ अलग रहे। व्याख्या अलग रहे। Evidence और counter-evidence दोनों रहें। प्रमाण न हो तो NOT_VERIFIED रहे।**
+
+## 30. 2026-09-29 verification priority
+इस वर्तमान लेख में “अनु से भी खरबों गुणा छोटा”, “हर संजीव-निर्जीव में व्यापक”, “समस्त भौतिक सृष्टि की आंशिक प्रतिबिंबता”, “मस्तक के हटने पर सृष्टि का अस्तित्व समाप्त प्रतीत होना”, तथा “सामान्य व्यक्तित्व में वापसी न होना” जैसे propositions को अलग claim IDs देकर independent tests में भेजना है। इन्हें canonical author claims के रूप में संरक्षित किया गया है, verified scientific facts के रूप में नहीं।

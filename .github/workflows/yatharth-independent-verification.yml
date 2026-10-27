@@ -1,0 +1,55 @@
+name: Yatharth Independent Verification Gate
+
+on:
+  push:
+    paths:
+      - "research/yatharth-*.md"
+      - "research/*comparative*.md"
+      - "research/*verification*.md"
+      - "schemas/yatharth-comparison.schema.json"
+      - ".github/workflows/yatharth-independent-verification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  independent-verification-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify provenance and evidence boundaries
+        run: |
+          set -euo pipefail
+          test -s research/yatharth-shirmani-canonical-source-2026-09-29.md
+          test -s research/shirmani-comparative-analysis-system.md
+          test -s research/yatharth-comparison-matrix-2026-09-29.md
+          test -s research/yatharth-independent-verification-protocol-2026-09-29.md
+          grep -q "AUTHOR-CLAIM" research/yatharth-independent-verification-protocol-2026-09-29.md
+          grep -q "INDEPENDENTLY-VERIFIED" research/yatharth-independent-verification-protocol-2026-09-29.md
+          grep -q "NOT_VERIFIED" research/yatharth-independent-verification-protocol-2026-09-29.md
+          grep -q "counter-evidence" research/shirmani-comparative-analysis-system.md
+          grep -q "UNVERIFIED" research/yatharth-comparison-matrix-2026-09-29.md
+
+      - name: Fail closed against blanket verification
+        run: |
+          set -euo pipefail
+          if grep -RniE "framework.*VERIFIED|all.*VERIFIED|100%.*VERIFIED" research/yatharth-*.md research/*comparative*.md; then
+            echo "Blanket verification language detected; independent verification must be claim-specific."
+            exit 1
+          fi
+
+      - name: Emit verification baseline
+        run: |
+          set -euo pipefail
+          cat > /tmp/verification-baseline.md <<'EOF'
+          # Independent Verification Baseline
+          - Author source: PRESENT
+          - Comparative system: PRESENT
+          - Verification protocol: PRESENT
+          - Independent evidence gate: CONFIGURED
+          - Blanket framework verification: NOT CLAIMED
+          - VERIFIED promotion: 0 until claim-level independent evidence exists
+          EOF
+          cat /tmp/verification-baseline.md
