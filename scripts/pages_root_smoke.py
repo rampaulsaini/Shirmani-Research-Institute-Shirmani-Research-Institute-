@@ -44,6 +44,8 @@ ROUTES = [
     ("first paid pilot offer", BASE + "/first-paid-pilot-offer.html", ("Research & Writing — First Client Pilot", "₹499", "₹1,499", "₹999")),
     ("income client pipeline", BASE + "/income-client-pipeline.html", ("Client Pipeline & Delivery Tracker", "Measurable pipeline", "Add a real prospect / customer")),
     ("income client outreach desk", BASE + "/income-client-outreach-desk.html", ("Client Outreach & Delivery Desk", "Current service offer", "Seven-day measurable sprint")),
+    ("live production state JSON", BASE + "/generated/live-production-state.json", ('"schema_version"', '"concrete_repository_assets"', '"dispatch_released"', '"payment_claimed"', '"truth_boundary"')),
+    ("independent verification state JSON", BASE + "/generated/independent-verification-status.json", ('"queue_total"', '"verified_records"', '"verification_policy": "FAIL_CLOSED"', '"human_review_required_for_verified_promotion": true')),
     ("writing and research enquiry", BASE + "/writing-research-enquiry.html", ("Writing & Research Enquiry", "₹499", "₹1,499")),
 ]
 
