@@ -1,0 +1,54 @@
+name: Daily platform health audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    # GitHub scheduled workflows are best-effort; this is not an uptime SLA.
+    - cron: "17 0 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "public-interface.html"
+      - "showroom/voice-to-live-evidence-console.html"
+      - "showroom/shirmani-supreme-heart-view-preview.html"
+      - "showroom/heart-view-live-rehearsal-cue-deck.html"
+      - "showroom/shirmani-supreme-character-studio.html"
+      - "docs/VOICE_TO_LIVE_ACCEPTANCE_AND_AUTOMATION.md"
+      - "factory/daily_platform_health_audit.py"
+      - ".github/workflows/daily-platform-health-audit.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-platform-health-audit
+  cancel-in-progress: false
+
+jobs:
+  static-health:
+    name: Audit public paths and local links
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run evidence-honest static audit
+        id: audit
+        continue-on-error: true
+        run: python3 factory/daily_platform_health_audit.py
+
+      - name: Publish JSON audit artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-platform-health-${{ github.run_number }}
+          path: artifacts/platform-health/daily-platform-health.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Fail workflow when audit finds problems
+        if: steps.audit.outcome != 'success'
+        run: |
+          echo "::error::Static platform audit found missing files or broken local links. Download the JSON artifact for details."
+          exit 1
