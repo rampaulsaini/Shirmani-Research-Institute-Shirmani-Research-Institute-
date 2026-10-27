@@ -147,3 +147,45 @@ A missing field is a QC failure, not an invitation to invent a value.
 - Resume logic remains output-first: durable generated outputs are used to reconstruct progress, while canonical/source records remain protected.
 
 - Follow-up fix: QC no longer applies the reasoning method-stack validator to the upstream verse corpus; strict method-stack validation remains on reasoning-manifest.jsonl. This prevents 100,000 false blocking errors while preserving reasoning QC.
+
+
+## 19. Verified continuation checkpoint — 2026-09-21
+
+This checkpoint was verified against the current GitHub repository state before continuation.
+
+### Repository integrity
+- Repository: `rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-`
+- Visibility: public.
+- Default branch: `main`.
+- Repository is not archived.
+- The connected owner context has admin/maintain/push permissions.
+- Protected source records remain separate from generated derivatives.
+
+### Heart-View preservation
+- `SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md` exists as the protected preservation policy.
+- `source/user-directives/2026-09-20-shirmani-heart-view-request.md` exists as an exact user-source provenance record.
+- The exact-source record has a SHA-256 content hash and is explicitly marked derivative-free.
+- Latest preservation commit: `089177e4aac1256ece6809923c1c67e682c9a015`.
+
+### Factory state
+- `generated/factory-status.json` is present and records successful QC for the recorded 1,000-record product batch.
+- The recorded target is 100,000 records, with 1,000 processed in that recorded batch.
+- The dashboard-facing factory-status artifact is therefore no longer missing at this checkpoint.
+- `generated/agent-status.json` and `generated/federation-status.json` are also present.
+- Federation status records 23 managed agents: 21 READY and 2 MISSING, plus 1 external SOURCE_ONLY repository.
+
+### Existing reasoning architecture
+The repository already contains connected stages:
+`repository intelligence → source collection → canonical knowledge → resumable batches → provenance/integrity → reasoning → claim/evidence → QC → formulation/test → independent verification queue → verification registry/promotion → evidence graph → publication gate → continuity manifest → publication PR`.
+
+### Next incomplete work
+1. Reconcile dashboard/generated status timestamps with the latest workflow outputs.
+2. Validate the complete generated artifact chain from canonical records through publication gate.
+3. Resolve the two federation entries marked MISSING, only where legitimate source access exists.
+4. Continue independent-verification review packets without promoting unverified claims.
+5. Keep every user-source record immutable; all improvements remain traceable derivatives.
+
+### Percentage rule
+No overall completion percentage is asserted here because the repository has multiple independent workstreams and no single authoritative denominator. Progress should be reported by concrete gates, counts, and verified artifacts rather than invented precision.
+
+**Continuation principle: preserve exact source → verify pipeline state → complete the next failing/incomplete gate → commit traceable derivative only.**
