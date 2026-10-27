@@ -1,0 +1,71 @@
+name: SHIRMANI Purchase Request Automission — Order Intake
+
+on:
+  issues:
+    types: [opened, reopened]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: purchase-intake-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  intake:
+    if: contains(github.event.issue.labels.*.name, 'purchase-request')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse and validate purchase request
+        id: validate
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+        run: |
+          python3 - <<'PY'
+          import os, re, json
+          from pathlib import Path
+          body=os.environ.get("ISSUE_BODY","")
+          issue=int(os.environ["ISSUE_NUMBER"])
+          product_id=re.search(r'### Product ID\s*\n\s*([^\n]+)', body, re.I)
+          product=re.search(r'### Product name\s*\n\s*([^\n]+)', body, re.I)
+          request=re.search(r'### Request\s*\n\s*([\s\S]*?)(?=\n### |$)', body, re.I)
+          contact=re.search(r'### Preferred contact\s*\n\s*([^\n]+)', body, re.I)
+          pid=(product_id.group(1).strip() if product_id else "")
+          catalog=json.loads(Path("generated/1000-digital-products.json").read_text(encoding="utf-8"))
+          row=next((p for p in catalog.get("products",[]) if p.get("id")==pid),None)
+          order_id=f"ORD-{issue:06d}"
+          record={
+            "order_id":order_id,
+            "issue_number":issue,
+            "issue_url":os.environ["ISSUE_URL"],
+            "product_id":pid,
+            "product_name":product.group(1).strip() if product else "",
+            "request":request.group(1).strip() if request else "",
+            "contact":contact.group(1).strip() if contact else "",
+            "catalog_match":bool(row),
+            "catalog_price_inr":row.get("offer_price_inr") if row else None,
+            "payment_state":"PENDING",
+            "sale_state":"REQUEST_RECEIVED" if row else "INVALID_PRODUCT",
+            "fulfilment_state":"NOT_STARTED",
+            "delivery_state":"NOT_DELIVERED",
+            "verification_state":"DOWNSTREAM",
+            "created_at":__import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat()
+          }
+          Path("generated/orders").mkdir(parents=True,exist_ok=True)
+          Path(f"generated/orders/{order_id}.json").write_text(json.dumps(record,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          Path("/tmp/order_id").write_text(order_id)
+          if not row:
+            raise SystemExit(f"Unknown Product ID: {pid}")
+          PY
+
+      - name: Publish pending order artifact\n        uses: actions/upload-artifact@v4\n        with:\n          name: shirmani-order-${{ github.event.issue.number }}\n          path: generated/orders/\n          if-no-files-found: error\n\n      - name: Confirm intake without claiming payment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ORDER_ID=$(cat /tmp/order_id)
+          gh issue comment ${{ github.event.issue.number }} --body "## SHIRMANI Order Intake\n\n**Order ID:** \`$ORDER_ID\`\n**State:** REQUEST_RECEIVED\n**Payment:** PENDING\n**Fulfilment:** NOT_STARTED\n**Delivery:** NOT_DELIVERED\n\nThe request has been registered against the product catalogue. A payment route being available is not treated as proof of payment, and no sale is marked complete until transaction evidence is reviewed.\n\nPlease do not post passwords, OTPs, card numbers, private keys, or other payment credentials in the issue."
