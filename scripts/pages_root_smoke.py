@@ -7,6 +7,7 @@ UTC timestamp, status, redirect destination and content-marker result is printed
 from __future__ import annotations
 
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -82,7 +83,14 @@ def check(label: str, url: str, markers: tuple[str, ...]) -> bool:
         parser = PageParser()
         parser.feed(body)
         title = " ".join(parser.title_text) or "(no title)"
-        missing_markers = [marker for marker in markers if marker.lower() not in body.lower()]
+        # JSON serializers may legally emit compact or pretty-printed JSON.
+        # Preserve strict marker checks while ignoring whitespace-only differences.
+        compact_body = re.sub(r"\s+", "", body).lower()
+        missing_markers = [
+            marker for marker in markers
+            if marker.lower() not in body.lower()
+            and re.sub(r"\s+", "", marker).lower() not in compact_body
+        ]
         content_ok = not missing_markers
         same_site = urlparse(final_url).netloc == urlparse(BASE).netloc
         ok = 200 <= status < 300 and content_ok and same_site
