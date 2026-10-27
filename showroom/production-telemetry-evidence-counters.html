@@ -86,6 +86,10 @@
 <div class="metric">विफल<b id="ghFailure">—</b></div>
 <div class="metric">चल रहे<b id="ghRunning">—</b></div>
 <div class="metric">पूर्ण runs में सफलता<b id="ghRate">—</b></div>
+<div class="metric">पिछले 24 घंटे<b id="gh24">—</b><span class="small muted">हाल के loaded sample में</span></div>
+<div class="metric">पिछले 7 दिन<b id="gh7d">—</b><span class="small muted">हाल के loaded sample में</span></div>
+<div class="metric">पिछले 30 दिन<b id="gh30d">—</b><span class="small muted">हाल के loaded sample में</span></div>
+<div class="metric">पिछले 365 दिन<b id="gh365d">—</b><span class="small muted">हाल के loaded sample में</span></div>
 </div>
 <p id="ghUpdated" class="muted" aria-live="polite">GitHub से स्थिति अभी प्राप्त नहीं हुई।</p>
 <button type="button" id="refreshGitHubRuns">GitHub status refresh करें</button>
@@ -128,10 +132,13 @@ async function refreshGitHubRuns(){
   const failed=runs.filter(r=>r.status==='completed'&&['failure','timed_out','action_required'].includes(r.conclusion)).length;
   const running=runs.filter(r=>r.status==='in_progress'||r.status==='queued'||r.status==='waiting'||r.status==='requested').length;
   const completed=runs.filter(r=>r.status==='completed'&&r.conclusion!=='skipped').length;
+  const now=Date.now();
+  const countWindow=hours=>runs.filter(r=>{const t=Date.parse(r.created_at||'');return Number.isFinite(t)&&t>=now-hours*3600000&&t<=now;}).length;
+  $('gh24').textContent=String(countWindow(24));$('gh7d').textContent=String(countWindow(24*7));$('gh30d').textContent=String(countWindow(24*30));$('gh365d').textContent=String(countWindow(24*365));
   $('ghTotal').textContent=String(runs.length);$('ghSuccess').textContent=String(success);$('ghFailure').textContent=String(failed);$('ghRunning').textContent=String(running);$('ghRate').textContent=completed?((success/completed)*100).toFixed(1)+'%':'—';
   const statusLabel=r=>r.status!=='completed'?'चल रहा / queue':({success:'सफल',failure:'विफल',timed_out:'समय समाप्त',cancelled:'रद्द',skipped:'छोड़ा गया',action_required:'कार्रवाई आवश्यक'}[r.conclusion]||String(r.conclusion||r.status));
   body.innerHTML=runs.slice(0,20).map(r=>'<tr><td>'+esc(r.name||'Unnamed workflow')+'</td><td>'+esc(statusLabel(r))+'</td><td>'+esc(r.created_at?new Date(r.created_at).toLocaleString('hi-IN'):'—')+'</td><td>'+(safeEvidenceUrl(r.html_url)?'<a href="'+esc(safeEvidenceUrl(r.html_url))+'" target="_blank" rel="noopener noreferrer">GitHub run खोलें</a>':'—')+'</td></tr>').join('')||'<tr><td colspan="4">GitHub API ने कोई run नहीं लौटाया।</td></tr>';
-  $('ghUpdated').textContent='GitHub snapshot: '+new Date().toLocaleString('hi-IN')+' · API ने '+(data.total_count??runs.length)+' total runs बताए; तालिका में सबसे नए '+Math.min(20,runs.length)+' हैं।';
+  $('ghUpdated').textContent='GitHub snapshot: '+new Date().toLocaleString('hi-IN')+' · API ने '+(data.total_count??runs.length)+' total runs बताए; समय-अवधि counters केवल loaded नवीनतम '+runs.length+' runs के sample में हैं; 365 दिन के पूरे इतिहास की गारंटी नहीं। तालिका में सबसे नए '+Math.min(20,runs.length)+' हैं।';
  }catch(error){
   $('ghUpdated').textContent='GitHub snapshot उपलब्ध नहीं: '+String(error.message||error)+'। नीचे के local counters अलग से उपलब्ध हैं।';
   body.innerHTML='<tr><td colspan="4" class="muted">Live fetch असफल। इसे सफलता या शून्य activity न समझें; GitHub Actions page सीधे खोलकर देखें। <a href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions" target="_blank" rel="noopener noreferrer">GitHub Actions खोलें</a></td></tr>';
