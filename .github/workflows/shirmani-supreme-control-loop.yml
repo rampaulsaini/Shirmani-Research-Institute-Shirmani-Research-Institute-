@@ -1,0 +1,62 @@
+name: SHIRMANI Supreme AI-ML-NLP Control Loop
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - ".github/workflows/shirmani-supreme-control-loop.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: shirmani-supreme-control-loop
+  cancel-in-progress: true
+
+jobs:
+  control-loop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Supreme deterministic gate
+        run: python3 factory/supreme_control_loop.py
+      - name: Publish control-loop summary
+        if: always()
+        run: |
+          if [ -f generated/supreme-control-loop-report.json ]; then
+            python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("generated/supreme-control-loop-report.json").read_text())
+          print("## Supreme AI-ML-NLP Control Loop")
+          print(f"- Gate: **{r['gate']}**")
+          print(f"- Checks: **{r['checks_passed']}/{r['checks_total']}** passed")
+          print(f"- Verification violations: **{r['verification_violations']}**")
+          print(f"- NLP records inspected: **{r['nlp_records_inspected']}**")
+          if r["blocking_errors"]:
+              print("\n### Blocking errors")
+              for e in r["blocking_errors"][:20]:
+                  print(f"- {e}")
+          PY
+          fi
+      - name: Upload control-loop evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-control-loop-evidence
+          path: generated/supreme-control-loop-report.json
+          if-no-files-found: error
