@@ -1,0 +1,32 @@
+{
+  "schema_version": 3,
+  "generated_at": "2026-10-27T06:10:08.296763+00:00",
+  "verification_milestone": 100200,
+  "queue_total": 100200,
+  "registry_total": 100200,
+  "reviewed_records": 0,
+  "independent_verified_records": 0,
+  "remaining_to_milestone": 100200,
+  "remaining_review_records": 100200,
+  "review_completion_pct_of_queue": 0.0,
+  "verification_completion_pct_of_queue": 0.0,
+  "milestone_completion_pct": 0.0,
+  "verification_status_counts": {
+    "NOT_VERIFIED": 100200
+  },
+  "registry_status_counts": {
+    "QUEUED": 100200
+  },
+  "queue_registry_task_id_match": true,
+  "automation_state": "READY_FOR_HUMAN_REVIEW",
+  "verification_state": "INDEPENDENT_VERIFICATION_PENDING",
+  "promotion_policy": "FAIL_CLOSED",
+  "workflow_success_is_not_verification": true,
+  "promotion_allowed_by_this_report": false,
+  "human_review_inferred": false,
+  "integrity": {
+    "queue_sha256": "decfe6035cafb4610f7a99318653f5d060f427babdbe6adf00ae2f6e313f2ee8",
+    "registry_sha256": "a303d5571e249496a3b92f27a875a75d53ee9a0a4b59ff5bed4e07cc6aa31f4f"
+  },
+  "policy": "Only the existing independent verification promotion gate may recognize VERIFIED records. This progress report is telemetry."
+}
