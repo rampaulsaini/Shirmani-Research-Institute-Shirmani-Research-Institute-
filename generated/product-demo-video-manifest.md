@@ -1,6 +1,6 @@
 # SHIRMANI Product Demo Video Manifest
 
-- Generated: 2026-10-26T11:23:09.985693+00:00
+- Generated: 2026-10-27T06:16:54.748207+00:00
 - Catalog products: 5,000
 - Distinct engines: 25
 - Every product has a stable public product-demo.html?id=... route.
