@@ -7,6 +7,7 @@ UTC timestamp, status, redirect destination and content-marker result is printed
 from __future__ import annotations
 
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -44,6 +45,8 @@ ROUTES = [
     ("first paid pilot offer", BASE + "/first-paid-pilot-offer.html", ("Research & Writing — First Client Pilot", "₹499", "₹1,499", "₹999")),
     ("income client pipeline", BASE + "/income-client-pipeline.html", ("Client Pipeline & Delivery Tracker", "Measurable pipeline", "Add a real prospect / customer")),
     ("income client outreach desk", BASE + "/income-client-outreach-desk.html", ("Client Outreach & Delivery Desk", "Current service offer", "Seven-day measurable sprint")),
+    ("live production state JSON", BASE + "/generated/live-production-state.json", ('"schema_version"', '"concrete_repository_assets"', '"dispatch_released"', '"payment_claimed"', '"truth_boundary"')),
+    ("independent verification state JSON", BASE + "/generated/independent-verification-status.json", ('"queue_total"', '"verified_records"', '"verification_policy": "FAIL_CLOSED"', '"human_review_required_for_verified_promotion": true')),
     ("writing and research enquiry", BASE + "/writing-research-enquiry.html", ("Writing & Research Enquiry", "₹499", "₹1,499")),
 ]
 
@@ -80,7 +83,14 @@ def check(label: str, url: str, markers: tuple[str, ...]) -> bool:
         parser = PageParser()
         parser.feed(body)
         title = " ".join(parser.title_text) or "(no title)"
-        missing_markers = [marker for marker in markers if marker.lower() not in body.lower()]
+        # JSON serializers may legally emit compact or pretty-printed JSON.
+        # Preserve strict marker checks while ignoring whitespace-only differences.
+        compact_body = re.sub(r"\s+", "", body).lower()
+        missing_markers = [
+            marker for marker in markers
+            if marker.lower() not in body.lower()
+            and re.sub(r"\s+", "", marker).lower() not in compact_body
+        ]
         content_ok = not missing_markers
         same_site = urlparse(final_url).netloc == urlparse(BASE).netloc
         ok = 200 <= status < 300 and content_ok and same_site
