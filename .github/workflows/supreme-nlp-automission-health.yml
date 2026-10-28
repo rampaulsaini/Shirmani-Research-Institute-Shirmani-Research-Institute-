@@ -22,7 +22,7 @@ permissions:
 
 concurrency:
   group: shirmani-supreme-nlp-automission-health
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   health:
