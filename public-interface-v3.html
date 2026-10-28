@@ -122,19 +122,22 @@ async function loadWorkflowTelemetry(){
   $("opsStatus").textContent=total>runs.length?"LIVE · आंशिक नमूना":"LIVE · 24 घंटे";
   $("opsUpdated").textContent="GitHub API से प्राप्त: "+fmtTime(new Date().toISOString())+" · 24 घंटे में कुल matching runs: "+total+" · status गणना: प्राप्त "+runs.length+" records पर।";
 }
+function countOrUnavailable(value){
+  return Number.isFinite(value) && value >= 0 ? value.toLocaleString("en-IN") : "डेटा उपलब्ध नहीं";
+}
 async function loadProductionSnapshot(){
   const response=await fetch("generated/live-production-state.json?ts="+Date.now(),{cache:"no-store"});
   if(!response.ok)throw new Error("Production snapshot HTTP "+response.status);
   const state=await response.json();
-  const catalog=Number(state.catalog_identities||0),assets=Number(state.concrete_repository_assets||0);
-  $("catalogCount").textContent=catalog.toLocaleString("en-IN");
-  $("assetCount").textContent=assets.toLocaleString("en-IN");
-  $("assetPercent").textContent=catalog>0?(assets.toLocaleString("en-IN")+" / "+catalog.toLocaleString("en-IN")+" · "+(assets/catalog*100).toFixed(2)+"%"):"गणना उपलब्ध नहीं";
-  const dispatch=Number(state.dispatch_released||0),sales=Number(state.sales_claimed||0),payments=Number(state.payment_claimed||0);
-  $("dispatchValue").textContent=dispatch.toLocaleString("en-IN")+" / "+catalog.toLocaleString("en-IN");
-  $("salesValue").textContent=sales.toLocaleString("en-IN");
-  $("salesCount").textContent=sales.toLocaleString("en-IN");
-  $("paymentValue").textContent=payments.toLocaleString("en-IN");
+  const catalog=Number(state.catalog_identities),assets=Number(state.concrete_repository_assets);
+  $("catalogCount").textContent=countOrUnavailable(catalog);
+  $("assetCount").textContent=countOrUnavailable(assets);
+  $("assetPercent").textContent=Number.isFinite(catalog)&&catalog>0&&Number.isFinite(assets)?(assets.toLocaleString("en-IN")+" / "+catalog.toLocaleString("en-IN")+" · "+(assets/catalog*100).toFixed(2)+"%"):"गणना उपलब्ध नहीं";
+  const dispatch=Number(state.dispatch_released),sales=Number(state.sales_claimed),payments=Number(state.payment_claimed);
+  $("dispatchValue").textContent=Number.isFinite(dispatch)&&Number.isFinite(catalog)?dispatch.toLocaleString("en-IN")+" / "+catalog.toLocaleString("en-IN"):"डेटा उपलब्ध नहीं";
+  $("salesValue").textContent=countOrUnavailable(sales);
+  $("salesCount").textContent=countOrUnavailable(sales);
+  $("paymentValue").textContent=countOrUnavailable(payments);
   const generated=new Date(state.generated_at),age=Date.now()-generated.getTime(),stale=!Number.isFinite(age)||age>60*60*1000;
   $("productionFreshness").textContent=stale?"STALE · पुराना snapshot":"FRESH · 1 घंटे के भीतर";
   $("productionBoundary").textContent="Snapshot समय: "+fmtTime(state.generated_at)+" · State: "+String(state.state||"अनिर्दिष्ट")+" · QC: "+String(state.qc_state||"अनिर्दिष्ट")+". "+(stale?"यह snapshot 1 घंटे से पुराना है; इसे वर्तमान स्थिति न मानें. ":"")+"Assets/catalog अनुपात केवल प्रकाशित JSON का materialization संकेतक है—स्वतंत्र QC, sellability, dispatch, भुगतान या आय का प्रमाण नहीं।";
@@ -143,10 +146,10 @@ async function loadVerificationSnapshot(){
   const response=await fetch("generated/independent-verification-status.json?ts="+Date.now(),{cache:"no-store"});
   if(!response.ok)throw new Error("Verification snapshot HTTP "+response.status);
   const state=await response.json();
-  const total=Number(state.queue_total||0),verified=Number(state.verified_records||0),prepared=Number(state.prepared_review_records||0);
-  $("verifiedValue").textContent=verified.toLocaleString("en-IN")+" / "+total.toLocaleString("en-IN");
-  $("verificationPercent").textContent=(total>0?(verified/total*100).toFixed(2):"—")+"%";
-  $("reviewPreparedValue").textContent=prepared.toLocaleString("en-IN")+" / "+total.toLocaleString("en-IN");
+  const total=Number(state.queue_total),verified=Number(state.verified_records),prepared=Number(state.prepared_review_records);
+  $("verifiedValue").textContent=Number.isFinite(verified)&&Number.isFinite(total)?verified.toLocaleString("en-IN")+" / "+total.toLocaleString("en-IN"):"डेटा उपलब्ध नहीं";
+  $("verificationPercent").textContent=Number.isFinite(total)&&total>0&&Number.isFinite(verified)?(verified/total*100).toFixed(2)+"%":"डेटा उपलब्ध नहीं";
+  $("reviewPreparedValue").textContent=Number.isFinite(prepared)&&Number.isFinite(total)?prepared.toLocaleString("en-IN")+" / "+total.toLocaleString("en-IN"):"डेटा उपलब्ध नहीं";
   const generated=state.generated_at?new Date(state.generated_at):null;
   const stale=generated&&!Number.isNaN(generated.getTime())&&(Date.now()-generated.getTime()>24*60*60*1000);
   $("verificationBoundary").textContent="Review snapshot"+(generated?" समय: "+fmtTime(generated.toISOString()):"")+" · State: "+String(state.state||"अनिर्दिष्ट")+" · "+(stale?"पुराना snapshot; वर्तमान स्थिति की पुष्टि आवश्यक। ":"")+"तैयार पैकेट स्वतंत्र सत्यापन नहीं है; verified status केवल नीति के अनुसार दर्ज प्रमाण से बढ़ेगा।";
