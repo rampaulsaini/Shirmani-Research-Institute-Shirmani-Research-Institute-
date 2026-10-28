@@ -63,6 +63,19 @@ jobs:
             echo "No canonical production-state branch found; using main."
           fi
 
+      # The production-state overlay can contain an older aggregate status file.
+      # Keep the independently prepared status from this exact main commit so the
+      # public evidence page cannot silently regress to a stale snapshot.
+      - name: Preserve main independent-verification status in public build
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s generated/independent-verification-status.json
+          git show "${GITHUB_SHA}:generated/independent-verification-status.json" > /tmp/independent-verification-status.json
+          python3 -m json.tool /tmp/independent-verification-status.json >/dev/null
+          install -m 0644 /tmp/independent-verification-status.json generated/independent-verification-status.json
+          echo "Preserved main-commit independent-verification status after production-state overlay."
+
       - name: Self-heal production queue
         run: python3 factory/public_production_queue_self_heal.py
 
