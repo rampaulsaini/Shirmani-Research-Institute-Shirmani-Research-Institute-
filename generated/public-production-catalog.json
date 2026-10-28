@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-28T15:43:20.319019+00:00",
+  "generated_at": "2026-10-28T15:46:34.963779+00:00",
   "principle": "Production first; verification downstream.",
   "cycle_results": 500,
   "lanes": {
-    "ai-ml-nlp": 62,
-    "automation": 242,
-    "content": 12,
-    "economic": 8,
+    "ai-ml-nlp": 44,
+    "automation": 249,
+    "content": 10,
+    "economic": 14,
     "federation": 15,
-    "platform": 97,
-    "research": 21,
-    "security-quality": 34,
-    "social-media": 9
+    "platform": 116,
+    "research": 18,
+    "security-quality": 23,
+    "social-media": 11
   },
   "artifacts": [
     "generated/public-production/ai-ml-nlp.jsonl",
