@@ -1,6 +1,6 @@
 # SHIRMANI Showroom Visual Production Manifest
 
-- Generated: 2026-10-28T08:46:48.157285+00:00
+- Generated: 2026-10-28T02:21:53.905053+00:00
 - Catalog identities: 5,000
 - Concrete repository assets: 5,000
 - Concrete materialization: 100.00%
