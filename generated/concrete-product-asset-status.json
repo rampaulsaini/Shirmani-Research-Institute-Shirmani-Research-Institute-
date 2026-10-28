@@ -1,16 +1,16 @@
 {
+  "generated_at": "2026-10-28T23:32:45.334243+00:00",
   "product_assets": 5000,
-  "asset_directory": "products/production/",
-  "showroom": "products.html",
+  "catalog_products": 5000,
+  "materialization_percent": 100.0,
+  "asset_directory": "products/concrete/",
+  "showroom": "showroom.html",
   "state": "QC_PASSED",
   "dispatch": "NO",
   "principle": "Concrete assets and matching deterministic QC are separate evidence; dispatch, sales, payment and independent verification remain downstream.",
-  "generated_at": "2026-10-28T07:31:41.184948+00:00",
   "concrete_product_assets": 5000,
-  "catalog_products": 5000,
-  "materialization_percent": 100.0,
   "qc_state": "QC_PASSED",
   "qc_passed": 5000,
   "qc_failed": 0,
-  "qc_generated_at": "2026-10-28T07:18:44.446301+00:00"
+  "qc_generated_at": "2026-10-28T17:03:43.196059+00:00"
 }
