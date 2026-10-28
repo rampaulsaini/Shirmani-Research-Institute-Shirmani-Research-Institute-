@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Shirmani Research Institute customer account entry — signup/login interface prototype.">
+<meta name="theme-color" content="#0b1220">
+<title>Customer Account | Shirmani Research Institute</title>
+<style>
+:root{color-scheme:dark;--bg:#09111e;--panel:#111e30;--line:#2a4059;--gold:#f2d17b;--cyan:#8be7ed;--text:#f6f8fb;--muted:#c1ccd9}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(160deg,#172a43,#09111e 60%);color:var(--text);font:16px/1.6 system-ui,"Noto Sans Devanagari",sans-serif}
+main{width:min(920px,calc(100% - 28px));margin:28px auto 60px}header,.panel{border:1px solid var(--line);border-radius:18px;background:#111e30f2;padding:clamp(18px,4vw,32px);margin-bottom:16px}
+h1,h2{color:var(--gold);line-height:1.2}h1{font-size:clamp(1.8rem,5vw,3rem);margin:.3em 0}p{color:var(--muted)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tabs button,button,.btn{border:1px solid var(--cyan);border-radius:10px;padding:10px 14px;font:inherit;font-weight:750;cursor:pointer;text-decoration:none}.tabs button{background:#0b1726;color:var(--text)}.tabs button[aria-selected=true],button.primary,.btn{background:var(--gold);color:#101827;border-color:var(--gold)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+label{display:block;font-weight:700;margin:12px 0 5px}input{width:100%;padding:12px;border:1px solid #52657c;border-radius:9px;background:#081321;color:var(--text);font:inherit}input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.note{padding:14px;border-left:4px solid var(--gold);background:#0a1726;border-radius:8px}.status{min-height:1.5em;color:var(--cyan);font-weight:700}.muted{font-size:.9rem}a{color:var(--cyan)}[hidden]{display:none!important}
+</style>
+</head>
+<body><main>
+<header><p>SHIRMANI RESEARCH INSTITUTE · CUSTOMER AREA</p><h1>ग्राहक Account</h1><p>ग्राहक के लिए registration और login का स्पष्ट प्रवेश-द्वार।</p><a class="btn" href="public-interface.html">मुख्य Public Interface पर लौटें</a></header>
+<div class="note"><strong>ईमानदार तकनीकी स्थिति:</strong> यह अभी केवल UI prototype है। इस repository page से account create/login नहीं होता; secure authentication backend, database, email verification, password recovery, session security और privacy controls अभी connect/verify नहीं हैं। कृपया यहाँ वास्तविक password या संवेदनशील जानकारी न डालें।</div>
+<div class="tabs" role="tablist" aria-label="Account विकल्प"><button id="loginTab" role="tab" aria-selected="true" aria-controls="loginPanel" type="button">Login</button><button id="signupTab" role="tab" aria-selected="false" aria-controls="signupPanel" type="button">Register / Signup</button></div>
+<div class="grid">
+<section class="panel" id="loginPanel" role="tabpanel" aria-labelledby="loginTab"><h2>ग्राहक Login</h2><form id="loginForm"><label for="loginEmail">Email</label><input id="loginEmail" type="email" autocomplete="email" placeholder="name@example.com" required><label for="loginPassword">Password (केवल UI preview)</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Backend connect होने तक इस्तेमाल न करें" required><p class="muted">Forgot password और secure session अभी connected नहीं हैं।</p><button class="primary" type="submit">Login flow preview</button><p class="status" id="loginStatus" aria-live="polite"></p></form></section>
+<section class="panel" id="signupPanel" role="tabpanel" aria-labelledby="signupTab" hidden><h2>नया ग्राहक Register</h2><form id="signupForm"><label for="fullName">पूरा नाम</label><input id="fullName" autocomplete="name" placeholder="आपका नाम" required><label for="signupEmail">Email</label><input id="signupEmail" type="email" autocomplete="email" placeholder="name@example.com" required><label for="signupPassword">Password (केवल UI preview)</label><input id="signupPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Backend connect होने तक इस्तेमाल न करें" required><label><input id="terms" type="checkbox" required style="width:auto"> मैं privacy terms पढ़कर सहमति दूँगा/दूँगी (terms अभी प्रकाशित होना बाकी हैं)</label><button class="primary" type="submit">Signup flow preview</button><p class="status" id="signupStatus" aria-live="polite"></p></form></section>
+</div>
+<section class="panel"><h2>आगे की production checklist</h2><ul><li>Managed identity provider या secure server-side authentication चुनना।</li><li>Database, email verification, password reset और secure session/cookie policy जोड़ना।</li><li>Rate limiting, abuse protection, privacy notice, consent और data deletion workflow लागू करना।</li><li>Automated tests, security review और deployed end-to-end verification के बाद ही “Login/Signup active” कहना।</li></ul></section>
+</main>
+<script>
+const loginTab=document.getElementById('loginTab'),signupTab=document.getElementById('signupTab'),loginPanel=document.getElementById('loginPanel'),signupPanel=document.getElementById('signupPanel');
+function showTab(which){const login=which==='login';loginTab.setAttribute('aria-selected',String(login));signupTab.setAttribute('aria-selected',String(!login));loginPanel.hidden=!login;signupPanel.hidden=login;}
+loginTab.addEventListener('click',()=>showTab('login'));signupTab.addEventListener('click',()=>showTab('signup'));
+document.getElementById('loginForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('loginStatus').textContent='यह preview मात्र है—authentication service connect नहीं है; कोई login request या data save नहीं हुआ।';});
+document.getElementById('signupForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('signupStatus').textContent='यह preview मात्र है—account create नहीं हुआ और कोई data save/send नहीं हुआ। Secure backend जुड़ने के बाद ही registration सक्रिय होगा।';});
+</script>
+</body></html>
