@@ -247,7 +247,7 @@ jobs:
           print(f"BUILD_LIVE_STATE generated_at={generated_at} sha256={fingerprint} bytes={len(raw)}")
           with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env:
               env.write(f"EXPECTED_LIVE_STATE_SHA256={fingerprint}\n")
-              env.write(f"EXPECTED_LIVE_STATE_GENERATED_AT={generated_at}\\n")
+              env.write(f"EXPECTED_LIVE_STATE_GENERATED_AT={generated_at}\n")
           PY
 
       - name: Upload generated production site
