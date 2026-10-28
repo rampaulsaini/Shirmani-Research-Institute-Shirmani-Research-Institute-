@@ -5,12 +5,12 @@
   "state": "QC_PASSED",
   "dispatch": "NO",
   "principle": "Concrete assets and matching deterministic QC are separate evidence; dispatch, sales, payment and independent verification remain downstream.",
-  "generated_at": "2026-10-27T06:44:13.116340+00:00",
+  "generated_at": "2026-10-28T01:28:50.151199+00:00",
   "concrete_product_assets": 5000,
   "catalog_products": 5000,
   "materialization_percent": 100.0,
   "qc_state": "QC_PASSED",
   "qc_passed": 5000,
   "qc_failed": 0,
-  "qc_generated_at": "2026-10-27T06:08:50.803718+00:00"
+  "qc_generated_at": "2026-10-28T01:21:41.342714+00:00"
 }
