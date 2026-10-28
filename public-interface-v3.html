@@ -67,8 +67,8 @@
 <div class="note" id="productionBoundary">Production snapshot पढ़ा जा रहा है। Assets की मौजूदगी स्वतंत्र QC, ग्राहक-स्वीकृति, dispatch या भुगतान का प्रमाण नहीं है।</div>
 <div class="metrics" aria-label="वास्तविक आय और सत्यापन स्थिति">
 <div class="metric"><strong id="dispatchValue">—</strong><span>Dispatch जारी / catalog</span></div>
-<div class="metric"><strong id="salesValue">—</strong><span>दर्ज बिक्री / catalog</span></div>
-<div class="metric"><strong id="paymentValue">—</strong><span>दर्ज भुगतान / catalog</span></div>
+<div class="metric"><strong id="salesValue">—</strong><span>दर्ज बिक्री रिकॉर्ड</span></div>
+<div class="metric"><strong id="paymentValue">—</strong><span>दर्ज भुगतान रिकॉर्ड</span></div>
 <div class="metric"><strong id="verifiedValue">—</strong><span>स्वतंत्र रूप से verified / verification queue</span></div>
 <div class="metric"><strong id="verificationPercent">—</strong><span>सत्यापन प्रतिशत · verified / कुल queue</span></div>
 <div class="metric"><strong id="reviewPreparedValue">—</strong><span>मानवीय समीक्षा पैकेट तैयार / कुल queue</span></div>
@@ -132,8 +132,9 @@ async function loadProductionSnapshot(){
   $("assetPercent").textContent=catalog>0?(assets.toLocaleString("en-IN")+" / "+catalog.toLocaleString("en-IN")+" · "+(assets/catalog*100).toFixed(2)+"%"):"गणना उपलब्ध नहीं";
   const dispatch=Number(state.dispatch_released||0),sales=Number(state.sales_claimed||0),payments=Number(state.payment_claimed||0);
   $("dispatchValue").textContent=dispatch.toLocaleString("en-IN")+" / "+catalog.toLocaleString("en-IN");
-  $("salesValue").textContent=sales.toLocaleString("en-IN")+" / "+catalog.toLocaleString("en-IN");
-  $("paymentValue").textContent=payments.toLocaleString("en-IN")+" / "+catalog.toLocaleString("en-IN");
+  $("salesValue").textContent=sales.toLocaleString("en-IN");
+  $("salesCount").textContent=sales.toLocaleString("en-IN");
+  $("paymentValue").textContent=payments.toLocaleString("en-IN");
   const generated=new Date(state.generated_at),age=Date.now()-generated.getTime(),stale=!Number.isFinite(age)||age>60*60*1000;
   $("productionFreshness").textContent=stale?"STALE · पुराना snapshot":"FRESH · 1 घंटे के भीतर";
   $("productionBoundary").textContent="Snapshot समय: "+fmtTime(state.generated_at)+" · State: "+String(state.state||"अनिर्दिष्ट")+" · QC: "+String(state.qc_state||"अनिर्दिष्ट")+". "+(stale?"यह snapshot 1 घंटे से पुराना है; इसे वर्तमान स्थिति न मानें. ":"")+"Assets/catalog अनुपात केवल प्रकाशित JSON का materialization संकेतक है—स्वतंत्र QC, sellability, dispatch, भुगतान या आय का प्रमाण नहीं।";
