@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Shirmani Research Institute customer account access: registration and login interface with fail-closed backend integration.">
+<meta name="theme-color" content="#0b1220">
+<title>Customer Account | Shirmani Research Institute</title>
+<style>
+:root{color-scheme:dark;--bg:#09111e;--panel:#111e30;--line:#2a4059;--gold:#f2d17b;--cyan:#8be7ed;--text:#f6f8fb;--muted:#c1ccd9;--red:#ffb4ab}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#162a42,#09111e 32rem);color:var(--text);font:16px/1.6 system-ui,"Noto Sans Devanagari",sans-serif}.wrap{max-width:760px;margin:auto;padding:24px 16px 60px}header,section{background:#111e30f2;border:1px solid var(--line);border-radius:18px;padding:clamp(18px,4vw,32px);margin-bottom:16px}h1,h2{color:var(--gold);line-height:1.2}h1{font-size:clamp(2rem,6vw,3rem)}p,.muted{color:var(--muted)}a{color:var(--cyan)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tabs button,button,.btn{border:1px solid var(--gold);border-radius:10px;padding:11px 15px;font:inherit;font-weight:750;cursor:pointer;background:var(--gold);color:#18202a}.tabs button[aria-pressed="false"],.secondary{background:#0b1726;color:var(--text);border-color:#48617b}label{display:block;margin:12px 0 5px;font-weight:700}input{width:100%;padding:12px;border:1px solid #48617b;border-radius:9px;background:#07111e;color:var(--text);font:inherit}input:focus-visible,button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}.form-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}.notice{border-left:4px solid var(--cyan);background:#0b1927;padding:12px;border-radius:7px}.error{border-left-color:var(--red)}[hidden]{display:none!important}footer{color:var(--muted);text-align:center;padding:16px}
+</style>
+</head>
+<body><main class="wrap">
+<header><p>SHIRMANI RESEARCH INSTITUTE · CUSTOMER ACCOUNTS</p><h1>ग्राहक खाता</h1><p>सेवा और उत्पादों के लिए registration या login का प्रवेश-पृष्ठ।</p><a href="index.html">← मुख्य प्लेटफ़ॉर्म पर लौटें</a></header>
+<section>
+<div class="notice" id="integrationNotice" role="status">सुरक्षा स्थिति: authentication backend अभी configure नहीं है। यह पृष्ठ अकेले खाता नहीं बनाता, password सहेजता नहीं, और login का झूठा success नहीं दिखाता।</div>
+<div class="tabs" role="group" aria-label="Account action"><button type="button" id="signupTab" aria-pressed="true">Register / Signup</button><button type="button" id="loginTab" class="secondary" aria-pressed="false">Login</button></div>
+<form id="accountForm" novalidate>
+<div id="nameField"><label for="name">पूरा नाम</label><input id="name" name="name" autocomplete="name" maxlength="120" required></div>
+<div id="emailField"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+<div><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required aria-describedby="passwordHelp"><p id="passwordHelp" class="muted">कम से कम 12 characters। इस पृष्ठ पर password browser storage में नहीं रखा जाता।</p></div>
+<div id="confirmField"><label for="confirmPassword">Password दोबारा लिखें</label><input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="12" maxlength="128" required></div>
+<div class="form-actions"><button type="submit" id="submitButton">Signup backend से जोड़ें</button><button type="reset" class="secondary">साफ़ करें</button></div>
+</form>
+<p id="formStatus" class="notice" role="status" aria-live="polite">स्थिति: backend integration pending — कोई account अभी create/login नहीं हुआ।</p>
+</section>
+<section><h2>Production activation के लिए आवश्यक</h2><ul><li>HTTPS पर deployed authentication API और durable database</li><li>Server-side password hashing, email verification और rate limiting</li><li>Secure session/cookie, logout, account recovery और abuse controls</li><li>Privacy notice, data export/deletion और access-control tests</li><li>Successful end-to-end registration/login tests और deployment evidence</li></ul><p class="muted">API configure होने तक credentials भेजे नहीं जाते। केवल frontend बनना production authentication का प्रमाण नहीं है।</p></section>
+<footer>Evidence-first · Privacy-first · No false account or revenue claims</footer>
+</main>
+<script>
+(function(){
+'use strict';
+const apiBase=(window.SHIRMANI_AUTH_API_BASE||'').trim().replace(/\/$/,'');
+const form=document.getElementById('accountForm'),signupTab=document.getElementById('signupTab'),loginTab=document.getElementById('loginTab');
+const nameField=document.getElementById('nameField'),confirmField=document.getElementById('confirmField'),password=document.getElementById('password'),confirmPassword=document.getElementById('confirmPassword'),submit=document.getElementById('submitButton'),status=document.getElementById('formStatus'),notice=document.getElementById('integrationNotice');
+let mode='signup';
+function setMode(next){mode=next;const signup=mode==='signup';signupTab.setAttribute('aria-pressed',String(signup));loginTab.setAttribute('aria-pressed',String(!signup));signupTab.classList.toggle('secondary',!signup);loginTab.classList.toggle('secondary',signup);nameField.hidden=!signup;confirmField.hidden=!signup;document.getElementById('name').required=signup;confirmPassword.required=signup;password.autocomplete=signup?'new-password':'current-password';confirmPassword.value='';submit.textContent=signup?'Signup':'Login';status.textContent=apiBase?'Backend endpoint configured; submit only when your deployment is ready.':'स्थिति: backend integration pending — कोई credentials भेजे नहीं जाएंगे।';}
+signupTab.addEventListener('click',()=>setMode('signup'));loginTab.addEventListener('click',()=>setMode('login'));
+form.addEventListener('submit',async event=>{event.preventDefault();status.classList.remove('error');if(!apiBase){status.classList.add('error');status.textContent='अभी account नहीं बनाया गया: सुरक्षित authentication backend configure नहीं है। कोई password कहीं भेजा या सहेजा नहीं गया।';return;}
+const email=document.getElementById('email').value.trim(),name=document.getElementById('name').value.trim();
+if(!form.reportValidity())return;if(mode==='signup'&&password.value!==confirmPassword.value){status.classList.add('error');status.textContent='दोनों password मेल नहीं खाते।';return;}
+submit.disabled=true;status.textContent='सुरक्षित authentication service से संपर्क हो रहा है…';
+try{const response=await fetch(apiBase+(mode==='signup'?'/auth/register':'/auth/login'),{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},credentials:'omit',body:JSON.stringify(mode==='signup'?{name,email,password:password.value}:{email,password:password.value})});const payload=await response.json().catch(()=>({}));if(!response.ok)throw new Error(typeof payload.message==='string'?payload.message:'Service ने request स्वीकार नहीं की।');status.textContent=mode==='signup'?'Registration request स्वीकार हुई। Email verification और server confirmation पूरा होने तक account active नहीं माना जाएगा.':'Login request सफल हुई। इस UI में session/token को persist नहीं किया गया; production session handling deployment integration में आवश्यक है.';form.reset();}catch(error){status.classList.add('error');status.textContent='Authentication पूरा नहीं हुआ: '+String(error.message||'service unavailable')+' कृपया deployment/backend status जाँचें।';}finally{submit.disabled=false;}
+});
+form.addEventListener('reset',()=>{setTimeout(()=>{status.classList.remove('error');status.textContent='स्थिति: कोई account create/login नहीं हुआ।';},0);});
+if(!apiBase){notice.textContent='सुरक्षा स्थिति: backend URL configure नहीं है। अभी registration/login निष्क्रिय है; यह page credentials को कहीं भेजे बिना स्पष्ट स्थिति दिखाता है।';}
+setMode('signup');
+})();
+</script>
+</body></html>
