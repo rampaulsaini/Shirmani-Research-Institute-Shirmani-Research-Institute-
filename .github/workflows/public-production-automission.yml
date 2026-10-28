@@ -286,6 +286,23 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Record expected public-state fingerprint before upload
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          path = Path("generated/live-production-state.json")
+          raw = path.read_bytes()
+          payload = json.loads(raw.decode("utf-8"))
+          fingerprint = hashlib.sha256(raw).hexdigest()
+          generated_at = payload.get("generated_at", "")
+          print(f"BUILD_LIVE_STATE generated_at={generated_at} sha256={fingerprint} bytes={len(raw)}")
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env:
+              env.write(f"EXPECTED_LIVE_STATE_SHA256={fingerprint}\n")
+              env.write(f"EXPECTED_LIVE_STATE_GENERATED_AT={generated_at}\n")
+          PY
+
       - name: Upload generated production site
         uses: actions/upload-pages-artifact@v4
         with:
@@ -302,4 +319,6 @@ jobs:
         env:
           PAGES_URL: ${{ steps.deployment.outputs.page_url }}
           PRODUCT_TARGET: ${{ env.PRODUCT_TARGET }}
+          EXPECTED_LIVE_STATE_SHA256: ${{ env.EXPECTED_LIVE_STATE_SHA256 }}
+          EXPECTED_LIVE_STATE_GENERATED_AT: ${{ env.EXPECTED_LIVE_STATE_GENERATED_AT }}
         run: python3 factory/public_pages_runtime_smoke.py
