@@ -70,6 +70,7 @@ for o in offers:
         f'<a class="btn" href="{html.escape(cta)}" target="_blank" rel="noopener">{label}</a></article>'
     )
 
+cards_html = "".join(cards)
 page = f'''<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHIRMANI — Real Product Catalog</title><meta name="description" content="SHIRMANI real product and service catalog generated from the repository product registry."><style>
 body{{margin:0;background:#080b11;color:#eef2f7;font-family:system-ui,sans-serif;line-height:1.55}}main{{max-width:1200px;margin:auto;padding:24px 16px 70px}}h1,h2{{color:#d4af37}}.hero,.card,.rule{{background:#111827;border:1px solid #334155;border-radius:16px;padding:18px}}.hero{{margin-bottom:18px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}}.tag{{display:inline-block;border:1px solid #475569;border-radius:999px;padding:4px 8px;color:#67e8f9;font-size:.76rem}}.price{{font-size:1.25rem;font-weight:800;color:#f5d76e;margin:8px 0}}.status{{color:#6ee7b7;font-weight:700;font-size:.88rem}}.btn{{display:inline-block;background:#d4af37;color:#111;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:800;margin-top:10px}}.muted{{color:#aeb8c8}}a{{color:#67e8f9}}footer{{margin-top:24px;color:#aeb8c8}}.income{{background:#0b1726;border:1px solid #52677e;border-radius:14px;padding:18px;margin:18px 0}}.income-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}}.income-card{{border:1px solid #334155;border-radius:12px;padding:14px;background:#111827}}.income-card p{{color:#c5cfdb}}.note{{border-left:4px solid #67e8f9;padding:10px 12px;background:#101d2b;color:#c5cfdb}}
 </style></head><body><main>
@@ -84,7 +85,7 @@ body{{margin:0;background:#080b11;color:#eef2f7;font-family:system-ui,sans-serif
 <p class="note"><b>सत्यापन नियम:</b> enquiry या प्रस्ताव आय नहीं है। भुगतान तभी दर्ज करें जब वास्तव में प्राप्त हो और उसका reference उपलब्ध हो। ये links enquiry पेज खोलते हैं; वे अपने-आप ईमेल नहीं भेजते, भुगतान नहीं लेते या ऑर्डर की पुष्टि नहीं करते।</p>
 <div><a class="btn" href="income-client-pipeline.html">Client pipeline / payment / delivery tracker</a> <a class="btn" href="writing-research-enquiry.html">Full enquiry form</a></div>
 </section>
-<div class="grid">{''.join(cards)}</div>
+<div class="grid">{cards_html}</div>
 <section class="rule" style="margin-top:20px"><h2>Production rule</h2><p>Product record → product page → order/inquiry → delivery → delivery evidence → settlement → audit. Automission may prepare and publish the product layer; paid/external actions require authorized human/provider gates.</p></section>
 <footer>Generated from <code>factory/product-catalog.json</code>. Source-bound catalog; no fabricated sales or income.</footer>
 </main></body></html>'''
