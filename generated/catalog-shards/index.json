@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-28T01:42:47.693233+00:00",
+  "long_term_target": 150000,
+  "concrete_product_count": 5000,
+  "remaining_to_long_term_target": 145000,
+  "shard_size": 1000,
+  "concrete_shard_count": 5,
+  "rule": "Future capacity is not inventory; only concrete records are materialized.",
+  "shards": [
+    {
+      "shard": 0,
+      "path": "generated/catalog-shards/shards/shard-00000.json",
+      "count": 1000,
+      "state": "CONCRETE_PRODUCED"
+    },
+    {
+      "shard": 1,
+      "path": "generated/catalog-shards/shards/shard-00001.json",
+      "count": 1000,
+      "state": "CONCRETE_PRODUCED"
+    },
+    {
+      "shard": 2,
+      "path": "generated/catalog-shards/shards/shard-00002.json",
+      "count": 1000,
+      "state": "CONCRETE_PRODUCED"
+    },
+    {
+      "shard": 3,
+      "path": "generated/catalog-shards/shards/shard-00003.json",
+      "count": 1000,
+      "state": "CONCRETE_PRODUCED"
+    },
+    {
+      "shard": 4,
+      "path": "generated/catalog-shards/shards/shard-00004.json",
+      "count": 1000,
+      "state": "CONCRETE_PRODUCED"
+    }
+  ]
+}
