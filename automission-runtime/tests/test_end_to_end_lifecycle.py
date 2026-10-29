@@ -2,7 +2,6 @@ import sys
 from pathlib import Path as _Path
 sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
-import os
 import sqlite3
 import tempfile
 import unittest
@@ -21,12 +20,12 @@ class EndToEndLifecycleTests(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def test_discover_verify_claim_execute_outcome_learning_heartbeat(self):
+    def test_unverified_opportunity_is_not_executed_before_review(self):
         item = {
             "id": "e2e-1",
             "source": "test-feed",
             "channel": "freelancing",
-            "title": "Verified freelance project",
+            "title": "Freelance project requiring review",
             "description": "contract project",
             "url": "https://example.test/project/1",
             "evidence_url": "https://example.test/evidence/1",
@@ -39,7 +38,8 @@ class EndToEndLifecycleTests(unittest.TestCase):
         worker.DB, worker.STATE_DIR = self.db, self.state
         try:
             worker.init_db()
-            with patch.object(worker, "discover", return_value=[item]),                  patch.object(worker, "health_all", return_value={"freelancing": "NOT_READY"}):
+            with patch.object(worker, "discover", return_value=[item]), \
+                 patch.object(worker, "health_all", return_value={"freelancing": "NOT_READY"}):
                 worker.cycle()
 
             with sqlite3.connect(self.db) as db:
@@ -58,9 +58,9 @@ class EndToEndLifecycleTests(unittest.TestCase):
                 ).fetchone()
 
             self.assertEqual(heartbeat, ("HEARTBEAT_OK",))
-            self.assertEqual(outcome, ("PLANNED",))
+            self.assertIsNone(outcome, "Unverified opportunity must not create a planned outcome")
             self.assertEqual(learning, 1)
-            self.assertEqual(receipt, ("PLANNED",))
+            self.assertIsNone(receipt, "Unverified opportunity must not create an execution receipt")
         finally:
             worker.DB, worker.STATE_DIR = old_db, old_state
 
