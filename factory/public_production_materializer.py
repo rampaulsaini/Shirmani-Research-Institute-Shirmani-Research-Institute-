@@ -104,7 +104,7 @@ def _parse_public_html(source):
 def title(text,fallback):
     raw = text or ""
     lower = raw.lower()
-    if "<!doctype" in lower or "<html" in lower or "<head" in lower or "<body" in lower:
+    if raw.lstrip().lower().startswith(("<!doctype html", "<html", "<head", "<body")):
         fields = _parse_public_html(raw)
         raw = fields["title"] or fields["h1"] or fallback
     return (re.sub(r"\s+", " ", raw).strip()[:110] or fallback).strip()
@@ -113,7 +113,7 @@ def readable_excerpt(source, limit=1400):
     """Turn HTML sources into readable metadata instead of dumping raw markup."""
     raw = source or ""
     lower = raw.lower()
-    if not ("<!doctype" in lower or "<html" in lower or "<head" in lower or "<body" in lower):
+    if not raw.lstrip().lower().startswith(("<!doctype html", "<html", "<head", "<body")):
         return " ".join(raw.split())[:limit]
 
     fields = _parse_public_html(raw)
