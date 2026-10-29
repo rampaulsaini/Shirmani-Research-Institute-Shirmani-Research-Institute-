@@ -23,7 +23,7 @@ def score(item):
         return 0
     hits = sum(
         1 for keyword in CHANNELS[channel]["keywords"]
-        if re.search(r"\\b" + re.escape(keyword) + r"\\b", text)
+        if re.search(r"\b" + re.escape(keyword) + r"\b", text)
     )
     evidence_present = bool(item.get("evidence_url"))
     return min(100, hits * 10 + (20 if evidence_present else 0))
