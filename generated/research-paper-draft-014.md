@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Put files into a repository (branch `main`).
+⭐ Public Reviews → Quality Improvement ग्राहक का वास्तविक उपयोग, rating और review अगली iterations की quality priorities, descriptions, usability और offers सुधारने का feedback input है।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Put files into a repository (branch `main`).
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/omniverse-marketplace-:README.md
+rampaulsaini/my-omniverse-store:production-catalog.html
