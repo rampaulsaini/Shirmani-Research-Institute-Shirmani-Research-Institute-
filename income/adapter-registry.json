@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "name": "External Adapter Capability Registry",
+  "purpose": "Separate discovery/configuration/health/authorization from executable readiness.",
+  "states": [
+    "DISCOVERED",
+    "CONFIGURED",
+    "HEALTH_CHECKED",
+    "AUTHORIZED",
+    "READY",
+    "DISABLED"
+  ],
+  "rules": {
+    "registration_does_not_authorize": true,
+    "ready_requires_authorization": true,
+    "external_execution_requires_ready_adapter": true,
+    "capability_allowlist_required": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version":"1.0.0",
+  "principle":"provider_agnostic",
+  "required_interface":["health","discover","prepare","execute"],
+  "channels":{
+    "employment":"AUTOMISSION_EMPLOYMENT_ADAPTER",
+    "freelancing":"AUTOMISSION_FREELANCING_ADAPTER",
+    "ai_marketing":"AUTOMISSION_AI_MARKETING_ADAPTER",
+    "digital_store":"AUTOMISSION_DIGITAL_STORE_ADAPTER",
+    "yatharth_ai_music":"AUTOMISSION_YATHARTH_AI_MUSIC_ADAPTER",
+    "economic_vision":"AUTOMISSION_ECONOMIC_VISION_ADAPTER"
+  },
+  "safety":{
+    "credentials_from_environment_only":true,
+    "irreversible_actions_require_authorization":true,
+    "verified_income_requires_evidence":true
+  }
+}
