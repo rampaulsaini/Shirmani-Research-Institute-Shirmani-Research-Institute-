@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "nodes": 604825,
-  "edges": 714998,
-  "graph_sha256": "b02f7e17fcfbb613eed3909ad13c5c875777dbc02c6743018951e2671a858b5b",
+  "nodes": 605774,
+  "edges": 713504,
+  "graph_sha256": "f62c7e5c963321e4f16777248bca47d369dbb1b618550bbf5fc382dcbf4499a9",
   "publication_gate": "CHECK",
   "independent_verification_claimed": false,
   "explicit_evidence_nodes": 100200
