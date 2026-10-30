@@ -224,6 +224,8 @@ jobs:
           if qrs != int(state.get("product_qr_assets", -1)):
               raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: QR file count does not match production state")
           PY
+      - name: Test public production index freshness contract
+        run: python -m unittest discover -s tests -p 'test_refresh_public_production_indexes.py'
       - name: Rebuild derived public indexes from existing lane outputs
         run: python factory/refresh_public_production_indexes.py
       - name: Require fresh production cycle before public sync
