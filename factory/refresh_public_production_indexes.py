@@ -109,9 +109,31 @@ def main() -> None:
 
     produced_by_id = {}
     lane_counts = Counter()
+    source_times = []
+    source_check_time = datetime.now(timezone.utc)
     for lane_file in lane_files:
         lane_name = lane_file.stem
         for row in read_jsonl(lane_file):
+            # Freshness must come from production records, not index rebuild time.
+            try:
+                produced_at = datetime.fromisoformat(
+                    str(row.get("produced_at", "")).replace("Z", "+00:00")
+                )
+                if produced_at.tzinfo is None:
+                    raise ValueError("timestamp has no timezone")
+                produced_at = produced_at.astimezone(timezone.utc)
+            except (TypeError, ValueError) as exc:
+                raise SystemExit(
+                    f"PUBLIC_INDEX_REFRESH_FAILED: lane record has invalid produced_at: {exc}"
+                )
+            source_age = (source_check_time - produced_at).total_seconds()
+            if source_age < -120 or source_age > 1800:
+                raise SystemExit(
+                    "PUBLIC_INDEX_REFRESH_FAILED: lane production record is stale or future-dated "
+                    f"({round(source_age)} seconds old)"
+                )
+            source_times.append(produced_at)
+
             task_id = str(row.get("task_id", "")).strip()
             if not task_id or task_id in produced_by_id:
                 raise SystemExit("PUBLIC_INDEX_REFRESH_FAILED: produced task IDs are missing or duplicated")
@@ -142,6 +164,8 @@ def main() -> None:
 
     results = sorted(produced_by_id.values(), key=lambda row: (int(row["slot"]), str(row["task_id"])))
     latest_cycle = next(iter(cycles))
+    source_produced_at = min(source_times).isoformat()
+    source_latest_produced_at = max(source_times).isoformat()
     generated_at = datetime.now(timezone.utc).isoformat()
     archive_file = ARCHIVE / f"production-cycle-{latest_cycle:06d}.jsonl"
 
@@ -152,6 +176,9 @@ def main() -> None:
     archive_files = sorted(p.name for p in ARCHIVE.glob("production-cycle-*.jsonl") if p.is_file())
     atomic_json(ARCHIVE_INDEX, {
         "generated_at": generated_at,
+        "source_produced_at": source_produced_at,
+        "source_latest_produced_at": source_latest_produced_at,
+        "source_cycle": latest_cycle,
         "shard_strategy": "one JSONL file per production cycle",
         "cycle_shards": len(archive_files),
         "files": archive_files,
@@ -165,6 +192,9 @@ def main() -> None:
     })
     atomic_json(CATALOG, {
         "generated_at": generated_at,
+        "source_produced_at": source_produced_at,
+        "source_latest_produced_at": source_latest_produced_at,
+        "source_cycle": latest_cycle,
         "principle": "Production first; verification downstream.",
         "cycle": latest_cycle,
         "cycle_results": len(results),
@@ -189,6 +219,8 @@ def main() -> None:
         "produced_lane_records": len(results),
         "lane_counts": dict(sorted(lane_counts.items())),
         "archive_shards": len(archive_files),
+        "source_produced_at": source_produced_at,
+        "source_latest_produced_at": source_latest_produced_at,
         "derived_indexes_refreshed": 3,
         "lane_records_rewritten": 0,
         "independent_verification_claim": False
