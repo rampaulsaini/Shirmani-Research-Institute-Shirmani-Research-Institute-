@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0.0",
+  "name":"Income Command Center — 24/7/365 Automission Runtime Contract",
+  "mode":"continuous",
+  "control_plane":"income-command-center",
+  "heartbeat_seconds":300,
+  "reconciliation_seconds":900,
+  "state":"persistent-runtime-required",
+  "workers":["source-librarian","opportunity-dedup","evidence-verifier","employment-agent","freelancing-agent","ai-marketing-agent","digital-store-agent","yatharth-music-agent","economic-vision-agent","execution-router","revenue-intelligence","ml-learning-loop"],
+  "loop":["discover","normalize","verify","route","execute_permitted","capture_outcome","learn","recover"],
+  "recovery":{"max_retries":3,"backoff_seconds":[30,120,300],"fail_closed":true},
+  "safety":{"fabrication_forbidden":true,"unverified_revenue_forbidden":true,"irreversible_actions_require_authorization":true},
+  "truth_boundary":"This contract defines continuous orchestration; it does not by itself create external platform access or guarantee income."
+}
