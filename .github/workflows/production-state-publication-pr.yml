@@ -26,6 +26,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+      - name: Rebuild derived public indexes from existing lane outputs
+        run: python factory/refresh_public_production_indexes.py
       - name: Fetch repaired production-state
         shell: bash
         run: |
