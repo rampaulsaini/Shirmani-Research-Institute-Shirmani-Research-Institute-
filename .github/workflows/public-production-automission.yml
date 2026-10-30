@@ -37,11 +37,34 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Keep the validated main-branch verification contract authoritative.
+          # The production-state overlay may contain an older schema; preserve this file
+          # before copying generated assets, then restore and validate it afterwards.
+          MAIN_VERIFICATION_STATUS="generated/independent-verification-status.json"
+          test -s "$MAIN_VERIFICATION_STATUS"
+          install -D "$MAIN_VERIFICATION_STATUS" /tmp/shirmani-main-independent-verification-status.json
+
           if git ls-remote --exit-code --heads origin automation/production-state >/dev/null 2>&1; then
             git fetch origin automation/production-state
             mkdir -p /tmp/shirmani-production-state
             git archive FETCH_HEAD generated products/concrete products/visuals products/continuous products/demos/continuous | tar -x -C /tmp/shirmani-production-state
             cp -a /tmp/shirmani-production-state/generated/. generated/
+            # Restore the current fail-closed contract after the broad generated/ overlay.
+            install -D /tmp/shirmani-main-independent-verification-status.json generated/independent-verification-status.json
+            python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("generated/independent-verification-status.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          required = {
+              "verification_policy": "FAIL_CLOSED",
+              "human_review_required_for_verified_promotion": True,
+          }
+          missing = [key for key, value in required.items() if data.get(key) != value]
+          if missing:
+              raise SystemExit("Independent-verification status contract failed: " + ", ".join(missing))
+          print("Independent-verification status contract preserved from main.")
+          PY
             mkdir -p products/concrete
             cp -a /tmp/shirmani-production-state/products/concrete/. products/concrete/
             if [ -d /tmp/shirmani-production-state/products/visuals ]; then
