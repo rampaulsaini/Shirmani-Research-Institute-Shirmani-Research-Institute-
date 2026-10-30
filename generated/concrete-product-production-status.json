@@ -1,11 +1,7 @@
 {
-  "generated_at": "2026-10-30T20:56:31.541103+00:00",
-  "target": 5000,
-  "concrete_produced": 3716,
-  "concrete_production_percent": 74.32,
-  "remaining": 1284,
-  "overlay_claimed": 3716,
-  "overlay_only_gap": 0,
-  "status": "IN_PROGRESS",
-  "next_layer": "QC → packaging → commercial listing → delivery evidence → independent review"
+  "generated_at": "2026-10-30T21:07:37.761079+00:00",
+  "catalog_products": 5000,
+  "concrete_product_assets": 5000,
+  "state": "COMPLETE",
+  "dispatch": "NO"
 }
