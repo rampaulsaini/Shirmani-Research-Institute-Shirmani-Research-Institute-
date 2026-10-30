@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Shirmani Research Institute external channel readiness: WhatsApp, email, UPI, PayPal and Yatharth Mudra, with honest evidence states.">
+<title>बाहरी सेवाओं की वास्तविक स्थिति · Shirmani Research Institute</title>
+<style>
+:root{color-scheme:dark;--bg:#08111c;--panel:#101f30;--line:#2b455b;--gold:#f1d38a;--mint:#91e5d4;--ink:#f5f7fa;--muted:#b8c5d2;--blue:#8fc8ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% 0,#19364c 0,transparent 38rem),var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}main{max-width:1000px;margin:auto;padding:18px}a{color:var(--blue)}header,section,article{border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#13283b,#0d1a29);padding:20px;margin:14px 0}h1,h2{color:var(--gold);line-height:1.2}h1{font-size:clamp(2rem,5vw,3.4rem)}h2{font-size:1.45rem}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}.card{margin:0}.state{display:inline-block;border:1px solid #477267;color:var(--mint);border-radius:999px;padding:3px 10px;font-size:.85rem;font-weight:700}.blocked{border-color:#8b7350;color:#f1d38a}.btn{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:10px;text-decoration:none;background:#0c1a28;margin:4px 6px 4px 0}.note{border-left:3px solid var(--gold);padding:10px 14px;background:#0b1b28;color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}th{color:var(--gold)}footer{color:var(--muted);padding:20px 0}@media(max-width:600px){table{font-size:.9rem}th,td{padding:7px}}
+</style>
+</head>
+<body><main>
+<header>
+<p><a href="../public-interface-v3.html">← मुख्य सार्वजनिक प्रवेश</a></p>
+<p class="state">प्रमाण-आधारित स्थिति · 30 अक्टूबर 2026</p>
+<h1>WhatsApp, Email, UPI, PayPal और Yatharth Mudra</h1>
+<p class="muted">यह पृष्ठ दिखाता है कि वेबसाइट में कौन-सा संपर्क रास्ता मौजूद है और कौन-सी बाहरी सेवा वास्तव में live integration के रूप में प्रमाणित है। लिंक होना, API connection होना, भुगतान प्राप्त होना और भुगतान सत्यापित होना अलग-अलग अवस्थाएँ हैं।</p>
+<div class="note"><strong>मुख्य नियम:</strong> कोई API key, webhook, live account test या transaction receipt उपलब्ध प्रमाण में न होने पर किसी चैनल को “पूरी तरह integrated” नहीं कहा जाएगा। इस पृष्ठ पर कोई secret या निजी credential नहीं रखा जाता।</div>
+</header>
+<section><h2>वर्तमान स्थिति</h2>
+<div class="grid">
+<article class="card"><span class="state">लिंक मौजूद</span><h2>WhatsApp</h2><p>सार्वजनिक सेवा-पृष्ठ पर enquiry link है। यह WhatsApp chat खोलता है; अपने-आप संदेश नहीं भेजता। Business Platform API, webhook और delivery receipt का live test प्रमाणित नहीं है।</p><a class="btn" href="global-product-sales-desk.html">Enquiry पेज खोलें</a></article>
+<article class="card"><span class="state">ड्राफ्ट लिंक मौजूद</span><h2>Email</h2><p>ईमेल पता/subject/body के साथ mailto draft खुल सकता है। यह स्वचालित ईमेल प्रेषण, inbox monitoring या delivery receipt का प्रमाण नहीं है।</p><a class="btn" href="global-product-sales-desk.html">ईमेल संपर्क खोलें</a></article>
+<article class="card"><span class="state blocked">Live checkout प्रमाणित नहीं</span><h2>UPI</h2><p>साइट पर UPI निर्देश या payment app link होना live payment integration नहीं है। Merchant VPA, dynamic order reference, server verification और वास्तविक transaction receipt की पुष्टि नहीं हुई है।</p><p class="muted">जब तक सुरक्षित सत्यापन न जुड़े, भुगतान की पुष्टि manually receipt/bank statement से करें; UPI PIN/OTP कभी साझा न करें।</p></article>
+<article class="card"><span class="state blocked">Live checkout प्रमाणित नहीं</span><h2>PayPal</h2><p>इस जाँच में live PayPal checkout, verified webhook, sandbox-to-live release test या प्राप्त भुगतान का प्रमाण नहीं मिला। किसी अनुमानित भुगतान लिंक को live नहीं माना गया है।</p><p class="muted">भुगतान तभी दर्ज करें जब PayPal खाते में transaction स्वयं सत्यापित हो।</p></article>
+<article class="card"><span class="state blocked">Design / testnet-first</span><h2>Yatharth Mudra (YTH)</h2><p>प्रकाशित status record के अनुसार network और contract address नहीं हैं; contract deploy नहीं हुआ, security audit पूरा नहीं और public sale बंद है। इसे अभी भुगतान विकल्प या बिक्री योग्य token के रूप में न दिखाएँ।</p><p class="muted">यह status specification है, deployed token या monetary value का प्रमाण नहीं।</p></article>
+</div></section>
+<section><h2>ग्राहक से भुगतान तक सही क्रम</h2>
+<table><thead><tr><th>चरण</th><th>क्या प्रमाण चाहिए</th><th>कब पूरा मानें</th></tr></thead><tbody>
+<tr><td>1. Enquiry</td><td>ग्राहक का संदेश/ईमेल और तारीख</td><td>वास्तविक संदेश प्राप्त हुआ</td></tr>
+<tr><td>2. Proposal</td><td>काम का scope, deliverables, समय, revisions और कुल कीमत</td><td>ग्राहक ने लिखित रूप में स्वीकार किया</td></tr>
+<tr><td>3. Payment</td><td>UPI/PayPal खाते में दिखाई देने वाला वास्तविक transaction record</td><td>राशि वास्तव में प्राप्त और संदर्भ संख्या दर्ज</td></tr>
+<tr><td>4. Delivery</td><td>फाइल/सेवा का delivery link और तारीख</td><td>सहमत सामग्री ग्राहक तक पहुँची</td></tr>
+<tr><td>5. Verification</td><td>ग्राहक की प्राप्ति/स्वीकृति और अलग payment evidence</td><td>प्रत्येक दावा अपने प्रमाण से समर्थित</td></tr>
+</tbody></table>
+<p class="note">GitHub Pages static website अकेले secret API keys सुरक्षित नहीं रख सकती और न ही payment webhook की विश्वसनीय server-side verification कर सकती है। वास्तविक automatic integration के लिए सुरक्षित backend/serverless endpoint, provider credentials को secret storage में रखना, webhook signature verification, idempotency, logging और test transactions चाहिए। कोई secret इस repository में commit न करें।</p>
+</section>
+<section><h2>अगला कार्य-क्रम</h2>
+<ol><li>WhatsApp और email के लिए एक वास्तविक inbound enquiry test करें; test date और परिणाम दर्ज करें।</li><li>पहले छोटे paid pilot का scope और कीमत लिखित रूप से तय करें।</li><li>UPI/PayPal में से जिस खाते की वास्तविक पहुँच उपलब्ध है, उसके test/live checkout और receipt की जाँच करें।</li><li>भुगतान के बाद delivery record और verification जोड़ें; अनुमान को बिक्री न गिनें।</li><li>Yatharth Mudra को अलग रखें; deployment और independent security audit से पहले भुगतान के रूप में उपयोग न करें।</li></ol>
+<p><a class="btn" href="../income-action-center.html">Income Action Center</a><a class="btn" href="../showroom/income-first-client-pipeline.html">ग्राहक pipeline</a><a class="btn" href="../public-interface-v3.html">मुख्य सार्वजनिक पेज</a></p>
+</section>
+<footer>Shirmani Research Institute · सार्वजनिक status पृष्ठ · वास्तविक परिणाम केवल प्रमाण मिलने पर अपडेट करें।</footer>
+</main></body></html>
