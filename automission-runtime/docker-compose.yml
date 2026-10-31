@@ -7,6 +7,7 @@ services:
     init: true
     environment:
       AUTOMISSION_HEARTBEAT_SECONDS: "300"
+      AUTOMISSION_HEARTBEAT_MAX_AGE_SECONDS: "900"
       AUTOMISSION_STALE_PROCESSING_SECONDS: "1800"
       AUTOMISSION_MAX_CONSECUTIVE_FAILURES: "3"
       AUTOMISSION_ADAPTER_ALLOWLIST: ""
@@ -14,11 +15,11 @@ services:
     volumes:
       - automission_state:/app/automission-runtime/state
     healthcheck:
-      test: ["CMD-SHELL", "python -c \"import sqlite3; db=sqlite3.connect('/app/automission-runtime/state/automission.db'); row=db.execute('select status from heartbeats order by id desc limit 1').fetchone(); raise SystemExit(0 if row and row[0]=='HEARTBEAT_OK' else 1)\""]
+      test: ["CMD", "python", "/app/automission-runtime/healthcheck.py"]
       interval: 2m
       timeout: 10s
       retries: 3
-      start_period: 30s
+      start_period: 10m
 
 volumes:
   automission_state:
