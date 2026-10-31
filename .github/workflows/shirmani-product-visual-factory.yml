@@ -5,6 +5,8 @@ on:
     paths:
       - "products/concrete/**"
       - "factory/product_visual_identity_factory_v2.py"
+      - "factory/product_qr_asset_factory.py"
+      - "factory/product_visual_qc_gate.py"
       - ".github/workflows/shirmani-product-visual-factory.yml"
   schedule:
     - cron: "17 * * * *"
@@ -21,26 +23,43 @@ concurrency:
 jobs:
   generate-product-visuals:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout production
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.x"
+      - name: Install QR production dependency
+        run: python -m pip install --disable-pip-version-check "qrcode>=8,<9"
       - name: Generate canonical 4K product visuals
         env:
           VISUAL_BATCH: "5000"
         run: python3 factory/product_visual_identity_factory_v2.py
-      - name: Propose generated visuals through a pull request
+      - name: Generate product-specific QR long-description assets
+        env:
+          QR_BATCH: "5000"
+        run: python3 factory/product_qr_asset_factory.py
+      - name: Run fail-closed product visual QC gate
+        run: python3 factory/product_visual_qc_gate.py
+      - name: Propose QC-passed visual assets through a pull request
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/product-visuals
+          base: main
           delete-branch: false
-          commit-message: "production: refresh unique product visuals"
+          commit-message: "production: refresh QC-passed unique product visuals"
           title: "Automission: refresh generated product visuals"
           body: |
             Automated product-visual generation proposal.
-            Review visual identity, generated files, and QC before merging.
+            The workflow generates product-specific QR assets and must pass the fail-closed visual QC gate before opening/updating this PR.
+            QC validates the visual contract; it does not claim independent scientific verification, sales, payment, or dispatch.
             This workflow does not push directly to protected main.
           add-paths: |
             products/visuals
+            generated/product-visual-assets-v2.json
+            generated/product-qr-assets.json

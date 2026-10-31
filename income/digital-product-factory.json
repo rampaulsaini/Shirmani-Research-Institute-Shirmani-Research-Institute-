@@ -1,0 +1,28 @@
+{
+  "name": "Digital Product Factory",
+  "version": "1.0.0",
+  "mode": "continuous",
+  "purpose": "Evidence-first creation, quality control, packaging, pricing, publication approval, verified sales and learning for digital products.",
+  "product_types": [
+    "software", "website", "ai_tool", "book", "course", "animation",
+    "cartoon", "film", "music", "painting", "research", "service_package", "other"
+  ],
+  "lifecycle": [
+    "IDEA", "RESEARCHED", "CREATED", "QC_PASSED", "PACKAGED",
+    "PRICED", "READY_TO_PUBLISH", "PUBLISH_APPROVAL_REQUIRED",
+    "PUBLISHED", "VERIFIED_SALE", "LEARNING"
+  ],
+  "channels": {
+    "own_store": "planned_or_configured",
+    "freelancing_platforms": "adapter_required",
+    "marketplaces": "adapter_required",
+    "education_platforms": "adapter_required"
+  },
+  "safety": {
+    "fabrication_forbidden": true,
+    "verified_sales_require_evidence": true,
+    "publication_requires_authorization": true,
+    "payment_actions_require_authorization": true
+  },
+  "learning_boundary": "Use only verified, evidence-backed sales and outcomes; never fabricate customers, orders, revenue, testimonials or platform connections."
+}

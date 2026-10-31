@@ -2,6 +2,7 @@
 """Check the deployed GitHub Pages runtime, not just the pre-deploy workspace."""
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import time
@@ -21,6 +22,16 @@ ROUTES = (
     "showroom-public.html",
     "showroom/shirmani-supreme-character-studio.html",
     "showroom/shirmani-supreme-heart-view-preview.html",
+    "product-order.html",
+    "showroom/public-order-scope-builder.html",
+    "showroom/global-product-sales-desk.html",
+    "writing-research-enquiry.html",
+    "writing-research-sales.html",
+    "services-writing-research.html",
+    "writing-research-portfolio.html",
+    "global-outreach-and-service-sales-workbench.html",
+    "outreach-income-workbench.html",
+    "showroom/first-client-deliverable-studio.html",
     "generated/live-production-state.json",
     "generated/public-production-asset-overlay.json",
     "generated/public-production-index.html",
@@ -99,6 +110,63 @@ for route in ROUTES:
     responses[route] = body
     print(f"ROUTE_PASS {route or '/'} bytes={len(body)} content_type={content_type}")
 
+# Exercise the customer-facing commercial path as part of the deployed smoke:
+# product pages must gate payment on an explicitly approved price, and the
+# enquiry builder must clearly disclose that it does not send or confirm orders.
+order_html = responses["product-order.html"].decode("utf-8", errors="replace")
+for required in ('function approvedPrice(p)', 'p.commercial_status==="PRICE_APPROVED"', "PAYMENT PAUSED"):
+    if required not in order_html:
+        raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: product-order.html missing commercial guard {required!r}")
+enquiry_html = responses["showroom/public-order-scope-builder.html"].decode("utf-8", errors="replace")
+for required in ("Enquiry draft only", "not sent", "no payment recorded"):
+    if required.lower() not in enquiry_html.lower():
+        raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: public order scope builder missing truth disclosure {required!r}")
+
+# Verify the actual public income path as well as the production catalogue.
+# These checks prove that the pages are reachable and contain the expected
+# human-operated contact paths and honest capability boundaries; they do not
+# prove a customer replied, a sale occurred, or payment was received.
+commercial_checks = {
+    "services-writing-research.html": (
+        "mailto:sainirampaul60@gmail.com",
+        "wa.me/918082935186",
+        "proposed starting",
+    ),
+    "writing-research-sales.html": (
+        "writing-research-enquiry.html",
+        "not verified market rates",
+    ),
+    "writing-research-portfolio.html": (
+        "illustrative",
+        "writing-research-enquiry.html",
+    ),
+    "global-outreach-and-service-sales-workbench.html": (
+        "does not contact customers",
+        "does not verify bank receipts",
+    ),
+    "outreach-income-workbench.html": (
+        "nothing is sent automatically",
+        "no backend",
+    ),
+    "showroom/first-client-deliverable-studio.html": (
+        "does not independently research the web",
+        "does not accept payments",
+    ),
+}
+for route, required_markers in commercial_checks.items():
+    html = responses[route].decode("utf-8", errors="replace").lower()
+    for marker in required_markers:
+        if marker.lower() not in html:
+            raise SystemExit(
+                f"PAGES_RUNTIME_SMOKE_FAIL: {route} missing commercial-path marker {marker!r}"
+            )
+print(json.dumps({
+    "gate": "PUBLIC_INCOME_FUNNEL_SMOKE",
+    "result": "PASS",
+    "commercial_routes_checked": len(commercial_checks),
+    "truth_boundary": "route/content checks do not establish customer response, order, payment or delivery",
+}, ensure_ascii=False))
+
 
 def read_json(route: str) -> dict:
     try:
@@ -111,6 +179,62 @@ def read_json(route: str) -> dict:
 
 
 live = read_json("generated/live-production-state.json")
+expected_live_sha256 = os.environ.get("EXPECTED_LIVE_STATE_SHA256", "").strip()
+expected_live_generated_at = os.environ.get("EXPECTED_LIVE_STATE_GENERATED_AT", "").strip()
+actual_live_sha256 = hashlib.sha256(responses["generated/live-production-state.json"]).hexdigest()
+actual_live_generated_at = str(live.get("generated_at", ""))
+print(
+    "PUBLIC_STATE_FINGERPRINT "
+    f"expected_generated_at={expected_live_generated_at or 'NOT_PROVIDED'} "
+    f"expected_sha256={expected_live_sha256 or 'NOT_PROVIDED'} "
+    f"actual_generated_at={actual_live_generated_at or 'MISSING'} "
+    f"actual_sha256={actual_live_sha256}"
+)
+# GitHub Pages can acknowledge a deployment before every edge serves the
+# new artifact. Retry only the public-state fingerprint check; do not rebuild,
+# regenerate products, or weaken the equality requirement.
+FINGERPRINT_PROPAGATION_ATTEMPTS = 24
+FINGERPRINT_PROPAGATION_INTERVAL_SECONDS = 10
+
+if expected_live_sha256 and actual_live_sha256 != expected_live_sha256:
+    for attempt in range(1, FINGERPRINT_PROPAGATION_ATTEMPTS + 1):
+        print(
+            "PUBLIC_STATE_PROPAGATION_WAIT "
+            f"attempt={attempt}/{FINGERPRINT_PROPAGATION_ATTEMPTS} "
+            f"expected_sha256={expected_live_sha256} actual_sha256={actual_live_sha256}"
+        )
+        if attempt == FINGERPRINT_PROPAGATION_ATTEMPTS:
+            break
+        time.sleep(FINGERPRINT_PROPAGATION_INTERVAL_SECONDS)
+        refreshed_body, _ = fetch("generated/live-production-state.json")
+        refreshed_sha256 = hashlib.sha256(refreshed_body).hexdigest()
+        if refreshed_sha256 == expected_live_sha256:
+            responses["generated/live-production-state.json"] = refreshed_body
+            live = read_json("generated/live-production-state.json")
+            actual_live_sha256 = refreshed_sha256
+            actual_live_generated_at = str(live.get("generated_at", ""))
+            print(
+                "PUBLIC_STATE_FINGERPRINT_MATCH "
+                f"attempt={attempt + 1}/{FINGERPRINT_PROPAGATION_ATTEMPTS} "
+                f"generated_at={actual_live_generated_at} sha256={actual_live_sha256}"
+            )
+            break
+        actual_live_sha256 = refreshed_sha256
+        try:
+            refreshed_live = json.loads(refreshed_body.decode("utf-8"))
+            actual_live_generated_at = str(refreshed_live.get("generated_at", ""))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            actual_live_generated_at = "INVALID_JSON"
+    if actual_live_sha256 != expected_live_sha256:
+        raise SystemExit(
+            "PAGES_RUNTIME_SMOKE_FAIL: deployed live-production-state.json did not reach "
+            "the pre-upload artifact fingerprint within "
+            f"{FINGERPRINT_PROPAGATION_ATTEMPTS * FINGERPRINT_PROPAGATION_INTERVAL_SECONDS} seconds; "
+            "deployment ordering/artifact contents may be inconsistent "
+            f"(expected_generated_at={expected_live_generated_at or 'NOT_PROVIDED'}, "
+            f"actual_generated_at={actual_live_generated_at or 'MISSING'}, "
+            f"expected_sha256={expected_live_sha256}, actual_sha256={actual_live_sha256})"
+        )
 overlay = read_json("generated/public-production-asset-overlay.json")
 catalog = read_json("generated/public-production-catalog.json")
 modules = read_json("generated/public-production-module-index.json")

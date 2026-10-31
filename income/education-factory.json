@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "mission": "high_quality_education_at_accessible_cost",
+  "delivery": ["online", "offline", "hybrid"],
+  "levels": ["foundation", "professional", "advanced", "research"],
+  "pricing": {
+    "currency": "INR",
+    "model": "affordable_cost_plus_access",
+    "illustrative_bands": [
+      {"name": "short_course", "min_inr": 499, "max_inr": 2999},
+      {"name": "professional", "min_inr": 3000, "max_inr": 15000},
+      {"name": "advanced", "min_inr": 10000, "max_inr": 50000},
+      {"name": "intensive_year", "min_inr": 25000, "max_inr": 100000}
+    ]
+  },
+  "quality": {
+    "public_sources_and_open_materials_allowed_with_attribution": true,
+    "original_curriculum_required": true,
+    "source_attribution_required": true,
+    "university_affiliation_requires_real_partnership": true,
+    "official_degree_claim_requires_valid_authorization": true
+  },
+  "automation": {
+    "ai_tutoring": true,
+    "personalized_learning": true,
+    "assessment_generation": true,
+    "localization": true,
+    "human_qc": true
+  },
+  "safety": {
+    "fabricated_affiliation_forbidden": true,
+    "fabricated_credentials_forbidden": true,
+    "fabricated_outcomes_forbidden": true
+  }
+}

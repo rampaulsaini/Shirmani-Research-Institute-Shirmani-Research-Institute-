@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "policy": "planned-until-configured",
+  "channels": [
+    {"id": "own_store", "kind": "owned", "adapter": "own-store-adapter"},
+    {"id": "freelancing_platforms", "kind": "external", "adapter": "platform-adapter-required"},
+    {"id": "marketplaces", "kind": "external", "adapter": "marketplace-adapter-required"},
+    {"id": "education_platforms", "kind": "external", "adapter": "education-adapter-required"}
+  ],
+  "irreversible_actions": ["publish", "payment", "submit", "accept_contract"],
+  "rules": {
+    "unknown_channel": "PLANNED_NO_ADAPTER",
+    "unconfigured_channel": "PLANNED_NOT_ENABLED",
+    "configured_publication": "APPROVAL_REQUIRED",
+    "verified_sale_requires": ["positive_amount", "currency", "evidence_url", "channel"]
+  }
+}

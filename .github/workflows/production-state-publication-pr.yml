@@ -138,6 +138,37 @@ jobs:
               json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
           )
 
+          # The source branch may contain a stale READY_FOR_QC placeholder even
+          # when the QC artifact has already passed. Reconcile QC only after all
+          # production-state rewrites, so the public state cannot lag its QC gate.
+          import sys
+          sys.path.insert(0, str(root))
+          from factory.qc_state_contract import sync_public_qc_state
+          qc_passed = sync_public_qc_state(root, target)
+          state = json.loads((root / "generated/live-production-state.json").read_text(encoding="utf-8"))
+          status_path = root / "generated/concrete-product-asset-status.json"
+          status = json.loads(status_path.read_text(encoding="utf-8")) if status_path.is_file() else {}
+          expected_qc_state = "QC_PASSED" if qc_passed else (
+              "QC_REVIEW_REQUIRED" if state.get("qc_state") == "QC_REVIEW_REQUIRED" else "READY_FOR_QC"
+          )
+          if state.get("qc_state") != expected_qc_state:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_FAILED: live QC state is inconsistent")
+          if status and status.get("qc_state") != expected_qc_state:
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_FAILED: concrete asset QC state is inconsistent")
+          if any(state.get(key, 0) != 0 for key in (
+              "dispatch_released", "sales_claimed", "payment_claimed", "independent_verification_claimed"
+          )):
+              raise SystemExit("PUBLIC_PRODUCTION_SYNC_FAILED: QC must not imply dispatch, sales, payment, or verification")
+          print(json.dumps({
+              "qc_passed": qc_passed,
+              "qc_state": state.get("qc_state"),
+              "production_state": state.get("state"),
+              "dispatch_released": state.get("dispatch_released", 0),
+              "sales_claimed": state.get("sales_claimed", 0),
+              "payment_claimed": state.get("payment_claimed", 0),
+              "independent_verification_claimed": state.get("independent_verification_claimed", 0)
+          }, sort_keys=True))
+
           production_status_path = root / "generated/concrete-product-production-status.json"
           if production_status_path.exists():
               production_status = json.loads(production_status_path.read_text(encoding="utf-8"))
@@ -193,6 +224,10 @@ jobs:
           if qrs != int(state.get("product_qr_assets", -1)):
               raise SystemExit("PUBLIC_PRODUCTION_SYNC_GATE_FAILED: QR file count does not match production state")
           PY
+      - name: Test public production index freshness contract
+        run: python -m unittest discover -s tests -p 'test_refresh_public_production_indexes.py'
+      - name: Rebuild derived public indexes from existing lane outputs
+        run: python factory/refresh_public_production_indexes.py
       - name: Require fresh production cycle before public sync
         shell: bash
         run: |
@@ -204,25 +239,43 @@ jobs:
 
           now = datetime.now(timezone.utc)
           required = {
-              "live_state": Path("generated/live-production-state.json"),
-              "multi_layer_status": Path("generated/multi-layer-production-status.json"),
-              "public_catalog": Path("generated/public-production-catalog.json"),
-              "lane_archive_index": Path("generated/public-production/archive/index.json"),
+              "live_state": (Path("generated/live-production-state.json"), "generated_at"),
+              "public_catalog": (Path("generated/public-production-catalog.json"), "source_produced_at"),
+              "lane_archive_index": (Path("generated/public-production/archive/index.json"), "source_produced_at"),
           }
+          # This summary file is not refreshed by every concrete production cycle.
+          # Validate it separately, but do not use its timestamp as the production clock.
+          multi_layer_status = Path("generated/multi-layer-production-status.json")
+          try:
+              json.loads(multi_layer_status.read_text(encoding="utf-8"))
+              print("multi_layer_status: parseable summary; freshness is measured from live production artifacts")
+          except Exception as exc:
+              raise SystemExit(f"multi_layer_status missing or unreadable: {exc}")
           stamps = {}
           errors = []
-          for label, path in required.items():
+          for label, (path, timestamp_key) in required.items():
               try:
                   data = json.loads(path.read_text(encoding="utf-8"))
-                  stamp = datetime.fromisoformat(str(data["generated_at"]).replace("Z", "+00:00"))
+                  stamp = datetime.fromisoformat(str(data[timestamp_key]).replace("Z", "+00:00"))
                   if stamp.tzinfo is None:
                       stamp = stamp.replace(tzinfo=timezone.utc)
                   age = (now - stamp.astimezone(timezone.utc)).total_seconds()
-                  stamps[label] = {"generated_at": stamp.isoformat(), "age_seconds": round(age)}
+                  stamps[label] = {"timestamp_key": timestamp_key, "source_or_generation_time": stamp.isoformat(), "age_seconds": round(age)}
                   if age < -120 or age > 1800:
-                      errors.append(f"{label} is stale or future-dated ({round(age)} seconds)")
+                      errors.append(f"{label} {timestamp_key} is stale or future-dated ({round(age)} seconds)")
               except Exception as exc:
-                  errors.append(f"{label} missing or unreadable: {exc}")
+                  errors.append(f"{label} missing or unreadable {timestamp_key}: {exc}")
+
+          try:
+              catalog = json.loads(Path("generated/public-production-catalog.json").read_text(encoding="utf-8"))
+              archive = json.loads(Path("generated/public-production/archive/index.json").read_text(encoding="utf-8"))
+              catalog_cycle = int(catalog["source_cycle"])
+              archive_cycle = int(archive["source_cycle"])
+              latest_cycle = int(archive["latest_cycle"])
+              if catalog_cycle != archive_cycle or archive_cycle != latest_cycle:
+                  errors.append("public catalog and archive index source cycles do not match")
+          except Exception as exc:
+              errors.append(f"public source-cycle consistency check failed: {exc}")
 
           for label in ("generated/production-work-queue.jsonl", "generated/production-results.jsonl"):
               try:

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI — Customer Proposal & Delivery Kit</title>
+<meta name="description" content="Create a clear, evidence-aware Hindi/English writing and research proposal with scope, price, timeline, payment and delivery acceptance terms.">
+<style>
+:root{color-scheme:dark;--bg:#07101b;--panel:#101d2b;--line:#29445d;--gold:#f5d36c;--cyan:#75e5f5;--text:#f5f7fa;--muted:#b5c4d2}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b3450,#07101b 62%);font:16px/1.65 system-ui,"Noto Sans Devanagari",sans-serif;color:var(--text)}main{max-width:1080px;margin:auto;padding:20px 16px 60px}header,.panel{border:1px solid var(--line);border-radius:18px;background:#101d2bf2;padding:clamp(18px,3vw,28px);margin-bottom:15px}header{text-align:center;border:2px solid var(--gold)}h1,h2{color:var(--gold);line-height:1.25}h1{font-size:clamp(1.8rem,5vw,3rem)}h3{color:var(--cyan)}p,.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.card{border:1px solid var(--line);border-radius:12px;padding:14px;background:#0a1522}label{display:block;font-weight:700;margin:10px 0 4px}input,select,textarea{width:100%;padding:11px;border:1px solid #42566d;border-radius:9px;background:#070d16;color:#fff;font:inherit}textarea{min-height:80px}.btn{display:inline-block;border:0;border-radius:9px;padding:11px 15px;background:var(--gold);color:#111827;font-weight:850;text-decoration:none;cursor:pointer;margin:5px 5px 5px 0}.secondary{background:#132a3d;color:var(--cyan);border:1px solid #41617b}.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#070d16;border:1px dashed #42566d;border-radius:10px;padding:15px;min-height:150px}.note{border-left:4px solid var(--cyan);padding:12px 15px;background:#0b1a27}.tag{display:inline-block;border:1px solid var(--cyan);color:var(--cyan);padding:3px 9px;border-radius:999px;font-size:.82rem}
+</style></head><body><main>
+<header><span class="tag">SHIRMANI RESEARCH INSTITUTE · CLIENT WORKFLOW</span><h1>Customer Proposal & Delivery Kit</h1><p>Enquiry को स्पष्ट प्रस्ताव में बदलें: scope, कीमत, समय, payment और acceptance — सब लिखित और मापने योग्य।</p><a class="btn secondary" href="showroom-public.html">← Public Showroom</a><a class="btn secondary" href="writing-research-enquiry.html">Enquiry Form</a></header>
+<section class="panel"><h2>01 · प्रस्ताव तैयार करें</h2><p>वास्तविक ग्राहक की जानकारी भरें। कोई price, customer, payment या sale अपने-आप नहीं बनती। जिन शर्तों पर सहमति नहीं हुई है, उन्हें “प्रस्तावित / पुष्टि बाकी” ही रखें।</p>
+<form id="proposal">
+<div class="grid"><div><label for="client">ग्राहक / संस्था (वैकल्पिक)</label><input id="client" placeholder="नाम या संस्था"></div><div><label for="service">सेवा</label><select id="service"><option>Hindi / English Writing</option><option>Research Summary</option><option>Website / Blog Content</option><option>Editing / Rewrite</option><option>Other — scope required</option></select></div>
+<div><label for="language">भाषा</label><select id="language"><option>Hindi</option><option>English</option><option>Hindi + English</option></select></div><div><label for="currency">मुद्रा</label><select id="currency"><option>INR (₹)</option><option>USD ($)</option><option>GBP (£)</option><option>EUR (€)</option><option>Other — specify in notes</option></select></div>
+<div><label for="price">प्रस्तावित कुल कीमत</label><input id="price" placeholder="राशि लिखें; पुष्टि से पहले quote है, sale नहीं"></div><div><label for="deposit">अग्रिम / milestone भुगतान</label><input id="deposit" placeholder="जैसे 50% advance — केवल यदि सहमत हो"></div>
+<div><label for="deadline">प्रस्तावित delivery date / अवधि</label><input id="deadline" placeholder="तारीख या कार्य-दिवस"></div><div><label for="revisions">शामिल revision</label><input id="revisions" placeholder="जैसे 1 revision round"></div></div>
+<label for="objective">ग्राहक का उद्देश्य और विषय</label><textarea id="objective" placeholder="काम किस समस्या को हल करेगा?"></textarea>
+<label for="deliverables">सटीक deliverables और format</label><textarea id="deliverables" placeholder="जैसे 1,000 शब्द का लेख, DOCX, स्रोत-सूची"></textarea>
+<label for="sources">ग्राहक द्वारा दिए जाने वाले स्रोत / सामग्री</label><textarea id="sources" placeholder="URLs, documents, data; sensitive details न डालें"></textarea>
+<label for="acceptance">स्वीकृति के मानदंड</label><textarea id="acceptance" placeholder="जैसे तय word count, headings, citations, file format"></textarea>
+<label for="terms">भुगतान, गोपनीयता, उपयोग-अधिकार और अतिरिक्त शर्तें</label><textarea id="terms" placeholder="सहमत terms लिखें; अस्पष्ट या असहमत बातों को final न बताएं"></textarea>
+<label for="notes">जो बातें अभी पुष्टि होनी हैं</label><textarea id="notes" placeholder="ग्राहक की मंजूरी, final price, deadline, sources आदि"></textarea>
+<button class="btn" type="submit">प्रस्ताव बनाएं</button><button class="btn secondary" type="button" id="copy">प्रस्ताव कॉपी करें</button><button class="btn secondary" type="button" id="download">TXT सहेजें</button><button class="btn secondary" type="button" id="mail">ईमेल ड्राफ्ट</button></form>
+<h3>02 · तैयार प्रस्ताव</h3><div class="output" id="result" aria-live="polite">फॉर्म भरकर “प्रस्ताव बनाएं” दबाएँ।</div>
+<p class="note"><strong>ईमानदार commercial gate:</strong> proposal तैयार होना बिक्री नहीं है। “Quoted” केवल प्रस्ताव भेजने पर, “Accepted” ग्राहक की लिखित स्वीकृति पर, “Paid” वास्तविक भुगतान रिकॉर्ड पर और “Delivered” वास्तविक handoff के बाद दर्ज करें।</p></section>
+<section class="panel"><h2>03 · परिणाम मापें</h2><div class="grid"><article class="card"><h3>Enquiries</h3><p>वास्तविक प्राप्त enquiries की संख्या और तारीख।</p></article><article class="card"><h3>Quotes</h3><p>भेजे गए प्रस्ताव, प्रस्तावित मूल्य और follow-up तारीख।</p></article><article class="card"><h3>Paid work</h3><p>भुगतान का सत्यापित रिकॉर्ड; केवल इसी को प्राप्त आय में जोड़ें।</p></article><article class="card"><h3>Delivery / repeat</h3><p>समय पर delivery, acceptance, revisions और दोबारा काम मिलने का रिकॉर्ड।</p></article></div><p class="muted">यह पेज स्थानीय browser में draft बनाता है। यह data को server पर save नहीं करता, email स्वतः नहीं भेजता, payment नहीं लेता और ग्राहक/आय का स्वतः सत्यापन नहीं करता। अपने पास सुरक्षित प्रति रखें और निजी जानकारी सावधानी से भरें।</p><a class="btn secondary" href="outreach-income-workbench.html">Open Outreach & Income Workbench →</a></section>
+<footer class="muted" style="text-align:center;padding:18px">SHIRMANI RESEARCH INSTITUTE · स्पष्ट scope · वास्तविक प्रमाण · मापने योग्य delivery</footer>
+</main><script>
+const $=id=>document.getElementById(id);let draft="";
+const val=id=>$(id).value.trim()||"Not specified";
+function build(){draft=[
+"SHIRMANI RESEARCH INSTITUTE — CUSTOMER PROPOSAL (DRAFT)",
+"Status: PROPOSED — NOT YET ACCEPTED / NOT A SALE",
+"Customer / institution: "+val("client"),
+"Service: "+val("service"),
+"Language: "+val("language"),
+"Currency: "+val("currency"),
+"Proposed total price: "+val("price"),
+"Proposed advance / milestone terms: "+val("deposit"),
+"Proposed delivery: "+val("deadline"),
+"Included revision rounds: "+val("revisions"),
+"",
+"1. Customer objective and topic",
+val("objective"),
+"",
+"2. Deliverables and file format",
+val("deliverables"),
+"",
+"3. Sources / inputs supplied by customer",
+val("sources"),
+"",
+"4. Acceptance criteria",
+val("acceptance"),
+"",
+"5. Payment, confidentiality, usage rights and other terms",
+val("terms"),
+"",
+"6. Items awaiting confirmation",
+val("notes"),
+"",
+"NEXT GATE: Obtain written agreement on scope, price, timeline, payment, revisions and rights before starting. Record actual payment only after evidence; record delivery only after handoff."
+].join("\n");$("result").textContent=draft}
+$("proposal").addEventListener("submit",e=>{e.preventDefault();build()});
+$("copy").addEventListener("click",async()=>{if(!draft)build();try{await navigator.clipboard.writeText(draft);$("copy").textContent="कॉपी का अनुरोध पूरा";}catch(e){$("result").textContent=draft+"\n\nCopy unavailable in this browser. Select the text manually."; }});
+$("download").addEventListener("click",()=>{if(!draft)build();const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([draft],{type:"text/plain;charset=utf-8"}));a.download="shirmani-customer-proposal.txt";a.click();URL.revokeObjectURL(a.href)});
+$("mail").addEventListener("click",()=>{if(!draft)build();location.href="mailto:sainirampaul60@gmail.com?subject="+encodeURIComponent("SHIRMANI Research Institute — Proposal draft for review")+"&body="+encodeURIComponent(draft)});
+</script></body></html>

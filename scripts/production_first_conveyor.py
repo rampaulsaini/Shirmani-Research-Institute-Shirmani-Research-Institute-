@@ -23,6 +23,11 @@ def norm(s):return re.sub(r"[^a-z0-9._-]+","-",str(s or "").lower()).strip("-")
 def has_asset(pid,kind):
     stem=norm(pid)
     if kind=="passport": return (ROOT/"product-passport.html").exists()
+    # Every catalog identity is served by the shared product-demo.html?id=... route.
+    # That page resolves the product from the concrete overlay/catalog and provides
+    # a deterministic animated browser fallback when a product-specific MP4 is absent.
+    # A missing MP4 is tracked separately by PRODUCT_MP4; it is not a missing demo route.
+    if kind=="demo": return (ROOT/"product-demo.html").is_file()
     roots={"visual":[ROOT/"products"/"visuals",ROOT/"assets"/"products"],
            "vip":[ROOT/"products"/"vip-screenshots"],
            "demo":[ROOT/"products"/"demos",ROOT/"assets"/"demos"],

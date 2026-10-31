@@ -37,11 +37,34 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Keep the validated main-branch verification contract authoritative.
+          # The production-state overlay may contain an older schema; preserve this file
+          # before copying generated assets, then restore and validate it afterwards.
+          MAIN_VERIFICATION_STATUS="generated/independent-verification-status.json"
+          test -s "$MAIN_VERIFICATION_STATUS"
+          install -D "$MAIN_VERIFICATION_STATUS" /tmp/shirmani-main-independent-verification-status.json
+
           if git ls-remote --exit-code --heads origin automation/production-state >/dev/null 2>&1; then
             git fetch origin automation/production-state
             mkdir -p /tmp/shirmani-production-state
             git archive FETCH_HEAD generated products/concrete products/visuals products/continuous products/demos/continuous | tar -x -C /tmp/shirmani-production-state
             cp -a /tmp/shirmani-production-state/generated/. generated/
+            # Restore the current fail-closed contract after the broad generated/ overlay.
+            install -D /tmp/shirmani-main-independent-verification-status.json generated/independent-verification-status.json
+            python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("generated/independent-verification-status.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          required = {
+              "verification_policy": "FAIL_CLOSED",
+              "human_review_required_for_verified_promotion": True,
+          }
+          missing = [key for key, value in required.items() if data.get(key) != value]
+          if missing:
+              raise SystemExit("Independent-verification status contract failed: " + ", ".join(missing))
+          print("Independent-verification status contract preserved from main.")
+          PY
             mkdir -p products/concrete
             cp -a /tmp/shirmani-production-state/products/concrete/. products/concrete/
             if [ -d /tmp/shirmani-production-state/products/visuals ]; then
@@ -133,6 +156,40 @@ jobs:
           (root/"live-production-state.json").write_text(json.dumps(live,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(f"PUBLIC PRODUCTION ASSETS: {produced}/{target} ({(100*produced/target if target else 0):.2f}%)")
           PY
+
+      - name: Refresh deterministic QC from the current catalog and concrete assets
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone
+
+          gen = Path("generated")
+          source = gen / "public-production-asset-overlay.json"
+          payload = json.loads(source.read_text(encoding="utf-8"))
+          rows = payload.get("products")
+          if not isinstance(rows, list):
+              raise SystemExit("QC refresh blocked: production overlay products must be a list")
+          # Use only assets materialized by this same run; never reuse a stale QC result.
+          concrete = {
+              "schema_version": 1,
+              "generated_at": datetime.now(timezone.utc).isoformat(),
+              "production_first": True,
+              "product_count": int(payload.get("product_count", 0)),
+              "produced_count": int(payload.get("produced_count", 0)),
+              "products": rows,
+              "source": "generated/public-production-asset-overlay.json",
+          }
+          if concrete["product_count"] <= 0 or concrete["produced_count"] != len(rows):
+              raise SystemExit("QC refresh blocked: overlay counts are inconsistent")
+          if any(row.get("production_state") != "PRODUCED" for row in rows):
+              raise SystemExit("QC refresh blocked: overlay contains non-produced rows")
+          (gen / "concrete-production-overlay.json").write_text(
+              json.dumps(concrete, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+          python3 factory/product_qc_gate.py
 
       - name: Aggregate public customer reviews into production quality signals
         env:
@@ -235,23 +292,56 @@ jobs:
       - name: Materialize public production status
         run: python3 factory/public_production_materializer.py
 
+      - name: Reconcile deterministic QC into the live public state
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from factory.qc_state_contract import sync_public_qc_state
+
+          # QC may promote QC state only; dispatch, sales, payment and
+          # independent verification remain unchanged and fail-closed.
+          sync_public_qc_state(Path('.'), int(__import__('os').environ.get('PRODUCT_TARGET', '5000')))
+          PY
+
       - name: Validate public production truth and asset completeness
         run: python3 factory/public_production_truth_smoke_gate.py
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Record expected public-state fingerprint before upload
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          path = Path("generated/live-production-state.json")
+          raw = path.read_bytes()
+          payload = json.loads(raw.decode("utf-8"))
+          fingerprint = hashlib.sha256(raw).hexdigest()
+          generated_at = payload.get("generated_at", "")
+          print(f"BUILD_LIVE_STATE generated_at={generated_at} sha256={fingerprint} bytes={len(raw)}")
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env:
+              env.write(f"EXPECTED_LIVE_STATE_SHA256={fingerprint}\n")
+              env.write(f"EXPECTED_LIVE_STATE_GENERATED_AT={generated_at}\n")
+          PY
+
       - name: Upload generated production site
         uses: actions/upload-pages-artifact@v4
         with:
+          name: shirmani-pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: .
 
       - name: Deploy generated production site
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: shirmani-pages-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Verify deployed public routes and production JSON
         env:
           PAGES_URL: ${{ steps.deployment.outputs.page_url }}
           PRODUCT_TARGET: ${{ env.PRODUCT_TARGET }}
+          EXPECTED_LIVE_STATE_SHA256: ${{ env.EXPECTED_LIVE_STATE_SHA256 }}
+          EXPECTED_LIVE_STATE_GENERATED_AT: ${{ env.EXPECTED_LIVE_STATE_GENERATED_AT }}
         run: python3 factory/public_pages_runtime_smoke.py

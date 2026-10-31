@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "name": "Production Readiness Gate",
+  "purpose": "Validate that the Master Automission control plane has its mandatory contracts and safety gates before external production adapters are enabled.",
+  "required_contracts": [
+    "income/runtime-contract.json",
+    "income/master-orchestrator.yml",
+    "income/master-task-ledger.json",
+    "income/master-learning.json",
+    "income/master-dashboard.json"
+  ],
+  "safety": {
+    "fabrication_forbidden": true,
+    "irreversible_actions_require_authorization": true,
+    "external_adapter_enablement_requires_review": true
+  }
+}

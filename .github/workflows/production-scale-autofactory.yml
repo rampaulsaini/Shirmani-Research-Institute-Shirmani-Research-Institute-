@@ -55,8 +55,29 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add generated/1000-digital-products.json products/production products/visuals generated/live-production-state.json generated/concrete-production-overlay.json generated/incremental-production-ledger.jsonl
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "automission: materialize next concrete product batch"
-          git push origin HEAD:automation/production-state
+          for attempt in 1 2 3 4 5; do
+            git add generated/1000-digital-products.json products/production products/visuals generated/live-production-state.json generated/concrete-production-overlay.json generated/incremental-production-ledger.jsonl
+            if git diff --cached --quiet; then
+              echo "No production-state changes to publish."
+              exit 0
+            fi
+            git commit -m "automission: materialize next concrete product batch"
+            if git push origin HEAD:automation/production-state; then
+              echo "Published production state on attempt ${attempt}."
+              exit 0
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo "Production-state publish failed after 5 attempts." >&2
+              exit 1
+            fi
+            echo "Concurrent production-state update; refresh and regenerate (attempt ${attempt}/5)."
+            git fetch origin automation/production-state
+            git reset --hard origin/automation/production-state
+            python3 scripts/ensure_product_catalog.py \
+              --catalog generated/1000-digital-products.json \
+              --registry generated/production-registry.json
+            python3 factory/incremental_product_production.py
+          done
       - name: Write run summary
         run: |
           echo "## SHIRMANI Production Scale AutoFactory" >> "$GITHUB_STEP_SUMMARY"

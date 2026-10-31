@@ -1,0 +1,14 @@
+[Unit]
+Description=Standalone Income Automission AI Runtime
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/shirmani-research
+ExecStart=/usr/bin/docker compose -f automission-runtime/docker-compose.yml up -d --build
+ExecStop=/usr/bin/docker compose -f automission-runtime/docker-compose.yml down
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
