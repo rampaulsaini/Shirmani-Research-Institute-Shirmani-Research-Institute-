@@ -190,14 +190,51 @@ print(
     f"actual_generated_at={actual_live_generated_at or 'MISSING'} "
     f"actual_sha256={actual_live_sha256}"
 )
+# GitHub Pages can acknowledge a deployment before every edge serves the
+# new artifact. Retry only the public-state fingerprint check; do not rebuild,
+# regenerate products, or weaken the equality requirement.
+FINGERPRINT_PROPAGATION_ATTEMPTS = 24
+FINGERPRINT_PROPAGATION_INTERVAL_SECONDS = 10
+
 if expected_live_sha256 and actual_live_sha256 != expected_live_sha256:
-    raise SystemExit(
-        "PAGES_RUNTIME_SMOKE_FAIL: deployed live-production-state.json does not match "
-        "the pre-upload artifact fingerprint; compare deployment ordering/artifact contents "
-        f"(expected_generated_at={expected_live_generated_at or 'NOT_PROVIDED'}, "
-        f"actual_generated_at={actual_live_generated_at or 'MISSING'}, "
-        f"expected_sha256={expected_live_sha256}, actual_sha256={actual_live_sha256})"
-    )
+    for attempt in range(1, FINGERPRINT_PROPAGATION_ATTEMPTS + 1):
+        print(
+            "PUBLIC_STATE_PROPAGATION_WAIT "
+            f"attempt={attempt}/{FINGERPRINT_PROPAGATION_ATTEMPTS} "
+            f"expected_sha256={expected_live_sha256} actual_sha256={actual_live_sha256}"
+        )
+        if attempt == FINGERPRINT_PROPAGATION_ATTEMPTS:
+            break
+        time.sleep(FINGERPRINT_PROPAGATION_INTERVAL_SECONDS)
+        refreshed_body, _ = fetch("generated/live-production-state.json")
+        refreshed_sha256 = hashlib.sha256(refreshed_body).hexdigest()
+        if refreshed_sha256 == expected_live_sha256:
+            responses["generated/live-production-state.json"] = refreshed_body
+            live = read_json("generated/live-production-state.json")
+            actual_live_sha256 = refreshed_sha256
+            actual_live_generated_at = str(live.get("generated_at", ""))
+            print(
+                "PUBLIC_STATE_FINGERPRINT_MATCH "
+                f"attempt={attempt + 1}/{FINGERPRINT_PROPAGATION_ATTEMPTS} "
+                f"generated_at={actual_live_generated_at} sha256={actual_live_sha256}"
+            )
+            break
+        actual_live_sha256 = refreshed_sha256
+        try:
+            refreshed_live = json.loads(refreshed_body.decode("utf-8"))
+            actual_live_generated_at = str(refreshed_live.get("generated_at", ""))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            actual_live_generated_at = "INVALID_JSON"
+    if actual_live_sha256 != expected_live_sha256:
+        raise SystemExit(
+            "PAGES_RUNTIME_SMOKE_FAIL: deployed live-production-state.json did not reach "
+            "the pre-upload artifact fingerprint within "
+            f"{FINGERPRINT_PROPAGATION_ATTEMPTS * FINGERPRINT_PROPAGATION_INTERVAL_SECONDS} seconds; "
+            "deployment ordering/artifact contents may be inconsistent "
+            f"(expected_generated_at={expected_live_generated_at or 'NOT_PROVIDED'}, "
+            f"actual_generated_at={actual_live_generated_at or 'MISSING'}, "
+            f"expected_sha256={expected_live_sha256}, actual_sha256={actual_live_sha256})"
+        )
 overlay = read_json("generated/public-production-asset-overlay.json")
 catalog = read_json("generated/public-production-catalog.json")
 modules = read_json("generated/public-production-module-index.json")
