@@ -20,3 +20,14 @@ test("order schema is present and payment remains provider-gated", () => {
   assert.match(schema, /status text not null default 'intent'/);
   assert.match(schema, /provider_reference/);
 });
+
+
+test("account page matches the server auth contract without persisting bearer tokens", () => {
+  const page = fs.readFileSync(new URL("../../account-access.html", import.meta.url), "utf8");
+  assert.ok(page.includes("'/v1/auth/register'"));
+  assert.ok(page.includes("'/v1/auth/login'"));
+  assert.ok(page.includes("{display_name:name,email,password:password.value}"));
+  assert.ok(page.includes("payload.error"));
+  assert.ok(page.includes("returned session token सहेजा नहीं गया"));
+  assert.doesNotMatch(page, /localStorage\\.setItem|sessionStorage\\.setItem/);
+});

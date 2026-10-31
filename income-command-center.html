@@ -109,6 +109,16 @@ function downloadIncomePack(){
 </div>
 </section>
 
+<section class="section" id="reconcile-existing-outreach" aria-labelledby="reconcile-existing-outreach-title">
+  <h2 id="reconcile-existing-outreach-title">पहले से भेजे गए संदेशों का प्रमाण मिलाएँ — नया अभियान नहीं</h2>
+  <div class="flow">
+    <p>यदि आपने पहले ही संस्थानों और संगठनों को ईमेल/संदेश भेजे हैं, तो पहले उसी इतिहास को जाँचें। यह निजी reconciliation पेज sent-mail और reply CSV को इसी browser में मौजूदा prospect queue से मिलाता है; फ़ाइलें server पर upload नहीं होतीं।</p>
+    <p><strong>महत्वपूर्ण:</strong> यह tool Gmail/WhatsApp account में अपने-आप प्रवेश नहीं करता और संदेश नहीं भेजता। अस्पष्ट रिकॉर्ड को अनुमान से match नहीं करता। Reply, buyer enquiry, order, received payment और delivery अलग-अलग प्रमाण हैं।</p>
+    <p><a class="btn" href="private-outreach-reconciliation.html">पहले के outreach/reply प्रमाण मिलाएँ</a>
+    <a class="btn" href="docs/revenue/FIRST-10-OUTREACH-QUEUE-2026-10-10.csv">मौजूदा prospect queue देखें</a></p>
+  </div>
+</section>
+
 
 <section class="ire" id="production-truth" aria-labelledby="truth-title">
   <span class="tag">SOURCE-BOUND · PRODUCTION & INCOME</span>
@@ -136,24 +146,28 @@ function downloadIncomePack(){
     try{
       const responses=await Promise.all([
         fetch("generated/live-production-state.json",{cache:"no-store"}),
-        fetch("generated/independent-verification-status.json",{cache:"no-store"})
+        fetch("generated/independent-verification-status.json",{cache:"no-store"}),
+        fetch("generated/product-qc-gate.json",{cache:"no-store"})
       ]);
       if(responses.some(r=>!r.ok))throw new Error("One or more source snapshots could not be fetched.");
-      const s=await responses[0].json(),v=await responses[1].json();
-      const requiredProduction=["concrete_repository_assets","five_thousand_scale_target","qc_passed","qc_failed","dispatch_released","sales_claimed","payment_claimed"];
+      const s=await responses[0].json(),v=await responses[1].json(),q=await responses[2].json();
+      const requiredProduction=["concrete_repository_assets","five_thousand_scale_target","dispatch_released","sales_claimed","payment_claimed"];
       if(requiredProduction.some(k=>typeof s[k]!=="number" || !Number.isFinite(s[k])) ||
+         typeof q.qc_passed!=="number" || !Number.isFinite(q.qc_passed) ||
+         typeof q.qc_failed!=="number" || !Number.isFinite(q.qc_failed) ||
          typeof v.verified_records!=="number" || !Number.isFinite(v.verified_records) ||
          typeof v.prepared_review_records!=="number" || !Number.isFinite(v.prepared_review_records) ||
          typeof (v.registry_total??v.queue_total)!=="number" || !Number.isFinite(v.registry_total??v.queue_total) ||
          typeof s.generated_at!=="string" || !s.generated_at ||
          typeof s.qc_state!=="string" || !s.qc_state ||
-         typeof s.state!=="string" || !s.state) {
+         typeof s.state!=="string" || !s.state ||
+         typeof q.generated_at!=="string" || !q.generated_at) {
         throw new Error("Source schema is incomplete; counters cannot be safely asserted.");
       }
       const assets=Number(s.concrete_repository_assets??s.catalog_identities);
       const target=Number(s.five_thousand_scale_target??5000);
-      const passed=Number(s.qc_passed??0),failed=Number(s.qc_failed??0);
-      const qcRate=(passed+failed)>0?100*passed/(passed+failed):Number(s.qc_pass_percent);
+      const passed=Number(q.qc_passed),failed=Number(q.qc_failed);
+      const qcRate=(passed+failed)>0?100*passed/(passed+failed):null;
       const total=Number(v.registry_total??v.queue_total??0);
       const verified=Number(v.verified_records??0);
       const prepared=Number(v.prepared_review_records??0);
@@ -166,7 +180,7 @@ function downloadIncomePack(){
       el("truth-verified").textContent=fmt(verified)+" / "+fmt(total);
       el("truth-verified-pct").textContent=pct(total>0?100*verified/total:0);
       el("truth-review").textContent=fmt(prepared)+" / "+fmt(total)+" ("+pct(total>0?100*prepared/total:0)+")";
-      el("truth-source-status").textContent="Source snapshots loaded. Production timestamp: "+String(s.generated_at||"not supplied")+" · QC state: "+String(s.qc_state||"not supplied")+" · State: "+String(s.state||"not supplied")+". Not a second-by-second live feed.";
+      el("truth-source-status").textContent="Source snapshots loaded. Production timestamp: "+String(s.generated_at||"not supplied")+" · QC timestamp: "+String(q.generated_at||"not supplied")+" · QC state: "+String(q.release_state||s.qc_state||"not supplied")+" · State: "+String(s.state||"not supplied")+". Not a second-by-second live feed.";
     }catch(e){unavailable("Source unavailable — counters are not asserted. Check the published JSON paths and deployment.");}
   }
   load();
@@ -382,118 +396,111 @@ $("ifpc-csv").addEventListener("click",()=>{if(!rows.length)generate();const col
 </section>
 
 <section class="section" id="income-first-engine" aria-labelledby="income-engine-title">
-<h2 id="income-engine-title">7. INCOME-FIRST MULTI-ENGINE ROUTER · उत्पादन नहीं, पहले आय-परिणाम</h2>
+<h2 id="income-engine-title">7. INCOME-FIRST MULTI-CHANNEL ENGINE · परिणाम पहले, उत्पादन बाद में</h2>
 <div class="flow">
-<p><strong>मुख्य नियम:</strong> buyer signal → स्पष्ट offer → QC → checkout/payment → delivery → reconciliation. जब तक यह loop प्रमाणित न हो, अधिक copies बनाना आय का विकल्प नहीं है.</p>
-<p class="note">यह पृष्ठ अभी local, rule-based decision router चलाता है। कोई live AI/ML/NLP model, NVIDIA/CUDA GPU, AES service, external API, mass outreach, checkout या payment processor इस UI से जुड़ा हुआ घोषित नहीं है। Provider जोड़ने के लिए अलग backend, authorized credentials, rate/cost limits, security review और end-to-end tests चाहिए।</p>
+<p><strong>मुख्य नियम:</strong> एक वास्तविक, स्पष्ट offer → buyer की विशिष्ट समस्या → प्रमाणित deliverable → चैनल-अनुकूल सामग्री → वास्तविक enquiry/order → भुगतान का प्रमाण → delivery. केवल generated copies, workflow runs या views को income नहीं माना जाएगा।</p>
+<p class="note">यह मौजूदा Income Command Center में चलने वाला local campaign-pack builder है। यह कोई live AI/NVIDIA service, customer outreach, checkout या payment processor नहीं है। यह बिना बाहरी credentials के deterministic drafts बनाता है; इसे वास्तविक AI/ML/NLP inference या लाखों records प्रति millisecond के रूप में प्रस्तुत नहीं किया जाता।</p>
 <div class="grid">
 <article class="card">
-<span class="tag">INPUT · REAL BUSINESS STATE</span>
-<label for="if-kind">आय का रास्ता</label>
-<select id="if-kind" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
-<option value="service">ग्राहक सेवा / freelance</option><option value="digital">मौजूदा digital product</option><option value="job">भुगतान वाला रोजगार / task</option>
-</select>
-<label for="if-proof" style="margin-top:12px">सबसे मजबूत वास्तविक buyer संकेत</label>
-<select id="if-proof" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
-<option value="none">अभी कोई buyer signal नहीं</option><option value="view">केवल views / visits</option><option value="inquiry">वास्तविक enquiry / buyer reply</option><option value="quote">स्पष्ट quote / भुगतान की माँग</option><option value="paid">भुगतान का रिकॉर्ड उपलब्ध</option>
-</select>
-<label for="if-ready" style="margin-top:12px">उत्पाद/सेवा की readiness</label>
-<select id="if-ready" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
-<option value="ready">Demo/QC/वितरण जाँच पूरी</option><option value="needsqc">QC या demo बाकी</option><option value="blocked">Checkout / payment / delivery route अवरुद्ध</option>
-</select>
-<label for="if-scale" style="margin-top:12px">उत्पादन का इच्छित स्तर</label>
-<select id="if-scale" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
-<option value="one">एक उपयोगी परिणाम / एक buyer</option><option value="batch">सीमित batch / कई variants</option><option value="large">बड़ा batch / लाखों copies का लक्ष्य</option>
-</select>
-<button class="btn" id="if-run" type="button" style="cursor:pointer;margin-top:16px">आय-प्रथम निर्णय निकालें</button>
+<span class="tag">01 · VERIFIED OFFER INPUT</span>
+<label for="mx-offer">एक मौजूदा offer / product</label>
+<input id="mx-offer" value="Hindi-English research and content support" maxlength="120">
+<label for="mx-audience">किस खरीदार के लिए?</label>
+<input id="mx-audience" value="Small agencies, founders and educators" maxlength="180">
+<label for="mx-problem">खरीदार की वास्तविक समस्या</label>
+<textarea id="mx-problem" maxlength="400">Clear, well-structured bilingual content and source-linked research takes time to prepare.</textarea>
+<label for="mx-deliverable">वास्तव में क्या deliver होगा?</label>
+<textarea id="mx-deliverable" maxlength="400">One scoped writing or research deliverable, agreed language and format, source notes where applicable, and one agreed revision round.</textarea>
+<label for="mx-price">लिखित quote / price (INR; वैकल्पिक)</label>
+<input id="mx-price" type="number" min="0" step="1" placeholder="Quote after scope review">
+<label for="mx-url">वास्तविक service / order URL</label>
+<input id="mx-url" type="url" value="https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/writing-research-sales.html" maxlength="500">
+<label for="mx-proof">सबूत की वास्तविक स्थिति</label>
+<select id="mx-proof"><option value="pending" selected>QC / demo अभी बाकी</option><option value="demo">Deliverable/demo तैयार; independent verification का दावा नहीं</option><option value="paid">भुगतान का प्रमाण मेरे पास है</option></select>
+<label for="mx-batch">एक बार में कितने draft variants?</label>
+<select id="mx-batch"><option value="4">4 · छोटा परीक्षण</option><option value="8" selected>8 · संतुलित batch</option><option value="16">16 · विस्तृत batch</option><option value="32">32 · अधिक variants</option></select>
+<button class="btn" id="mx-generate" type="button" style="cursor:pointer">Income-first pack बनाएँ</button>
 </article>
 <article class="card" aria-live="polite">
-<span class="tag">RESULT · CONTROLLED ROUTING</span>
-<h3 id="if-result-title">पहले buyer signal प्राप्त करें</h3>
-<p id="if-result">बिना वास्तविक buyer signal के बड़े batch को रोकें; पहले एक मौजूदा offer का sample और buyer response जाँचें.</p>
-<p id="if-state" class="note">आय/भुगतान की पुष्टि नहीं हुई</p>
-<a class="btn" id="if-route" href="income-command-center.html#income-workbench">संबंधित मौजूदा कार्यक्षेत्र खोलें</a>
-<hr>
-<p><strong>Engine status</strong></p>
-<p class="note">RULE ROUTER: ACTIVE · AI/ML/NLP API: NOT CONNECTED · NVIDIA/CUDA: NOT CONNECTED · PAYMENT EVIDENCE: MANUAL/EXTERNAL</p>
-<p id="if-scale-policy" class="note">Scale policy: पहले गुणवत्ता और buyer demand; फिर नियंत्रित batch.</p>
+<span class="tag">02 · RESULT / NEXT ACTION</span>
+<h3 id="mx-title">एक offer को buyer-ready बनाएँ</h3>
+<p id="mx-summary">पहले स्पष्ट deliverable और सही buyer चुनें। उत्पादन की मात्रा से पहले उपयोगिता, quality और order route जाँचें।</p>
+<p id="mx-gate" class="note">Status: अभी कोई बिक्री या भुगतान इस tool से सत्यापित नहीं होता।</p>
+<div class="grid">
+<div class="card"><span class="tag">GENERATED</span><div class="metric" id="mx-count">0</div><p class="muted">Draft variants in this session</p></div>
+<div class="card"><span class="tag">REVENUE</span><div class="metric" id="mx-revenue">₹0</div><p class="muted">Confirmed income recorded by this tool: ₹0</p></div>
+</div>
+<button class="btn" id="mx-copy" type="button">Copy pack</button>
+<button class="btn" id="mx-download" type="button">Download JSON</button>
+<div class="row" style="margin-top:12px"><div><label for="mx-pass">AES-GCM export passphrase (optional)</label><input id="mx-pass" type="password" autocomplete="new-password" placeholder="Use a strong passphrase"></div><div style="align-self:end"><button class="btn" id="mx-encrypt" type="button">Encrypt JSON export</button></div></div>
+<p class="muted" id="mx-crypto-note">Encryption is performed in this browser when Web Crypto is available. Keep your passphrase safe; it cannot be recovered. No customer secrets are requested here.</p>
 </article>
 </div>
-<section class="card" aria-labelledby="multi-engine-gate-title" style="margin-top:16px;border:1px solid rgba(0,210,255,.55)">
-<span class="tag">MULTI-ENGINE · BOUNDED SCALE · INCOME-FIRST</span>
-<h3 id="multi-engine-gate-title">एक मुख्य आय-इंजन, कई नियंत्रित उत्पादन स्तर</h3>
-<p>लक्ष्य: एक सत्यापित उपयोगी deliverable को दोहराने योग्य उत्पादन-कार्य में बदलना—पहले buyer signal, फिर सीमित batch, QC, delivery और भुगतान-साक्ष्य। लाखों jobs को queue में भेजना तकनीकी रूप से संभव हो सकता है; लाखों पूर्ण, जाँचे हुए और ग्राहकों तक पहुँचे उत्पादों को milli/microsecond में पूरा करने का दावा वास्तविक माप के बिना नहीं किया जाएगा।</p>
-<div class="grid">
-<article class="card"><span class="tag">AES / SECURITY</span><h3>सुरक्षित secrets</h3><p>AES encryption डेटा की सुरक्षा के लिए है, AI model नहीं। API keys और payment credentials browser या repository में नहीं रखे जाएँ; encryption, access control और key rotation backend पर लागू हों।</p></article>
-<article class="card"><span class="tag">MODEL ADAPTERS</span><h3>Gemini Mini / अन्य AI providers</h3><p>हर provider के लिए अलग adapter, timeout, fallback, token budget और usage logging। कोई provider तभी LIVE माना जाए जब अधिकृत credentials, backend call और integration test सफल हों।</p></article>
-<article class="card"><span class="tag">NVIDIA / ACCELERATION</span><h3>GPU जहाँ वास्तव में उपलब्ध हो</h3><p>NVIDIA acceleration केवल समर्थित workload और उपलब्ध/configured GPU backend पर निर्भर है। नाम, workflow run या HTML page अपने-आप GPU access का प्रमाण नहीं है।</p></article>
-<article class="card"><span class="tag">QUEUE / RELIABILITY</span><h3>बहु-स्तरीय job orchestration</h3><p>1 → 10 → 100 → 1,000 → बड़े batches: queue, bounded concurrency, idempotency key, retries, dead-letter handling, cancellation और cost/rate limits के साथ। हर चरण के परिणाम मापे जाएँ।</p></article>
-<article class="card"><span class="tag">QUALITY / IDENTITY</span><h3>हर output की अलग पहचान</h3><p>Unique product ID/version, schema validation, duplicate detection, automated tests और release gate। QC पास न होने पर public dispatch रोकें; बड़े batches से पहले छोटे canary batch सत्यापित करें।</p></article>
-<article class="card"><span class="tag">INCOME / EVIDENCE</span><h3>पैमाना तभी बढ़े जब मूल्य सिद्ध हो</h3><p>मुख्य माप: qualified enquiries, accepted orders, successful delivery, verified payment और net revenue। Generated files, copies, impressions या workflow runs को income न गिनें। पहले एक buyer path सफल करें, फिर उसी प्रमाणित प्रक्रिया को scale करें।</p></article>
-</div>
-<p class="note"><strong>वर्तमान स्थिति:</strong> यह इस पृष्ठ पर architecture/gating specification है, live multi-provider integration नहीं। अभी इस UI से Gemini/NVIDIA/AES service, external outreach, job queue या payment processor चालू नहीं होता। LIVE status केवल deployed backend, secrets, successful tests और auditable evidence के बाद ही दिखाया जाए।</p>
-</section>
+<h3>03 · Generated campaign pack</h3>
+<div class="result" id="mx-output" aria-live="polite">आपकी inputs के आधार पर drafts यहाँ आएँगे। कोई संदेश स्वतः भेजा नहीं जाता।</div>
+<h3>04 · Scale architecture — connected होने का झूठा दावा नहीं</h3>
+<ul>
+<li><strong>Mini/micro-batches:</strong> छोटे validated batches, unique IDs, retry और idempotency—पहले correctness, फिर throughput.</li>
+<li><strong>AI/ML/NLP:</strong> भविष्य के authorized backend adapter से model-generated variants, language QA और buyer-intent classification; इस static page में live model connection नहीं है।</li>
+<li><strong>AES-256-GCM:</strong> इस page में optional encrypted export; production secrets के लिए server-side key management और access controls अलग चाहिए।</li>
+<li><strong>NVIDIA/GPU:</strong> optional inference backend only when compatible hardware, drivers, deployed model, monitoring and budget are actually configured. GitHub Pages स्वयं GPU compute नहीं देता।</li>
+<li><strong>Revenue gate:</strong> buyer reply → agreed scope/quote → order → confirmed payment → delivery. कोई भी चरण अपने-आप अगले चरण का प्रमाण नहीं है।</li>
+</ul>
 </div>
 <script>
 (function(){
 const $=id=>document.getElementById(id);
-function route(){
-const kind=$("if-kind").value, proof=$("if-proof").value, ready=$("if-ready").value, scale=$("if-scale").value;
-let title="", detail="", href="income-command-center.html#income-workbench", state="अभी भुगतान/आय का दावा नहीं";
-if(proof==="paid"){
-title="Payment reconciliation और delivery मिलाएँ";
-detail="Order ID, प्राप्त राशि, payment reference और deliverable का मिलान करें। केवल चुने गए dropdown से भुगतान सत्यापित नहीं होता; वास्तविक transaction evidence जाँचें.";
-href="https://rampaulsaini.github.io/my-omniverse-store/";
-state="Payment evidence review आवश्यक; यह router स्वयं payment verify नहीं करता";
-}else if(ready==="blocked"){
-title="पहले checkout / payment / delivery का अवरोध हटाएँ";
-detail="बड़े production या outreach से पहले public buyer path को end-to-end जाँचें: offer → checkout → payment confirmation → delivery.";
-href=kind==="digital"?"https://rampaulsaini.github.io/my-omniverse-store/":"production-first-mvp.html";
-}else if(ready==="needsqc"){
-title="एक demonstrable sample और QC पूरा करें";
-detail="एक स्पष्ट input/output, deliverable, scope, deadline और support conditions तैयार करें। QC evidence के बिना VERIFIED या production-ready का दावा न करें.";
-href="production-execution-board.html";
-}else if(proof==="quote"){
-title="खरीदार की माँग को paid scope में बदलें";
-detail="Deliverable, price, deadline, revisions और payment terms लिखित में स्पष्ट करें। ग्राहक की सहमति से पहले production batch न बढ़ाएँ.";
-href="showroom/public-order-scope-builder.html";
-}else if(proof==="inquiry"){
-title="वास्तविक enquiry का जवाब दें";
-detail="उसी buyer की आवश्यकता के अनुसार sample, scope, price और deadline दें। mass-copy outreach के बजाय व्यक्तिगत, प्रासंगिक जवाब दें.";
-href="showroom/first-client-deliverable-studio.html";
-}else if(kind==="job"){
-title="पात्रता और payout जाँचकर paid task चुनें";
-detail="Eligibility, task availability, contract terms और payout method की पुष्टि करें। यह dashboard किसी नौकरी के लिए आवेदन या आय submit नहीं करता.";
-href="employment.html";
-}else if(kind==="digital"){
-title="एक मौजूदा product का buyer path सत्यापित करें";
-detail="Product page, real preview, price, checkout और delivery को खोलकर जाँचें; फिर वास्तविक buyer response मापें। Generated copies sales नहीं हैं.";
-href="https://rampaulsaini.github.io/my-omniverse-store/";
-}else{
-title="एक सीमित service offer को buyer तक पहुँचाएँ";
-detail="मौजूदा writing/research/automation सेवा से एक offer चुनें; sample, fixed scope, price और delivery conditions के साथ एक उपयुक्त buyer को लक्ष्य करें.";
-href="writing-research-services.html";
+let lastPack=null;
+const esc=s=>String(s||"").trim();
+const validUrl=s=>{try{const u=new URL(s);return u.protocol==="https:"||u.protocol==="http:"}catch(_){return false}};
+function safeDownload(name,blob){const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+function makePack(){
+const offer=esc($("mx-offer").value),aud=esc($("mx-audience").value),problem=esc($("mx-problem").value),deliver=esc($("mx-deliverable").value),price=esc($("mx-price").value),url=esc($("mx-url").value),proof=$("mx-proof").value,n=Number($("mx-batch").value);
+if(!offer||!aud||!problem||!deliver||!validUrl(url)){ lastPack=null; $("mx-title").textContent="Inputs ठीक करें";$("mx-summary").textContent="Offer, audience, problem, deliverable और valid HTTP(S) URL आवश्यक हैं।";return}
+const ready=proof!=="pending";
+const priceLine=price?("Indicative quote: ₹"+Number(price).toLocaleString("en-IN")+" INR, subject to written scope confirmation. "):"Price is confirmed only after scope review and written agreement. ";
+const ctas=[
+{channel:"Email",subject:"A scoped content/research option for "+aud,body:"Hello,\n\nI’m reaching out about "+offer+". "+problem+"\n\nA possible scoped deliverable: "+deliver+" "+priceLine+"Details: "+url+"\n\nIf this matches a current need, I can confirm scope, timing and terms before work begins. If not relevant, no follow-up is needed.\n\nRegards,\nSHIRMANI Research Institute"},
+{channel:"LinkedIn",subject:"Practical support for "+aud,body:"For "+aud+": "+problem+" SHIRMANI can discuss a clearly scoped deliverable: "+deliver+" "+priceLine+"Details: "+url+" No outcome is guaranteed; scope and terms are agreed before work starts."},
+{channel:"WhatsApp / contact form",subject:"",body:"Hello. SHIRMANI Research Institute offers "+offer+". If useful for your current need, the proposed scope is: "+deliver+" "+priceLine+"Details: "+url+". If this is not relevant, I will not follow up."},
+{channel:"Landing page",subject:offer,body:offer+"\n\nFor: "+aud+"\n\nProblem addressed: "+problem+"\n\nWhat you receive: "+deliver+"\n\n"+priceLine+"Next step: review the scope and contact us through the published service route: "+url+"\n\nNo guaranteed results or unverified testimonials are claimed."}
+];
+const variants=[];
+for(let i=0;i<n;i++){
+const t=ctas[i%ctas.length];
+const style=i<ctas.length?"direct":i%3===0?"problem-led":i%3===1?"deliverable-led":"concise";
+let body=t.body;
+if(style==="problem-led") body="Context: "+problem+"\n\n"+t.body;
+else if(style==="deliverable-led") body="Proposed deliverable: "+deliver+"\n\n"+priceLine+"\n\n"+t.body;
+else if(style==="concise") body=[offer+" for "+aud+".",deliver+".",priceLine,"Details: "+url,"If relevant, reply with the desired scope; otherwise no follow-up is needed."].join("\n\n");
+variants.push({variant_id:"SRI-INCOME-"+new Date().toISOString().slice(0,10).replace(/-/g,"")+"-"+String(i+1).padStart(3,"0"),channel:t.channel,style,subject:t.subject,body,review_required:true,recipient_personalization_required:true,auto_sent:false})
 }
-let policy="";
-if(scale==="large"){
-if(proof!=="paid" || ready!=="ready"){
-policy="LARGE-BATCH BLOCKED: अभी buyer/payment evidence या readiness पर्याप्त नहीं है। पहले एक वास्तविक transaction loop पूरा करें; लाखों copies/millisecond का दावा इस UI से नहीं किया जा सकता.";
-}else{
-policy="LARGE-BATCH GATED: readiness चुनी गई है, पर batch तभी बढ़ाएँ जब QC records, buyer demand, compute capacity, cost limits, idempotency और rollback tests अलग से सत्यापित हों.";
+lastPack={schema_version:"1.0",generated_at:new Date().toISOString(),engine:"local-deterministic-template-v1",offer:{name:offer,audience:aud,problem,deliverable,price_inr:price?Number(price):null,public_url:url,proof_state:proof},production:{requested_variants:n,generated_variants:variants.length,quality_gate:ready?"DRAFT_READY_FOR_HUMAN_REVIEW":"BLOCKED_PENDING_QC",auto_publish:false,auto_send:false},revenue:{confirmed_payment_inr:0,source:"No payment integration; zero means this tool has recorded none, not an audit of external accounts."},variants};
+$("mx-title").textContent=ready?"Pack तैयार · human review आवश्यक":"QC gate बंद · पहले demo/quality review";
+$("mx-summary").textContent=ready?"एक ही वास्तविक offer से "+variants.length+" channel-ready draft variants बने। प्रत्येक message को recipient के अनुसार personalize करके ही भेजें.":"Drafts बने हैं, लेकिन QC/demo pending है; इन्हें verified या customer-ready न कहें।";
+$("mx-gate").textContent=proof==="paid"?"आपने paid-proof status चुना है; यह helper receipt नहीं देखता और payment स्वतंत्र रूप से सत्यापित नहीं करता.":proof==="pending"?"QC PENDING · सार्वजनिक उपयोग/विक्रय से पहले वास्तविक demo और quality check करें.":"DRAFTS ONLY · कोई outreach, order, sale या payment स्वतः नहीं हुआ.";
+$("mx-count").textContent=variants.length;$("mx-output").textContent=variants.map(v=>"["+v.variant_id+"] "+v.channel+" · "+v.style+(v.subject?"\n"+v.subject:"")+"\n"+v.body).join("\n\n——————————\n\n");
 }
-}else if(scale==="batch"){
-policy=(proof==="inquiry"||proof==="quote"||proof==="paid")&&ready==="ready"?"LIMITED BATCH MAY BE PLANNED: पहले छोटा नियंत्रित batch, duplicate prevention, QC sampling और cost ceiling सत्यापित करें.":"LIMITED BATCH DEFERRED: पहले buyer signal और deliverable readiness मजबूत करें.";
-}else{
-policy="SINGLE-RESULT PRIORITY: पहले एक उपयोगी deliverable और एक सत्यापन योग्य buyer outcome; उसके बाद ही scale.";
-}
-$("if-result-title").textContent=title;
-$("if-result").textContent=detail;
-$("if-state").textContent=state;
-$("if-route").href=href;
-$("if-scale-policy").textContent=policy;
-}
-$("if-run").addEventListener("click",route);
-route();
+$("mx-generate").addEventListener("click",makePack);
+$("mx-copy").addEventListener("click",async()=>{if(!lastPack)makePack();if(!lastPack)return;const s=JSON.stringify(lastPack,null,2);try{await navigator.clipboard.writeText(s);$("mx-crypto-note").textContent="Pack copied. Review and personalize before use."}catch(_){$("mx-crypto-note").textContent="Copy was unavailable; use Download JSON instead."}});
+$("mx-download").addEventListener("click",()=>{if(!lastPack)makePack();if(lastPack)safeDownload("shirmani-income-campaign-pack.json",new Blob([JSON.stringify(lastPack,null,2)],{type:"application/json"}))});
+$("mx-encrypt").addEventListener("click",async()=>{
+if(!lastPack)makePack();if(!lastPack)return;
+const pass=$("mx-pass").value;
+if(pass.length<12){$("mx-crypto-note").textContent="कृपया कम-से-कम 12 characters का passphrase दें; इसे सुरक्षित रखें.";return}
+if(!window.crypto||!crypto.subtle){$("mx-crypto-note").textContent="इस browser/context में Web Crypto उपलब्ध नहीं; plain JSON download उपयोग करें.";return}
+try{
+const enc=new TextEncoder(),salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+const material=await crypto.subtle.importKey("raw",enc.encode(pass),"PBKDF2",false,["deriveKey"]);
+const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:250000,hash:"SHA-256"},material,{name:"AES-GCM",length:256},false,["encrypt"]);
+const cipher=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,enc.encode(JSON.stringify(lastPack)));
+const b64=b=>btoa(String.fromCharCode(...b));
+const payload={format:"SRI-AES-256-GCM-v1",kdf:"PBKDF2-SHA-256",iterations:250000,salt:b64(salt),iv:b64(iv),ciphertext:b64(new Uint8Array(cipher)),warning:"Keep the passphrase safe. This file cannot be decrypted without it."};
+safeDownload("shirmani-income-campaign-pack.aes.json",new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}));
+$("mx-crypto-note").textContent="AES-256-GCM encrypted export created in this browser. Keep the passphrase safe; no copy is stored by this page.";
+}catch(e){$("mx-crypto-note").textContent="Encryption failed in this browser. Use JSON download or a supported secure browser."}
+});
+makePack();
 })();
 </script>
 </section>
@@ -518,7 +525,10 @@ route();
 <input id="rf-proof" type="url" maxlength="400" placeholder="https://..." style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
 <label for="rf-cta">अगला कदम / वास्तविक checkout या inquiry URL</label>
 <input id="rf-cta" type="url" maxlength="400" placeholder="https://..." style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37">
-<button class="btn" id="rf-generate" type="button">5 channel drafts बनाएं</button>
+<label for="rf-batch">कितने अलग draft variants चाहिए?</label>
+<select id="rf-batch" style="padding:10px;border-radius:8px;background:#191b25;color:#f8f9fa;border:1px solid #d4af37"><option value="5">5 · एक प्रति चैनल</option><option value="10">10 · दो अलग angles प्रति चैनल</option><option value="15">15 · तीन अलग angles प्रति चैनल</option></select>
+<p class="note">हर draft केवल template-based है। भेजने से पहले recipient के वास्तविक संदर्भ के अनुसार संपादित करें। कोई संदेश स्वतः नहीं भेजा जाता।</p>
+<button class="btn" id="rf-generate" type="button">Human-review draft pack बनाएं</button>
 <p id="rf-status" class="note" role="status" aria-live="polite">कोई draft नहीं बना है। पहले offer की वास्तविक जानकारी भरें।</p>
 </article>
 <article class="card">
@@ -535,11 +545,22 @@ route();
 </article>
 </div>
 <div id="rf-output" class="grid" aria-live="polite"></div>
+<div class="card" id="rf-export-controls" aria-labelledby="rf-export-title">
+<h3 id="rf-export-title">Draft pack export · local-only</h3>
+<p class="note">Export only the drafts you generated. Plain JSON is unencrypted. Encrypted export uses browser Web Crypto (AES-256-GCM + PBKDF2); it does not upload or send anything.</p>
+<label for="rf-passphrase">Encryption passphrase (12+ characters)</label>
+<input id="rf-passphrase" type="password" minlength="12" autocomplete="new-password" placeholder="Use a unique strong passphrase">
+<button class="btn" id="rf-export-json" type="button">Download JSON</button>
+<button class="btn" id="rf-encrypt-json" type="button">Encrypt & download</button>
+<p class="note" id="rf-export-status" role="status" aria-live="polite">पहले drafts बनाएं; फिर export करें।</p>
+</div>
 </div>
 <script>
 (function(){
 const $=id=>document.getElementById(id);
 const fields=["rf-name","rf-buyer","rf-outcome","rf-price","rf-proof","rf-cta"];
+let lastDrafts=[];
+
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function validUrl(s){if(!s)return "";try{const u=new URL(s);return (u.protocol==="https:"||u.protocol==="http:")?u.href:"";}catch(_){return "";}}
 function build(){
@@ -550,25 +571,68 @@ if($("rf-cta").value.trim()&&!cta){$("rf-status").textContent="CTA URL वैध
 const priceLine=price?("मूल्य: ₹"+Number(price).toLocaleString("en-IN")+"."):"कीमत और scope पहले लिखित रूप में तय करें।";
 const proofLine=proof?("Demo / proof: "+proof):"नमूना उपलब्ध होने पर साझा करें; अभी कोई proof link नहीं दिया गया है।";
 const action=cta?("अगला कदम: "+cta):"उत्तर दें ताकि scope और अगला कदम तय किया जा सके।";
-const plain=[
+const templates=[
 ["Store / Product Page",name+"\n\nकिसके लिए: "+buyer+"\n\nक्या मिलेगा: "+outcome+"\n\n"+priceLine+"\n"+proofLine+"\n"+action],
 ["LinkedIn", "मैं "+buyer+" के लिए एक स्पष्ट, सीमित deliverable पेश कर रहा/रही हूँ: "+name+".\n\nDeliverable: "+outcome+"\n"+priceLine+"\n"+proofLine+"\n\nयदि यह आपकी मौजूदा आवश्यकता से मेल खाता है: "+(cta||"scope पर चर्चा के लिए उत्तर दें।")],
 ["Direct Email","Subject: "+name+" — "+buyer+" के लिए scoped offer\n\nनमस्कार,\n\nमैं "+name+" के माध्यम से "+buyer+" की आवश्यकता के लिए यह deliverable उपलब्ध करा सकता/सकती हूँ: "+outcome+"\n\n"+priceLine+"\n"+proofLine+"\n\n"+action+"\n\nयदि यह आपकी जरूरत से संबंधित नहीं है, तो इस संदेश को अनदेखा कर सकते हैं।"],
 ["WhatsApp / Short Message","नमस्ते! "+name+" — "+buyer+" के लिए। Deliverable: "+outcome+" "+priceLine+" "+(proof?("Demo: "+proof+" "):"Demo उपलब्ध होने पर साझा करूँगा/करूँगी। ")+(cta?("विवरण: "+cta):"क्या यह आपकी मौजूदा जरूरत से मेल खाता है?")],
 ["Short Social Post",name+"\n\n"+buyer+" के लिए:\n• Deliverable: "+outcome+"\n• "+priceLine+"\n• "+proofLine+"\n\n"+action]
 ];
+const count=Math.max(5,Math.min(15,Number($("rf-batch").value)||5));
+const angles=[
+{key:"direct",opener:""},
+{key:"problem-led",opener:"पहले यह जाँचना उपयोगी होगा कि यह आपकी वर्तमान आवश्यकता से मेल खाता है या नहीं।"},
+{key:"deliverable-led",opener:"प्रस्तावित काम का दायरा स्पष्ट रखा जाएगा; अंतिम scope और deadline लिखित सहमति से तय होंगे।"}
+];
+const batchId=new Date().toISOString().replace(/[-:.TZ]/g,"").slice(0,14)+"-"+Math.random().toString(36).slice(2,8);
+lastDrafts=Array.from({length:count},(_,i)=>{
+const base=templates[i%templates.length],angle=angles[Math.floor(i/templates.length)%angles.length];
+let text=base[1];
+if(angle.opener){
+if(base[0]==="Direct Email"&&text.startsWith("Subject:")){const lineEnd=text.indexOf("\n\n");text=lineEnd>=0?text.slice(0,lineEnd+2)+angle.opener+"\n\n"+text.slice(lineEnd+2):angle.opener+"\n\n"+text;}
+else{text=angle.opener+"\n\n"+text;}
+}
+return {draft_id:"SRI-CAMPAIGN-"+batchId+"-"+String(i+1).padStart(3,"0"),channel:base[0],style:angle.key,text,review_required:true,recipient_personalization_required:true,auto_sent:false};
+});
 const output=$("rf-output");output.innerHTML="";
-plain.forEach((item,i)=>{
+lastDrafts.forEach((item,i)=>{
 const card=document.createElement("article");card.className="card";
-const h=document.createElement("h3");h.textContent=item[0];
-const pre=document.createElement("textarea");pre.rows=8;pre.readOnly=true;pre.value=item[1];pre.setAttribute("aria-label",item[0]+" draft");
+const h=document.createElement("h3");h.textContent=item.channel+" · "+item.style;
+const pre=document.createElement("textarea");pre.rows=8;pre.readOnly=true;pre.value=item.text;pre.setAttribute("aria-label",item.channel+" draft");
 const copy=document.createElement("button");copy.type="button";copy.className="btn";copy.textContent="Draft copy करें";
-copy.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(pre.value);$("rf-status").textContent=item[0]+" draft clipboard में copy हुआ।";}catch(e){pre.focus();pre.select();$("rf-status").textContent="इस browser में clipboard अनुमति नहीं मिली; text select करके copy करें।";}});
+copy.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(pre.value);$("rf-status").textContent=item.channel+" draft clipboard में copy हुआ।";}catch(e){pre.focus();pre.select();$("rf-status").textContent="इस browser में clipboard अनुमति नहीं मिली; text select करके copy करें।";}});
 card.append(h,pre,copy);output.appendChild(card);
 });
-$("rf-status").textContent="5 drafts तैयार हैं। ये local templates हैं, AI-generated claims नहीं। भेजने से पहले जाँचें; कोई संदेश स्वतः नहीं भेजा गया।";
+$("rf-status").textContent=lastDrafts.length+" drafts तैयार हैं। ये local templates हैं, AI-generated claims नहीं। हर recipient के लिए edit करें; कोई संदेश स्वतः नहीं भेजा गया।";
 }
 $("rf-generate").addEventListener("click",build);
+function downloadFile(name,blob){const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function setExportStatus(message){$("rf-export-status").textContent=message;}
+function base64(bytes){let binary="";for(const b of bytes)binary+=String.fromCharCode(b);return btoa(binary);}
+function requireDrafts(){if(!lastDrafts.length){setExportStatus("पहले campaign draft pack बनाएं।");return false;}return true;}
+$("rf-export-json").addEventListener("click",()=>{
+ if(!requireDrafts())return;
+ const payload={schema_version:1,created_at:new Date().toISOString(),export_type:"UNENCRYPTED_DRAFTS",warning:"Contains unencrypted campaign drafts; store securely.",drafts:lastDrafts};
+ downloadFile("shirmani-campaign-drafts.json",new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}));
+ setExportStatus("JSON export डाउनलोड हुआ; यह unencrypted है।");
+});
+$("rf-encrypt-json").addEventListener("click",async()=>{
+ if(!requireDrafts())return;
+ const pass=$("rf-passphrase").value;
+ if(pass.length<12){setExportStatus("Encryption के लिए कम-से-कम 12 characters का passphrase दें।");return;}
+ if(!window.crypto||!crypto.subtle){setExportStatus("इस browser में Web Crypto उपलब्ध नहीं है; encrypted export नहीं बनाया।");return;}
+ try{
+  const encoder=new TextEncoder(),salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+  const material=await crypto.subtle.importKey("raw",encoder.encode(pass),"PBKDF2",false,["deriveKey"]);
+  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:310000,hash:"SHA-256"},material,{name:"AES-GCM",length:256},false,["encrypt"]);
+  const payload={schema_version:1,created_at:new Date().toISOString(),export_type:"ENCRYPTED_CAMPAIGN_DRAFTS",drafts:lastDrafts};
+  const ciphertext=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,encoder.encode(JSON.stringify(payload)));
+  const envelope={format:"SRI-AES-GCM-EXPORT-V1",kdf:{name:"PBKDF2",hash:"SHA-256",iterations:310000,salt:base64(salt)},cipher:{name:"AES-256-GCM",iv:base64(iv),ciphertext:base64(new Uint8Array(ciphertext))},warning:"Keep the passphrase separately. It cannot be recovered."};
+  downloadFile("shirmani-campaign-drafts.encrypted.json",new Blob([JSON.stringify(envelope,null,2)],{type:"application/json"}));
+  $("rf-passphrase").value="";
+  setExportStatus("AES-256-GCM encrypted export डाउनलोड हुआ। Passphrase अलग सुरक्षित रखें; यह tool उसे store नहीं करता।");
+ }catch(e){setExportStatus("Encryption विफल हुआ; कोई encrypted file घोषित नहीं की गई। Browser support जाँचें और फिर प्रयास करें.");}
+});
 })();
 </script>
 </section>
@@ -589,5 +653,64 @@ $("rf-generate").addEventListener("click",build);
 <p class="note">नोट: browser-local heuristic, AI/ML/NLP backend, automatic email sending, server CRM और payment gateway अलग-अलग चीजें हैं। कोई live model या payment integration जुड़ा हुआ होने का दावा नहीं है। यह लिंक उसी PR में जोड़े गए engine तक जाता है।</p>
 </div>
 </section>
+
+
+<section class="section" id="income-evidence-ledger">
+  <h2>आय प्रमाण लेजर | Income Evidence Ledger</h2>
+  <p class="note">यह browser-local रिकॉर्ड है, payment gateway नहीं। दर्ज रकम स्वयं-सत्यापित नहीं होती; उसे बैंक/UPI/provider रिकॉर्ड से मिलाएँ। केवल receipt reference रखें—password, OTP, API key या पूरा account/card विवरण नहीं।</p>
+  <div class="grid">
+    <article class="card">
+      <h3>वास्तविक परिणाम दर्ज करें</h3>
+      <label for="iel-leads">योग्य ग्राहक पूछताछ</label><input id="iel-leads" type="number" min="0" step="1" value="0">
+      <label for="iel-proposals">लिखित प्रस्ताव भेजे</label><input id="iel-proposals" type="number" min="0" step="1" value="0">
+      <label for="iel-orders">पुष्टि किए गए ऑर्डर</label><input id="iel-orders" type="number" min="0" step="1" value="0">
+      <label for="iel-received">वास्तव में प्राप्त बताई गई रकम (₹)</label><input id="iel-received" type="number" min="0" step="0.01" value="0">
+      <label for="iel-ref">रसीद / transaction reference</label><input id="iel-ref" maxlength="180" placeholder="Invoice ID या receipt reference">
+      <label for="iel-date">प्राप्ति की तारीख</label><input id="iel-date" type="date">
+      <div class="actions"><button class="btn" id="iel-save" type="button">स्थानीय रूप से सुरक्षित करें</button><button class="btn secondary" id="iel-export" type="button">JSON export</button><button class="btn secondary" id="iel-clear" type="button">स्थानीय रिकॉर्ड मिटाएँ</button></div>
+    </article>
+    <article class="card">
+      <h3>गणना और सत्यापन स्थिति</h3>
+      <p><strong>दर्ज रकम:</strong> <span id="iel-total">₹0</span></p>
+      <p><strong>Lead → order:</strong> <span id="iel-lead-rate">—</span></p>
+      <p><strong>Proposal → order:</strong> <span id="iel-proposal-rate">—</span></p>
+      <p><strong>प्रति order औसत:</strong> <span id="iel-average">—</span></p>
+      <p><strong>रसीद संदर्भ:</strong> <span id="iel-evidence">नहीं दिया गया</span></p>
+      <p class="note" id="iel-status" role="status" aria-live="polite">स्थानीय प्रारंभिक मान; स्वतंत्र सत्यापन नहीं।</p>
+      <p class="muted">Conversion तभी अर्थपूर्ण है जब counts एक ही अवधि/cohort के हों। यह panel receipt को स्वतंत्र रूप से verify नहीं करता और data server पर upload नहीं करता।</p>
+    </article>
+  </div>
+</section>
+<script>
+(function(){
+  "use strict";
+  const ids=["iel-leads","iel-proposals","iel-orders","iel-received","iel-ref","iel-date"],key="shirmani-income-evidence-ledger-v1";
+  const $=id=>document.getElementById(id);
+  const currency=n=>new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:2}).format(n);
+  function read(){
+    const d={leads:$("iel-leads").value,proposals:$("iel-proposals").value,orders:$("iel-orders").value,received:$("iel-received").value,reference:$("iel-ref").value.trim(),date:$("iel-date").value},errors=[];
+    for(const k of ["leads","proposals","orders"]){const n=Number(d[k]);if(d[k].trim()===""||!Number.isFinite(n)||n<0||!Number.isInteger(n))errors.push(k+" must be a whole number >= 0");else d[k]=n;}
+    const n=Number(d.received);if(d.received.trim()===""||!Number.isFinite(n)||n<0)errors.push("received amount must be >= 0");else d.received=n;
+    return {d,errors};
+  }
+  function ratio(n,d){return d===0?"— (शून्य denominator)":n>d?"— (counts जाँचें)":(n/d*100).toFixed(2)+"%";}
+  function hasPaymentEvidence(d){return Number(d.received)>0&&/^\d{4}-\d{2}-\d{2}$/.test(String(d.date||""))&&String(d.reference||"").trim().length>0;}
+  function render(message){
+    const {d,errors}=read(),evidenceRequired=Number(d.received)>0&&!hasPaymentEvidence(d);
+    $("iel-total").textContent=!Number.isFinite(d.received)||d.received<0?"अमान्य रकम":evidenceRequired?"Evidence needed — "+currency(d.received)+" (कुल में शामिल नहीं)":currency(d.received);
+    $("iel-lead-rate").textContent=errors.length?"—":ratio(d.orders,d.leads);$("iel-proposal-rate").textContent=errors.length?"—":ratio(d.orders,d.proposals);
+    $("iel-average").textContent=!errors.length&&!evidenceRequired&&d.orders>0?currency(d.received/d.orders):"—";
+    $("iel-evidence").textContent=d.reference?(d.reference+(d.date?" · "+d.date:"")+" (दर्ज, स्वतंत्र सत्यापन नहीं)"):"नहीं दिया गया";
+    $("iel-status").textContent=message||(errors.length?"अमान्य input: "+errors.join("; "):evidenceRequired?"रकम को received total में गिनने से पहले भुगतान की तारीख और रसीद/transaction reference दें।":"Preview only · receipt reference दर्ज होना स्वतंत्र payment verification नहीं है।");
+  }
+  try{const d=JSON.parse(localStorage.getItem(key)||"null");if(d){$("iel-leads").value=d.leads??0;$("iel-proposals").value=d.proposals??0;$("iel-orders").value=d.orders??0;$("iel-received").value=d.received??0;$("iel-ref").value=d.reference??"";$("iel-date").value=d.date??"";}}
+  catch(e){render("Browser storage उपलब्ध नहीं; values पेज बंद होने पर खो सकती हैं।");}
+  $("iel-save").addEventListener("click",()=>{const {d,errors}=read();if(errors.length){render("Save नहीं हुआ: "+errors.join("; "));return;}if(Number(d.received)>0&&!hasPaymentEvidence(d)){render("Save नहीं हुआ: received amount के लिए YYYY-MM-DD payment date और receipt/transaction reference आवश्यक हैं। यह फिर भी independent verification नहीं होगा।");return;}try{localStorage.setItem(key,JSON.stringify({...d,saved_at:new Date().toISOString(),verification_status:"NOT_INDEPENDENTLY_VERIFIED"}));render("इस browser में सुरक्षित; receipt reference दर्ज है, लेकिन server upload और independent verification नहीं हुआ।");}catch(e){render("Local save विफल; रिकॉर्ड सुरक्षित मानकर न चलें।");}});
+  $("iel-export").addEventListener("click",()=>{const {d,errors}=read();if(errors.length){render("Export रोक दिया: "+errors.join("; "));return;}const blob=new Blob([JSON.stringify({schema_version:1,...d,exported_at:new Date().toISOString(),verification_status:"NOT_INDEPENDENTLY_VERIFIED"},null,2)],{type:"application/json"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="shirmani-income-evidence-ledger.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);render("JSON export बनाया गया; यह verified income का प्रमाण नहीं है।");});
+  $("iel-clear").addEventListener("click",()=>{try{localStorage.removeItem(key);}catch(e){}ids.forEach(id=>$(id).value=(id==="iel-ref"||id==="iel-date")?"":0);render("इस browser का local ledger हटाया गया।");});
+  ids.forEach(id=>$(id).addEventListener("input",()=>render("बदलाव केवल preview हैं; Save दबाकर सुरक्षित करें।")));
+  render();
+})();
+</script>
 
 </main></body></html>

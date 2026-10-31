@@ -55,8 +55,9 @@ def main() -> int:
         sales_desk_source, sales_desk = load("showroom/global-product-sales-desk.html")
         enquiry_source, enquiry = load("writing-research-enquiry.html")
         showroom_source, showroom = load("showroom-public-interface.html")
-        load("income-action-center.html")
+        income_source, _ = load("income-action-center.html")
         outreach_source, outreach = load("global-client-outreach-workbench.html")
+        pipeline_source, _ = load("income-client-pipeline.html")
     except (AssertionError, OSError, UnicodeError) as exc:
         print(f"INCOME FUNNEL SMOKE CHECK: FAILED\n- {exc}")
         return 1
@@ -107,6 +108,26 @@ def main() -> int:
     if "Hindi/English Writing & Editing — proposed ₹499 pilot" not in outreach_source:
         errors.append("Outreach editing price must match the canonical ₹499 offer")
 
+    # The income tracker must support a portable backup without presenting local entries as verified payments.
+    for marker in ('id="export"', 'CSV प्रमाण-बैकअप डाउनलोड करें', 'exported_at_utc',
+                   'new Uint8Array([0xEF,0xBB,0xBF])',
+                   'not independently verified'):
+        if marker.casefold() not in income_source.casefold():
+            errors.append(f"Income Action Center is missing backup/truth-boundary marker: {marker}")
+
+    # The client pipeline must not count work-stage labels as proof of payment.
+    for marker in (
+        'id="paymentStatus"',
+        'id="paymentRef"',
+        "const hasPaymentProof=x=>x.paymentStatus==='Payment received — reference recorded'&&String(x.paymentRef||'').trim().length>0",
+        "q('p').textContent=data.filter(hasPaymentProof).length",
+        "q('r').textContent='₹'+data.filter(hasPaymentProof).reduce",
+    ):
+        if marker.casefold() not in pipeline_source.casefold():
+            errors.append(f"Client pipeline is missing payment-evidence gate: {marker}")
+    if "q('p').textContent=data.filter(x=>paid.includes(x.stage)).length" in pipeline_source:
+        errors.append("Client pipeline must not count paid jobs from stage labels alone")
+
     # Payment guidance must remain consent-first and must not prefill an amount.
     offer_lower = offer_source.casefold()
     if "payment — only after written agreement" not in offer_lower:
@@ -145,7 +166,7 @@ def main() -> int:
         return 1
 
     print("INCOME FUNNEL SMOKE CHECK: PASS")
-    print("Canonical entry, public showroom, priced starter offer, email/WhatsApp enquiry routes, and no-false-sale disclosures are present.")
+    print("Canonical entry, public showroom, priced starter offer, email/WhatsApp enquiry routes, CSV tracker backup, and no-false-sale disclosures are present.")
     print("This source-level gate does not verify live message delivery, customer acceptance, dispatch, payment, or deployed Pages output.")
     return 0
 

@@ -4,23 +4,28 @@
 <style>
 body{margin:0;background:#060a12;color:#f4f7fb;font:16px/1.65 system-ui,sans-serif}.wrap{max-width:980px;margin:auto;padding:22px}.hero,.card{background:#101925;border:1px solid #33485d;border-radius:18px;padding:22px;margin:14px 0}h1,h2{color:#ffd84a}.price{font-size:2.2rem;font-weight:900;color:#ffd84a}.offer{color:#72e6aa;font-weight:800}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.kv{padding:13px;border:1px solid #33485d;border-radius:12px;background:#0a121d}.btn{display:inline-block;padding:11px 15px;border-radius:10px;text-decoration:none;font-weight:900;background:#ffd84a;color:#111;margin:5px}.alt{background:#12283a;color:#67e8f9;border:1px solid #3c6680}.muted{color:#aeb9c7}.qr{text-align:center}.qr img{width:220px;max-width:90%;background:#fff;padding:10px;border-radius:14px}code{color:#67e8f9}
 </style></head><body><main class="wrap">
-<section class="hero"><a class="btn alt" href="showroom.html">← Showroom</a><h1 id="name">Product Order</h1><p id="desc" class="muted">Loading…</p><div id="price" class="price"></div><div id="offer" class="offer"></div><p id="commercialNote" class="muted">Payment stays unavailable until an approved product price and order terms are recorded.</p><a id="enquiry" class="btn alt" href="mailto:sainirampaul60@gmail.com">Ask for a written quote</a><a id="whatsappEnquiry" class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/918082935186?text=Namaste%2C%20please%20send%20a%20written%20quote%20and%20confirm%20terms%20before%20payment.">WhatsApp पर पूछताछ</a></section>
+<section class="hero"><a class="btn alt" href="showroom.html">← Showroom</a><h1 id="name">Product Order</h1><p id="desc" class="muted">Loading…</p><div id="price" class="price"></div><div id="offer" class="offer"></div><p id="commercialNote" class="muted">Payment stays unavailable until an approved product price and order terms are recorded.</p><a id="enquiry" class="btn alt" href="mailto:sainirampaul60@gmail.com">Ask for a written quote</a><a id="whatsappEnquiry" class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/918082935186?text=Namaste%2C%20please%20send%20a%20written%20quote%20and%20confirm%20terms%20before%20payment.">WhatsApp पर पूछताछ</a><a id="scopeEnquiry" class="btn alt" href="showroom/public-order-scope-builder.html">काम का scope लिखें</a></section>
 <section class="card" id="paymentSection" hidden><h2>🛒 Order / Payment</h2><p>केवल प्रकाशित approved price और लिखित order terms के बाद भुगतान करें। Payment से पहले अपने app में payee name, UPI ID और amount स्वयं verify करें।</p>
 <div class="grid"><div class="kv"><b>Paytm / UPI</b><br><code>9622254967@ptyes</code><br><a id="upi" class="btn" href="#">📲 UPI से भुगतान</a></div>
 <div class="kv"><b>PayPal</b><br><code>sainirampaul60@gmail.com</code><br><a class="btn alt" href="https://paypal.me/sainirampaul60" target="_blank" rel="noopener">PayPal खोलें</a></div>
 <div class="kv qr"><b>Funding / Support QR</b><br><img src="assets/funding-upi-qr.svg" alt="Paytm UPI QR"><br><span class="muted">Generic UPI support QR</span></div></div></section>
-<section class="card"><h2>📦 Fulfilment</h2><p id="fulfil" class="muted">यह public payment/order route है। Payment receipt अपने पास रखें और Product ID के साथ order reference साझा करें। Dispatch तभी होगा जब वास्तविक payment और fulfilment evidence उपलब्ध हो।</p></section>
+<section class="card"><h2>📦 Fulfilment / Order Confirmation</h2><p id="fulfil" class="muted">भुगतान से पहले लिखित terms की पुष्टि करें। यदि approved price वाले product के लिए भुगतान किया है, तो नीचे WhatsApp पर Product ID, भुगतान का समय और transaction/reference number भेजकर order acknowledgement माँगें। Dispatch तभी होगा जब वास्तविक payment और fulfilment evidence उपलब्ध हो।</p><a id="postPayment" class="btn" href="https://wa.me/918082935186?text=Namaste%2C%20please%20confirm%20my%20SHIRMANI%20order.%20I%20will%20provide%20the%20Product%20ID%20and%20payment%20reference%20after%20checking%20the%20details." hidden target="_blank" rel="noopener noreferrer">भुगतान के बाद order confirmation माँगें</a><p class="muted">अपना UPI PIN, OTP, password या पूरा card/bank विवरण कभी साझा न करें। केवल transaction/reference ID और आवश्यक order details दें। WhatsApp संदेश स्वयं जाँचकर भेजें; यह पेज भुगतान या delivery को स्वतः verify नहीं करता।</p></section>
 <section class="card"><h2>🛡️ Product Passport</h2><div id="passport" class="grid"></div></section>
 <script>
 const id=new URLSearchParams(location.search).get("id")||"";
+document.getElementById("scopeEnquiry").href="showroom/public-order-scope-builder.html"+(id?"?product_id="+encodeURIComponent(id):"");
 const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
 function approvedPrice(p){const amount=Number(p.price_inr);return p.commercial_status==="PRICE_APPROVED" && Number.isFinite(amount) && amount>0;}
 async function load(){
-  let products=[];
+  let products=[],catalogProduct=null;
   try{
     const overlay=await fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{products:[]});
     products=overlay.products||[];
+  }catch(e){}
+  try{
+    const catalog=await fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{products:[]});
+    catalogProduct=(catalog.products||[]).find(x=>x.id===id)||null;
   }catch(e){}
   const i=products.findIndex(x=>x.id===id),p=products[i];
   if(!p){
@@ -38,6 +43,10 @@ async function load(){
     document.getElementById("offer").textContent="Approved published price";
     document.getElementById("commercialNote").textContent="यह price product record में PRICE_APPROVED है। भुगतान से पहले Product ID, deliverables, delivery timeline, support/revisions और refund/payment terms की लिखित पुष्टि email से लें; payee और amount अपने payment app में verify करें।";
     document.getElementById("paymentSection").hidden=false;
+    const postPayment=document.getElementById("postPayment");
+    postPayment.hidden=false;
+    const postBody="Namaste, please acknowledge my SHIRMANI order. Product ID: "+p.id+"; Product: "+(p.name||"Not recorded")+"; amount: INR "+amount+"; payment method: [UPI/PayPal]; transaction/reference ID: [fill in]; payment date/time: [fill in]; customer name: [fill in]; reply contact: [fill in]. Please confirm receipt and expected delivery timeline. I will not share any PIN, OTP or password.";
+    postPayment.href="https://wa.me/918082935186?text="+encodeURIComponent(postBody);
     const upi="upi://pay?pa=9622254967@ptyes&pn=Shirmani%20Research%20Institute&am="+amount+"&cu=INR&tn="+encodeURIComponent("SHIRMANI "+p.id);
     document.getElementById("upi").href=upi;
     document.getElementById("enquiry").textContent="Confirm order details by email";
@@ -47,9 +56,10 @@ async function load(){
     const waBody="Namaste, please confirm this product order before payment. Product ID: "+p.id+"; Product: "+(p.name||"Not recorded")+"; approved published price: INR "+amount+". Please confirm deliverables, delivery timeline, support/revisions, payment recipient, payment terms and refund/cancellation policy in writing. I will pay only after reviewing your reply.";
     document.getElementById("whatsappEnquiry").href="https://wa.me/918082935186?text="+encodeURIComponent(waBody);
   }else{
-    document.getElementById("price").textContent="Quote required";
-    document.getElementById("offer").textContent="PAYMENT PAUSED · NO APPROVED PRICE RECORD";
-    document.getElementById("commercialNote").textContent="इस product के लिए approved price record उपलब्ध नहीं है। कृपया पहले लिखित quote, deliverables, delivery time और refund/payment terms तय करें। इस पेज से भुगतान शुरू न करें।";
+    const catalogPrice=Number(catalogProduct?.offer_price_inr||catalogProduct?.price_inr||p.offer_price_inr||p.price_inr||0);
+    document.getElementById("price").textContent=Number.isFinite(catalogPrice)&&catalogPrice>0?"Indicative catalogue price: "+money(catalogPrice):"Quote required";
+    document.getElementById("offer").textContent="PAYMENT PAUSED · WRITTEN PRICE APPROVAL REQUIRED";
+    document.getElementById("commercialNote").textContent="यह कैटलॉग राशि केवल संकेतात्मक है, स्वीकृत भुगतान राशि नहीं। भुगतान अभी बंद है। पहले लिखित रूप में अंतिम कीमत, deliverables, delivery time और refund/payment terms तय करें; उसके बाद ही स्पष्ट price approval के साथ भुगतान सक्षम होगा।";
     document.getElementById("paymentSection").hidden=true;
     const subject="SHIRMANI quote request — "+p.id;
     const body="Please provide a written quote for product "+p.id+". Confirm deliverables, delivery timeline, support/revisions, payment terms and refund policy before I decide.";

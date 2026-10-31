@@ -17,10 +17,10 @@ jobs:
     env:
       PRODUCT_TARGET: "5000"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 1
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.x"
       - name: Install production dependencies
@@ -29,7 +29,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git fetch origin automation/production-state
+          git fetch --no-tags --depth=1 origin automation/production-state
           git worktree add --detach /tmp/shirmani-production-state FETCH_HEAD
           echo "PRODUCTION_STATE_HEAD=$(git rev-parse FETCH_HEAD)" >> "$GITHUB_ENV"
       - name: Detect conflict markers and missing production assets
@@ -74,6 +74,45 @@ jobs:
           except (OSError,ValueError,TypeError,json.JSONDecodeError) as exc:
               reasons.append("production_state_unreadable")
               print("PRODUCTION_STATE_READ_ERROR",str(exc))
+          # Asset counts alone do not prove that the current production cycle
+          # has matching result records and an immutable archive shard.
+          try:
+              def read_jsonl(path):
+                  return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+              queue = read_jsonl(gen / "production-work-queue.jsonl")
+              results = read_jsonl(gen / "production-results.jsonl")
+              cycle_errors = []
+              qids = [str(row.get("task_id", "")) for row in queue]
+              rids = [str(row.get("task_id", "")) for row in results]
+              qcycles = {int(row.get("cycle", -1)) for row in queue}
+              rcycles = {int(row.get("cycle", -1)) for row in results}
+              if not queue or not results:
+                  cycle_errors.append("queue_or_results_empty")
+              if len(qids) != len(set(qids)) or len(rids) != len(set(rids)):
+                  cycle_errors.append("duplicate_task_ids")
+              if set(qids) != set(rids) or len(queue) != len(results):
+                  cycle_errors.append("queue_results_mismatch")
+              if len(qcycles) != 1 or qcycles != rcycles:
+                  cycle_errors.append("queue_results_cycle_mismatch")
+              archive = json.loads((gen / "public-production" / "archive" / "index.json").read_text(encoding="utf-8"))
+              if len(qcycles) == 1:
+                  cycle = next(iter(qcycles))
+                  if int(archive.get("latest_cycle", -1)) != cycle:
+                      cycle_errors.append("archive_cycle_mismatch")
+                  shard = gen / "public-production" / "archive" / f"production-cycle-{cycle:06d}.jsonl"
+                  shard_rows = read_jsonl(shard)
+                  if len(shard_rows) != len(results) or {str(row.get("task_id", "")) for row in shard_rows} != set(rids):
+                      cycle_errors.append("archive_results_mismatch")
+              if cycle_errors:
+                  reasons.append("production_cycle_integrity_mismatch")
+              print("PRODUCTION_CYCLE_INTEGRITY", json.dumps({
+                  "queue_rows": len(queue), "result_rows": len(results),
+                  "queue_cycles": sorted(qcycles), "result_cycles": sorted(rcycles),
+                  "errors": cycle_errors
+              }, sort_keys=True))
+          except (OSError,ValueError,TypeError,KeyError,json.JSONDecodeError) as exc:
+              reasons.append("production_cycle_integrity_unreadable")
+              print("PRODUCTION_CYCLE_INTEGRITY_ERROR",str(exc))
           print("CONFLICT_MARKER_FILES",len(hits))
           for x in hits[:50]: print("CONFLICT",x)
           print("REPAIR_REASONS",json.dumps(reasons))
@@ -81,7 +120,7 @@ jobs:
               out.write("repair_needed="+("true" if reasons else "false")+"\n")
           PY
       - name: Repair and rebuild production-state
-        if: \${{ steps.detect.outputs.repair_needed == 'true' }}
+        if: ${{ steps.detect.outputs.repair_needed == 'true' }}
         shell: bash
         working-directory: /tmp/shirmani-production-state
         run: |
@@ -253,7 +292,7 @@ jobs:
           print(json.dumps({"cycle": cycle, "queue_rows": len(queue), "result_rows": len(results), "archive_rows": len(shard_rows), "gate": "PASS"}, sort_keys=True))
           PY
       - name: Fail if conflict markers remain
-        if: \${{ steps.detect.outputs.repair_needed == 'true' }}
+        if: ${{ steps.detect.outputs.repair_needed == 'true' }}
         working-directory: /tmp/shirmani-production-state
         run: |
           python - <<'PY'
@@ -271,7 +310,7 @@ jobs:
           print("PRODUCTION_STATE_INTEGRITY_CLEAN")
           PY
       - name: Publish repaired production-state
-        if: \${{ steps.detect.outputs.repair_needed == 'true' }}
+        if: ${{ steps.detect.outputs.repair_needed == 'true' }}
         working-directory: /tmp/shirmani-production-state
         shell: bash
         run: |
@@ -287,7 +326,14 @@ jobs:
             git fetch origin automation/production-state
             # Prefer this run's freshly rebuilt outputs for overlapping generated files.
             # Keep non-conflicting updates from concurrent production cycles.
-            git merge --no-edit -X ours FETCH_HEAD
+            if ! git merge --no-edit -X ours FETCH_HEAD; then
+              # A merge conflict must not terminate the retry loop under set -e.
+              # Abort the failed merge so the next attempt can fetch the newest head.
+              git merge --abort || true
+              echo "PRODUCTION_STATE_MERGE_RETRY attempt=$attempt"
+              sleep "$((attempt * 2))"
+              continue
+            fi
             if git push origin HEAD:automation/production-state; then
               echo "PRODUCTION_STATE_PUBLISH_OK attempt=$attempt"
               exit 0

@@ -22,6 +22,11 @@ def slug_for(product_id):
     return re.sub(r"[^a-zA-Z0-9._-]", "-", str(product_id)).lower()
 
 
+def relative_href(target, page_dir):
+    """Build a repository-local href from the real nested product-page directory."""
+    return Path(os.path.relpath(target, start=page_dir)).as_posix()
+
+
 def page(product, root=ROOT):
     pid = str(product["id"])
     slug = slug_for(pid)
@@ -31,21 +36,25 @@ def page(product, root=ROOT):
     description = product.get("short_description") or product.get("description") or "Customer-facing digital product."
     price = product.get("offer_price_inr", product.get("price_inr", ""))
 
-    passport_href = f"../../../product-passport.html?id={quote(pid, safe='')}"
-    showroom_href = "../../../showroom-public.html"
+    # These pages are emitted at products/live/<slug>/index.html. Resolve each
+    # local link from that actual directory rather than maintaining fragile ../ counts.
+    page_dir = root / "products/live" / slug
+    passport_href = f"{relative_href(root / 'product-passport.html', page_dir)}?id={quote(pid, safe='')}"
+    demo_href = f"{relative_href(root / 'product-demo.html', page_dir)}?id={quote(pid, safe='')}"
+    showroom_href = relative_href(root / "showroom-public.html", page_dir)
     vip_disk_rel = f"products/demos/vip/{slug}.svg"
     video_name = str(engine) + ".mp4"
     video_disk_rel = f"products/demos/{video_name}"
     vip_exists = (root / vip_disk_rel).is_file()
     video_exists = Path(video_name).name == video_name and (root / video_disk_rel).is_file()
 
-    vip_href = quote(slug + ".svg", safe="")
-    video_href = quote(video_name, safe="")
+    vip_href = quote(relative_href(root / vip_disk_rel, page_dir), safe="/")
+    video_href = quote(relative_href(root / video_disk_rel, page_dir), safe="/")
     media_links = []
     if vip_exists:
-        media_links.append(f'<a href="../../demos/vip/{vip_href}">Open product screenshot</a>')
+        media_links.append(f'<a href="{e(vip_href)}">Open product screenshot</a>')
     if video_exists:
-        media_links.append(f'<a href="../../demos/{video_href}">Watch {e(engine)} demo video</a>')
+        media_links.append(f'<a href="{e(video_href)}">Watch {e(engine)} demo video</a>')
     media_html = "".join(media_links) if media_links else (
         '<p class="notice">Demo media is not published for this product yet. '
         'This page is a catalogue listing, not proof of a runnable product demo.</p>'
@@ -82,6 +91,7 @@ a{{display:inline-block;padding:11px 14px;margin:5px 5px 5px 0;border:1px solid 
 <p class="price">{"₹" + e(price) if str(price) else "Price to be confirmed"}</p>
 <p class="notice">Catalogue listing only. Confirm that the demo works, what is delivered, the final price, delivery date, support and payment terms before ordering. A listed price or generated page is not evidence of a sale or successful delivery.</p>
 <h2>Demo and product evidence</h2>
+<a class="primary" href="{e(demo_href)}">Open interactive demo / usage guide</a>
 {media_html}
 <p><a href="{e(passport_href)}">Product passport / details</a></p>
 <h2>Ask about this product</h2>
@@ -107,24 +117,36 @@ def main():
 
     # Refresh all existing surfaces as well as adding the next batch. This ensures
     # fixed navigation, contact CTAs, and honest demo availability reach old pages.
-    published = 0
+    public_products = []
     for product in rows:
         destination = OUT / slug_for(product["id"]) / "index.html"
         if destination.parent.exists() or product in selected:
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_text(page(product), encoding="utf-8")
-            published += 1
+            public_products.append({
+                "id": str(product["id"]),
+                "name": product.get("name") or str(product["id"]),
+                "category": product.get("family") or product.get("category") or "Digital Product",
+                "engine": product.get("engine") or "package",
+                "price_inr": product.get("offer_price_inr", product.get("price_inr", "")),
+                "offer_price_inr": product.get("offer_price_inr", product.get("price_inr", "")),
+                "description": product.get("short_description") or product.get("description") or "Customer-facing digital product.",
+                "product_url": f"products/live/{slug_for(product['id'])}/index.html",
+                "public_surface": True,
+                "listing_state": "LISTED_NOT_SALE_VERIFIED"
+            })
 
     payload = {
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "catalog_count": len(rows),
-        "public_surface_count": published,
-        "remaining_public_surfaces": len(rows) - published,
+        "public_surface_count": len(public_products),
+        "remaining_public_surfaces": len(rows) - len(public_products),
         "created_this_cycle": len(selected),
         "batch_size": batch,
         "state": "OPERATIONAL_SURFACE",
-        "truth_boundary": "A catalogue page is not evidence of a working demo, sale, payment, delivery, scientific validation, or independent human review."
+        "truth_boundary": "A catalogue page is not evidence of a working demo, sale, payment, delivery, scientific validation, or independent human review.",
+        "products": public_products
     }
     MAN.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(payload, ensure_ascii=False))

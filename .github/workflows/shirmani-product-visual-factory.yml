@@ -50,6 +50,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/product-visuals
+          base: main
           delete-branch: false
           commit-message: "production: refresh QC-passed unique product visuals"
           title: "Automission: refresh generated product visuals"

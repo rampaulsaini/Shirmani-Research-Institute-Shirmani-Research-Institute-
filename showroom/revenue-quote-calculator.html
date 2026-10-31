@@ -23,5 +23,5 @@ $("build").addEventListener("click",make);$("service").addEventListener("change"
 $("clear").addEventListener("click",()=>{["client","objective","sources","terms","budget"].forEach(id=>$(id).value="");$("words").value=1000;$("deadline").value="";$("service").value="999";$("language").value="Hindi";proposal="";$("estimate").textContent="₹999 से शुरू";$("output").textContent="Brief भरकर प्रस्ताव तैयार करें।"});
 $("copy").addEventListener("click",async()=>{if(!proposal)make();try{await navigator.clipboard.writeText(proposal);$("copy").textContent="Copied";}catch(e){$("output").focus()}});
 $("download").addEventListener("click",()=>{if(!proposal)make();const a=document.createElement("a"),url=URL.createObjectURL(new Blob([proposal],{type:"text/plain;charset=utf-8"}));a.href=url;a.download="shirmani-service-proposal.txt";a.click();URL.revokeObjectURL(url)});
-$("mail").addEventListener("click",()=>{if(!proposal)make();location.href="mailto:?subject="+encodeURIComponent("Writing & Research Enquiry — Shirmani Research Institute")+"&body="+encodeURIComponent(proposal)});make();
+$("mail").addEventListener("click",()=>{if(!proposal)make();location.href="mailto:sainirampaul60@gmail.com?subject="+encodeURIComponent("Writing & Research Enquiry — Shirmani Research Institute")+"&body="+encodeURIComponent(proposal)});make();
 </script></body></html>

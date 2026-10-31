@@ -1,9 +1,5 @@
 {
-  "generated_at": "2026-10-23T15:56:32.107366+00:00",
-  "catalog_products": 5000,
-  "concrete_product_assets": 5000,
-  "state": "COMPLETE",
-  "dispatch": "NO",
+  "generated_at": "2026-10-28T23:42:25.801537+00:00",
   "target": 5000,
   "concrete_produced": 5000,
   "concrete_production_percent": 100.0,

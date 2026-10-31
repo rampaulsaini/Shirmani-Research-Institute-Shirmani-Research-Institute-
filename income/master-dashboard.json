@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "name": "Master Automission Dashboard",
+  "purpose": "Unified operational state for queues, approvals, outcomes, products and verified learning.",
+  "rules": {
+    "missing_tables_are_nonfatal": true,
+    "verified_income_only": true,
+    "no_external_action_from_dashboard": true
+  }
+}
