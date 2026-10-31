@@ -1,0 +1,10 @@
+{
+  "generated_at_utc": "2026-10-31T21:57:20.348484+00:00",
+  "materialized_products": 5000,
+  "shard_size": 1000,
+  "materialized_shards": 5,
+  "catalogue_capacity": 150000,
+  "remaining_capacity": 145000,
+  "directory_contract": "global-product-usage-directory.html",
+  "source": "generated/1000-digital-products.json"
+}
