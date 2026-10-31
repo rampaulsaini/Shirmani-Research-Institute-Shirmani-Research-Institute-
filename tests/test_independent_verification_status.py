@@ -8,9 +8,14 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
+import importlib.util
 
-from factory.independent_verification_status import build_status
+spec = importlib.util.spec_from_file_location(
+    "independent_verification_status", ROOT / "factory" / "independent_verification_status.py"
+)
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+build_status = module.build_status
 
 
 class IndependentVerificationStatusTests(unittest.TestCase):
