@@ -36,6 +36,12 @@ class PublicPagesRouteDiagnosticsTest(unittest.TestCase):
         self.assertLess(workflow.index("Record expected public-state fingerprint before upload"),
                         workflow.index("Upload generated production site"))
 
+    def test_deployed_state_fingerprint_retries_cdn_propagation_without_weakening_gate(self):
+        source = SMOKE.read_text(encoding="utf-8")
+        for marker in ("DEPLOYMENT_PROPAGATION_RETRY", "fingerprint_attempts = 8", "actual_live_sha256 == expected_live_sha256"):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, source)
+
     def test_failure_diagnostics_preserve_http_evidence(self):
         source = SMOKE.read_text(encoding="utf-8")
         for marker in ("requested_url=", "final_url=", "content_type=", "body_snippet=", "status="):
