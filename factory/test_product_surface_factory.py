@@ -29,11 +29,13 @@ class ProductSurfaceFactoryTests(unittest.TestCase):
         self.assertIn('href="../../../showroom-public.html"', rendered)
         self.assertIn("wa.me/918082935186", rendered)
         self.assertIn("mailto:sainirampaul60@gmail.com", rendered)
+        self.assertIn('href="../../../product-demo.html?id=SP-0001"', rendered)
 
     def test_missing_demo_is_not_misrepresented_as_runnable(self):
         rendered = factory.page(self.product, root=self.root)
         self.assertIn("Demo media is not published", rendered)
         self.assertIn("not proof of a runnable product demo", rendered)
+        self.assertIn("Open interactive demo / usage guide", rendered)
         self.assertNotIn('href="../../demos/vip/sp-0001.svg"', rendered)
         self.assertNotIn('href="../../demos/calculator.mp4"', rendered)
 
@@ -50,6 +52,7 @@ class ProductSurfaceFactoryTests(unittest.TestCase):
     def test_every_emitted_local_href_resolves_from_actual_nested_page(self):
         (self.root / "showroom-public.html").write_text("<html/>", encoding="utf-8")
         (self.root / "product-passport.html").write_text("<html/>", encoding="utf-8")
+        (self.root / "product-demo.html").write_text("<html/>", encoding="utf-8")
         (self.root / "products/demos").mkdir(parents=True, exist_ok=True)
         (self.root / "products/demos/calculator.mp4").write_bytes(b"demo")
         rendered = factory.page(self.product, root=self.root)
