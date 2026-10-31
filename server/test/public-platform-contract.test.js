@@ -14,6 +14,18 @@ test("public platform API exposes order and dashboard primitives", () => {
   ]) assert.ok(source.includes(route), `Missing route: ${route}`);
 });
 
+test("public client enquiry endpoint validates consent and persists leads separately from orders", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  assert.ok(source.includes('app.post("/v1/enquiries", dbRequired, enquiryLimiter'));
+  assert.ok(source.includes('body.consent !== true'));
+  assert.ok(source.includes('"VALID_CONTACT_REQUIRED"'));
+  assert.ok(source.includes('"Enquiry received for human review. No order or payment has been created."'));
+  const schema = fs.readFileSync(new URL("../sql/schema.sql", import.meta.url), "utf8");
+  assert.match(schema, /create table if not exists client_enquiries/);
+  assert.match(schema, /status text not null default 'new'/);
+  assert.match(schema, /consent_at timestamptz not null/);
+});
+
 test("order schema is present and payment remains provider-gated", () => {
   const schema = fs.readFileSync(new URL("../sql/schema.sql", import.meta.url), "utf8");
   assert.match(schema, /create table if not exists orders/);
