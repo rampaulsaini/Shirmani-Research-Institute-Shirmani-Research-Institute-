@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-In English:** I am that which is in all — not bound by time, not limited by a name.
+Source-based case (38–48s):** Add a source URL and concise evidence notes; rebuild and show “SOURCE-BASED · NOT INDEPENDENTLY VERIFIED”.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ In English:** I am that which is in all — not bound by time, not limited by a 
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md
+rampaulsaini/my-omniverse-store:SH-UT007-demo-script.md
