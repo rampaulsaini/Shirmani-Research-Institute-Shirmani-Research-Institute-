@@ -1,9 +1,9 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-10-31T02:48:07.994345+00:00",
+  "generated_at": "2026-10-31T19:21:56.897743+00:00",
   "production_first": true,
   "catalog_identities": 5000,
-  "concrete_repository_assets": 5000,
+  "concrete_repository_assets": 7642,
   "production_browser_assets": 5000,
   "public_4k_visual_assets": 5000,
   "product_qr_assets": 5000,
@@ -11,8 +11,8 @@
   "current_catalog_pending": 0,
   "five_thousand_scale_target": 5000,
   "remaining_to_scale_target": 0,
-  "concrete_materialization_percent_of_catalog": 100,
-  "concrete_materialization_percent_of_scale_target": 100,
+  "concrete_materialization_percent_of_catalog": 152.84,
+  "concrete_materialization_percent_of_scale_target": 152.84,
   "module_products_generated": 5000,
   "dispatch_released": 0,
   "sales_claimed": 0,
@@ -20,8 +20,8 @@
   "independent_verification_claimed": 0,
   "state": "QC_PASSED_AWAITING_DISPATCH",
   "qc_state": "QC_PASSED",
+  "qc_passed": 0,
+  "qc_failed": 0,
   "truth_boundary": "QC is promoted only when its counts match the current catalog and real assets. Dispatch, sales, payment and independent verification remain separate states.",
-  "rule": "Product materialization counters report only concrete product assets. Repository file count is a separate filesystem metric and workflow execution is never counted as a product.",
-  "repository_file_count": 7642,
-  "concrete_product_assets": 5000
+  "rule": "Filesystem counts are measured from repository files; overlay rows are reported separately and workflow execution is not counted as a product."
 }
