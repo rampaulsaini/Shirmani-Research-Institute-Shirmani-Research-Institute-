@@ -24,7 +24,7 @@ jobs:
           PRODUCT_SURFACE_BATCH: "25"
         run: python3 factory/product_surface_factory.py
       - name: Create or update reviewed production PR
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automission/production-surface-refresh
