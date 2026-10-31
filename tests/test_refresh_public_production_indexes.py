@@ -78,6 +78,22 @@ class RefreshPublicProductionIndexesTests(unittest.TestCase):
         self.assertEqual(self.lane_file.read_text(encoding="utf-8"), original_lane)
         self.assertEqual(len(self.results.read_text(encoding="utf-8").splitlines()), 1)
 
+
+    def test_malformed_archive_filename_is_excluded_but_preserved(self):
+        produced_at = (datetime.now(timezone.utc) - timedelta(seconds=30)).isoformat()
+        self.write_lane(produced_at)
+        self.archive.mkdir(parents=True, exist_ok=True)
+        malformed = self.archive / "production-cycle-5970968.jsonl"
+        malformed.write_text('{"legacy": true}\\n', encoding="utf-8")
+
+        MODULE.main()
+
+        archive = json.loads(self.archive_index.read_text(encoding="utf-8"))
+        self.assertNotIn(malformed.name, archive["files"])
+        self.assertIn(malformed.name, archive["ignored_malformed_archive_files"])
+        self.assertTrue(malformed.is_file())
+        self.assertTrue(archive["integrity"]["archive_index_excludes_malformed_shard_names"])
+
     def test_stale_lane_record_cannot_be_relabelled_fresh(self):
         produced_at = (datetime.now(timezone.utc) - timedelta(seconds=1900)).isoformat()
         self.write_lane(produced_at)
