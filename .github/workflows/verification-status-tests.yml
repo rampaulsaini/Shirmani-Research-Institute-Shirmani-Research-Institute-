@@ -1,0 +1,33 @@
+name: SHIRMANI Verification Status Unit Tests
+
+on:
+  pull_request:
+    paths:
+      - "factory/independent_verification_status.py"
+      - "tests/test_independent_verification_status.py"
+      - ".github/workflows/verification-status-tests.yml"
+  push:
+    branches: [main]
+    paths:
+      - "factory/independent_verification_status.py"
+      - "tests/test_independent_verification_status.py"
+      - ".github/workflows/verification-status-tests.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-verification-status-tests-\${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run focused fail-closed status tests
+        run: python3 -m unittest discover -s tests -p 'test_independent_verification_status.py' -v
