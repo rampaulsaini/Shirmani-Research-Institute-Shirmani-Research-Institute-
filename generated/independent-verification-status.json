@@ -1,12 +1,13 @@
 {
-  "version": 1,
+  "version": 2,
+  "generated_at": "2026-10-31T19:13:43.220970+00:00",
   "generated_from": {
     "queue": "generated/independent-verification-queue.jsonl.gz",
     "registry": "generated/independent-verification-registry.jsonl.gz"
   },
   "queue_total": 100200,
   "registry_total": 100200,
-  "prepared_review_records": 59950,
+  "prepared_review_records": 60950,
   "verified_records": 0,
   "review_records": 0,
   "unverified_records": 100200,
@@ -403,9 +404,19 @@
     [
       58951,
       59950
+    ],
+    [
+      59951,
+      60950
     ]
   ],
-  "prepared_percent": 59.83,
+  "integrity": {
+    "queue_registry_task_ids_match": true,
+    "queue_sha256": "8133b24a3601aa62f06cb3aba64bff753d4d16cce174aad949184b448e95108c",
+    "registry_sha256": "c5110372d7d7ca8fdd3cd937ff458b3b8836a54bed70c7c6874ce480fc924f9d",
+    "verified_requires_reviewed_and_independent_true": true
+  },
+  "prepared_percent": 60.83,
   "verified_percent_of_queue": 0.0,
   "state": "READY_FOR_REVIEW"
 }
