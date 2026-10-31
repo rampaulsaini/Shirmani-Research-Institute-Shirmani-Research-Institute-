@@ -15,7 +15,7 @@ jobs:
   reality-gate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Evaluate real delivery evidence
         run: python3 factory/production_reality_gate.py
       - name: Publish reality gate artifact
