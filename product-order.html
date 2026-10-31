@@ -18,10 +18,14 @@ const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
 function approvedPrice(p){const amount=Number(p.price_inr);return p.commercial_status==="PRICE_APPROVED" && Number.isFinite(amount) && amount>0;}
 async function load(){
-  let products=[];
+  let products=[],catalogProduct=null;
   try{
     const overlay=await fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{products:[]});
     products=overlay.products||[];
+  }catch(e){}
+  try{
+    const catalog=await fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{products:[]});
+    catalogProduct=(catalog.products||[]).find(x=>x.id===id)||null;
   }catch(e){}
   const i=products.findIndex(x=>x.id===id),p=products[i];
   if(!p){
@@ -52,9 +56,10 @@ async function load(){
     const waBody="Namaste, please confirm this product order before payment. Product ID: "+p.id+"; Product: "+(p.name||"Not recorded")+"; approved published price: INR "+amount+". Please confirm deliverables, delivery timeline, support/revisions, payment recipient, payment terms and refund/cancellation policy in writing. I will pay only after reviewing your reply.";
     document.getElementById("whatsappEnquiry").href="https://wa.me/918082935186?text="+encodeURIComponent(waBody);
   }else{
-    document.getElementById("price").textContent="Quote required";
-    document.getElementById("offer").textContent="PAYMENT PAUSED · NO APPROVED PRICE RECORD";
-    document.getElementById("commercialNote").textContent="इस product के लिए approved price record उपलब्ध नहीं है। कृपया पहले लिखित quote, deliverables, delivery time और refund/payment terms तय करें। इस पेज से भुगतान शुरू न करें।";
+    const catalogPrice=Number(catalogProduct?.offer_price_inr||catalogProduct?.price_inr||p.offer_price_inr||p.price_inr||0);
+    document.getElementById("price").textContent=Number.isFinite(catalogPrice)&&catalogPrice>0?"Indicative catalogue price: "+money(catalogPrice):"Quote required";
+    document.getElementById("offer").textContent="PAYMENT PAUSED · WRITTEN PRICE APPROVAL REQUIRED";
+    document.getElementById("commercialNote").textContent="यह कैटलॉग राशि केवल संकेतात्मक है, स्वीकृत भुगतान राशि नहीं। भुगतान अभी बंद है। पहले लिखित रूप में अंतिम कीमत, deliverables, delivery time और refund/payment terms तय करें; उसके बाद ही स्पष्ट price approval के साथ भुगतान सक्षम होगा।";
     document.getElementById("paymentSection").hidden=true;
     const subject="SHIRMANI quote request — "+p.id;
     const body="Please provide a written quote for product "+p.id+". Confirm deliverables, delivery timeline, support/revisions, payment terms and refund policy before I decide.";
