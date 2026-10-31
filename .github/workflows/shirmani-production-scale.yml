@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Test production completion gate
         run: python3 -m unittest discover -s tests -p 'test_production_completion_gate.py'
       - name: Check canonical 5,000-item completion state

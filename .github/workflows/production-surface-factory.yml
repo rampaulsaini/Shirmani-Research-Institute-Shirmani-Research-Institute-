@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Test product surface links and demo truth
         run: python3 -m unittest factory/test_product_surface_factory.py
       - name: Build 150K-scale catalogue shards
