@@ -68,7 +68,7 @@ app.post("/v1/enquiries", dbRequired, enquiryLimiter, async (req, res) => {
     return res.status(400).json({ error: "INVALID_ENQUIRY" });
   }
   if (body.consent !== true) return res.status(400).json({ error: "CONSENT_REQUIRED" });
-  if ((!email && !phone) || (email && !/^\\S+@\\S+\\.\\S+$/.test(email)) ||
+  if ((!email && !phone) || (email && !/^\S+@\S+\.\S+$/.test(email)) ||
       (phone && !/^[+0-9() .-]{7,32}$/.test(phone))) {
     return res.status(400).json({ error: "VALID_CONTACT_REQUIRED" });
   }
