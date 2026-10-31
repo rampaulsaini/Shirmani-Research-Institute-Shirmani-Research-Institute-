@@ -40,6 +40,7 @@ def page(product, root=ROOT):
     # local link from that actual directory rather than maintaining fragile ../ counts.
     page_dir = root / "products/live" / slug
     passport_href = f"{relative_href(root / 'product-passport.html', page_dir)}?id={quote(pid, safe='')}"
+    demo_href = f"{relative_href(root / 'product-demo.html', page_dir)}?id={quote(pid, safe='')}"
     showroom_href = relative_href(root / "showroom-public.html", page_dir)
     vip_disk_rel = f"products/demos/vip/{slug}.svg"
     video_name = str(engine) + ".mp4"
@@ -90,6 +91,7 @@ a{{display:inline-block;padding:11px 14px;margin:5px 5px 5px 0;border:1px solid 
 <p class="price">{"₹" + e(price) if str(price) else "Price to be confirmed"}</p>
 <p class="notice">Catalogue listing only. Confirm that the demo works, what is delivered, the final price, delivery date, support and payment terms before ordering. A listed price or generated page is not evidence of a sale or successful delivery.</p>
 <h2>Demo and product evidence</h2>
+<a class="primary" href="{e(demo_href)}">Open interactive demo / usage guide</a>
 {media_html}
 <p><a href="{e(passport_href)}">Product passport / details</a></p>
 <h2>Ask about this product</h2>
