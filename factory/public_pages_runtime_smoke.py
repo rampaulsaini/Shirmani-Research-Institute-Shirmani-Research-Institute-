@@ -191,13 +191,40 @@ print(
     f"actual_sha256={actual_live_sha256}"
 )
 if expected_live_sha256 and actual_live_sha256 != expected_live_sha256:
-    raise SystemExit(
-        "PAGES_RUNTIME_SMOKE_FAIL: deployed live-production-state.json does not match "
-        "the pre-upload artifact fingerprint; compare deployment ordering/artifact contents "
-        f"(expected_generated_at={expected_live_generated_at or 'NOT_PROVIDED'}, "
-        f"actual_generated_at={actual_live_generated_at or 'MISSING'}, "
-        f"expected_sha256={expected_live_sha256}, actual_sha256={actual_live_sha256})"
-    )
+    # GitHub Pages can report a successful deployment before every edge serves
+    # the new artifact. Poll the exact fingerprint with cache-busting requests
+    # before declaring a deployment-ordering failure.
+    for propagation_attempt in range(1, 9):
+        print(
+            "PUBLIC_STATE_PROPAGATION_WAIT "
+            f"attempt={propagation_attempt}/8 "
+            f"expected_sha256={expected_live_sha256} "
+            f"actual_sha256={actual_live_sha256}"
+        )
+        time.sleep(15)
+        refreshed_body, refreshed_type = fetch("generated/live-production-state.json")
+        responses["generated/live-production-state.json"] = refreshed_body
+        live = read_json("generated/live-production-state.json")
+        actual_live_sha256 = hashlib.sha256(refreshed_body).hexdigest()
+        actual_live_generated_at = str(live.get("generated_at", ""))
+        print(
+            "PUBLIC_STATE_PROPAGATION_CHECK "
+            f"attempt={propagation_attempt}/8 "
+            f"actual_generated_at={actual_live_generated_at or 'MISSING'} "
+            f"actual_sha256={actual_live_sha256} "
+            f"content_type={refreshed_type}"
+        )
+        if actual_live_sha256 == expected_live_sha256:
+            break
+    if actual_live_sha256 != expected_live_sha256:
+        raise SystemExit(
+            "PAGES_RUNTIME_SMOKE_FAIL: deployed live-production-state.json did not "
+            "converge to the uploaded artifact after bounded CDN propagation polling; "
+            "compare deployment ordering/artifact contents "
+            f"(expected_generated_at={expected_live_generated_at or 'NOT_PROVIDED'}, "
+            f"actual_generated_at={actual_live_generated_at or 'MISSING'}, "
+            f"expected_sha256={expected_live_sha256}, actual_sha256={actual_live_sha256})"
+        )
 overlay = read_json("generated/public-production-asset-overlay.json")
 catalog = read_json("generated/public-production-catalog.json")
 modules = read_json("generated/public-production-module-index.json")
