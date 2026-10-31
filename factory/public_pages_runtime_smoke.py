@@ -178,22 +178,42 @@ def read_json(route: str) -> dict:
     return value
 
 
-live = read_json("generated/live-production-state.json")
 expected_live_sha256 = os.environ.get("EXPECTED_LIVE_STATE_SHA256", "").strip()
 expected_live_generated_at = os.environ.get("EXPECTED_LIVE_STATE_GENERATED_AT", "").strip()
-actual_live_sha256 = hashlib.sha256(responses["generated/live-production-state.json"]).hexdigest()
-actual_live_generated_at = str(live.get("generated_at", ""))
-print(
-    "PUBLIC_STATE_FINGERPRINT "
-    f"expected_generated_at={expected_live_generated_at or 'NOT_PROVIDED'} "
-    f"expected_sha256={expected_live_sha256 or 'NOT_PROVIDED'} "
-    f"actual_generated_at={actual_live_generated_at or 'MISSING'} "
-    f"actual_sha256={actual_live_sha256}"
-)
-if expected_live_sha256 and actual_live_sha256 != expected_live_sha256:
+
+# A successful Pages deploy can precede CDN propagation. HTTP 200 alone is not
+# enough: retry the content fingerprint while keeping the exact-match gate.
+fingerprint_attempts = 8
+for fingerprint_attempt in range(1, fingerprint_attempts + 1):
+    live_body = responses["generated/live-production-state.json"]
+    actual_live_sha256 = hashlib.sha256(live_body).hexdigest()
+    try:
+        live = json.loads(live_body.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise SystemExit(f"PAGES_RUNTIME_SMOKE_FAIL: invalid deployed live-production-state.json: {exc}")
+    if not isinstance(live, dict):
+        raise SystemExit("PAGES_RUNTIME_SMOKE_FAIL: deployed live-production-state.json must be an object")
+    actual_live_generated_at = str(live.get("generated_at", ""))
+    print(
+        "PUBLIC_STATE_FINGERPRINT "
+        f"attempt={fingerprint_attempt}/{fingerprint_attempts} "
+        f"expected_generated_at={expected_live_generated_at or 'NOT_PROVIDED'} "
+        f"expected_sha256={expected_live_sha256 or 'NOT_PROVIDED'} "
+        f"actual_generated_at={actual_live_generated_at or 'MISSING'} "
+        f"actual_sha256={actual_live_sha256}"
+    )
+    if not expected_live_sha256 or actual_live_sha256 == expected_live_sha256:
+        break
+    if fingerprint_attempt < fingerprint_attempts:
+        print("DEPLOYMENT_PROPAGATION_RETRY: deployed state is older/different; refetching with a fresh cache key.")
+        time.sleep(8)
+        live_body, live_content_type = fetch("generated/live-production-state.json")
+        responses["generated/live-production-state.json"] = live_body
+else:
     raise SystemExit(
-        "PAGES_RUNTIME_SMOKE_FAIL: deployed live-production-state.json does not match "
-        "the pre-upload artifact fingerprint; compare deployment ordering/artifact contents "
+        "PAGES_RUNTIME_SMOKE_FAIL: deployed live-production-state.json did not converge "
+        "to the pre-upload artifact fingerprint after propagation retries; "
+        "compare deployment ordering/artifact contents "
         f"(expected_generated_at={expected_live_generated_at or 'NOT_PROVIDED'}, "
         f"actual_generated_at={actual_live_generated_at or 'MISSING'}, "
         f"expected_sha256={expected_live_sha256}, actual_sha256={actual_live_sha256})"
