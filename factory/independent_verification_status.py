@@ -11,11 +11,10 @@ import gzip
 import hashlib
 import json
 import re
-from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-RANGE_RE = re.compile(r"^verification-review-packet-(\\d{6})-(\\d{6})\\.json$")
+RANGE_RE = re.compile(r"^verification-review-packet-(\d{6})-(\d{6})\.json$")
 VERIFIED_LABELS = {"VERIFIED", "INDEPENDENTLY_VERIFIED"}
 REVIEW_LABELS = {"REVIEW", "UNDER_REVIEW", "CHECKED"}
 UNVERIFIED_LABELS = {
@@ -155,7 +154,7 @@ def main() -> None:
     root = Path(__file__).resolve().parents[1]
     status = build_status(root / "generated")
     output = root / "generated" / "independent-verification-status.json"
-    output.write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    output.write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(status, ensure_ascii=False))
 
 
