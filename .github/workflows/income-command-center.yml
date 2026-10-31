@@ -204,7 +204,7 @@ jobs:
           EOF
 
       - name: Upload receipt
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: income-command-center-receipt
           path: artifacts/income-command-center-receipt.json

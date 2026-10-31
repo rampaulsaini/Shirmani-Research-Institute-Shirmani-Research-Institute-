@@ -115,7 +115,7 @@ jobs:
           print(json.dumps(out,ensure_ascii=False,indent=2))
 
       - name: Preserve audit evidence as workflow artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: shirmani-character-v2-audit-${{ github.run_number }}
           path: generated/shirmani-character-v2-audit.json
