@@ -170,7 +170,7 @@ set('dispatch',n(p.dispatch_released));set('sales',n(p.sales_claimed));set('paym
 set('verified',n(v.verified_records)+' / '+n(v.registry_total));
 set('prepared',n(v.prepared_review_records)+' / '+n(v.registry_total));
 set('productionStamp','Production source timestamp: '+date(p.generated_at)+' · QC '+String(p.qc_state||'not reported')+'.');
-set('verificationStamp','Verification source timestamp: '+date(v.generated_at||p.generated_at)+' · verified '+Number(v.verified_percent_of_queue||0).toFixed(2)+'% · review prepared '+Number(v.prepared_percent||0).toFixed(2)+'%.');
+set('verificationStamp','Verification source timestamp: '+(v.generated_at?date(v.generated_at):'timestamp not supplied by verification JSON')+' · verified '+Number(v.verified_percent_of_queue||0).toFixed(2)+'% · review prepared '+Number(v.prepared_percent||0).toFixed(2)+'%.');
 }catch(e){set('productionStamp','Production data unavailable: '+e.message);set('verificationStamp','Verification data unavailable; no values have been guessed.')}
 }
 async function loadRuns(){
