@@ -16,7 +16,7 @@ Do not put database credentials, JWT secrets, payment secrets, or private custom
 - Production startup explicitly requires `CORS_ORIGIN`, `JWT_SECRET`, and `DATABASE_URL`.
 - `server/.env.example` is a configuration template, not evidence that production secrets or a deployment exist.
 - `server/sql/schema.sql` includes account/profile, listings, transactions, and order tables. The schema comment explicitly leaves payment-provider integration deployment-gated.
-- The current Writing & Research enquiry page links to WhatsApp. A click-through is not a server-side enquiry record or a verified customer lead.
+- The current Writing & Research enquiry page links to WhatsApp. A click-through is not a server-side enquiry record or a verified customer lead. The API source now includes a consent-gated, rate-limited `POST /v1/enquiries` endpoint and `client_enquiries` table; these remain unusable from the public site until the database schema is applied, the API is deployed, and the form is explicitly connected and tested.
 - `income/runtime-state.json` currently records `observed_state: CONTROL_PLANE_READY`, no heartbeat, no active workers, zero verified opportunities, and zero verified income.
 
 ## Required production topology
@@ -25,7 +25,7 @@ Do not put database credentials, JWT secrets, payment secrets, or private custom
 2. **Node.js API host:** deploy only the existing `server/` application; expose HTTPS; configure a health check at `/health`.
 3. **Managed PostgreSQL:** create a private database and apply `server/sql/schema.sql`.
 4. **Secrets:** configure `DATABASE_URL`, a long random `JWT_SECRET`, `NODE_ENV=production`, and the exact Pages origin in `CORS_ORIGIN` using the hosting provider's secret manager. Never commit real values.
-5. **Enquiry workflow:** add a validated, rate-limited server-side enquiry endpoint and persistent enquiry table; connect the static enquiry page to the deployed API only after the API URL and CORS origin are verified.
+5. **Enquiry workflow:** deploy the source-level `POST /v1/enquiries` endpoint and `client_enquiries` table; apply the schema, then connect the static enquiry page only after the API URL and CORS origin are verified.
 6. **Human-reviewed sales workflow:** record enquiry, qualification, written scope/quote, payment receipt verification, delivery manifest, and customer acceptance as separate states.
 7. **Payment integration:** select a compliant payment provider only after the API is deployed; verify payment through provider callbacks/webhooks and reconcile with the provider dashboard. Never mark an order paid from a browser redirect or client-side claim.
 8. **Production telemetry:** emit real timestamped heartbeats and cycle outcomes from an actually running worker. Keep desired state separate from observed state. Do not display a 24/7 claim until monitoring proves uptime.
@@ -37,7 +37,7 @@ Do not put database credentials, JWT secrets, payment secrets, or private custom
 - [ ] Secrets configured outside Git; exact Pages origin configured for CORS.
 - [ ] Deployed `GET /health` returns HTTP 200 with database READY and auth CONFIGURED.
 - [ ] Registration/login smoke tests pass against the deployed API.
-- [ ] Enquiry endpoint persists a test enquiry and rejects malformed or abusive requests.
+- [ ] Apply the `client_enquiries` schema and deploy `POST /v1/enquiries`; verify valid enquiries persist and malformed, non-consented, honeypot, and rate-limited requests are rejected.
 - [ ] Public Pages form successfully submits to the API; no secrets are exposed in browser assets.
 - [ ] Payment provider webhook signature verification and test-mode reconciliation pass before accepting real payments.
 - [ ] Delivery and acceptance evidence can be exported without exposing private customer data.

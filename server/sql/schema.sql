@@ -27,6 +27,29 @@ create table if not exists posts (
 );
 create index if not exists posts_created_at_idx on posts(created_at desc);
 
+-- Public service enquiries are leads only; they never imply an order or payment.
+create table if not exists client_enquiries (
+  id uuid primary key default gen_random_uuid(),
+  name text not null default '',
+  email text,
+  phone text,
+  service text not null,
+  language text not null,
+  topic text not null,
+  goal text not null default '',
+  word_count text not null default '',
+  deadline text not null default '',
+  budget text not null default '',
+  sources text not null default '',
+  notes text not null default '',
+  status text not null default 'new' check (status in ('new','reviewing','qualified','quote_sent','accepted','declined','closed')),
+  consent_at timestamptz not null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  check (email is not null or phone is not null)
+);
+create index if not exists client_enquiries_created_idx on client_enquiries(status,created_at desc);
+
 create table if not exists self_interviews (
   id uuid primary key default gen_random_uuid(),
   profile_id uuid not null references accounts(id) on delete cascade,

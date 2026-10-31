@@ -173,7 +173,20 @@ def main() -> None:
     atomic_jsonl(RESULTS, results)
     atomic_jsonl(archive_file, results)
 
-    archive_files = sorted(p.name for p in ARCHIVE.glob("production-cycle-*.jsonl") if p.is_file())
+    # Keep malformed legacy filenames out of the public archive index.
+    # Preserve the underlying files for explicit audit/remediation; never
+    # silently delete historical artifacts during a production refresh.
+    archive_candidates = sorted(
+        p for p in ARCHIVE.glob("production-cycle-*.jsonl") if p.is_file()
+    )
+    archive_files = [
+        p.name for p in archive_candidates
+        if p.name.removeprefix("production-cycle-").removesuffix(".jsonl").isdigit()
+        and len(p.name.removeprefix("production-cycle-").removesuffix(".jsonl")) == 6
+    ]
+    ignored_archive_files = sorted(
+        p.name for p in archive_candidates if p.name not in set(archive_files)
+    )
     atomic_json(ARCHIVE_INDEX, {
         "generated_at": generated_at,
         "source_produced_at": source_produced_at,
@@ -182,11 +195,13 @@ def main() -> None:
         "shard_strategy": "one JSONL file per production cycle",
         "cycle_shards": len(archive_files),
         "files": archive_files,
+        "ignored_malformed_archive_files": ignored_archive_files,
         "latest_cycle": latest_cycle,
         "latest_cycle_records": len(results),
         "integrity": {
             "records_are_produced_artifacts": True,
             "queue_to_lane_records_one_to_one": True,
+            "archive_index_excludes_malformed_shard_names": True,
             "independent_verification_claim": False
         }
     })
