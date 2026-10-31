@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
   "mode": "REAL_PRODUCT_CATALOG",
+  "generated_at": "2026-10-05T14:53:34.677Z",
   "principle": "A product record is not a completed sale; checkout/delivery must remain explicit.",
-  "offer_count": 24,
+  "offer_count": 15,
   "offers": [
     {
       "id": "P001",
@@ -10,9 +11,6 @@
       "price_inr": 10000,
       "delivery": "digital-audio",
       "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-      "asset_evidence": "VERIFIED_EXTERNAL_STORE_MANIFEST",
-      "external_product_id": "SV1001",
-      "external_evidence_url": "https://rampaulsaini.github.io/my-omniverse-store/production-catalog.html",
       "lane": "digital-audio",
       "priority": 1
     },
@@ -22,9 +20,6 @@
       "price_inr": 1500,
       "delivery": "digital-audio",
       "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-      "asset_evidence": "VERIFIED_EXTERNAL_STORE_MANIFEST",
-      "external_product_id": "SV1002",
-      "external_evidence_url": "https://rampaulsaini.github.io/my-omniverse-store/production-catalog.html",
       "lane": "digital-audio",
       "priority": 1
     },
@@ -34,7 +29,6 @@
       "price_inr": 10000,
       "delivery": "digital-audio",
       "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-      "asset_evidence": "NOT_IN_REPOSITORY",
       "lane": "digital-audio",
       "priority": 1
     },
@@ -44,7 +38,6 @@
       "price_inr": 6000,
       "delivery": "digital-audio",
       "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-      "asset_evidence": "NOT_IN_REPOSITORY",
       "lane": "digital-audio",
       "priority": 1
     },
@@ -54,7 +47,6 @@
       "price_inr": 5000,
       "delivery": "digital-audio",
       "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-      "asset_evidence": "NOT_IN_REPOSITORY",
       "lane": "digital-audio",
       "priority": 1
     },
@@ -64,9 +56,6 @@
       "price_inr": 89,
       "delivery": "digital-audio",
       "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-      "asset_evidence": "VERIFIED_EXTERNAL_STORE_MANIFEST",
-      "external_product_id": "SV1004",
-      "external_evidence_url": "https://rampaulsaini.github.io/my-omniverse-store/production-catalog.html",
       "lane": "digital-audio",
       "priority": 1
     },
@@ -76,9 +65,6 @@
       "price_inr": 495,
       "delivery": "digital-asset",
       "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-      "asset_evidence": "VERIFIED_EXTERNAL_STORE_MANIFEST",
-      "external_product_id": "SV1003",
-      "external_evidence_url": "https://rampaulsaini.github.io/my-omniverse-store/production-catalog.html",
       "lane": "digital-assets",
       "priority": 2
     },
@@ -89,18 +75,6 @@
       "price_note": "from",
       "delivery": "creator-assets",
       "store": "https://rampaulsaini.github.io/my-omniverse-store/",
-      "asset_evidence": "NOT_IN_REPOSITORY",
-      "lane": "digital-assets",
-      "priority": 2
-    },
-    {
-      "id": "P009",
-      "name": "Shirmani Research Paper — PDF Edition",
-      "price_inr": 0,
-      "delivery": "downloadable-pdf",
-      "asset_path": "research-paper.pdf",
-      "store": "research-paper.html",
-      "asset_evidence": "VERIFIED_IN_REPOSITORY",
       "lane": "digital-assets",
       "priority": 2
     },
@@ -153,78 +127,6 @@
       "delivery": "service",
       "lane": "research-digital-services",
       "priority": 4
-    },
-    {
-      "id": "M001",
-      "name": "Word & Character Counter",
-      "delivery": "browser-tool",
-      "asset_path": "products/micro/word-counter.html",
-      "asset_evidence": "VERIFIED_IN_REPOSITORY",
-      "lane": "micro-digital-products",
-      "priority": 5
-    },
-    {
-      "id": "M002",
-      "name": "Percentage Calculator",
-      "delivery": "browser-tool",
-      "asset_path": "products/micro/percentage-calculator.html",
-      "asset_evidence": "VERIFIED_IN_REPOSITORY",
-      "lane": "micro-digital-products",
-      "priority": 5
-    },
-    {
-      "id": "M003",
-      "name": "Length Unit Converter",
-      "delivery": "browser-tool",
-      "asset_path": "products/micro/unit-converter.html",
-      "asset_evidence": "VERIFIED_IN_REPOSITORY",
-      "lane": "micro-digital-products",
-      "priority": 5
-    },
-    {
-      "id": "M004",
-      "name": "JSON Formatter & Validator",
-      "delivery": "browser-tool",
-      "asset_path": "products/micro/json-formatter.html",
-      "asset_evidence": "VERIFIED_IN_REPOSITORY",
-      "lane": "micro-digital-products",
-      "priority": 5
-    },
-    {
-      "id": "M005",
-      "name": "Color Palette Generator",
-      "delivery": "browser-tool",
-      "asset_path": "products/micro/color-palette-generator.html",
-      "asset_evidence": "VERIFIED_IN_REPOSITORY",
-      "lane": "micro-digital-products",
-      "priority": 5
-    },
-    {
-      "id": "M006",
-      "name": "Simple Digital Drawing Board",
-      "delivery": "browser-tool",
-      "asset_path": "products/micro/drawing-board.html",
-      "asset_evidence": "VERIFIED_IN_REPOSITORY",
-      "lane": "micro-digital-products",
-      "priority": 5
-    },
-    {
-      "id": "M007",
-      "name": "Markdown Preview",
-      "delivery": "browser-tool",
-      "asset_path": "products/micro/markdown-preview.html",
-      "asset_evidence": "VERIFIED_IN_REPOSITORY",
-      "lane": "micro-digital-products",
-      "priority": 5
-    },
-    {
-      "id": "M008",
-      "name": "SEO Meta Draft Generator",
-      "delivery": "browser-tool",
-      "asset_path": "products/micro/seo-meta-generator.html",
-      "asset_evidence": "VERIFIED_IN_REPOSITORY",
-      "lane": "micro-digital-products",
-      "priority": 5
     }
   ]
 }
