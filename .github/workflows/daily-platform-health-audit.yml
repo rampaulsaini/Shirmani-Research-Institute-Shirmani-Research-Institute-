@@ -40,7 +40,7 @@ jobs:
 
       - name: Publish JSON audit artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: shirmani-platform-health-${{ github.run_number }}
           path: artifacts/platform-health/daily-platform-health.json

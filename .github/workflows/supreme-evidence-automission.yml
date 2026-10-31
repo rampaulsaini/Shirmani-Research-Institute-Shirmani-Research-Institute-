@@ -64,7 +64,7 @@ jobs:
           cat generated/automission/supreme-evidence-gate-status.json
 
       - name: Upload gate artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: supreme-evidence-gate-status
           path: generated/automission/supreme-evidence-gate-status.json
