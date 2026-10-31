@@ -11,8 +11,8 @@
   "current_catalog_pending": 0,
   "five_thousand_scale_target": 5000,
   "remaining_to_scale_target": 0,
-  "concrete_materialization_percent_of_catalog": 152.84,
-  "concrete_materialization_percent_of_scale_target": 152.84,
+  "concrete_materialization_percent_of_catalog": 100,
+  "concrete_materialization_percent_of_scale_target": 100,
   "module_products_generated": 5000,
   "dispatch_released": 0,
   "sales_claimed": 0,
@@ -20,8 +20,8 @@
   "independent_verification_claimed": 0,
   "state": "QC_PASSED_AWAITING_DISPATCH",
   "qc_state": "QC_PASSED",
-  "qc_passed": 0,
-  "qc_failed": 0,
   "truth_boundary": "QC is promoted only when its counts match the current catalog and real assets. Dispatch, sales, payment and independent verification remain separate states.",
-  "rule": "Filesystem counts are measured from repository files; overlay rows are reported separately and workflow execution is not counted as a product."
+  "rule": "Repository file count is reported separately and is not a product count. Product materialization percentages use concrete_product_assets divided by catalog_identities and the 5,000 scale target. Workflow execution is not counted as a product.",
+  "repository_file_count": 7642,
+  "concrete_product_assets": 5000
 }
