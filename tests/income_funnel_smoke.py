@@ -122,6 +122,10 @@ def main() -> int:
         "const hasPaymentProof=x=>x.paymentStatus==='Payment received — reference recorded'&&String(x.paymentRef||'').trim().length>0",
         "q('p').textContent=data.filter(hasPaymentProof).length",
         "q('r').textContent='₹'+data.filter(hasPaymentProof).reduce",
+        "Number(x.amount)>0",
+        "const validImportedRecord=x=>",
+        "!validImportedRecord(x)||ids.has(x.id)",
+        "Invalid payment records and duplicate IDs will be skipped.",
     ):
         if marker.casefold() not in pipeline_source.casefold():
             errors.append(f"Client pipeline is missing payment-evidence gate: {marker}")
