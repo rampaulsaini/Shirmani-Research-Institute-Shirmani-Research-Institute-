@@ -29,7 +29,7 @@ class ProductSurfaceFactoryTests(unittest.TestCase):
         self.assertIn('href="../../../showroom-public.html"', rendered)
         self.assertIn("wa.me/918082935186", rendered)
         self.assertIn("mailto:sainirampaul60@gmail.com", rendered)
-        self.assertIn('href="../../../../product-demo.html?id=SP-0001"', rendered)
+        self.assertIn('href="../../../product-demo.html?id=SP-0001"', rendered)
 
     def test_missing_demo_is_not_misrepresented_as_runnable(self):
         rendered = factory.page(self.product, root=self.root)
