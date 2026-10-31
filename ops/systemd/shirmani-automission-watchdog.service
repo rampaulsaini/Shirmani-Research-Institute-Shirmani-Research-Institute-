@@ -1,0 +1,10 @@
+[Unit]
+Description=SHIRMANI Automission container recovery check
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+Environment=PROJECT_DIR=/opt/shirmani/Shirmani-Research-Institute-Shirmani-Research-Institute-
+Environment=COMPOSE_FILE=/opt/shirmani/Shirmani-Research-Institute-Shirmani-Research-Institute-/automission-runtime/docker-compose.yml
+ExecStart=/usr/local/bin/shirmani-automission-watchdog
