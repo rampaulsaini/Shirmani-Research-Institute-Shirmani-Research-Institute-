@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-28T15:31:08.779794+00:00",
+  "generated_at": "2026-10-31T19:22:15.194947+00:00",
   "production_first": true,
   "visual_standard": {
     "resolution": "3840x2160",
@@ -13,7 +13,7 @@
   "platform_snapshot": {
     "catalog_identities": 5000,
     "concrete_repository_assets": 5000,
-    "concrete_materialization_percent": 100.0,
+    "concrete_materialization_percent": 100,
     "production_modules": 5000
   },
   "showroom_seed_products": 27,
