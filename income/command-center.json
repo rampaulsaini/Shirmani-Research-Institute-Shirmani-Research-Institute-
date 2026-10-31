@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "name": "Jeevan-Vyapan Pratham — Income Command Center",
+  "mode": "income-first",
+  "objective": "Continuously discover, verify, prepare and track legitimate income opportunities while keeping irreversible financial decisions human-controlled.",
+  "layers": [
+    {"id":"L0","name":"Command","role":"priority, goals, constraints, approvals"},
+    {"id":"L1","name":"Opportunity Intelligence","role":"source discovery, normalization, deduplication, evidence"},
+    {"id":"L2","name":"Agent Federation","role":"parallel specialist agents for each income channel"},
+    {"id":"L3","name":"Execution Queue","role":"draft tasks, applications, proposals, content and product actions"},
+    {"id":"L4","name":"Revenue Intelligence","role":"track verified outcomes, conversion, time-to-income and channel performance"},
+    {"id":"L5","name":"ML Learning Loop","role":"learn from verified outcomes; never fabricate revenue or evidence"}
+  ],
+  "income_channels": [
+    {"id":"employment","name":"Employment & Work","priority":1,"goal":"verified employment and work opportunities"},
+    {"id":"freelancing","name":"Freelancing","priority":2,"goal":"skill-based client work and proposals"},
+    {"id":"ai_marketing","name":"AI Marketing","priority":3,"goal":"AI-assisted marketing services and content"},
+    {"id":"digital_store","name":"Digital Store","priority":4,"goal":"digital products and services"},
+    {"id":"yatharth_ai_music","name":"यथार्थ AI Music","priority":5,"goal":"music creation, publishing and monetization workflows"},
+    {"id":"economic_vision","name":"Economic Vision","priority":6,"goal":"long-term diversified income system"}
+  ],
+  "gates": {
+    "evidence_required_for_opportunity": true,
+    "human_approval_required_for_application": true,
+    "human_approval_required_for_contract": true,
+    "human_approval_required_for_payment": true,
+    "no_guaranteed_income_claims": true,
+    "no_fabricated_jobs_clients_revenue": true
+  },
+  "kpis": [
+    "verified_opportunities",
+    "qualified_opportunities",
+    "drafts_ready_for_review",
+    "human_approved_actions",
+    "completed_work",
+    "verified_income",
+    "time_to_first_verified_income",
+    "income_by_channel",
+    "conversion_by_channel"
+  ]
+}

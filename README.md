@@ -114,7 +114,7 @@ https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Ins
 - **Showroom visual contract:** [docs/showroom/visual-production-contract-v5.md](docs/showroom/visual-production-contract-v5.md) — product-specific 4K-ready visual, Heart-View logo/photo, English identity line, short description and QR-to-long-passport contract.
 
 - **Production Hub (clear “what is this?” map):** [production-hub.html](production-hub.html)
-- **Current production state:** the live manifest is the source of truth; the latest published state records 5,000 catalog identities, 1,516 concrete repository assets, 3,484 remaining to the current 5,000 scale target, 812 production modules and 80,500 scheduled work units. Dispatch, sales and independent verification remain separate downstream states.
+- **Current production state (manifest timestamp: 2026-10-31T02:48:07Z):** `generated/live-production-state.json` records 5,000 catalog identities, 5,000 concrete repository assets, 5,000 browser assets, 5,000 public 4K visual assets and 5,000 product QR assets against the 5,000 scale target. Dispatch, sales and payment are each 0. `generated/independent-verification-status.json` records 59,950 prepared review packets, 0 verified records and 100,200 unverified records; prepared review packets are not independent verification. These are timestamped manifest values, not a second-by-second live guarantee.
 
 - **Showroom:** [showroom.html](showroom.html)
 - **Product Demo & Test-Drive Hub:** [open live demo/test-drive hub](showroom/product-demo-test-drive-hub.html)
@@ -474,7 +474,7 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 
 ## First Paid Pilot Offer — Client-Ready Page
 
-- **First Client Pilot:** [open proposed writing/research offers and enquiry builder](first-paid-pilot-offer.html) — ₹499 writing polish, ₹999 source-based research summary, and ₹1,499 website/blog draft are proposed starter rates only. The browser-local page prepares/copies/downloads an enquiry draft; it does not send messages, take payment, create an order, or claim revenue. Confirm scope, price, timeline, revisions and payment terms in writing before accepting work.
+- **First Client Pilot:** [open proposed writing/research offers and enquiry builder](first-paid-pilot-offer.html) — ₹499 single-language editing/writing polish (up to 700 words), ₹1,499 source-based research summary (about 800–1,200 words), and ₹999 website/blog draft (up to 1,000 words) are proposed starter rates only. The browser-local page prepares/copies/downloads an enquiry draft; it does not send messages, take payment, create an order, or claim revenue. Confirm scope, price, timeline, revisions and payment terms in writing before accepting work.
 
 
 ## SRI-HV-001 — Heart-View Human Presentation Production Contract

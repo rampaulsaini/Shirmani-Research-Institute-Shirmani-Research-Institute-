@@ -2,30 +2,24 @@
 
 **Status: Pilot offer / enquiries open.** This page describes a service offer; it does not claim that any sale, payment, institutional contact, or delivery has already occurred.
 
-## Available services
+## Canonical public offer
 
-1. Hindi ↔ English writing and editing (client-provided facts and sources).
-2. Research summaries with source links and a clear separation between sourced facts and interpretation.
-3. Website and blog content.
-4. Content restructuring, headings, readability, and proofreading.
-
-## Pilot packages
-
-These are proposed introductory prices. Confirm scope before accepting.
+Use the public service page as the single source of truth for current pilot pricing:
+https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/services-writing-research.html
 
 | Package | Scope | Proposed starting price | Delivery target |
 |---|---|---:|---|
-| Starter Writing | Up to 500 words; one language; one revision | ₹499 | 2 business days |
-| Research Brief | Up to 1,000 words; source links; key findings and limitations | ₹999 | 3 business days |
-| Website / Blog Page | Up to 1,000 words; headings, CTA, title and meta description | ₹1,499 | 3 business days |
+| Editing / Proofreading | Up to 700 words; one edited version; one revision within the original brief | ₹499 | 2 working days after scope confirmation |
+| Website / Blog Content | One page/post up to 1,000 words; title/headings; one revision | ₹999 | 3 working days after scope confirmation |
+| Source-based Research Brief | About 800–1,200 words; 3–5 credible sources where available; source links and limitations | ₹1,499 | 3 working days after scope confirmation |
 
-These are proposed pilot prices, not a guarantee of market value. Complex research, urgent work, extensive source verification, technical translation, or extra revisions require a separate written quote.
+These are proposed introductory rates, not market-validated prices or guaranteed final quotes. Confirm scope, deliverables, deadline, revision count, source expectations, any applicable taxes, and payment terms in writing before starting. Custom, urgent, technical, or source-intensive work requires a separate written quote. Do not publish competing price lists as the current standard offer.
 
-## Enquiry form
+## Enquiry fields
 
-Copy and complete these fields, then send them through an official contact channel published by the Institute.
+Collect these details through the official contact channel:
 
-- **Service:** Writing / Research Summary / Website or Blog Content
+- **Service:** Editing / Research Summary / Website or Blog Content
 - **Customer goal:**
 - **Topic:**
 - **Language:** Hindi / English / Both
@@ -46,6 +40,7 @@ Copy and complete these fields, then send them through an official contact chann
 6. Track each enquiry through these stages: new → scope confirmed → quote sent → accepted → in progress → delivered → feedback requested.
 7. Ask permission before publishing a client name, logo, work sample, testimonial, or review.
 8. Refunds, deposits, and milestone payments must be agreed in writing before payment is requested.
+9. Count revenue only after payment has actually been received and reconciled; a quote, draft, workflow run, or payment link is not revenue.
 
 ## Customer outreach workflow (manual approval before sending)
 
@@ -62,9 +57,9 @@ Copy and complete these fields, then send them through an official contact chann
 
 Hello,
 
-Shirmani Research Institute is opening a small pilot service for Hindi/English writing, research summaries with source links, and website/blog content.
+Shirmani Research Institute is opening a small pilot service for Hindi/English editing, research summaries with source links, and website/blog content.
 
-If your team needs a concise research brief, a clearly structured article, or bilingual content based on supplied materials, we can first confirm the scope, deliverables, schedule, and price in writing. A proposed pilot starts at ₹499, depending on scope.
+If your team needs a concise research brief, a clearly structured article, or bilingual content based on supplied materials, we can first confirm the scope, deliverables, schedule, and price in writing. Proposed pilot prices start at ₹499, depending on the service and scope.
 
 If this is relevant, please reply with the topic, language, word limit, deadline, and budget. If not relevant, no further follow-up is needed.
 
@@ -72,7 +67,7 @@ Regards,
 Shirmani Research Institute  
 Writing & Research Desk
 
-## Weekly measurable dashboard
+## Weekly evidence dashboard
 
 Track real counts only:
 

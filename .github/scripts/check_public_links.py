@@ -13,7 +13,8 @@ import sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-ATTR = re.compile(r"""\b(?:href|src|poster|action)\s*=\s*["']([^"']+)["']""", re.I)
+# Do not match the trailing "action" in application-specific attributes such as data-action.
+ATTR = re.compile(r"""(?<![\w:-])(?:href|src|poster|action)\s*=\s*["']([^"']+)["']""", re.I)
 SKIP_SCHEMES = {"http", "https", "mailto", "tel", "javascript", "data", "blob", "sms"}
 
 

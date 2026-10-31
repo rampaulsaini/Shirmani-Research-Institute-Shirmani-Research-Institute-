@@ -1,0 +1,29 @@
+name: SHIRMANI Production Index Freshness Tests
+
+on:
+  pull_request:
+    paths:
+      - "factory/refresh_public_production_indexes.py"
+      - "tests/test_refresh_public_production_indexes.py"
+      - ".github/workflows/production-state-publication-pr.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-index-freshness-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  freshness-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout pull request
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Run freshness regression tests
+        run: python -m unittest discover -s tests -p 'test_refresh_public_production_indexes.py'

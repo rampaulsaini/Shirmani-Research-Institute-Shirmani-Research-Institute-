@@ -44,6 +44,54 @@ app.get("/health", async (_req, res) => {
   res.status(status === "READY" ? 200 : 503).json({ service: "shirmani-social-api", status, database, auth: secret ? "CONFIGURED" : "NOT_CONFIGURED", generated_at: new Date().toISOString() });
 });
 
+// Public client enquiries are leads only: they do not create orders or payment records.
+const enquiryLimiter = rateLimit({ windowMs: 15 * 60_000, limit: 8, standardHeaders: true, legacyHeaders: false });
+app.post("/v1/enquiries", dbRequired, enquiryLimiter, async (req, res) => {
+  const body = req.body || {};
+  const clean = (value, max) => typeof value === "string" ? value.trim().slice(0, max) : "";
+  const name = clean(body.name, 120);
+  const email = clean(body.email, 254).toLowerCase();
+  const phone = clean(body.phone, 32);
+  const service = clean(body.service, 80);
+  const language = clean(body.language, 32);
+  const topic = clean(body.topic, 180);
+  const goal = clean(body.goal, 500);
+  const wordCount = clean(body.word_count, 40);
+  const deadline = clean(body.deadline, 100);
+  const budget = clean(body.budget, 80);
+  const sources = clean(body.sources, 1500);
+  const notes = clean(body.notes, 1500);
+  const honeypot = clean(body.website, 200);
+
+  if (honeypot) return res.status(400).json({ error: "INVALID_ENQUIRY" });
+  if (!service || !topic || !["Hindi", "English", "Hindi + English", "To be agreed"].includes(language)) {
+    return res.status(400).json({ error: "INVALID_ENQUIRY" });
+  }
+  if (body.consent !== true) return res.status(400).json({ error: "CONSENT_REQUIRED" });
+  if ((!email && !phone) || (email && !/^\S+@\S+\.\S+$/.test(email)) ||
+      (phone && !/^[+0-9() .-]{7,32}$/.test(phone))) {
+    return res.status(400).json({ error: "VALID_CONTACT_REQUIRED" });
+  }
+  if (typeof body.name !== "undefined" && typeof body.name !== "string" ||
+      typeof body.service !== "string" || body.service.length > 80 ||
+      typeof body.topic !== "string" || body.topic.length > 180 ||
+      typeof body.goal !== "undefined" && typeof body.goal !== "string" ||
+      typeof body.sources !== "undefined" && typeof body.sources !== "string" ||
+      typeof body.notes !== "undefined" && typeof body.notes !== "string") {
+    return res.status(400).json({ error: "INVALID_ENQUIRY" });
+  }
+
+  try {
+    const { rows } = await pool.query(
+      "insert into client_enquiries(name,email,phone,service,language,topic,goal,word_count,deadline,budget,sources,notes,consent_at) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,now()) returning id,status,created_at",
+      [name, email || null, phone || null, service, language, topic, goal, wordCount, deadline, budget, sources, notes]
+    );
+    res.status(201).json({ ...rows[0], message: "Enquiry received for human review. No order or payment has been created." });
+  } catch {
+    res.status(500).json({ error: "ENQUIRY_SAVE_FAILED" });
+  }
+});
+
 app.post("/v1/auth/register", dbRequired, async (req, res) => {
   const { email, password, display_name = "", bio = "", language = "हिंदी" } = req.body || {};
   if (typeof email !== "string" || !/^\S+@\S+\.\S+$/.test(email) || typeof password !== "string" || password.length < 12 || password.length > 200) return res.status(400).json({ error: "INVALID_REGISTRATION" });

@@ -72,6 +72,9 @@ jobs:
           set -euo pipefail
           python3 factory/verification_review_packet_qc.py             --packet "generated/verification-review-packet-$(printf '%06d' '${{ steps.select.outputs.start }}')-$(printf '%06d' '${{ steps.select.outputs.end }}').json"
 
+      - name: Test fail-closed verification status integrity
+        run: python3 -m unittest discover -s tests -p 'test_independent_verification_status.py' -v
+
       - name: Generate independent-verification progress status
         run: |
           set -euo pipefail

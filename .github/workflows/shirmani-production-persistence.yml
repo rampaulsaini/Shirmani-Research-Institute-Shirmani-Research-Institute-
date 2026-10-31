@@ -51,6 +51,9 @@ jobs:
           set -euo pipefail
           python3 factory/multi_layer_production.py
           python3 factory/public_production_materializer.py
+          # Rebuild the canonical result stream from validated lane records.
+          # This repairs stale/empty aggregate files without inventing outputs.
+          python3 factory/refresh_public_production_indexes.py
           python3 factory/production_truth_gate.py
       - name: Validate coherent production cycle
         shell: bash

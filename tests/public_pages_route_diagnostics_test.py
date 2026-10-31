@@ -24,6 +24,31 @@ class PublicPagesRouteDiagnosticsTest(unittest.TestCase):
             with self.subTest(base=base):
                 self.assertEqual(urljoin(base, route), expected)
 
+    def test_preupload_fingerprint_is_compared_with_deployed_state(self):
+        source = SMOKE.read_text(encoding="utf-8")
+        for marker in ("EXPECTED_LIVE_STATE_SHA256", "PUBLIC_STATE_FINGERPRINT", "does not match"):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, source)
+
+    def test_workflow_records_fingerprint_before_pages_upload(self):
+        workflow = (ROOT / ".github" / "workflows" / "public-production-automission.yml").read_text(encoding="utf-8")
+        self.assertIn("Record expected public-state fingerprint before upload", workflow)
+        self.assertLess(workflow.index("Record expected public-state fingerprint before upload"),
+                        workflow.index("Upload generated production site"))
+
+    def test_fingerprint_mismatch_waits_for_cdn_propagation_without_weakening_gate(self):
+        source = SMOKE.read_text(encoding="utf-8")
+        for marker in (
+            "FINGERPRINT_PROPAGATION_ATTEMPTS = 24",
+            "FINGERPRINT_PROPAGATION_INTERVAL_SECONDS = 10",
+            "PUBLIC_STATE_PROPAGATION_WAIT",
+            "PUBLIC_STATE_FINGERPRINT_MATCH",
+            "if actual_live_sha256 != expected_live_sha256",
+            "did not reach",
+        ):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, source)
+
     def test_failure_diagnostics_preserve_http_evidence(self):
         source = SMOKE.read_text(encoding="utf-8")
         for marker in ("requested_url=", "final_url=", "content_type=", "body_snippet=", "status="):
