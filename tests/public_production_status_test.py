@@ -130,6 +130,41 @@ class QCStateContractTests(unittest.TestCase):
         self.assertEqual(live["payment_claimed"], 0)
         self.assertEqual(live["independent_verification_claimed"], 0)
 
+    def test_qc_refresh_preserves_existing_downstream_counters(self):
+        counters = {
+            "dispatch_released": 7,
+            "sales_claimed": 3,
+            "payment_claimed": 2,
+            "independent_verification_claimed": 4,
+        }
+        live_path = self.root / "generated" / "live-production-state.json"
+        live_path.write_text(json.dumps({"current_catalog_pending": 0, **counters}), encoding="utf-8")
+        qc = {
+            "catalog_count": 2, "produced_count": 2, "qc_passed": 2, "qc_failed": 0,
+            "release_state": "QC_PASS_READY_FOR_DISPATCH", "dispatch_default": "NO",
+            "generated_at": "2026-11-01T00:00:00+00:00",
+            "integrity": {"deterministic_qc": True, "sale_claim": False},
+        }
+        (self.root / "generated" / "product-qc-gate.json").write_text(json.dumps(qc), encoding="utf-8")
+        self.assertTrue(sync_public_qc_state(self.root, 2))
+        live = json.loads(live_path.read_text(encoding="utf-8"))
+        for key, value in counters.items():
+            self.assertEqual(live[key], value, f"QC refresh must preserve {key}")
+
+    def test_production_writers_do_not_hard_reset_downstream_counters(self):
+        root = Path(__file__).resolve().parents[1]
+        paths = [
+            "factory/reconcile_production_truth.py",
+            "factory/production_materializer.py",
+            "factory/incremental_product_production.py",
+            "factory/autonomous_product_batch_factory.py",
+            ".github/workflows/shirmani-continuous-concrete-production.yml",
+        ]
+        for relative in paths:
+            source = (root / relative).read_text(encoding="utf-8")
+            for key in ("dispatch_released", "sales_claimed", "payment_claimed", "independent_verification_claimed"):
+                self.assertNotRegex(source, rf'"{key}"\\s*:\\s*0', f"{relative} must preserve {key}, not hard-reset it")
+
     def test_incomplete_or_failed_qc_never_promotes_public_state(self):
         qc = {
             "catalog_count": 2, "produced_count": 2, "qc_passed": 1, "qc_failed": 1,

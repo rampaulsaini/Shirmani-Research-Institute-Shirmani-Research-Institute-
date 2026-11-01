@@ -48,6 +48,7 @@ def main():
         "remaining_count":max(0,len(products)-produced),"batch_size":batch,"products":rows},
         ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     remaining=max(0,target-produced)
+    prior_live=load(LIVE,{})
     LIVE.write_text(json.dumps({"schema_version":3,"generated_at":now,"production_first":True,
         "catalog_identities":len(products),"concrete_repository_assets":produced,
         "current_catalog_pending":max(0,len(products)-produced),"five_thousand_scale_target":target,
@@ -57,8 +58,11 @@ def main():
         "module_products_generated":produced,"visual_assets_observed":visuals,
         "visual_coverage_of_produced":round(100*visuals/produced,2) if produced else 0,
         "last_batch_requested":batch,"last_batch_produced":len(selected),
-        "dispatch_released":0,"sales_claimed":0,"payment_claimed":0,
-        "independent_verification_claimed":0,
+        # Keep downstream evidence counters intact across media/production cycles.
+        "dispatch_released":max(0,int(prior_live.get("dispatch_released",0))),
+        "sales_claimed":max(0,int(prior_live.get("sales_claimed",0))),
+        "payment_claimed":max(0,int(prior_live.get("payment_claimed",0))),
+        "independent_verification_claimed":max(0,int(prior_live.get("independent_verification_claimed",0))),
         "state":"PRODUCTION_COMPLETE_CURRENT_CATALOG" if produced>=len(products) else "PRODUCTION_IN_PROGRESS",
         "truth_boundary":"Production is observable from repository assets; QC, dispatch, payment, sales and independent verification are separate downstream states."
         },ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
