@@ -38,6 +38,11 @@ def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--batch-size",type=int,default=250); a=ap.parse_args()
     src=json.loads(SRC.read_text(encoding="utf-8")); products=src.get("products",[])
     if not products: raise SystemExit("No canonical products")
+    live_path=OUT/"live-production-state.json"
+    try:
+        prior_live=json.loads(live_path.read_text(encoding="utf-8")) if live_path.is_file() else {}
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        prior_live={}
     state={"cursor":0,"cycle":0,"produced_ids":[]}
     if STATE.exists():
         state=json.loads(STATE.read_text(encoding="utf-8"))
@@ -112,10 +117,11 @@ def main():
         "concrete_materialization_percent_of_catalog":round((len(produced)/len(products))*100,2) if products else 0,
         "concrete_materialization_percent_of_scale_target":round((len(produced)/max(5000,len(products)))*100,2) if products else 0,
         "module_products_generated":len(rows),
-        "dispatch_released":0,
-        "sales_claimed":0,
-        "payment_claimed":0,
-        "independent_verification_claimed":0,
+        # A production batch must never erase separately recorded downstream results.
+        "dispatch_released":max(0,int(prior_live.get("dispatch_released",0))),
+        "sales_claimed":max(0,int(prior_live.get("sales_claimed",0))),
+        "payment_claimed":max(0,int(prior_live.get("payment_claimed",0))),
+        "independent_verification_claimed":max(0,int(prior_live.get("independent_verification_claimed",0))),
         "state":"PRODUCTION_IN_PROGRESS",
         "rule":"Concrete repository-bound artifacts are production evidence; workflow execution is not counted as a product."
     }

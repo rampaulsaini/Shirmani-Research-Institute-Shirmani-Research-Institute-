@@ -16,7 +16,9 @@ Do not put database credentials, JWT secrets, payment secrets, or private custom
 - Production startup explicitly requires `CORS_ORIGIN`, `JWT_SECRET`, and `DATABASE_URL`.
 - `server/.env.example` is a configuration template, not evidence that production secrets or a deployment exist.
 - `server/sql/schema.sql` includes account/profile, listings, transactions, and order tables. The schema comment explicitly leaves payment-provider integration deployment-gated.
-- The current Writing & Research enquiry page links to WhatsApp. A click-through is not a server-side enquiry record or a verified customer lead. The API source now includes a consent-gated, rate-limited `POST /v1/enquiries` endpoint and `client_enquiries` table; these remain unusable from the public site until the database schema is applied, the API is deployed, and the form is explicitly connected and tested.
+- The current Writing & Research enquiry page links to WhatsApp. A click-through is not a server-side enquiry record or a verified customer lead. The API source includes a consent-gated, rate-limited `POST /v1/enquiries` endpoint and `client_enquiries` table.
+- The API now includes `GET /v1/owner/enquiries`, protected by bearer-token authentication plus an explicit `OWNER_ACCOUNT_ID` allowlist check. It fails closed with 503 when the owner ID is not configured and returns 403 to any authenticated non-owner. Configure the owner UUID only in the API host's secret/environment settings; never commit a real account ID or customer lead data.
+- These routes remain unusable from the public site until the database schema is applied, the API is deployed, the owner identity is configured, and the form is explicitly connected and tested.
 - `income/runtime-state.json` currently records `observed_state: CONTROL_PLANE_READY`, no heartbeat, no active workers, zero verified opportunities, and zero verified income.
 
 ## Required production topology

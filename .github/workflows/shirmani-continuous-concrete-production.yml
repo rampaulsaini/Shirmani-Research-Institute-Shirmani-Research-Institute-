@@ -119,6 +119,11 @@ jobs:
           from pathlib import Path
           from datetime import datetime, timezone
           t=json.loads(Path("generated/concrete-product-truth.json").read_text())
+          live_path=Path("generated/live-production-state.json")
+          try:
+            prior=json.loads(live_path.read_text(encoding="utf-8")) if live_path.is_file() else {}
+          except (UnicodeDecodeError,json.JSONDecodeError):
+            prior={}
           produced=int(t["concrete_produced"]); target=int(t["catalog_count"])
           Path("generated/concrete-product-asset-status.json").write_text(json.dumps({
             "generated_at":datetime.now(timezone.utc).isoformat(),
@@ -135,8 +140,13 @@ jobs:
             "five_thousand_scale_target":5000,"remaining_to_scale_target":max(0,5000-produced),
             "concrete_materialization_percent_of_catalog":round(100*produced/target,2) if target else 0,
             "concrete_materialization_percent_of_scale_target":round(100*produced/5000,2),
-            "module_products_generated":produced,"dispatch_released":0,"sales_claimed":0,
-            "payment_claimed":0,"independent_verification_claimed":0,
+            "module_products_generated":produced,
+            # Production automation may update production counters only; retain
+            # downstream order/payment/delivery evidence from the prior snapshot.
+            "dispatch_released":max(0,int(prior.get("dispatch_released",0))),
+            "sales_claimed":max(0,int(prior.get("sales_claimed",0))),
+            "payment_claimed":max(0,int(prior.get("payment_claimed",0))),
+            "independent_verification_claimed":max(0,int(prior.get("independent_verification_claimed",0))),
             "state":"PRODUCTION_COMPLETE_CURRENT_CATALOG" if produced==target else "PRODUCTION_IN_PROGRESS"
           },ensure_ascii=False,indent=2)+"\n")
           print(f"PRODUCTION: {produced}/{target}")

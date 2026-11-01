@@ -43,3 +43,14 @@ test("account page matches the server auth contract without persisting bearer to
   assert.ok(page.includes("returned session token सहेजा नहीं गया"));
   assert.doesNotMatch(page, /localStorage\\.setItem|sessionStorage\\.setItem/);
 });
+
+
+test("private enquiry inbox is owner-only and fails closed without owner configuration", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  assert.ok(source.includes('const ownerOnly = (req, res, next) =>'));
+  assert.ok(source.includes('if (!ownerAccountId) return res.status(503).json({ error: "OWNER_ACCOUNT_ID_NOT_CONFIGURED" })'));
+  assert.ok(source.includes('if (req.user?.sub !== ownerAccountId) return res.status(403).json({ error: "OWNER_ACCESS_REQUIRED" })'));
+  assert.ok(source.includes('app.get("/v1/owner/enquiries", dbRequired, auth, ownerOnly'));
+  assert.ok(source.includes('limit $1'));
+  assert.ok(source.includes('access: "owner_only"'));
+});

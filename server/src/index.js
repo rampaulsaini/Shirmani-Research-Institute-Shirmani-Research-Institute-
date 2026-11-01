@@ -37,6 +37,15 @@ const auth = (req, res, next) => {
   catch { res.status(401).json({ error: "INVALID_TOKEN" }); }
 };
 
+// Private lead access is restricted to one explicitly configured owner account.
+// Fail closed when the owner identity has not been configured by the deployment.
+const ownerOnly = (req, res, next) => {
+  const ownerAccountId = process.env.OWNER_ACCOUNT_ID;
+  if (!ownerAccountId) return res.status(503).json({ error: "OWNER_ACCOUNT_ID_NOT_CONFIGURED" });
+  if (req.user?.sub !== ownerAccountId) return res.status(403).json({ error: "OWNER_ACCESS_REQUIRED" });
+  next();
+};
+
 app.get("/health", async (_req, res) => {
   let database = "NOT_CONFIGURED";
   if (pool) { try { await pool.query("select 1"); database = "READY"; } catch { database = "ERROR"; } }
@@ -89,6 +98,21 @@ app.post("/v1/enquiries", dbRequired, enquiryLimiter, async (req, res) => {
     res.status(201).json({ ...rows[0], message: "Enquiry received for human review. No order or payment has been created." });
   } catch {
     res.status(500).json({ error: "ENQUIRY_SAVE_FAILED" });
+  }
+});
+
+// Private owner inbox: never expose customer contact details to ordinary accounts.
+app.get("/v1/owner/enquiries", dbRequired, auth, ownerOnly, async (req, res) => {
+  const requestedLimit = Number.parseInt(req.query.limit, 10);
+  const limit = Number.isInteger(requestedLimit) ? Math.min(100, Math.max(1, requestedLimit)) : 50;
+  try {
+    const { rows } = await pool.query(
+      "select id,name,email,phone,service,language,topic,goal,word_count,deadline,budget,sources,notes,status,consent_at,created_at,updated_at from client_enquiries order by created_at desc limit $1",
+      [limit]
+    );
+    res.json({ items: rows, count: rows.length, access: "owner_only" });
+  } catch {
+    res.status(500).json({ error: "ENQUIRY_INBOX_READ_FAILED" });
   }
 });
 
@@ -499,20 +523,14 @@ app.get("/v1/media-assets", dbRequired, auth, async (req,res)=>{
   res.json({items:rows});
 });
 
-// Payment-provider abstraction: records provider events only after an external provider
-// integration is configured. No client-supplied field can mark an order as paid.
-app.post("/v1/payments/webhook", dbRequired, async (req, res) => {
-  if (!process.env.PAYMENT_WEBHOOK_SECRET) return res.status(503).json({ error: "PAYMENT_PROVIDER_NOT_CONFIGURED" });
-  const signature = req.headers["x-payment-signature"];
-  if (typeof signature !== "string" || signature !== process.env.PAYMENT_WEBHOOK_SECRET) return res.status(401).json({ error: "INVALID_PAYMENT_SIGNATURE" });
-  const { event_id, order_id, event_type, provider_reference } = req.body || {};
-  if (typeof event_id !== "string" || typeof order_id !== "string" || typeof event_type !== "string") return res.status(400).json({ error: "INVALID_PAYMENT_EVENT" });
-  if (!["payment_succeeded","payment_failed","payment_refunded"].includes(event_type)) return res.status(400).json({ error: "UNSUPPORTED_PAYMENT_EVENT" });
-  const status = event_type === "payment_succeeded" ? "paid" : event_type === "payment_refunded" ? "refunded" : "failed";
-  const { rows } = await pool.query("update orders set status=$1,provider=coalesce(provider,'external'),provider_reference=coalesce($2,provider_reference),updated_at=now() where id=$3 returning id,status,provider_reference", [status, typeof provider_reference === "string" ? provider_reference : null, order_id]);
-  if (!rows[0]) return res.status(404).json({ error: "ORDER_NOT_FOUND" });
-  await pool.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values(null,$1,'order',$2,$3)", ["payment_webhook_" + event_type, order_id, { event_id }]);
-  res.json({ accepted: true, order: rows[0] });
+// Payment webhooks are deliberately fail-closed until a provider-specific adapter
+// verifies the provider's signed raw payload, amount, currency, order mapping and
+// event idempotency. A shared static header secret is not sufficient evidence.
+app.post("/v1/payments/webhook", dbRequired, async (_req, res) => {
+  return res.status(503).json({
+    error: "PAYMENT_PROVIDER_ADAPTER_NOT_CONFIGURED",
+    message: "No payment event can mark an order as paid until a provider-specific verifier and idempotency ledger are deployed."
+  });
 });
 
 // Public operational safety endpoints. These expose readiness facts without claiming global availability.

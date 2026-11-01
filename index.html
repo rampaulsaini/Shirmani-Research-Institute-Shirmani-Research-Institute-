@@ -3,192 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#081522">
-<meta name="description" content="Shirmani Research Institute — a clear public gateway to paid services, digital tools, research, community previews and evidence-backed production status.">
-<title>SHIRMANI — Public Home & Income First</title>
+<meta name="description" content="Shirmani Research Institute — व्यवस्थित सार्वजनिक प्रवेश: आय, सेवाएँ, उत्पाद, Heart-View, शोध और प्रमाण।">
+<meta http-equiv="refresh" content="0; url=public-interface-v3.html">
+<link rel="canonical" href="public-interface-v3.html">
+<title>SHIRMANI — सार्वजनिक प्रवेश</title>
 <style>
-:root{color-scheme:dark;--bg:#07121e;--panel:#102235;--panel2:#0b1a29;--line:#29465e;--gold:#f3d27b;--cyan:#83e5ec;--green:#8de0b0;--text:#f4f7fb;--muted:#b9c8d6;--warn:#ffd49b}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#1b3a52 0,#07121e 52%);color:var(--text);font:16px/1.65 system-ui,"Noto Sans Devanagari",sans-serif}
-a{color:var(--cyan)}a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.wrap{max-width:1160px;margin:auto;padding:18px 16px 64px}
-.top{position:sticky;top:0;z-index:5;background:#07121eef;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.topin{max-width:1160px;margin:auto;padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{font-weight:900;color:var(--gold);text-decoration:none;letter-spacing:.04em}.nav{display:flex;gap:8px;overflow:auto}.nav a{white-space:nowrap;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:var(--text);font-size:.9rem}
-.hero,.section{background:linear-gradient(145deg,#102438f5,#0b1a29f5);border:1px solid var(--line);border-radius:20px;padding:clamp(18px,3vw,30px);margin:16px 0}
-.hero{border-color:#8b7848;text-align:center;padding:clamp(26px,5vw,54px)}
-.eyebrow,.tag{color:var(--cyan);font-weight:850;letter-spacing:.08em;font-size:.82rem}
-h1{font-size:clamp(2rem,5.6vw,4rem);line-height:1.12;color:var(--gold);margin:.35em 0}
-h2{font-size:clamp(1.35rem,3vw,2rem);color:var(--gold);margin:0 0 12px}
-h3{color:var(--cyan);margin:0 0 6px;font-size:1.08rem}
-p{color:var(--muted);margin:.5em 0 1em}.lead{max-width:820px;margin:14px auto 20px;font-size:1.08rem}
-.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0}
-.btn{display:inline-block;padding:11px 16px;border-radius:11px;background:var(--gold);color:#14202a;text-decoration:none;font-weight:900;border:1px solid var(--gold)}
-.btn.alt{background:#10283a;color:var(--text);border-color:#47667d}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:12px}
-.card{background:var(--panel2);border:1px solid var(--line);border-radius:15px;padding:17px;min-width:0;display:flex;flex-direction:column;align-items:flex-start}
-.card p{flex:1;margin:.4em 0 1em}.card a{margin-top:auto}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px;counter-reset:step}
-.step{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px}
-.step b{display:block;color:var(--cyan);font-size:.9rem}.step span{color:var(--muted);font-size:.9rem}
-.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin:14px 0}
-.metric{background:#081725;border:1px solid var(--line);border-radius:13px;padding:14px}
-.metric strong{display:block;color:var(--gold);font-size:clamp(1.45rem,3vw,2rem);line-height:1.2;overflow-wrap:anywhere}
-.metric small{color:var(--muted)}
-.notice{border-left:4px solid var(--cyan);background:#0a1b2a;padding:12px 14px;border-radius:7px;color:var(--muted)}
-.notice.warn{border-left-color:var(--warn)}
-.meta{font-size:.88rem;color:var(--muted)}
-.listlinks{display:flex;flex-wrap:wrap;gap:8px}.listlinks a{border:1px solid var(--line);border-radius:9px;padding:7px 10px;text-decoration:none;background:#0a1b2a}
-table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;padding:9px;border-bottom:1px solid var(--line)}th{color:var(--cyan)}
-footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:.9rem}
-@media(max-width:600px){.topin{align-items:flex-start;flex-direction:column}.nav{width:100%}.wrap{padding-inline:12px}.section,.hero{border-radius:15px}}
+body{margin:0;background:#08111c;color:#f5f7fa;font:17px/1.7 system-ui,"Noto Sans Devanagari",sans-serif;display:grid;min-height:100vh;place-items:center}
+main{max-width:680px;margin:24px;padding:28px;border:1px solid #34516a;border-radius:18px;background:#102238}
+h1{color:#f1d38a}a{color:#91e5d4}
 </style>
 </head>
-<body>
-<div class="top"><div class="topin"><a class="brand" href="#home">꙰ SHIRMANI</a><nav class="nav" aria-label="मुख्य नेविगेशन"><a href="#income">Income First</a><a href="#products">Products</a><a href="#community">Community</a><a href="#research">Research</a><a href="#status">Live Status</a></nav></div></div>
-<main class="wrap" id="home">
-<header class="hero">
-<div class="eyebrow">SHIRMANI RESEARCH INSTITUTE · PUBLIC PLATFORM</div>
-<h1>शिरोमणि स्वरूप दृष्टिकोण</h1>
-<p class="lead">सरल प्रवेश। स्पष्ट सेवाएँ। उपयोगी डिजिटल उत्पाद। पारदर्शी प्रमाण। सबसे पहले वास्तविक ग्राहक कार्य और जीवनयापन योग्य आय का रास्ता।</p>
-<div class="actions"><a class="btn" href="first-paid-pilot-offer.html">पहला Paid Service Offer देखें</a><a class="btn alt" href="writing-research-enquiry.html">ग्राहक Enquiry बनाएँ</a><a class="btn alt" href="showroom-public-interface.html">Public Showroom खोलें</a></div>
-<p class="meta">यह सार्वजनिक प्रवेश-पृष्ठ है। नीचे दिए गए account और community विकल्पों में जहाँ backend लंबित है, वहाँ उन्हें स्पष्ट रूप से preview बताया गया है।</p>
-</header>
-
-<section class="section" id="income">
-<div class="tag">01 · INCOME FIRST</div><h2>पहले वह सेवा जिसे अभी वास्तविक रूप से पूरा किया जा सकता है</h2>
-<p>शुरुआती सेवा: Hindi/English लेखन और संपादन, स्रोत-आधारित research summary, तथा website/blog content। काम शुरू होने से पहले ग्राहक के साथ scope, deliverables, समय-सीमा, revisions और भुगतान की शर्तें लिखित में तय होंगी।</p>
-<div class="grid">
-<article class="card"><h3>Hindi / English Writing</h3><p>लेख, संपादन, वेबसाइट कॉपी और ब्लॉग सामग्री।</p><a href="writing-research-enquiry.html">अपना brief दें →</a></article>
-<article class="card"><h3>Research Summary</h3><p>स्रोत-सूची, मुख्य निष्कर्ष, सीमाएँ और स्पष्ट संदर्भों सहित सारांश।</p><a href="showroom/water-conservation-research-sample.html">काम का नमूना देखें →</a></article>
-<article class="card"><h3>Website / Blog Content</h3><p>पृष्ठ संरचना, उपयोगकर्ता-केंद्रित सामग्री और प्रकाशन योग्य draft।</p><a href="first-paid-pilot-offer.html">Pilot scope और प्रस्तावित दरें →</a></article>
-</div>
-<div class="actions"><a class="btn" href="first-paid-pilot-offer.html">WhatsApp / Email से पूछताछ</a><a class="btn alt" href="income-client-pipeline.html">ग्राहक से भुगतान तक Pipeline</a><a class="btn alt" href="income-action-center.html">Income Action Center</a></div>
-<div class="steps" aria-label="ग्राहक से भुगतान तक प्रक्रिया">
-<div class="step"><b>1 · Enquiry</b><span>ग्राहक की जरूरत और brief</span></div><div class="step"><b>2 · Scope</b><span>काम और deliverables</span></div><div class="step"><b>3 · Proposal</b><span>लिखित कीमत और समय</span></div><div class="step"><b>4 · Agreement</b><span>दोनों पक्षों की सहमति</span></div><div class="step"><b>5 · Delivery</b><span>वास्तविक काम और handoff</span></div><div class="step"><b>6 · Payment proof</b><span>प्राप्त भुगतान का सत्यापन</span></div>
-</div>
-<p class="notice warn">WhatsApp/email button केवल आपके device पर message draft खोलता है। यह अपने-आप message नहीं भेजता। इसी तरह सूचीबद्ध कीमत, enquiry या proposal अपने-आप बिक्री अथवा आय नहीं है।</p>
-</section>
-
-<section class="section" id="products">
-<div class="tag">02 · DIGITAL PRODUCTS</div><h2>Tools, Products और Demonstrations</h2>
-<p>हर उत्पाद के साथ उसका उपयोग, वास्तविक demo, उपलब्धता और सीमाएँ अलग-अलग दिखाई जानी चाहिए। catalogue listing को working demo या बिक्री का प्रमाण न मानें।</p>
-<div class="grid">
-<article class="card"><h3>Global Product Showroom</h3><p>उत्पाद सूची, passport, मूल्य और उपलब्ध demo routes।</p><a href="showroom-public-interface.html">Showroom देखें →</a></article>
-<article class="card"><h3>Product Catalogue</h3><p>मशीन-पठनीय catalogue और उत्पाद पृष्ठ।</p><a href="products.html">Catalogue खोलें →</a></article>
-<article class="card"><h3>Try Before Purchase</h3><p>उपलब्ध browser demos और test-drive tools।</p><a href="showroom/product-demo-test-drive-hub.html">Demo / Test Drive →</a></article>
-<article class="card"><h3>Production Factory</h3><p>उत्पादन, QC और release pipeline की स्थिति।</p><a href="factory-dashboard.html">Factory Dashboard →</a></article>
-<article class="card"><h3>Media & Presentation</h3><p>Creator tools, presentation और media workbench।</p><a href="showroom-supreme-public-view.html">Media tools →</a></article>
-<article class="card"><h3>Security & Quality</h3><p>सुरक्षा जाँच, release gates और evidence boundaries।</p><a href="showroom/supreme-security-command-center.html">Security desk →</a></article>
-</div>
-</section>
-
-<section class="section" id="community">
-<div class="tag">03 · COMMUNITY & ACCOUNT</div><h2>ग्राहक खाता और सामाजिक मंच</h2>
-<p>उपयोगकर्ता के लिए register/login और community का स्पष्ट प्रवेश रखा गया है। जब तक सुरक्षित server-side authentication, database, moderation और persistent social backend deploy व test नहीं होते, इन पृष्ठों को prototype ही माना जाएगा।</p>
-<div class="grid">
-<article class="card"><h3>Register / Login</h3><p>Account access interface; वास्तविक account creation अभी backend पर निर्भर है।</p><a href="account-access.html">Account page खोलें →</a></article>
-<article class="card"><h3>Social Platform Preview</h3><p>Feed और community interactions का browser-local prototype।</p><a href="supreme-social-platform-mvp.html">Social MVP देखें →</a></article>
-<article class="card"><h3>Contact & Support</h3><p>ग्राहक सहायता और संस्थान से संपर्क।</p><a href="contact.html">Contact page →</a></article>
-</div>
-</section>
-
-<section class="section" id="heart-view">
-<div class="tag">04 · HEART-VIEW & MEDIA</div><h2>Heart-View, आवाज़, वीडियो और संवाद</h2>
-<p>यहाँ preview, वास्तविक provider execution और स्वतंत्र परीक्षण के प्रमाण अलग रखे जाते हैं। किसी पुराने HeyGen परीक्षण को दोहराने के बजाय मौजूदा प्रमाण और तारीख देखी जानी चाहिए।</p>
-<div class="listlinks">
-<a href="heart-view-preview.html">Heart-View Preview</a><a href="showroom/voice-to-live-evidence-console.html">Voice → Live Evidence</a><a href="showroom/voice-live-evidence-matrix.html">Voice / Lip-sync Matrix</a><a href="shirmani-live-character-v5.html">Live Character V5</a><a href="showroom/heart-view-character-studio.html">Character Studio</a><a href="showroom/heart-view-explainer-research-studio.html">Explainer Studio</a>
-</div>
-</section>
-
-<section class="section" id="research">
-<div class="tag">05 · RESEARCH & KNOWLEDGE</div><h2>Research, Education और Library</h2>
-<div class="grid">
-<article class="card"><h3>Research & Production Hub</h3><p>संस्थान के research और production क्षेत्रों तक प्रवेश।</p><a href="production-hub.html">Hub खोलें →</a></article>
-<article class="card"><h3>Source Ledger</h3><p>स्रोत, दावे और verification को अलग-अलग दर्ज करना।</p><a href="showroom/research-brief-source-ledger.html">Source Ledger →</a></article>
-<article class="card"><h3>Research Institute</h3><p>शोध, archive और संरचित ज्ञान-संग्रह।</p><a href="research.html">Research library →</a></article>
-</div>
-</section>
-
-<section class="section" id="status">
-<div class="tag">06 · PRODUCTION → INCOME</div><h2>वास्तविक उत्पादन और आय की स्थिति</h2>
-<p>ये counters repository के generated records से पढ़े जाते हैं। प्रत्येक counter के साथ उसका source timestamp दिखेगा; पुराने आँकड़े live होने का दावा नहीं करेंगे।</p>
-<div class="metrics">
-<div class="metric"><strong id="catalog">—</strong><small>Catalog identities</small></div>
-<div class="metric"><strong id="assets">—</strong><small>Concrete assets</small></div>
-<div class="metric"><strong id="qc">—</strong><small>QC state</small></div>
-<div class="metric"><strong id="dispatch">—</strong><small>Dispatch released</small></div>
-<div class="metric"><strong id="sales">—</strong><small>Sales claimed</small></div>
-<div class="metric"><strong id="payments">—</strong><small>Payment claimed</small></div>
-<div class="metric"><strong id="verified">—</strong><small>Independently verified</small></div>
-<div class="metric"><strong id="prepared">—</strong><small>Review packets prepared</small></div>
-</div>
-<p class="meta" id="productionStamp" aria-live="polite">Production state पढ़ी जा रही है…</p>
-<p class="meta" id="verificationStamp" aria-live="polite">Verification state पढ़ी जा रही है…</p>
-<div class="notice">Workflow runs उत्पादन-प्रक्रिया के प्रमाण हैं, बिक्री या आय के नहीं। QC, स्वतंत्र समीक्षा, dispatch, बिक्री और भुगतान अलग-अलग gates हैं।</div>
-<h3 style="margin-top:20px">पिछले 24 घंटे की GitHub Actions गतिविधि</h3>
-<div class="metrics">
-<div class="metric"><strong id="runs24">—</strong><small>Observed runs (API sample)</small></div>
-<div class="metric"><strong id="success24">—</strong><small>Successful completed</small></div>
-<div class="metric"><strong id="failed24">—</strong><small>Failed / action required</small></div>
-<div class="metric"><strong id="active24">—</strong><small>Currently active</small></div>
-</div>
-<p class="meta" id="runsStamp">GitHub Actions snapshot पढ़ी जा रही है…</p>
-<div class="actions"><a class="btn alt" href="showroom/production-telemetry-evidence-counters.html">Daily Production Report</a><a class="btn alt" href="showroom/live-platform-telemetry.html">Live Workflow Telemetry</a><a class="btn alt" href="production-progress-map.html">Progress Map</a><a class="btn alt" href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions">GitHub Actions खोलें</a></div>
-</section>
-
-<section class="section" id="all">
-<div class="tag">07 · ALL PLATFORM AREAS</div><h2>अन्य कार्यक्षेत्र</h2>
-<div class="listlinks">
-<a href="income-first.html">Income First</a><a href="income-client-outreach-desk.html">Client Outreach Desk</a><a href="revenue-first-control-center.html">Revenue Control Center</a><a href="showroom/institutional-outreach-studio.html">Institutional Outreach</a><a href="showroom/institutional-sales-workbench.html">Institutional Sales</a><a href="institutional-outreach-kit.html">Outreach Kit</a><a href="showroom/public-gateway-v2.html">Public Gateway</a><a href="public-interface-hub.html">Interface Hub</a><a href="showroom-public.html">Public Showroom Home</a><a href="federation-dashboard.html">Federation</a><a href="contact.html">Contact</a><a href="docs/public-platform/production-dependencies.md">Production dependencies</a><a href="legacy-index.html">Legacy archive</a>
-</div>
-</section>
-
-<footer>
-<strong>SHIRMANI RESEARCH INSTITUTE</strong><br>
-सत्य, पारदर्शिता, उपयोगिता और प्रमाण-आधारित प्रगति।<br>
-<a href="README.md">Project documentation</a> · <a href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-">GitHub repository</a>
-</footer>
-</main>
-<script>
-(()=> {
-const owner='rampaulsaini',repo='Shirmani-Research-Institute-Shirmani-Research-Institute-';
-const n=v=>Number(v||0).toLocaleString('en-IN');
-const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
-const date=v=>{if(!v)return 'timestamp unavailable';const d=new Date(v);return Number.isNaN(d.getTime())?'timestamp unavailable':d.toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short',timeZone:'UTC'})+' UTC'};
-async function loadProduction(){
-try{
-const [pRes,vRes]=await Promise.all([
-fetch('generated/live-production-state.json?ts='+Date.now(),{cache:'no-store'}),
-fetch('generated/independent-verification-status.json?ts='+Date.now(),{cache:'no-store'})
-]);
-if(!pRes.ok)throw new Error('production HTTP '+pRes.status);
-if(!vRes.ok)throw new Error('verification HTTP '+vRes.status);
-const p=await pRes.json(),v=await vRes.json();
-set('catalog',n(p.catalog_identities));set('assets',n(p.concrete_repository_assets));
-set('qc',String(p.qc_state||p.state||'not reported'));
-set('dispatch',n(p.dispatch_released));set('sales',n(p.sales_claimed));set('payments',n(p.payment_claimed));
-set('verified',n(v.verified_records)+' / '+n(v.registry_total));
-set('prepared',n(v.prepared_review_records)+' / '+n(v.registry_total));
-set('productionStamp','Production source timestamp: '+date(p.generated_at)+' · QC '+String(p.qc_state||'not reported')+'.');
-set('verificationStamp','Verification source timestamp: '+(v.generated_at?date(v.generated_at):'timestamp not supplied by verification JSON')+' · verified '+Number(v.verified_percent_of_queue||0).toFixed(2)+'% · review prepared '+Number(v.prepared_percent||0).toFixed(2)+'%.');
-}catch(e){set('productionStamp','Production data unavailable: '+e.message);set('verificationStamp','Verification data unavailable; no values have been guessed.')}
-}
-async function loadRuns(){
-try{
-const url='https://api.github.com/repos/'+owner+'/'+repo+'/actions/runs?per_page=100&created=%3E%3D'+encodeURIComponent(new Date(Date.now()-86400000).toISOString());
-const r=await fetch(url,{headers:{Accept:'application/vnd.github+json'}});
-if(!r.ok)throw new Error('GitHub API HTTP '+r.status);
-const data=await r.json(),runs=Array.isArray(data.workflow_runs)?data.workflow_runs:[];
-const done=runs.filter(x=>x.status==='completed');
-const ok=done.filter(x=>x.conclusion==='success').length;
-const bad=done.filter(x=>['failure','timed_out','startup_failure','action_required'].includes(x.conclusion)).length;
-const active=runs.filter(x=>['queued','in_progress','requested','waiting'].includes(x.status)).length;
-set('runs24',n(data.total_count??runs.length));set('success24',n(ok)+' / '+n(done.length));
-set('failed24',n(bad));set('active24',n(active));
-set('runsStamp','GitHub API snapshot: '+date(new Date().toISOString())+' · status breakdown from '+runs.length+' recent records (maximum 100); not a count of sales or revenue.');
-}catch(e){for(const id of ['runs24','success24','failed24','active24'])set(id,'—');set('runsStamp','Workflow activity unavailable: '+e.message+'. Open GitHub Actions for the source record.')}
-}
-loadProduction();loadRuns();
-})();
-</script>
-</body></html>
+<body><main>
+<p>SHIRMANI RESEARCH INSTITUTE</p>
+<h1>सार्वजनिक प्रवेश व्यवस्थित किया जा रहा है</h1>
+<p>आपको आय-प्रथम, क्रमबद्ध सार्वजनिक इंटरफ़ेस पर भेजा जा रहा है।</p>
+<p><a href="public-interface-v3.html">मुख्य व्यवस्थित सार्वजनिक इंटरफ़ेस खोलें →</a></p>
+<nav aria-label="त्वरित प्रवेश"><a href="first-paid-pilot-offer.html">पहला paid pilot</a> · <a href="showroom-public-interface.html">Public showroom</a> · <a href="income-action-center.html">Income action center</a> · <a href="writing-research-enquiry.html">ग्राहक enquiry</a> · <a href="omniverse-digital-archive.html">Digital archive</a></nav>
+<p><a href="public-interface-legacy-20261101.html">पुराना सार्वजनिक होमपेज देखें</a></p>
+</main></body></html>
