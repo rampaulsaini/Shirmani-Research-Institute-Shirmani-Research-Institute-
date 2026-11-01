@@ -61,10 +61,6 @@ def sync_public_qc_state(root: Path, catalog_count: int) -> bool:
                 else "PRODUCTION_COMPLETE_CURRENT_CATALOG" if int(live.get("current_catalog_pending", 0)) == 0
                 else "PRODUCTION_IN_PROGRESS"
             ),
-            "dispatch_released": 0,
-            "sales_claimed": 0,
-            "payment_claimed": 0,
-            "independent_verification_claimed": 0,
         })
         live_path.write_text(json.dumps(live, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return passed
