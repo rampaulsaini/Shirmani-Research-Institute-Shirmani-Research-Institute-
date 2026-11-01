@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Browser-based demonstration of a retail voice receptionist and CRM lead workflow. No external calls or CRM writes are made.">
+<title>SHIRMANI · Retail Voice Agent + CRM Demo</title>
+<style>
+:root{color-scheme:dark;--bg:#07101b;--panel:#111f30;--line:#30465d;--gold:#f1cf70;--cyan:#76e2f1;--green:#8be0ad;--muted:#b3c0cf;--red:#ffb4a9}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#243c58,var(--bg) 60%);color:#f5f7fb;font:16px/1.55 system-ui,sans-serif}main{max-width:1120px;margin:auto;padding:18px}.hero,.panel{background:#101d2c;border:1px solid var(--line);border-radius:18px;padding:20px;margin:14px 0}.hero{border-color:#8c7740;background:linear-gradient(135deg,#1a2d43,#0d1724)}h1,h2{color:var(--gold);line-height:1.2}h1{font-size:clamp(2rem,5vw,3.2rem);margin:.25em 0}.muted{color:var(--muted)}.tag{color:var(--cyan);font-weight:850;font-size:.78rem;letter-spacing:.09em}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}.tile{background:#091522;border:1px solid #2c435a;border-radius:13px;padding:15px}.metric{font-size:1.8rem;color:var(--gold);font-weight:900}.status{padding:10px 12px;border-left:4px solid var(--cyan);background:#0b2631;border-radius:8px}.warning{border-left-color:var(--red);background:#291b1d}button,input,select,textarea{font:inherit}button{border:1px solid var(--gold);border-radius:10px;background:var(--gold);color:#111;padding:10px 14px;font-weight:850;cursor:pointer;margin:4px 5px 4px 0}button.secondary{background:#172a3e;color:var(--cyan);border-color:#45627d}button:disabled{opacity:.5;cursor:not-allowed}label{display:block;margin:9px 0 4px;color:var(--muted)}input,select,textarea{width:100%;padding:11px;border:1px solid #3b536b;border-radius:9px;background:#071421;color:#fff}textarea{min-height:76px}.chat{height:245px;overflow:auto;background:#071421;border:1px solid #2d4358;border-radius:12px;padding:12px}.bubble{padding:9px 11px;border-radius:10px;margin:7px 0;max-width:92%;white-space:pre-wrap}.bot{background:#183149}.human{background:#244233;margin-left:auto}.small{font-size:.88rem}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:550px}th,td{text-align:left;padding:9px;border-bottom:1px solid #30445a}th{color:var(--cyan)}footer{padding:22px;color:var(--muted);font-size:.9rem}@media(max-width:560px){main{padding:10px}.hero,.panel{padding:15px}}
+</style>
+</head>
+<body><main>
+<section class="hero">
+<div class="tag">SHIRMANI RESEARCH INSTITUTE · INTERACTIVE BROWSER DEMO</div>
+<h1>Retail AI Voice Receptionist + CRM</h1>
+<p>ग्राहक की सामान्य पूछताछ सुनें/लिखें, सही अगला कदम सुझाएँ और एक lead record का preview बनाएँ। यह पहला testable prototype है—अभी किसी दुकान, HubSpot account या बाहरी ग्राहक से जुड़ा नहीं है।</p>
+<div class="grid">
+<div class="tile"><div class="tag">VOICE ENGINE</div><div class="metric" id="voiceState">जाँच…</div><p class="muted small">आपके browser की Speech API उपलब्धता</p></div>
+<div class="tile"><div class="tag">CRM CONNECTIVITY</div><div class="metric">Not connected</div><p class="muted small">HubSpot token/backend अभी configure नहीं है</p></div>
+<div class="tile"><div class="tag">SAVED DEMO LEADS</div><div class="metric" id="leadCount">0</div><p class="muted small">केवल इस खुले page की memory में</p></div>
+</div>
+</section>
+<section class="panel">
+<h2>01 · Voice receptionist</h2>
+<p class="muted">Mic दबाने से पहले ग्राहक की अनुमति लें। Browser speech recognition आपके device/browser पर निर्भर है; आवाज़ की processing browser/provider के नियंत्रण में हो सकती है। इस demo में कोई recording server पर store नहीं होती।</p>
+<div class="chat" id="chat" aria-live="polite"><div class="bubble bot">नमस्ते! मैं demo retail assistant हूँ। आप product availability, दुकान का समय, कीमत या callback request के बारे में पूछ सकते हैं।</div></div>
+<div class="grid">
+<div><label for="utterance">ग्राहक का संदेश / speech transcript</label><textarea id="utterance" placeholder="उदाहरण: क्या आज शाम 6 बजे तक दुकान खुली है?"></textarea><button id="mic" class="secondary" type="button">🎙️ Start listening</button><button id="ask" type="button">Get response</button><button id="speak" class="secondary" type="button">🔊 Speak response</button></div>
+<div><label>Quick test prompts</label><button class="secondary quick" data-text="दुकान आज कितने बजे बंद होगी?">Store hours</button><button class="secondary quick" data-text="क्या यह product उपलब्ध है?">Product availability</button><button class="secondary quick" data-text="मुझे कीमत और offer बताइए।">Price / offer</button><button class="secondary quick" data-text="कृपया मुझे callback करिए।">Request callback</button><p class="muted small">उत्तर demo rules से बनते हैं; live inventory या वास्तविक business hours से नहीं।</p></div>
+</div>
+<div class="status" id="reply">Assistant response यहाँ दिखाई देगा।</div>
+</section>
+<section class="panel">
+<h2>02 · Lead capture → CRM preview</h2>
+<p>ग्राहक की अनुमति लेकर केवल जरूरी जानकारी भरें। Save दबाने पर record इस page की अस्थायी memory में जुड़ता है—HubSpot में नहीं।</p>
+<form id="leadForm">
+<div class="grid">
+<div><label for="customer">ग्राहक का नाम (optional)</label><input id="customer" maxlength="80" autocomplete="name" placeholder="नाम"></div>
+<div><label for="phone">फोन / ईमेल (optional)</label><input id="phone" maxlength="120" autocomplete="off" placeholder="केवल ग्राहक की सहमति से"></div>
+<div><label for="interest">पूछताछ का विषय</label><select id="interest"><option>Product availability</option><option>Price / offer</option><option>Store hours</option><option>Callback request</option><option>Other</option></select></div>
+<div><label for="priority">Priority</label><select id="priority"><option>Normal</option><option>High</option><option>Low</option></select></div>
+</div>
+<label for="notes">संक्षिप्त जरूरत / नोट</label><textarea id="notes" maxlength="500" placeholder="ग्राहक ने क्या पूछा? संवेदनशील जानकारी न लिखें।"></textarea>
+<label><input id="consent" type="checkbox" style="width:auto"> ग्राहक ने इस demo में lead note बनाने की अनुमति दी है।</label>
+<button type="submit">Save demo lead</button><button type="button" class="secondary" id="sample">Add sample lead</button><button type="button" class="secondary" id="csv">Export CSV</button>
+</form>
+<div class="status warning small" id="crmStatus">CRM mode: local demo only. No HubSpot API call, no network write, no customer follow-up.</div>
+<div class="tablewrap"><table><thead><tr><th>Created</th><th>Contact</th><th>Interest</th><th>Priority</th><th>Status</th></tr></thead><tbody id="leads"><tr><td colspan="5" class="muted">अभी कोई demo lead नहीं।</td></tr></tbody></table></div>
+</section>
+<section class="panel">
+<h2>03 · What is real, what is pending</h2>
+<div class="grid">
+<div class="tile"><b style="color:var(--green)">Working in this page</b><ul><li>Browser UI and quick prompts</li><li>Speech synthesis when browser supports it</li><li>Optional speech recognition when supported</li><li>Rule-based reply and temporary lead preview</li><li>CSV export of demo records</li></ul></div>
+<div class="tile"><b style="color:var(--gold)">Not connected / not verified</b><ul><li>HubSpot account, OAuth and CRM write</li><li>Live product stock, prices or store hours</li><li>Telephony / WhatsApp / inbound call routing</li><li>Persistent secure database and consent audit</li><li>Human handoff, uptime, security and real-client acceptance</li></ul></div>
+</div>
+<p class="status">Release gate: deploy a protected backend, connect HubSpot using server-side OAuth/secrets, test consent + duplicate handling + rate limits, then verify one test contact inside the customer-authorized CRM. Never put a HubSpot private-app token in this HTML or a public repository.</p>
+</section>
+<p><a href="../showroom-public-interface.html" style="color:var(--cyan)">← Back to public showroom</a> · <a href="revenue-first-service-desk.html" style="color:var(--cyan)">Revenue-first service desk</a></p>
+<footer>SHIRMANI · Demo build 0.1 · No real sales, calls, CRM writes, bookings, payments or customer records are claimed.</footer>
+</main>
+<script>
+(()=>{const $=id=>document.getElementById(id);let leads=[],lastReply='';const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;const supported=!!SpeechRecognition;$('voiceState').textContent=supported?'Mic available':'Text mode';function addBubble(text,who){const d=document.createElement('div');d.className='bubble '+who;d.textContent=text;$('chat').appendChild(d);$('chat').scrollTop=$('chat').scrollHeight}
+function answer(q){const s=q.toLowerCase();if(/बंद|खुल|समय|hours|timing/.test(s))return 'दुकान के वास्तविक समय की जानकारी इस demo से जुड़ी नहीं है। कृपया दुकान से पुष्टि करें। क्या आप callback request बनाना चाहेंगे?';if(/उपलब्ध|stock|product|मिल|available/.test(s))return 'मेरे पास live inventory access नहीं है। Product का नाम लिखें; मैं एक enquiry note बना सकता हूँ ताकि staff उपलब्धता confirm कर सके।';if(/कीमत|price|offer|दाम/.test(s))return 'वास्तविक कीमत या offer अभी configure नहीं है। कृपया product का नाम बताएं; staff से पुष्टि जरूरी है।';if(/callback|फोन|call|बात/.test(s))return 'ज़रूर। ग्राहक की अनुमति लेकर callback request note बनाया जा सकता है। कृपया नीचे CRM preview में जरूरी जानकारी भरें।';return 'मैं आपकी जरूरत समझने की कोशिश करूँगा। कृपया product/service का नाम और आपका सवाल थोड़ा स्पष्ट बताएं; जरूरत होने पर staff से पुष्टि कराएँ।'}
+$('ask').onclick=()=>{const q=$('utterance').value.trim();if(!q){$('reply').textContent='पहले सवाल लिखें या microphone से बोलें।';return}addBubble(q,'human');lastReply=answer(q);$('reply').textContent=lastReply;addBubble(lastReply,'bot');if(/callback|फोन|call/.test(q.toLowerCase()))$('interest').value='Callback request';$('notes').value=q};
+$('speak').onclick=()=>{if(!lastReply){$('reply').textContent='पहले सवाल पूछें।';return}if(!('speechSynthesis'in window)){$('reply').textContent='इस browser में speech synthesis उपलब्ध नहीं।';return}window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(lastReply);u.lang='hi-IN';window.speechSynthesis.speak(u)};
+$('mic').onclick=()=>{if(!supported){$('reply').textContent='Speech recognition supported नहीं; text box का उपयोग करें।';return}const r=new SpeechRecognition();r.lang='hi-IN';r.interimResults=false;r.maxAlternatives=1;r.onresult=e=>$('utterance').value=e.results[0][0].transcript;r.onerror=e=>$('reply').textContent='Mic error: '+e.error+'. आप text mode उपयोग कर सकते हैं।';r.onend=()=>{$('mic').textContent='🎙️ Start listening'};$('mic').textContent='Listening…';r.start()};
+document.querySelectorAll('.quick').forEach(b=>b.onclick=()=>{$('utterance').value=b.dataset.text;$('ask').click()});
+function render(){ $('leadCount').textContent=leads.length;$('leads').replaceChildren();if(!leads.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=5;td.textContent='अभी कोई demo lead नहीं।';td.className='muted';tr.append(td);$('leads').append(tr);return}leads.forEach(x=>{const tr=document.createElement('tr');[x.created,x.contact,x.interest,x.priority,'Demo only'].forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.append(td)});$('leads').append(tr)})}
+function addLead(data){leads.push({...data,created:new Date().toLocaleString()});render();$('crmStatus').textContent='Demo record added in page memory only. It disappears when this page is closed or refreshed; nothing sent to HubSpot.'}
+$('leadForm').onsubmit=e=>{e.preventDefault();if(!$('consent').checked){$('crmStatus').textContent='पहले ग्राहक की अनुमति की पुष्टि करें। कोई record नहीं बनाया गया।';return}addLead({contact:$('customer').value.trim()||$('phone').value.trim()||'Anonymous',interest:$('interest').value,priority:$('priority').value,notes:$('notes').value.trim()});$('consent').checked=false};
+$('sample').onclick=()=>addLead({contact:'Sample visitor',interest:'Callback request',priority:'Normal',notes:'Synthetic test record — not a real customer.'});
+$('csv').onclick=()=>{if(!leads.length){$('crmStatus').textContent='Export करने के लिए कोई demo lead नहीं।';return}const rows=[['created','contact','interest','priority','notes'],...leads.map(x=>[x.created,x.contact,x.interest,x.priority,x.notes])];const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='shirmani-demo-leads.csv';a.click();URL.revokeObjectURL(a.href);$('crmStatus').textContent='Demo CSV exported locally. This is not a HubSpot sync.'};
+})();
+</script></body></html>
