@@ -167,7 +167,7 @@ Do not recreate these changes or open duplicate PRs. Extend them only when a new
 
 | Task | State | Next action |
 |---|---|---|
-| Public Heart-View → Live Character navigation and matching integrity gate | OPEN, PR #3539 | Wait for checks; inspect failures; merge only when required checks pass |
+| Public Heart-View → Live Character navigation and matching integrity gate | MERGED | PR #3539; merge commit `63c9fef2aac233720d7fc7d68a575ec6dd9b7cbb`; all 22 checks passed |
 | 5,027-file product visual change | OPEN, PR #2452 | Do not regenerate assets or merge blindly; 11 workflow/application approvals were reported as required; inspect sampled asset quality and manifest mismatch before approval |
 | Actual customer orders, payment, dispatch and verified delivery | NOT_STARTED / no evidence in current production snapshot | Build and test a real customer-to-payment-to-delivery path; do not count workflows or generated assets as sales |
 | Independent review promotion | BLOCKED on human review | Preserve fail-closed status; no record is verified merely because a workflow passed |
@@ -195,4 +195,4 @@ These are source-reported counters, not proof of customer demand, payment, deliv
 
 ### Resume instruction
 
-**Continue from `generated/continuation-ledger.json` and Section 19 of `PROJECT-CONTINUITY.md`. Do not repeat MERGED tasks. First resume PR #3539, then address only the explicitly listed blockers. Income evidence (paid order, payment reference, dispatch and verified delivery) is the outcome metric.**
+**Continue from `generated/continuation-ledger.json` and Section 19 of `PROJECT-CONTINUITY.md`. Do not repeat MERGED tasks. Resume PR #2452 quality/approval review, then build the real customer-to-verified-delivery path. Income evidence (paid order, payment reference, dispatch and verified delivery) is the outcome metric.**
