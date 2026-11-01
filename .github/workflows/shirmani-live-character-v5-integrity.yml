@@ -8,6 +8,7 @@ on:
       - 'generated/shirmani-live-character-v5.json'
       - '.github/workflows/shirmani-live-character-v5-integrity.yml'
       - 'index.html'
+      - 'public-interface-v3.html'
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
@@ -28,6 +29,7 @@ jobs:
           legacy_entry = pathlib.Path("shirmani-live-character-v5.html")
           runtime_page = pathlib.Path("shirmani-supreme-live-character-v10.html")
           index = pathlib.Path("index.html")
+          public_home = pathlib.Path("public-interface-v3.html")
           data = json.loads(contract.read_text(encoding="utf-8"))
           required = ["version","name","framework","identity_statement","communication","reasoning","presentation","pipeline","status","integrity"]
           missing = [k for k in required if k not in data]
@@ -37,7 +39,8 @@ jobs:
           checks = {
               "legacy entry exists": legacy_entry.exists(),
               "canonical runtime page exists": runtime_page.exists(),
-              "main hub links V5": "shirmani-live-character-v5.html" in index.read_text(encoding="utf-8"),
+              "root routes to public income-first interface": "public-interface-v3.html" in index.read_text(encoding="utf-8"),
+              "public home links V5": "shirmani-live-character-v5.html" in public_home.read_text(encoding="utf-8"),
               "evidence fallback present in canonical runtime": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है" in runtime_page.read_text(encoding="utf-8"),
               "verification boundary present": "independent_scientific_verification" in contract.read_text(encoding="utf-8"),
               "legacy preserved": all(pathlib.Path(p).exists() for p in ["shirmani-live-character-v3.html","live-persona-supreme-v4.html"])
