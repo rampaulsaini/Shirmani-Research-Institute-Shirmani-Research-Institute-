@@ -37,17 +37,20 @@
       "pr": 3538,
       "merge_sha": "4cc776a06fca64e467bd5e844df861f814b6cd82",
       "summary": "Reject payment status updates until a provider signature/adapter is configured; do not claim payment capability is live."
+    },
+    {
+      "task_id": "PUBLIC-HEARTVIEW-LIVE-CHARACTER-LINK",
+      "status": "MERGED",
+      "pr": 3539,
+      "merge_sha": "63c9fef2aac233720d7fc7d68a575ec6dd9b7cbb",
+      "summary": "Added direct Live Character V5/V10 entry to the public Heart-View section and aligned the integrity gate with the new public homepage.",
+      "checks": {
+        "total": 22,
+        "success": 22
+      }
     }
   ],
   "in_progress": [
-    {
-      "task_id": "PUBLIC-HEARTVIEW-LIVE-CHARACTER-LINK",
-      "status": "OPEN",
-      "pr": 3539,
-      "head_sha": "dc90f991bb66efc1621e5375e72bea916c5d2d3d",
-      "summary": "Add direct Live Character entry to the public Heart-View section and align integrity gate with public homepage.",
-      "next_action": "Wait for required checks, fix any failures, merge only after required checks pass."
-    },
     {
       "task_id": "PRODUCT-VISUALS-QUALITY-REVIEW",
       "status": "OPEN_BLOCKED",
@@ -99,7 +102,6 @@
     "note": "Snapshot values are source-reported counters, not proof of sales, payment, dispatch, delivery, or independent scientific validation."
   },
   "resume_order": [
-    "PUBLIC-HEARTVIEW-LIVE-CHARACTER-LINK",
     "PRODUCT-VISUALS-QUALITY-REVIEW",
     "REAL_CUSTOMER_TO_VERIFIED_DELIVERY",
     "INDEPENDENT_REVIEW_PROMOTION"
