@@ -1,17 +1,21 @@
 {
-  "generated_at": "2026-11-01T08:48:53.088787+00:00",
+  "generated_at": "2026-11-01T08:54:27.011360+00:00",
+  "source_produced_at": "2026-11-01T08:54:26.249870+00:00",
+  "source_latest_produced_at": "2026-11-01T08:54:26.602225+00:00",
+  "source_cycle": 2723,
   "principle": "Production first; verification downstream.",
+  "cycle": 2723,
   "cycle_results": 500,
   "lanes": {
-    "ai-ml-nlp": 52,
-    "automation": 253,
+    "ai-ml-nlp": 64,
+    "automation": 223,
     "content": 13,
-    "economic": 11,
-    "federation": 14,
-    "platform": 101,
-    "research": 17,
-    "security-quality": 29,
-    "social-media": 10
+    "economic": 8,
+    "federation": 22,
+    "platform": 119,
+    "research": 20,
+    "security-quality": 22,
+    "social-media": 9
   },
   "artifacts": [
     "generated/public-production/ai-ml-nlp.jsonl",
@@ -23,13 +27,13 @@
     "generated/public-production/research.jsonl",
     "generated/public-production/security-quality.jsonl",
     "generated/public-production/social-media.jsonl",
-    "generated/public-production-module-index.json",
-    "generated/public-production-by-module.html",
+    "generated/production-results.jsonl",
     "generated/public-production/archive/index.json"
   ],
   "integrity": {
     "generated_output_is_concrete": true,
     "source_bound": true,
+    "queue_to_lane_records_one_to_one": true,
     "independent_verification_claim": false
   }
 }
