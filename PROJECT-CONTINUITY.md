@@ -147,3 +147,52 @@ A missing field is a QC failure, not an invitation to invent a value.
 - Resume logic remains output-first: durable generated outputs are used to reconstruct progress, while canonical/source records remain protected.
 
 - Follow-up fix: QC no longer applies the reasoning method-stack validator to the upstream verse corpus; strict method-stack validation remains on reasoning-manifest.jsonl. This prevents 100,000 false blocking errors while preserving reasoning QC.
+
+
+## 19. Durable continuation ledger — 2026-11-01
+
+This section is the canonical human-readable resume record. The machine-readable companion is `generated/continuation-ledger.json`. Read both before starting implementation. A task marked `MERGED` is historical completed work: verify its commit is an ancestor of `main`, then do not recreate it. Continue only from `OPEN`, `BLOCKED`, or `NOT_STARTED` items.
+
+### Completed and preserved — do not rebuild
+
+| Task | Result | Permanent reference |
+|---|---|---|
+| Preserve production counters across cycles | MERGED | PR #3535; merge commit `3498c46fd00d62ad56e7c87d8eb9844de4cf9846` |
+| Income-first public interface | MERGED | PR #3537; merge commit `3512b967e03a98caaf6c74ffda66eff7c5a4dbf1` |
+| Fail-closed payment webhook until a real provider adapter is configured | MERGED | PR #3538; merge commit `4cc776a06fca64e467bd5e844df861f814b6cd82` |
+
+Do not recreate these changes or open duplicate PRs. Extend them only when a new requirement or regression is evidenced.
+
+### In progress / blocked — resume here
+
+| Task | State | Next action |
+|---|---|---|
+| Public Heart-View → Live Character navigation and matching integrity gate | MERGED | PR #3539; merge commit `63c9fef2aac233720d7fc7d68a575ec6dd9b7cbb`; all 22 checks passed |
+| 5,027-file product visual change | OPEN, PR #2452 | Do not regenerate assets or merge blindly; 11 workflow/application approvals were reported as required; inspect sampled asset quality and manifest mismatch before approval |
+| Actual customer orders, payment, dispatch and verified delivery | NOT_STARTED / no evidence in current production snapshot | Build and test a real customer-to-payment-to-delivery path; do not count workflows or generated assets as sales |
+| Independent review promotion | BLOCKED on human review | Preserve fail-closed status; no record is verified merely because a workflow passed |
+
+### Production and verification snapshot
+
+Source files and timestamps are recorded in `generated/continuation-ledger.json`. At the latest checked source snapshot:
+- 5,000 concrete catalog assets against the 5,000 scale target (100% materialized).
+- Dispatch released: 0; sales claimed: 0; payment claimed: 0.
+- Independent verification: 0 of 100,200 records.
+- Review packets prepared: 60,950 of 100,200 (about 60.83%).
+- Production state: `QC_PASSED_AWAITING_DISPATCH`; QC state: `QC_PASSED`.
+
+These are source-reported counters, not proof of customer demand, payment, delivery, or independent scientific validation.
+
+### Anti-duplication protocol
+
+1. Read `generated/continuation-ledger.json` and this section before making changes.
+2. Check each recorded merge commit against current `main`; if present, mark the task completed and do not rebuild it.
+3. Check open PRs and workflow runs before creating a branch. If an equivalent task is already open, continue that PR instead of opening another.
+4. Give each new work item a stable task ID and record its target files, acceptance tests, PR number, head SHA, and final merge SHA.
+5. Update the ledger in the same PR as the implementation, or in a dedicated ledger PR immediately after merge. Never mark work MERGED before GitHub confirms the merge.
+6. Preserve source data, history, counters and failure records. Do not reset production outputs to make a check pass.
+7. Recheck live production and verification JSON before quoting percentages; old snapshots must not overwrite newer state.
+
+### Resume instruction
+
+**Continue from `generated/continuation-ledger.json` and Section 19 of `PROJECT-CONTINUITY.md`. Do not repeat MERGED tasks. Resume PR #2452 quality/approval review, then build the real customer-to-verified-delivery path. Income evidence (paid order, payment reference, dispatch and verified delivery) is the outcome metric.**

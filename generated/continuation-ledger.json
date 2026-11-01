@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "ledger_id": "SHIRMANI-CONTINUITY-2026-11-01",
+  "updated_at": "2026-11-01",
+  "repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+  "canonical_resume_files": [
+    "PROJECT-CONTINUITY.md",
+    "generated/continuation-ledger.json"
+  ],
+  "anti_duplication_policy": {
+    "read_before_work": true,
+    "merged_tasks_must_not_be_rebuilt": true,
+    "verify_merge_commit_is_ancestor_of_main": true,
+    "reuse_equivalent_open_pr": true,
+    "stable_task_ids_required": true,
+    "mark_merged_only_after_github_confirmation": true,
+    "preserve_history_and_production_outputs": true
+  },
+  "completed": [
+    {
+      "task_id": "PRODUCTION-COUNTER-PERSISTENCE",
+      "status": "MERGED",
+      "pr": 3535,
+      "merge_sha": "3498c46fd00d62ad56e7c87d8eb9844de4cf9846",
+      "summary": "Preserve existing production counters across production cycles."
+    },
+    {
+      "task_id": "PUBLIC-INCOME-FIRST-INTERFACE",
+      "status": "MERGED",
+      "pr": 3537,
+      "merge_sha": "3512b967e03a98caaf6c74ffda66eff7c5a4dbf1",
+      "summary": "Publish income-first public interface and organized entry points."
+    },
+    {
+      "task_id": "PAYMENT-WEBHOOK-FAIL-CLOSED",
+      "status": "MERGED",
+      "pr": 3538,
+      "merge_sha": "4cc776a06fca64e467bd5e844df861f814b6cd82",
+      "summary": "Reject payment status updates until a provider signature/adapter is configured; do not claim payment capability is live."
+    },
+    {
+      "task_id": "PUBLIC-HEARTVIEW-LIVE-CHARACTER-LINK",
+      "status": "MERGED",
+      "pr": 3539,
+      "merge_sha": "63c9fef2aac233720d7fc7d68a575ec6dd9b7cbb",
+      "summary": "Added direct Live Character V5/V10 entry to the public Heart-View section and aligned the integrity gate with the new public homepage.",
+      "checks": {
+        "total": 22,
+        "success": 22
+      }
+    }
+  ],
+  "in_progress": [
+    {
+      "task_id": "PRODUCT-VISUALS-QUALITY-REVIEW",
+      "status": "OPEN_BLOCKED",
+      "pr": 2452,
+      "head_sha": "af8653b8bd1e8dfcd44d7074b78f9a52ff261cac",
+      "summary": "Large visual asset PR; 5,027 changed files; earlier inspection found manifest count mismatch and template-like samples.",
+      "next_action": "Do not regenerate or merge blindly; obtain required workflow/application approvals and complete asset/manifest quality review."
+    }
+  ],
+  "not_started_or_blocked": [
+    {
+      "task_id": "REAL_CUSTOMER_TO_VERIFIED_DELIVERY",
+      "status": "NOT_STARTED",
+      "acceptance": [
+        "public service offer",
+        "customer enquiry",
+        "agreed proposal",
+        "real payment reference",
+        "dispatch record",
+        "delivery evidence",
+        "customer confirmation"
+      ],
+      "rule": "No sales or payment claim until independently auditable transaction evidence exists."
+    },
+    {
+      "task_id": "INDEPENDENT_REVIEW_PROMOTION",
+      "status": "HUMAN_REVIEW_REQUIRED",
+      "rule": "Workflow success is not independent verification; preserve FAIL_CLOSED policy."
+    }
+  ],
+  "production_snapshot": {
+    "live_state_file": "generated/live-production-state.json",
+    "live_state_generated_at": "2026-10-31T22:28:36.105762+00:00",
+    "catalog_identities": 5000,
+    "concrete_repository_assets": 5000,
+    "scale_target": 5000,
+    "materialization_percent": 100,
+    "dispatch_released": 0,
+    "sales_claimed": 0,
+    "payment_claimed": 0,
+    "state": "QC_PASSED_AWAITING_DISPATCH",
+    "qc_state": "QC_PASSED",
+    "verification_file": "generated/independent-verification-status.json",
+    "verification_generated_at": "2026-11-01T01:21:06.416972+00:00",
+    "verification_queue_total": 100200,
+    "verified_records": 0,
+    "prepared_review_records": 60950,
+    "prepared_review_percent": 60.82834331337325,
+    "note": "Snapshot values are source-reported counters, not proof of sales, payment, dispatch, delivery, or independent scientific validation."
+  },
+  "resume_order": [
+    "PRODUCT-VISUALS-QUALITY-REVIEW",
+    "REAL_CUSTOMER_TO_VERIFIED_DELIVERY",
+    "INDEPENDENT_REVIEW_PROMOTION"
+  ],
+  "resume_instruction": "Read this ledger and PROJECT-CONTINUITY.md first. Verify merged commits against main. Do not rebuild completed tasks. Continue existing open PRs before opening new ones."
+}
