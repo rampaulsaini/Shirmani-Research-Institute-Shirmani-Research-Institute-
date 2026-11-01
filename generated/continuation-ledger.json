@@ -48,6 +48,13 @@
         "total": 22,
         "success": 22
       }
+    },
+    {
+      "task_id": "AUTOMISSION-NLP-HEALTH-NONCANCELLING-CYCLE",
+      "status": "MERGED",
+      "pr": 2639,
+      "merge_sha": "667ac3b0d90d70950642a0d99ba401fa1c3f54e4",
+      "summary": "Preserve the active Supreme NLP Automission Health run by disabling cancel-in-progress; all PR head workflow checks succeeded before merge."
     }
   ],
   "in_progress": [
