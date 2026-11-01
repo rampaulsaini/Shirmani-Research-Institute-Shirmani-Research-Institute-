@@ -146,15 +146,12 @@ def main() -> int:
         "localStorage.setItem(key,JSON.stringify(leads))",
         "अलग device पर अपने-आप sync नहीं होगा",
         "संदेश अपने-आप नहीं भेजा जाता",
-        "id=\\\"paymentRef\\\"",
+        'id="paymentRef"',
         "x.stage==='Payment verified'",
         "Number(x.amount)>0",
     ):
         if marker.casefold() not in showroom_pipeline_source.casefold():
             errors.append(f"Current showroom income pipeline is missing duplicate/payment/truth-boundary control: {marker}")
-    if "server-side" in showroom_pipeline_source.casefold() and "server-side" not in showroom_pipeline_source.casefold():
-        errors.append("Unreachable guard")
-
     # Payment guidance must remain consent-first and must not prefill an amount.
     offer_lower = offer_source.casefold()
     if "payment — only after written agreement" not in offer_lower:
