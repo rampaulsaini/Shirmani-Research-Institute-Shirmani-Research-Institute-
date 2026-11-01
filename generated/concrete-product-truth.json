@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-01T09:50:55.552150+00:00",
+  "generated_at": "2026-11-01T16:31:11.937524+00:00",
   "truth_model": "DISTINCT_REPOSITORY_ASSET_REQUIRED",
   "catalog_count": 5000,
-  "concrete_produced": 3716,
-  "remaining": 1284,
-  "concrete_production_percent": 74.32,
-  "overlay_claimed": 3716,
+  "concrete_produced": 3816,
+  "remaining": 1184,
+  "concrete_production_percent": 76.32,
+  "overlay_claimed": 3816,
   "overlay_only_gap": 0,
   "asset_directory": "products/concrete/",
   "rule": "Only an existing non-empty product-specific repository asset counts as concrete production.",
@@ -29897,7 +29897,7 @@
       "engine": "nlp",
       "asset": "products/concrete/SP-2717.html",
       "asset_exists": true,
-      "asset_bytes": 2668,
+      "asset_bytes": 1672,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -29908,7 +29908,7 @@
       "engine": "quantum",
       "asset": "products/concrete/SP-2718.html",
       "asset_exists": true,
-      "asset_bytes": 2692,
+      "asset_bytes": 1690,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -29919,7 +29919,7 @@
       "engine": "engineering",
       "asset": "products/concrete/SP-2719.html",
       "asset_exists": true,
-      "asset_bytes": 2670,
+      "asset_bytes": 1669,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -29930,7 +29930,7 @@
       "engine": "knowledge",
       "asset": "products/concrete/SP-2720.html",
       "asset_exists": true,
-      "asset_bytes": 2662,
+      "asset_bytes": 1663,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -29941,7 +29941,7 @@
       "engine": "time",
       "asset": "products/concrete/SP-2721.html",
       "asset_exists": true,
-      "asset_bytes": 2704,
+      "asset_bytes": 1702,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -29952,7 +29952,7 @@
       "engine": "files",
       "asset": "products/concrete/SP-2722.html",
       "asset_exists": true,
-      "asset_bytes": 2698,
+      "asset_bytes": 1697,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -29963,7 +29963,7 @@
       "engine": "marketing",
       "asset": "products/concrete/SP-2723.html",
       "asset_exists": true,
-      "asset_bytes": 2638,
+      "asset_bytes": 1645,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -29974,7 +29974,7 @@
       "engine": "creator",
       "asset": "products/concrete/SP-2724.html",
       "asset_exists": true,
-      "asset_bytes": 2670,
+      "asset_bytes": 1672,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -29985,7 +29985,7 @@
       "engine": "nature",
       "asset": "products/concrete/SP-2725.html",
       "asset_exists": true,
-      "asset_bytes": 2690,
+      "asset_bytes": 1690,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -29996,7 +29996,7 @@
       "engine": "calculator",
       "asset": "products/concrete/SP-2726.html",
       "asset_exists": true,
-      "asset_bytes": 2719,
+      "asset_bytes": 1710,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30007,7 +30007,7 @@
       "engine": "text",
       "asset": "products/concrete/SP-2727.html",
       "asset_exists": true,
-      "asset_bytes": 2696,
+      "asset_bytes": 1696,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30018,7 +30018,7 @@
       "engine": "seo",
       "asset": "products/concrete/SP-2728.html",
       "asset_exists": true,
-      "asset_bytes": 2666,
+      "asset_bytes": 1671,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30029,7 +30029,7 @@
       "engine": "data",
       "asset": "products/concrete/SP-2729.html",
       "asset_exists": true,
-      "asset_bytes": 2650,
+      "asset_bytes": 1657,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30040,7 +30040,7 @@
       "engine": "draw",
       "asset": "products/concrete/SP-2730.html",
       "asset_exists": true,
-      "asset_bytes": 2714,
+      "asset_bytes": 1710,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30051,7 +30051,7 @@
       "engine": "pixel",
       "asset": "products/concrete/SP-2731.html",
       "asset_exists": true,
-      "asset_bytes": 2744,
+      "asset_bytes": 1734,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30062,7 +30062,7 @@
       "engine": "game",
       "asset": "products/concrete/SP-2732.html",
       "asset_exists": true,
-      "asset_bytes": 2646,
+      "asset_bytes": 1654,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30073,7 +30073,7 @@
       "engine": "quiz",
       "asset": "products/concrete/SP-2733.html",
       "asset_exists": true,
-      "asset_bytes": 2640,
+      "asset_bytes": 1649,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30084,7 +30084,7 @@
       "engine": "research",
       "asset": "products/concrete/SP-2734.html",
       "asset_exists": true,
-      "asset_bytes": 2638,
+      "asset_bytes": 1645,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30095,7 +30095,7 @@
       "engine": "productivity",
       "asset": "products/concrete/SP-2735.html",
       "asset_exists": true,
-      "asset_bytes": 2678,
+      "asset_bytes": 1675,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30106,7 +30106,7 @@
       "engine": "media",
       "asset": "products/concrete/SP-2736.html",
       "asset_exists": true,
-      "asset_bytes": 2694,
+      "asset_bytes": 1693,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30117,7 +30117,7 @@
       "engine": "commerce",
       "asset": "products/concrete/SP-2737.html",
       "asset_exists": true,
-      "asset_bytes": 2654,
+      "asset_bytes": 1657,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30128,7 +30128,7 @@
       "engine": "access",
       "asset": "products/concrete/SP-2738.html",
       "asset_exists": true,
-      "asset_bytes": 2676,
+      "asset_bytes": 1677,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30139,7 +30139,7 @@
       "engine": "visual",
       "asset": "products/concrete/SP-2739.html",
       "asset_exists": true,
-      "asset_bytes": 2672,
+      "asset_bytes": 1674,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30150,7 +30150,7 @@
       "engine": "quality",
       "asset": "products/concrete/SP-2740.html",
       "asset_exists": true,
-      "asset_bytes": 2712,
+      "asset_bytes": 1708,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30161,7 +30161,7 @@
       "engine": "ai",
       "asset": "products/concrete/SP-2741.html",
       "asset_exists": true,
-      "asset_bytes": 2684,
+      "asset_bytes": 1686,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30172,7 +30172,7 @@
       "engine": "nlp",
       "asset": "products/concrete/SP-2742.html",
       "asset_exists": true,
-      "asset_bytes": 2668,
+      "asset_bytes": 1672,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30183,7 +30183,7 @@
       "engine": "quantum",
       "asset": "products/concrete/SP-2743.html",
       "asset_exists": true,
-      "asset_bytes": 2696,
+      "asset_bytes": 1693,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30194,7 +30194,7 @@
       "engine": "engineering",
       "asset": "products/concrete/SP-2744.html",
       "asset_exists": true,
-      "asset_bytes": 2670,
+      "asset_bytes": 1669,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30205,7 +30205,7 @@
       "engine": "knowledge",
       "asset": "products/concrete/SP-2745.html",
       "asset_exists": true,
-      "asset_bytes": 2662,
+      "asset_bytes": 1663,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30216,7 +30216,7 @@
       "engine": "time",
       "asset": "products/concrete/SP-2746.html",
       "asset_exists": true,
-      "asset_bytes": 2712,
+      "asset_bytes": 1708,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30227,7 +30227,7 @@
       "engine": "files",
       "asset": "products/concrete/SP-2747.html",
       "asset_exists": true,
-      "asset_bytes": 2710,
+      "asset_bytes": 1706,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30238,7 +30238,7 @@
       "engine": "marketing",
       "asset": "products/concrete/SP-2748.html",
       "asset_exists": true,
-      "asset_bytes": 2646,
+      "asset_bytes": 1651,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30249,7 +30249,7 @@
       "engine": "creator",
       "asset": "products/concrete/SP-2749.html",
       "asset_exists": true,
-      "asset_bytes": 2674,
+      "asset_bytes": 1675,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30260,7 +30260,7 @@
       "engine": "nature",
       "asset": "products/concrete/SP-2750.html",
       "asset_exists": true,
-      "asset_bytes": 2710,
+      "asset_bytes": 1705,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30271,7 +30271,7 @@
       "engine": "calculator",
       "asset": "products/concrete/SP-2751.html",
       "asset_exists": true,
-      "asset_bytes": 2715,
+      "asset_bytes": 1707,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30282,7 +30282,7 @@
       "engine": "text",
       "asset": "products/concrete/SP-2752.html",
       "asset_exists": true,
-      "asset_bytes": 2704,
+      "asset_bytes": 1702,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30293,7 +30293,7 @@
       "engine": "seo",
       "asset": "products/concrete/SP-2753.html",
       "asset_exists": true,
-      "asset_bytes": 2662,
+      "asset_bytes": 1668,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30304,7 +30304,7 @@
       "engine": "data",
       "asset": "products/concrete/SP-2754.html",
       "asset_exists": true,
-      "asset_bytes": 2646,
+      "asset_bytes": 1654,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30315,7 +30315,7 @@
       "engine": "draw",
       "asset": "products/concrete/SP-2755.html",
       "asset_exists": true,
-      "asset_bytes": 2718,
+      "asset_bytes": 1713,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30326,7 +30326,7 @@
       "engine": "pixel",
       "asset": "products/concrete/SP-2756.html",
       "asset_exists": true,
-      "asset_bytes": 2736,
+      "asset_bytes": 1728,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30337,7 +30337,7 @@
       "engine": "game",
       "asset": "products/concrete/SP-2757.html",
       "asset_exists": true,
-      "asset_bytes": 2658,
+      "asset_bytes": 1663,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30348,7 +30348,7 @@
       "engine": "quiz",
       "asset": "products/concrete/SP-2758.html",
       "asset_exists": true,
-      "asset_bytes": 2644,
+      "asset_bytes": 1652,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30359,7 +30359,7 @@
       "engine": "research",
       "asset": "products/concrete/SP-2759.html",
       "asset_exists": true,
-      "asset_bytes": 2646,
+      "asset_bytes": 1651,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30370,7 +30370,7 @@
       "engine": "productivity",
       "asset": "products/concrete/SP-2760.html",
       "asset_exists": true,
-      "asset_bytes": 2686,
+      "asset_bytes": 1681,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30381,7 +30381,7 @@
       "engine": "media",
       "asset": "products/concrete/SP-2761.html",
       "asset_exists": true,
-      "asset_bytes": 2694,
+      "asset_bytes": 1693,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30392,7 +30392,7 @@
       "engine": "commerce",
       "asset": "products/concrete/SP-2762.html",
       "asset_exists": true,
-      "asset_bytes": 2638,
+      "asset_bytes": 1645,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30403,7 +30403,7 @@
       "engine": "access",
       "asset": "products/concrete/SP-2763.html",
       "asset_exists": true,
-      "asset_bytes": 2656,
+      "asset_bytes": 1662,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30414,7 +30414,7 @@
       "engine": "visual",
       "asset": "products/concrete/SP-2764.html",
       "asset_exists": true,
-      "asset_bytes": 2668,
+      "asset_bytes": 1671,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30425,7 +30425,7 @@
       "engine": "quality",
       "asset": "products/concrete/SP-2765.html",
       "asset_exists": true,
-      "asset_bytes": 2716,
+      "asset_bytes": 1711,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30436,7 +30436,7 @@
       "engine": "ai",
       "asset": "products/concrete/SP-2766.html",
       "asset_exists": true,
-      "asset_bytes": 2680,
+      "asset_bytes": 1683,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30447,7 +30447,7 @@
       "engine": "nlp",
       "asset": "products/concrete/SP-2767.html",
       "asset_exists": true,
-      "asset_bytes": 2652,
+      "asset_bytes": 1660,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30458,7 +30458,7 @@
       "engine": "quantum",
       "asset": "products/concrete/SP-2768.html",
       "asset_exists": true,
-      "asset_bytes": 2692,
+      "asset_bytes": 1690,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30469,7 +30469,7 @@
       "engine": "engineering",
       "asset": "products/concrete/SP-2769.html",
       "asset_exists": true,
-      "asset_bytes": 2670,
+      "asset_bytes": 1669,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30480,7 +30480,7 @@
       "engine": "knowledge",
       "asset": "products/concrete/SP-2770.html",
       "asset_exists": true,
-      "asset_bytes": 2658,
+      "asset_bytes": 1660,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30491,7 +30491,7 @@
       "engine": "time",
       "asset": "products/concrete/SP-2771.html",
       "asset_exists": true,
-      "asset_bytes": 2712,
+      "asset_bytes": 1708,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30502,7 +30502,7 @@
       "engine": "files",
       "asset": "products/concrete/SP-2772.html",
       "asset_exists": true,
-      "asset_bytes": 2702,
+      "asset_bytes": 1700,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30513,7 +30513,7 @@
       "engine": "marketing",
       "asset": "products/concrete/SP-2773.html",
       "asset_exists": true,
-      "asset_bytes": 2650,
+      "asset_bytes": 1654,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30524,7 +30524,7 @@
       "engine": "creator",
       "asset": "products/concrete/SP-2774.html",
       "asset_exists": true,
-      "asset_bytes": 2666,
+      "asset_bytes": 1669,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30535,7 +30535,7 @@
       "engine": "nature",
       "asset": "products/concrete/SP-2775.html",
       "asset_exists": true,
-      "asset_bytes": 2702,
+      "asset_bytes": 1699,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30546,7 +30546,7 @@
       "engine": "calculator",
       "asset": "products/concrete/SP-2776.html",
       "asset_exists": true,
-      "asset_bytes": 2715,
+      "asset_bytes": 1707,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30557,7 +30557,7 @@
       "engine": "text",
       "asset": "products/concrete/SP-2777.html",
       "asset_exists": true,
-      "asset_bytes": 2712,
+      "asset_bytes": 1708,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30568,7 +30568,7 @@
       "engine": "seo",
       "asset": "products/concrete/SP-2778.html",
       "asset_exists": true,
-      "asset_bytes": 2670,
+      "asset_bytes": 1674,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30579,7 +30579,7 @@
       "engine": "data",
       "asset": "products/concrete/SP-2779.html",
       "asset_exists": true,
-      "asset_bytes": 2650,
+      "asset_bytes": 1657,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30590,7 +30590,7 @@
       "engine": "draw",
       "asset": "products/concrete/SP-2780.html",
       "asset_exists": true,
-      "asset_bytes": 2694,
+      "asset_bytes": 1695,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30601,7 +30601,7 @@
       "engine": "pixel",
       "asset": "products/concrete/SP-2781.html",
       "asset_exists": true,
-      "asset_bytes": 2744,
+      "asset_bytes": 1734,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30612,7 +30612,7 @@
       "engine": "game",
       "asset": "products/concrete/SP-2782.html",
       "asset_exists": true,
-      "asset_bytes": 2658,
+      "asset_bytes": 1663,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30623,7 +30623,7 @@
       "engine": "quiz",
       "asset": "products/concrete/SP-2783.html",
       "asset_exists": true,
-      "asset_bytes": 2648,
+      "asset_bytes": 1655,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30634,7 +30634,7 @@
       "engine": "research",
       "asset": "products/concrete/SP-2784.html",
       "asset_exists": true,
-      "asset_bytes": 2646,
+      "asset_bytes": 1651,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30645,7 +30645,7 @@
       "engine": "productivity",
       "asset": "products/concrete/SP-2785.html",
       "asset_exists": true,
-      "asset_bytes": 2686,
+      "asset_bytes": 1681,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30656,7 +30656,7 @@
       "engine": "media",
       "asset": "products/concrete/SP-2786.html",
       "asset_exists": true,
-      "asset_bytes": 2702,
+      "asset_bytes": 1699,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30667,7 +30667,7 @@
       "engine": "commerce",
       "asset": "products/concrete/SP-2787.html",
       "asset_exists": true,
-      "asset_bytes": 2650,
+      "asset_bytes": 1654,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30678,7 +30678,7 @@
       "engine": "access",
       "asset": "products/concrete/SP-2788.html",
       "asset_exists": true,
-      "asset_bytes": 2664,
+      "asset_bytes": 1668,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30689,7 +30689,7 @@
       "engine": "visual",
       "asset": "products/concrete/SP-2789.html",
       "asset_exists": true,
-      "asset_bytes": 2672,
+      "asset_bytes": 1674,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30700,7 +30700,7 @@
       "engine": "quality",
       "asset": "products/concrete/SP-2790.html",
       "asset_exists": true,
-      "asset_bytes": 2736,
+      "asset_bytes": 1726,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30711,7 +30711,7 @@
       "engine": "ai",
       "asset": "products/concrete/SP-2791.html",
       "asset_exists": true,
-      "asset_bytes": 2676,
+      "asset_bytes": 1680,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30722,7 +30722,7 @@
       "engine": "nlp",
       "asset": "products/concrete/SP-2792.html",
       "asset_exists": true,
-      "asset_bytes": 2660,
+      "asset_bytes": 1666,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30733,7 +30733,7 @@
       "engine": "quantum",
       "asset": "products/concrete/SP-2793.html",
       "asset_exists": true,
-      "asset_bytes": 2688,
+      "asset_bytes": 1687,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30744,7 +30744,7 @@
       "engine": "engineering",
       "asset": "products/concrete/SP-2794.html",
       "asset_exists": true,
-      "asset_bytes": 2666,
+      "asset_bytes": 1666,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30755,7 +30755,7 @@
       "engine": "knowledge",
       "asset": "products/concrete/SP-2795.html",
       "asset_exists": true,
-      "asset_bytes": 2662,
+      "asset_bytes": 1663,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30766,7 +30766,7 @@
       "engine": "time",
       "asset": "products/concrete/SP-2796.html",
       "asset_exists": true,
-      "asset_bytes": 2704,
+      "asset_bytes": 1702,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30777,7 +30777,7 @@
       "engine": "files",
       "asset": "products/concrete/SP-2797.html",
       "asset_exists": true,
-      "asset_bytes": 2714,
+      "asset_bytes": 1709,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30788,7 +30788,7 @@
       "engine": "marketing",
       "asset": "products/concrete/SP-2798.html",
       "asset_exists": true,
-      "asset_bytes": 2654,
+      "asset_bytes": 1657,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30799,7 +30799,7 @@
       "engine": "creator",
       "asset": "products/concrete/SP-2799.html",
       "asset_exists": true,
-      "asset_bytes": 2674,
+      "asset_bytes": 1675,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30810,7 +30810,7 @@
       "engine": "nature",
       "asset": "products/concrete/SP-2800.html",
       "asset_exists": true,
-      "asset_bytes": 2710,
+      "asset_bytes": 1705,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30821,7 +30821,7 @@
       "engine": "calculator",
       "asset": "products/concrete/SP-2801.html",
       "asset_exists": true,
-      "asset_bytes": 2715,
+      "asset_bytes": 1707,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30832,7 +30832,7 @@
       "engine": "text",
       "asset": "products/concrete/SP-2802.html",
       "asset_exists": true,
-      "asset_bytes": 2696,
+      "asset_bytes": 1696,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30843,7 +30843,7 @@
       "engine": "seo",
       "asset": "products/concrete/SP-2803.html",
       "asset_exists": true,
-      "asset_bytes": 2650,
+      "asset_bytes": 1659,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30854,7 +30854,7 @@
       "engine": "data",
       "asset": "products/concrete/SP-2804.html",
       "asset_exists": true,
-      "asset_bytes": 2646,
+      "asset_bytes": 1654,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30865,7 +30865,7 @@
       "engine": "draw",
       "asset": "products/concrete/SP-2805.html",
       "asset_exists": true,
-      "asset_bytes": 2698,
+      "asset_bytes": 1698,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30876,7 +30876,7 @@
       "engine": "pixel",
       "asset": "products/concrete/SP-2806.html",
       "asset_exists": true,
-      "asset_bytes": 2740,
+      "asset_bytes": 1731,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30887,7 +30887,7 @@
       "engine": "game",
       "asset": "products/concrete/SP-2807.html",
       "asset_exists": true,
-      "asset_bytes": 2642,
+      "asset_bytes": 1651,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30898,7 +30898,7 @@
       "engine": "quiz",
       "asset": "products/concrete/SP-2808.html",
       "asset_exists": true,
-      "asset_bytes": 2644,
+      "asset_bytes": 1652,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30909,7 +30909,7 @@
       "engine": "research",
       "asset": "products/concrete/SP-2809.html",
       "asset_exists": true,
-      "asset_bytes": 2646,
+      "asset_bytes": 1651,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30920,7 +30920,7 @@
       "engine": "productivity",
       "asset": "products/concrete/SP-2810.html",
       "asset_exists": true,
-      "asset_bytes": 2682,
+      "asset_bytes": 1678,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30931,7 +30931,7 @@
       "engine": "media",
       "asset": "products/concrete/SP-2811.html",
       "asset_exists": true,
-      "asset_bytes": 2702,
+      "asset_bytes": 1699,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30942,7 +30942,7 @@
       "engine": "commerce",
       "asset": "products/concrete/SP-2812.html",
       "asset_exists": true,
-      "asset_bytes": 2642,
+      "asset_bytes": 1648,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30953,7 +30953,7 @@
       "engine": "access",
       "asset": "products/concrete/SP-2813.html",
       "asset_exists": true,
-      "asset_bytes": 2668,
+      "asset_bytes": 1671,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30964,7 +30964,7 @@
       "engine": "visual",
       "asset": "products/concrete/SP-2814.html",
       "asset_exists": true,
-      "asset_bytes": 2664,
+      "asset_bytes": 1668,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30975,7 +30975,7 @@
       "engine": "quality",
       "asset": "products/concrete/SP-2815.html",
       "asset_exists": true,
-      "asset_bytes": 2728,
+      "asset_bytes": 1720,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -30986,7 +30986,7 @@
       "engine": "ai",
       "asset": "products/concrete/SP-2816.html",
       "asset_exists": true,
-      "asset_bytes": 2676,
+      "asset_bytes": 1680,
       "overlay_claimed": true,
       "state": "CONCRETE_PRODUCED"
     },
@@ -40896,10 +40896,10 @@
       "family": "ML/NLP Tools",
       "engine": "nlp",
       "asset": "products/concrete/SP-3717.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2668,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3718",
@@ -40907,10 +40907,10 @@
       "family": "Quantum-Inspired",
       "engine": "quantum",
       "asset": "products/concrete/SP-3718.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2692,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3719",
@@ -40918,10 +40918,10 @@
       "family": "Engineering",
       "engine": "engineering",
       "asset": "products/concrete/SP-3719.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2670,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3720",
@@ -40929,10 +40929,10 @@
       "family": "Knowledge",
       "engine": "knowledge",
       "asset": "products/concrete/SP-3720.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2662,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3721",
@@ -40940,10 +40940,10 @@
       "family": "Calendar & Time",
       "engine": "time",
       "asset": "products/concrete/SP-3721.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2704,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3722",
@@ -40951,10 +40951,10 @@
       "family": "Files & Formats",
       "engine": "files",
       "asset": "products/concrete/SP-3722.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2698,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3723",
@@ -40962,10 +40962,10 @@
       "family": "Marketing",
       "engine": "marketing",
       "asset": "products/concrete/SP-3723.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2638,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3724",
@@ -40973,10 +40973,10 @@
       "family": "Creator Tools",
       "engine": "creator",
       "asset": "products/concrete/SP-3724.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2670,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3725",
@@ -40984,10 +40984,10 @@
       "family": "Nature & Earth",
       "engine": "nature",
       "asset": "products/concrete/SP-3725.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2690,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3726",
@@ -40995,10 +40995,10 @@
       "family": "Counting & Math",
       "engine": "calculator",
       "asset": "products/concrete/SP-3726.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2719,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3727",
@@ -41006,10 +41006,10 @@
       "family": "Text & Language",
       "engine": "text",
       "asset": "products/concrete/SP-3727.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2696,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3728",
@@ -41017,10 +41017,10 @@
       "family": "SEO & Web",
       "engine": "seo",
       "asset": "products/concrete/SP-3728.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2666,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3729",
@@ -41028,10 +41028,10 @@
       "family": "Data Tools",
       "engine": "data",
       "asset": "products/concrete/SP-3729.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2650,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3730",
@@ -41039,10 +41039,10 @@
       "family": "Sketch & Drawing",
       "engine": "draw",
       "asset": "products/concrete/SP-3730.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2714,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3731",
@@ -41050,10 +41050,10 @@
       "family": "Painting & Pixel Art",
       "engine": "pixel",
       "asset": "products/concrete/SP-3731.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2744,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3732",
@@ -41061,10 +41061,10 @@
       "family": "Mini Games",
       "engine": "game",
       "asset": "products/concrete/SP-3732.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2646,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3733",
@@ -41072,10 +41072,10 @@
       "family": "Education",
       "engine": "quiz",
       "asset": "products/concrete/SP-3733.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2640,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3734",
@@ -41083,10 +41083,10 @@
       "family": "Research",
       "engine": "research",
       "asset": "products/concrete/SP-3734.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2638,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3735",
@@ -41094,10 +41094,10 @@
       "family": "Productivity",
       "engine": "productivity",
       "asset": "products/concrete/SP-3735.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2678,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3736",
@@ -41105,10 +41105,10 @@
       "family": "Audio & Media",
       "engine": "media",
       "asset": "products/concrete/SP-3736.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2694,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3737",
@@ -41116,10 +41116,10 @@
       "family": "Commerce",
       "engine": "commerce",
       "asset": "products/concrete/SP-3737.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2654,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3738",
@@ -41127,10 +41127,10 @@
       "family": "Accessibility",
       "engine": "access",
       "asset": "products/concrete/SP-3738.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2676,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3739",
@@ -41138,10 +41138,10 @@
       "family": "Visualization",
       "engine": "visual",
       "asset": "products/concrete/SP-3739.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2672,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3740",
@@ -41149,10 +41149,10 @@
       "family": "Security & Quality",
       "engine": "quality",
       "asset": "products/concrete/SP-3740.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2712,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3741",
@@ -41160,10 +41160,10 @@
       "family": "AI Prompt Tools",
       "engine": "ai",
       "asset": "products/concrete/SP-3741.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2684,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3742",
@@ -41171,10 +41171,10 @@
       "family": "ML/NLP Tools",
       "engine": "nlp",
       "asset": "products/concrete/SP-3742.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2668,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3743",
@@ -41182,10 +41182,10 @@
       "family": "Quantum-Inspired",
       "engine": "quantum",
       "asset": "products/concrete/SP-3743.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2696,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3744",
@@ -41193,10 +41193,10 @@
       "family": "Engineering",
       "engine": "engineering",
       "asset": "products/concrete/SP-3744.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2670,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3745",
@@ -41204,10 +41204,10 @@
       "family": "Knowledge",
       "engine": "knowledge",
       "asset": "products/concrete/SP-3745.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2662,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3746",
@@ -41215,10 +41215,10 @@
       "family": "Calendar & Time",
       "engine": "time",
       "asset": "products/concrete/SP-3746.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2712,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3747",
@@ -41226,10 +41226,10 @@
       "family": "Files & Formats",
       "engine": "files",
       "asset": "products/concrete/SP-3747.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2710,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3748",
@@ -41237,10 +41237,10 @@
       "family": "Marketing",
       "engine": "marketing",
       "asset": "products/concrete/SP-3748.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2646,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3749",
@@ -41248,10 +41248,10 @@
       "family": "Creator Tools",
       "engine": "creator",
       "asset": "products/concrete/SP-3749.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2674,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3750",
@@ -41259,10 +41259,10 @@
       "family": "Nature & Earth",
       "engine": "nature",
       "asset": "products/concrete/SP-3750.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2710,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3751",
@@ -41270,10 +41270,10 @@
       "family": "Counting & Math",
       "engine": "calculator",
       "asset": "products/concrete/SP-3751.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2715,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3752",
@@ -41281,10 +41281,10 @@
       "family": "Text & Language",
       "engine": "text",
       "asset": "products/concrete/SP-3752.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2704,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3753",
@@ -41292,10 +41292,10 @@
       "family": "SEO & Web",
       "engine": "seo",
       "asset": "products/concrete/SP-3753.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2662,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3754",
@@ -41303,10 +41303,10 @@
       "family": "Data Tools",
       "engine": "data",
       "asset": "products/concrete/SP-3754.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2646,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3755",
@@ -41314,10 +41314,10 @@
       "family": "Sketch & Drawing",
       "engine": "draw",
       "asset": "products/concrete/SP-3755.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2718,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3756",
@@ -41325,10 +41325,10 @@
       "family": "Painting & Pixel Art",
       "engine": "pixel",
       "asset": "products/concrete/SP-3756.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2736,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3757",
@@ -41336,10 +41336,10 @@
       "family": "Mini Games",
       "engine": "game",
       "asset": "products/concrete/SP-3757.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2658,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3758",
@@ -41347,10 +41347,10 @@
       "family": "Education",
       "engine": "quiz",
       "asset": "products/concrete/SP-3758.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2644,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3759",
@@ -41358,10 +41358,10 @@
       "family": "Research",
       "engine": "research",
       "asset": "products/concrete/SP-3759.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2646,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3760",
@@ -41369,10 +41369,10 @@
       "family": "Productivity",
       "engine": "productivity",
       "asset": "products/concrete/SP-3760.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2686,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3761",
@@ -41380,10 +41380,10 @@
       "family": "Audio & Media",
       "engine": "media",
       "asset": "products/concrete/SP-3761.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2694,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3762",
@@ -41391,10 +41391,10 @@
       "family": "Commerce",
       "engine": "commerce",
       "asset": "products/concrete/SP-3762.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2638,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3763",
@@ -41402,10 +41402,10 @@
       "family": "Accessibility",
       "engine": "access",
       "asset": "products/concrete/SP-3763.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2656,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3764",
@@ -41413,10 +41413,10 @@
       "family": "Visualization",
       "engine": "visual",
       "asset": "products/concrete/SP-3764.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2668,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3765",
@@ -41424,10 +41424,10 @@
       "family": "Security & Quality",
       "engine": "quality",
       "asset": "products/concrete/SP-3765.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2716,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3766",
@@ -41435,10 +41435,10 @@
       "family": "AI Prompt Tools",
       "engine": "ai",
       "asset": "products/concrete/SP-3766.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2680,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3767",
@@ -41446,10 +41446,10 @@
       "family": "ML/NLP Tools",
       "engine": "nlp",
       "asset": "products/concrete/SP-3767.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2652,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3768",
@@ -41457,10 +41457,10 @@
       "family": "Quantum-Inspired",
       "engine": "quantum",
       "asset": "products/concrete/SP-3768.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2692,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3769",
@@ -41468,10 +41468,10 @@
       "family": "Engineering",
       "engine": "engineering",
       "asset": "products/concrete/SP-3769.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2670,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3770",
@@ -41479,10 +41479,10 @@
       "family": "Knowledge",
       "engine": "knowledge",
       "asset": "products/concrete/SP-3770.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2658,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3771",
@@ -41490,10 +41490,10 @@
       "family": "Calendar & Time",
       "engine": "time",
       "asset": "products/concrete/SP-3771.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2712,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3772",
@@ -41501,10 +41501,10 @@
       "family": "Files & Formats",
       "engine": "files",
       "asset": "products/concrete/SP-3772.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2702,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3773",
@@ -41512,10 +41512,10 @@
       "family": "Marketing",
       "engine": "marketing",
       "asset": "products/concrete/SP-3773.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2650,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3774",
@@ -41523,10 +41523,10 @@
       "family": "Creator Tools",
       "engine": "creator",
       "asset": "products/concrete/SP-3774.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2666,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3775",
@@ -41534,10 +41534,10 @@
       "family": "Nature & Earth",
       "engine": "nature",
       "asset": "products/concrete/SP-3775.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2702,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3776",
@@ -41545,10 +41545,10 @@
       "family": "Counting & Math",
       "engine": "calculator",
       "asset": "products/concrete/SP-3776.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2715,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3777",
@@ -41556,10 +41556,10 @@
       "family": "Text & Language",
       "engine": "text",
       "asset": "products/concrete/SP-3777.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2712,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3778",
@@ -41567,10 +41567,10 @@
       "family": "SEO & Web",
       "engine": "seo",
       "asset": "products/concrete/SP-3778.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2670,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3779",
@@ -41578,10 +41578,10 @@
       "family": "Data Tools",
       "engine": "data",
       "asset": "products/concrete/SP-3779.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2650,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3780",
@@ -41589,10 +41589,10 @@
       "family": "Sketch & Drawing",
       "engine": "draw",
       "asset": "products/concrete/SP-3780.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2694,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3781",
@@ -41600,10 +41600,10 @@
       "family": "Painting & Pixel Art",
       "engine": "pixel",
       "asset": "products/concrete/SP-3781.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2744,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3782",
@@ -41611,10 +41611,10 @@
       "family": "Mini Games",
       "engine": "game",
       "asset": "products/concrete/SP-3782.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2658,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3783",
@@ -41622,10 +41622,10 @@
       "family": "Education",
       "engine": "quiz",
       "asset": "products/concrete/SP-3783.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2648,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3784",
@@ -41633,10 +41633,10 @@
       "family": "Research",
       "engine": "research",
       "asset": "products/concrete/SP-3784.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2646,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3785",
@@ -41644,10 +41644,10 @@
       "family": "Productivity",
       "engine": "productivity",
       "asset": "products/concrete/SP-3785.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2686,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3786",
@@ -41655,10 +41655,10 @@
       "family": "Audio & Media",
       "engine": "media",
       "asset": "products/concrete/SP-3786.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2702,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3787",
@@ -41666,10 +41666,10 @@
       "family": "Commerce",
       "engine": "commerce",
       "asset": "products/concrete/SP-3787.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2650,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3788",
@@ -41677,10 +41677,10 @@
       "family": "Accessibility",
       "engine": "access",
       "asset": "products/concrete/SP-3788.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2664,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3789",
@@ -41688,10 +41688,10 @@
       "family": "Visualization",
       "engine": "visual",
       "asset": "products/concrete/SP-3789.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2672,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3790",
@@ -41699,10 +41699,10 @@
       "family": "Security & Quality",
       "engine": "quality",
       "asset": "products/concrete/SP-3790.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2736,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3791",
@@ -41710,10 +41710,10 @@
       "family": "AI Prompt Tools",
       "engine": "ai",
       "asset": "products/concrete/SP-3791.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2676,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3792",
@@ -41721,10 +41721,10 @@
       "family": "ML/NLP Tools",
       "engine": "nlp",
       "asset": "products/concrete/SP-3792.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2660,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3793",
@@ -41732,10 +41732,10 @@
       "family": "Quantum-Inspired",
       "engine": "quantum",
       "asset": "products/concrete/SP-3793.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2688,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3794",
@@ -41743,10 +41743,10 @@
       "family": "Engineering",
       "engine": "engineering",
       "asset": "products/concrete/SP-3794.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2666,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3795",
@@ -41754,10 +41754,10 @@
       "family": "Knowledge",
       "engine": "knowledge",
       "asset": "products/concrete/SP-3795.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2662,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3796",
@@ -41765,10 +41765,10 @@
       "family": "Calendar & Time",
       "engine": "time",
       "asset": "products/concrete/SP-3796.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2704,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3797",
@@ -41776,10 +41776,10 @@
       "family": "Files & Formats",
       "engine": "files",
       "asset": "products/concrete/SP-3797.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2714,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3798",
@@ -41787,10 +41787,10 @@
       "family": "Marketing",
       "engine": "marketing",
       "asset": "products/concrete/SP-3798.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2654,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3799",
@@ -41798,10 +41798,10 @@
       "family": "Creator Tools",
       "engine": "creator",
       "asset": "products/concrete/SP-3799.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2674,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3800",
@@ -41809,10 +41809,10 @@
       "family": "Nature & Earth",
       "engine": "nature",
       "asset": "products/concrete/SP-3800.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2710,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3801",
@@ -41820,10 +41820,10 @@
       "family": "Counting & Math",
       "engine": "calculator",
       "asset": "products/concrete/SP-3801.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2715,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3802",
@@ -41831,10 +41831,10 @@
       "family": "Text & Language",
       "engine": "text",
       "asset": "products/concrete/SP-3802.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2696,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3803",
@@ -41842,10 +41842,10 @@
       "family": "SEO & Web",
       "engine": "seo",
       "asset": "products/concrete/SP-3803.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2650,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3804",
@@ -41853,10 +41853,10 @@
       "family": "Data Tools",
       "engine": "data",
       "asset": "products/concrete/SP-3804.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2646,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3805",
@@ -41864,10 +41864,10 @@
       "family": "Sketch & Drawing",
       "engine": "draw",
       "asset": "products/concrete/SP-3805.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2698,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3806",
@@ -41875,10 +41875,10 @@
       "family": "Painting & Pixel Art",
       "engine": "pixel",
       "asset": "products/concrete/SP-3806.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2740,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3807",
@@ -41886,10 +41886,10 @@
       "family": "Mini Games",
       "engine": "game",
       "asset": "products/concrete/SP-3807.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2642,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3808",
@@ -41897,10 +41897,10 @@
       "family": "Education",
       "engine": "quiz",
       "asset": "products/concrete/SP-3808.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2644,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3809",
@@ -41908,10 +41908,10 @@
       "family": "Research",
       "engine": "research",
       "asset": "products/concrete/SP-3809.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2646,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3810",
@@ -41919,10 +41919,10 @@
       "family": "Productivity",
       "engine": "productivity",
       "asset": "products/concrete/SP-3810.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2682,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3811",
@@ -41930,10 +41930,10 @@
       "family": "Audio & Media",
       "engine": "media",
       "asset": "products/concrete/SP-3811.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2702,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3812",
@@ -41941,10 +41941,10 @@
       "family": "Commerce",
       "engine": "commerce",
       "asset": "products/concrete/SP-3812.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2642,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3813",
@@ -41952,10 +41952,10 @@
       "family": "Accessibility",
       "engine": "access",
       "asset": "products/concrete/SP-3813.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2668,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3814",
@@ -41963,10 +41963,10 @@
       "family": "Visualization",
       "engine": "visual",
       "asset": "products/concrete/SP-3814.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2664,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3815",
@@ -41974,10 +41974,10 @@
       "family": "Security & Quality",
       "engine": "quality",
       "asset": "products/concrete/SP-3815.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2728,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3816",
@@ -41985,10 +41985,10 @@
       "family": "AI Prompt Tools",
       "engine": "ai",
       "asset": "products/concrete/SP-3816.html",
-      "asset_exists": false,
-      "asset_bytes": 0,
-      "overlay_claimed": false,
-      "state": "NOT_YET_CONCRETE"
+      "asset_exists": true,
+      "asset_bytes": 2676,
+      "overlay_claimed": true,
+      "state": "CONCRETE_PRODUCED"
     },
     {
       "id": "SP-3817",
