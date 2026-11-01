@@ -40,6 +40,17 @@ qc_passed = (
     and qc.get("release_state") == "QC_PASS_READY_FOR_DISPATCH"
 )
 scale_target = 5000
+existing_state = {}
+if state_path.is_file():
+    try:
+        existing_state = json.loads(state_path.read_text(encoding="utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        existing_state = {}
+def existing_count(key: str) -> int:
+    try:
+        return max(0, int(existing_state.get(key, 0)))
+    except (TypeError, ValueError):
+        return 0
 state = {
     "schema_version": 3,
     "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -56,10 +67,12 @@ state = {
     "concrete_materialization_percent_of_catalog": round((concrete_assets / catalog) * 100, 2) if catalog else 0,
     "concrete_materialization_percent_of_scale_target": round((concrete_assets / scale_target) * 100, 2),
     "module_products_generated": browser_assets,
-    "dispatch_released": 0,
-    "sales_claimed": 0,
-    "payment_claimed": 0,
-    "independent_verification_claimed": 0,
+    # Production reconciliation may update production/QC fields only. Preserve
+    # downstream commercial/evidence counters from the prior canonical snapshot.
+    "dispatch_released": existing_count("dispatch_released"),
+    "sales_claimed": existing_count("sales_claimed"),
+    "payment_claimed": existing_count("payment_claimed"),
+    "independent_verification_claimed": existing_count("independent_verification_claimed"),
     "state": ("QC_PASSED_AWAITING_DISPATCH" if qc_passed else
               "PRODUCTION_COMPLETE_CURRENT_CATALOG" if pending == 0 else "PRODUCTION_IN_PROGRESS"),
     "qc_state": "QC_PASSED" if qc_passed else "READY_FOR_QC",
