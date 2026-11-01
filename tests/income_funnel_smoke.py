@@ -58,6 +58,7 @@ def main() -> int:
         income_source, _ = load("income-action-center.html")
         outreach_source, outreach = load("global-client-outreach-workbench.html")
         pipeline_source, _ = load("income-client-pipeline.html")
+        showroom_pipeline_source, _ = load("showroom/income-first-client-pipeline.html")
     except (AssertionError, OSError, UnicodeError) as exc:
         print(f"INCOME FUNNEL SMOKE CHECK: FAILED\n- {exc}")
         return 1
@@ -132,6 +133,25 @@ def main() -> int:
     if "q('p').textContent=data.filter(x=>paid.includes(x.stage)).length" in pipeline_source:
         errors.append("Client pipeline must not count paid jobs from stage labels alone")
 
+    # The current showroom income pipeline must be included in the smoke gate.
+    # Check its duplicate guard, local-only storage boundary, and honest payment/contact labels.
+    for marker in (
+        "function normalizeContact(v)",
+        "function normalizeOrg(v)",
+        "const duplicate=contactKey?leads.find",
+        "normalizeContact(x.contact)===contactKey",
+        "normalizeOrg(x.org)===orgKey",
+        "x.service===record.service",
+        "if(duplicate)",
+        "localStorage.setItem(key,JSON.stringify(leads))",
+        "अलग device पर अपने-आप sync नहीं होगा",
+        "संदेश अपने-आप नहीं भेजा जाता",
+        'id="paymentRef"',
+        "x.stage==='Payment verified'",
+        "Number(x.amount)>0",
+    ):
+        if marker.casefold() not in showroom_pipeline_source.casefold():
+            errors.append(f"Current showroom income pipeline is missing duplicate/payment/truth-boundary control: {marker}")
     # Payment guidance must remain consent-first and must not prefill an amount.
     offer_lower = offer_source.casefold()
     if "payment — only after written agreement" not in offer_lower:
