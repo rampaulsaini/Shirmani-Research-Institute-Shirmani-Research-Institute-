@@ -28,7 +28,8 @@
       "price_inr": 0,
       "repository_presence": "PRESENT_BUT_EMPTY_PLACEHOLDER",
       "runtime_qc": "FAILED_EMPTY_ARTIFACT",
-      "dispatch_eligibility": "BLOCKED"
+      "dispatch_eligibility": "BLOCKED",
+      "blob_sha_type": "GitHub Git blob SHA (not a SHA-256 content digest)"
     },
     {
       "id": "SRI-TOOL-001",
@@ -41,7 +42,8 @@
       "distribution_status": "PUBLIC_FREE_ASSET",
       "paid_dispatch_eligibility": false,
       "stock_count": "NOT_APPLICABLE_DIGITAL",
-      "photo_evidence": "NOT_APPLICABLE_DIGITAL"
+      "photo_evidence": "NOT_APPLICABLE_DIGITAL",
+      "blob_sha_type": "GitHub Git blob SHA (not a SHA-256 content digest)"
     },
     {
       "id": "SRI-TOOL-002",
@@ -54,7 +56,8 @@
       "distribution_status": "PUBLIC_FREE_ASSET",
       "paid_dispatch_eligibility": false,
       "stock_count": "NOT_APPLICABLE_DIGITAL",
-      "photo_evidence": "NOT_APPLICABLE_DIGITAL"
+      "photo_evidence": "NOT_APPLICABLE_DIGITAL",
+      "blob_sha_type": "GitHub Git blob SHA (not a SHA-256 content digest)"
     },
     {
       "id": "SRI-TOOL-003",
@@ -67,7 +70,8 @@
       "distribution_status": "PUBLIC_FREE_ASSET",
       "paid_dispatch_eligibility": false,
       "stock_count": "NOT_APPLICABLE_DIGITAL",
-      "photo_evidence": "NOT_APPLICABLE_DIGITAL"
+      "photo_evidence": "NOT_APPLICABLE_DIGITAL",
+      "blob_sha_type": "GitHub Git blob SHA (not a SHA-256 content digest)"
     },
     {
       "id": "SRI-TOOL-004",
@@ -80,7 +84,8 @@
       "distribution_status": "PUBLIC_FREE_ASSET",
       "paid_dispatch_eligibility": false,
       "stock_count": "NOT_APPLICABLE_DIGITAL",
-      "photo_evidence": "NOT_APPLICABLE_DIGITAL"
+      "photo_evidence": "NOT_APPLICABLE_DIGITAL",
+      "blob_sha_type": "GitHub Git blob SHA (not a SHA-256 content digest)"
     },
     {
       "id": "SRI-TOOL-005",
@@ -93,7 +98,8 @@
       "distribution_status": "PUBLIC_FREE_ASSET",
       "paid_dispatch_eligibility": false,
       "stock_count": "NOT_APPLICABLE_DIGITAL",
-      "photo_evidence": "NOT_APPLICABLE_DIGITAL"
+      "photo_evidence": "NOT_APPLICABLE_DIGITAL",
+      "blob_sha_type": "GitHub Git blob SHA (not a SHA-256 content digest)"
     },
     {
       "id": "SRI-TOOL-006",
@@ -106,7 +112,8 @@
       "distribution_status": "PUBLIC_FREE_ASSET",
       "paid_dispatch_eligibility": false,
       "stock_count": "NOT_APPLICABLE_DIGITAL",
-      "photo_evidence": "NOT_APPLICABLE_DIGITAL"
+      "photo_evidence": "NOT_APPLICABLE_DIGITAL",
+      "blob_sha_type": "GitHub Git blob SHA (not a SHA-256 content digest)"
     },
     {
       "id": "SRI-TOOL-007",
@@ -119,12 +126,13 @@
       "distribution_status": "PUBLIC_FREE_ASSET",
       "paid_dispatch_eligibility": false,
       "stock_count": "NOT_APPLICABLE_DIGITAL",
-      "photo_evidence": "NOT_APPLICABLE_DIGITAL"
+      "photo_evidence": "NOT_APPLICABLE_DIGITAL",
+      "blob_sha_type": "GitHub Git blob SHA (not a SHA-256 content digest)"
     },
     {
       "id": "SRI-TOOL-008",
       "path": "products/micro/seo-meta-generator.html",
-      "blob_sha": "2c4924f14d1c0f6b3f779f5162e3d16b2e265847",
+      "blob_sha": "2c4924d14d1c0f6b3f779f5162e3d16b2e265847",
       "bytes": 1603,
       "price_inr": 0,
       "repository_presence": "NONEMPTY_REPOSITORY_FILE",
@@ -132,7 +140,8 @@
       "distribution_status": "PUBLIC_FREE_ASSET",
       "paid_dispatch_eligibility": false,
       "stock_count": "NOT_APPLICABLE_DIGITAL",
-      "photo_evidence": "NOT_APPLICABLE_DIGITAL"
+      "photo_evidence": "NOT_APPLICABLE_DIGITAL",
+      "blob_sha_type": "GitHub Git blob SHA (not a SHA-256 content digest)"
     }
   ],
   "next_gates": [
