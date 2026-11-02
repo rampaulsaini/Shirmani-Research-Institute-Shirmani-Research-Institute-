@@ -225,6 +225,20 @@
       "asset_evidence": "VERIFIED_IN_REPOSITORY",
       "lane": "micro-digital-products",
       "priority": 5
+    },
+    {
+      "id": "P-STUDIO-001",
+      "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+      "type": "digital_experience",
+      "price_inr": 0,
+      "price_note": "Free introductory demo; premium dialogue pricing to be confirmed",
+      "delivery": "digital-experience",
+      "store": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/social-platform.html#create",
+      "asset_evidence": "NOT_IN_REPOSITORY",
+      "lane": "creator-studio",
+      "priority": 1,
+      "status": "DEMO_PROPOSED",
+      "description": "A proposed multilingual digital dialogue experience about impartial understanding, truth, love and peace. No live publishing, voice clone, hologram or paid delivery is claimed."
     }
   ]
 }
