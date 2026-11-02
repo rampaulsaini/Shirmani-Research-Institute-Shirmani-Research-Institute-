@@ -1,0 +1,52 @@
+name: Supreme Social Dispatch Gateway
+
+on:
+  push:
+    paths:
+      - 'showroom-products.json'
+      - 'scripts/auto-dispatch.js'
+      - '.github/workflows/supreme-dispatch.yml'
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    inputs:
+      product_id:
+        description: 'Exact product ID to dispatch (optional; must be explicitly dispatch_ready in manifest)'
+        required: false
+        type: string
+      enable_live_dispatch:
+        description: 'Enable webhook dispatch for this run (requires repository variable DISPATCH_ENABLED=true and MAKE_WEBHOOK_URL secret)'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-social-dispatch
+  cancel-in-progress: false
+
+jobs:
+  validate-and-dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate manifest and script
+        run: |
+          node --check scripts/auto-dispatch.js
+          node -e "const m=require('./showroom-products.json'); if(!Array.isArray(m.products)) process.exit(1); console.log('Manifest valid; products:',m.products.length)"
+      - name: Dry-run or gated dispatch
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          DISPATCH_ENABLED: ${{ vars.DISPATCH_ENABLED }}
+          DISPATCH_PRODUCT_ID: ${{ inputs.product_id }}
+          REQUEST_LIVE: ${{ inputs.enable_live_dispatch }}
+        run: |
+          if [ "$REQUEST_LIVE" = "true" ] && [ "$DISPATCH_ENABLED" = "true" ]; then
+            node scripts/auto-dispatch.js
+          else
+            DISPATCH_ENABLED=false node scripts/auto-dispatch.js
+          fi
