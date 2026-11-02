@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Central policy manifest for daily social content planning and future authorized publishing. This file does not authenticate accounts or publish content by itself.",
+  "timezone": "Asia/Kolkata",
+  "account_directory": "config/social-accounts.json",
+  "account_directory_semantics": "Treat entries as supplied URLs only. Do not count a URL as an authenticated account or publishing destination.",
+  "operating_mode": "DRAFT_ONLY_UNTIL_PLATFORM_AUTHORIZATION",
+  "daily_content_program": [
+    {
+      "content_type": "core_post",
+      "cadence": "daily",
+      "output": "One source-grounded post with a clear audience value and call to action."
+    },
+    {
+      "content_type": "short_video",
+      "cadence": "daily",
+      "output": "One vertical short derived from the approved core idea; captions and accessible text required."
+    },
+    {
+      "content_type": "podcast_episode",
+      "cadence": "daily",
+      "output": "One short audio episode or a clearly labelled episode segment; use only authorized voice/audio."
+    },
+    {
+      "content_type": "animated_story",
+      "cadence": "daily",
+      "output": "One original storyboard/animation unit; label generated or illustrative media accurately."
+    },
+    {
+      "content_type": "serial_episode",
+      "cadence": "weekly",
+      "output": "One connected episode in a numbered series with continuity notes."
+    }
+  ],
+  "daily_calendar_ist": [
+    {
+      "slot": "09:00",
+      "stage": "plan",
+      "deliverable": "topic, audience, source notes, intended outcome"
+    },
+    {
+      "slot": "10:00",
+      "stage": "create",
+      "deliverable": "core post and platform-neutral copy"
+    },
+    {
+      "slot": "12:00",
+      "stage": "produce_media",
+      "deliverable": "short video, podcast segment, animated storyboard"
+    },
+    {
+      "slot": "15:00",
+      "stage": "quality_review",
+      "deliverable": "rights, factuality, safety, captions, links, duplicate check"
+    },
+    {
+      "slot": "18:00",
+      "stage": "publish_or_queue",
+      "deliverable": "publish only to individually authorized destinations; otherwise retain as draft"
+    },
+    {
+      "slot": "20:00",
+      "stage": "evidence_report",
+      "deliverable": "per-destination result, post URL/ID, timestamp, errors, metrics when available"
+    }
+  ],
+  "platform_routing": {
+    "source_of_destinations": "config/social-accounts.json",
+    "rule": "Resolve account records by stable record identity only after an account is confirmed and its official API authorization is tested.",
+    "default_connection_status": "NOT_CONNECTED",
+    "permitted_states": [
+      "NOT_CONNECTED",
+      "AUTHORIZATION_PENDING",
+      "AUTHORIZED_TEST_PENDING",
+      "AUTHORIZED_AND_TESTED",
+      "SUSPENDED"
+    ],
+    "publish_condition": "connection_status == AUTHORIZED_AND_TESTED AND platform_permissions explicitly allow the requested media/action AND content approval gate passes",
+    "unsupported_or_unavailable_api_behavior": "Keep as draft and report the reason. Never claim a post was published."
+  },
+  "quality_and_rights_gate": [
+    "Preserve the source idea and its provenance; distinguish fact, opinion, philosophy, and hypothesis.",
+    "Check factual claims and cite primary sources where appropriate.",
+    "Use only media, music, images, likenesses, and voice recordings with documented usage rights and consent.",
+    "Run duplicate, spam, platform-policy, privacy, and accessibility checks.",
+    "Require human approval for the first live test on each destination and for sensitive/high-impact claims.",
+    "Do not infer scientific proof, endorsement, reach, or income from generated content or workflow success."
+  ],
+  "evidence_contract": {
+    "draft_created": "Record internal content ID, version, source references, and creation timestamp.",
+    "approved": "Record approver and approval timestamp.",
+    "published": "Require platform response plus canonical post URL or post ID and timestamp.",
+    "failed": "Record destination, error code/message, retry count, and next action.",
+    "engagement": "Record only metrics actually returned by the platform.",
+    "income": "Count income only after payment-provider or bank evidence confirms receipt; views, clicks, catalog prices, and inquiries are not income."
+  },
+  "security": [
+    "Never commit OAuth access tokens, refresh tokens, passwords, webhook URLs, or payment secrets.",
+    "Store credentials only in the approved platform connection or encrypted secret store.",
+    "Use least-privilege scopes, destination allow-lists, idempotency keys, rate limits, and audit logs."
+  ],
+  "current_boundary": {
+    "social_links_are_not_connections": true,
+    "direct_publishing_enabled": false,
+    "make_receiver_tested": false,
+    "platform_oauth_verified": false,
+    "sales_or_payment_proven_by_this_manifest": false
+  }
+}
