@@ -2,7 +2,7 @@
   "schema_version": 1,
   "mode": "REAL_PRODUCT_CATALOG",
   "principle": "A product record is not a completed sale; checkout/delivery must remain explicit.",
-  "offer_count": 24,
+  "offer_count": 25,
   "offers": [
     {
       "id": "P001",
@@ -225,6 +225,28 @@
       "asset_evidence": "VERIFIED_IN_REPOSITORY",
       "lane": "micro-digital-products",
       "priority": 5
+    },
+    {
+      "id": "P-STUDIO-001",
+      "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+      "type": "digital-studio-demo",
+      "delivery": "digital-content-package",
+      "languages": "16-language-demo-planned",
+      "formats": [
+        "short-reel-9:16-15s",
+        "long-video-16:9-5min",
+        "podcast-audio"
+      ],
+      "theme": "निष्पक्ष समझ ही सत्य है",
+      "public_demo_price_inr": 0,
+      "price_note": "Free public demo concept; premium dialogue/service requires a separately agreed quote and payment evidence.",
+      "evidence_status": "OWNER_DECLARED_CONCEPT_NOT_INDEPENDENTLY_VERIFIED",
+      "origin_reference": "Owner-provided concept: 04/04/2024, Harmandir Sahib, Amritsar; historical claim not independently verified.",
+      "venue_note": "Golden Temple reflection is a creative theme, not a confirmed venue, partnership, endorsement, or audience commitment.",
+      "voice_status": "OWNER_RECORDING_REQUIRED; no voice clone or exact-voice claim until authorized source recording and consent are supplied.",
+      "commercial_status": "DRAFT_NOT_FOR_SALE",
+      "dispatch": "DISABLED_PENDING_ASSET_QC_AND_ACCOUNT_AUTHORIZATION",
+      "asset_evidence": "NOT_YET_CREATED"
     }
   ]
 }

@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "name": "Shirmani Anant Studio — guarded social publishing plan",
+  "purpose": "Content planning and evidence tracking only. This manifest does not assert that any social account is authenticated or that publishing is live.",
+  "studio_product_id": "P-STUDIO-001",
+  "status": "DRAFT_NOT_LIVE",
+  "planned_distribution_target_count": 16,
+  "account_source": "config/social-accounts.json",
+  "account_source_caveat": "That file contains public links, not proof of 16 authenticated publishing accounts. Map and verify each account individually before enabling publication.",
+  "platforms": [
+    {
+      "platform": "youtube",
+      "formats": [
+        "short",
+        "long",
+        "podcast"
+      ],
+      "connection_status": "NOT_CONNECTED",
+      "publishing_enabled": false
+    },
+    {
+      "platform": "instagram",
+      "formats": [
+        "short",
+        "story"
+      ],
+      "connection_status": "NOT_CONNECTED",
+      "publishing_enabled": false
+    },
+    {
+      "platform": "facebook",
+      "formats": [
+        "short",
+        "long",
+        "story"
+      ],
+      "connection_status": "NOT_CONNECTED",
+      "publishing_enabled": false
+    },
+    {
+      "platform": "x",
+      "formats": [
+        "short",
+        "story"
+      ],
+      "connection_status": "NOT_CONNECTED",
+      "publishing_enabled": false
+    }
+  ],
+  "content_formats": [
+    {
+      "id": "short-reel",
+      "aspect_ratio": "9:16",
+      "duration_seconds": 15,
+      "status": "SCRIPT_PENDING",
+      "theme": "सत्य • प्रेम • शांति",
+      "visual": "Text hologram concept; studio image asset still required"
+    },
+    {
+      "id": "long-video",
+      "aspect_ratio": "16:9",
+      "duration_seconds": 300,
+      "status": "SCRIPT_PENDING",
+      "theme": "Harmandir Sahib से Anant Studio तक",
+      "disclaimer": "Personal narrative; dates, locations and historical assertions require owner confirmation and evidence."
+    },
+    {
+      "id": "podcast",
+      "format": "audio",
+      "duration_seconds": 1800,
+      "status": "SCRIPT_PENDING",
+      "title": "निष्पक्ष समझ ही सत्य है",
+      "voice_source": "OWNER_RECORDING_REQUIRED"
+    }
+  ],
+  "schedule": {
+    "timezone": "Asia/Kolkata",
+    "cadence": "1 story per day",
+    "enabled": false,
+    "reason": "Enable only after account OAuth/API authorization, content approval, platform policy checks and a successful test post."
+  },
+  "consent": {
+    "owner_content_permission": "TO_BE_CONFIRMED_FOR_EACH_ASSET",
+    "voice_recording_permission": "PENDING_OWNER_RECORDING_AND_EXPLICIT_CONSENT",
+    "platform_api_authorization": "NOT_GRANTED_OR_NOT_VERIFIED"
+  },
+  "automation": {
+    "source_asset_required": true,
+    "story_studio": "PLANNED",
+    "video_studio": "PLANNED",
+    "router": "DRY_RUN_ONLY",
+    "make_webhook": "NOT_CONFIGURED_OR_NOT_VERIFIED",
+    "external_publish": false,
+    "idempotency_required": true
+  },
+  "evidence": {
+    "required": [
+      "source_asset_hash",
+      "content_qc_result",
+      "platform_account_id",
+      "provider_publish_response",
+      "published_post_url",
+      "timestamp"
+    ],
+    "income_requires": [
+      "customer_order",
+      "payment_confirmation",
+      "delivery_evidence"
+    ],
+    "views_followers_are_not_income": true
+  },
+  "security": {
+    "never_commit": [
+      "OAuth tokens",
+      "API secrets",
+      "passwords",
+      "payment credentials",
+      "private customer data"
+    ],
+    "store_credentials_in": "GitHub Actions Secrets or provider-managed Make connections"
+  },
+  "gates": {
+    "publish_requires": [
+      "asset_created_and_qc_passed",
+      "account_authenticated",
+      "platform_permission_verified",
+      "owner_approval",
+      "dry_run_passed"
+    ],
+    "income_claim_requires": "verified payment evidence"
+  }
+}
