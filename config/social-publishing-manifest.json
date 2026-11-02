@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "studio_id": "P-STUDIO-001",
+  "purpose": "Draft publishing plan for Anant Studio. Configuration is not proof of authenticated accounts or successful publication.",
+  "rollout_target_accounts": 16,
+  "rollout_status": "PLANNED_NOT_CONNECTED",
+  "default_schedule": {
+    "frequency": "daily",
+    "items_per_day": 1,
+    "timezone": "Asia/Kolkata",
+    "status": "DRAFT_NOT_SCHEDULED"
+  },
+  "content_pipeline": [
+    "OWNER_SOURCE_MATERIAL",
+    "STORY_DRAFT",
+    "LANGUAGE_ADAPTATION",
+    "FORMAT_RENDER",
+    "CLAIMS_AND_RIGHTS_REVIEW",
+    "HUMAN_APPROVAL",
+    "PLATFORM_AUTHORIZATION",
+    "PUBLISH",
+    "PUBLICATION_RECEIPT",
+    "INCOME_EVIDENCE"
+  ],
+  "approval_policy": {
+    "owner_approval_required": true,
+    "platform_oauth_required": true,
+    "auto_publish_without_approval": false,
+    "voice_clone_requires_explicit_separate_consent": true
+  },
+  "content_formats": [
+    {
+      "id": "short-reel",
+      "label": "Short Reel",
+      "aspect_ratio": "9:16",
+      "duration_seconds": 15,
+      "status": "CREATIVE_BRIEF_ONLY"
+    },
+    {
+      "id": "long-video",
+      "label": "Long Video",
+      "aspect_ratio": "16:9",
+      "duration_seconds": 300,
+      "status": "CREATIVE_BRIEF_ONLY"
+    },
+    {
+      "id": "podcast-audio",
+      "label": "Podcast Audio",
+      "duration_seconds": 30,
+      "status": "SCRIPT_DRAFT_ONLY"
+    }
+  ],
+  "platforms": [
+    {
+      "platform": "youtube",
+      "source_config": "config/social-accounts.json",
+      "account_match": "Main YouTube",
+      "formats": [
+        "short-reel",
+        "long-video",
+        "podcast-audio"
+      ],
+      "authorization_status": "PENDING_OAUTH",
+      "publishing_status": "DISABLED"
+    },
+    {
+      "platform": "instagram",
+      "source_config": "config/social-accounts.json",
+      "account_match": "Instagram",
+      "formats": [
+        "short-reel"
+      ],
+      "authorization_status": "PENDING_OAUTH",
+      "publishing_status": "DISABLED"
+    },
+    {
+      "platform": "facebook",
+      "source_config": "config/social-accounts.json",
+      "account_match": "Primary Facebook",
+      "formats": [
+        "short-reel",
+        "long-video"
+      ],
+      "authorization_status": "PENDING_OAUTH",
+      "publishing_status": "DISABLED"
+    },
+    {
+      "platform": "x",
+      "source_config": "config/social-accounts.json",
+      "account_match": "X profile",
+      "formats": [
+        "short-reel"
+      ],
+      "authorization_status": "PENDING_OAUTH",
+      "publishing_status": "DISABLED"
+    }
+  ],
+  "account_inventory_note": "The source file contains public links, not verified account ownership or API connections. Multiple URLs can refer to posts/articles rather than distinct accounts. Reconcile the requested 16 accounts before enabling routing.",
+  "income_evidence": {
+    "required": [
+      "platform_post_id_or_url",
+      "timestamp",
+      "offer_id",
+      "customer_order_reference",
+      "payment_provider_reference",
+      "amount_received_inr",
+      "delivery_evidence"
+    ],
+    "sales_claimed": 0,
+    "payments_claimed": 0,
+    "policy": "Views, followers, impressions, catalog prices and publication events are not income."
+  },
+  "security": {
+    "secrets_location": "GitHub Actions Secrets or authorized platform connection",
+    "commit_tokens": false,
+    "commit_passwords": false
+  },
+  "external_actions": {
+    "make_webhook": "NOT_CONFIGURED_IN_THIS_MANIFEST",
+    "publish_calls": "NONE"
+  }
+}
