@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "studio_id": "P-STUDIO-001",
+  "studio_name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+  "status": "DEMO_PROPOSED",
+  "publishing_mode": "DRY_RUN",
+  "account_directory": "config/social-accounts.json",
+  "account_directory_records": 20,
+  "verified_connected_accounts": 0,
+  "note": "The directory contains 20 URL records, not 20 verified active accounts. Some records are posts, pins, articles, groups or external store links. Authentication and publishing rights are not established.",
+  "content_plan": {
+    "source": "owner-approved script or user-provided recording",
+    "formats": [
+      {
+        "id": "short-vertical",
+        "format": "video",
+        "aspect_ratio": "9:16",
+        "target_duration_seconds": 15,
+        "status": "PLANNED"
+      },
+      {
+        "id": "long-video",
+        "format": "video",
+        "aspect_ratio": "16:9",
+        "target_duration_seconds": 300,
+        "status": "PLANNED"
+      },
+      {
+        "id": "podcast-audio",
+        "format": "audio",
+        "title": "निष्पक्ष समझ ही सत्य है",
+        "status": "PLANNED"
+      }
+    ],
+    "languages": {
+      "target_count": 16,
+      "status": "TRANSLATION_AND_HUMAN_REVIEW_REQUIRED"
+    },
+    "voice": {
+      "source": "USER_RECORDING_REQUIRED",
+      "voice_clone_permission": "NOT_GRANTED_IN_SYSTEM"
+    },
+    "historical_visuals": {
+      "status": "ILLUSTRATIVE_ONLY_UNLESS_INDEPENDENTLY_VERIFIED"
+    }
+  },
+  "schedule": {
+    "story_per_day": 1,
+    "timezone": "Asia/Kolkata",
+    "status": "PROPOSED_NOT_SCHEDULED"
+  },
+  "destinations": [
+    {
+      "platform": "youtube",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": [
+        "short",
+        "long",
+        "podcast"
+      ]
+    },
+    {
+      "platform": "instagram",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": [
+        "short",
+        "story"
+      ]
+    },
+    {
+      "platform": "facebook",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": [
+        "short",
+        "long",
+        "story"
+      ]
+    },
+    {
+      "platform": "x",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": [
+        "short",
+        "post"
+      ]
+    }
+  ],
+  "approval_gate": {
+    "human_approval_required": true,
+    "rights_check_required": true,
+    "platform_policy_check_required": true
+  },
+  "income_evidence": {
+    "views_are_not_income": true,
+    "payment_proof_required": true,
+    "delivery_confirmation_required": true
+  },
+  "security": {
+    "tokens_in_repository": false,
+    "credentials_location": "GitHub Actions secrets or provider-managed OAuth connections"
+  }
+}
