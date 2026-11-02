@@ -10,8 +10,6 @@ on:
       - "assets/shirmani-perspective-logo.svg"
       - "generated/1000-digital-products.json"
       - ".github/workflows/product-visual-production.yml"
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       batch_size:
