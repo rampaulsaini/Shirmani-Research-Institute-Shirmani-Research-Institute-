@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0.0",
+  "name": "Shirmani Daily Social Content Automission",
+  "status": "PRODUCTION_SPEC_ONLY",
+  "timezone": "Asia/Kolkata",
+  "source_account_directory": "config/social-accounts.json",
+  "purpose": "Create one reusable, evidence-aware daily content package and route approved variants to explicitly connected social accounts without duplicating content generation.",
+  "automation": {
+    "content_generation_enabled": false,
+    "publishing_enabled": false,
+    "default_mode": "DRAFT_ONLY",
+    "reason": "No verified platform OAuth/API connections or tested Make publishing receiver are recorded yet."
+  },
+  "daily_content_lanes": [
+    {
+      "lane_id": "CORE_IDEA",
+      "format": "TEXT_POST",
+      "cadence": "DAILY",
+      "outputs": ["Hindi master post", "optional English adaptation"],
+      "requirements": ["single clear idea", "plain-language explanation", "source links for factual claims"]
+    },
+    {
+      "lane_id": "SHORT_VIDEO",
+      "format": "VERTICAL_VIDEO",
+      "cadence": "DAILY",
+      "outputs": ["one 30-90 second video", "caption", "transcript", "thumbnail"],
+      "requirements": ["script derived from approved core idea", "captioned", "rights-cleared media"]
+    },
+    {
+      "lane_id": "AUDIO_PODCAST",
+      "format": "AUDIO",
+      "cadence": "DAILY",
+      "outputs": ["one 3-8 minute audio episode", "show notes", "transcript"],
+      "requirements": ["same approved topic as daily core idea", "voice and music usage rights recorded"]
+    },
+    {
+      "lane_id": "ANIMATED_STORY",
+      "format": "ANIMATED_SHORT",
+      "cadence": "DAILY",
+      "outputs": ["one 30-90 second animated story or scene", "script", "captions"],
+      "requirements": ["original characters or documented permissions", "story facts checked", "consistent character references"]
+    },
+    {
+      "lane_id": "SERIAL_EPISODE",
+      "format": "LONG_FORM_VIDEO_OR_AUDIO",
+      "cadence": "WEEKLY",
+      "outputs": ["one numbered episode", "teaser", "episode notes"],
+      "requirements": ["episode continuity checked", "previous episode linked", "full rights and source review"]
+    }
+  ],
+  "quality_gates": {
+    "source_and_claim_review": "REQUIRED",
+    "copyright_and_permissions_review": "REQUIRED",
+    "language_and_caption_review": "REQUIRED",
+    "human_approval_before_publication": true,
+    "reject_unverified_claims": true,
+    "reject_missing_media_rights": true
+  },
+  "publishing_contract": {
+    "account_directory_is_source_of_truth": true,
+    "only_api_status_connected_accounts_eligible": true,
+    "link_only_accounts_are_not_publish_targets": true,
+    "platform_specific_format_and_permission_checks": true,
+    "dry_run_first": true,
+    "idempotency_key_fields": ["content_id", "platform", "account_label", "content_version"],
+    "record_platform_post_id_and_public_url": true,
+    "record_failure_reason_and_retry_count": true,
+    "never_store_tokens_in_repository": true
+  },
+  "income_evidence": {
+    "views_followers_likes_and_clicks_are_not_revenue": true,
+    "count_income_only_after_provider_or_bank_payment_confirmation": true,
+    "link_each_paid_order_to_delivery_evidence": true,
+    "report_separately": ["qualified_inquiries", "proposals", "orders", "verified_payments", "verified_deliveries"]
+  },
+  "daily_report": {
+    "report_path": "generated/social-automission-daily-report.json",
+    "required_counters": [
+      "content_packages_created",
+      "content_packages_approved",
+      "publication_attempts",
+      "publication_successes",
+      "publication_failures",
+      "platform_post_ids_recorded",
+      "qualified_inquiries",
+      "orders_confirmed",
+      "payments_verified",
+      "deliveries_verified"
+    ],
+    "zero_when_no_evidence": true
+  },
+  "activation_checklist": [
+    "Verify each account URL and account owner authorization",
+    "Connect each eligible platform through its official OAuth/API flow",
+    "Configure and test the Make receiver with an idempotency check",
+    "Run a private test destination and verify returned post ID",
+    "Review platform-specific rate limits and content rules",
+    "Obtain explicit human approval before enabling public publishing"
+  ]
+}
