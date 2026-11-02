@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "studio_id": "P-STUDIO-001",
+  "name": "शिरोमणि अनंत स्टूडियो - हृदय से हृदय संवाद",
+  "product_state": "DEVELOPMENT_ONLY",
+  "release_state": "NOT_PUBLISHED",
+  "description": "A creator-led multilingual storytelling, video and podcast studio presenting the author's impartial-understanding philosophy.",
+  "identity_and_evidence": {
+    "core_message": "निष्पक्ष समझ ही सत्य है",
+    "identity_claim_type": "PHILOSOPHICAL_PERSONAL_PERSPECTIVE",
+    "origin_story_date": "2024-04-04",
+    "origin_story_location": "Harimandir Sahib, Amritsar",
+    "origin_story_evidence_state": "OWNER_DECLARED_NOT_INDEPENDENTLY_VERIFIED",
+    "golden_temple_reflection": "CREATIVE_VISUAL_THEME_NOT_A_CLAIM_OF_VENUE_OR_AFFILIATION",
+    "do_not_claim": [
+      "official affiliation or endorsement by Harmandir Sahib",
+      "crores of audience or guaranteed reach",
+      "independent verification of the origin story without evidence",
+      "a live hologram, avatar, voice clone or lip-sync before an actual tested render"
+    ]
+  },
+  "media_assets": {
+    "studio_image": {
+      "state": "ASSET_REQUIRED",
+      "source": "Use only an image supplied or explicitly authorised by the creator",
+      "portrait_policy": "No face generation, replacement, beautification or alteration"
+    },
+    "original_voice_recording": {
+      "state": "ASSET_REQUIRED",
+      "source": "Use only an original creator-authorised recording",
+      "voice_clone_or_synthesis": "DISABLED_UNTIL_EXPLICIT_AUTHORIZATION_AND_PROVIDER_TEST"
+    }
+  },
+  "formats": [
+    {
+      "id": "ANANT-SHORT-001",
+      "format": "vertical-short",
+      "aspect_ratio": "9:16",
+      "target_duration_seconds": 15,
+      "theme": "सत्य प्रेम शांति",
+      "visual_treatment": "Text-led hologram-inspired motion design",
+      "state": "STORYBOARD_REQUIRED"
+    },
+    {
+      "id": "ANANT-LONG-001",
+      "format": "long-video",
+      "aspect_ratio": "16:9",
+      "target_duration_seconds": 300,
+      "theme": "Harimandir Sahib से Anant Studio तक — creator's personal story",
+      "state": "SCRIPT_REQUIRED"
+    },
+    {
+      "id": "ANANT-PODCAST-001",
+      "format": "podcast-audio",
+      "theme": "निष्पक्ष समझ ही सत्य है",
+      "state": "ORIGINAL_VOICE_ASSET_REQUIRED"
+    }
+  ],
+  "language_plan": {
+    "target_language_count": 16,
+    "languages": [],
+    "state": "LANGUAGE_LIST_AND_TRANSLATION_QA_REQUIRED",
+    "rule": "Do not claim all-world-language support; publish only languages that pass human-readable translation and pronunciation review."
+  },
+  "publishing": {
+    "daily_story_target": 1,
+    "timezone": "Asia/Kolkata",
+    "schedule_state": "DISABLED",
+    "publish_requires": [
+      "creator approval of the exact media asset",
+      "authenticated platform connection",
+      "platform-specific publishing permission",
+      "content and rights review",
+      "successful private or draft-mode integration test"
+    ],
+    "accounts": [
+      {"slot": 1, "platform": "YouTube", "account_url": null, "connection_status": "NOT_CONNECTED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 2, "platform": "Instagram", "account_url": null, "connection_status": "NOT_CONNECTED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 3, "platform": "Facebook", "account_url": null, "connection_status": "NOT_CONNECTED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 4, "platform": "X", "account_url": null, "connection_status": "NOT_CONNECTED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 5, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 6, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 7, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 8, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 9, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 10, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 11, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 12, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 13, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 14, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 15, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false},
+      {"slot": 16, "platform": null, "account_url": null, "connection_status": "UNASSIGNED", "permission_status": "NOT_VERIFIED", "publishing_enabled": false}
+    ]
+  },
+  "monetization": {
+    "offer_price_inr": null,
+    "pricing_state": "NOT_SET",
+    "sales_count": 0,
+    "payment_count": 0,
+    "payment_evidence_state": "NO_CLAIM",
+    "rule": "Do not treat views, followers, catalog listings, enquiries or workflow runs as income. Record income only against verified payment evidence."
+  },
+  "automation": {
+    "pipeline": [
+      "creator-authorised-image-and-original-voice",
+      "story-studio",
+      "video-and-audio-render",
+      "human-content-and-rights-review",
+      "platform-router",
+      "draft-or-private-test",
+      "creator-approved-publication",
+      "platform-publication-evidence",
+      "verified-enquiry-and-payment-evidence"
+    ],
+    "make_webhook": "USE_EXISTING_GUARDED_DISPATCH_BRIDGE",
+    "dispatch_enabled": false,
+    "idempotency_required": true,
+    "secrets_policy": "Store tokens and webhook secrets only in approved secret stores; never commit credentials."
+  },
+  "acceptance_gates": {
+    "original_image": "NOT_TESTED",
+    "original_voice": "NOT_TESTED",
+    "15_second_vertical_render": "NOT_TESTED",
+    "5_minute_video_render": "NOT_TESTED",
+    "podcast_audio_render": "NOT_TESTED",
+    "16_language_quality_review": "NOT_TESTED",
+    "platform_oauth_and_permissions": "NOT_TESTED",
+    "draft_publish_test": "NOT_TESTED",
+    "public_publish": "BLOCKED",
+    "payment_verification": "NOT_TESTED"
+  },
+  "truth_boundary": "This manifest records a development plan only. It does not mean a product offer is live, a voice or image asset is present, any social account is connected, publication permission is granted, or revenue has been received."
+}
