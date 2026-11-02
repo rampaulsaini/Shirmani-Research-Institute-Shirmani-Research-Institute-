@@ -116,6 +116,52 @@
           "id": "S003",
           "name": "Voice / narration packaging",
           "delivery": "creative-service"
+        },
+        {
+          "id": "P-STUDIO-001",
+          "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+          "delivery": "creative-production-service",
+          "product_type": "hologram_second_version_concept",
+          "status": "DRAFT_NOT_FOR_SALE",
+          "languages": {
+            "target_count": 16,
+            "status": "PLANNED_NOT_GENERATED"
+          },
+          "formats": [
+            {
+              "id": "short-reel",
+              "aspect_ratio": "9:16",
+              "duration_seconds": 15,
+              "status": "CREATIVE_BRIEF_ONLY"
+            },
+            {
+              "id": "long-video",
+              "aspect_ratio": "16:9",
+              "duration_seconds": 300,
+              "status": "CREATIVE_BRIEF_ONLY"
+            },
+            {
+              "id": "podcast-audio",
+              "duration_seconds": 30,
+              "status": "SCRIPT_DRAFT_ONLY"
+            }
+          ],
+          "voice": {
+            "mode": "OWNER_SUPPLIED_RECORDING_REQUIRED",
+            "voice_clone_authorized": false,
+            "status": "NOT_PROVIDED"
+          },
+          "story_source": {
+            "description": "Owner-proposed narrative referencing 04/04/2024 and Harmandir Sahib; requires owner-supplied source material and independent evidence before factual presentation.",
+            "evidence_status": "OWNER_DECLARED_UNVERIFIED"
+          },
+          "venue": "Creative visual concept only; no audience or venue partnership claimed.",
+          "pricing_model": "FREE_PREVIEW; PREMIUM_DIALOGUE_PRICE_BY_WRITTEN_AGREEMENT",
+          "price_inr": null,
+          "asset_evidence": "NOT_IN_REPOSITORY",
+          "publication_status": "NOT_AUTHORIZED",
+          "sale_status": "NOT_FOR_SALE",
+          "notes": "No sale, audience reach, voice identity, hologram rendering, language coverage, or independent verification is claimed by this draft record."
         }
       ]
     },
