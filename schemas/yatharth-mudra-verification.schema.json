@@ -1,0 +1,275 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/yatharth-mudra-verification.schema.json",
+  "title": "Yatharth Mudra Honour Verification Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "subject",
+    "framework",
+    "levels",
+    "review",
+    "integrity",
+    "status",
+    "legal_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_id": {
+      "type": "string",
+      "pattern": "^YMH-[A-Z0-9-]{8,64}$"
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "display_name",
+        "consent_recorded"
+      ],
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "consent_recorded": {
+          "const": true
+        },
+        "public_profile_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "private_data_excluded": {
+          "const": true
+        }
+      }
+    },
+    "framework": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "heart_view_claim",
+        "mind_intellect_claim",
+        "measurement_note"
+      ],
+      "properties": {
+        "name": {
+          "const": "Yatharth Siddhant / Yatharth Mudra Honour Framework"
+        },
+        "heart_view_claim": {
+          "const": 99.9999
+        },
+        "mind_intellect_claim": {
+          "const": 0.0001
+        },
+        "measurement_note": {
+          "const": "Creator-defined philosophical framing only; not a scientifically validated psychometric measurement, diagnosis, or externally proven fact."
+        }
+      }
+    },
+    "levels": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "level",
+          "name",
+          "weight_percent",
+          "assessment",
+          "evidence_refs",
+          "reviewer_outcome"
+        ],
+        "properties": {
+          "level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7
+          },
+          "name": {
+            "type": "string"
+          },
+          "weight_percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "assessment": {
+            "type": "string",
+            "enum": [
+              "NOT_ASSESSED",
+              "INSUFFICIENT_EVIDENCE",
+              "PARTIALLY_SUPPORTED",
+              "SUPPORTED",
+              "DISPUTED"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            }
+          },
+          "reviewer_outcome": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "ACCEPTED",
+              "REJECTED",
+              "CONFLICT_OF_INTEREST"
+            ]
+          }
+        }
+      }
+    },
+    "continuity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "days_observed",
+        "required_days",
+        "evidence_ref",
+        "status"
+      ],
+      "properties": {
+        "days_observed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "required_days": {
+          "const": 365
+        },
+        "evidence_ref": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "status": {
+          "enum": [
+            "NOT_STARTED",
+            "IN_PROGRESS",
+            "SUPPORTED",
+            "NOT_SUPPORTED"
+          ]
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_independent_reviewers",
+        "reviewers",
+        "all_independent",
+        "decision"
+      ],
+      "properties": {
+        "required_independent_reviewers": {
+          "const": 3
+        },
+        "reviewers": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "reviewer_id",
+              "decision",
+              "conflict_of_interest_checked",
+              "evidence_digest",
+              "signature_ref"
+            ],
+            "properties": {
+              "reviewer_id": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 100
+              },
+              "decision": {
+                "enum": [
+                  "PENDING",
+                  "ACCEPT",
+                  "REJECT"
+                ]
+              },
+              "conflict_of_interest_checked": {
+                "type": "boolean"
+              },
+              "evidence_digest": {
+                "type": "string",
+                "pattern": "^sha256:[a-f0-9]{64}$"
+              },
+              "signature_ref": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              }
+            }
+          }
+        },
+        "all_independent": {
+          "type": "boolean"
+        },
+        "decision": {
+          "enum": [
+            "PENDING",
+            "APPROVED",
+            "REJECTED",
+            "DISPUTED"
+          ]
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonicalization",
+        "algorithm",
+        "payload_hash"
+      ],
+      "properties": {
+        "canonicalization": {
+          "const": "RFC8785-JCS"
+        },
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "payload_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "previous_record_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "EVIDENCE_PENDING",
+        "INDEPENDENT_REVIEW_PENDING",
+        "APPROVED_HONOUR_ONLY",
+        "REJECTED",
+        "REVOKED"
+      ]
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "legal_boundary": {
+      "const": "HONOUR CERTIFICATE ONLY — not legal tender, not an investment, not redeemable for INR, and no monetary value or payment obligation is created."
+    }
+  }
+}
