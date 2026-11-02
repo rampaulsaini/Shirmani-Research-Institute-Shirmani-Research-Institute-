@@ -58,9 +58,14 @@ function main() {
     console.log(JSON.stringify({ ok: true, mode: 'dry-run', dispatched: false, reason: 'DISPATCH_ENABLED_not_true', payload }, null, 2));
     return;
   }
-  if (!webhook || !/^https:\/\//i.test(webhook)) return fail('Set MAKE_WEBHOOK_URL to an HTTPS webhook before enabling dispatch');
+  let webhookUrl;
+  try { webhookUrl = new URL(webhook); } catch { return fail('MAKE_WEBHOOK_URL must be a valid Make.com webhook URL'); }
+  const allowedHost = webhookUrl.hostname === 'hook.make.com' || /^hook\\.[a-z0-9-]+\\.make\\.com$/i.test(webhookUrl.hostname);
+  if (webhookUrl.protocol !== 'https:' || !allowedHost || webhookUrl.username || webhookUrl.password || (webhookUrl.port && webhookUrl.port !== '443')) {
+    return fail('MAKE_WEBHOOK_URL must use HTTPS and an official hook.make.com or hook.<region>.make.com host');
+  }
 
-  fetch(webhook, {
+  fetch(webhookUrl.toString(), {
     method: 'POST',
     headers: { 'content-type': 'application/json', 'idempotency-key': payload.idempotency_key },
     body: JSON.stringify(payload),
