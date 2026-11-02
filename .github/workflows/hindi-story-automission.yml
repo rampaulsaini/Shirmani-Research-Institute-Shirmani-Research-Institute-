@@ -1,0 +1,29 @@
+name: Hindi Story Automission — guarded
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "social-content-manifest.json"
+      - "content/social-stories/**"
+      - "scripts/validate-social-stories.js"
+      - ".github/workflows/hindi-story-automission.yml"
+  schedule:
+    - cron: "17 3 * * *"
+permissions:
+  contents: read
+concurrency:
+  group: hindi-story-automission
+  cancel-in-progress: false
+jobs:
+  validate-story-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate Hindi story package
+        run: node scripts/validate-social-stories.js
+      - name: State publication boundary
+        run: echo "Validation only. No media rendering and no external social publishing were attempted."
