@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Track story assets and publishing evidence separately. A generated draft is never proof of publication.",
+  "default_language": "hi",
+  "production_lane": "stories",
+  "automation_mode": "PREPARE_ONLY",
+  "publishing_enabled": false,
+  "stories": [
+    {
+      "story_id": "SRI-STORY-001",
+      "title": "पारदर्शी तराज़ू",
+      "language": "hi",
+      "source_path": "content/stories/hi/SRI-STORY-001-paradarshi-tarazu.md",
+      "source_status": "DRAFT_REVIEW_REQUIRED",
+      "editorial_review": "PENDING",
+      "media_assets": {
+        "story_text": "PRESENT",
+        "illustrations": "NOT_CREATED",
+        "voiceover": "NOT_CREATED",
+        "video": "NOT_CREATED",
+        "captions": "NOT_CREATED"
+      },
+      "derivatives": {
+        "short_video": "PLANNED_NOT_CREATED",
+        "podcast": "PLANNED_NOT_CREATED",
+        "animated_episode": "PLANNED_NOT_CREATED"
+      },
+      "distribution": {
+        "account_registry": "config/social-accounts.json",
+        "eligible_destinations": [],
+        "publishing_status": "NOT_PUBLISHED",
+        "platform_post_urls": [],
+        "platform_receipts": [],
+        "last_attempt_at": null
+      },
+      "evidence_policy": {
+        "workflow_success_is_publication": false,
+        "require_platform_post_url": true,
+        "require_platform_receipt_or_verifiable_public_post": true,
+        "payment_or_sales_claims_require_separate_provider_evidence": true
+      }
+    }
+  ],
+  "status_legend": {
+    "NOT_CREATED": "Asset does not exist yet",
+    "PLANNED_NOT_CREATED": "Planned only; no file or media has been produced",
+    "DRAFT_REVIEW_REQUIRED": "Text exists but needs editorial approval",
+    "NOT_PUBLISHED": "No verified public post exists",
+    "PUBLISHED": "Use only after verifiable platform evidence is recorded"
+  }
+}
