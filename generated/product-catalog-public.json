@@ -2,7 +2,7 @@
   "schema_version": 1,
   "mode": "REAL_PRODUCT_CATALOG",
   "principle": "A product record is not a completed sale; checkout/delivery must remain explicit.",
-  "offer_count": 24,
+  "offer_count": 25,
   "offers": [
     {
       "id": "P001",
@@ -225,6 +225,31 @@
       "asset_evidence": "VERIFIED_IN_REPOSITORY",
       "lane": "micro-digital-products",
       "priority": 5
+    },
+    {
+      "id": "P-STUDIO-001",
+      "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+      "type": "digital-experience",
+      "description": "निष्पक्ष समझ, सत्य, प्रेम और शांति पर आधारित डिजिटल संवाद अनुभव।",
+      "price_inr": 0,
+      "pricing_note": "Introductory public experience is free; premium dialogue pricing requires a separately confirmed offer.",
+      "delivery": "digital-experience",
+      "status": "DEMO_PROPOSED",
+      "asset_evidence": "NOT_YET_CREATED",
+      "language_plan": {
+        "target_languages": 16,
+        "status": "TRANSLATION_AND_HUMAN_REVIEW_REQUIRED"
+      },
+      "voice_status": "USER_RECORDING_REQUIRED",
+      "visual_concept": "Digital studio; Golden Temple-inspired reflection imagery only, with no claim of endorsement or physical venue.",
+      "historical_reference": {
+        "date": "2024-04-04",
+        "status": "OWNER_DECLARED_NOT_INDEPENDENTLY_VERIFIED"
+      },
+      "publishing_permission": "PENDING_PLATFORM_AUTHORIZATION",
+      "payment_status": "NO_PAYMENT_CLAIMED",
+      "lane": "creator-digital-experiences",
+      "priority": 1
     }
   ]
 }
