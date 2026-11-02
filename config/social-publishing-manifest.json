@@ -1,0 +1,240 @@
+{
+  "schema_version": "1.0",
+  "studio_id": "P-STUDIO-001",
+  "purpose": "Draft publishing registry for Anant Studio. Public URLs are references only; they do not establish account ownership, authentication, API access, or permission to publish.",
+  "status": "DRAFT_NOT_CONNECTED",
+  "publishing_mode": "DISABLED_DRY_RUN",
+  "daily_schedule": {
+    "target": "1 story per day",
+    "enabled": false,
+    "timezone": "Asia/Kolkata",
+    "activation_gate": "All account authorizations, official API permissions, content review, and test publication must pass."
+  },
+  "content_formats": {
+    "planned": [
+      "short_video_9_16",
+      "long_video_16_9",
+      "podcast_audio"
+    ],
+    "platform_compatibility": "MUST_BE_VERIFIED_PER_ACCOUNT"
+  },
+  "content_policy": {
+    "human_approval_required": true,
+    "voice": "USER_RECORDED_OR_LICENSED_VOICE_REQUIRED",
+    "translation_review_required": true,
+    "claims_and_historical_references_require_evidence": true
+  },
+  "accounts": [
+    {
+      "account_id": "social-01",
+      "platform": "facebook",
+      "label": "Primary Facebook",
+      "url": "https://www.facebook.com/share/19wzFT2qry/",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-02",
+      "platform": "facebook",
+      "label": "Facebook profile",
+      "url": "https://www.facebook.com/profile.php?id=100075288011123",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-03",
+      "platform": "whatsapp_channel",
+      "label": "WhatsApp Channel",
+      "url": "https://whatsapp.com/channel/0029VaAtyvg77qVR2J82Qn04",
+      "connection_status": "LINK_ONLY",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-04",
+      "platform": "whatsapp_group",
+      "label": "WhatsApp Group",
+      "url": "https://chat.whatsapp.com/EZRptFT1OWQ8zFyq4WyWzf",
+      "connection_status": "LINK_ONLY",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-05",
+      "platform": "youtube",
+      "label": "Main YouTube",
+      "url": "https://youtube.com/@rampaulsaini-yk4gn",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-06",
+      "platform": "youtube",
+      "label": "Motivational Quotes",
+      "url": "https://youtube.com/@motivationalquotes-m7p",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-07",
+      "platform": "youtube",
+      "label": "Humanity",
+      "url": "https://youtube.com/@humanity-sl1jd",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-08",
+      "platform": "youtube",
+      "label": "Additional YouTube",
+      "url": "https://youtube.com/@user-ud1kg2sx6v",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-09",
+      "platform": "instagram",
+      "label": "Instagram",
+      "url": "https://instagram.com/globleprefect",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-10",
+      "platform": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/rampaul-saini-12120592",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-11",
+      "platform": "x",
+      "label": "X profile",
+      "url": "https://twitter.com/rampaulsaini",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-12",
+      "platform": "pinterest",
+      "label": "Pinterest pin 1",
+      "url": "https://pin.it/69LggZr",
+      "connection_status": "LINK_ONLY",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-13",
+      "platform": "pinterest",
+      "label": "Pinterest pin 2",
+      "url": "https://pin.it/5a3y4ZZ",
+      "connection_status": "LINK_ONLY",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-14",
+      "platform": "blogger",
+      "label": "Multicosmovision article",
+      "url": "http://multicosmovision.blogspot.com/2025/01/proved-by-quantum-multi-languages.html",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-15",
+      "platform": "blogger",
+      "label": "Beyond Science and Spirit — self discovery",
+      "url": "http://beyondscienseandspirtu.blogspot.com/2023/07/startgy-of-self-discover.html",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-16",
+      "platform": "blogger",
+      "label": "Beyond Science and Spirit — words",
+      "url": "http://beyondscienseandspirtu.blogspot.com/2023/07/a-world-where-words-come-alive.html",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-17",
+      "platform": "blogger",
+      "label": "Multicosmovision article 2023",
+      "url": "http://multicosmovision.blogspot.com/2023/07/blog-post_86.html",
+      "connection_status": "NOT_CONNECTED",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-18",
+      "platform": "hipi",
+      "label": "Hipi",
+      "url": "https://www.hipi.co.in/@rampaulsaini",
+      "connection_status": "LINK_ONLY",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-19",
+      "platform": "explurger",
+      "label": "Explurger",
+      "url": "https://app.explurger.com/dl/4CANVNw28Gymh46x6",
+      "connection_status": "LINK_ONLY",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    },
+    {
+      "account_id": "social-20",
+      "platform": "store",
+      "label": "Take App Store",
+      "url": "https://take.app/httpsgithubcomrampaulsainishirmaniresearchinstitute",
+      "connection_status": "NOT_A_SOCIAL_PUBLISHING_ACCOUNT",
+      "authorization_status": "PENDING_VERIFICATION",
+      "publishing_enabled": false,
+      "supported_formats": "PLATFORM_CAPABILITY_CHECK_REQUIRED"
+    }
+  ],
+  "income_evidence": {
+    "sales": "ORDER_RECORD_REQUIRED",
+    "payment": "PROVIDER_OR_BANK_RECEIPT_REQUIRED",
+    "delivery": "DELIVERY_CONFIRMATION_REQUIRED",
+    "views_and_followers_are_not_income": true
+  },
+  "security": {
+    "tokens_in_repository": false,
+    "credentials_location": "GitHub Actions secrets or authorized provider connections only"
+  },
+  "activation_rule": "Do not enable scheduled publication until each destination has verified ownership, OAuth/API authorization, supported-format confirmation, and a successful private test."
+}
