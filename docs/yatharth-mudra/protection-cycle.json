@@ -1,0 +1,113 @@
+{
+  "version": "1.0.0",
+  "status": "PROPOSED_NOT_FUNDED_NOT_ACTIVE",
+  "purpose": "Track voluntary, lawful and independently reviewable protection projects without treating an honour certificate as money.",
+  "separation": {
+    "yatharth_mudra_is_money": false,
+    "symbolic_honour_reference_inr": 1000000000,
+    "redeemable": false,
+    "transferable": false,
+    "creates_payment_obligation": false,
+    "automatic_next_certificate": false,
+    "automatic_funding_or_disbursement": false,
+    "connected_to_sales_or_income_counters": false
+  },
+  "permitted_project_categories": [
+    "roti",
+    "kapda",
+    "shiksha",
+    "chikitsa",
+    "makaan",
+    "jeev",
+    "vanaspati",
+    "prithvi"
+  ],
+  "project_requirements": [
+    "A real project owner and lawful funding source must be identified before any spending claim.",
+    "Record approved budget, actual disbursements, dates, vendors and outcome measures separately.",
+    "Receipts and payment evidence must be checked against the actual transaction; plans and generated files are not proof of spending.",
+    "Obtain informed consent where personal stories, images or testimonials are used; consent to aid must never be conditional on publicity.",
+    "Use safeguarding procedures for children and vulnerable people."
+  ],
+  "evidence_index": {
+    "required_fields": [
+      "project_id",
+      "activity_id",
+      "category",
+      "event_date",
+      "amount_and_currency_if_applicable",
+      "evidence_digest",
+      "evidence_type",
+      "consent_status",
+      "review_status"
+    ],
+    "evidence_types": [
+      "redacted_receipt",
+      "redacted_payment_confirmation",
+      "consented_photo_or_video",
+      "beneficiary_feedback_optional",
+      "independent_site_check",
+      "outcome_measurement"
+    ],
+    "public_fields_only": [
+      "project_id",
+      "activity_id",
+      "category",
+      "date_or_period",
+      "amount_and_currency_if_publicly_disclosable",
+      "evidence_digest",
+      "review_status"
+    ],
+    "private_fields": [
+      "beneficiary_identity",
+      "contact_details",
+      "precise_home_or_shelter_location",
+      "medical_information",
+      "unredacted_receipts",
+      "identity_documents"
+    ],
+    "location_policy": "Keep precise geolocation private; publish only coarse area data when safe, lawful and consented.",
+    "hash_note": "SHA-256 supports integrity checking only; it does not independently verify that a claimed activity occurred."
+  },
+  "independent_verification": {
+    "reviewers_required": 3,
+    "must_be_distinct": true,
+    "conflicts_must_be_disclosed": true,
+    "same_evidence_version_digest_required": true,
+    "verify_transaction_and_outcome_separately": true,
+    "dissent_and_limitations_recorded": true,
+    "appeal_and_correction_supported": true,
+    "no_self_approval": true
+  },
+  "continuation": {
+    "next_honour_review": "May be proposed only after a completed project review and a fresh human decision under the separate honour policy.",
+    "automatic_issue": false,
+    "issue_authority": "No authority is created by this file; any certificate remains symbolic and subject to separate consent, policy review and human approval.",
+    "do_not_count_as": "income, sales, payment, legal tender, investment, guaranteed value, or proof of funds"
+  },
+  "public_ledger": {
+    "suggested_path": "generated/protection-ledger.json",
+    "append_only_events": true,
+    "publish_redacted_metadata_and_hashes_only": true,
+    "never_publish_beneficiary_personal_data": true,
+    "never_publish_unredacted_media_or_documents": true,
+    "corrections": "Append a correction or superseding event; do not silently rewrite historical claims."
+  },
+  "dashboard_counters": {
+    "planned_projects": "count separately from funded and active projects",
+    "funds_received": "verified transactions only",
+    "funds_disbursed": "verified transactions only",
+    "beneficiaries_reached": "count only with a defensible method and privacy safeguards",
+    "outcomes_verified": "independent outcome checks only",
+    "unresolved_reviews": "show openly; never represent as verified"
+  },
+  "activation_gates": [
+    "Named accountable project operator and lawful funding source",
+    "Privacy, safeguarding and consent review",
+    "Evidence storage with access controls and retention policy",
+    "Independent reviewer authentication and conflict checks",
+    "Tested audit and correction process",
+    "Human approval before any public claim of verified protection"
+  ],
+  "legal_boundary": "This is a proposed evidence-tracking policy. It does not create funds, entitlements, a currency, a trust, a charity, a judicial body or a payment obligation."
+}
