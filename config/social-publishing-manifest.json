@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "studio": {
+    "id": "P-STUDIO-001",
+    "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+    "product_status": "DEMO_PROPOSED",
+    "capability_version": "V1_CLEAR_SCRIPT",
+    "description": "A digital dialogue experience about impartial understanding, truth, love and peace.",
+    "voice_status": "VOICE_ASSET_REQUIRED",
+    "avatar_status": "NOT_VERIFIED",
+    "languages": {
+      "target_count": 16,
+      "status": "TRANSLATION_REVIEW_REQUIRED"
+    },
+    "historical_reference": {
+      "date": "2024-04-04",
+      "status": "OWNER_DECLARED_NOT_INDEPENDENTLY_VERIFIED"
+    },
+    "pricing": {
+      "public_introductory_content": "FREE",
+      "premium_dialogue": "PRICE_AND_DELIVERY_TO_BE_CONFIRMED"
+    }
+  },
+  "publishing": {
+    "mode": "DRY_RUN",
+    "daily_story_target": 1,
+    "human_approval_required": true,
+    "duplicate_policy": "IDEMPOTENCY_KEY_REQUIRED",
+    "formats": [
+      {
+        "id": "short",
+        "aspect_ratio": "9:16",
+        "target_duration_seconds": 15,
+        "status": "SCRIPT_REQUIRED"
+      },
+      {
+        "id": "long",
+        "aspect_ratio": "16:9",
+        "target_duration_seconds": 300,
+        "status": "SCRIPT_AND_MEDIA_REQUIRED"
+      },
+      {
+        "id": "podcast",
+        "media_type": "audio",
+        "status": "AUTHORISED_VOICE_OR_LABELLED_SYNTHETIC_VOICE_REQUIRED"
+      }
+    ],
+    "target_platforms": [
+      {
+        "platform": "youtube",
+        "connection": "NOT_CONNECTED",
+        "permission": "PENDING_VERIFICATION"
+      },
+      {
+        "platform": "instagram",
+        "connection": "NOT_CONNECTED",
+        "permission": "PENDING_VERIFICATION"
+      },
+      {
+        "platform": "facebook",
+        "connection": "NOT_CONNECTED",
+        "permission": "PENDING_VERIFICATION"
+      },
+      {
+        "platform": "x",
+        "connection": "NOT_CONNECTED",
+        "permission": "PENDING_VERIFICATION"
+      }
+    ],
+    "account_inventory": {
+      "target_account_count": 16,
+      "source_file": "config/social-accounts.json",
+      "status": "OWNER_REVIEW_AND_ACCOUNT_IDENTITY_VERIFICATION_REQUIRED",
+      "note": "The source directory contains URLs, including posts, pins, articles, groups and a store. URL count is not an authenticated account count. Do not infer 16 connected accounts from the directory."
+    }
+  },
+  "automation": {
+    "existing_dispatch_workflow": ".github/workflows/supreme-dispatch.yml",
+    "existing_dispatch_script": "scripts/auto-dispatch.js",
+    "make_webhook": "GITHUB_SECRET_MAKE_WEBHOOK_URL_REQUIRED",
+    "dispatch_enabled": false,
+    "publish_only_after": [
+      "account_ownership_and_oauth_verified",
+      "platform_api_permission_verified",
+      "content_quality_gate_passed",
+      "human_approval_recorded",
+      "destination_allowlisted"
+    ]
+  },
+  "income_evidence": {
+    "sales_status": "NO_SALE_CLAIMED",
+    "payment_status": "NO_PAYMENT_CLAIMED",
+    "required_proof": [
+      "provider_or_bank_payment_reference",
+      "order_id",
+      "delivery_evidence",
+      "refund_and_fee_reconciliation"
+    ]
+  },
+  "security": {
+    "secrets_in_repository": false,
+    "tokens_in_public_manifest": false,
+    "customer_personal_data_in_manifest": false
+  }
+}
