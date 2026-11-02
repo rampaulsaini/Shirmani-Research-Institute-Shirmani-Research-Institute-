@@ -30,14 +30,14 @@ CREATE TABLE IF NOT EXISTS yatharth_mudra_reviews (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   case_id UUID NOT NULL REFERENCES yatharth_mudra_cases(id),
   reviewer_id TEXT NOT NULL,
-  decision TEXT NOT NULL CHECK (decision IN ('PENDING','ACCEPT','REJECT')),
+  decision TEXT NOT NULL CHECK (decision IN ('ACCEPT','REJECT')),
   conflict_checked BOOLEAN NOT NULL DEFAULT FALSE,
   conflict_declared BOOLEAN NOT NULL DEFAULT FALSE,
   evidence_digest TEXT NOT NULL CHECK (evidence_digest ~ '^[a-f0-9]{64}$'),
   signature_ref TEXT NOT NULL,
   reviewed_at TIMESTAMPTZ,
   UNIQUE(case_id, reviewer_id),
-  CHECK (NOT conflict_declared)
+  CHECK (conflict_checked)
 );
 
 CREATE TABLE IF NOT EXISTS yatharth_mudra_audit_events (
@@ -81,3 +81,85 @@ FOR EACH ROW EXECUTE FUNCTION yatharth_mudra_reject_mutation();
 -- IMPORTANT: do not grant public INSERT/UPDATE on these tables.
 -- Configure least-privilege server roles, reviewer authentication, RLS and
 -- private evidence storage before connecting an application.
+
+-- A certificate cannot be inserted unless all issuance gates are satisfied.
+-- Conflict declarations remain recordable, but a conflicted reviewer cannot approve.
+CREATE OR REPLACE FUNCTION yatharth_mudra_validate_certificate()
+RETURNS trigger LANGUAGE plpgsql AS $$
+DECLARE
+  v_case yatharth_mudra_cases%ROWTYPE;
+  v_level_count INTEGER;
+  v_review_count INTEGER;
+  v_accept_count INTEGER;
+  v_conflict_count INTEGER;
+  v_digest_count INTEGER;
+BEGIN
+  SELECT * INTO v_case
+  FROM yatharth_mudra_cases
+  WHERE id = NEW.case_id
+  FOR UPDATE;
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Yatharth Mudra case does not exist';
+  END IF;
+  IF NOT v_case.consent_recorded THEN
+    RAISE EXCEPTION 'Recorded subject consent is required';
+  END IF;
+  IF v_case.continuity_days <> 365 THEN
+    RAISE EXCEPTION '365 days of voluntary continuity evidence are required by policy';
+  END IF;
+  IF v_case.status IN ('REJECTED','REVOKED','APPROVED_HONOUR_ONLY') THEN
+    RAISE EXCEPTION 'Case status does not permit certificate issuance';
+  END IF;
+
+  SELECT COUNT(DISTINCT level) INTO v_level_count
+  FROM yatharth_mudra_evidence
+  WHERE case_id = NEW.case_id AND level BETWEEN 1 AND 7;
+  IF v_level_count <> 7 THEN
+    RAISE EXCEPTION 'Evidence for all seven levels is required';
+  END IF;
+
+  SELECT COUNT(*),
+         COUNT(*) FILTER (WHERE decision = 'ACCEPT'),
+         COUNT(*) FILTER (WHERE conflict_declared),
+         COUNT(DISTINCT evidence_digest)
+    INTO v_review_count, v_accept_count, v_conflict_count, v_digest_count
+  FROM yatharth_mudra_reviews
+  WHERE case_id = NEW.case_id
+    AND conflict_checked
+    AND reviewed_at IS NOT NULL
+    AND length(trim(signature_ref)) > 0;
+
+  IF v_review_count <> 3 OR v_accept_count <> 3 THEN
+    RAISE EXCEPTION 'Exactly three authenticated, independent ACCEPT reviews are required';
+  END IF;
+  IF v_conflict_count <> 0 THEN
+    RAISE EXCEPTION 'A reviewer with a declared conflict cannot approve';
+  END IF;
+  IF v_digest_count <> 1 THEN
+    RAISE EXCEPTION 'All reviewers must review the same evidence digest';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS yatharth_certificate_issue_gate ON yatharth_mudra_certificates;
+CREATE TRIGGER yatharth_certificate_issue_gate
+BEFORE INSERT ON yatharth_mudra_certificates
+FOR EACH ROW EXECUTE FUNCTION yatharth_mudra_validate_certificate();
+
+CREATE OR REPLACE FUNCTION yatharth_mudra_mark_case_approved()
+RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+  UPDATE yatharth_mudra_cases
+     SET status = 'APPROVED_HONOUR_ONLY', updated_at = now()
+   WHERE id = NEW.case_id;
+  RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS yatharth_certificate_mark_case ON yatharth_mudra_certificates;
+CREATE TRIGGER yatharth_certificate_mark_case
+AFTER INSERT ON yatharth_mudra_certificates
+FOR EACH ROW EXECUTE FUNCTION yatharth_mudra_mark_case_approved();
