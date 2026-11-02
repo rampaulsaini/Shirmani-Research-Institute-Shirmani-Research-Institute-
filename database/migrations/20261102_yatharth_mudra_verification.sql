@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS yatharth_mudra_reviews (
   conflict_checked BOOLEAN NOT NULL DEFAULT FALSE,
   conflict_declared BOOLEAN NOT NULL DEFAULT FALSE,
   evidence_digest TEXT NOT NULL CHECK (evidence_digest ~ '^[a-f0-9]{64}$'),
-  signature_ref TEXT NOT NULL,
-  reviewed_at TIMESTAMPTZ,
+  signature_ref TEXT NOT NULL CHECK (length(trim(signature_ref)) > 0),
+  reviewed_at TIMESTAMPTZ NOT NULL,
   UNIQUE(case_id, reviewer_id),
   CHECK (conflict_checked)
 );
