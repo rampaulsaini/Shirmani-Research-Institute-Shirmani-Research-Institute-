@@ -123,5 +123,14 @@
       "api_status": "EXTERNAL_STORE"
     }
   ],
-  "security_note": "Never commit access tokens, passwords, payment credentials, or private customer data to this file."
+  "security_note": "Never commit access tokens, passwords, payment credentials, or private customer data to this file.",
+  "public_references": [
+    {
+      "platform": "x",
+      "label": "X post shared by project owner",
+      "url": "https://twitter.com/rampaulsaini/status/308238386760663041",
+      "status": "OWNER_SUBMITTED_LINK",
+      "note": "A public post reference; not evidence of API authorization, account ownership verification, reach, or automated publishing."
+    }
+  ]
 }
