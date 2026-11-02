@@ -29,11 +29,12 @@ function main() {
   if (!manifest || !Array.isArray(manifest.products)) return fail('Manifest must contain a products array');
 
   const products = manifest.products;
+  // An explicit ID narrows selection; it must never bypass the readiness gate.
   const product = requestedId
-    ? products.find(item => String(item.id) === requestedId)
+    ? products.find(item => item && String(item.id) === requestedId && item.dispatch_ready === true && item.dispatch !== 'SENT')
     : products.find(item => item && item.dispatch_ready === true && item.dispatch !== 'SENT');
   if (!product) {
-    console.log(JSON.stringify({ ok: true, mode: enabled ? 'dispatch' : 'dry-run', dispatched: false, reason: requestedId ? 'requested_product_not_found' : 'no_explicitly_dispatch_ready_product', product_count: products.length }));
+    console.log(JSON.stringify({ ok: true, mode: enabled ? 'dispatch' : 'dry-run', dispatched: false, reason: requestedId ? 'requested_product_missing_or_not_dispatch_ready' : 'no_explicitly_dispatch_ready_product', product_count: products.length }));
     return;
   }
   if (!product.id || !product.name || !product.artifact_url) return fail('Selected product requires id, name, and artifact_url');
