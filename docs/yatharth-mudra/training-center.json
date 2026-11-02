@@ -1,0 +1,155 @@
+{
+  "version": "1.0.0",
+  "status": "PROPOSED_CURRICULUM_NOT_AN_ACCREDITED_PROGRAM",
+  "title": "निष्पक्ष समझ एवं मानवता प्रशिक्षण केंद्र",
+  "purpose": "Develop and assess practical skills in impartial listening, evidence handling, ethical reasoning, lawful referral, safeguarding and environmental responsibility.",
+  "scope": {
+    "role": "Education and practice only. Graduates may support community education, mediation referrals or project administration only within applicable law and their demonstrated competence.",
+    "no_judicial_authority": true,
+    "no_legal_qualification_or_accreditation_claim": true,
+    "yatharth_mudra_holder_is_not_automatically_a_trainer_or_judge": true,
+    "selection": "Open, transparent and non-discriminatory; do not require wealth, token ownership, political allegiance, religious belief or personal loyalty.",
+    "access": "No fees or certificate conditions may deny emergency food, healthcare, shelter, education or legal aid."
+  },
+  "curriculum": [
+    {
+      "id": "T01",
+      "name": "निष्पक्ष सुनना",
+      "hours": 8,
+      "learning_outcomes": [
+        "Listen to all affected parties without prejudging",
+        "Separate observation, allegation, inference and opinion",
+        "Use accessible language and reasonable accommodation"
+      ]
+    },
+    {
+      "id": "T02",
+      "name": "सबूत और सत्यापन",
+      "hours": 12,
+      "learning_outcomes": [
+        "Preserve source, timestamp, provenance and chain of custody",
+        "Distinguish a hash from proof that an event is true",
+        "Record uncertainty, missing evidence and dissent"
+      ]
+    },
+    {
+      "id": "T03",
+      "name": "हित-संघर्ष और पक्षपात",
+      "hours": 8,
+      "learning_outcomes": [
+        "Disclose personal, financial and institutional conflicts",
+        "Recuse when impartiality may reasonably be questioned",
+        "Use structured counter-evidence review"
+      ]
+    },
+    {
+      "id": "T04",
+      "name": "मानवाधिकार और विधिसम्मत प्रक्रिया",
+      "hours": 12,
+      "learning_outcomes": [
+        "Respect dignity, equality, privacy and due process",
+        "Recognize limits of competence and refer legal matters to qualified professionals",
+        "Protect complaint, appeal and correction rights"
+      ]
+    },
+    {
+      "id": "T05",
+      "name": "सुरक्षा और गोपनीयता",
+      "hours": 8,
+      "learning_outcomes": [
+        "Protect children and vulnerable people",
+        "Obtain informed consent for optional media",
+        "Minimize personal data and secure sensitive records"
+      ]
+    },
+    {
+      "id": "T06",
+      "name": "जीव, वनस्पति और पृथ्वी संरक्षण",
+      "hours": 8,
+      "learning_outcomes": [
+        "Assess environmental impacts using credible evidence",
+        "Avoid overstating outcomes from photographs or testimonials",
+        "Use proportionate, measurable project indicators"
+      ]
+    },
+    {
+      "id": "T07",
+      "name": "संवाद, मध्यस्थता और उचित संदर्भ",
+      "hours": 8,
+      "learning_outcomes": [
+        "Facilitate voluntary dialogue without coercion",
+        "Recognize power imbalance and unsafe mediation situations",
+        "Refer disputes to lawful, qualified services"
+      ]
+    },
+    {
+      "id": "T08",
+      "name": "जवाबदेही और सार्वजनिक रिपोर्टिंग",
+      "hours": 8,
+      "learning_outcomes": [
+        "Publish redacted summaries and correction histories",
+        "Keep planned, funded, delivered and verified counters separate",
+        "Report failures and unresolved complaints honestly"
+      ]
+    }
+  ],
+  "assessment": {
+    "methods": [
+      "scenario-based assessment",
+      "observed role-play",
+      "evidence provenance exercise",
+      "privacy and safeguarding case study",
+      "conflict-of-interest disclosure exercise",
+      "supervised community project reflection"
+    ],
+    "pass_rule": "Publish transparent rubric and minimum competency thresholds before enrollment; require reassessment for failed competencies.",
+    "independent_assessment": "At least two assessors who are not the learner's close associates and who disclose conflicts; use a third reviewer for contested outcomes.",
+    "certificate": "A training-completion record only; it is not a professional license, judicial appointment, legal credential or proof of perfect impartiality.",
+    "appeals_and_reassessment": true
+  },
+  "supervised_practice": {
+    "required_before_independent_training_delivery": true,
+    "scope": "Non-adjudicative learning, evidence organization, community education and referrals under qualified supervision.",
+    "no_case_decision_authority": true,
+    "no_claim_of_serving_population_scale_without_audited_capacity": true
+  },
+  "trainer_pathway": {
+    "eligibility": "Demonstrated subject competence, safeguarding training, transparent conflict disclosure and supervised teaching practice.",
+    "yatharth_mudra": "Not a prerequisite and not sufficient by itself.",
+    "train_the_trainer": "May be granted only after separate observed teaching assessment and periodic review.",
+    "scale_target": "Any cohort or trainer count is a planning target, not a verified outcome; publish actual enrollment, completion, competency and complaint metrics."
+  },
+  "longitudinal_practice": {
+    "recommended_review_cycle_days": 365,
+    "rule": "Longitudinal reflection may support learning but must not require continuous availability, deprivation, fasting, isolation or proof of uninterrupted service.",
+    "missed_periods": "Record context and support needs without punitive scoring."
+  },
+  "metrics": {
+    "publish": [
+      "enrolled_learners",
+      "completed_learners",
+      "competency_pass_rate",
+      "reassessment_rate",
+      "safeguarding_incidents_in_aggregate",
+      "appeals_received_and_resolved",
+      "supervised_projects",
+      "independently_checked_project_outcomes"
+    ],
+    "privacy": "Publish aggregated, de-identified counts only when re-identification risk is acceptably low.",
+    "prohibit": [
+      "perfect_impartiality_claim",
+      "population_governance_claim",
+      "automatic_judicial_eligibility",
+      "token_based_access_to_justice",
+      "unverified_protection_claims"
+    ]
+  },
+  "governance": {
+    "accountable_operator_required": true,
+    "independent_safeguarding_contact_required": true,
+    "complaints_and_appeals_channel_required": true,
+    "periodic_external_review_required": true,
+    "public_policy_versioning_required": true
+  },
+  "legal_boundary": "This curriculum is a proposal for voluntary education. It does not create a court, judicial role, accredited institution, statutory qualification, public authority or funding."
+}
