@@ -1,0 +1,101 @@
+{
+  "version": "1.0.0",
+  "purpose": "Evidence-first record of voluntary, lawful, consent-based protection and aid activity. This is a tracking policy, not a funding commitment, financial instrument, or automatic reward mechanism.",
+  "eligible_categories": [
+    "roti",
+    "kapda",
+    "shiksha",
+    "chikitsa",
+    "makaan",
+    "jeev",
+    "vanaspati",
+    "prithvi"
+  ],
+  "cycle": {
+    "stages": [
+      "PROPOSED",
+      "FUNDING_CONFIRMED",
+      "ACTIVITY_IN_PROGRESS",
+      "EVIDENCE_SUBMITTED",
+      "INDEPENDENT_REVIEW",
+      "VERIFIED",
+      "CLOSED",
+      "DISPUTED",
+      "REJECTED"
+    ],
+    "one_honour_record_per_stewardship_case": true,
+    "next_cycle_requires_new_human_approval": true,
+    "automatic_reissue": false,
+    "minimum_verified_cycles_before_any_new_honour_review": 1,
+    "ten_decisions_or_actions_do_not_automatically_issue_another_certificate": true
+  },
+  "evidence_requirements": {
+    "activity_plan": [
+      "category",
+      "purpose",
+      "location_generalized_if_sensitive",
+      "budget_and_funding_source",
+      "delivery_method",
+      "risk_assessment"
+    ],
+    "delivery_evidence": [
+      "itemized_receipt_or_payment_reference_when_applicable",
+      "supplier_or_service_confirmation_when_applicable",
+      "dated_activity_record",
+      "beneficiary_confirmation_when_safe_and_voluntary",
+      "before_after_or_outcome_evidence_when_relevant"
+    ],
+    "independent_review": [
+      "reviewer_identity_verified_privately",
+      "conflict_of_interest_checked",
+      "evidence_digest",
+      "decision_and_reasoning",
+      "review_timestamp"
+    ],
+    "photos_video": "Optional, never mandatory. Obtain specific informed consent; remove faces, precise location metadata, identity details, and minors' images before any public release."
+  },
+  "privacy_and_safety": {
+    "beneficiary_list_public": false,
+    "exact_geolocation_public": false,
+    "private_receipts_public": false,
+    "consent_may_be_withdrawn": true,
+    "no_conditioning_food_shelter_medical_care_or_education_on_photography_or_publicity": true,
+    "no_collection_of_unnecessary_sensitive_data": true,
+    "no_self_harm_deprivation_or_unlawful_activity": true
+  },
+  "verification": {
+    "reviewer_count": 3,
+    "distinct_reviewers_required": true,
+    "conflict_of_interest_disqualifies": true,
+    "same_evidence_digest_required": true,
+    "hash_algorithm": "SHA-256",
+    "hash_proves_integrity_not_truth": true,
+    "dispute_and_appeal_supported": true,
+    "human_final_decision_required": true
+  },
+  "funding_and_value": {
+    "funding_must_be_actually_received_or_lawfully_committed_before_reporting_as_available": true,
+    "no_assumed_or_guaranteed_funding": true,
+    "honour_reference_inr": 1000000000,
+    "honour_reference_is_symbolic_only": true,
+    "legal_tender": false,
+    "redeemable": false,
+    "investment": false,
+    "creates_payment_obligation": false,
+    "no_transferable_token_or_minting_authorized": true
+  },
+  "public_reporting": {
+    "publish_aggregated_counts_and_redacted_digests_only": true,
+    "distinguish_proposed_funds_committed_funds_received_funds_and_actual_expenditure": true,
+    "report_verified_outcomes_separately_from_outputs": true,
+    "never_claim_global_impact_from_unverified_records": true
+  },
+  "separation": {
+    "product_catalogue": false,
+    "dispatch": false,
+    "sales": false,
+    "payment_claims": false,
+    "yatharth_token_minting": false,
+    "legal_judiciary": false
+  }
+}
