@@ -14,7 +14,7 @@ if (webhook) {
     throw new Error('MAKE_WEBHOOK_URL must be a valid official Make.com webhook URL.');
   }
   const officialHost = webhookUrl.hostname === 'hook.make.com' ||
-    /^hook\\.[a-z0-9-]+\\.make\\.com$/i.test(webhookUrl.hostname);
+    /^hook\.[a-z0-9-]+\.make\.com$/i.test(webhookUrl.hostname);
   if (webhookUrl.protocol !== 'https:' || !officialHost ||
       webhookUrl.username || webhookUrl.password ||
       (webhookUrl.port && webhookUrl.port !== '443')) {
