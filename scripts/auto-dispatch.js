@@ -61,7 +61,7 @@ function main() {
   }
   let webhookUrl;
   try { webhookUrl = new URL(webhook); } catch { return fail('MAKE_WEBHOOK_URL must be a valid Make.com webhook URL'); }
-  const allowedHost = webhookUrl.hostname === 'hook.make.com' || /^hook\\.[a-z0-9-]+\\.make\\.com$/i.test(webhookUrl.hostname);
+  const allowedHost = webhookUrl.hostname === 'hook.make.com' || /^hook\.[a-z0-9-]+\.make\.com$/i.test(webhookUrl.hostname);
   if (webhookUrl.protocol !== 'https:' || !allowedHost || webhookUrl.username || webhookUrl.password || (webhookUrl.port && webhookUrl.port !== '443')) {
     return fail('MAKE_WEBHOOK_URL must use HTTPS and an official hook.make.com or hook.<region>.make.com host');
   }
