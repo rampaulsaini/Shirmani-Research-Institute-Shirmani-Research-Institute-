@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Public links supplied by the project owner. Listing a URL does not mean the account is authenticated or connected to an API.",
+  "accounts": [
+    {
+      "platform": "facebook",
+      "label": "Primary Facebook",
+      "url": "https://www.facebook.com/share/19wzFT2qry/",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "facebook",
+      "label": "Facebook profile",
+      "url": "https://www.facebook.com/profile.php?id=100075288011123",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "whatsapp_channel",
+      "label": "WhatsApp Channel",
+      "url": "https://whatsapp.com/channel/0029VaAtyvg77qVR2J82Qn04",
+      "api_status": "LINK_ONLY"
+    },
+    {
+      "platform": "whatsapp_group",
+      "label": "WhatsApp Group",
+      "url": "https://chat.whatsapp.com/EZRptFT1OWQ8zFyq4WyWzf",
+      "api_status": "LINK_ONLY"
+    },
+    {
+      "platform": "youtube",
+      "label": "Main YouTube",
+      "url": "https://youtube.com/@rampaulsaini-yk4gn",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "youtube",
+      "label": "Motivational Quotes",
+      "url": "https://youtube.com/@motivationalquotes-m7p",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "youtube",
+      "label": "Humanity",
+      "url": "https://youtube.com/@humanity-sl1jd",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "youtube",
+      "label": "Additional YouTube",
+      "url": "https://youtube.com/@user-ud1kg2sx6v",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "instagram",
+      "label": "Instagram",
+      "url": "https://instagram.com/globleprefect",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/rampaul-saini-12120592",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "x",
+      "label": "X profile",
+      "url": "https://twitter.com/rampaulsaini",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "pinterest",
+      "label": "Pinterest pin 1",
+      "url": "https://pin.it/69LggZr",
+      "api_status": "LINK_ONLY"
+    },
+    {
+      "platform": "pinterest",
+      "label": "Pinterest pin 2",
+      "url": "https://pin.it/5a3y4ZZ",
+      "api_status": "LINK_ONLY"
+    },
+    {
+      "platform": "blogger",
+      "label": "Multicosmovision article",
+      "url": "http://multicosmovision.blogspot.com/2025/01/proved-by-quantum-multi-languages.html",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "blogger",
+      "label": "Beyond Science and Spirit — self discovery",
+      "url": "http://beyondscienseandspirtu.blogspot.com/2023/07/startgy-of-self-discover.html",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "blogger",
+      "label": "Beyond Science and Spirit — words",
+      "url": "http://beyondscienseandspirtu.blogspot.com/2023/07/a-world-where-words-come-alive.html",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "blogger",
+      "label": "Multicosmovision article 2023",
+      "url": "http://multicosmovision.blogspot.com/2023/07/blog-post_86.html",
+      "api_status": "NOT_CONNECTED"
+    },
+    {
+      "platform": "hipi",
+      "label": "Hipi",
+      "url": "https://www.hipi.co.in/@rampaulsaini",
+      "api_status": "LINK_ONLY"
+    },
+    {
+      "platform": "explurger",
+      "label": "Explurger",
+      "url": "https://app.explurger.com/dl/4CANVNw28Gymh46x6",
+      "api_status": "LINK_ONLY"
+    },
+    {
+      "platform": "store",
+      "label": "Take App Store",
+      "url": "https://take.app/httpsgithubcomrampaulsainishirmaniresearchinstitute",
+      "api_status": "EXTERNAL_STORE"
+    }
+  ],
+  "security_note": "Never commit access tokens, passwords, payment credentials, or private customer data to this file."
+}
