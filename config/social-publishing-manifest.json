@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "studio_id": "P-STUDIO-001",
+  "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+  "status": "DEMO_PROPOSED",
+  "purpose": "Create one reviewed source story and prepare platform-specific digital content drafts.",
+  "publishing_mode": "DRAFT_ONLY",
+  "safety": {
+    "external_publishing_enabled": false,
+    "human_approval_required": true,
+    "oauth_connection_required": true,
+    "account_ownership_verification_required": true,
+    "never_publish_without_platform_permission": true,
+    "never_claim_sales_without_payment_evidence": true
+  },
+  "account_directory": {
+    "path": "config/social-accounts.json",
+    "interpretation": "URL directory only; listed links are not proof of account ownership, API authentication, publishing permission, or active reach.",
+    "manual_account_selection_required": true,
+    "do_not_infer_account_count_from_url_count": true
+  },
+  "target_platforms": [
+    {
+      "platform": "youtube",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": ["short_video", "long_video", "podcast_audio"]
+    },
+    {
+      "platform": "instagram",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": ["short_video", "story"]
+    },
+    {
+      "platform": "facebook",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": ["short_video", "long_video", "story"]
+    },
+    {
+      "platform": "x",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": ["short_video", "text_post"]
+    }
+  ],
+  "content_plan": {
+    "source_story_frequency": "1_PER_DAY",
+    "timezone": "Asia/Kolkata",
+    "publish_time": "OWNER_TO_CONFIRM",
+    "source_language": "hi",
+    "planned_translation_languages": 16,
+    "translation_status": "NOT_GENERATED_REQUIRES_HUMAN_REVIEW",
+    "source_story": {
+      "title": "निष्पक्ष समझ ही सत्य है",
+      "script": "सत्य को समझने के लिए केवल सुनना पर्याप्त नहीं, उसे निष्पक्ष होकर देखना भी आवश्यक है। जहाँ पक्षपात कम होता है, वहाँ समझ स्पष्ट होती है। जहाँ प्रेम होता है, वहाँ संवाद संभव होता है। और जहाँ शांति होती है, वहाँ मनुष्य एक-दूसरे को समझने का अवसर पाते हैं। निष्पक्ष समझ ही सत्य है।",
+      "voice_source": "OWNER_RECORDED_AUDIO_REQUIRED",
+      "voice_clone_permission": "NOT_GRANTED_BY_THIS_MANIFEST"
+    },
+    "derived_formats": [
+      {
+        "id": "short_reel",
+        "format": "vertical_video",
+        "aspect_ratio": "9:16",
+        "target_duration_seconds": 15,
+        "status": "DRAFT_NOT_RENDERED"
+      },
+      {
+        "id": "long_video",
+        "format": "landscape_video",
+        "aspect_ratio": "16:9",
+        "target_duration_seconds": 300,
+        "status": "OUTLINE_NOT_RENDERED"
+      },
+      {
+        "id": "podcast",
+        "format": "audio",
+        "status": "SCRIPT_ONLY_AUDIO_NOT_RECORDED"
+      }
+    ]
+  },
+  "production_pipeline": [
+    "SOURCE_STORY",
+    "EDITORIAL_REVIEW",
+    "TRANSLATION_REVIEW",
+    "FORMAT_RENDERING",
+    "MEDIA_QC",
+    "OWNER_APPROVAL",
+    "PLATFORM_PERMISSION_CHECK",
+    "DRAFT_EXPORT",
+    "AUTHORIZED_PUBLISH",
+    "PUBLICATION_EVIDENCE"
+  ],
+  "make_automation": {
+    "integration_status": "NOT_CONFIGURED_OR_TESTED_HERE",
+    "existing_bridge": "scripts/auto-dispatch.js",
+    "existing_bridge_scope": "Product dispatch events only; not a social-media content publisher.",
+    "webhook_dispatch": "DISABLED_UNTIL_SEPARATE_CONTENT_ROUTER_IS_IMPLEMENTED_AND_TESTED",
+    "idempotency_required": true
+  },
+  "income_evidence": {
+    "views_are_revenue": false,
+    "inquiries_are_sales": false,
+    "required_for_paid_order": [
+      "customer_order_reference",
+      "agreed_price_and_currency",
+      "payment_provider_or_bank_confirmation",
+      "delivery_record"
+    ],
+    "status": "NO_STUDIO_SALES_OR_PAYMENT_CLAIMED"
+  },
+  "evidence_boundary": {
+    "studio_is_a_digital_demo_concept": true,
+    "hologram_capability_verified": false,
+    "millions_of_viewers_claimed": false,
+    "historical_reference_independently_verified": false,
+    "golden_temple_visuals_must_not_imply_endorsement": true
+  }
+}
