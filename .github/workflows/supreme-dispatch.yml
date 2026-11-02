@@ -1,0 +1,34 @@
+name: Shirmani Social Dispatch (guarded)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "showroom-products.json"
+      - "scripts/auto-dispatch.js"
+      - "config/social-accounts.json"
+      - ".github/workflows/supreme-dispatch.yml"
+  schedule:
+    - cron: "*/5 * * * *"
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-social-dispatch
+  cancel-in-progress: false
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate manifest and account directory
+        run: |
+          node --version
+          node -e "const m=require('./showroom-products.json'); if(!Array.isArray(m.products)) throw Error('products array missing'); console.log('Manifest entries:',m.products.length)"
+          node -e "const a=require('./config/social-accounts.json'); if(!Array.isArray(a.accounts)) throw Error('accounts array missing'); console.log('Listed social links:',a.accounts.length)"
+      - name: Run guarded dispatch bridge
+        env:
+          DISPATCH_ENABLED: ${{ vars.DISPATCH_ENABLED || 'false' }}
+          DISPATCH_LIMIT: "1"
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+        run: node scripts/auto-dispatch.js

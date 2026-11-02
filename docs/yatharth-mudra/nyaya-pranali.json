@@ -1,0 +1,76 @@
+{
+  "version": "1.0.0",
+  "status": "PROPOSED_ADVISORY_FRAMEWORK_NOT_LEGAL_AUTHORITY",
+  "purpose": "Evidence-first principles for fair, humane review and access to lawful dispute-resolution services.",
+  "scope": {
+    "role": "Advisory and process-quality framework only; it does not establish a court, tribunal, judicial office, legal qualification, or authority to decide another person's rights.",
+    "mudra_holding_confers_judicial_power": false,
+    "honour_certificate_is_eligibility_for_judicial_office": false,
+    "lawful_judicial_appointment_and_due_process_required": true,
+    "access_to_justice_must_not_depend_on_wealth_or_honour_status": true
+  },
+  "principles": [
+    {
+      "id": "nishpaksh_samajh",
+      "name": "निष्पक्ष समझ",
+      "rule": "Record reasons, relevant evidence, counter-evidence, uncertainty and possible bias; never claim that bias is literally zero.",
+      "review_window_days": 30
+    },
+    {
+      "id": "shamikaran",
+      "name": "शमीकरण",
+      "rule": "Give affected people—including people speaking for affected animals, plants or ecosystems where legally appropriate—a fair opportunity to be heard; distinguish human rights and legal standing from ethical consideration."
+    },
+    {
+      "id": "yatharth_siddhant",
+      "name": "यथार्थ सिद्धांत",
+      "rule": "Keep claims, actions, reasons, outcomes and corrections traceable; preserve dissent and do not force unanimity."
+    },
+    {
+      "id": "nirantarta",
+      "name": "निरंतरता",
+      "rule": "Provide continuous intake and published service-status counters where feasible; 24/7 intake does not mean continuous adjudication or guaranteed immediate decisions."
+    }
+  ],
+  "evidence_and_review": {
+    "public_decision_record": "Publish only lawful, redacted reasons and minimal metadata after privacy and safety review; protect minors, witnesses, complainants, addresses, health data and confidential evidence.",
+    "integrity": "Use SHA-256 digests for tamper-evidence; a hash does not prove truth, completeness, identity or fairness.",
+    "independent_reviewers": 3,
+    "reviewer_rules": [
+      "distinct people",
+      "documented conflict-of-interest checks",
+      "access to the same evidence version",
+      "recorded reasons and dissent",
+      "reviewer identity authenticated privately"
+    ],
+    "appeal_and_correction_required": true,
+    "human_accountability_required": true,
+    "ai_role": "AI may help organize records or flag inconsistencies; it must not issue binding judgments, determine guilt, or replace qualified human decision-makers."
+  },
+  "humanity_and_environment": {
+    "assess_relevant_effects": [
+      "food security",
+      "clothing",
+      "education",
+      "healthcare",
+      "housing",
+      "animal welfare",
+      "plant life",
+      "ecosystem and environmental protection"
+    ],
+    "rule": "Consider proportionate, evidence-supported effects without overriding law, due process, individual rights or the rights and interests of affected communities."
+  },
+  "safeguards": {
+    "no_private_court_or_parallel_judicial_system": true,
+    "no_payment_or_token_based_access_to_justice": true,
+    "no_retaliation_for_complaints_or_appeals": true,
+    "no_public_release_of_unredacted_case_files": true,
+    "no_automated_final_decisions": true
+  },
+  "scale_target": {
+    "aspirational_service_points": 1000,
+    "operational_status": "NOT_ESTABLISHED",
+    "note": "A numerical goal is not evidence that any court, service point, appointment or legal authority exists."
+  },
+  "legal_boundary": "This file is a voluntary platform policy proposal, not legal advice, a law, a judicial appointment, or authorization to exercise judicial power."
+}

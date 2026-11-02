@@ -74,16 +74,16 @@
       "category": "research",
       "name": "Shirmani Research Paper — PDF Edition",
       "price_inr": 0,
-      "status": "PRODUCED_PUBLIC",
+      "status": "PROTOTYPE_QC_PENDING",
       "store_url": "research-paper.html",
       "description": "Public research-paper edition available from the repository.",
       "offer": "Public digital edition",
-      "qc_gate": "QC-ARTIFACT",
-      "dispatch": "PUBLIC",
+      "qc_gate": "QC-ARTIFACT-EMPTY",
+      "dispatch": "NO",
       "version": "artifact-research-paper",
       "artifact_url": "research-paper.html",
       "asset_path": "research-paper.pdf",
-      "artifact_evidence": "VERIFIED_IN_REPOSITORY"
+      "artifact_evidence": "ARTIFACT_EMPTY_QC_FAILED"
     },
     {
       "id": "SRI-TOOL-001",

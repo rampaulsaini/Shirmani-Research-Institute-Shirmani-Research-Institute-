@@ -1,0 +1,96 @@
+{
+  "version": "1.0.0",
+  "purpose": "A voluntary, evidence-aware honour and review process kept separate from products, dispatch, sales, payments, token issuance and income counters.",
+  "philosophical_parameters": {
+    "heart_view_percent": 99.9999,
+    "mind_intellect_percent": 0.0001,
+    "interpretation": "Creator-defined philosophical language; not a validated scientific scale and must not be presented as an objective measurement of a person's inner state."
+  },
+  "levels": [
+    {
+      "level": 1,
+      "name": "निष्पक्ष समझ",
+      "weight_percent": 10,
+      "evidence": "Dated decision reflections and documented counterexamples; reviewers assess consistency, not an impossible claim of zero bias."
+    },
+    {
+      "level": 2,
+      "name": "शमीकरण",
+      "weight_percent": 15,
+      "evidence": "Consent-based dialogue records showing respectful engagement across differing perspectives; disagreement is allowed and conflict-free unanimity is not required."
+    },
+    {
+      "level": 3,
+      "name": "यथार्थ सिद्धांत",
+      "weight_percent": 15,
+      "evidence": "A dated claim-to-action ledger with independently checkable samples and corrections."
+    },
+    {
+      "level": 4,
+      "name": "उपलब्धि",
+      "weight_percent": 15,
+      "evidence": "A specific, lawful, non-harmful benefit with before/after evidence and beneficiary consent where relevant; food deprivation, self-neglect or risk-taking are never required or rewarded."
+    },
+    {
+      "level": 5,
+      "name": "यथार्थ युग",
+      "weight_percent": 15,
+      "evidence": "Voluntary, safe reflection and service records; no silence, isolation, fasting or religious practice is mandatory."
+    },
+    {
+      "level": 6,
+      "name": "संपूर्ण संतुष्टि की निरंतरता",
+      "weight_percent": 20,
+      "evidence": "Up to 365 days of voluntary, privacy-preserving continuity evidence; complaints, hardship or seeking help never count against a person."
+    },
+    {
+      "level": 7,
+      "name": "खुद का साक्षात्कार",
+      "weight_percent": 10,
+      "evidence": "A voluntary first-person statement plus three independent reviewers assessing evidence boundaries; video, AI lip-sync or avatar output is not proof of inner realization."
+    }
+  ],
+  "decision_rules": {
+    "required_independent_reviewers": 3,
+    "self_verification_allowed": false,
+    "reviewer_conflict_of_interest_disqualifies": true,
+    "all_seven_levels_required": true,
+    "continuity_days_required": 365,
+    "automatic_approval": false,
+    "hash_proves_integrity_not_truth": true,
+    "unanimous_reviewer_acceptance_required": true,
+    "appeal_and_correction_allowed": true
+  },
+  "safety_and_privacy": {
+    "no_starvation_or_self_harm_requirement": true,
+    "no_medical_or_psychological_diagnosis": true,
+    "no_public_private_diaries_or_health_data": true,
+    "publish_minimum_necessary_evidence_metadata_only": true,
+    "withdrawal_of_consent_supported": true,
+    "do_not_publish_minor_personal_data": true
+  },
+  "certificate": {
+    "name": "Yatharth Mudra Honour Certificate",
+    "status": "NOT_ISSUED",
+    "claimed_platform_honour_reference_inr": 1000000000,
+    "currency": "INR",
+    "is_legal_tender": false,
+    "is_redeemable": false,
+    "is_investment": false,
+    "creates_payment_obligation": false,
+    "note": "Any stated INR figure is a creator-declared symbolic honour reference only. It is not a market price, asset valuation, guarantee, or payable amount."
+  },
+  "integrity": {
+    "canonicalization": "RFC8785-JCS",
+    "hash": "SHA-256",
+    "hash_scope": "Canonical certificate payload excluding payload_hash and detached signatures; reviewer signatures bind to the resulting payload hash.",
+    "append_only_audit_events": true
+  },
+  "separation": {
+    "product_catalogue": false,
+    "dispatch": false,
+    "sales": false,
+    "payments": false,
+    "yatharth_token_minting": false
+  }
+}
