@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "studio": {
+    "product_id": "P-STUDIO-001",
+    "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+    "product_type": "digital_experience",
+    "release_state": "DEMO_PROPOSED",
+    "description": "निष्पक्ष समझ, सत्य, प्रेम और शांति पर आधारित डिजिटल संवाद अनुभव।",
+    "voice_source": "OWNER_RECORDING_REQUIRED",
+    "voice_clone_status": "NOT_CONFIGURED",
+    "avatar_status": "NOT_VERIFIED",
+    "historical_claim_status": "OWNER_DECLARED_NOT_INDEPENDENTLY_VERIFIED"
+  },
+  "account_registry": {
+    "source_file": "config/social-accounts.json",
+    "target_account_count": 16,
+    "listed_link_record_count_last_audited": 20,
+    "mapping_status": "NEEDS_OWNER_CONFIRMATION",
+    "note": "The source registry contains 20 URL records, including posts, pins, articles, groups and a store. These are not necessarily 20 distinct publishing accounts. Do not infer ownership, API access or account count from URLs."
+  },
+  "launch_platforms": [
+    {
+      "platform": "youtube",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": ["short_video", "long_video", "podcast"]
+    },
+    {
+      "platform": "instagram",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": ["short_video", "story"]
+    },
+    {
+      "platform": "facebook",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": ["short_video", "long_video", "story"]
+    },
+    {
+      "platform": "x",
+      "connection": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION",
+      "formats": ["text_post", "short_video"]
+    }
+  ],
+  "content_plan": {
+    "source_of_truth": "one_owner_approved_story",
+    "daily_story_target": 1,
+    "derivatives": [
+      {
+        "format": "short_video",
+        "aspect_ratio": "9:16",
+        "target_duration_seconds": 15,
+        "status": "STORYBOARD_REQUIRED"
+      },
+      {
+        "format": "long_video",
+        "aspect_ratio": "16:9",
+        "target_duration_seconds": 300,
+        "status": "SCRIPT_REQUIRED"
+      },
+      {
+        "format": "podcast_audio",
+        "target_duration_seconds": 30,
+        "status": "OWNER_RECORDING_REQUIRED"
+      }
+    ],
+    "planned_translation_languages": 16,
+    "translation_status": "NOT_STARTED",
+    "human_review_required": true
+  },
+  "automation": {
+    "mode": "DRAFT_ONLY",
+    "daily_schedule_enabled": false,
+    "external_publish_enabled": false,
+    "make_webhook_required": true,
+    "idempotency_required": true,
+    "approval_required_before_publish": true
+  },
+  "evidence": {
+    "content_artifact": "RECORD_FILE_HASH_AND_VERSION",
+    "platform_publication": "RECORD_PLATFORM_POST_URL_AND_TIMESTAMP",
+    "audience_metrics": "RECORD_PLATFORM_NATIVE_ANALYTICS",
+    "sale": "RECORD_CONFIRMED_ORDER_ONLY",
+    "payment": "RECORD_PAYMENT_PROVIDER_RECEIPT_ONLY",
+    "delivery": "RECORD_CUSTOMER_DELIVERY_EVIDENCE",
+    "independent_verification": "SEPARATE_REVIEW_REQUIRED"
+  },
+  "security": {
+    "secrets_in_repository": false,
+    "oauth_tokens_location": "GITHUB_SECRETS_OR_PROVIDER_CONNECTION",
+    "public_client_side_tokens_allowed": false
+  },
+  "release_gates": [
+    "Confirm the canonical 16 account identities against the 20 listed URL records.",
+    "Verify account ownership and supported publishing permissions for each selected platform.",
+    "Receive and approve the owner's original voice recording and any portrait/media assets.",
+    "Create and review the story, short-video storyboard, long-video script and podcast recording.",
+    "Validate translations and captions before use.",
+    "Run a dry-run with external publishing disabled.",
+    "Publish one approved test item to one authorized account and capture the public post URL.",
+    "Enable scheduled publishing only after the test and rollback procedure pass."
+  ],
+  "truth_boundary": "A configured manifest, scheduled workflow, generated draft, view, follower count or webhook acceptance is not proof of publication, a sale, payment, delivery or independent verification."
+}
