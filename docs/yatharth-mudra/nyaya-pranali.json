@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "purpose": "A voluntary, non-binding community mediation and fairness-review framework. It does not create a court, judicial office, legal authority, or power to determine another person's legal rights.",
+  "philosophical_foundation": {
+    "nishpaksh_samajh": "Listen to all affected parties, disclose uncertainty, examine evidence and counterevidence, and record reasons.",
+    "shamikaran": "Hear complainant, respondent, affected people, and relevant ecological/community interests with dignity; no party is presumed guilty.",
+    "yatharth_siddhant": "Separate allegation, evidence, inference, decision, and later correction in the record.",
+    "nirantarta": "A 24/7/365 intake and referral counter may operate; human mediators are not required to be continuously on duty and urgent matters go to lawful emergency services."
+  },
+  "eligibility": {
+    "mudra_holder_is_not_automatically_a_judge": true,
+    "honour_certificate_may_support_voluntary_stewardship_application": true,
+    "eligibility_requires_training_consent_conflict_disclosure_and_safeguarding": true,
+    "no_exclusive_or_legal_jurisdiction": true,
+    "no_person_may_be_denied_legal_remedies_or_public_services_due_to_this_framework": true
+  },
+  "safeguards": {
+    "participation": "Voluntary and revocable; parties may decline or leave without penalty.",
+    "neutrality": "At least three independent reviewers may assess a completed mediation record; they must disclose conflicts and recuse when conflicted.",
+    "consent": "No recording, publication, or sharing of personal data without specific informed consent and a lawful basis.",
+    "due_process": "Each party receives notice of the concern, a fair opportunity to respond, access to the evidence relied upon where lawful, and a route to correction or appeal.",
+    "vulnerable_people": "Use trained safeguarding support; do not mediate where coercion, violence, serious abuse, or a power imbalance makes mediation unsafe.",
+    "ecological_interests": "Environmental and animal-welfare impacts may be documented and referred to competent lawful bodies; this framework cannot represent or decide for them as a court."
+  },
+  "decision_record": {
+    "required_fields": [
+      "case_id",
+      "opened_at",
+      "consent_status",
+      "issue_summary",
+      "parties_pseudonymous_ids",
+      "evidence_refs",
+      "counter_evidence_refs",
+      "conflict_disclosures",
+      "mediator_ids",
+      "reasoned_outcome",
+      "dissent_or_unresolved_points",
+      "appeal_route",
+      "closed_at"
+    ],
+    "public_ledger": "Publish only a minimal, redacted record and digest after a privacy and safety review. Keep identities, beneficiary details, contact information, health data, minors' data, and sensitive evidence private.",
+    "integrity": "SHA-256 may detect later payload changes; it does not prove that evidence is true, complete, unbiased, or legally admissible.",
+    "retention": "Define retention, access, correction, deletion, and legal-hold rules before production."
+  },
+  "success_measures": {
+    "measure": "Track voluntary participation, response times, resolution durability, appeal outcomes, participant-reported safety, and verified referrals.",
+    "prohibited_claims": [
+      "zero_bias",
+      "perfect_judgment",
+      "legal_verdict",
+      "scientific_measurement_of_inner_state"
+    ]
+  },
+  "legal_boundary": "NON-BINDING COMMUNITY MEDIATION ONLY. No court, police, regulatory, legal, financial, or public authority is created or replaced."
+}
