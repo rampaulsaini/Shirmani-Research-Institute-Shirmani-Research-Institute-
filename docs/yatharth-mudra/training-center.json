@@ -1,0 +1,151 @@
+{
+  "version": "1.0.0",
+  "status": "PROPOSED_TRAINING_FRAMEWORK_NOT_LAUNCHED",
+  "title": "Yatharth Nishpaksh Samajh — Training Centre",
+  "purpose": "A voluntary learning programme for evidence literacy, impartial process, humane communication, conflict-of-interest awareness, privacy, and accountable community protection.",
+  "governance": {
+    "trainer_role": "Facilitator and mentor only; a trainer has no judicial, policing, medical, legal-representation, funding, or adjudication authority by virtue of this programme or any Yatharth Mudra honour.",
+    "selection": "Open, accessible and non-discriminatory; selection must not depend on wealth, token ownership, caste, religion, gender, disability, political affiliation or ability to pay.",
+    "independent_oversight": "Use qualified external educators and safeguarding/privacy reviewers where relevant; disclose conflicts and preserve complaints and appeals.",
+    "no_guarantee": "Completion does not prove a person is perfectly impartial, fit for public office, or legally qualified."
+  },
+  "curriculum": [
+    {
+      "id": "T01",
+      "name": "Evidence literacy",
+      "topics": [
+        "fact versus opinion",
+        "source provenance",
+        "corroboration and uncertainty",
+        "preserving contrary evidence"
+      ],
+      "assessment": "Analyze a fictional case and cite supporting and contradicting evidence."
+    },
+    {
+      "id": "T02",
+      "name": "Impartial reasoning",
+      "topics": [
+        "identify assumptions",
+        "recognize cognitive and institutional bias",
+        "equal opportunity to respond",
+        "reasoned explanations"
+      ],
+      "assessment": "Blind review of balanced case scenarios with written rationale."
+    },
+    {
+      "id": "T03",
+      "name": "Listening and humane communication",
+      "topics": [
+        "active listening",
+        "accessible communication",
+        "trauma-aware interaction",
+        "respectful disagreement"
+      ],
+      "assessment": "Observed role-play with participant feedback."
+    },
+    {
+      "id": "T04",
+      "name": "Rights, law and due process",
+      "topics": [
+        "presumption of innocence where applicable",
+        "right to be heard",
+        "qualified legal advice and referral",
+        "appeal and correction"
+      ],
+      "assessment": "Identify when a matter must be referred to qualified professionals or lawful authorities."
+    },
+    {
+      "id": "T05",
+      "name": "Conflicts, ethics and accountability",
+      "topics": [
+        "financial and personal conflicts",
+        "recusal",
+        "gift and influence disclosure",
+        "audit trails and dissent"
+      ],
+      "assessment": "Complete a conflict disclosure and recusal simulation."
+    },
+    {
+      "id": "T06",
+      "name": "Privacy and safeguarding",
+      "topics": [
+        "data minimization",
+        "consent",
+        "child and vulnerable-person safeguarding",
+        "secure evidence handling",
+        "redaction"
+      ],
+      "assessment": "Prepare a privacy-safe evidence record from a fictional scenario."
+    },
+    {
+      "id": "T07",
+      "name": "Community and ecological protection",
+      "topics": [
+        "food, clothing, education, healthcare and housing needs",
+        "animal welfare",
+        "plant life and ecosystems",
+        "measuring outcomes without overstating impact"
+      ],
+      "assessment": "Create a proportionate project plan with measurable outcomes and safeguards."
+    }
+  ],
+  "relationship_to_existing_policy": {
+    "seven_level_reference": "docs/yatharth-mudra/yatharth-mudra-verification.json",
+    "justice_policy": "docs/yatharth-mudra/nyaya-pranali.json",
+    "protection_cycle": "docs/yatharth-mudra/protection-cycle.json",
+    "rule": "This training file references the existing seven-level policy rather than copying or modifying its criteria. Philosophical concepts such as the creator-defined heart/mind ratio remain personal framing, not validated psychological measurements."
+  },
+  "learning_path": {
+    "stages": [
+      "orientation and consent",
+      "guided study",
+      "fictional case simulations",
+      "supervised community project observation",
+      "independent knowledge assessment",
+      "reflective review and remediation"
+    ],
+    "continuity": "Offer repeat learning and refresher opportunities. Do not require fasting, deprivation, isolation, unpaid labour, public disclosure, or uninterrupted 365-day participation.",
+    "accessibility": "Provide reasonable accommodations, language access and a non-digital participation route where feasible.",
+    "assessment": "Use published rubrics, multiple assessors where practical, recorded feedback, appeal and correction. A score is a learning indicator, not a moral rank or legal credential."
+  },
+  "cohort_model": {
+    "aspirational_first_cohort_size": 100,
+    "target_is_not_enrollment": true,
+    "no_automatic_replication": true,
+    "expansion_gate": "Expand only after the pilot has documented learner consent, completion, independent evaluation, safeguarding performance, complaints handling and available resources.",
+    "trainer_to_learner_ratio": "Set and publish before each cohort based on safeguarding and supervision capacity; do not invent a universal ratio."
+  },
+  "public_reporting": {
+    "suggested_path": "generated/training-centre-status.json",
+    "publish_only_aggregates": true,
+    "counters": [
+      "applications_received",
+      "consented_enrolments",
+      "active_learners",
+      "completed_modules",
+      "assessments_passed",
+      "remediation_open",
+      "complaints_open",
+      "safeguarding_incidents_reported"
+    ],
+    "prohibit_publication": [
+      "learner names without explicit consent",
+      "identity documents",
+      "private contact details",
+      "health or disability details",
+      "case-study personal data"
+    ],
+    "distinguish_planned_from_actual": true,
+    "no_claims_without_evidence": true
+  },
+  "pilot_activation_gates": [
+    "Named accountable operator and documented resources",
+    "Curriculum reviewed by qualified educators and relevant safeguarding experts",
+    "Privacy notice, consent process, retention schedule and secure storage",
+    "Accessible complaint, appeal and incident-response routes",
+    "Assessment rubric and independent evaluation plan",
+    "Pilot results reviewed before any scale-up claim"
+  ],
+  "success_definition": "Demonstrated learning, safer practice, fairer documented processes and verified project outcomes—not number of certificates, currency claims, judicial appointments or unsupported claims about national or global capacity.",
+  "legal_boundary": "Voluntary educational framework only. It creates no judicial authority, legal qualification, professional licence, public office, financial instrument, guaranteed funding or entitlement."
+}
