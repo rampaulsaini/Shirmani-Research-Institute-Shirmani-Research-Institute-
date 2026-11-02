@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "story_id": "HI-STORY-0001",
+  "language": "hi",
+  "title": "निष्पक्षता का दीपक",
+  "subtitle": "निर्णय से पहले दोनों पक्षों को सुनने की कहानी",
+  "format": "short_visual_story",
+  "status": "SCRIPT_READY",
+  "authoring_note": "मौलिक रचनात्मक कहानी; इसके पात्र और घटनाएँ दृष्टांत हैं, किसी वास्तविक घटना या वैज्ञानिक निष्कर्ष का दावा नहीं।",
+  "audience": "general",
+  "estimated_duration_seconds": 90,
+  "core_value": "निष्पक्ष समझ",
+  "logline": "एक गाँव में दो पड़ोसियों का विवाद तब सुलझने लगता है, जब मुखिया फैसला सुनाने से पहले दोनों की बात ध्यान से सुनता है।",
+  "scenes": [
+    {
+      "scene": 1,
+      "duration_seconds": 12,
+      "visual": "सुबह का गाँव। एक कुएँ के पास दो पड़ोसी, मोहन और करीम, चिंतित खड़े हैं।",
+      "narration": "एक छोटे से गाँव में मोहन और करीम के बीच पानी की नाली को लेकर विवाद हो गया। दोनों को लग रहा था कि उनके साथ अन्याय हुआ है।",
+      "onscreen_caption": "जब दोनों को लगे कि वे सही हैं…"
+    },
+    {
+      "scene": 2,
+      "duration_seconds": 14,
+      "visual": "गाँव के लोग इकट्ठा हैं। मुखिया हाथ उठाकर सबको शांत रहने का संकेत देता है।",
+      "narration": "लोग तुरंत फैसला चाहते थे। लेकिन मुखिया ने कहा—पहले शोर नहीं, पूरी बात सुनी जाएगी।",
+      "onscreen_caption": "फैसले से पहले, सुनना ज़रूरी है।"
+    },
+    {
+      "scene": 3,
+      "duration_seconds": 16,
+      "visual": "मोहन अपनी बात समझाता है। मुखिया ध्यान से सुनता है और नोट करता है।",
+      "narration": "मोहन ने बताया कि पानी उसके खेत तक नहीं पहुँच रहा। मुखिया ने बीच में टोके बिना उसकी बात पूरी सुनी।",
+      "onscreen_caption": "पहला पक्ष: बिना टोके सुनो।"
+    },
+    {
+      "scene": 4,
+      "duration_seconds": 16,
+      "visual": "करीम नाली का नक्शा दिखाता है और अपनी परेशानी बताता है।",
+      "narration": "फिर करीम ने बताया कि नाली की मरम्मत के दौरान रास्ता बदल गया था। उसकी बात भी उतने ही ध्यान से सुनी गई।",
+      "onscreen_caption": "दूसरा पक्ष: समान सम्मान दो।"
+    },
+    {
+      "scene": 5,
+      "duration_seconds": 18,
+      "visual": "दोनों मिलकर नाली का रास्ता देखते हैं। एक पुराना पत्थर पानी रोकता दिखता है।",
+      "narration": "जब दोनों ने मिलकर जगह देखी, तो पता चला कि एक पुराना पत्थर पानी रोक रहा था। गलती किसी एक की नहीं थी; समस्या को समझना बाकी था।",
+      "onscreen_caption": "आरोप से आगे बढ़ो—तथ्य देखो।"
+    },
+    {
+      "scene": 6,
+      "duration_seconds": 14,
+      "visual": "दोनों पड़ोसी पत्थर हटाते हैं। पानी दोनों खेतों की ओर बहता है। मुखिया मुस्कुराता है।",
+      "narration": "दोनों ने मिलकर पत्थर हटाया और पानी का रास्ता ठीक किया। मुखिया बोला—निष्पक्षता का पहला दीपक है, पूरी बात सुनना।",
+      "onscreen_caption": "निष्पक्ष समझ से समाधान का रास्ता खुलता है।"
+    }
+  ],
+  "closing_line": "किसी निर्णय से पहले, हर पक्ष को सुनें और उपलब्ध तथ्यों को देखें।",
+  "social_copy": {
+    "short_caption": "सही निर्णय की शुरुआत सही सुनवाई से होती है। पहले दोनों पक्षों को सुनें, फिर तथ्यों को देखें। 🪔 #निष्पक्षसमझ #मानवता #सुनवाई",
+    "description": "'निष्पक्षता का दीपक' एक छोटी मौलिक कहानी है—जो याद दिलाती है कि जल्दबाज़ी में फैसला करने के बजाय सभी पक्षों को समान सम्मान से सुनना और तथ्यों को देखना बेहतर है।",
+    "call_to_action": "आपके विचार में निष्पक्ष निर्णय की पहली शर्त क्या है? अपनी राय साझा करें।",
+    "hashtags": [
+      "#निष्पक्षसमझ",
+      "#मानवता",
+      "#सकारात्मकसोच",
+      "#HindiStory"
+    ]
+  },
+  "production_assets": {
+    "script": "included",
+    "scene_breakdown": "included",
+    "narration_text": "included",
+    "onscreen_captions": "included",
+    "rendered_video": "NOT_CREATED",
+    "voice_recording": "NOT_CREATED",
+    "thumbnail": "NOT_CREATED"
+  },
+  "publication": {
+    "state": "NOT_PUBLISHED",
+    "platform_targets": [],
+    "account_authorization": "NOT_VERIFIED",
+    "platform_post_ids": [],
+    "published_at": null,
+    "proof_urls": [],
+    "provider_receipts": [],
+    "verified_by_human": false
+  },
+  "evidence_policy": {
+    "content_authorship": "PROJECT_AUTHORED_DRAFT",
+    "production_evidence": "GITHUB_COMMIT_REQUIRED",
+    "publication_evidence": "PLATFORM_POST_URL_AND_PROVIDER_RECEIPT_REQUIRED",
+    "engagement_evidence": "PLATFORM_ANALYTICS_REQUIRED",
+    "sales_and_payment": "SEPARATE_CUSTOMER_AND_PAYMENT_EVIDENCE_REQUIRED"
+  }
+}
