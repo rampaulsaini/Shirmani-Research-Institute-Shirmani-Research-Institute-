@@ -37,20 +37,5 @@
     "research_is_draft": true,
     "verification_required": true,
     "source_of_truth": "artifact-manifest.jsonl"
-  },
-  "dashboard_semantics": {
-    "state": "PARTIAL_WITH_STALE_SOURCE_TIMESTAMP",
-    "source_timestamp_is_historical": true,
-    "live_execution_claim": false,
-    "independent_verification_claim": false,
-    "sales_or_revenue_claim": false,
-    "truth_boundary": "This is a historical factory artifact snapshot, not live telemetry. Current production and independent-verification metrics must be read from their dedicated status artifacts."
-  },
-  "related_status_artifacts": {
-    "production": "multi-layer-production-status.json",
-    "independent_verification": "independent-verification-status.json",
-    "current_baseline": "current-status.json",
-    "agents": "agent-status.json",
-    "federation": "federation-status.json"
   }
 }
