@@ -18,39 +18,43 @@
     "sound_effects": "optional subtle ambient only"
   },
   "visual_source": {
-    "type": "owner_approved_studio_image",
+    "type": "user_supplied_studio_portrait_image",
     "asset_path": null,
+    "source_reference": "Current ChatGPT session upload; not copied into the public repository",
+    "visible_description": "A close-up portrait of a smiling person wearing a dark collared shirt with light horizontal stripes, against a plain unfinished indoor wall.",
+    "treatment": "Use the supplied still image only; preserve the original appearance. Apply a gentle crop and slow push-in. Do not synthesize facial motion, alter identity, or imply a live avatar/hologram.",
     "required_before_render": true,
-    "rights_review_required": true
+    "rights_review_required": true,
+    "public_asset_commit_requires_separate_owner_approval": true
   },
   "timeline": [
     {
       "start_seconds": 0,
       "end_seconds": 3,
-      "visual": "Studio image appears with a gentle fade-in; slow, subtle push-in.",
+      "visual": "Open on the supplied portrait with a gentle fade-in. Keep the face unobstructed; use a subtle vertical 9:16 crop and slow push-in.",
       "on_screen_text": "निष्पक्ष समझ",
-      "text_style": "clean Devanagari typography, high contrast, safe margins"
+      "text_style": "clean Devanagari typography, high contrast, lower safe area; do not cover the face"
     },
     {
       "start_seconds": 3,
       "end_seconds": 7,
-      "visual": "Continue the same image with a restrained cinematic pan; avoid unverified visual claims.",
+      "visual": "Continue the same portrait with restrained motion. Keep the original background and appearance; no generated effects that suggest a real hologram.",
       "on_screen_text": "सत्य को समझने की शुरुआत",
-      "text_style": "clean Devanagari typography, high contrast, safe margins"
+      "text_style": "clean Devanagari typography, high contrast, lower safe area"
     },
     {
       "start_seconds": 7,
       "end_seconds": 11,
-      "visual": "Soft light transition; keep the original image identity intact.",
+      "visual": "Use a soft light dissolve over the frame; retain the source portrait without face alteration.",
       "on_screen_text": "प्रेम • शांति • स्पष्टता",
-      "text_style": "clean Devanagari typography, high contrast, safe margins"
+      "text_style": "clean Devanagari typography, high contrast, lower safe area"
     },
     {
       "start_seconds": 11,
       "end_seconds": 15,
-      "visual": "Settle on the studio image and show the studio title; fade out.",
+      "visual": "Settle on the portrait; show the studio name, then fade out.",
       "on_screen_text": "शिरोमणि अनंत स्टूडियो",
-      "text_style": "clean Devanagari typography, high contrast, safe margins"
+      "text_style": "clean Devanagari typography, high contrast, lower safe area"
     }
   ],
   "caption": "निष्पक्ष समझ से संवाद में स्पष्टता आती है। सत्य, प्रेम और शांति को अपने व्यवहार में उतारें।",
@@ -70,5 +74,5 @@
     "claims_of_independent_verification": false,
     "third_party_endorsement": false
   },
-  "notes": "Voice-free visual script only. Draft production specification, not a rendered or published video."
+  "notes": "Voice-free visual script only. The source portrait is available in the current ChatGPT session but is not committed to the public repository. This is a production specification, not a rendered or published video. Rendering and any public use require owner approval of the exact image and final preview."
 }
