@@ -116,6 +116,33 @@
           "id": "S003",
           "name": "Voice / narration packaging",
           "delivery": "creative-service"
+        },
+        {
+          "id": "P-STUDIO-001",
+          "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+          "delivery": "creative-service",
+          "description": "निष्पक्ष समझ, सत्य, प्रेम और शांति पर आधारित प्रस्तावित डिजिटल संवाद अनुभव; short-video, long-video और podcast demo formats.",
+          "formats": [
+            "vertical_short_video",
+            "long_video",
+            "podcast_audio"
+          ],
+          "language_plan": {
+            "planned": 16,
+            "status": "TRANSLATION_AND_HUMAN_REVIEW_REQUIRED"
+          },
+          "voice_status": "USER_RECORDING_AND_EXPLICIT_AUTHORIZATION_REQUIRED",
+          "historical_reference": {
+            "date": "2024-04-04",
+            "status": "OWNER_DECLARED_NOT_INDEPENDENTLY_VERIFIED"
+          },
+          "pricing": {
+            "model": "FREE_INTRO_PREMIUM_QUOTE",
+            "status": "QUOTE_REQUIRED"
+          },
+          "asset_evidence": "PENDING_CREATION",
+          "dispatch": "NOT_READY",
+          "payment_status": "NO_PAYMENT_CLAIMED"
         }
       ]
     },
