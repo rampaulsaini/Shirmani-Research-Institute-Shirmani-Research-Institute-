@@ -2,7 +2,7 @@
   "schema_version": 1,
   "mode": "REAL_PRODUCT_CATALOG",
   "principle": "A product record is not a completed sale; checkout/delivery must remain explicit.",
-  "offer_count": 24,
+  "offer_count": 25,
   "offers": [
     {
       "id": "P001",
@@ -225,6 +225,29 @@
       "asset_evidence": "VERIFIED_IN_REPOSITORY",
       "lane": "micro-digital-products",
       "priority": 5
+    },
+    {
+      "id": "P-STUDIO-001",
+      "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+      "delivery": "creative-service",
+      "type": "digital-experience",
+      "description": "निष्पक्ष समझ, सत्य, प्रेम और शांति पर आधारित डिजिटल संवाद अनुभव; प्रस्तावित डेमो और ग्राहक-स्वीकृत प्रीमियम संवाद सेवा।",
+      "asset_path": "showroom/heart-view-character-studio.html",
+      "asset_evidence": "EXISTING_STUDIO_INTERFACE; NEW_MEDIA_DEMO_NOT_YET_CREATED",
+      "voice": "USER_RECORDED_OR_EXPLICITLY_LICENSED_VOICE_REQUIRED",
+      "languages": {
+        "planned_demo_count": 16,
+        "status": "TRANSLATION_AND_HUMAN_REVIEW_REQUIRED"
+      },
+      "pricing": {
+        "introductory": "FREE_DEMO",
+        "premium": "QUOTE_REQUIRED",
+        "checkout_enabled": false
+      },
+      "publishing_manifest": "config/social-publishing-manifest.json",
+      "publishing_status": "DRY_RUN",
+      "lane": "creative-production",
+      "priority": 3
     }
   ]
 }
