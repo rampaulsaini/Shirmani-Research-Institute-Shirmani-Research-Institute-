@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "studio_id": "P-STUDIO-001",
+  "name": "Shirmani Anant Studio — Heart-to-Heart Dialogue",
+  "status": "DEMO_PROPOSED",
+  "publishing_mode": "DRY_RUN",
+  "enabled": false,
+  "timezone": "Asia/Kolkata",
+  "account_registry": {
+    "source": "config/social-accounts.json",
+    "expected_connected_accounts": 16,
+    "listed_link_records_at_creation": 20,
+    "account_selection_status": "REVIEW_REQUIRED",
+    "connection_status": "NOT_CONNECTED_UNVERIFIED",
+    "note": "Listed URLs are references, not proof of account ownership, OAuth authorization, or API connectivity."
+  },
+  "target_platforms": [
+    "youtube",
+    "instagram",
+    "facebook",
+    "x"
+  ],
+  "content_formats": {
+    "short": {
+      "aspect_ratio": "9:16",
+      "target_duration_seconds": 15,
+      "status": "SCRIPT_REQUIRED"
+    },
+    "long": {
+      "aspect_ratio": "16:9",
+      "target_duration_seconds": 300,
+      "status": "SCRIPT_REQUIRED"
+    },
+    "podcast": {
+      "format": "audio",
+      "title": "निष्पक्ष समझ ही सत्य है",
+      "status": "VOICE_RECORDING_REQUIRED"
+    }
+  },
+  "daily_plan": {
+    "story_count": 1,
+    "cadence": "daily",
+    "timezone": "Asia/Kolkata",
+    "status": "PLANNED_NOT_SCHEDULED",
+    "reuse_policy": "Create one approved source story, then adapt per platform; retain source and derivative IDs."
+  },
+  "approval_gate": {
+    "human_approval_required": true,
+    "rights_and_consent_check": true,
+    "factual_claim_review": true,
+    "translation_review_required": true,
+    "media_quality_check": true
+  },
+  "publishing_gate": {
+    "account_oauth": "REQUIRED",
+    "platform_api_permission": "REQUIRED",
+    "external_publish_enabled": false,
+    "make_webhook": "NOT_CONFIGURED_OR_NOT_VERIFIED"
+  },
+  "income_evidence": {
+    "track_inquiry": true,
+    "track_agreed_offer": true,
+    "track_payment_receipt": true,
+    "track_delivery_confirmation": true,
+    "revenue_claim_only_after_provider_or_bank_evidence": true
+  },
+  "safety": {
+    "no_tokens_or_passwords_in_repository": true,
+    "no_voice_clone_without_explicit_voice_sample_and_rights": true,
+    "no_claim_of_hologram_or_live_audience_without_demo_evidence": true
+  }
+}
