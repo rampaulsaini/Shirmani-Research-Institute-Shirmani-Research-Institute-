@@ -37,9 +37,9 @@ ROUTES = [
         BASE + "/revenue-first-control-center.html",
         (
             "उत्पादन से वास्तविक आय तक",
-            "₹499 · Editing pilot",
-            "₹1,499 · Research summary",
-            "₹999 · Website/blog draft",
+            "₹999 · Writing / Editing pilot",
+            "₹1,999 · Research summary",
+            "₹2,999 · Website/blog draft",
         ),
     ),
     ("first paid pilot offer", BASE + "/first-paid-pilot-offer.html", ("Research & Writing — First Client Pilot", "₹499", "₹1,499", "₹999")),
