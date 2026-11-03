@@ -14,7 +14,9 @@
     "dispatch_gates",
     "income_evidence",
     "security",
-    "truth_boundary"
+    "truth_boundary",
+    "catalog_source_path",
+    "catalog_product_status"
   ],
   "properties": {
     "schema_version": {
@@ -287,6 +289,12 @@
     "truth_boundary": {
       "type": "string",
       "minLength": 20
+    },
+    "catalog_source_path": {
+      "const": "factory/product-catalog.json"
+    },
+    "catalog_product_status": {
+      "const": "SOURCE_RECORD_ADDED_AS_DEMO_PROPOSED"
     }
   }
 }
