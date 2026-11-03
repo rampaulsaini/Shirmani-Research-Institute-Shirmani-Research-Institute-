@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "product_id": "P-STUDIO-001",
+  "asset": "podcast_30_second_script",
+  "source_language": "hi",
+  "target_language_count": 16,
+  "review_policy": "All translations are machine-assisted working drafts. Native-speaker review, pronunciation review, and owner approval are required before recording or publishing.",
+  "translations": [
+    {
+      "code": "hi",
+      "language": "Hindi",
+      "status": "SOURCE",
+      "text": "निष्पक्ष समझ ही सत्य है। जब हम किसी बात को बिना पक्षपात, बिना जल्दबाज़ी और पूरे ध्यान से समझते हैं, तभी संवाद में स्पष्टता आती है। सत्य, प्रेम और शांति केवल शब्द नहीं—वे हमारे व्यवहार में दिखाई देने चाहिए। शिरोमणि अनंत स्टूडियो में आपका स्वागत है। आइए, हृदय से हृदय संवाद करें।"
+    },
+    {
+      "code": "en",
+      "language": "English",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "Impartial understanding is truth. When we understand something without bias, without haste, and with full attention, our conversations become clearer. Truth, love, and peace are not merely words; they should be reflected in how we act. Welcome to Shirmani Anant Studio. Let us connect heart to heart."
+    },
+    {
+      "code": "pa",
+      "language": "Punjabi",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "ਨਿਰਪੱਖ ਸਮਝ ਹੀ ਸੱਚ ਹੈ। ਜਦੋਂ ਅਸੀਂ ਕਿਸੇ ਗੱਲ ਨੂੰ ਬਿਨਾਂ ਪੱਖਪਾਤ, ਬਿਨਾਂ ਜਲਦਬਾਜ਼ੀ ਅਤੇ ਪੂਰੇ ਧਿਆਨ ਨਾਲ ਸਮਝਦੇ ਹਾਂ, ਤਾਂ ਗੱਲਬਾਤ ਵਿੱਚ ਸਪਸ਼ਟਤਾ ਆਉਂਦੀ ਹੈ। ਸੱਚ, ਪਿਆਰ ਅਤੇ ਸ਼ਾਂਤੀ ਸਿਰਫ਼ ਸ਼ਬਦ ਨਹੀਂ; ਇਹ ਸਾਡੇ ਵਿਹਾਰ ਵਿੱਚ ਵੀ ਦਿਖਣੇ ਚਾਹੀਦੇ ਹਨ। ਸ਼ਿਰੋਮਣੀ ਅਨੰਤ ਸਟੂਡੀਓ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ। ਆਓ, ਦਿਲੋਂ ਦਿਲ ਤੱਕ ਗੱਲ ਕਰੀਏ।"
+    },
+    {
+      "code": "ur",
+      "language": "Urdu",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "غیر جانب دار سمجھ ہی سچائی ہے۔ جب ہم کسی بات کو تعصب اور جلد بازی کے بغیر، پوری توجہ سے سمجھتے ہیں تو گفتگو میں وضاحت پیدا ہوتی ہے۔ سچ، محبت اور امن محض الفاظ نہیں؛ انہیں ہمارے عمل میں بھی نظر آنا چاہیے۔ شرومنی اننت اسٹوڈیو میں خوش آمدید۔ آئیے، دل سے دل تک گفتگو کریں۔"
+    },
+    {
+      "code": "bn",
+      "language": "Bengali",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "নিরপেক্ষ বোঝাপড়াই সত্য। আমরা যখন পক্ষপাত ও তাড়াহুড়ো ছাড়া পূর্ণ মনোযোগ দিয়ে কোনো বিষয় বুঝি, তখন কথোপকথন আরও স্পষ্ট হয়। সত্য, ভালোবাসা ও শান্তি শুধু শব্দ নয়; আমাদের আচরণেও তার প্রকাশ থাকা উচিত। শিরোমণি অনন্ত স্টুডিওতে স্বাগতম। আসুন, হৃদয় থেকে হৃদয়ে কথা বলি।"
+    },
+    {
+      "code": "ta",
+      "language": "Tamil",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "பாரபட்சமற்ற புரிதலே உண்மை. அவசரமின்றி, முழுக் கவனத்துடன் ஒரு விஷயத்தைப் புரிந்துகொள்ளும்போது உரையாடல் தெளிவாகிறது. உண்மை, அன்பு, அமைதி ஆகியவை வெறும் சொற்களாக இல்லாமல் நம் செயல்களிலும் வெளிப்பட வேண்டும். ஷிரோமணி அனந்த் ஸ்டுடியோவிற்கு வரவேற்கிறோம். இதயத்திலிருந்து இதயத்துடன் உரையாடுவோம்."
+    },
+    {
+      "code": "te",
+      "language": "Telugu",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "పక్షపాతం లేని అవగాహనే సత్యం. తొందరపడకుండా, పూర్తి శ్రద్ధతో ఒక విషయాన్ని అర్థం చేసుకున్నప్పుడు సంభాషణ స్పష్టంగా మారుతుంది. సత్యం, ప్రేమ, శాంతి కేవలం మాటలు మాత్రమే కాకుండా మన ప్రవర్తనలోనూ కనిపించాలి. శిరోమణి అనంత్ స్టూడియోకు స్వాగతం. హృదయం నుంచి హృదయానికి మాట్లాడుకుందాం."
+    },
+    {
+      "code": "mr",
+      "language": "Marathi",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "निःपक्षपाती समज हीच सत्याची वाट आहे. कोणतीही गोष्ट पूर्वग्रह न ठेवता, घाई न करता आणि पूर्ण लक्ष देऊन समजून घेतली, तर संवाद अधिक स्पष्ट होतो. सत्य, प्रेम आणि शांती हे केवळ शब्द नसून आपल्या वागण्यातही दिसले पाहिजेत. शिरोमणी अनंत स्टुडिओमध्ये स्वागत आहे. चला, मनापासून संवाद साधूया."
+    },
+    {
+      "code": "gu",
+      "language": "Gujarati",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "નિષ્પક્ષ સમજ જ સત્ય છે. જ્યારે આપણે કોઈ વાતને પક્ષપાત વિના, ઉતાવળ કર્યા વગર અને સંપૂર્ણ ધ્યાનથી સમજીએ છીએ, ત્યારે સંવાદ વધુ સ્પષ્ટ બને છે. સત્ય, પ્રેમ અને શાંતિ માત્ર શબ્દો નથી; તે આપણા વર્તનમાં પણ દેખાવા જોઈએ. શિરોમણિ અનંત સ્ટુડિયોમાં આપનું સ્વાગત છે. ચાલો, હૃદયથી હૃદય સુધી સંવાદ કરીએ."
+    },
+    {
+      "code": "kn",
+      "language": "Kannada",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "ಪಕ್ಷಪಾತವಿಲ್ಲದ ಅರಿವೇ ಸತ್ಯ. ಆತುರವಿಲ್ಲದೆ, ಸಂಪೂರ್ಣ ಗಮನದಿಂದ ಒಂದು ವಿಷಯವನ್ನು ಅರ್ಥಮಾಡಿಕೊಂಡಾಗ ಸಂಭಾಷಣೆ ಸ್ಪಷ್ಟವಾಗುತ್ತದೆ. ಸತ್ಯ, ಪ್ರೀತಿ ಮತ್ತು ಶಾಂತಿ ಕೇವಲ ಪದಗಳಾಗಿರದೆ ನಮ್ಮ ನಡೆನುಡಿಯಲ್ಲಿಯೂ ಕಾಣಬೇಕು. ಶಿರೋಮಣಿ ಅನಂತ್ ಸ್ಟುಡಿಯೋಗೆ ಸ್ವಾಗತ. ಹೃದಯದಿಂದ ಹೃದಯಕ್ಕೆ ಮಾತನಾಡೋಣ."
+    },
+    {
+      "code": "ml",
+      "language": "Malayalam",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "പക്ഷപാതമില്ലാത്ത മനസ്സിലാക്കലാണ് സത്യം. തിടുക്കമില്ലാതെ, പൂർണ്ണ ശ്രദ്ധയോടെ ഒരു കാര്യം മനസ്സിലാക്കുമ്പോൾ സംഭാഷണം കൂടുതൽ വ്യക്തതയുള്ളതാകുന്നു. സത്യം, സ്നേഹം, സമാധാനം എന്നിവ വാക്കുകളിൽ മാത്രം ഒതുങ്ങാതെ നമ്മുടെ പ്രവൃത്തികളിലും പ്രകടമാകണം. ശിരോമണി അനന്ത് സ്റ്റുഡിയോയിലേക്ക് സ്വാഗതം. ഹൃദയത്തിൽ നിന്ന് ഹൃദയത്തിലേക്ക് സംസാരിക്കാം."
+    },
+    {
+      "code": "ne",
+      "language": "Nepali",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "निष्पक्ष बुझाइ नै सत्य हो। कुनै कुरा पूर्वाग्रह र हतार नगरी, पूरा ध्यान दिएर बुझ्दा संवाद स्पष्ट हुन्छ। सत्य, प्रेम र शान्ति केवल शब्द होइनन्; ती हाम्रो व्यवहारमा पनि देखिनुपर्छ। शिरोमणि अनन्त स्टुडियोमा स्वागत छ। आउनुहोस्, हृदयदेखि हृदयसम्म संवाद गरौँ।"
+    },
+    {
+      "code": "ar",
+      "language": "Arabic",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "الفهم المحايد هو الحقيقة. عندما نفهم الأمور دون تحيز أو استعجال، وبكامل انتباهنا، يصبح الحوار أكثر وضوحًا. الحقيقة والمحبة والسلام ليست مجرد كلمات، بل ينبغي أن تظهر في سلوكنا. أهلًا بكم في استوديو شيرماني أنانت. لنتواصل من القلب إلى القلب."
+    },
+    {
+      "code": "fr",
+      "language": "French",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "La compréhension impartiale est une forme de vérité. Lorsque nous cherchons à comprendre sans préjugés, sans précipitation et avec toute notre attention, le dialogue devient plus clair. La vérité, l’amour et la paix ne sont pas de simples mots : ils doivent se refléter dans nos actes. Bienvenue au Shirmani Anant Studio. Échangeons de cœur à cœur."
+    },
+    {
+      "code": "es",
+      "language": "Spanish",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "La comprensión imparcial es verdad. Cuando entendemos algo sin prejuicios, sin prisa y con toda nuestra atención, el diálogo se vuelve más claro. La verdad, el amor y la paz no son solo palabras; también deben reflejarse en nuestra conducta. Bienvenidos a Shirmani Anant Studio. Conectemos de corazón a corazón."
+    },
+    {
+      "code": "zh-Hans",
+      "language": "Chinese (Simplified)",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "公正的理解就是真理。当我们不带偏见、不急于下结论，并全神贯注地理解一件事时，交流就会更加清晰。真诚、爱与和平不只是 words，更应该体现在我们的行动中。欢迎来到 Shirmani Anant Studio。让我们心与心相连。"
+    },
+    {
+      "code": "ja",
+      "language": "Japanese",
+      "status": "DRAFT_MACHINE_ASSISTED",
+      "text": "偏りのない理解こそ、真実への道です。先入観や焦りを持たず、心を込めて物事を理解すると、対話はより明確になります。真実、愛、平和は単なる言葉ではなく、私たちの行動にも表れるべきものです。Shirmani Anant Studioへようこそ。心と心で語り合いましょう。"
+    }
+  ],
+  "publication_gate": "BLOCKED_UNTIL_NATIVE_REVIEW_AND_OWNER_APPROVAL"
+}
