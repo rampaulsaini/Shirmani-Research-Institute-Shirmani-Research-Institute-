@@ -1,0 +1,259 @@
+{
+  "schema_version": "1.0",
+  "studio": {
+    "id": "P-STUDIO-001",
+    "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+    "status": "DEMO_PROPOSED",
+    "product_catalog_integration": "PENDING_SCHEMA_REVIEW"
+  },
+  "purpose": "Single-source content plan and auditable publishing permissions. A listed URL is not proof of account ownership, authentication, API access, or publishing permission.",
+  "operating_mode": "DRY_RUN",
+  "publishing_enabled": false,
+  "timezone": "Asia/Kolkata",
+  "schedule": {
+    "daily_story": {
+      "enabled": false,
+      "frequency": "1_per_day",
+      "reason": "Enable only after account authorization, content approval, and a successful private test."
+    },
+    "short_video": {
+      "enabled": false,
+      "frequency": "planned_daily"
+    },
+    "long_video": {
+      "enabled": false,
+      "frequency": "planned_weekly"
+    },
+    "podcast": {
+      "enabled": false,
+      "frequency": "planned_weekly"
+    }
+  },
+  "content_pipeline": [
+    "source_story",
+    "editorial_review",
+    "translation_review",
+    "asset_generation",
+    "format_validation",
+    "human_approval",
+    "platform_permission_check",
+    "dry_run",
+    "authorized_publish",
+    "publication_receipt",
+    "income_evidence"
+  ],
+  "formats": {
+    "short": {
+      "aspect_ratio": "9:16",
+      "target_duration_seconds": 15,
+      "status": "STORYBOARD_REQUIRED"
+    },
+    "long": {
+      "aspect_ratio": "16:9",
+      "target_duration_seconds": 300,
+      "status": "SCRIPT_AND_RECORDING_REQUIRED"
+    },
+    "podcast": {
+      "format": "audio",
+      "working_title": "निष्पक्ष समझ ही सत्य है",
+      "status": "USER_AUDIO_REQUIRED"
+    }
+  },
+  "evidence_rules": {
+    "voice": "Do not claim an exact voice match or clone until an authorized source recording and an end-to-end test are reviewed.",
+    "historical_claims": "Owner-declared references must remain labelled as such until independently verified.",
+    "publication": "Store platform post ID, canonical URL, timestamp, response status, and content hash.",
+    "income": "Views, likes, reach, product price, and webhook acceptance are not payment. Record income only against verified provider or bank evidence."
+  },
+  "account_records": [
+    {
+      "id": "social-001",
+      "platform": "facebook",
+      "label": "Primary Facebook",
+      "url": "https://www.facebook.com/share/19wzFT2qry/",
+      "record_type": "profile_or_share_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-002",
+      "platform": "facebook",
+      "label": "Facebook profile",
+      "url": "https://www.facebook.com/profile.php?id=100075288011123",
+      "record_type": "profile_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-003",
+      "platform": "whatsapp_channel",
+      "label": "WhatsApp Channel",
+      "url": "https://whatsapp.com/channel/0029VaAtyvg77qVR2J82Qn04",
+      "record_type": "channel_link",
+      "connection": "LINK_ONLY",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-004",
+      "platform": "whatsapp_group",
+      "label": "WhatsApp Group",
+      "url": "https://chat.whatsapp.com/EZRptFT1OWQ8zFyq4WyWzf",
+      "record_type": "group_invite_link",
+      "connection": "LINK_ONLY",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-005",
+      "platform": "youtube",
+      "label": "Main YouTube",
+      "url": "https://youtube.com/@rampaulsaini-yk4gn",
+      "record_type": "channel_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-006",
+      "platform": "youtube",
+      "label": "Motivational Quotes",
+      "url": "https://youtube.com/@motivationalquotes-m7p",
+      "record_type": "channel_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-007",
+      "platform": "youtube",
+      "label": "Humanity",
+      "url": "https://youtube.com/@humanity-sl1jd",
+      "record_type": "channel_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-008",
+      "platform": "youtube",
+      "label": "Additional YouTube",
+      "url": "https://youtube.com/@user-ud1kg2sx6v",
+      "record_type": "channel_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-009",
+      "platform": "instagram",
+      "label": "Instagram",
+      "url": "https://instagram.com/globleprefect",
+      "record_type": "profile_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-010",
+      "platform": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/rampaul-saini-12120592",
+      "record_type": "profile_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-011",
+      "platform": "x",
+      "label": "X profile",
+      "url": "https://twitter.com/rampaulsaini",
+      "record_type": "profile_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-012",
+      "platform": "pinterest",
+      "label": "Pinterest pin 1",
+      "url": "https://pin.it/69LggZr",
+      "record_type": "pin_link",
+      "connection": "LINK_ONLY",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-013",
+      "platform": "pinterest",
+      "label": "Pinterest pin 2",
+      "url": "https://pin.it/5a3y4ZZ",
+      "record_type": "pin_link",
+      "connection": "LINK_ONLY",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-014",
+      "platform": "blogger",
+      "label": "Multicosmovision article",
+      "url": "http://multicosmovision.blogspot.com/2025/01/proved-by-quantum-multi-languages.html",
+      "record_type": "article_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-015",
+      "platform": "blogger",
+      "label": "Beyond Science and Spirit — self discovery",
+      "url": "http://beyondscienseandspirtu.blogspot.com/2023/07/startgy-of-self-discover.html",
+      "record_type": "article_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-016",
+      "platform": "blogger",
+      "label": "Beyond Science and Spirit — words",
+      "url": "http://beyondscienseandspirtu.blogspot.com/2023/07/a-world-where-words-come-alive.html",
+      "record_type": "article_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-017",
+      "platform": "blogger",
+      "label": "Multicosmovision article 2023",
+      "url": "http://multicosmovision.blogspot.com/2023/07/blog-post_86.html",
+      "record_type": "article_link",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-018",
+      "platform": "hipi",
+      "label": "Hipi",
+      "url": "https://www.hipi.co.in/@rampaulsaini",
+      "record_type": "profile_link",
+      "connection": "LINK_ONLY",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-019",
+      "platform": "explurger",
+      "label": "Explurger",
+      "url": "https://app.explurger.com/dl/4CANVNw28Gymh46x6",
+      "record_type": "invite_or_profile_link",
+      "connection": "LINK_ONLY",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "id": "social-020",
+      "platform": "store",
+      "label": "Take App Store",
+      "url": "https://take.app/httpsgithubcomrampaulsainishirmaniresearchinstitute",
+      "record_type": "store_link",
+      "connection": "EXTERNAL_STORE",
+      "permission": "NOT_APPLICABLE"
+    }
+  ],
+  "minimum_release_gates": [
+    "Verify account owner/admin access and official API availability for each destination.",
+    "Connect OAuth/API credentials using Make connections or GitHub Secrets; never commit credentials.",
+    "Run private dry-run and duplicate/idempotency test.",
+    "Approve the exact media, caption, language, and destination before first public post.",
+    "Capture platform response and verify the public post URL.",
+    "Record actual orders and payments separately from engagement metrics."
+  ],
+  "last_updated": "2026-11-03"
+}
