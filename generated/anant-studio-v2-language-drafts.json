@@ -3,7 +3,7 @@
   "product_id": "P-STUDIO-001",
   "asset": "podcast_30_second_script",
   "source_language": "hi",
-  "target_language_count": 16,
+  "target_language_count": 15,
   "review_policy": "All translations are machine-assisted working drafts. Native-speaker review, pronunciation review, and owner approval are required before recording or publishing.",
   "translations": [
     {
@@ -109,5 +109,7 @@
       "text": "偏りのない理解こそ、真実への道です。先入観や焦りを持たず、心を込めて物事を理解すると、対話はより明確になります。真実、愛、平和は単なる言葉ではなく、私たちの行動にも表れるべきものです。Shirmani Anant Studioへようこそ。心と心で語り合いましょう。"
     }
   ],
-  "publication_gate": "BLOCKED_UNTIL_NATIVE_REVIEW_AND_OWNER_APPROVAL"
+  "publication_gate": "BLOCKED_UNTIL_NATIVE_REVIEW_AND_OWNER_APPROVAL",
+  "total_language_count": 16,
+  "counting_note": "16 languages total including Hindi source; 15 machine-assisted translation drafts."
 }
