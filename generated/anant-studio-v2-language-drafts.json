@@ -3,7 +3,7 @@
   "product_id": "P-STUDIO-001",
   "asset": "podcast_30_second_script",
   "source_language": "hi",
-  "target_language_count": 15,
+  "target_language_count": 16,
   "review_policy": "All translations are machine-assisted working drafts. Native-speaker review, pronunciation review, and owner approval are required before recording or publishing.",
   "translations": [
     {
@@ -110,6 +110,6 @@
     }
   ],
   "publication_gate": "BLOCKED_UNTIL_NATIVE_REVIEW_AND_OWNER_APPROVAL",
-  "total_language_count": 16,
-  "counting_note": "16 languages total including Hindi source; 15 machine-assisted translation drafts."
+  "total_language_count": 17,
+  "counting_note": "16 target-language drafts plus 1 Hindi source record; 17 language records total."
 }
