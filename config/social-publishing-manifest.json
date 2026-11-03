@@ -4,7 +4,14 @@
     "id": "P-STUDIO-001",
     "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
     "status": "DEMO_PROPOSED",
-    "product_catalog_integration": "PENDING_SCHEMA_REVIEW"
+    "product_catalog_integration": "P-STUDIO-001",
+    "asset_status": "NOT_CREATED",
+    "language_plan": {
+      "target_count": 16,
+      "status": "TRANSLATION_REVIEW_REQUIRED"
+    },
+    "voice_status": "USER_RECORDING_REQUIRED",
+    "historical_reference_status": "OWNER_DECLARED_NOT_INDEPENDENTLY_VERIFIED"
   },
   "purpose": "Single-source content plan and auditable publishing permissions. A listed URL is not proof of account ownership, authentication, API access, or publishing permission.",
   "operating_mode": "DRY_RUN",
@@ -14,7 +21,7 @@
     "daily_story": {
       "enabled": false,
       "frequency": "1_per_day",
-      "reason": "Enable only after account authorization, content approval, and a successful private test."
+      "reason": "Planned target only; enable after account authorization, content approval, and a successful private test."
     },
     "short_video": {
       "enabled": false,
