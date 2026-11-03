@@ -225,6 +225,28 @@
       "asset_evidence": "VERIFIED_IN_REPOSITORY",
       "lane": "micro-digital-products",
       "priority": 5
+    },
+    {
+      "id": "P-STUDIO-001",
+      "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+      "type": "digital_experience",
+      "description": "निष्पक्ष समझ, सत्य, प्रेम और शांति पर आधारित डिजिटल संवाद अनुभव; प्रारंभिक सार्वजनिक डेमो और वैकल्पिक प्रीमियम संवाद।",
+      "delivery": "digital-experience",
+      "price_inr": 0,
+      "price_note": "प्रारंभिक सार्वजनिक डेमो निःशुल्क; प्रीमियम संवाद का मूल्य सेवा-सीमा और ग्राहक की सहमति से तय होगा।",
+      "asset_evidence": "NOT_IN_REPOSITORY",
+      "production_status": "DEMO_PROPOSED",
+      "languages": {
+        "planned": 16,
+        "availability": "TRANSLATION_AND_HUMAN_REVIEW_REQUIRED"
+      },
+      "voice_status": "USER_RECORDED_OR_LICENSED_VOICE_REQUIRED",
+      "historical_reference": {
+        "date": "2024-04-04",
+        "claim_status": "OWNER_DECLARED_NOT_INDEPENDENTLY_VERIFIED"
+      },
+      "publishing_permission": "PENDING_VERIFICATION",
+      "payment_status": "NO_PAYMENT_CLAIMED"
     }
   ]
 }
