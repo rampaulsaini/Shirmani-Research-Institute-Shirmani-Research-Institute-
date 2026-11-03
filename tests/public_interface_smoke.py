@@ -213,6 +213,10 @@ def main() -> int:
         "writing-research-enquiry.html",
         "first-paid-pilot-offer.html",
         "showroom/first-client-pilot-desk.html",
+        "services-writing-research.html",
+        "income-action-center.html",
+        "showroom/global-product-sales-desk.html",
+        "income-client-outreach-desk.html",
     )
     for relative in canonical_offer_pages:
         offer_path = ROOT / relative
