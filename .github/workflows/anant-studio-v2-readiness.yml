@@ -94,8 +94,9 @@ jobs:
       - name: Publish readiness boundary to job summary
         shell: python
         run: |
+          import os
           from pathlib import Path
-          Path("$GITHUB_STEP_SUMMARY").write_text(
+          Path(os.environ["GITHUB_STEP_SUMMARY"]).write_text(
               "# Anant Studio V2 readiness\\n\\n"
               "- Automated contract checks: PASS\\n"
               "- Scope: preproduction structure only\\n"
