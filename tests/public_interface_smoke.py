@@ -217,6 +217,7 @@ def main() -> int:
         "income-action-center.html",
         "showroom/global-product-sales-desk.html",
         "income-client-outreach-desk.html",
+        "global-client-outreach-workbench.html",
     )
     for relative in canonical_offer_pages:
         offer_path = ROOT / relative
