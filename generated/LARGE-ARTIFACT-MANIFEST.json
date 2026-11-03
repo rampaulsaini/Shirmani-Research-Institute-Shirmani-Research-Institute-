@@ -10,9 +10,9 @@
         "generated/verse-corpus.jsonl.gz"
       ],
       "encoding": "gzip",
-      "original_bytes": 146431282,
-      "stored_bytes": 12264011,
-      "original_sha256": "d33ab35991ed952fe3605b40bd9748478bfb09a5ca3be9a67fbd9601dcdac3db"
+      "original_bytes": 145250319,
+      "stored_bytes": 12302920,
+      "original_sha256": "2a43f1f4303d470a3c0e20d34b2c2e370b78a1d854eb01e85123a130b9d2b150"
     },
     {
       "source": "generated/claim-evidence.jsonl",
@@ -20,9 +20,9 @@
         "generated/claim-evidence.jsonl.gz"
       ],
       "encoding": "gzip",
-      "original_bytes": 193150830,
-      "stored_bytes": 18224049,
-      "original_sha256": "800733dbae0bdd06389e3f5cbe36c5448ca767a3be4f3303f19c912374d49292"
+      "original_bytes": 191013703,
+      "stored_bytes": 18306903,
+      "original_sha256": "376426c42469bb16132323ed9e5511530d6934cdec9a1636a57f21220bf94e2f"
     },
     {
       "source": "generated/formulation-records.jsonl",
@@ -30,9 +30,9 @@
         "generated/formulation-records.jsonl.gz"
       ],
       "encoding": "gzip",
-      "original_bytes": 114132766,
-      "stored_bytes": 6436694,
-      "original_sha256": "656ddd4b051dd935b95b3336759b85b48c7a7b2088e17392fdccbf08758899f7"
+      "original_bytes": 114134019,
+      "stored_bytes": 6437328,
+      "original_sha256": "c719fda1f28a05f74c87aafc18be7ad0727a704ef9fac1d9f8518fd4b24c409c"
     },
     {
       "source": "generated/reasoning-manifest.jsonl",
@@ -40,9 +40,9 @@
         "generated/reasoning-manifest.jsonl.gz"
       ],
       "encoding": "gzip",
-      "original_bytes": 335334382,
-      "stored_bytes": 20313956,
-      "original_sha256": "98027feb328cb7e0671434bb31ce4f11c4f5b1f46c8290b8a22228518ca36484"
+      "original_bytes": 333219631,
+      "stored_bytes": 20424953,
+      "original_sha256": "f2193fc85991ebb0ee66ec7179747956307699904272dcb82ff0a1ce3529997c"
     },
     {
       "source": "generated/research-evidence-graph.json",
@@ -50,9 +50,9 @@
         "generated/research-evidence-graph.json.gz"
       ],
       "encoding": "gzip",
-      "original_bytes": 192243170,
-      "stored_bytes": 21643677,
-      "original_sha256": "67afd7f2992ad4bfa5a2c140d8e03f1fc563a5eca3c363123d281a60607e7242"
+      "original_bytes": 192240696,
+      "stored_bytes": 21649460,
+      "original_sha256": "9c7909797240844bff6b0163de9ef2f8b7abfd6f882bd2cb9559aaaa2fa5cc06"
     },
     {
       "source": "generated/independent-verification-queue.jsonl",
@@ -60,9 +60,9 @@
         "generated/independent-verification-queue.jsonl.gz"
       ],
       "encoding": "gzip",
-      "original_bytes": 72157071,
-      "stored_bytes": 2552504,
-      "original_sha256": "fc9a68e952ae3b72422b20a25f7b5fb683cb2552aca91146b7521c3e192e91e2"
+      "original_bytes": 72158324,
+      "stored_bytes": 2553071,
+      "original_sha256": "83addc91039948e0eb474b955cebfbbe537cef1043230029a7f08d0a0c892744"
     },
     {
       "source": "generated/independent-verification-registry.jsonl",
@@ -71,8 +71,8 @@
       ],
       "encoding": "gzip",
       "original_bytes": 67626895,
-      "stored_bytes": 7913138,
-      "original_sha256": "db753921ac3aba6f6ea08a6033d818c253e750f53d62e2ac0e2a7f06f97bf5e7"
+      "stored_bytes": 7912554,
+      "original_sha256": "7b03a8834a687eb74345087435c07edbc1e6e069667dd3d8a3f35377c22a4bb0"
     }
   ]
 }
