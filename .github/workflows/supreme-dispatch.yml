@@ -6,6 +6,7 @@ on:
       - "showroom-products.json"
       - "scripts/auto-dispatch.js"
       - "config/social-accounts.json"
+      - "config/social-publishing-manifest.json"
       - ".github/workflows/supreme-dispatch.yml"
   schedule:
     - cron: "*/5 * * * *"
@@ -21,11 +22,37 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Validate manifest and account directory
+      - name: Validate product and account directories
         run: |
           node --version
-          node -e "const m=require('./showroom-products.json'); if(!Array.isArray(m.products)) throw Error('products array missing'); console.log('Manifest entries:',m.products.length)"
-          node -e "const a=require('./config/social-accounts.json'); if(!Array.isArray(a.accounts)) throw Error('accounts array missing'); console.log('Listed social links:',a.accounts.length)"
+          node -e "const m=require('./showroom-products.json'); if(!Array.isArray(m.products)) throw Error('products array missing'); console.log('Showroom products:',m.products.length)"
+          node -e "const a=require('./config/social-accounts.json'); if(!Array.isArray(a.accounts)) throw Error('accounts array missing'); console.log('Listed social/store links:',a.accounts.length)"
+      - name: Validate Anant Studio publishing manifest (no publishing)
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const manifest = JSON.parse(fs.readFileSync('config/social-publishing-manifest.json', 'utf8'));
+          const source = JSON.parse(fs.readFileSync('config/social-accounts.json', 'utf8'));
+          if (manifest.studio?.product_id !== 'P-STUDIO-001') throw new Error('Unexpected Studio product ID');
+          if (manifest.publishing?.mode !== 'DRY_RUN') throw new Error('Publishing must remain DRY_RUN');
+          if (manifest.publishing?.live_publish_enabled !== false) throw new Error('Live publishing must remain disabled');
+          if (manifest.publishing?.approval?.human_approval_required !== true) throw new Error('Human approval gate missing');
+          if (!Array.isArray(manifest.accounts)) throw new Error('Manifest accounts array missing');
+          const urls = new Set(manifest.accounts.map(account => account.url));
+          if (urls.size !== manifest.accounts.length) throw new Error('Duplicate account/content URLs in manifest');
+          const sourceUrls = new Set(source.accounts.map(account => account.url));
+          for (const account of manifest.accounts) {
+            if (!sourceUrls.has(account.url)) throw new Error('Manifest URL not present in canonical social account directory: ' + account.url);
+            if (account.account_kind !== 'external_store_link' && account.permission !== 'PENDING_VERIFICATION') {
+              throw new Error('Unverified publishing permission must remain pending: ' + account.label);
+            }
+          }
+          for (const account of source.accounts) {
+            if (!urls.has(account.url)) throw new Error('Canonical social account URL missing from manifest: ' + account.url);
+          }
+          if (manifest.accounts.length !== source.accounts.length) throw new Error('Manifest/source account count mismatch');
+          console.log('Anant Studio manifest valid:', manifest.accounts.length, 'source URLs; DRY_RUN; live publishing disabled.');
+          NODE
       - name: Run guarded dispatch bridge
         env:
           DISPATCH_ENABLED: ${{ vars.DISPATCH_ENABLED || 'false' }}
