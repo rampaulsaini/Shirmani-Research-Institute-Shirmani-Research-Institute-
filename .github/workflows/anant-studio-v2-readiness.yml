@@ -61,8 +61,8 @@ jobs:
               "catalog_offer_name_present": bool(offer and offer.get("name")),
               "plan_product_matches": plan.get("product_id") == "P-STUDIO-001",
               "manifest_product_matches": manifest.get("studio", {}).get("product_id") == "P-STUDIO-001",
-              "language_total_is_16_including_source": drafts.get("total_language_count") == 16 and plan.get("languages", {}).get("total_count") == 16 and len(translations) == 16,
-              "15_unique_translation_drafts_plus_one_source": drafts.get("target_language_count") == 15 and plan.get("languages", {}).get("target_translation_count") == 15 and len(set(language_codes)) == 16 and all(language_codes) and sum(item.get("status") == "SOURCE" for item in translations) == 1 and sum(item.get("status") == "DRAFT_MACHINE_ASSISTED" for item in translations) == 15 and any(item.get("code") == drafts.get("source_language") and item.get("status") == "SOURCE" for item in translations),
+              "language_total_is_16_targets_plus_source": drafts.get("target_language_count") == 16 and plan.get("languages", {}).get("target_count") == 16 and drafts.get("total_language_count") == 17 and plan.get("languages", {}).get("total_count") == 17 and len(translations) == 17,
+              "16_unique_translation_drafts_plus_one_source": plan.get("languages", {}).get("target_translation_count") == 16 and len(set(language_codes)) == 17 and all(language_codes) and sum(item.get("status") == "SOURCE" for item in translations) == 1 and sum(item.get("status") == "DRAFT_MACHINE_ASSISTED" for item in translations) == 16 and any(item.get("code") == drafts.get("source_language") and item.get("status") == "SOURCE" for item in translations),
               "all_non_source_translations_remain_drafts": all(
                   item.get("status") in ("SOURCE", "DRAFT_MACHINE_ASSISTED")
                   for item in translations
