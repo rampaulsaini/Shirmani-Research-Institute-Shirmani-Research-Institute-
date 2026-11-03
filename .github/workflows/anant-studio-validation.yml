@@ -4,6 +4,7 @@ on:
     paths:
       - "factory/product-catalog.json"
       - "config/social-publishing-manifest.json"
+      - "schema/social-publishing-manifest.schema.json"
       - "scripts/validate_anant_studio.py"
       - ".github/workflows/anant-studio-validation.yml"
   push:
