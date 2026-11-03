@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "id": "ANANT-STUDIO-STORY-001",
+  "product_id": "P-STUDIO-001",
+  "title": "निष्पक्ष समझ ही सत्य है",
+  "format": {
+    "type": "short_reel_script",
+    "duration_seconds": 15,
+    "aspect_ratio": "9:16",
+    "resolution": "1080x1920",
+    "language": "hi",
+    "voiceover": "none",
+    "spoken_dialogue": "none",
+    "lip_sync": "disabled",
+    "publishing_mode": "DRY_RUN"
+  },
+  "source": {
+    "visual": "उपलब्ध उपयोगकर्ता-प्रदत्त Anant Studio portrait image: सामने व्यक्ति का क्लोज-अप, गहरे रंग की धारीदार कॉलर-शर्ट और साधारण indoor पृष्ठभूमि।",
+    "repository_asset": "NOT_YET_COMMITTED",
+    "visual_usage": "केवल इसी स्वीकृत portrait image का उपयोग; चेहरा बदलना, synthetic lip-sync या identity alteration नहीं।"
+  },
+  "creative_direction": {
+    "tone": "शांत, आत्मीय, स्पष्ट और सम्मानपूर्ण",
+    "visual_style": "स्वच्छ portrait framing, हल्का slow push-in, पठनीय देवनागरी typography, सीमित transitions",
+    "audio": "मौन; कोई voice, narration, generated speech या unlicensed music नहीं",
+    "text_safe_area": "ऊपर और नीचे platform UI से पर्याप्त दूरी रखें"
+  },
+  "timeline": [
+    {
+      "start": 0,
+      "end": 3,
+      "visual": "Portrait को vertical frame में केंद्रित करें; हल्का slow push-in शुरू हो।",
+      "on_screen_text": "शिरोमणि अनंत स्टूडियो",
+      "text_treatment": "सफेद, स्पष्ट देवनागरी; नीचे हल्की translucent dark strip"
+    },
+    {
+      "start": 3,
+      "end": 7,
+      "visual": "उसी portrait पर स्थिर, सहज framing; कोई facial animation नहीं।",
+      "on_screen_text": "निष्पक्ष समझ",
+      "text_treatment": "मुख्य शब्द बड़े आकार में; चेहरा ढका न जाए"
+    },
+    {
+      "start": 7,
+      "end": 11,
+      "visual": "धीमा push-in जारी; transition केवल soft dissolve।",
+      "on_screen_text": "ही सत्य है",
+      "text_treatment": "पहले वाक्यांश के साथ दृश्य निरंतरता बनाए रखें"
+    },
+    {
+      "start": 11,
+      "end": 15,
+      "visual": "Portrait स्थिर हो; अंतिम दो सेकंड में title lock-up साफ दिखाई दे।",
+      "on_screen_text": "सत्य  |  प्रेम  |  शांति",
+      "secondary_text": "विचार से संवाद तक",
+      "text_treatment": "केंद्रित, उच्च contrast; अंतिम फ्रेम 1 सेकंड hold"
+    }
+  ],
+  "full_text_sequence": [
+    "शिरोमणि अनंत स्टूडियो",
+    "निष्पक्ष समझ",
+    "ही सत्य है",
+    "सत्य  |  प्रेम  |  शांति",
+    "विचार से संवाद तक"
+  ],
+  "production_checks": {
+    "duration_exactly_15_seconds": true,
+    "portrait_source_required": true,
+    "voice_required": false,
+    "music_license_required": false,
+    "human_content_approval_required": true,
+    "visual_quality_review_required": true,
+    "external_publish_authorized": false,
+    "payment_or_sales_claims": false
+  },
+  "release_status": "SCRIPT_DRAFT_READY_FOR_REVIEW",
+  "next_gate": "Repository में source image asset जोड़ने/उसका path सत्यापित करने के बाद visual QC और owner approval; उसके बाद ही render।",
+  "evidence_boundary": "यह JSON केवल script specification है। इससे video render, publication, customer order, sale, payment या delivery सिद्ध नहीं होती।"
+}
