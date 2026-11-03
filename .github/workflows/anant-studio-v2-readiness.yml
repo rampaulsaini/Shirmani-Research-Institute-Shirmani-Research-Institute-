@@ -1,0 +1,108 @@
+name: SHIRMANI Anant Studio V2 Readiness Gate
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "config/anant-studio-v2-production-plan.json"
+      - "config/social-publishing-manifest.json"
+      - "config/social-accounts.json"
+      - "generated/anant-studio-v2-language-drafts.json"
+      - "generated/product-catalog-public.json"
+      - ".github/workflows/anant-studio-v2-readiness.yml"
+  push:
+    branches: [main]
+    paths:
+      - "config/anant-studio-v2-production-plan.json"
+      - "config/social-publishing-manifest.json"
+      - "config/social-accounts.json"
+      - "generated/anant-studio-v2-language-drafts.json"
+      - "generated/product-catalog-public.json"
+      - ".github/workflows/anant-studio-v2-readiness.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: anant-studio-v2-readiness
+  cancel-in-progress: true
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate studio contract, language drafts, and destination safety
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding="utf-8"))
+
+          plan = load("config/anant-studio-v2-production-plan.json")
+          drafts = load("generated/anant-studio-v2-language-drafts.json")
+          manifest = load("config/social-publishing-manifest.json")
+          accounts = load("config/social-accounts.json")
+          catalog = load("generated/product-catalog-public.json")
+
+          offers = catalog.get("offers", [])
+          offer = next((item for item in offers if item.get("id") == "P-STUDIO-001"), None)
+          translations = drafts.get("translations", [])
+          language_codes = [item.get("code") for item in translations]
+          manifest_accounts = manifest.get("accounts", [])
+          source_accounts = accounts.get("accounts", [])
+
+          checks = {
+              "catalog_offer_exists": offer is not None,
+              "catalog_offer_name_present": bool(offer and offer.get("name")),
+              "plan_product_matches": plan.get("product_id") == "P-STUDIO-001",
+              "manifest_product_matches": manifest.get("studio", {}).get("product_id") == "P-STUDIO-001",
+              "language_target_is_16": drafts.get("target_language_count") == 16 and plan.get("languages", {}).get("target_count") == 16,
+              "exactly_16_unique_language_codes": len(translations) == 16 and len(set(language_codes)) == 16 and all(language_codes),
+              "all_non_source_translations_remain_drafts": all(
+                  item.get("status") in ("SOURCE", "DRAFT_MACHINE_ASSISTED")
+                  for item in translations
+              ),
+              "manifest_and_account_registry_match": len(manifest_accounts) == len(source_accounts),
+              "at_least_16_destination_records_exist": len(manifest_accounts) >= 16,
+              "router_stays_dry_run": plan.get("router", {}).get("mode") == "DRY_RUN" and plan.get("router", {}).get("live_publish_enabled") is False,
+              "manifest_live_publish_disabled": manifest.get("publishing", {}).get("live_publish_enabled") is False and manifest.get("publishing", {}).get("mode") == "DRY_RUN",
+              "fail_closed_dispatch_gate_enabled": manifest.get("dispatch_gates", {}).get("do_not_publish_if_any_gate_fails") is True,
+              "human_approval_required": manifest.get("publishing", {}).get("approval", {}).get("human_approval_required") is True,
+          }
+
+          failed = [name for name, passed in checks.items() if not passed]
+          print(json.dumps({
+              "contract": "ANANT_STUDIO_V2",
+              "checks_passed": len(checks) - len(failed),
+              "checks_total": len(checks),
+              "destination_records": len(manifest_accounts),
+              "source_account_records": len(source_accounts),
+              "language_records": len(translations),
+              "live_publish_enabled": False,
+              "readiness": "PASS_PREPRODUCTION_ONLY" if not failed else "FAIL",
+              "failed_checks": failed
+          }, ensure_ascii=False, indent=2))
+
+          if failed:
+              raise SystemExit("ANANT_STUDIO_V2_READINESS_FAIL: " + ", ".join(failed))
+
+      - name: Publish readiness boundary to job summary
+        shell: python
+        run: |
+          from pathlib import Path
+          Path("$GITHUB_STEP_SUMMARY").write_text(
+              "# Anant Studio V2 readiness\\n\\n"
+              "- Automated contract checks: PASS\\n"
+              "- Scope: preproduction structure only\\n"
+              "- Social destination records: not proof of account ownership or API authorization\\n"
+              "- Translation drafts: not approved for publication until native-speaker review\\n"
+              "- Media rendering and external publication: not established by this workflow\\n"
+              "- Income: no payment is claimed by this workflow\\n"
+              "- Live publishing remains disabled (DRY_RUN).\\n",
+              encoding="utf-8"
+          )
