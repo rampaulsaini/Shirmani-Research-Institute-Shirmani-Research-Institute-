@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "studio_id": "SRI-PRES-001",
+  "studio_name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+  "mode": "DRY_RUN",
+  "product_passport": "docs/products/SRI-PRES-001-product-passport.md",
+  "studio_demo": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/showroom/heart-view-character-studio.html",
+  "account_directory": "config/social-accounts.json",
+  "account_target": 16,
+  "account_authorization_status": "PENDING_VERIFICATION",
+  "publishing_permission": "PENDING_VERIFICATION",
+  "content_policy": {
+    "human_approval_required": true,
+    "publish_only_after_account_authorization": true,
+    "no_tokens_or_credentials_in_repository": true,
+    "distinguish_storyboard_from_recorded_media": true
+  },
+  "daily_plan": {
+    "timezone": "Asia/Kolkata",
+    "story_drafts_per_day": 1,
+    "auto_publish_enabled": false,
+    "schedule_status": "PROPOSED_NOT_ACTIVE"
+  },
+  "formats": {
+    "short_video": {
+      "aspect_ratio": "9:16",
+      "target_duration_seconds": 15,
+      "status": "SCRIPT_REQUIRED"
+    },
+    "long_video": {
+      "aspect_ratio": "16:9",
+      "target_duration_seconds": 300,
+      "status": "STORYBOARD_ONLY_NOT_RECORDED"
+    },
+    "podcast_audio": {
+      "title": "निष्पक्ष समझ ही सत्य है",
+      "target_duration_seconds": 30,
+      "status": "SCRIPT_READY_USER_RECORDING_REQUIRED"
+    }
+  },
+  "pipeline": [
+    "STUDIO_SOURCE",
+    "STORY_SCRIPT",
+    "FORMAT_ADAPTATION",
+    "QUALITY_AND_RIGHTS_REVIEW",
+    "HUMAN_APPROVAL",
+    "AUTHORIZED_PLATFORM_ROUTER",
+    "PUBLICATION_RECEIPT",
+    "INCOME_EVIDENCE"
+  ],
+  "income_evidence": {
+    "sales_claimed": 0,
+    "payments_claimed": 0,
+    "require_order_id_and_payment_receipt": true,
+    "views_followers_or_workflow_runs_are_not_income": true
+  },
+  "limitations": [
+    "This manifest does not connect or authenticate social accounts.",
+    "The existing social dispatch workflow is a guarded product-webhook bridge, not a 16-platform media publisher.",
+    "No voice cloning, avatar rendering, video rendering, or podcast recording is claimed by this manifest.",
+    "External publishing remains disabled until platform-specific OAuth/API access and end-to-end tests are completed."
+  ]
+}
