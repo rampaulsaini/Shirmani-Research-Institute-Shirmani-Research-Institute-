@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shirmani-research-institute.github.io/schemas/social-publishing-manifest.schema.json",
+  "title": "Shirmani Anant Studio Social Publishing Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_id",
+    "studio",
+    "publishing",
+    "account_source",
+    "accounts",
+    "dispatch_gates",
+    "income_evidence",
+    "security",
+    "truth_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "manifest_id": {
+      "const": "ANANT-STUDIO-PUBLISHING-001"
+    },
+    "studio": {
+      "type": "object",
+      "required": [
+        "product_id",
+        "name",
+        "product_type",
+        "release_status",
+        "voice_status",
+        "languages",
+        "pricing"
+      ],
+      "properties": {
+        "product_id": {
+          "const": "P-STUDIO-001"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "product_type": {
+          "const": "digital_experience"
+        },
+        "release_status": {
+          "enum": [
+            "DEMO_PROPOSED",
+            "DEMO_READY",
+            "RELEASED"
+          ]
+        },
+        "voice_status": {
+          "enum": [
+            "ORIGINAL_USER_AUDIO_REQUIRED",
+            "ORIGINAL_USER_AUDIO_RECORDED",
+            "VOICE_TESTED"
+          ]
+        },
+        "languages": {
+          "type": "object",
+          "required": [
+            "target_count",
+            "status"
+          ],
+          "properties": {
+            "target_count": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 16
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "pricing": {
+          "type": "object",
+          "required": [
+            "free",
+            "premium"
+          ],
+          "properties": {
+            "free": {
+              "type": "string"
+            },
+            "premium": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "publishing": {
+      "type": "object",
+      "required": [
+        "mode",
+        "live_publish_enabled",
+        "daily_story_target",
+        "formats",
+        "approval"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "DRY_RUN",
+            "LIVE"
+          ]
+        },
+        "live_publish_enabled": {
+          "type": "boolean"
+        },
+        "daily_story_target": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "formats": {
+          "type": "object",
+          "required": [
+            "short_video",
+            "long_video",
+            "podcast"
+          ]
+        },
+        "approval": {
+          "type": "object",
+          "required": [
+            "human_approval_required",
+            "content_rights_check_required",
+            "translation_review_required"
+          ],
+          "properties": {
+            "human_approval_required": {
+              "const": true
+            },
+            "content_rights_check_required": {
+              "const": true
+            },
+            "translation_review_required": {
+              "const": true
+            }
+          }
+        }
+      }
+    },
+    "account_source": {
+      "const": "config/social-accounts.json"
+    },
+    "accounts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "platform",
+          "label",
+          "url",
+          "account_kind",
+          "source_api_status",
+          "connection_status",
+          "permission"
+        ],
+        "properties": {
+          "platform": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "account_kind": {
+            "type": "string"
+          },
+          "source_api_status": {
+            "enum": [
+              "NOT_CONNECTED",
+              "LINK_ONLY",
+              "EXTERNAL_STORE"
+            ]
+          },
+          "connection_status": {
+            "enum": [
+              "PENDING_VERIFICATION",
+              "CONNECTED",
+              "NOT_A_SOCIAL_API"
+            ]
+          },
+          "permission": {
+            "enum": [
+              "PENDING_VERIFICATION",
+              "GRANTED",
+              "NOT_APPLICABLE"
+            ]
+          }
+        }
+      }
+    },
+    "dispatch_gates": {
+      "type": "object",
+      "required": [
+        "require_verified_account_connection",
+        "require_platform_api_authorization",
+        "require_human_content_approval",
+        "require_content_asset_and_rights_check",
+        "require_destination_allowlist",
+        "require_idempotency_key",
+        "do_not_publish_if_any_gate_fails"
+      ],
+      "properties": {
+        "require_verified_account_connection": {
+          "const": true
+        },
+        "require_platform_api_authorization": {
+          "const": true
+        },
+        "require_human_content_approval": {
+          "const": true
+        },
+        "require_content_asset_and_rights_check": {
+          "const": true
+        },
+        "require_destination_allowlist": {
+          "const": true
+        },
+        "require_idempotency_key": {
+          "const": true
+        },
+        "do_not_publish_if_any_gate_fails": {
+          "const": true
+        }
+      }
+    },
+    "income_evidence": {
+      "type": "object",
+      "required": [
+        "views_and_followers_are_not_income",
+        "payment_status",
+        "accepted_evidence",
+        "do_not_infer_revenue_from_catalog_price"
+      ],
+      "properties": {
+        "views_and_followers_are_not_income": {
+          "const": true
+        },
+        "payment_status": {
+          "enum": [
+            "NO_PAYMENT_CLAIMED",
+            "PAYMENT_PENDING",
+            "PAYMENT_VERIFIED"
+          ]
+        },
+        "accepted_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "do_not_infer_revenue_from_catalog_price": {
+          "const": true
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "required": [
+        "secrets_in_repository",
+        "tokens_stored_in_github_secrets_or_authorized_provider_vault_only"
+      ],
+      "properties": {
+        "secrets_in_repository": {
+          "const": false
+        },
+        "tokens_stored_in_github_secrets_or_authorized_provider_vault_only": {
+          "const": true
+        }
+      }
+    },
+    "truth_boundary": {
+      "type": "string",
+      "minLength": 20
+    }
+  }
+}
