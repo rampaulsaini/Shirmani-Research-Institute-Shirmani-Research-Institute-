@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "factory" / "product-catalog.json"
 MANIFEST = ROOT / "config" / "social-publishing-manifest.json"
+SOCIAL_ACCOUNTS = ROOT / "config" / "social-accounts.json"
 STUDIO_ID = "P-STUDIO-001"
 
 
@@ -22,6 +23,7 @@ def load(path: Path):
 def main() -> None:
     catalog = load(CATALOG)
     manifest = load(MANIFEST)
+    social_directory = load(SOCIAL_ACCOUNTS).get("accounts", [])
     offers = [
         offer
         for lane in catalog.get("lanes", [])
@@ -54,9 +56,25 @@ def main() -> None:
     accounts = manifest.get("accounts", [])
     if not isinstance(accounts, list) or len(accounts) != 20:
         errors.append("expected the 20 existing account/link records; do not imply all are social accounts")
-    for account in accounts if isinstance(accounts, list) else []:
-        if account.get("permission") != "PENDING_VERIFICATION":
-            errors.append(f"account permission must remain pending: {account.get('label', 'unknown')}")
+    source_by_url = {item.get("url"): item for item in social_directory if isinstance(item, dict)}
+    manifest_by_url = {item.get("url"): item for item in accounts if isinstance(item, dict)}
+    if len(manifest_by_url) != len(accounts):
+        errors.append("manifest contains duplicate or invalid account records")
+    if set(source_by_url) != set(manifest_by_url):
+        errors.append("manifest URLs must exactly match config/social-accounts.json")
+    for url, source in source_by_url.items():
+        account = manifest_by_url.get(url)
+        if not account:
+            continue
+        if account.get("platform") != source.get("platform"):
+            errors.append(f"platform mismatch for {account.get('label', url)}")
+        if account.get("source_api_status") != source.get("api_status"):
+            errors.append(f"source API status mismatch for {account.get('label', url)}")
+        if account.get("account_kind") == "external_store_link":
+            if account.get("permission") != "NOT_APPLICABLE" or account.get("connection_status") != "NOT_A_SOCIAL_API":
+                errors.append("external store must not be counted as a social API account")
+        elif account.get("permission") != "PENDING_VERIFICATION" or account.get("connection_status") != "PENDING_VERIFICATION":
+            errors.append(f"account permission/connection must remain pending: {account.get('label', 'unknown')}")
     if manifest.get("income_evidence", {}).get("payment_status") != "NO_PAYMENT_CLAIMED":
         errors.append("no payment may be claimed without provider/bank evidence")
     if errors:
@@ -65,7 +83,7 @@ def main() -> None:
         raise SystemExit(1)
     print("PASS: Anant Studio catalog and publishing manifest are consistent.")
     print("PASS: Studio media/voice evidence remains unverified until real assets are supplied.")
-    print("PASS: 20 link records remain un-authorized; live publishing is disabled.")
+    print("PASS: 20 link records match the source directory; social permissions remain pending and the store is correctly excluded.")
     print("PASS: payment status remains NO_PAYMENT_CLAIMED.")
 
 
