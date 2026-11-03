@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "product_id": "P-STUDIO-001",
+  "release": "ANANT_STUDIO_V2",
+  "status": "PREPRODUCTION",
+  "objective": "Prepare one approved studio concept for three media formats and a gated 16-destination publishing router.",
+  "formats": {
+    "short_reel": {
+      "aspect_ratio": "9:16",
+      "duration_seconds": 15,
+      "theme": "सत्य • प्रेम • शांति",
+      "visual": "Text hologram treatment; source image required",
+      "audio": "Original user-approved recording or licensed audio",
+      "status": "ASSET_INPUT_REQUIRED"
+    },
+    "long_video": {
+      "aspect_ratio": "16:9",
+      "duration_seconds": 300,
+      "title": "हरिमंदिर साहिब से अनंत स्टूडियो तक",
+      "script": "docs/production/ANANT-STUDIO-V2-PRODUCTION-PACK.md",
+      "status": "SCRIPT_DRAFTED_RECORDING_AND_FACT_REVIEW_REQUIRED"
+    },
+    "podcast": {
+      "format": "audio",
+      "title": "निष्पक्ष समझ ही सत्य है",
+      "duration_target_seconds": 30,
+      "script": "docs/production/ANANT-STUDIO-V2-PRODUCTION-PACK.md",
+      "status": "ORIGINAL_USER_VOICE_NOTE_REQUIRED"
+    }
+  },
+  "router": {
+    "target_destinations": 16,
+    "destination_records": "Must be explicitly selected from verified account records; no inferred account ownership.",
+    "platform_scope": [
+      "youtube",
+      "instagram",
+      "facebook",
+      "x"
+    ],
+    "mode": "DRY_RUN",
+    "live_publish_enabled": false,
+    "daily_story_target": 1,
+    "required_gates": [
+      "account_owner_verified",
+      "platform_api_authorized",
+      "destination_allowlisted",
+      "asset_rights_cleared",
+      "translation_human_reviewed",
+      "content_owner_approved",
+      "idempotency_key_present",
+      "publish_result_recorded"
+    ],
+    "fail_closed": true
+  },
+  "languages": {
+    "target_count": 16,
+    "status": "TRANSLATION_AND_NATIVE_REVIEW_REQUIRED",
+    "total_count": 17,
+    "target_translation_count": 16,
+    "counting_note": "16 target-language drafts plus 1 Hindi source record; 17 language records total."
+  },
+  "income_evidence": {
+    "accepted": [
+      "verified_payment_provider_event",
+      "reconciled_bank_or_provider_record",
+      "order_and_delivery_record"
+    ],
+    "views_followers_or_catalog_price_are_not_income": true,
+    "initial_status": "NO_PAYMENT_CLAIMED"
+  },
+  "provenance": {
+    "historical_reference": "2024-04-04 Harimandir Sahib / Safed Taj",
+    "evidence_status": "OWNER_DECLARED_NOT_INDEPENDENTLY_VERIFIED",
+    "no_location_or_event_claim_without_supporting_source": true
+  },
+  "voice_identity": {
+    "source": "USER_SUPPLIED_RECORDING_ONLY",
+    "cloning_or_voice_replication_without_separate_explicit_authorization": false,
+    "status": "AWAITING_USER_RECORDING"
+  }
+}
