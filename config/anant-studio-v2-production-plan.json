@@ -54,7 +54,10 @@
   },
   "languages": {
     "target_count": 16,
-    "status": "TRANSLATION_AND_NATIVE_REVIEW_REQUIRED"
+    "status": "TRANSLATION_AND_NATIVE_REVIEW_REQUIRED",
+    "total_count": 16,
+    "target_translation_count": 15,
+    "counting_note": "16 languages total including Hindi source; 15 translation drafts."
   },
   "income_evidence": {
     "accepted": [
