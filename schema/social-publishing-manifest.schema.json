@@ -183,7 +183,8 @@
             "enum": [
               "NOT_CONNECTED",
               "LINK_ONLY",
-              "EXTERNAL_STORE"
+              "EXTERNAL_STORE",
+              "CONNECTED"
             ]
           },
           "connection_status": {
