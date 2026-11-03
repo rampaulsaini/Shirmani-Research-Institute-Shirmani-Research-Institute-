@@ -62,7 +62,7 @@ jobs:
               "plan_product_matches": plan.get("product_id") == "P-STUDIO-001",
               "manifest_product_matches": manifest.get("studio", {}).get("product_id") == "P-STUDIO-001",
               "language_target_is_16": drafts.get("target_language_count") == 16 and plan.get("languages", {}).get("target_count") == 16,
-              "exactly_16_unique_language_codes": len(translations) == 16 and len(set(language_codes)) == 16 and all(language_codes),
+              "16_unique_target_languages_plus_source": len(translations) == drafts.get("target_language_count", 0) + 1 and len(set(language_codes)) == len(language_codes) and all(language_codes) and sum(item.get("status") == "SOURCE" for item in translations) == 1 and any(item.get("code") == drafts.get("source_language") and item.get("status") == "SOURCE" for item in translations),
               "all_non_source_translations_remain_drafts": all(
                   item.get("status") in ("SOURCE", "DRAFT_MACHINE_ASSISTED")
                   for item in translations
