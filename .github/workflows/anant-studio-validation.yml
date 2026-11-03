@@ -1,0 +1,28 @@
+name: Anant Studio manifest validation
+on:
+  pull_request:
+    paths:
+      - "factory/product-catalog.json"
+      - "config/social-publishing-manifest.json"
+      - "schema/social-publishing-manifest.schema.json"
+      - "scripts/validate_anant_studio.py"
+      - ".github/workflows/anant-studio-validation.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "factory/product-catalog.json"
+      - "config/social-publishing-manifest.json"
+      - "scripts/validate_anant_studio.py"
+      - ".github/workflows/anant-studio-validation.yml"
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate Studio catalog and publishing gates
+        run: python3 scripts/validate_anant_studio.py
