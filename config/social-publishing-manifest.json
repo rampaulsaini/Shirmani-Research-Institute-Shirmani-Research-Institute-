@@ -1,0 +1,261 @@
+{
+  "schema_version": "1.0",
+  "manifest_id": "ANANT-STUDIO-PUBLISHING-001",
+  "studio": {
+    "product_id": "P-STUDIO-001",
+    "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+    "product_type": "digital_experience",
+    "release_status": "DEMO_PROPOSED",
+    "description": "निष्पक्ष समझ, सत्य, प्रेम और शांति पर आधारित डिजिटल संवाद अनुभव।",
+    "voice_status": "ORIGINAL_USER_AUDIO_REQUIRED",
+    "languages": {
+      "target_count": 16,
+      "status": "TRANSLATION_AND_HUMAN_REVIEW_REQUIRED"
+    },
+    "historical_reference": {
+      "date": "2024-04-04",
+      "status": "OWNER_DECLARED_NOT_INDEPENDENTLY_VERIFIED"
+    },
+    "pricing": {
+      "free": "Public introductory experience",
+      "premium": "Paid dialogue service; price and delivery terms to be approved"
+    },
+    "catalog_lane": "creative-production"
+  },
+  "publishing": {
+    "mode": "DRY_RUN",
+    "live_publish_enabled": false,
+    "daily_story_target": 1,
+    "formats": {
+      "short_video": {
+        "aspect_ratio": "9:16",
+        "target_duration_seconds": 15,
+        "status": "STORYBOARD_REQUIRED"
+      },
+      "long_video": {
+        "aspect_ratio": "16:9",
+        "target_duration_seconds": 300,
+        "status": "SCRIPT_AND_RECORDING_REQUIRED"
+      },
+      "podcast": {
+        "format": "audio",
+        "title": "निष्पक्ष समझ ही सत्य है",
+        "status": "ORIGINAL_USER_AUDIO_REQUIRED"
+      }
+    },
+    "approval": {
+      "human_approval_required": true,
+      "content_rights_check_required": true,
+      "translation_review_required": true
+    }
+  },
+  "account_source": "config/social-accounts.json",
+  "accounts": [
+    {
+      "platform": "facebook",
+      "label": "Primary Facebook",
+      "url": "https://www.facebook.com/share/19wzFT2qry/",
+      "account_kind": "profile_or_page_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "facebook",
+      "label": "Facebook profile",
+      "url": "https://www.facebook.com/profile.php?id=100075288011123",
+      "account_kind": "profile_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "whatsapp_channel",
+      "label": "WhatsApp Channel",
+      "url": "https://whatsapp.com/channel/0029VaAtyvg77qVR2J82Qn04",
+      "account_kind": "channel_link",
+      "source_api_status": "LINK_ONLY",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "whatsapp_group",
+      "label": "WhatsApp Group",
+      "url": "https://chat.whatsapp.com/EZRptFT1OWQ8zFyq4WyWzf",
+      "account_kind": "group_link",
+      "source_api_status": "LINK_ONLY",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "youtube",
+      "label": "Main YouTube",
+      "url": "https://youtube.com/@rampaulsaini-yk4gn",
+      "account_kind": "channel_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "youtube",
+      "label": "Motivational Quotes",
+      "url": "https://youtube.com/@motivationalquotes-m7p",
+      "account_kind": "channel_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "youtube",
+      "label": "Humanity",
+      "url": "https://youtube.com/@humanity-sl1jd",
+      "account_kind": "channel_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "youtube",
+      "label": "Additional YouTube",
+      "url": "https://youtube.com/@user-ud1kg2sx6v",
+      "account_kind": "channel_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "instagram",
+      "label": "Instagram",
+      "url": "https://instagram.com/globleprefect",
+      "account_kind": "profile_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/rampaul-saini-12120592",
+      "account_kind": "profile_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "x",
+      "label": "X profile",
+      "url": "https://twitter.com/rampaulsaini",
+      "account_kind": "profile_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "pinterest",
+      "label": "Pinterest pin 1",
+      "url": "https://pin.it/69LggZr",
+      "account_kind": "content_link",
+      "source_api_status": "LINK_ONLY",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "pinterest",
+      "label": "Pinterest pin 2",
+      "url": "https://pin.it/5a3y4ZZ",
+      "account_kind": "content_link",
+      "source_api_status": "LINK_ONLY",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "blogger",
+      "label": "Multicosmovision article",
+      "url": "http://multicosmovision.blogspot.com/2025/01/proved-by-quantum-multi-languages.html",
+      "account_kind": "article_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "blogger",
+      "label": "Beyond Science and Spirit — self discovery",
+      "url": "http://beyondscienseandspirtu.blogspot.com/2023/07/startgy-of-self-discover.html",
+      "account_kind": "article_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "blogger",
+      "label": "Beyond Science and Spirit — words",
+      "url": "http://beyondscienseandspirtu.blogspot.com/2023/07/a-world-where-words-come-alive.html",
+      "account_kind": "article_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "blogger",
+      "label": "Multicosmovision article 2023",
+      "url": "http://multicosmovision.blogspot.com/2023/07/blog-post_86.html",
+      "account_kind": "article_link",
+      "source_api_status": "NOT_CONNECTED",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "hipi",
+      "label": "Hipi",
+      "url": "https://www.hipi.co.in/@rampaulsaini",
+      "account_kind": "profile_link",
+      "source_api_status": "LINK_ONLY",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "explurger",
+      "label": "Explurger",
+      "url": "https://app.explurger.com/dl/4CANVNw28Gymh46x6",
+      "account_kind": "app_invitation_or_profile_link",
+      "source_api_status": "LINK_ONLY",
+      "connection_status": "PENDING_VERIFICATION",
+      "permission": "PENDING_VERIFICATION"
+    },
+    {
+      "platform": "store",
+      "label": "Take App Store",
+      "url": "https://take.app/httpsgithubcomrampaulsainishirmaniresearchinstitute",
+      "account_kind": "external_store_link",
+      "source_api_status": "EXTERNAL_STORE",
+      "connection_status": "NOT_A_SOCIAL_API",
+      "permission": "NOT_APPLICABLE"
+    }
+  ],
+  "dispatch_gates": {
+    "require_verified_account_connection": true,
+    "require_platform_api_authorization": true,
+    "require_human_content_approval": true,
+    "require_content_asset_and_rights_check": true,
+    "require_destination_allowlist": true,
+    "require_idempotency_key": true,
+    "do_not_publish_if_any_gate_fails": true
+  },
+  "income_evidence": {
+    "views_and_followers_are_not_income": true,
+    "payment_status": "NO_PAYMENT_CLAIMED",
+    "accepted_evidence": [
+      "verified_payment_provider_event",
+      "reconciled_bank_or_provider_record",
+      "order_and_delivery_record"
+    ],
+    "do_not_infer_revenue_from_catalog_price": true
+  },
+  "security": {
+    "secrets_in_repository": false,
+    "tokens_stored_in_github_secrets_or_authorized_provider_vault_only": true
+  },
+  "truth_boundary": "A listed URL is not proof of account ownership, API connection, publishing permission, reach, sale, payment, or delivery.",
+  "catalog_source_path": "factory/product-catalog.json",
+  "catalog_product_status": "SOURCE_RECORD_ADDED_AS_DEMO_PROPOSED"
+}
