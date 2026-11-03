@@ -206,6 +206,27 @@ def main() -> int:
         if required.casefold() not in public_v3_source.casefold():
             errors.append(f"public-interface-v3.html is missing income-funnel requirement: {required}")
 
+    # Keep every customer-facing first-client offer aligned with the Revenue Control Center.
+    canonical_offer_pages = (
+        "revenue-first-control-center.html",
+        "public-interface-v3.html",
+        "writing-research-enquiry.html",
+        "first-paid-pilot-offer.html",
+        "showroom/first-client-pilot-desk.html",
+    )
+    for relative in canonical_offer_pages:
+        offer_path = ROOT / relative
+        if not offer_path.is_file():
+            errors.append(f"Missing canonical customer offer page: {relative}")
+            continue
+        offer_source = offer_path.read_text(encoding="utf-8")
+        for price in ("₹999", "₹1,999", "₹2,999"):
+            if price not in offer_source:
+                errors.append(f"{relative} is missing canonical proposed pilot price: {price}")
+        for superseded in ("₹499", "₹1,499"):
+            if superseded in offer_source:
+                errors.append(f"{relative} still displays superseded pilot price: {superseded}")
+
     # Institutional outreach must offer a manual email-app handoff while
     # rejecting non-email contacts; draft creation is not message delivery.
     outreach = ROOT / "institutional-outreach-kit.html"
