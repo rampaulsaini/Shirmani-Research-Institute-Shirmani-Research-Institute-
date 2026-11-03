@@ -227,6 +227,9 @@ def main() -> int:
         "products.html",
         "income-first.html",
         "showroom/revenue-first-service-desk.html",
+        "first-client-proposal-kit.html",
+        "income-client-pipeline.html",
+        "showroom/income-first-client-pipeline.html",
     )
     for relative in canonical_offer_pages:
         offer_path = ROOT / relative
