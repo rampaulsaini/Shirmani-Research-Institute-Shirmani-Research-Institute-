@@ -2,7 +2,7 @@
   "schema_version": 1,
   "mode": "REAL_PRODUCT_CATALOG",
   "principle": "A product record is not a completed sale; checkout/delivery must remain explicit.",
-  "offer_count": 24,
+  "offer_count": 25,
   "offers": [
     {
       "id": "P001",
@@ -123,6 +123,19 @@
       "id": "S003",
       "name": "Voice / narration packaging",
       "delivery": "creative-service",
+      "lane": "creative-production",
+      "priority": 3
+    },
+    {
+      "id": "P-STUDIO-001",
+      "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+      "delivery": "creative-service",
+      "commercial_status": "FREE_INTRODUCTORY_DEMO_PREMIUM_QUOTE_REQUIRED",
+      "description": "निष्पक्ष समझ, सत्य, प्रेम और शांति पर आधारित डिजिटल संवाद अनुभव। प्रारंभिक सार्वजनिक परिचय निःशुल्क; प्रीमियम संवाद का scope और मूल्य ग्राहक की सहमति से तय होगा।",
+      "asset_evidence": "NOT_IN_REPOSITORY",
+      "release_status": "DEMO_PROPOSED",
+      "voice_status": "ORIGINAL_USER_AUDIO_REQUIRED",
+      "publishing_status": "DRY_RUN_ONLY",
       "lane": "creative-production",
       "priority": 3
     },
