@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "id": "ANANT-STUDIO-STORY-001",
+  "product_id": "P-STUDIO-001",
+  "title": "निष्पक्ष समझ",
+  "format": {
+    "type": "short_reel",
+    "duration_seconds": 15,
+    "aspect_ratio": "9:16",
+    "resolution": "1080x1920"
+  },
+  "language": "hi",
+  "production_status": "SCRIPT_DRAFT",
+  "audio": {
+    "mode": "no_voice",
+    "voiceover": null,
+    "music": "optional royalty-cleared instrumental only",
+    "sound_effects": "optional subtle ambient only"
+  },
+  "visual_source": {
+    "type": "owner_approved_studio_image",
+    "asset_path": null,
+    "required_before_render": true,
+    "rights_review_required": true
+  },
+  "timeline": [
+    {
+      "start_seconds": 0,
+      "end_seconds": 3,
+      "visual": "Studio image appears with a gentle fade-in; slow, subtle push-in.",
+      "on_screen_text": "निष्पक्ष समझ",
+      "text_style": "clean Devanagari typography, high contrast, safe margins"
+    },
+    {
+      "start_seconds": 3,
+      "end_seconds": 7,
+      "visual": "Continue the same image with a restrained cinematic pan; avoid unverified visual claims.",
+      "on_screen_text": "सत्य को समझने की शुरुआत",
+      "text_style": "clean Devanagari typography, high contrast, safe margins"
+    },
+    {
+      "start_seconds": 7,
+      "end_seconds": 11,
+      "visual": "Soft light transition; keep the original image identity intact.",
+      "on_screen_text": "प्रेम • शांति • स्पष्टता",
+      "text_style": "clean Devanagari typography, high contrast, safe margins"
+    },
+    {
+      "start_seconds": 11,
+      "end_seconds": 15,
+      "visual": "Settle on the studio image and show the studio title; fade out.",
+      "on_screen_text": "शिरोमणि अनंत स्टूडियो",
+      "text_style": "clean Devanagari typography, high contrast, safe margins"
+    }
+  ],
+  "caption": "निष्पक्ष समझ से संवाद में स्पष्टता आती है। सत्य, प्रेम और शांति को अपने व्यवहार में उतारें।",
+  "call_to_action": "हृदय से हृदय संवाद",
+  "publishing": {
+    "mode": "DRY_RUN",
+    "live_publish_enabled": false
+  },
+  "approval_gates": [
+    "owner approves exact studio image",
+    "rights clearance confirmed",
+    "Hindi text proofread",
+    "final rendered preview approved"
+  ],
+  "truth_boundary": {
+    "claims_of_sales_or_payment": false,
+    "claims_of_independent_verification": false,
+    "third_party_endorsement": false
+  },
+  "notes": "Voice-free visual script only. Draft production specification, not a rendered or published video."
+}
