@@ -73,7 +73,7 @@ def main() -> int:
             errors.append(f"index.html is missing canonical route: {route}")
 
     offer_text = " ".join(offer.text)
-    for phrase in ("₹499", "700 words", "scope", "payment terms", "not an order", "sale"):
+    for phrase in ("₹999", "500 words", "scope", "payment terms", "not an order", "sale"):
         if phrase.casefold() not in offer_text.casefold() and phrase.casefold() not in offer_source.casefold():
             errors.append(f"Sales desk is missing clear offer/truth-boundary text: {phrase}")
 
@@ -101,13 +101,13 @@ def main() -> int:
         errors.append("Canonical offer must disclose that contact drafts are not automatically sent")
 
     # Outreach must use the same prices as the canonical first-client offer.
-    # Editing is ₹499, website/blog copy is ₹999, and source-based research is ₹1,499.
-    if "Source-linked Research Summary — proposed ₹1,499 pilot" not in outreach_source:
-        errors.append("Outreach research-summary price must match the canonical ₹1,499 offer")
-    if "Website / Blog Content — proposed ₹999 pilot" not in outreach_source:
-        errors.append("Outreach website/blog price must match the canonical ₹999 offer")
-    if "Hindi/English Writing & Editing — proposed ₹499 pilot" not in outreach_source:
-        errors.append("Outreach editing price must match the canonical ₹499 offer")
+    # Editing is ₹999, website/blog copy is ₹2,999, and source-based research is ₹1,999.
+    if "Source-linked Research Summary — proposed ₹1,999 pilot" not in outreach_source:
+        errors.append("Outreach research-summary price must match the canonical ₹1,999 offer")
+    if "Website / Blog Content — proposed ₹2,999 pilot" not in outreach_source:
+        errors.append("Outreach website/blog price must match the canonical ₹2,999 offer")
+    if "Hindi/English Writing & Editing — proposed ₹999 pilot" not in outreach_source:
+        errors.append("Outreach editing price must match the canonical ₹999 offer")
 
     # The income tracker must support a portable backup without presenting local entries as verified payments.
     for marker in ('id="export"', 'CSV प्रमाण-बैकअप डाउनलोड करें', 'exported_at_utc',
@@ -169,7 +169,7 @@ def main() -> int:
         errors.append("Canonical offer must disclose that the static page does not process payments")
 
     enquiry_text = " ".join(enquiry.text)
-    for phrase in ("₹499", "₹999", "₹1,499", "WhatsApp", "लिखित", "भुगतान"):
+    for phrase in ("₹999", "₹2,999", "₹1,999", "WhatsApp", "लिखित", "भुगतान"):
         if phrase.casefold() not in enquiry_text.casefold() and phrase.casefold() not in enquiry_source.casefold():
             errors.append(f"Enquiry page is missing service/pricing/process text: {phrase}")
     if "mailto:" not in enquiry_source or "wa.me/" not in enquiry_source:
