@@ -2,7 +2,7 @@
   "schema_version": 1,
   "mode": "REAL_PRODUCT_CATALOG",
   "principle": "A product record is not a completed sale; checkout/delivery must remain explicit.",
-  "offer_count": 24,
+  "offer_count": 25,
   "offers": [
     {
       "id": "P001",
@@ -225,6 +225,17 @@
       "asset_evidence": "VERIFIED_IN_REPOSITORY",
       "lane": "micro-digital-products",
       "priority": 5
+    },
+    {
+      "id": "SRI-PRES-001",
+      "name": "शिरोमणि अनंत स्टूडियो — Heart-View Character Studio",
+      "price_inr": 0,
+      "price_note": "Browser demo is free; custom presentation and dialogue work is quote-based after scope and price are agreed.",
+      "delivery": "browser-local-digital-experience",
+      "store": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/showroom/heart-view-character-studio.html",
+      "asset_evidence": "VERIFIED_IN_REPOSITORY",
+      "lane": "creative-production",
+      "priority": 3
     }
   ]
 }
