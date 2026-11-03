@@ -7,6 +7,8 @@ on:
       - "scripts/auto-dispatch.js"
       - "config/social-accounts.json"
       - "config/social-publishing-manifest.json"
+      - "schema/social-publishing-manifest.schema.json"
+      - "scripts/validate-social-publishing-manifest.js"
       - ".github/workflows/supreme-dispatch.yml"
   schedule:
     - cron: "*/5 * * * *"
@@ -53,6 +55,8 @@ jobs:
           if (manifest.accounts.length !== source.accounts.length) throw new Error('Manifest/source account count mismatch');
           console.log('Anant Studio manifest valid:', manifest.accounts.length, 'source URLs; DRY_RUN; live publishing disabled.');
           NODE
+      - name: Run Anant Studio fail-closed validator
+        run: node scripts/validate-social-publishing-manifest.js
       - name: Run guarded dispatch bridge
         env:
           DISPATCH_ENABLED: ${{ vars.DISPATCH_ENABLED || 'false' }}
