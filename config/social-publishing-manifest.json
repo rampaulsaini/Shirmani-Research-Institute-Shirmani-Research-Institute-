@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "studio_id": "P-STUDIO-001",
+  "title": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+  "status": "CONFIGURATION_DRAFT",
+  "source_accounts_registry": "config/social-accounts.json",
+  "source_accounts_registry_note": "The source registry contains 20 URL records, including profiles, content links and external store references; it does not establish 16 authenticated publishing accounts.",
+  "publishing_mode": "DRY_RUN",
+  "human_approval_required": true,
+  "daily_plan": {
+    "story_count": 1,
+    "formats": [
+      "short_video",
+      "captioned_post"
+    ],
+    "long_video_per_day": 0,
+    "podcast_per_day": 0,
+    "timezone": "Asia/Kolkata",
+    "schedule_enabled": false,
+    "enable_only_after": "OAuth/API authorization, platform policy review, private test, and owner approval"
+  },
+  "platform_targets": [
+    {
+      "platform": "youtube",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION",
+      "formats": [
+        "short_video",
+        "long_video",
+        "podcast_audio"
+      ],
+      "daily_publish_enabled": false
+    },
+    {
+      "platform": "instagram",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION",
+      "formats": [
+        "short_video",
+        "story"
+      ],
+      "daily_publish_enabled": false
+    },
+    {
+      "platform": "facebook",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION",
+      "formats": [
+        "short_video",
+        "long_video",
+        "story"
+      ],
+      "daily_publish_enabled": false
+    },
+    {
+      "platform": "x",
+      "connection": "NOT_CONNECTED",
+      "permission": "PENDING_VERIFICATION",
+      "formats": [
+        "short_video",
+        "text_post"
+      ],
+      "daily_publish_enabled": false
+    }
+  ],
+  "content_pipeline": [
+    "SOURCE_TEXT_OR_AUTHORIZED_RECORDING",
+    "STORY_SCRIPT",
+    "FORMAT_ADAPTATION",
+    "CAPTIONS_AND_TRANSLATION",
+    "HUMAN_QC",
+    "DRY_RUN",
+    "AUTHORIZED_PLATFORM_PUBLISH"
+  ],
+  "voice_identity": "Do not claim voice likeness or clone without an authorized source recording and a tested, disclosed workflow.",
+  "evidence_rules": {
+    "publication": "Store platform post ID, canonical URL, UTC timestamp, platform response and content checksum.",
+    "income": "Count only settled payment evidence; views, clicks, inquiries and proposals are not income.",
+    "dispatch": "No paid delivery or external dispatch from this draft."
+  },
+  "security": {
+    "secrets_location": "GitHub Actions Secrets or authorized provider connection; never commit tokens",
+    "webhook_replay_protection": "Required",
+    "least_privilege": "Required"
+  }
+}

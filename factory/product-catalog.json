@@ -116,6 +116,31 @@
           "id": "S003",
           "name": "Voice / narration packaging",
           "delivery": "creative-service"
+        },
+        {
+          "id": "P-STUDIO-001",
+          "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+          "type": "digital_experience",
+          "delivery": "creative-service",
+          "description": "निष्पक्ष समझ, सत्य, प्रेम और शांति पर आधारित डिजिटल संवाद अनुभव; प्रारंभिक डेमो और मीडिया पैकेजिंग।",
+          "formats": [
+            "vertical_short_video_9_16",
+            "long_video_16_9",
+            "podcast_audio"
+          ],
+          "language_plan": {
+            "target_count": 16,
+            "status": "TRANSLATION_AND_HUMAN_REVIEW_REQUIRED"
+          },
+          "voice_status": "ORIGINAL_USER_RECORDING_REQUIRED",
+          "venue": "Digital studio concept; Golden Temple inspired visual reflection only",
+          "historical_reference": {
+            "date": "2024-04-04",
+            "status": "OWNER_DECLARED_NOT_INDEPENDENTLY_VERIFIED"
+          },
+          "price_note": "FREE_INTRODUCTORY_DEMO; PREMIUM_SCOPE_AND_PRICE_BY_WRITTEN_QUOTE",
+          "asset_evidence": "NOT_IN_REPOSITORY",
+          "release_status": "DEMO_PROPOSED_NOT_RELEASE_READY"
         }
       ]
     },
