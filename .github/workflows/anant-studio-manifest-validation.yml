@@ -1,0 +1,34 @@
+name: Anant Studio Manifest Validation
+
+on:
+  pull_request:
+    paths:
+      - "config/social-publishing-manifest.json"
+      - "config/social-accounts.json"
+      - "factory/product-catalog.json"
+      - "tests/anant_studio_manifest_test.py"
+      - ".github/workflows/anant-studio-manifest-validation.yml"
+  push:
+    branches: [main]
+    paths:
+      - "config/social-publishing-manifest.json"
+      - "config/social-accounts.json"
+      - "factory/product-catalog.json"
+      - "tests/anant_studio_manifest_test.py"
+      - ".github/workflows/anant-studio-manifest-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate Anant Studio publishing manifest
+        run: python tests/anant_studio_manifest_test.py
