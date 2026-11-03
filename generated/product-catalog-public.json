@@ -2,7 +2,7 @@
   "schema_version": 1,
   "mode": "REAL_PRODUCT_CATALOG",
   "principle": "A product record is not a completed sale; checkout/delivery must remain explicit.",
-  "offer_count": 24,
+  "offer_count": 25,
   "offers": [
     {
       "id": "P001",
@@ -225,6 +225,26 @@
       "asset_evidence": "VERIFIED_IN_REPOSITORY",
       "lane": "micro-digital-products",
       "priority": 5
+    },
+    {
+      "id": "P-STUDIO-001",
+      "name": "शिरोमणि अनंत स्टूडियो — हृदय से हृदय संवाद",
+      "delivery": "digital-studio-demo",
+      "price_inr": 0,
+      "price_note": "Free introductory demo; premium dialogue requires a separately agreed quote",
+      "store": "https://rampaulsaini.github.io/my-omniverse-store/",
+      "asset_evidence": "NOT_IN_REPOSITORY",
+      "lane": "creative-production",
+      "priority": 1,
+      "status": "DEMO_PROPOSED",
+      "formats": [
+        "vertical-short-video",
+        "long-video",
+        "podcast-audio"
+      ],
+      "languages_planned": 16,
+      "voice_status": "USER_RECORDING_REQUIRED",
+      "historical_reference_status": "OWNER_DECLARED_NOT_INDEPENDENTLY_VERIFIED"
     }
   ]
 }
