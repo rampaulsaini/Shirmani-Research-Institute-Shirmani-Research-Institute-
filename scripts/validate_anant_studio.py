@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "factory" / "product-catalog.json"
 MANIFEST = ROOT / "config" / "social-publishing-manifest.json"
 SOCIAL_ACCOUNTS = ROOT / "config" / "social-accounts.json"
+SCHEMA = ROOT / "schema" / "social-publishing-manifest.schema.json"
 STUDIO_ID = "P-STUDIO-001"
 
 
@@ -24,6 +25,16 @@ def main() -> None:
     catalog = load(CATALOG)
     manifest = load(MANIFEST)
     social_directory = load(SOCIAL_ACCOUNTS).get("accounts", [])
+    schema = load(SCHEMA)
+    schema_required = set(schema.get("required", []))
+    schema_properties = set(schema.get("properties", {}))
+    manifest_keys = set(manifest)
+    if not schema_required.issubset(schema_properties):
+        raise SystemExit("FAIL: schema required keys are missing from schema properties")
+    if schema.get("additionalProperties") is False and not manifest_keys.issubset(schema_properties):
+        raise SystemExit("FAIL: manifest contains top-level fields not allowed by schema: " + ", ".join(sorted(manifest_keys - schema_properties)))
+    if not schema_required.issubset(manifest_keys):
+        raise SystemExit("FAIL: manifest is missing schema-required top-level fields")
     offers = [
         offer
         for lane in catalog.get("lanes", [])
