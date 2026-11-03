@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "studio_id": "P-STUDIO-001",
+  "mode": "DRY_RUN",
+  "account_inventory_file": "config/social-accounts.json",
+  "requested_account_target": 16,
+  "account_verification": "PENDING",
+  "daily_story_target": 1,
+  "formats": [
+    {
+      "name": "short-video",
+      "aspect_ratio": "9:16",
+      "target_seconds": 15
+    },
+    {
+      "name": "long-video",
+      "aspect_ratio": "16:9",
+      "target_seconds": 300
+    },
+    {
+      "name": "podcast-audio",
+      "target_seconds": 30
+    }
+  ],
+  "planned_languages": 16,
+  "language_review": "REQUIRED",
+  "voice_recording": "USER_SAMPLE_REQUIRED",
+  "platforms": [
+    "youtube",
+    "instagram",
+    "facebook",
+    "x",
+    "linkedin",
+    "whatsapp",
+    "pinterest",
+    "blogger",
+    "hipi",
+    "explurger"
+  ],
+  "schedule": {
+    "timezone": "Asia/Kolkata",
+    "frequency": "daily",
+    "publish_time": null
+  },
+  "publish_permission": "PENDING_VERIFICATION",
+  "human_approval_required": true,
+  "external_publishing_enabled": false,
+  "income_tracking": {
+    "inquiry": "SEPARATE",
+    "agreed_order": "SEPARATE",
+    "payment_receipt": "REQUIRED",
+    "delivery_confirmation": "REQUIRED",
+    "current_claim": "NONE"
+  },
+  "security": "Store provider credentials only in approved secret storage; never in repository files."
+}
