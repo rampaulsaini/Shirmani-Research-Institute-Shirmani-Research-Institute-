@@ -189,6 +189,11 @@ def main() -> int:
             elif not target.is_file():
                 errors.append(f"showroom-supreme-public-view.html has a broken local route: {href}")
 
+    # The root showroom's single entry tile must also point to the canonical editing price.
+    showroom_root = (ROOT / "showroom.html").read_text(encoding="utf-8")
+    if "₹999" not in showroom_root or "₹499" in showroom_root:
+        errors.append("showroom.html has a stale first-client editing entry price")
+
     # The primary public entry must keep the paid-pilot path visible and honest.
     public_v3_source = (ROOT / "public-interface-v3.html").read_text(encoding="utf-8")
     for required in (
@@ -218,6 +223,10 @@ def main() -> int:
         "showroom/global-product-sales-desk.html",
         "income-client-outreach-desk.html",
         "global-client-outreach-workbench.html",
+        "showroom-public-interface.html",
+        "products.html",
+        "income-first.html",
+        "showroom/revenue-first-service-desk.html",
     )
     for relative in canonical_offer_pages:
         offer_path = ROOT / relative
