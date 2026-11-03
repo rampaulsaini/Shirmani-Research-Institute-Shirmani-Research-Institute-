@@ -193,10 +193,10 @@ def main() -> int:
     public_v3_source = (ROOT / "public-interface-v3.html").read_text(encoding="utf-8")
     for required in (
         "id=\"income-first\"",
-        "₹499",
         "₹999",
-        "₹1,499",
-        "showroom/first-client-pilot-desk.html",
+        "₹2,999",
+        "₹1,999",
+        "showroom/writing-research-enquiry.html",
         "income-action-center.html",
         "wa.me/918082935186",
         "mailto:sainirampaul60@gmail.com",
