@@ -16,6 +16,7 @@ PAGES = (
     ROOT / "showroom-public.html",
     ROOT / "public-showroom.html",
     ROOT / "heart-view-preview.html",
+    ROOT / "start-here.html",
     ROOT / "index.html",
     ROOT / "public-interface-v3.html",
     ROOT / "showroom-supreme-public-view.html",
@@ -46,6 +47,13 @@ REQUIRED_TEXT = {
         "Voice-to-Presentation Studio",
         "Lip-sync",
         "Live question-and-answer",
+    ),
+    "start-here.html": (
+        "शिरोमणि स्वरूप दृष्टिकोण",
+        "Hindi/English लेखन व शोध के लिए पूछें",
+        "Heart-View",
+        "Login / Signup",
+        "Production command centre",
     ),
     "outreach-income-workbench.html": (
         "Outreach & Income Workbench",
