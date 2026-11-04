@@ -36,13 +36,14 @@
 <p>एक stage का प्रमाण दूसरी stage को अपने-आप PASS नहीं करता। उपलब्ध HeyGen link को reference के रूप में रखा गया है; link अकेले आवाज़ की provenance, सही lip-sync, live Q&A या end-to-end connection सिद्ध नहीं करता।</p>
 <div class="grid chain">
 <div class="tile"><h3>1 · Reference video</h3><span class="status pending">REFERENCE_LINK_UNCHECKED</span><p class="small">पहले से दिया गया reference:</p><a href="https://app.heygen.com/videos/avatar-v-video-5d938b91bb6841e9a9ddd93948c781b7" target="_blank" rel="noopener noreferrer">HeyGen video reference खोलें</a><p class="muted small">Provider job/export और जाँच का timestamp अभी इस पृष्ठ पर दर्ज नहीं।</p></div>
-<div class="tile"><h3>2 · Voice</h3><span class="status pending">VOICE_NOT_VERIFIED</span><p class="small">Actual playable audio, source/permission record और test result आवश्यक।</p></div>
-<div class="tile"><h3>3 · Dialogue / content</h3><span class="status pending">CONTENT_NOT_VERIFIED</span><p class="small">ठीक prompt/script, वास्तविक generated response और timestamp सुरक्षित होने चाहिए।</p></div>
-<div class="tile"><h3>4 · Photo / avatar</h3><span class="status pending">AVATAR_ASSET_NOT_VERIFIED</span><p class="small">स्वीकृत asset की पहचान और अनुमति का record; निजी asset सार्वजनिक रूप से उजागर नहीं।</p></div>
-<div class="tile"><h3>5 · Lip-sync / rendered video</h3><span class="status pending">LIPSYNC_NOT_VERIFIED</span><p class="small">वास्तविक playable output, जाँचा गया sample, tolerance और परिणाम आवश्यक।</p></div>
-<div class="tile"><h3>6 · Live presentation</h3><span class="status pending">LIVE_NOT_VERIFIED</span><p class="small">Mock interface नहीं; वास्तविक provider session/test result चाहिए।</p></div>
-<div class="tile"><h3>7 · Live Q&A</h3><span class="status pending">QA_NOT_VERIFIED</span><p class="small">Timestamped prompts/responses, failures, latency और safety fallback log हों।</p></div>
-<div class="tile"><h3>8 · External provider</h3><span class="status pending">PROVIDER_NOT_VERIFIED</span><p class="small">Provider job ID/export, timestamp और error details अलग से दर्ज हों।</p></div>
+<div class="tile"><h3>2 · Voice source</h3><span class="status pending">VOICE_NOT_VERIFIED</span><p class="small">Actual playable audio, source/permission record, language, sample ID और test result आवश्यक।</p></div>
+<div class="tile"><h3>3 · Voice System</h3><span class="status pending">VOICE_SYSTEM_NOT_VERIFIED</span><p class="small">Input → processing/TTS or voice clone → output की वास्तविक pipeline; provider/model/version, request ID, latency, error और audio checksum दर्ज हों। केवल configuration या mock output PASS नहीं है।</p></div>
+<div class="tile"><h3>4 · Dialogue / content</h3><span class="status pending">CONTENT_NOT_VERIFIED</span><p class="small">ठीक prompt/script, वास्तविक generated response, language, safety result और timestamp सुरक्षित होने चाहिए।</p></div>
+<div class="tile"><h3>5 · Photo / avatar</h3><span class="status pending">AVATAR_ASSET_NOT_VERIFIED</span><p class="small">स्वीकृत asset की पहचान, अनुमति का record और asset version; निजी asset सार्वजनिक रूप से उजागर नहीं।</p></div>
+<div class="tile"><h3>6 · Lip-sync / rendered video</h3><span class="status pending">LIPSYNC_NOT_VERIFIED</span><p class="small">वास्तविक playable output, audio/video pair IDs, जाँचा गया sample, defined sync tolerance और परिणाम आवश्यक।</p></div>
+<div class="tile"><h3>7 · Live presentation</h3><span class="status pending">LIVE_NOT_VERIFIED</span><p class="small">Mock interface नहीं; वास्तविक provider session/test result, timestamp, session ID और failure log चाहिए।</p></div>
+<div class="tile"><h3>8 · Live Q&A</h3><span class="status pending">QA_NOT_VERIFIED</span><p class="small">Timestamped prompts/responses, response latency, failure cases और safety fallback log हों।</p></div>
+<div class="tile"><h3>9 · External provider / end-to-end</h3><span class="status pending">PROVIDER_NOT_VERIFIED</span><p class="small">Provider job ID/export और एक ही test-cycle ID से Voice → Voice System → Content → Avatar → Lip-sync → Live → Q&A तक जुड़े evidence records चाहिए।</p></div>
 </div>
 <p class="note">ये labels failure का दावा नहीं हैं; इनका अर्थ है कि इस public page से PASS सिद्ध करने वाला प्रमाण अभी उपलब्ध नहीं।</p>
 </section>
