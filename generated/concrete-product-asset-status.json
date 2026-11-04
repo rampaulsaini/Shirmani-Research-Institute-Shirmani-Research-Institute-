@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T23:58:53.609843+00:00",
+  "generated_at": "2026-11-04T04:31:59.610942+00:00",
   "product_assets": 5000,
   "catalog_products": 5000,
   "materialization_percent": 100.0,
@@ -12,5 +12,5 @@
   "qc_state": "QC_PASSED",
   "qc_passed": 5000,
   "qc_failed": 0,
-  "qc_generated_at": "2026-11-03T22:40:15.538403+00:00"
+  "qc_generated_at": "2026-11-04T02:18:48.736166+00:00"
 }
