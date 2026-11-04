@@ -37,7 +37,7 @@ jobs:
       - name: Run hardening test
         run: python3 tests/supreme_independent_verification_ledger.py
       - name: Upload verification telemetry
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: supreme-independent-verification-ledger
           path: generated/supreme-independent-verification-ledger.json

@@ -79,7 +79,7 @@ jobs:
           if not ready:
               raise SystemExit('Fail-closed: foundational contract checks did not pass.')
       - name: Upload readiness artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: shirmani-live-presentation-readiness
           path: generated/live-presentation-readiness.json
