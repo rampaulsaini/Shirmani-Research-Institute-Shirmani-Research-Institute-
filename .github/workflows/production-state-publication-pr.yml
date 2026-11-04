@@ -1,9 +1,11 @@
 name: SHIRMANI Publish Repaired Production State Through PR
 
 on:
-  schedule:
-    - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "SHIRMANI Production Persistence & Truth Gate"
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -19,6 +21,7 @@ concurrency:
 
 jobs:
   publish:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

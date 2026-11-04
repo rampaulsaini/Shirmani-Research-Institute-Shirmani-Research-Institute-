@@ -189,13 +189,18 @@ def main() -> int:
             elif not target.is_file():
                 errors.append(f"showroom-supreme-public-view.html has a broken local route: {href}")
 
+    # The root showroom's single entry tile must also point to the canonical editing price.
+    showroom_root = (ROOT / "showroom.html").read_text(encoding="utf-8")
+    if "₹999" not in showroom_root or "₹499" in showroom_root:
+        errors.append("showroom.html has a stale first-client editing entry price")
+
     # The primary public entry must keep the paid-pilot path visible and honest.
     public_v3_source = (ROOT / "public-interface-v3.html").read_text(encoding="utf-8")
     for required in (
         "id=\"income-first\"",
-        "₹499",
         "₹999",
-        "₹1,499",
+        "₹1,999",
+        "₹2,999",
         "showroom/first-client-pilot-desk.html",
         "income-action-center.html",
         "wa.me/918082935186",
@@ -205,6 +210,39 @@ def main() -> int:
     ):
         if required.casefold() not in public_v3_source.casefold():
             errors.append(f"public-interface-v3.html is missing income-funnel requirement: {required}")
+
+    # Keep every customer-facing first-client offer aligned with the Revenue Control Center.
+    canonical_offer_pages = (
+        "revenue-first-control-center.html",
+        "public-interface-v3.html",
+        "writing-research-enquiry.html",
+        "first-paid-pilot-offer.html",
+        "showroom/first-client-pilot-desk.html",
+        "services-writing-research.html",
+        "income-action-center.html",
+        "showroom/global-product-sales-desk.html",
+        "income-client-outreach-desk.html",
+        "global-client-outreach-workbench.html",
+        "showroom-public-interface.html",
+        "products.html",
+        "income-first.html",
+        "showroom/revenue-first-service-desk.html",
+        "first-client-proposal-kit.html",
+        "income-client-pipeline.html",
+        "showroom/income-first-client-pipeline.html",
+    )
+    for relative in canonical_offer_pages:
+        offer_path = ROOT / relative
+        if not offer_path.is_file():
+            errors.append(f"Missing canonical customer offer page: {relative}")
+            continue
+        offer_source = offer_path.read_text(encoding="utf-8")
+        for price in ("₹999", "₹1,999", "₹2,999"):
+            if price not in offer_source:
+                errors.append(f"{relative} is missing canonical proposed pilot price: {price}")
+        for superseded in ("₹499", "₹1,499"):
+            if superseded in offer_source:
+                errors.append(f"{relative} still displays superseded pilot price: {superseded}")
 
     # Institutional outreach must offer a manual email-app handoff while
     # rejecting non-email contacts; draft creation is not message delivery.
