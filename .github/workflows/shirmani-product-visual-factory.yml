@@ -46,7 +46,7 @@ jobs:
       - name: Run fail-closed product visual QC gate
         run: python3 factory/product_visual_qc_gate.py
       - name: Propose QC-passed visual assets through a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/product-visuals

@@ -33,7 +33,7 @@ jobs:
           MEDIA_BATCH_SIZE: ${{ github.event.inputs.batch_size || '10' }}
         run: python scripts/product_media_factory.py
       - name: Publish generated media through a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "production: materialize product demo media batch"
           title: "Automission: publish product demo media batch"
