@@ -1,7 +1,7 @@
 {
   "manifest_version": 1,
-  "generated_at": "2026-11-04T08:07:42.031995+00:00",
-  "source_manifest_generated_at": "2026-11-04T08:07:23.504554+00:00",
+  "generated_at": "2026-11-04T13:52:54.384217+00:00",
+  "source_manifest_generated_at": "2026-11-04T13:52:32.974250+00:00",
   "unit_count": 4555,
   "repositories": [
     {
@@ -152,7 +152,7 @@
       "repository": "rampaulsaini/my-omniverse-store",
       "available": true,
       "default_branch": "main",
-      "head_sha": "975679aab8e8b1dd576d2a026317ea9958c58652",
+      "head_sha": "20ab79d13f4656b73ee672b729fa1b37fb623d14",
       "remote_ok": true,
       "skipped": null,
       "unit_record_count": 310
@@ -224,7 +224,7 @@
       "repository": "rampaulsaini/yatharth-music-ai",
       "available": true,
       "default_branch": "main",
-      "head_sha": "466aa07f9b6e5a879f1c118b7a7763983912e260",
+      "head_sha": "fb845f08b7124d5b2ba4c806ccf26157cc4ed6b6",
       "remote_ok": true,
       "skipped": null,
       "unit_record_count": 615
@@ -22275,8 +22275,8 @@
         {
           "id": 1875,
           "path": "data/production-heartbeat.json",
-          "source_hash": "92fc45b232362fb022c4b43635ec8b057ccc4adc2a7e33296d33cd7185da1c01",
-          "content_hash": "92fc45b232362fb022c4b43635ec8b057ccc4adc2a7e33296d33cd7185da1c01",
+          "source_hash": "af665fa9574501623baaf562480139a59f0ad1f694967b241c6210a06fa3c733",
+          "content_hash": "af665fa9574501623baaf562480139a59f0ad1f694967b241c6210a06fa3c733",
           "source_type": "documentation"
         },
         {
@@ -32256,5 +32256,5 @@
     "truth_claim": false,
     "missing_values": "preserved explicitly; never fabricated"
   },
-  "manifest_sha256": "71d3faf6b7890ea9dc960a69771c193be89fe4c4a7c8a165f4fcaa5609682e84"
+  "manifest_sha256": "04619d730b5a04fc0b0f27a3670b46de87b9373cb9964337e711097132a6f6c3"
 }
