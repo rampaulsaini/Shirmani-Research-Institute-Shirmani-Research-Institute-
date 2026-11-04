@@ -2,16 +2,25 @@
   "schema_version": "1.0",
   "product_id": "P-STUDIO-001",
   "release": "ANANT_STUDIO_V2",
-  "status": "PREPRODUCTION",
-  "objective": "Prepare one approved studio concept for three media formats and a gated 16-destination publishing router.",
+  "status": "LOCAL_PREVIEW_REVIEW_PENDING",
+  "objective": "Prepare one owner-approved studio concept for three media formats and a gated 16-destination publishing router.",
+  "evidence_checkpoint": "2026-11-04",
   "formats": {
     "short_reel": {
       "aspect_ratio": "9:16",
       "duration_seconds": 15,
-      "theme": "सत्य • प्रेम • शांति",
-      "visual": "Text hologram treatment; source image required",
-      "audio": "Original user-approved recording or licensed audio",
-      "status": "ASSET_INPUT_REQUIRED"
+      "theme": "सत्य | प्रेम | शांति",
+      "visual": "Owner-supplied portrait video footage with Hindi title overlay; hologram effect is not claimed.",
+      "audio": "Owner-supplied original voice recording used in local DRY_RUN render.",
+      "status": "LOCAL_DRY_RUN_RENDERED_AWAITING_OWNER_REVIEW",
+      "technical_qa": {
+        "container": "MP4",
+        "video": "H.264 1080x1920 30fps",
+        "audio": "AAC mono 48kHz",
+        "duration_seconds": 15,
+        "audio_peak_dbfs": -1.5,
+        "owner_approval": "PENDING"
+      }
     },
     "long_video": {
       "aspect_ratio": "16:9",
@@ -25,8 +34,24 @@
       "title": "निष्पक्ष समझ ही सत्य है",
       "duration_target_seconds": 30,
       "script": "docs/production/ANANT-STUDIO-V2-PRODUCTION-PACK.md",
-      "status": "ORIGINAL_USER_VOICE_NOTE_REQUIRED"
+      "status": "LOCAL_DRY_RUN_RENDERED_AWAITING_OWNER_REVIEW",
+      "technical_qa": {
+        "container": "MP3",
+        "audio": "mono 48kHz",
+        "duration_seconds": 30.024,
+        "audio_peak_dbfs": -1.8,
+        "owner_approval": "PENDING"
+      }
     }
+  },
+  "render_evidence": {
+    "status": "LOCAL_WORKING_SESSION_ONLY",
+    "qa_report": "ANANT_STUDIO_V2_DRY_RUN_QA.md",
+    "repository_media_committed": false,
+    "full_content_review": "PENDING",
+    "speech_transcript_and_caption_sync": "PENDING",
+    "rights_clearance": "PENDING",
+    "note": "Technical file/container checks passed; this does not establish owner approval, intelligibility, factual correctness, lip-sync, or platform compatibility."
   },
   "router": {
     "target_destinations": 16,
@@ -50,7 +75,10 @@
       "idempotency_key_present",
       "publish_result_recorded"
     ],
-    "fail_closed": true
+    "fail_closed": true,
+    "latest_preflight": "BLOCKED_NO_DISPATCH_ATTEMPTED",
+    "verified_api_authorized_destinations": 0,
+    "selected_destinations": 0
   },
   "languages": {
     "target_count": 16,
@@ -76,6 +104,6 @@
   "voice_identity": {
     "source": "USER_SUPPLIED_RECORDING_ONLY",
     "cloning_or_voice_replication_without_separate_explicit_authorization": false,
-    "status": "AWAITING_USER_RECORDING"
+    "status": "RECEIVED_AND_USED_FOR_LOCAL_PREVIEW"
   }
 }
