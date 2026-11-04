@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SRI Client Brief Builder | Shirmani Research Institute</title>
+<meta name="description" content="Create a clear Hindi/English writing and research brief, scope checklist, and client-ready enquiry summary before quoting or starting work.">
+<style>
+:root{color-scheme:light;--ink:#17243a;--muted:#58677c;--line:#dce3ed;--paper:#f5f7fb;--blue:#174ea6;--gold:#bd8b25}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:linear-gradient(125deg,#10294b,#174ea6 68%,#3579bd);color:white;padding:28px max(20px,calc((100% - 1080px)/2)) 32px}
+.brand{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.88}h1{font-size:clamp(1.8rem,5vw,3rem);line-height:1.12;margin:.5rem 0}header p{max-width:760px;margin:.5rem 0;color:#e7efff}
+main{max-width:1080px;margin:24px auto;padding:0 16px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(270px,.7fr);gap:18px}
+.card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 8px 24px #182d4a0a}h2{font-size:1.15rem;margin:0 0 12px}label{display:block;font-weight:650;font-size:.9rem;margin:12px 0 5px}input,select,textarea{width:100%;font:inherit;padding:10px 11px;border:1px solid #bfcbdc;border-radius:9px;background:white;color:var(--ink)}textarea{min-height:88px;resize:vertical}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}button{border:0;border-radius:9px;padding:11px 15px;font:inherit;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:white}.secondary{background:#eaf0fa;color:#143d79}.preview{white-space:pre-wrap;overflow-wrap:anywhere;background:#f7f9fc;border:1px dashed #bdc9da;border-radius:10px;padding:14px;min-height:230px;font-size:.94rem}.note{font-size:.88rem;color:var(--muted)}.pill{display:inline-block;border:1px solid #e4c777;background:#fff8df;color:#6d4a00;padding:3px 8px;border-radius:99px;font-size:.78rem;font-weight:700}.identity{border-top:1px solid var(--line);margin-top:18px;padding-top:12px;font-size:.8rem;color:var(--muted)}footer{max-width:1080px;margin:0 auto;padding:8px 16px 30px;color:var(--muted);font-size:.85rem}
+@media(max-width:760px){main{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.card{padding:16px}}
+</style></head>
+<body>
+<header><div class="brand">Shirmani Research Institute · Product Studio</div><h1>Client Brief Builder</h1><p>Turn a first enquiry into a clear, professional Hindi/English writing or research brief—before confirming price, deadline, deliverables, or payment.</p></header>
+<main>
+<section class="card"><h2>1 · Enquiry details</h2>
+<form id="briefForm">
+<div class="grid"><div><label for="client">Client / organisation</label><input id="client" placeholder="Name or organisation"></div><div><label for="contact">Contact channel (optional)</label><input id="contact" placeholder="Email / phone / preferred channel"></div></div>
+<div class="grid"><div><label for="service">Service</label><select id="service"><option>Hindi/English writing</option><option>Research summary</option><option>Website / blog content</option><option>Translation / bilingual adaptation</option><option>Other — scope to confirm</option></select></div><div><label for="language">Language</label><select id="language"><option>Hindi</option><option>English</option><option>Hindi + English</option></select></div></div>
+<label for="topic">Topic and intended outcome *</label><textarea id="topic" required placeholder="What should the work help the reader understand or do?"></textarea>
+<div class="grid"><div><label for="words">Approx. word count</label><input id="words" type="number" min="1" placeholder="e.g. 1200"></div><div><label for="deadline">Requested deadline</label><input id="deadline" type="date"></div></div>
+<label for="sources">Sources, links, files, or reference material</label><textarea id="sources" placeholder="Paste URLs or describe supplied material; distinguish required sources from optional context."></textarea>
+<div class="grid"><div><label for="budget">Budget / currency</label><input id="budget" placeholder="e.g. ₹1,500 or to discuss"></div><div><label for="audience">Audience</label><input id="audience" placeholder="e.g. general readers, students"></div></div>
+<label for="deliverables">Deliverables and format *</label><textarea id="deliverables" required placeholder="e.g. 1 article, source list, one revision round, DOCX/Google Docs"></textarea>
+<label for="constraints">Constraints / exclusions</label><textarea id="constraints" placeholder="Tone, citation style, privacy needs, must-include / must-avoid items"></textarea>
+<div class="actions"><button class="primary" type="submit">Generate client brief</button><button class="secondary" type="button" id="reset">Clear form</button></div>
+</form></section>
+<aside class="card"><h2>2 · Review before sending</h2><span class="pill">Draft only · not a quote</span><p class="note">The generated brief helps both sides agree on scope. It does not send email, accept payment, verify sources, or create a binding contract.</p><div id="preview" class="preview" aria-live="polite">Complete the required fields and select “Generate client brief”. Your summary will appear here.</div><div class="actions"><button class="primary" id="download" type="button">Download .txt</button><button class="secondary" id="copy" type="button">Copy summary</button></div>
+<div class="identity"><strong>Product passport</strong><br>Product ID: SRI-OPS-001 · Version 1.0<br>QC state: prototype; manual acceptance pending<br>Dispatch: NO · Price: not yet approved<br>Data handling: this page keeps entered fields in this browser session only; it does not transmit them to a server.</div></aside>
+</main>
+<footer>Shirmani Research Institute · Simple • Clear • Transparent. Confirm scope, deliverables, timeline, revision limits, price, and payment terms in writing before work begins. Do not include confidential personal data unless an appropriate secure process has been agreed.</footer>
+<script>
+const $=id=>document.getElementById(id);let generated='';
+function val(id){return $(id).value.trim()||'Not supplied';}
+function build(){const deadline=$('deadline').value||'To agree';return [
+'SHIRMANI RESEARCH INSTITUTE — CLIENT ENQUIRY BRIEF',
+'Status: DRAFT FOR SCOPE CONFIRMATION — NOT A QUOTE OR CONTRACT','',
+'Client / organisation: '+val('client'),'Contact channel: '+val('contact'),'Service: '+val('service'),'Language: '+val('language'),'Topic / intended outcome: '+val('topic'),'Target word count: '+val('words'),'Requested deadline: '+deadline,'Audience: '+val('audience'),'Sources / references: '+val('sources'),'Deliverables / format: '+val('deliverables'),'Budget: '+val('budget'),'Constraints / exclusions: '+val('constraints'),'',
+'BEFORE ACCEPTANCE — confirm in writing:',
+'☐ Scope and deliverables','☐ Source and citation expectations','☐ Deadline and review milestones','☐ Revision count and exclusions','☐ Final price, currency, and payment schedule','☐ Confidentiality and permitted use',
+'No sale, source verification, delivery date, or payment is confirmed by this generated draft.'
+].join('\n');}
+$('briefForm').addEventListener('submit',e=>{e.preventDefault();generated=build();$('preview').textContent=generated;});
+$('reset').addEventListener('click',()=>{$('briefForm').reset();generated='';$('preview').textContent='Complete the required fields and select “Generate client brief”. Your summary will appear here.';});
+$('download').addEventListener('click',()=>{if(!generated){alert('Generate the brief first.');return;}const blob=new Blob([generated],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='shirmani-client-enquiry-brief.txt';a.click();URL.revokeObjectURL(url);});
+$('copy').addEventListener('click',async()=>{if(!generated){alert('Generate the brief first.');return;}try{await navigator.clipboard.writeText(generated);$('copy').textContent='Copied';}catch(e){const r=document.createRange();r.selectNodeContents($('preview'));const s=getSelection();s.removeAllRanges();s.addRange(r);alert('Clipboard access unavailable; summary selected for manual copy.');}});
+</script></body></html>
