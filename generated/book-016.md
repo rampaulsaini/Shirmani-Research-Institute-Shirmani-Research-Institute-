@@ -2159,7 +2159,7 @@ Set QC and dispatch status only after the relevant process has actually passed.
 स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 015540
-{ "schema_version": "2.0", "purpose": "continuous production-first showroom heartbeat", "source": " "product_count": 5000, "family_count": 14, "engine_count": 6, "status_counts": { "READY_FOR_QC": 5000 }, "commercial_status_counts": { "CATALOG_READY": 5000 }, "published_product_count": 4, "production_candidate_count": 5000, "showroom_route": "supreme-public-showroom.html", "updated_at_utc": "2026-11-04T07:59:00.009660+00:00" }
+{ "schema_version": "2.0", "purpose": "continuous production-first showroom heartbeat", "source": " "product_count": 5000, "family_count": 14, "engine_count": 6, "status_counts": { "READY_FOR_QC": 5000 }, "commercial_status_counts": { "CATALOG_READY": 5000 }, "published_product_count": 4, "production_candidate_count": 5000, "showroom_route": "supreme-public-showroom.html", "updated_at_utc": "2026-11-04T16:08:07.865732+00:00" }
 स्रोत: rampaulsaini/my-omniverse-store:data/production-heartbeat.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 015541
@@ -2343,7 +2343,7 @@ Omniverse Core Intelligence Divine Human Evolution Omniverse Communication Netwo
 स्रोत: rampaulsaini/my-omniverse-store:projects/ere/index.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 015586
-{ "schema_version": 1, "cycle": "product-passport-studio", "product_id": "SHI-PPS-0001", "module_url": " "package_present": true, "catalog_manifest_present": true, "demo_ready": true, "qc_status": "NOT_YET_RECORDED", "dispatch_status": "NO", "commercial_status": "DEMO_ONLY", "generated_at": "2026-11-04T06:16:12.827251+00:00", "next_action": "Collect customer feedback and perform actual usability/QC tests before commercial release." }
+{ "schema_version": 1, "cycle": "product-passport-studio", "product_id": "SHI-PPS-0001", "module_url": " "package_present": true, "catalog_manifest_present": true, "demo_ready": true, "qc_status": "NOT_YET_RECORDED", "dispatch_status": "NO", "commercial_status": "DEMO_ONLY", "generated_at": "2026-11-04T14:38:26.383049+00:00", "next_action": "Collect customer feedback and perform actual usability/QC tests before commercial release." }
 स्रोत: rampaulsaini/my-omniverse-store:generated/production-cycles/product-passport-studio-state.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 015587
