@@ -545,18 +545,23 @@ app.get("/v1/platform/readiness", async (_req, res) => {
   const databaseConfigured = Boolean(process.env.DATABASE_URL);
   const authConfigured = Boolean(process.env.JWT_SECRET);
   const corsConfigured = Boolean(process.env.CORS_ORIGIN && process.env.CORS_ORIGIN !== "*");
+  const ownerInboxConfigured = Boolean(process.env.OWNER_ACCOUNT_ID);
   let database = databaseConfigured ? "CONFIGURED" : "DATABASE_NOT_CONFIGURED";
   if (pool) {
     try { await pool.query("select 1"); database = "READY"; }
     catch { database = "ERROR"; }
   }
-  const ready = database === "READY" && authConfigured && corsConfigured;
+  // A database-backed enquiry form is not operational for the owner until
+  // the private inbox identity is configured. Keep this as a readiness gate,
+  // not a startup crash, so diagnostics remain available while configuring.
+  const ready = database === "READY" && authConfigured && corsConfigured && ownerInboxConfigured;
   res.status(ready ? 200 : 503).json({
     status: ready ? "READY_FOR_DEPLOYMENT_CHECKS" : "BLOCKED",
     checks: {
       database,
       auth: authConfigured ? "CONFIGURED" : "JWT_SECRET_NOT_CONFIGURED",
-      cors: corsConfigured ? "CONFIGURED" : "NOT_CONFIGURED_OR_WILDCARD"
+      cors: corsConfigured ? "CONFIGURED" : "NOT_CONFIGURED_OR_WILDCARD",
+      owner_inbox: ownerInboxConfigured ? "CONFIGURED" : "OWNER_ACCOUNT_ID_NOT_CONFIGURED"
     },
     production_live: false,
     independent_verification: false
