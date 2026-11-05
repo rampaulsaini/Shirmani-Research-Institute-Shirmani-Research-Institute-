@@ -474,7 +474,7 @@ This is intended to eliminate the previous ambiguity where a 25-engine architect
 
 ## First Paid Pilot Offer — Client-Ready Page
 
-- **First Client Pilot:** [open proposed writing/research offers and enquiry builder](first-paid-pilot-offer.html) — ₹499 single-language editing/writing polish (up to 700 words), ₹1,499 source-based research summary (about 800–1,200 words), and ₹999 website/blog draft (up to 1,000 words) are proposed starter rates only. The browser-local page prepares/copies/downloads an enquiry draft; it does not send messages, take payment, create an order, or claim revenue. Confirm scope, price, timeline, revisions and payment terms in writing before accepting work.
+- **First Client Pilot:** [open proposed writing/research offers and enquiry builder](first-paid-pilot-offer.html) — ₹999 single-language editing/polish (up to 500 words), ₹1,999 source-based research summary (about 800–1,200 words), and ₹2,999 website/blog draft (up to 1,000 words) are proposed starter rates only, matching the current offer and service pages. The browser-local pilot page prepares/copies/downloads an enquiry draft; it does not send messages, take payment, create an order, or claim revenue. The separate public enquiry form can submit only when its API base URL and backend are configured; its current blank API-base setting must not be presented as a live enquiry receiver. Confirm scope, price, timeline, revisions and payment terms in writing before accepting work.
 
 
 ## SRI-HV-001 — Heart-View Human Presentation Production Contract
