@@ -1,23 +1,30 @@
 # Anant Studio — Second Version Production Pack
 
 **Product:** P-STUDIO-001  
-**Release state:** Pre-production; no media has been rendered or published.
+**Release state:** Local preview rendered; owner review pending. Publishing remains DRY_RUN.
+
+## Evidence checkpoint — 4 November 2026
+
+The production record is updated to reflect the local preview and technical QA recorded in GitHub Issue #3593. The outputs were rendered in a private ChatGPT working session; they are not committed media assets in this repository.
+
+- **15-second reel:** MP4, H.264, 1080×1920 portrait, 30 fps, AAC mono 48 kHz; exactly 15.000 seconds. Measured audio peak: −1.5 dBFS.
+- **30-second podcast excerpt:** MP3, mono 48 kHz; 30.024 seconds. Measured audio peak: −1.8 dBFS.
+- A representative frame was inspected and shows the supplied portrait footage with the Hindi title “शिरोमणि अनंत स्टूडियो / सत्य | प्रेम | शांति”.
+- Technical/container checks passed. Speech intelligibility, exact transcript and caption synchronization, full-frame review, factual accuracy, rights clearance, owner approval, and destination compatibility remain unverified.
+
+These are review candidates, not approved masters. No public repository media upload, external dispatch, public post, sale, payment, or delivery is claimed.
 
 ## Release boundary
 
-The existing catalogue offer and social-publishing manifest are retained. This pack advances the work without claiming that a voice note, hologram render, account connection, publication, audience reach, order, or payment already exists.
-
-The historical reference **4 April 2024 — Harimandir Sahib / Safed Taj** is treated as an owner-provided reference, not independently verified evidence. Do not imply endorsement by the shrine, its custodians, or any public institution.
+The existing catalogue offer and social-publishing manifest are retained. The historical reference **4 April 2024 — Harimandir Sahib / Safed Taj** remains an owner-provided reference, not independently verified evidence. Do not imply endorsement by the shrine, its custodians, or any public institution.
 
 ## 1. Short reel — 15 seconds, 9:16
 
-**Storyboard**
-- 0–3s: Calm studio opening; title: “सत्य”
-- 3–7s: Text appears with a soft light / hologram-style treatment: “प्रेम”
-- 7–11s: The frame opens into a peaceful reflection: “शांति”
-- 11–15s: Closing line: “निष्पक्ष समझ ही सत्य है” and product name.
+**Current state:** LOCAL_DRY_RUN_RENDERED_AWAITING_OWNER_REVIEW.
 
-**Inputs still required:** the approved studio image, original/authorized audio, and final visual rights check. This is a storyboard, not a rendered reel.
+The current preview uses owner-supplied portrait video footage and the supplied original voice recording. It contains the Hindi title treatment “शिरोमणि अनंत स्टूडियो” and “सत्य | प्रेम | शांति”. A hologram effect is not claimed.
+
+**Owner gate:** watch the complete reel and approve it or request specific edits. Technical QA does not substitute for creative approval.
 
 ## 2. Long video — 5 minutes, 16:9
 
@@ -30,37 +37,39 @@ The historical reference **4 April 2024 — Harimandir Sahib / Safed Taj** is tr
 5. 3:40–4:35 — Explain free introductory viewing and the separately scoped, consent-based premium service.
 6. 4:35–5:00 — Invitation to view the demo or submit an enquiry; do not promise outcomes.
 
-**Production inputs:** approved images, exact factual captions, recorded narration, music/visual rights, and final human review.
+**Status:** script drafted; recording, factual review, rights review, and owner approval remain required.
 
 ## 3. Podcast — 30-second original voice note
 
-**Recording script**
+**Current state:** LOCAL_DRY_RUN_RENDERED_AWAITING_OWNER_REVIEW.
 
-“निष्पक्ष समझ ही सत्य है। जब हम किसी बात को बिना पक्षपात, बिना जल्दबाज़ी और पूरे ध्यान से समझते हैं, तभी संवाद में स्पष्टता आती है। सत्य, प्रेम और शांति केवल शब्द नहीं—वे हमारे व्यवहार में दिखाई देने चाहिए। शिरोमणि अनंत स्टूडियो में आपका स्वागत है। आइए, हृदय से हृदय संवाद करें।”
+A 30.024-second MP3 excerpt was rendered from the supplied original voice recording. Measured peak: −1.8 dBFS; no digital sample clipping was detected by the recorded peak scan.
 
-Record this in your own voice and upload the audio here. No voice recording is assumed to exist yet.
+**Owner gate:** listen to the complete excerpt and approve it or request specific edits. Technical QA does not establish intelligibility or content accuracy.
 
 ## 4. Sixteen-destination router
 
-The target is 16 individually verified destinations across YouTube, Instagram, Facebook and X. The current manifest contains more than 16 mixed account/content links, and a URL alone does not prove account ownership or API permission. Therefore, do not silently choose 16 or treat profile/article/group links as publishable destinations.
+The target is 16 individually verified destinations across YouTube, Instagram, Facebook and X. The current registry contains 20 destination records, but the latest audit found 13 NOT_CONNECTED, 6 LINK_ONLY, and 1 EXTERNAL_STORE; 0 verified API-authorized destinations.
+
+The 4 November DRY_RUN preflight was **BLOCKED — NO DISPATCH ATTEMPTED**. No destinations were contacted and no public posts were sent. Do not silently select 16 or treat profile/article/group links as publishable destinations.
 
 Before live dispatch, record for each selected destination: platform, exact account/channel ID, owner verification, API connection, granted scopes, allowed media types, and test result. Keep all destinations in dry-run until every gate passes. A failure at any destination blocks that dispatch.
 
 ## 5. Daily automission
 
-Approved source image + approved script → format-specific asset production → human QC → 16-destination eligibility check → approved schedule → publish response receipt → order/payment/delivery reconciliation.
+Approved source assets + approved script → format-specific asset production → human QC → 16-destination eligibility check → approved schedule → publish response receipt → order/payment/delivery reconciliation.
 
 Use an idempotency key per asset + destination + scheduled slot. Retries must not create duplicate posts. Store platform post IDs and timestamps as publication evidence. Views and followers are reach metrics, not income.
 
-## 6. Immediate acceptance checklist
+## 6. Acceptance checklist
 
-- [ ] User supplies the approved studio image.
-- [ ] User records and supplies the 30-second voice note.
-- [ ] Sixteen destinations are explicitly selected and verified.
-- [ ] Sixteen-language translations receive native/human review.
-- [ ] Three media assets are actually rendered and checked.
+- [ ] Owner watches and approves the complete 15-second reel or requests edits.
+- [ ] Owner listens to and approves the complete podcast excerpt or requests edits.
+- [ ] Speech transcript, caption synchronization, and factual content are reviewed.
+- [ ] Sixteen destinations are explicitly selected and individually verified.
+- [ ] Sixteen target-language translations receive native/human review.
 - [ ] Content rights and platform permissions are confirmed.
 - [ ] A single-destination test is approved before any broader live release.
 - [ ] Payment and delivery evidence are recorded separately from views.
 
-**Current truthful status:** product record exists; publishing manifest exists; this pack is a production specification; rendering, live publishing, account authorization, and income remain unverified.
+**Current truthful status:** production specification exists; local preview outputs passed technical file/container QA; owner approval remains pending; media is not committed to the repository; live publishing is disabled; 0 destinations are verified API-authorized; no publication, sale, payment, or delivery is claimed.
