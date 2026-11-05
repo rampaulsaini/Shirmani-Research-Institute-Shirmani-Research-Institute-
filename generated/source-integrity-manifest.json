@@ -1,7 +1,7 @@
 {
   "manifest_version": 1,
-  "generated_at": "2026-11-04T08:07:42.031995+00:00",
-  "source_manifest_generated_at": "2026-11-04T08:07:23.504554+00:00",
+  "generated_at": "2026-11-05T06:22:24.327914+00:00",
+  "source_manifest_generated_at": "2026-11-05T06:22:03.635744+00:00",
   "unit_count": 4555,
   "repositories": [
     {
@@ -143,7 +143,7 @@
       "repository": "rampaulsaini/kit-app-template",
       "available": true,
       "default_branch": "main",
-      "head_sha": "d4b396efb9d53e0568b464b0271bf6d63449a5df",
+      "head_sha": "07a585f79163335b8fb311bdfad58fdac5972a5a",
       "remote_ok": true,
       "skipped": null,
       "unit_record_count": 0
@@ -152,7 +152,7 @@
       "repository": "rampaulsaini/my-omniverse-store",
       "available": true,
       "default_branch": "main",
-      "head_sha": "975679aab8e8b1dd576d2a026317ea9958c58652",
+      "head_sha": "6d24056107ad7a59624d362ad3d5e46ad98a14e1",
       "remote_ok": true,
       "skipped": null,
       "unit_record_count": 310
@@ -224,7 +224,7 @@
       "repository": "rampaulsaini/yatharth-music-ai",
       "available": true,
       "default_branch": "main",
-      "head_sha": "466aa07f9b6e5a879f1c118b7a7763983912e260",
+      "head_sha": "e01c2e6be29bc5dacfa8cf9038a9f1cb7114baf6",
       "remote_ok": true,
       "skipped": null,
       "unit_record_count": 615
@@ -22275,8 +22275,8 @@
         {
           "id": 1875,
           "path": "data/production-heartbeat.json",
-          "source_hash": "92fc45b232362fb022c4b43635ec8b057ccc4adc2a7e33296d33cd7185da1c01",
-          "content_hash": "92fc45b232362fb022c4b43635ec8b057ccc4adc2a7e33296d33cd7185da1c01",
+          "source_hash": "b57076c5947935b733d7c75eacd78f8b43874f39de98a8fdf8a2371cbc1e045b",
+          "content_hash": "b57076c5947935b733d7c75eacd78f8b43874f39de98a8fdf8a2371cbc1e045b",
           "source_type": "documentation"
         },
         {
@@ -22660,8 +22660,8 @@
         {
           "id": 1921,
           "path": "generated/production-cycles/product-passport-studio-state.json",
-          "source_hash": "4f07ad84621a7c8863935c7afd8b831bd01509e0ed192c12359348b49fc58a6f",
-          "content_hash": "4f07ad84621a7c8863935c7afd8b831bd01509e0ed192c12359348b49fc58a6f",
+          "source_hash": "b563bca9d0c5985fc1de20308aa9560b2f28d914ba5fb623da20af8a9232a894",
+          "content_hash": "b563bca9d0c5985fc1de20308aa9560b2f28d914ba5fb623da20af8a9232a894",
           "source_type": "documentation"
         },
         {
@@ -32256,5 +32256,5 @@
     "truth_claim": false,
     "missing_values": "preserved explicitly; never fabricated"
   },
-  "manifest_sha256": "71d3faf6b7890ea9dc960a69771c193be89fe4c4a7c8a165f4fcaa5609682e84"
+  "manifest_sha256": "3fd6d95c35b0d51b859f0bca8f89be4288b8367544d8f4ffeb3397f2094ec29d"
 }
