@@ -1,25 +1,14 @@
 {
-  "generated_at": "2026-11-05T01:57:53.750302+00:00",
+  "generated_at": "2026-11-05T06:22:42.512698+00:00",
   "gate": "PRODUCT-QC-GATE",
   "scope": "PRODUCED_PRODUCTS_ONLY",
   "catalog_count": 5000,
-  "produced_count": 4716,
-  "qc_passed": 4716,
+  "produced_count": 5000,
+  "qc_passed": 5000,
   "qc_failed": 0,
   "pass_percent": 100.0,
   "dispatch_default": "NO",
   "release_state": "QC_PASS_READY_FOR_DISPATCH",
-  "checks": [
-    "catalog fields",
-    "browser asset",
-    "QR QC code",
-    "Gate No.",
-    "Dispatch No.",
-    "offer price",
-    "description",
-    "guarantee",
-    "packing"
-  ],
   "integrity": {
     "deterministic_qc": true,
     "independent_scientific_verification": false,
