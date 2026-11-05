@@ -3939,7 +3939,7 @@ Set QC and dispatch status only after the relevant process has actually passed.
 स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 010985
-{ "schema_version": "2.0", "purpose": "continuous production-first showroom heartbeat", "source": " "product_count": 5000, "family_count": 14, "engine_count": 6, "status_counts": { "READY_FOR_QC": 5000 }, "commercial_status_counts": { "CATALOG_READY": 5000 }, "published_product_count": 4, "production_candidate_count": 5000, "showroom_route": "supreme-public-showroom.html", "updated_at_utc": "2026-11-04T07:59:00.009660+00:00" }
+{ "schema_version": "2.0", "purpose": "continuous production-first showroom heartbeat", "source": " "product_count": 5000, "family_count": 14, "engine_count": 6, "status_counts": { "READY_FOR_QC": 5000 }, "commercial_status_counts": { "CATALOG_READY": 5000 }, "published_product_count": 4, "production_candidate_count": 5000, "showroom_route": "supreme-public-showroom.html", "updated_at_utc": "2026-11-05T08:37:59.465941+00:00" }
 स्रोत: rampaulsaini/my-omniverse-store:data/production-heartbeat.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 010986
