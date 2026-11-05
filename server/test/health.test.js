@@ -12,6 +12,11 @@ test("server source exposes the hardened health contract", () => {
   ]) assert.ok(source.includes(required), "missing health contract: " + required);
 });
 
+test("server trusts exactly one Render proxy hop before applying IP-based rate limits", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  assert.ok(source.includes('app.set("trust proxy", 1);'));
+});
+
 test("server source exposes every currently documented implemented route", () => {
   const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
   for (const route of [
