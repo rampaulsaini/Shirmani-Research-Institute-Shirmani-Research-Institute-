@@ -7,5 +7,8 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 
+# Node.js
+node_modules/
+
 # OS/editor
 .DS_Store

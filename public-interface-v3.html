@@ -253,4 +253,9 @@ loadWorkflowTelemetry().catch(e=>{$("opsStatus").textContent="डेटा उ�
 loadVerificationSnapshot().catch(e=>{$("verifiedValue").textContent="—";$("verificationPercent").textContent="—";$("reviewPreparedValue").textContent="—";$("verificationBoundary").textContent="Verification data उपलब्ध नहीं: "+e.message+" · शून्य का अनुमान नहीं लगाया गया।"});
 loadProductionSnapshot().catch(e=>{$("catalogCount").textContent="—";$("assetCount").textContent="—";$("assetPercent").textContent="—";$("productionFreshness").textContent="डेटा उपलब्ध नहीं";$("productionBoundary").textContent="Production snapshot पढ़ा नहीं जा सका: "+e.message+" · कोई संख्या अनुमान से नहीं भरी गई।";});
 })();
-</script></body></html>
+</script>
+<script type="module">
+import { injectSpeedInsights } from '/assets/speed-insights.js';
+injectSpeedInsights();
+</script>
+</body></html>
