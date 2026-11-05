@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-इसे किसी काल्पनिक “100% complete” दावे की तरह नहीं पढ़ना चाहिए।
+Close (48–60s):** Show the limitation notice: a source URL alone does not independently verify a claim.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:funding.html
+rampaulsaini/my-omniverse-store:SH-UT007-demo-script.md

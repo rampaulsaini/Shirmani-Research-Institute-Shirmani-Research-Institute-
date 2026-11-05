@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-NEW CONCRETE PRODUCT · SHI-PPS-0001 SHIRMANI Product Passport Studio Create a product identity, short/full descriptions, usage guide, price, QR-linked passport and downloadable JSON.
+किसी भी support को खरीद या guaranteed return के रूप में न समझें।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ NEW CONCRETE PRODUCT · SHI-PPS-0001 SHIRMANI Product Passport Studio Create a p
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:supreme-public-showroom.html
+rampaulsaini/my-omniverse-store:funding.html

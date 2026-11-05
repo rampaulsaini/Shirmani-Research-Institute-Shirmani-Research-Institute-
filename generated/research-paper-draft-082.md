@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-google-site-verification Google site verification file — replace this filename with the one Search Console gives (e.g.
+Public reviews, ratings और usage feedback को अगले production cycles की quality priorities में भेजना।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ google-site-verification Google site verification file — replace this filename
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:google8BSLBQVK4N.html
+rampaulsaini/my-omniverse-store:funding.html

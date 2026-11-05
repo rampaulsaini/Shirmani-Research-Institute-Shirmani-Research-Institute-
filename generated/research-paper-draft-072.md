@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Question (5–12s):** Enter: “Does this claim have enough evidence?” 3.
+Independent verification का झूठा दावा नहीं करता।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Question (5–12s):** Enter: “Does this claim have enough evidence?” 3.
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:SH-UT007-demo-script.md
+rampaulsaini/my-omniverse-store:unique-tools-showroom.html

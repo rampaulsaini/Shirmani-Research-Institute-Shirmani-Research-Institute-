@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Browser-runnable demo; QC and dispatch remain explicitly unapproved until tested.
+Paytm / UPI 9622254967@ptyes 📲 UPI / Paytm से भुगतान PayPal sainirampaul60@gmail.com 💙 PayPal QR को scan करके UPI/Paytm payment app में payment request खोली जा सकती है।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Browser-runnable demo; QC and dispatch remain explicitly unapproved until tested
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:supreme-public-showroom.html
+rampaulsaini/my-omniverse-store:funding.html
