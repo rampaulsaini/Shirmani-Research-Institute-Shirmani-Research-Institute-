@@ -21,6 +21,8 @@ if (isProduction && (!origin || origin === "*" || !secret || !process.env.DATABA
 }
 
 app.use(cors({ origin: origin || "*" }));
+// Render terminates TLS and forwards one trusted proxy hop to this web service.
+app.set("trust proxy", 1);
 app.use(express.json({ limit: "1mb" }));
 app.use(rateLimit({ windowMs: 60_000, limit: 120, standardHeaders: true, legacyHeaders: false }));
 app.use((_req, res, next) => { res.setHeader("Cache-Control", "no-store"); next(); });
