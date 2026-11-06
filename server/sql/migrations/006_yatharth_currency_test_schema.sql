@@ -151,8 +151,10 @@ CREATE OR REPLACE FUNCTION yatharth_require_review_gate()
 RETURNS trigger LANGUAGE plpgsql AS $body$
 DECLARE approvals integer;
 BEGIN
-  SELECT COALESCE(g.independent_approval_count, 0)
-    INTO approvals
+  IF NEW.status = 'VERIFIED'
+     AND (TG_OP = 'INSERT' OR OLD.status IS DISTINCT FROM NEW.status) THEN
+    SELECT COALESCE(g.independent_approval_count, 0)
+      INTO approvals
   FROM yatharth_contribution_review_gate g
   WHERE g.contribution_id = NEW.contribution_id
     AND g.panel_round = (
@@ -162,8 +164,9 @@ BEGIN
         AND independent_approval_count >= 3
     );
 
-  IF COALESCE(approvals, 0) < 3 THEN
-    RAISE EXCEPTION 'Three active, distinct, non-conflicted reviewer approvals in one panel round are required';
+    IF COALESCE(approvals, 0) < 3 THEN
+      RAISE EXCEPTION 'Three active, distinct, non-conflicted reviewer approvals in one panel round are required';
+    END IF;
   END IF;
   RETURN NEW;
 END;
@@ -171,10 +174,8 @@ $body$;
 
 DROP TRIGGER IF EXISTS yatharth_verified_review_gate ON yatharth_contributions;
 CREATE TRIGGER yatharth_verified_review_gate
-  BEFORE UPDATE OF status ON yatharth_contributions
-  FOR EACH ROW
-  WHEN (NEW.status = 'VERIFIED' AND OLD.status IS DISTINCT FROM NEW.status)
-  EXECUTE FUNCTION yatharth_require_review_gate();
+  BEFORE INSERT OR UPDATE OF status ON yatharth_contributions
+  FOR EACH ROW EXECUTE FUNCTION yatharth_require_review_gate();
 
 CREATE OR REPLACE FUNCTION yatharth_require_mint_authorization_gate()
 RETURNS trigger LANGUAGE plpgsql AS $body$
