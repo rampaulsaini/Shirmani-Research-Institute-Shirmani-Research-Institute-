@@ -709,5 +709,37 @@ app.post("/api/owner/payment-proofs/:proofId/verify", dbRequired, auth, ownerOnl
   } catch { return res.status(503).json({ error: "PAYMENT_PROOF_VERIFICATION_FAILED" }); }
 });
 
+// Public Yatharth Genesis registry check. This proves only the database reservation row,
+// not ownership of a wallet, token issuance, funds, legal-tender status, or exchange operation.
+app.get("/api/yatharth/verify/:accountId", dbRequired, async (req, res) => {
+  const accountId = String(req.params.accountId || "").trim();
+  if (!/^YTH-[0-9]{10}$/.test(accountId)) {
+    return res.status(400).json({ error: "INVALID_YATHARTH_ACCOUNT_ID" });
+  }
+  try {
+    const { rows } = await pool.query(
+      "select account_id, status, proof_hash, created_at from yatharth_accounts where account_id=$1",
+      [accountId]
+    );
+    if (!rows[0]) {
+      return res.status(404).json({ account_id: accountId, status: "NOT_FOUND", verified: false });
+    }
+    const verified = rows[0].status === "RESERVED_PERMANENT" &&
+      rows[0].proof_hash === "GENESIS-2026-11-06-001";
+    return res.status(200).json({
+      account_id: rows[0].account_id,
+      status: rows[0].status,
+      verified,
+      verification_scope: "database_reservation_record_only",
+      created_at: rows[0].created_at
+    });
+  } catch (error) {
+    if (error?.code === "42P01") {
+      return res.status(503).json({ error: "YATHARTH_REGISTRY_NOT_MIGRATED", verified: false });
+    }
+    return res.status(503).json({ error: "YATHARTH_VERIFICATION_UNAVAILABLE", verified: false });
+  }
+});
+
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
 app.listen(port, () => console.log(`shirmani-social-api listening on :${port}`));
