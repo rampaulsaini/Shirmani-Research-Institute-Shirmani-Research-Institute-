@@ -1,0 +1,78 @@
+name: Yatharth Private Testnet Checks
+
+on:
+  pull_request:
+    paths:
+      - "testnet/**"
+      - "docs/economy/yatharth-protocol-v0.1.md"
+  push:
+    branches: ["main"]
+    paths:
+      - "testnet/**"
+      - "docs/economy/yatharth-protocol-v0.1.md"
+
+permissions:
+  contents: read
+
+jobs:
+  contract-tests:
+    name: Yatharth Solidity build and unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+      - name: Install pinned test dependencies
+        working-directory: testnet
+        run: |
+          forge install OpenZeppelin/openzeppelin-contracts@v5.2.0 --no-commit
+          forge install foundry-rs/forge-std@v1.9.6 --no-commit
+      - name: Compile and test
+        working-directory: testnet
+        run: |
+          forge build
+          forge test -vv
+
+  database-tests:
+    name: Yatharth disposable PostgreSQL schema test
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: yatharth_test
+          POSTGRES_PASSWORD: yatharth_test_only
+          POSTGRES_DB: yatharth_private_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U yatharth_test -d yatharth_private_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://yatharth_test:yatharth_test_only@localhost:5432/yatharth_private_test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+      - name: Apply schema twice (idempotency)
+        run: |
+          psql "$TEST_DATABASE_URL" -v ON_ERROR_STOP=1 -f testnet/sql/001_yatharth_testnet.sql
+          psql "$TEST_DATABASE_URL" -v ON_ERROR_STOP=1 -f testnet/sql/001_yatharth_testnet.sql
+      - name: Verify schema objects
+        run: |
+          psql "$TEST_DATABASE_URL" -v ON_ERROR_STOP=1 <<'SQL'
+          DO $$
+          BEGIN
+            IF to_regclass('yatharth_testnet.contributions') IS NULL
+              OR to_regclass('yatharth_testnet.review_decisions') IS NULL
+              OR to_regclass('yatharth_testnet.mint_receipts') IS NULL
+              OR to_regclass('yatharth_testnet.audit_events') IS NULL THEN
+              RAISE EXCEPTION 'required Yatharth testnet tables are missing';
+            END IF;
+          END $$;
+          SQL
