@@ -21,6 +21,7 @@ contract YatharthToken is ERC20, ERC20Burnable, AccessControl, Pausable {
     mapping(bytes32 allocationId => bool used) public usedAllocations;
 
     error InvalidAddress();
+    error InvalidAmount();
     error InvalidAllocation();
     error InvalidEvidenceDigest();
     error LifetimeCapExceeded();
@@ -57,7 +58,8 @@ contract YatharthToken is ERC20, ERC20Burnable, AccessControl, Pausable {
         bytes32 allocationId,
         bytes32 evidenceDigest
     ) external onlyRole(MINTER_ROLE) whenNotPaused {
-        if (recipient == address(0) || amount == 0) revert InvalidAddress();
+        if (recipient == address(0)) revert InvalidAddress();
+        if (amount == 0) revert InvalidAmount();
         if (allocationId == bytes32(0) || usedAllocations[allocationId]) {
             revert InvalidAllocation();
         }
