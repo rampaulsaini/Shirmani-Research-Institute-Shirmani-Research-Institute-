@@ -23,6 +23,8 @@ create table if not exists payment_evidence (
         and (payment_id is not null or upi_ref is not null))
   )
 );
+create unique index if not exists payment_evidence_one_record_per_order
+  on payment_evidence(order_id);
 create index if not exists payment_evidence_order_idx
   on payment_evidence(order_id, created_at desc);
 create index if not exists payment_evidence_verified_idx
