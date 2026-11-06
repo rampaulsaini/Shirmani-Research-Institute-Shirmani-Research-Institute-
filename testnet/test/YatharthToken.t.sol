@@ -17,6 +17,24 @@ contract YatharthTokenTest is Test {
         token = new YatharthToken(governance, timelock);
     }
 
+    function testConstructorRejectsZeroGovernanceOrMinter() public {
+        vm.expectRevert(YatharthToken.InvalidAddress.selector);
+        new YatharthToken(address(0), timelock);
+
+        vm.expectRevert(YatharthToken.InvalidAddress.selector);
+        new YatharthToken(governance, address(0));
+    }
+
+    function testRejectsZeroRecipientAndZeroAmount() public {
+        vm.startPrank(timelock);
+        vm.expectRevert(YatharthToken.InvalidAddress.selector);
+        token.mintVerified(address(0), 1, keccak256("allocation-zero-recipient"), evidence);
+
+        vm.expectRevert(YatharthToken.InvalidAmount.selector);
+        token.mintVerified(alice, 0, keccak256("allocation-zero-amount"), evidence);
+        vm.stopPrank();
+    }
+
     function testInitialStateAndCap() public view {
         assertEq(token.totalSupply(), 0);
         assertEq(token.lifetimeMinted(), 0);
