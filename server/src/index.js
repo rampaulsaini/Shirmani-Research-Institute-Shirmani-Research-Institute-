@@ -44,11 +44,10 @@ const auth = (req, res, next) => {
 // Fail closed when the owner identity has not been configured by the deployment.
 const ownerOnly = async (req, res, next) => {
   const ownerAccountId = process.env.OWNER_ACCOUNT_ID;
-  if (ownerAccountId) {
-    if (req.user?.sub !== ownerAccountId) return res.status(403).json({ error: "OWNER_ACCESS_REQUIRED" });
-    return next();
+  if (ownerAccountId && req.user?.sub === ownerAccountId) return next();
+  if (!ownerEmail) {
+    return res.status(ownerAccountId ? 403 : 503).json({ error: ownerAccountId ? "OWNER_ACCESS_REQUIRED" : "OWNER_IDENTITY_NOT_CONFIGURED" });
   }
-  if (!ownerEmail) return res.status(503).json({ error: "OWNER_EMAIL_NOT_CONFIGURED" });
   try {
     const { rows } = await pool.query("select lower(email) as email from accounts where id=$1", [req.user.sub]);
     if (rows[0]?.email !== ownerEmail) return res.status(403).json({ error: "OWNER_ACCESS_REQUIRED" });
@@ -557,7 +556,7 @@ app.get("/v1/platform/readiness", async (_req, res) => {
   const databaseConfigured = Boolean(process.env.DATABASE_URL);
   const authConfigured = Boolean(process.env.JWT_SECRET);
   const corsConfigured = Boolean(process.env.CORS_ORIGIN && process.env.CORS_ORIGIN !== "*");
-  const ownerInboxConfigured = Boolean(process.env.OWNER_ACCOUNT_ID);
+  const ownerInboxConfigured = Boolean(process.env.OWNER_ACCOUNT_ID || ownerEmail);
   let database = databaseConfigured ? "CONFIGURED" : "DATABASE_NOT_CONFIGURED";
   if (pool) {
     try { await pool.query("select 1"); database = "READY"; }
