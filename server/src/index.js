@@ -622,7 +622,7 @@ app.get("/api/health", async (_req, res) => {
       database = "READY";
       const [enquiries, paid] = await Promise.all([
         pool.query("select count(*)::int as count from client_enquiries"),
-        pool.query("select count(*)::int as count, coalesce(sum(total_amount_minor),0)::bigint as income_inr_minor from orders where status='paid' and currency='INR'")
+        pool.query("select count(distinct o.id)::int as count, coalesce(sum(o.total_amount_minor),0)::bigint as income_inr_minor from orders o join payment_evidence pe on pe.order_id=o.id where o.status='paid' and o.currency='INR' and pe.verification_status='verified' and pe.amount_minor=o.total_amount_minor and pe.currency=o.currency and pe.customer_consent_at is not null and pe.verified_at is not null")
       ]);
       counters = { enquiries: enquiries.rows[0].count, paid_orders: paid.rows[0].count, income_inr_minor: String(paid.rows[0].income_inr_minor) };
     } catch { database = "ERROR"; }
@@ -648,7 +648,7 @@ app.get("/api/health", async (_req, res) => {
 // records or payment evidence into the public Git repository.
 const csvCell = (value) => {
   let text = value === null || typeof value === "undefined" ? "" : String(value);
-  if (/^[=+@\\-\\t\\r]/.test(text)) text = "'" + text;
+  if (/^[=+@\\t\\r-]/.test(text)) text = "'" + text;
   return '"' + text.replace(/"/g, '""') + '"';
 };
 const sendCsv = (res, filename, columns, rows) => {
@@ -656,7 +656,7 @@ const sendCsv = (res, filename, columns, rows) => {
   for (const row of rows) lines.push(columns.map((column) => csvCell(row[column.key])).join(","));
   res.setHeader("Content-Type", "text/csv; charset=utf-8");
   res.setHeader("Content-Disposition", 'attachment; filename="' + filename + '"');
-  return res.status(200).send("\\uFEFF" + lines.join("\\r\\n"));
+  return res.status(200).send("\uFEFF" + lines.join("\r\n"));
 };
 
 app.get("/api/export-enquiries", dbRequired, auth, ownerOnly, async (_req, res) => {
@@ -690,7 +690,7 @@ app.get("/api/export-income", dbRequired, auth, ownerOnly, async (req, res) => {
       verified_paid_orders: rows.length,
       currency: "INR",
       total_amount_minor: totalMinor.toString(),
-      total_amount_inr: rows.length ? (Number(totalMinor) / 100).toFixed(2) : null,
+      total_amount_inr: rows.length ? (totalMinor / 100n).toString() + "." + (totalMinor % 100n).toString().padStart(2, "0") : null,
       evidence_rule: "Only paid orders with matching amount, customer consent, and verified payment evidence are included.",
       generated_at: new Date().toISOString()
     };
