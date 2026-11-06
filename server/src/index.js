@@ -684,7 +684,8 @@ app.post("/api/owner/orders/:orderId/payment-proof", dbRequired, auth, ownerOnly
   const body = req.body || {};
   const clean = value => typeof value === "string" ? value.trim() : "";
   const paymentId = clean(body.payment_id), upiRef = clean(body.upi_ref), screenshotUrl = clean(body.screenshot_url);
-  if (!paymentId || paymentId.length > 200 || !upiRef || upiRef.length > 200 || !screenshotUrl || screenshotUrl.length > 1000 || body.customer_consent !== true) {
+  if (!paymentId || paymentId.length > 200 || !upiRef || upiRef.length > 200 ||
+      !/^private:\/\/[A-Za-z0-9/_-]{1,960}$/.test(screenshotUrl) || body.customer_consent !== true) {
     return res.status(400).json({ error: "ALL_PAYMENT_PROOFS_AND_CUSTOMER_CONSENT_REQUIRED" });
   }
   try {
