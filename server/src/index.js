@@ -620,11 +620,15 @@ app.get("/api/health", async (_req, res) => {
     try {
       await pool.query("select 1");
       database = "READY";
-      const [enquiries, paid] = await Promise.all([
-        pool.query("select count(*)::int as count from client_enquiries"),
-        pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as income_inr_minor from paid_orders where verification_status='verified' and customer_consent=true and currency='INR'")
-      ]);
-      counters = { enquiries: enquiries.rows[0].count, paid_orders: paid.rows[0].count, income_inr_minor: String(paid.rows[0].income_inr_minor) };
+      const enquiries = await pool.query("select count(*)::int as count from client_enquiries");
+      const proofTable = await pool.query("select to_regclass('public.paid_orders') is not null as ready");
+      let paidCount = null, incomeMinor = null;
+      if (proofTable.rows[0]?.ready) {
+        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as income_inr_minor from paid_orders where verification_status='verified' and customer_consent=true and currency='INR'");
+        paidCount = paid.rows[0].count;
+        incomeMinor = String(paid.rows[0].income_inr_minor);
+      }
+      counters = { enquiries: enquiries.rows[0].count, paid_orders: paidCount, income_inr_minor: incomeMinor };
     } catch { database = "ERROR"; }
   }
   const status = database === "READY" ? 200 : 503;
@@ -646,7 +650,7 @@ app.get("/api/health", async (_req, res) => {
 
 const csvCell = (value) => {
   let text = value === null || value === undefined ? "" : String(value);
-  if (/^[\\s]*[=+\\-@]/.test(text)) text = "'" + text;
+  if (/^[\s]*[=+\-@]/.test(text)) text = "'" + text;
   return '"' + text.replace(/"/g, '""') + '"';
 };
 const sendCsv = (res, filename, columns, rows) => {
@@ -668,7 +672,8 @@ app.get("/api/export-income", dbRequired, auth, ownerOnly, async (req, res) => {
   try {
     const { rows } = await pool.query("select id,order_id,amount_minor,currency,payment_id,upi_ref,screenshot_url,customer_consent,verification_status,verification_method,verified_at,created_at from paid_orders where verification_status='verified' and customer_consent=true order by verified_at asc");
     const totalMinor = rows.reduce((sum, row) => sum + BigInt(row.amount_minor), 0n);
-    const report = { status: rows.length ? "AVAILABLE" : "UNAVAILABLE", currency: "INR", verified_paid_orders: rows.length, total_minor_units: totalMinor.toString(), total_inr: (Number(totalMinor) / 100).toFixed(2), verification_basis: "owner_attested_bank_match_or_provider_verified", generated_at: new Date().toISOString(), records: rows };
+    const totalInr = (totalMinor / 100n).toString() + "." + (totalMinor % 100n).toString().padStart(2, "0");
+    const report = { status: rows.length ? "AVAILABLE" : "UNAVAILABLE", currency: "INR", verified_paid_orders: rows.length, total_minor_units: totalMinor.toString(), total_inr: totalInr, verification_basis: "owner_attested_bank_match_or_provider_verified", generated_at: new Date().toISOString(), records: rows };
     res.setHeader("Cache-Control", "private, no-store, max-age=0");
     if (req.query.format === "csv") return sendCsv(res, "income.csv", ["id","order_id","amount_minor","currency","payment_id","upi_ref","screenshot_url","customer_consent","verification_status","verification_method","verified_at","created_at"], rows);
     return res.status(200).json(report);
