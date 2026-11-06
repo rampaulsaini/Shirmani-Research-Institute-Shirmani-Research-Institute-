@@ -145,4 +145,85 @@ COMMENT ON TABLE yatharth_mint_authorizations IS
 COMMENT ON TABLE yatharth_chain_events IS
   'Observed local/private test chain events only; not proof of public network deployment.';
 
+
+-- Enforce the review gate in the database, not only in an application query.
+CREATE OR REPLACE FUNCTION yatharth_require_review_gate()
+RETURNS trigger LANGUAGE plpgsql AS $
+DECLARE approvals integer;
+BEGIN
+  SELECT COALESCE(g.independent_approval_count, 0)
+    INTO approvals
+  FROM yatharth_contribution_review_gate g
+  WHERE g.contribution_id = NEW.contribution_id
+    AND g.panel_round = (
+      SELECT max(panel_round)
+      FROM yatharth_contribution_review_gate
+      WHERE contribution_id = NEW.contribution_id
+        AND independent_approval_count >= 3
+    );
+
+  IF COALESCE(approvals, 0) < 3 THEN
+    RAISE EXCEPTION 'Three active, distinct, non-conflicted reviewer approvals in one panel round are required';
+  END IF;
+  RETURN NEW;
+END;
+$;
+
+DROP TRIGGER IF EXISTS yatharth_verified_review_gate ON yatharth_contributions;
+CREATE TRIGGER yatharth_verified_review_gate
+  BEFORE UPDATE OF status ON yatharth_contributions
+  FOR EACH ROW
+  WHEN (NEW.status = 'VERIFIED' AND OLD.status IS DISTINCT FROM NEW.status)
+  EXECUTE FUNCTION yatharth_require_review_gate();
+
+CREATE OR REPLACE FUNCTION yatharth_require_mint_authorization_gate()
+RETURNS trigger LANGUAGE plpgsql AS $
+DECLARE approvals integer;
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM yatharth_contributions c
+    WHERE c.contribution_id = NEW.contribution_id
+      AND c.evidence_bundle_hash = NEW.evidence_bundle_hash
+      AND c.status = 'VERIFIED'
+  ) THEN
+    RAISE EXCEPTION 'Mint authorization requires a VERIFIED contribution and matching evidence hash';
+  END IF;
+
+  SELECT COALESCE(g.independent_approval_count, 0)
+    INTO approvals
+  FROM yatharth_contribution_review_gate g
+  WHERE g.contribution_id = NEW.contribution_id
+    AND g.panel_round = (
+      SELECT max(panel_round)
+      FROM yatharth_contribution_review_gate
+      WHERE contribution_id = NEW.contribution_id
+        AND independent_approval_count >= 3
+    );
+
+  IF COALESCE(approvals, 0) < 3 THEN
+    RAISE EXCEPTION 'Mint authorization requires three active, distinct, non-conflicted approvals';
+  END IF;
+  RETURN NEW;
+END;
+$;
+
+DROP TRIGGER IF EXISTS yatharth_mint_authorization_review_gate ON yatharth_mint_authorizations;
+CREATE TRIGGER yatharth_mint_authorization_review_gate
+  BEFORE INSERT OR UPDATE OF contribution_id, evidence_bundle_hash
+  ON yatharth_mint_authorizations
+  FOR EACH ROW EXECUTE FUNCTION yatharth_require_mint_authorization_gate();
+
+-- Review decisions are immutable; corrections are recorded in a new panel round.
+CREATE OR REPLACE FUNCTION yatharth_reject_review_mutation()
+RETURNS trigger LANGUAGE plpgsql AS $
+BEGIN
+  RAISE EXCEPTION 'Review history is append-only; submit a new panel-round review';
+END;
+$;
+
+DROP TRIGGER IF EXISTS yatharth_reviews_append_only ON yatharth_contribution_reviews;
+CREATE TRIGGER yatharth_reviews_append_only
+  BEFORE UPDATE OR DELETE ON yatharth_contribution_reviews
+  FOR EACH ROW EXECUTE FUNCTION yatharth_reject_review_mutation();
+
 COMMIT;
