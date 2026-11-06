@@ -1,0 +1,32 @@
+name: Yatharth Contract — Local Tests
+
+on:
+  pull_request:
+    paths:
+      - "contracts/**"
+      - ".github/workflows/yatharth-contract-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile-and-test:
+    name: Compile and test on disposable Hardhat chain
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: contracts
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install pinned dependencies
+        run: npm install --no-audit --no-fund
+      - name: Compile YTH source
+        run: npm run compile
+      - name: Run local contract tests
+        run: npm test
