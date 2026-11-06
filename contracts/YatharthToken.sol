@@ -65,7 +65,7 @@ contract YatharthToken is ERC20, ERC20Capped, AccessControl, Pausable {
         if (usedEvidenceIds[evidenceId]) revert EvidenceAlreadyUsed(evidenceId);
 
         usedEvidenceIds[evidenceId] = true;
-        _mint(recipient, amount, evidenceId);
+        _mint(recipient, amount);
         emit VerifiedContributionMint(recipient, amount, evidenceId, msg.sender);
     }
 
