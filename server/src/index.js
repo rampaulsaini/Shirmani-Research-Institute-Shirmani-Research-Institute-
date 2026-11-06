@@ -622,7 +622,7 @@ app.get("/api/health", async (_req, res) => {
       database = "READY";
       const [enquiries, paid] = await Promise.all([
         pool.query("select count(*)::int as count from client_enquiries"),
-        pool.query("select count(*)::int as count, coalesce(sum(total_amount_minor),0)::bigint as income_inr_minor from orders where status='paid' and currency='INR'")
+        pool.query("select count(distinct o.id)::int as count, coalesce(sum(o.total_amount_minor),0)::bigint as income_inr_minor from orders o join payment_evidence pe on pe.order_id=o.id where o.status='paid' and o.currency='INR' and pe.verification_status='verified' and pe.amount_minor=o.total_amount_minor and pe.currency=o.currency and pe.customer_consent_at is not null and pe.verified_at is not null")
       ]);
       counters = { enquiries: enquiries.rows[0].count, paid_orders: paid.rows[0].count, income_inr_minor: String(paid.rows[0].income_inr_minor) };
     } catch { database = "ERROR"; }
@@ -638,9 +638,81 @@ app.get("/api/health", async (_req, res) => {
     database,
     counters,
     payment: "PENDING_UNLESS_VERIFIED_PAID_ORDER_EXISTS",
-    income: counters.income_inr_minor === null ? "UNAVAILABLE" : "₹" + (Number(counters.income_inr_minor) / 100).toFixed(2),
+    income: counters.income_inr_minor === null ? "UNAVAILABLE" : "₹" + (BigInt(counters.income_inr_minor) / 100n).toString() + "." + (BigInt(counters.income_inr_minor) % 100n).toString().padStart(2, "0"),
     db_expiry: process.env.DATABASE_EXPIRY_DATE || "CHECK_RENDER_DATABASE_DASHBOARD"
   });
+});
+
+
+// Owner-only financial exports. These endpoints are private and never write customer
+// records or payment evidence into the public Git repository.
+const csvCell = (value) => {
+  let text = value === null || typeof value === "undefined" ? "" : String(value);
+  if (/^[=+@\t\r-]/.test(text)) text = "'" + text;
+  return '"' + text.replace(/"/g, '""') + '"';
+};
+const sendCsv = (res, filename, columns, rows) => {
+  const lines = [columns.map((column) => csvCell(column.label)).join(",")];
+  for (const row of rows) lines.push(columns.map((column) => csvCell(row[column.key])).join(","));
+  res.setHeader("Content-Type", "text/csv; charset=utf-8");
+  res.setHeader("Content-Disposition", 'attachment; filename="' + filename + '"');
+  return res.status(200).send("\uFEFF" + lines.join("\r\n"));
+};
+
+app.get("/api/export-enquiries", dbRequired, auth, ownerOnly, async (_req, res) => {
+  try {
+    const { rows } = await pool.query(
+      "select id,name,email,phone,service,language,topic,goal,word_count,deadline,budget,sources,notes,status,consent_at,created_at from client_enquiries order by created_at asc"
+    );
+    return sendCsv(res, "shirmani-enquiries.csv", [
+      { key: "id", label: "enquiry_id" }, { key: "name", label: "name" },
+      { key: "email", label: "email" }, { key: "phone", label: "phone" },
+      { key: "service", label: "service" }, { key: "language", label: "language" },
+      { key: "topic", label: "topic" }, { key: "goal", label: "goal" },
+      { key: "word_count", label: "word_count" }, { key: "deadline", label: "deadline" },
+      { key: "budget", label: "budget" }, { key: "sources", label: "sources" },
+      { key: "notes", label: "notes" }, { key: "status", label: "status" },
+      { key: "consent_at", label: "consent_at" }, { key: "created_at", label: "created_at" }
+    ], rows);
+  } catch {
+    return res.status(503).json({ error: "ENQUIRY_EXPORT_UNAVAILABLE" });
+  }
+});
+
+app.get("/api/export-income", dbRequired, auth, ownerOnly, async (req, res) => {
+  try {
+    const { rows } = await pool.query(
+      "select o.id as order_id,o.total_amount_minor,o.currency,pe.payment_id,pe.upi_ref,pe.verification_source,pe.verified_at from orders o join payment_evidence pe on pe.order_id=o.id where o.status='paid' and o.currency='INR' and pe.verification_status='verified' and pe.amount_minor=o.total_amount_minor and pe.currency=o.currency and pe.customer_consent_at is not null and pe.verified_at is not null order by pe.verified_at asc"
+    );
+    const totalMinor = rows.reduce((sum, row) => sum + BigInt(row.total_amount_minor), 0n);
+    const report = {
+      status: rows.length ? "VERIFIED" : "UNAVAILABLE",
+      verified_paid_orders: rows.length,
+      currency: "INR",
+      total_amount_minor: totalMinor.toString(),
+      total_amount_inr: rows.length ? (totalMinor / 100n).toString() + "." + (totalMinor % 100n).toString().padStart(2, "0") : null,
+      evidence_rule: "Only paid orders with matching amount, customer consent, and verified payment evidence are included.",
+      generated_at: new Date().toISOString()
+    };
+    if (req.query.format === "csv") {
+      return sendCsv(res, "shirmani-verified-income.csv", [
+        { key: "order_id", label: "order_id" },
+        { key: "total_amount_minor", label: "amount_minor" },
+        { key: "currency", label: "currency" },
+        { key: "payment_id", label: "payment_id" },
+        { key: "upi_ref", label: "upi_ref" },
+        { key: "verification_source", label: "verification_source" },
+        { key: "verified_at", label: "verified_at" }
+      ], rows);
+    }
+    return res.json({ ...report, items: rows });
+  } catch {
+    return res.status(503).json({
+      status: "UNAVAILABLE",
+      error: "VERIFIED_INCOME_EXPORT_UNAVAILABLE",
+      message: "Apply the payment-evidence migration and verify the database before reporting income."
+    });
+  }
 });
 
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
