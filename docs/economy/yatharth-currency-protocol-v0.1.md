@@ -76,12 +76,14 @@ Execution remains disabled until a separate security, legal and governance relea
 
 ## 5. Database model
 
-Migration `server/sql/migrations/006_yatharth_currency_test_schema.sql` adds the off-chain evidence, review, allocation, governance and chain-observation records. It is a proposed migration and has **not** been applied.
+Migration `server/sql/migrations/006_yatharth_currency_test_schema.sql` adds the off-chain evidence, reviewer registry, review-gate view, allocation, governance and chain-observation records. The allocation table ties its evidence hash to the originating contribution with a composite foreign key. It is a proposed migration and has **not** been applied.
 
 Core tables:
 - `yatharth_currency_config`: one versioned policy row; cap and launch/mint flags.
 - `yatharth_contributions`: contribution application and evidence hash/reference.
-- `yatharth_contribution_reviews`: independent reviewer decisions and conflicts.
+- `yatharth_reviewer_registry`: pseudonymous reviewer references and uniqueness hashes; independent identity vetting remains an off-database control.
+- `yatharth_contribution_reviews`: reviewer decisions and conflicts, constrained to registered reviewer references.
+- `yatharth_contribution_review_gate`: computed active, non-conflicted approval/rejection counts derived from persisted review rows; caller-supplied approval counts are not accepted.
 - `yatharth_mint_authorizations`: approved but not necessarily executed mint intents.
 - `yatharth_governance_proposals` / `yatharth_governance_votes`: proposal lifecycle and voting evidence.
 - `yatharth_chain_events`: observed testnet transaction/event references.
