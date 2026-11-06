@@ -620,11 +620,15 @@ app.get("/api/health", async (_req, res) => {
     try {
       await pool.query("select 1");
       database = "READY";
-      const [enquiries, paid] = await Promise.all([
-        pool.query("select count(*)::int as count from client_enquiries"),
-        pool.query("select count(*)::int as count, coalesce(sum(total_amount_minor),0)::bigint as income_inr_minor from orders where status='paid' and currency='INR'")
-      ]);
-      counters = { enquiries: enquiries.rows[0].count, paid_orders: paid.rows[0].count, income_inr_minor: String(paid.rows[0].income_inr_minor) };
+      const enquiries = await pool.query("select count(*)::int as count from client_enquiries");
+      const proofTable = await pool.query("select to_regclass('public.paid_orders') is not null as ready");
+      let paidCount = null, incomeMinor = null;
+      if (proofTable.rows[0]?.ready) {
+        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as income_inr_minor from paid_orders where verification_status='verified' and customer_consent=true and currency='INR'");
+        paidCount = paid.rows[0].count;
+        incomeMinor = String(paid.rows[0].income_inr_minor);
+      }
+      counters = { enquiries: enquiries.rows[0].count, paid_orders: paidCount, income_inr_minor: incomeMinor };
     } catch { database = "ERROR"; }
   }
   const status = database === "READY" ? 200 : 503;
@@ -641,6 +645,68 @@ app.get("/api/health", async (_req, res) => {
     income: counters.income_inr_minor === null ? "UNAVAILABLE" : "₹" + (Number(counters.income_inr_minor) / 100).toFixed(2),
     db_expiry: process.env.DATABASE_EXPIRY_DATE || "CHECK_RENDER_DATABASE_DASHBOARD"
   });
+});
+
+
+const csvCell = (value) => {
+  let text = value === null || value === undefined ? "" : String(value);
+  if (/^[\s]*[=+\-@]/.test(text)) text = "'" + text;
+  return '"' + text.replace(/"/g, '""') + '"';
+};
+const sendCsv = (res, filename, columns, rows) => {
+  const body = [columns.map(csvCell).join(","), ...rows.map(row => columns.map(key => csvCell(row[key])).join(","))].join("\r\n");
+  res.setHeader("Content-Type", "text/csv; charset=utf-8");
+  res.setHeader("Content-Disposition", 'attachment; filename="' + filename + '"');
+  res.setHeader("Cache-Control", "private, no-store, max-age=0");
+  return res.status(200).send("\uFEFF" + body);
+};
+
+app.get("/api/export-enquiries", dbRequired, auth, ownerOnly, async (_req, res) => {
+  try {
+    const { rows } = await pool.query("select id,name,email,phone,service,language,topic,goal,word_count,deadline,budget,sources,notes,status,consent_at,created_at,updated_at from client_enquiries order by created_at asc");
+    return sendCsv(res, "enquiries.csv", ["id","name","email","phone","service","language","topic","goal","word_count","deadline","budget","sources","notes","status","consent_at","created_at","updated_at"], rows);
+  } catch { return res.status(503).json({ error: "ENQUIRY_EXPORT_UNAVAILABLE" }); }
+});
+
+app.get("/api/export-income", dbRequired, auth, ownerOnly, async (req, res) => {
+  try {
+    const { rows } = await pool.query("select id,order_id,amount_minor,currency,payment_id,upi_ref,screenshot_url,customer_consent,verification_status,verification_method,verified_at,created_at from paid_orders where verification_status='verified' and customer_consent=true order by verified_at asc");
+    const totalMinor = rows.reduce((sum, row) => sum + BigInt(row.amount_minor), 0n);
+    const totalInr = (totalMinor / 100n).toString() + "." + (totalMinor % 100n).toString().padStart(2, "0");
+    const report = { status: rows.length ? "AVAILABLE" : "UNAVAILABLE", currency: "INR", verified_paid_orders: rows.length, total_minor_units: totalMinor.toString(), total_inr: totalInr, verification_basis: "owner_attested_bank_match_or_provider_verified", generated_at: new Date().toISOString(), records: rows };
+    res.setHeader("Cache-Control", "private, no-store, max-age=0");
+    if (req.query.format === "csv") return sendCsv(res, "income.csv", ["id","order_id","amount_minor","currency","payment_id","upi_ref","screenshot_url","customer_consent","verification_status","verification_method","verified_at","created_at"], rows);
+    return res.status(200).json(report);
+  } catch { return res.status(503).json({ status: "UNAVAILABLE", error: "INCOME_EXPORT_UNAVAILABLE", records: [] }); }
+});
+
+app.post("/api/owner/orders/:orderId/payment-proof", dbRequired, auth, ownerOnly, async (req, res) => {
+  const body = req.body || {};
+  const clean = value => typeof value === "string" ? value.trim() : "";
+  const paymentId = clean(body.payment_id), upiRef = clean(body.upi_ref), screenshotUrl = clean(body.screenshot_url);
+  if (!paymentId || paymentId.length > 200 || !upiRef || upiRef.length > 200 ||
+      !/^private:\/\/[A-Za-z0-9/_-]{1,960}$/.test(screenshotUrl) || body.customer_consent !== true) {
+    return res.status(400).json({ error: "ALL_PAYMENT_PROOFS_AND_CUSTOMER_CONSENT_REQUIRED" });
+  }
+  try {
+    const order = await pool.query("select id,total_amount_minor,currency,status from orders where id=$1", [req.params.orderId]);
+    if (!order.rows[0]) return res.status(404).json({ error: "ORDER_NOT_FOUND" });
+    if (["refunded","cancelled"].includes(order.rows[0].status)) return res.status(409).json({ error: "ORDER_NOT_ELIGIBLE_FOR_PAYMENT_PROOF" });
+    const { rows } = await pool.query("insert into paid_orders(order_id,amount_minor,currency,payment_id,upi_ref,screenshot_url,customer_consent,verification_status) values($1,$2,$3,$4,$5,$6,true,'pending') returning id,order_id,amount_minor,currency,verification_status,created_at", [order.rows[0].id, order.rows[0].total_amount_minor, order.rows[0].currency, paymentId, upiRef, screenshotUrl]);
+    return res.status(201).json({ ...rows[0], income: "UNAVAILABLE_PENDING_VERIFICATION", note: "Evidence recorded; this is not yet verified income." });
+  } catch (error) {
+    if (error?.code === "23505") return res.status(409).json({ error: "PAYMENT_PROOF_ALREADY_RECORDED" });
+    return res.status(503).json({ error: "PAYMENT_PROOF_SAVE_FAILED" });
+  }
+});
+
+app.post("/api/owner/payment-proofs/:proofId/verify", dbRequired, auth, ownerOnly, async (req, res) => {
+  if (req.body?.confirm_bank_match !== true) return res.status(400).json({ error: "BANK_MATCH_CONFIRMATION_REQUIRED" });
+  try {
+    const { rows } = await pool.query("update paid_orders set verification_status='verified',verification_method='owner_bank_statement',verified_by=$1,verified_at=now() where id=$2 and verification_status='pending' and customer_consent=true returning id,order_id,amount_minor,currency,verification_status,verification_method,verified_at", [req.user.sub, req.params.proofId]);
+    if (!rows[0]) return res.status(404).json({ error: "PENDING_PAYMENT_PROOF_NOT_FOUND" });
+    return res.json({ ...rows[0], verification_scope: "owner_attested_bank_match_not_independent_audit" });
+  } catch { return res.status(503).json({ error: "PAYMENT_PROOF_VERIFICATION_FAILED" }); }
 });
 
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
