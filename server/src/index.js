@@ -629,7 +629,7 @@ app.get("/api/health", async (_req, res) => {
   }
   const status = database === "READY" ? 200 : 503;
   let databaseName = null;
-  try { databaseName = process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL).pathname.replace(/^\\//, "") : null; } catch {}
+  try { databaseName = process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL).pathname.replace(/^\/+/, "") : null; } catch {}
   return res.status(status).json({
     live: true,
     commit: process.env.RENDER_GIT_COMMIT || "runtime-commit-unavailable",
