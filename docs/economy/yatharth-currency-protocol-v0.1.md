@@ -161,3 +161,8 @@ The source is not compiled, audited, deployed or activated by this PR. A success
 This protocol does not create legal tender, a bank account, a deposit, a guaranteed asset, a guaranteed exchange rate, a ₹100-crore market price, passive income, a claim against reserves, or immunity from law, regulators, banks, internet providers or counterparties. A decentralized wallet does not make a person or service outside applicable law.
 
 **Current state remains: design only; no real YTH minted; no public launch; no DEX trading; no financial service enabled.**
+
+
+### Database-enforced review gates
+
+Migration 006 also enforces the review threshold on status transitions and mint-authorization insertion: the contribution must already be `VERIFIED`, its evidence hash must match, and the computed review-gate view must show at least three active, distinct, non-conflicted approvals in one panel round. Review rows are append-only; corrections require a new panel round. These controls enforce database consistency, not real-world reviewer independence or legal eligibility. Those require separate identity/conflict controls and independent human governance.
