@@ -88,7 +88,7 @@ The contract accepts only a mint call from the MINTER role, which must be held b
 - Five independent governance signers; threshold 3-of-5.
 - Signers use hardware-backed keys and documented recovery/rotation procedures.
 - Timelock delay: at least 48 hours for mint-policy, role, cap or treasury changes.
-- Emergency pause: 2-of-5 signers may pause transfers/minting; unpause requires 3-of-5.
+- Emergency pause: the 3-of-5 governance Safe may pause transfers/minting; unpause also requires 3-of-5 governance approval.
 - Role changes, contract upgrades (if ever introduced), bucket changes and mint intents are public testnet governance events.
 - No proxy/upgrade mechanism in v0.1. A new audited contract version requires a new governance decision.
 - Test validators must be operated by at least 4 separately administered nodes for fault testing; this is a private test network, not a claim of decentralization or production resilience.
