@@ -92,7 +92,7 @@ No seed phrase, private key, raw identity document, medical record or full sensi
 
 ## 6. Smart contract
 
-`contracts/YatharthToken.sol` is a source-only test artifact using pinned OpenZeppelin Contracts v5 APIs. `contracts/package.json`, `contracts/hardhat.config.cjs` and `contracts/test/` provide a disposable local Hardhat compile/unit-test harness. The test governance executor is a permissive fixture only and MUST NEVER be deployed to a public or value-bearing network. The contract enforces:
+`contracts/src/YatharthToken.sol` is a source-only test artifact using pinned OpenZeppelin Contracts v5 APIs. `contracts/package.json`, `contracts/hardhat.config.cjs` and `contracts/test/` (JavaScript tests) and `contracts/src/test/` (test-only Solidity fixture) provide a disposable local Hardhat compile/unit-test harness. The test governance executor is a permissive fixture only and MUST NEVER be deployed to a public or value-bearing network. The contract enforces:
 - fixed 100,000 YTH cap;
 - minting disabled by default;
 - explicit governance action required to enable minting;
