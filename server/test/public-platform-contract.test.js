@@ -70,3 +70,20 @@ test("legacy public enquiry adapter is consent-gated and never creates a payment
   assert.ok(source.includes('app.get("/api/health"'));
   assert.ok(source.includes("orders where status='paid' and currency='INR'"));
 });
+
+
+test("private CSV exports require owner authentication and verified income evidence", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  assert.ok(source.includes('app.get("/api/export-enquiries", dbRequired, auth, ownerOnly'));
+  assert.ok(source.includes('app.get("/api/export-income", dbRequired, auth, ownerOnly'));
+  assert.ok(source.includes('pe.verification_status=\'verified\''));
+  assert.ok(source.includes('pe.customer_consent_at is not null'));
+  assert.ok(source.includes('req.query.format === "csv"'));
+  assert.ok(source.includes('status: rows.length ? "VERIFIED" : "UNAVAILABLE"'));
+  assert.ok(source.includes('const csvCell = (value) =>'));
+  const migration = fs.readFileSync(new URL("../sql/20261106_payment_evidence.sql", import.meta.url), "utf8");
+  assert.match(migration, /customer_consent_at timestamptz not null/);
+  assert.match(migration, /verification_status text not null default 'pending'/);
+  assert.match(migration, /screenshot_storage_key text/);
+  assert.match(migration, /verification_status <> 'verified'/);
+});
