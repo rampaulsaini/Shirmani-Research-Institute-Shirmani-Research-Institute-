@@ -114,6 +114,59 @@ CREATE TRIGGER review_digest_guard
   BEFORE INSERT OR UPDATE ON yatharth_testnet.review_decisions
   FOR EACH ROW EXECUTE FUNCTION yatharth_testnet.check_review_digest();
 
+-- Require three distinct, conflict-free human approvals before VERIFIED status.
+CREATE OR REPLACE FUNCTION yatharth_testnet.require_three_approvals()
+RETURNS trigger LANGUAGE plpgsql AS $
+DECLARE approvals integer;
+BEGIN
+  IF NEW.status = 'VERIFIED' AND OLD.status IS DISTINCT FROM NEW.status THEN
+    SELECT count(*) INTO approvals
+    FROM yatharth_testnet.review_decisions
+    WHERE contribution_id = NEW.contribution_id
+      AND decision = 'APPROVE'
+      AND evidence_sha256 = NEW.evidence_sha256
+      AND conflict_declared = false;
+    IF approvals < 3 THEN
+      RAISE EXCEPTION 'three distinct human approvals are required before VERIFIED';
+    END IF;
+  END IF;
+  RETURN NEW;
+END;
+$;
+
+DROP TRIGGER IF EXISTS contribution_three_approvals_guard ON yatharth_testnet.contributions;
+CREATE TRIGGER contribution_three_approvals_guard
+  BEFORE UPDATE OF status ON yatharth_testnet.contributions
+  FOR EACH ROW EXECUTE FUNCTION yatharth_testnet.require_three_approvals();
+
+-- Review decisions, governance signatures, mint receipts and audit events are append-only.
+CREATE OR REPLACE FUNCTION yatharth_testnet.reject_immutable_mutation()
+RETURNS trigger LANGUAGE plpgsql AS $
+BEGIN
+  RAISE EXCEPTION 'Yatharth testnet evidence is append-only; add a correction event instead';
+END;
+$;
+
+DROP TRIGGER IF EXISTS review_decisions_immutable ON yatharth_testnet.review_decisions;
+CREATE TRIGGER review_decisions_immutable
+  BEFORE UPDATE OR DELETE ON yatharth_testnet.review_decisions
+  FOR EACH ROW EXECUTE FUNCTION yatharth_testnet.reject_immutable_mutation();
+
+DROP TRIGGER IF EXISTS governance_approvals_immutable ON yatharth_testnet.governance_approvals;
+CREATE TRIGGER governance_approvals_immutable
+  BEFORE UPDATE OR DELETE ON yatharth_testnet.governance_approvals
+  FOR EACH ROW EXECUTE FUNCTION yatharth_testnet.reject_immutable_mutation();
+
+DROP TRIGGER IF EXISTS mint_receipts_immutable ON yatharth_testnet.mint_receipts;
+CREATE TRIGGER mint_receipts_immutable
+  BEFORE UPDATE OR DELETE ON yatharth_testnet.mint_receipts
+  FOR EACH ROW EXECUTE FUNCTION yatharth_testnet.reject_immutable_mutation();
+
+DROP TRIGGER IF EXISTS audit_events_immutable ON yatharth_testnet.audit_events;
+CREATE TRIGGER audit_events_immutable
+  BEFORE UPDATE OR DELETE ON yatharth_testnet.audit_events
+  FOR EACH ROW EXECUTE FUNCTION yatharth_testnet.reject_immutable_mutation();
+
 -- The schema deliberately does not grant application permissions. Configure
 -- least-privilege roles and row-level access only after a separate security review.
 COMMENT ON SCHEMA yatharth_testnet IS
