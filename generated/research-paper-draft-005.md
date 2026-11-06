@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Factory modules को sale-ready मानकर प्रस्तुत नहीं किया जाता।
+d "frontend" ]; then echo "Frontend folder missing"; exit 1; fi if [ !
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Factory modules को sale-ready मानकर प्रस्तुत न�
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:production-catalog.html
+rampaulsaini/Omniverse-Supreme-Core-:phase3-core-sync.yml
