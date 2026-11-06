@@ -96,7 +96,7 @@ No seed phrase, private key, raw identity document, medical record or full sensi
 - fixed 100,000 YTH cap;
 - minting disabled by default;
 - explicit governance action required to enable minting;
-- mint role controlled by the governance multisig;
+- mint role controlled by a deployed governance contract address (the code-presence check does not itself validate multisig threshold or signer independence);
 - unique evidence ID per mint;
 - pause control;
 - no owner-only unlimited mint function.
