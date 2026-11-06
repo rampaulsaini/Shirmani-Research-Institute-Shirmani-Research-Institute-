@@ -13,6 +13,7 @@ const port = Number(process.env.PORT || 8787);
 const isProduction = process.env.NODE_ENV === "production";
 const origin = process.env.CORS_ORIGIN;
 const secret = process.env.JWT_SECRET;
+const ownerEmail = (process.env.OWNER_EMAIL || "").trim().toLowerCase();
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, max: 10 }) : null;
 
 if (isProduction && (!origin || origin === "*" || !secret || !process.env.DATABASE_URL)) {
@@ -41,11 +42,19 @@ const auth = (req, res, next) => {
 
 // Private lead access is restricted to one explicitly configured owner account.
 // Fail closed when the owner identity has not been configured by the deployment.
-const ownerOnly = (req, res, next) => {
+const ownerOnly = async (req, res, next) => {
   const ownerAccountId = process.env.OWNER_ACCOUNT_ID;
-  if (!ownerAccountId) return res.status(503).json({ error: "OWNER_ACCOUNT_ID_NOT_CONFIGURED" });
-  if (req.user?.sub !== ownerAccountId) return res.status(403).json({ error: "OWNER_ACCESS_REQUIRED" });
-  next();
+  if (ownerAccountId && req.user?.sub === ownerAccountId) return next();
+  if (!ownerEmail) {
+    return res.status(ownerAccountId ? 403 : 503).json({ error: ownerAccountId ? "OWNER_ACCESS_REQUIRED" : "OWNER_IDENTITY_NOT_CONFIGURED" });
+  }
+  try {
+    const { rows } = await pool.query("select lower(email) as email from accounts where id=$1", [req.user.sub]);
+    if (rows[0]?.email !== ownerEmail) return res.status(403).json({ error: "OWNER_ACCESS_REQUIRED" });
+    return next();
+  } catch {
+    return res.status(503).json({ error: "OWNER_IDENTITY_LOOKUP_FAILED" });
+  }
 };
 
 app.get("/health", async (_req, res) => {
@@ -547,7 +556,7 @@ app.get("/v1/platform/readiness", async (_req, res) => {
   const databaseConfigured = Boolean(process.env.DATABASE_URL);
   const authConfigured = Boolean(process.env.JWT_SECRET);
   const corsConfigured = Boolean(process.env.CORS_ORIGIN && process.env.CORS_ORIGIN !== "*");
-  const ownerInboxConfigured = Boolean(process.env.OWNER_ACCOUNT_ID);
+  const ownerInboxConfigured = Boolean(process.env.OWNER_ACCOUNT_ID || ownerEmail);
   let database = databaseConfigured ? "CONFIGURED" : "DATABASE_NOT_CONFIGURED";
   if (pool) {
     try { await pool.query("select 1"); database = "READY"; }
@@ -567,6 +576,70 @@ app.get("/v1/platform/readiness", async (_req, res) => {
     },
     production_live: false,
     independent_verification: false
+  });
+});
+
+// Backward-compatible enquiry endpoints for the simple public enquiry form.
+// The canonical record remains client_enquiries; no payment/order is created here.
+app.get("/api/init-db", dbRequired, async (_req, res) => {
+  try {
+    const { rows } = await pool.query("select to_regclass('public.client_enquiries') is not null as ready");
+    if (!rows[0]?.ready) return res.status(503).json({ success: false, message: "Enquiry schema is not installed; apply the versioned database migrations." });
+    return res.json({ success: true, message: "Table Ready", table: "client_enquiries", schema_management: "versioned migrations" });
+  } catch {
+    return res.status(503).json({ success: false, message: "Database unavailable" });
+  }
+});
+
+app.post("/api/enquiry", dbRequired, enquiryLimiter, async (req, res) => {
+  const body = req.body || {};
+  const clean = (value, max) => typeof value === "string" ? value.trim().slice(0, max) : "";
+  const name = clean(body.name, 120);
+  const mobile = clean(body.mobile, 32);
+  const service = clean(body.service, 80);
+  if (body.consent !== true) return res.status(400).json({ error: "CONSENT_REQUIRED", message: "सहमति अनिवार्य" });
+  if (!name || !mobile || !/^[+0-9() .-]{7,32}$/.test(mobile) || !service) {
+    return res.status(400).json({ error: "INVALID_ENQUIRY", message: "नाम, वैध मोबाइल और सेवा आवश्यक हैं।" });
+  }
+  try {
+    const { rows } = await pool.query(
+      "insert into client_enquiries(name,email,phone,service,language,topic,goal,word_count,deadline,budget,sources,notes,consent_at) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,now()) returning id,status,created_at",
+      [name, null, mobile, service, "To be agreed", service, "Legacy public enquiry form", "", "", "", "", ""]
+    );
+    console.info("PUBLIC_ENQUIRY_RECEIVED", JSON.stringify({ id: rows[0].id, owner_email: ownerEmail || null, notification: "OWNER_INBOX_ONLY_EMAIL_DELIVERY_NOT_CONFIGURED" }));
+    return res.status(201).json({ success: true, id: rows[0].id, status: rows[0].status, owner: ownerEmail || null, payment: "PENDING", income: "₹0", message: "Enquiry saved for owner review. No order or payment was created." });
+  } catch {
+    return res.status(500).json({ error: "ENQUIRY_SAVE_FAILED" });
+  }
+});
+
+app.get("/api/health", async (_req, res) => {
+  let database = "NOT_CONFIGURED";
+  let counters = { enquiries: null, paid_orders: null, income_inr_minor: null };
+  if (pool) {
+    try {
+      await pool.query("select 1");
+      database = "READY";
+      const [enquiries, paid] = await Promise.all([
+        pool.query("select count(*)::int as count from client_enquiries"),
+        pool.query("select count(*)::int as count, coalesce(sum(total_amount_minor),0)::bigint as income_inr_minor from orders where status='paid' and currency='INR'")
+      ]);
+      counters = { enquiries: enquiries.rows[0].count, paid_orders: paid.rows[0].count, income_inr_minor: String(paid.rows[0].income_inr_minor) };
+    } catch { database = "ERROR"; }
+  }
+  const status = database === "READY" ? 200 : 503;
+  let databaseName = null;
+  try { databaseName = process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL).pathname.replace(/^\/+/, "") : null; } catch {}
+  return res.status(status).json({
+    live: true,
+    commit: process.env.RENDER_GIT_COMMIT || "runtime-commit-unavailable",
+    owner: ownerEmail || null,
+    db: databaseName || database,
+    database,
+    counters,
+    payment: "PENDING_UNLESS_VERIFIED_PAID_ORDER_EXISTS",
+    income: counters.income_inr_minor === null ? "UNAVAILABLE" : "₹" + (Number(counters.income_inr_minor) / 100).toFixed(2),
+    db_expiry: process.env.DATABASE_EXPIRY_DATE || "CHECK_RENDER_DATABASE_DASHBOARD"
   });
 });
 

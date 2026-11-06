@@ -31,6 +31,22 @@
 <body><div class="wrap">
 <header class="top"><div class="brand">◈ SHIRMANI RESEARCH INSTITUTE</div><nav class="nav" aria-label="मुख्य नेविगेशन"><a href="#social-hub">Social Hub</a><a href="#channels">156 Channels</a><a href="#products">Digital Products</a><a href="#account">खाता</a></nav></header>
 <main>
+<section class="section" id="live-enquiry-status" aria-labelledby="live-enquiry-title">
+<h2 id="live-enquiry-title">🔎 Google Search · 💰 वास्तविक enquiry और आय स्थिति</h2>
+<form action="https://www.google.com/search" method="get" target="_blank" rel="noopener noreferrer" style="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0">
+<input type="search" name="q" placeholder="कुछ भी खोजें — Google पर खोजें" aria-label="Google search query" required style="flex:1;min-width:220px;padding:14px;border:2px solid var(--gold);border-radius:14px;background:#07111d;color:var(--ink)">
+<button class="btn primary" type="submit">Google पर खोजें</button>
+</form>
+<div class="grid">
+<article class="card"><strong>API स्थिति</strong><p id="enquiryApiStatus">जाँच जारी…</p></article>
+<article class="card"><strong>कुल Enquiries</strong><p id="enquiryTotal">—</p></article>
+<article class="card"><strong>सत्यापित Paid Orders</strong><p id="paidOrderTotal">—</p></article>
+<article class="card"><strong>सत्यापित INR आय</strong><p id="verifiedIncome">—</p></article>
+</div>
+<p class="note">Owner contact: <a href="mailto:sainirampaul60@gmail.com">sainirampaul60@gmail.com</a> · Payment status केवल database में दर्ज paid orders से गिना जाएगा। Enquiry आय नहीं है।</p>
+<p class="small" id="enquiryApiUpdated">डेटा API से प्राप्त होने की प्रतीक्षा है। यदि API उपलब्ध न हो तो संख्या अनुमान से नहीं दिखाई जाएगी।</p>
+<a class="btn" href="showroom/writing-research-enquiry.html">सेवा enquiry भेजें →</a>
+</section>
 
 <section class="section" id="income"><h2>💰 Income First · आय के 3 स्रोत</h2>
 <div class="grid">
@@ -253,4 +269,28 @@ loadWorkflowTelemetry().catch(e=>{$("opsStatus").textContent="डेटा उ�
 loadVerificationSnapshot().catch(e=>{$("verifiedValue").textContent="—";$("verificationPercent").textContent="—";$("reviewPreparedValue").textContent="—";$("verificationBoundary").textContent="Verification data उपलब्ध नहीं: "+e.message+" · शून्य का अनुमान नहीं लगाया गया।"});
 loadProductionSnapshot().catch(e=>{$("catalogCount").textContent="—";$("assetCount").textContent="—";$("assetPercent").textContent="—";$("productionFreshness").textContent="डेटा उपलब्ध नहीं";$("productionBoundary").textContent="Production snapshot पढ़ा नहीं जा सका: "+e.message+" · कोई संख्या अनुमान से नहीं भरी गई।";});
 })();
-</script></body></html>
+</script><script>
+(async function loadLiveEnquiryCounters(){
+  const status=document.getElementById("enquiryApiStatus");
+  const enquiry=document.getElementById("enquiryTotal");
+  const paid=document.getElementById("paidOrderTotal");
+  const income=document.getElementById("verifiedIncome");
+  const updated=document.getElementById("enquiryApiUpdated");
+  try{
+    const response=await fetch("https://shirmani-social-api-node.onrender.com/api/health",{cache:"no-store"});
+    const data=await response.json();
+    if(!response.ok) throw new Error("API HTTP "+response.status);
+    status.textContent="LIVE · Database "+String(data.database||"UNKNOWN");
+    const counters=data.counters||{};
+    enquiry.textContent=Number.isInteger(counters.enquiries)?counters.enquiries.toLocaleString("en-IN"):"उपलब्ध नहीं";
+    paid.textContent=Number.isInteger(counters.paid_orders)?counters.paid_orders.toLocaleString("en-IN"):"उपलब्ध नहीं";
+    income.textContent=typeof data.income==="string"?data.income:"उपलब्ध नहीं";
+    updated.textContent="API snapshot: "+new Date().toLocaleString("hi-IN")+" · भुगतान केवल status=paid और INR orders से गिना गया है।";
+  }catch(error){
+    status.textContent="LIVE स्थिति सत्यापित नहीं";
+    enquiry.textContent="—";paid.textContent="—";income.textContent="—";
+    updated.textContent="API से live counters उपलब्ध नहीं: "+error.message+" · कोई संख्या अनुमान से नहीं भरी गई।";
+  }
+})();
+</script>
+</body></html>
