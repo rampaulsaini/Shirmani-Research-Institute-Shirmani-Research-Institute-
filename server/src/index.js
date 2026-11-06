@@ -638,7 +638,7 @@ app.get("/api/health", async (_req, res) => {
     database,
     counters,
     payment: "PENDING_UNLESS_VERIFIED_PAID_ORDER_EXISTS",
-    income: counters.income_inr_minor === null ? "UNAVAILABLE" : "₹" + (Number(counters.income_inr_minor) / 100).toFixed(2),
+    income: counters.income_inr_minor === null ? "UNAVAILABLE" : "₹" + (BigInt(counters.income_inr_minor) / 100n).toString() + "." + (BigInt(counters.income_inr_minor) % 100n).toString().padStart(2, "0"),
     db_expiry: process.env.DATABASE_EXPIRY_DATE || "CHECK_RENDER_DATABASE_DASHBOARD"
   });
 });
@@ -648,7 +648,7 @@ app.get("/api/health", async (_req, res) => {
 // records or payment evidence into the public Git repository.
 const csvCell = (value) => {
   let text = value === null || typeof value === "undefined" ? "" : String(value);
-  if (/^[=+@\\t\\r-]/.test(text)) text = "'" + text;
+  if (/^[=+@\t\r-]/.test(text)) text = "'" + text;
   return '"' + text.replace(/"/g, '""') + '"';
 };
 const sendCsv = (res, filename, columns, rows) => {
