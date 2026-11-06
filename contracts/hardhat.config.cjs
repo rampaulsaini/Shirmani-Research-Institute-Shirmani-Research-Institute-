@@ -3,12 +3,10 @@ require("@nomicfoundation/hardhat-ethers");
 module.exports = {
   solidity: {
     version: "0.8.24",
-    settings: {
-      optimizer: { enabled: true, runs: 200 }
-    }
+    settings: { optimizer: { enabled: true, runs: 200 } }
   },
   paths: {
-    sources: ".",
+    sources: "./src",
     tests: "./test",
     cache: "./cache",
     artifacts: "./artifacts"
