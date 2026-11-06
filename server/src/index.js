@@ -654,11 +654,11 @@ const csvCell = (value) => {
   return '"' + text.replace(/"/g, '""') + '"';
 };
 const sendCsv = (res, filename, columns, rows) => {
-  const body = [columns.map(csvCell).join(","), ...rows.map(row => columns.map(key => csvCell(row[key])).join(","))].join("\\r\\n");
+  const body = [columns.map(csvCell).join(","), ...rows.map(row => columns.map(key => csvCell(row[key])).join(","))].join("\r\n");
   res.setHeader("Content-Type", "text/csv; charset=utf-8");
   res.setHeader("Content-Disposition", 'attachment; filename="' + filename + '"');
   res.setHeader("Cache-Control", "private, no-store, max-age=0");
-  return res.status(200).send("\\uFEFF" + body);
+  return res.status(200).send("\uFEFF" + body);
 };
 
 app.get("/api/export-enquiries", dbRequired, auth, ownerOnly, async (_req, res) => {
