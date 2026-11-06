@@ -148,7 +148,7 @@ COMMENT ON TABLE yatharth_chain_events IS
 
 -- Enforce the review gate in the database, not only in an application query.
 CREATE OR REPLACE FUNCTION yatharth_require_review_gate()
-RETURNS trigger LANGUAGE plpgsql AS $
+RETURNS trigger LANGUAGE plpgsql AS $body$
 DECLARE approvals integer;
 BEGIN
   SELECT COALESCE(g.independent_approval_count, 0)
@@ -167,7 +167,7 @@ BEGIN
   END IF;
   RETURN NEW;
 END;
-$;
+$body$;
 
 DROP TRIGGER IF EXISTS yatharth_verified_review_gate ON yatharth_contributions;
 CREATE TRIGGER yatharth_verified_review_gate
@@ -177,7 +177,7 @@ CREATE TRIGGER yatharth_verified_review_gate
   EXECUTE FUNCTION yatharth_require_review_gate();
 
 CREATE OR REPLACE FUNCTION yatharth_require_mint_authorization_gate()
-RETURNS trigger LANGUAGE plpgsql AS $
+RETURNS trigger LANGUAGE plpgsql AS $body$
 DECLARE approvals integer;
 BEGIN
   IF NOT EXISTS (
@@ -205,7 +205,7 @@ BEGIN
   END IF;
   RETURN NEW;
 END;
-$;
+$body$;
 
 DROP TRIGGER IF EXISTS yatharth_mint_authorization_review_gate ON yatharth_mint_authorizations;
 CREATE TRIGGER yatharth_mint_authorization_review_gate
@@ -215,11 +215,11 @@ CREATE TRIGGER yatharth_mint_authorization_review_gate
 
 -- Review decisions are immutable; corrections are recorded in a new panel round.
 CREATE OR REPLACE FUNCTION yatharth_reject_review_mutation()
-RETURNS trigger LANGUAGE plpgsql AS $
+RETURNS trigger LANGUAGE plpgsql AS $body$
 BEGIN
   RAISE EXCEPTION 'Review history is append-only; submit a new panel-round review';
 END;
-$;
+$body$;
 
 DROP TRIGGER IF EXISTS yatharth_reviews_append_only ON yatharth_contribution_reviews;
 CREATE TRIGGER yatharth_reviews_append_only
