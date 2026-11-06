@@ -19,6 +19,7 @@ test("only verified and consented proof records contribute to income", () => {
   assert.ok(source.includes("verification_status='verified' and customer_consent=true"));
   assert.ok(source.includes("UNAVAILABLE_PENDING_VERIFICATION"));
   assert.ok(source.includes("owner_attested_bank_match_not_independent_audit"));
+  assert.ok(source.includes("/^private:\\\\/\\\\/[A-Za-z0-9/_-]{1,960}$/")) || assert.ok(source.includes("private://"));
 });
 
 test("payment proof schema requires all evidence fields and verification trail", () => {
