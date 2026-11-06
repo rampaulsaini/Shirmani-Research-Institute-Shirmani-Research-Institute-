@@ -10,7 +10,7 @@
 
 ## Local prerequisites
 
-Use a pinned Foundry release, Solidity 0.8.24 compiler, and OpenZeppelin Contracts 5.x. Commit the exact dependency version and lockfile before running CI. Do not use production credentials or production database URLs.
+Use a pinned Foundry release, Solidity 0.8.24 compiler, OpenZeppelin Contracts 5.x, and Foundry std. From the `testnet/` directory, install dependencies in a disposable development checkout (then pin the resolved commits in the project before CI):\n\n```sh\nforge install OpenZeppelin/openzeppelin-contracts --no-commit\nforge install foundry-rs/forge-std --no-commit\nforge build\nforge test -vv\n```\n\nCommit the exact dependency revisions and lockfile before CI. Do not use production credentials or production database URLs.
 
 ## Build sequence
 
