@@ -92,7 +92,7 @@ No seed phrase, private key, raw identity document, medical record or full sensi
 
 ## 6. Smart contract
 
-`contracts/YatharthToken.sol` is a source-only test artifact using OpenZeppelin Contracts v5 APIs. It enforces:
+`contracts/YatharthToken.sol` is a source-only test artifact using pinned OpenZeppelin Contracts v5 APIs. `contracts/package.json`, `contracts/hardhat.config.cjs` and `contracts/test/` provide a disposable local Hardhat compile/unit-test harness. The test governance executor is a permissive fixture only and MUST NEVER be deployed to a public or value-bearing network. The contract enforces:
 - fixed 100,000 YTH cap;
 - minting disabled by default;
 - explicit governance action required to enable minting;
@@ -120,7 +120,7 @@ The source is not compiled, audited, deployed or activated by this PR. A success
 ### Phase A — documentation and static checks
 - Review this specification and migration.
 - Pin Solidity and OpenZeppelin versions.
-- Compile contract and run unit tests locally against a disposable chain.
+- Run `cd contracts && npm install && npm run compile && npm test` locally against the disposable Hardhat chain (chain ID 31337); the GitHub Actions test workflow is included for CI once available from the base branch.
 - Verify cap, default mint-off, unauthorized mint rejection, duplicate evidence rejection, pause behaviour and governance role checks.
 
 ### Phase B — isolated database branch
@@ -144,6 +144,8 @@ The source is not compiled, audited, deployed or activated by this PR. A success
 
 ## 9. Release acceptance criteria
 
+- Contract compiles with Solidity 0.8.24 and the pinned OpenZeppelin dependency.
+- Local tests prove EOA governance rejection, default mint-off, unauthorized mint rejection, unique evidence enforcement, hard-cap enforcement, and pause/unpause controls.
 - Supply cap cannot be exceeded.
 - Initial total supply is zero.
 - Minting is disabled at deployment.
