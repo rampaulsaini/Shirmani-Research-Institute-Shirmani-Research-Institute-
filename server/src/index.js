@@ -13,6 +13,7 @@ const port = Number(process.env.PORT || 8787);
 const isProduction = process.env.NODE_ENV === "production";
 const origin = process.env.CORS_ORIGIN;
 const secret = process.env.JWT_SECRET;
+const ownerEmail = (process.env.OWNER_EMAIL || "").trim().toLowerCase();
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, max: 10 }) : null;
 
 if (isProduction && (!origin || origin === "*" || !secret || !process.env.DATABASE_URL)) {
@@ -41,11 +42,19 @@ const auth = (req, res, next) => {
 
 // Private lead access is restricted to one explicitly configured owner account.
 // Fail closed when the owner identity has not been configured by the deployment.
-const ownerOnly = (req, res, next) => {
+const ownerOnly = async (req, res, next) => {
   const ownerAccountId = process.env.OWNER_ACCOUNT_ID;
-  if (!ownerAccountId) return res.status(503).json({ error: "OWNER_ACCOUNT_ID_NOT_CONFIGURED" });
-  if (req.user?.sub !== ownerAccountId) return res.status(403).json({ error: "OWNER_ACCESS_REQUIRED" });
-  next();
+  if (ownerAccountId && req.user?.sub === ownerAccountId) return next();
+  if (!ownerEmail) {
+    return res.status(ownerAccountId ? 403 : 503).json({ error: ownerAccountId ? "OWNER_ACCESS_REQUIRED" : "OWNER_IDENTITY_NOT_CONFIGURED" });
+  }
+  try {
+    const { rows } = await pool.query("select lower(email) as email from accounts where id=$1", [req.user.sub]);
+    if (rows[0]?.email !== ownerEmail) return res.status(403).json({ error: "OWNER_ACCESS_REQUIRED" });
+    return next();
+  } catch {
+    return res.status(503).json({ error: "OWNER_IDENTITY_LOOKUP_FAILED" });
+  }
 };
 
 app.get("/health", async (_req, res) => {
@@ -547,7 +556,7 @@ app.get("/v1/platform/readiness", async (_req, res) => {
   const databaseConfigured = Boolean(process.env.DATABASE_URL);
   const authConfigured = Boolean(process.env.JWT_SECRET);
   const corsConfigured = Boolean(process.env.CORS_ORIGIN && process.env.CORS_ORIGIN !== "*");
-  const ownerInboxConfigured = Boolean(process.env.OWNER_ACCOUNT_ID);
+  const ownerInboxConfigured = Boolean(process.env.OWNER_ACCOUNT_ID || ownerEmail);
   let database = databaseConfigured ? "CONFIGURED" : "DATABASE_NOT_CONFIGURED";
   if (pool) {
     try { await pool.query("select 1"); database = "READY"; }
@@ -568,6 +577,168 @@ app.get("/v1/platform/readiness", async (_req, res) => {
     production_live: false,
     independent_verification: false
   });
+});
+
+// Backward-compatible enquiry endpoints for the simple public enquiry form.
+// The canonical record remains client_enquiries; no payment/order is created here.
+app.get("/api/init-db", dbRequired, async (_req, res) => {
+  try {
+    const { rows } = await pool.query("select to_regclass('public.client_enquiries') is not null as ready");
+    if (!rows[0]?.ready) return res.status(503).json({ success: false, message: "Enquiry schema is not installed; apply the versioned database migrations." });
+    return res.json({ success: true, message: "Table Ready", table: "client_enquiries", schema_management: "versioned migrations" });
+  } catch {
+    return res.status(503).json({ success: false, message: "Database unavailable" });
+  }
+});
+
+app.post("/api/enquiry", dbRequired, enquiryLimiter, async (req, res) => {
+  const body = req.body || {};
+  const clean = (value, max) => typeof value === "string" ? value.trim().slice(0, max) : "";
+  const name = clean(body.name, 120);
+  const mobile = clean(body.mobile, 32);
+  const service = clean(body.service, 80);
+  if (body.consent !== true) return res.status(400).json({ error: "CONSENT_REQUIRED", message: "सहमति अनिवार्य" });
+  if (!name || !mobile || !/^[+0-9() .-]{7,32}$/.test(mobile) || !service) {
+    return res.status(400).json({ error: "INVALID_ENQUIRY", message: "नाम, वैध मोबाइल और सेवा आवश्यक हैं।" });
+  }
+  try {
+    const { rows } = await pool.query(
+      "insert into client_enquiries(name,email,phone,service,language,topic,goal,word_count,deadline,budget,sources,notes,consent_at) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,now()) returning id,status,created_at",
+      [name, null, mobile, service, "To be agreed", service, "Legacy public enquiry form", "", "", "", "", ""]
+    );
+    console.info("PUBLIC_ENQUIRY_RECEIVED", JSON.stringify({ id: rows[0].id, owner_email: ownerEmail || null, notification: "OWNER_INBOX_ONLY_EMAIL_DELIVERY_NOT_CONFIGURED" }));
+    return res.status(201).json({ success: true, id: rows[0].id, status: rows[0].status, owner: ownerEmail || null, payment: "PENDING", income: "₹0", message: "Enquiry saved for owner review. No order or payment was created." });
+  } catch {
+    return res.status(500).json({ error: "ENQUIRY_SAVE_FAILED" });
+  }
+});
+
+app.get("/api/health", async (_req, res) => {
+  let database = "NOT_CONFIGURED";
+  let counters = { enquiries: null, paid_orders: null, income_inr_minor: null };
+  if (pool) {
+    try {
+      await pool.query("select 1");
+      database = "READY";
+      const enquiries = await pool.query("select count(*)::int as count from client_enquiries");
+      const proofTable = await pool.query("select to_regclass('public.paid_orders') is not null as ready");
+      let paidCount = null, incomeMinor = null;
+      if (proofTable.rows[0]?.ready) {
+        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as income_inr_minor from paid_orders where verification_status='verified' and customer_consent=true and currency='INR'");
+        paidCount = paid.rows[0].count;
+        incomeMinor = String(paid.rows[0].income_inr_minor);
+      }
+      counters = { enquiries: enquiries.rows[0].count, paid_orders: paidCount, income_inr_minor: incomeMinor };
+    } catch { database = "ERROR"; }
+  }
+  const status = database === "READY" ? 200 : 503;
+  let databaseName = null;
+  try { databaseName = process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL).pathname.replace(/^\/+/, "") : null; } catch {}
+  return res.status(status).json({
+    live: true,
+    commit: process.env.RENDER_GIT_COMMIT || "runtime-commit-unavailable",
+    owner: ownerEmail || null,
+    db: databaseName || database,
+    database,
+    counters,
+    payment: "PENDING_UNLESS_VERIFIED_PAID_ORDER_EXISTS",
+    income: counters.income_inr_minor === null ? "UNAVAILABLE" : "₹" + (Number(counters.income_inr_minor) / 100).toFixed(2),
+    db_expiry: process.env.DATABASE_EXPIRY_DATE || "CHECK_RENDER_DATABASE_DASHBOARD"
+  });
+});
+
+
+const csvCell = (value) => {
+  let text = value === null || value === undefined ? "" : String(value);
+  if (/^[\s]*[=+\-@]/.test(text)) text = "'" + text;
+  return '"' + text.replace(/"/g, '""') + '"';
+};
+const sendCsv = (res, filename, columns, rows) => {
+  const body = [columns.map(csvCell).join(","), ...rows.map(row => columns.map(key => csvCell(row[key])).join(","))].join("\r\n");
+  res.setHeader("Content-Type", "text/csv; charset=utf-8");
+  res.setHeader("Content-Disposition", 'attachment; filename="' + filename + '"');
+  res.setHeader("Cache-Control", "private, no-store, max-age=0");
+  return res.status(200).send("\uFEFF" + body);
+};
+
+app.get("/api/export-enquiries", dbRequired, auth, ownerOnly, async (_req, res) => {
+  try {
+    const { rows } = await pool.query("select id,name,email,phone,service,language,topic,goal,word_count,deadline,budget,sources,notes,status,consent_at,created_at,updated_at from client_enquiries order by created_at asc");
+    return sendCsv(res, "enquiries.csv", ["id","name","email","phone","service","language","topic","goal","word_count","deadline","budget","sources","notes","status","consent_at","created_at","updated_at"], rows);
+  } catch { return res.status(503).json({ error: "ENQUIRY_EXPORT_UNAVAILABLE" }); }
+});
+
+app.get("/api/export-income", dbRequired, auth, ownerOnly, async (req, res) => {
+  try {
+    const { rows } = await pool.query("select id,order_id,amount_minor,currency,payment_id,upi_ref,screenshot_url,customer_consent,verification_status,verification_method,verified_at,created_at from paid_orders where verification_status='verified' and customer_consent=true order by verified_at asc");
+    const totalMinor = rows.reduce((sum, row) => sum + BigInt(row.amount_minor), 0n);
+    const totalInr = (totalMinor / 100n).toString() + "." + (totalMinor % 100n).toString().padStart(2, "0");
+    const report = { status: rows.length ? "AVAILABLE" : "UNAVAILABLE", currency: "INR", verified_paid_orders: rows.length, total_minor_units: totalMinor.toString(), total_inr: totalInr, verification_basis: "owner_attested_bank_match_or_provider_verified", generated_at: new Date().toISOString(), records: rows };
+    res.setHeader("Cache-Control", "private, no-store, max-age=0");
+    if (req.query.format === "csv") return sendCsv(res, "income.csv", ["id","order_id","amount_minor","currency","payment_id","upi_ref","screenshot_url","customer_consent","verification_status","verification_method","verified_at","created_at"], rows);
+    return res.status(200).json(report);
+  } catch { return res.status(503).json({ status: "UNAVAILABLE", error: "INCOME_EXPORT_UNAVAILABLE", records: [] }); }
+});
+
+app.post("/api/owner/orders/:orderId/payment-proof", dbRequired, auth, ownerOnly, async (req, res) => {
+  const body = req.body || {};
+  const clean = value => typeof value === "string" ? value.trim() : "";
+  const paymentId = clean(body.payment_id), upiRef = clean(body.upi_ref), screenshotUrl = clean(body.screenshot_url);
+  if (!paymentId || paymentId.length > 200 || !upiRef || upiRef.length > 200 ||
+      !/^private:\/\/[A-Za-z0-9/_-]{1,960}$/.test(screenshotUrl) || body.customer_consent !== true) {
+    return res.status(400).json({ error: "ALL_PAYMENT_PROOFS_AND_CUSTOMER_CONSENT_REQUIRED" });
+  }
+  try {
+    const order = await pool.query("select id,total_amount_minor,currency,status from orders where id=$1", [req.params.orderId]);
+    if (!order.rows[0]) return res.status(404).json({ error: "ORDER_NOT_FOUND" });
+    if (["refunded","cancelled"].includes(order.rows[0].status)) return res.status(409).json({ error: "ORDER_NOT_ELIGIBLE_FOR_PAYMENT_PROOF" });
+    const { rows } = await pool.query("insert into paid_orders(order_id,amount_minor,currency,payment_id,upi_ref,screenshot_url,customer_consent,verification_status) values($1,$2,$3,$4,$5,$6,true,'pending') returning id,order_id,amount_minor,currency,verification_status,created_at", [order.rows[0].id, order.rows[0].total_amount_minor, order.rows[0].currency, paymentId, upiRef, screenshotUrl]);
+    return res.status(201).json({ ...rows[0], income: "UNAVAILABLE_PENDING_VERIFICATION", note: "Evidence recorded; this is not yet verified income." });
+  } catch (error) {
+    if (error?.code === "23505") return res.status(409).json({ error: "PAYMENT_PROOF_ALREADY_RECORDED" });
+    return res.status(503).json({ error: "PAYMENT_PROOF_SAVE_FAILED" });
+  }
+});
+
+app.post("/api/owner/payment-proofs/:proofId/verify", dbRequired, auth, ownerOnly, async (req, res) => {
+  if (req.body?.confirm_bank_match !== true) return res.status(400).json({ error: "BANK_MATCH_CONFIRMATION_REQUIRED" });
+  try {
+    const { rows } = await pool.query("update paid_orders set verification_status='verified',verification_method='owner_bank_statement',verified_by=$1,verified_at=now() where id=$2 and verification_status='pending' and customer_consent=true returning id,order_id,amount_minor,currency,verification_status,verification_method,verified_at", [req.user.sub, req.params.proofId]);
+    if (!rows[0]) return res.status(404).json({ error: "PENDING_PAYMENT_PROOF_NOT_FOUND" });
+    return res.json({ ...rows[0], verification_scope: "owner_attested_bank_match_not_independent_audit" });
+  } catch { return res.status(503).json({ error: "PAYMENT_PROOF_VERIFICATION_FAILED" }); }
+});
+
+// Public Yatharth Genesis registry check. This proves only the database reservation row,
+// not ownership of a wallet, token issuance, funds, legal-tender status, or exchange operation.
+app.get("/api/yatharth/verify/:accountId", dbRequired, async (req, res) => {
+  const accountId = String(req.params.accountId || "").trim();
+  if (!/^YTH-[0-9]{10}$/.test(accountId)) {
+    return res.status(400).json({ error: "INVALID_YATHARTH_ACCOUNT_ID" });
+  }
+  try {
+    const { rows } = await pool.query(
+      "select account_id, status, proof_hash, created_at from yatharth_accounts where account_id=$1",
+      [accountId]
+    );
+    if (!rows[0]) {
+      return res.status(404).json({ account_id: accountId, status: "NOT_FOUND", verified: false });
+    }
+    const verified = rows[0].status === "RESERVED_PERMANENT" &&
+      rows[0].proof_hash === "GENESIS-2026-11-06-001";
+    return res.status(200).json({
+      account_id: rows[0].account_id,
+      status: rows[0].status,
+      verified,
+      verification_scope: "database_reservation_record_only",
+      created_at: rows[0].created_at
+    });
+  } catch (error) {
+    if (error?.code === "42P01") {
+      return res.status(503).json({ error: "YATHARTH_REGISTRY_NOT_MIGRATED", verified: false });
+    }
+    return res.status(503).json({ error: "YATHARTH_VERIFICATION_UNAVAILABLE", verified: false });
+  }
 });
 
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));

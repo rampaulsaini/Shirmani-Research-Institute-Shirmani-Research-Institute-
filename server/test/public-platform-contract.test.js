@@ -45,12 +45,28 @@ test("account page matches the server auth contract without persisting bearer to
 });
 
 
-test("private enquiry inbox is owner-only and fails closed without owner configuration", () => {
+test("private enquiry inbox is owner-only with account-id and configured-email authorization", () => {
   const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
-  assert.ok(source.includes('const ownerOnly = (req, res, next) =>'));
-  assert.ok(source.includes('if (!ownerAccountId) return res.status(503).json({ error: "OWNER_ACCOUNT_ID_NOT_CONFIGURED" })'));
-  assert.ok(source.includes('if (req.user?.sub !== ownerAccountId) return res.status(403).json({ error: "OWNER_ACCESS_REQUIRED" })'));
+  assert.ok(source.includes('const ownerOnly = async (req, res, next) =>'));
+  assert.ok(source.includes('const ownerAccountId = process.env.OWNER_ACCOUNT_ID'));
+  assert.ok(source.includes('if (ownerAccountId && req.user?.sub === ownerAccountId) return next()'));
+  assert.ok(source.includes('if (!ownerEmail)'));
+  assert.ok(source.includes('select lower(email) as email from accounts where id=$1'));
+  assert.ok(source.includes('if (rows[0]?.email !== ownerEmail)'));
   assert.ok(source.includes('app.get("/v1/owner/enquiries", dbRequired, auth, ownerOnly'));
   assert.ok(source.includes('limit $1'));
   assert.ok(source.includes('access: "owner_only"'));
+});
+
+test("legacy public enquiry adapter is consent-gated and never creates a payment", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  assert.ok(source.includes('app.get("/api/init-db", dbRequired'));
+  assert.ok(source.includes("to_regclass('public.client_enquiries')"));
+  assert.ok(source.includes('app.post("/api/enquiry", dbRequired, enquiryLimiter'));
+  assert.ok(source.includes('body.consent !== true'));
+  assert.ok(source.includes('"CONSENT_REQUIRED"'));
+  assert.ok(source.includes('payment: "PENDING"'));
+  assert.ok(source.includes('income: "₹0"'));
+  assert.ok(source.includes('app.get("/api/health"'));
+  assert.ok(source.includes("orders where status='paid' and currency='INR'"));
 });
