@@ -27,18 +27,20 @@ contract YatharthToken is ERC20, ERC20Capped, AccessControl, Pausable {
     );
 
     error ZeroGovernanceAddress();
+    error GovernanceMustBeContract();
     error MintingDisabled();
     error InvalidRecipient();
     error InvalidAmount();
     error EmptyEvidenceId();
     error EvidenceAlreadyUsed(bytes32 evidenceId);
 
-    /// @param governanceMultisig A threshold multisig contract address, never a single operator key.
+    /// @param governanceMultisig A deployed governance contract; independently verify its threshold and signer separation before use.
     constructor(address governanceMultisig)
         ERC20("Yatharth", "YTH")
         ERC20Capped(MAX_SUPPLY)
     {
         if (governanceMultisig == address(0)) revert ZeroGovernanceAddress();
+        if (governanceMultisig.code.length == 0) revert GovernanceMustBeContract();
 
         _grantRole(DEFAULT_ADMIN_ROLE, governanceMultisig);
         _grantRole(MINTER_ROLE, governanceMultisig);
