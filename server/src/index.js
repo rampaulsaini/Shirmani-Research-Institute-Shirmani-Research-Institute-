@@ -616,9 +616,17 @@ app.post("/api/enquiry", dbRequired, enquiryLimiter, async (req, res) => {
 
 app.get("/api/health", async (_req, res) => {
   let database = "NOT_CONFIGURED";
+  let counters = { enquiries: null, paid_orders: null, income_inr_minor: null };
   if (pool) {
-    try { await pool.query("select 1"); database = "READY"; }
-    catch { database = "ERROR"; }
+    try {
+      await pool.query("select 1");
+      database = "READY";
+      const [enquiries, paid] = await Promise.all([
+        pool.query("select count(*)::int as count from client_enquiries"),
+        pool.query("select count(*)::int as count, coalesce(sum(total_amount_minor),0)::bigint as income_inr_minor from orders where status='paid' and currency='INR'")
+      ]);
+      counters = { enquiries: enquiries.rows[0].count, paid_orders: paid.rows[0].count, income_inr_minor: String(paid.rows[0].income_inr_minor) };
+    } catch { database = "ERROR"; }
   }
   const status = database === "READY" ? 200 : 503;
   let databaseName = null;
@@ -629,8 +637,9 @@ app.get("/api/health", async (_req, res) => {
     owner: ownerEmail || null,
     db: databaseName || database,
     database,
-    payment: "PENDING",
-    income: "₹0",
+    counters,
+    payment: "PENDING_UNLESS_VERIFIED_PAID_ORDER_EXISTS",
+    income: counters.income_inr_minor === null ? "UNAVAILABLE" : "₹" + (Number(counters.income_inr_minor) / 100).toFixed(2),
     db_expiry: process.env.DATABASE_EXPIRY_DATE || "CHECK_RENDER_DATABASE_DASHBOARD"
   });
 });
