@@ -159,3 +159,23 @@ test("canonical schema permits system-originated audit events", () => {
   assert.match(match[1], /actor_id uuid references accounts\(id\) on delete set null/);
   assert.doesNotMatch(match[1], /actor_id uuid not null/);
 });
+
+test("diagnostic startup does not invent secrets or database URLs", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  assert.ok(source.includes("missingProductionConfig"));
+  assert.ok(source.includes("Production configuration incomplete:"));
+  assert.ok(!source.includes("temporary-safe-secret-for-diagnosis-only"));
+  assert.ok(!source.includes("postgres://safe-mode"));
+  assert.ok(!source.includes("process.exit(1)"));
+  assert.ok(source.includes('isProduction ? false : "*"'));
+});
+
+test("liveness is independent from database readiness", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  const dockerfile = fs.readFileSync(new URL("../../Dockerfile", import.meta.url), "utf8");
+  assert.ok(source.includes('app.get("/api/live"'));
+  assert.ok(source.includes('app.get("/api/ready"'));
+  assert.ok(source.includes('res.status(200).json({ live: true'));
+  assert.ok(dockerfile.includes("/api/live"));
+  assert.ok(!dockerfile.includes("/v1/platform/readiness"));
+});
