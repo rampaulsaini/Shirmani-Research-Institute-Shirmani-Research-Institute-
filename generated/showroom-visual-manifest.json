@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-01T01:28:22.759970+00:00",
+  "generated_at": "2026-11-07T09:51:15.980464+00:00",
   "production_first": true,
   "visual_standard": {
     "resolution": "3840x2160",
@@ -12,8 +12,8 @@
   },
   "platform_snapshot": {
     "catalog_identities": 5000,
-    "concrete_repository_assets": 5000,
-    "concrete_materialization_percent": 100.0,
+    "concrete_repository_assets": 9742,
+    "concrete_materialization_percent": 194.84,
     "production_modules": 5000
   },
   "showroom_seed_products": 27,
@@ -71,7 +71,7 @@
       "long_description_route": "research-paper.html",
       "price_inr": 0,
       "category": "research",
-      "source_status": "PRODUCED_PUBLIC"
+      "source_status": "PROTOTYPE_QC_PENDING"
     },
     {
       "product_id": "SRI-TOOL-001",
