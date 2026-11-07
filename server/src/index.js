@@ -630,17 +630,11 @@ app.post("/api/enquiry", dbRequired, enquiryLimiter, async (req, res) => {
   }
 });
 
-// Liveness: a running process returns 200 even while external dependencies are down.
-app.get("/api/health", async (_req, res) => {
-  let database = "NOT_CONFIGURED";
-  if (pool) {
-    try { await pool.query("select 1"); database = "READY"; }
-    catch { database = "ERROR"; }
-  }
+// Liveness: a running process returns 200 without querying external dependencies.
+app.get("/api/health", (_req, res) => {
   return res.status(200).json({
     live: true,
     service: "shirmani-social-api",
-    database,
     commit: process.env.RENDER_GIT_COMMIT || "runtime-commit-unavailable",
     generated_at: new Date().toISOString()
   });
