@@ -1,13 +1,11 @@
 {
-  "generated_at": "2026-11-07T03:17:10.870440+00:00",
+  "generated_at": "2026-11-07T06:51:30.523254+00:00",
   "product_assets": 5000,
   "catalog_products": 5000,
   "materialization_percent": 100.0,
   "asset_directory": "products/concrete/",
   "showroom": "showroom.html",
-  "state": "QC_PASSED_AWAITING_DISPATCH",
+  "state": "COMPLETE",
   "dispatch": "NO",
-  "principle": "Concrete assets and matching deterministic QC are separate evidence; dispatch, sales, payment and independent verification remain downstream.",
-  "concrete_product_assets": 5000,
-  "qc_state": "QC_PASSED"
+  "principle": "Concrete repository-bound assets are production evidence; QC, dispatch and independent verification remain downstream."
 }
