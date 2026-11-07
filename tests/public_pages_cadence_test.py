@@ -21,7 +21,7 @@ class PublicPagesCadenceTest(unittest.TestCase):
 
     def test_only_canonical_workflow_deploys_pages(self):
         canonical = CANONICAL_PUBLISHER.read_text(encoding="utf-8")
-        self.assertIn("actions/deploy-pages@v4", canonical)
+        self.assertIn("actions/deploy-pages@v5", canonical)
         for path in LEGACY_PUBLISHERS:
             with self.subTest(path=path.name):
                 legacy = path.read_text(encoding="utf-8")
