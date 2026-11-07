@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Automission का verification gate product usefulness का दावा अपने-आप नहीं करता; functional testing और downstream verification अलग चरण हैं.
+🌳 Purpose (संघ का उद्देश्य) मानव प्रकृति संरक्षण संघ का उद्देश्य — “संतुलन की पुनर्स्थापना।” हम किसी धर्म, जाति या विचारधारा के विरोधी नहीं हैं।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Automission का verification gate product usefulness का दावा अ�
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:unique-tools-showroom.html
+rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:README.md

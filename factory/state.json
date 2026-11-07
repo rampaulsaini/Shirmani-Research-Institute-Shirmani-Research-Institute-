@@ -111213,7 +111213,7 @@
       10000
     ]
   },
-  "updated_at": "2026-11-04T08:07:55.155793+00:00",
+  "updated_at": "2026-11-07T23:00:59.538880+00:00",
   "state_repair_policy": "reconstruct completed IDs from durable generated outputs before each resumable batch",
   "state_repaired_from_outputs": true,
   "last_batch": {
@@ -111229,5 +111229,5 @@
     "audio-prompt": 0,
     "book": 0
   },
-  "last_successful_batch_at": "2026-11-04T08:07:55.155738+00:00"
+  "last_successful_batch_at": "2026-11-07T23:00:59.538834+00:00"
 }
