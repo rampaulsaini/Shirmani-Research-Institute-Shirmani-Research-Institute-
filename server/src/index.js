@@ -12,6 +12,12 @@ const app = express();
 const port = Number(process.env.PORT || 8787);
 const isProduction = process.env.NODE_ENV === "production";
 const origin = process.env.CORS_ORIGIN;
+const allowedOrigins = new Set(
+  (origin || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter((value) => value && value !== "*")
+);
 const secret = process.env.JWT_SECRET;
 const ownerEmail = (process.env.OWNER_EMAIL || "").trim().toLowerCase();
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, max: 10 }) : null;
@@ -28,8 +34,13 @@ if (isProduction && missingProductionConfig.length) {
   console.error("Production configuration incomplete:", missingProductionConfig.join(", "));
 }
 
-// In production, missing or wildcard CORS configuration disables cross-origin access.
-app.use(cors({ origin: origin && origin !== "*" ? origin : isProduction ? false : "*" }));
+// Allow cross-origin requests only from configured origins; deny all others.
+app.use(cors({
+  origin: (requestOrigin, callback) => {
+    if (!requestOrigin) return callback(null, true);
+    return callback(null, allowedOrigins.has(requestOrigin));
+  }
+}));
 // Render terminates TLS and forwards one trusted proxy hop to this web service.
 app.set("trust proxy", 1);
 app.use(express.json({ limit: "1mb" }));
