@@ -4,7 +4,7 @@
   "checks": [
     {
       "file": "generated/source-units.jsonl",
-      "records": 4555,
+      "records": 3625,
       "unique_hashes": 0,
       "errors": []
     },
