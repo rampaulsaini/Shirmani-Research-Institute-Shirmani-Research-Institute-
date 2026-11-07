@@ -12,16 +12,35 @@ const app = express();
 const port = Number(process.env.PORT || 8787);
 const isProduction = process.env.NODE_ENV === "production";
 const origin = process.env.CORS_ORIGIN;
+const allowedOrigins = new Set(
+  (origin || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter((value) => value && value !== "*")
+);
 const secret = process.env.JWT_SECRET;
 const ownerEmail = (process.env.OWNER_EMAIL || "").trim().toLowerCase();
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, max: 10 }) : null;
 
-if (isProduction && (!origin || origin === "*" || !secret || !process.env.DATABASE_URL)) {
-  console.error("Production startup requires CORS_ORIGIN, JWT_SECRET and DATABASE_URL.");
-  process.exit(1);
+const missingProductionConfig = [
+  !origin || origin === "*" ? "CORS_ORIGIN" : null,
+  !secret ? "JWT_SECRET" : null,
+  !process.env.DATABASE_URL ? "DATABASE_URL" : null
+].filter(Boolean);
+
+if (isProduction && missingProductionConfig.length) {
+  // Keep the process available for diagnostics; protected routes remain fail-closed.
+  // Never invent credentials or database connection strings.
+  console.error("Production configuration incomplete:", missingProductionConfig.join(", "));
 }
 
-app.use(cors({ origin: origin || "*" }));
+// Allow cross-origin requests only from configured origins; deny all others.
+app.use(cors({
+  origin: (requestOrigin, callback) => {
+    if (!requestOrigin) return callback(null, true);
+    return callback(null, allowedOrigins.has(requestOrigin));
+  }
+}));
 // Render terminates TLS and forwards one trusted proxy hop to this web service.
 app.set("trust proxy", 1);
 app.use(express.json({ limit: "1mb" }));
@@ -544,6 +563,36 @@ app.post("/v1/payments/webhook", dbRequired, async (_req, res) => {
   });
 });
 
+app.get("/api/live", (_req, res) => {
+  res.status(200).json({ live: true, service: "shirmani-social-api" });
+});
+
+app.get("/api/ready", async (_req, res) => {
+  const checks = {
+    database: "NOT_CONFIGURED",
+    auth: secret ? "CONFIGURED" : "NOT_CONFIGURED",
+    cors: origin && origin !== "*" ? "CONFIGURED" : "NOT_CONFIGURED_OR_WILDCARD"
+  };
+  if (pool) {
+    try {
+      await pool.query("select 1");
+      checks.database = "READY";
+    } catch {
+      checks.database = "ERROR";
+    }
+  }
+  const ready = checks.database === "READY" &&
+    checks.auth === "CONFIGURED" &&
+    checks.cors === "CONFIGURED";
+  return res.status(ready ? 200 : 503).json({
+    status: ready ? "READY" : "BLOCKED",
+    checks,
+    production_live: false,
+    independent_verification: false
+  });
+});
+
+// Existing full deployment gate also checks the private owner inbox identity.
 // Public operational safety endpoints. These expose readiness facts without claiming global availability.
 app.get("/v1/governance/policy", (_req, res) => {
   res.json({
