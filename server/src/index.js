@@ -16,12 +16,15 @@ const secret = process.env.JWT_SECRET;
 const ownerEmail = (process.env.OWNER_EMAIL || "").trim().toLowerCase();
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, max: 10 }) : null;
 
-if (isProduction && (!origin || origin === "*" || !secret || !process.env.DATABASE_URL)) {
-  console.error("Production startup requires CORS_ORIGIN, JWT_SECRET and DATABASE_URL.");
-  process.exit(1);
+const requiredEnvironment = ["CORS_ORIGIN", "JWT_SECRET", "DATABASE_URL"];
+const missingEnvironment = requiredEnvironment.filter((key) => !process.env[key]);
+if (isProduction && missingEnvironment.length) {
+  // Keep the process available for diagnosis, but dependent routes remain fail-closed.
+  // Never substitute dummy credentials or a fake database connection string.
+  console.warn(`SAFE STARTUP: missing required environment keys: ${missingEnvironment.join(", ")}`);
 }
 
-app.use(cors({ origin: origin || "*" }));
+app.use(cors({ origin: origin && origin !== "*" ? origin : false }));
 // Render terminates TLS and forwards one trusted proxy hop to this web service.
 app.set("trust proxy", 1);
 app.use(express.json({ limit: "1mb" }));
@@ -57,11 +60,24 @@ const ownerOnly = async (req, res, next) => {
   }
 };
 
-app.get("/health", async (_req, res) => {
+// Liveness must stay green while the process is available, even when external
+// dependencies are not configured. Readiness reports whether protected APIs can work.
+app.get("/health", (_req, res) => {
+  res.status(200).json({ service: "shirmani-social-api", status: "LIVE", generated_at: new Date().toISOString() });
+});
+
+app.get("/ready", async (_req, res) => {
   let database = "NOT_CONFIGURED";
   if (pool) { try { await pool.query("select 1"); database = "READY"; } catch { database = "ERROR"; } }
-  const status = database === "READY" && secret ? "READY" : "DEGRADED";
-  res.status(status === "READY" ? 200 : 503).json({ service: "shirmani-social-api", status, database, auth: secret ? "CONFIGURED" : "NOT_CONFIGURED", generated_at: new Date().toISOString() });
+  const ready = database === "READY" && Boolean(secret) && Boolean(origin && origin !== "*");
+  res.status(ready ? 200 : 503).json({
+    service: "shirmani-social-api",
+    status: ready ? "READY" : "DEGRADED",
+    database,
+    auth: secret ? "CONFIGURED" : "NOT_CONFIGURED",
+    cors: origin && origin !== "*" ? "CONFIGURED" : "NOT_CONFIGURED",
+    generated_at: new Date().toISOString()
+  });
 });
 
 // Public client enquiries are leads only: they do not create orders or payment records.
