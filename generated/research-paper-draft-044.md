@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Scale एक workflow पर निर्भर रहने के बजाय multi-task production lanes: content, audio, tools, data, education, research और other digital categories.
+Divine Human Evolution (DHE) Consciousness correlates, EEG/HRV studies, Soul Frequency DB 3.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Scale एक workflow पर निर्भर रहने के बजाय
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:production-roadmap.html
+rampaulsaini/Omniverse-Supreme-Core-:README.md
