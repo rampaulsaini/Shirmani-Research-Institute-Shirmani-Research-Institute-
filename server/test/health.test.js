@@ -172,7 +172,7 @@ test("diagnostic startup does not invent secrets or database URLs", () => {
 
 test("liveness is independent from database readiness", () => {
   const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
-  const dockerfile = fs.readFileSync(new URL("../../Dockerfile", import.meta.url), "utf8");
+  const dockerfile = fs.readFileSync(new URL("../Dockerfile", import.meta.url), "utf8");
   assert.ok(source.includes('app.get("/api/live"'));
   assert.ok(source.includes('app.get("/api/ready"'));
   assert.ok(source.includes('res.status(200).json({ live: true'));
