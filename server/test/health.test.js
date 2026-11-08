@@ -164,3 +164,24 @@ test("canonical schema permits system-originated audit events", () => {
   assert.match(match[1], /actor_id uuid references accounts\(id\) on delete set null/);
   assert.doesNotMatch(match[1], /actor_id uuid not null/);
 });
+
+
+test("CORS allowlist parsing rejects missing, blank, and wildcard-only configuration", async () => {
+  const { parseAllowedOrigins } = await import("../src/cors-policy.js");
+  for (const value of [undefined, "", "   ", "*", " * "]) {
+    assert.equal(parseAllowedOrigins(value).size, 0, "must reject: " + String(value));
+  }
+  assert.deepEqual([...parseAllowedOrigins("https://example.com")], ["https://example.com"]);
+  assert.deepEqual([...parseAllowedOrigins(" https://a.example , https://b.example ")], [
+    "https://a.example",
+    "https://b.example"
+  ]);
+  assert.deepEqual([...parseAllowedOrigins("*, https://safe.example, , *")], ["https://safe.example"]);
+});
+
+test("platform readiness uses the same parsed CORS allowlist as middleware", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  assert.ok(source.includes('const allowedOrigins = parseAllowedOrigins(origin);'));
+  assert.ok(source.includes('const corsConfigured = allowedOrigins.size > 0;'));
+  assert.ok(!source.includes('Boolean(process.env.CORS_ORIGIN && process.env.CORS_ORIGIN !== "*")'));
+});

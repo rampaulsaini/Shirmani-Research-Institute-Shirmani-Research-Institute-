@@ -6,13 +6,14 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import pg from "pg";
 import { governancePolicy } from "./governance-policy.js";
+import { parseAllowedOrigins } from "./cors-policy.js";
 
 const { Pool } = pg;
 const app = express();
 const port = Number(process.env.PORT || 8787);
 const isProduction = process.env.NODE_ENV === "production";
 const origin = process.env.CORS_ORIGIN;
-const allowedOrigins = new Set((origin || "").split(",").map(value => value.trim()).filter(value => value && value !== "*"));
+const allowedOrigins = parseAllowedOrigins(origin);
 const secret = process.env.JWT_SECRET;
 const ownerEmail = (process.env.OWNER_EMAIL || "").trim().toLowerCase();
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, max: 10 }) : null;
@@ -572,7 +573,7 @@ app.get("/v1/governance/policy", (_req, res) => {
 app.get("/v1/platform/readiness", async (_req, res) => {
   const databaseConfigured = Boolean(process.env.DATABASE_URL);
   const authConfigured = Boolean(process.env.JWT_SECRET);
-  const corsConfigured = Boolean(process.env.CORS_ORIGIN && process.env.CORS_ORIGIN !== "*");
+  const corsConfigured = allowedOrigins.size > 0;
   const ownerInboxConfigured = Boolean(process.env.OWNER_ACCOUNT_ID || ownerEmail);
   let database = databaseConfigured ? "CONFIGURED" : "DATABASE_NOT_CONFIGURED";
   if (pool) {
