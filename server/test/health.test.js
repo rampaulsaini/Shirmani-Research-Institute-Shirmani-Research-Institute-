@@ -166,9 +166,10 @@ test("canonical schema permits system-originated audit events", () => {
 });
 
 
+
 test("payment webhook is declared exactly once and remains fail-closed", () => {
   const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
-  const routes = source.match(/app\\.post\\("\/v1\/payments\/webhook"/g) || [];
+  const routes = source.match(/app\.post\("\/v1\/payments\/webhook"/g) || [];
   assert.equal(routes.length, 1, "payment webhook must have one route declaration");
   assert.ok(source.includes("PAYMENT_PROVIDER_ADAPTER_NOT_CONFIGURED"));
   assert.ok(source.includes("No payment event can mark an order as paid"));
@@ -180,7 +181,7 @@ test("API liveness stays independent from database and status separates table fa
   const healthEnd = source.indexOf('app.get("/api/ready"', healthStart);
   assert.ok(healthStart >= 0 && healthEnd > healthStart);
   const healthHandler = source.slice(healthStart, healthEnd);
-  assert.doesNotMatch(healthHandler, /pool\\.query|dbRequired/);
+  assert.doesNotMatch(healthHandler, /pool\.query|dbRequired/);
   const statusStart = source.indexOf('app.get("/api/status"');
   const statusEnd = source.indexOf("const csvCell", statusStart);
   const statusHandler = source.slice(statusStart, statusEnd);
