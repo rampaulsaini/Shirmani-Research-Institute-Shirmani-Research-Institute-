@@ -9,10 +9,19 @@ import { governancePolicy } from "./governance-policy.js";
 
 const { Pool } = pg;
 const app = express();
-const port = Number(process.env.PORT || 8787);
+const port = Number(process.env.PORT || 10000);
 const isProduction = process.env.NODE_ENV === "production";
 const origin = process.env.CORS_ORIGIN;
-const allowedOrigins = new Set((origin || "").split(",").map(value => value.trim()).filter(value => value && value !== "*"));
+// CORS_ORIGIN is an operator-managed allowlist; reject malformed or unsafe origins.
+const normalizeTrustedOrigin = value => {
+  try {
+    const parsed = new URL(value.trim());
+    const localHttp = parsed.protocol === "http:" && ["localhost", "127.0.0.1"].includes(parsed.hostname);
+    if ((parsed.protocol !== "https:" && !localHttp) || parsed.username || parsed.password || parsed.pathname !== "/" || parsed.search || parsed.hash) return null;
+    return parsed.origin;
+  } catch { return null; }
+};
+const allowedOrigins = new Set((origin || "").split(",").map(normalizeTrustedOrigin).filter(Boolean));
 const secret = process.env.JWT_SECRET;
 const ownerEmail = (process.env.OWNER_EMAIL || "").trim().toLowerCase();
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, max: 10 }) : null;
@@ -572,7 +581,7 @@ app.get("/v1/governance/policy", (_req, res) => {
 app.get("/v1/platform/readiness", async (_req, res) => {
   const databaseConfigured = Boolean(process.env.DATABASE_URL);
   const authConfigured = Boolean(process.env.JWT_SECRET);
-  const corsConfigured = Boolean(process.env.CORS_ORIGIN && process.env.CORS_ORIGIN !== "*");
+  const corsConfigured = allowedOrigins.size > 0;
   const ownerInboxConfigured = Boolean(process.env.OWNER_ACCOUNT_ID || ownerEmail);
   let database = databaseConfigured ? "CONFIGURED" : "DATABASE_NOT_CONFIGURED";
   if (pool) {
@@ -633,6 +642,8 @@ app.post("/api/enquiry", dbRequired, enquiryLimiter, async (req, res) => {
 // Liveness: a running process returns 200 without querying external dependencies.
 app.get("/api/health", (_req, res) => {
   return res.status(200).json({
+    status: "ok",
+    uptime: Math.floor(process.uptime()),
     live: true,
     service: "shirmani-social-api",
     commit: process.env.RENDER_GIT_COMMIT || "runtime-commit-unavailable",
@@ -642,20 +653,26 @@ app.get("/api/health", (_req, res) => {
 
 // Readiness: only return 200 when the real database and required security config work.
 app.get("/api/ready", async (_req, res) => {
+  const startedAt = performance.now();
   const corsConfigured = allowedOrigins.size > 0;
+  const ownerInboxConfigured = Boolean(process.env.OWNER_ACCOUNT_ID || ownerEmail);
   const checks = {
     database: "NOT_CONFIGURED",
     jwt: secret ? "CONFIGURED" : "JWT_SECRET_NOT_CONFIGURED",
-    cors: corsConfigured ? "CONFIGURED" : "NOT_CONFIGURED_OR_WILDCARD"
+    cors: corsConfigured ? "CONFIGURED" : "NOT_CONFIGURED_OR_INVALID",
+    owner_inbox: ownerInboxConfigured ? "CONFIGURED" : "OWNER_ACCOUNT_ID_NOT_CONFIGURED"
   };
   if (pool) {
-    try { await pool.query("select 1"); checks.database = "READY"; }
+    try { await pool.query("select 1"); checks.database = "connected"; }
     catch { checks.database = "ERROR"; }
   }
-  const ready = checks.database === "READY" && checks.jwt === "CONFIGURED" && checks.cors === "CONFIGURED";
+  const ready = checks.database === "connected" && checks.jwt === "CONFIGURED" &&
+    checks.cors === "CONFIGURED" && checks.owner_inbox === "CONFIGURED";
   return res.status(ready ? 200 : 503).json({
     ready,
     status: ready ? "READY" : "BLOCKED",
+    db: checks.database,
+    latency_ms: Number((performance.now() - startedAt).toFixed(2)),
     checks,
     generated_at: new Date().toISOString()
   });
