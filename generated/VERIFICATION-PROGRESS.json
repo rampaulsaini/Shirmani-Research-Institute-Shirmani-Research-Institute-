@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-04T08:09:10.179675+00:00",
+  "generated_at": "2026-11-08T08:31:17.733221+00:00",
   "verification_milestone": 100200,
   "queue_total": 100200,
   "registry_total": 100200,
@@ -25,8 +25,8 @@
   "promotion_allowed_by_this_report": false,
   "human_review_inferred": false,
   "integrity": {
-    "queue_sha256": "cdbf77bcfc3829dcc46ac7524d5b292fdd53742a5130b7f7e34fde477aa712c9",
-    "registry_sha256": "e30f06a9383c4c34a509ac3e754636df7b7480e0d39283520089bfa4f6cc882b"
+    "queue_sha256": "372b6751f3028e8bcdcb8f1b17f89cd569bc8271e18e527b7bc24cf1aec5513b",
+    "registry_sha256": "b747896cec1e6d8474dde35b5282ed8b87b6eee927c8910ac3d2a584ff4ecbdc"
   },
   "policy": "Only the existing independent verification promotion gate may recognize VERIFIED records. This progress report is telemetry."
 }
