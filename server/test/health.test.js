@@ -179,3 +179,12 @@ test("liveness is independent from database readiness", () => {
   assert.ok(dockerfile.includes("/api/live"));
   assert.ok(!dockerfile.includes("/v1/platform/readiness"));
 });
+
+test("income-first health response exposes liveness and uptime contract", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  assert.ok(source.includes("const port = Number(process.env.PORT || 10000)"));
+  assert.ok(source.includes('status: "ok"'));
+  assert.ok(source.includes("uptime: Math.floor(process.uptime())"));
+  assert.ok(source.includes('db: checks.database === "READY" ? "connected"'));
+  assert.ok(source.includes("latency_ms: latencyMs"));
+});
