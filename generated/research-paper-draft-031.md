@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-← Public Showroom · Production Catalog → 1,016 Runnable factory modes Current heartbeat में factory candidate/runnable modes.
+Supreme Legacy & Digital Archives (SLDA) Eternal archive, blockchain anchoring, legacy transfer protocol Note: हर link आपके repo के /projects/{project-slug}/ फोल्डर की ओर इंगित करता है — सुनिश्चित करें कि आपने server/repo में वह folders और index.html अपलोड कर दिए हैं।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:production-roadmap.html
+rampaulsaini/Omniverse-Supreme-Core-:README.md
