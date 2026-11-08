@@ -167,7 +167,8 @@ test("diagnostic startup does not invent secrets or database URLs", () => {
   assert.ok(!source.includes("temporary-safe-secret-for-diagnosis-only"));
   assert.ok(!source.includes("postgres://safe-mode"));
   assert.ok(!source.includes("process.exit(1)"));
-  assert.ok(source.includes('isProduction ? false : "*"'));
+  assert.ok(source.includes('.filter((value) => value && value !== "*")'));
+  assert.ok(source.includes("allowedOrigins.has(requestOrigin)"));
 });
 
 test("liveness is independent from database readiness", () => {
