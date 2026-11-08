@@ -87,7 +87,7 @@ class VerificationQueueContractTests(unittest.TestCase):
         self.write()
         report, errors = validate(self.records_path, self.queue_path)
         self.assertEqual(report["publication_gate"], "BLOCK")
-        self.assertTrue(any(e.get("error") == "verification_not_fail_closed" for e in errors))
+        self.assertTrue(any(e.get("error") == "verified_task_missing_independent_review_state" for e in errors))
 
 
     def test_human_reviewed_state_is_preserved(self):
