@@ -164,3 +164,29 @@ test("canonical schema permits system-originated audit events", () => {
   assert.match(match[1], /actor_id uuid references accounts\(id\) on delete set null/);
   assert.doesNotMatch(match[1], /actor_id uuid not null/);
 });
+
+
+test("payment webhook is declared exactly once and remains fail-closed", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  const routes = source.match(/app\\.post\\("\/v1\/payments\/webhook"/g) || [];
+  assert.equal(routes.length, 1, "payment webhook must have one route declaration");
+  assert.ok(source.includes("PAYMENT_PROVIDER_ADAPTER_NOT_CONFIGURED"));
+  assert.ok(source.includes("No payment event can mark an order as paid"));
+});
+
+test("API liveness stays independent from database and status separates table failures", () => {
+  const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+  const healthStart = source.indexOf('app.get("/api/health"');
+  const healthEnd = source.indexOf('app.get("/api/ready"', healthStart);
+  assert.ok(healthStart >= 0 && healthEnd > healthStart);
+  const healthHandler = source.slice(healthStart, healthEnd);
+  assert.doesNotMatch(healthHandler, /pool\\.query|dbRequired/);
+  const statusStart = source.indexOf('app.get("/api/status"');
+  const statusEnd = source.indexOf("const csvCell", statusStart);
+  const statusHandler = source.slice(statusStart, statusEnd);
+  assert.ok(statusHandler.includes('to_regclass(\'public.client_enquiries\')'));
+  assert.ok(statusHandler.includes('to_regclass(\'public.paid_orders\')'));
+  assert.ok(statusHandler.includes('tables.client_enquiries = "ERROR"'));
+  assert.ok(statusHandler.includes('tables.paid_orders = "ERROR"'));
+  assert.ok(statusHandler.includes('database === "READY" ? 200 : 503'));
+});
