@@ -76,7 +76,7 @@ def make_video(product,path):
                 check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL
             )
             parts.append(part)
-        concat.write_text("\\n".join(f"file '{p.name}'" for p in parts),encoding="utf-8")
+        concat.write_text("\n".join(f"file '{p.name}'" for p in parts),encoding="utf-8")
         subprocess.run(
             ["ffmpeg","-y","-f","concat","-safe","0","-i",str(concat),
              "-c","copy","-movflags","+faststart",str(path)],
