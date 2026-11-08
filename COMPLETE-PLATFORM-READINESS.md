@@ -3,7 +3,7 @@
 **Task ID:** SRI-READINESS-REGISTER-001  
 **Snapshot date:** 2026-11-08  
 **Repository:** `rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-`  
-**Default branch baseline inspected:** `main` @ `c5d54496e4fb877ec0514d9afd9de19bffe47c14`  
+**Source inspection baseline:** `main` @ `c5d54496e4fb877ec0514d9afd9de19bffe47c14` (2026-11-05); **PR base at review:** `main` @ `0406c2ee8fffee4842a0dadbe6b1f4c12790f13f` (2026-11-08).  
 **Change type:** Documentation only. No application code, configuration, credentials, database data, or deployment changed.
 
 ## Purpose and status rules
