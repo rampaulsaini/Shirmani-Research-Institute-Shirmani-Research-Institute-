@@ -12,7 +12,7 @@
 
 Shehjar presents itself publicly as a Kashmiri handicraft brand. Its official website describes its purpose around Kashmiri craft, cultural heritage and handmade products. A public company profile describes a women-artisan empowerment focus; that is the organisation's own public description, not independently audited impact evidence.
 
-An official Government of India intellectual-property listing contains entries under **M/s Shehjar** for Kashmir Pashmina, Kashmir Sozani Craft, Kani Shawl and Kashmir Paper Machie. This provides a useful public-source basis for a first product-content pilot, but it does not establish that each named craft is currently stocked on Shehjar's live store.
+An official IP India list titled **Details of Authorised User Applications Registered as on 15 May 2025** contains four entries under **M/s Shehjar** (applications 33899–33902; filed 31 January 2024; advertised in Journal No. 191 on 31 May 2024): Kashmir Pashmina, Kashmir Sozani Craft, Kani Shawl and Kashmir Paper Machie. This is evidence of entries in the authorised-user application list; it is not, by itself, a product-level authenticity certificate, a live stock record, or proof that every listed craft is currently offered on Shehjar's store.
 
 **Pilot opportunity:** improve clarity and consistency of three selected product listings, using customer-confirmed product facts and a simple source/claim checklist. This is a practical, bounded content task; it is not a promise of increased sales.
 
@@ -33,8 +33,8 @@ An official Government of India intellectual-property listing contains entries u
    Limitation: no internal metrics; individual product-page details were not reliably extractable during this pass.
 
 2. **IP India, public list PDF** — https://www.ipindia.gov.in/storage/uploads/pages/pdfs/rqi08IS0epaFxGLhfC2uAEn7xPNqEaCFRVzJyKOO.pdf  
-   Supports: public listing entries under M/s Shehjar for Kashmir Pashmina, Kashmir Sozani Craft, Kani Shawl and Kashmir Paper Machie. The visible entries include the applicant name, Srinagar address, filing/listing details and craft names.  
-   Limitation: not a live stock catalogue, product-level authenticity certificate or statement of current commercial availability.
+   Supports: the IP India list 'Details of Authorised User Applications Registered as on May 15, 2025', rows/applications 33899–33902, naming M/s Shehjar and listing the four craft categories. The entries show filing date 31-Jan-2024 and advertisement in Journal No. 191 on 31-May-2024.  
+   Limitation: an authorised-user application listing is not a live stock catalogue, product-level authenticity certificate, or statement of current commercial availability. The report does not infer certification of any individual item.
 
 3. **Shehjar official LinkedIn company profile** — https://in.linkedin.com/company/shehjar  
    Supports: company-published description of Kashmiri art, women artisans and cultural heritage.  
