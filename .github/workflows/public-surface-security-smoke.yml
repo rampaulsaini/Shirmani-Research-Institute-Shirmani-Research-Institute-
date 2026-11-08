@@ -55,7 +55,7 @@ jobs:
         run: |
           set -euo pipefail
           mapfile -t files <<< "$CHANGED_PATHS"
-          if (("${#files[@]}" == 0)) || [[ -z "${files[0]}" ]]; then
+          if ((${#files[@]} == 0)) || [[ -z "${files[0]}" ]]; then
             echo "No changed HTML files to scan; skipping file-level HTML smoke."
             exit 0
           fi
