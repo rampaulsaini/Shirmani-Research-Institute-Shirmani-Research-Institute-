@@ -112,15 +112,12 @@ test("server source exposes explicit deployment readiness gates", () => {
 });
 
 
-test("server source exposes a deployment-gated payment webhook", () => {
+test("server source exposes a fail-closed payment webhook until a provider adapter is configured", () => {
   const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
-  for (const required of [
-    'app.post("/v1/payments/webhook"',
-    "PAYMENT_PROVIDER_NOT_CONFIGURED",
-    "INVALID_PAYMENT_SIGNATURE",
-    "payment_succeeded",
-    "payment_refunded"
-  ]) assert.ok(source.includes(required), "missing payment boundary: " + required);
+  assert.ok(source.includes('app.post("/v1/payments/webhook", dbRequired'));
+  assert.ok(source.includes("PAYMENT_PROVIDER_ADAPTER_NOT_CONFIGURED"));
+  assert.ok(source.includes("No payment event can mark an order as paid"));
+  assert.doesNotMatch(source, /payment_succeeded|payment_refunded/);
 });
 
 
