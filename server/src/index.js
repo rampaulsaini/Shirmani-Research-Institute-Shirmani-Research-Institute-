@@ -661,6 +661,40 @@ app.get("/api/ready", async (_req, res) => {
   });
 });
 
+// Aggregate public status is separate from process liveness. It exposes counts only;
+// verified income requires a consented, verified payment-proof row in INR.
+app.get("/api/status", async (_req, res) => {
+  let database = "NOT_CONFIGURED";
+  const counters = { enquiries: null, paid_orders: null, income_inr_minor: null };
+  if (pool) {
+    try {
+      await pool.query("select 1");
+      database = "READY";
+      const enquiries = await pool.query("select count(*)::int as count from client_enquiries");
+      counters.enquiries = enquiries.rows[0].count;
+      const proofTable = await pool.query("select to_regclass('public.paid_orders') is not null as ready");
+      if (proofTable.rows[0]?.ready) {
+        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as income_inr_minor from paid_orders where verification_status='verified' and customer_consent=true and currency='INR'");
+        counters.paid_orders = paid.rows[0].count;
+        counters.income_inr_minor = String(paid.rows[0].income_inr_minor);
+      }
+    } catch {
+      database = "ERROR";
+    }
+  }
+  const income = counters.income_inr_minor === null
+    ? "UNAVAILABLE"
+    : "₹" + (Number(counters.income_inr_minor) / 100).toFixed(2);
+  return res.status(database === "READY" ? 200 : 503).json({
+    service: "shirmani-social-api",
+    database,
+    counters,
+    payment: "PENDING_UNLESS_VERIFIED_CONSENTED_PAYMENT_PROOF_EXISTS",
+    income,
+    generated_at: new Date().toISOString()
+  });
+});
+
 // Payment webhooks stay fail-closed until a provider-specific signature verifier,
 // amount/currency/order mapping and idempotency ledger are implemented and deployed.
 app.post("/v1/payments/webhook", dbRequired, async (_req, res) => {
