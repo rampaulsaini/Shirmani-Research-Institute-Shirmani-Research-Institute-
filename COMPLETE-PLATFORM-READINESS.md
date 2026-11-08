@@ -54,7 +54,7 @@ Status meanings: **VERIFIED** = direct, current proof exists; **PARTIAL** = some
 | Genesis verification | `/verify/YTH-0000000001` reads real DB | Proposed in PR #3669; live migration/row unconfirmed | Live response + DB-backed record + timestamp | BLOCKED |
 | API security | Fail-closed CORS, real secrets, no fabricated credentials | PR #3669 describes intended contract | Security tests + deployed config proof; never publish secrets | PARTIAL |
 | Docker health check | Health check uses liveness endpoint | Proposed in PR #3669 | Built image inspection + healthy deployment | PARTIAL |
-| Node API tests | `npm test` and `npm run check` | PR #3669 states CI proof is still required | Successful CI logs on exact head SHA | NOT VERIFIED |
+| Node API tests | `npm test` and syntax/check pipeline | PR #3669 check run `Node.js tests and syntax check` completed successfully on exact head SHA | [Successful Node.js tests and syntax check](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/actions/runs/42428740130/job/128572669368) | CHECK PASS — does not prove live API readiness |
 | Render deployment | Production API available | Previous evidence: Docker build/deploy existed; required env vars absent in logs | Current deployment commit + startup logs + health/readiness probes | BLOCKED |
 | Neon production schema | Enquiry/order/payment tables live | Prior evidence: production main branch unchanged; temporary branch migration test only | Production schema inspection + approved migration record | BLOCKED |
 | Public showroom | Clear public product catalogue and enquiry flow | No current live-page/smoke evidence retrieved in this pass | Pages URL HTTP 200, mobile test, links, product detail, smoke run | NOT VERIFIED |
@@ -92,7 +92,7 @@ Required sequence:
 
 [PR #3669](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/pull/3669) is OPEN, DRAFT, and mergeable at the time this register was prepared. Head SHA: `69689c96e285fbc47437addad86274300f371310`. It proposes health/readiness/verification contracts and Docker health-check changes.
 
-Its own PR description says Node `npm test` / `npm run check`, Render environment configuration, live DB migration state, deployed probes, Genesis verification, and public showroom smoke evidence remain to be confirmed. The PR is **not merged** and this document does not authorize its merge. Do not treat the PR's existence or a successful build as production verification.
+Current check-run snapshot for head `69689c96e285fbc47437addad86274300f371310`: 22 checks total, 21 successful and 1 skipped; the Node.js tests and syntax-check job passed. This resolves the earlier missing-CI-evidence item. It does **not** prove production readiness. Render environment configuration, live DB migration state, deployed probes, Genesis verification, and public showroom smoke evidence still require separate direct proof. The PR is **not merged** and this document does not authorize its merge. Do not treat the PR's existence or a successful build as production verification.
 
 ## 5. Automation design — only after each capability is proven
 
