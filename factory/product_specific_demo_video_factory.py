@@ -36,34 +36,57 @@ ENGINE_STEPS={
 
 def clean(value,limit):
     return re.sub(r"[^A-Za-z0-9 ._&:/-]+"," ",str(value or "")).strip()[:limit] or "SHIRMANI PRODUCT"
-def draw(value,limit=72):
-    return clean(value,limit).replace("\\","\\\\").replace(":","\\:").replace("'","\\'").replace(",","\\,")
-
 def make_video(product,path):
     pid=clean(product.get("id"),28); name=clean(product.get("name"),48)
     engine=clean(product.get("engine"),28).lower()
     desc=clean(product.get("short_description") or product.get("description") or "Customer-facing digital product",72)
     steps=ENGINE_STEPS.get(engine,["Open product","Enter task/input","Run product module","Inspect result","Reuse output"])
-    parts=[]
-    for i,step in enumerate(steps,1):
-        vf=",".join([
-          f"drawtext=fontfile={FONT}:text='{draw(pid)}':fontcolor=white:fontsize=30:x=(w-text_w)/2:y=45",
-          f"drawtext=fontfile={FONT}:text='{draw(name,48)}':fontcolor=0xe7c85b:fontsize=23:x=(w-text_w)/2:y=92",
-          f"drawtext=fontfile={FONT}:text='ENGINE: {draw(engine.upper(),28)}':fontcolor=0x66ddff:fontsize=20:x=(w-text_w)/2:y=140",
-          f"drawtext=fontfile={FONT}:text='{draw(desc)}':fontcolor=white:fontsize=16:x=(w-text_w)/2:y=185",
-          f"drawtext=fontfile={FONT}:text='STEP {i} / {len(steps)}':fontcolor=0x66ddff:fontsize=28:x=(w-text_w)/2:y=245",
-          f"drawtext=fontfile={FONT}:text='{draw(step,64)}':fontcolor=0xe7c85b:fontsize=38:x=(w-text_w)/2:y=315",
-          f"drawtext=fontfile={FONT}:text='HOW TO USE  |  WHERE TO USE  |  RESULT':fontcolor=0xaeb8c7:fontsize=18:x=(w-text_w)/2:y=400",
-          f"drawtext=fontfile={FONT}:text='SHIRMANI · PRODUCT-SPECIFIC DEMO':fontcolor=0x72e6aa:fontsize=18:x=(w-text_w)/2:y=650"
-        ])
-        part=path.with_name(path.stem+f".part{i}.mp4")
-        subprocess.run(["ffmpeg","-y","-f","lavfi","-i","color=c=0x071018:s=640x360:r=8","-vf",vf,"-t","0.55","-c:v","libx264","-preset","ultrafast","-crf","40","-pix_fmt","yuv420p","-movflags","+faststart",str(part)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-        parts.append(part)
+    parts=[]; text_files=[]
     concat=path.with_suffix(".concat.txt")
-    concat.write_text("\n".join(f"file '{p.name}'" for p in parts),encoding="utf-8")
-    subprocess.run(["ffmpeg","-y","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(path)],cwd=path.parent,check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-    for p in parts:p.unlink(missing_ok=True)
-    concat.unlink(missing_ok=True)
+    try:
+        for i,step in enumerate(steps,1):
+            # Keep user-facing text out of FFmpeg's filtergraph grammar. In-filter
+            # escaping is fragile for colons, commas, quotes and backslashes.
+            layers=[
+                (pid,"white",30,45),
+                (name,"0xe7c85b",23,92),
+                ("ENGINE: "+engine.upper(),"0x66ddff",20,140),
+                (desc,"white",16,185),
+                (f"STEP {i} / {len(steps)}","0x66ddff",28,245),
+                (clean(step,64),"0xe7c85b",38,315),
+                ("HOW TO USE  |  WHERE TO USE  |  RESULT","0xaeb8c7",18,400),
+                ("SHIRMANI · PRODUCT-SPECIFIC DEMO","0x72e6aa",18,650),
+            ]
+            filters=[]
+            for layer_no,(text,color,size,y) in enumerate(layers,1):
+                text_file=path.with_name(path.stem+f".part{i}.layer{layer_no}.txt")
+                text_file.write_text(text,encoding="utf-8")
+                text_files.append(text_file)
+                filters.append(
+                    f"drawtext=fontfile={FONT}:textfile='{text_file.as_posix()}':"
+                    f"expansion=none:fontcolor={color}:fontsize={size}:"
+                    f"x=(w-text_w)/2:y={y}"
+                )
+            vf=",".join(filters)
+            part=path.with_name(path.stem+f".part{i}.mp4")
+            subprocess.run(
+                ["ffmpeg","-y","-f","lavfi","-i","color=c=0x071018:s=640x360:r=8",
+                 "-vf",vf,"-t","0.55","-c:v","libx264","-preset","ultrafast",
+                 "-crf","40","-pix_fmt","yuv420p","-movflags","+faststart",str(part)],
+                check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL
+            )
+            parts.append(part)
+        concat.write_text("\\n".join(f"file '{p.name}'" for p in parts),encoding="utf-8")
+        subprocess.run(
+            ["ffmpeg","-y","-f","concat","-safe","0","-i",str(concat),
+             "-c","copy","-movflags","+faststart",str(path)],
+            cwd=path.parent,check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL
+        )
+        if not path.is_file() or path.stat().st_size < 1024:
+            raise RuntimeError(f"MP4 output is missing or unexpectedly small: {path}")
+    finally:
+        for temp_path in parts+text_files+[concat]:
+            temp_path.unlink(missing_ok=True)
 
 def load_catalog():
     """Resolve the strongest available production catalog instead of silently producing zero demos."""
