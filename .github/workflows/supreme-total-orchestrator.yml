@@ -24,6 +24,8 @@ jobs:
         run: |
           python -m py_compile factory/supreme_system_orchestrator.py factory/supreme_nlp_benchmark.py
           python -m py_compile agents/automission_supervisor.py agents/supreme_nlp_practitioner.py
+      - name: Test independent verification queue contract
+        run: python -m unittest discover -s tests -p "test_verification_queue_contract.py" -v
       - name: Validate JSON schemas
         run: |
           python - <<'PY'
