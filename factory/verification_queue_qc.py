@@ -154,7 +154,7 @@ def validate(records_path: Path, queue_path: Path) -> tuple[dict[str, Any], list
         "unique_claims": len(seen_claims),
         "error_count": len(errors),
         "publication_gate": "PASS" if not errors else "BLOCK",
-        "verification_policy": "Queue structure and provenance are checked against the authoritative verification registry; no task is promoted to VERIFIED.",
+        "verification_policy": "Queue structure and provenance are checked against authoritative records; VERIFIED queue states require independent review markers and remain subject to the separate promotion gate.",
     }
     return report, errors
 
