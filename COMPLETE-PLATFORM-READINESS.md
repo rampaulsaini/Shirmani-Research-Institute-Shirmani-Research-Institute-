@@ -1,7 +1,7 @@
 # Shirmani Research Institute — Complete Platform Readiness Register
 
 **Task ID:** SRI-READINESS-REGISTER-001  
-**Snapshot date:** 2026-11-07  
+**Snapshot date:** 2026-11-08  
 **Repository:** `rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-`  
 **Default branch baseline inspected:** `main` @ `c5d54496e4fb877ec0514d9afd9de19bffe47c14`  
 **Change type:** Documentation only. No application code, configuration, credentials, database data, or deployment changed.
@@ -21,11 +21,15 @@ A capability can have more than one state boundary (for example, API code may be
 
 ## Executive truth snapshot
 
+**Fresh production evidence (2026-11-08):** `generated/product-qc-gate.json` was generated at `2026-11-08T01:55:13.890654Z`. Its scope is `PRODUCED_PRODUCTS_ONLY`: catalog identities 5,000; produced products 4,716; deterministic QC passed 4,716; failed 0; pass rate 100% within that produced subset. The remaining 284 catalog identities are outside this QC result. The gate explicitly states `independent_scientific_verification: false` and `sale_claim: false`; dispatch remains `NO` by default. This newer scoped QC record supersedes older `live-production-state.json` values of `READY_FOR_QC` and `qc_passed: 0` for QC status only. Do not interpret this as independent scientific verification or sales readiness.
+
+The latest `generated/four-stage-production-status.json` snapshot is `2026-11-08T01:55:05.451161Z`; it reports 16,656 discovered modules and 5,000 catalogue products. Inventory labels such as READY are not deployment or operational proof. The latest inspected `generated/independent-verification-status.json` remains dated `2026-11-04T14:07:32.674830Z`: 63,950 prepared review records, 0 independently verified of 100,200. This verification snapshot is older than the QC snapshot and must be displayed with its own timestamp.
+
 | Area | Evidence at snapshot | Readiness |
 |---|---|---|
 | Public entry and showroom | Static HTML pages and browser-local demos exist; README explicitly says key pages are prototypes and not connected to live AI, checkout, outreach, or sales. | PROTOTYPED; public live smoke NOT_VERIFIED |
-| Product/catalog assets | `generated/live-production-state.json` reports 5,000 catalog identities, 9,742 concrete repository assets, 5,000 browser assets, 5,000 visual assets and 5,000 QR assets. | PROTOTYPED; QC promotion pending |
-| QC | Live production state says `READY_FOR_QC`, `qc_passed: 0`, `qc_failed: 0`. A zero failed count is not a pass. | PROTOTYPED; release QC NOT_VERIFIED |
+| Product/catalog assets | `generated/four-stage-production-status.json` (2026-11-08) reports 5,000 catalogue products; `generated/live-production-state.json` is an older 2026-11-05 snapshot. | TESTED for recorded production/materialization scope; not all assets independently reviewed |
+| QC | `generated/product-qc-gate.json` (2026-11-08T01:55:13Z): 4,716 produced, 4,716 deterministic QC pass, 0 fail; scope `PRODUCED_PRODUCTS_ONLY`. | TESTED: 100% of the 4,716 produced subset; remaining 284 catalogue identities not covered; independent verification separate |
 | Independent verification | `generated/independent-verification-status.json`: 100,200 queued, 63,950 prepared, 0 verified, 100,200 unverified; human review required. | SPECIFIED / review preparation PROTOTYPED; VERIFIED count 0 |
 | Customer income | Source state says sales_claimed 0, payment_claimed 0; no provider-confirmed paid transaction or accepted delivery is present in these snapshots. | SPECIFIED / PROTOTYPED; verified income ₹0 |
 | Dispatch and delivery | `dispatch_released: 0`; no customer delivery confirmation established by these source files. | SPECIFIED; NOT_VERIFIED |
@@ -45,7 +49,7 @@ A capability can have more than one state boundary (for example, API code may be
 | Production orchestration | `factory/four_stage_production_orchestrator.py`, `factory/continuous_product_factory.py`, related workflows | PROTOTYPED | Repeated successful cycle, durable persistence and end-to-end public release need independent run evidence. |
 | Product visual / QR generation | factory visual/QR modules; 5,000 assets reported in generated state | PROTOTYPED | Asset-by-asset uniqueness, correctness, rendering and release QC not established. |
 | Product demo video / media | media factory scripts and showroom workbenches | PROTOTYPED | A script/shotlist is not a rendered, reviewed, published video. Actual media coverage and playback tests remain outstanding. |
-| QC and release gates | `factory/product_qc_gate.py`, `factory/product_visual_qc_gate.py`, `generated/QC-REPORT.json`, workflows | PROTOTYPED | Current authoritative state is READY_FOR_QC with zero promoted passes; require catalog-matched reproducible QC. |
+| QC and release gates | `factory/product_qc_gate.py`, `factory/product_visual_qc_gate.py`, `generated/product-qc-gate.json` (2026-11-08T01:55:13Z) | TESTED | Deterministic QC PASS for 4,716/4,716 produced subset only; 284 catalogue identities not covered; human review, independent verification and dispatch remain separate. |
 | Research source pipeline | `factory/build_factory.py`, `agents/source_agent.py`, `factory/README.md` | PROTOTYPED | Source coverage, freshness, rights, provenance and reproducible sample outputs need audits. |
 | Research / writing agents | `agents/research_agent.py`, `agents/writing_agent.py`, `factory/agent-registry.json` | PROTOTYPED | Registry status labels are declarations, not proof of connected model runtime or client-grade output. |
 | AI / ML / NLP | `agents/supreme_nlp*.py`, `agents/deep_learning_agent.py`, model registry and NLP workflows | PROTOTYPED | Active model/provider, runtime, benchmark dataset, latency, accuracy and safe fallback evidence not established here. |
@@ -101,7 +105,9 @@ A capability can have more than one state boundary (for example, API code may be
 - [README.md](README.md) — explicit public prototype boundaries and product index.
 - [PROJECT-CONTINUITY.md](PROJECT-CONTINUITY.md) — continuity and anti-duplication rules.
 - [generated/continuation-ledger.json](generated/continuation-ledger.json) — prior completed/open work; snapshot last updated 2026-11-01.
-- [generated/live-production-state.json](generated/live-production-state.json) — generated 2026-11-05T01:57:53.898952Z.
+- [generated/product-qc-gate.json](generated/product-qc-gate.json) — generated 2026-11-08T01:55:13.890654Z; authoritative deterministic QC scope is PRODUCED_PRODUCTS_ONLY (4,716/4,716 produced subset).
+- [generated/four-stage-production-status.json](generated/four-stage-production-status.json) — generated 2026-11-08T01:55:05.451161Z; inventory and production snapshot, not deployment proof.
+- [generated/live-production-state.json](generated/live-production-state.json) — older snapshot generated 2026-11-05T01:57:53.898952Z; do not use its QC 0/0 fields to override the newer QC gate.
 - [generated/independent-verification-status.json](generated/independent-verification-status.json) — generated 2026-11-04T14:07:32.674830Z.
 - [products/catalog.json](products/catalog.json) — product preview and QC boundaries.
 - [products/micro-product-manifest.json](products/micro-product-manifest.json) — runnable micro-tool asset list; explicitly not sales/verification proof.
@@ -114,6 +120,10 @@ A capability can have more than one state boundary (for example, API code may be
 - [PR #3650](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/pull/3650) — private exports/payment evidence, open.
 - [PR #3659](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/pull/3659) — existing four-stage production work, open.
 - [PR #3663](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/pull/3663) and [PR #3664](https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/pull/3664) — existing safe-startup proposals, open.
+
+## Reconciliation and evidence freshness rule
+
+When generated sources disagree, select the newest source that explicitly covers the metric and scope being reported; do not let a newer unrelated snapshot override it. Record each source timestamp independently. For QC, `product-qc-gate.json` is authoritative for its `PRODUCED_PRODUCTS_ONLY` scope. For independent verification, retain the timestamped verification-status file until a newer registry snapshot exists. For dispatch, sales and payment, require their own direct event/provider evidence; QC PASS never advances those states.
 
 ## Next review rule
 
