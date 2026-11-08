@@ -134,3 +134,35 @@ A release is not complete merely because all code checks pass. Production deploy
 ## Change and permission boundary
 
 This register is documentation only. No PR merge, production deployment, branch-protection change, database write/migration, secret change, external email/WhatsApp send, or payment action is performed or authorized by this file. Obtain the specific approval required for each such action.
+
+
+## 8. Follow-up inspection — public offer and CI evidence
+
+### Public showroom implementation found (source inspection only)
+- `showroom-public-interface.html` exists on `main` (blob SHA `00f286247ed8b982242a40ce4ee26a3060f46ecf`). It includes product browsing, catalog/production/QC/dispatch/sales/payment counters, review-packet and independent-verification counters, and a production telemetry area.
+- `public-interface-v3.html` exists on `main` (blob SHA `351ae39922a97d4d6be2cfa5a4858c02c15618d0`). It includes Social Hub, 156 Channels, Digital Products and account navigation.
+- `first-paid-pilot-offer.html`, `income-action-center.html`, `writing-research-enquiry.html`, and `services-writing-research.html` exist on `main`.
+- These findings establish source files and intended UI only. The GitHub Pages URLs could not be fetched by the available public-page check in this inspection; therefore deployment, mobile rendering, live API binding, form submission, and customer conversion remain **NOT VERIFIED**.
+
+### Commercial price conflict — release blocker
+The source files expose inconsistent proposed rates:
+- `services-writing-research.html`: Editing ₹999; Article/Web Copy ₹2,999; Research Brief ₹1,999.
+- `first-paid-pilot-offer.html`: Editing ₹999; Research Summary ₹1,999; Website/Blog Draft ₹2,999.
+- `income-action-center.html`: same ₹999 / ₹1,999 / ₹2,999 sequence.
+- `outreach-income-workbench.html`: Editing ₹499; Research Brief ₹1,499; Article/Website Copy ₹999.
+
+The first three pages align; the outreach workbench conflicts. Do not quote or send an offer from the conflicting workbench until the owner approves one canonical price schedule and the relevant page is corrected. No external communication was sent during this inspection.
+
+### PR #3671 CI/workflow snapshot
+For head `baa4c6f5aed58a925421658edcd5af4ef20b622d`, the commit workflow-run listing returned 11 runs:
+- Completed successfully: Public Surface Security Audit, Public Surface Security Layer, Repository Security Baseline, Income Command Center — Master Automission, Supreme Independent Verification Ledger, Supreme NLP Benchmark Controller, Supreme NLP Automission Health.
+- Still running/pending at inspection: Layered Security Baseline, Supreme Security Baseline, Supreme Security Code Scan, Public Surface Security Smoke Gate.
+- The security smoke gate run had no jobs yet when inspected; this is not a pass.
+- CI run evidence is not production deployment, public-page smoke, QC acceptance, payment, or independent verification of product content.
+
+## 9. Immediate next implementation priorities
+1. Reconcile the outreach workbench prices to the owner-approved canonical offer before any outbound message.
+2. Verify the GitHub Pages showroom URL and test the public product-to-enquiry journey on the deployed site.
+3. Select one concrete report sample and independently check its citations, factual accuracy, formatting, and deliverable files.
+4. Implement or verify server-side enquiry persistence and consent logging; current static enquiry pages may only prepare local email/WhatsApp drafts.
+5. Complete the API live readiness / real database checks and payment-provider settlement path before reporting any sale.
