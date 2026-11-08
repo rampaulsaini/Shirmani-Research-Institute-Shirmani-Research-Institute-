@@ -661,6 +661,15 @@ app.get("/api/ready", async (_req, res) => {
   });
 });
 
+// Payment webhooks stay fail-closed until a provider-specific signature verifier,
+// amount/currency/order mapping and idempotency ledger are implemented and deployed.
+app.post("/v1/payments/webhook", dbRequired, async (_req, res) => {
+  return res.status(503).json({
+    error: "PAYMENT_PROVIDER_ADAPTER_NOT_CONFIGURED",
+    message: "No payment event can mark an order as paid until a provider-specific verifier and idempotency ledger are deployed."
+  });
+});
+
 
 const csvCell = (value) => {
   let text = value === null || value === undefined ? "" : String(value);
