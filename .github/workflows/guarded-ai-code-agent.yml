@@ -41,8 +41,6 @@ jobs:
         if: steps.gate.outputs.continue == 'true'
         with:
           node-version: "22"
-          cache: npm
-          cache-dependency-path: server/package-lock.json
 
       - uses: actions/setup-python@v5
         if: steps.gate.outputs.continue == 'true'
@@ -52,7 +50,7 @@ jobs:
       - name: Install locked Node dependencies
         if: steps.gate.outputs.continue == 'true'
         working-directory: server
-        run: npm ci
+        run: npm install --no-package-lock --no-audit --no-fund
 
       - name: Ask AI for one evidence-based, allowlisted patch
         if: steps.gate.outputs.continue == 'true'
@@ -92,4 +90,3 @@ jobs:
             - Human review and approval are required before merge or deployment.
 
             Review the patch and CI results independently. No income or live-production claim is made.
-          labels: "automation,needs-human-review"
