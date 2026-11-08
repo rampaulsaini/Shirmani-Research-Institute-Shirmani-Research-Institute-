@@ -65,3 +65,6 @@ For this project, the least-change path is to keep the existing GitHub Pages sho
 - Render Free plan limitations: https://render.com/docs/free
 
 **Decision:** Vercel is retired from active platform use. GitHub Pages remains the public static host. Cloudflare Workers + D1 is the first backend candidate to evaluate at ₹0; Neon Free is the Postgres fallback. No migration or deployment is claimed by this policy document.
+
+
+**Observed connection evidence (2026-11-08):** the Vercel bot posted a deployment-failure comment on Draft PR #3670, including a free-deployment rate-limit message and an upgrade link. This confirms that an external Vercel integration is still posting to GitHub even though the inspected repository root has no active Vercel deployment configuration. The account-level disconnect/uninstall is therefore still pending; do not interpret this policy commit as having uninstalled the app.
