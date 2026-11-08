@@ -21,16 +21,16 @@ An official IP India list titled **Details of Authorised User Applications Regis
 | Topic | Public evidence | Interpretation / limitation |
 |---|---|---|
 | Brand positioning | Official site presents Shehjar as a Kashmiri handcrafted-products brand | Brand positioning is self-published; do not treat it as independent certification |
-| Website / digital storefront | Official domain: https://shehjar.co.in/ | The public homepage was discoverable, but its live product-detail content was not fully machine-readable in this research pass |
+| Website / digital storefront | The homepage currently exposes **New Arrivals**, **Best Sellers**, **Artisan Stories**, and contact/policy links; the crawl also displayed a public phone, email and Srinagar address | These are homepage observations, not conversion analytics. Artisan Stories content appeared as loading; individual product-detail facts were not reliably extractable in this pass |
 | Craft categories linked to M/s Shehjar | Government of India IP India public listing names Kashmir Pashmina, Kashmir Sozani Craft, Kani Shawl and Kashmir Paper Machie | A public IP listing is not proof of present inventory, item authenticity, stock or product specifications |
 | Artisan / social-purpose narrative | Shehjar's public LinkedIn company profile describes women-artisan empowerment and Kashmiri art/culture | Treat as company-published positioning; no impact figures independently verified |
-| Market context | Development Commissioner (Handicrafts), Ministry of Textiles, describes national handicraft programmes and craft-sector support | National sector context only; it does not establish Shehjar's market share or financial performance |
+| Government sector context | Development Commissioner (Handicrafts), Ministry of Textiles, describes the National Handicrafts Development Programme and Comprehensive Handicrafts Cluster Development Scheme | National programme context only; eligibility and benefits for Shehjar are not assessed, and this does not establish Shehjar's market share or financial performance |
 
 ## 3. Evidence and source register
 
 1. **Shehjar official website** — https://shehjar.co.in/  
-   Supports: official domain and public brand positioning.  
-   Limitation: no internal metrics; individual product-page details were not reliably extractable during this pass.
+   Supports: public brand positioning and homepage sections labelled New Arrivals, Best Sellers, Artisan Stories, Contact Us and policy links. The homepage crawl displayed a public phone number, email address and Srinagar address; contact details should be rechecked on the site before use.  
+   Limitation: these are public homepage observations, not conversion or customer analytics. Artisan Stories appeared as loading in the crawl, and individual product-page specifications were not reliably extractable during this pass.
 
 2. **IP India, public list PDF** — https://www.ipindia.gov.in/storage/uploads/pages/pdfs/rqi08IS0epaFxGLhfC2uAEn7xPNqEaCFRVzJyKOO.pdf  
    Supports: the IP India list 'Details of Authorised User Applications Registered as on May 15, 2025', rows/applications 33899–33902, naming M/s Shehjar and listing the four craft categories. The entries show filing date 31-Jan-2024 and advertisement in Journal No. 191 on 31-May-2024.  
@@ -40,9 +40,9 @@ An official IP India list titled **Details of Authorised User Applications Regis
    Supports: company-published description of Kashmiri art, women artisans and cultural heritage.  
    Limitation: self-description; not an independently audited impact report.
 
-4. **Development Commissioner (Handicrafts), Ministry of Textiles** — https://handicrafts.gov.in/  
-   Supports: official national handicrafts-sector and programme context.  
-   Limitation: national context only; no Shehjar-specific performance inference.
+4. **Development Commissioner (Handicrafts), Ministry of Textiles** — https://handicrafts.nic.in/schemes.aspx  
+   Supports: official description of the National Handicrafts Development Programme and Comprehensive Handicrafts Cluster Development Scheme.  
+   Limitation: national programme context only; this report does not assess Shehjar's eligibility, participation or receipt of support.
 
 ## 4. Three sample product-description drafts
 
@@ -71,6 +71,8 @@ Explore a Shehjar selection associated with Kashmir Sozani Craft. The final prod
 Present the selected Kani Shawl with the details customers need before ordering: confirmed material, dimensions, colour, design, finish, care instructions and dispatch information. A concise description, supported by original product photographs, can make the listing easier to understand while keeping every product claim traceable to information supplied or approved by Shehjar.
 
 **Details to confirm:** exact weave/technique claim; fibre composition; dimensions; colour; finish; care; stock and dispatch estimate.
+
+**Current public-site observations (8 November 2026):** the homepage crawl showed New Arrivals and Best Sellers sections, an Artisan Stories area that was still loading in the captured page, and visible Contact Us / shipping / returns-policy navigation. This creates a clear low-risk review opportunity: check that product cards lead to complete product pages and that product facts, stock, delivery and returns information are easy to verify. No traffic, conversion or sales data was available, so no performance diagnosis is claimed.
 
 ## 5. Practical website and product-content recommendations
 
