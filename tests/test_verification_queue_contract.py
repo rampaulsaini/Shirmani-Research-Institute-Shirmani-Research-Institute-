@@ -89,6 +89,34 @@ class VerificationQueueContractTests(unittest.TestCase):
         self.assertEqual(report["publication_gate"], "BLOCK")
         self.assertTrue(any(e.get("error") == "verification_not_fail_closed" for e in errors))
 
+
+    def test_human_reviewed_state_is_preserved(self):
+        self.queue[0]["status"] = "REVIEWED"
+        self.queue[0]["verification_status"] = "NOT_VERIFIED"
+        self.queue[0]["independent"] = False
+        self.write()
+        report, errors = validate(self.records_path, self.queue_path)
+        self.assertEqual(report["publication_gate"], "PASS")
+        self.assertEqual(errors, [])
+
+    def test_verified_state_requires_independent_review(self):
+        self.queue[0]["status"] = "VERIFIED"
+        self.queue[0]["verification_status"] = "VERIFIED"
+        self.queue[0]["independent"] = False
+        self.write()
+        report, errors = validate(self.records_path, self.queue_path)
+        self.assertEqual(report["publication_gate"], "BLOCK")
+        self.assertTrue(any(e.get("error") == "verified_task_missing_independent_review_state" for e in errors))
+
+    def test_verified_state_with_independent_review_flag_is_structurally_allowed(self):
+        self.queue[0]["status"] = "REVIEWED"
+        self.queue[0]["verification_status"] = "VERIFIED"
+        self.queue[0]["independent"] = True
+        self.write()
+        report, errors = validate(self.records_path, self.queue_path)
+        self.assertEqual(report["publication_gate"], "PASS")
+        self.assertEqual(errors, [])
+
     def test_source_mismatch_blocks(self):
         self.queue[0]["source_ids"] = ["https://wrong.example/evidence"]
         self.write()
