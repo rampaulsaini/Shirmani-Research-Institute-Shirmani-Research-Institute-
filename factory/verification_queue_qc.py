@@ -115,12 +115,19 @@ def validate(records_path: Path, queue_path: Path) -> tuple[dict[str, Any], list
             if task.get("source_status") != source_record["source_status"]:
                 errors.append({"line": n, "error": "source_status_mismatch"})
 
-        if task.get("status") != "QUEUED":
+        status = task.get("status")
+        verification_status = task.get("verification_status")
+        independent = task.get("independent")
+        if status not in {"QUEUED", "REVIEWED", "VERIFIED"}:
             errors.append({"line": n, "error": "invalid_queue_status"})
-        if task.get("verification_status") != "NOT_VERIFIED":
-            errors.append({"line": n, "error": "verification_not_fail_closed"})
-        if task.get("independent") is not False:
-            errors.append({"line": n, "error": "independent_must_be_false"})
+        if verification_status not in {"NOT_VERIFIED", "VERIFIED"}:
+            errors.append({"line": n, "error": "invalid_verification_status"})
+        if status == "QUEUED" and (verification_status != "NOT_VERIFIED" or independent is not False):
+            errors.append({"line": n, "error": "queued_task_must_remain_unverified_and_not_independent"})
+        if verification_status == "VERIFIED" and (status not in {"REVIEWED", "VERIFIED"} or independent is not True):
+            errors.append({"line": n, "error": "verified_task_missing_independent_review_state"})
+        if status == "VERIFIED" and verification_status != "VERIFIED":
+            errors.append({"line": n, "error": "verified_queue_status_without_verified_decision"})
         if not isinstance(task.get("source_ids"), list):
             errors.append({"line": n, "error": "source_ids_not_list"})
         if not isinstance(task.get("verification_questions"), list) or not task.get("verification_questions"):
