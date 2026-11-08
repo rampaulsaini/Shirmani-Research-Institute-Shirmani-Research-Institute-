@@ -39,7 +39,7 @@ jobs:
       - name: Test verification queue QC contract
         run: python3 -m unittest discover -s tests -p "test_verification_queue_contract.py" -v
       - name: Upload verification telemetry
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: supreme-independent-verification-ledger
           path: generated/supreme-independent-verification-ledger.json
