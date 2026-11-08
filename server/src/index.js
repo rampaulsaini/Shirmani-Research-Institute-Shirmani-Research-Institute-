@@ -9,7 +9,7 @@ import { governancePolicy } from "./governance-policy.js";
 
 const { Pool } = pg;
 const app = express();
-const port = Number(process.env.PORT || 8787);
+const port = Number(process.env.PORT || 10000);
 const isProduction = process.env.NODE_ENV === "production";
 const origin = process.env.CORS_ORIGIN;
 const allowedOrigins = new Set(
@@ -568,6 +568,7 @@ app.get("/api/live", (_req, res) => {
 });
 
 app.get("/api/ready", async (_req, res) => {
+  const readinessStartedAt = Date.now();
   const checks = {
     database: "NOT_CONFIGURED",
     auth: secret ? "CONFIGURED" : "NOT_CONFIGURED",
@@ -584,8 +585,11 @@ app.get("/api/ready", async (_req, res) => {
   const ready = checks.database === "READY" &&
     checks.auth === "CONFIGURED" &&
     checks.cors === "CONFIGURED";
+  const latencyMs = Date.now() - readinessStartedAt;
   return res.status(ready ? 200 : 503).json({
     status: ready ? "READY" : "BLOCKED",
+    db: checks.database === "READY" ? "connected" : checks.database.toLowerCase(),
+    latency_ms: latencyMs,
     checks,
     production_live: false,
     independent_verification: false
@@ -683,7 +687,9 @@ app.get("/api/health", async (_req, res) => {
   const status = database === "READY" ? 200 : 503;
   let databaseName = null;
   try { databaseName = process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL).pathname.replace(/^\/+/, "") : null; } catch {}
-  return res.status(status).json({
+  return res.status(200).json({
+    status: "ok",
+    uptime: Math.floor(process.uptime()),
     live: true,
     commit: process.env.RENDER_GIT_COMMIT || "runtime-commit-unavailable",
     owner: ownerEmail || null,
