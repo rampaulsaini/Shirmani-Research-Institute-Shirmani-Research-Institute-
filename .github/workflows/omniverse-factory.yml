@@ -256,7 +256,7 @@ jobs:
         if: github.event_name != 'pull_request'
         run: python3 factory/archive_large_artifacts.py
       - name: Publish generated product catalog through pull request
-        if: github.event_name != 'pull_request' && !cancelled()
+        if: success() && github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
