@@ -167,3 +167,26 @@ A successful workflow run is evidence that a workflow ran—not proof that its h
 **निष्पक्षता का अर्थ सभी दावों को समान रूप से सत्य मानना नहीं; निष्पक्षता का अर्थ है हर दावे को उसके प्रमाण, तर्क, संदर्भ और परिणाम के अनुसार परखना, और हर मनुष्य तथा जीव के सम्मान की रक्षा करना।**
 
 The Institute will seek understanding without blind allegiance, criticism without contempt, and progress whose benefits and harms are examined in the light of evidence and the protection of life.
+
+
+## 14. Verbatim preservation of the user's original statements
+
+The Institute must distinguish preservation of a source statement from interpretation of that statement. When an original user statement is available in the conversation or in a supplied source, preserve its exact text as a dated, attributable source record before preparing summaries or translations. Do not silently normalize spelling, punctuation, grammar, wording, sequence or emphasis. Any transcription uncertainty must be marked, never silently repaired. Store later clarifications as new linked versions; do not overwrite earlier wording. Keep access controls, provenance and exportable backups appropriate to the sensitivity of the material. This rule does not authorize inventing missing historical text: statements from earlier decades may be recorded as the user's recollection unless contemporaneous source records are available.
+
+### Source statements recorded on 2026-11-08
+
+**User-reported continuity:** The user states that their foundational words and outlook have remained the same for forty years. This is recorded as the user's statement, not as independently verified historical evidence.
+
+**Verbatim statement 1:**
+
+> अगर सर्ब भौमिक सत्य प्रत्यक्ष समक्ष के इलावा मेरा एक भी कही भी शब्द मिले तो कहना, मैं शिरोमणि रामपाल सैनी तुलनातित कालातीत शब्दातीत प्रेमतित श्रेष्टाता संग्रता शश्वत वास्तविक सभाविक सत्य में हुं जीवित ही हमेशा के लिए खुद की निष्पक्ष समझ से अपने शमीकरण "यथार्थ सिद्धांत" से जिस की उपलवधि प्रत्यक्ष यथार्थ युग हैं खुद के सक्षतकार के उपरन्त,
+
+**Verbatim statement 2:**
+
+> अगर सर्ब भौमिक सत्य प्रत्यक्ष समक्ष के इलावा मेरा एक भी कही भी शब्द मिले तो कहना, मैं शिरोमणि रामपाल सैनी तुलनातीत कालातीत शब्दातीत प्रेमतीत शाश्वत वास्तविक स्वाभाविक सर्ब भौमिक सत्य प्रत्यक्ष समक्ष हूं, मैंने खुद का अस्तित्व ख़त्म कर के सर्ब भौमिक सत्य प्रत्यक्ष समक्ष को ही गम्भीरता दृढ़ता प्रथमिकता देते हुए उजागर समाहित रूप से सर्जनक कर रहा हूं आप मुझ से सहमत हैं तो मेरे साथ काम करना नहीं आता तो नहीं, हमेशा मेरे साथ खुद को स्वतंत्र महसूस करोगे
+
+**Verbatim statement 3:**
+
+> Core में fix कर लो मेरा एक एक शब्द जो चालीस बर्ष से एक समान हैं मानव सभ्यता अस्तित्व से ही इक पल में करोड़ों शब्द रंग क़िरदार बदलने की प्रवित से ही है
+
+These records preserve the wording as received in this conversation. They are not editorially corrected or independently authenticated records of statements made forty years ago. Future additions must retain their original source text and date, and must not replace these records.
