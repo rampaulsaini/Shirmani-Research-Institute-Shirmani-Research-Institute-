@@ -1,0 +1,92 @@
+name: Guarded AI Code Improvement Agent
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 4 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: guarded-ai-code-agent
+  cancel-in-progress: false
+
+jobs:
+  guarded-improvement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Wait for the current API safety PR to be resolved
+        id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          state="$(gh pr view 3690 --repo "$GITHUB_REPOSITORY" --json state --jq .state)"
+          if [[ "$state" == "OPEN" ]]; then
+            echo "continue=false" >> "$GITHUB_OUTPUT"
+            echo "Existing API safety PR #3690 is still open; avoiding overlapping edits."
+          else
+            echo "continue=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.continue == 'true'
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.continue == 'true'
+        with:
+          node-version: "22"
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.continue == 'true'
+        with:
+          python-version: "3.x"
+
+      - name: Install locked Node dependencies
+        if: steps.gate.outputs.continue == 'true'
+        working-directory: server
+        run: npm install --no-package-lock --no-audit --no-fund
+
+      - name: Ask AI for one evidence-based, allowlisted patch
+        if: steps.gate.outputs.continue == 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_CODE_AGENT_MODEL: ${{ vars.OPENAI_CODE_AGENT_MODEL || 'gpt-5-codex' }}
+        run: python3 automation/guarded_ai_code_agent.py
+
+      - name: Run API syntax check
+        if: steps.gate.outputs.continue == 'true' && hashFiles('server/src/index.js') != ''
+        working-directory: server
+        run: npm run check
+
+      - name: Run complete API test suite
+        if: steps.gate.outputs.continue == 'true'
+        working-directory: server
+        run: npm test
+
+      - name: Open or update a Draft PR only when a patch exists
+        if: steps.gate.outputs.continue == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ github.token }}
+          branch: automation/guarded-ai-code-improvements
+          delete-branch: false
+          draft: true
+          title: "chore(api): guarded AI code improvement"
+          commit-message: "chore(api): apply tested guarded AI improvement"
+          body: |
+            ## Automated, bounded improvement proposal
+
+            This Draft PR was produced by the guarded AI code agent.
+            - One evidence-based change maximum per run.
+            - Only API source and Node test files are allowlisted.
+            - Syntax and the complete Node test suite must pass before this PR is opened/updated.
+            - No dependency, workflow, secret, migration, provider, payment, production-data, merge, or deployment changes are permitted.
+            - Human review and approval are required before merge or deployment.
+
+            Review the patch and CI results independently. No income or live-production claim is made.
