@@ -1,70 +1,85 @@
 # Free-first hosting policy
 
 **Decision date:** 2026-11-08  
-**Applies to:** Shirmani Research Institute public showroom, enquiry/API and data services  
-**Budget rule:** ₹0 recurring platform spend until the platform records verified customer income and the owner explicitly approves a paid service.
+**Budget rule:** ₹0 recurring platform spend until verified customer income exists and the owner explicitly approves any paid service.
 
 ## 1. Vercel retirement
 
-Vercel is not an approved hosting, build, preview, deployment or status-check dependency for this platform.
+Vercel is not an approved hosting, build, preview, deployment or required-check dependency for Shirmani.
 
-- Do not connect this repository to a Vercel project.
-- Do not create or retry Vercel deployments.
-- Do not upgrade a Vercel plan or add a payment method for Vercel.
-- Do not make Vercel a required GitHub status check.
-- Treat any Vercel deployment/rate-limit status as external and non-blocking; do not represent it as a product-code failure.
-- Historical references in generated research/archive records are provenance, not active deployment configuration, and should not be rewritten as if they never existed.
+- No Vercel project connection, deployment retry, paid upgrade or payment method.
+- Do not make a Vercel check required for pull requests.
+- Ignore Vercel deployment-rate-limit results as external integration noise, not product-code failures.
+- Preserve historical/archive references as provenance; do not erase historical evidence.
 
-The inspected repository root contains no active `vercel.json` configuration. The existing `.github/workflows/github-pages.yml` is a route guard, and `.github/workflows/pages-deployed-root-smoke.yml` targets the GitHub Pages URL. The route-guard workflow explicitly says it does not deploy. The canonical publisher must be inspected independently before claiming a release.
+Repository inspection found no active `vercel.json` in the root and no Vercel-specific workflow in the inspected Pages workflows. GitHub code search on the default branch found Vercel references in generated research/archive artifacts, not an active platform deployment configuration.
 
-**Important boundary:** this repository inspection cannot disconnect an external Vercel GitHub App installation or delete a Vercel account/project. Those account-level actions must be completed in the Vercel dashboard/GitHub App settings by the account owner. Until then, the repository policy is “no use”; an external status context may still appear.
+**External disconnect remains outstanding:** a Vercel bot posted a deployment-failure comment on PR #3670 with an upgrade link. Repository commits cannot uninstall an external GitHub App. The account owner must open GitHub Settings → Applications → Installed GitHub Apps, locate Vercel, and uninstall it for this account/repository (or remove this repository from its access). Also disconnect the Git repository from any Vercel project if one remains connected. No account-level uninstall is claimed here.
 
-## 2. Preferred ₹0 architecture
+## 2. Preferred ₹0 architecture — Render + Neon + GitHub Pages
 
-| Layer | Preferred option | Reason / boundary |
+| Layer | Selected service | Current evidence / limit |
 |---|---|---|
-| Public showroom (now) | Existing GitHub Pages | Already configured in this public repository; supports static HTML/CSS/JS on GitHub Free. Keep current public URL unless a separately verified migration is needed. |
-| Static-host fallback | Cloudflare Pages Free | Optional alternative, not an automatic migration. Free limits include 500 builds/month, 20,000 files/site and 25 MiB per file. |
-| API / lightweight server logic | Cloudflare Workers Free | Up to 100,000 requests/day and 10 ms CPU per invocation on the Free plan. Suitable for lightweight enquiry APIs; not long-running background jobs. |
-| Relational data | Cloudflare D1 Free | Up to 10 databases, 500 MB per database, 5 GB total, 5 million rows read/day and 100,000 rows written/day. Requests stop returning query results when daily limits are exhausted. |
-| Postgres alternative | Neon Free | Use only if existing Node/Postgres application compatibility makes it the lower-risk option: 1 GB/project, 100 CU-hours/project/month, 5 GB public transfer/project/month; compute scales to zero after inactivity. |
-| Supabase alternative | Supabase Free | Optional, not primary: 2 active projects, 500 MB database and projects may pause after a week of low activity. |
-| Render | Not the default free production choice | Free web services spin down after 15 minutes idle and can take about a minute to wake; free Postgres expires after 30 days and has no backups. |
+| Public static showroom | GitHub Pages | Existing Pages publisher workflow; static site stays separate from backend. |
+| Node.js API | Render Free: `shirmani-social-api-node` | Account inspection: service exists, Node runtime, free plan, not suspended; latest retrieved deploy status was `live` for commit `c5d54496e4fb877ec0514d9afd9de19bffe47c14` (2026-11-06). This is deployment evidence, not a current health/readiness smoke test. |
+| PostgreSQL | Neon Free: `shirmani-income-db-lifetime` | Account inspection: Free subscription, project exists in Singapore region, default branch `main` is ready; reported logical size about 31 MB. The inspected branch currently exposes only `public.yatharth_accounts`; it is not yet proven to contain the complete application schema/data. |
+| Legacy/temporary database | Render Free Postgres: `shirmani-income-db` | Account inspection: available, but expiration is 2026-12-02. Do not treat it as permanent storage. Read-only table inspection was blocked because its IP allowlist does not permit the connector. |
 
-## 3. Migration safety gates
+### Render Free is not lifetime always-on hosting
 
-Do not rewrite the current Node API or move customer data solely to adopt a new provider. Before any migration:
+Render's official Free plan documentation states:
+- Free web services spin down after 15 minutes without inbound traffic and take about a minute to wake.
+- 750 free instance-hours are shared per workspace per calendar month.
+- Free Postgres is limited to 1 GB, expires 30 days after creation, and has no backups.
+- If no payment method is present, included-usage exhaustion suspends services or pauses new builds rather than silently billing; if a payment method is present, excess bandwidth/build usage can incur charges.
 
-1. Inventory the current API routes, runtime dependencies, secrets, database schema, scheduled jobs, uploads and webhook requirements.
-2. Confirm the chosen free runtime supports every required dependency and execution pattern.
-3. Create a schema/data export and verify a restore into a test database.
-4. Implement consent, validation, rate limiting, CORS allow-list, abuse protection and secret handling.
-5. Test health, readiness, authenticated/authorised writes, read-after-write, error paths and backup restore.
-6. Run a public smoke test against the exact deployed URL.
-7. Keep the previous service untouched until the replacement passes all checks; do not delete data or disable a working service during migration.
+Therefore: keep the existing Render Node API as the current low-cost runtime while it remains useful, but do not promise uninterrupted 24/7 availability. Do not use Render Free Postgres as the long-term income database.
 
-For this project, the least-change path is to keep the existing GitHub Pages showroom and assess Cloudflare Workers + D1 against the actual Node API before changing backend infrastructure. If Node/Postgres compatibility makes a rewrite unsafe, assess Neon Free as the Postgres option. A free tier is quota-limited and must never be described as unlimited or guaranteed 24/7.
+### Neon Free is the preferred durable Postgres candidate
+
+Neon's current official Free plan is $0/month and has no published fixed expiry date, but it is not an unconditional lifetime guarantee or unlimited production plan. Current published limits include:
+- 100 projects;
+- 10 branches per project;
+- 100 CU-hours per project per month;
+- 1 GB Postgres storage per project (20 GB account-wide);
+- 5 GB public network transfer per project per month;
+- compute scales to zero after 5 minutes of inactivity; Free cannot disable this.
+- Free-plan quota exhaustion suspends compute until the monthly reset or an upgrade; no overage billing is applied on the Free plan.
+
+**Interpretation:** Neon is the best current ₹0 Postgres choice for the platform, subject to its quotas and terms. “Lifetime free” cannot be guaranteed by us; the provider can change plan terms. Do not add paid billing or upgrade automatically.
+
+## 3. Migration order — do not switch the production database yet
+
+The current Neon project is real and ready, but its inspected branch lists only `public.yatharth_accounts`. The Render Postgres database expires on 2026-12-02, but its contents could not be inspected because of its IP allowlist. The app's `server/sql/schema.sql` and migration files define a broader application schema.
+
+Before changing Render's `DATABASE_URL` to Neon:
+
+1. Restore read-only access to the current Render database using a permitted owner-controlled route; do not expose credentials in chat or Git.
+2. Inventory all tables, indexes, constraints, migrations, row counts and critical records.
+3. Create a secure database export and verify that it can be restored.
+4. Apply the reviewed application schema/migrations to Neon without overwriting its existing `yatharth_accounts` data.
+5. Import the verified Render data and compare table counts and critical records.
+6. Test API health, readiness, authentication, enquiry writes, read-after-write, payment webhook signature checks, and backup/restore.
+7. Only after a verified cutover, update Render's secret `DATABASE_URL` to Neon and run an end-to-end smoke test.
+8. Keep the old Render database untouched until backup and cutover are verified; note its 2026-12-02 expiry and export before that date.
+
+Do not print, commit, or send database connection strings, JWT secrets, webhook secrets, or passwords. No migration, secret change or deployment was performed by this policy update.
 
 ## 4. Spend and truth controls
 
-- No paid plan, paid add-on, custom domain purchase, or payment method is authorised by this policy.
-- Do not silently switch to a paid tier or allow overage billing.
-- Configure alerts/limits where available; stop or degrade safely when a free quota is exhausted.
-- Keep data exports/backups independent of the hosting provider.
-- Distinguish “configured”, “deployed”, “smoke-tested”, “durable”, and “verified” in every status report.
-- Income remains ₹0 until a genuine provider-confirmed payment and the agreed customer acceptance evidence are both recorded.
+- Keep all active services on explicitly selected Free plans.
+- Do not add a payment method or enable automatic paid upgrades without separate approval.
+- Monitor quota usage; when a Free quota is exhausted, degrade safely and report it.
+- Keep independent exports/backups; a provider's free tier is not a backup guarantee.
+- Distinguish configured, deployed, smoke-tested, durable and verified.
+- Income remains ₹0 until authentic payment-provider confirmation and customer acceptance evidence are both recorded.
 
-## 5. Official plan references checked on 2026-11-08
+## 5. Official plan references checked 2026-11-08
 
-- GitHub Pages availability on GitHub Free public repositories: https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
-- Cloudflare Workers limits: https://developers.cloudflare.com/workers/platform/limits/
-- Cloudflare Pages limits: https://developers.cloudflare.com/pages/platform/limits/
-- Cloudflare D1 pricing/quotas: https://developers.cloudflare.com/d1/platform/pricing/
-- Neon Free plan quotas: https://neon.com/blog/neon-free-plan-1-gb-per-project
-- Supabase Free plan and inactivity pause: https://supabase.com/docs/guides/platform/billing-on-supabase and https://supabase.com/kb/faqs/platform/free-project-pausing
-- Render Free plan limitations: https://render.com/docs/free
+- GitHub Pages: https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
+- Render Free limits: https://render.com/docs/free
+- Render billing/usage FAQ: https://render.com/docs/faq
+- Neon Free plan: https://neon.com/blog/neon-free-plan-1-gb-per-project
+- Neon plan details: https://github.com/neondatabase/website/blob/main/content/docs/introduction/plans.md
 
-**Decision:** Vercel is retired from active platform use. GitHub Pages remains the public static host. Cloudflare Workers + D1 is the first backend candidate to evaluate at ₹0; Neon Free is the Postgres fallback. No migration or deployment is claimed by this policy document.
-
-
-**Observed connection evidence (2026-11-08):** the Vercel bot posted a deployment-failure comment on Draft PR #3670, including a free-deployment rate-limit message and an upgrade link. This confirms that an external Vercel integration is still posting to GitHub even though the inspected repository root has no active Vercel deployment configuration. The account-level disconnect/uninstall is therefore still pending; do not interpret this policy commit as having uninstalled the app.
+**Decision:** Vercel is retired from active platform use. GitHub Pages remains the static showroom. Render Free remains the current Node API runtime with cold-start/quota limits. Neon Free is the preferred PostgreSQL destination after a verified schema-and-data migration. No paid service, migration, deployment, or live health claim is made by this document.
