@@ -1,0 +1,41 @@
+name: Shirmani Social API — Node CI
+
+on:
+  pull_request:
+    paths:
+      - "server/**"
+      - ".github/workflows/shirmani-social-api-node-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "server/**"
+      - ".github/workflows/shirmani-social-api-node-ci.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-social-api-node-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  node-tests:
+    name: Node.js tests and syntax check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install server dependencies
+        working-directory: server
+        run: npm install --no-package-lock --ignore-scripts --no-audit --no-fund
+      - name: Run server test suite
+        working-directory: server
+        run: npm test
+      - name: Check server entrypoint syntax
+        working-directory: server
+        run: npm run check

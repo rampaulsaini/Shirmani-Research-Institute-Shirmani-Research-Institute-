@@ -12,16 +12,33 @@ const app = express();
 const port = Number(process.env.PORT || 8787);
 const isProduction = process.env.NODE_ENV === "production";
 const origin = process.env.CORS_ORIGIN;
+const allowedOrigins = new Set((origin || "").split(",").map(value => value.trim()).filter(value => value && value !== "*"));
 const secret = process.env.JWT_SECRET;
 const ownerEmail = (process.env.OWNER_EMAIL || "").trim().toLowerCase();
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, max: 10 }) : null;
 
-if (isProduction && (!origin || origin === "*" || !secret || !process.env.DATABASE_URL)) {
-  console.error("Production startup requires CORS_ORIGIN, JWT_SECRET and DATABASE_URL.");
-  process.exit(1);
+const missingProductionConfig = [
+  !allowedOrigins.size ? "CORS_ORIGIN" : null,
+  !secret ? "JWT_SECRET" : null,
+  !process.env.DATABASE_URL ? "DATABASE_URL" : null
+].filter(Boolean);
+
+if (isProduction && missingProductionConfig.length) {
+  // Keep the process available for diagnostics; protected routes remain fail-closed.
+  // Never invent credentials or database connection strings.
+  console.error("Production configuration incomplete:", missingProductionConfig.join(", "));
 }
 
-app.use(cors({ origin: origin || "*" }));
+// In production, only explicitly configured origins receive CORS access.
+// A missing or wildcard production origin never opens cross-origin access.
+app.use(cors({
+  origin: (requestOrigin, callback) => {
+    if (!requestOrigin) return callback(null, true);
+    if (allowedOrigins.has(requestOrigin)) return callback(null, true);
+    if (!isProduction && !origin) return callback(null, true);
+    return callback(null, false);
+  }
+}));
 // Render terminates TLS and forwards one trusted proxy hop to this web service.
 app.set("trust proxy", 1);
 app.use(express.json({ limit: "1mb" }));
@@ -613,37 +630,77 @@ app.post("/api/enquiry", dbRequired, enquiryLimiter, async (req, res) => {
   }
 });
 
-app.get("/api/health", async (_req, res) => {
+// Liveness: a running process returns 200 without querying external dependencies.
+app.get("/api/health", (_req, res) => {
+  return res.status(200).json({
+    live: true,
+    service: "shirmani-social-api",
+    commit: process.env.RENDER_GIT_COMMIT || "runtime-commit-unavailable",
+    generated_at: new Date().toISOString()
+  });
+});
+
+// Readiness: only return 200 when the real database and required security config work.
+app.get("/api/ready", async (_req, res) => {
+  const corsConfigured = allowedOrigins.size > 0;
+  const checks = {
+    database: "NOT_CONFIGURED",
+    jwt: secret ? "CONFIGURED" : "JWT_SECRET_NOT_CONFIGURED",
+    cors: corsConfigured ? "CONFIGURED" : "NOT_CONFIGURED_OR_WILDCARD"
+  };
+  if (pool) {
+    try { await pool.query("select 1"); checks.database = "READY"; }
+    catch { checks.database = "ERROR"; }
+  }
+  const ready = checks.database === "READY" && checks.jwt === "CONFIGURED" && checks.cors === "CONFIGURED";
+  return res.status(ready ? 200 : 503).json({
+    ready,
+    status: ready ? "READY" : "BLOCKED",
+    checks,
+    generated_at: new Date().toISOString()
+  });
+});
+
+// Aggregate public status is separate from process liveness. It exposes counts only;
+// verified income requires a consented, verified payment-proof row in INR.
+app.get("/api/status", async (_req, res) => {
   let database = "NOT_CONFIGURED";
-  let counters = { enquiries: null, paid_orders: null, income_inr_minor: null };
+  const counters = { enquiries: null, paid_orders: null, income_inr_minor: null };
   if (pool) {
     try {
       await pool.query("select 1");
       database = "READY";
       const enquiries = await pool.query("select count(*)::int as count from client_enquiries");
+      counters.enquiries = enquiries.rows[0].count;
       const proofTable = await pool.query("select to_regclass('public.paid_orders') is not null as ready");
-      let paidCount = null, incomeMinor = null;
       if (proofTable.rows[0]?.ready) {
         const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as income_inr_minor from paid_orders where verification_status='verified' and customer_consent=true and currency='INR'");
-        paidCount = paid.rows[0].count;
-        incomeMinor = String(paid.rows[0].income_inr_minor);
+        counters.paid_orders = paid.rows[0].count;
+        counters.income_inr_minor = String(paid.rows[0].income_inr_minor);
       }
-      counters = { enquiries: enquiries.rows[0].count, paid_orders: paidCount, income_inr_minor: incomeMinor };
-    } catch { database = "ERROR"; }
+    } catch {
+      database = "ERROR";
+    }
   }
-  const status = database === "READY" ? 200 : 503;
-  let databaseName = null;
-  try { databaseName = process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL).pathname.replace(/^\/+/, "") : null; } catch {}
-  return res.status(status).json({
-    live: true,
-    commit: process.env.RENDER_GIT_COMMIT || "runtime-commit-unavailable",
-    owner: ownerEmail || null,
-    db: databaseName || database,
+  const income = counters.income_inr_minor === null
+    ? "UNAVAILABLE"
+    : "₹" + (Number(counters.income_inr_minor) / 100).toFixed(2);
+  return res.status(database === "READY" ? 200 : 503).json({
+    service: "shirmani-social-api",
     database,
     counters,
-    payment: "PENDING_UNLESS_VERIFIED_PAID_ORDER_EXISTS",
-    income: counters.income_inr_minor === null ? "UNAVAILABLE" : "₹" + (Number(counters.income_inr_minor) / 100).toFixed(2),
-    db_expiry: process.env.DATABASE_EXPIRY_DATE || "CHECK_RENDER_DATABASE_DASHBOARD"
+    payment: "PENDING_UNLESS_VERIFIED_CONSENTED_PAYMENT_PROOF_EXISTS",
+    income,
+    generated_at: new Date().toISOString()
+  });
+});
+
+// Payment webhooks stay fail-closed until a provider-specific signature verifier,
+// amount/currency/order mapping and idempotency ledger are implemented and deployed.
+app.post("/v1/payments/webhook", dbRequired, async (_req, res) => {
+  return res.status(503).json({
+    error: "PAYMENT_PROVIDER_ADAPTER_NOT_CONFIGURED",
+    message: "No payment event can mark an order as paid until a provider-specific verifier and idempotency ledger are deployed."
   });
 });
 
@@ -711,7 +768,7 @@ app.post("/api/owner/payment-proofs/:proofId/verify", dbRequired, auth, ownerOnl
 
 // Public Yatharth Genesis registry check. This proves only the database reservation row,
 // not ownership of a wallet, token issuance, funds, legal-tender status, or exchange operation.
-app.get("/api/yatharth/verify/:accountId", dbRequired, async (req, res) => {
+const verifyYatharthAccount = async (req, res) => {
   const accountId = String(req.params.accountId || "").trim();
   if (!/^YTH-[0-9]{10}$/.test(accountId)) {
     return res.status(400).json({ error: "INVALID_YATHARTH_ACCOUNT_ID" });
@@ -739,7 +796,10 @@ app.get("/api/yatharth/verify/:accountId", dbRequired, async (req, res) => {
     }
     return res.status(503).json({ error: "YATHARTH_VERIFICATION_UNAVAILABLE", verified: false });
   }
-});
+};
+
+app.get("/api/yatharth/verify/:accountId", dbRequired, verifyYatharthAccount);
+app.get("/verify/:accountId", dbRequired, verifyYatharthAccount);
 
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
 app.listen(port, () => console.log(`shirmani-social-api listening on :${port}`));
