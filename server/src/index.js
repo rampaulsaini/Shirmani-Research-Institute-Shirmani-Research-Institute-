@@ -647,7 +647,8 @@ app.post("/api/enquiry", dbRequired, enquiryLimiter, async (req, res) => {
   try {
     client = await pool.connect();
     await client.query("begin");
-    const duplicateKey = [email || "", phone || "", service.toLowerCase(), topic.toLowerCase()].join("|");
+    const contactKey = email ? "email:" + email : "phone:" + phone.replace(/\D/g, "");
+    const duplicateKey = [contactKey, service.toLowerCase(), topic.toLowerCase()].join("|");
     await client.query("select pg_advisory_xact_lock(hashtext($1))", [duplicateKey]);
     const duplicate = await client.query(
       "select id,status,created_at from client_enquiries where created_at > now() - interval '24 hours' and lower(service)=lower($3) and lower(topic)=lower($4) and (($1::text is not null and lower(email)=lower($1)) or ($2::text is not null and regexp_replace(coalesce(phone,''),'[^0-9]','','g')=regexp_replace($2,'[^0-9]','','g'))) order by created_at desc limit 1",
