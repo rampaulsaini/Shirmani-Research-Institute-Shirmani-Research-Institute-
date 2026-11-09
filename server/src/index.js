@@ -634,7 +634,7 @@ app.post("/api/enquiry", dbRequired, enquiryLimiter, async (req, res) => {
       (phone && !/^[+0-9() .-]{7,32}$/.test(phone))) {
     return res.status(400).json({ error: "VALID_CONTACT_REQUIRED", message: "वैध ईमेल या फोन आवश्यक है।" });
   }
-  if (body.name !== "undefined" && typeof body.name !== "string" ||
+  if (typeof body.name !== "undefined" && typeof body.name !== "string" ||
       typeof body.service !== "string" || body.service.length > 80 ||
       typeof body.topic !== "undefined" && typeof body.topic !== "string" ||
       typeof body.goal !== "undefined" && typeof body.goal !== "string" ||
