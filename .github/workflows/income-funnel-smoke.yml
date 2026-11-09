@@ -47,6 +47,5 @@ jobs:
       - name: Check canonical offer and enquiry routes
         run: python tests/income_funnel_smoke.py
       - name: Check deployed income API readiness (read-only)
-        if: github.event_name != 'pull_request'
         timeout-minutes: 9
         run: python tests/live_income_api_smoke.py
