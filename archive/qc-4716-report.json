@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "archive_record": "SRI-ARCHIVE-QC-4716-2026-11-09",
+  "preserved_on": "2026-11-09",
+  "title": "Deterministic QC report — preserved",
+  "source": {
+    "path": "generated/product-qc-gate.json",
+    "blob_sha": "61952ddfd1bfb1708090e9e6df8a3b48e0acbab8"
+  },
+  "report": {
+    "generated_at": "2026-11-09T10:25:00.732016+00:00",
+    "gate": "PRODUCT-QC-GATE",
+    "scope": "PRODUCED_PRODUCTS_ONLY",
+    "catalog_count": 5000,
+    "produced_count": 4716,
+    "qc_passed": 4716,
+    "qc_failed": 0,
+    "pass_percent": 100,
+    "dispatch_default": "NO",
+    "release_state": "QC_PASS_READY_FOR_DISPATCH",
+    "checks": [
+      "catalog fields",
+      "browser asset",
+      "QR QC code",
+      "Gate No.",
+      "Dispatch No.",
+      "offer price",
+      "description",
+      "guarantee",
+      "packing"
+    ],
+    "integrity": {
+      "deterministic_qc": true,
+      "independent_scientific_verification": false,
+      "sale_claim": false
+    },
+    "errors": []
+  },
+  "scope_note": "100% applies only to 4,716 produced products in PRODUCED_PRODUCTS_ONLY scope; this is not independent scientific verification or sale/dispatch proof.",
+  "deletion_performed": false
+}
