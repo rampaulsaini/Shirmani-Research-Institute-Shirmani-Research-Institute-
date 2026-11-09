@@ -39,6 +39,8 @@ def read_qc(root: Path, catalog_count: int) -> tuple[dict, bool]:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError):
         return {}, False
+    if not isinstance(payload, dict):
+        return {}, False
     return payload, qc_passed(payload, catalog_count)
 
 
