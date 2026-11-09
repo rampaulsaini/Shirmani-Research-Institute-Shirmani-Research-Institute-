@@ -80,7 +80,7 @@ class PublicQCStateContractTests(unittest.TestCase):
 
         live = self.read_json("live-production-state.json")
         self.assertEqual(live["qc_state"], "QC_REVIEW_REQUIRED")
-        self.assertEqual(live["qc_passed"], 0)
+        self.assertEqual(live["qc_passed"], 1)
         self.assertEqual(live["qc_failed"], 1)
         self.assertEqual(live["dispatch_released"], 0)
         self.assertEqual(live["sales_claimed"], 0)
@@ -129,7 +129,9 @@ class PublicQCStateContractTests(unittest.TestCase):
         live = self.read_json("live-production-state.json")
         self.assertEqual(live["qc_state"], "READY_FOR_QC")
         self.assertEqual(live["qc_passed"], 0)
-        self.assertEqual(live["qc_failed"], 0)
+        self.assertIsNone(live["qc_failed"])
+        self.assertIsNone(live["qc_passed"])
+        self.assertIsNone(live["qc_produced_count"])
 
 
 if __name__ == "__main__":
