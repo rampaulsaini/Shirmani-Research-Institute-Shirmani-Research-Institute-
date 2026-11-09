@@ -78,7 +78,19 @@ def main():
         task["task_sha256"] = sha256_obj(task)
         rows.append(task)
     OUT.write_text("".join(json.dumps(x, ensure_ascii=False, sort_keys=True) + "\n" for x in rows), encoding="utf-8")
-    print(json.dumps({"queue_records": len(rows), "verified_records": 0, "fail_closed": True}, ensure_ascii=False))
+    summary = {
+        "version": 2,
+        "records": len(rows),
+        "queued": sum(row.get("status") == "QUEUED" for row in rows),
+        "reviewed": sum(row.get("status") == "REVIEWED" for row in rows),
+        "verified": sum(row.get("verification_status") == "VERIFIED" for row in rows),
+        "publication_gate": "CHECK" if rows else "BLOCK",
+        "verification_policy": "Queue creation is not independent verification; only human-reviewed evidence may be promoted."
+    }
+    (OUT / "VERIFICATION-QUEUE.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(json.dumps({**summary, "queue_records": len(rows), "fail_closed": True}, ensure_ascii=False))
 
 if __name__ == "__main__":
     main()

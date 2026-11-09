@@ -1,0 +1,33 @@
+name: Public QC State Contract Tests
+
+on:
+  pull_request:
+    paths:
+      - "factory/qc_state_contract.py"
+      - "tests/test_qc_state_contract.py"
+      - ".github/workflows/public-qc-state-tests.yml"
+  push:
+    branches: [main]
+    paths:
+      - "factory/qc_state_contract.py"
+      - "tests/test_qc_state_contract.py"
+      - ".github/workflows/public-qc-state-tests.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-qc-state-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qc-state-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Run public QC state contract regression tests
+        run: python3 -m unittest discover -s tests -p "test_qc_state_contract.py" -v
