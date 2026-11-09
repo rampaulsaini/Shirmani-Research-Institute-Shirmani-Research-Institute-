@@ -23,10 +23,10 @@ EXPECTED_HOST = "shirmani-social-api-node.onrender.com"
 def get_json(path: str) -> tuple[int, dict]:
     url = BASE_URL + path
     last_error = "no response"
-    for attempt in range(12):
+    for attempt in range(6):
         try:
             request = Request(url, headers={"Accept": "application/json", "User-Agent": "Shirmani-ReadOnly-Smoke/1.0"})
-            with urlopen(request, timeout=20) as response:
+            with urlopen(request, timeout=10) as response:
                 status = response.status
                 payload = json.loads(response.read().decode("utf-8"))
                 return status, payload if isinstance(payload, dict) else {}
@@ -38,8 +38,8 @@ def get_json(path: str) -> tuple[int, dict]:
             return exc.code, payload if isinstance(payload, dict) else {}
         except (URLError, TimeoutError, OSError, ValueError) as exc:
             last_error = type(exc).__name__
-            if attempt < 11:
-                time.sleep(10)
+            if attempt < 5:
+                time.sleep(5)
     raise AssertionError(f"{path}: no HTTP response after retries ({last_error})")
 
 
