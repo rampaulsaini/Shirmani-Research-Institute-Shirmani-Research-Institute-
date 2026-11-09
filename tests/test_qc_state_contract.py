@@ -102,6 +102,24 @@ class PublicQCStateContractTests(unittest.TestCase):
                 self.assertEqual(updated["sales_claimed"], 0)
                 self.assertEqual(updated["payment_claimed"], 0)
 
+    def test_boolean_and_invalid_qc_counts_fail_closed(self):
+        for overrides in (
+            {"catalog_count": True},
+            {"produced_count": True},
+            {"qc_passed": True},
+            {"qc_failed": False},
+            {"qc_failed": -1},
+        ):
+            with self.subTest(overrides=overrides):
+                self.write_qc(**overrides)
+                self.assertFalse(sync_public_qc_state(self.root, 2))
+                live = self.read_json("live-production-state.json")
+                self.assertEqual(live["qc_state"], "READY_FOR_QC")
+                self.assertEqual(live["qc_passed"], 0)
+                self.assertEqual(live["dispatch_released"], 0)
+                self.assertEqual(live["sales_claimed"], 0)
+                self.assertEqual(live["payment_claimed"], 0)
+
     def test_missing_qc_fails_closed(self):
         self.assertFalse(sync_public_qc_state(self.root, 2))
         live = self.read_json("live-production-state.json")
