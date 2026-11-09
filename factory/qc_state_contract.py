@@ -69,6 +69,12 @@ def sync_public_qc_state(root: Path, catalog_count: int) -> bool:
     live_path = gen / "live-production-state.json"
     if live_path.is_file():
         live = json.loads(live_path.read_text(encoding="utf-8"))
+        pending_raw = live.get("current_catalog_pending", 0)
+        pending_valid = (
+            isinstance(pending_raw, int)
+            and not isinstance(pending_raw, bool)
+            and pending_raw >= 0
+        )
         live.update({
             "qc_state": state,
             "qc_catalog_count": catalog_count,
@@ -79,8 +85,9 @@ def sync_public_qc_state(root: Path, catalog_count: int) -> bool:
             "state": (
                 "QC_PASSED_AWAITING_DISPATCH" if passed
                 else "QC_REVIEW_REQUIRED" if qc.get("release_state") == "QC_REVIEW_REQUIRED"
-                else "PRODUCTION_COMPLETE_CURRENT_CATALOG" if live.get("current_catalog_pending", 0) == 0
-                else "PRODUCTION_IN_PROGRESS"
+                else "PRODUCTION_COMPLETE_CURRENT_CATALOG" if pending_valid and pending_raw == 0
+                else "PRODUCTION_IN_PROGRESS" if pending_valid
+                else "PRODUCTION_STATE_UNAVAILABLE"
             ),
         })
         live_path.write_text(json.dumps(live, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
