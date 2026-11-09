@@ -54,3 +54,30 @@ test("payment proof instructions require human account matching and keep evidenc
     "customer acceptance"
   ]) assert.ok(doc.includes(contract), "missing payment-proof contract: " + contract);
 });
+
+
+test("sale-gate database schema supports private payment verification, delivery and acceptance", () => {
+  const schema = read("../sql/schema.sql");
+  assert.match(schema, /create table if not exists paid_orders/);
+  assert.match(schema, /verification_status text not null default 'pending'/);
+  assert.match(schema, /verification_method text/);
+  assert.match(schema, /verified_by uuid references accounts\(id\)/);
+  assert.match(schema, /screenshot_url text not null check \(screenshot_url ~ '\^private:/);
+  assert.match(schema, /add column if not exists delivery_reference text/);
+  assert.match(schema, /add column if not exists delivered_at timestamptz/);
+  assert.match(schema, /add column if not exists customer_acceptance_reference text/);
+  assert.match(schema, /add column if not exists customer_accepted_at timestamptz/);
+});
+
+test("sale-gate API enforces owner bank match before paid, delivery before acceptance", () => {
+  const source = read("../src/index.js");
+  assert.ok(source.includes('app.post("/api/owner/orders/:orderId/payment-proof"'));
+  assert.ok(source.includes('app.post("/api/owner/payment-proofs/:proofId/verify"'));
+  assert.ok(source.includes('confirm_bank_match !== true'));
+  assert.ok(source.includes("verification_status='verified'"));
+  assert.ok(source.includes("verification_method='owner_bank_statement'"));
+  assert.ok(source.includes("where id=$2 and status='paid'"));
+  assert.ok(source.includes("where id=$2 and status='fulfilled'"));
+  assert.ok(source.includes("ORDER_MUST_BE_PAID_BEFORE_DELIVERY"));
+  assert.ok(source.includes("ORDER_MUST_BE_DELIVERED_BEFORE_ACCEPTANCE"));
+});
