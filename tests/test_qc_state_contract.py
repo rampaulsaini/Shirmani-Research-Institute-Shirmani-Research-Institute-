@@ -86,6 +86,20 @@ class PublicQCStateContractTests(unittest.TestCase):
         self.assertEqual(live["sales_claimed"], 0)
         self.assertEqual(live["payment_claimed"], 0)
 
+    def test_malformed_pending_count_does_not_crash_or_claim_completion(self):
+        self.write_qc()
+        live_path = self.generated / "live-production-state.json"
+        live = json.loads(live_path.read_text(encoding="utf-8"))
+        live["current_catalog_pending"] = "unknown"
+        live_path.write_text(json.dumps(live), encoding="utf-8")
+
+        self.assertTrue(sync_public_qc_state(self.root, 2))
+        updated = self.read_json("live-production-state.json")
+        self.assertEqual(updated["state"], "PRODUCTION_IN_PROGRESS")
+        self.assertEqual(updated["dispatch_released"], 0)
+        self.assertEqual(updated["sales_claimed"], 0)
+        self.assertEqual(updated["payment_claimed"], 0)
+
     def test_missing_qc_fails_closed(self):
         self.assertFalse(sync_public_qc_state(self.root, 2))
         live = self.read_json("live-production-state.json")
