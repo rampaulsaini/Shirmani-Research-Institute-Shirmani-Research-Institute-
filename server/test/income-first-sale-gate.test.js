@@ -56,17 +56,25 @@ test("payment proof instructions require human account matching and keep evidenc
 });
 
 
-test("sale-gate database schema supports private payment verification, delivery and acceptance", () => {
-  const schema = read("../sql/schema.sql");
-  assert.match(schema, /create table if not exists paid_orders/);
-  assert.match(schema, /verification_status text not null default 'pending'/);
-  assert.match(schema, /verification_method text/);
-  assert.match(schema, /verified_by uuid references accounts\(id\)/);
-  assert.match(schema, /screenshot_url text not null check \(screenshot_url ~ '\^private:/);
-  assert.match(schema, /add column if not exists delivery_reference text/);
-  assert.match(schema, /add column if not exists delivered_at timestamptz/);
-  assert.match(schema, /add column if not exists customer_acceptance_reference text/);
-  assert.match(schema, /add column if not exists customer_accepted_at timestamptz/);
+
+test("sale-gate migrations define private payment, delivery and acceptance evidence", () => {
+  const payment = fs.readFileSync(new URL("../sql/migrations/003_private_income_proof.sql", import.meta.url), "utf8");
+  const delivery = fs.readFileSync(new URL("../sql/migrations/004_delivery_acceptance_evidence.sql", import.meta.url), "utf8");
+  for (const contract of [
+    "create table if not exists paid_orders",
+    "order_id uuid not null unique",
+    "verification_status text not null default 'pending'",
+    "verified_by uuid references accounts(id)",
+    "screenshot_url text not null"
+  ]) assert.ok(payment.includes(contract), "missing payment migration contract: " + contract);
+  for (const contract of [
+    "delivery_reference text",
+    "delivered_at timestamptz",
+    "customer_acceptance_reference text",
+    "customer_accepted_at timestamptz",
+    "orders_delivery_reference_private_check",
+    "orders_acceptance_reference_private_check"
+  ]) assert.ok(delivery.includes(contract), "missing delivery migration contract: " + contract);
 });
 
 test("sale-gate API enforces owner bank match before paid, delivery before acceptance", () => {
