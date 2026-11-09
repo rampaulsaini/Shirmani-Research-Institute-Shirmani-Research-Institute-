@@ -1,10 +1,6 @@
 {
-  "generated_at": "2026-11-09T02:55:08.172384+00:00",
-  "source_produced_at": "2026-11-09T02:55:07.634090+00:00",
-  "source_latest_produced_at": "2026-11-09T02:55:07.822098+00:00",
-  "source_cycle": 2962,
+  "generated_at": "2026-11-09T03:01:42.928929+00:00",
   "principle": "Production first; verification downstream.",
-  "cycle": 2962,
   "cycle_results": 500,
   "lanes": {
     "ai-ml-nlp": 61,
@@ -27,13 +23,13 @@
     "generated/public-production/research.jsonl",
     "generated/public-production/security-quality.jsonl",
     "generated/public-production/social-media.jsonl",
-    "generated/production-results.jsonl",
+    "generated/public-production-module-index.json",
+    "generated/public-production-by-module.html",
     "generated/public-production/archive/index.json"
   ],
   "integrity": {
     "generated_output_is_concrete": true,
     "source_bound": true,
-    "queue_to_lane_records_one_to_one": true,
     "independent_verification_claim": false
   }
 }
