@@ -13,7 +13,6 @@ on:
       - "showroom/income-first-client-pipeline.html"
       - "tests/income_funnel_smoke.py"
       - "tests/live_income_api_smoke.py"
-      - "tests/live_income_api_smoke.py"
       - ".github/workflows/income-funnel-smoke.yml"
   push:
     branches: [main]
