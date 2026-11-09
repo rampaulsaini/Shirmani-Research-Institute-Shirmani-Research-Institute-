@@ -16,11 +16,13 @@
 @media(max-width:600px){.public-journey{padding:14px}.journey-nav a{flex:1;text-align:center}}
 
 .topnav{position:sticky;top:0;z-index:20;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;padding:10px 12px;background:rgba(5,8,16,.96);border-bottom:1px solid var(--line)}.topnav a{display:inline-block;padding:7px 13px;border:1px solid #3b566f;border-radius:999px;color:var(--text);background:#0a1420;font-weight:700}.topnav a:hover,.topnav a:focus-visible{border-color:var(--gold);color:var(--gold)}
+
+.sale-gate{border:2px solid var(--gold);border-radius:18px;padding:clamp(16px,3vw,26px);margin:18px 0;background:linear-gradient(145deg,#14243a,#09111d)}.sale-gate h2{margin:0 0 8px}.sale-gate .service-id{color:var(--cyan);font-weight:900;letter-spacing:.04em}.sale-gate .price{font-size:2rem}.sale-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}.sale-box{background:#07101a;border:1px solid #40556b;border-radius:14px;padding:16px}.sale-form{display:grid;gap:10px}.sale-form label{display:grid;gap:5px;font-weight:700}.sale-form input,.sale-form select,.sale-form textarea{width:100%;padding:11px;border-radius:9px;border:1px solid #38536c;background:#07101a;color:#fff;font:inherit}.sale-form textarea{min-height:80px}.sale-form button{border:0;cursor:pointer}.sale-status{min-height:1.5em;color:var(--green)}.sale-terms{color:var(--muted);font-size:.92rem}.sale-payment{overflow-wrap:anywhere;font-weight:800;color:var(--gold)}
 </style></head><body>
 <nav class="topnav" aria-label="मुख्य नेविगेशन"><a href="showroom-public.html">मुख्य पृष्ठ</a><a href="#income-first">पहले आय</a><a href="#marketplace">Products / Demo</a><a href="showroom/heart-view-explainer-research-studio.html">Research / रिसर्च</a><a href="#continuous-production">Production / QC</a><a href="factory-dashboard.html">Factory</a></nav><main>
 <section class="hero">
 <div class="tag">SUPREME PUBLIC SHOWROOM · PRODUCTION-FIRST</div>
-<h1>꙰ SHIRMANI Supreme Public Showroom</h1>
+<h1>Shirmani Research Institute — Supreme Showroom</h1>
 <p><strong>Institute → Factory → QC Gate → Public Showroom → Order / Delivery</strong></p>
 <p>यह public-facing अंतिम presentation layer है। ग्राहक product खोज सकता है, category चुन सकता है, description पढ़ सकता है, प्रकाशित rate/offer देख सकता है, concrete artifact खोल सकता है और Product Passport/QC information देख सकता है।</p>
 <div class="flow">
@@ -35,8 +37,53 @@
 </div><p id="telemetry" class="muted">Live production telemetry loading…</p><p id="incomeEvidenceTelemetry" class="muted">Income and verification evidence loading…</p><p id="dailyTelemetry" class="muted">Daily automission report loading…</p><p id="continuousTelemetry" class="muted">Continuous production lane loading…</p>
 <div style="margin:12px 0"><a class="btn alt" href="production-progress-map.html">📊 Open Live Production Progress Map</a></div>
 <div class="notice"><strong>Production reality:</strong> concrete production और commercial catalog अलग counters हैं। अभी बने हुए concrete artifacts की संख्या production status से, जबकि price/description/order metadata commercial catalog से पढ़े जाते हैं। इसलिए कोई संख्या बिना source record के sale या delivery नहीं मानी जाती।</div>
+
 </section>
 
+<section class="sale-gate" id="sri-svc-001" aria-labelledby="sri-sale-title">
+  <div class="service-id">FEATURED SERVICE · SRI-SVC-001</div>
+  <h2 id="sri-sale-title">Hindi / English Writing &amp; Research</h2>
+  <div class="price">₹999 · First Pilot</div>
+  <p>एक सीमित शुरुआती पायलट: ग्राहक द्वारा दिए गए अधिकतम 500 शब्दों की writing polish / research-summary सहायता। अंतिम deliverables और स्रोत brief देखने के बाद लिखित रूप में तय होंगे।</p>
+  <div class="sale-grid">
+    <div class="sale-box">
+      <h3>Scope · Deadline · Revisions</h3>
+      <ul>
+        <li><strong>Scope:</strong> अधिकतम 500 शब्द; Hindi या English clarity, structure और language सुधार अथवा सहमत स्रोतों का संक्षिप्त सारांश</li>
+        <li><strong>Deadline:</strong> स्वीकृत brief और आवश्यक सामग्री मिलने के बाद 2 कार्य-दिवस का प्रस्तावित समय</li>
+        <li><strong>Revisions:</strong> एक समेकित revision</li>
+        <li><strong>₹999:</strong> केवल लिखित scope और अंतिम quote की स्वीकृति के बाद लागू</li>
+      </ul>
+      <p class="sale-terms">काम शुरू करने से पहले ग्राहक और संस्थान scope, deadline, revision सीमा, final price और payment terms की लिखित पुष्टि करेंगे। Enquiry भेजना order या payment नहीं है।</p>
+      <a class="btn" href="#sri-enquiry">Open service desk →</a>
+    </div>
+    <div class="sale-box">
+      <h3>Payment details · पुष्टि के बाद ही भुगतान</h3>
+      <p>UPI ID</p><p class="sale-payment">9622254967@ptyes</p>
+      <p>PayPal</p><p class="sale-payment">sainirampaul60@gmail.com</p>
+      <p class="sale-terms">भुगतान से पहले अपने UPI / PayPal App में recipient का नाम, ID और राशि स्वयं verify करें। पहले लिखित proposal स्वीकार करें। OTP, UPI PIN, password या bank login कभी साझा न करें।</p>
+      <p><a class="btn alt" href="docs/payment-proof-format.md">Payment proof format देखें</a></p>
+    </div>
+  </div>
+  <div class="sale-box" id="sri-enquiry" style="margin-top:14px">
+    <h3>Customer enquiry · सुरक्षित service desk</h3>
+    <p class="sale-terms">यह form enquiry को मौजूदा private PostgreSQL lead inbox में भेजता है। Duplicate enquiry को 24 घंटे के भीतर पहचानकर दोबारा record नहीं किया जाएगा। कोई automatic WhatsApp/email message या payment नहीं भेजा जाता।</p>
+    <form class="sale-form" id="sriSaleEnquiry">
+      <label>नाम <input name="name" maxlength="120" required autocomplete="name"></label>
+      <label>ईमेल (वैकल्पिक) <input name="email" type="email" maxlength="254" autocomplete="email"></label>
+      <label>फोन / WhatsApp (वैकल्पिक) <input name="phone" type="tel" maxlength="32" autocomplete="tel"></label>
+      <label>विषय / जरूरत <input name="topic" maxlength="180" required placeholder="आपको किस लेखन या शोध सहायता की जरूरत है?"></label>
+      <label>भाषा <select name="language"><option>Hindi</option><option>English</option><option>Hindi + English</option><option>To be agreed</option></select></label>
+      <label>समय-सीमा की अपेक्षा <input name="deadline" maxlength="100" placeholder="उदाहरण: 2 कार्य-दिवस; अंतिम पुष्टि आवश्यक"></label>
+      <label>Brief / निर्देश (वैकल्पिक) <textarea name="notes" maxlength="1500" placeholder="कृपया निजी या संवेदनशील जानकारी न भेजें।"></textarea></label>
+      <label style="position:absolute;left:-10000px" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
+      <label><span><input name="consent" type="checkbox" required style="width:auto"> मैं इस enquiry को समीक्षा के लिए भेजने और दिए गए संपर्क माध्यम पर उत्तर पाने की सहमति देता/देती हूँ।</span></label>
+      <button class="btn" type="submit">Submit enquiry →</button>
+      <p class="sale-status" id="sriEnquiryStatus" role="status" aria-live="polite"></p>
+    </form>
+    <p class="sale-terms">API endpoint: <code>POST /api/enquiry</code> · Save target: private <code>client_enquiries</code> database table + PII-free audit event.</p>
+  </div>
+</section>
 
 <section class="public-journey" id="start-here" aria-labelledby="journey-title">
 <div class="tag">START HERE · CLEAR PUBLIC ROUTE</div>
@@ -97,6 +144,52 @@
 <section class="panel"><h2>⚙️ Continuous Production</h2><p><strong>5-minute production cycle:</strong> scheduled automation का मुख्य उद्देश्य concrete work और customer-visible outputs बनाना है। QC/gate/verification produced result की अलग downstream layers हैं।</p><div class="notice"><strong>Truth boundary:</strong> RUN ≠ PRODUCT · PRODUCED ≠ SOLD · QC PASS ≠ PAYMENT · QC PASS ≠ INDEPENDENT VERIFICATION.</div></section>
 <footer class="muted" style="text-align:center;padding:25px">SHIRMANI Research Institute · Supreme Public Showroom · Production → QC → Showroom → Sale</footer>
 </main>
+
+<script>
+(() => {
+  const form = document.getElementById("sriSaleEnquiry");
+  if (!form) return;
+  const status = document.getElementById("sriEnquiryStatus");
+  form.addEventListener("submit", async event => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const email = String(data.get("email") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
+    if (!email && !phone) { status.textContent = "कृपया ईमेल या फोन में से कम-से-कम एक दें।"; return; }
+    const payload = {
+      name: String(data.get("name") || "").trim(),
+      email, phone,
+      service: "SRI-SVC-001 Hindi/English Writing & Research",
+      language: String(data.get("language") || "To be agreed"),
+      topic: String(data.get("topic") || "").trim(),
+      goal: "₹999 first pilot enquiry; final scope and quote require written agreement.",
+      word_count: "Up to 500 words — confirm in proposal",
+      deadline: String(data.get("deadline") || "2 working days proposed; confirm in writing"),
+      budget: "INR 999 proposed first pilot; not an accepted quote",
+      notes: String(data.get("notes") || "").trim(),
+      website: String(data.get("website") || ""),
+      consent: data.get("consent") === "on"
+    };
+    const endpoint = "https://shirmani-social-api-node.onrender.com/api/enquiry";
+    const button = form.querySelector('button[type="submit"]');
+    button.disabled = true; status.textContent = "Enquiry सुरक्षित रूप से भेजी जा रही है…";
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.message || result.error || "API request failed (" + response.status + ")");
+      status.textContent = result.duplicate
+        ? "यह enquiry पहले से दर्ज है। Reference: " + result.id
+        : "Enquiry दर्ज हुई। Reference: " + result.id + " · अभी कोई order या payment नहीं बना है।";
+      if (!result.duplicate) form.reset();
+    } catch (error) {
+      status.textContent = "Enquiry अभी दर्ज नहीं हुई: " + error.message + " · कृपया बाद में पुनः प्रयास करें; भुगतान न करें।";
+    } finally { button.disabled = false; }
+  });
+})();
+</script>
 <script>
 let products=[],page=1,visualReady=0,mediaManifest=null,vipManifest=null;const pageSize=48,$=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m])),money=n=>n==null?"Price pending":"₹"+Number(n).toLocaleString("en-IN");
