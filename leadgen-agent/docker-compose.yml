@@ -1,0 +1,15 @@
+services:
+  lead-agent:
+    build: .
+    restart: unless-stopped
+    environment:
+      LEAD_DB_PATH: /data/leads.sqlite3
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+      OLLAMA_MODEL: llama3.2:3b
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - lead_data:/data
+    command: ["python","lead_agent.py","init"]
+volumes:
+  lead_data:
