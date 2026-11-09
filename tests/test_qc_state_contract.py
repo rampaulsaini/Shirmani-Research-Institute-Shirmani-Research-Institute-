@@ -146,6 +146,18 @@ class PublicQCStateContractTests(unittest.TestCase):
                 self.assertEqual(live["sales_claimed"], 0)
                 self.assertEqual(live["payment_claimed"], 0)
 
+    def test_non_object_qc_payload_fails_closed(self):
+        (self.generated / "product-qc-gate.json").write_text("[]", encoding="utf-8")
+        self.assertFalse(sync_public_qc_state(self.root, 2))
+        live = self.read_json("live-production-state.json")
+        self.assertEqual(live["qc_state"], "READY_FOR_QC")
+        self.assertIsNone(live["qc_passed"])
+        self.assertIsNone(live["qc_failed"])
+        self.assertIsNone(live["qc_produced_count"])
+        self.assertEqual(live["dispatch_released"], 0)
+        self.assertEqual(live["sales_claimed"], 0)
+        self.assertEqual(live["payment_claimed"], 0)
+
     def test_missing_qc_fails_closed(self):
         self.assertFalse(sync_public_qc_state(self.root, 2))
         live = self.read_json("live-production-state.json")
