@@ -51,7 +51,7 @@ def sync_public_qc_state(root: Path, catalog_count: int) -> bool:
     root = Path(root)
     qc, passed = read_qc(root, catalog_count)
     qc_failed = _nonnegative_int_or_none(qc.get("qc_failed"))
-    qc_passed_count = _nonnegative_int_or_none(qc.get("qc_passed")) if passed else 0
+    qc_passed_count = _nonnegative_int_or_none(qc.get("qc_passed"))
     produced_count = _nonnegative_int_or_none(qc.get("produced_count"))
     state = (
         "QC_PASSED" if passed
