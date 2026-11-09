@@ -92,11 +92,11 @@ def sync_public_qc_state(root: Path, catalog_count: int) -> bool:
             "qc_failed": qc_failed,
             "qc_state_source": "generated/product-qc-gate.json",
             "state": (
-                "QC_PASSED_AWAITING_DISPATCH" if passed
+                "PRODUCTION_STATE_UNAVAILABLE" if not pending_valid
+                else "QC_PASSED_AWAITING_DISPATCH" if passed
                 else "QC_REVIEW_REQUIRED" if qc.get("release_state") == "QC_REVIEW_REQUIRED"
-                else "PRODUCTION_COMPLETE_CURRENT_CATALOG" if pending_valid and pending_raw == 0
-                else "PRODUCTION_IN_PROGRESS" if pending_valid
-                else "PRODUCTION_STATE_UNAVAILABLE"
+                else "PRODUCTION_COMPLETE_CURRENT_CATALOG" if pending_raw == 0
+                else "PRODUCTION_IN_PROGRESS"
             ),
         })
         live_path.write_text(json.dumps(live, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
