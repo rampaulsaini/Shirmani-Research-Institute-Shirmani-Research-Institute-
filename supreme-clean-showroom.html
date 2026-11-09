@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SHIRMANI Research Institute — first paid pilot, consent-based enquiry and searchable public product showroom.">
+<title>SHIRMANI Research Institute — Heart-View Showroom</title>
+<style>
+:root{color-scheme:dark;--bg:#07101a;--panel:#101d2b;--panel2:#14283a;--line:#30465c;--gold:#f2d17c;--mint:#8ce2ce;--cyan:#83dff0;--text:#f4f7fb;--muted:#b9c7d5;--ok:#91dfac}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 70% -10%,#25435a 0,transparent 42rem),var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+a{color:var(--cyan)}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1220px;margin:auto;padding:16px}.top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:10px 2px 16px}.brand{font-weight:900;color:var(--gold);letter-spacing:.03em}.top-actions,.nav,.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.nav{padding:10px 0 14px;border-bottom:1px solid var(--line)}.nav a,.account,.btn{display:inline-block;border:1px solid var(--line);border-radius:10px;padding:9px 13px;text-decoration:none;color:var(--text);background:#0d1b29;font-weight:750}.account{color:var(--muted);font-size:.9rem}.hero,.panel{border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#14283b,#0d1927);padding:clamp(17px,3vw,28px);margin:14px 0}.hero{border-color:#82744c}.eyebrow,.tag{color:var(--mint);font-weight:850;letter-spacing:.07em;font-size:.82rem}h1{font-size:clamp(2rem,5.8vw,4rem);line-height:1.12;color:var(--gold);margin:.2em 0}h2{font-size:clamp(1.35rem,3vw,2rem);color:var(--gold);margin:0 0 9px}h3{color:var(--mint);margin:.15em 0}.muted,p{color:var(--muted)}.lead{max-width:850px}.btn.primary{background:var(--gold);color:#17202a;border-color:var(--gold)}.btn.secondary{border-color:#42627a;color:var(--cyan)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}.card{background:#091725;border:1px solid var(--line);border-radius:14px;padding:15px;min-width:0}.pilot{border:2px solid var(--gold);background:linear-gradient(145deg,#1a2c40,#0a1521)}.price{font-size:clamp(2rem,5vw,3rem);font-weight:950;color:var(--gold);line-height:1.2}.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}.spec{padding:10px;border:1px solid var(--line);border-radius:10px;background:#08131f}.spec b{display:block;color:var(--gold)}.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}label{display:block;font-weight:700;margin:8px 0 4px}input,select,textarea{width:100%;padding:11px;border-radius:9px;border:1px solid #465d73;background:#07131f;color:var(--text);font:inherit}textarea{min-height:85px;resize:vertical}.consent{display:flex;gap:10px;align-items:flex-start;font-weight:500}.consent input{width:auto;margin-top:6px}.notice{border-left:4px solid var(--mint);background:#0a1a27;padding:12px 14px;color:var(--muted)}.status{min-height:1.5em;color:var(--ok)}.toolbar{display:grid;grid-template-columns:2fr repeat(4,minmax(130px,1fr));gap:8px;margin:14px 0}.toolbar input{min-width:0}.catalogue{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:12px}.product{display:flex;flex-direction:column;gap:7px}.product .id{font-size:.78rem;letter-spacing:.06em;color:var(--cyan);font-weight:850}.product .pprice{font-size:1.25rem;font-weight:900;color:var(--gold)}.product .meta{font-size:.82rem;color:var(--muted)}.product .links{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto}.product .links a{font-size:.86rem}.pager{display:flex;justify-content:center;align-items:center;gap:12px;margin:18px 0}.pager button,.submit{border:0;border-radius:10px;background:var(--gold);color:#17202a;padding:10px 15px;font-weight:900;cursor:pointer}.pager button:disabled{opacity:.4;cursor:not-allowed}.stats{display:flex;gap:10px;flex-wrap:wrap}.stat{padding:10px 13px;border:1px solid var(--line);border-radius:12px;background:#091725}.stat b{color:var(--gold)}.payment{overflow-wrap:anywhere;color:var(--gold);font-weight:850}.footer{border-top:1px solid var(--line);margin-top:24px;padding:20px 2px;color:var(--muted)}.small{font-size:.88rem}@media(max-width:850px){.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}}@media(max-width:520px){.wrap{padding:10px}.specs{grid-template-columns:1fr}.nav{overflow-x:auto;flex-wrap:nowrap}.nav a{white-space:nowrap}.toolbar{grid-template-columns:1fr}.toolbar input{grid-column:auto}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand">◈ SHIRMANI RESEARCH INSTITUTE</div>
+  <div class="top-actions"><span class="account" aria-label="Account feature not yet available">My Account · Coming later</span></div>
+</header>
+<nav class="nav" aria-label="Main navigation">
+  <a href="#first-pilot">First Pilot</a><a href="#live-rack">Live Product Rack</a><a href="#research">Research / शोध</a><a href="#trust">Trust & Payment</a><a href="factory-dashboard.html">Factory</a>
+</nav>
+<main>
+<section class="hero">
+  <div class="eyebrow">HEART-VIEW · SIMPLE · CLEAR · EVIDENCE-AWARE</div>
+  <h1>SHIRMANI RESEARCH INSTITUTE</h1>
+  <p class="lead">Heart-View — Beyond Comparison. शोध, लेखन और डिजिटल उत्पादों के लिए एक साफ़ सार्वजनिक स्थान। पहले सेवा को समझें, फिर अपनी आवश्यकता भेजें; scope, कीमत और delivery लिखित रूप में तय होंगे।</p>
+  <div class="stats"><span class="stat">Public catalogue · <b id="catalogCount">Loading…</b></span><span class="stat">Production target · <b id="targetCount">5,000</b></span><span class="stat">Income status · <b id="incomeStatus">Unverified</b></span></div>
+</section>
+
+<section class="panel pilot" id="first-pilot">
+  <div class="tag">FIRST PILOT · CUSTOMER ENQUIRY</div>
+  <h2>SRI-SVC-001 — Hindi / English Writing & Research</h2>
+  <div class="price">₹999 Pilot</div>
+  <p>एक सीमित शुरुआती सेवा: ग्राहक द्वारा दिए गए brief पर अधिकतम 500 शब्दों की Hindi या English writing polish / research-writing सहायता। वास्तविक research scope और source requirements enquiry देखने के बाद लिखित रूप में तय होंगे।</p>
+  <div class="specs">
+    <div class="spec"><b>Scope</b>अधिकतम 500 शब्द</div>
+    <div class="spec"><b>Deadline</b>2 working days प्रस्तावित</div>
+    <div class="spec"><b>Revisions</b>1 consolidated revision</div>
+  </div>
+  <div class="notice small">₹999 प्रस्तावित pilot मूल्य है, स्वतः देय राशि या स्वीकार किया गया quote नहीं। काम शुरू होने से पहले deliverables, स्रोत, अंतिम मूल्य, समय-सीमा, revision और payment terms पर दोनों पक्षों की लिखित सहमति आवश्यक है।</div>
+  <div class="grid" style="margin-top:14px">
+    <div class="card">
+      <h3>Customer enquiry</h3>
+      <p class="small">यह form आपकी स्पष्ट सहमति के बाद enquiry को private service inbox में भेजता है। Enquiry से order, payment या आय दर्ज नहीं होती।</p>
+      <form id="enquiryForm">
+        <div class="formgrid">
+          <div><label for="name">नाम</label><input id="name" name="name" autocomplete="name" maxlength="120" required></div>
+          <div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254"></div>
+          <div><label for="phone">Phone (optional)</label><input id="phone" name="phone" autocomplete="tel" maxlength="40"></div>
+          <div><label for="language">भाषा</label><select id="language" name="language"><option>Hindi</option><option>English</option><option>Hindi + English</option></select></div>
+        </div>
+        <label for="topic">काम / विषय का विवरण</label><textarea id="topic" name="topic" maxlength="4000" required placeholder="आपको किस प्रकार की writing या research सहायता चाहिए?"></textarea>
+        <div class="formgrid"><div><label for="deadline">पसंदीदा समय-सीमा</label><input id="deadline" name="deadline" maxlength="120" placeholder="2 working days प्रस्तावित"></div><div><label for="notes">अतिरिक्त जानकारी (optional)</label><input id="notes" name="notes" maxlength="1000"></div></div>
+        <div style="position:absolute;left:-10000px" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="consent"><input type="checkbox" id="consent" name="consent" required><span>मैं इस enquiry को समीक्षा के लिए भेजने और मेरे दिए गए contact माध्यम पर इस enquiry के संबंध में उत्तर पाने की स्पष्ट सहमति देता/देती हूँ।</span></label>
+        <button class="submit" id="submitEnquiry" type="submit">सहमति के साथ Enquiry भेजें →</button>
+        <p class="status" id="enquiryStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <div class="card" id="trust">
+      <h3>Payment — केवल लिखित सहमति के बाद</h3>
+      <p>UPI ID</p><p class="payment">9622254967@ptyes</p>
+      <p>PayPal recipient</p><p class="payment">sainirampaul60@gmail.com</p>
+      <p class="small">भुगतान से पहले अपने UPI / PayPal App में recipient का नाम, ID और राशि स्वयं verify करें। पहले लिखित proposal स्वीकार करें। OTP, UPI PIN, password या bank login कभी साझा न करें।</p>
+      <p class="small">भुगतान का screenshot अकेले पर्याप्त प्रमाण नहीं है। वास्तविक bank credit का authorized account holder द्वारा transaction reference से मिलान होने के बाद ही payment VERIFIED माना जाएगा।</p>
+      <a class="btn secondary" href="docs/payment-proof-format.md">Payment proof rules पढ़ें</a>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="live-rack">
+  <div class="tag">LIVE RACK · SEARCH · FILTER · BROWSE</div>
+  <h2>Digital Products & Tools</h2>
+  <p class="small">Catalogue records source files से लोड होते हैं। 60 listings एक बार में दिखाई जाती हैं। Production target को उपलब्ध product records या बिक्री का प्रमाण नहीं माना जाता; प्रत्येक listing का status अलग दिखाया जाता है।</p>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="नाम, ID या विवरण खोजें…" aria-label="Search products">
+    <select id="category" aria-label="Filter category"><option value="all">All categories</option><option value="research">Research</option><option value="writing">Writing</option><option value="tools">Tools</option><option value="creator">Creator</option></select>
+    <select id="priceFilter" aria-label="Filter price"><option value="all">All prices</option><option value="under500">Under ₹500</option><option value="500to1000">₹500–₹1,000</option><option value="over1000">Over ₹1,000</option><option value="quote">Quote required</option></select>
+    <select id="sort" aria-label="Sort products"><option value="id">Product ID</option><option value="name">Name</option><option value="priceLow">Price low to high</option><option value="priceHigh">Price high to low</option></select>
+    <select id="readiness" aria-label="Filter readiness"><option value="all">All readiness</option><option value="demo">Demo available</option><option value="quote">Quote required</option></select>
+  </div>
+  <p id="rackStatus" class="small" aria-live="polite">Catalogue data loading…</p>
+  <div id="productGrid" class="catalogue"></div>
+  <div class="pager"><button id="previous" type="button" disabled>← Previous</button><span id="pageInfo">Page 1</span><button id="next" type="button" disabled>Next →</button></div>
+</section>
+
+<section class="panel" id="research">
+  <h2>Research / शोध</h2>
+  <p>शोध-संबंधित tools और evidence-aware workflows के लिए सीधे प्रवेश।</p>
+  <div class="actions"><a class="btn secondary" href="showroom/heart-view-explainer-research-studio.html">Heart-View Research Studio</a><a class="btn secondary" href="showroom/research-brief-source-ledger.html">Research Brief & Source Ledger</a><a class="btn secondary" href="README.md">Research archive / README</a></div>
+</section>
+
+<footer class="footer">
+  <b>SHIRMANI RESEARCH INSTITUTE</b>
+  <p class="small">Income is recorded only after actual customer acceptance, verified bank credit, delivery evidence and customer acceptance. Production, catalogue listings, enquiries and workflow runs are not sales.</p>
+  <p class="small"><a href="showroom-public.html">Previous showroom</a> · <a href="public-interface-v3.html">Previous public interface</a> · <a href="README.md">Project index</a></p>
+</footer>
+</main>
+</div>
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+const endpoint="https://shirmani-social-api-node.onrender.com/api/enquiry";
+$("enquiryForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const email=$("email").value.trim(),phone=$("phone").value.trim();
+ if(!email&&!phone){$("enquiryStatus").textContent="कृपया email या phone में से कम-से-कम एक दें।";return;}
+ if(!$("consent").checked){$("enquiryStatus").textContent="Enquiry भेजने से पहले consent आवश्यक है।";return;}
+ const payload={name:$("name").value.trim(),email,phone,service:"SRI-SVC-001 Hindi/English Writing & Research",language:$("language").value,topic:$("topic").value.trim(),goal:"₹999 first pilot enquiry; final scope and quote require written agreement.",word_count:"Up to 500 words — confirm in proposal",deadline:$("deadline").value.trim()||"2 working days proposed; confirm in writing",budget:"INR 999 proposed first pilot; not an accepted quote",notes:$("notes").value.trim(),website:$("website").value,consent:true};
+ const button=$("submitEnquiry");button.disabled=true;$("enquiryStatus").textContent="Enquiry सुरक्षित रूप से भेजी जा रही है…";
+ try{const response=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});const result=await response.json().catch(()=>({}));if(!response.ok)throw new Error(result.message||result.error||"API request failed ("+response.status+")");$("enquiryStatus").textContent=result.duplicate?"यह enquiry पहले से दर्ज है। Reference: "+result.id:"Enquiry दर्ज हुई। Reference: "+result.id+" · अभी कोई order या payment नहीं बना है।";if(!result.duplicate)$("enquiryForm").reset();}
+ catch(error){$("enquiryStatus").textContent="Enquiry दर्ज नहीं हुई: "+error.message+" · कृपया बाद में प्रयास करें; अभी भुगतान न करें.";}
+ finally{button.disabled=false;}
+});
+let products=[],page=1;const pageSize=60;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=n=>n==null||n===""?"Quote required":"₹"+Number(n).toLocaleString("en-IN");
+const get=async path=>{const r=await fetch(path+"?ts="+Date.now(),{cache:"no-store"});if(!r.ok)throw new Error(path+" ("+r.status+")");return r.json();};
+const getJsonl=async path=>{const r=await fetch(path+"?ts="+Date.now(),{cache:"no-store"});if(!r.ok)throw new Error(path+" ("+r.status+")");return(await r.text()).split(/\n/).filter(Boolean).map(x=>JSON.parse(x));};
+function familyOf(p){const s=(p.category||p.family||"").toLowerCase();const all=[p.name,p.description,p.short_description,p.engine,p.id,s].join(" ").toLowerCase();if(/research|शोध|evidence|source|paper/.test(all))return"research";if(/writing|लेखन|copy|article|translation|content/.test(all))return"writing";if(/creator|video|audio|music|media|studio|animation/.test(all))return"creator";return"tools";}
+function filtered(){const q=$("search").value.trim().toLowerCase(),cat=$("category").value,price=$("priceFilter").value,sort=$("sort").value,ready=$("readiness").value;let rows=products.filter(p=>{const text=[p.id,p.name,p.description,p.short_description,p.category,p.family,p.engine].join(" ").toLowerCase(),n=Number(p.offer_price_inr??p.price_inr);const hasPrice=p.offer_price_inr!=null||p.price_inr!=null;return(!q||text.includes(q))&&(cat==="all"||familyOf(p)===cat)&&(price==="all"||(price==="under500"&&hasPrice&&n<500)||(price==="500to1000"&&hasPrice&&n>=500&&n<=1000)||(price==="over1000"&&hasPrice&&n>1000)||(price==="quote"&&!hasPrice))&&(ready==="all"||(ready==="demo"&&Boolean(p.demo_url||p.product_url||p.artifact_url))||(ready==="quote"&&(p.sale_state==="QUOTE_REQUIRED"||p.continuous_lane)));});rows.sort((a,b)=>sort==="name"?String(a.name||"").localeCompare(String(b.name||"")):sort==="priceLow"?Number(a.offer_price_inr??a.price_inr??Infinity)-Number(b.offer_price_inr??b.price_inr??Infinity):sort==="priceHigh"?Number(b.offer_price_inr??b.price_inr??0)-Number(a.offer_price_inr??a.price_inr??0):String(a.id||"").localeCompare(String(b.id||""),undefined,{numeric:true}));return rows;}
+function productCard(p){const id=String(p.id||"").toUpperCase(),url=p.product_url||p.artifact_url||("products/concrete/"+encodeURIComponent(id)+".html"),demo=p.demo_url||("demo-video.html?id="+encodeURIComponent(id)),price=p.offer_price_inr??p.price_inr,category=familyOf(p),state=p.continuous_lane?"QUOTE REQUIRED":(p.sale_state||"LISTING");return '<article class="card product"><span class="id">'+esc(id)+' · '+esc(category.toUpperCase())+'</span><h3>'+esc(p.name||id)+'</h3><p>'+esc(p.description||p.short_description||"Public catalogue entry; confirm scope and current demo before purchase.")+'</p><div class="pprice">'+money(price)+'</div><div class="meta">Status: '+esc(state)+' · QC: '+esc(p.qc_code||"PENDING")+'</div><div class="links"><a class="btn primary" href="'+esc(url)+'">Open product</a><a class="btn secondary" href="'+esc(demo)+'">Demo / details</a></div></article>';}
+function render(){const rows=filtered(),pages=Math.max(1,Math.ceil(rows.length/pageSize));if(page>pages)page=pages;const visible=rows.slice((page-1)*pageSize,page*pageSize);$("catalogCount").textContent=products.length.toLocaleString("en-IN");$("rackStatus").textContent=rows.length.toLocaleString("en-IN")+" matching catalogue records · showing "+(visible.length?((page-1)*pageSize+1)+"–"+((page-1)*pageSize+visible.length):"0")+" · "+pageSize+" per page. Production target is a separate metric, not a claim that every target item is ready for sale.";$("productGrid").innerHTML=visible.map(productCard).join("")||'<div class="card">इस filter से कोई listing नहीं मिली।</div>';$("pageInfo").textContent="Page "+page+" / "+pages;$("previous").disabled=page<=1;$("next").disabled=page>=pages;}
+["search","category","priceFilter","sort","readiness"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",()=>{page=1;render();}));
+$("previous").addEventListener("click",()=>{page=Math.max(1,page-1);render();});
+$("next").addEventListener("click",()=>{page++;render();});
+async function load(){try{const[state,overlay,passports,continuous]=await Promise.all([get("generated/live-production-state.json"),get("generated/concrete-production-overlay.json"),getJsonl("generated/PRODUCT-PASSPORTS.jsonl"),get("generated/continuous-production-manifest.json").catch(()=>null)]);const passportMap=new Map(passports.map(p=>[p.id,p]));const produced=(overlay.products||[]).filter(p=>p.production_state==="PRODUCED").map(p=>({...passportMap.get(p.id),...p}));const recurring=(continuous?.products||[]).filter(p=>p.id&&(p.product_url||p.demo_url)).map(p=>({...p,continuous_lane:true,production_state:"PRODUCED",sale_state:"QUOTE_REQUIRED",description:p.short_description||"",category:p.family||"Tools",qc_code:"QC-PENDING"}));products=[...produced,...recurring.filter(p=>!produced.some(x=>x.id===p.id))];$("targetCount").textContent=Number(state.five_thousand_scale_target||5000).toLocaleString("en-IN");$("incomeStatus").textContent=Number(state.sales_claimed||0)>0?"Claims present · review required":"No verified income claim";render();}
+catch(error){$("catalogCount").textContent="Unavailable";$("rackStatus").textContent="Catalogue data अभी उपलब्ध नहीं: "+error.message;$("productGrid").innerHTML='<div class="card">Catalogue source unavailable. कोई संख्या अनुमान से नहीं दिखाई गई।</div>';}}
+load();
+})();
+</script>
+</body>
+</html>
