@@ -42,17 +42,17 @@ def read_qc(root: Path, catalog_count: int) -> tuple[dict, bool]:
     return payload, qc_passed(payload, catalog_count)
 
 
-def _nonnegative_int(value: object) -> int:
-    return value if isinstance(value, int) and not isinstance(value, bool) and value >= 0 else 0
+def _nonnegative_int_or_none(value: object) -> int | None:
+    return value if isinstance(value, int) and not isinstance(value, bool) and value >= 0 else None
 
 
 def sync_public_qc_state(root: Path, catalog_count: int) -> bool:
     """Publish QC counters to existing status files; never claim dispatch, sales, or payment."""
     root = Path(root)
     qc, passed = read_qc(root, catalog_count)
-    qc_failed = _nonnegative_int(qc.get("qc_failed"))
-    qc_passed_count = _nonnegative_int(qc.get("qc_passed")) if passed else 0
-    produced_count = _nonnegative_int(qc.get("produced_count"))
+    qc_failed = _nonnegative_int_or_none(qc.get("qc_failed"))
+    qc_passed_count = _nonnegative_int_or_none(qc.get("qc_passed")) if passed else 0
+    produced_count = _nonnegative_int_or_none(qc.get("produced_count"))
     state = (
         "QC_PASSED" if passed
         else "QC_REVIEW_REQUIRED" if qc.get("release_state") == "QC_REVIEW_REQUIRED"
