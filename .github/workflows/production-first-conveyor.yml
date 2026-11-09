@@ -40,7 +40,7 @@ jobs:
               print(f"{name}: valid JSON; keys={len(data)}")
           PY
       - name: Propose telemetry through a reviewed pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/production-first-conveyor-telemetry

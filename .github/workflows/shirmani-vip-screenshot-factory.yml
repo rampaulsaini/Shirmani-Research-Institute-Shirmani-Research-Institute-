@@ -53,7 +53,7 @@ jobs:
           VIP_SCREENSHOT_BATCH: ${{ github.event.inputs.batch_size || '250' }}
         run: python3 factory/vip_screenshot_factory.py
       - name: Publish production assets through a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/vip-screenshot-production

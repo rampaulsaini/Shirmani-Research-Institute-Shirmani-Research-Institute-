@@ -33,7 +33,7 @@ jobs:
       - name: Build engine-family demo MP4s and product media manifest
         run: python3 factory/product_demo_video_factory.py
       - name: Publish demo media through a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "chore(media): materialize product demo videos and media manifest"
           title: "Automission: publish product demo media"
