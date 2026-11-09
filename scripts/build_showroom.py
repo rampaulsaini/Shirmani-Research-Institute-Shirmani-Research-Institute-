@@ -18,7 +18,7 @@ for p in products:
       <div class="meta"><b>₹{p['price_inr']:,}</b> · {html.escape(p['offer'])}</div>
       <div class="qc">QC: {html.escape(p.get('qc_gate','QC-PENDING'))} · Gate: {html.escape(p.get('gate_no','GATE-001'))} · Dispatch: {html.escape(p.get('dispatch','NO'))}</div>\n      <div class="qr" data-qr="{html.escape(p.get('qr_payload',''))}"></div>
       <p class="small">Guarantee: {html.escape(p.get('guarantee','Digital delivery'))}</p>
-      <a class="buy" href="{html.escape(p.get('purchase_url','#'))}" target="_blank" rel="noopener">View / Purchase</a>
+      <a class="buy" href="{html.escape(p.get('purchase_url','#'))}" target="_blank" rel="noopener">Open external store (checkout not verified)</a>
     </article>""")
 
 page=f"""<!doctype html>
@@ -37,8 +37,9 @@ select{{padding:12px;border-radius:10px}} .grid{{padding:30px 6%;display:grid;gr
 </style></head>
 <body>
 <header><h1>꙰ SHIRMANI Supreme Marking Hub</h1>
-<p>Production-first public showroom: discover → factory production → QC gate → public presentation → purchase.</p>
-<p><b>{len(products)}</b> materialized products in the current showroom window. Production expands automatically every 5 minutes.</p></header>
+<p>Production-first public showroom: discover → production → QC status → public preview → external store.</p>
+<p><b>{len(products)}</b> materialized products in the current showroom window. Production expands automatically every 5 minutes.</p>
+<p role="note"><b>Order-status notice:</b> listings are previews only. QC and dispatch statuses are shown per product; checkout, payment confirmation, and delivery are not verified here. A listing or store link is not a completed order.</p></header>
 <div class="controls"><label>Category: <select id="cat"><option>All</option></select></label></div>
 <main class="grid" id="grid">{''.join(cards)}</main>
 <script>
