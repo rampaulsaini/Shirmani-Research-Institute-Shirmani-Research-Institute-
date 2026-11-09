@@ -623,8 +623,8 @@ app.post("/api/enquiry", dbRequired, enquiryLimiter, async (req, res) => {
       "insert into client_enquiries(name,email,phone,service,language,topic,goal,word_count,deadline,budget,sources,notes,consent_at) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,now()) returning id,status,created_at",
       [name, null, mobile, service, "To be agreed", service, "Legacy public enquiry form", "", "", "", "", ""]
     );
-    console.info("PUBLIC_ENQUIRY_RECEIVED", JSON.stringify({ id: rows[0].id, owner_email: ownerEmail || null, notification: "OWNER_INBOX_ONLY_EMAIL_DELIVERY_NOT_CONFIGURED" }));
-    return res.status(201).json({ success: true, id: rows[0].id, status: rows[0].status, owner: ownerEmail || null, payment: "PENDING", income: "₹0", message: "Enquiry saved for owner review. No order or payment was created." });
+    console.info("PUBLIC_ENQUIRY_RECEIVED", JSON.stringify({ id: rows[0].id, notification: "OWNER_INBOX_ONLY_EMAIL_DELIVERY_NOT_CONFIGURED" }));
+    return res.status(201).json({ success: true, id: rows[0].id, status: rows[0].status, owner_notification: "NOT_CONFIGURED", payment: "PENDING", income: "₹0", message: "Enquiry saved for owner review. No order or payment was created." });
   } catch {
     return res.status(500).json({ error: "ENQUIRY_SAVE_FAILED" });
   }
