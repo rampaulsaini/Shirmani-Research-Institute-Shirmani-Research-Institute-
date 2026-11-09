@@ -78,7 +78,7 @@ jobs:
           python3 - <<'PY'
           import json
           from pathlib import Path
-          from factory.qc_state_contract import qc_passed
+          from factory.qc_state_contract import qc_passed, sync_public_qc_state
 
           for name in (
               "generated/production-status.json",
@@ -96,6 +96,8 @@ jobs:
 
           catalog = json.loads(Path("generated/1000-digital-products.json").read_text(encoding="utf-8"))
           count = len(catalog.get("products", []))
+          # Publish the authoritative QC result before validating public counters.
+          sync_public_qc_state(Path.cwd(), count)
           qc = json.loads(Path("generated/product-qc-gate.json").read_text(encoding="utf-8"))
           live = json.loads(Path("generated/live-production-state.json").read_text(encoding="utf-8"))
           expected = "QC_PASSED" if qc_passed(qc, count) else (
