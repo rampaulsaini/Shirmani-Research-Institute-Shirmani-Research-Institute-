@@ -116,6 +116,8 @@ class PublicQCStateContractTests(unittest.TestCase):
                 live = self.read_json("live-production-state.json")
                 self.assertEqual(live["qc_state"], "READY_FOR_QC")
                 self.assertEqual(live["qc_passed"], 0)
+                self.assertIsNone(live["qc_failed"])
+                self.assertIsNone(live["qc_produced_count"])
                 self.assertEqual(live["dispatch_released"], 0)
                 self.assertEqual(live["sales_claimed"], 0)
                 self.assertEqual(live["payment_claimed"], 0)
