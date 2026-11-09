@@ -134,7 +134,10 @@ class PublicQCStateContractTests(unittest.TestCase):
                 self.assertFalse(sync_public_qc_state(self.root, 2))
                 live = self.read_json("live-production-state.json")
                 self.assertEqual(live["qc_state"], "READY_FOR_QC")
-                self.assertEqual(live["qc_passed"], 0)
+                if "qc_passed" in overrides:
+                    self.assertIsNone(live["qc_passed"])
+                else:
+                    self.assertEqual(live["qc_passed"], 2)
                 if "qc_failed" in overrides:
                     self.assertIsNone(live["qc_failed"])
                 if "produced_count" in overrides:
@@ -147,7 +150,7 @@ class PublicQCStateContractTests(unittest.TestCase):
         self.assertFalse(sync_public_qc_state(self.root, 2))
         live = self.read_json("live-production-state.json")
         self.assertEqual(live["qc_state"], "READY_FOR_QC")
-        self.assertEqual(live["qc_passed"], 0)
+        self.assertIsNone(live["qc_passed"])
         self.assertIsNone(live["qc_failed"])
         self.assertIsNone(live["qc_passed"])
         self.assertIsNone(live["qc_produced_count"])
