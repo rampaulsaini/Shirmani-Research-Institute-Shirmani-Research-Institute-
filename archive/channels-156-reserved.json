@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "archive_record": "SRI-ARCHIVE-CHANNELS-156-2026-11-09",
+  "preserved_on": "2026-11-09",
+  "title": "156 channel directory — preserved, not activated",
+  "count": 156,
+  "status": "RESERVED / ARCHIVED FOR FUTURE REVIEW",
+  "source": {
+    "path": "public-interface-v3.html",
+    "blob_sha": "9f8392968bf9553d2108cd28dae0ab7e0c5b6446",
+    "section": "#channels",
+    "generator": "inline JavaScript themes array; entries.slice(0,156) renders channel cards"
+  },
+  "preservation_method": "Source file remains unchanged in the repository. This manifest records the canonical source and generator rather than pretending the dynamically generated 156 cards were separate source files.",
+  "activation_rule": "Do not activate a channel until owner, platform account, rights, endpoint, dispatch test and publication evidence are verified.",
+  "deletion_performed": false
+}

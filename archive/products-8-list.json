@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "archive_record": "SRI-ARCHIVE-SHOWROOM-PRODUCTS-8-2026-11-09",
+  "preserved_on": "2026-11-09",
+  "title": "Eight public showroom tool links — preserved",
+  "count": 8,
+  "source": {
+    "path": "showroom-public-interface.html",
+    "blob_sha": "00f286247ed8b982242a40ce4ee26a3060f46ecf",
+    "section": "#marketplace"
+  },
+  "products": [
+    {
+      "id": "SHOWROOM-001",
+      "name": "First Client Deliverable Studio",
+      "path": "showroom/first-client-deliverable-studio.html",
+      "description": "क्लाइंट ब्रीफ़ से संरचित लेखन/शोध डिलीवरी पैक और निर्यात।",
+      "type": "ब्राउज़र-लोकल डेमो",
+      "status": "preserved_reference_only",
+      "public_demo_verification": "not_checked"
+    },
+    {
+      "id": "SHOWROOM-002",
+      "name": "Production Control Centre",
+      "path": "showroom/production-control-centre.html",
+      "description": "Discovery → Build → QC → Published चरणों में उत्पाद सूची और पासपोर्ट व्यवस्थित करें।",
+      "type": "ब्राउज़र-लोकल डेमो",
+      "status": "preserved_reference_only",
+      "public_demo_verification": "not_checked"
+    },
+    {
+      "id": "SHOWROOM-003",
+      "name": "Heart-View Live Rehearsal",
+      "path": "showroom/heart-view-live-rehearsal-cue-deck.html",
+      "description": "कार्यक्रम क्रम, बोलने के संकेत, प्रश्नोत्तर तैयारी और रिलीज़ चेकलिस्ट।",
+      "type": "रिहर्सल टूल",
+      "status": "preserved_reference_only",
+      "public_demo_verification": "not_checked"
+    },
+    {
+      "id": "SHOWROOM-004",
+      "name": "Bilingual Website Copy Studio",
+      "path": "products/concrete/SRI-WRITE-007-bilingual-website-copy-pack-studio.html",
+      "description": "हिंदी, अंग्रेज़ी या दोनों भाषाओं में वेबसाइट कॉपी का प्रारूप।",
+      "type": "ब्राउज़र-लोकल डेमो",
+      "status": "preserved_reference_only",
+      "public_demo_verification": "not_checked"
+    },
+    {
+      "id": "SHOWROOM-005",
+      "name": "Product Release Pack Builder",
+      "path": "showroom/product-release-pack-builder.html",
+      "description": "उत्पाद पासपोर्ट, कवर, उपयोग-गाइड और डेमो स्टोरीबोर्ड पैक।",
+      "type": "ब्राउज़र-लोकल डेमो",
+      "status": "preserved_reference_only",
+      "public_demo_verification": "not_checked"
+    },
+    {
+      "id": "SHOWROOM-006",
+      "name": "Social App MVP",
+      "path": "social-app.html",
+      "description": "प्रोफ़ाइल, पोस्ट और फ़ीड का स्थानीय प्रोटोटाइप; अभी वास्तविक बहु-उपयोगकर्ता सेवा नहीं।",
+      "type": "MVP · स्थानीय डेटा",
+      "status": "preserved_reference_only",
+      "public_demo_verification": "not_checked"
+    },
+    {
+      "id": "SHOWROOM-007",
+      "name": "Heart-View Explainer & Research",
+      "path": "showroom/heart-view-explainer-research-studio.html",
+      "description": "सरल व्याख्या, उदाहरण, प्रमाण-सीमाएँ और शोध-पत्र की रूपरेखा।",
+      "type": "शोध प्रारूप टूल",
+      "status": "preserved_reference_only",
+      "public_demo_verification": "not_checked"
+    },
+    {
+      "id": "SHOWROOM-008",
+      "name": "Product Demo & Visual Brief",
+      "path": "showroom/product-demo-visual-brief-studio.html",
+      "description": "डेमो स्टोरीबोर्ड, दृश्य-योजना और रिलीज़ चेकलिस्ट।",
+      "type": "मीडिया ब्रीफ़",
+      "status": "preserved_reference_only",
+      "public_demo_verification": "not_checked"
+    }
+  ],
+  "related_catalog": {
+    "path": "products/catalog.json",
+    "blob_sha": "132a2350ec030053570e728ee1e717d76e8439c7",
+    "note": "The separate detailed catalog currently contains 13 entries; it is not the same list as these eight public showroom cards."
+  },
+  "deletion_performed": false
+}
