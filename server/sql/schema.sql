@@ -139,21 +139,6 @@ create table if not exists orders (
 );
 create index if not exists orders_participant_idx on orders(buyer_id,seller_id,created_at desc);
 
--- First-pilot sale gates: private payment proof, owner bank-match, delivery and acceptance.
--- A payment proof is evidence only; it is not income until an authorized reviewer records
--- an actual credit match in the recipient account.
-alter table orders
-  add column if not exists delivery_reference text,
-  add column if not exists delivered_at timestamptz,
-  add column if not exists customer_acceptance_reference text,
-  add column if not exists customer_accepted_at timestamptz;
-
-create table if not exists paid_orders (
-  id uuid primary key default gen_random_uuid(),
-  order_id uuid not null references orders(id) on delete restrict,
-  amount_minor bigint not null check (amount_minor > 0),
-  currency char(3) not null check (currency ~ '^[A-Z]{3}
-
 
 -- Social interaction primitives.
 create table if not exists follows (
