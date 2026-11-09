@@ -11,6 +11,46 @@
     }
   ],
   "paths": {
+    "/api/enquiry": {
+      "post": {
+        "summary": "Submit a consented public service enquiry",
+        "description": "Creates a private lead record only. It does not create an order, accept payment, send a message or verify income. Duplicate submissions for the same contact, service and topic within 24 hours return the existing enquiry.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "service", "topic", "consent"],
+                "properties": {
+                  "name": { "type": "string", "maxLength": 120 },
+                  "email": { "type": "string", "format": "email", "maxLength": 254 },
+                  "phone": { "type": "string", "maxLength": 32 },
+                  "service": { "type": "string", "maxLength": 80 },
+                  "language": { "type": "string", "enum": ["Hindi", "English", "Hindi + English", "To be agreed"] },
+                  "topic": { "type": "string", "maxLength": 180 },
+                  "goal": { "type": "string", "maxLength": 500 },
+                  "word_count": { "type": "string", "maxLength": 40 },
+                  "deadline": { "type": "string", "maxLength": 100 },
+                  "budget": { "type": "string", "maxLength": 80 },
+                  "notes": { "type": "string", "maxLength": 1500 },
+                  "consent": { "type": "boolean", "const": true },
+                  "website": { "type": "string", "maxLength": 200, "description": "Honeypot; must be empty." }
+                },
+                "anyOf": [{ "required": ["email"] }, { "required": ["phone"] }]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "New enquiry stored; no order or payment created." },
+          "200": { "description": "Duplicate enquiry found; existing record returned." },
+          "400": { "description": "Invalid enquiry or consent missing." },
+          "429": { "description": "Rate limit exceeded." },
+          "503": { "description": "Database not configured or unavailable." }
+        }
+      }
+    },
     "/health": {
       "get": {
         "responses": {

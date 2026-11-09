@@ -612,21 +612,78 @@ app.post("/api/enquiry", dbRequired, enquiryLimiter, async (req, res) => {
   const body = req.body || {};
   const clean = (value, max) => typeof value === "string" ? value.trim().slice(0, max) : "";
   const name = clean(body.name, 120);
-  const mobile = clean(body.mobile, 32);
+  const email = clean(body.email, 254).toLowerCase();
+  const phone = clean(body.phone || body.mobile, 32);
   const service = clean(body.service, 80);
-  if (body.consent !== true) return res.status(400).json({ error: "CONSENT_REQUIRED", message: "सहमति अनिवार्य" });
-  if (!name || !mobile || !/^[+0-9() .-]{7,32}$/.test(mobile) || !service) {
-    return res.status(400).json({ error: "INVALID_ENQUIRY", message: "नाम, वैध मोबाइल और सेवा आवश्यक हैं।" });
+  const language = clean(body.language || "To be agreed", 32);
+  const topic = clean(body.topic || service, 180);
+  const goal = clean(body.goal, 500);
+  const wordCount = clean(body.word_count, 40);
+  const deadline = clean(body.deadline, 100);
+  const budget = clean(body.budget || "₹999 pilot enquiry — final quote after written scope", 80);
+  const sources = clean(body.sources, 1500);
+  const notes = clean(body.notes, 1500);
+  const honeypot = clean(body.website, 200);
+
+  if (honeypot) return res.status(400).json({ error: "INVALID_ENQUIRY" });
+  if (body.consent !== true) return res.status(400).json({ error: "CONSENT_REQUIRED", message: "सहमति अनिवार्य है।" });
+  if (!name || !service || !topic || !["Hindi", "English", "Hindi + English", "To be agreed"].includes(language)) {
+    return res.status(400).json({ error: "INVALID_ENQUIRY", message: "नाम, सेवा, विषय और मान्य भाषा आवश्यक हैं।" });
   }
+  if ((!email && !phone) || (email && !/^\\S+@\\S+\\.\\S+$/.test(email)) ||
+      (phone && !/^[+0-9() .-]{7,32}$/.test(phone))) {
+    return res.status(400).json({ error: "VALID_CONTACT_REQUIRED", message: "वैध ईमेल या फोन आवश्यक है।" });
+  }
+  if (typeof body.name !== "undefined" && typeof body.name !== "string" ||
+      typeof body.service !== "string" || body.service.length > 80 ||
+      typeof body.topic !== "undefined" && typeof body.topic !== "string" ||
+      typeof body.goal !== "undefined" && typeof body.goal !== "string" ||
+      typeof body.sources !== "undefined" && typeof body.sources !== "string" ||
+      typeof body.notes !== "undefined" && typeof body.notes !== "string") {
+    return res.status(400).json({ error: "INVALID_ENQUIRY" });
+  }
+
+  let client;
   try {
-    const { rows } = await pool.query(
-      "insert into client_enquiries(name,email,phone,service,language,topic,goal,word_count,deadline,budget,sources,notes,consent_at) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,now()) returning id,status,created_at",
-      [name, null, mobile, service, "To be agreed", service, "Legacy public enquiry form", "", "", "", "", ""]
+    client = await pool.connect();
+    await client.query("begin");
+    const contactKey = email ? "email:" + email : "phone:" + phone.replace(/\D/g, "");
+    const duplicateKey = [contactKey, service.toLowerCase(), topic.toLowerCase()].join("|");
+    await client.query("select pg_advisory_xact_lock(hashtext($1))", [duplicateKey]);
+    const duplicate = await client.query(
+      "select id,status,created_at from client_enquiries where created_at > now() - interval '24 hours' and lower(service)=lower($3) and lower(topic)=lower($4) and (($1::text is not null and lower(email)=lower($1)) or ($2::text is not null and regexp_replace(coalesce(phone,''),'[^0-9]','','g')=regexp_replace($2,'[^0-9]','','g'))) order by created_at desc limit 1",
+      [email || null, phone || null, service, topic]
     );
+    if (duplicate.rows[0]) {
+      await client.query("commit");
+      return res.status(200).json({
+        success: true,
+        duplicate: true,
+        id: duplicate.rows[0].id,
+        status: duplicate.rows[0].status,
+        message: "यह enquiry पिछले 24 घंटे में पहले से दर्ज है; नया duplicate record नहीं बनाया गया।"
+      });
+    }
+    const { rows } = await client.query(
+      "insert into client_enquiries(name,email,phone,service,language,topic,goal,word_count,deadline,budget,sources,notes,consent_at) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,now()) returning id,status,created_at",
+      [name, email || null, phone || null, service, language, topic, goal, wordCount, deadline, budget, sources, notes]
+    );
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values(null,'public_enquiry_received','client_enquiry',$1,$2::jsonb)",
+      [rows[0].id, JSON.stringify({ service, language, consent_recorded: true, contact_data_excluded: true })]
+    );
+    await client.query("commit");
     console.info("PUBLIC_ENQUIRY_RECEIVED", JSON.stringify({ id: rows[0].id, notification: "OWNER_INBOX_ONLY_EMAIL_DELIVERY_NOT_CONFIGURED" }));
-    return res.status(201).json({ success: true, id: rows[0].id, status: rows[0].status, owner_notification: "NOT_CONFIGURED", payment: "PENDING", income: "₹0", message: "Enquiry saved for owner review. No order or payment was created." });
+    return res.status(201).json({
+      success: true, id: rows[0].id, status: rows[0].status,
+      owner_notification: "NOT_CONFIGURED", payment: "PENDING", income: "₹0",
+      message: "Enquiry saved for owner review. No order or payment was created."
+    });
   } catch {
+    if (client) { try { await client.query("rollback"); } catch {} }
     return res.status(500).json({ error: "ENQUIRY_SAVE_FAILED" });
+  } finally {
+    client?.release();
   }
 });
 
@@ -774,11 +831,60 @@ app.post("/api/owner/orders/:orderId/payment-proof", dbRequired, auth, ownerOnly
 
 app.post("/api/owner/payment-proofs/:proofId/verify", dbRequired, auth, ownerOnly, async (req, res) => {
   if (req.body?.confirm_bank_match !== true) return res.status(400).json({ error: "BANK_MATCH_CONFIRMATION_REQUIRED" });
+  const client = await pool.connect();
   try {
-    const { rows } = await pool.query("update paid_orders set verification_status='verified',verification_method='owner_bank_statement',verified_by=$1,verified_at=now() where id=$2 and verification_status='pending' and customer_consent=true returning id,order_id,amount_minor,currency,verification_status,verification_method,verified_at", [req.user.sub, req.params.proofId]);
-    if (!rows[0]) return res.status(404).json({ error: "PENDING_PAYMENT_PROOF_NOT_FOUND" });
-    return res.json({ ...rows[0], verification_scope: "owner_attested_bank_match_not_independent_audit" });
-  } catch { return res.status(503).json({ error: "PAYMENT_PROOF_VERIFICATION_FAILED" }); }
+    await client.query("begin");
+    const { rows } = await client.query("update paid_orders set verification_status='verified',verification_method='owner_bank_statement',verified_by=$1,verified_at=now() where id=$2 and verification_status='pending' and customer_consent=true returning id,order_id,amount_minor,currency,verification_status,verification_method,verified_at", [req.user.sub, req.params.proofId]);
+    if (!rows[0]) {
+      await client.query("rollback");
+      return res.status(404).json({ error: "PENDING_PAYMENT_PROOF_NOT_FOUND" });
+    }
+    const order = await client.query("update orders set status='paid',updated_at=now() where id=$1 and status in ('intent','pending') returning id,status", [rows[0].order_id]);
+    if (!order.rows[0]) {
+      await client.query("rollback");
+      return res.status(409).json({ error: "ORDER_NOT_PAYABLE" });
+    }
+    await client.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'payment_verified','order',$2,$3)", [req.user.sub, rows[0].order_id, { proof_id: rows[0].id, verification_method: "owner_bank_statement" }]);
+    await client.query("commit");
+    return res.json({ ...rows[0], order_status: "paid", verification_scope: "owner_attested_bank_match_not_independent_audit" });
+  } catch {
+    try { await client.query("rollback"); } catch {}
+    return res.status(503).json({ error: "PAYMENT_PROOF_VERIFICATION_FAILED" });
+  } finally { client.release(); }
+});
+
+// Delivery and customer acceptance are separate owner-recorded gates.
+// References must point to private evidence; no public customer data is exposed.
+app.post("/api/owner/orders/:orderId/deliver", dbRequired, auth, ownerOnly, async (req, res) => {
+  const reference = typeof req.body?.delivery_reference === "string" ? req.body.delivery_reference.trim() : "";
+  if (!/^private:\/\/[A-Za-z0-9/_-]{1,960}$/.test(reference)) return res.status(400).json({ error: "PRIVATE_DELIVERY_REFERENCE_REQUIRED" });
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    const { rows } = await client.query("update orders set status='fulfilled',delivery_reference=$1,delivered_at=now(),updated_at=now() where id=$2 and status='paid' returning id,status,delivered_at", [reference, req.params.orderId]);
+    if (!rows[0]) { await client.query("rollback"); return res.status(409).json({ error: "ORDER_MUST_BE_PAID_BEFORE_DELIVERY" }); }
+    await client.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'order_delivered','order',$2,$3)", [req.user.sub, rows[0].id, { delivery_reference_private: true }]);
+    await client.query("commit");
+    return res.json({ ...rows[0], customer_acceptance: "PENDING" });
+  } catch { try { await client.query("rollback"); } catch {} return res.status(503).json({ error: "DELIVERY_RECORD_FAILED" }); }
+  finally { client.release(); }
+});
+
+app.post("/api/owner/orders/:orderId/customer-acceptance", dbRequired, auth, ownerOnly, async (req, res) => {
+  const reference = typeof req.body?.acceptance_reference === "string" ? req.body.acceptance_reference.trim() : "";
+  if (req.body?.customer_confirmed !== true || !/^private:\/\/[A-Za-z0-9/_-]{1,960}$/.test(reference)) {
+    return res.status(400).json({ error: "CUSTOMER_CONFIRMATION_AND_PRIVATE_REFERENCE_REQUIRED" });
+  }
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    const { rows } = await client.query("update orders set status='completed',customer_acceptance_reference=$1,customer_accepted_at=now(),updated_at=now() where id=$2 and status='fulfilled' returning id,status,customer_accepted_at", [reference, req.params.orderId]);
+    if (!rows[0]) { await client.query("rollback"); return res.status(409).json({ error: "ORDER_MUST_BE_DELIVERED_BEFORE_ACCEPTANCE" }); }
+    await client.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'customer_acceptance_recorded','order',$2,$3)", [req.user.sub, rows[0].id, { customer_confirmed: true, acceptance_reference_private: true, recorded_by_owner: true }]);
+    await client.query("commit");
+    return res.json({ ...rows[0], acceptance_scope: "owner_recorded_customer_confirmation_not_independent_audit" });
+  } catch { try { await client.query("rollback"); } catch {} return res.status(503).json({ error: "CUSTOMER_ACCEPTANCE_RECORD_FAILED" }); }
+  finally { client.release(); }
 });
 
 // Public Yatharth Genesis registry check. This proves only the database reservation row,
