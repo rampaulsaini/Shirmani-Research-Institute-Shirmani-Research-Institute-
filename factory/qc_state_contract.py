@@ -8,10 +8,19 @@ PASS_STATE = "QC_PASS_READY_FOR_DISPATCH"
 
 
 def qc_passed(qc: object, catalog_count: int) -> bool:
-    if not isinstance(qc, dict) or catalog_count <= 0:
+    if (
+        not isinstance(qc, dict)
+        or type(catalog_count) is not int
+        or catalog_count <= 0
+    ):
         return False
     integrity = qc.get("integrity")
     if not isinstance(integrity, dict):
+        return False
+    counts = (qc.get("catalog_count"), qc.get("produced_count"), qc.get("qc_passed"))
+    if any(type(value) is not int or value < 0 for value in counts):
+        return False
+    if type(qc.get("qc_failed")) is not int or qc.get("qc_failed") < 0:
         return False
     return (
         qc.get("catalog_count") == catalog_count
