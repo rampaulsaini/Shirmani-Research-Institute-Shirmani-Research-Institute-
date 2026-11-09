@@ -105,9 +105,15 @@ jobs:
           )
           if live.get("qc_state") != expected:
               raise SystemExit("Public live-production-state QC status is stale")
-          if live.get("qc_passed", 0) != (qc.get("qc_passed", 0) if expected == "QC_PASSED" else 0):
+          expected_passed = qc.get("qc_passed")
+          if type(expected_passed) is not int or expected_passed < 0:
+              expected_passed = None
+          expected_failed = qc.get("qc_failed")
+          if type(expected_failed) is not int or expected_failed < 0:
+              expected_failed = None
+          if live.get("qc_passed") != expected_passed:
               raise SystemExit("Public live-production-state qc_passed counter is stale")
-          if live.get("qc_failed", 0) != qc.get("qc_failed", 0):
+          if live.get("qc_failed") != expected_failed:
               raise SystemExit("Public live-production-state qc_failed counter is stale")
           if live.get("dispatch_released", 0) != 0 or live.get("sales_claimed", 0) != 0 or live.get("payment_claimed", 0) != 0:
               raise SystemExit("Production telemetry must not invent dispatch, sales, or payment")
