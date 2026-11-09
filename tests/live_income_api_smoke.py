@@ -77,8 +77,20 @@ def main() -> int:
         raise AssertionError("/api/status did not confirm database readiness.")
     tables = status.get("tables", {})
     for table in ("client_enquiries", "paid_orders"):
-        if tables.get(table) != "READY":
-            raise AssertionError(f"/api/status: required table {table} is not READY.")
+        table_state = tables.get(table, "NOT_REPORTED")
+        if table_state != "READY":
+            safe = {
+                "database": status.get("database"),
+                "table": table,
+                "table_state": table_state,
+                "all_table_states": {
+                    key: tables.get(key)
+                    for key in ("client_enquiries", "paid_orders")
+                },
+            }
+            raise AssertionError(
+                f"/api/status: required table is not READY; diagnostics={safe}"
+            )
 
     print("LIVE INCOME API SMOKE: PASS")
     print("Confirmed: process, database, security, owner-inbox configuration, enquiry table, payment-evidence table.")
