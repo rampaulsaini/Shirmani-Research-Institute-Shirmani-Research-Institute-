@@ -831,11 +831,52 @@ app.post("/api/owner/orders/:orderId/payment-proof", dbRequired, auth, ownerOnly
 
 app.post("/api/owner/payment-proofs/:proofId/verify", dbRequired, auth, ownerOnly, async (req, res) => {
   if (req.body?.confirm_bank_match !== true) return res.status(400).json({ error: "BANK_MATCH_CONFIRMATION_REQUIRED" });
+  const client = await pool.connect();
   try {
-    const { rows } = await pool.query("update paid_orders set verification_status='verified',verification_method='owner_bank_statement',verified_by=$1,verified_at=now() where id=$2 and verification_status='pending' and customer_consent=true returning id,order_id,amount_minor,currency,verification_status,verification_method,verified_at", [req.user.sub, req.params.proofId]);
-    if (!rows[0]) return res.status(404).json({ error: "PENDING_PAYMENT_PROOF_NOT_FOUND" });
-    return res.json({ ...rows[0], verification_scope: "owner_attested_bank_match_not_independent_audit" });
-  } catch { return res.status(503).json({ error: "PAYMENT_PROOF_VERIFICATION_FAILED" }); }
+    await client.query("begin");
+    const { rows } = await client.query("update paid_orders set verification_status='verified',verification_method='owner_bank_statement',verified_by=$1,verified_at=now() where id=$2 and verification_status='pending' and customer_consent=true returning id,order_id,amount_minor,currency,verification_status,verification_method,verified_at", [req.user.sub, req.params.proofId]);
+    if (!rows[0]) {
+      await client.query("rollback");
+      return res.status(404).json({ error: "PENDING_PAYMENT_PROOF_NOT_FOUND" });
+    }
+    const order = await client.query("update orders set status='paid',updated_at=now() where id=$1 and status in ('intent','pending') returning id,status", [rows[0].order_id]);
+    if (!order.rows[0]) {
+      await client.query("rollback");
+      return res.status(409).json({ error: "ORDER_NOT_PAYABLE" });
+    }
+    await client.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'payment_verified','order',$2,$3)", [req.user.sub, rows[0].order_id, { proof_id: rows[0].id, verification_method: "owner_bank_statement" }]);
+    await client.query("commit");
+    return res.json({ ...rows[0], order_status: "paid", verification_scope: "owner_attested_bank_match_not_independent_audit" });
+  } catch {
+    try { await client.query("rollback"); } catch {}
+    return res.status(503).json({ error: "PAYMENT_PROOF_VERIFICATION_FAILED" });
+  } finally { client.release(); }
+});
+
+// Delivery and customer acceptance are separate owner-recorded gates.
+// References must point to private evidence; no public customer data is exposed.
+app.post("/api/owner/orders/:orderId/deliver", dbRequired, auth, ownerOnly, async (req, res) => {
+  const reference = typeof req.body?.delivery_reference === "string" ? req.body.delivery_reference.trim() : "";
+  if (!/^private:\/\/[A-Za-z0-9/_-]{1,960}$/.test(reference)) return res.status(400).json({ error: "PRIVATE_DELIVERY_REFERENCE_REQUIRED" });
+  try {
+    const { rows } = await pool.query("update orders set status='fulfilled',delivery_reference=$1,delivered_at=now(),updated_at=now() where id=$2 and status='paid' returning id,status,delivered_at", [reference, req.params.orderId]);
+    if (!rows[0]) return res.status(409).json({ error: "ORDER_MUST_BE_PAID_BEFORE_DELIVERY" });
+    await pool.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'order_delivered','order',$2,$3)", [req.user.sub, rows[0].id, { delivery_reference_private: true }]);
+    return res.json({ ...rows[0], customer_acceptance: "PENDING" });
+  } catch { return res.status(503).json({ error: "DELIVERY_RECORD_FAILED" }); }
+});
+
+app.post("/api/owner/orders/:orderId/customer-acceptance", dbRequired, auth, ownerOnly, async (req, res) => {
+  const reference = typeof req.body?.acceptance_reference === "string" ? req.body.acceptance_reference.trim() : "";
+  if (req.body?.customer_confirmed !== true || !/^private:\/\/[A-Za-z0-9/_-]{1,960}$/.test(reference)) {
+    return res.status(400).json({ error: "CUSTOMER_CONFIRMATION_AND_PRIVATE_REFERENCE_REQUIRED" });
+  }
+  try {
+    const { rows } = await pool.query("update orders set status='completed',customer_acceptance_reference=$1,customer_accepted_at=now(),updated_at=now() where id=$2 and status='fulfilled' returning id,status,customer_accepted_at", [reference, req.params.orderId]);
+    if (!rows[0]) return res.status(409).json({ error: "ORDER_MUST_BE_DELIVERED_BEFORE_ACCEPTANCE" });
+    await pool.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'customer_acceptance_recorded','order',$2,$3)", [req.user.sub, rows[0].id, { customer_confirmed: true, acceptance_reference_private: true, recorded_by_owner: true }]);
+    return res.json({ ...rows[0], acceptance_scope: "owner_recorded_customer_confirmation_not_independent_audit" });
+  } catch { return res.status(503).json({ error: "CUSTOMER_ACCEPTANCE_RECORD_FAILED" }); }
 });
 
 // Public Yatharth Genesis registry check. This proves only the database reservation row,
