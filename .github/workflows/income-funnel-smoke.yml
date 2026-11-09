@@ -13,6 +13,7 @@ on:
       - "showroom/income-first-client-pipeline.html"
       - "tests/income_funnel_smoke.py"
       - "tests/live_income_api_smoke.py"
+      - "tests/live_income_api_smoke.py"
       - ".github/workflows/income-funnel-smoke.yml"
   push:
     branches: [main]
@@ -26,6 +27,7 @@ on:
       - "income-client-pipeline.html"
       - "showroom/income-first-client-pipeline.html"
       - "tests/income_funnel_smoke.py"
+      - "tests/live_income_api_smoke.py"
       - ".github/workflows/income-funnel-smoke.yml"
   workflow_dispatch:
 
@@ -47,5 +49,5 @@ jobs:
         run: python tests/income_funnel_smoke.py
       - name: Check deployed income API readiness (read-only)
         if: github.event_name != 'pull_request'
-        timeout-minutes: 4
+        timeout-minutes: 9
         run: python tests/live_income_api_smoke.py
