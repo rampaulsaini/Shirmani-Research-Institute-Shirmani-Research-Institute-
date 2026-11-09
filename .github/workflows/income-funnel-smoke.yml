@@ -12,6 +12,7 @@ on:
       - "income-client-pipeline.html"
       - "showroom/income-first-client-pipeline.html"
       - "tests/income_funnel_smoke.py"
+      - "tests/live_income_api_smoke.py"
       - ".github/workflows/income-funnel-smoke.yml"
   push:
     branches: [main]
@@ -44,3 +45,7 @@ jobs:
           python-version: "3.x"
       - name: Check canonical offer and enquiry routes
         run: python tests/income_funnel_smoke.py
+      - name: Check deployed income API readiness (read-only)
+        if: github.event_name != 'pull_request'
+        timeout-minutes: 4
+        run: python tests/live_income_api_smoke.py
