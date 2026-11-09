@@ -858,12 +858,16 @@ app.post("/api/owner/payment-proofs/:proofId/verify", dbRequired, auth, ownerOnl
 app.post("/api/owner/orders/:orderId/deliver", dbRequired, auth, ownerOnly, async (req, res) => {
   const reference = typeof req.body?.delivery_reference === "string" ? req.body.delivery_reference.trim() : "";
   if (!/^private:\/\/[A-Za-z0-9/_-]{1,960}$/.test(reference)) return res.status(400).json({ error: "PRIVATE_DELIVERY_REFERENCE_REQUIRED" });
+  const client = await pool.connect();
   try {
-    const { rows } = await pool.query("update orders set status='fulfilled',delivery_reference=$1,delivered_at=now(),updated_at=now() where id=$2 and status='paid' returning id,status,delivered_at", [reference, req.params.orderId]);
-    if (!rows[0]) return res.status(409).json({ error: "ORDER_MUST_BE_PAID_BEFORE_DELIVERY" });
-    await pool.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'order_delivered','order',$2,$3)", [req.user.sub, rows[0].id, { delivery_reference_private: true }]);
+    await client.query("begin");
+    const { rows } = await client.query("update orders set status='fulfilled',delivery_reference=$1,delivered_at=now(),updated_at=now() where id=$2 and status='paid' returning id,status,delivered_at", [reference, req.params.orderId]);
+    if (!rows[0]) { await client.query("rollback"); return res.status(409).json({ error: "ORDER_MUST_BE_PAID_BEFORE_DELIVERY" }); }
+    await client.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'order_delivered','order',$2,$3)", [req.user.sub, rows[0].id, { delivery_reference_private: true }]);
+    await client.query("commit");
     return res.json({ ...rows[0], customer_acceptance: "PENDING" });
-  } catch { return res.status(503).json({ error: "DELIVERY_RECORD_FAILED" }); }
+  } catch { try { await client.query("rollback"); } catch {} return res.status(503).json({ error: "DELIVERY_RECORD_FAILED" }); }
+  finally { client.release(); }
 });
 
 app.post("/api/owner/orders/:orderId/customer-acceptance", dbRequired, auth, ownerOnly, async (req, res) => {
@@ -871,12 +875,16 @@ app.post("/api/owner/orders/:orderId/customer-acceptance", dbRequired, auth, own
   if (req.body?.customer_confirmed !== true || !/^private:\/\/[A-Za-z0-9/_-]{1,960}$/.test(reference)) {
     return res.status(400).json({ error: "CUSTOMER_CONFIRMATION_AND_PRIVATE_REFERENCE_REQUIRED" });
   }
+  const client = await pool.connect();
   try {
-    const { rows } = await pool.query("update orders set status='completed',customer_acceptance_reference=$1,customer_accepted_at=now(),updated_at=now() where id=$2 and status='fulfilled' returning id,status,customer_accepted_at", [reference, req.params.orderId]);
-    if (!rows[0]) return res.status(409).json({ error: "ORDER_MUST_BE_DELIVERED_BEFORE_ACCEPTANCE" });
-    await pool.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'customer_acceptance_recorded','order',$2,$3)", [req.user.sub, rows[0].id, { customer_confirmed: true, acceptance_reference_private: true, recorded_by_owner: true }]);
+    await client.query("begin");
+    const { rows } = await client.query("update orders set status='completed',customer_acceptance_reference=$1,customer_accepted_at=now(),updated_at=now() where id=$2 and status='fulfilled' returning id,status,customer_accepted_at", [reference, req.params.orderId]);
+    if (!rows[0]) { await client.query("rollback"); return res.status(409).json({ error: "ORDER_MUST_BE_DELIVERED_BEFORE_ACCEPTANCE" }); }
+    await client.query("insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'customer_acceptance_recorded','order',$2,$3)", [req.user.sub, rows[0].id, { customer_confirmed: true, acceptance_reference_private: true, recorded_by_owner: true }]);
+    await client.query("commit");
     return res.json({ ...rows[0], acceptance_scope: "owner_recorded_customer_confirmation_not_independent_audit" });
-  } catch { return res.status(503).json({ error: "CUSTOMER_ACCEPTANCE_RECORD_FAILED" }); }
+  } catch { try { await client.query("rollback"); } catch {} return res.status(503).json({ error: "CUSTOMER_ACCEPTANCE_RECORD_FAILED" }); }
+  finally { client.release(); }
 });
 
 // Public Yatharth Genesis registry check. This proves only the database reservation row,
