@@ -69,6 +69,25 @@ class PublicQCStateContractTests(unittest.TestCase):
         self.assertEqual(live["sales_claimed"], 0)
         self.assertEqual(live["payment_claimed"], 0)
 
+    def test_partial_catalog_qc_count_is_preserved_without_full_release_promotion(self):
+        self.write_qc(
+            produced_count=1,
+            qc_passed=1,
+            qc_failed=0,
+            release_state="QC_PASS_READY_FOR_DISPATCH",
+        )
+        self.assertFalse(sync_public_qc_state(self.root, 2))
+
+        live = self.read_json("live-production-state.json")
+        self.assertEqual(live["qc_state"], "READY_FOR_QC")
+        self.assertEqual(live["qc_catalog_count"], 2)
+        self.assertEqual(live["qc_produced_count"], 1)
+        self.assertEqual(live["qc_passed"], 1)
+        self.assertEqual(live["qc_failed"], 0)
+        self.assertEqual(live["dispatch_released"], 0)
+        self.assertEqual(live["sales_claimed"], 0)
+        self.assertEqual(live["payment_claimed"], 0)
+
     def test_failed_qc_never_promotes_public_pass_count(self):
         self.write_qc(
             produced_count=1,
