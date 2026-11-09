@@ -42,6 +42,24 @@ jobs:
 
       - name: Build public showroom
         run: python3 scripts/build_showroom.py
+      - name: Verify showroom commercial truth boundary
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          page = Path("production/showroom/index.html").read_text(encoding="utf-8")
+          required = (
+              "Order-status notice:",
+              "checkout, payment confirmation, and delivery are not verified",
+              "A listing or store link is not a completed order.",
+              "Open external store (checkout not verified)",
+          )
+          missing = [item for item in required if item not in page]
+          if missing:
+              raise SystemExit("SHOWROOM_TRUTH_BOUNDARY_MISSING: " + ", ".join(missing))
+          if "View / Purchase" in page:
+              raise SystemExit("UNVERIFIED_PURCHASE_CTA_PRESENT")
+          print("SHOWROOM_TRUTH_BOUNDARY: PASS")
+          PY
 
       - name: Publish production artifacts through a reviewed PR
         uses: peter-evans/create-pull-request@v7
