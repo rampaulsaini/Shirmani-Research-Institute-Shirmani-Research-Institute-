@@ -128,36 +128,3 @@ When generated sources disagree, select the newest source that explicitly covers
 ## Next review rule
 
 Update this register only when a source, test, deployment, provider response, or customer record changes. Record the exact commit, timestamp, URL, test scope and limitation. Never upgrade a status from a workflow label or plan alone.
-
-
-## Update #042 — Five-year work preservation and first-income priority (2026-11-09)
-
-**Change scope:** draft PR only. The branch adds non-destructive archive manifests and a clearer showroom priority block. No production deployment, API environment, database, payment provider, customer outreach, or live service configuration was changed.
-
-### Preserved archive records
-
-- `archive/channels-156-reserved.json` — records the 156-entry directory's canonical source (`public-interface-v3.html`) and its inline generator. The directory is dynamically generated from the source file; the 156 cards were not separate files to move. The source remains unchanged.
-- `archive/products-8-list.json` — preserves the eight public showroom tool links from `showroom-public-interface.html`. The separate `products/catalog.json` currently has 13 entries; both inventories are retained and must not be conflated.
-- `archive/social-hub-16.json` — preserves the 16 destination links from `public-interface-v3.html`; account ownership and publishing access remain unverified.
-- `archive/qc-4716-report.json` — snapshots `generated/product-qc-gate.json` dated `2026-11-09T10:25:00.732016+00:00`: 4,716/4,716 produced products passed deterministic QC (100% of the produced subset); 5,000 catalog identities total; dispatch default NO; independent scientific verification false; sale claim false.
-
-**Preservation method:** archive manifests are additive snapshots/pointers. Canonical source files are not deleted or moved, preserving their paths, history and existing links. No claim is made that these four archive records were present before this PR.
-
-### Income-first showroom focus
-
-The first customer-facing pilot offer already present in `first-paid-pilot-offer.html` is **Writing Polish — proposed ₹999**, up to 500 words supplied by the client, one revision, target two working days after written scope confirmation. This is not a Research Business Report and must not be relabelled as one. Research Summary is separately listed at proposed ₹1,999. Prices are proposals, not confirmed orders or receipts.
-
-The showroom priority block links to the existing pilot offer and enquiry route. It explicitly states that no verified sale, payment, dispatch or delivery is currently claimed and that the enquiry/ledger backend still requires a real end-to-end test.
-
-### Readiness and percentage rule
-
-No 25% completion claim is added. The existing readiness register defines evidence stages and explicitly avoids an overall completion percentage. This update records concrete preserved assets and a single prioritized pilot offer, not a mathematically validated increase in platform readiness.
-
-### Acceptance checks still required after PR review
-
-- Review archive JSON against the unchanged source files and verify all eight links and 16 destinations.
-- Open the public showroom page on mobile and desktop after merge/deploy; this PR itself does not prove publication.
-- Submit one consented test enquiry and verify the actual API response and durable owner-visible database record before reporting a ledger count.
-- Confirm payment only from provider/bank transaction evidence; confirm delivery separately from customer acceptance.
-
-**Deletion performed:** none. **Production changes:** none. **Revenue recorded by this update:** ₹0.
