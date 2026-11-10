@@ -67,7 +67,7 @@
   </div>
   <div class="sale-box" id="sri-enquiry" style="margin-top:14px">
     <h3>Customer enquiry · सुरक्षित service desk</h3>
-    <p class="sale-terms">यह form enquiry को मौजूदा private PostgreSQL lead inbox में भेजता है। Duplicate enquiry को 24 घंटे के भीतर पहचानकर दोबारा record नहीं किया जाएगा। कोई automatic WhatsApp/email message या payment नहीं भेजा जाता।</p>
+    <p class="sale-terms">यह form enquiry को मौजूदा private PostgreSQL lead inbox में भेजता है। हर consented enquiry निजी lead inbox में human review के लिए भेजी जाएगी। कोई automatic WhatsApp/email message या payment नहीं भेजा जाता।</p>
     <form class="sale-form" id="sriSaleEnquiry">
       <label>नाम <input name="name" maxlength="120" required autocomplete="name"></label>
       <label>ईमेल (वैकल्पिक) <input name="email" type="email" maxlength="254" autocomplete="email"></label>
@@ -177,7 +177,7 @@
       website: String(data.get("website") || ""),
       consent: data.get("consent") === "on"
     };
-    const endpoint = "https://shirmani-social-api-node.onrender.com/api/enquiry";
+    const endpoint = "https://shirmani-social-api-node.onrender.com/v1/enquiries";
     const button = form.querySelector('button[type="submit"]');
     button.disabled = true; status.textContent = "Enquiry सुरक्षित रूप से भेजी जा रही है…";
     try {
@@ -187,10 +187,8 @@
       });
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.message || result.error || "API request failed (" + response.status + ")");
-      status.textContent = result.duplicate
-        ? "यह enquiry पहले से दर्ज है। Reference: " + result.id
-        : "Enquiry दर्ज हुई। Reference: " + result.id + " · अभी कोई order या payment नहीं बना है।";
-      if (!result.duplicate) form.reset();
+      status.textContent = "Enquiry दर्ज हुई। Reference: " + result.id + " · अभी कोई order या payment नहीं बना है।";
+      form.reset();
     } catch (error) {
       status.textContent = "Enquiry अभी दर्ज नहीं हुई: " + error.message + " · कृपया बाद में पुनः प्रयास करें; भुगतान न करें।";
     } finally { button.disabled = false; }
