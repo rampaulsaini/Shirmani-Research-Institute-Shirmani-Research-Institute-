@@ -30,7 +30,7 @@ def bar(percent: float, width: int = 30) -> str:
 
 def validate_preparation_status(prep: dict, target: int) -> int:
     """Validate the status producer's current schema without promoting records."""
-    if prep.get("version") != 1:
+    if prep.get("version") not in {1, 2}:
         raise SystemExit("PREPARATION_STATUS_SCHEMA_VERSION_UNSUPPORTED")
     if prep.get("verification_policy") != "FAIL_CLOSED":
         raise SystemExit("PREPARATION_STATUS_POLICY_NOT_FAIL_CLOSED")
