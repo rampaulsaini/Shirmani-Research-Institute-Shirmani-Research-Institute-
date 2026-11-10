@@ -87,7 +87,7 @@ def main():
         "publication_gate": "CHECK" if rows else "BLOCK",
         "verification_policy": "Queue creation is not independent verification; only human-reviewed evidence may be promoted."
     }
-    (OUT / "VERIFICATION-QUEUE.json").write_text(
+    (OUT.parent / "VERIFICATION-QUEUE.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print(json.dumps({**summary, "queue_records": len(rows), "fail_closed": True}, ensure_ascii=False))
