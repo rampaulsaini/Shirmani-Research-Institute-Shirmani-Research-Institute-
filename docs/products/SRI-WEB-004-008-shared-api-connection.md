@@ -28,3 +28,14 @@ SRI-WEB-005 stock/cost/pricing records, SRI-WEB-006 content drafts, SRI-WEB-007 
 4. Verify no lead data is sent when cloud consent is absent.
 5. Test mobile layout and keyboard/screen-reader operation.
 6. Keep deployment gated; no Render deployment is part of this PR.
+
+## Live-service inspection (2026-11-10)
+The existing Render API source on `main` confirms:
+- Readiness route: `GET /health`; it returns HTTP 503 / `DEGRADED` unless PostgreSQL and JWT configuration are present.
+- Public lead route: `POST /v1/enquiries` (not `/api/enquiry`). The client uses the correct route and supplies the required service, language, topic, contact and consent fields.
+- The latest successful deployment observed is commit `7bb1fd1aa05c741bbccb05d633e66820aa46317e`.
+- Render application logs from the running service explicitly report missing `CORS_ORIGIN`, `JWT_SECRET`, and `DATABASE_URL`. Therefore the current service process may be running, but its database-backed readiness and enquiry write path are not configured.
+- The subsequent deploy for commit `52ac093a8a22d771e23a643c0688af7cefd12d06` was cancelled because the workspace had exhausted its build pipeline minutes for the billing period.
+- No environment variables were changed and no new deployment was triggered. No paid upgrade is recommended.
+
+Consequently, do not submit real customer data from this prototype yet. A live health response, CORS allowance for the GitHub Pages origin, database connection, and a synthetic enquiry write/read verification are release gates.
