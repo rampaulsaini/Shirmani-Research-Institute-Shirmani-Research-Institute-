@@ -18,7 +18,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: shirmani-supreme-nlp-benchmark-controller
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
