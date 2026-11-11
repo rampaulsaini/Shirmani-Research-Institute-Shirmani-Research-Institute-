@@ -34,7 +34,7 @@ jobs:
       - name: Run fail-closed Supreme readiness gate
         run: python3 factory/supreme_persona_readiness_gate.py
       - name: Publish readiness evidence
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: shirmani-supreme-persona-readiness-${{github.run_id}}
           path: generated/supreme-persona-readiness.json
