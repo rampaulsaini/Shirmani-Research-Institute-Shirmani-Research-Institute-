@@ -2,10 +2,10 @@
   "product_assets": 5000,
   "asset_directory": "products/production/",
   "showroom": "products.html",
-  "state": "QC_PASSED_AWAITING_DISPATCH",
+  "state": "QC_PASSED",
   "dispatch": "NO",
   "principle": "Concrete assets and matching deterministic QC are separate evidence; dispatch, sales, payment and independent verification remain downstream.",
-  "generated_at": "2026-11-11T06:57:28.214172+00:00",
+  "generated_at": "2026-11-11T07:13:57.422402+00:00",
   "concrete_product_assets": 5000,
   "catalog_products": 5000,
   "materialization_percent": 100.0,
@@ -14,5 +14,5 @@
   "qc_produced_count": 5000,
   "qc_passed": 5000,
   "qc_failed": 0,
-  "qc_generated_at": "2026-11-11T05:40:43.291279+00:00"
+  "qc_generated_at": "2026-11-11T07:13:56.242227+00:00"
 }
