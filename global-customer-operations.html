@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Shirmani Research Institute — Global Customer Operations: customer workspaces, research data inspection, bulk orders and evidence-led delivery.">
+<title>Global Customer Operations | SHIRMANI Research Institute</title>
+<style>
+:root{color-scheme:dark;--bg:#07111c;--panel:#102235;--line:#304b61;--gold:#f2d17c;--mint:#8ce2ce;--cyan:#83dff0;--text:#f4f7fb;--muted:#b9c7d5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0,#1d3a50 0,transparent 40rem),var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}.wrap{max-width:1080px;margin:auto;padding:18px}a{color:var(--cyan)}a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--line)}.brand{font-weight:900;color:var(--gold)}.nav{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0}.nav a,.btn{display:inline-block;padding:9px 13px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--text);background:#0b1a29;font-weight:750}.hero,.panel{border:1px solid var(--line);border-radius:18px;padding:clamp(17px,3vw,28px);margin:15px 0;background:linear-gradient(145deg,#142b40,#0c1927)}.hero{border-color:#806f43}h1{font-size:clamp(2rem,6vw,3.7rem);line-height:1.12;color:var(--gold);margin:.2em 0}h2{color:var(--gold);margin-top:0}h3{color:var(--mint)}p,.muted{color:var(--muted)}.eyebrow{color:var(--mint);font-weight:850;letter-spacing:.08em;font-size:.82rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}.card{background:#091725;border:1px solid var(--line);border-radius:13px;padding:15px}.status{border-left:4px solid var(--gold);padding:12px 15px;background:#1a2630;color:#f5e6bf}.steps{counter-reset:step;list-style:none;padding:0;display:grid;gap:10px}.steps li{counter-increment:step;padding:13px;border:1px solid var(--line);border-radius:12px;background:#0a1825}.steps li:before{content:counter(step,decimal-leading-zero);color:var(--gold);font-weight:900;margin-right:12px}.footer{border-top:1px solid var(--line);margin-top:25px;padding:18px 0;color:var(--muted)}.btn.primary{background:var(--gold);color:#14202b;border-color:var(--gold)}.small{font-size:.9rem}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body><div class="wrap">
+<header class="top"><div class="brand">◈ SHIRMANI RESEARCH INSTITUTE</div><div class="muted">Global Customer Operations · वैश्विक ग्राहक संचालन</div></header>
+<nav class="nav" aria-label="Main navigation"><a href="supreme-clean-showroom.html">मुख्य Showroom</a><a href="research.html">Research / शोध</a><a href="income-action-center.html">Income First</a><a href="https://github.com/rampaulsaini/freellmapi">FreeLLMAPI source</a></nav>
+<main>
+<section class="hero"><div class="eyebrow">CUSTOMER WORKSPACE · DATA → INSIGHT → ORDER → DELIVERY</div>
+<h1>Global Customer Operations</h1>
+<p>एक ही व्यवस्थित कार्यक्षेत्र की दिशा—जहाँ प्रत्येक ग्राहक का काम अलग और सुरक्षित रहे; ग्राहक द्वारा अधिकृत सामग्री की जाँच व विश्लेषण हो; और स्वीकृत ऑर्डर का बैच-आधारित, प्रमाण-सहित वितरण हो।</p>
+<div class="status"><strong>वर्तमान स्थिति: निर्माणाधीन — सार्वजनिक ग्राहक लॉगिन या डेटा अपलोड अभी सक्षम नहीं है।</strong><br>यह SRI का आधिकारिक प्रवेश-पृष्ठ है, लाइव multi-customer service का दावा नहीं। जब तक backend सुरक्षा, deployment और परीक्षण पूरे न हों, यहाँ संवेदनशील ग्राहक डेटा जमा न करें।</div></section>
+<section class="panel"><h2>ग्राहक का पूरा कार्य-चक्र</h2><ol class="steps">
+<li><strong>Customer workspace:</strong> अलग ग्राहक पहचान, भूमिका और tenant-स्तर की अनुमति।</li>
+<li><strong>Data intake & inspection:</strong> ग्राहक की अनुमति से files लेना, format/quality जाँचना, स्रोत और बदलावों का रिकॉर्ड रखना।</li>
+<li><strong>Research & analysis:</strong> ग्राहक के उद्देश्य के अनुसार data aggregation, review और evidence-linked परिणाम।</li>
+<li><strong>Bulk orders:</strong> item-wise scope, मात्रा, मूल्य, स्वीकृति और idempotent batch processing।</li>
+<li><strong>Bulk delivery:</strong> सुरक्षित delivery, manifest, receipt, failed-item retry और ग्राहक acceptance record।</li>
+<li><strong>Email / WhatsApp:</strong> केवल opt-in, verified provider और opt-out/suppression नियंत्रण के साथ सूचनाएँ।</li>
+</ol></section>
+<section class="panel"><h2>कार्यक्षेत्र के मॉड्यूल</h2><div class="grid">
+<article class="card"><h3>01 · Customer Accounts</h3><p>अलग workspace, owner/admin/member भूमिकाएँ और tenant isolation।</p><p class="small">स्थिति: foundation implementation / security tests pending</p></article>
+<article class="card"><h3>02 · Data Intelligence</h3><p>Upload validation, inspection, deduplication, source provenance और analysis jobs।</p><p class="small">स्थिति: planned</p></article>
+<article class="card"><h3>03 · Orders & Batches</h3><p>Bulk order intake, queue, progress, retry और per-item status।</p><p class="small">स्थिति: planned</p></article>
+<article class="card"><h3>04 · Delivery & Messaging</h3><p>Delivery evidence, email/WhatsApp adapters, consent और delivery receipts।</p><p class="small">स्थिति: planned</p></article>
+</div></section>
+<section class="panel"><h2>तकनीकी निर्माण और प्रमाण</h2><p>Backend का मूल repository FreeLLMAPI है। मौजूदा Catalog Lab अलग product/API project है; SRI इस सेवा का सार्वजनिक showroom और प्रवेश-द्वार रहेगा। दोनों के बीच सुरक्षित production connection बनने से पहले इस पृष्ठ को status/overview तक सीमित रखा गया है।</p><div class="grid">
+<div class="card"><h3>Source repository</h3><p>Code, implementation और automated checks</p><a class="btn secondary" href="https://github.com/rampaulsaini/freellmapi">FreeLLMAPI GitHub खोलें ↗</a></div>
+<div class="card"><h3>Architecture plan</h3><p>Tenant isolation, private data, queues, bulk fulfillment और channel consent</p><a class="btn secondary" href="https://github.com/rampaulsaini/freellmapi/pull/4">Architecture PR #4 देखें ↗</a></div>
+</div><p class="small">1,000 customers का लक्ष्य है, प्रमाणित concurrent capacity नहीं। इसे load, isolation और security tests पास होने के बाद ही उपलब्ध क्षमता कहा जाएगा।</p></section>
+<section class="panel"><h2>ग्राहक सुरक्षा का वचन</h2><ul><li>किसी ग्राहक का डेटा दूसरे ग्राहक को दिखाई नहीं देना चाहिए।</li><li>Provider/API secrets browser में उजागर नहीं होंगे।</li><li>बिना स्पष्ट सहमति email या WhatsApp संदेश नहीं भेजे जाएँगे।</li><li>Enquiry, order, payment, delivery और acceptance अलग-अलग सत्यापन योग्य अवस्थाएँ रहेंगी।</li><li>किसी भी demo या अनुमान को वास्तविक बिक्री/डिलीवरी का प्रमाण नहीं माना जाएगा।</li></ul></section>
+</main>
+<footer class="footer"><strong>SHIRMANI RESEARCH INSTITUTE</strong><p class="small">सरल • सहज • निर्मल • पारदर्शी — More Income · More Freedom · A Better Tomorrow</p><a href="supreme-clean-showroom.html">मुख्य showroom पर वापस जाएँ</a></footer>
+</div></body></html>
