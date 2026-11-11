@@ -1,3 +1,5 @@
+- **Universal Synchronization & NLP Architecture:** [read the integration plan](docs/architecture/UNIVERSAL-SYNCHRONIZATION-AND-NLP-INTEGRATION.md) — defines the roles of Koyab, NVIDIA Omniverse Kit and C-Labs; a shared evidence-aware record contract; safe source synchronization; plain-Hindi NLP; scientific visualization boundaries; licensing checks; and staged acceptance gates. Documentation proposal only; integrations are not claimed live.
+
 ## New public entry point — 2026-10-19
 
 - **Public Interface v3:** [open the organized public interface](public-interface-v3.html) — service/product directory, Heart-View path, research links, searchable product cards, and explicitly honest evidence counters. It is a static interface prototype: login/signup, server telemetry, live external integrations, and sales are not represented as connected.
