@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A browser-local appointment booking request page for small businesses."><title>Appointment Booking Desk | SRI-WEB-003</title>
+<style>
+:root{color-scheme:dark;--bg:#091321;--panel:#13243a;--line:#304a65;--gold:#f0d17b;--cyan:#85e0ed;--ink:#f5f7fb;--muted:#b8c7d8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0,#1e3b57,transparent 42rem),var(--bg);color:var(--ink);font:15px/1.6 system-ui,"Noto Sans Devanagari",sans-serif}main{max-width:1120px;margin:auto;padding:18px}header,.panel{background:#13243a;border:1px solid var(--line);border-radius:16px;padding:20px;margin:13px 0}header{border:2px solid var(--gold)}h1,h2{color:var(--gold)}p,.muted{color:var(--muted)}.tag{color:var(--cyan);font-weight:800;letter-spacing:.08em;font-size:.78rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}.field{margin:10px 0}label{display:block;font-weight:700;margin-bottom:5px}input,select,textarea{width:100%;padding:11px;border-radius:9px;border:1px solid #49637d;background:#081522;color:white;font:inherit}textarea{min-height:80px}button,.btn{display:inline-block;border:0;border-radius:9px;padding:11px 15px;background:var(--gold);color:#17202a;font-weight:850;cursor:pointer;text-decoration:none;margin:5px 6px 5px 0}.secondary{background:#28455f;color:white;border:1px solid #496783}.notice{border-left:4px solid var(--cyan);padding:11px 14px;background:#0b1a29}.slotlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:8px}.slot{border:1px solid #49637d;background:#0b1a29;color:white;border-radius:9px;padding:9px;text-align:center;cursor:pointer}.slot[aria-pressed=true]{background:var(--gold);color:#17202a;border-color:var(--gold);font-weight:900}.slot:disabled{opacity:.35;cursor:not-allowed}.summary{background:#0b1a29;border:1px solid #304a65;padding:14px;border-radius:12px}.small{font-size:.86rem}@media(max-width:520px){main{padding:11px}header,.panel{padding:15px}}
+</style></head><body><main>
+<header><div class="tag">SRI-WEB-003 · DIGITAL BUSINESS TOOL</div><h1>Appointment Booking Desk</h1><p>क्लिनिक, सैलून, सलाहकार, शिक्षक और सेवा-प्रदाताओं के लिए appointment request लेने का सरल पेज। सेवा चुनें, तारीख और उपलब्ध समय चुनें, ग्राहक विवरण भरें और WhatsApp या print के लिए अनुरोध तैयार करें।</p><p class="small">यह demo browser-local है। यह slot को server पर reserve नहीं करता और न ही वास्तविक booking confirmation भेजता है।</p></header>
+<div class="grid">
+<section class="panel">
+<div class="tag">BUSINESS SETUP</div><h2>व्यवसाय की सेटिंग</h2>
+<div class="field"><label for="business">व्यवसाय / विशेषज्ञ का नाम</label><input id="business" value="आपकी सेवा"></div>
+<div class="field"><label for="services">सेवा</label><select id="services"><option>प्रारंभिक परामर्श</option><option>नियमित अपॉइंटमेंट</option><option>ऑनलाइन सत्र</option><option>फॉलो-अप</option></select></div>
+<div class="field"><label for="duration">सत्र की अवधि</label><select id="duration"><option value="15">15 मिनट</option><option value="30" selected>30 मिनट</option><option value="45">45 मिनट</option><option value="60">60 मिनट</option></select></div>
+<div class="field"><label for="wa">WhatsApp नंबर (देश कोड सहित, केवल अंक)</label><input id="wa" inputmode="numeric" placeholder="919876543210"></div>
+<div class="field"><label for="hours">समय स्लॉट (हर पंक्ति में एक, 24-hour format)</label><textarea id="hours">09:00
+10:00
+11:00
+12:00
+14:00
+15:00
+16:00</textarea></div>
+<p class="small muted">व्यवसाय के वास्तविक खुलने के समय के अनुसार स्लॉट बदलें। इस demo में चुने गए स्लॉट स्वतः unavailable नहीं होते।</p>
+</section>
+<section class="panel">
+<div class="tag">CUSTOMER REQUEST</div><h2>अपॉइंटमेंट का अनुरोध</h2>
+<div class="field"><label for="customer">ग्राहक का नाम</label><input id="customer" maxlength="80" placeholder="पूरा नाम" autocomplete="name"></div>
+<div class="field"><label for="phone">फोन नंबर</label><input id="phone" maxlength="25" inputmode="tel" placeholder="+91..." autocomplete="tel"></div>
+<div class="field"><label for="date">पसंदीदा तारीख</label><input id="date" type="date"></div>
+<div class="field"><label>समय चुनें</label><div id="slots" class="slotlist" aria-live="polite"></div></div>
+<div class="field"><label for="notes">कारण / अतिरिक्त जानकारी (वैकल्पिक)</label><textarea id="notes" maxlength="500" placeholder="आप किस विषय में appointment चाहते हैं?"></textarea></div>
+<button id="prepare">अनुरोध तैयार करें</button><button id="clear" class="secondary">फॉर्म साफ़ करें</button>
+<p class="small muted" id="status" aria-live="polite">अनुरोध तैयार करने से पहले सभी आवश्यक विवरण भरें।</p>
+</section>
+</div>
+<section class="panel">
+<div class="tag">REQUEST SUMMARY</div><h2>अनुरोध का सारांश</h2>
+<div id="summary" class="summary muted">अभी कोई अनुरोध तैयार नहीं है।</div>
+<div id="actions" hidden><button id="whatsapp">WhatsApp में भेजें</button><button id="print" class="secondary">Print / PDF</button><button id="copy" class="secondary">टेक्स्ट कॉपी करें</button></div>
+</section>
+<section class="panel notice small"><strong>महत्त्वपूर्ण सीमा:</strong> यह enquiry/request generator है, live calendar या booking engine नहीं। वास्तविक slot locking, staff calendars, reminders, cancellation, customer records और payment के लिए सुरक्षित backend, database और access controls आवश्यक होंगे। ग्राहक को appointment confirmed तभी कहें जब व्यवसाय स्वयं उपलब्धता जाँचकर पुष्टि करे। संवेदनशील स्वास्थ्य या वित्तीय जानकारी इस demo में न भरें।</section>
+<footer class="muted small">Shirmani Research Institute · SRI-WEB-003 · Version 1.0 prototype</footer>
+</main>
+<script>
+(()=>{const $=id=>document.getElementById(id);const date=$("date");const now=new Date();const localDate=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);date.min=localDate;date.value=localDate;let selected="",requestText="";
+const esc=s=>String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function validTime(t){return /^([01]\d|2[0-3]):[0-5]\d$/.test(t)}
+function renderSlots(){const times=$("hours").value.split(/\r?\n/).map(s=>s.trim()).filter((s,i,a)=>validTime(s)&&a.indexOf(s)===i);if(!times.includes(selected))selected="";$("slots").innerHTML="";if(!times.length){$("slots").textContent="कृपया सही समय HH:MM format में दर्ज करें।";return}times.forEach(t=>{const b=document.createElement("button");b.type="button";b.className="slot";b.textContent=t;b.setAttribute("aria-pressed",String(selected===t));b.addEventListener("click",()=>{selected=t;renderSlots()});$("slots").appendChild(b)})}
+function prepare(){const business=$("business").value.trim(),customer=$("customer").value.trim(),phone=$("phone").value.trim(),day=date.value,service=$("services").value,mins=$("duration").value,notes=$("notes").value.trim(),wa=$("wa").value.replace(/\D/g,"");if(!business||!customer||!phone||!day||!selected){$("status").textContent="व्यवसाय, ग्राहक, फोन, तारीख और समय भरना आवश्यक है।";return}if(day<localDate){$("status").textContent="बीती हुई तारीख नहीं चुन सकते।";return}if(!/^[+()\-\s\d]{7,25}$/.test(phone)){$("status").textContent="कृपया वैध फोन नंबर भरें।";return}requestText=["Appointment request — NOT CONFIRMED","Business: "+business,"Customer: "+customer,"Phone: "+phone,"Service: "+service,"Date: "+day,"Preferred time: "+selected,"Duration: "+mins+" minutes",notes?"Notes: "+notes:""].filter(Boolean).join("\n");$("summary").innerHTML="<strong>स्थिति: केवल अनुरोध / पुष्टि बाकी</strong><p>"+esc(requestText).replace(/\n/g,"<br>")+"</p>";$("actions").hidden=false;$("status").textContent="अनुरोध तैयार है। व्यवसाय की पुष्टि के बाद ही इसे confirmed माना जाएगा。";$("whatsapp").disabled=wa.length<10;$("whatsapp").title=wa.length<10?"व्यवसाय का वैध WhatsApp नंबर जोड़ें":""}
+$("hours").addEventListener("input",renderSlots);$("date").addEventListener("change",()=>{selected="";renderSlots()});$("prepare").addEventListener("click",prepare);$("clear").addEventListener("click",()=>{$("customer").value="";$("phone").value="";$("notes").value="";selected="";$("summary").textContent="अभी कोई अनुरोध तैयार नहीं है।";$("actions").hidden=true;$("status").textContent="फॉर्म साफ़ कर दिया गया।";renderSlots()});$("whatsapp").addEventListener("click",()=>{const wa=$("wa").value.replace(/\D/g,"");if(wa.length>=10&&requestText)window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(requestText),"noopener")});$("print").addEventListener("click",()=>{if(requestText)window.print()});$("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(requestText);$("status").textContent="अनुरोध कॉपी हो गया।"}catch(e){$("status").textContent="कॉपी अनुमति उपलब्ध नहीं; Print/PDF का उपयोग करें।"}});renderSlots();
+})();
+</script></body></html>
