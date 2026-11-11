@@ -32,7 +32,7 @@ jobs:
             echo "continue=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         if: steps.gate.outputs.continue == 'true'
         with:
           fetch-depth: 1

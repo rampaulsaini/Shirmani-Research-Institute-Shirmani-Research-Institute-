@@ -14,7 +14,7 @@ jobs:
     outputs:
       product_count: ${{ steps.count.outputs.product_count }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: count
         shell: bash
         run: |
@@ -34,7 +34,7 @@ jobs:
     needs: institute-discovery
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build production backlog and visual identity queue
         shell: bash
         run: |
