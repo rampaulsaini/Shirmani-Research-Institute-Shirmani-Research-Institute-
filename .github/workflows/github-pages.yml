@@ -23,7 +23,9 @@ jobs:
           test -s showroom-public.html
           test -s showroom-public-interface.html
           test -s writing-research-enquiry.html
-          echo "Public showroom and writing/research entry files exist in the Pages artifact source."
+          test -s global-customer-operations.html
+          grep -q 'href="global-customer-operations.html"' supreme-clean-showroom.html
+          echo "Public showroom, customer operations and writing/research entry files exist in the Pages artifact source."
 
       - name: Confirm canonical publisher owns deployment
         run: echo "Route guard only; public-production-automission.yml is the sole Pages publisher."
