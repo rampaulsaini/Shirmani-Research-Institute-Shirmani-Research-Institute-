@@ -33,8 +33,9 @@ def load_schema():
 
 def validate_record(record, schema):
     errors = []
-    if set(record) != set(schema["required"]):
-        errors.append("record keys do not exactly match schema")
+    allowed_keys = set(schema["required"]) | {"result_artifact_ref"}
+    if not set(record).issubset(allowed_keys):
+        errors.append("record contains keys outside the verification schema")
     for key in REQUIRED:
         if key not in record:
             continue
@@ -51,6 +52,8 @@ def validate_record(record, schema):
                 errors.append("VERIFIED record missing " + key)
         if not record.get("evidence_refs"):
             errors.append("VERIFIED record requires evidence_refs")
+        if not record.get("result_artifact_ref"):
+            errors.append("VERIFIED record requires result_artifact_ref")
     return errors
 
 def main():
@@ -95,7 +98,8 @@ def main():
         "remaining_to_target": max(target - verified, 0),
         "blockers": blockers,
         "provenance": ["verification-record directory", "supreme-independent-verification-record.schema.json", "deterministic ledger audit"],
-        "independence_boundary": "Automation validates declared evidence and structure; it does not self-attest independent verification."
+        "independence_boundary": "Automation validates declared evidence and structure; it does not self-attest independent verification.",
+        "result_first_boundary": "VERIFIED is reserved for reviewed result artifacts; workflow execution, queue presence, or direct verification flags cannot create VERIFIED."
     }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
