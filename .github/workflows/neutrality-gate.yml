@@ -1,0 +1,49 @@
+name: SHIRMANI Neutrality Automission Gate
+
+on:
+  push:
+    paths:
+      - "schemas/neutrality-contract.json"
+      - "factory/neutrality_qc.py"
+      - "docs/SHIRMANI-NEUTRALITY-AUTOMISSION.md"
+  pull_request:
+    paths:
+      - "schemas/neutrality-contract.json"
+      - "factory/neutrality_qc.py"
+      - "docs/SHIRMANI-NEUTRALITY-AUTOMISSION.md"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-neutrality-gate
+  cancel-in-progress: false
+
+jobs:
+  neutrality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate neutrality contract
+        run: python3 factory/neutrality_qc.py
+      - name: Compile neutrality QC
+        run: python3 -m py_compile factory/neutrality_qc.py
+      - name: Assert fail-closed contract
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("schemas/neutrality-contract.json").read_text())
+          assert p["fail_closed"] is True
+          assert "model_confidence_to_verified" in p["forbidden_promotions"]
+          assert "authority_to_verified" in p["forbidden_promotions"]
+          print("SHIRMANI Neutrality Gate: PASS")
+          PY

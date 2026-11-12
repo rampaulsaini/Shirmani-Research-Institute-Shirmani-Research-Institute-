@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "name": "shirmani-neutrality-contract",
+  "purpose": "Machine-checkable neutrality and epistemic-status boundary for AI-agent outputs.",
+  "principles": [
+    "source_preservation_without_truth_promotion",
+    "evidence_before_empirical_claim_promotion",
+    "counter_evidence_required_for_verification",
+    "equal_process_for_author_and_external_claims",
+    "no_authority_as_proof",
+    "no_model_confidence_as_proof",
+    "fail_closed_on_missing_evidence",
+    "traceable_provenance"
+  ],
+  "claim_statuses": [
+    "AUTHOR_DEFINED",
+    "AUTHOR_PROPOSED",
+    "EMPIRICAL_TESTABLE",
+    "EVIDENCE_SUPPORTED",
+    "NOT_VERIFIED",
+    "CONTRADICTED"
+  ],
+  "required_fields": [
+    "claim_id",
+    "claim_text",
+    "status",
+    "provenance",
+    "reasoning_basis"
+  ],
+  "verification_required_fields": [
+    "operational_definition",
+    "independent_sources",
+    "test_or_observation",
+    "counter_evidence_review",
+    "reviewer_role",
+    "review_timestamp",
+    "decision_basis"
+  ],
+  "forbidden_promotions": [
+    "author_authorship_to_verified",
+    "model_agreement_to_verified",
+    "workflow_success_to_verified",
+    "repetition_to_verified",
+    "popularity_to_verified",
+    "authority_to_verified"
+  ],
+  "fail_closed": true
+}
