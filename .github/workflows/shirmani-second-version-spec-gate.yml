@@ -1,0 +1,51 @@
+name: SHIRMANI Second Version Specification Gate
+on:
+  push:
+    paths:
+      - 'docs/SHIRMANI-SECOND-VERSION-SUPREME-PRESENTATION-SPEC.md'
+      - 'SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md'
+      - '.github/workflows/shirmani-second-version-spec-gate.yml'
+  pull_request:
+    paths:
+      - 'docs/SHIRMANI-SECOND-VERSION-SUPREME-PRESENTATION-SPEC.md'
+      - 'SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md'
+      - '.github/workflows/shirmani-second-version-spec-gate.yml'
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate specification boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
+          test -s docs/SHIRMANI-SECOND-VERSION-SUPREME-PRESENTATION-SPEC.md
+          grep -q 'Preserve first' SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md
+          grep -q 'NOT_YET_INDEPENDENTLY_VERIFIED' docs/SHIRMANI-SECOND-VERSION-SUPREME-PRESENTATION-SPEC.md
+      - name: Validate evidence-safe response contract
+        run: |
+          set -euo pipefail
+          spec='docs/SHIRMANI-SECOND-VERSION-SUPREME-PRESENTATION-SPEC.md'
+          grep -q 'EVIDENCE_SUPPORTED' "$spec"
+          grep -q 'PARTIALLY_SUPPORTED' "$spec"
+          grep -q 'NOT_ENOUGH_EVIDENCE' "$spec"
+          grep -q 'अभी पर्याप्त प्रमाण उपलब्ध नहीं है' "$spec"
+          grep -q 'No fabricated' "$spec"
+      - name: Validate live integration honesty
+        run: |
+          set -euo pipefail
+          spec='docs/SHIRMANI-SECOND-VERSION-SUPREME-PRESENTATION-SPEC.md'
+          grep -q 'VOICE_INTEGRATION = NOT_ACTIVE' "$spec"
+          grep -q 'PRODUCTION_READY' "$spec"
+          grep -q 'INDEPENDENTLY_VERIFIED' "$spec"
+      - name: Result
+        run: |
+          echo 'SHIRMANI_SECOND_VERSION_SPEC_GATE=PASS'
+          echo 'No live voice/avatar integration is claimed by this gate.'
