@@ -1,0 +1,37 @@
+name: SHIRMANI Global Deployment Production
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate deployment registry
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("generated/global-deployment-registry.json"))
+          assert d["live_location_policy"]=="ONLY_OPT_IN_OR_AUTHORIZED_TELEMETRY"
+          assert d["integrity"]["no_hidden_gps_collection"]
+          assert d["integrity"]["no_third_party_site_injection_without_authorization"]
+          for c in d.get("companies",[]): assert c.get("official_url","").startswith(("https://","http://"))
+          print("GLOBAL_DEPLOYMENT_REGISTRY_OK")
+          PY
+      - name: Publish build telemetry
+        run: |
+          python - <<'PY'
+          import json,datetime
+          from pathlib import Path
+          Path("generated/global-deployment-build.json").write_text(json.dumps({"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"surface":"global-deployment-showroom.html","mode":"CONTINUOUS","location_mode":"AUTHORIZED_TELEMETRY_ONLY","third_party_injection":"NOT_PERMITTED_WITHOUT_AUTHORIZATION"},indent=2)+"\n")
+          PY
+      - name: Commit telemetry
+        run: |
+          git config user.name "SHIRMANI Automission"
+          git config user.email "actions@users.noreply.github.com"
+          git add generated/global-deployment-build.json
+          git diff --cached --quiet || git commit -m "chore: refresh global deployment telemetry"
+          git push
