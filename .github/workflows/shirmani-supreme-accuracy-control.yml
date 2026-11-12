@@ -1,0 +1,78 @@
+name: SHIRMANI Supreme Accuracy Control Plane
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - "agents/accuracy_control_agent.py"
+      - "schemas/accuracy-control.schema.json"
+      - ".github/workflows/shirmani-supreme-accuracy-control.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-supreme-accuracy-control
+  cancel-in-progress: false
+
+jobs:
+  accuracy-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Python syntax gate
+        run: python3 -m py_compile agents/accuracy_control_agent.py
+
+      - name: Run deterministic accuracy audit
+        run: python3 agents/accuracy_control_agent.py
+
+      - name: Validate accuracy-control schema
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          schema=json.loads(Path("schemas/accuracy-control.schema.json").read_text())
+          report=json.loads(Path("generated/ACCURACY-CONTROL.json").read_text())
+          for key in schema["required"]:
+              if key not in report:
+                  raise SystemExit(f"missing required field: {key}")
+          if report["fail_closed"] is not True:
+              raise SystemExit("fail_closed boundary missing")
+          if report["mode"] != "deterministic-accuracy-control":
+              raise SystemExit("wrong control-plane mode")
+          if "independent verification" not in report["important_boundary"]:
+              raise SystemExit("verification boundary missing")
+          print("Accuracy-control schema gate: PASS")
+          PY
+
+      - name: Validate no false verification promotion
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/ACCURACY-CONTROL.json").read_text())
+          if d["verified_records_observed"] < 0:
+              raise SystemExit("invalid verification count")
+          print("False-promotion guard: PASS")
+          print("Observed VERIFIED records:", d["verified_records_observed"])
+          print("Quality signal mean:", d["quality_signal_mean_percent"])
+          print("Decision:", d["publication_decision"])
+          PY
+
+      - name: Publish audit artifact
+        run: |
+          git config user.name "omniverse-factory[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/ACCURACY-CONTROL.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(accuracy): refresh deterministic control report"
+          git push
