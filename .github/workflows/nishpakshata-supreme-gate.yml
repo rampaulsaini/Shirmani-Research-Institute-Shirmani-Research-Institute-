@@ -1,0 +1,44 @@
+name: SHIRMANI Nishpakshata Supreme Gate
+
+on:
+  push:
+    paths:
+      - "schemas/nishpakshata-policy.json"
+      - "factory/nishpakshata_qc.py"
+      - "generated/**"
+      - "agents/**"
+      - "factory/**"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-nishpakshata-gate
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic Nishpakshata QC
+        run: |
+          set -euo pipefail
+          python3 factory/nishpakshata_qc.py
+      - name: Validate fail-closed governance linkage
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("schemas/agent-governance.json").read_text(encoding="utf-8"))
+          assert p["fail_closed"] is True
+          assert p["default_status"] == "unverified"
+          assert p["provenance_required_for_claims"] is True
+          assert p["fabrication_prohibited"] is True
+          print("Governance linkage: PASS")
+          PY
