@@ -1,0 +1,59 @@
+name: SHIRMANI Personal Provenance Verification Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+  push:
+    branches: [main, supreme-verification-v3]
+    paths:
+      - "research/personal-provenance-verification-gate-v1.md"
+      - "generated/personal-provenance-registry.json"
+      - ".github/workflows/personal-provenance-verification-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-personal-provenance-gate
+  cancel-in-progress: true
+
+jobs:
+  provenance-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate fail-closed provenance registry
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/personal-provenance-registry.json").read_text(encoding="utf-8"))
+          assert d["automation_policy"]["biometric_inference"] is False
+          assert d["automation_policy"]["biometric_templates"] is False
+          assert d["automation_policy"]["auto_identity_verified"] is False
+          allowed={"PROVENANCE-SUPPORTED","PENDING_INDEPENDENT_REVIEW","NOT_VERIFIED","CONTRADICTED"}
+          for r in d["records"]:
+              assert r["status"] in allowed
+              assert r["claim_class"] in {"AUTHORSHIP_PROVENANCE","USER_SUPPLIED_MEDIA_PROVENANCE","IDENTITY_CLAIM","PHILOSOPHICAL_OR_EXPERIENTIAL_CLAIM","EMPIRICAL_CLAIM"}
+              if r["claim_class"] in {"IDENTITY_CLAIM","PHILOSOPHICAL_OR_EXPERIENTIAL_CLAIM"}:
+                  assert r["provenance_scope"] == "source/publication provenance only"
+          print("PERSONAL_PROVENANCE_GATE: FAIL-CLOSED PASS")
+          PY
+      - name: Verify protocol boundary
+        run: |
+          set -euo pipefail
+          grep -q "must not infer identity from biometric characteristics" research/personal-provenance-verification-gate-v1.md
+          grep -q "must not manufacture an independent identity or truth decision" research/personal-provenance-verification-gate-v1.md
+      - name: Publish audit summary
+        run: |
+          {
+            echo "## Personal Provenance Verification Gate"
+            echo "- Authorship provenance is separated from identity and substantive truth claims."
+            echo "- User-supplied face/eye/voice material is provenance evidence only."
+            echo "- Biometric inference/templates: DISABLED."
+            echo "- Automatic identity/truth verification: DISABLED."
+            echo "- Gate is fail-closed."
+          } >> "$GITHUB_STEP_SUMMARY"
