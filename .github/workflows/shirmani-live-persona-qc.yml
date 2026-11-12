@@ -1,0 +1,36 @@
+name: SHIRMANI Live Persona Contract QC
+
+on:
+  push:
+    paths:
+      - 'docs/live-persona-system-v1.md'
+      - 'schemas/live-persona.schema.json'
+      - 'factory/live_persona_qc.py'
+      - 'generated/live-persona-status.json'
+      - '.github/workflows/shirmani-live-persona-qc.yml'
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract-qc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Run deterministic persona QC
+        run: python factory/live_persona_qc.py
+      - name: Upload persona status
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-live-persona-status
+          path: |
+            generated/live-persona-status.json
+            docs/live-persona-system-v1.md
