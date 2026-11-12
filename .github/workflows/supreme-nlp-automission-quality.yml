@@ -1,0 +1,126 @@
+name: Supreme AI-ML-NLP Automission Quality Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: supreme-nlp-automission
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Structural integrity
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          required = [
+              "agents", "factory", "schemas", "generated",
+              ".github/workflows"
+          ]
+          missing = [p for p in required if not Path(p).exists()]
+          if missing:
+              raise SystemExit(f"STRUCTURE_MISSING: {missing}")
+          print("STRUCTURE_OK")
+
+          py = [p for root in ("agents", "factory") for p in Path(root).rglob("*.py")
+                if "__pycache__" not in p.parts and "_sources" not in p.parts]
+          import py_compile
+          for p in py:
+              py_compile.compile(str(p), doraise=True)
+          print(f"PYTHON_COMPILE_OK files={len(py)}")
+          PY
+
+      - name: Configuration and schema integrity
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          roots = [Path("factory"), Path("schemas")]
+          count = 0
+          for root in roots:
+              for p in root.glob("*.json"):
+                  json.loads(p.read_text(encoding="utf-8"))
+                  count += 1
+          print(f"JSON_INTEGRITY_OK files={count}")
+          PY
+
+      - name: Existing factory smoke test
+        run: python factory/validate_factory.py
+
+      - name: Router verification invariant
+        run: |
+          python - <<'PY'
+          from factory.job_router import route
+          probes = ["research.deep", "research", "product", "verification"]
+          for task in probes:
+              result = route(task, nvidia_enabled=False)
+              assert isinstance(result, dict), task
+              assert "verification_required" in result, task
+          assert route("research.deep", nvidia_enabled=False)["verification_required"] is True
+          print("ROUTER_INVARIANTS_OK")
+          PY
+
+      - name: Evidence-first NLP readiness audit
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          checks = {
+              "source_manifest": Path("generated/manifest.json"),
+              "deep_learning_status": Path("generated/deep-learning-status.json"),
+              "failure_registry": Path("generated/failure-registry.json"),
+          }
+
+          report = {"status": "PASS", "checks": {}, "principles": [
+              "observable_signal_before_interpretation",
+              "evidence_linked_output",
+              "confidence_and_uncertainty",
+              "independent_verification",
+              "human_review_for_consequential_changes",
+              "no_claim_of_100_percent_accuracy_without_measurement"
+          ]}
+
+          for name, path in checks.items():
+              if path.exists():
+                  try:
+                      json.loads(path.read_text(encoding="utf-8"))
+                      report["checks"][name] = "present_and_valid_json"
+                  except Exception as exc:
+                      report["checks"][name] = f"invalid_json:{type(exc).__name__}"
+                      report["status"] = "DEGRADED"
+              else:
+                  report["checks"][name] = "not_present_this_cycle"
+
+          Path("generated/supreme-nlp-quality-report.json").write_text(
+              json.dumps(report, indent=2, ensure_ascii=False) + "\n",
+              encoding="utf-8"
+          )
+          print(json.dumps(report, indent=2, ensure_ascii=False))
+          PY
+
+      - name: Publish quality report
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-quality-report
+          path: generated/supreme-nlp-quality-report.json
+          retention-days: 14
