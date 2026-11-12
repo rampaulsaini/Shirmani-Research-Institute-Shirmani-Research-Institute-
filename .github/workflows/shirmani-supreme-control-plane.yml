@@ -1,0 +1,31 @@
+name: SHIRMANI Supreme AI-ML-NLP Control Plane
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths: ["agents/**","factory/**","schemas/**",".github/workflows/**"]
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-supreme-control-plane
+  cancel-in-progress: true
+jobs:
+  control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
+      - name: Run fail-closed AI-ML-NLP control plane
+        run: python factory/supreme_control.py
+      - name: Upload control report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-control-plane
+          path: generated/supreme-control-plane.json
+          if-no-files-found: error
