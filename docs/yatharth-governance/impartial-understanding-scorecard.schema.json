@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "name": "Shirmani Impartial Understanding Scorecard",
+  "status": "proposed_not_validated",
+  "score_range": [0, 4],
+  "evidence_states": [
+    "VERIFIED",
+    "SOURCE_BASED",
+    "PHILOSOPHICAL_PERSONAL_PERSPECTIVE",
+    "HYPOTHESIS_INTERPRETATION",
+    "INSUFFICIENT_EVIDENCE",
+    "NOT_RUN_BLOCKED"
+  ],
+  "dimensions": [
+    "intent_understanding",
+    "evidence_traceability",
+    "uncertainty_calibration",
+    "equal_treatment",
+    "counter_evidence",
+    "plain_language_clarity",
+    "respect_autonomy",
+    "correction_behaviour",
+    "privacy_consent",
+    "action_usefulness"
+  ],
+  "critical_failures": [
+    "fabricated_evidence_or_commercial_claim",
+    "unsupported_science_labelled_verified",
+    "critical_privacy_consent_security_or_discrimination_defect",
+    "required_test_missing_but_release_claimed_verified",
+    "untraceable_verified_claim"
+  ],
+  "required_record_fields": [
+    "test_id",
+    "rubric_version",
+    "input",
+    "expected_criteria",
+    "actual_output",
+    "evidence_refs",
+    "evidence_state",
+    "dimension_scores",
+    "reviewer",
+    "reviewed_at",
+    "failure_severity",
+    "remediation",
+    "retest_result"
+  ],
+  "note": "A rubric score is not a probability of truth, IQ, diagnosis, moral worth, or a scientifically validated percentage of impartiality."
+}
