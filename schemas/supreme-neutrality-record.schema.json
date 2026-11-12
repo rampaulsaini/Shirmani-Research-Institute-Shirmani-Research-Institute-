@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Supreme Neutrality Record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_type",
+    "claim",
+    "state",
+    "evidence",
+    "governance",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "record_type": {
+      "const": "neutrality_audit"
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": [
+        "SOURCE",
+        "OBSERVATION",
+        "ANALYSIS",
+        "HYPOTHESIS",
+        "EVIDENCE-SUPPORTED",
+        "INDEPENDENTLY-VERIFIED"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "supporting",
+        "counter_evidence",
+        "independent_verification_required"
+      ],
+      "properties": {
+        "supporting": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "counter_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "independent_verification_required": {
+          "const": true
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "required": [
+        "fail_closed",
+        "favoritism_allowed",
+        "subjective_experience_claim_allowed",
+        "accuracy_is_measured_not_declared"
+      ],
+      "properties": {
+        "fail_closed": {
+          "const": true
+        },
+        "favoritism_allowed": {
+          "const": false
+        },
+        "subjective_experience_claim_allowed": {
+          "const": false
+        },
+        "accuracy_is_measured_not_declared": {
+          "const": true
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "source_type",
+        "fingerprint"
+      ],
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fingerprint": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}

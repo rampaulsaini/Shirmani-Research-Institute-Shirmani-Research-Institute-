@@ -1,0 +1,42 @@
+name: SHIRMANI Supreme Neutrality Gate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "docs/supreme-neutrality-and-evidence-contract.md"
+      - "schemas/supreme-neutrality-record.schema.json"
+      - "scripts/validate_supreme_neutrality.py"
+      - ".github/workflows/supreme-neutrality-gate.yml"
+permissions:
+  contents: read
+concurrency:
+  group: supreme-neutrality-gate
+  cancel-in-progress: true
+jobs:
+  neutrality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate contract and governance
+        run: python scripts/validate_supreme_neutrality.py
+      - name: Validate JSON schema
+        run: python -m json.tool schemas/supreme-neutrality-record.schema.json >/dev/null
+      - name: Verify fail-closed boundary
+        run: |
+          grep -q 'favoritism_allowed.*false' schemas/supreme-neutrality-record.schema.json
+          grep -q 'counter_evidence' schemas/supreme-neutrality-record.schema.json
+          grep -q 'independent_verification_required' schemas/supreme-neutrality-record.schema.json
+          echo 'NEUTRALITY_BOUNDARY: PASS'
+      - name: Emit audit summary
+        run: |
+          echo '## Supreme Neutrality Gate' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Favoritism: blocked' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Counter-evidence: required' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Independent verification: required' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Accuracy: measured, not declared' >> "$GITHUB_STEP_SUMMARY"
