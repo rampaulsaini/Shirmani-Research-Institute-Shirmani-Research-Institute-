@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Multimodal Signal Record",
+  "type":"object",
+  "required":["source_id","modality","values"],
+  "properties":{
+    "source_id":{"type":"string","minLength":1},
+    "modality":{"type":"string","minLength":1},
+    "values":{"type":"array","items":{"type":"number","finite":true}},
+    "context":{"type":"object"},
+    "timestamp_utc":{"type":"string"}
+  },
+  "additionalProperties":true
+}
