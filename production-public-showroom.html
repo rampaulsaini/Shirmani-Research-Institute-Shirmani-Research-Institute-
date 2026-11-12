@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="hi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Production Public Showroom</title>
+<style>
+body{margin:0;background:#070b12;color:#eef5f8;font:15px system-ui;line-height:1.55}main{max-width:1400px;margin:auto;padding:18px}h1,h2,h3{color:#ffd84a}.hero,.panel,.card{background:#0e1722;border:1px solid #304457;border-radius:18px;padding:18px;margin:12px 0}.hero{border:2px solid #ffd84a}.flow,.metrics,.grid{display:grid;gap:10px}.flow{grid-template-columns:repeat(4,1fr)}.metrics{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-top:14px}.grid{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}.metric{font-size:1.8rem;font-weight:900;color:#f3d36a}.box{background:#081019;border-radius:12px;padding:12px}.tag{display:inline-block;color:#67e8f9;border:1px solid #4ed8ef;border-radius:99px;padding:3px 8px;font-size:.75rem}.muted{color:#aebdcc}.price{font-size:1.35rem;font-weight:900;color:#f3d36a}.offer{color:#73e6a5;font-weight:800}.passport{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:.78rem}.passport span{background:#081019;padding:7px;border-radius:8px}.btn{display:inline-block;background:#f3d36a;color:#111;padding:9px 12px;border-radius:9px;text-decoration:none;font-weight:900;margin:3px}.btn.alt{background:#162635;color:#67e8f9;border:1px solid #38566b}input,select{box-sizing:border-box;width:100%;padding:10px;background:#081019;color:#fff;border:1px solid #38566b;border-radius:9px}.toolbar{display:grid;grid-template-columns:2fr 1fr;gap:9px}@media(max-width:750px){.flow{grid-template-columns:1fr 1fr}.toolbar{grid-template-columns:1fr}.passport{grid-template-columns:1fr 1fr}}
+</style></head>
+<body><main>
+<section class="hero">
+<span class="tag">PRODUCTION-FIRST · PUBLIC CUSTOMER VIEW</span>
+<h1>꙰ SHIRMANI Supreme Production Public Showroom</h1>
+<p><b>Institute → Factory → QC → Showroom / Sale</b></p>
+<p class="muted">यह rack केवल वास्तविक concrete production को public view में रखता है। Catalog identity को product समझकर production count नहीं किया जाता।</p>
+<div class="flow"><div class="box"><b>01 INSTITUTE</b><br>खोज / discovery</div><div class="box"><b>02 FACTORY</b><br>वास्तविक production</div><div class="box"><b>03 QC GATE</b><br>quality metadata</div><div class="box"><b>04 SHOWROOM</b><br>public use / sale intent</div></div>
+<div class="metrics"><div class="box"><div id="catalog" class="metric">—</div>catalog identities</div><div class="box"><div id="produced" class="metric">—</div>concrete produced</div><div class="box"><div id="remaining" class="metric">—</div>production remaining</div><div class="box"><div id="batch" class="metric">—</div>latest batch</div></div>
+<p><a class="btn" href="showroom.html">Main Showroom</a><a class="btn alt" href="supreme-factory.html">Factory</a><a class="btn alt" href="supreme-marking-hub.html">Marking Hub</a><a class="btn alt" href="products/production-launch-center.html">Launch Center</a></p>
+</section>
+<section class="panel"><h2>Produced Product Rack</h2><div class="toolbar"><input id="q" placeholder="Product / category / engine खोजें…" oninput="render()"><select id="family" onchange="render()"><option value="">सभी categories</option></select></div><p id="summary" class="muted"></p><div id="grid" class="grid"></div></section>
+<section class="panel"><h2>Customer feedback → production improvement</h2><p class="muted">Public reviews और ratings को product-quality improvement input माना जाएगा। वे independent scientific verification का substitute नहीं हैं।</p><a class="btn" href="https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/issues/new?template=product-review.yml" target="_blank" rel="noopener">Public Review / Rating</a>
+</section>
+</main>
+<script>
+let rows=[];const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+async function load(){
+ const [c,o]=await Promise.all([
+  fetch("generated/1000-digital-products.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+  fetch("generated/concrete-production-overlay.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json())
+ ]);
+ const base=new Map((c.products||[]).map(p=>[p.id,p]));
+ rows=(o.products||[]).map(p=>Object.assign({},base.get(p.id)||{},p));
+ $("catalog").textContent=Number(c.product_count||base.size).toLocaleString("en-IN");
+ $("produced").textContent=rows.length.toLocaleString("en-IN");
+ $("remaining").textContent=Math.max(0,(c.product_count||base.size)-rows.length).toLocaleString("en-IN");
+ $("batch").textContent=o.batch||"—";
+ [...new Set(rows.map(p=>p.family).filter(Boolean))].sort().forEach(f=>{const op=document.createElement("option");op.value=f;op.textContent=f;$("family").append(op)});
+ render();
+}
+function render(){
+ const q=$("q").value.toLowerCase(),f=$("family").value;
+ const a=rows.filter(p=>(!f||p.family===f)&&(!q||JSON.stringify(p).toLowerCase().includes(q)));
+ $("summary").textContent=a.length.toLocaleString("en-IN")+" concrete produced products shown";
+ $("grid").innerHTML=a.map(p=>{
+  const rate=Number(p.offer_price_inr||p.price_inr||0);
+  return '<article class="card"><span class="tag">'+esc(p.family||"Product")+' · '+esc(p.engine||"engine")+'</span><h3>'+esc(p.name)+'</h3><p class="muted">'+esc(p.id)+' · '+esc(p.description||"Concrete executable browser production module.")+'</p><div class="price">'+(rate?"₹"+rate.toLocaleString("en-IN"):"Rate configuration pending")+'</div><div class="offer">'+esc(p.offer||"Production launch offer pending configuration")+'</div><div class="passport"><span>QC<br><b>'+esc(p.qc_code||"PENDING")+'</b></span><span>Gate<br><b>'+esc(p.gate_no||"PENDING")+'</b></span><span>Dispatch<br><b>'+esc(p.dispatch_no||"NO")+'</b></span></div><p><a class="btn" href="'+esc(p.artifact_url||("products/1000-digital-product-factory.html?id="+encodeURIComponent(p.id)))+'">देखें / उपयोग करें</a><a class="btn alt" href="'+esc(p.passport_url||("product-passport.html?id="+encodeURIComponent(p.id)))+'">Passport</a></p></article>'
+ }).join("")||"<div class=card>इस filter में कोई concrete product नहीं मिला।</div>";
+}
+load().catch(e=>{$("summary").textContent="Production data unavailable: "+e.message});
+</script></body></html>
