@@ -1,0 +1,68 @@
+name: Ultra Mega Infinity Quantum AI-ML-NLP Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/ultra_mega_infinity_quantum_nlp.py"
+      - "tests/test_ultra_mega_infinity_quantum_nlp.py"
+      - "schemas/ultra-mega-infinity-quantum-nlp.schema.json"
+      - "docs/ULTRA-MEGA-INFINITY-QUANTUM-AI-ML-NLP-AUTOMISSION.md"
+      - ".github/workflows/ultra-mega-infinity-quantum-ai-ml-nlp-automission.yml"
+permissions:
+  contents: read
+concurrency:
+  group: ultra-mega-infinity-quantum-ai-ml-nlp-automission
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile
+        run: python -m py_compile agents/ultra_mega_infinity_quantum_nlp.py tests/test_ultra_mega_infinity_quantum_nlp.py
+      - name: Deterministic unit tests
+        run: python -m unittest tests/test_ultra_mega_infinity_quantum_nlp.py -v
+      - name: Schema validation
+        run: python -m json.tool schemas/ultra-mega-infinity-quantum-nlp.schema.json >/dev/null
+      - name: Generate traceable multimodal smoke record
+        run: |
+          mkdir -p generated/ultra-mega-infinity-quantum
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.ultra_mega_infinity_quantum_nlp import interpret
+          rows=[
+            {"modality":"synthetic","feature":"baseline_a","value":1.0,"quality":1.0,"source":"automission-smoke"},
+            {"modality":"synthetic","feature":"baseline_b","value":1.0,"quality":1.0,"source":"automission-smoke"}
+          ]
+          record=interpret(rows,"automission-cycle")
+          Path("generated/ultra-mega-infinity-quantum/status.json").write_text(json.dumps(record,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(record["interpretation"]["simple_language"])
+          print("FINGERPRINT:",record["fingerprint"])
+          PY
+      - name: Governance gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("generated/ultra-mega-infinity-quantum/status.json").read_text())
+          assert r["governance"]["fail_closed"] is True
+          assert r["governance"]["subjective_experience_claim_allowed"] is False
+          assert r["governance"]["independent_verification_required"] is True
+          assert r["interpretation"]["subjective_experience_claim"] is False
+          print("ULTRA-MEGA-INFINITY-QUANTUM GOVERNANCE: PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ultra-mega-infinity-quantum-ai-ml-nlp-${{ github.run_id }}
+          path: generated/ultra-mega-infinity-quantum/status.json
+          retention-days: 14
