@@ -1,25 +1,26 @@
 # ꙰ SHIRMANI Verification Progress Dashboard
 
-Generated: 2026-10-04T12:48:36+00:00
+Generated: 2026-10-04T18:56:13.535Z
 
-## Authoritative target
+## Verification milestone
 
-**0 / 100,200 independently VERIFIED (0%)**
+**0 / 50 independently VERIFIED (0%)**
 
 ### Graph map
 
-- Prepared records: **10/100,200 (0.00998%)**  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-- Reviewed records: **0/100,200 (0%)**  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-- Independently VERIFIED: **0/100,200 (0%)**  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-- Remaining to target: **100,200/100,200 (100%)**  ██████████████████████████████
+- Verification milestone: **50**
+- Prepared concrete records: **10/50 (20%)**  ██████░░░░░░░░░░░░░░░░░░
+- Reviewed records: **0/50 (0%)**  ░░░░░░░░░░░░░░░░░░░░░░░░░░
+- Independently VERIFIED: **0/50 (0%)**  ░░░░░░░░░░░░░░░░░░░░░░░░░░
+- Remaining to milestone: **50/50 (100%)**  ████████████████████████
 
-## Current prepared set
+## Current concrete set
 
 - Source registry records: **10**
-- Prepared records: **10**
-- Evidence-supported: **4**
-- Reviewed: **0**
-- Independently VERIFIED: **0**
+- Concrete review slots: **10**
+- Evidence-supported: **4/10 (40%)**
+- Reviewed: **0/10 (0%)**
+- Independently VERIFIED: **0/10 (0%)**
 
 ## Control state
 
@@ -34,4 +35,8 @@ Workflow success, queue generation, evidence collection, generated packets, or r
 
 ## Next gate
 
-Complete independent review for prepared records; each VERIFIED promotion requires evidence, counter-evidence, reproducible test, reviewer provenance, timestamp, and audit.
+Complete independent review for the existing concrete records. The Gate-50 milestone is a target milestone, not evidence that 50 concrete reviewable claims already exist.
+
+## Scale distinction
+
+The repository's upstream verification registry may contain a larger aggregate queue. The **Gate-50 milestone** and the **10 concrete review records** are intentionally reported separately so that preparation capacity is never mistaken for VERIFIED output.
