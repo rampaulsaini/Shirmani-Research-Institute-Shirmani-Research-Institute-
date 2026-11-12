@@ -1,22 +1,23 @@
 # ꙰ SHIRMANI Verification Progress Dashboard
 
-Generated: 2026-10-04T12:48:36+00:00
+Generated: 2026-10-04
 
-## Authoritative target
+## Authoritative verification milestone
 
-**0 / 100,200 independently VERIFIED (0%)**
+**0 / 50 independently VERIFIED (0%)**
 
 ### Graph map
 
-- Prepared records: **10/100,200 (0.00998%)**  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-- Reviewed records: **0/100,200 (0%)**  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-- Independently VERIFIED: **0/100,200 (0%)**  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-- Remaining to target: **100,200/100,200 (100%)**  ██████████████████████████████
+- Upstream aggregate queue: **100,200 records** — not the milestone denominator
+- Prepared/concrete review records: **10/50 (20%)**  ██████░░░░░░░░░░░░░░░░░░░░
+- Reviewed records: **0/50 (0%)**  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+- Independently VERIFIED: **0/50 (0%)**  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+- Remaining to milestone: **50/50 (100%)**  ██████████████████████████████
 
 ## Current prepared set
 
 - Source registry records: **10**
-- Prepared records: **10**
+- Concrete review slots: **10**
 - Evidence-supported: **4**
 - Reviewed: **0**
 - Independently VERIFIED: **0**
@@ -34,4 +35,4 @@ Workflow success, queue generation, evidence collection, generated packets, or r
 
 ## Next gate
 
-Complete independent review for prepared records; each VERIFIED promotion requires evidence, counter-evidence, reproducible test, reviewer provenance, timestamp, and audit.
+Complete independent review for the prepared records; each VERIFIED promotion requires evidence, counter-evidence, reproducible test, reviewer provenance, timestamp, and audit.
