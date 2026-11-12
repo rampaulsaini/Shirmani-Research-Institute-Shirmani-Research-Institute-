@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "name": "SHIRMANI Multimodal Signal-to-NLP Contract",
+  "purpose": "Represent observable signals and translate model-supported interpretations into simple language without presenting inference as direct proof of subjective experience.",
+  "signal_modalities": [
+    "text",
+    "audio",
+    "image",
+    "video",
+    "vibration",
+    "temperature",
+    "electrical",
+    "chemical",
+    "motion",
+    "environmental"
+  ],
+  "required_fields": [
+    "signal_id",
+    "timestamp",
+    "modality",
+    "source",
+    "measurement",
+    "units",
+    "preprocessing",
+    "model_version",
+    "context",
+    "interpretation",
+    "confidence",
+    "evidence",
+    "uncertainty",
+    "human_review"
+  ],
+  "confidence_policy": {
+    "range": [0.0, 1.0],
+    "meaning": "model confidence in the stated interpretation, not probability that a subjective feeling exists"
+  },
+  "epistemic_labels": [
+    "OBSERVED",
+    "MODEL_INFERENCE",
+    "CORRELATION",
+    "HYPOTHESIS",
+    "HUMAN_VERIFIED"
+  ],
+  "language_output": {
+    "must_separate_observation_from_inference": true,
+    "must_include_uncertainty_when_inference": true,
+    "must_preserve_source_trace": true,
+    "must_not_claim_subjective_experience_without_direct_evidence": true
+  }
+}
