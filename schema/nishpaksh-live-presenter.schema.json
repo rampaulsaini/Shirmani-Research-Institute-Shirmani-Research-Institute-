@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nishpaksh Live Presenter v1",
+  "type": "object",
+  "required": ["system", "runtime_status", "pipeline", "answer", "audit"],
+  "properties": {
+    "system": {"const": "NISHPAKSH-LIVE-PRESENTER-V1"},
+    "runtime_status": {
+      "enum": ["READY_FOR_PROVIDER", "BLOCKED_AUTHORIZATION"]
+    },
+    "pipeline": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "answer": {
+      "type": "object",
+      "required": ["answer_mode", "verification_status", "presentation"],
+      "properties": {
+        "answer_mode": {
+          "enum": [
+            "ANSWER_WITH_SOURCES",
+            "ANSWER_WITH_UNVERIFIED_LABEL",
+            "ABSTAIN_INSUFFICIENT_EVIDENCE",
+            "ATTRIBUTE_AS_IDENTITY_OR_AUTHOR_CLAIM",
+            "RESPECTFUL_REFRAME"
+          ]
+        },
+        "verification_status": {
+          "enum": ["VERIFIED", "UNVERIFIED"]
+        },
+        "presentation": {
+          "type": "object",
+          "required": [
+            "authorized_voice_required",
+            "authorized_visual_identity_required",
+            "natural_eye_contact",
+            "natural_facial_movement",
+            "lip_sync_required",
+            "voice_face_timing_coherence",
+            "context_first"
+          ]
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "required": [
+        "scientific_verification_granted",
+        "workflow_success_is_not_scientific_verification",
+        "identity_claims_are_not_auto_promoted_to_empirical_facts"
+      ],
+      "properties": {
+        "scientific_verification_granted": {"const": false},
+        "workflow_success_is_not_scientific_verification": {"const": true},
+        "identity_claims_are_not_auto_promoted_to_empirical_facts": {"const": true}
+      }
+    }
+  }
+}
