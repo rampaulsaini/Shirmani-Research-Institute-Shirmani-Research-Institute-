@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Supreme Neutrality Record",
+  "type": "object",
+  "required": [
+    "version",
+    "record_id",
+    "observation",
+    "interpretation",
+    "governance",
+    "verification"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observation": {
+      "type": "object",
+      "required": [
+        "modality",
+        "features"
+      ],
+      "properties": {
+        "modality": {
+          "type": "string"
+        },
+        "features": {
+          "type": "array"
+        }
+      }
+    },
+    "interpretation": {
+      "type": "object",
+      "required": [
+        "statement_type",
+        "simple_language",
+        "confidence"
+      ],
+      "properties": {
+        "statement_type": {
+          "enum": [
+            "OBSERVED",
+            "INFERRED",
+            "HYPOTHESIS",
+            "UNKNOWN"
+          ]
+        },
+        "simple_language": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "required": [
+        "neutrality",
+        "equal-treatment",
+        "evidence-first",
+        "subjective-experience-claim-allowed",
+        "fail_closed"
+      ],
+      "properties": {
+        "neutrality": {
+          "const": true
+        },
+        "equal-treatment": {
+          "const": true
+        },
+        "evidence-first": {
+          "const": true
+        },
+        "subjective-experience-claim-allowed": {
+          "const": false
+        },
+        "fail_closed": {
+          "const": true
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "independent_verification_required",
+        "status"
+      ],
+      "properties": {
+        "independent_verification_required": {
+          "const": true
+        },
+        "status": {
+          "enum": [
+            "UNVERIFIED",
+            "EVIDENCE-SUPPORTED",
+            "INDEPENDENTLY-VERIFIED"
+          ]
+        }
+      }
+    }
+  }
+}
