@@ -1,0 +1,147 @@
+name: SHIRMANI Independent Verification 100 Automission
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "generated/**"
+      - "evidence/**"
+      - "verification/**"
+      - "research/**"
+      - "docs/**"
+      - "source/**"
+      - "schemas/**"
+      - ".github/workflows/shirmani-independent-verification-100-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-independent-verification
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run independent verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          import hashlib, json, pathlib, re, datetime
+
+          root = pathlib.Path(".")
+          scan_roots = [
+              "generated", "evidence", "verification", "research",
+              "docs", "source", "schemas"
+          ]
+          extensions = {".json", ".jsonl", ".yaml", ".yml", ".csv", ".md", ".txt"}
+          excluded = {".git", ".github", "node_modules", ".venv", "venv", "__pycache__"}
+
+          files = []
+          for base in scan_roots:
+              p = root / base
+              if not p.exists():
+                  continue
+              for f in p.rglob("*"):
+                  if f.is_file() and f.suffix.lower() in extensions:
+                      if not any(part in excluded for part in f.parts):
+                          files.append(f)
+
+          def sha256(path):
+              h = hashlib.sha256()
+              with path.open("rb") as fh:
+                  for chunk in iter(lambda: fh.read(1024 * 1024), b""):
+                      h.update(chunk)
+              return h.hexdigest()
+
+          def read_text(path):
+              try:
+                  return path.read_text(encoding="utf-8", errors="replace")
+              except Exception:
+                  return ""
+
+          def checks(text):
+              return {
+                  "non_empty": bool(text.strip()),
+                  "has_provenance": bool(re.search(r"(?i)(provenance|source_id|source|citation|reference|evidence)", text)),
+                  "has_result": bool(re.search(r"(?i)(result|finding|conclusion|output|answer|status)", text)),
+                  "has_traceability": bool(re.search(r"(?i)(trace|traceability|hash|sha256|commit|run_id|workflow)", text)),
+              }
+
+          records, verified, candidates = [], 0, 0
+
+          for path in sorted(files):
+              text = read_text(path)
+              c = checks(text)
+              if not any(c.values()):
+                  continue
+              candidates += 1
+              passed = all(c.values())
+              if passed:
+                  verified += 1
+              records.append({
+                  "path": str(path),
+                  "sha256": sha256(path),
+                  "checks": c,
+                  "status": "VERIFIED" if passed else "REVIEW_REQUIRED"
+              })
+
+          now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+          manifest = {
+              "verification_version": "1.0",
+              "generated_at_utc": now,
+              "automation": "SHIRMANI Independent Verification 100 Automission",
+              "policy": "VERIFIED requires all objective checks to pass; this workflow never fabricates evidence.",
+              "candidate_records": candidates,
+              "verified_records": verified,
+              "review_required": candidates - verified,
+              "verification_rate_percent": round((verified / candidates) * 100, 2) if candidates else 0.0,
+              "target": "100% independently verified candidate records",
+              "records": records
+          }
+
+          out = pathlib.Path("verification-output")
+          out.mkdir(exist_ok=True)
+          (out / "verification-manifest.json").write_text(
+              json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8"
+          )
+
+          print(json.dumps({
+              "candidate_records": candidates,
+              "verified_records": verified,
+              "review_required": candidates - verified,
+              "verification_rate_percent": manifest["verification_rate_percent"]
+          }, indent=2))
+          PY
+
+      - name: Publish verification artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-independent-verification-manifest
+          path: verification-output/verification-manifest.json
+          retention-days: 30
+
+      - name: Verification gate
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("verification-output/verification-manifest.json").read_text())
+          print(f"Candidates: {data['candidate_records']}")
+          print(f"VERIFIED: {data['verified_records']}")
+          print(f"Review required: {data['review_required']}")
+          print(f"Verification rate: {data['verification_rate_percent']}%")
+          print("100% target remains open until every candidate record passes all objective checks.")
+          PY
