@@ -1,0 +1,39 @@
+name: SHIRMANI Multi-Layer Concrete Product Production Pulse
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Concrete product artifacts per cycle"
+        required: false
+        default: "250"
+  push:
+    branches: [main]
+    paths:
+      - "factory/concrete_product_production_pulse.py"
+      - "generated/concrete-production-overlay.json"
+      - ".github/workflows/shirmani-concrete-product-production-pulse.yml"
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-concrete-product-production
+  cancel-in-progress: false
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Materialize next concrete showroom product batch
+        env:
+          CONCRETE_PRODUCT_BATCH: ${{ github.event.inputs.batch_size || '250' }}
+        run: python3 factory/concrete_product_production_pulse.py
+      - name: Publish production result
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "feat(production): materialize next concrete showroom product batch"
+          file_pattern: "products/concrete generated/concrete-production-overlay.json generated/live-production-state.json generated/public-production-catalog.json"
+          commit_user_name: "SHIRMANI Automission"
+          commit_user_email: "actions@users.noreply.github.com"
+          commit_author: "SHIRMANI Automission <actions@users.noreply.github.com>"
