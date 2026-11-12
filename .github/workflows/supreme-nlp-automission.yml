@@ -1,0 +1,45 @@
+name: Supreme NLP Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+concurrency:
+  group: supreme-nlp-automission
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify-signal-to-nlp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run deterministic NLP quality gate
+        run: python scripts/evaluate_nlp_pipeline.py
+
+      - name: Publish evaluation artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-evaluation
+          path: generated/supreme-nlp-evaluation.json
+          if-no-files-found: error
+
+      - name: Emit machine-readable status
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open("generated/supreme-nlp-evaluation.json",encoding="utf-8"))
+          print("SUPREME_NLP_GATE="+("PASS" if p["passed"] else "FAIL"))
+          print("TEST_COUNT="+str(len(p["tests"])))
+          PY
