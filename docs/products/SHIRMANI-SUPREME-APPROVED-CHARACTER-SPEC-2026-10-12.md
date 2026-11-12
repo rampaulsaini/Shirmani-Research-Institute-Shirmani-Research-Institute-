@@ -36,14 +36,14 @@
 Each product must have its own stable ID and distinct artwork. The visual must include:
 1. Author's original photo/logo at upper-left, unchanged except proportional sizing.
 2. This English identity line beneath it:  
-   **Shiromani Rampal Saini · Impartial Understanding · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present**
+   **Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh**
 3. A product-specific QR at upper-right, tested to open that product's long description/Product Passport.
 4. Product name and short description on the artwork.
 5. Distinct visual identity—not a generic image falsely presented as unique.
-6. A 16:9, 3840×2160 master where supported; responsive scaling must not distort the original photo.
+6. A 16:9, 3840×2160 master where supported; responsive scaling must not distort the original photo. Use the user's original photo exactly as supplied; only proportional size adjustment is allowed. Do not apply filters, retouching, face replacement, or generated substitutes.
 7. Price/offer only when supported by a current catalogue record.
 
-Each product release record tracks the visual, VIP screenshot, demo-video URL or **PENDING** status, passport, tested QR destination, usage guide, ID/version, QC checklist and dated test evidence. Customer feedback should create a traceable improvement item when actually received.
+Each product release record tracks the visual, VIP screenshot, demo-video URL or **PENDING** status, passport, tested QR destination, usage guide, ID/version, QC checklist and dated test evidence. The on-image short description must be concise and product-specific; the QR must open the same product's long description/passport. Never reuse another product's QR, screenshot, or demo as proof. Customer feedback should create a traceable improvement item when actually received.
 
 ## 6. Four capability tiers
 - **Tier 1 — Character brief:** description, script, audience/context settings and evidence labels.
