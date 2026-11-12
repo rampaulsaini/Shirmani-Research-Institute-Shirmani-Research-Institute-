@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Neutrality Audit Record",
+  "type": "object",
+  "required": ["cycle_id", "status", "governance", "checks", "fingerprint"],
+  "properties": {
+    "cycle_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["PASS", "FAIL"]},
+    "governance": {
+      "type": "object",
+      "required": [
+        "fail_closed",
+        "equal_evidentiary_rules",
+        "claim_interpretation_separation",
+        "counter_evidence_required",
+        "subjective_experience_claim_guard",
+        "independent_verification_required",
+        "scheduled_production_code_mutation_blocked"
+      ],
+      "properties": {
+        "fail_closed": {"const": true},
+        "equal_evidentiary_rules": {"const": true},
+        "claim_interpretation_separation": {"const": true},
+        "counter_evidence_required": {"const": true},
+        "subjective_experience_claim_guard": {"const": true},
+        "independent_verification_required": {"const": true},
+        "scheduled_production_code_mutation_blocked": {"const": true}
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "passed"],
+        "properties": {
+          "name": {"type": "string"},
+          "passed": {"type": "boolean"},
+          "detail": {"type": "string"}
+        }
+      }
+    },
+    "fingerprint": {"type": "string", "minLength": 16}
+  }
+}
