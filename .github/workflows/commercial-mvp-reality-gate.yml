@@ -1,0 +1,39 @@
+name: SHIRMANI Commercial MVP Reality Gate
+on:
+  pull_request:
+    paths:
+      - "production/commercial-mvp-registry.json"
+      - "products/**"
+      - "education-lab.html"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate commercial registry and product pages
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("production/commercial-mvp-registry.json").read_text())
+          products=r["products"]
+          assert len(products) == 20
+          missing=[]
+          for p in products:
+              if not Path(p["page"]).exists():
+                  missing.append((p["id"],p["page"]))
+              assert p["price_inr"] > 0, p["id"]
+          if missing:
+              raise SystemExit("Missing product pages: "+repr(missing))
+          print("COMMERCIAL_MVP_REGISTRY_OK", len(products))
+          print("SALES_VERIFIED", r["sales_count_verified"])
+          print("PAYMENTS_VERIFIED", r["payment_count_verified"])
+          print("INDEPENDENT_VERIFICATION", r["independent_verification_count"])
+          PY
+      - name: Enforce truth boundary
+        run: |
+          grep -R "guarantee.*legal\|guaranteed.*court\|verified sale" products/legal-case-organizer.html >/dev/null && exit 1 || true
+          echo "TRUTH_BOUNDARY_OK"
