@@ -1,0 +1,27 @@
+name: SHIRMANI Product-First Regression Gate
+
+on:
+  push:
+    branches:
+      - main
+      - feat/product-first-regression-gate-20261005
+  pull_request:
+    paths:
+      - "factory/product_orchestrator.py"
+      - "factory/product-catalog.json"
+      - "factory/agent_config.json"
+      - "tests/test_product_orchestrator.py"
+      - ".github/workflows/product-first-regression.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  product-first-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run product-first orchestrator regression
+        run: python3 tests/test_product_orchestrator.py
