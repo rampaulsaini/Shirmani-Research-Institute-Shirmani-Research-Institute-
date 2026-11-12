@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/impartial-understanding-record.schema.json",
+  "title": "SHIRMANI Impartial Understanding Review Record",
+  "description": "Auditable review metadata. A user-defined philosophical target is not a scientific score.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_version",
+    "test_id",
+    "perspective_label",
+    "evidence_state",
+    "evidence_refs",
+    "counterview_checked",
+    "uncertainty_note",
+    "harm_and_stakeholder_check",
+    "self_review_result",
+    "audit_timestamp",
+    "model_version"
+  ],
+  "properties": {
+    "record_version": { "type": "string", "const": "1.0" },
+    "test_id": { "type": "string", "minLength": 1 },
+    "perspective_label": {
+      "type": "string",
+      "enum": ["neutral", "user-philosophy", "stakeholder", "other"]
+    },
+    "user_defined_target_label": {
+      "type": ["string", "null"],
+      "description": "Optional aspirational label, not a validated score."
+    },
+    "evidence_state": {
+      "type": "string",
+      "enum": ["VERIFIED", "SOURCE_BASED", "PHILOSOPHICAL_IDENTITY", "INSUFFICIENT_EVIDENCE"]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "counterview_checked": { "type": "boolean" },
+    "uncertainty_note": { "type": "string" },
+    "harm_and_stakeholder_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewed", "notes"],
+      "properties": {
+        "reviewed": { "type": "boolean" },
+        "notes": { "type": "string" },
+        "affected_groups": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "self_review_result": {
+      "type": "string",
+      "enum": ["pass", "revise", "insufficient-evidence"]
+    },
+    "audit_timestamp": { "type": "string", "format": "date-time" },
+    "model_version": { "type": "string", "minLength": 1 },
+    "independent_validation": {
+      "type": "string",
+      "enum": ["not-run", "in-progress", "passed", "failed"],
+      "default": "not-run"
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "evidence_state": { "const": "VERIFIED" } }, "required": ["evidence_state"] },
+      "then": {
+        "properties": {
+          "evidence_refs": { "minItems": 1 },
+          "counterview_checked": { "const": true },
+          "harm_and_stakeholder_check": {
+            "properties": { "reviewed": { "const": true } },
+            "required": ["reviewed"]
+          },
+          "self_review_result": { "const": "pass" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "evidence_state": { "const": "INSUFFICIENT_EVIDENCE" } }, "required": ["evidence_state"] },
+      "then": {
+        "properties": {
+          "self_review_result": { "enum": ["revise", "insufficient-evidence"] }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "evidence_state": { "const": "PHILOSOPHICAL_IDENTITY" } }, "required": ["evidence_state"] },
+      "then": {
+        "properties": {
+          "user_defined_target_label": { "type": ["string", "null"] }
+        }
+      }
+    }
+  ]
+}
