@@ -1,0 +1,43 @@
+name: SHIRMANI Supreme Live Character Runtime Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  runtime-contract-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate public character contract
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          required = [
+              "index.html",
+              "supreme-live-character.html",
+              "shirmani-supreme-second-version.html",
+              "generated/supreme-live-character-spec.json",
+              "research/supreme-live-character-spec.md",
+              "generated/supreme-live-character-runtime-status.json",
+          ]
+          for p in required:
+              if not Path(p).is_file():
+                  raise SystemExit(f"MISSING: {p}")
+          spec = json.loads(Path("generated/supreme-live-character-spec.json").read_text(encoding="utf-8"))
+          assert spec["status"]["public_character_page"] == "IMPLEMENTED"
+          assert spec["status"]["browser_voice_demo"] == "IMPLEMENTED"
+          assert spec["status"]["authorized_personal_voice"] == "NOT_CONNECTED"
+          assert spec["status"]["production_lip_sync"] == "VALIDATION_GATE"
+          html = Path("index.html").read_text(encoding="utf-8")
+          assert 'href="supreme-live-character.html"' in html
+          assert 'id="supreme-live-character"' in html
+          print("SHIRMANI LIVE CHARACTER CONTRACT: PASS")
+          print("External voice/avatar/lip-sync remain fail-closed integration gates.")
