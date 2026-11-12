@@ -1,0 +1,39 @@
+name: SHIRMANI Second Version Presentation Readiness
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/heygen-second-version-contract.md"
+      - "factory/heygen_second_version_qc.py"
+      - ".github/workflows/heygen-second-version-readiness.yml"
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shirmani-second-version-presentation
+  cancel-in-progress: false
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic second-version readiness gate
+        run: python3 factory/heygen_second_version_qc.py
+      - name: Publish readiness record
+        run: |
+          git config user.name "SHIRMANI Second Version Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/heygen-second-version-readiness.json
+          if git diff --cached --quiet; then
+            echo "No readiness delta."
+            exit 0
+          fi
+          git commit -m "automission: publish second-version presentation readiness"
+          git push origin HEAD:main
