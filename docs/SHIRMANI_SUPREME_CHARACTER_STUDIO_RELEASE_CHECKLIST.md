@@ -12,6 +12,15 @@ This checklist prevents a prototype from being described as a verified live avat
 - Review conclusion: the recording shows a voice-recording/capture workflow. It does not, by itself, prove that a voice model was accepted, an avatar was generated, lip-sync passed, or live presentation works.
 - Hosting status: this uploaded file is available in the ChatGPT conversation only. It has not been uploaded into this repository, so no public repository MP4 URL is claimed here.
 
+### Continuation checkpoint — 2026-10-15
+Continue the existing showroom; do not rebuild from zero.
+
+- Showroom: [shirmani-supreme-character-studio.html](../showroom/shirmani-supreme-character-studio.html)
+- Character specification: [SHIRMANI-SUPREME-CHARACTER-SPEC.md](../SHIRMANI-SUPREME-CHARACTER-SPEC.md)
+- A separate prior project note names `Video.Guru_20261013-075017765(1).mp4` at approximately 36.643 seconds (H.264 + AAC). This differs from the 35.98-second conversation upload above. They must not be assumed identical until compared by SHA-256 in the same workspace.
+- Immediate sequence: identify the original portrait and separate authorized voice file; compare both MP4 candidates; record HeyGen-side upload/test evidence; run Hindi and English Q&A; review generated face/gaze/lip-sync and timing; then test live presentation and publish only the actual resulting demo URL.
+- A screen recording that shows a face or recording workflow is not itself proof of an original portrait file, authorized voice clone, generated avatar, or working live integration.
+
 ## Release gates
 - [ ] Confirm the exact original portrait file and retain it unchanged; do not retouch or alter facial features.
 - [ ] Confirm permission to use the voice and face assets.
