@@ -1,0 +1,24 @@
+name: SHIRMANI Production Depth Automission
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-production-depth
+  cancel-in-progress: false
+jobs:
+  produce-depth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build multi-engine production workbenches
+        run: python3 factory/production_depth_engine.py
+      - name: Publish production depth
+        run: |
+          git config user.name "SHIRMANI Production Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/production-depth-status.json generated/production-depth-map.html products/production-depth/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore: deepen multi-engine production"; git push; fi
