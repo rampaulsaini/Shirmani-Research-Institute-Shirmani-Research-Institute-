@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Scientific Validation Record",
+  "type": "object",
+  "required": [
+    "record_id",
+    "claim_type",
+    "hypothesis",
+    "operational_definition",
+    "population_scope",
+    "primary_endpoint",
+    "protocol_fingerprint",
+    "dataset_fingerprint",
+    "model_or_method",
+    "result",
+    "uncertainty",
+    "controls",
+    "provenance",
+    "replication_level",
+    "verification_state",
+    "limitations"
+  ],
+  "properties": {
+    "record_id": {"type":"string","minLength":1},
+    "claim_type": {
+      "type":"string",
+      "enum":["AUTHOR_CLAIM","LITERATURE_SUPPORTED","MEASUREMENT","MODEL_INFERENCE","REPLICATION","VERIFIED"]
+    },
+    "hypothesis": {"type":"string","minLength":1},
+    "operational_definition": {"type":"string","minLength":1},
+    "population_scope": {"type":"string","minLength":1},
+    "primary_endpoint": {"type":"string","minLength":1},
+    "protocol_fingerprint": {"type":"string","minLength":1},
+    "dataset_fingerprint": {"type":"string","minLength":1},
+    "model_or_method": {"type":"string","minLength":1},
+    "result": {},
+    "uncertainty": {},
+    "controls": {"type":"array"},
+    "provenance": {"type":"array","minItems":1},
+    "replication_level": {
+      "type":"string",
+      "enum":["LEVEL_0_INTERNAL","LEVEL_1_HELD_OUT","LEVEL_2_INDEPENDENT_DATASET","LEVEL_3_INDEPENDENT_ANALYST","LEVEL_4_INDEPENDENT_TEAM","LEVEL_5_CROSS_CONTEXT"]
+    },
+    "verification_state": {
+      "type":"string",
+      "enum":["PROPOSED","PREREGISTERED","MEASURED","ANALYZED","REPLICATED","INDEPENDENTLY_VERIFIED","UNVERIFIED","CONTRADICTED","INCONCLUSIVE","BLOCKED"]
+    },
+    "limitations": {"type":"array","minItems":1}
+  }
+}

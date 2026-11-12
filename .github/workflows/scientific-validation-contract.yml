@@ -1,0 +1,44 @@
+name: Scientific Validation Contract
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "docs/scientific-validation-and-independent-replication-protocol-2026-10-02.md"
+      - "docs/supreme-nlp-semantic-fidelity-and-signal-translation-2026-10-02.md"
+      - "schemas/scientific-validation-record.schema.json"
+      - "factory/scientific_validation_gate.py"
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  contract-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate scientific contract
+        run: python factory/scientific_validation_gate.py
+      - name: Verify no unsupported verification shortcut
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("docs/scientific-validation-and-independent-replication-protocol-2026-10-02.md").read_text()
+          required = [
+              "Independent verification",
+              "Replication ladder",
+              "Fail-closed rules",
+              "INCONCLUSIVE",
+              "CONTRADICTED"
+          ]
+          missing = [x for x in required if x not in p]
+          if missing:
+              raise SystemExit("BLOCK: missing safeguards: " + ", ".join(missing))
+          print("PASS: independent-validation safeguards present")
+          PY
