@@ -1,0 +1,55 @@
+name: SHIRMANI Cross-Layer Supreme Control Plane
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - "scripts/supreme_cross_layer_audit.py"
+      - "docs/supreme-ai-ml-nlp-automission-operating-contract.md"
+      - ".github/workflows/shirmani-cross-layer-control-plane.yml"
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-cross-layer-control-plane
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env: {PYTHONPATH: .}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
+      - name: Run read-only cross-layer audit
+        run: python scripts/supreme_cross_layer_audit.py
+      - name: Run canonical Supreme NLP benchmark
+        run: python factory/supreme_nlp_benchmark.py
+      - name: Compile critical Python layers
+        run: |
+          python -m py_compile agents/supreme_nlp.py agents/supreme_nlp_multimodal.py
+          python -m py_compile agents/supreme_nlp_practitioner.py agents/supreme_nlp_quality.py
+          python -m py_compile agents/automission_supervisor.py factory/supreme_system_orchestrator.py
+      - name: Emit control-plane summary
+        run: |
+          {
+            echo "## SHIRMANI Cross-Layer Supreme Control Plane"
+            echo "- Read-only architecture audit: PASS"
+            echo "- Supreme NLP benchmark: PASS"
+            echo "- Critical Python compilation: PASS"
+            echo "- Scheduled source mutation: BLOCKED by governance"
+            echo "- Independent verification: REQUIRED"
+            echo "- Accuracy: measured, not declared"
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload cross-layer evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-cross-layer-audit-${{ github.run_id }}
+          path: generated/supreme-control-plane/cross-layer-audit.json
+          if-no-files-found: error
+          retention-days: 14
