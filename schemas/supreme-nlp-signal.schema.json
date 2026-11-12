@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Supreme NLP Signal Translation Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "signal",
+    "model_inference",
+    "interpretation",
+    "confidence",
+    "unresolved",
+    "provenance",
+    "verification"
+  ],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "signal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modality", "summary"],
+      "properties": {
+        "modality": {"type": "string", "enum": ["text","speech","image","video","sensor","environment","machine","other"]},
+        "summary": {"type": "string", "minLength": 1},
+        "timestamp": {"type": "string"}
+      }
+    },
+    "model_inference": {"type": "string"},
+    "interpretation": {"type": "string"},
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {"type": "string", "enum": ["calibrated","estimated","unknown"]},
+        "value": {"type": "number", "minimum": 0, "maximum": 1},
+        "method": {"type": "string"}
+      }
+    },
+    "unresolved": {"type": "array", "items": {"type": "string"}},
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "content_hash"],
+      "properties": {
+        "source": {"type": "string"},
+        "content_hash": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {"type": "string", "enum": ["NOT_VERIFIED","CHECK","VERIFIED"]},
+        "method": {"type": "string"},
+        "independent": {"type": "boolean"}
+      }
+    }
+  }
+}

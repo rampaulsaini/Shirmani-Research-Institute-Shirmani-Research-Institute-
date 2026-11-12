@@ -1,0 +1,57 @@
+name: Supreme NLP Contract QC
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-practitioner-contract-2026-10-01.md"
+      - "schemas/supreme-nlp-signal.schema.json"
+      - ".github/workflows/supreme-nlp-contract-qc.yml"
+  pull_request:
+    paths:
+      - "docs/supreme-nlp-practitioner-contract-2026-10-01.md"
+      - "schemas/supreme-nlp-signal.schema.json"
+      - ".github/workflows/supreme-nlp-contract-qc.yml"
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract-qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate schema
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("schemas/supreme-nlp-signal.schema.json")
+          s=json.loads(p.read_text())
+          required=set(s["required"])
+          expected={"record_id","signal","model_inference","interpretation","confidence","unresolved","provenance","verification"}
+          assert required == expected
+          assert s["additionalProperties"] is False
+          print("schema: PASS")
+          PY
+
+      - name: Validate evidence boundary
+        run: |
+          set -euo pipefail
+          grep -q "MEASURED" docs/supreme-nlp-practitioner-contract-2026-10-01.md
+          grep -q "MODEL_INFERENCE" docs/supreme-nlp-practitioner-contract-2026-10-01.md
+          grep -q "UNRESOLVED" docs/supreme-nlp-practitioner-contract-2026-10-01.md
+          grep -q "REGISTERED ≠ EXECUTED ≠ VERIFIED" docs/supreme-nlp-practitioner-contract-2026-10-01.md
+
+      - name: Validate no unqualified infinite-accuracy claim
+        run: |
+          set -euo pipefail
+          ! grep -Eiq "100%[[:space:]]+accuracy|infallible|literally infinite.*intelligence" docs/supreme-nlp-practitioner-contract-2026-10-01.md
+
+      - name: Contract gate
+        run: echo "Supreme NLP contract QC: PASS"
