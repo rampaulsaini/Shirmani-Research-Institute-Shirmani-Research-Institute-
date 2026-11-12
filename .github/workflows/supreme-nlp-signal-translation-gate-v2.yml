@@ -1,0 +1,29 @@
+name: SHIRMANI Supreme NLP Signal Translation Gate v2
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-evidence-translation-v2.md"
+      - "schemas/supreme-nlp-signal-translation-v2.schema.json"
+      - "factory/supreme_nlp_signal_translation_gate_v2.py"
+      - "tests/supreme_nlp_signal_translation_gate_v2.py"
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-supreme-nlp-signal-translation-v2
+  cancel-in-progress: true
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate evidence-aware translation contract
+        run: python3 factory/supreme_nlp_signal_translation_gate_v2.py
+      - name: Run hardening tests
+        run: python3 tests/supreme_nlp_signal_translation_gate_v2.py
