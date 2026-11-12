@@ -1,0 +1,22 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"NLP Perception Record",
+  "type":"object",
+  "required":["record_id","timestamp","status","modality","content","provenance"],
+  "properties":{
+    "record_id":{"type":"string","minLength":1},
+    "timestamp":{"type":"string","format":"date-time"},
+    "status":{"enum":["OBSERVED","DERIVED","INFERRED","HYPOTHESIS","AUTHOR_CLAIM","UNVERIFIED"]},
+    "modality":{"enum":["text","audio","image","video","sensor","structured","mixed"]},
+    "subject_type":{"enum":["human","animal","plant","ecosystem","machine","object","unknown"]},
+    "content":{"type":"string","minLength":1},
+    "features":{"type":"array","items":{"type":"object"}},
+    "evidence_refs":{"type":"array","items":{"type":"string"}},
+    "uncertainty":{"type":"number","minimum":0,"maximum":1},
+    "model":{"type":["string","null"]},
+    "model_version":{"type":["string","null"]},
+    "provenance":{"type":"object","required":["source_id"],"properties":{"source_id":{"type":"string"},"source_hash":{"type":["string","null"]},"location":{"type":["string","null"]}}},
+    "human_review":{"type":"boolean","default":false}
+  },
+  "additionalProperties":false
+}
