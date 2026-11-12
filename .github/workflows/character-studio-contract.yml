@@ -1,0 +1,35 @@
+name: Character Studio Contract Checks
+
+on:
+  pull_request:
+    paths:
+      - "showroom/shirmani-supreme-character-studio.html"
+      - "tests/test_character_studio_contract.py"
+      - ".github/workflows/character-studio-contract.yml"
+  push:
+    branches: [main]
+    paths:
+      - "showroom/shirmani-supreme-character-studio.html"
+      - "tests/test_character_studio_contract.py"
+      - ".github/workflows/character-studio-contract.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-contract:
+    name: Static Character Studio acceptance contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run static contract tests
+        run: python -m unittest discover -s tests -p "test_character_studio_contract.py" -v
