@@ -1,0 +1,73 @@
+name: SHIRMANI Supreme NLP Evidence Control Plane
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "agents/supreme_nlp.py"
+      - "agents/supreme_nlp_multimodal.py"
+      - "agents/supreme_nlp_quality.py"
+      - "factory/supreme_nlp_evidence_control_plane.py"
+      - "scripts/validate_supreme_nlp_evidence_control_plane.py"
+      - "generated/signal-input.jsonl"
+      - ".github/workflows/supreme-nlp-evidence-control-plane.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-evidence-control-plane
+  cancel-in-progress: true
+
+jobs:
+  evidence-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile unified control plane
+        run: |
+          python -m py_compile agents/supreme_nlp.py agents/supreme_nlp_multimodal.py agents/supreme_nlp_quality.py factory/supreme_nlp_evidence_control_plane.py
+      - name: Run contract validation
+        run: python scripts/validate_supreme_nlp_evidence_control_plane.py
+      - name: Enforce fail-closed governance
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/supreme-nlp/evidence-control-plane.json").read_text(encoding="utf-8"))
+          g=d["governance"]
+          assert g["fail_closed"]
+          assert not g["subjective_experience_claim_allowed"]
+          assert not g["scheduled_code_mutation_allowed"]
+          assert g["independent_verification_required"]
+          assert g["accuracy_is_measured_not_declared"]
+          assert d["promotion"]["production_promotion_allowed"] is False
+          print("EVIDENCE_CONTROL_GOVERNANCE: PASS")
+          PY
+      - name: Upload auditable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-evidence-control-plane-\${{ github.run_id }}
+          path: generated/supreme-nlp/evidence-control-plane.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Emit cycle summary
+        run: |
+          {
+            echo "## SHIRMANI Supreme NLP Evidence Control Plane"
+            echo "- Cycle: every 5 minutes"
+            echo "- Multimodal fusion + quality + contradiction gates: enabled"
+            echo "- Explicit uncertainty/abstention: enabled"
+            echo "- Independent verification: required"
+            echo "- Scheduled production-code mutation: blocked"
+            echo "- Accuracy: measured, not declared"
+          } >> "$GITHUB_STEP_SUMMARY"
