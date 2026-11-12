@@ -1,0 +1,41 @@
+{
+  "schema_version": "3.0",
+  "generated_at": "2026-10-01T08:14:00+05:30",
+  "mode": "supreme-accuracy-integrity-gate",
+  "truth_claim": false,
+  "gate": "HOLD",
+  "integrity_score": 50.0,
+  "metrics": {
+    "artifact_records": 1000,
+    "source_coverage": 0.0,
+    "independent_verification_coverage": 0.0,
+    "verified_records": 0,
+    "parse_health": 1.0,
+    "near_duplicate_pairs": 0,
+    "uniqueness_proxy": 1.0,
+    "contradiction_or_counter_evidence_rate": 0.0,
+    "latency_ms": null
+  },
+  "status_counts": {
+    "draft": 1000
+  },
+  "verification_counts": {
+    "UNVERIFIED": 1000
+  },
+  "language_counts": {
+    "hi": 1000
+  },
+  "errors": [],
+  "warnings": [
+    "NO_USABLE_SOURCE:1000 records",
+    "ABSTAIN: integrity checks do not establish truth or scientific validity",
+    "FAIL_CLOSED: insufficient independently verified records for publication",
+    "FAIL_CLOSED: insufficient usable evidence/source coverage"
+  ],
+  "next_actions": [
+    "obtain usable source/evidence for every publishable record",
+    "run independent verification before publication",
+    "resolve contradiction/counter-evidence findings",
+    "publish only after the fail-closed gate passes"
+  ]
+}
