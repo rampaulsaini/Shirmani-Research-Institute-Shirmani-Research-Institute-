@@ -1,0 +1,46 @@
+name: Supreme Reasoning Consensus Supervisor
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "automation/**"
+      - "schemas/**"
+      - ".github/workflows/supreme-reasoning-consensus-supervisor.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-reasoning-consensus
+  cancel-in-progress: true
+
+jobs:
+  consensus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile agent and factory code
+        run: python -m compileall -q agents factory scripts
+      - name: Run bounded consensus supervisor
+        run: python factory/supreme_reasoning_consensus.py
+      - name: Validate supervisor state
+        run: python -m json.tool generated/supreme-reasoning-consensus-status.json >/dev/null
+      - name: Publish audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-reasoning-consensus
+          path: generated/supreme-reasoning-consensus-status.json
+          retention-days: 14
