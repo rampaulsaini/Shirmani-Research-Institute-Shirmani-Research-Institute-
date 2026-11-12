@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="hi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Production Release Center — Batch 100200</title>
+<style>
+body{margin:0;background:#080b11;color:#eef2f7;font-family:system-ui,sans-serif;line-height:1.55}
+main{max-width:1250px;margin:auto;padding:24px 16px 70px}h1,h2{color:#e7c45f}
+.hero,.card{background:#111827;border:1px solid #334155;border-radius:16px;padding:18px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.tag{display:inline-block;border:1px solid #475569;border-radius:999px;padding:4px 9px;color:#67e8f9;font-size:.78rem}
+.metric{font-size:1.35rem;font-weight:800}.ready{color:#6ee7b7}.blocked{color:#fbbf24}.service{color:#67e8f9}
+.qr{background:white;padding:10px;border-radius:12px;width:180px;height:180px;display:flex;align-items:center;justify-content:center}
+table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #293241;text-align:left}th{color:#e7c45f}
+code{color:#67e8f9;word-break:break-all}a{color:#67e8f9}
+</style></head>
+<body><main>
+<section class="hero">
+<h1>꙰ SHIRMANI Production Release Center</h1>
+<p><strong>Batch 100200</strong> — production trace is separated from workflow-run activity.</p>
+<div class="metric">Sequence: 100200.001 → 100200.016</div>
+<p>Each unit carries a QC verification code, gate number, dispatch number and QR payload. <strong>NOT_DISPATCHED</strong> means no delivery event is being falsely claimed.</p>
+<p><a href="../generated/production-release-manifest-100200.json">Machine-readable release manifest</a> · <a href="../products.html">Real Product Catalog</a> · <a href="../public-production-command-center.html">Production Command Center</a></p>
+</section>
+<section class="hero"><h2>Release rule</h2>
+<p><b>Source asset → Product → Packaging → QC → Gate → Dispatch record → Delivery evidence.</b></p>
+<p>Only assets already evidenced in the repository are marked <span class="ready">DELIVERY_READY</span>. Missing source assets remain <span class="blocked">ASSET_REQUIRED</span>; services remain <span class="service">SERVICE_INQUIRY</span>.</p>
+</section>
+<div id="products" class="grid"><div class="hero">Loading production records…</div></div>
+<script>
+fetch("../generated/production-release-manifest-100200.json").then(r=>r.json()).then(data=>{
+const root=document.querySelector("#products"); root.innerHTML="";
+for(const p of data.products){
+ const cls=p.production_state==="DELIVERY_READY"?"ready":p.production_state==="SERVICE_INQUIRY"?"service":"blocked";
+ const price=p.price_inr===null?"Service":("₹"+Number(p.price_inr).toLocaleString("en-IN"));
+ const qr="https://quickchart.io/qr?size=220&text="+encodeURIComponent(p.qr_payload);
+ root.insertAdjacentHTML("beforeend",`<article class="card">
+ <span class="tag">${p.product_id} · Batch ${p.batch_no}</span>
+ <h2>${p.name}</h2><p><b>${price}</b> · ${p.delivery}</p>
+ <p class="${cls}"><strong>${p.production_state}</strong></p>
+ <table><tr><th>QC</th><td><code>${p.qc_verification_code}</code></td></tr>
+ <tr><th>Gate No.</th><td><code>${p.gate_no}</code></td></tr>
+ <tr><th>Dispatch No.</th><td><code>${p.dispatch_no}</code></td></tr>
+ <tr><th>Dispatch</th><td>NOT_DISPATCHED</td></tr>
+ <tr><th>Asset evidence</th><td>${p.asset_evidence}</td></tr></table>
+ <p>QR</p><div class="qr"><img src="${qr}" width="180" height="180" alt="QC / Gate / Dispatch QR"></div>
+ <p><small><code>${p.qr_payload}</code></small></p></article>`);
+}}).catch(e=>document.querySelector("#products").innerHTML="<div class='hero'>Production manifest unavailable.</div>");
+</script></main></body></html>
