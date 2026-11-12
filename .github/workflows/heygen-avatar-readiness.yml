@@ -1,0 +1,41 @@
+name: SHIRMANI HeyGen Avatar Readiness
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate second-version contract
+        run: test -s docs/heygen-second-version-operating-contract.md
+      - name: Validate video factory foundations
+        run: |
+          set -e
+          for f in .github/workflows/product-media-factory.yml .github/workflows/product-media-production.yml .github/workflows/product-visual-qc.yml .github/workflows/customer-review-improvement-loop.yml; do
+            test -s "$f"
+            echo "FOUND=$f"
+          done
+      - name: Emit truthful readiness state
+        run: |
+          mkdir -p generated/heygen
+          cat > generated/heygen/readiness.json <<'JSON'
+          {
+            "system": "SHIRMANI HeyGen Avatar Second Version",
+            "platform_contract": "READY",
+            "external_heygen_execution": "NOT_ASSERTED",
+            "required_pipeline": ["voice","authorized_voice_integration","content","photo_lipsync","context_qna","live_presentation","evidence","quality_control","feedback_loop"]
+          }
+          JSON
+          cat generated/heygen/readiness.json
+      - name: Publish readiness artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: heygen-second-version-readiness
+          path: generated/heygen/readiness.json
