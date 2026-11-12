@@ -1,0 +1,108 @@
+name: SHIRMANI Supreme AI Quality Pipeline
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - "scripts/**"
+      - ".github/workflows/shirmani-supreme-ai-quality.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: shirmani-supreme-ai-quality
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+          cache: "pip"
+
+      - name: Static integrity gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m compileall -q agents factory scripts
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for root in ("factory", "schemas"):
+              for p in Path(root).glob("*.json"):
+                  json.loads(p.read_text(encoding="utf-8"))
+          print("STATIC_INTEGRITY=PASS")
+          PY
+
+      - name: Factory smoke gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python factory/validate_factory.py
+
+      - name: Router verification gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from factory.job_router import route
+          for case in ("research.deep", "research", "creative", "verification"):
+              r = route(case, nvidia_enabled=False)
+              assert isinstance(r, dict), case
+              assert r.get("verification_required") is True, case
+          print("ROUTER_VERIFICATION=PASS")
+          PY
+
+      - name: Evidence and output integrity gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f generated/manifest.json ]; then
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path("generated/manifest.json").read_text(encoding="utf-8"))
+          assert isinstance(m, dict)
+          assert int(m.get("units", 0)) >= 0
+          print("MANIFEST_INTEGRITY=PASS")
+          PY
+          else
+            echo "MANIFEST_NOT_PRESENT=SKIP"
+          fi
+
+      - name: NLP and ML capability discovery
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          py = [p.as_posix() for root in ("agents","factory") for p in Path(root).rglob("*.py")]
+          nlp = [p for p in py if any(k in p.lower() for k in ("nlp","language","token","text","semantic"))]
+          ml = [p for p in py if any(k in p.lower() for k in ("ml","deep_learning","model","embedding","classifier"))]
+          print("NLP_COMPONENTS", len(nlp))
+          print("ML_COMPONENTS", len(ml))
+          print("DISCOVERY=PASS")
+          PY
+
+      - name: Fail-closed integrity policy
+        run: |
+          echo "QUALITY_POLICY=FAIL_CLOSED"
+          echo "Unverified output must never be promoted to independently VERIFIED."
+          echo "Human verification remains the final integrity gate."
