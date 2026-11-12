@@ -1,4 +1,5 @@
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -15,13 +16,16 @@ def target_value():
     if target <= 0:
         raise RuntimeError("verification_target must be positive")
     return target
-STATES = {"REGISTERED", "UNVERIFIED", "REVIEW", "VERIFIED", "BLOCKED"}
 
+
+STATES = {"REGISTERED", "UNVERIFIED", "REVIEW", "VERIFIED", "BLOCKED"}
 REQUIRED = [
     "record_id", "source_record_id", "claim_or_result", "verification_scope",
     "evidence_refs", "independent_verifier", "verification_method",
     "reviewed_at", "verification_state", "limitations"
 ]
+OPTIONAL = ["result_artifact_ref", "result_artifact_sha256"]
+
 
 def load_schema():
     data = json.loads(SCHEMA.read_text(encoding="utf-8"))
@@ -29,29 +33,46 @@ def load_schema():
         raise RuntimeError("Verification schema required keys changed unexpectedly.")
     if set(data.get("properties", {}).get("verification_state", {}).get("enum", [])) != STATES:
         raise RuntimeError("Verification state contract changed unexpectedly.")
+    for key in OPTIONAL:
+        if key not in data.get("properties", {}):
+            raise RuntimeError(f"Verification schema missing optional result field: {key}")
     return data
+
 
 def validate_record(record, schema):
     errors = []
-    if set(record) != set(schema["required"]):
-        errors.append("record keys do not exactly match schema")
+    allowed = set(REQUIRED + OPTIONAL)
+    if not set(record).issubset(allowed):
+        errors.append("record contains keys outside schema")
     for key in REQUIRED:
         if key not in record:
+            errors.append("missing required key: " + key)
             continue
         if key == "evidence_refs" and (not isinstance(record[key], list) or not record[key]):
             errors.append("evidence_refs must be a non-empty array")
         if key == "limitations" and not isinstance(record[key], list):
             errors.append("limitations must be an array")
+
     state = record.get("verification_state")
     if state not in STATES:
         errors.append("invalid verification_state: " + repr(state))
+
     if state == "VERIFIED":
         for key in ["source_record_id", "verification_scope", "independent_verifier", "verification_method", "reviewed_at"]:
             if not record.get(key):
                 errors.append("VERIFIED record missing " + key)
         if not record.get("evidence_refs"):
             errors.append("VERIFIED record requires evidence_refs")
+
+        artifact_ref = record.get("result_artifact_ref")
+        artifact_sha = record.get("result_artifact_sha256")
+        if not isinstance(artifact_ref, str) or not artifact_ref.strip():
+            errors.append("VERIFIED record requires result_artifact_ref")
+        if not isinstance(artifact_sha, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", artifact_sha):
+            errors.append("VERIFIED record requires a 64-character result_artifact_sha256")
+
     return errors
+
 
 def main():
     started = datetime.now(timezone.utc)
@@ -95,7 +116,7 @@ def main():
         "remaining_to_target": max(target - verified, 0),
         "blockers": blockers,
         "provenance": ["verification-record directory", "supreme-independent-verification-record.schema.json", "deterministic ledger audit"],
-        "independence_boundary": "Automation validates declared evidence and structure; it does not self-attest independent verification."
+        "independence_boundary": "Automation validates declared result artifacts, evidence and structure; it does not self-attest independent verification."
     }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -104,6 +125,7 @@ def main():
 
     if blockers:
         raise SystemExit(1)
+
 
 if __name__ == "__main__":
     main()
