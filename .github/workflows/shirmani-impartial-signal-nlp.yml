@@ -1,0 +1,77 @@
+name: SHIRMANI Impartial Supreme Signal NLP
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/impartial_signal_nlp.py"
+      - "scripts/validate_impartial_signal_nlp.py"
+      - "schemas/supreme-impartial-signal-record.schema.json"
+      - "docs/SHIRMANI-IMPARTIAL-SUPREME-NLP-CONTRACT.md"
+      - ".github/workflows/shirmani-impartial-signal-nlp.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-impartial-signal-nlp
+  cancel-in-progress: false
+
+jobs:
+  signal-nlp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      PYTHONPATH: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile and validate contract
+        run: |
+          python -m py_compile agents/impartial_signal_nlp.py scripts/validate_impartial_signal_nlp.py
+          python scripts/validate_impartial_signal_nlp.py
+          python -m json.tool schemas/supreme-impartial-signal-record.schema.json >/dev/null
+      - name: Build deterministic signal-to-language status
+        run: |
+          mkdir -p generated/impartial-signal-nlp
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.impartial_signal_nlp import build_record
+          p=Path("generated/signal-input.jsonl")
+          rows=[json.loads(x) for x in p.read_text(encoding="utf-8").splitlines() if x.strip()] if p.exists() else [
+            {"feature":"baseline_a","value":1.0,"quality":1.0,"source":"automission-smoke"},
+            {"feature":"baseline_b","value":0.95,"quality":1.0,"source":"automission-smoke"}]
+          record=build_record(rows,"automission-cycle")
+          Path("generated/impartial-signal-nlp/status.json").write_text(
+            json.dumps(record,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(record["simple_language"])
+          print("Evidence:",record["interpretation"]["evidence_status"])
+          print("Fingerprint:",record["fingerprint"])
+          PY
+      - name: Enforce fail-closed governance
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("generated/impartial-signal-nlp/status.json").read_text(encoding="utf-8"))
+          assert r["governance"]["impartiality"] is True
+          assert r["governance"]["fail_closed"] is True
+          assert r["governance"]["subjective_experience_claim_allowed"] is False
+          assert r["governance"]["self_verification_allowed"] is False
+          assert r["interpretation"]["evidence_status"] != "INDEPENDENTLY_VERIFIED"
+          print("FAIL_CLOSED_IMPARTIALITY_GATE: PASS")
+          PY
+      - name: Publish audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-impartial-signal-nlp-${{ github.run_id }}
+          path: generated/impartial-signal-nlp/status.json
+          if-no-files-found: error
+          retention-days: 14
