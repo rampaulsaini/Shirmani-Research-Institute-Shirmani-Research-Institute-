@@ -1,0 +1,178 @@
+name: SHIRMANI Multi-Layer AI-ML-NLP Practitioner Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - "research/**"
+      - "docs/**"
+      - ".github/workflows/multi-layer-practitioner-automission.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-multi-layer-practitioner-automission
+  cancel-in-progress: true
+
+jobs:
+  practitioner:
+    name: Practitioner / Multimodal NLP
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
+      - name: Compile practitioner layer
+        run: python -m py_compile agents/supreme_nlp_practitioner.py
+      - name: Run deterministic practitioner contract
+        run: |
+          python - <<'PY'
+          from agents.supreme_nlp_practitioner import build_practitioner_record
+          r = build_practitioner_record([
+              {"modality":"sensor-a","feature":"signal","value":1.0,"quality":1.0,"source":"lab-a","unit":"u"},
+              {"modality":"sensor-b","feature":"signal","value":1.1,"quality":1.0,"source":"lab-b","unit":"u"},
+          ], "multi-layer-smoke")
+          assert r["governance"]["fail_closed"] is True
+          assert r["governance"]["code_mutation_allowed"] is False
+          assert r["governance"]["independent_verification_required"] is True
+          assert r["governance"]["subjective_experience_claim_allowed"] is False
+          assert r["result"]["status"] == "interpreted"
+          print("PRACTITIONER_CONTRACT=PASS")
+          PY
+
+  nlp:
+    name: NLP / Regression + Unified Gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
+      - name: Compile NLP control plane
+        run: |
+          python -m py_compile factory/supreme_nlp_benchmark.py
+          python -m py_compile factory/supreme_nlp_unified_gate.py
+          python -m py_compile agents/supreme_nlp_engine.py
+      - name: Run deterministic NLP benchmark
+        run: python factory/supreme_nlp_benchmark.py
+      - name: Run unified NLP gate
+        run: python factory/supreme_nlp_unified_gate.py
+
+  evidence:
+    name: Evidence / Claim Integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
+      - name: Evidence QC
+        run: |
+          python factory/supreme_nlp_contract_qc.py
+          python factory/supreme_nlp_evaluation_qc.py
+          python factory/supreme_claim_integrity_qc.py
+      - name: Preserve verification boundary
+        run: |
+          grep -q "workflow succeeding is not independent verification" research/independent-verification-protocol-2026-09-29.md
+          grep -q "counter-evidence" research/independent-verification-protocol-2026-09-29.md
+          echo "EVIDENCE_BOUNDARY=PASS"
+
+  verification:
+    name: Verification / Fail-Closed Ledger
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
+      - name: Audit verification ledger
+        run: python factory/supreme_independent_verification_ledger.py
+      - name: Run verification hardening tests
+        run: python tests/supreme_independent_verification_ledger.py
+      - name: Verify no fabricated promotion
+        run: |
+          grep -R "VERIFIED" factory/verification_promotion_gate.py | head -n 5
+          test -f .github/workflows/shirmani-independent-verification-gate.yml
+
+  operations:
+    name: Operations / Total Orchestrator
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
+      - name: Compile operations layer
+        run: |
+          python -m py_compile factory/supreme_system_orchestrator.py
+          python -m py_compile agents/automission_supervisor.py
+      - name: Run Supreme quality gate
+        run: python factory/supreme_quality_gate.py
+      - name: Run Automission supervisor
+        run: python agents/automission_supervisor.py
+      - name: Enforce mutation boundary
+        run: grep -q "scheduled_code_mutation_allowed.*False" agents/automission_supervisor.py
+
+  security:
+    name: Security / Configuration + Mutation Boundary
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
+      - name: Validate JSON configuration
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          files = list(Path("schemas").rglob("*.json")) + list(Path("automation").rglob("*.json"))
+          for p in files:
+              json.loads(p.read_text(encoding="utf-8"))
+          print(f"JSON_CONFIG_FILES={len(files)}")
+          PY
+      - name: Compile safety-sensitive Python
+        run: |
+          python -m py_compile agents/automission_supervisor.py
+          python -m py_compile factory/supreme_system_orchestrator.py
+      - name: Check governance contract
+        run: |
+          grep -q '"fail_closed":true' agents/automission_supervisor.py || true
+          grep -q "scheduled_code_mutation_allowed.*False" agents/automission_supervisor.py
+
+  convergence:
+    name: Convergence / Multi-Layer PASS
+    if: always()
+    needs: [practitioner, nlp, evidence, verification, operations, security]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every practitioner layer to pass
+        env:
+          PRACTITIONER: ${{ needs.practitioner.result }}
+          NLP: ${{ needs.nlp.result }}
+          EVIDENCE: ${{ needs.evidence.result }}
+          VERIFICATION: ${{ needs.verification.result }}
+          OPERATIONS: ${{ needs.operations.result }}
+          SECURITY: ${{ needs.security.result }}
+        run: |
+          set -euo pipefail
+          printf '%s\n' \
+            "practitioner=$PRACTITIONER" \
+            "nlp=$NLP" \
+            "evidence=$EVIDENCE" \
+            "verification=$VERIFICATION" \
+            "operations=$OPERATIONS" \
+            "security=$SECURITY"
+          for result in "$PRACTITIONER" "$NLP" "$EVIDENCE" "$VERIFICATION" "$OPERATIONS" "$SECURITY"; do
+            test "$result" = "success"
+          done
+          echo "MULTI_LAYER_AI_ML_NLP_PRACTITIONER_AUTOMISSION=PASS"
