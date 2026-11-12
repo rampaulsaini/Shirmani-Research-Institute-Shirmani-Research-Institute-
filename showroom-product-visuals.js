@@ -12,7 +12,7 @@
 const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 const LOGO="assets/shirmani-perspective-logo.svg";
 const VISUAL_CONTRACT="v6-photo-logo-all-products";
-const IDENTITY="Shiromani Rampal Saini · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present";
+const IDENTITY="Shiromani Rampal Saini · Impartial Understanding · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present";
 const qr=id=>"https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=10&data="+encodeURIComponent(new URL("product-passport.html?id="+encodeURIComponent(id),location.href).href);
 
 async function boot(){
