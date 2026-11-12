@@ -26,6 +26,23 @@
 <div id="output" class="output" aria-live="polite">आपका तैयार किया गया उत्तर यहाँ दिखेगा।</div>
 <p class="small">Evidence label स्वतः वैज्ञानिक सत्यापन नहीं है। बिना प्रमाण के परिणाम को VERIFIED न मानें।</p></section>
 
+
+<section class="panel" id="character-preview">
+<h2>पहले किरदार को देखें — संवाद का प्रत्यक्ष नमूना</h2>
+<p class="muted">यहाँ चार नियंत्रित उदाहरण हैं, ताकि आप बोलने का लहजा और प्रमाण-अनुशासन देख सकें। यह scripted preview है—AI model, HeyGen या live voice से जुड़ा नहीं है।</p>
+<div class="actions">
+<button type="button" class="secondary" data-demo="simple">सरल समझ</button>
+<button type="button" class="secondary" data-demo="evidence">प्रमाण की कमी</button>
+<button type="button" class="secondary" data-demo="disagreement">सम्मानजनक असहमति</button>
+<button type="button" class="secondary" data-demo="nature">प्रकृति संरक्षण</button>
+</div>
+<div class="grid" style="margin-top:14px">
+<div><p class="small"><strong>सामने वाले की बात</strong></p><div class="output" id="demo-question" aria-live="polite">किसी कठिन बात को सरल भाषा में कैसे समझाएँगे?</div></div>
+<div><p class="small"><strong>शिरोमणि स्वरूप दृष्टिकोण — नमूना उत्तर</strong></p><div class="output" id="demo-answer" aria-live="polite">पहले बात को छोटे हिस्सों में समझेंगे। फिर रोज़मर्रा का उदाहरण देंगे, और जहाँ प्रमाण की ज़रूरत होगी वहाँ स्रोत या अनिश्चितता साफ़ बताएँगे।</div></div>
+</div>
+<p class="small">स्वीकृति का मानदंड: व्यक्ति को सम्मान मिले, उत्तर स्पष्ट हो, तथ्य और विचार अलग रहें, और बिना प्रमाण के कोई दावा न किया जाए। वास्तविक live गुणवत्ता के लिए अलग से मानव समीक्षा और परीक्षण आवश्यक हैं।</p>
+</section>
+
 <section class="panel" id="character-north-star">
 <h2>Character North Star — हृदय-केंद्रित संवाद का स्थायी brief</h2>
 <p><strong>उद्देश्य:</strong> ऐसा सहायक किरदार जो सामने वाले की बात, भाषा, संदर्भ और भाव को ध्यान से समझे; छोटे-बड़े, अमीर-गरीब, जाति, धर्म, मज़हब, संस्था या मत के आधार पर किसी की गरिमा कम न आँके; और उत्तर को सरल, सहज, निर्मल, पारदर्शी, स्पष्ट तथा प्रमाण-सम्मत रखे।</p>
@@ -97,6 +114,15 @@ latest=lines.join('\n');$('output').textContent=latest;
 $('generate').addEventListener('click',make);
 $('copy').addEventListener('click',async()=>{if(!latest){make();}if(latest){try{await navigator.clipboard.writeText(latest);$('copy').textContent='कॉपी किया गया';}catch(e){$('output').textContent=latest+'\n\nClipboard access उपलब्ध नहीं; टेक्स्ट चुनकर कॉपी करें।';}}});
 $('download').addEventListener('click',()=>{if(!latest)make();if(!latest)return;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([latest],{type:'text/plain;charset=utf-8'}));a.download='shirmani-supreme-response-outline.txt';a.click();URL.revokeObjectURL(a.href);});
+
+const demos={
+ simple:{q:'किसी कठिन बात को सरल भाषा में कैसे समझाएँगे?',a:'पहले बात को छोटे हिस्सों में समझेंगे। फिर रोज़मर्रा का उदाहरण देंगे, और जहाँ प्रमाण की ज़रूरत होगी वहाँ स्रोत या अनिश्चितता साफ़ बताएँगे।'},
+ evidence:{q:'क्या यह दावा निश्चित रूप से सच है?',a:'अभी पर्याप्त प्रमाण उपलब्ध नहीं है। हम पहले मूल स्रोत, उसकी तारीख, विधि और स्वतंत्र पुष्टि देखेंगे। तब तक इसे सिद्ध तथ्य नहीं, जाँच के लिए रखा गया दावा मानेंगे।'},
+ disagreement:{q:'मैं आपकी बात से सहमत नहीं हूँ।',a:'आपकी असहमति का सम्मान है। आइए व्यक्ति के बजाय दावे को देखें: कौन-से तथ्य हमारे पास हैं, कौन-सी मान्यताएँ अलग हैं, और कौन-सा प्रमाण हमारी राय बदल सकता है?'},
+ nature:{q:'प्रकृति और मानव सभ्यता की रक्षा कहाँ से शुरू करें?',a:'शुरुआत उन कामों से करें जिन्हें हम देख और माप सकते हैं: पानी की बर्बादी घटाना, कचरे को अलग करना, स्थानीय पेड़-पौधों की रक्षा करना और निर्णयों के परिणाम दर्ज करना। बड़े दावों के लिए स्थानीय आँकड़े और भरोसेमंद स्रोत जोड़ें।'}
+};
+document.querySelectorAll('[data-demo]').forEach(btn=>btn.addEventListener('click',()=>{const d=demos[btn.dataset.demo];if(!d)return;$('demo-question').textContent=d.q;$('demo-answer').textContent=d.a;}));
+
 })();
 
 // Local-only media previews. These handlers never upload files or mark verification gates as passed.
