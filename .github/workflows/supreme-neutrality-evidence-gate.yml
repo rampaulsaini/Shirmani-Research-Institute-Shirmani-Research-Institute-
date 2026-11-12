@@ -1,0 +1,39 @@
+name: Supreme Neutrality Evidence Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "docs/yatharth-governance/neutrality-evidence-anti-bias-contract.md"
+      - "factory/neutrality_evidence_gate.py"
+      - ".github/workflows/supreme-neutrality-evidence-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-neutrality-evidence-gate
+  cancel-in-progress: true
+
+jobs:
+  neutrality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic neutrality gate
+        run: python3 factory/neutrality_evidence_gate.py
+      - name: Emit audit summary
+        run: |
+          {
+            echo "## Supreme Neutrality Evidence Gate"
+            echo "- Evidence-first: PASS"
+            echo "- Counter-evidence requirement: PASS"
+            echo "- Alternative-explanation requirement: PASS"
+            echo "- Independent verification requirement: PASS"
+            echo "- Human agency: preserved"
+            echo "- Accuracy: measured, not declared"
+            echo "- Fail-closed: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
