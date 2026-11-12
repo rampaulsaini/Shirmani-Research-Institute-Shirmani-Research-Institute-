@@ -1,0 +1,148 @@
+name: SHIRMANI Multi-Layer AI-ML-NLP Practitioner Automission
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_run:
+    workflows:
+      - "SHIRMANI Supreme Total AI-ML-NLP Automission"
+      - "SHIRMANI Supreme Evidence Automission"
+      - "SHIRMANI Supreme Evidence Convergence"
+      - "SHIRMANI Supreme Independent Verification Ledger"
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-multilayer-practitioner-automission
+  cancel-in-progress: true
+
+jobs:
+  route:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Build deterministic multi-layer routing manifest
+        run: python factory/multilayer_automission_router.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: multilayer-routing-${{ github.run_id }}
+          path: generated/automission/multilayer-routing-manifest.json
+          retention-days: 14
+
+  lane:
+    needs: route
+    strategy:
+      fail-fast: false
+      matrix:
+        lane: [research, ai, ml, nlp, evidence, product, resilience]
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run lane practitioner preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "${{ matrix.lane }}" in
+            research) test -d research; python -m compileall -q factory research ;;
+            ai) test -d agents; python -m compileall -q agents factory ;;
+            ml) test -d factory; python -m compileall -q factory ;;
+            nlp) test -f factory/supreme_nlp_benchmark.py; python -m py_compile factory/supreme_nlp_benchmark.py ;;
+            evidence) test -f scripts/cross_layer_consistency.py; python -m py_compile scripts/cross_layer_consistency.py ;;
+            product) test -d docs; test -d assets ;;
+            resilience) test -f .github/workflows/shirmani-resilience-watchdog.yml; test -f .github/workflows/shirmani-continuous-audit.yml ;;
+          esac
+          mkdir -p lane-result
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          lane=os.environ["LANE"]
+          json.dump({
+              "lane": lane,
+              "state": "PREPARED",
+              "generated_at": datetime.now(timezone.utc).isoformat(),
+              "workflow_activity_is_not_verification": True,
+              "independent_verification": "DEFERRED_TO_RESULT_GATES"
+          }, open("lane-result/result.json","w"), indent=2)
+          PY
+        env:
+          LANE: ${{ matrix.lane }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: multilayer-lane-${{ matrix.lane }}-${{ github.run_id }}
+          path: lane-result/result.json
+          retention-days: 14
+
+  converge:
+    needs: [route, lane]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Download routing manifest
+        uses: actions/download-artifact@v4
+        with:
+          pattern: multilayer-routing-*
+          path: routing
+          merge-multiple: true
+      - name: Download lane results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: multilayer-lane-*
+          path: lane-results
+          merge-multiple: false
+      - name: Build result-only convergence record
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone
+          manifest = json.loads(next(Path("routing").rglob("multilayer-routing-manifest.json")).read_text())
+          results = [json.loads(p.read_text()) for p in Path("lane-results").rglob("result.json")]
+          expected = {x["id"] for x in manifest["lanes"]}
+          observed = {x["lane"] for x in results}
+          assert observed == expected, (expected, observed)
+          assert all(x["state"] == "PREPARED" for x in results)
+          assert all(x["workflow_activity_is_not_verification"] for x in results)
+          out = {
+              "generated_at": datetime.now(timezone.utc).isoformat(),
+              "lanes": results,
+              "lane_count": len(results),
+              "result_gate": "READY_FOR_INDEPENDENT_VERIFICATION",
+              "independent_verification": "RESULT_LEVEL_ONLY",
+              "physical_quantum_hardware": manifest["physical_quantum_hardware"],
+              "quantum_claim": manifest["quantum_claim"],
+              "fail_closed": True,
+          }
+          Path("generated/automission").mkdir(parents=True, exist_ok=True)
+          Path("generated/automission/multilayer-convergence.json").write_text(
+              json.dumps(out, indent=2, ensure_ascii=False)
+          )
+      - uses: actions/upload-artifact@v4
+        with:
+          name: multilayer-convergence-${{ github.run_id }}
+          path: generated/automission/multilayer-convergence.json
+          retention-days: 14
+      - name: Emit summary
+        run: |
+          {
+            echo "## ꙰ SHIRMANI Multi-Layer Automission"
+            echo "- Parallel lanes: research / AI / ML / NLP / evidence / product / resilience"
+            echo "- Result-based verification: required"
+            echo "- Workflow activity is not counted as VERIFIED"
+            echo "- Quantum mode: quantum-inspired routing; no physical QPU claim"
+            echo "- Fail-closed: enabled"
+          } >> "$GITHUB_STEP_SUMMARY"
