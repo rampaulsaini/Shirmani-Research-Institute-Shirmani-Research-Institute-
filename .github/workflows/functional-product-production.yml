@@ -1,0 +1,29 @@
+name: SHIRMANI Functional Product Production
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "factory/functional_product_factory.py"
+      - "digital-products-lab.html"
+      - "education-platform.html"
+permissions:
+  contents: write
+concurrency:
+  group: shirmani-functional-products
+  cancel-in-progress: false
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate functional product inventory
+        run: python3 factory/functional_product_factory.py
+      - name: Publish inventory
+        run: |
+          git config user.name "SHIRMANI Functional Product Automission"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/functional-product-inventory.json
+          if git diff --cached --quiet; then echo "No inventory change."; else git commit -m "chore: publish functional product inventory"; git push; fi
