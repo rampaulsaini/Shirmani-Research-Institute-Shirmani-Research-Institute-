@@ -1,0 +1,69 @@
+name: Nishpaksh AI-ML-NLP-Automission v2
+
+on:
+  pull_request:
+    paths:
+      - "docs/yatharth-governance/nishpaksh-ai-automission-v2.md"
+      - "factory/nishpaksh_automission_v2_qc.py"
+      - "schemas/agent-governance.json"
+      - ".github/workflows/nishpaksh-automission-v2.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/yatharth-governance/nishpaksh-ai-automission-v2.md"
+      - "factory/nishpaksh_automission_v2_qc.py"
+      - "schemas/agent-governance.json"
+      - ".github/workflows/nishpaksh-automission-v2.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nishpaksh-automission-v2
+  cancel-in-progress: true
+
+jobs:
+  contract-qc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Nishpaksh Automission v2 contract
+        run: python3 factory/nishpaksh_automission_v2_qc.py
+
+  integrity:
+    needs: contract-qc
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate source and governance boundaries
+        run: |
+          test -s docs/yatharth-governance/nishpaksh-ai-automission-v2.md
+          test -s schemas/agent-governance.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          g = json.loads(Path("schemas/agent-governance.json").read_text())
+          assert g["fail_closed"] is True
+          assert g["provenance_required_for_claims"] is True
+          assert g["fabrication_prohibited"] is True
+          assert g["default_status"] == "unverified"
+          print("Integrity baseline: PASS")
+          PY
+
+  audit-contract:
+    needs: integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify fail-closed language
+        run: |
+          grep -qi "fail-closed" docs/yatharth-governance/nishpaksh-ai-automission-v2.md
+          grep -qi "COUNTER-EVIDENCE" docs/yatharth-governance/nishpaksh-ai-automission-v2.md
+          grep -qi "HUMAN_REVIEW_REQUIRED" docs/yatharth-governance/nishpaksh-ai-automission-v2.md
+          echo "Audit contract: PASS"
