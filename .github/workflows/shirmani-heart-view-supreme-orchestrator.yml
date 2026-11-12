@@ -1,0 +1,168 @@
+name: SHIRMANI HEART-VIEW SUPREME REASONING ORCHESTRATOR
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - "research/**"
+      - "docs/**"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: shirmani-heart-view-supreme-orchestrator
+  cancel-in-progress: true
+
+jobs:
+  orchestrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      PYTHONPATH: .
+    steps:
+      - name: Checkout canonical repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Establish canonical Heart-View contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          test -s docs/supreme-ai-ml-nlp-automission-operating-contract.md
+          test -s schemas/supreme-nlp-signal-record.schema.json
+          test -s schemas/supreme-nlp-practitioner.schema.json
+          test -s research/independent-verification-protocol-2026-09-29.md
+          echo "CANONICAL_CONTRACT=PASS"
+
+      - name: Validate all JSON schemas
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          files = list(Path("schemas").rglob("*.json"))
+          assert files, "No schemas discovered"
+          for p in files:
+              json.loads(p.read_text(encoding="utf-8"))
+          print(f"SCHEMAS_VALID={len(files)}")
+          PY
+
+      - name: Compile core intelligence modules
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in agents/supreme_nlp_engine.py agents/supreme_nlp_practitioner.py agents/automission_supervisor.py factory/supreme_ai_ml_nlp_engine.py factory/supreme_quality_controller.py factory/supreme_quality_gate.py factory/batch_worker.py agents/orchestrator.py agents/deep_learning_agent.py
+          do
+            test -f "$f"
+            python3 -m py_compile "$f"
+          done
+          echo "CORE_MODULES=PASS"
+
+      - name: Run deterministic AI-ML-NLP quality gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f tests/test_supreme_ai_ml_nlp.py ]; then
+            python3 -m unittest discover -s tests -p 'test_supreme_ai_ml_nlp.py' -v
+          fi
+          python3 factory/supreme_quality_controller.py
+          test -s generated/supreme-quality-report.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("generated/supreme-quality-report.json").read_text(encoding="utf-8"))
+          assert r.get("verification",{}).get("fail_closed") is True
+          assert r.get("ensemble",{}).get("consensus_pass") is True
+          print("AI_ML_NLP_QUALITY=PASS")
+          PY
+
+      - name: Run Supreme NLP practitioner contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/validate_supreme_nlp_practitioner.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.supreme_nlp_practitioner import build_practitioner_record
+          rows=[{"modality":"synthetic","feature":"baseline_a","value":1.0,"quality":1.0,"source":"orchestrator"},{"modality":"synthetic","feature":"baseline_b","value":1.01,"quality":1.0,"source":"orchestrator"}]
+          d=build_practitioner_record(rows,"heart-view-orchestrator")
+          g=d["governance"]
+          assert g["fail_closed"] is True
+          assert g["subjective_experience_claim_allowed"] is False
+          assert g["code_mutation_allowed"] is False
+          assert g["independent_verification_required"] is True
+          p=Path("generated/supreme-nlp/orchestrator-practitioner-status.json")
+          p.parent.mkdir(parents=True,exist_ok=True)
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print("NLP_PRACTITIONER=PASS")
+
+      - name: Enforce evidence and verification boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .github/workflows/independent-verification-gate.yml
+          grep -q "workflow succeeding is not independent verification" research/independent-verification-protocol-2026-09-29.md
+          grep -q "counter-evidence" research/independent-verification-protocol-2026-09-29.md
+          grep -q "reviewer identity/role" research/independent-verification-protocol-2026-09-29.md
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("generated/independent-verification-status-2026-09-29.json")
+          if p.exists():
+              d=json.loads(p.read_text(encoding="utf-8"))
+              s=d["verification_summary"]
+              assert s["independently_verified_records"] == 0
+              assert s["independent_verified_percent"] == 0
+          print("VERIFICATION_BOUNDARY=FAIL_CLOSED")
+          PY
+
+      - name: Enforce safe Automission boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "scheduled_code_mutation_allowed.*False" agents/automission_supervisor.py
+          echo "SCHEDULED_CODE_MUTATION=BLOCKED"
+          echo "AUTOMISSION_EXECUTION=CONTROLLED"
+
+      - name: Emit unified Heart-View status
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p generated/heart-view
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          out={
+            "system":"SHIRMANI HEART-VIEW SUPREME REASONING ORCHESTRATOR",
+            "status":"PASS",
+            "pipeline":"Observe -> Collect -> Normalize -> Analyze -> Reason -> Translate -> Execute -> Test -> Verify -> Audit -> Learn -> Improve",
+            "automation_cycle":"5-minute",
+            "quality_control":"deterministic + fail-closed",
+            "independent_verification":"required and distinct",
+            "subjective_experience_claims":"not inferred from sensor/data patterns alone",
+            "scheduled_code_mutation_allowed":False,
+            "generated_at":datetime.now(timezone.utc).isoformat()
+          }
+          p=Path("generated/heart-view/supreme-orchestrator-status.json")
+          p.write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(out,ensure_ascii=False))
+
+      - name: Publish unified status artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-heart-view-supreme-status-${{ github.run_id }}
+          path: generated/heart-view/supreme-orchestrator-status.json
+          retention-days: 14
