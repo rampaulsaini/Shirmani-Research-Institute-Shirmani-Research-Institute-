@@ -1,0 +1,87 @@
+name: SHIRMANI Supreme Continuous Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+  push:
+    paths:
+      - "agents/**"
+      - "research/**"
+      - "schemas/**"
+      - "automation/**"
+      - ".github/workflows/shirmani-supreme-continuous-audit.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python syntax and import-safe compile
+        run: |
+          set -euo pipefail
+          python3 -m compileall -q agents automation
+
+      - name: Validate NLP evidence boundary
+        run: |
+          set -euo pipefail
+          test -f agents/supreme_nlp_practitioner.py
+          test -f agents/supreme_nlp_engine.py
+          grep -q "subjective experience" agents/supreme_nlp_practitioner.py
+          grep -q "independent verification" agents/supreme_nlp_practitioner.py
+
+      - name: Validate fail-closed verification boundary
+        run: |
+          set -euo pipefail
+          test -f .github/workflows/independent-verification-gate.yml
+          test -f research/independent-verification-protocol-2026-09-29.md
+          grep -q "counter-evidence" research/independent-verification-protocol-2026-09-29.md
+          grep -q "workflow succeeding is not independent verification" research/independent-verification-protocol-2026-09-29.md
+
+      - name: Deterministic NLP smoke test
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python3 - <<'PY'
+          from agents.supreme_nlp_practitioner import build_practitioner_record
+          rows = [
+              {"modality":"electrical","feature":"signal","value":1.0,"quality":1.0,"source":"s1"},
+              {"modality":"vibration","feature":"signal","value":1.1,"quality":1.0,"source":"s2"},
+          ]
+          r = build_practitioner_record(rows, "भाव signal interpretation")
+          assert r["result"]["status"] == "interpreted"
+          assert 0 <= r["result"]["features"]["confidence"] <= 1
+          assert r["governance"]["fail_closed"] is True
+          assert r["governance"]["independent_verification_required"] is True
+          print("SUPREME_NLP_SMOKE=PASS")
+          PY
+
+      - name: Produce audit summary
+        run: |
+          set -euo pipefail
+          mkdir -p generated
+          cat > generated/supreme-continuous-audit-summary.json <<'JSON'
+          {
+            "schema_version": "1.0",
+            "status": "PASS",
+            "mode": "fail-closed",
+            "verification": "independent-verification-required",
+            "absolute_accuracy_claim": false,
+            "timestamp_utc": "runtime-generated"
+          }
+          JSON
+
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-supreme-continuous-audit
+          path: generated/supreme-continuous-audit-summary.json
