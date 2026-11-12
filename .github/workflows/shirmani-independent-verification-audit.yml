@@ -1,0 +1,114 @@
+name: SHIRMANI Independent Verification Audit Gate
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verification-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Audit independent verification evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, pathlib
+          from datetime import datetime, timezone
+
+          root = pathlib.Path(".")
+          candidates = []
+          for base in ("generated", "automation", "factory", "federation", "docs", "schemas", "source"):
+              p = root / base
+              if p.exists():
+                  candidates += list(p.rglob("*.json"))
+                  candidates += list(p.rglob("*.jsonl"))
+
+          total = verified = independent = evidence_backed = invalid = 0
+
+          def inspect(obj):
+              global total, verified, independent, evidence_backed, invalid
+              if not isinstance(obj, dict):
+                  return
+              total += 1
+              status = str(obj.get("verification_status", obj.get("status", obj.get("verification", "")))).upper()
+              indep = obj.get("independent_verification", obj.get("independent_verified", False))
+              evidence = obj.get("evidence", obj.get("evidence_refs", obj.get("evidence_reference", "")))
+              if status == "VERIFIED": verified += 1
+              if status == "VERIFIED" and indep is True:
+                  independent += 1
+                  if evidence: evidence_backed += 1
+              if status == "VERIFIED" and (indep is not True or not evidence):
+                  invalid += 1
+
+          for path in candidates:
+              try:
+                  if path.suffix == ".jsonl":
+                      for line in path.read_text(errors="ignore").splitlines():
+                          if line.strip():
+                              try: inspect(json.loads(line))
+                              except Exception: pass
+                  else:
+                      data = json.loads(path.read_text(errors="ignore"))
+                      for obj in data if isinstance(data, list) else [data]:
+                          inspect(obj)
+              except Exception:
+                  pass
+
+          target = 100200
+          result = {
+              "audit_type": "independent_verification",
+              "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+              "candidate_records": total,
+              "verified_records": verified,
+              "independently_verified_records": independent,
+              "evidence_backed_independent_records": evidence_backed,
+              "invalid_or_incomplete_verified_records": invalid,
+              "target_records": target,
+              "completion_percent": round(independent / target * 100, 6),
+              "remaining_records": max(target - independent, 0),
+              "status": "VERIFIED_PROGRESS" if independent else "VERIFICATION_PENDING"
+          }
+          pathlib.Path("verification_audit.json").write_text(json.dumps(result, indent=2))
+          print(json.dumps(result, indent=2))
+          PY
+
+      - name: Publish audit summary
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d=json.load(open("verification_audit.json"))
+          print("## SHIRMANI Independent Verification Audit")
+          print()
+          print("| Metric | Result |")
+          print("|---|---:|")
+          for k,v in [
+            ("Candidate records",d["candidate_records"]),
+            ("VERIFIED records",d["verified_records"]),
+            ("Independently VERIFIED",d["independently_verified_records"]),
+            ("Evidence-backed independent",d["evidence_backed_independent_records"]),
+            ("Target",d["target_records"]),
+            ("Completion",f'{d["completion_percent"]}%'),
+            ("Remaining",d["remaining_records"]),
+            ("Gate status",d["status"])
+          ]:
+              print(f"| {k} | {v} |")
+          print()
+          print("> A successful workflow run is not itself an independent verification.")
+          PY
+
+      - name: Upload verification audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-independent-verification-audit
+          path: verification_audit.json
+          retention-days: 30
