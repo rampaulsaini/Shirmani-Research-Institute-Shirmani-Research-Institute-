@@ -1,0 +1,44 @@
+name: SHIRMANI Heart-View Live Presentation Contract Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "live-presentation.html"
+      - "generated/live-presentation-manifest.json"
+      - "schemas/live-presentation-manifest.schema.json"
+      - "docs/HEART-VIEW-LIVE-PRESENTATION-SUBSYSTEM-2026-10-08.md"
+  pull_request:
+    paths:
+      - "live-presentation.html"
+      - "generated/live-presentation-manifest.json"
+      - "schemas/live-presentation-manifest.schema.json"
+      - "docs/HEART-VIEW-LIVE-PRESENTATION-SUBSYSTEM-2026-10-08.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate manifest contract
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          manifest=json.loads(Path("generated/live-presentation-manifest.json").read_text(encoding="utf-8"))
+          schema=json.loads(Path("schemas/live-presentation-manifest.schema.json").read_text(encoding="utf-8"))
+          required=schema["required"]
+          missing=[k for k in required if k not in manifest]
+          assert not missing, f"missing required keys: {missing}"
+          assert manifest["asset_policy"]=="USER_SUPPLIED_AND_AUTHORIZED_ASSETS_ONLY"
+          assert manifest["runtime"]["provider_adapter"]=="not-connected" or isinstance(manifest["runtime"]["provider_adapter"],str)
+          assert manifest["runtime"]["phoneme_lipsync"] is False
+          assert len(manifest["photo"]["sha256"])==64
+          assert len(manifest["voice"]["sha256"])==64
+          print("Heart-View live presentation contract: PASS")
+          print("Provider runtime remains fail-closed until explicitly connected.")
+          PY
