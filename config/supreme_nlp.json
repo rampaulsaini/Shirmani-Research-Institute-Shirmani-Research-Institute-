@@ -1,0 +1,44 @@
+{
+  "system_name": "SHIRMANI HEART-VIEW SUPREME NEUTRAL AUTOMISSION",
+  "version": "1.0.0",
+  "principles": {
+    "neutrality": true,
+    "evidence_first": true,
+    "fact_inference_separation": true,
+    "uncertainty_required": true,
+    "independent_verification": true,
+    "human_review_for_high_impact": true
+  },
+  "pipeline": [
+    "ingest",
+    "normalize",
+    "multimodal_signal_validation",
+    "feature_extraction",
+    "semantic_interpretation",
+    "reasoning",
+    "evidence_linking",
+    "uncertainty_estimation",
+    "independent_verification",
+    "plain_language_output",
+    "audit",
+    "learning"
+  ],
+  "signal_to_language": {
+    "allowed_inputs": [
+      "text", "speech", "image", "video", "environmental_sensor",
+      "bioelectric_sensor", "vibration", "acoustic_signal", "time_series"
+    ],
+    "output_contract": [
+      "observed_signal", "model_interpretation", "alternative_interpretations",
+      "evidence", "confidence", "limitations"
+    ],
+    "rule": "Do not convert a measured signal directly into a claim of subjective feeling without validated evidence."
+  },
+  "automission": {
+    "cycle_minutes": 5,
+    "stages": ["observe", "test", "reason", "verify", "audit", "propose_improvement"],
+    "production_change_requires": [
+      "tests_pass", "security_pass", "independent_verification", "human_approval"
+    ]
+  }
+}
