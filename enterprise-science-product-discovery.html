@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shirmani Enterprise & Science Product Discovery</title>
+<style>
+body{margin:0;font-family:system-ui,sans-serif;background:#071018;color:#eef2f7;line-height:1.55}
+main{max-width:1100px;margin:auto;padding:24px 16px 60px}.hero,.card{background:#101b26;border:1px solid #334155;border-radius:18px;padding:20px;margin:14px 0}
+h1,h2{color:#d4af37}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.item{background:#0b141d;border:1px solid #334155;border-radius:14px;padding:16px}
+a{color:#67e8f9}.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#162635;margin:3px;font-size:.85rem}
+.warn{color:#fbbf24}.ok{color:#6ee7b7}
+</style></head>
+<body><main>
+<section class="hero"><h1>SHIRMANI Enterprise & Science Product Discovery</h1>
+<p>Public discovery layer for digital products, sector fit, official organization pages and evidence-bound outreach.</p>
+<p class="warn"><b>DISCOVERED ≠ CONTACTED ≠ CUSTOMER ≠ PARTNER ≠ VERIFIED.</b></p></section>
+<section class="card"><h2>Scale target</h2><p><b>150,000</b> is treated here as a catalog target, not as a fabricated view/customer/adoption count. Real inventory and telemetry must come from machine-readable production records.</p></section>
+<section class="card"><h2>Discovery targets</h2><div id="targets">Loading…</div></section>
+<section class="card"><h2>NVIDIA compatibility path</h2><p class="ok">CUDA / CUDA-X → TensorRT / TensorRT-LLM → NeMo evaluation & guardrails → NIM → AI Enterprise → Omniverse/RAPIDS where the product actually benefits.</p><p>Each integration requires dependency, benchmark, security, provenance and deployment evidence before a compatibility claim is promoted.</p></section>
+</main>
+<script>
+fetch("generated/enterprise-product-discovery-targets.json?ts="+Date.now(),{cache:"no-store"})
+.then(r=>r.json()).then(d=>{
+document.getElementById("targets").innerHTML=(d.targets||[]).map(x=>
+'<article class="item"><h3>'+x.name+'</h3><span class="badge">'+x.type+'</span><span class="badge">'+x.status+'</span><p>'+x.fit+'</p><a href="'+x.official_page+'" rel="noopener">Official website</a></article>'
+).join("");
+}).catch(()=>document.getElementById("targets").textContent="Discovery registry unavailable.");
+</script>
+</body></html>
