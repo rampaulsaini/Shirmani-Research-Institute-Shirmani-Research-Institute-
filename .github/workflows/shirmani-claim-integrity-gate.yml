@@ -1,0 +1,62 @@
+name: SHIRMANI Claim Integrity & Provenance Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+  push:
+    branches: [main, supreme-verification-v2]
+    paths:
+      - "research/shirmani-claim-integrity-gate-v1.md"
+      - ".github/workflows/shirmani-claim-integrity-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-claim-integrity-gate
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate provenance and non-deception invariants
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("research/shirmani-claim-integrity-gate-v1.md").read_text(encoding="utf-8")
+          required = [
+              "PROVENANCE_CONFIRMED",
+              "Personal media alone => never VERIFIED.",
+              "Author source alone => never INDEPENDENTLY_VERIFIED.",
+              "Workflow success => never VERIFIED.",
+              "Missing counter-evidence review => block.",
+              "Missing reproducible test for a testable claim => block.",
+              "Missing reviewer identity/role/timestamp => block.",
+              "must not require biometric identification",
+              "must not infer identity from facial or vocal characteristics",
+          ]
+          missing=[x for x in required if x not in p]
+          if missing:
+              raise SystemExit("CLAIM_INTEGRITY_GATE_BLOCKED: missing invariants: "+repr(missing))
+          print("CLAIM_INTEGRITY_GATE: PASS")
+          print("Provenance is separated from truth verification.")
+          print("Personal media is provenance evidence only.")
+          print("Independent verification remains fail-closed.")
+          PY
+
+      - name: Emit audit summary
+        run: |
+          {
+            echo "## SHIRMANI Claim Integrity & Provenance Gate"
+            echo "- Provenance and independent verification are separate states."
+            echo "- First-person experience may be preserved as testimony."
+            echo "- Personal photograph/audio/video may support provenance when voluntarily supplied."
+            echo "- Biometric identification and psychological inference are not required."
+            echo "- No workflow may declare a universal proposition VERIFIED."
+          } >> "$GITHUB_STEP_SUMMARY"
