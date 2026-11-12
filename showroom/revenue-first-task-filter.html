@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Evidence-first SHIRMANI task filter: keep work that serves a customer, deliverable, security, or verified product; defer noise; archive only after dependency checks.">
+<title>SHIRMANI | Revenue-First Task Filter</title>
+<style>
+:root{color-scheme:dark;--bg:#080d16;--panel:#121d2c;--line:#344a61;--gold:#f0cf68;--cyan:#7be5ee;--muted:#c0cad6;--green:#a7e7c0;--amber:#ffd48a;--red:#ff9d9d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1b2d43,var(--bg) 58%);color:#f5f7fb;font:16px/1.6 system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:18px}section{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin:14px 0}.hero{text-align:center;border:2px solid var(--gold)}h1,h2,h3{color:var(--gold)}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}label{display:block;font-weight:750;margin:10px 0 4px}input,select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:#07101b;color:#fff;font:inherit}textarea{min-height:75px}button,.btn{display:inline-block;margin:5px 4px 5px 0;padding:10px 14px;border:0;border-radius:9px;background:var(--gold);color:#111;font-weight:800;text-decoration:none;cursor:pointer;font:inherit}.secondary{background:#132638;color:var(--cyan);border:1px solid var(--line)}.note{border-left:4px solid var(--cyan);padding:12px;background:#091522}.result{border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0;background:#0a1320}.status{font-weight:900}.KEEP{color:var(--green)}.DEFER{color:var(--amber)}.ARCHIVE{color:var(--cyan)}.BLOCKED{color:var(--red)}table{width:100%;border-collapse:collapse}th,td{text-align:left;vertical-align:top;padding:8px;border-bottom:1px solid var(--line)}.small{font-size:.9rem}footer{text-align:center;color:var(--muted);padding:20px}
+</style></head><body><main>
+<section class="hero"><div>꙰ SHIRMANI RESEARCH INSTITUTE · SRI-OPS-FILTER-001</div><h1>Revenue-First Task Filter</h1><p><strong>काम का मूल्य = उपयोगी deliverable + प्रमाण + मापने योग्य अगला परिणाम</strong></p><p class="muted">यह browser-local triage tool है। यह GitHub issues/workflows को अपने-आप नहीं पढ़ता, कुछ delete नहीं करता, और local entries को server पर save नहीं करता।</p><a class="btn secondary" href="../showroom-public.html">Public Showroom</a> <a class="btn secondary" href="../services-writing-research.html">Writing & Research Services</a> <a class="btn secondary" href="../writing-research-enquiry.html">Create an enquiry brief</a></section>
+<section><h2>1 · नया काम जाँचें</h2><p class="note">हर काम को पहले ग्राहक/उपयोगकर्ता की समस्या, ठोस deliverable, acceptance test, मूल्य या जोखिम-कमी, निर्भरता और लागत से जोड़ें। Workflow count अपने-आप में product value नहीं है।</p>
+<form id="taskForm">
+<div class="grid">
+<div><label for="title">काम / task का नाम *</label><input id="title" required placeholder="जैसे Hindi research brief demo ठीक करना"></div>
+<div><label for="problem">किसकी कौन-सी समस्या हल होगी? *</label><input id="problem" required placeholder="विशिष्ट उपयोगकर्ता या ग्राहक की जरूरत"></div>
+<div><label for="deliverable">ठोस deliverable *</label><input id="deliverable" required placeholder="फाइल, demo, test, proposal, fix"></div>
+<div><label for="acceptance">मापने योग्य acceptance test *</label><input id="acceptance" required placeholder="कौन-सा परीक्षण PASS होगा?"></div>
+<div><label for="value">मूल्य / revenue / risk reduction *</label><select id="value" required><option value="">चुनें…</option><option>सीधा ग्राहक मूल्य / संभावित आय</option><option>ग्राहक delivery / enquiry / conversion</option><option>Security / data integrity / recovery</option><option>Production reliability / regression prevention</option><option>केवल अनुमानित / अस्पष्ट</option></select></div>
+<div><label for="dependency">निर्भरता और downstream consumer *</label><input id="dependency" required placeholder="कौन उपयोग करेगा? किन चीजों पर निर्भर है?"></div>
+<div><label for="cost">लागत / समय / जोखिम *</label><input id="cost" required placeholder="जैसे 2 घंटे, कोई नई सेवा लागत नहीं"></div>
+<div><label for="evidence">प्रमाण या issue / artifact URL</label><input id="evidence" type="url" placeholder="https://github.com/..."></div>
+</div>
+<h3>Duplicate / archive safety gate</h3>
+<div class="grid">
+<div><label for="duplicate">क्या duplicate होने का प्रमाण है?</label><select id="duplicate"><option value="unknown">अभी पता नहीं</option><option value="yes">हाँ — exact duplicate पहचाना</option><option value="no">नहीं</option></select></div>
+<div><label for="deps">Dependency/reference scan</label><select id="deps"><option value="notdone">नहीं किया</option><option value="clear">पूरा — कोई active dependency नहीं</option><option value="found">References/dependencies मिले</option></select></div>
+<div><label for="backup">Backup / reversible archive</label><select id="backup"><option value="no">नहीं</option><option value="yes">हाँ — restore path दर्ज है</option></select></div>
+<div><label for="owner">Owner / reviewer confirmation</label><select id="owner"><option value="no">अभी नहीं</option><option value="yes">हाँ</option></select></div>
+</div>
+<button type="submit">Filter this task</button><button type="button" class="secondary" id="sample">Example भरें</button><button type="reset" class="secondary">Form साफ करें</button>
+</form><div id="decision" class="result" aria-live="polite">जाँच के बाद निर्णय और कारण यहाँ दिखाई देंगे।</div></section>
+<section><h2>2 · निर्णय के नियम</h2><div class="grid">
+<div class="result"><h3 class="KEEP">KEEP / DO NEXT</h3><p>स्पष्ट समस्या, ठोस output, acceptance test और ग्राहक मूल्य या सुरक्षा/विश्वसनीयता का प्रमाण हो। इसे प्राथमिकता के अनुसार करें।</p></div>
+<div class="result"><h3 class="DEFER">DEFER / RE-SCOPE</h3><p>काम अस्पष्ट, speculative, duplicate-संदिग्ध, लागत/निर्भरता अज्ञात या downstream उपयोगकर्ता-विहीन हो। पहले छोटा परीक्षण या स्पष्ट scope बनाएं।</p></div>
+<div class="result"><h3 class="ARCHIVE">ARCHIVE CANDIDATE — REVIEW REQUIRED</h3><p>केवल exact duplicate का प्रमाण, dependency scan clear, backup/restore और owner review सभी होने पर reversible archive की समीक्षा सुझाएँ। यह tool archive या delete नहीं करता।</p></div>
+</div><p class="note"><strong>सुरक्षा नियम:</strong> किसी workflow का नाम, कम संख्या या रद्द run अकेले deletion का कारण नहीं है। Security gates, deployment, production history, customer artifacts या useful workflows को बिना dependency scan और restore plan के न हटाएँ।</p></section>
+<section><h2>3 · इस session की task सूची</h2><p class="muted">नीचे जोड़े गए tasks केवल इसी browser session/page के memory में हैं। पेज बंद करने पर इन्हें सुरक्षित मानकर न चलें; पहले export करें।</p><div class="grid"><button id="csv">Export CSV</button><button id="json" class="secondary">Export JSON</button><button id="clear" class="secondary">Clear this page's list</button></div><div id="list"></div></section>
+<section><h2>4 · SHIRMANI के काम का प्राथमिक क्रम</h2><ol><li><strong>पहले:</strong> मौजूदा Hindi/English writing और research service page, sample, enquiry path और written quote flow को काम करने योग्य रखें।</li><li><strong>फिर:</strong> असफल workflow का root cause ठीक करें यदि वह production, security या ग्राहक-facing product को प्रभावित करता है।</li><li><strong>फिर:</strong> existing useful demos को सुधारें और उन्हीं के उपयोगकर्ता/ग्राहक परिणाम मापें।</li><li><strong>टालें:</strong> बिना consumer वाले duplicate dashboards, केवल count बढ़ाने वाले speculative generators और unsupported global-scale claims।</li><li><strong>कभी स्वतः न करें:</strong> repository issue/asset/workflow delete, bulk outreach, खर्च, credentials change या production merge.</li></ol></section>
+<footer>SHIRMANI RESEARCH INSTITUTE · Evidence before status · Reversible before destructive · Customer value before workflow count</footer>
+</main><script>
+(function(){
+const $=id=>document.getElementById(id);let tasks=[];
+function classify(t){
+ const missing=[["problem",t.problem],["deliverable",t.deliverable],["acceptance test",t.acceptance],["value/risk",t.value],["dependency/consumer",t.dependency],["cost",t.cost]].filter(x=>!x[1]||!String(x[1]).trim()).map(x=>x[0]);
+ if(missing.length)return {state:"DEFER",reason:"अधूरी जानकारी: "+missing.join(", ")+". पहले scope पूरा करें।"};
+ if(t.value==="केवल अनुमानित / अस्पष्ट")return {state:"DEFER",reason:"मूल्य या जोखिम-कमी अभी प्रमाणित नहीं। छोटा validation test तय करें।"};
+ if(t.duplicate==="yes"&&t.deps==="clear"&&t.backup==="yes"&&t.owner==="yes")return {state:"ARCHIVE",reason:"Archive candidate: duplicate प्रमाणित, dependency scan clear, restore path और owner review दर्ज। यह अभी भी केवल review recommendation है; कोई deletion नहीं।"};
+ if(t.duplicate==="yes"||t.deps==="found"||t.deps==="notdone"||t.backup!=="yes"||t.owner!=="yes")return {state:"DEFER",reason:"Archive safety gate पूरा नहीं। Useful dependencies, history और production/customer assets सुरक्षित रखें; पहले scan/backup/review करें।"};
+ return {state:"KEEP",reason:"समस्या, deliverable, acceptance test, value, dependency और cost दर्ज हैं। अगला कदम: deliverable बनाकर acceptance test का evidence link जोड़ें।"};
+}
+function renderList(){const root=$("list");root.replaceChildren();if(!tasks.length){root.textContent="अभी कोई task दर्ज नहीं।";return;}tasks.forEach((t,i)=>{const el=document.createElement("div");el.className="result";const h=document.createElement("h3");h.textContent=(i+1)+". "+t.title+" — "+t.state;h.className=t.state;const p=document.createElement("p");p.textContent=t.reason;const q=document.createElement("p");q.className="small muted";q.textContent="Problem: "+t.problem+" | Deliverable: "+t.deliverable+" | Test: "+t.acceptance;el.append(h,p,q);root.append(el);});}
+$("taskForm").addEventListener("submit",e=>{e.preventDefault();const t={};["title","problem","deliverable","acceptance","value","dependency","cost","evidence","duplicate","deps","backup","owner"].forEach(k=>t[k]=$(k).value.trim());const d=classify(t);t.state=d.state;t.reason=d.reason;t.created_at=new Date().toISOString();tasks.push(t);const box=$("decision");box.replaceChildren();const h=document.createElement("h3");h.className="status "+t.state;h.textContent=t.state==="ARCHIVE"?"ARCHIVE CANDIDATE — REVIEW REQUIRED":t.state;const p=document.createElement("p");p.textContent=t.reason;const safe=document.createElement("p");safe.className="small muted";safe.textContent="यह निर्णय सलाह है, repository में कोई परिवर्तन नहीं हुआ।";box.append(h,p,safe);renderList();});
+$("sample").addEventListener("click",()=>{const vals={title:"Writing & Research enquiry path",problem:"संभावित ग्राहक को सेवा और scope स्पष्ट नहीं दिखता",deliverable:"Service page + enquiry brief",acceptance:"Mobile पर page खुले; enquiry brief बनाकर copy/export हो",value:"ग्राहक delivery / enquiry / conversion",dependency:"services-writing-research.html और writing-research-enquiry.html",cost:"1–2 घंटे; existing files",evidence:"https://github.com/rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-/",duplicate:"no",deps:"clear",backup:"yes",owner:"yes"};Object.keys(vals).forEach(k=>$(k).value=vals[k]);});
+function download(name,content,type){const blob=new Blob([content],{type});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href);}
+$("csv").addEventListener("click",()=>{const keys=["title","state","reason","problem","deliverable","acceptance","value","dependency","cost","evidence","duplicate","deps","backup","owner","created_at"];const quote=v=>'"'+String(v??"").replaceAll('"','""')+'"';download("shirmani-task-filter.csv",[keys.join(","),...tasks.map(t=>keys.map(k=>quote(t[k])).join(","))].join("\r\n"),"text/csv;charset=utf-8;");});
+$("json").addEventListener("click",()=>download("shirmani-task-filter.json",JSON.stringify({schema_version:"1.0",tasks},null,2),"application/json"));
+$("clear").addEventListener("click",()=>{if(confirm("इस पेज की local task सूची साफ करें? इससे GitHub या repository नहीं बदलेगी।")){tasks=[];renderList();$("decision").textContent="सूची साफ है; कोई repository परिवर्तन नहीं हुआ।";}});
+renderList();
+})();
+</script></body></html>
