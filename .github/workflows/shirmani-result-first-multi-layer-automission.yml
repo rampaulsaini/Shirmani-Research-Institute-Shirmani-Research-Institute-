@@ -1,0 +1,33 @@
+name: SHIRMANI Result-First Multi-Layer AI-ML-NLP Automission
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-result-first-multilayer-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  result-first:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout canonical source
+        uses: actions/checkout@v4
+
+      - name: Run result-first contract tests
+        run: python3 -m unittest tests/test_result_first_orchestrator.py -v
+
+      - name: Run result-first orchestration
+        run: python3 factory/result_first_orchestrator.py
+
+      - name: Publish result-first plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: result-first-multilayer-plan
+          path: generated/result-first-multilayer-plan.json
+          if-no-files-found: error
