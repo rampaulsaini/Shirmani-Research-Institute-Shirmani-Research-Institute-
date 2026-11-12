@@ -1,0 +1,51 @@
+name: Biological Signal NLP Supervisor
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "factory/biological_signal_nlp.py"
+      - "tests/test_biological_signal_nlp.py"
+      - ".github/workflows/biological-signal-nlp-supervisor.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-biological-signal-nlp
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile
+        run: python -m compileall -q factory tests
+
+      - name: Run biological-signal NLP tests
+        run: python -m unittest tests/test_biological_signal_nlp.py -v
+
+      - name: Enforce conservative interpretation boundary
+        run: |
+          python - <<'PY'
+          from factory.biological_signal_nlp import SignalObservation, interpret_batch
+          result = interpret_batch([
+              SignalObservation("plant", "electrical_potential", 2.0, "mV", source="sensor"),
+              SignalObservation("nonliving", "temperature", 40.0, "C", 20.0, source="sensor"),
+          ])
+          assert result["truth_claim"] is False
+          assert result["subjective_feeling_claims"] == 0
+          assert result["publication_ready"] is False
+          print("Biological-signal NLP boundary: PASS")
+          PY
