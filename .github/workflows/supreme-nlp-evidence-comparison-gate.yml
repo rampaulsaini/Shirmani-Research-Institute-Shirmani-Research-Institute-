@@ -1,0 +1,32 @@
+name: SHIRMANI Supreme NLP Evidence Comparative Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-evidence-comparison-gate.md"
+      - "schemas/supreme-nlp-claim-evidence.schema.json"
+      - "factory/supreme_nlp_evidence_comparison_qc.py"
+      - "tests/supreme_nlp_evidence_comparison_qc.py"
+      - "research/yatharth-four-yuga-comparison-protocol-2026-10-02.md"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-evidence-comparison
+  cancel-in-progress: true
+
+jobs:
+  evidence-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run evidence and comparison QC
+        run: python3 factory/supreme_nlp_evidence_comparison_qc.py
+      - name: Run regression test
+        run: python3 tests/supreme_nlp_evidence_comparison_qc.py
