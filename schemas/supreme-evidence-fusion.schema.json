@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shirmani Supreme Evidence Fusion Report",
+  "type": "object",
+  "required": ["schema_version","generated_at","status","quality_signal_percent","records","hard_fail_metrics","checks","decision","truth_boundary"],
+  "properties": {
+    "schema_version": {"const": "3.0"},
+    "generated_at": {"type": "string"},
+    "status": {"enum": ["PASS","BLOCKED"]},
+    "quality_signal_percent": {"type": "number","minimum": 0,"maximum": 100},
+    "records": {"type":"object","required":["claims","reasoning","provenance","sources"]},
+    "hard_fail_metrics": {"type":"object"},
+    "checks": {"type":"array","minItems":1},
+    "decision": {
+      "type":"object",
+      "required":["automission_action","verified_promotion","publication"],
+      "properties":{
+        "automission_action":{"enum":["CONTINUE","HOLD_AND_REVIEW"]},
+        "verified_promotion":{"const":"NEVER_AUTOMATED"},
+        "publication":{"const":"BLOCKED_ON_ANY_HARD_FAILURE"}
+      }
+    },
+    "truth_boundary": {"type":"string","minLength":20}
+  },
+  "additionalProperties": true
+}
