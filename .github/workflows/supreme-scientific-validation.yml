@@ -1,0 +1,64 @@
+name: SHIRMANI Scientific Validation Gate
+
+on:
+  workflow_dispatch:
+  pull_request:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-scientific-validation
+  cancel-in-progress: true
+
+jobs:
+  scientific-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run scientific protocol contract tests
+        run: python tests/test_scientific_validation_gate.py
+
+      - name: Run existing Supreme NLP end-to-end tests
+        run: python tests/test_supreme_nlp_end_to_end.py
+
+      - name: Run scientific validation gate
+        run: python factory/scientific_validation_gate.py
+
+      - name: Enforce fail-closed status
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open("generated/scientific-validation-gate.json",encoding="utf-8"))
+          assert p["verification_state"] != "VERIFIED"
+          assert p["promotion_allowed"] is False
+          assert p["governance"]["fail_closed"] is True
+          assert p["governance"]["automation_can_create_independent_review"] is False
+          print("SCIENTIFIC_VALIDATION_FAIL_CLOSED: PASS")
+          PY
+
+      - name: Publish validation summary
+        run: |
+          {
+            echo "## SHIRMANI Scientific Validation Gate"
+            echo "- Observed -> Inferred -> Interpreted -> Independently Verified"
+            echo "- Blinded holdout required"
+            echo "- Independent replication required"
+            echo "- Counter-evidence review required"
+            echo "- Calibration and uncertainty required"
+            echo "- Automation cannot manufacture independent review"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scientific-validation-gate-${{ github.run_id }}
+          path: generated/scientific-validation-gate.json
+          if-no-files-found: error
+          retention-days: 14
