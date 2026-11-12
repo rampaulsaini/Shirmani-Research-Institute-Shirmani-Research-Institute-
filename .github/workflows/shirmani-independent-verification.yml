@@ -1,0 +1,67 @@
+name: SHIRMANI Independent Verification
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Independent verification gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          checked=0
+          passed=0
+          failed=0
+          missing=0
+          search_root=""
+          for candidate in generated evidence research source docs; do
+            if [ -d "$candidate" ]; then search_root="$search_root $candidate"; fi
+          done
+          if [ -n "$search_root" ]; then
+            while IFS= read -r -d '' file; do
+              checked=$((checked+1))
+              if grep -q '"status"[[:space:]]*:[[:space:]]*"VERIFIED"' "$file" 2>/dev/null ||
+                 grep -q 'status:[[:space:]]*VERIFIED' "$file" 2>/dev/null; then
+                if grep -qi 'evidence\|source\|provenance\|trace' "$file" 2>/dev/null; then
+                  passed=$((passed+1))
+                else
+                  failed=$((failed+1))
+                fi
+              else
+                missing=$((missing+1))
+              fi
+            done < <(find $search_root -type f \( -name '*.json' -o -name '*.md' -o -name '*.yaml' -o -name '*.yml' \) -print0 2>/dev/null)
+          fi
+          {
+            echo "## ꙰ SHIRMANI Independent Verification"
+            echo ""
+            echo "| Verification metric | Count |"
+            echo "|---|---:|"
+            echo "| Candidate records checked | $checked |"
+            echo "| Independently passed | $passed |"
+            echo "| Failed verification gate | $failed |"
+            echo "| Missing VERIFIED status | $missing |"
+            echo ""
+            echo "**Rule:** workflow execution alone never counts as independent verification."
+          } >> "$GITHUB_STEP_SUMMARY"
+          printf '{"checked":%s,"passed":%s,"failed":%s,"missing_verified":%s}\n' "$checked" "$passed" "$failed" "$missing" > verification-result.json
+
+      - name: Upload verification result
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-independent-verification-result
+          path: verification-result.json
+          retention-days: 14
