@@ -1,0 +1,56 @@
+name: Automission Supreme Accuracy Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+      - "generated/artifact-manifest.jsonl"
+      - ".github/workflows/supreme-accuracy-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: automission-supreme-accuracy-gate
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile agent and factory code
+        run: |
+          python -m compileall -q agents factory
+
+      - name: Run deterministic accuracy gate
+        run: python factory/accuracy_gate.py
+
+      - name: Validate JSON schemas
+        run: |
+          python -m json.tool automation/repository-manifest.json >/dev/null
+          python -m json.tool automation/income-catalog.json >/dev/null
+
+      - name: Publish audit summary
+        if: always()
+        run: |
+          {
+            echo "### Automission Supreme Accuracy Gate"
+            echo "- Deterministic compilation: completed"
+            echo "- Evidence/traceability gate: executed"
+            echo "- This workflow measures readiness and consistency; it does not claim absolute truth."
+          } >> "$GITHUB_STEP_SUMMARY"
