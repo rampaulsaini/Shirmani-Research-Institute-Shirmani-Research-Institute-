@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "objective": "maximize measured correctness, reproducibility, traceability and throughput without claiming perfect accuracy",
+  "pipeline": ["intake","canonicalize","retrieve","reason","countercheck","evidence","verification","quality_gate","publish"],
+  "quality_gates": {
+    "schema_valid": true,
+    "provenance_required": true,
+    "verification_fail_closed": true,
+    "duplicate_suppression": true,
+    "deterministic_replay": true,
+    "human_review_for_irreversible_actions": true
+  },
+  "metrics": {
+    "accuracy": "supported_claims / evaluated_claims",
+    "groundedness": "claims_with_traceable_evidence / factual_claims",
+    "consistency": "agreement_across_independent_checks",
+    "coverage": "completed_queue_items / eligible_queue_items",
+    "latency": "median_seconds_per_item",
+    "failure_rate": "failed_items / attempted_items"
+  },
+  "ml_nlp_hooks": {
+    "retrieval": "hybrid lexical+semantic retrieval when an implementation is available",
+    "reranking": "evidence relevance and contradiction-aware reranking",
+    "nlp": "claim extraction, entity normalization, contradiction detection",
+    "ml": "offline evaluation unless an explicitly configured model endpoint exists",
+    "uncertainty": "low-confidence outputs remain UNVERIFIED"
+  }
+}

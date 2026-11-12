@@ -1,0 +1,43 @@
+name: Supreme AI Precision Conveyor
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "config/supreme_ai_precision.json"
+      - "scripts/ai_precision_gate.py"
+      - "AGENT-GOVERNANCE.md"
+      - ".github/workflows/supreme-ai-precision-conveyor.yml"
+concurrency:
+  group: supreme-ai-precision-conveyor
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  precision-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Run deterministic precision gate
+        run: python3 scripts/ai_precision_gate.py
+      - name: Emit run manifest
+        if: always()
+        run: |
+          mkdir -p artifacts
+          python3 - <<'PY'
+          import json, os
+          manifest = {"workflow":os.environ.get("GITHUB_WORKFLOW"),"run_id":os.environ.get("GITHUB_RUN_ID"),"sha":os.environ.get("GITHUB_SHA"),"ref":os.environ.get("GITHUB_REF"),"runner":os.environ.get("RUNNER_OS")}
+          with open("artifacts/precision-run.json","w",encoding="utf-8") as f: json.dump(manifest,f,indent=2)
+          PY
+      - name: Upload run manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-ai-precision-run
+          path: artifacts/precision-run.json
+          retention-days: 14
