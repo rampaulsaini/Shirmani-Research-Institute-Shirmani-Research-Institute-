@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shirmani Live Nishpaksh Presenter Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "pipeline",
+    "evidence_policy",
+    "authorization",
+    "status"
+  ],
+  "properties": {
+    "contract_version": {
+      "type": "string"
+    },
+    "pipeline": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "string",
+        "enum": [
+          "voice",
+          "authorized_voice_integration",
+          "question_context",
+          "evidence_retrieval",
+          "answer_policy",
+          "presenter_authorization",
+          "lip_sync",
+          "live_presentation",
+          "archive"
+        ]
+      }
+    },
+    "evidence_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "insufficient_evidence_text",
+        "verification_boundary"
+      ],
+      "properties": {
+        "insufficient_evidence_text": {
+          "const": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है"
+        },
+        "verification_boundary": {
+          "const": "workflow_success_is_not_independent_verification"
+        }
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "voice_required",
+        "presenter_required",
+        "consent_required"
+      ],
+      "properties": {
+        "voice_required": {
+          "const": true
+        },
+        "presenter_required": {
+          "const": true
+        },
+        "consent_required": {
+          "const": true
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DESIGN_READY",
+        "TEST_READY",
+        "LIVE_READY",
+        "LIVE",
+        "NOT_VERIFIED",
+        "UNAVAILABLE"
+      ]
+    }
+  }
+}
