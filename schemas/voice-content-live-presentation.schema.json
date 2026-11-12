@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/voice-content-live-presentation.schema.json",
+  "title": "Shirmani Voice Content Live Presentation Packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["packet_id","voice_asset_id","content_asset_id","visual_asset_id","renderer","renderer_version","language","consent_status","provenance","qc","verification_state","publication_state","created_at"],
+  "properties": {
+    "packet_id": {"type": "string","minLength": 1},
+    "voice_asset_id": {"type": "string","minLength": 1},
+    "content_asset_id": {"type": "string","minLength": 1},
+    "visual_asset_id": {"type": "string","minLength": 1},
+    "renderer": {"type": "string","minLength": 1},
+    "renderer_version": {"type": "string","minLength": 1},
+    "language": {"type": "string","minLength": 2},
+    "consent_status": {"type": "string","enum": ["NOT_REQUIRED","PENDING","AUTHORIZED","REVOKED"]},
+    "provenance": {
+      "type": "object","additionalProperties": false,"required": ["source_refs","generated"],
+      "properties": {
+        "source_refs": {"type": "array","items": {"type": "string","minLength": 1}},
+        "generated": {"type": "boolean"},
+        "created_by": {"type": "string"}
+      }
+    },
+    "qc": {
+      "type": "object","additionalProperties": false,"required": ["status","checks"],
+      "properties": {
+        "status": {"type": "string","enum": ["PENDING","PASS","FAIL","ABSTAINED"]},
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object","additionalProperties": false,"required": ["name","status"],
+            "properties": {
+              "name": {"type": "string","minLength": 1},
+              "status": {"type": "string","enum": ["PASS","FAIL","CHECK","NOT_RUN"]},
+              "detail": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "verification_state": {"type": "string","enum": ["UNVERIFIED","INDEPENDENT_REVIEW_PENDING","VERIFIED"]},
+    "publication_state": {"type": "string","enum": ["REGISTERED","PREPARED","RENDERED","QC_PASS","HUMAN_APPROVED","LIVE","ABSTAINED","QC_FAIL","UNAUTHORIZED","PROVENANCE_MISSING","IDENTITY_REVIEW_REQUIRED","LIVE_UNAVAILABLE"]},
+    "created_at": {"type": "string","format": "date-time"}
+  }
+}
