@@ -73,6 +73,23 @@ jobs:
         run: python3 factory/canonical_record_qc.py
       - name: Run resumable product batch worker
         run: python3 factory/batch_worker.py --batch-size 1000
+      - name: Run product-first multi-lane production fabric
+        run: python3 factory/production_fabric.py --batch-size 2500
+      - name: Validate and expose production fabric result
+        run: |
+          test -s generated/production-lane-results.jsonl
+          test -s generated/PRODUCTION-FABRIC-STATUS.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("generated/PRODUCTION-FABRIC-STATUS.json").read_text(encoding="utf-8"))
+          assert p["production_role"] == "primary"
+          assert p["verification_role"] == "downstream quality/evidence telemetry"
+          assert len(p["lanes"]) >= 10
+          print("Production fabric lanes:", len(p["lanes"]))
+          print("New tasks this cycle:", p["cycle_new_tasks"])
+          print("Cumulative production tasks:", p["cumulative_production_tasks"])
+          PY
       - name: Build deterministic reasoning, provenance and claim-evidence layer
         run: python3 factory/reasoning_pipeline.py
       - name: Run Supreme NLP multimodal integrity smoke gate
