@@ -1,0 +1,59 @@
+name: SHIRMANI Supreme NLP Cross-Layer Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "agents/supreme_nlp.py"
+      - "agents/supreme_nlp_multimodal.py"
+      - "agents/supreme_nlp_practitioner.py"
+      - "factory/supreme_nlp_cross_layer_benchmark.py"
+      - ".github/workflows/supreme-nlp-cross-layer-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-cross-layer-gate
+  cancel-in-progress: true
+
+jobs:
+  cross-layer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile cross-layer benchmark
+        run: python -m py_compile factory/supreme_nlp_cross_layer_benchmark.py
+      - name: Run cross-layer regression gate
+        run: python factory/supreme_nlp_cross_layer_benchmark.py
+      - name: Enforce governance boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("generated/supreme-nlp/cross-layer-benchmark.json")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          assert d["status"] == "PASS"
+          g=d["governance"]
+          assert g["fail_closed"] is True
+          assert g["subjective_experience_claim_allowed"] is False
+          assert g["scheduled_code_mutation_allowed"] is False
+          assert g["independent_verification_required"] is True
+          assert g["accuracy_is_measured_not_declared"] is True
+          print("CROSS_LAYER_GOVERNANCE_GATE: PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-cross-layer-${{ github.run_id }}
+          path: generated/supreme-nlp/cross-layer-benchmark.json
+          if-no-files-found: error
+          retention-days: 14
