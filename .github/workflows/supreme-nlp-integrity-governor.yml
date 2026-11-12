@@ -1,0 +1,70 @@
+name: SHIRMANI Supreme NLP Integrity Governor
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-nlp-*.md"
+      - "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md"
+      - "docs/ultra-mega-infinity-quantum-ai-ml-nlp-automission.md"
+      - "schemas/*.json"
+      - "factory/supreme_nlp_*.py"
+      - "factory/ultra_mega_infinity_quantum_automission.py"
+      - "tests/supreme_nlp_*.py"
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-nlp-integrity-governor
+  cancel-in-progress: true
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run fail-closed integrity governor
+        env:
+          PYTHONPATH: .
+        run: python3 factory/supreme_nlp_integrity_governor.py
+      - name: Validate governor telemetry
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("generated/supreme-nlp-integrity-governor.json")
+          d = json.loads(p.read_text(encoding="utf-8"))
+          required = {
+              "event_id", "timestamp", "repository", "governor_status",
+              "verification_state", "accuracy_evidence", "accuracy_rule",
+              "self_improvement_rule", "biological_signal_rule", "fail_closed",
+              "blockers", "warnings", "gate_results", "cycle_duration_seconds"
+          }
+          missing = required - set(d)
+          if missing:
+              raise SystemExit("Missing telemetry keys: " + ", ".join(sorted(missing)))
+          if d["fail_closed"] is not True:
+              raise SystemExit("Governor is not fail-closed")
+          if d["accuracy_evidence"] != "NOT_ESTABLISHED":
+              raise SystemExit("Accuracy evidence semantics changed unexpectedly")
+          if d["blockers"]:
+              raise SystemExit("Governor blockers present")
+          print("Integrity Governor: PASS; accuracy remains independently unestablished.")
+          PY
+      - name: Upload governor telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-integrity-governor-${{ github.run_id }}
+          path: generated/supreme-nlp-integrity-governor.json
+          if-no-files-found: error
+          retention-days: 14
