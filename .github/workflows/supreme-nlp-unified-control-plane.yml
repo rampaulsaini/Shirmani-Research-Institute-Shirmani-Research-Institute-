@@ -1,0 +1,56 @@
+name: SHIRMANI Supreme NLP Unified Control Plane
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths: ["agents/**","factory/**","schemas/**","docs/SUPREME-NLP-HEART-VIEW-OPERATING-CONTRACT.md",".github/workflows/supreme-nlp-unified-control-plane.yml"]
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-supreme-nlp-unified-control-plane
+  cancel-in-progress: true
+jobs:
+  control-plane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env: {PYTHONPATH: .}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.x"}
+      - name: Compile canonical components
+        run: python -m py_compile agents/supreme_nlp_engine.py agents/supreme_nlp_practitioner.py agents/automission_supervisor.py factory/supreme_nlp_truth_gate.py
+      - name: Validate JSON schemas
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          fs=list(Path("schemas").rglob("*.json"))
+          for p in fs: json.loads(p.read_text(encoding="utf-8"))
+          print("SCHEMAS_OK",len(fs))
+          PY
+      - name: Build practitioner record
+        run: |
+          mkdir -p generated/supreme-nlp
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.supreme_nlp_practitioner import build_practitioner_record
+          rows=[{"modality":"synthetic","feature":"baseline_a","value":1.0,"quality":1.0,"source":"control-a"},{"modality":"synthetic","feature":"baseline_b","value":1.01,"quality":1.0,"source":"control-b"}]
+          out=build_practitioner_record(rows,"experience-related signal interpretation")
+          Path("generated/supreme-nlp/practitioner-status.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          PY
+      - name: Truth and evidence gate
+        run: python factory/supreme_nlp_truth_gate.py
+      - name: Automission diagnosis
+        run: python agents/automission_supervisor.py
+      - name: Regression benchmark
+        run: python factory/supreme_nlp_benchmark.py
+      - name: Audit summary
+        run: |
+          echo "Supreme NLP control plane: PASS"
+          echo "Subjective-experience-as-fact conversion: BLOCKED"
+          echo "Independent verification: REQUIRED"
+          echo "Scheduled production mutation: BLOCKED"
