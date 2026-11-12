@@ -1,0 +1,2006 @@
+{
+  "generated_at": "2026-10-05T13:12:58.210Z",
+  "source_ref": "main",
+  "module_count": 333,
+  "principle": "Production-first: module work is the objective; verification remains downstream.",
+  "records": [
+    {
+      "path": ".github/workflows/github-pages.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 696
+    },
+    {
+      "path": ".github/workflows/omniverse-factory.yml",
+      "kind": "workflow",
+      "lane": "automation",
+      "size": 13999
+    },
+    {
+      "path": ".github/workflows/product-first-automission.yml",
+      "kind": "workflow",
+      "lane": "automation",
+      "size": 1282
+    },
+    {
+      "path": ".github/workflows/public-module-production-map.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 999
+    },
+    {
+      "path": ".github/workflows/shirmani-heart-view-auto-review-conveyor.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 6418
+    },
+    {
+      "path": ".github/workflows/shirmani-independent-verification-gate.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 7067
+    },
+    {
+      "path": ".github/workflows/shirmani-inter-repository-automission.yml",
+      "kind": "workflow",
+      "lane": "federation",
+      "size": 7619
+    },
+    {
+      "path": ".github/workflows/shirmani-micro-progress-counter.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 4644
+    },
+    {
+      "path": ".github/workflows/shirmani-multi-layer-production.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 3058
+    },
+    {
+      "path": ".github/workflows/shirmani-product-first-automission.yml",
+      "kind": "workflow",
+      "lane": "automation",
+      "size": 2371
+    },
+    {
+      "path": ".github/workflows/shirmani-resilience-watchdog.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 1221
+    },
+    {
+      "path": ".github/workflows/shirmani-supreme-multilayer-production.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 1040
+    },
+    {
+      "path": ".github/workflows/supreme-continuous-improvement.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 3667
+    },
+    {
+      "path": ".github/workflows/supreme-evidence-automission.yml",
+      "kind": "workflow",
+      "lane": "automation",
+      "size": 2176
+    },
+    {
+      "path": ".github/workflows/supreme-evidence-convergence.yml",
+      "kind": "workflow",
+      "lane": "research",
+      "size": 2006
+    },
+    {
+      "path": ".github/workflows/supreme-independent-verification-ledger.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 1429
+    },
+    {
+      "path": ".github/workflows/supreme-total-orchestrator.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 2821
+    },
+    {
+      "path": ".github/workflows/verification-progress-dashboard.yml",
+      "kind": "workflow",
+      "lane": "platform",
+      "size": 3389
+    },
+    {
+      "path": "about.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 1552
+    },
+    {
+      "path": "agents/__init__.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 41
+    },
+    {
+      "path": "agents/artifact_agent.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 715
+    },
+    {
+      "path": "agents/automission_supervisor.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 3245
+    },
+    {
+      "path": "agents/book_agent.py",
+      "kind": "agent",
+      "lane": "content",
+      "size": 496
+    },
+    {
+      "path": "agents/certificate_agent.py",
+      "kind": "agent",
+      "lane": "content",
+      "size": 287
+    },
+    {
+      "path": "agents/contract_bridge.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 3824
+    },
+    {
+      "path": "agents/contracts.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 1148
+    },
+    {
+      "path": "agents/corpus_agent.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 600
+    },
+    {
+      "path": "agents/deep_learning_agent.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 1247
+    },
+    {
+      "path": "agents/language_agents.py",
+      "kind": "agent",
+      "lane": "ai-ml-nlp",
+      "size": 459
+    },
+    {
+      "path": "agents/music_agent.py",
+      "kind": "agent",
+      "lane": "content",
+      "size": 285
+    },
+    {
+      "path": "agents/nvidia_agent.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 2682
+    },
+    {
+      "path": "agents/orchestrator.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 4004
+    },
+    {
+      "path": "agents/provenance_agent.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 585
+    },
+    {
+      "path": "agents/publishing_agent.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 482
+    },
+    {
+      "path": "agents/qc_agent.py",
+      "kind": "agent",
+      "lane": "security-quality",
+      "size": 1485
+    },
+    {
+      "path": "agents/research_agent.py",
+      "kind": "agent",
+      "lane": "research",
+      "size": 526
+    },
+    {
+      "path": "agents/source_agent.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 486
+    },
+    {
+      "path": "agents/supreme_control_plane.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 4784
+    },
+    {
+      "path": "agents/supreme_nlp.py",
+      "kind": "agent",
+      "lane": "ai-ml-nlp",
+      "size": 7333
+    },
+    {
+      "path": "agents/supreme_nlp_agent.py",
+      "kind": "agent",
+      "lane": "ai-ml-nlp",
+      "size": 2562
+    },
+    {
+      "path": "agents/supreme_nlp_automission_v2.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 1585
+    },
+    {
+      "path": "agents/supreme_nlp_engine.py",
+      "kind": "agent",
+      "lane": "ai-ml-nlp",
+      "size": 3325
+    },
+    {
+      "path": "agents/supreme_nlp_multimodal.py",
+      "kind": "agent",
+      "lane": "ai-ml-nlp",
+      "size": 7229
+    },
+    {
+      "path": "agents/supreme_nlp_practitioner.py",
+      "kind": "agent",
+      "lane": "ai-ml-nlp",
+      "size": 7609
+    },
+    {
+      "path": "agents/supreme_nlp_quality.py",
+      "kind": "agent",
+      "lane": "ai-ml-nlp",
+      "size": 6156
+    },
+    {
+      "path": "agents/supreme_runtime.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 6501
+    },
+    {
+      "path": "agents/supreme_sense_nlp.py",
+      "kind": "agent",
+      "lane": "ai-ml-nlp",
+      "size": 2637
+    },
+    {
+      "path": "agents/topic_agent.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 560
+    },
+    {
+      "path": "agents/ultra_automission.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 2452
+    },
+    {
+      "path": "agents/verification_agent.py",
+      "kind": "agent",
+      "lane": "automation",
+      "size": 2087
+    },
+    {
+      "path": "agents/writing_agent.py",
+      "kind": "agent",
+      "lane": "content",
+      "size": 473
+    },
+    {
+      "path": "agreement-work-contract-record.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 5103
+    },
+    {
+      "path": "allocation-rules.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 4887
+    },
+    {
+      "path": "application-human-matching.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 4547
+    },
+    {
+      "path": "archive.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 1
+    },
+    {
+      "path": "blog.html",
+      "kind": "public-module",
+      "lane": "social-media",
+      "size": 594
+    },
+    {
+      "path": "citations.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 1
+    },
+    {
+      "path": "contact.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 1165
+    },
+    {
+      "path": "contribution-ledger.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 7039
+    },
+    {
+      "path": "deliverable-acceptance-quality-review.html",
+      "kind": "public-module",
+      "lane": "security-quality",
+      "size": 4773
+    },
+    {
+      "path": "docs/ACTUAL-PLATFORM-EXECUTION-PLAN-2026-10-05.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 3722
+    },
+    {
+      "path": "docs/AUTOMISSION-E2E-ACCEPTANCE.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1277
+    },
+    {
+      "path": "docs/CONTINUOUS_EXECUTION.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 2725
+    },
+    {
+      "path": "docs/INDEPENDENT-VERIFICATION-STATUS.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 2330
+    },
+    {
+      "path": "docs/INDEPENDENT_VERIFICATION_CONTRACT.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1342
+    },
+    {
+      "path": "docs/SHIRMANI-HEART-VIEW-MASTER-COMPLETION-CHECKLIST-2026-09-21.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 3690
+    },
+    {
+      "path": "docs/SHIRMANI-HEART-VIEW-SUPREME-REASONING-CONTINUATION-20260921.md",
+      "kind": "documentation",
+      "lane": "research",
+      "size": 3768
+    },
+    {
+      "path": "docs/SHIRMANI-HEART-VIEW-SUPREME-REASONING-LAYER.md",
+      "kind": "documentation",
+      "lane": "research",
+      "size": 1826
+    },
+    {
+      "path": "docs/SHIRMANI-RESEARCH-STATUS-2026-09-21.md",
+      "kind": "documentation",
+      "lane": "research",
+      "size": 1552
+    },
+    {
+      "path": "docs/SHIRMANI-SOURCE-PRESERVATION-PROTOCOL.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1489
+    },
+    {
+      "path": "docs/SUPREME-AI-ML-NLP-ARCHITECTURE.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 2917
+    },
+    {
+      "path": "docs/SUPREME-EVIDENCE-CONTROL-PLANE.md",
+      "kind": "documentation",
+      "lane": "research",
+      "size": 1003
+    },
+    {
+      "path": "docs/SUPREME-NLP-ARCHITECTURE.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 2327
+    },
+    {
+      "path": "docs/SUPREME-NLP-AUTOMISSION-RESEARCH-CONTRACT.md",
+      "kind": "documentation",
+      "lane": "research",
+      "size": 3276
+    },
+    {
+      "path": "docs/SUPREME-NLP-AUTOMISSION-V2.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 2179
+    },
+    {
+      "path": "docs/SUPREME-NLP-AUTOMISSION.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 1628
+    },
+    {
+      "path": "docs/SUPREME-NLP-EVIDENCE-MULTIMODAL-V2.md",
+      "kind": "documentation",
+      "lane": "research",
+      "size": 3689
+    },
+    {
+      "path": "docs/SUPREME-NLP-MULTIMODAL-OPERATING-CONTRACT.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 1792
+    },
+    {
+      "path": "docs/SUPREME-NLP-PRACTITIONER.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 1433
+    },
+    {
+      "path": "docs/SUPREME-TOTAL-AUTOMISSION-ARCHITECTURE.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1811
+    },
+    {
+      "path": "docs/ULTRA-MEGA-INFINITY-QUANTUM-EVIDENCE-CHARTER.md",
+      "kind": "documentation",
+      "lane": "research",
+      "size": 1935
+    },
+    {
+      "path": "docs/VERIFICATION-REVIEW-PACKETS.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1420
+    },
+    {
+      "path": "docs/VERIFIED_CONTINUITY_CHECKPOINT_2026-09-21.md",
+      "kind": "documentation",
+      "lane": "federation",
+      "size": 1624
+    },
+    {
+      "path": "docs/YATHARTH-MUSIC-INTEGRATION.md",
+      "kind": "documentation",
+      "lane": "content",
+      "size": 2349
+    },
+    {
+      "path": "docs/agent-architecture.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 724
+    },
+    {
+      "path": "docs/agent-contracts.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 739
+    },
+    {
+      "path": "docs/independent-verification-conveyor.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 2172
+    },
+    {
+      "path": "docs/job-queue.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 579
+    },
+    {
+      "path": "docs/platform-quality.md",
+      "kind": "documentation",
+      "lane": "security-quality",
+      "size": 2959
+    },
+    {
+      "path": "docs/provenance.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 274
+    },
+    {
+      "path": "docs/public-platform/README.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 2541
+    },
+    {
+      "path": "docs/public-platform/ai-native-control-plane.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 967
+    },
+    {
+      "path": "docs/public-platform/api-module-plan.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1519
+    },
+    {
+      "path": "docs/public-platform/automission-agent-contract.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1494
+    },
+    {
+      "path": "docs/public-platform/capability-registry.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 896
+    },
+    {
+      "path": "docs/public-platform/data-model.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 2777
+    },
+    {
+      "path": "docs/public-platform/deployment-runbook.md",
+      "kind": "documentation",
+      "lane": "content",
+      "size": 2454
+    },
+    {
+      "path": "docs/public-platform/governance-control-plane.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 3597
+    },
+    {
+      "path": "docs/public-platform/integration-runbook.md",
+      "kind": "documentation",
+      "lane": "content",
+      "size": 2137
+    },
+    {
+      "path": "docs/public-platform/module-map.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 2963
+    },
+    {
+      "path": "docs/public-platform/platform-schema.json",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 978
+    },
+    {
+      "path": "docs/public-platform/production-dependencies.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 2713
+    },
+    {
+      "path": "docs/public-platform/production-deployment-checklist.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 2980
+    },
+    {
+      "path": "docs/public-platform/production-hardening.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 2000
+    },
+    {
+      "path": "docs/public-platform/production-readiness-gate.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 2856
+    },
+    {
+      "path": "docs/public-platform/public-capability-registry.json",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1819
+    },
+    {
+      "path": "docs/public-platform/release-checklist.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1977
+    },
+    {
+      "path": "docs/public-platform/roadmap.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1172
+    },
+    {
+      "path": "docs/public-platform/status-contract.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1803
+    },
+    {
+      "path": "docs/public-platform/user-journeys.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1491
+    },
+    {
+      "path": "docs/runtime-verification-checkpoint-20260921.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 558
+    },
+    {
+      "path": "docs/second-generation-architecture.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1266
+    },
+    {
+      "path": "docs/supreme-ai-ml-nlp-automission-evolution-protocol.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 3914
+    },
+    {
+      "path": "docs/supreme-ai-ml-nlp-automission-hardening.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 2060
+    },
+    {
+      "path": "docs/supreme-ai-ml-nlp-automission-operating-contract.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 4151
+    },
+    {
+      "path": "docs/supreme-ai-ml-nlp-automission-quality-contract-2026-10-01.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 1811
+    },
+    {
+      "path": "docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 2662
+    },
+    {
+      "path": "docs/supreme-continuous-improvement.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1252
+    },
+    {
+      "path": "docs/supreme-evidence-automission-operating-contract-2026-10-02.md",
+      "kind": "documentation",
+      "lane": "research",
+      "size": 3232
+    },
+    {
+      "path": "docs/supreme-independent-verification-ledger.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1598
+    },
+    {
+      "path": "docs/supreme-nlp-automission-operational-contract-2026-10-02.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 3469
+    },
+    {
+      "path": "docs/supreme-nlp-benchmark-and-self-improvement.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 2531
+    },
+    {
+      "path": "docs/supreme-nlp-evaluation-and-signal-interpretation.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 3274
+    },
+    {
+      "path": "docs/supreme-nlp-evaluation-gate.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 1444
+    },
+    {
+      "path": "docs/supreme-nlp-operational-hardening.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 1366
+    },
+    {
+      "path": "docs/supreme-nlp-practitioner-contract.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 2433
+    },
+    {
+      "path": "docs/supreme-nlp-practitioner-runtime.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 1374
+    },
+    {
+      "path": "docs/supreme-nlp-unified-control-plane-2026-10-02.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 2433
+    },
+    {
+      "path": "docs/supreme-nlp-v2-control-plane-2026-10-02.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 1638
+    },
+    {
+      "path": "docs/ultra-mega-infinity-quantum-ai-ml-nlp-automission.md",
+      "kind": "documentation",
+      "lane": "ai-ml-nlp",
+      "size": 1703
+    },
+    {
+      "path": "docs/yatharth-governance/README.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 3589
+    },
+    {
+      "path": "docs/yatharth-governance/ai-control-contract.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1812
+    },
+    {
+      "path": "docs/yatharth-governance/constitutional-supreme-control.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1145
+    },
+    {
+      "path": "docs/yatharth-governance/public-services-and-nature.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1353
+    },
+    {
+      "path": "docs/yatharth-system/README.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1518
+    },
+    {
+      "path": "docs/yatharth-system/completion-checklist.json",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 585
+    },
+    {
+      "path": "docs/yatharth-system/completion-checklist.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 2096
+    },
+    {
+      "path": "docs/yatharth-system/completion-gate.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 2149
+    },
+    {
+      "path": "docs/yatharth-system/continuity-checklist.md",
+      "kind": "documentation",
+      "lane": "federation",
+      "size": 2940
+    },
+    {
+      "path": "docs/yatharth-system/continuity-completion-contract.md",
+      "kind": "documentation",
+      "lane": "federation",
+      "size": 3172
+    },
+    {
+      "path": "docs/yatharth-system/continuity-completion-control.md",
+      "kind": "documentation",
+      "lane": "federation",
+      "size": 2625
+    },
+    {
+      "path": "docs/yatharth-system/continuity-contract.md",
+      "kind": "documentation",
+      "lane": "federation",
+      "size": 5094
+    },
+    {
+      "path": "docs/yatharth-system/continuity-integrity-contract.md",
+      "kind": "documentation",
+      "lane": "federation",
+      "size": 1421
+    },
+    {
+      "path": "docs/yatharth-system/continuity-integrity-schema.json",
+      "kind": "documentation",
+      "lane": "federation",
+      "size": 510
+    },
+    {
+      "path": "docs/yatharth-system/continuity-runbook.md",
+      "kind": "documentation",
+      "lane": "content",
+      "size": 2531
+    },
+    {
+      "path": "docs/yatharth-system/feature-status-registry.json",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1654
+    },
+    {
+      "path": "docs/yatharth-system/feature-status.json",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 4683
+    },
+    {
+      "path": "docs/yatharth-system/feature-status.schema.json",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1074
+    },
+    {
+      "path": "docs/yatharth-system/human-earth-continuity-mission.md",
+      "kind": "documentation",
+      "lane": "federation",
+      "size": 4378
+    },
+    {
+      "path": "docs/yatharth-system/implementation-backlog.md",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 3005
+    },
+    {
+      "path": "docs/yatharth-system/module-contracts.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1446
+    },
+    {
+      "path": "docs/yatharth-system/public-completion-checklist.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 2819
+    },
+    {
+      "path": "docs/yatharth-system/public-module-registry.json",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 6715
+    },
+    {
+      "path": "docs/yatharth-system/public-navigation-spec.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1024
+    },
+    {
+      "path": "docs/yatharth-system/public-platform-contract.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 2394
+    },
+    {
+      "path": "docs/yatharth-system/public-roadmap.md",
+      "kind": "documentation",
+      "lane": "platform",
+      "size": 1214
+    },
+    {
+      "path": "docs/yatharth-system/release-gates.json",
+      "kind": "documentation",
+      "lane": "automation",
+      "size": 1612
+    },
+    {
+      "path": "docs/yatharth-system/source-records/2026-09-30-human-earth-continuity-source.md",
+      "kind": "documentation",
+      "lane": "federation",
+      "size": 5374
+    },
+    {
+      "path": "economic-marketing-command-center.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 2392
+    },
+    {
+      "path": "employment.html",
+      "kind": "public-module",
+      "lane": "economic",
+      "size": 8914
+    },
+    {
+      "path": "exchange-orders.html",
+      "kind": "public-module",
+      "lane": "economic",
+      "size": 4947
+    },
+    {
+      "path": "factory-dashboard.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 6433
+    },
+    {
+      "path": "factory/AGENTS.md",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 920
+    },
+    {
+      "path": "factory/AGENT_ORCHESTRATOR.md",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1098
+    },
+    {
+      "path": "factory/CANONICAL-KNOWLEDGE.md",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 767
+    },
+    {
+      "path": "factory/HUMAN-CIVILIZATION-SANJEEVANI.md",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 5990
+    },
+    {
+      "path": "factory/ORCHESTRATION.md",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1106
+    },
+    {
+      "path": "factory/PROJECT-CONTINUITY.md",
+      "kind": "factory",
+      "lane": "federation",
+      "size": 4424
+    },
+    {
+      "path": "factory/README.md",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 935
+    },
+    {
+      "path": "factory/REPOSITORY-INTELLIGENCE-AUDIT.md",
+      "kind": "factory",
+      "lane": "federation",
+      "size": 3141
+    },
+    {
+      "path": "factory/__init__.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 32
+    },
+    {
+      "path": "factory/agent-registry.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 2648
+    },
+    {
+      "path": "factory/agent_config.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1647
+    },
+    {
+      "path": "factory/agent_governance_qc.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 4086
+    },
+    {
+      "path": "factory/agent_runner.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 775
+    },
+    {
+      "path": "factory/agent_supervisor.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 943
+    },
+    {
+      "path": "factory/agents.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1775
+    },
+    {
+      "path": "factory/agents/concept_mapper.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 781
+    },
+    {
+      "path": "factory/agents/dedup_indexer.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 612
+    },
+    {
+      "path": "factory/agents/evidence_agent.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 589
+    },
+    {
+      "path": "factory/agents/product_agent.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 2462
+    },
+    {
+      "path": "factory/agents/provenance_agent.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1330
+    },
+    {
+      "path": "factory/agents/qc_agent.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 903
+    },
+    {
+      "path": "factory/agents/research_agent.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 570
+    },
+    {
+      "path": "factory/agents/shirmani-heart-view-agent.md",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 7172
+    },
+    {
+      "path": "factory/agents/shirmani_reasoning_agent.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 2959
+    },
+    {
+      "path": "factory/agents/source_librarian.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 592
+    },
+    {
+      "path": "factory/agents/verification_agent.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 579
+    },
+    {
+      "path": "factory/ai-companies.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 2108
+    },
+    {
+      "path": "factory/ai-generation.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 423
+    },
+    {
+      "path": "factory/archive_large_artifacts.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 4244
+    },
+    {
+      "path": "factory/artifact-manifest.schema.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 839
+    },
+    {
+      "path": "factory/batch_worker.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 14732
+    },
+    {
+      "path": "factory/bootstrap_independent_verification_queue.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 3613
+    },
+    {
+      "path": "factory/bootstrap_verification_review_registry.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 2609
+    },
+    {
+      "path": "factory/build_factory.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 10961
+    },
+    {
+      "path": "factory/canonical/shirmani-user-philosophy.md",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 6343
+    },
+    {
+      "path": "factory/canonical_index.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1462
+    },
+    {
+      "path": "factory/canonical_knowledge.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 2464
+    },
+    {
+      "path": "factory/canonical_record_qc.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 3615
+    },
+    {
+      "path": "factory/capability-map.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 757
+    },
+    {
+      "path": "factory/change_detector.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 2702
+    },
+    {
+      "path": "factory/chapter-plan.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1346
+    },
+    {
+      "path": "factory/cloud-storage.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 756
+    },
+    {
+      "path": "factory/cloud_sync.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1738
+    },
+    {
+      "path": "factory/company-manifests.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1342
+    },
+    {
+      "path": "factory/continuity_manifest.py",
+      "kind": "factory",
+      "lane": "federation",
+      "size": 2824
+    },
+    {
+      "path": "factory/deep_learning.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 735
+    },
+    {
+      "path": "factory/factory_model_adapter.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 807
+    },
+    {
+      "path": "factory/failure_intelligence.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 7899
+    },
+    {
+      "path": "factory/federation.py",
+      "kind": "factory",
+      "lane": "federation",
+      "size": 2381
+    },
+    {
+      "path": "factory/fixtures/supreme_nlp_cases.json",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 1161
+    },
+    {
+      "path": "factory/formulation_qc.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 3274
+    },
+    {
+      "path": "factory/formulation_records.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 3790
+    },
+    {
+      "path": "factory/generate_products.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1920
+    },
+    {
+      "path": "factory/independent_verification_engine.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 4149
+    },
+    {
+      "path": "factory/independent_verification_pipeline.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 5780
+    },
+    {
+      "path": "factory/independent_verification_status.py",
+      "kind": "factory",
+      "lane": "platform",
+      "size": 3629
+    },
+    {
+      "path": "factory/job_queue.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1125
+    },
+    {
+      "path": "factory/job_router.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1368
+    },
+    {
+      "path": "factory/knowledge-schema.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 651
+    },
+    {
+      "path": "factory/live_dashboard.json",
+      "kind": "factory",
+      "lane": "platform",
+      "size": 335
+    },
+    {
+      "path": "factory/model-registry.json",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 681
+    },
+    {
+      "path": "factory/multi_layer_production.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 9660
+    },
+    {
+      "path": "factory/multilingual.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 729
+    },
+    {
+      "path": "factory/multimodal_signal_qc.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 2366
+    },
+    {
+      "path": "factory/nvidia-routing.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 854
+    },
+    {
+      "path": "factory/nvidia.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 490
+    },
+    {
+      "path": "factory/product-catalog.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 3261
+    },
+    {
+      "path": "factory/product_matrix.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 696
+    },
+    {
+      "path": "factory/product_orchestrator.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 7047
+    },
+    {
+      "path": "factory/public_module_inventory.py",
+      "kind": "factory",
+      "lane": "platform",
+      "size": 4708
+    },
+    {
+      "path": "factory/public_production_materializer.py",
+      "kind": "factory",
+      "lane": "platform",
+      "size": 5029
+    },
+    {
+      "path": "factory/publication_gate.py",
+      "kind": "factory",
+      "lane": "platform",
+      "size": 2536
+    },
+    {
+      "path": "factory/publish_index.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 700
+    },
+    {
+      "path": "factory/publisher.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 942
+    },
+    {
+      "path": "factory/quality_control.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 15999
+    },
+    {
+      "path": "factory/queue_worker.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1910
+    },
+    {
+      "path": "factory/queues.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 948
+    },
+    {
+      "path": "factory/reasoning_pipeline.py",
+      "kind": "factory",
+      "lane": "research",
+      "size": 8276
+    },
+    {
+      "path": "factory/recovery.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1004
+    },
+    {
+      "path": "factory/repos.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1493
+    },
+    {
+      "path": "factory/repository-intelligence.json",
+      "kind": "factory",
+      "lane": "federation",
+      "size": 5024
+    },
+    {
+      "path": "factory/repository_intelligence.py",
+      "kind": "factory",
+      "lane": "federation",
+      "size": 2186
+    },
+    {
+      "path": "factory/research_evidence_graph.py",
+      "kind": "factory",
+      "lane": "research",
+      "size": 5375
+    },
+    {
+      "path": "factory/research_evidence_graph_qc.py",
+      "kind": "factory",
+      "lane": "research",
+      "size": 2655
+    },
+    {
+      "path": "factory/run_nvidia_batch.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 2113
+    },
+    {
+      "path": "factory/run_report.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1193
+    },
+    {
+      "path": "factory/run_stage.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1844
+    },
+    {
+      "path": "factory/shirmani-framework.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 4057
+    },
+    {
+      "path": "factory/source-registry.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1082
+    },
+    {
+      "path": "factory/source-registry.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1021
+    },
+    {
+      "path": "factory/source_integrity_manifest.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 3505
+    },
+    {
+      "path": "factory/state.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1421544
+    },
+    {
+      "path": "factory/state.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 1316
+    },
+    {
+      "path": "factory/supreme-nlp-policy.json",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 696
+    },
+    {
+      "path": "factory/supreme_ai_ml_nlp_engine.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 6557
+    },
+    {
+      "path": "factory/supreme_ai_qc.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 1581
+    },
+    {
+      "path": "factory/supreme_architecture_qc.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 5279
+    },
+    {
+      "path": "factory/supreme_claim_integrity_qc.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 2009
+    },
+    {
+      "path": "factory/supreme_independent_verification_ledger.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 4526
+    },
+    {
+      "path": "factory/supreme_nlp_automission_health.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 8146
+    },
+    {
+      "path": "factory/supreme_nlp_benchmark.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 3345
+    },
+    {
+      "path": "factory/supreme_nlp_benchmark_controller.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 2125
+    },
+    {
+      "path": "factory/supreme_nlp_contract_qc.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 1525
+    },
+    {
+      "path": "factory/supreme_nlp_evaluation.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 2419
+    },
+    {
+      "path": "factory/supreme_nlp_evaluation_qc.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 1172
+    },
+    {
+      "path": "factory/supreme_nlp_evidence_engine.py",
+      "kind": "factory",
+      "lane": "research",
+      "size": 5497
+    },
+    {
+      "path": "factory/supreme_nlp_operational_health.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 2325
+    },
+    {
+      "path": "factory/supreme_nlp_practitioner.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 3856
+    },
+    {
+      "path": "factory/supreme_nlp_qc.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 1101
+    },
+    {
+      "path": "factory/supreme_nlp_unified_gate.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 3706
+    },
+    {
+      "path": "factory/supreme_nlp_v2_benchmark.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 3877
+    },
+    {
+      "path": "factory/supreme_quality_controller.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 5078
+    },
+    {
+      "path": "factory/supreme_quality_gate.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 1372
+    },
+    {
+      "path": "factory/supreme_system_orchestrator.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 6069
+    },
+    {
+      "path": "factory/test_supreme_nlp_practitioner.py",
+      "kind": "factory",
+      "lane": "ai-ml-nlp",
+      "size": 1352
+    },
+    {
+      "path": "factory/topics.json",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 2985
+    },
+    {
+      "path": "factory/ultra_mega_infinity_quantum_automission.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 3352
+    },
+    {
+      "path": "factory/validate_factory.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 2987
+    },
+    {
+      "path": "factory/verification_progress.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 5625
+    },
+    {
+      "path": "factory/verification_progress_dashboard.py",
+      "kind": "factory",
+      "lane": "platform",
+      "size": 8349
+    },
+    {
+      "path": "factory/verification_promotion_gate.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 5718
+    },
+    {
+      "path": "factory/verification_promotion_qc.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 2490
+    },
+    {
+      "path": "factory/verification_queue.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 2801
+    },
+    {
+      "path": "factory/verification_queue_qc.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 3133
+    },
+    {
+      "path": "factory/verification_readiness.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 3110
+    },
+    {
+      "path": "factory/verification_registry.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 4255
+    },
+    {
+      "path": "factory/verification_registry_qc.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 3135
+    },
+    {
+      "path": "factory/verification_review_packet.py",
+      "kind": "factory",
+      "lane": "automation",
+      "size": 5114
+    },
+    {
+      "path": "factory/verification_review_packet_qc.py",
+      "kind": "factory",
+      "lane": "security-quality",
+      "size": 5789
+    },
+    {
+      "path": "federation-dashboard.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 3955
+    },
+    {
+      "path": "generated/public-production-index.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 3871
+    },
+    {
+      "path": "global-identity-passport.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 4300
+    },
+    {
+      "path": "income-command-center.html",
+      "kind": "public-module",
+      "lane": "economic",
+      "size": 15044
+    },
+    {
+      "path": "income-hub.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 9500
+    },
+    {
+      "path": "index.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 100115
+    },
+    {
+      "path": "livelihood.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 10419
+    },
+    {
+      "path": "media.html",
+      "kind": "public-module",
+      "lane": "social-media",
+      "size": 1326
+    },
+    {
+      "path": "nextgen-interface.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 13824
+    },
+    {
+      "path": "nishpaksh-samaj.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 14055
+    },
+    {
+      "path": "opportunity-marketplace.html",
+      "kind": "public-module",
+      "lane": "economic",
+      "size": 4681
+    },
+    {
+      "path": "platform-charter.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 2976
+    },
+    {
+      "path": "production-dashboard.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 3822
+    },
+    {
+      "path": "products/index.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 4256
+    },
+    {
+      "path": "profile.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 3196
+    },
+    {
+      "path": "public-identity.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 7275
+    },
+    {
+      "path": "public-income-showcase.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 22688
+    },
+    {
+      "path": "public-platform-console.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 6367
+    },
+    {
+      "path": "public-platform-hub.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 12395
+    },
+    {
+      "path": "public-platform-modules.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 2717
+    },
+    {
+      "path": "public-platform-mvp.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 6788
+    },
+    {
+      "path": "public-platform-status.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 2307
+    },
+    {
+      "path": "public-production-command-center.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 4209
+    },
+    {
+      "path": "publications.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 1178
+    },
+    {
+      "path": "reconciliation-audit-trail.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 4935
+    },
+    {
+      "path": "repositories.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 7721
+    },
+    {
+      "path": "research.html",
+      "kind": "public-module",
+      "lane": "research",
+      "size": 1166
+    },
+    {
+      "path": "research/shirmani-comparative-framework-2026-09-29.html",
+      "kind": "public-module",
+      "lane": "research",
+      "size": 12524
+    },
+    {
+      "path": "santushti-continuity.html",
+      "kind": "public-module",
+      "lane": "federation",
+      "size": 6487
+    },
+    {
+      "path": "settings.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 5910
+    },
+    {
+      "path": "settlement-records.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 5279
+    },
+    {
+      "path": "shiromani-value-exchange-dashboard.html",
+      "kind": "public-module",
+      "lane": "economic",
+      "size": 7558
+    },
+    {
+      "path": "shiromani-value-exchange.html",
+      "kind": "public-module",
+      "lane": "economic",
+      "size": 6125
+    },
+    {
+      "path": "social-app.html",
+      "kind": "public-module",
+      "lane": "social-media",
+      "size": 6727
+    },
+    {
+      "path": "social-platform.html",
+      "kind": "public-module",
+      "lane": "social-media",
+      "size": 12750
+    },
+    {
+      "path": "supreme-factory.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 4266
+    },
+    {
+      "path": "verified-work.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 4466
+    },
+    {
+      "path": "work-execution-fulfilment-tracking.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 5079
+    },
+    {
+      "path": "work-to-value-employment-income.html",
+      "kind": "public-module",
+      "lane": "economic",
+      "size": 4952
+    },
+    {
+      "path": "yatharth-mudra.html",
+      "kind": "public-module",
+      "lane": "automation",
+      "size": 5983
+    },
+    {
+      "path": "yatharth-omniverse-live.html",
+      "kind": "public-module",
+      "lane": "content",
+      "size": 4214
+    },
+    {
+      "path": "yatharth-status.html",
+      "kind": "public-module",
+      "lane": "platform",
+      "size": 3897
+    }
+  ]
+}
