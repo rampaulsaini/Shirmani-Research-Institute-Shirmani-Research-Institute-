@@ -1,0 +1,91 @@
+name: SHIRMANI Nishpaksh Automission Gate
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "docs/SHIRMANI-NISHPaksh-AUTOMISSION-CONTRACT.md"
+      - "schemas/nishpaksh-automission-policy.schema.json"
+      - ".github/workflows/shirmani-nishpaksh-automission-gate.yml"
+      - "agents/supreme_nlp.py"
+      - "agents/supreme_nlp_practitioner.py"
+      - "agents/supreme_nlp_agent.py"
+  pull_request:
+    paths:
+      - "docs/SHIRMANI-NISHPaksh-AUTOMISSION-CONTRACT.md"
+      - "schemas/nishpaksh-automission-policy.schema.json"
+      - ".github/workflows/shirmani-nishpaksh-automission-gate.yml"
+      - "agents/supreme_nlp.py"
+      - "agents/supreme_nlp_practitioner.py"
+      - "agents/supreme_nlp_agent.py"
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-nishpaksh-automission-gate
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate policy schema
+        run: python -m json.tool schemas/nishpaksh-automission-policy.schema.json >/dev/null
+
+      - name: Validate contract invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          f="docs/SHIRMANI-NISHPaksh-AUTOMISSION-CONTRACT.md"
+          test -s "$f"
+          grep -q "The system must not decide the truth of a claim from the identity" "$f"
+          grep -q "counter-evidence" "$f"
+          grep -q "independent verification" "$f"
+          grep -q "UNVERIFIED is a valid final state" "$f"
+          grep -q "Scheduled automation must not silently promote self-modified code" "$f"
+
+      - name: Validate evidence boundary in NLP implementations
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "subjective feeling" agents/supreme_nlp.py
+          grep -q "subjective experience" agents/supreme_nlp_practitioner.py
+          grep -q "independent" agents/supreme_nlp_agent.py
+
+      - name: Compile core NLP layers
+        run: |
+          python -m py_compile             agents/supreme_nlp.py             agents/supreme_nlp_practitioner.py             agents/supreme_nlp_agent.py
+
+      - name: Fail-closed governance assertions
+        run: |
+          python - <<'PY'
+          from agents.supreme_nlp_practitioner import build_practitioner_record
+          d=build_practitioner_record([
+              {"modality":"synthetic","feature":"a","value":1.0,"quality":1.0,"source":"test-a"},
+              {"modality":"synthetic","feature":"b","value":1.0,"quality":1.0,"source":"test-b"},
+          ], "nishpaksh-gate")
+          g=d["governance"]
+          assert g["fail_closed"] is True
+          assert g["subjective_experience_claim_allowed"] is False
+          assert g["code_mutation_allowed"] is False
+          assert g["independent_verification_required"] is True
+          print("NISHPAKSH_GOVERNANCE_PASS")
+          PY
+
+      - name: Emit audit summary
+        run: |
+          {
+            echo "## SHIRMANI Nishpaksh Automission Gate"
+            echo "- Policy: PASS"
+            echo "- Evidence boundary: PASS"
+            echo "- Independent verification requirement: PASS"
+            echo "- Fail-closed governance: PASS"
+            echo "- Self-modifying production promotion: prohibited by contract"
+          } >> "$GITHUB_STEP_SUMMARY"
