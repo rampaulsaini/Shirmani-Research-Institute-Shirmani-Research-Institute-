@@ -1,0 +1,56 @@
+name: SHIRMANI Adaptive AI-ML-NLP Gate
+
+on:
+  workflow_run:
+    workflows:
+      - SHIRMANI Supreme AI-ML-NLP Quality Loop
+    types: [completed]
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: shirmani-adaptive-ai-ml-nlp-gate
+  cancel-in-progress: false
+
+jobs:
+  adaptive-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout canonical source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Compile and test signal-to-NLP layer
+        run: |
+          python3 -m py_compile factory/signal_to_nlp.py
+          python3 -m unittest discover -s tests -p 'test_signal_to_nlp.py' -v
+          python3 - <<'PY'
+          from factory.signal_to_nlp import self_test
+          print(self_test())
+          PY
+
+      - name: Collect bounded failure telemetry
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          FAILURE_LOG_SAMPLE_RUNS: "10"
+          FAILURE_RUN_PAGES: "3"
+        run: python3 factory/failure_intelligence.py
+
+      - name: Run adaptive regression gate
+        run: python3 factory/adaptive_quality_gate.py
+
+      - name: Publish adaptive report
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirmani-adaptive-quality-gate
+          path: |
+            generated/adaptive-quality-gate.json
+            generated/failure-registry.json
+          retention-days: 14
