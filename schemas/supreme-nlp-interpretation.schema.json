@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Supreme NLP Interpretation Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "measured_signal",
+    "model_output",
+    "interpretation",
+    "confidence",
+    "evidence",
+    "verification_state",
+    "limitations"
+  ],
+  "properties": {
+    "measured_signal": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "model_output": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "interpretation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "verification_state": {
+      "type": "string",
+      "enum": [
+        "NOT_VERIFIED",
+        "TESTED",
+        "VERIFIED_BY_DEFINED_PROTOCOL",
+        "REJECTED"
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
