@@ -134,6 +134,11 @@ jobs:
 
           print(json.dumps(out, indent=2, ensure_ascii=False))
 
+      - name: Run independent verification ledger integrity regression test
+        shell: bash
+        run: |
+          python -m tests.test_supreme_independent_verification_ledger
+
       - name: Run record-level independent verification contract
         shell: bash
         run: |
