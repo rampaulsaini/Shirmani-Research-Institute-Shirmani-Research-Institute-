@@ -1,0 +1,66 @@
+name: SHIRMANI Super-Senses NLP Automission
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "agents/super_senses_nlp.py"
+      - "tests/test_super_senses_nlp.py"
+      - ".github/workflows/super-senses-automission.yml"
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-super-senses
+  cancel-in-progress: true
+jobs:
+  super-senses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile
+        run: python -m py_compile agents/super_senses_nlp.py tests/test_super_senses_nlp.py
+      - name: Regression tests
+        run: python -m unittest tests/test_super_senses_nlp.py -v
+      - name: Deterministic multimodal smoke
+        run: |
+          mkdir -p generated/super-senses
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from agents.super_senses_nlp import build_record
+          rows=[
+            {"modality":"electrical","feature":"signal","value":1.00,"quality":1,"source":"smoke-a"},
+            {"modality":"audio","feature":"signal","value":1.01,"quality":1,"source":"smoke-b"},
+            {"modality":"thermal","feature":"signal","value":1.00,"quality":1,"source":"smoke-c"},
+          ]
+          r=build_record(rows,"automission-smoke",feature_adapter="deterministic")
+          Path("generated/super-senses/status.json").write_text(
+            json.dumps(r,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          assert r["governance"]["fail_closed"]
+          assert not r["verification"]["promotion_allowed"]
+          print(r["translation"]["hi"])
+          print("FINGERPRINT:",r["fingerprint"])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: super-senses-\${{ github.run_id }}
+          path: generated/super-senses/status.json
+          retention-days: 14
+      - name: Summary
+        run: |
+          {
+            echo "## SHIRMANI Super-Senses NLP"
+            echo "- Multimodal fusion: enabled"
+            echo "- Evidence provenance: preserved"
+            echo "- Conflict abstention: enabled"
+            echo "- Independent verification: required"
+            echo "- Subjective-experience inference: blocked"
+            echo "- Scheduled code mutation: disabled"
+          } >> "$GITHUB_STEP_SUMMARY"
