@@ -1,0 +1,109 @@
+name: SHIRMANI GitHub Agentic Integration Audit
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [agentic-audit]
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/copilot-instructions.md"
+      - ".devcontainer/**"
+      - "docs/github-agentic-operating-contract.md"
+      - ".github/workflows/github-agentic-integration-audit.yml"
+      - "PROJECT-CONTINUITY.md"
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-github-agentic-integration-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: research-verification
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check required agentic contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          required=(
+            ".github/copilot-instructions.md"
+            ".devcontainer/devcontainer.json"
+            "docs/github-agentic-operating-contract.md"
+            "PROJECT-CONTINUITY.md"
+          )
+          for f in "${required[@]}"; do
+            test -s "$f" || { echo "MISSING: $f"; exit 1; }
+          done
+
+      - name: Validate Codespaces configuration
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path(".devcontainer/devcontainer.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          assert data["name"]
+          assert "image" in data
+          print("Codespaces/devcontainer contract: PASS")
+          PY
+
+      - name: Validate integrity boundaries
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path(".github/copilot-instructions.md").read_text(encoding="utf-8")
+          required = [
+              "workflow success",
+              "independent scientific verification",
+              "Do not fabricate",
+              "fail closed",
+              "human review",
+          ]
+          missing = [x for x in required if x not in text]
+          if missing:
+              raise SystemExit("Missing integrity controls: " + ", ".join(missing))
+          print("Agent integrity contract: PASS")
+          PY
+
+      - name: Record audit summary
+        run: |
+          mkdir -p generated
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          out = {
+              "workflow": "github-agentic-integration-audit",
+              "run_id": os.environ["GITHUB_RUN_ID"],
+              "event": os.environ["GITHUB_EVENT_NAME"],
+              "status": "PASS",
+              "verification_state": "NOT_VERIFIED",
+              "scope": {
+                  "copilot_instructions": True,
+                  "codespaces_config": True,
+                  "agentic_operating_contract": True,
+                  "repository_dispatch_ingress": True,
+                  "protected_environment_reference": "research-verification"
+              },
+              "boundary": "Operational integration evidence only; not independent research verification."
+          }
+          Path("generated/github-agentic-integration-audit.json").write_text(
+              json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+          PY
+
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-agentic-integration-audit-${{ github.run_id }}
+          path: generated/github-agentic-integration-audit.json
+          if-no-files-found: error
+          retention-days: 14
