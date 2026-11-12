@@ -1,0 +1,44 @@
+name: SHIRMANI Supreme NLP Automission Quality Loop
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-nlp-automission
+  cancel-in-progress: false
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run deterministic Supreme NLP QC
+        run: python factory/supreme_nlp_quality_gate.py schemas/supreme-nlp-sample.json
+      - name: Validate repository contract
+        run: |
+          test -f docs/supreme-nlp-practitioner-contract.md
+          test -f factory/supreme_nlp_quality_gate.py
+          test -f schemas/supreme-nlp-sample.json
+      - name: Publish machine-readable status
+        if: always()
+        run: |
+          mkdir -p generated
+          python factory/supreme_nlp_quality_gate.py schemas/supreme-nlp-sample.json > generated/supreme-nlp-qc-status.json || true
+          cat generated/supreme-nlp-qc-status.json
+      - name: Upload QC status
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-nlp-qc-status
+          path: generated/supreme-nlp-qc-status.json

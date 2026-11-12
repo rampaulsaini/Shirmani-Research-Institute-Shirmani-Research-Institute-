@@ -1,0 +1,13 @@
+{
+  "claim_status": "UNVERIFIED",
+  "confidence": 0.0,
+  "interpretation": null,
+  "evidence": [],
+  "independent_verification": false,
+  "stages": [
+    {"name":"signal"},{"name":"quality_check"},{"name":"normalization"},
+    {"name":"representation"},{"name":"context"},{"name":"inference"},
+    {"name":"plain_language"},{"name":"confidence"},{"name":"evidence"},
+    {"name":"independent_verification"},{"name":"audit"}
+  ]
+}
