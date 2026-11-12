@@ -1,0 +1,51 @@
+name: SHIRMANI Yatharth Evidence Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/YATHARTH-EVIDENCE-COMPARATIVE-LAYER.md"
+      - "schemas/yatharth-claim-evidence.schema.json"
+      - ".github/workflows/yatharth-evidence-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-yatharth-evidence-gate
+  cancel-in-progress: true
+
+jobs:
+  evidence-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate evidence schema
+        run: python -m json.tool schemas/yatharth-claim-evidence.schema.json >/dev/null
+      - name: Validate governance invariants
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("schemas/yatharth-claim-evidence.schema.json"))
+          assert "independent_verification_required" in d["required"]
+          assert "metaphysical_philosophical_claim" in d["properties"]["claim_class"]["enum"]
+          assert "UNRESOLVED" in d["properties"]["status"]["enum"]
+          print("YATHARTH_EVIDENCE_GATE: PASS")
+          PY
+      - name: Emit evidence policy
+        run: |
+          {
+            echo "## SHIRMANI Yatharth Evidence Gate"
+            echo "- Claims are classified before promotion."
+            echo "- Accuracy is measured, not declared."
+            echo "- Metaphysical/philosophical claims remain distinguished from empirical claims."
+            echo "- Independent verification remains required."
+            echo "- Missing evidence fails closed."
+          } >> "$GITHUB_STEP_SUMMARY"
