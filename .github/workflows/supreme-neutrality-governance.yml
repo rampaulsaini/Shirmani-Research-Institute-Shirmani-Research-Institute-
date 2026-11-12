@@ -1,0 +1,48 @@
+name: SHIRMANI Supreme Neutrality Governance
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    paths:
+      - "docs/supreme-ai-ml-nlp-automission-operating-contract.md"
+      - "scripts/validate_neutrality_governance.py"
+      - "agents/**"
+      - "factory/**"
+      - "schemas/**"
+permissions:
+  contents: read
+concurrency:
+  group: shirmani-neutrality-governance
+  cancel-in-progress: true
+jobs:
+  neutrality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile validator
+        run: python -m py_compile scripts/validate_neutrality_governance.py
+      - name: Run fail-closed neutrality governance
+        run: python scripts/validate_neutrality_governance.py
+      - name: Verify core governance boundaries
+        run: |
+          set -euo pipefail
+          grep -Rni "independent.verification" docs research agents factory >/dev/null
+          grep -Rni "counter-evidence" docs research agents factory >/dev/null
+          grep -Rni "Accuracy is measured" docs >/dev/null
+          echo "CORE_GOVERNANCE_BOUNDARIES: PASS"
+      - name: Emit audit summary
+        run: |
+          {
+            echo "## SHIRMANI Supreme Neutrality Governance"
+            echo "- Cadence: 5-minute audit"
+            echo "- Fail-closed governance: PASS"
+            echo "- Counter-evidence: REQUIRED"
+            echo "- Provenance/uncertainty: REQUIRED"
+            echo "- Independent verification: REQUIRED"
+            echo "- Perfect neutrality: measured as a governance target, never declared as fact"
+          } >> "$GITHUB_STEP_SUMMARY"
