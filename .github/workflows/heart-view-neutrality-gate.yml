@@ -1,0 +1,58 @@
+name: SHIRMANI Heart-View Supreme Neutrality Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "schemas/heart-view-neutrality-policy.json"
+      - "factory/heart_view_neutrality_qc.py"
+      - "research/**"
+      - "agents/**"
+      - ".github/workflows/heart-view-neutrality-gate.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-heart-view-neutrality
+  cancel-in-progress: true
+
+jobs:
+  neutrality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate supreme neutrality contract
+        run: python3 factory/heart_view_neutrality_qc.py
+      - name: Validate existing governance contract
+        run: python3 factory/agent_governance_qc.py
+      - name: Validate NLP evidence boundary
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from agents.supreme_nlp_agent import interpret
+          from agents.supreme_nlp_engine import Signal, interpret as engine_interpret
+          from agents.supreme_nlp_practitioner import build_practitioner_record
+
+          a = interpret({"context":"neutrality-smoke","signals":[{"type":"demo","value":1.0}]})
+          assert a["status"] == "UNVERIFIED"
+          assert a["verification"]["required"] is True
+          assert a["verification"]["independent_reviewer_required"] is True
+          assert a["evidence_boundary"] == "observable_signal_only"
+
+          b = engine_interpret([Signal("demo", 1.0, "unit", "source-a", "2026-10-02T00:00:00Z")])
+          assert "subjective experience" in b["interpretation"]["limitations"][0]
+
+          c = build_practitioner_record(
+              [{"modality":"demo","feature":"x","value":1.0,"source":"source-a","timestamp":"2026-10-02T00:00:00Z"}],
+              "भाव"
+          )
+          assert c["governance"]["fail_closed"] is True
+          assert c["governance"]["subjective_experience_claim_allowed"] is False
+          assert c["governance"]["independent_verification_required"] is True
+          print("NLP evidence-boundary smoke test: PASS")
+          PY
