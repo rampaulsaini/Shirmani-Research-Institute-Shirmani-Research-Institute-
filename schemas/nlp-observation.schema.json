@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NLP Observation Contract",
+  "type": "object",
+  "required": ["observation_id", "subject_type", "observations", "interpretation_policy"],
+  "properties": {
+    "observation_id": {"type":"string","minLength":1},
+    "subject_type": {"type":"string","enum":["human","animal","plant","nonliving_system","environmental_system","unknown"]},
+    "observations": {
+      "type":"array","minItems":1,
+      "items":{"type":"object","required":["channel","value","unit","timestamp"],"properties":{
+        "channel":{"type":"string"},
+        "value":{},
+        "unit":{"type":"string"},
+        "timestamp":{"type":"string"}
+      }}
+    },
+    "interpretation_policy": {
+      "type":"object",
+      "required":["measured_vs_inferred","abstain_on_missing_evidence"],
+      "properties":{
+        "measured_vs_inferred":{"type":"boolean"},
+        "abstain_on_missing_evidence":{"type":"boolean"}
+      }
+    }
+  }
+}
