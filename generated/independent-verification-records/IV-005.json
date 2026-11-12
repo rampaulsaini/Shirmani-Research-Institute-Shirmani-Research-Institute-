@@ -1,0 +1,17 @@
+{
+  "record_id": "IV-005",
+  "source_record_id": "IV-005",
+  "claim_or_result": "शिरोमणि is the author's construct linking purity, conscience, self-realization and continuous satisfaction.",
+  "verification_scope": "Independent review must distinguish author-defined or normative content from independently established fact and require an operational test where an empirical claim is made.",
+  "evidence_refs": [
+    "research/yatharth-shirmani-canonical-source-2026-09-29.md"
+  ],
+  "independent_verifier": "PENDING_INDEPENDENT_REVIEW",
+  "verification_method": "Independent review with evidence, counter-evidence, reproducibility/test requirements where applicable, reviewer provenance and audit. No automatic VERIFIED promotion.",
+  "reviewed_at": "",
+  "verification_state": "UNVERIFIED",
+  "limitations": [
+    "Author-defined construct; independent empirical or scholarly verification has not been completed.",
+    "No VERIFIED promotion is permitted without complete independent review and audit."
+  ]
+}
