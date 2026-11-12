@@ -43,8 +43,9 @@ class SupremeAiMlNlpTests(unittest.TestCase):
         bad_worker = {"worker_observable": False}
         good = evaluate(rows, verification, good_worker)
         bad = evaluate(rows, verification, bad_worker)
-        self.assertTrue(good["consensus_pass"] is False or bad["consensus_pass"] is False)
-        self.assertEqual(good["next_action"], "STOP_AND_REPAIR")
+        self.assertTrue(good["consensus_pass"])
+        self.assertFalse(bad["consensus_pass"])
+        self.assertEqual(good["next_action"], "CONTINUE_AUTOMISSION")
         self.assertEqual(bad["next_action"], "STOP_AND_REPAIR")
 
 
