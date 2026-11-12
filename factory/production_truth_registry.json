@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "principle": "REAL_PRODUCTION_ONLY",
+  "rule": "Workflow runs, internal production cards and catalog records are not customer delivery evidence.",
+  "offers": [
+    {"id":"P001","name":"खुद का साक्षात्कार ही संपूर्ण संतुष्टि","type":"digital-audio","status":"BLOCKED_ASSET_REQUIRED","required_evidence":"actual audio file + delivery path"},
+    {"id":"P002","name":"शिरोमणि अनंत असीम इश्क की क्षमता","type":"digital-audio","status":"BLOCKED_ASSET_REQUIRED","required_evidence":"actual audio file + delivery path"},
+    {"id":"P003","name":"साहिब तदरूप साक्षात्कार","type":"digital-audio","status":"BLOCKED_ASSET_REQUIRED","required_evidence":"actual audio file + delivery path"},
+    {"id":"P004","name":"खुद का साक्षात्कार ऑडियो","type":"digital-audio","status":"BLOCKED_ASSET_REQUIRED","required_evidence":"actual audio file + delivery path"},
+    {"id":"P005","name":"मेरा साहिब मेरा ही तदरूप साक्षात्कार","type":"digital-audio","status":"BLOCKED_ASSET_REQUIRED","required_evidence":"actual audio file + delivery path"},
+    {"id":"P006","name":"Short Audios Collection","type":"digital-audio","status":"BLOCKED_ASSET_REQUIRED","required_evidence":"actual audio collection + delivery path"},
+    {"id":"P007","name":"प्रमाण पत्र","type":"digital-asset","status":"DELIVERY_ASSET_EXISTS","evidence_path":"generated/certificates"},
+    {"id":"P008","name":"Short / Creator Assets","type":"creator-assets","status":"BLOCKED_ASSET_REQUIRED","required_evidence":"actual creator asset bundle + delivery path"},
+    {"id":"P009","name":"Shirmani Research Paper — PDF Edition","type":"downloadable-pdf","status":"DELIVERY_ASSET_EXISTS","evidence_path":"research-paper.pdf"},
+    {"id":"S001","name":"AI-assisted music production","type":"creative-service","status":"INQUIRY_READY","required_evidence":"service intake + client delivery workflow"},
+    {"id":"S002","name":"Audio / podcast production","type":"creative-service","status":"INQUIRY_READY","required_evidence":"service intake + client delivery workflow"},
+    {"id":"S003","name":"Voice / narration packaging","type":"creative-service","status":"INQUIRY_READY","required_evidence":"service intake + client delivery workflow"},
+    {"id":"S004","name":"Research & Evidence Support","type":"service","status":"INQUIRY_READY","required_evidence":"service intake + client delivery workflow"},
+    {"id":"S005","name":"AI Workflow & Automation","type":"service","status":"INQUIRY_READY","required_evidence":"service intake + client delivery workflow"},
+    {"id":"S006","name":"Digital Publishing","type":"service","status":"INQUIRY_READY","required_evidence":"service intake + client delivery workflow"},
+    {"id":"S007","name":"AI Marketing Assets","type":"service","status":"INQUIRY_READY","required_evidence":"service intake + client delivery workflow"}
+  ]
+}
