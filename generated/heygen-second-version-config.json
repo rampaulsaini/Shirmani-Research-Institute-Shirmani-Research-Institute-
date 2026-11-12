@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "system": "SHIRMANI Second Version HeyGen Live Presentation",
+  "status": "READY_WITH_EXTERNAL_AUTHORIZATION_REQUIRED",
+  "pipeline": ["voice","authorized_voice_integration","content","evidence_gate","photo_or_avatar","lip_sync","contextual_qa","live_presentation","review","audit","continuous_improvement"],
+  "truth_states": ["DECLARED","READY","EXTERNAL_READY","GENERATED","QC_PASS","EVIDENCE_GROUNDED","INDEPENDENT_VERIFIED"],
+  "protected_inputs": ["HEYGEN_API_KEY","HEYGEN_AVATAR_ID","HEYGEN_VOICE_ID"],
+  "camera_independent": true,
+  "evidence_policy": {"factual_claims_need_provenance": true, "insufficient_evidence_message": "अभी पर्याप्त प्रमाण उपलब्ध नहीं है", "author_identity_and_philosophy_are_not_automatically_scientifically_verified": true},
+  "live_mode": "External HeyGen LiveAvatar capability when enabled by the account",
+  "rendered_video_mode": "HeyGen Video Generation or Video Agent",
+  "outbound_contact_claims_require_executed_authorized_channel": true,
+  "public_release_requires_qc": true,
+  "scientific_verification_is_downstream": true
+}
