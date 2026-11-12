@@ -1,0 +1,95 @@
+name: SHIRMANI Supreme AI ML NLP Automission Control Plane
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "docs/supreme-ai-ml-nlp-automission-control-plane.md"
+      - "docs/supreme-nlp-*.md"
+      - "docs/ultra-mega-infinity-quantum-ai-ml-nlp-automission.md"
+      - "schemas/supreme-nlp-*.json"
+      - "schemas/ultra-mega-infinity-quantum-orchestrator.schema.json"
+      - "schemas/agent-governance.json"
+      - "factory/supreme_nlp_*.py"
+      - "factory/ultra_mega_infinity_quantum_automission.py"
+      - "tests/supreme_nlp_*.py"
+      - "tests/ultra_mega_infinity_quantum_automission.py"
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-ai-ml-nlp-control-plane
+  cancel-in-progress: true
+
+jobs:
+  control-plane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate canonical contracts and schemas
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          required = [
+              "docs/supreme-nlp-practitioner-contract.md",
+              "docs/supreme-nlp-evaluation-gate.md",
+              "docs/supreme-nlp-automission-operational-contract-2026-10-02.md",
+              "docs/ultra-mega-infinity-quantum-ai-ml-nlp-automission.md",
+              "docs/supreme-ai-ml-nlp-automission-control-plane.md",
+              "schemas/supreme-nlp-evaluation.schema.json",
+              "schemas/supreme-nlp-automission-health.schema.json",
+              "schemas/ultra-mega-infinity-quantum-orchestrator.schema.json",
+              "schemas/agent-governance.json",
+          ]
+
+          missing = [p for p in required if not Path(p).is_file()]
+          if missing:
+              raise SystemExit("BLOCKED: missing required artifacts: " + ", ".join(missing))
+
+          for p in Path("schemas").glob("*.json"):
+              try:
+                  json.loads(p.read_text(encoding="utf-8"))
+              except Exception as exc:
+                  raise SystemExit(f"BLOCKED: invalid JSON schema {p}: {exc}")
+
+          print("Canonical contracts/schema integrity: PASS")
+          PY
+
+      - name: Run existing deterministic hardening tests
+        run: |
+          set -e
+          if [ -f tests/supreme_nlp_automission_hardening.py ]; then
+            python3 tests/supreme_nlp_automission_hardening.py
+          fi
+          if [ -f tests/supreme_nlp_evaluation.py ]; then
+            python3 tests/supreme_nlp_evaluation.py
+          fi
+          if [ -f tests/ultra_mega_infinity_quantum_automission.py ]; then
+            python3 tests/ultra_mega_infinity_quantum_automission.py
+          fi
+
+      - name: Report fail-closed control state
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          blockers = []
+          if not Path("schemas/agent-governance.json").is_file():
+              blockers.append("governance schema missing")
+          if not Path("docs/supreme-ai-ml-nlp-automission-control-plane.md").is_file():
+              blockers.append("control-plane contract missing")
+          if blockers:
+              print("BLOCKED:", "; ".join(blockers))
+              raise SystemExit(1)
+          print("SHIRMANI Supreme AI–ML–NLP–Automission Control Plane: READY")
+          print("Note: READY is an operational gate, not scientific verification or model-accuracy proof.")
+          PY
