@@ -1,0 +1,45 @@
+name: SHIRMANI Character Studio V1-V4 Acceptance Tests
+
+on:
+  pull_request:
+    paths:
+      - 'specs/shirmani-supreme/canonical-character-specification.md'
+      - 'scripts/character_release_gate.py'
+      - 'tests/test_character_studio_v1_v4_acceptance.py'
+      - 'showroom/shirmani-supreme-character-studio.html'
+      - 'docs/SHIRMANI_SUPREME_V1_V4_EXECUTABLE_ACCEPTANCE_PLAN.md'
+      - '.github/workflows/shirmani-character-v1-v4-acceptance.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'specs/shirmani-supreme/canonical-character-specification.md'
+      - 'scripts/character_release_gate.py'
+      - 'tests/test_character_studio_v1_v4_acceptance.py'
+      - 'showroom/shirmani-supreme-character-studio.html'
+      - 'docs/SHIRMANI_SUPREME_V1_V4_EXECUTABLE_ACCEPTANCE_PLAN.md'
+      - '.github/workflows/shirmani-character-v1-v4-acceptance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: character-v1-v4-acceptance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deterministic-contract-tests:
+    name: Deterministic contract and fail-closed gate tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Run V1-V4 acceptance contract tests
+        run: python -m unittest tests/test_character_studio_v1_v4_acceptance.py -v
