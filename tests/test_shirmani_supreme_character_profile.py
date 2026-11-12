@@ -17,6 +17,12 @@ class CharacterProfileTests(unittest.TestCase):
         self.assertEqual(self.profile["decision"], "APPROVED")
         self.assertEqual(self.profile["status"], "SPECIFICATION_ONLY")
 
+    def test_canonical_english_identity_line_is_complete(self):
+        self.assertEqual(
+            self.profile["english_identity_line"],
+            "Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh",
+        )
+
     def test_exact_insufficient_evidence_notice(self):
         self.assertEqual(self.profile["communication"]["insufficient_evidence_exact_hi"],
                          "अभी पर्याप्त प्रमाण उपलब्ध नहीं है।")
