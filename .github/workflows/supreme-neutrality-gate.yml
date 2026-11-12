@@ -1,0 +1,51 @@
+name: SHIRMANI Supreme Neutrality Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+  push:
+    branches: [main, supreme-neutrality-v2]
+    paths:
+      - "docs/SHIRMANI-SUPREME-NEUTRALITY-CONTRACT.md"
+      - "scripts/validate_supreme_neutrality.py"
+      - ".github/workflows/supreme-neutrality-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-supreme-neutrality
+  cancel-in-progress: true
+
+jobs:
+  neutrality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate neutrality contract
+        run: python3 scripts/validate_supreme_neutrality.py
+
+      - name: Validate repository governance boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "independent verification" docs/SHIRMANI-SUPREME-NEUTRALITY-CONTRACT.md
+          grep -q "Subjective-experience boundary" docs/SHIRMANI-SUPREME-NEUTRALITY-CONTRACT.md
+          grep -q "No scheduled production-code mutation" docs/SHIRMANI-SUPREME-NEUTRALITY-CONTRACT.md
+          grep -q "Counter-evidence" docs/SHIRMANI-SUPREME-NEUTRALITY-CONTRACT.md
+
+      - name: Emit governance summary
+        run: |
+          {
+            echo "## SHIRMANI Supreme Neutrality Gate"
+            echo "- Neutrality contract: PASS"
+            echo "- Evidence/inference separation: REQUIRED"
+            echo "- Counter-evidence: REQUIRED"
+            echo "- Subjective-experience claims from signals alone: BLOCKED"
+            echo "- Independent verification: SEPARATE"
+            echo "- Scheduled production-code mutation: BLOCKED"
+            echo "- Status: FAIL-CLOSED"
+          } >> "$GITHUB_STEP_SUMMARY"
