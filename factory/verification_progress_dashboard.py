@@ -115,6 +115,17 @@ def main() -> int:
     remaining_pct = round(remaining / TARGET * 100, 6)
     generated = datetime.now(timezone.utc).isoformat()
 
+    # Keep the persisted dashboard deterministic when the authoritative state
+    # has not changed. This prevents the five-minute workflow from creating a
+    # new commit solely because generated_at changed.
+    previous_generated = None
+    if OUT.exists():
+        try:
+            previous = json.loads(OUT.read_text(encoding="utf-8"))
+            previous_generated = previous.get("generated_at")
+        except (OSError, ValueError, TypeError):
+            previous_generated = None
+
     dashboard = {
         "generated_at": generated,
         "method": "authoritative independent-verification records; fail-closed",
@@ -144,6 +155,15 @@ def main() -> int:
             if verified < TARGET else "Target reached."
         )
     }
+    if previous_generated:
+        previous = json.loads(OUT.read_text(encoding="utf-8"))
+        current_state = dict(dashboard)
+        previous_state = dict(previous)
+        current_state.pop("generated_at", None)
+        previous_state.pop("generated_at", None)
+        if current_state == previous_state:
+            dashboard["generated_at"] = previous_generated
+
     OUT.write_text(json.dumps(dashboard, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     md = f"""# ꙰ SHIRMANI Verification Progress Dashboard
