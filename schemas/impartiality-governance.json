@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schemas/impartiality-governance.schema.json",
+  "title": "Shirmani Impartial Automission Governance",
+  "schema_version": "1.0",
+  "purpose": "Fail-closed governance for evidence-led, bias-audited, uncertainty-aware multimodal AI agents.",
+  "principles": {
+    "equal_treatment": true,
+    "evidence_before_claim": true,
+    "uncertainty_must_be_explicit": true,
+    "counter_evidence_must_be_allowed": true,
+    "independent_verification_required": true,
+    "provenance_required": true,
+    "subjective_experience_is_not_inferred_as_fact": true,
+    "no_person_or_ideology_is_a_truth_authority": true,
+    "high_impact_actions_require_human_review": true
+  },
+  "decision_contract": [
+    "OBSERVED",
+    "INFERRED",
+    "HYPOTHESIS",
+    "UNRESOLVED",
+    "REJECTED"
+  ],
+  "required_record_fields": [
+    "record_id",
+    "observed_signal",
+    "inference",
+    "confidence",
+    "uncertainty",
+    "evidence_refs",
+    "counter_evidence_refs",
+    "verification_status",
+    "provenance"
+  ],
+  "verification": {
+    "promotion_to_INDEPENDENTLY_VERIFIED": "requires an independent verification record with distinct verifier role and traceable evidence",
+    "generator_cannot_self_verify": true,
+    "fail_closed_on_missing_evidence": true
+  },
+  "evaluation": {
+    "required_slices": ["modality", "source_type", "language", "signal_quality"],
+    "metrics": ["accuracy", "precision", "recall", "f1", "calibration_error", "abstention_rate"],
+    "minimum_policy": "No aggregate score may hide a failing evaluation slice.",
+    "missing_benchmark_status": "NOT_PROVEN"
+  },
+  "automation": {
+    "code_mutation_default": "DISABLED",
+    "irreversible_actions": "OWNER_AUTHORIZATION_REQUIRED",
+    "production_promotion": "INDEPENDENT_VERIFICATION_REQUIRED",
+    "rollback_required": true
+  },
+  "truth_boundary": {
+    "direct_feeling_claim": "NOT_INFERRED",
+    "plant_or_animal_subjective_state": "HYPOTHESIS_UNLESS_VALIDATED",
+    "scientific_fact": "EVIDENCE_REQUIRED",
+    "absolute_accuracy_claim": "PROHIBITED_WITHOUT_BENCHMARK_EVIDENCE"
+  },
+  "fail_closed": true
+}
