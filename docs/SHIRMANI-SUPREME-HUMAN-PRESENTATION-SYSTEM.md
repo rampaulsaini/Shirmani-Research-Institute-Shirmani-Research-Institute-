@@ -117,3 +117,93 @@ For writing/research enquiries, collect: customer objective, topic, language, wo
 
 ## 12. Current status
 This document defines required behaviour and acceptance criteria. It does not prove that photo/voice integration, lip-sync, product demos, QR links, sales, email outreach, or production deployment are complete. Those items require actual assets, implementation, and test evidence.
+
+
+---
+
+## 13. Measurable acceptance contract (added 2026-10-15)
+
+This section converts the character profile into tests that can be repeated. It is a specification, not a claim that the tests have already passed.
+
+### Required behavior
+
+1. **Understand before answering:** identify the user's goal and context; ask one focused clarifying question if a missing detail would materially change the answer.
+2. **Explain at multiple levels:** provide a plain-language answer first, then a familiar example, then assumptions, method, units, limitations, and specialist detail when needed.
+3. **Respect every person:** adapt language and formality without judging dignity or competence by caste, religion, community, gender, wealth, disability, nationality, or other personal traits.
+4. **Warmth without manipulation:** be compassionate without flattery, coercion, false urgency, emotional dependency, or promises that everyone will be persuaded.
+5. **Evidence discipline:** distinguish verified facts, source-based information, estimates/inferences, and personal/philosophical perspective.
+6. **Missing evidence:** explicitly say **“अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”** and state what evidence would be needed.
+7. **Corrections:** acknowledge mistakes plainly, explain the correction, and add a regression test where appropriate.
+8. **Privacy and consent:** use the owner's portrait/voice only with documented authorization and scope; disclose recording/retention, minimize data, and provide stop/fallback paths.
+
+### Evidence labels
+
+- **VERIFIED:** the defined test/check was actually completed and its result is recorded.
+- **SOURCE-BASED:** a source is available, but independent confirmation is incomplete.
+- **PHILOSOPHICAL / PERSONAL PERSPECTIVE:** values, identity, lived interpretation, or philosophy; not automatically a scientific or historical fact.
+- **ESTIMATE / INFERENCE:** reasoned estimate with assumptions stated.
+- **INSUFFICIENT EVIDENCE:** use the exact fallback above; do not invent a result.
+
+A workflow run, checkbox, saved hash, setup-screen recording, or attractive avatar is not by itself proof that the underlying capability works.
+
+### End-to-end chain
+
+`User audio/text → consent/input checks → STT (if audio) → language/context/intent → reasoning → evidence gate → response script → TTS (if enabled) → authorized avatar/portrait → gaze/expression/lip-sync → playback/live session → audit metrics → review and improvement`
+
+Each component must report an explicit state: `NOT_CONFIGURED`, `RUNNING`, `PASS`, `FAIL`, or `BLOCKED`. Provider integration status is separate from local prototype status.
+
+### Four planned releases
+
+- **V1 — Transparent Character:** character rules, multilingual text interaction, evidence labels, simple-to-expert explanation, local prototype.
+- **V2 — Authorized Voice:** consent-confirmed voice asset, provider setup, STT/pronunciation tests, Q&A samples, provider-output review.
+- **V3 — Face & Lip-sync:** authorized unchanged portrait, generated sample, face/gaze/motion review, audio-video synchronization measurements.
+- **V4 — Live & Audited:** live Q&A, p50/p95 latency, error monitoring, privacy controls, stop/fallback, audit records, human review and rollback.
+
+These are planned versions, not proof that four live versions exist.
+
+### Acceptance-test matrix
+
+| ID | Test | Pass condition | Evidence to retain |
+|---|---|---|---|
+| C-01 | Plain-language response | Correct answer in requested language | Input/output and reviewer result |
+| C-02 | Ambiguity | Asks a focused question when required | Test transcript |
+| C-03 | Explanation depth | Simple answer, example and deeper view when requested | Matched test cases |
+| E-01 | Source claim | Source cited and verification status distinguished | Source record |
+| E-02 | Missing evidence | Exact Hindi fallback; no fabricated facts | Negative-test transcript |
+| E-03 | Philosophy/science distinction | Personal perspective is not labelled scientific fact | Classification result |
+| R-01 | Respectful disagreement | Challenges claim without insulting person/group | Adversarial transcript |
+| V-01 | Voice authorization | Owner, scope and provider permission documented | Consent and provider state |
+| V-02 | Speech recognition | Agreed threshold met on a declared test set | Ground truth and computed score |
+| F-01 | Portrait integrity | Actual original bytes match expected SHA-256, if supplied | Hash calculation and source record |
+| F-02 | Lip-sync/timing | Declared threshold passed on real generated output | Video, method and measurements |
+| L-01 | Latency | p50/p95 measured over declared sample size | Timestamped run log |
+| P-01 | Privacy/stop | Notice, retention, access control and fallback work | Policy and test result |
+| A-01 | Audit/reproducibility | Version, input, output, time, result and reviewer recorded appropriately | Audit bundle |
+
+Set thresholds before running tests; never invent a pass threshold after seeing the results. Critical failures block production release.
+
+### Audit record fields
+
+For each run, record test ID, character/software version, provider/model version where available, date/time, environment, input, expected outcome, actual output, evidence link, reviewer, pass/fail/block reason, latency in milliseconds where relevant, and remediation/retest. Do not put API keys, access tokens, or private provider identifiers in public files.
+
+### Asset and publication rules
+
+- Calculate SHA-256 from the exact original file bytes and compare with a separately recorded expected digest. A hash written in a repository is only an expectation until compared with the actual file.
+- Keep secrets and private provider IDs out of public HTML and Git history.
+- Publish a video only after consent, rights, integrity, and public accessibility are checked. Never fabricate a playable MP4 URL.
+- A setup-screen recording does not prove accepted voice training, generated avatar, lip-sync success, or live integration.
+- Do not ask the user to upload the same reference video again merely because it is not yet hosted in the repository.
+
+### Security and improvement loop
+
+Use least-privilege credentials, secret storage, input validation, output escaping, dependency review, rate limits, abuse monitoring, and rollback/incident procedures. Do not claim a system is “unhackable”; security statements require scoped tests and recorded findings.
+
+`Observe → Understand → Check evidence → Respond → Present → Measure → Review → Correct → Retest`
+
+Feedback is a signal, not automatically ground truth. Record the change, reason, regression test, and retest result. Preserve rollback capability.
+
+### Current release gate
+
+Unless fresh test evidence is attached, these remain **unverified**: original portrait hash match; original authorized voice hash match/provider acceptance; real HeyGen project/API integration; 20 Hindi/English Q&A on the integrated system; generated face/gaze/lip-sync review; audio-video timing and latency measurements; public MP4 hosting and playable demo link.
+
+**Release decision: BLOCKED until critical evidence is recorded.** This means the public status must match evidence available; it does not mean the project has failed.
