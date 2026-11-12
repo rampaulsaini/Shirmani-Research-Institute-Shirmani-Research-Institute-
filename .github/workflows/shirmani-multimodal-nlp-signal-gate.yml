@@ -1,0 +1,56 @@
+name: SHIRMANI Multimodal NLP Signal Gate
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "factory/multimodal_signal_nlp.py"
+      - "tests/test_multimodal_signal_nlp.py"
+      - ".github/workflows/shirmani-multimodal-nlp-signal-gate.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-multimodal-nlp-signal-gate
+  cancel-in-progress: false
+
+jobs:
+  signal_gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile signal NLP layer
+        run: python3 -m py_compile factory/multimodal_signal_nlp.py
+      - name: Run deterministic signal NLP tests
+        run: python3 -m unittest discover -s tests -p 'test_multimodal_signal_nlp.py' -v
+      - name: Run controlled signal fixture
+        run: |
+          python3 - <<'PY'
+          from factory.multimodal_signal_nlp import interpret, plain_language
+          r=interpret([
+            {"name":"electrical_activity","value":12.0,"unit":"mV","baseline":10.0,"tolerance":1.0},
+            {"name":"temperature","value":27.0,"unit":"C","baseline":25.0,"tolerance":2.0}
+          ], context="controlled plant-signal fixture", source_quality=1.0)
+          assert r["status"]=="INTERPRETED"
+          assert 0.0 <= r["confidence"] <= 1.0
+          assert "does not prove" in r["claim_boundary"]
+          print(plain_language(r))
+          PY
+      - name: Publish machine-readable report
+        run: |
+          mkdir -p generated
+          python3 - <<'PY'
+          import json
+          from factory.multimodal_signal_nlp import interpret
+          r=interpret([{"name":"electrical_activity","value":12.0,"unit":"mV","baseline":10.0,"tolerance":1.0}],context="controlled plant-signal fixture")
+          open("generated/multimodal-nlp-signal-report.json","w",encoding="utf-8").write(json.dumps(r,ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: multimodal-nlp-signal-report
+          path: generated/multimodal-nlp-signal-report.json
+          retention-days: 14
