@@ -12,6 +12,8 @@ The repository has a large automation architecture, but workflow execution is no
 - Digital Publishing: concrete service package + inquiry path.
 - AI Marketing Assets: concrete service package + inquiry path.
 - Creative Production: concrete service package + inquiry path.
+- P101–P108: eight directly usable micro-digital product artifacts committed under products/deliverables/.
+- Concrete product index: products/production-deliverables-index.json.
 
 ## Still blocked / not claimed
 - Paid digital-audio offers P001–P006: catalog records exist, but audio delivery assets are not evidenced inside this repository.
