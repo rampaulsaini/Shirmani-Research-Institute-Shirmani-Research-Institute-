@@ -1,0 +1,42 @@
+name: Supreme Automission Control
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supreme-automission-control
+  cancel-in-progress: true
+
+jobs:
+  control:
+    name: Fail-Closed Architecture Control
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Structural control
+        run: python scripts/automission/supreme_control_check.py
+      - name: Canonical graph integrity
+        run: |
+          test -s docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          grep -q "Observe" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          grep -q "Independent Verification" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          grep -q "Fail Closed" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+      - name: Evidence boundary check
+        run: |
+          grep -q "Accuracy is measured" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+          grep -q "subjective feeling or consciousness" docs/supreme-ai-ml-nlp-automission-total-graph-2026-10-01.md
+      - name: Control result
+        run: echo "SUPREME_AUTOMISSION_STATUS=PASS"
