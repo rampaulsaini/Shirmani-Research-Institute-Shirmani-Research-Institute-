@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Heart-View — Live Character System</title>
+<style>
+body{margin:0;background:#07111b;color:#eef7fb;font-family:system-ui,sans-serif;line-height:1.6}
+main{max-width:1050px;margin:auto;padding:24px 16px 60px}
+.hero,.card{border:1px solid rgba(255,216,61,.35);border-radius:20px;padding:22px;margin:14px 0;background:linear-gradient(135deg,rgba(255,216,61,.10),rgba(0,210,255,.06))}
+h1,h2{color:#ffd83d}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.status{display:inline-block;padding:4px 10px;border:1px solid #ffd83d;border-radius:99px;font-size:.78rem}
+textarea,button{font:inherit}textarea{width:100%;box-sizing:border-box;background:#0d1c29;color:#fff;border:1px solid #496171;border-radius:12px;padding:12px}
+button{border:0;border-radius:12px;padding:11px 15px;cursor:pointer;background:#ffd83d;color:#07111b;font-weight:800;margin-top:10px}
+.face{height:300px;border-radius:24px;border:1px solid #395466;background:linear-gradient(160deg,#102638,#07111b);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.face:before{content:"";width:160px;height:210px;border-radius:48% 48% 45% 45%;border:2px solid rgba(255,255,255,.45);position:absolute}
+.eye{position:absolute;top:115px;width:14px;height:8px;border-radius:50%;background:#07111b}.e1{left:calc(50% - 55px)}.e2{left:calc(50% + 41px)}
+.mouth{position:absolute;top:190px;width:44px;height:10px;border-bottom:3px solid #07111b;border-radius:50%;transition:.12s}
+.speaking .mouth{height:25px;border:2px solid #07111b;border-radius:50%}
+.small{color:#b8c7cf;font-size:.92rem}.answer{white-space:pre-wrap;background:#0a1824;border-radius:14px;padding:14px;margin-top:12px}
+</style></head>
+<body><main>
+<section class="hero"><span class="status">ARCHITECTURE + TEST CONSOLE</span><h1>꙰ SHIRMANI HEART-VIEW</h1>
+<p><strong>Voice → Authorized Voice → Q&A → Content → Photo/Avatar → Lip-Sync → Live Presentation</strong></p>
+<p class="small">यह page वास्तविक production voice clone या live broadcast होने का दावा नहीं करता। External authorization, provider integration और media assets के बिना status test-only है।</p></section>
+<section class="grid">
+<div class="card"><h2>🗣️ Voice</h2><p>NOT CONNECTED — browser speech synthesis test उपलब्ध है।</p></div>
+<div class="card"><h2>🪪 Authorization</h2><p>AUTHORIZED_PENDING — provider credential और authorized voice reference repository में नहीं रखे जाते।</p></div>
+<div class="card"><h2>👁️ Presentation</h2><p>Avatar timing demo सक्रिय। वास्तविक photo/avatar asset अभी pending है।</p></div>
+<div class="card"><h2>👄 Lip-sync</h2><p>TEST_ONLY — browser speech timing के साथ visual mouth cue demo। Production renderer अभी connected नहीं है।</p></div>
+</section>
+<section class="card"><h2>🎙️ Test Q&A</h2><p>प्रश्न लिखें। सिस्टम evidence उपलब्ध न होने पर स्पष्ट uncertainty रखेगा।</p>
+<textarea id="q" rows="4" placeholder="अपना प्रश्न लिखें…"></textarea><button id="answerBtn">उत्तर तैयार करें + बोलें</button>
+<div id="answer" class="answer">उत्तर यहाँ आएगा।</div></section>
+<section class="card"><h2>🎭 Live Presentation Test</h2><div id="face" class="face"><span class="eye e1"></span><span class="eye e2"></span><span class="mouth"></span></div>
+<p class="small">Natural gaze/facial movement/lip-sync का production-quality परिणाम external media renderer से आएगा; यह deterministic browser test है।</p></section>
+<section class="card"><h2>🧭 Evidence Contract</h2><p><strong>Source → Claim → Evidence → Test → Verification → Publication</strong></p>
+<p class="small">दार्शनिक/identity statements को author statement के रूप में रखा जाता है। independently verified scientific evidence को अलग state में रखा जाता है। पर्याप्त प्रमाण न होने पर: <strong>अभी पर्याप्त प्रमाण उपलब्ध नहीं है।</strong></p></section>
+</main>
+<script>
+const q=document.getElementById('q'),a=document.getElementById('answer'),face=document.getElementById('face');
+function answerFor(question){
+ const s=question.trim();
+ if(!s) return 'कृपया प्रश्न लिखें।';
+ return 'यह Test Q&A उत्तर है: आपके प्रश्न को context के अनुसार समझकर उत्तर दिया जाएगा। इस prototype में बाहरी evidence retrieval जुड़ा नहीं है, इसलिए जहाँ स्वतंत्र प्रमाण उपलब्ध नहीं है वहाँ निष्कर्ष को VERIFIED नहीं माना जाएगा.\n\nEvidence state: EVIDENCE_INSUFFICIENT\nVerification state: NOT_VERIFIED';
+}
+document.getElementById('answerBtn').onclick=()=>{
+ const text=answerFor(q.value); a.textContent=text;
+ if(!('speechSynthesis' in window)) return;
+ const u=new SpeechSynthesisUtterance(text); u.lang='hi-IN';
+ u.onstart=()=>face.classList.add('speaking'); u.onend=()=>face.classList.remove('speaking');
+ speechSynthesis.cancel(); speechSynthesis.speak(u);
+};
+</script></body></html>
