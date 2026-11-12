@@ -1,0 +1,8 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Shirmani Neutrality Claim","type":"object","additionalProperties":false,
+"required":["claim_id","claim_text","claim_type","evidence_status","verification_status","provenance"],
+"properties":{"claim_id":{"type":"string","minLength":1},"claim_text":{"type":"string","minLength":1},
+"claim_type":{"type":"string","enum":["USER_SOURCE","HYPOTHESIS","INTERPRETATION","EVIDENCE_SUPPORTED","INDEPENDENTLY_VERIFIED","CONTRADICTED","UNRESOLVED","REJECTED"]},
+"evidence_status":{"type":"string","enum":["NONE","PARTIAL","SUPPORTED","CONTRADICTED","MIXED"]},
+"verification_status":{"type":"string","enum":["UNVERIFIED","REVIEW_REQUIRED","INDEPENDENTLY_VERIFIED","REJECTED"]},
+"provenance":{"type":"object","additionalProperties":false,"required":["source_id"],"properties":{"source_id":{"type":"string","minLength":1},"source_version":{"type":"string"},"timestamp":{"type":"string"}}},
+"counter_evidence_checked":{"type":"boolean"},"confidence":{"type":"number","minimum":0,"maximum":1},"confidence_calibrated":{"type":"boolean"},"independent_reviewer":{"type":"string"}}}
