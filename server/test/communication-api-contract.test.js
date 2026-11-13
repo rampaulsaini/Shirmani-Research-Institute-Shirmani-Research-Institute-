@@ -38,7 +38,7 @@ test("communication archive insert and audit event are committed atomically", ()
     source.indexOf('app.post("/api/owner/communications/messages"'),
     source.indexOf('app.get("/api/owner/communications/messages"')
   );
-  assert.match(route, /const client = await pool\.connect\(\)/);
+  assert.match(route, /let client;[\s\S]*client = await pool\.connect\(\)/);
   assert.match(route, /await client\.query\("begin"\)/);
   assert.match(route, /insert into communication_messages/);
   assert.match(route, /insert into audit_events\(actor_id,event_type,target_type,target_id,metadata\)/);
