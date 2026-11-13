@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import pg from "pg";
 import { governancePolicy } from "./governance-policy.js";
+import { encryptMessageContent, decryptMessageContent } from "./communication-crypto.js";
 
 const { Pool } = pg;
 const app = express();
@@ -141,6 +142,86 @@ app.get("/v1/owner/enquiries", dbRequired, auth, ownerOnly, async (req, res) => 
     res.json({ items: rows, count: rows.length, access: "owner_only" });
   } catch {
     res.status(500).json({ error: "ENQUIRY_INBOX_READ_FAILED" });
+  }
+});
+
+// Owner-only email archive. Bodies are encrypted before PostgreSQL; the owner must attest
+// that the body contains no passwords, OTPs, payment PINs, or access tokens.
+const communicationLimiter = rateLimit({ windowMs: 60_000, limit: 20, standardHeaders: true, legacyHeaders: false });
+app.post("/api/owner/communications/messages", dbRequired, auth, ownerOnly, communicationLimiter, async (req, res) => {
+  const body = req.body || {};
+  const allowedProviders = new Set(["gmail", "smtp", "imap", "manual", "other"]);
+  const allowedDirections = new Set(["inbound", "outbound"]);
+  const clean = (value, max) => typeof value === "string" ? value.trim().slice(0, max) : "";
+  const provider = clean(body.provider, 20);
+  const direction = clean(body.direction, 10);
+  const mailbox = clean(body.mailbox, 254).toLowerCase();
+  const fromAddress = clean(body.from_address, 254).toLowerCase();
+  const subject = clean(body.subject, 998);
+  const messageContent = body.content;
+  const validAddress = value => typeof value === "string" && value.length <= 254 && /^\S+@\S+\.\S+$/.test(value);
+  const validAddressList = value => Array.isArray(value) && value.length <= 50 && value.every(validAddress);
+  if (!allowedProviders.has(provider) || !allowedDirections.has(direction) || !validAddress(mailbox) ||
+      (fromAddress && !validAddress(fromAddress)) || !validAddressList(body.to_addresses ?? []) ||
+      !validAddressList(body.cc_addresses ?? []) || typeof messageContent !== "string" ||
+      !messageContent.trim() || Buffer.byteLength(messageContent, "utf8") > 500_000 ||
+      body.content_reviewed_no_credentials !== true) {
+    return res.status(400).json({ error: "INVALID_OR_UNREVIEWED_COMMUNICATION" });
+  }
+  let encrypted;
+  try {
+    encrypted = encryptMessageContent(messageContent);
+  } catch {
+    return res.status(503).json({ error: "EMAIL_CONTENT_ENCRYPTION_NOT_CONFIGURED" });
+  }
+  try {
+    const { rows } = await pool.query(
+      "insert into communication_messages(provider,provider_message_id,provider_thread_id,direction,mailbox,from_address,to_addresses,cc_addresses,subject,sent_at,received_at,delivery_status,encrypted_content,content_key_version,content_sha256,metadata) values($1,$2,$3,$4,$5,$6,$7::jsonb,$8::jsonb,$9,$10,$11,$12,$13,$14,$15,$16::jsonb) on conflict(provider,mailbox,provider_message_id) do nothing returning id,provider,direction,mailbox,subject,delivery_status,created_at",
+      [provider, clean(body.provider_message_id, 512) || null, clean(body.provider_thread_id, 512) || null,
+        direction, mailbox, fromAddress || null, JSON.stringify(body.to_addresses ?? []), JSON.stringify(body.cc_addresses ?? []),
+        subject, body.sent_at || null, body.received_at || null,
+        ["unknown","queued","sent","delivered","bounced","failed"].includes(body.delivery_status) ? body.delivery_status : "unknown",
+        encrypted.encryptedContent, encrypted.contentKeyVersion, encrypted.contentSha256, JSON.stringify({ owner_reviewed_no_credentials: true })]
+    );
+    if (!rows[0]) return res.status(409).json({ error: "COMMUNICATION_ALREADY_EXISTS" });
+    return res.status(201).json({ ...rows[0], content_encrypted: true, content_returned: false });
+  } catch {
+    return res.status(503).json({ error: "COMMUNICATION_ARCHIVE_SAVE_FAILED" });
+  }
+});
+
+app.get("/api/owner/communications/messages", dbRequired, auth, ownerOnly, async (req, res) => {
+  const requestedLimit = Number.parseInt(req.query.limit, 10);
+  const limit = Number.isInteger(requestedLimit) ? Math.min(100, Math.max(1, requestedLimit)) : 50;
+  try {
+    const { rows } = await pool.query(
+      "select id,provider,provider_message_id,provider_thread_id,direction,mailbox,from_address,to_addresses,cc_addresses,subject,sent_at,received_at,delivery_status,content_key_version,content_sha256,created_at from communication_messages order by coalesce(received_at,sent_at,created_at) desc limit $1",
+      [limit]
+    );
+    return res.json({ items: rows, count: rows.length, access: "owner_only", bodies_included: false });
+  } catch {
+    return res.status(503).json({ error: "COMMUNICATION_ARCHIVE_READ_FAILED" });
+  }
+});
+
+app.get("/api/owner/communications/messages/:id/content", dbRequired, auth, ownerOnly, async (req, res) => {
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(req.params.id)) {
+    return res.status(400).json({ error: "INVALID_COMMUNICATION_ID" });
+  }
+  try {
+    const { rows } = await pool.query(
+      "select encrypted_content,content_key_version,content_sha256 from communication_messages where id=$1",
+      [req.params.id]
+    );
+    if (!rows[0]) return res.status(404).json({ error: "COMMUNICATION_NOT_FOUND" });
+    if (rows[0].content_key_version !== process.env.EMAIL_CONTENT_KEY_VERSION) {
+      return res.status(409).json({ error: "EMAIL_CONTENT_KEY_VERSION_MISMATCH" });
+    }
+    const decrypted = decryptMessageContent(rows[0].encrypted_content, { keyVersion: rows[0].content_key_version });
+    if (decrypted.contentSha256 !== rows[0].content_sha256) return res.status(503).json({ error: "COMMUNICATION_INTEGRITY_CHECK_FAILED" });
+    return res.json({ id: req.params.id, content: decrypted.plaintext, content_decrypted_for_owner: true });
+  } catch {
+    return res.status(503).json({ error: "COMMUNICATION_CONTENT_UNAVAILABLE" });
   }
 });
 
