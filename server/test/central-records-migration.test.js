@@ -21,7 +21,9 @@ test("central records migration is additive and contains each table once", () =>
 });
 
 test("email archive schema encodes privacy and integrity guardrails", () => {
-  assert.match(migration, /encrypted_content bytea/i);
+  assert.match(migration, /encrypted_content bytea not null/i);
+  assert.match(migration, /content_key_version text not null/i);
+  assert.match(migration, /content_sha256 char\(64\) not null/i);
   assert.match(migration, /check \(encrypted = true\)/i);
   assert.match(migration, /jsonb_typeof\(to_addresses\) = 'array'/i);
   assert.match(migration, /jsonb_typeof\(metadata\) = 'object'/i);
