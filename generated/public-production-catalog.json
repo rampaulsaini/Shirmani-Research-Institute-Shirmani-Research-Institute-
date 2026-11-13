@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-11-13T18:50:49.210999+00:00",
-  "source_produced_at": "2026-11-13T18:50:48.197059+00:00",
-  "source_latest_produced_at": "2026-11-13T18:50:48.408278+00:00",
-  "source_cycle": 3061,
+  "generated_at": "2026-11-13T21:09:33.136060+00:00",
+  "source_produced_at": "2026-11-13T21:09:31.351972+00:00",
+  "source_latest_produced_at": "2026-11-13T21:09:31.594693+00:00",
+  "source_cycle": 3062,
   "principle": "Production first; verification downstream.",
-  "cycle": 3061,
+  "cycle": 3062,
   "cycle_results": 500,
   "lanes": {
-    "ai-ml-nlp": 44,
-    "automation": 258,
-    "content": 9,
+    "ai-ml-nlp": 56,
+    "automation": 240,
+    "content": 11,
     "economic": 8,
-    "federation": 16,
+    "federation": 15,
     "platform": 108,
-    "research": 17,
-    "security-quality": 26,
-    "social-media": 14
+    "research": 20,
+    "security-quality": 33,
+    "social-media": 9
   },
   "artifacts": [
     "generated/public-production/ai-ml-nlp.jsonl",
