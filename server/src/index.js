@@ -214,7 +214,9 @@ app.post("/api/owner/communications/messages", dbRequired, auth, ownerOnly, comm
     }
     return res.status(503).json({ error: "COMMUNICATION_ARCHIVE_SAVE_FAILED" });
   } finally {
-    client?.release();
+    // A release error must not turn a completed HTTP response into an
+    // unhandled rejection; the database operation result is already settled.
+    try { client?.release(); } catch {}
   }
 });
 
