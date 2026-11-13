@@ -45,6 +45,6 @@ test("communication archive insert and audit event are committed atomically", ()
   assert.match(route, /'communication_message_archived','communication_message'/);
   assert.match(route, /await client\.query\("commit"\)/);
   assert.match(route, /await client\.query\("rollback"\)/);
-  assert.match(route, /client\??\.release\(\)/);
+  assert.match(route, /try\s*\{\s*client\??\.release\(\);\s*\}\s*catch\s*\{\s*\}/);
   assert.match(route, /audit_recorded: true/);
 });
