@@ -184,8 +184,11 @@ app.post("/api/owner/communications/messages", dbRequired, auth, ownerOnly, comm
   } catch {
     return res.status(503).json({ error: "EMAIL_CONTENT_ENCRYPTION_NOT_CONFIGURED" });
   }
-  const client = await pool.connect();
+  let client;
   try {
+    // Acquire the connection inside the guarded block so pool/connect failures
+    // return a controlled 503 instead of an unhandled async route rejection.
+    client = await pool.connect();
     await client.query("begin");
     const { rows } = await client.query(
       "insert into communication_messages(provider,provider_message_id,provider_thread_id,direction,mailbox,from_address,to_addresses,cc_addresses,subject,sent_at,received_at,delivery_status,encrypted_content,content_key_version,content_sha256,metadata) values($1,$2,$3,$4,$5,$6,$7::jsonb,$8::jsonb,$9,$10,$11,$12,$13,$14,$15,$16::jsonb) on conflict(provider,mailbox,provider_message_id) do nothing returning id,provider,direction,mailbox,subject,delivery_status,created_at",
@@ -206,10 +209,12 @@ app.post("/api/owner/communications/messages", dbRequired, auth, ownerOnly, comm
     await client.query("commit");
     return res.status(201).json({ ...rows[0], content_encrypted: true, content_returned: false, audit_recorded: true });
   } catch {
-    try { await client.query("rollback"); } catch {}
+    if (client) {
+      try { await client.query("rollback"); } catch {}
+    }
     return res.status(503).json({ error: "COMMUNICATION_ARCHIVE_SAVE_FAILED" });
   } finally {
-    client.release();
+    client?.release();
   }
 });
 
