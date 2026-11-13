@@ -174,7 +174,7 @@ app.post("/api/owner/communications/messages", dbRequired, auth, ownerOnly, comm
       (fromAddress && !validAddress(fromAddress)) || !validAddressList(body.to_addresses ?? []) ||
       !validAddressList(body.cc_addresses ?? []) || typeof messageContent !== "string" ||
       !messageContent.trim() || Buffer.byteLength(messageContent, "utf8") > 500_000 ||
-      (provider !== "manual" && !providerMessageId) || sentAt === undefined || receivedAt === undefined ||
+      !providerMessageId || sentAt === undefined || receivedAt === undefined ||
       body.content_reviewed_no_credentials !== true) {
     return res.status(400).json({ error: "INVALID_OR_UNREVIEWED_COMMUNICATION" });
   }
@@ -184,8 +184,13 @@ app.post("/api/owner/communications/messages", dbRequired, auth, ownerOnly, comm
   } catch {
     return res.status(503).json({ error: "EMAIL_CONTENT_ENCRYPTION_NOT_CONFIGURED" });
   }
+  let client;
   try {
-    const { rows } = await pool.query(
+    // Acquire the connection inside the guarded block so pool/connect failures
+    // return a controlled 503 instead of an unhandled async route rejection.
+    client = await pool.connect();
+    await client.query("begin");
+    const { rows } = await client.query(
       "insert into communication_messages(provider,provider_message_id,provider_thread_id,direction,mailbox,from_address,to_addresses,cc_addresses,subject,sent_at,received_at,delivery_status,encrypted_content,content_key_version,content_sha256,metadata) values($1,$2,$3,$4,$5,$6,$7::jsonb,$8::jsonb,$9,$10,$11,$12,$13,$14,$15,$16::jsonb) on conflict(provider,mailbox,provider_message_id) do nothing returning id,provider,direction,mailbox,subject,delivery_status,created_at",
       [provider, providerMessageId || null, clean(body.provider_thread_id, 512) || null,
         direction, mailbox, fromAddress || null, JSON.stringify(body.to_addresses ?? []), JSON.stringify(body.cc_addresses ?? []),
@@ -193,10 +198,25 @@ app.post("/api/owner/communications/messages", dbRequired, auth, ownerOnly, comm
         ["unknown","queued","sent","delivered","bounced","failed"].includes(body.delivery_status) ? body.delivery_status : "unknown",
         encrypted.encryptedContent, encrypted.contentKeyVersion, encrypted.contentSha256, JSON.stringify({ owner_reviewed_no_credentials: true })]
     );
-    if (!rows[0]) return res.status(409).json({ error: "COMMUNICATION_ALREADY_EXISTS" });
-    return res.status(201).json({ ...rows[0], content_encrypted: true, content_returned: false });
+    if (!rows[0]) {
+      await client.query("rollback");
+      return res.status(409).json({ error: "COMMUNICATION_ALREADY_EXISTS" });
+    }
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'communication_message_archived','communication_message',$2,$3)",
+      [req.user.sub, rows[0].id, { provider, direction }]
+    );
+    await client.query("commit");
+    return res.status(201).json({ ...rows[0], content_encrypted: true, content_returned: false, audit_recorded: true });
   } catch {
+    if (client) {
+      try { await client.query("rollback"); } catch {}
+    }
     return res.status(503).json({ error: "COMMUNICATION_ARCHIVE_SAVE_FAILED" });
+  } finally {
+    // A release error must not turn a completed HTTP response into an
+    // unhandled rejection; the database operation result is already settled.
+    try { client?.release(); } catch {}
   }
 });
 
