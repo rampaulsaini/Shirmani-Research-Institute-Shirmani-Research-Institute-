@@ -27,5 +27,13 @@ One owner-controlled record system for communications, enquiries, bulk orders, q
 - Verify backup/restore and export before production enablement.
 - No automatic email sending without explicit owner approval until a separate policy is approved.
 
+## Message-content encryption implementation
+- `server/src/communication-crypto.js` uses Node.js AES-256-GCM with a fresh 96-bit nonce per message and an authenticated 128-bit tag.
+- Configure `EMAIL_CONTENT_KEY` as canonical base64 for exactly 32 random bytes and `EMAIL_CONTENT_KEY_VERSION` as a non-secret version label (for example, `v1`) in the runtime secret manager. Never commit either value.
+- Generate a key locally with `openssl rand -base64 32`; enter it only in the hosting provider's protected environment-variable UI. Do not paste it into chat, source control, logs, or database rows.
+- Persist the returned `encryptedContent` bytes, `contentKeyVersion`, and `contentSha256` together. Decryption must select the key by the stored version; fail closed if the matching key is unavailable.
+- Rotation requires retaining the old key in a protected secret store until all content encrypted with that version has been re-encrypted and verified. Do not overwrite a key version in place.
+- Unit tests cover round-trip, nonce uniqueness, authentication failure on tampering, wrong keys, and invalid configuration. These tests do not prove production key management or mailbox integration.
+
 ## Current status
 Schema migration and design only. Not applied to any database. No mailbox connected, no email imported, no production route enabled.
