@@ -39,7 +39,7 @@ One owner-controlled record system for communications, enquiries, bulk orders, q
 - `POST /api/owner/communications/messages`: requires JWT authentication and configured owner identity; encrypts the submitted body with AES-256-GCM before inserting it.
 - `GET /api/owner/communications/messages`: returns message metadata only; bodies are not included.
 - `GET /api/owner/communications/messages/:id/content`: decrypts one body only for the owner, only when the configured key version matches, and verifies the stored SHA-256 digest.
-- The write route requires the caller to set `content_reviewed_no_credentials: true`. This is an owner attestation, not an automatic detector; do not import messages containing passwords, OTPs, payment PINs, access tokens, or other authentication secrets.
+- The write route requires the caller to set `content_reviewed_no_credentials: true`. This is an owner attestation, not an automatic detector; do not import messages containing passwords, OTPs, payment PINs, access tokens, or other authentication secrets. The message insert and `communication_message_archived` audit event are written in one database transaction; a failure to write the audit event rolls back the message insert.
 - The current endpoints do not connect Gmail/IMAP/SMTP, sync inboxes, archive attachments, or send mail. Provider OAuth, webhook verification, attachment handling, audit-event coverage, key rotation/key-ring support, and integration tests remain rollout gates.
 - The API is in an unmerged PR branch only. CI checks and code review are required before any deployment.
 
