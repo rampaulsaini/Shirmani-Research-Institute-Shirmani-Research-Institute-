@@ -16,8 +16,8 @@ test("central records migration is additive and contains each table once", () =>
   assert.doesNotMatch(migration, /\bdrop\s+(table|column|schema)\b/i);
   assert.doesNotMatch(migration, /\btruncate\b/i);
   assert.match(migration, /references accounts\(id\)/i);
-  assert.doesNotMatch(migration, /\),\s*metadata jsonb/i);
-  assert.doesNotMatch(migration, /\),\s*encrypted boolean/i);
+  assert.equal((migration.match(/metadata jsonb not null/gi) ?? []).length, 1);
+  assert.equal((migration.match(/encrypted boolean not null/gi) ?? []).length, 1);
 });
 
 test("email archive schema encodes privacy and integrity guardrails", () => {
