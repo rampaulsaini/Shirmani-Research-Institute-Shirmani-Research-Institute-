@@ -32,3 +32,19 @@ test("communication archive errors do not expose database or encryption internal
   assert.match(source, /COMMUNICATION_ARCHIVE_SAVE_FAILED/);
   assert.match(source, /COMMUNICATION_CONTENT_UNAVAILABLE/);
 });
+
+test("communication archive insert and audit event are committed atomically", () => {
+  const route = source.slice(
+    source.indexOf('app.post("/api/owner/communications/messages"'),
+    source.indexOf('app.get("/api/owner/communications/messages"')
+  );
+  assert.match(route, /const client = await pool\.connect\(\)/);
+  assert.match(route, /await client\.query\("begin"\)/);
+  assert.match(route, /insert into communication_messages/);
+  assert.match(route, /insert into audit_events\(actor_id,event_type,target_type,target_id,metadata\)/);
+  assert.match(route, /'communication_message_archived','communication_message'/);
+  assert.match(route, /await client\.query\("commit"\)/);
+  assert.match(route, /await client\.query\("rollback"\)/);
+  assert.match(route, /client\.release\(\)/);
+  assert.match(route, /audit_recorded: true/);
+});
