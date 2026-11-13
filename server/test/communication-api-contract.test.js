@@ -7,6 +7,9 @@ const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf
 test("communication archive write route is authenticated and owner-only", () => {
   assert.match(source, /app\.post\("\/api\/owner\/communications\/messages",\s*dbRequired,\s*auth,\s*ownerOnly/);
   assert.match(source, /content_reviewed_no_credentials !== true/);
+  assert.match(source, /normalizeTimestamp\(body\.sent_at\)/);
+  assert.match(source, /normalizeTimestamp\(body\.received_at\)/);
+  assert.match(source, /provider !== "manual" && !providerMessageId/);
   assert.match(source, /encryptMessageContent\(messageContent\)/);
   assert.match(source, /encrypted\.encryptedContent/);
   assert.match(source, /EMAIL_CONTENT_ENCRYPTION_NOT_CONFIGURED/);
