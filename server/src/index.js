@@ -159,12 +159,22 @@ app.post("/api/owner/communications/messages", dbRequired, auth, ownerOnly, comm
   const fromAddress = clean(body.from_address, 254).toLowerCase();
   const subject = clean(body.subject, 998);
   const messageContent = body.content;
+  const normalizeTimestamp = value => {
+    if (value === undefined || value === null || value === "") return null;
+    if (typeof value !== "string" || value.length > 40 || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:\d{2})$/.test(value)) return undefined;
+    const parsed = Date.parse(value);
+    return Number.isFinite(parsed) ? new Date(parsed).toISOString() : undefined;
+  };
+  const sentAt = normalizeTimestamp(body.sent_at);
+  const receivedAt = normalizeTimestamp(body.received_at);
+  const providerMessageId = clean(body.provider_message_id, 512);
   const validAddress = value => typeof value === "string" && value.length <= 254 && /^\S+@\S+\.\S+$/.test(value);
   const validAddressList = value => Array.isArray(value) && value.length <= 50 && value.every(validAddress);
   if (!allowedProviders.has(provider) || !allowedDirections.has(direction) || !validAddress(mailbox) ||
       (fromAddress && !validAddress(fromAddress)) || !validAddressList(body.to_addresses ?? []) ||
       !validAddressList(body.cc_addresses ?? []) || typeof messageContent !== "string" ||
       !messageContent.trim() || Buffer.byteLength(messageContent, "utf8") > 500_000 ||
+      (provider !== "manual" && !providerMessageId) || sentAt === undefined || receivedAt === undefined ||
       body.content_reviewed_no_credentials !== true) {
     return res.status(400).json({ error: "INVALID_OR_UNREVIEWED_COMMUNICATION" });
   }
@@ -177,9 +187,9 @@ app.post("/api/owner/communications/messages", dbRequired, auth, ownerOnly, comm
   try {
     const { rows } = await pool.query(
       "insert into communication_messages(provider,provider_message_id,provider_thread_id,direction,mailbox,from_address,to_addresses,cc_addresses,subject,sent_at,received_at,delivery_status,encrypted_content,content_key_version,content_sha256,metadata) values($1,$2,$3,$4,$5,$6,$7::jsonb,$8::jsonb,$9,$10,$11,$12,$13,$14,$15,$16::jsonb) on conflict(provider,mailbox,provider_message_id) do nothing returning id,provider,direction,mailbox,subject,delivery_status,created_at",
-      [provider, clean(body.provider_message_id, 512) || null, clean(body.provider_thread_id, 512) || null,
+      [provider, providerMessageId || null, clean(body.provider_thread_id, 512) || null,
         direction, mailbox, fromAddress || null, JSON.stringify(body.to_addresses ?? []), JSON.stringify(body.cc_addresses ?? []),
-        subject, body.sent_at || null, body.received_at || null,
+        subject, sentAt, receivedAt,
         ["unknown","queued","sent","delivered","bounced","failed"].includes(body.delivery_status) ? body.delivery_status : "unknown",
         encrypted.encryptedContent, encrypted.contentKeyVersion, encrypted.contentSha256, JSON.stringify({ owner_reviewed_no_credentials: true })]
     );
