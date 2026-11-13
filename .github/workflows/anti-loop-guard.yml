@@ -71,24 +71,24 @@ jobs:
           ' "$FILE" >/dev/null
           echo "QC counts are internally consistent."
 
-          if jq -e 'has("schema_version")' "$FILE" >/dev/null; then
-            CURRENT_VERSION="$(jq -r '.schema_version' "$FILE")"
-            if [[ "$EVENT_NAME" == "pull_request" ]]; then
-              git fetch origin "$BASE_REF"
-              BASE_SHA="$(git merge-base "origin/$BASE_REF" "$HEAD_SHA")"
-            else
-              BASE_SHA="$BEFORE_SHA"
-              if [[ -z "$BASE_SHA" || "$BASE_SHA" =~ ^0+$ ]]; then
-                BASE_SHA="$(git rev-list --max-parents=0 "$HEAD_SHA" | tail -n 1)"
-              fi
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            git fetch origin "$BASE_REF"
+            BASE_SHA="$(git merge-base "origin/$BASE_REF" "$HEAD_SHA")"
+          else
+            BASE_SHA="$BEFORE_SHA"
+            if [[ -z "$BASE_SHA" || "$BASE_SHA" =~ ^0+$ ]]; then
+              BASE_SHA="$(git rev-list --max-parents=0 "$HEAD_SHA" | tail -n 1)"
             fi
-            BASE_VERSION="$(git show "$BASE_SHA:$FILE" 2>/dev/null | jq -r '.schema_version // empty' || true)"
-            if [[ -n "$BASE_VERSION" && "$CURRENT_VERSION" != "$BASE_VERSION" ]]; then
-              echo "::error::schema_version changed from $BASE_VERSION to $CURRENT_VERSION. Require an explicit reviewed migration."
+          fi
+          BASE_VERSION="$(git show "$BASE_SHA:$FILE" 2>/dev/null | jq -r '.schema_version // empty' || true)"
+          CURRENT_VERSION="$(jq -r '.schema_version // empty' "$FILE")"
+          if [[ -n "$BASE_VERSION" || -n "$CURRENT_VERSION" ]]; then
+            if [[ "$CURRENT_VERSION" != "$BASE_VERSION" ]]; then
+              echo "::error::schema_version changed from '$BASE_VERSION' to '$CURRENT_VERSION' (including removal). Require an explicit reviewed migration."
               exit 1
             fi
           else
-            echo "No schema_version field exists in the current baseline; no version downgrade is asserted."
+            echo "Neither baseline nor current QC gate declares schema_version."
           fi
 
           EVIDENCE="generated/product-qc-results.jsonl"
