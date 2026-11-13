@@ -60,7 +60,7 @@ create table if not exists record_links (
 create index if not exists record_links_target_idx
   on record_links(target_type, target_id);
 
--- Application APIs must insert audit events only; DB-owner tampering still
+-- Application APIs must insert audit events only. DB-owner tampering still
 -- requires periodic off-site exports/checkpoints for independent detection.
 create table if not exists audit_checkpoints (
   id uuid primary key default gen_random_uuid(),
