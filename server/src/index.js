@@ -575,18 +575,30 @@ app.get("/v1/platform/readiness", async (_req, res) => {
   const corsConfigured = Boolean(process.env.CORS_ORIGIN && process.env.CORS_ORIGIN !== "*");
   const ownerInboxConfigured = Boolean(process.env.OWNER_ACCOUNT_ID || ownerEmail);
   let database = databaseConfigured ? "CONFIGURED" : "DATABASE_NOT_CONFIGURED";
+  let enquirySchema = databaseConfigured ? "NOT_CHECKED" : "DATABASE_NOT_CONFIGURED";
   if (pool) {
-    try { await pool.query("select 1"); database = "READY"; }
-    catch { database = "ERROR"; }
+    try {
+      await pool.query("select 1");
+      database = "READY";
+      const { rows } = await pool.query(
+        "select to_regclass('public.client_enquiries') is not null as ready"
+      );
+      enquirySchema = rows[0]?.ready ? "READY" : "ENQUIRY_SCHEMA_MISSING";
+    } catch {
+      database = "ERROR";
+      enquirySchema = "ERROR";
+    }
   }
-  // A database-backed enquiry form is not operational for the owner until
-  // the private inbox identity is configured. Keep this as a readiness gate,
-  // not a startup crash, so diagnostics remain available while configuring.
-  const ready = database === "READY" && authConfigured && corsConfigured && ownerInboxConfigured;
+  // A live database connection alone is insufficient: the public enquiry
+  // endpoint requires its canonical table, and the owner inbox needs an identity.
+  // Keep diagnostics available while configuration is incomplete.
+  const ready = database === "READY" && enquirySchema === "READY" &&
+    authConfigured && corsConfigured && ownerInboxConfigured;
   res.status(ready ? 200 : 503).json({
     status: ready ? "READY_FOR_DEPLOYMENT_CHECKS" : "BLOCKED",
     checks: {
       database,
+      enquiry_schema: enquirySchema,
       auth: authConfigured ? "CONFIGURED" : "JWT_SECRET_NOT_CONFIGURED",
       cors: corsConfigured ? "CONFIGURED" : "NOT_CONFIGURED_OR_WILDCARD",
       owner_inbox: ownerInboxConfigured ? "CONFIGURED" : "OWNER_ACCOUNT_ID_NOT_CONFIGURED"
