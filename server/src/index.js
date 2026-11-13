@@ -174,7 +174,7 @@ app.post("/api/owner/communications/messages", dbRequired, auth, ownerOnly, comm
       (fromAddress && !validAddress(fromAddress)) || !validAddressList(body.to_addresses ?? []) ||
       !validAddressList(body.cc_addresses ?? []) || typeof messageContent !== "string" ||
       !messageContent.trim() || Buffer.byteLength(messageContent, "utf8") > 500_000 ||
-      (provider !== "manual" && !providerMessageId) || sentAt === undefined || receivedAt === undefined ||
+      !providerMessageId || sentAt === undefined || receivedAt === undefined ||
       body.content_reviewed_no_credentials !== true) {
     return res.status(400).json({ error: "INVALID_OR_UNREVIEWED_COMMUNICATION" });
   }
