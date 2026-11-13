@@ -28,10 +28,10 @@ test("email archive schema encodes privacy and integrity guardrails", () => {
   assert.match(migration, /content_sha256 char\(64\)/i);
   assert.match(migration, /\^\[0-9a-f\]\{64\}\$/i);
   assert.match(docs, /Never store passwords, OTPs, payment PINs/i);
-  assert.match(docs, /Not applied to any database/i);
+  assert.match(docs, /migration has been tested on a temporary Neon branch only/i);\n  assert.match(docs, /has not been applied to production/i);
 });
 
 test("rollout documentation does not represent mailbox sync as live", () => {
-  assert.match(docs, /No mailbox connected, no email imported, no production route enabled/i);
+  assert.match(docs, /No mailbox is connected and no email has been imported/i);\n  assert.match(docs, /Production routes are unchanged/i);
   assert.match(docs, /Gmail\/SMTP provider connection authorized by the account owner/i);
 });
