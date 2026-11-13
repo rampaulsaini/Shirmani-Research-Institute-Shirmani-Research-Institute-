@@ -1,0 +1,105 @@
+name: permanent-anti-loop-v6
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: anti-loop-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    name: Change-size and QC integrity guard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Block changes over 500 files
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            git fetch origin "$BASE_REF"
+            BASE_SHA="$(git merge-base "origin/$BASE_REF" "$HEAD_SHA")"
+          else
+            BASE_SHA="$BEFORE_SHA"
+            if [[ -z "$BASE_SHA" || "$BASE_SHA" =~ ^0+$ ]]; then
+              BASE_SHA="$(git rev-list --max-parents=0 "$HEAD_SHA" | tail -n 1)"
+            fi
+          fi
+          COUNT="$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" | wc -l | tr -d ' ')"
+          echo "Changed files: $COUNT"
+          if (( COUNT > 500 )); then
+            echo "::error::More than 500 changed files. Split the work into smaller batches."
+            exit 1
+          fi
+
+      - name: Validate product QC truth and schema compatibility
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          FILE="generated/product-qc-gate.json"
+          if [[ ! -f "$FILE" ]]; then
+            echo "::error::$FILE is missing; QC evidence cannot be asserted."
+            exit 1
+          fi
+          jq -e '
+            (.checks | type == "array" and length > 0) and
+            (.produced_count | type == "number") and
+            (.qc_passed | type == "number") and
+            (.qc_passed == .produced_count) and
+            (.catalog_count | type == "number") and
+            (.qc_passed <= .catalog_count)
+          ' "$FILE" >/dev/null
+          echo "QC counts are internally consistent."
+
+          if jq -e 'has("schema_version")' "$FILE" >/dev/null; then
+            CURRENT_VERSION="$(jq -r '.schema_version' "$FILE")"
+            if [[ "$EVENT_NAME" == "pull_request" ]]; then
+              git fetch origin "$BASE_REF"
+              BASE_SHA="$(git merge-base "origin/$BASE_REF" "$HEAD_SHA")"
+            else
+              BASE_SHA="$BEFORE_SHA"
+              if [[ -z "$BASE_SHA" || "$BASE_SHA" =~ ^0+$ ]]; then
+                BASE_SHA="$(git rev-list --max-parents=0 "$HEAD_SHA" | tail -n 1)"
+              fi
+            fi
+            BASE_VERSION="$(git show "$BASE_SHA:$FILE" 2>/dev/null | jq -r '.schema_version // empty' || true)"
+            if [[ -n "$BASE_VERSION" && "$CURRENT_VERSION" != "$BASE_VERSION" ]]; then
+              echo "::error::schema_version changed from $BASE_VERSION to $CURRENT_VERSION. Require an explicit reviewed migration."
+              exit 1
+            fi
+          else
+            echo "No schema_version field exists in the current baseline; no version downgrade is asserted."
+          fi
+
+          EVIDENCE="generated/product-qc-results.jsonl"
+          if [[ -f "$EVIDENCE" ]]; then
+            LINES="$(wc -l < "$EVIDENCE" | tr -d ' ')"
+            PRODUCED="$(jq -r '.produced_count' "$FILE")"
+            echo "QC evidence lines: $LINES; produced_count: $PRODUCED"
+            if [[ "$LINES" != "$PRODUCED" ]]; then
+              echo "::error::QC JSONL line count does not match produced_count."
+              exit 1
+            fi
+          else
+            echo "::warning::$EVIDENCE is absent. No 5,000-product evidence claim is permitted."
+          fi
