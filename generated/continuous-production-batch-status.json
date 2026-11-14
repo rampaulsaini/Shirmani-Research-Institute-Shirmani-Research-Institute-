@@ -1,9 +1,8 @@
 {
-  "generated_at": "2026-11-14T15:58:18.333655+00:00",
-  "batch": "BATCH-20261114T155818Z",
+  "generated_at": "2026-11-14T20:09:54.760203+00:00",
   "catalog_products": 5000,
   "produced_total": 5000,
-  "produced_this_cycle": 284,
+  "produced_this_cycle": 5000,
   "remaining": 0,
   "dispatch_released": 0,
   "verification": "DOWNSTREAM"
