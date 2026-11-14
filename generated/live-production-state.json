@@ -1,12 +1,9 @@
 {
-  "schema_version": 3,
-  "generated_at": "2026-11-14T01:54:40.010478+00:00",
+  "schema_version": 1,
+  "generated_at": "2026-11-14T02:33:57.563687+00:00",
   "production_first": true,
   "catalog_identities": 5000,
   "concrete_repository_assets": 5000,
-  "production_browser_assets": 5000,
-  "public_4k_visual_assets": 5000,
-  "product_qr_assets": 5000,
   "current_catalog_pending": 0,
   "five_thousand_scale_target": 5000,
   "remaining_to_scale_target": 0,
@@ -17,12 +14,5 @@
   "sales_claimed": 0,
   "payment_claimed": 0,
   "independent_verification_claimed": 0,
-  "state": "QC_PASSED_AWAITING_DISPATCH",
-  "qc_state": "QC_PASSED",
-  "truth_boundary": "Produced artifacts, QC, dispatch and independent verification are distinct states.",
-  "qc_catalog_count": 5000,
-  "qc_produced_count": 5000,
-  "qc_passed": 5000,
-  "qc_failed": 0,
-  "qc_state_source": "generated/product-qc-gate.json"
+  "state": "PRODUCTION_COMPLETE_CURRENT_CATALOG"
 }
