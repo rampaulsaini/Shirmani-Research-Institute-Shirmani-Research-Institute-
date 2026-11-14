@@ -1,5 +1,8 @@
 {
-  "generated_at": "2026-11-14T20:09:54.476323+00:00",
+  "generated_at": "2026-11-14T20:35:26.137286+00:00",
+  "source_produced_at": "2026-11-14T20:35:25.325048+00:00",
+  "source_latest_produced_at": "2026-11-14T20:35:25.774075+00:00",
+  "source_cycle": 3084,
   "shard_strategy": "one JSONL file per production cycle",
   "cycle_shards": 2115,
   "files": [
@@ -2117,12 +2120,17 @@
     "production-cycle-003081.jsonl",
     "production-cycle-003082.jsonl",
     "production-cycle-003083.jsonl",
+    "production-cycle-003084.jsonl"
+  ],
+  "ignored_malformed_archive_files": [
     "production-cycle-5970968.jsonl"
   ],
-  "latest_cycle": 3083,
+  "latest_cycle": 3084,
   "latest_cycle_records": 500,
   "integrity": {
     "records_are_produced_artifacts": true,
+    "queue_to_lane_records_one_to_one": true,
+    "archive_index_excludes_malformed_shard_names": true,
     "independent_verification_claim": false
   }
 }
