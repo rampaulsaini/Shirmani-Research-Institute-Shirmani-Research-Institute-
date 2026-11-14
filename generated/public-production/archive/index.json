@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-11-14T11:23:28.817153+00:00",
-  "source_produced_at": "2026-11-14T11:23:27.873081+00:00",
-  "source_latest_produced_at": "2026-11-14T11:23:28.049684+00:00",
-  "source_cycle": 3075,
+  "generated_at": "2026-11-14T13:48:06.841639+00:00",
+  "source_produced_at": "2026-11-14T13:48:06.404639+00:00",
+  "source_latest_produced_at": "2026-11-14T13:48:06.601810+00:00",
+  "source_cycle": 3076,
   "shard_strategy": "one JSONL file per production cycle",
-  "cycle_shards": 2106,
+  "cycle_shards": 2107,
   "files": [
     "production-cycle-000672.jsonl",
     "production-cycle-000673.jsonl",
@@ -2111,12 +2111,13 @@
     "production-cycle-003072.jsonl",
     "production-cycle-003073.jsonl",
     "production-cycle-003074.jsonl",
-    "production-cycle-003075.jsonl"
+    "production-cycle-003075.jsonl",
+    "production-cycle-003076.jsonl"
   ],
   "ignored_malformed_archive_files": [
     "production-cycle-5970968.jsonl"
   ],
-  "latest_cycle": 3075,
+  "latest_cycle": 3076,
   "latest_cycle_records": 500,
   "integrity": {
     "records_are_produced_artifacts": true,
