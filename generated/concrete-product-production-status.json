@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-04T04:36:22.620028+00:00",
+  "generated_at": "2026-11-14T09:24:02.946688+00:00",
   "target": 5000,
   "concrete_produced": 5000,
   "concrete_production_percent": 100.0,
   "remaining": 0,
   "overlay_claimed": 5000,
   "overlay_only_gap": 0,
-  "status": "QC_PASSED_AWAITING_DISPATCH",
-  "next_layer": "independent functional verification → packaging → commercial listing → customer delivery evidence"
+  "status": "COMPLETE",
+  "next_layer": "QC → packaging → commercial listing → delivery evidence → independent review"
 }
