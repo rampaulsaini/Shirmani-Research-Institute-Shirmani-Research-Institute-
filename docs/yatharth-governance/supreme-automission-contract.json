@@ -19,6 +19,8 @@
     "disagreement_analysis",
     "confidence_calibration",
     "abstention",
+    "quality_budget_evaluation",
+    "drift_detection",
     "deterministic_evaluation",
     "provenance",
     "integrity",
@@ -30,7 +32,17 @@
     "cancel_stale_runs": true,
     "bounded_retries": true,
     "cache_immutable_dependencies": true,
-    "never_trade_evidence_for_latency": true
+    "never_trade_evidence_for_latency": true,
+    "quality_budgets": {
+      "max_p95_latency_ms": 5000,
+      "max_p99_latency_ms": 10000,
+      "max_error_rate": 0.01,
+      "max_expected_calibration_error": 0.1,
+      "max_selective_risk": 0.2,
+      "min_provenance_completeness": 1,
+      "min_coverage": 0.5,
+      "max_metric_regression": 0.02
+    }
   },
   "accuracy": {
     "track_accuracy": true,
@@ -46,7 +58,14 @@
     "multi_agent_consensus_required": true,
     "minimum_independent_agents": 3,
     "unresolved_disagreement_output": "UNKNOWN",
-    "evidence_completeness_required": true
+    "evidence_completeness_required": true,
+    "drift_detection": true,
+    "drift_policy": {
+      "trigger_on_fixture_change": true,
+      "trigger_on_metric_budget_breach": true,
+      "trigger_on_suite_floor_breach": true,
+      "action": "ABSTAIN_AND_REQUIRE_REVIEW"
+    }
   },
   "safety": {
     "fail_closed_on_unknown_gate": true,
