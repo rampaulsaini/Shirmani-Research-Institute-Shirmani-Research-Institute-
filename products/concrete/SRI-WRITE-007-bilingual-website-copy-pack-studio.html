@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shirmani Research Institute — Bilingual Copy Pack Studio</title>
+<meta name="description" content="Prepare a structured Hindi/English website copy brief and editable starter pack.">
+<style>
+:root{color-scheme:dark;--gold:#e8c56b;--cyan:#71dff4;--panel:#122136}*{box-sizing:border-box}
+body{margin:0;background:#08111e;color:#f4f7fb;font:16px/1.55 system-ui,sans-serif}main{max-width:1050px;margin:auto;padding:18px}
+.panel{background:var(--panel);border:1px solid #38516d;border-radius:18px;padding:22px;margin:16px 0}
+h1,h2{color:var(--gold)}.kicker{color:var(--cyan);font-weight:800;letter-spacing:.08em}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+label{display:block;font-weight:700;margin:12px 0 5px}input,select,textarea{width:100%;padding:11px;border-radius:8px;border:1px solid #536d86;background:#07111d;color:#fff;font:inherit}
+button{padding:11px 14px;margin:8px 6px 0 0;border:0;border-radius:8px;background:var(--gold);color:#111;font-weight:800;cursor:pointer}.secondary{background:#244158;color:white}
+.card{border:1px solid #456079;border-radius:12px;padding:14px}.note{border-left:4px solid var(--cyan);padding:10px;background:#0d2b3b}small,.muted{color:#c1cedb}a{color:var(--cyan)}.output{white-space:pre-wrap}
+</style></head>
+<body><main>
+<section class="panel"><p class="kicker">SRI-WRITE-007 · CONCRETE BROWSER TOOL</p><h1>Bilingual Website Copy Pack Studio</h1>
+<p>Build an editable starter pack for a small business, creator, research group or educational service. Enter the real details, select language and generate a structured draft for human editing.</p>
+<div class="note"><b>Honest capability label:</b> this is a template-based browser tool, not a connected AI/ML service. It does not independently research facts, publish a website, send messages, accept payment or guarantee conversions. Review every claim before publication.</div></section>
+<section class="panel"><h2>1 · Your brief</h2><form id="brief">
+<div class="grid"><div><label for="brand">Brand / organisation</label><input id="brand" required placeholder="Organisation name"></div><div><label for="language">Output language</label><select id="language"><option value="both">Hindi + English</option><option value="en">English</option><option value="hi">Hindi</option></select></div>
+<div><label for="audience">Target audience</label><input id="audience" placeholder="e.g. local small businesses"></div><div><label for="offer">Main service / product</label><input id="offer" required placeholder="What do you actually offer?"></div>
+<div><label for="benefit">Customer benefit (specific, supportable)</label><input id="benefit" required placeholder="What real problem does it solve?"></div><div><label for="proof">Evidence / proof / credentials</label><input id="proof" placeholder="Link, measurable fact, or 'not supplied'"></div></div>
+<label for="tone">Tone</label><select id="tone"><option>Clear and professional</option><option>Warm and approachable</option><option>Research-led and precise</option><option>Concise and practical</option></select>
+<label for="cta">Preferred call to action</label><input id="cta" placeholder="e.g. Request a scoped quote">
+<label for="limits">Limits, exclusions or conditions</label><textarea id="limits" rows="2" placeholder="What must not be promised? Price, service area, timelines, etc."></textarea>
+<button type="submit">Generate copy pack</button><button type="button" class="secondary" id="copy">Copy pack</button><button type="button" class="secondary" id="download">Download TXT</button><button type="button" class="secondary" id="print">Print / Save PDF</button>
+</form></section>
+<section class="panel"><h2>2 · Editable copy pack</h2><p class="muted">Generated locally from your inputs. Treat this as a first draft; confirm factual claims, rights, prices and service promises before use.</p><textarea id="result" rows="26" placeholder="Your structured copy pack will appear here."></textarea><p id="status" aria-live="polite"></p></section>
+<section class="panel"><h2>3 · Suggested human QC gate</h2><div class="grid">
+<div class="card"><b>Accuracy</b><p>Every factual claim has support; no invented credentials, testimonials, guarantees or customer counts.</p></div>
+<div class="card"><b>Customer clarity</b><p>Audience, offer, benefit, deliverable and next step are easy to understand.</p></div>
+<div class="card"><b>Language & accessibility</b><p>Hindi/English proofreading, readable mobile layout, plain language and inclusive wording.</p></div>
+<div class="card"><b>Release readiness</b><p>Confirm permission, pricing, terms, contact route and a real test on the destination website.</p></div></div></section>
+<section class="panel"><h2>4 · Service offer</h2><p>This tool can be used as a demonstration for Shirmani Research Institute's Hindi/English writing service. Proposed reference prices are not binding quotes: short writing from ₹999; research summary from ₹1,999; up to three agreed website/blog pieces from ₹2,999. Confirm scope, revisions, deadline and payment terms in writing before accepting an order.</p><p><a href="../showroom/revenue-ready-writing-research-studio.html">Open writing & research enquiry builder</a> · <a href="../showroom/public-product-showroom.html">Browse public product showroom</a></p></section>
+<footer class="muted">SHIRMANI RESEARCH INSTITUTE · SRI-WRITE-007 · Browser-local prototype · No content is sent automatically.</footer>
+</main>
+<script>
+(()=>{const $=id=>document.getElementById(id);let pack='';
+const make=(en,hi,lang)=>lang==='hi'?hi:lang==='en'?en:en+'\n\n'+hi;
+$('brief').addEventListener('submit',e=>{e.preventDefault();const v=id=>$(id).value.trim();const brand=v('brand'),aud=v('audience')||'the intended audience',offer=v('offer'),benefit=v('benefit'),proof=v('proof')||'No evidence supplied; add only after checking.',cta=v('cta')||'Contact us to discuss your requirements',tone=v('tone'),limits=v('limits')||'Confirm scope, price, timing and terms before commitment.',lang=v('language');
+const sections=[
+['HOMEPAGE HEADLINE','A clearer way to '+offer+'.','आपकी जरूरत के लिए '+offer+' का स्पष्ट और सरल विकल्प।'],
+['SUBHEADLINE','For '+aud+', '+brand+' offers '+offer+' focused on '+benefit+'.',''+brand+' '+aud+' के लिए '+offer+' उपलब्ध कराता है, जिसका उद्देश्य '+benefit+' है।'],
+['ABOUT','About '+brand+'\n\n'+brand+' works on '+offer+'. Our communication style is '+tone.toLowerCase()+'. We aim to explain the scope, process and limits clearly before work begins.',''+brand+' के बारे में\n\n'+brand+' '+offer+' पर काम करता है। हमारा उद्देश्य प्रक्रिया, कार्य-सीमा और सीमाओं को काम शुरू होने से पहले स्पष्ट करना है।'],
+['SERVICE DESCRIPTION','What is included\n• Service: '+offer+'\n• Intended audience: '+aud+'\n• Intended benefit: '+benefit+'\n• Evidence / credentials to confirm: '+proof+'\n• Conditions: '+limits,'सेवा में क्या शामिल है\n• सेवा: '+offer+'\n• लक्षित उपयोगकर्ता: '+aud+'\n• उद्देश्य: '+benefit+'\n• प्रमाण/योग्यता की पुष्टि: '+proof+'\n• शर्तें: '+limits],
+['CALL TO ACTION',cta,'आगे का कदम: '+cta],
+['SEO META DESCRIPTION',brand+' — '+offer+' for '+aud+'. Review scope, evidence and terms before placing an order.',''+brand+' — '+aud+' के लिए '+offer+'। ऑर्डर से पहले कार्य-सीमा, प्रमाण और शर्तें देखें.'],
+['QC NOTES','Before publishing: verify every factual statement, replace generic wording, confirm pricing and delivery dates, proofread, obtain permission for assets, and test links. Do not present unsupported claims as facts.','प्रकाशित करने से पहले: हर तथ्य की पुष्टि करें, सामान्य वाक्यों को सही विवरण से बदलें, कीमत और समय तय करें, भाषा जाँचें, सामग्री की अनुमति लें और लिंक टेस्ट करें। बिना प्रमाण दावे न करें.']
+];
+pack='SHIRMANI RESEARCH INSTITUTE — WEBSITE COPY PACK\nProduct ID: SRI-WRITE-007\nBrand: '+brand+'\nTone: '+tone+'\n\n'+sections.map(s=>'## '+s[0]+'\n'+make(s[1],s[2],lang)).join('\n\n')+'\n\nDISCLAIMER\nTemplate-generated starter copy. Not independently researched or fact-checked. Human review required before publication.';
+$('result').value=pack;$('status').textContent='Copy pack generated locally. Review every statement before publishing.';});
+$('copy').onclick=async()=>{if(!$('result').value){$('status').textContent='Generate the pack first.';return}try{await navigator.clipboard.writeText($('result').value);$('status').textContent='Copied.'}catch(e){$('result').select();$('status').textContent='Select and copy manually.'}};
+$('download').onclick=()=>{if(!$('result').value){$('status').textContent='Generate the pack first.';return}const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([$('result').value],{type:'text/plain;charset=utf-8'}));a.download='SRI-WRITE-007-website-copy-pack.txt';a.click();URL.revokeObjectURL(a.href)};
+$('print').onclick=()=>{if(!$('result').value){$('status').textContent='Generate the pack first.';return}const w=window.open('','_blank');if(!w){$('status').textContent='Pop-up blocked. Use Download TXT instead.';return}const safe=$('result').value.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));w.document.write('<!doctype html><meta charset="utf-8"><title>SRI-WRITE-007 Copy Pack</title><pre style="white-space:pre-wrap;font:14px/1.6 system-ui;max-width:850px;margin:30px auto">'+safe+'</pre>');w.document.close();w.focus();w.print()};
+})();
+</script></body></html>
