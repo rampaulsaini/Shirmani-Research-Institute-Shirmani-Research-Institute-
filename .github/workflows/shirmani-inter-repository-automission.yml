@@ -78,11 +78,10 @@ jobs:
             }
 
             if (!targets.length) {
-              targets = [{
-                repository: 'rampaulsaini/yatharth-music-ai',
-                event_type: 'yatharth_studio_request',
-                enabled: true
-              }];
+              core.setFailed(
+                'SHIRMANI_REPOSITORIES is empty; refusing to dispatch to any default downstream repository.'
+              );
+              return;
             }
 
             const brief =
@@ -105,7 +104,26 @@ jobs:
               return;
             }
 
-            const mode = process.env.AUTOMATION_MODE || 'CONTINUOUS';
+            // Normalize the repository variable, then fail closed on unknown values.
+            // MANUAL permits dispatch only from an explicit workflow_dispatch run.
+            // PAUSED prevents all downstream dispatch until an owner changes the variable.
+            const rawMode = process.env.AUTOMATION_MODE || 'CONTINUOUS';
+            const mode = rawMode.trim().toUpperCase();
+            const allowedModes = new Set(['CONTINUOUS', 'MANUAL', 'PAUSED']);
+            if (!allowedModes.has(mode)) {
+              core.setFailed(
+                `Unsupported SHIRMANI_AUTOMATION_MODE: expected CONTINUOUS, MANUAL, or PAUSED; received ${JSON.stringify(rawMode)}`
+              );
+              return;
+            }
+            if (mode === 'PAUSED') {
+              core.notice('Federation mode is PAUSED; no downstream dispatch performed.');
+              return;
+            }
+            if (mode === 'MANUAL' && context.eventName !== 'workflow_dispatch') {
+              core.notice(`Federation mode is MANUAL; skipping automatic event ${context.eventName}.`);
+              return;
+            }
 
             for (const target of targets) {
               if (target.enabled === false) continue;
