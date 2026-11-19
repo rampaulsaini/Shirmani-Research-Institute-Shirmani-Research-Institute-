@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI Product Media Readiness Audit</title>
+<meta name="description" content="Checks each showroom product's visual, passport, demo route, MP4 and VIP screenshot links without pretending missing media exists.">
+<style>
+:root{color-scheme:dark;--bg:#07101b;--panel:#101d2c;--line:#30445b;--gold:#f0cf66;--cyan:#70ddf4;--green:#79e2a2;--red:#ff9d9d;--muted:#b8c4d2}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1b2b40,#07101b 58%);color:#f6f8fb;font:15px/1.55 system-ui,"Noto Sans Devanagari",sans-serif}
+main{max-width:1250px;margin:auto;padding:20px 14px 60px}header,.panel{background:#101d2cf2;border:1px solid var(--line);border-radius:16px;padding:20px;margin:12px 0}header{border:2px solid var(--gold)}h1,h2{color:var(--gold)}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}.metric,.item{background:#091522;border:1px solid var(--line);border-radius:12px;padding:12px}.metric b{display:block;font-size:1.65rem;color:var(--cyan)}button,.btn{border:0;display:inline-block;padding:10px 13px;border-radius:9px;background:var(--gold);color:#111;font-weight:900;text-decoration:none;cursor:pointer;margin:4px 5px 4px 0}.alt{background:#13283a;color:var(--cyan);border:1px solid #35536c}input,select{padding:10px;border-radius:8px;background:#07101b;color:#fff;border:1px solid #35536c;width:100%}.toolbar{display:grid;grid-template-columns:2fr 1fr;gap:10px}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:900px}td,th{text-align:left;padding:9px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--gold)}.pass{color:var(--green);font-weight:900}.fail{color:var(--red);font-weight:900}.pending{color:var(--muted)}.notice{border-left:4px solid var(--cyan);padding:12px;background:#091522}@media(max-width:650px){.toolbar{grid-template-columns:1fr}}
+</style></head><body><main>
+<header><div class="muted">SHIRMANI RESEARCH INSTITUTE · PRODUCTION QA</div><h1>Product Media Readiness Audit</h1>
+<p>हर product के visual, long-description/passport, interactive demo route, real MP4 और VIP screenshot को अलग-अलग जाँचें। यह पृष्ठ लिंक की उपलब्धता जाँचता है—किसी वीडियो की गुणवत्ता, स्वतंत्र QC, बिक्री या भुगतान को अपने-आप प्रमाणित नहीं करता।</p>
+<p><a class="btn alt" href="../showroom-public-interface.html">Public Showroom</a> <a class="btn alt" href="../showroom/production-control-centre.html">Production Control Centre</a></p>
+<div class="grid"><div class="metric">Products checked<b id="total">—</b></div><div class="metric">Visual route available<b id="visuals">—</b></div><div class="metric">Passport route available<b id="passports">—</b></div><div class="metric">Demo route available<b id="demos">—</b></div><div class="metric">Real MP4 assets<b id="mp4">—</b></div><div class="metric">VIP screenshots<b id="vip">—</b></div><div class="metric">All media routes ready<b id="ready">—</b></div></div>
+<p id="status" class="muted" role="status">Catalogue and media manifest are loading…</p></header>
+<section class="panel"><h2>Filter results</h2><div class="toolbar"><input id="search" placeholder="Search product ID or name"><select id="filter"><option value="all">All products</option><option value="incomplete">Missing one or more media assets</option><option value="complete">All media links found</option></select></div>
+<p><button id="csv">Export audit CSV</button> <button id="retry" class="alt">Run checks again</button></p><div class="notice">Interpretation: “route available” means a same-origin request returned successfully. “Real MP4” requires a manifest media URL ending in .mp4 and a successful check. A demo HTML page is not counted as an MP4.</div></section>
+<section class="panel"><div class="tablewrap"><table><thead><tr><th>Product</th><th>Visual</th><th>Passport</th><th>Demo route</th><th>Real MP4</th><th>VIP screenshot</th><th>Missing / notes</th></tr></thead><tbody id="rows"><tr><td colspan="7">Loading…</td></tr></tbody></table></div></section>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);let results=[];
+const url=(p)=>{const s=String(p||"");if(/^https?:\\/\\//i.test(s)||s.startsWith("/")||s.startsWith("../"))return new URL(s,location.href).href;return new URL("../"+s,location.href).href};
+async function exists(path){if(!path)return false;try{const r=await fetch(url(path),{method:"HEAD",cache:"no-store"});if(r.ok)return true;const g=await fetch(url(path),{method:"GET",cache:"no-store"});return g.ok}catch(e){return false}}
+async function load(){ $("status").textContent="Loading catalogue and manifest…";$("rows").innerHTML="<tr><td colspan='7'>Checking files; larger catalogues may take time.</td></tr>";
+try{
+ const [catRes,mediaRes]=await Promise.all([fetch(url("../generated/1000-digital-products.json?ts="+Date.now()),{cache:"no-store"}),fetch(url("../generated/product-media-production-manifest.json?ts="+Date.now()),{cache:"no-store"} )]);
+ if(!catRes.ok)throw new Error("Catalogue fetch failed: HTTP "+catRes.status);
+ const cat=await catRes.json(),manifest=mediaRes.ok?await mediaRes.json():{};
+ const products=Array.isArray(cat)?cat:(cat.products||cat.items||[]);
+ const mediaList=Array.isArray(manifest)?manifest:(manifest.products||manifest.items||manifest.records||[]);
+ const mediaMap=new Map(mediaList.map(x=>[String(x.id||x.product_id||"").toUpperCase(),x]));
+ results=[];for(let i=0;i<products.length;i+=20){const batch=products.slice(i,i+20);const checked=await Promise.all(batch.map(async p=>{
+ const id=String(p.id||p.product_id||"").toUpperCase();const key=id.toLowerCase();
+ const visual=p.visual_asset||p.visual||("products/visuals/"+key+".svg");
+ const passport="product-passport.html?id="+encodeURIComponent(id);
+ const demo="demo-video.html?id="+encodeURIComponent(id);
+ const vip=p.vip_screenshot||p.vip_screenshot_asset||("products/vip-screenshots/"+key+".png");
+ const m=mediaMap.get(id)||p.media||{};
+ const video=String(m.mp4_url||m.video_asset||m.mp4||p.mp4_url||"");
+ const [v,ps,d,mp,vs]=await Promise.all([exists(visual),exists(passport),exists(demo),video.toLowerCase().split("?")[0].endsWith(".mp4")?exists(video):Promise.resolve(false),exists(vip)]);
+ const missing=[];if(!v)missing.push("visual");if(!ps)missing.push("passport");if(!d)missing.push("demo route");if(!mp)missing.push("real MP4");if(!vs)missing.push("VIP screenshot");
+ return {id,name:p.name||p.title||id,visual,passport,demo,video,vip,visualOk:v,passportOk:ps,demoOk:d,mp4Ok:mp,vipOk:vs,missing};
+ }));results.push(...checked);$("status").textContent="Checked "+Math.min(i+batch.length,products.length)+" / "+products.length+" products…";}
+ $("status").textContent="Audit finished. Checked "+results.length+" catalogue records. Missing assets are listed rather than inferred as complete.";
+ render();
+}catch(e){$("status").textContent="Audit could not complete: "+e.message;$("rows").innerHTML="<tr><td colspan='7'>Check the catalogue path and GitHub Pages deployment, then retry.</td></tr>"}}
+function state(ok){return '<span class="'+(ok?'pass':'fail')+'">'+(ok?'FOUND':'MISSING')+'</span>'}
+function render(){const q=$("search").value.toLowerCase(),f=$("filter").value;const all=results.filter(x=>(!q||(x.id+" "+x.name).toLowerCase().includes(q))&&(f==="all"||(f==="complete"&&!x.missing.length)||(f==="incomplete"&&x.missing.length)));
+ $("total").textContent=results.length.toLocaleString();$("visuals").textContent=results.filter(x=>x.visualOk).length.toLocaleString();$("passports").textContent=results.filter(x=>x.passportOk).length.toLocaleString();$("demos").textContent=results.filter(x=>x.demoOk).length.toLocaleString();$("mp4").textContent=results.filter(x=>x.mp4Ok).length.toLocaleString();$("vip").textContent=results.filter(x=>x.vipOk).length.toLocaleString();$("ready").textContent=results.filter(x=>!x.missing.length).length.toLocaleString();
+ $("rows").innerHTML=all.map(x=>'<tr><td><b>'+esc(x.id)+'</b><br>'+esc(x.name)+'</td><td>'+state(x.visualOk)+'<br><a target="_blank" rel="noopener" href="'+esc(url(x.visual))+'">open</a></td><td>'+state(x.passportOk)+'<br><a href="'+esc(x.passport)+'">open</a></td><td>'+state(x.demoOk)+'<br><a href="'+esc(x.demo)+'">open</a></td><td>'+state(x.mp4Ok)+(x.video?'<br><a target="_blank" rel="noopener" href="'+esc(url(x.video))+'">open MP4</a>':'')+'</td><td>'+state(x.vipOk)+'<br><a target="_blank" rel="noopener" href="'+esc(url(x.vip))+'">open</a></td><td class="'+(x.missing.length?'fail':'pass')+'">'+(x.missing.length?esc(x.missing.join(", ")):"All checked routes found")+'</td></tr>').join("")||'<tr><td colspan="7">No matching products.</td></tr>'}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+$("search").addEventListener("input",render);$("filter").addEventListener("change",render);$("retry").addEventListener("click",load);
+$("csv").addEventListener("click",()=>{const header=["id","name","visual_ok","passport_ok","demo_route_ok","real_mp4_ok","vip_screenshot_ok","missing","video_url"];const lines=[header,...results.map(x=>[x.id,x.name,x.visualOk,x.passportOk,x.demoOk,x.mp4Ok,x.vipOk,x.missing.join("; "),x.video])].map(row=>row.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(","));const blob=new Blob([lines.join("\r\n")],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="shirmani-product-media-audit.csv";a.click();URL.revokeObjectURL(a.href)});
+load();
+</script></main></body></html>
