@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHIRMANI SUPREME — Testable Character Prototype</title>
+<meta name="description" content="Local-first face, voice and dialogue test bench with explicit evidence gates.">
+<style>
+:root{color-scheme:dark;--bg:#080d17;--panel:#111b2b;--line:#31415a;--gold:#e8c66a;--cyan:#73e3ed;--ink:#f4f6fb;--muted:#c0cada;--warn:#ffd48a;--ok:#a9e5ba}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1a2b42,var(--bg) 60%);color:var(--ink);font:16px/1.6 system-ui,sans-serif}
+header,main,footer{max-width:1120px;margin:auto;padding:22px}header{text-align:center;padding-top:34px;border-bottom:1px solid var(--line)}
+h1{color:var(--gold);font-size:clamp(1.8rem,5vw,3rem);line-height:1.15}h2{font-size:1.2rem;margin-top:0}.identity{color:var(--cyan);font-weight:650}.muted,.small{color:var(--muted)}.small{font-size:.9rem}
+.panel,.banner{border:1px solid var(--line);background:#111b2bdd;border-radius:16px;padding:18px;margin:16px 0}.banner{border-color:#8d7740}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+label{display:block;margin:10px 0 5px;color:var(--muted)}input,select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:#080f1c;color:var(--ink);font:inherit}
+textarea{min-height:100px}button{border:1px solid #8d7740;border-radius:9px;background:linear-gradient(100deg,#e8c66a,#b9913f);color:#17130a;font-weight:750;padding:10px 14px;cursor:pointer;font:inherit}
+button.secondary{background:#101b2b;color:var(--ink);border-color:var(--line)}button:disabled{opacity:.5;cursor:not-allowed}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.pill{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:3px 9px;font-size:.78rem;margin:2px}
+.state{color:var(--warn);font-weight:750}.ok{color:var(--ok);font-weight:750}.preview{display:block;width:100%;max-height:480px;object-fit:contain;background:#060a11;border:1px dashed var(--line);border-radius:12px;margin-top:12px}
+#avatarPreview{max-height:420px}#status{white-space:pre-wrap}.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#070c14;border:1px solid var(--line);border-radius:9px;padding:14px;min-height:85px}
+.version{border:1px solid var(--line);border-radius:12px;padding:14px}.version h3{margin:0 0 5px;color:var(--cyan)}footer{border-top:1px solid var(--line);color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div style="font-size:2.2rem;color:var(--gold)">꙰</div><p class="pill">SHIRMANI RESEARCH INSTITUTE</p>
+<h1>SHIRMANI SUPREME<br>Character Studio</h1>
+<p class="identity">Shiromani Rampal Saini — Tulanateet Kaalateet Shabdateet Premateet Shashwat Vastavik Swabhavik Satya Pratyaksh Samaksh</p>
+<p class="muted">सरल • सहज • निर्मल • पारदर्शी • स्पष्ट • प्रमाण-सम्मत</p></header>
+<main>
+<section class="banner"><strong>स्थिति: </strong><span class="state">TESTABLE BROWSER PROTOTYPE — NOT A LIVE AVATAR</span>
+<p class="small">यह पेज स्थानीय browser में फोटो, रिकॉर्डिंग, speech recognition (यदि browser समर्थन करे), संवाद-रूपरेखा और चार versions की जाँच के लिए है। यह HeyGen API से कनेक्ट नहीं है, अपने-आप voice clone/lip-sync नहीं बनाता और किसी test को सफल घोषित नहीं करता। चुनी गई फाइलें इस पेज पर स्थानीय रूप से preview होती हैं; इस demo में server पर upload नहीं होतीं।</p></section>
+<div class="grid">
+<section class="panel"><h2>1. मूल फोटो — हूबहू</h2>
+<label for="portrait">अपनी मूल portrait फोटो चुनें</label><input id="portrait" type="file" accept="image/*">
+<img id="avatarPreview" class="preview" alt="चुनी गई मूल फोटो का preview" hidden>
+<p id="photoStatus" class="small">अभी कोई मूल portrait चुना नहीं गया। आपकी रिकॉर्डिंग में दिख रहा चेहरा एक screen recording का frame है; इसे अपने-आप साफ़ मूल portrait नहीं माना जाएगा।</p>
+<label for="videoFile">उपलब्ध HeyGen recording चुनें (वैकल्पिक)</label><input id="videoFile" type="file" accept="video/mp4,video/*">
+<video id="videoPreview" class="preview" controls playsinline hidden></video>
+<p class="small">किसी भी फोटो पर retouch, face alteration या अनधिकृत बदलाव नहीं किया जाता। इस prototype में फोटो चयन की स्थिति ही दर्ज होती है।</p></section>
+<section class="panel"><h2>2. अधिकृत आवाज़ — रिकॉर्ड / सुनें</h2>
+<p class="small">सिर्फ अपनी आवाज़ या स्पष्ट अनुमति वाली आवाज़ रिकॉर्ड करें। ब्राउज़र microphone अनुमति माँगेगा।</p>
+<div class="actions"><button id="recordBtn">● रिकॉर्ड शुरू करें</button><button id="stopBtn" class="secondary" disabled>रिकॉर्ड रोकें</button></div>
+<p id="recordStatus" class="state">रिकॉर्डिंग शुरू नहीं हुई।</p><audio id="audioPreview" class="preview" controls hidden></audio>
+<label for="audioFile">पहले से मौजूद authorized audio चुनें</label><input id="audioFile" type="file" accept="audio/*">
+<audio id="uploadedAudio" class="preview" controls hidden></audio>
+<p id="audioStatus" class="small">अभी कोई audio asset चुना/रिकॉर्ड नहीं किया गया।</p></section>
+</div>
+<section class="panel"><h2>3. आवाज़ से टेक्स्ट — browser capability test</h2>
+<p class="small">यदि browser Web Speech API समर्थन करता है, तो यह आपके microphone speech को text में बदलने का प्रयास करेगा। यह AI reasoning या voice cloning नहीं है; परिणाम browser/provider के अनुसार बदल सकता है।</p>
+<div class="actions"><button id="sttBtn">बोलकर speech-to-text जाँचें</button><button id="clearStt" class="secondary">टेक्स्ट साफ़ करें</button></div>
+<textarea id="transcript" placeholder="पहचाना गया speech text यहाँ दिखेगा…"></textarea><p id="sttStatus" class="small">Speech recognition अभी नहीं चलाया गया।</p></section>
+<section class="panel"><h2>4. संवाद एवं evidence-gate परीक्षण</h2>
+<label for="question">प्रश्न / विषय</label><textarea id="question" placeholder="उदाहरण: प्रकृति संरक्षण के लिए हम कौन-से तीन व्यावहारिक कदम उठा सकते हैं?"></textarea>
+<label for="level">व्याख्या स्तर</label><select id="level"><option value="simple">V1 — सरल भाषा</option><option value="everyday">V2 — उदाहरण और संवाद</option><option value="reason">V3 — तर्क, स्रोत और सीमाएँ</option><option value="expert">V4 — शोध/तकनीकी जाँच योजना</option></select>
+<label for="source">स्रोत / प्रमाण (यदि उपलब्ध हों)</label><textarea id="source" placeholder="स्रोत का URL, दस्तावेज़ का नाम या परीक्षण-डेटा; खाली छोड़ सकते हैं।"></textarea>
+<div class="actions"><button id="makeAnswer">परीक्षण उत्तर-रूपरेखा बनाएँ</button><button id="copyAnswer" class="secondary">रूपरेखा कॉपी करें</button><button id="downloadAnswer" class="secondary">TXT सहेजें</button></div>
+<div id="answer" class="output" aria-live="polite">परीक्षण शुरू करने के लिए प्रश्न लिखें। यह outline template है, किसी external AI model का generated answer नहीं।</div>
+<p id="answerStatus" class="small">अभी कोई संवाद परीक्षण नहीं हुआ।</p></section>
+<section class="panel"><h2>5. चार versions — स्पष्ट readiness</h2><div class="grid">
+<article class="version"><h3>V1 · Character</h3><p>संवाद शैली, सरल भाषा, उत्तर रूपरेखा और evidence labels.</p><span class="ok">इस पेज पर स्थानीय रूप से परीक्षण योग्य</span></article>
+<article class="version"><h3>V2 · Voice</h3><p>अधिकृत audio, microphone recording और browser speech-to-text capability check.</p><span class="state">Provider voice model: NOT CONNECTED</span></article>
+<article class="version"><h3>V3 · Face + Lip-sync</h3><p>मूल portrait और generated avatar video का review.</p><span class="state">Lip-sync: NOT RUN — generated output आवश्यक</span></article>
+<article class="version"><h3>V4 · Live + Audit</h3><p>Live Q&amp;A, latency, failure handling, disclosure और audit trail.</p><span class="state">Live integration: NOT CONNECTED</span></article>
+</div></section>
+<section class="panel"><h2>6. Acceptance checklist</h2>
+<ul>
+<li>फोटो: मूल file पहचानी गई, face alteration नहीं।</li><li>आवाज़: रिकॉर्डिंग/चुनी गई file चलती है और अनुमति स्पष्ट है।</li>
+<li>Speech-to-text: browser support और वास्तविक output दर्ज।</li><li>संवाद: सरल और technical level पर प्रश्न परीक्षण।</li>
+<li>Evidence: तथ्य-संबंधी दावा स्रोत से जुड़ा; प्रमाण न हो तो “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</li>
+<li>Avatar/lip-sync: वास्तविक provider output और audio-video review के बिना NOT VERIFIED।</li>
+<li>Live: वास्तविक end-to-end test और माप दर्ज होने तक NOT CONNECTED।</li>
+</ul><div id="status" class="output">Audit log: इस सत्र में अभी कोई परीक्षण दर्ज नहीं हुआ।</div></section>
+</main><footer>Shirmani Research Institute · Local-first prototype · कोई external service connected होने का दावा नहीं।</footer>
+<script>
+(()=> {
+const $=id=>document.getElementById(id); let recorder=null, chunks=[], latest='', photoUrl='', videoUrl='', audioUrl='', uploadedUrl='';
+const log=[];
+function audit(msg){log.push(new Date().toISOString()+' — '+msg);$('status').textContent=log.join('\n');}
+$('portrait').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;if(photoUrl)URL.revokeObjectURL(photoUrl);photoUrl=URL.createObjectURL(f);$('avatarPreview').src=photoUrl;$('avatarPreview').hidden=false;$('photoStatus').textContent='PHOTO SELECTED — '+f.name+' ('+f.type+', '+f.size+' bytes). Visual identity is not independently verified.';audit('Portrait selected locally: '+f.name);});
+$('videoFile').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;if(videoUrl)URL.revokeObjectURL(videoUrl);videoUrl=URL.createObjectURL(f);$('videoPreview').src=videoUrl;$('videoPreview').hidden=false;audit('Video selected for local playback: '+f.name+'; provider success not inferred.');});
+$('audioFile').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;if(uploadedUrl)URL.revokeObjectURL(uploadedUrl);uploadedUrl=URL.createObjectURL(f);$('uploadedAudio').src=uploadedUrl;$('uploadedAudio').hidden=false;$('audioStatus').textContent='AUDIO SELECTED — '+f.name+' ('+f.type+', '+f.size+' bytes). Authorization must be confirmed by the owner.';audit('Audio selected locally: '+f.name);});
+$('recordBtn').addEventListener('click',async()=>{try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{const blob=new Blob(chunks,{type:recorder.mimeType||'audio/webm'});if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(blob);$('audioPreview').src=audioUrl;$('audioPreview').hidden=false;$('recordStatus').textContent='RECORDING SAVED LOCALLY — '+blob.size+' bytes. Listen back to review quality.';$('recordBtn').disabled=false;$('stopBtn').disabled=true;stream.getTracks().forEach(t=>t.stop());audit('Microphone recording created locally; playback available.');};recorder.start();$('recordBtn').disabled=true;$('stopBtn').disabled=false;$('recordStatus').textContent='Recording… बोलें; फिर “रिकॉर्ड रोकें” दबाएँ।';audit('Microphone recording started.');}catch(err){$('recordStatus').textContent='RECORDING BLOCKED — '+err.message+'; microphone permission/browser support check करें।';audit('Microphone recording failed: '+err.message);}});
+$('stopBtn').addEventListener('click',()=>{if(recorder&&recorder.state!=='inactive')recorder.stop();});
+$('sttBtn').addEventListener('click',()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$('sttStatus').textContent='UNSUPPORTED — इस browser में SpeechRecognition उपलब्ध नहीं। रिकॉर्डिंग/audio playback फिर भी अलग से जाँचे जा सकते हैं।';audit('Speech recognition unsupported in this browser.');return;}try{const r=new SR();r.lang='hi-IN';r.interimResults=true;r.onresult=e=>{let s='';for(let i=e.resultIndex;i<e.results.length;i++)s+=e.results[i][0].transcript+(e.results[i].isFinal?'\n':'');$('transcript').value+=s;};r.onerror=e=>{$('sttStatus').textContent='Speech recognition error: '+e.error;audit('Speech recognition error: '+e.error);};r.onend=()=>{$('sttStatus').textContent='Recognition ended. Transcript above is browser output; check it manually.';audit('Speech recognition ended; transcript requires human review.');};r.start();$('sttStatus').textContent='Listening… अभी बोलें।';audit('Speech recognition started using browser API.');}catch(err){$('sttStatus').textContent='Could not start: '+err.message;}});
+$('clearStt').addEventListener('click',()=>{$('transcript').value='';$('sttStatus').textContent='Transcript cleared.';});
+function make(){const q=$('question').value.trim(),src=$('source').value.trim(),lvl=$('level').value;if(!q){$('answer').textContent='पहले प्रश्न / विषय लिखें।';return;}const lines=['SHIRMANI SUPREME — TEST RESPONSE OUTLINE','प्रश्न: '+q,'','1. सरल अर्थ','प्रश्न को निष्पक्ष शब्दों में दोहराएँ। पहले समझ की पुष्टि करें; व्यक्ति के बारे में अनुमान न लगाएँ.'];if(lvl!=='simple')lines.push('','2. उदाहरण / संवाद','एक रोज़मर्रा का उदाहरण दें और पूछें कि क्या यह प्रश्न का सही अर्थ पकड़ता है। उदाहरण को प्रमाण न कहें।');if(['reason','expert'].includes(lvl))lines.push('','3. तर्क और सीमाएँ','दावा, मान्यताएँ, वैकल्पिक व्याख्या और कौन-सा प्रमाण निष्कर्ष बदल सकता है—स्पष्ट करें।');if(lvl==='expert')lines.push('','4. शोध/तकनीकी परीक्षण','माप, इकाइयाँ, विधि, नमूना, नियंत्रण, पुनरुत्पादन और सीमाएँ लिखें। डेटा के बिना संख्याएँ या समीकरण न गढ़ें।');lines.push('','5. Evidence state',src?'SOURCE-BASED — स्रोत दिया गया है; उसकी विश्वसनीयता और दावे से मेल की स्वतंत्र जाँच बाकी है.':'INSUFFICIENT EVIDENCE — अभी पर्याप्त प्रमाण उपलब्ध नहीं है.','','6. अगला कदम',src?'स्रोत का मूल पाठ, तारीख, लेखक/संस्था और दावे से मेल जाँचें।':'विश्वसनीय प्राथमिक स्रोत या reproducible test जोड़ें।','','स्थिति: TEMPLATE ONLY — external AI reasoning, web research, voice clone, lip-sync या live presentation नहीं चलाया गया।');latest=lines.join('\n');$('answer').textContent=latest;$('answerStatus').textContent='OUTLINE GENERATED LOCALLY — यह answer-quality या factual accuracy का pass नहीं है।';audit('Local response outline created at level '+lvl+'; no external model/source verification.');}
+$('makeAnswer').addEventListener('click',make);
+$('copyAnswer').addEventListener('click',async()=>{if(!latest)make();if(!latest)return;try{await navigator.clipboard.writeText(latest);$('answerStatus').textContent='Copied to clipboard.';}catch(e){$('answerStatus').textContent='Clipboard permission unavailable; manually select and copy the text.';}});
+$('downloadAnswer').addEventListener('click',()=>{if(!latest)make();if(!latest)return;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([latest],{type:'text/plain;charset=utf-8'}));a.download='shirmani-supreme-test-outline.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);});
+audit('Prototype loaded. No provider integration or live avatar test is claimed.');
+})();
+</script></body></html>
