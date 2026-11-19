@@ -1,0 +1,57 @@
+name: SHIRMANI Supreme Voice Presentation Readiness
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */2 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate contract exists
+        shell: bash
+        run: |
+          test -f schemas/voice-presentation-contract.schema.json
+          test -f docs/SUPREME-AI-ML-NLP-VOICE-PRESENTATION-READY.md
+
+      - name: Static safety checks
+        shell: bash
+        run: |
+          if grep -RniE 'api[_-]?key[[:space:]]*[:=][[:space:]]*["'"']?[A-Za-z0-9_-]{16,}|secret[[:space:]]*[:=][[:space:]]*["'"']?[A-Za-z0-9_-]{16,}' --exclude-dir=.git --exclude='*.lock' .; then
+            echo "Potential credential material detected in tracked files."
+            exit 1
+          fi
+
+      - name: Build fail-closed readiness report
+        shell: bash
+        run: |
+          mkdir -p generated/voice-presentation
+          cat > generated/voice-presentation/readiness.json <<'JSON'
+          {
+            "status": "READY_FOR_CONTROLLED_INTEGRATION",
+            "identity_mode": "SELF_AUTHORIZED",
+            "voice_authorization": "PENDING",
+            "avatar_authorization": "PENDING",
+            "voice_test": "NOT_RUN",
+            "context_test": "NOT_RUN",
+            "evidence_policy": "PASS",
+            "lip_sync_test": "NOT_RUN",
+            "audio_video_coherence": "NOT_RUN",
+            "live_presentation": "NOT_RUN",
+            "promotion": "FAIL_CLOSED",
+            "reason": "Provider credentials, authorized voice asset, authorized avatar/photo asset and reproducible live tests are not asserted by repository automation."
+          }
+          JSON
+
+      - name: Publish readiness artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supreme-voice-presentation-readiness
+          path: generated/voice-presentation/readiness.json
