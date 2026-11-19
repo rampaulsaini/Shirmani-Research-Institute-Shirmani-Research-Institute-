@@ -80,16 +80,21 @@ const $=id=>document.getElementById(id);
 let brief='';
 const val=id=>$(id).value.trim()||'Not provided';
 function makeBrief(){
+if(!$('workForm').reportValidity()){
+$('feedback').textContent='Brief बनाने या export करने से पहले Objective और Topic जैसे आवश्यक fields भरें।';
+return false;
+}
 const checks=[...document.querySelectorAll('#checklist input')].map(x=>(x.checked?'[x] ':'[ ] ')+x.value).join('\n');
 brief='SHIRMANI RESEARCH INSTITUTE — WRITING & RESEARCH BRIEF\n\n'
 +'Service: '+val('service')+'\nLanguage: '+val('language')+'\nAudience: '+val('audience')+'\nDeliverables / length: '+val('length')+'\nProposed deadline (not yet confirmed): '+val('deadline')+'\nBudget (not a quote): '+val('budget')+'\n\n'
 +'Objective:\n'+val('goal')+'\n\nTopic:\n'+val('topic')+'\n\nSources / links:\n'+val('sources')+'\n\nConstraints:\n'+val('constraints')+'\n\nAcceptance criteria:\n'+val('acceptance')+'\n\nPre-start checklist:\n'+checks+'\n\n'
 +'COMMERCIAL GATE: Do not start work until scope, deliverables, final price/currency, deadline, revision policy and payment terms are agreed in writing. No sale or payment is implied by generating this brief.';
 $('output').textContent=brief;$('feedback').textContent='Brief तैयार है — अभी कोई संदेश भेजा नहीं गया।';
+return true;
 }
 $('workForm').addEventListener('submit',e=>{e.preventDefault();makeBrief()});
 $('reset').addEventListener('click',()=>{$('workForm').reset();document.querySelectorAll('#checklist input').forEach(x=>x.checked=false);brief='';$('output').textContent='ऊपर की जानकारी भरकर “Brief बनाएं” चुनें।';$('feedback').textContent=''});
-$('copy').addEventListener('click',async()=>{if(!brief){makeBrief()}try{await navigator.clipboard.writeText(brief);$('feedback').textContent='Brief clipboard में कॉपी हो गया।'}catch(e){$('feedback').textContent='Auto-copy उपलब्ध नहीं; नीचे का brief manually select करके copy करें.'}});
-$('download').addEventListener('click',()=>{if(!brief)makeBrief();const blob=new Blob([brief],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='shirmani-research-brief.txt';a.click();URL.revokeObjectURL(url);$('feedback').textContent='Brief text file तैयार की गई।'});
+$('copy').addEventListener('click',async()=>{if(!brief&&!makeBrief())return;try{await navigator.clipboard.writeText(brief);$('feedback').textContent='Brief clipboard में कॉपी हो गया।'}catch(e){$('feedback').textContent='Auto-copy उपलब्ध नहीं; नीचे का brief manually select करके copy करें.'}});
+$('download').addEventListener('click',()=>{if(!brief&&!makeBrief())return;const blob=new Blob([brief],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='shirmani-research-brief.txt';a.click();URL.revokeObjectURL(url);$('feedback').textContent='Brief text file तैयार की गई।'});
 })();
 </script></body></html>
