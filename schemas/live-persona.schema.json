@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHIRMANI Live Persona Status",
+  "type": "object",
+  "required": ["schema_version","identity","persona","voice","qa","visual","verification","status"],
+  "properties": {
+    "schema_version": {"type":"string"},
+    "identity": {
+      "type":"object",
+      "required":["display_name","identity_state"],
+      "properties":{
+        "display_name":{"type":"string"},
+        "identity_state":{"enum":["AUTHOR_DECLARED","INDEPENDENTLY_VERIFIED","UNVERIFIED"]},
+        "photo_source":{"type":["string","null"]},
+        "photo_authorization":{"enum":["AUTHORIZED","NOT_AUTHORIZED","UNKNOWN"]}
+      },
+      "additionalProperties":false
+    },
+    "persona": {
+      "type":"object",
+      "required":["communication","dress_context","evidence_language"],
+      "properties":{
+        "communication":{"type":"array","items":{"type":"string"}},
+        "dress_context":{"type":"string"},
+        "evidence_language":{"type":"string"}
+      },
+      "additionalProperties":false
+    },
+    "voice": {
+      "type":"object",
+      "required":["integration_state","authorization_state"],
+      "properties":{
+        "integration_state":{"enum":["NOT_CONNECTED","TEST_READY","CONNECTED","LIVE"]},
+        "authorization_state":{"enum":["NOT_AUTHORIZED","AUTHORIZED","REVOKED","UNKNOWN"]},
+        "provider":{"type":["string","null"]},
+        "voice_id":{"type":["string","null"]},
+        "last_test":{"type":["string","null"]}
+      },
+      "additionalProperties":false
+    },
+    "qa": {
+      "type":"object",
+      "required":["test_state","evidence_policy"],
+      "properties":{
+        "test_state":{"enum":["NOT_TESTED","PASS","FAIL"]},
+        "evidence_policy":{"type":"string"},
+        "insufficient_evidence_response":{"type":"string"}
+      },
+      "additionalProperties":false
+    },
+    "visual": {
+      "type":"object",
+      "required":["photo_state","lip_sync_state","timing_state"],
+      "properties":{
+        "photo_state":{"enum":["NOT_READY","READY","AUTHORIZED"]},
+        "lip_sync_state":{"enum":["NOT_TESTED","PASS","FAIL"]},
+        "timing_state":{"enum":["NOT_TESTED","PASS","FAIL"]}
+      },
+      "additionalProperties":false
+    },
+    "verification": {
+      "type":"object",
+      "required":["independent_verification"],
+      "properties":{
+        "independent_verification":{"enum":["NOT_VERIFIED","PARTIALLY_VERIFIED","VERIFIED"]},
+        "evidence_refs":{"type":"array","items":{"type":"string"}}
+      },
+      "additionalProperties":false
+    },
+    "status": {"enum":["DRAFT","READY","BLOCKED","LIVE"]}
+  },
+  "additionalProperties":false
+}
