@@ -1,0 +1,63 @@
+name: SHIRMANI HeyGen Second Version Control
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shirmani-heygen-second-version-control
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Second-Version contract
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("generated/heygen-second-version-config.json").read_text(encoding="utf-8"))
+          expected=["voice","authorized_voice_integration","content","evidence_gate","photo_or_avatar","lip_sync","contextual_qa","live_presentation","review","audit","continuous_improvement"]
+          assert d["pipeline"] == expected
+          assert d["camera_independent"] is True
+          assert d["evidence_policy"]["factual_claims_need_provenance"] is True
+          assert d["evidence_policy"]["insufficient_evidence_message"] == "अभी पर्याप्त प्रमाण उपलब्ध नहीं है"
+          print("SECOND_VERSION_CONTRACT=PASS")
+          PY
+
+      - name: External HeyGen credential preflight
+        env:
+          HEYGEN_API_KEY: ${{ secrets.HEYGEN_API_KEY }}
+        run: |
+          if [ -z "$HEYGEN_API_KEY" ]; then
+            echo "EXTERNAL_HEYGEN=BLOCKED"
+            echo "Reason: HEYGEN_API_KEY is not configured as a GitHub Actions secret."
+            exit 0
+          fi
+          code=$(curl -sS -o /dev/null -w "%{http_code}" -H "X-Api-Key: $HEYGEN_API_KEY" "https://api.heygen.com/v3/voices")
+          case "$code" in
+            2*) echo "EXTERNAL_HEYGEN=REACHABLE" ;;
+            401|403) echo "EXTERNAL_HEYGEN=UNAUTHORIZED" ;;
+            *) echo "EXTERNAL_HEYGEN=UNAVAILABLE_HTTP_$code" ;;
+          esac
+
+      - name: Verify no credentials are committed
+        run: |
+          ! grep -RniE 'HEYGEN_API_KEY|x-api-key:[[:space:]]*[A-Za-z0-9_-]{20,}' generated/heygen-second-version-config.json docs/heygen/second-version-control-contract-v1.md
+
+      - name: Publish preflight summary
+        run: |
+          echo "SHIRMANI Second Version HeyGen Control"
+          echo "Contract: PASS"
+          echo "Credential handling: protected-secret only"
+          echo "Camera dependency: false"
+          echo "Evidence gate: required"
+          echo "Independent verification: separate downstream state"
