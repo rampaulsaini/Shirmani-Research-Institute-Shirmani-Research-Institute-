@@ -168,3 +168,51 @@ Record each gate as **PASS**, **FAIL**, or **BLOCKED**, with test date, input, e
 - [ ] Customer feedback creates a traceable improvement item; changes are retested before release.
 
 **Release rule:** missing original media, broken product QR, absent actual demo/screenshot, failed critical test, or unverified provider connection blocks the affected claim from being marked **VERIFIED**. Keep preparation, QC, publication, dispatch, sales, payment, and independent verification as separate states.
+
+## 9. Refined production-ready character description — 2026-10-12
+
+### Public description (Hindi)
+
+**SHIRMANI SUPREME — निष्पक्ष समझ**
+
+एक सरल, सहज, ध्यानपूर्वक सुनने वाला और पारदर्शी संवाद-सहायक। यह पहले प्रश्न और परिस्थिति को समझता है, फिर मुख्य बात आसान भाषा में रखता है। जरूरत के अनुसार उदाहरण, कहानी, तर्क, स्रोत और तकनीकी व्याख्या जोड़ता है। यह तथ्य, अनुमान, व्यक्तिगत दर्शन और अनिश्चितता को अलग-अलग बताता है। पर्याप्त प्रमाण न हो तो साफ कहता है: **“अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”** हर व्यक्ति के साथ सम्मान से बात करता है; किसी की जाति, धर्म, आर्थिक स्थिति, पद या विचार के आधार पर उसे कमतर नहीं मानता। इसका लक्ष्य दबाव बनाना नहीं, बल्कि स्पष्टता, आत्म-चिंतन और बेहतर समझ में मदद करना है।
+
+### Public description (English)
+
+**SHIRMANI SUPREME — Impartial Understanding**
+
+A calm, attentive and transparent communication assistant that listens first, understands the question and context, and answers in plain language. When useful, it adds examples, stories, reasoning, sources and deeper technical explanations. It distinguishes evidence from inference, personal philosophy and uncertainty, and says “There is not enough evidence available yet” when support is insufficient. It treats people with equal dignity across differences and aims to support clarity and reflection without pressure, humiliation or guaranteed emotional outcomes.
+
+### Canonical product artwork layout
+
+- Canvas: 16:9, recommended 3840 × 2160 source; scale proportionally for smaller screens.
+- Product-specific title and version: prominent, readable and distinct for every product.
+- Original author photo: use only the source image supplied/authorised by the author. Preserve the face unchanged; allow proportional resizing/cropping only when it does not alter facial features. Never generate a substitute face.
+- Logo placement: use the original photo as a modest identity mark. If the original image is unavailable to the build process, publish a clear placeholder or block final artwork; do not substitute a generic portrait.
+- English identity line beneath the photo/logo: “Shiromani Rampal Saini · Impartial Understanding · Beyond Comparison · Beyond Time · Beyond Words · Beyond Love · Eternal · Real · Natural Truth · Directly Present”.
+- Short description: printed directly on the product artwork, with adequate contrast and readable type.
+- QR: upper-right, product-specific, generated only after the canonical public passport URL resolves successfully. Test the rendered QR by decoding/scanning it. A decorative QR or an untested third-party QR image does not pass.
+- VIP screenshot: capture from the actual product interface at a recorded version/commit. A generated SVG cover is artwork, not a screenshot.
+- Demo: link a product-specific walkthrough showing only currently working features. Publish an MP4 only after the file exists, plays, and has been checked for audio/captions and correct product identity.
+- Passport: long description, supported use cases, setup steps, sample workflow, limitations, privacy/data handling, version, price/offer terms, support, changelog, and feedback route.
+- Alt text and captions: provide concise accessible descriptions for the product visual and demo.
+
+### Product media release gate
+
+A product is **SHOWROOM-READY** only when all applicable checks have evidence:
+
+1. Stable product ID/name/version and approved description.
+2. Author photo source and use authorization recorded.
+3. Public passport URL resolves; QR decode test passes and points to that exact URL.
+4. Product visual exists; dimensions and mobile scaling checked.
+5. Actual VIP screenshot is captured from the product UI and labelled with version/commit.
+6. Demo route works; published MP4 exists and plays if MP4 is claimed.
+7. Usage guide, limitations, support and commercial terms are visible.
+8. Accessibility, privacy and basic security checks pass.
+9. QC result and reviewer/date are recorded.
+
+Use explicit states: `BLOCKED_SOURCE_ASSET`, `DRAFT`, `ARTWORK_READY`, `SCREENSHOT_PENDING`, `DEMO_PENDING`, `QC_PENDING`, `SHOWROOM_READY`. Do not convert pending items to complete merely because a workflow ran.
+
+### Current implementation note
+
+Repository documentation contains the character specification and product-media contract, but that alone does not establish that the original photo/audio is available to the media factory or that each product has a scanned QR, captured UI screenshot, and playable MP4. Verify each artifact from its actual file/path and test result before changing its state. The next implementation unit should be one end-to-end reference product that passes every gate, then reuse the proven pipeline for batches.
