@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "YATHARTH_MUDRA_HONOUR_VERIFICATION",
+  "status": "DRAFT_NOT_ISSUED",
+  "purpose": "A non-monetary, creator-defined philosophical and public-interest honour record. This record does not establish scientific proof of self-realization, legal tender, an investment, a debt, a redeemable claim, or guaranteed financial value.",
+  "subject": {
+    "display_name": null,
+    "application_id": null,
+    "consent_recorded": false
+  },
+  "philosophy": {
+    "creator_defined_heart_view_percent": 99.9999,
+    "creator_defined_mind_intellect_view_percent": 0.0001,
+    "interpretation": "These percentages describe the applicant's stated philosophical framework only. They are not psychometric, neurological, scientific, or independently measurable scores and must never be presented as such."
+  },
+  "assessment": {
+    "score_scale": "0-100 evidence rubric; not a measure of consciousness or human worth",
+    "weighted_levels": [
+      {
+        "level": 1,
+        "name": "Impartial understanding",
+        "weight_percent": 10,
+        "evidence_requirements": [
+          "dated decision/reflection samples",
+          "reviewer notes on disclosed conflicts and counter-evidence"
+        ],
+        "safety_boundary": "No reviewer may certify a person's inner state as objectively bias-free."
+      },
+      {
+        "level": 2,
+        "name": "Integration across differences",
+        "weight_percent": 15,
+        "evidence_requirements": [
+          "documented respectful dialogue with diverse participants",
+          "consent-based summaries and participant feedback"
+        ],
+        "safety_boundary": "Disagreement is not failure; zero conflict is not required."
+      },
+      {
+        "level": 3,
+        "name": "Consistency of principle and action",
+        "weight_percent": 15,
+        "evidence_requirements": [
+          "dated commitments and corresponding action records",
+          "documented exceptions and corrective actions"
+        ],
+        "safety_boundary": "Do not demand private or sensitive personal disclosures."
+      },
+      {
+        "level": 4,
+        "name": "Verifiable public-interest contribution",
+        "weight_percent": 15,
+        "evidence_requirements": [
+          "specific completed activity",
+          "independent beneficiary or partner confirmation where feasible",
+          "consented, privacy-safe supporting media or documents"
+        ],
+        "safety_boundary": "No hunger, deprivation, unsafe experiments, or self-harm may be requested or rewarded."
+      },
+      {
+        "level": 5,
+        "name": "Reflection and service",
+        "weight_percent": 15,
+        "evidence_requirements": [
+          "voluntary reflection record",
+          "documented safe service activity",
+          "two independent witness statements where appropriate"
+        ],
+        "safety_boundary": "Silence, fasting, isolation, sleep deprivation, or religious practice are not eligibility requirements."
+      },
+      {
+        "level": 6,
+        "name": "Continuity of constructive practice",
+        "weight_percent": 20,
+        "evidence_requirements": [
+          "dated activity log over the declared observation period",
+          "review of gaps, context, and continuity"
+        ],
+        "safety_boundary": "A 365-day observation period may be recorded, but uninterrupted performance and absence of complaints are not compulsory; health and basic needs take priority."
+      },
+      {
+        "level": 7,
+        "name": "Personal account of self-understanding",
+        "weight_percent": 10,
+        "evidence_requirements": [
+          "voluntary first-person statement",
+          "three independent reviewer assessments of evidence quality and scope"
+        ],
+        "safety_boundary": "Reviewers assess documentation and consistency, not whether metaphysical self-realization is objectively true. HeyGen or lip-sync checks only assess media integrity."
+      }
+    ],
+    "total_weight_percent": 100,
+    "certificate_threshold_percent": null,
+    "threshold_policy": "No numeric threshold is enabled until a published rubric, reviewer independence policy, appeals process, and pilot evaluation are approved."
+  },
+  "observation": {
+    "required_days_target": 365,
+    "started_on": null,
+    "ended_on": null,
+    "continuity_claim": null,
+    "exceptions_and_gaps": []
+  },
+  "reviewers": [
+    {
+      "reviewer_id": null,
+      "independence_declared": false,
+      "conflict_of_interest_declared": null,
+      "decision": "PENDING",
+      "reviewed_at": null,
+      "evidence_refs": []
+    },
+    {
+      "reviewer_id": null,
+      "independence_declared": false,
+      "conflict_of_interest_declared": null,
+      "decision": "PENDING",
+      "reviewed_at": null,
+      "evidence_refs": []
+    },
+    {
+      "reviewer_id": null,
+      "independence_declared": false,
+      "conflict_of_interest_declared": null,
+      "decision": "PENDING",
+      "reviewed_at": null,
+      "evidence_refs": []
+    }
+  ],
+  "evidence_integrity": {
+    "hash_algorithm": "SHA-256",
+    "canonicalization": "RFC 8785 JSON Canonicalization Scheme (JCS)",
+    "certificate_payload_hash": null,
+    "hash_created_at": null,
+    "hashing_implementation_status": "NOT_IMPLEMENTED",
+    "note": "A hash detects changes to the exact canonical payload; it does not prove that claims are true or that reviewers are independent."
+  },
+  "issuance": {
+    "eligible": false,
+    "issued": false,
+    "issued_at": null,
+    "certificate_id": null,
+    "revocation_status": "NOT_ISSUED",
+    "issuance_gates": [
+      "explicit subject consent",
+      "all seven evidence sections reviewed",
+      "three independent reviewers with conflict declarations",
+      "appeal window completed",
+      "privacy and safety review passed",
+      "canonical payload hash generated and independently reproducible"
+    ]
+  },
+  "symbolic_honour": {
+    "label": "Creator-declared symbolic honour value",
+    "amount_inr": 1000000000,
+    "legal_tender": false,
+    "redeemable": false,
+    "investment": false,
+    "guaranteed_value": false,
+    "public_sale": false,
+    "disclosure": "The ₹100 crore figure is a symbolic value declared by the creator only. It is not money owed, a market price, a valuation, a promise of payment, or a claim against any person or organization."
+  },
+  "privacy": {
+    "public_by_default": false,
+    "public_fields": [],
+    "sensitive_evidence_publication": "PROHIBITED_WITHOUT_SEPARATE_EXPLICIT_CONSENT",
+    "retention_policy": "PENDING_APPROVAL"
+  },
+  "governance": {
+    "self_verification_allowed": false,
+    "reviewer_minimum": 3,
+    "appeal_process": "REQUIRED_BEFORE_ISSUANCE",
+    "policy_version": "1.0.0"
+  },
+  "created_for": "Shirmani Research Institute",
+  "generated_at": null
+}
