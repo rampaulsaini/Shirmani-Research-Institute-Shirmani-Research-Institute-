@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>निष्पक्ष समझ — Live Presenter</title>
+<meta name="description" content="Shirmani Research Institute live presenter: context-aware Q&A, evidence boundaries, voice/lip-sync readiness and presentation profile.">
+<style>
+:root{--bg:#06101b;--panel:#0d1b2a;--line:#29445a;--gold:#ffd83d;--cyan:#4de8ff;--green:#55e39a;--muted:#b9c8d5;--text:#f7fafc;--warn:#ffd36b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#173654,#06101b 58%);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans Devanagari",sans-serif;line-height:1.55}
+.wrap{max-width:1180px;margin:auto;padding:18px 14px 90px}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.back,.btn{color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:12px;padding:9px 13px;background:#07131f;font-weight:700;cursor:pointer}.back:hover,.btn:hover{border-color:var(--gold)}
+.hero{margin-top:12px;padding:28px 22px;border:2px solid var(--gold);border-radius:26px;background:linear-gradient(135deg,#ffd83d1c,#4de8ff0d);box-shadow:0 16px 45px #0008}.hero h1{color:var(--gold);font-size:clamp(2rem,6vw,4rem);margin:6px 0}.hero p{max-width:950px;color:#e8eef3}.pill{display:inline-block;padding:5px 9px;border:1px solid #ffffff22;border-radius:999px;margin:3px;color:var(--muted);font-size:.8rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:14px}.card{background:#0d1b2af2;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 10px 28px #0005}.card h2{color:var(--cyan);margin-top:0}.presenter{min-height:330px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#ffd83d22,transparent 38%),#081522}.portrait{width:210px;height:250px;border-radius:48% 48% 42% 42%;border:3px solid var(--gold);display:grid;place-items:center;text-align:center;padding:15px;background:linear-gradient(145deg,#1d3550,#07111c);box-shadow:0 0 35px #ffd83d33}.portrait strong{color:var(--gold);font-size:1.25rem}.portrait span{color:var(--muted);font-size:.8rem}
+.status{padding:10px;border-radius:12px;border:1px solid #ffffff18;background:#0004;margin:8px 0}.ready{color:var(--green)}.pending{color:var(--warn)}.muted{color:var(--muted)}label{display:block;color:var(--muted);margin:10px 0 5px}input,textarea,select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#07131f;color:var(--text);font:inherit}textarea{min-height:120px;resize:vertical}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.response{white-space:pre-wrap;background:#07131f;border-left:3px solid var(--cyan);padding:14px;border-radius:10px;margin-top:12px}.evidence{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.badge{padding:5px 9px;border-radius:999px;border:1px solid #ffffff22;font-size:.78rem}.badge.good{color:var(--green);border-color:#55e39a55}.badge.warn{color:var(--warn);border-color:#ffd36b55}.badge.lock{color:#ffb4b4;border-color:#ff777744}.small{font-size:.86rem;color:var(--muted)}.policy{border-left:3px solid var(--gold);padding-left:12px}.footer{margin-top:20px;color:var(--muted);font-size:.82rem;text-align:center}
+@media(max-width:650px){.wrap{padding:10px 9px 80px}.hero{padding:20px 16px}.portrait{width:180px;height:220px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="top"><strong>SHIRMANI • NISHPAKSH UNDERSTANDING</strong><a class="back" href="index.html">← मुख्य प्लेटफॉर्म</a></div>
+<section class="hero">
+<div class="pill">SUPREME AI • ML • NLP</div><div class="pill">LIVE PRESENTER SUBSYSTEM</div><div class="pill">FAIL-CLOSED EVIDENCE</div>
+<h1>निष्पक्ष समझ — Live Presenter</h1>
+<p>सरल • सहज • निर्मल • पारदर्शी communication के लिए presentation layer: प्रश्न सुनना → context समझना → उपलब्ध evidence/source देखना → bounded उत्तर देना → आवश्यकता पर साफ़ कहना कि प्रमाण पर्याप्त नहीं है → authorized voice/avatar presentation.</p>
+</section>
+
+<section class="grid">
+<article class="card presenter">
+<div class="portrait" aria-label="Presenter preview"><div><strong>शिरोमणि<br>रामपाल सैनी</strong><br><span>Authorized presenter slot<br>photo/avatar integration</span></div></div>
+</article>
+<article class="card">
+<h2>🎙️ Voice → Face → Live</h2>
+<div class="status pending">Authorized HeyGen voice/avatar: setup required</div>
+<div class="status ready">Browser Q&A test: available</div>
+<div class="status ready">Evidence-aware response contract: active</div>
+<div class="status pending">Accurate lip-sync: provider integration pending</div>
+<p class="small">यह page किसी cloned voice, scientific verification या live production को अपने-आप घोषित नहीं करता। HeyGen digital-twin setup पूरा होने के बाद authorized presenter asset को integration layer में जोड़ा जा सकता है।</p>
+</article>
+</section>
+
+<section class="grid">
+<article class="card">
+<h2>🧠 Test Q&A</h2>
+<label for="question">प्रश्न</label>
+<textarea id="question" placeholder="अपना प्रश्न लिखें…"></textarea>
+<label for="evidence">उपलब्ध evidence / source (optional)</label>
+<input id="evidence" placeholder="Source title, URL या record ID">
+<label for="evidenceStatus">Evidence स्थिति</label>
+<select id="evidenceStatus">
+<option value="available">पर्याप्त evidence उपलब्ध</option>
+<option value="partial">आंशिक / संदर्भ अपर्याप्त</option>
+<option value="none">पर्याप्त प्रमाण उपलब्ध नहीं</option>
+</select>
+<div class="row"><button class="btn" id="answerBtn" type="button">उत्तर तैयार करें</button><button class="btn" id="speakBtn" type="button">🔊 Browser voice test</button></div>
+<div id="answer" class="response" aria-live="polite">उत्तर यहाँ दिखाई देगा।</div>
+<div id="evidenceBadges" class="evidence"></div>
+</article>
+
+<article class="card">
+<h2>👔 Presentation Profile</h2>
+<label for="context">जगह / context</label>
+<select id="context"><option>Research / academic</option><option>Public conversation</option><option>Live media</option><option>Business / professional</option><option>Community / family</option><option>Nature / educational</option></select>
+<label for="dress">Dress code</label>
+<select id="dress"><option>भव्य और सभ्य</option><option>सरल और सहज</option><option>औपचारिक</option><option>स्थानानुकूल पारंपरिक</option></select>
+<label for="personality">Presentation personality</label>
+<select id="personality"><option>निर्मल • पारदर्शी • स्पष्ट</option><option>शांत • विनम्र • गहरी सुनवाई</option><option>ऊर्जावान • आकर्षक • मस्त</option><option>गंभीर • तथ्य-केंद्रित</option></select>
+<p class="small">Outer look, dress code और personality context के अनुसार बदल सकते हैं; core communication contract स्थिर रहेगा।</p>
+</article>
+</section>
+
+<section class="card" style="margin-top:14px">
+<h2>🛡️ Communication & Evidence Contract</h2>
+<p class="policy">दार्शनिक/identity statement को उसी रूप में प्रस्तुत किया जाएगा; उसे independently verified scientific fact नहीं बनाया जाएगा। Measurable claim के लिए source/evidence और verification status अलग दिखेंगे। Evidence अपर्याप्त होने पर system स्पष्ट रूप से कहेगा: <strong>“अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”</strong></p>
+<div class="evidence"><span class="badge good">Context समझना</span><span class="badge good">Source attribution</span><span class="badge good">Uncertainty disclosure</span><span class="badge good">Respectful communication</span><span class="badge lock">UNVERIFIED ≠ VERIFIED</span></div>
+</section>
+
+<section class="card" style="margin-top:14px">
+<h2>🎥 Integration pipeline</h2>
+<p class="small">Voice → authorized voice integration → test Q&A → script/audio → avatar → natural facial movement → lip-sync → live presentation → evidence/source display → archive/audit.</p>
+<div class="status">Current checkpoint: <strong id="checkpoint">Browser Q&A + evidence contract</strong></div>
+</section>
+
+<div class="footer">Shirmani Research Institute • Presentation claims remain bounded by evidence and independent-verification gates.</div>
+</main>
+<script src="nishpaksh-live-presenter.js"></script>
+</body>
+</html>
