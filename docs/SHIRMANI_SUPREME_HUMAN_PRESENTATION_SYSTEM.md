@@ -1,5 +1,5 @@
 # SHIRMANI SUPREME HUMAN-PRESENTATION SYSTEM
-Version: 1.0
+Version: 1.1
 Status: Approved specification. Implementation and production tests must be evidenced separately.
 
 ## Purpose
@@ -56,3 +56,13 @@ A failed critical gate blocks a `VERIFIED / production-ready` label. Workflow ex
 
 ## Current implementation status
 This file records the approved specification only. It does not prove that face/voice integration, lip-sync, live presentation, QR assets, product demos, or production tests have been implemented. Mark items complete only after verifying the actual repository artifact or running the relevant test.
+
+## Operational acceptance criteria (v1.1)
+- Keep this document as the approved source of truth; edits should be incremental rather than repeatedly asking the owner to restate approved requirements.
+- Original portrait handling: preserve the source file unchanged; create only proportional display derivatives. Record a SHA-256 checksum for the source and note any crop/resize operations.
+- Voice handling: record provider, authorization status, voice asset/reference, consent, and successful test result. Do not store secrets or API keys in the repository.
+- Minimum release evidence: build/version, test date, test cases, expected result, actual result, pass/fail, and artifact/log reference.
+- Suggested measurements (set thresholds before running tests): STT word-error rate; evidence-label accuracy; citation/source coverage; lip-sync offset in milliseconds; end-to-end response latency; crash/failure rate; and human-review score for clarity/respectfulness. Do not invent values for unrun tests.
+- Product-specific release gate: demo video must show the actual product in use; screenshot must be captured from the product or explicitly labelled as a mock-up; QR must resolve to the matching product passport; pricing and offers must be published only when approved.
+- Deleted-chat limitation: this repository specification is a reconstruction from surviving instructions, not the original deleted ChatGPT transcript. Do not describe it as a restored verbatim chat. Check ChatGPT history/archive and any available account data export for recovery; if absent, continue from this approved specification.
+- Live status must be displayed as one of: PLANNED, ASSET NEEDED, INTEGRATION IN PROGRESS, TEST FAILED, TEST PASSED, or PRODUCTION VERIFIED. PRODUCTION VERIFIED requires a successful end-to-end test plus recorded evidence.
