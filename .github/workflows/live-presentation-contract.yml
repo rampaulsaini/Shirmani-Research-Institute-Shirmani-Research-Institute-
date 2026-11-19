@@ -1,0 +1,41 @@
+name: SHIRMANI Live Presentation Contract
+
+on:
+  push:
+    paths:
+      - 'live-presentation-system.html'
+      - 'schemas/live-presentation.schema.json'
+      - 'federation/live-presentation-system.json'
+      - 'docs/live-presentation-system.md'
+      - '.github/workflows/live-presentation-contract.yml'
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('federation/live-presentation-system.json').read_text(encoding='utf-8'))
+          assert d['truth_boundary']['live_claim_requires_runtime_health'] is True
+          assert d['identity_policy']['authorized_voice_only'] is True
+          assert len(d['pipeline']) == 5
+          allowed={'READY','NOT_CONNECTED','RUNTIME_REQUIRED','PASS','FAIL','LIVE'}
+          assert all(x['state'] in allowed for x in d['pipeline'])
+          print('LIVE_PRESENTATION_CONTRACT=PASS')
+          PY
+      - name: Verify public surface
+        run: |
+          test -f schemas/live-presentation.schema.json
+          test -f live-presentation-system.html
+          test -f docs/live-presentation-system.md
+          echo PUBLIC_SURFACE=READY
