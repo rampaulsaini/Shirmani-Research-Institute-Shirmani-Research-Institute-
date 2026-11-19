@@ -1,0 +1,40 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SHIRMANI Live Presentation Manifest",
+  "type":"object",
+  "required":["asset_policy","status","photo","voice","runtime"],
+  "properties":{
+    "asset_policy":{"type":"string","const":"USER_SUPPLIED_AND_AUTHORIZED_ASSETS_ONLY"},
+    "status":{"type":"string"},
+    "photo":{
+      "type":"object",
+      "required":["source","sha256","width","height"],
+      "properties":{
+        "source":{"type":"string"},
+        "sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+        "width":{"type":"integer","minimum":1},
+        "height":{"type":"integer","minimum":1}
+      }
+    },
+    "voice":{
+      "type":"object",
+      "required":["source","sha256","duration_seconds","sample_rate","channels"],
+      "properties":{
+        "source":{"type":"string"},
+        "sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+        "duration_seconds":{"type":"number","exclusiveMinimum":0},
+        "sample_rate":{"type":"integer","minimum":8000},
+        "channels":{"type":"integer","minimum":1}
+      }
+    },
+    "runtime":{
+      "type":"object",
+      "required":["browser_demo","provider_adapter","phoneme_lipsync"],
+      "properties":{
+        "browser_demo":{"type":"boolean"},
+        "provider_adapter":{"type":"string"},
+        "phoneme_lipsync":{"type":"boolean"}
+      }
+    }
+  }
+}
