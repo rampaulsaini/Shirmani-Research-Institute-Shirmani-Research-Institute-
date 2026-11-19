@@ -1,0 +1,37 @@
+name: SHIRMANI Live Character Contract Check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  contract-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate live-character contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f docs/live-character/SHIRMANI-LIVE-CHARACTER-SYSTEM-v1.md
+          test -f schemas/live-character-runtime.schema.json
+          python - <<'PY'
+          import json
+          p='schemas/live-character-runtime.schema.json'
+          with open(p, encoding='utf-8') as f:
+              json.load(f)
+          print('LIVE_CHARACTER_CONTRACT=VALID')
+          PY
+
+      - name: Publish conservative status
+        shell: bash
+        run: |
+          echo "LIVE_CHARACTER_STATE=CONTRACT_VALIDATED"
+          echo "EXTERNAL_HEYGEN_CONNECTION=NOT_ASSERTED"
+          echo "INDEPENDENT_VERIFICATION=NOT_ASSERTED"
