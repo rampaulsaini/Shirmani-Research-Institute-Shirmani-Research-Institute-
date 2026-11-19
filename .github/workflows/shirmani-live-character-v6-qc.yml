@@ -1,0 +1,45 @@
+name: SHIRMANI Live Character V6 Contract QC
+
+on:
+  push:
+    paths:
+      - 'shirmani-supreme-live-character-v6.html'
+      - 'generated/shirmani-live-character-v6.json'
+      - 'shirmani-supreme-second-version.html'
+      - '.github/workflows/shirmani-live-character-v6-qc.yml'
+  pull_request:
+    paths:
+      - 'shirmani-supreme-live-character-v6.html'
+      - 'generated/shirmani-live-character-v6.json'
+      - 'shirmani-supreme-second-version.html'
+      - '.github/workflows/shirmani-live-character-v6-qc.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  contract-qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate V6 contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("generated/shirmani-live-character-v6.json")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          assert d["version"]=="6.0"
+          assert d["name"]=="SHIRMANI HEART-VIEW SUPREME LIVE CHARACTER V6"
+          assert d["identity_layer"]["owner_declared_name"]=="शिरोमणि रामपाल सैनी"
+          assert d["identity_layer"]["classification"]=="user_authored_identity_or_philosophy"
+          assert d["reasoning"]["insufficient_evidence_response"]=="अभी पर्याप्त प्रमाण उपलब्ध नहीं है।"
+          assert d["integrity"]["workflow_success_is_not_verification"] is True
+          assert d["integrity"]["generated_media_is_not_independent_verification"] is True
+          for f in ["shirmani-supreme-live-character-v6.html","shirmani-supreme-second-version.html"]:
+              assert Path(f).exists(), f"missing: {f}"
+          print("V6 contract QC: PASS")
+          PY
