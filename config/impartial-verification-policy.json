@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "principle": "FAIL_CLOSED_IMPARTIALITY",
+  "rules": {
+    "author_cannot_self_verify": true,
+    "proposal_is_not_evidence": true,
+    "evidence_is_not_verification": true,
+    "workflow_success_is_not_verification": true,
+    "pending_fields_block_promotion": true,
+    "counter_evidence_required": true,
+    "reproducibility_required": true,
+    "reviewer_identity_required": true,
+    "reviewer_role_required": true,
+    "conflict_of_interest_disclosure_required": true,
+    "independent_reviewer_must_differ_from_author": true,
+    "decision_timestamp_required": true
+  },
+  "allowed_decisions": ["PENDING", "VERIFIED", "NOT_VERIFIED", "CONTRADICTED", "INCONCLUSIVE"],
+  "promotion_decision": "VERIFIED_ONLY_AFTER_ALL_RULES_PASS"
+}
