@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="hi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>꙰ SHIRMANI Product Media Production Control Plane</title>
+<style>
+:root{--bg:#050811;--panel:#0d1624;--gold:#e7c85b;--cyan:#67e8f9;--green:#72e6aa;--muted:#aeb8c7;--line:#263449}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#1b2740,#050811 58%);color:#f5f7fb;font:15px/1.6 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+main{max-width:1400px;margin:auto;padding:20px}.hero,.panel,.card{background:rgba(13,22,36,.96);border:1px solid var(--line);border-radius:20px;padding:20px;margin:14px 0}.hero{border:2px solid var(--gold)}h1,h2{color:var(--gold)}h1{font-size:clamp(2rem,5vw,4rem);margin:.2em 0}.muted{color:var(--muted)}.cyan{color:var(--cyan)}.green{color:var(--green)}
+.metrics,.grid,.flow{display:grid;gap:12px}.metrics{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}.grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}.flow{grid-template-columns:repeat(4,1fr)}
+.metric{background:#081019;border:1px solid var(--line);border-radius:14px;padding:15px}.metric b{display:block;font-size:2rem;color:var(--gold)}.stage{background:#081019;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}.stage b{color:var(--cyan);font-size:1.1rem}.bar{height:16px;background:#101b29;border-radius:99px;overflow:hidden;border:1px solid var(--line);margin-top:8px}.fill{height:100%;background:linear-gradient(90deg,#67e8f9,#e7c85b,#72e6aa);width:0}.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--gold);color:#111;text-decoration:none;font-weight:900;margin:4px}.btn.alt{background:#152536;color:var(--cyan);border:1px solid #35536c}.pill{display:inline-block;border:1px solid var(--cyan);border-radius:99px;padding:3px 9px;color:var(--cyan);font-size:.75rem;font-weight:900}
+@media(max-width:800px){.flow{grid-template-columns:1fr 1fr}}
+</style></head>
+<body><main>
+<section class="hero"><span class="pill">PRODUCTION-FIRST · MEDIA CONTROL PLANE · CONTINUOUS AUTOMISSION</span>
+<h1>꙰ SHIRMANI Product Media Production</h1>
+<p class="muted">हर concrete product के लिए public-facing presentation stack: <b class="cyan">4K visual → short description → logo/identity → long-description QR → product-specific demo → VIP screenshot → passport → review/improvement route</b>.</p>
+<div class="flow"><div class="stage"><b>01 · INSTITUTE</b><br>खोज / product identity</div><div class="stage"><b>02 · FACTORY</b><br>visual + demo + screenshot</div><div class="stage"><b>03 · QC / GATE</b><br>passport / release metadata</div><div class="stage"><b>04 · SHOWROOM</b><br>public use / review / sale</div></div>
+<p><a class="btn" href="supreme-showroom.html">Supreme Showroom</a><a class="btn alt" href="vip-showroom.html">VIP Showroom</a><a class="btn alt" href="supreme-product-card-production.html">Visual + QR Factory</a><a class="btn alt" href="demo-video.html">Demo Studio</a></p></section>
+<section class="panel"><h2>Live production coverage</h2><div id="metrics" class="metrics"></div><div class="bar"><div id="bar" class="fill"></div></div><p id="summary" class="muted">Telemetry loading…</p></section>
+<section class="panel"><h2>Media contract</h2><div class="grid">
+<div class="card"><b class="cyan">4K VISUAL</b><p class="muted">3840×2160, unique product identity, product name/ID, short description, price/offer, Heart-View logo/identity and upper-right long-description QR.</p></div>
+<div class="card"><b class="cyan">DEMO VIDEO</b><p class="muted">Product-specific usage flow: what it is, where to use it, how to use it, expected customer output, details and review/improvement route. Real MP4/WebM takes priority; browser walkthrough remains the public fallback.</p></div>
+<div class="card"><b class="cyan">VIP SCREENSHOT</b><p class="muted">A product-specific presentation image of the passport/showroom state. It is a customer-facing asset, not scientific verification.</p></div>
+<div class="card"><b class="cyan">PASSPORT / QR</b><p class="muted">QR resolves to the product's long description and public passport. QC code, Gate No. and Dispatch state stay explicit.</p></div>
+</div></section>
+<section class="panel"><h2>Remaining work queue</h2><div id="queue" class="grid"></div></section>
+<section class="panel"><h2>Production principle</h2><p class="muted">Workflow run is not counted as a product. Production output is the primary result. QC/gate/dispatch are release controls; customer reviews/ratings are quality-improvement inputs. Independent verification is downstream and is never fabricated from workflow success.</p><p class="muted">Scheduled GitHub Actions can continue without a new chat message, subject to platform availability, permissions, quotas and workflow health.</p></section>
+<footer class="muted">SHIRMANI Research Institute · Product Media Control Plane · No fabricated media, sales or verification claims.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+async function get(p){return fetch(p+"?ts="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))}
+async function load(){
+ const [live,media,demo,vip,visuals]=await Promise.all([get("generated/live-production-state.json"),get("generated/product-media-production-manifest.json"),get("generated/product-specific-demo-video-manifest.json"),get("generated/product-vip-screenshot-manifest.json"),get("generated/product-visual-assets-v2.json")]);
+ const target=Number(live.catalog_identities||5000), produced=Number(live.concrete_repository_assets||0), visual=Number(visuals.current_version_assets||visuals.visual_assets||0), mp4=Number(demo.real_mp4_count||media.real_mp4_count||0), screenshots=Number(vip.vip_screenshot_count||media.vip_screenshot_count||0), passport=produced;
+ const rows=[["Catalog identities",target],["Concrete products",produced],["4K current visuals",visual],["Real product MP4 demos",mp4],["VIP screenshots",screenshots],["Product passports",passport]];
+ $("metrics").innerHTML=rows.map(([n,v])=>'<div class="metric"><b>'+v.toLocaleString("en-IN")+'</b>'+n+'</div>').join("");
+ const mediaReady=Math.min(produced,visual,mp4,screenshots),pct=target?mediaReady/target*100:0;
+ $("bar").style.width=Math.min(100,pct)+"%";
+ $("summary").textContent="Complete media stack coverage: "+mediaReady.toLocaleString("en-IN")+" / "+target.toLocaleString("en-IN")+" ("+pct.toFixed(2)+"%). Concrete production: "+produced.toLocaleString("en-IN")+" / "+target.toLocaleString("en-IN")+" ("+(100*produced/Math.max(1,target)).toFixed(2)+"%).";
+ const items=[["Visuals",Math.max(0,target-visual),"supreme-product-card-production.html"],["Real MP4 demos",Math.max(0,target-mp4),"demo-video.html"],["VIP screenshots",Math.max(0,target-screenshots),"vip-showroom.html"],["Concrete production",Math.max(0,target-produced),"supreme-production-operations.html"]];
+ $("queue").innerHTML=items.map(x=>'<div class="card"><span class="pill">'+x[0]+'</span><h3>'+x[1].toLocaleString("en-IN")+' remaining</h3><p class="muted">Automission queue continues in bounded batches.</p><a class="btn alt" href="'+x[2]+'">Open production lane →</a></div>').join("");
+}
+load();setInterval(load,60000);
+</script></body></html>

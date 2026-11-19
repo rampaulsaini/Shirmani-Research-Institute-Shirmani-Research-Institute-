@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "name": "SHIRMANI Product Media Production Contract",
+  "purpose": "Customer-facing production standard for every concrete digital product.",
+  "required_media": {
+    "visual_4k": {"required": true, "format": ["SVG","PNG","WebP"], "canvas": "3840x2160 16:9", "must_show": ["product_id","product_name","short_description","price_or_offer","Heart-View logo/identity","English identity line","upper-right long-description QR"]},
+    "demo_video": {"required": true, "preferred_formats": ["MP4","WebM"], "fallback": "product-specific browser walkthrough", "must_cover": ["what_is_it","where_to_use","how_to_use","customer_output","product_details","review_improvement"]},
+    "vip_screenshot": {"required": true, "source": "product-passport.html or public showroom", "presentation_only": true},
+    "passport_qr": {"required": true, "target": "product-passport.html?id=<PRODUCT_ID>", "must_keep_explicit": ["QC code","Gate No.","Dispatch state"]}
+  },
+  "truth_boundary": "Presentation media demonstrates and explains a product. It is not independent scientific verification.",
+  "production_principle": "Produce concrete customer-facing output first; QC/gate/dispatch are downstream release controls; reviews/ratings feed quality improvement.",
+  "continuity": "Scheduled GitHub Actions continue without a new chat message, subject to platform limits, permissions and workflow health."
+}
