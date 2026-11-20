@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "generated_at": "2026-11-19T19:13:14.889993+00:00",
+  "generated_at": "2026-11-20T01:20:38.288423+00:00",
   "purpose": "public-first production module map",
-  "module_count": 18515,
+  "module_count": 18539,
   "lane_counts": {
-    "ai_ml_nlp": 14516,
+    "ai_ml_nlp": 14526,
     "automation": 5,
     "content": 8,
     "economic": 6,
     "platform": 3,
-    "research": 3940,
+    "research": 3954,
     "security_quality": 37
   },
   "status_counts": {
@@ -20,7 +20,7 @@
     "READY": 14892,
     "RECORDED": 33,
     "UNAVAILABLE": 32,
-    "UNSPECIFIED": 3408
+    "UNSPECIFIED": 3432
   },
   "integrity": {
     "source": "repository files",
@@ -101340,6 +101340,76 @@
       "bytes": 1145
     },
     {
+      "path": "products/demos/continuous/sri-auto-01370.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1149
+    },
+    {
+      "path": "products/demos/continuous/sri-auto-01371.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1153
+    },
+    {
+      "path": "products/demos/continuous/sri-auto-01372.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1155
+    },
+    {
+      "path": "products/demos/continuous/sri-auto-01373.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1157
+    },
+    {
+      "path": "products/demos/continuous/sri-auto-01374.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1159
+    },
+    {
+      "path": "products/demos/continuous/sri-auto-01375.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1155
+    },
+    {
+      "path": "products/demos/continuous/sri-auto-01377.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1155
+    },
+    {
+      "path": "products/demos/continuous/sri-auto-01378.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1155
+    },
+    {
+      "path": "products/demos/continuous/sri-auto-01379.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1149
+    },
+    {
+      "path": "products/demos/continuous/sri-auto-01380.html",
+      "type": "html",
+      "lane": "ai_ml_nlp",
+      "status": "UNSPECIFIED",
+      "bytes": 1159
+    },
+    {
       "path": "products/micro-product-manifest.json",
       "type": "json",
       "lane": "ai_ml_nlp",
@@ -126890,6 +126960,90 @@
       "bytes": 2401
     },
     {
+      "path": "products/continuous/sri-auto-01369.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2425
+    },
+    {
+      "path": "products/continuous/sri-auto-01370.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2409
+    },
+    {
+      "path": "products/continuous/sri-auto-01371.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2417
+    },
+    {
+      "path": "products/continuous/sri-auto-01372.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2421
+    },
+    {
+      "path": "products/continuous/sri-auto-01373.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2425
+    },
+    {
+      "path": "products/continuous/sri-auto-01374.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2429
+    },
+    {
+      "path": "products/continuous/sri-auto-01375.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2421
+    },
+    {
+      "path": "products/continuous/sri-auto-01376.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2425
+    },
+    {
+      "path": "products/continuous/sri-auto-01377.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2421
+    },
+    {
+      "path": "products/continuous/sri-auto-01378.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2421
+    },
+    {
+      "path": "products/continuous/sri-auto-01379.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2409
+    },
+    {
+      "path": "products/continuous/sri-auto-01380.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 2429
+    },
+    {
       "path": "products/demos/continuous/sri-auto-00001.html",
       "type": "html",
       "lane": "research",
@@ -128960,6 +129114,20 @@
       "lane": "research",
       "status": "UNSPECIFIED",
       "bytes": 1153
+    },
+    {
+      "path": "products/demos/continuous/sri-auto-01369.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1157
+    },
+    {
+      "path": "products/demos/continuous/sri-auto-01376.html",
+      "type": "html",
+      "lane": "research",
+      "status": "UNSPECIFIED",
+      "bytes": 1157
     },
     {
       "path": "products/digital/README.md",
