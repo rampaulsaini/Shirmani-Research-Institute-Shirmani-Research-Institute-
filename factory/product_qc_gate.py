@@ -19,7 +19,14 @@ for p in products:
         if token not in qr: errors.append({"id":p.get("id"),"error":"qr_missing","token":token})
     if not missing and asset.is_file() and all(t in qr for t in tokens): passed+=1
 ids={e["id"] for e in errors}
-payload={"generated_at":datetime.now(timezone.utc).isoformat(),"gate":"PRODUCT-QC-GATE","scope":"PRODUCED_PRODUCTS_ONLY","catalog_count":len(catalog.get("products",[])),"produced_count":len(products),"qc_passed":passed,"qc_failed":len(ids),"pass_percent":round(passed/len(products)*100,2) if products else 0,"dispatch_default":"NO","release_state":"QC_PASS_READY_FOR_DISPATCH" if not errors else "QC_REVIEW_REQUIRED","checks":["catalog fields","browser asset","QR QC code","Gate No.","Dispatch No.","offer price","description","guarantee","packing"],"integrity":{"deterministic_qc":True,"independent_scientific_verification":False,"sale_claim":False},"errors":errors[:500]}
+catalog_count=len(catalog.get("products",[]))
+produced_count=len(products)
+qc_failed=len(ids)
+import sys
+sys.path.insert(0, str(ROOT))
+from factory.qc_state_contract import qc_release_state, sync_public_qc_state
+release_state=qc_release_state(catalog_count, produced_count, passed, qc_failed, bool(errors))
+payload={"generated_at":datetime.now(timezone.utc).isoformat(),"gate":"PRODUCT-QC-GATE","scope":"PRODUCED_PRODUCTS_ONLY","catalog_count":catalog_count,"produced_count":produced_count,"catalog_coverage_percent":round(produced_count/catalog_count*100,2) if catalog_count else 0,"qc_passed":passed,"qc_failed":qc_failed,"pass_percent":round(passed/produced_count*100,2) if produced_count else 0,"release_state":release_state,"dispatch_default":"NO","checks":["catalog fields","browser asset","QR QC code","Gate No.","Dispatch No.","offer price","description","guarantee","packing"],"integrity":{"deterministic_qc":True,"independent_scientific_verification":False,"sale_claim":False},"errors":errors[:500]}
 (GEN/"product-qc-gate.json").write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 import sys
 sys.path.insert(0, str(ROOT))
