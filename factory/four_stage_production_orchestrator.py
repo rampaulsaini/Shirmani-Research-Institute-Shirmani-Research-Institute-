@@ -5,6 +5,8 @@ import json, subprocess, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from factory.qc_state_contract import qc_passed
+
 ROOT = Path(__file__).resolve().parents[1]
 GEN = ROOT / "generated"
 PY = sys.executable
@@ -39,14 +41,21 @@ def main() -> None:
     # Reconcile public production state only after the current QC artifact exists.
     # This keeps the dashboard and the next cycle's duplicate-production gate aligned.
     state_sync=run("factory/reconcile_production_truth.py")
-    report["stages"].append({"stage":3,"name":"PRODUCT_QC_GATE","status":"PASS" if qc_run["exit_code"]==0 and state_sync["exit_code"]==0 else "FAIL","qc":qc,"run":qc_run,"public_state_sync":state_sync})
+    catalog=read_json("1000-digital-products.json")
+    catalog_count=len(catalog.get("products",[]))
+    qc_complete=qc_passed(qc, catalog_count)
+    stage3_status = (
+        "FAIL" if qc_run["exit_code"]!=0 or state_sync["exit_code"]!=0
+        else "PASS" if qc_complete
+        else "PARTIAL"
+    )
+    report["stages"].append({"stage":3,"name":"PRODUCT_QC_GATE","status":stage3_status,"qc":qc,"run":qc_run,"public_state_sync":state_sync})
 
     showroom = "supreme-showroom.html"
     showroom_exists=(ROOT/showroom).exists()
-    catalog=read_json("1000-digital-products.json")
     registry=read_json("production-registry.json")
     production_ok=not factory_failed and stage1["exit_code"]==0
-    qc_ok=qc_run["exit_code"]==0
+    qc_ok=qc_complete
     report["stages"].append({"stage":4,"name":"PUBLIC_SHOWROOM","status":"READY" if showroom_exists and production_ok and qc_ok else "BLOCKED","showroom":showroom if showroom_exists else None,"catalog_products":catalog.get("product_count",0),"produced_products":registry.get("produced_count",registry.get("total_materialized_module_products",catalog.get("product_count",0))),"qc_passed":qc.get("qc_passed",0),"dispatch_default":"NO","public_sale_claim":False,"entry_fee_config":"generated/showroom-entry-fees.json"})
 
     report["production_contract"]={"stage_1_institute":"continuous module/product discovery","stage_2_factory":"continuous concrete product and module production","stage_3_qc":"deterministic product structure/asset/passport gate","stage_4_showroom":"public catalog with product, description, price, offer, QR/passport, time-based showroom entry and dispatch state","dispatch":"NO by default until explicit downstream release","verification":"downstream result-quality/promotion layer, not the production objective","schedule":"every 5 minutes","continuity_without_chat":True,"quantum_boundary":"quantum-inspired orchestration only unless a real quantum backend is configured"}
