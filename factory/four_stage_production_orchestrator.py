@@ -5,9 +5,9 @@ import json, subprocess, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from factory.qc_state_contract import qc_passed
-
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from factory.qc_state_contract import qc_passed
 GEN = ROOT / "generated"
 PY = sys.executable
 STEPS = ["factory/public_module_inventory.py","factory/real_product_factory.py","factory/materialize_all_product_assets.py","factory/concrete_product_modules.py","factory/product_asset_expander.py","factory/production_queue_builder.py","factory/supreme_production_engine.py","factory/public_production_materializer.py","factory/product_qc_gate.py"]
