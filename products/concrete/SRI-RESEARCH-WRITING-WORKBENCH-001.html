@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A practical Hindi-English research and writing workbench: define scope, sources, deliverables, quality checks and client approval before work begins.">
+<title>꙰ SHIRMANI Research & Writing Workbench</title>
+<style>
+:root{color-scheme:dark;--bg:#070b12;--panel:#101a27;--line:#34495f;--gold:#f1d06a;--cyan:#75e7f4;--muted:#b9c4d2;--green:#86e6b0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1a2c42,var(--bg) 58%);color:#f5f7fb;font:16px/1.65 system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}main{max-width:1180px;margin:auto;padding:18px}
+.hero,.panel{border:1px solid var(--line);background:rgba(16,26,39,.97);border-radius:18px;padding:22px;margin:14px 0}.hero{text-align:center;border:2px solid var(--gold)}h1,h2,h3{color:var(--gold)}.muted{color:var(--muted)}.tag{display:inline-block;border:1px solid #557286;border-radius:99px;padding:3px 10px;color:var(--cyan);font-size:.8rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.card{border:1px solid var(--line);background:#0a121d;border-radius:13px;padding:15px}
+label{display:block;margin:10px 0 4px;font-weight:750}input,select,textarea{width:100%;padding:11px;border-radius:9px;border:1px solid #42566d;background:#070d16;color:#fff;font:inherit}textarea{min-height:88px;resize:vertical}
+button,.btn{display:inline-block;border:0;border-radius:9px;padding:11px 15px;background:var(--gold);color:#111;font-weight:900;text-decoration:none;cursor:pointer;margin:5px 4px 5px 0}.secondary{background:#142638;color:var(--cyan);border:1px solid #38586e}
+.result{white-space:pre-wrap;overflow-wrap:anywhere;background:#070d16;border:1px dashed #42566d;border-radius:10px;padding:15px;min-height:160px}.notice{border-left:4px solid var(--cyan);padding:12px 15px;background:#0a1822}.checks label{font-weight:500;margin:8px 0}.checks input{width:auto;margin-right:8px;accent-color:#f1d06a}.status{color:var(--green);font-weight:800}
+footer{text-align:center;color:var(--muted);padding:24px}
+@media(max-width:600px){main{padding:10px}.hero,.panel{padding:15px}}
+</style></head>
+<body><main>
+<section class="hero">
+<span class="tag">꙰ SHIRMANI RESEARCH INSTITUTE · CONCRETE DIGITAL TOOL</span>
+<h1>Research & Writing Workbench</h1>
+<p>Hindi / English · Scope-first · Source-aware · Customer-ready brief</p>
+<p class="muted">ग्राहक के उद्देश्य को स्पष्ट brief, deliverables, source plan और quality checklist में बदलें। यह browser में चलता है; कोई account या backend आवश्यक नहीं।</p>
+<div><a class="btn secondary" href="../../showroom.html">Main Showroom</a><a class="btn secondary" href="../../writing-research-enquiry.html">Writing & Research Enquiry</a></div>
+</section>
+<section class="panel">
+<h2>01 · काम की जानकारी</h2>
+<form id="workForm">
+<div class="grid">
+<div><label for="service">सेवा / Service</label><select id="service"><option>Research Summary</option><option>Hindi / English Article</option><option>Website / Blog Content</option><option>Editing / Rewrite</option><option>Literature Review Outline</option><option>Custom Research Support</option></select></div>
+<div><label for="language">भाषा / Language</label><select id="language"><option>Hindi</option><option>English</option><option>Hindi + English</option></select></div>
+<div><label for="audience">लक्षित पाठक / Audience</label><input id="audience" placeholder="जैसे विद्यार्थी, ग्राहक, शोधकर्ता"></div>
+<div><label for="length">लंबाई / Deliverables</label><input id="length" placeholder="जैसे 1,000 शब्द या 4 web sections"></div>
+<div><label for="deadline">प्रस्तावित समय-सीमा</label><input id="deadline" placeholder="जैसे 5 कार्य-दिवस; पुष्टि बाकी"></div>
+<div><label for="budget">बजट / Currency (वैकल्पिक)</label><input id="budget" placeholder="ग्राहक का budget; तय price नहीं"></div>
+</div>
+<label for="goal">उद्देश्य / Desired outcome *</label><textarea id="goal" required placeholder="काम पूरा होने पर ग्राहक क्या प्राप्त करना चाहता है?"></textarea>
+<label for="topic">विषय / Working title *</label><input id="topic" required placeholder="विषय या प्रश्न">
+<label for="sources">उपलब्ध स्रोत और लिंक</label><textarea id="sources" placeholder="URLs, पुस्तकें, documents या notes; केवल उपयोग की अनुमति वाले स्रोत दें"></textarea>
+<label for="constraints">सीमाएँ / विशेष निर्देश</label><textarea id="constraints" placeholder="Tone, format, citation style, exclusions, privacy constraints"></textarea>
+<label for="acceptance">स्वीकृति मानदंड / Acceptance criteria</label><textarea id="acceptance" placeholder="जैसे स्रोत-सूची, word count, references, revisions"></textarea>
+<div><button type="submit">Brief बनाएं</button><button type="button" class="secondary" id="reset">फॉर्म साफ करें</button></div>
+</form>
+</section>
+<section class="panel">
+<h2>02 · Quality & delivery checklist</h2>
+<p class="muted">काम शुरू करने से पहले आवश्यक शर्तों को ग्राहक के साथ स्पष्ट करें। Checkbox स्थिति brief में शामिल होगी।</p>
+<div class="grid checks" id="checklist">
+<label><input type="checkbox" value="Scope and deliverables approved">Scope और deliverables लिखित रूप में स्वीकृत</label>
+<label><input type="checkbox" value="Price, currency and payment terms agreed">कीमत, मुद्रा और भुगतान शर्तें तय</label>
+<label><input type="checkbox" value="Deadline and review rounds agreed">समय-सीमा और revision rounds तय</label>
+<label><input type="checkbox" value="Source access and permissions checked">स्रोत access और permissions जाँचे</label>
+<label><input type="checkbox" value="Claims separated from evidence">दावों और उपलब्ध प्रमाण में अंतर स्पष्ट</label>
+<label><input type="checkbox" value="Privacy and confidential data reviewed">गोपनीयता और निजी डेटा की समीक्षा</label>
+<label><input type="checkbox" value="Final delivery format agreed">अंतिम delivery format तय</label>
+</div>
+</section>
+<section class="panel">
+<h2>03 · तैयार client brief</h2>
+<p class="muted">Brief अपने browser में बनता है। यह tool अपने-आप email, WhatsApp, payment या customer outreach नहीं भेजता।</p>
+<div class="result" id="output" aria-live="polite">ऊपर की जानकारी भरकर “Brief बनाएं” चुनें।</div>
+<button id="copy" type="button">Brief कॉपी करें</button><button id="download" type="button" class="secondary">.txt brief सेव करें</button>
+<p id="feedback" class="status" aria-live="polite"></p>
+</section>
+<section class="panel">
+<h2>Product passport</h2>
+<div class="grid">
+<div class="card"><b>Product ID</b><p>SRI-RESEARCH-WORKBENCH-001</p></div>
+<div class="card"><b>Version</b><p>1.0.0 · Browser-only</p></div>
+<div class="card"><b>QC / Dispatch</b><p>QC state: pending independent test · Dispatch: public preview after merge/deploy</p></div>
+<div class="card"><b>Data handling</b><p>Form content is processed locally by this page; no server submission is implemented.</p></div>
+</div>
+<p class="notice"><b>सीमा:</b> यह scope planning और brief preparation tool है, professional advice या स्वतंत्र वैज्ञानिक सत्यापन का विकल्प नहीं। Price, deadline और delivery तभी confirmed हैं जब दोनों पक्ष लिखित रूप में सहमत हों।</p>
+</section>
+<footer>꙰ SHIRMANI RESEARCH INSTITUTE · सरल • सहज • निर्मल • पारदर्शी</footer>
+</main>
+<script>
+(()=> {
+const $=id=>document.getElementById(id);
+let brief='';
+const val=id=>$(id).value.trim()||'Not provided';
+function makeBrief(){
+const checks=[...document.querySelectorAll('#checklist input')].map(x=>(x.checked?'[x] ':'[ ] ')+x.value).join('\n');
+brief='SHIRMANI RESEARCH INSTITUTE — WRITING & RESEARCH BRIEF\n\n'
++'Service: '+val('service')+'\nLanguage: '+val('language')+'\nAudience: '+val('audience')+'\nDeliverables / length: '+val('length')+'\nProposed deadline (not yet confirmed): '+val('deadline')+'\nBudget (not a quote): '+val('budget')+'\n\n'
++'Objective:\n'+val('goal')+'\n\nTopic:\n'+val('topic')+'\n\nSources / links:\n'+val('sources')+'\n\nConstraints:\n'+val('constraints')+'\n\nAcceptance criteria:\n'+val('acceptance')+'\n\nPre-start checklist:\n'+checks+'\n\n'
++'COMMERCIAL GATE: Do not start work until scope, deliverables, final price/currency, deadline, revision policy and payment terms are agreed in writing. No sale or payment is implied by generating this brief.';
+$('output').textContent=brief;$('feedback').textContent='Brief तैयार है — अभी कोई संदेश भेजा नहीं गया।';
+}
+$('workForm').addEventListener('submit',e=>{e.preventDefault();makeBrief()});
+$('reset').addEventListener('click',()=>{$('workForm').reset();document.querySelectorAll('#checklist input').forEach(x=>x.checked=false);brief='';$('output').textContent='ऊपर की जानकारी भरकर “Brief बनाएं” चुनें।';$('feedback').textContent=''});
+$('copy').addEventListener('click',async()=>{if(!brief){makeBrief()}try{await navigator.clipboard.writeText(brief);$('feedback').textContent='Brief clipboard में कॉपी हो गया।'}catch(e){$('feedback').textContent='Auto-copy उपलब्ध नहीं; नीचे का brief manually select करके copy करें.'}});
+$('download').addEventListener('click',()=>{if(!brief)makeBrief();const blob=new Blob([brief],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='shirmani-research-brief.txt';a.click();URL.revokeObjectURL(url);$('feedback').textContent='Brief text file तैयार की गई।'});
+})();
+</script></body></html>
