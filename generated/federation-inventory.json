@@ -1,0 +1,247 @@
+{
+  "generated_at": "2026-09-23T23:51:00+05:30",
+  "hub": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
+  "managed_agent_count": 23,
+  "ready_agent_count": 23,
+  "partial_agent_count": 0,
+  "missing_agent_count": 0,
+  "external_source_count": 1,
+  "automation_mode": "event-and-schedule driven; not a continuously running external AI service",
+  "managed_agents": [
+    {
+      "repository": "rampaulsaini/rampaulsaini",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "public-knowledge"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Platform",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "omniverse-core"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "omniverse-core"
+    },
+    {
+      "repository": "rampaulsaini/Omnivers",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "omniverse-core"
+    },
+    {
+      "repository": "rampaulsaini/Omniver",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "omniverse-core"
+    },
+    {
+      "repository": "rampaulsaini/Karbon-",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "data-carbon"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Platform-supreme-",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "platform-supreme"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-AI",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "ai-platform"
+    },
+    {
+      "repository": "rampaulsaini/C-Labs",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "c-labs"
+    },
+    {
+      "repository": "rampaulsaini/kit-app-template",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true
+    },
+    {
+      "repository": "rampaulsaini/omniverse--ai-scripts-",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "automation-scripts"
+    },
+    {
+      "repository": "rampaulsaini/supreme-omniverse-test",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "integration-test"
+    },
+    {
+      "repository": "rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "manifesto-archive"
+    },
+    {
+      "repository": "rampaulsaini/my-omniverse-store",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "digital-products-store"
+    },
+    {
+      "repository": "rampaulsaini/omniverse-dashboard",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "monitoring-dashboard"
+    },
+    {
+      "repository": "rampaulsaini/omniverse-marketplace-",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "marketplace"
+    },
+    {
+      "repository": "rampaulsaini/omniverse-marketplace",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "marketplace"
+    },
+    {
+      "repository": "rampaulsaini/Omniverse-Supreme-Core-",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "supreme-core"
+    },
+    {
+      "repository": "rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "knowledge-truth"
+    },
+    {
+      "repository": "rampaulsaini/shiromani-rampal-saini",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "public-content"
+    },
+    {
+      "repository": "rampaulsaini/Shirmani-Research-Paper",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "research-publishing"
+    },
+    {
+      "repository": "rampaulsaini/yatharth-music-ai",
+      "kind": "managed-agent",
+      "status": "READY",
+      "agent_manifest": true,
+      "agent_runner": true,
+      "workflow": true,
+      "agent_id": null,
+      "role": "music-ai"
+    }
+  ],
+  "external_sources": [
+    {
+      "repository": "NVIDIA-Omniverse/kit-app-template",
+      "kind": "external-source",
+      "status": "SOURCE_ONLY"
+    }
+  ],
+  "artifact_kind": "local-agent-structure-inventory",
+  "evidence_scope": "manifest, runner, and workflow file presence only; not runtime execution or independent verification"
+}
