@@ -179,6 +179,11 @@ jobs:
         run: |
           test -s generated/agent-run/factory-status.json
           cp generated/agent-run/factory-status.json generated/factory-status.json
+
+      - name: Synchronize central federation health and dispatch evidence
+        env:
+          ORCHESTRATOR_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
+        run: python3 scripts/sync-central-factory-status.py
       - name: Validate generated catalog
         run: |
           test -s generated/repository-intelligence.json

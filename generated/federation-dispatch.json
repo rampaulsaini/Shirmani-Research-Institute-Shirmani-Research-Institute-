@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "federation_id": "UNKNOWN",
+  "generated_at": null,
+  "source_generated_at": null,
+  "state": "UNKNOWN",
+  "dispatch": {
+    "attempted": 0,
+    "dispatched": 0,
+    "deferred": 0,
+    "failed": 0,
+    "invalid": 0
+  },
+  "targets": [],
+  "dispatch_record_verified": false,
+  "note": "Bootstrap placeholder only. No central dispatch record has been fetched or independently validated. This file is replaced by the federation sync workflow when a valid central record is available."
+}
