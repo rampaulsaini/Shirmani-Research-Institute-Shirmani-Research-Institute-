@@ -13,8 +13,10 @@ from pathlib import Path
 CENTRAL = "rampaulsaini/Omniverse-Platform"
 SOURCE_PATH = "data/public/factory-status.json"
 HEALTH_PATH = "data/federation/health.json"
+DISPATCH_PATH = "federation/status/latest.json"
 TARGET = Path("factory-status.json")
 HEALTH_TARGET = Path("generated/federation-health.json")
+DISPATCH_TARGET = Path("generated/federation-dispatch.json")
 VALID_HEALTH_STATES = {"OPERATIONAL", "DEGRADED", "OFFLINE", "UNKNOWN"}
 RESEARCH_REPOSITORY = (
     "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-"
@@ -45,11 +47,36 @@ def write_unknown_health(note: str, error_type: str | None = None) -> None:
     )
 
 
+def write_unknown_dispatch(note: str, error_type: str | None = None) -> None:
+    """Write a fail-closed dispatch artifact when central evidence is unavailable."""
+    DISPATCH_TARGET.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "schema_version": 1,
+        "repository": CENTRAL,
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "source_generated_at": None,
+        "state": "UNKNOWN",
+        "dispatch_record_verified": False,
+        "dispatch": None,
+        "targets": [],
+        "note": note,
+    }
+    if error_type:
+        payload["error_type"] = error_type
+    DISPATCH_TARGET.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+
 def main() -> int:
     # Write a safe default first. A later successful fetch replaces it with
     # verified source data; every early return therefore leaves a valid artifact.
     write_unknown_health(
         "Central federation health has not yet been synchronized."
+    )
+    write_unknown_dispatch(
+        "Central dispatch record has not yet been synchronized."
     )
     token = os.environ.get("ORCHESTRATOR_TOKEN", "").strip()
     current = json.loads(TARGET.read_text(encoding="utf-8")) if TARGET.exists() else {}
@@ -67,6 +94,9 @@ def main() -> int:
         )
         write_unknown_health(
             "Federation token is not configured; central health remains UNKNOWN."
+        )
+        write_unknown_dispatch(
+            "Federation token is not configured; dispatch remains UNKNOWN."
         )
         return 0
 
@@ -87,6 +117,10 @@ def main() -> int:
         )
         write_unknown_health(
             "Federation token is malformed; central health remains UNKNOWN.",
+            "MalformedCredential",
+        )
+        write_unknown_dispatch(
+            "Federation token is malformed; dispatch remains UNKNOWN.",
             "MalformedCredential",
         )
         return 0
@@ -180,7 +214,8 @@ def main() -> int:
 
         health["research_institute_repository"] = RESEARCH_REPOSITORY
         health["central_orchestrator"] = CENTRAL
-        health["federation_verified"] = True
+        health["central_health_source_verified"] = True
+        health["federation_verified"] = False
         HEALTH_TARGET.parent.mkdir(parents=True, exist_ok=True)
         HEALTH_TARGET.write_text(
             json.dumps(health, ensure_ascii=False, indent=2) + "\n",
@@ -195,6 +230,45 @@ def main() -> int:
     ) as exc:
         write_unknown_health(
             "Central federation health export could not be verified.",
+            type(exc).__name__,
+        )
+
+    try:
+        dispatch_record = fetch_json(DISPATCH_PATH)
+        counters = dispatch_record.get("dispatch")
+        required_counters = {"attempted", "dispatched", "deferred", "failed", "invalid"}
+        if dispatch_record.get("schema_version") != 1:
+            raise RuntimeError("central dispatch schema version is invalid")
+        if not dispatch_record.get("federation_id") or not dispatch_record.get("generated_at"):
+            raise RuntimeError("central dispatch identity or timestamp is missing")
+        if not isinstance(counters, dict) or not required_counters.issubset(counters):
+            raise RuntimeError("central dispatch counters are incomplete")
+        if any(type(counters[key]) is not int or counters[key] < 0 for key in required_counters):
+            raise RuntimeError("central dispatch counters are invalid")
+        if not isinstance(dispatch_record.get("targets"), list):
+            raise RuntimeError("central dispatch targets are invalid")
+        dispatch_record["source_generated_at"] = dispatch_record["generated_at"]
+        dispatch_record["generated_at"] = datetime.now(timezone.utc).isoformat()
+        dispatch_record["repository"] = CENTRAL
+        dispatch_record["dispatch_record_verified"] = True
+        dispatch_record["note"] = (
+            "Source dispatch record contract validated. Dispatched means GitHub accepted repository_dispatch; "
+            "it does not prove receiver receipt, task execution, QC, independent review or delivery."
+        )
+        DISPATCH_TARGET.parent.mkdir(parents=True, exist_ok=True)
+        DISPATCH_TARGET.write_text(
+            json.dumps(dispatch_record, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+    except (
+        urllib.error.HTTPError,
+        urllib.error.URLError,
+        TimeoutError,
+        RuntimeError,
+        json.JSONDecodeError,
+    ) as exc:
+        write_unknown_dispatch(
+            "Central dispatch record could not be verified; dispatch remains UNKNOWN.",
             type(exc).__name__,
         )
 
