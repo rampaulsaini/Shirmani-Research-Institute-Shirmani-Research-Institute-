@@ -16,31 +16,74 @@ footer{margin-top:30px;color:var(--muted);font-size:.9rem}
 <section class="hero">
 <div class="badge">OBSERVABILITY LAYER</div>
 <h1>꙰ Omniverse Federation Control Center</h1>
-<p class="muted">Research Institute की public observability layer — verified repository status को पढ़ती है; यह page स्वयं cross-repository execution का दावा नहीं करता।</p>
+<p class="muted">यहाँ repository inventory, central health और वास्तविक dispatch evidence अलग-अलग दिखाए जाते हैं। किसी एक की उपलब्धता दूसरे का प्रमाण नहीं है।</p>
 </section>
 <section class="grid">
-<div class="card"><div class="muted">Discovered repositories</div><div class="value">24</div><p class="muted">वर्तमान approved/discoverable inventory</p></div>
-<div class="card"><div class="muted">Target matrix</div><div class="value">25</div><p class="muted">एक repository slot अभी pending है</p></div>
-<div class="card"><div class="muted">Intake contract</div><div class="value ok">READY</div><p class="muted">Receipt-first, no untrusted execution</p></div>
-<div class="card"><div class="muted">Human review gate</div><div class="value ok">ON</div><p class="muted">Irreversible/public actions remain review-gated</p></div>
-<div class="card"><div class="muted">Current dispatch evidence</div><div class="value warn">NOT_YET_RUN</div><p class="muted">Integration is installed; current federation dispatch is not yet evidenced</p></div>
+<div class="card"><div class="muted">Managed agent entries</div><div class="value" id="agent-count">UNKNOWN</div><p class="muted">Inventory snapshot; not live workers</p></div>
+<div class="card"><div class="muted">Structure checks present</div><div class="value" id="agent-ready">UNKNOWN</div><p class="muted">Manifest + runner + workflow files</p></div>
+<div class="card"><div class="muted">External reference sources</div><div class="value" id="external-count">UNKNOWN</div><p class="muted">Source-only entries</p></div>
+<div class="card"><div class="muted">Central health state</div><div class="value warn" id="health-state">UNKNOWN</div><p class="muted" id="health-freshness">No verified health snapshot loaded</p></div>
+<div class="card"><div class="muted">Dispatch execution evidence</div><div class="value warn" id="dispatch-state">NOT_SYNCHRONIZED</div><p class="muted" id="dispatch-note">Health and dispatch are separate evidence streams</p></div>
 </section>
 <h2>Federation flow</h2>
-<div class="card">Central Orchestrator → repository_dispatch → Spoke Intake → Auditable Receipt → Specialist Processing → QC → Human Review → Publication</div>
-<h2>Verified public status</h2>
-<div class="card"><strong>Evidence boundary:</strong> The current central federation artifact reports <code>NOT_YET_RUN</code>, with 0 dispatch attempts and 0 dispatched targets. This dashboard therefore does not present federation execution as completed. Repository wiring and intake readiness are separate from observed federation execution.</div>
-<div class="card"><pre id="state">Loading verified status…</pre></div>
-<p><a href="generated/federation-status.json">Federation status JSON</a> · <a href="factory-dashboard.html">Research Factory</a> · <a href="index.html">Main Hub</a></p>
-<footer>© 2026 Shirmani Research Institute · Status is evidence-bound; unavailable telemetry is not fabricated.</footer>
+<div class="card">Central Orchestrator → authenticated repository_dispatch → receiver intake → durable receipt → task execution → QC → independent review → approved delivery</div>
+<h2>Central federation health</h2>
+<div class="card"><p class="muted">Health describes the central control-plane snapshot. It does not prove that a worker received or completed a task.</p><pre id="health-detail">Loading…</pre></div>
+<h2>Local agent inventory</h2>
+<div class="card"><p class="muted">The inventory checks whether manifest, runner and workflow files exist in the local source snapshot. READY here means structural presence only—not a running agent, successful task, scientific verification or customer delivery.</p><pre id="inventory-detail">Loading…</pre></div>
+<p><a href="generated/federation-health.json">Central health JSON</a> · <a href="generated/federation-dispatch.json">Dispatch JSON</a> · <a href="generated/federation-inventory.json">Agent inventory JSON</a> · <a href="factory-dashboard.html">Research Factory</a> · <a href="index.html">Main Hub</a></p>
+<footer>© 2026 Shirmani Research Institute · Missing or stale telemetry remains UNKNOWN; no status is inferred from configuration alone.</footer>
 <script>
+async function readJson(path){
+ const r=await fetch(path+'?ts='+Date.now());
+ if(!r.ok)throw new Error('HTTP '+r.status);
+ return r.json();
+}
+function freshness(value){
+ const time=Date.parse(value||'');
+ if(!Number.isFinite(time))return 'timestamp unavailable';
+ const ageDays=Math.max(0,(Date.now()-time)/86400000);
+ return ageDays<=7?'snapshot age: '+ageDays.toFixed(1)+' days':'STALE snapshot: '+ageDays.toFixed(1)+' days old';
+}
 async function load(){
- const el=document.getElementById('state');
- try{
-  const r=await fetch('generated/federation-status.json?ts='+Date.now());
-  if(!r.ok) throw new Error('HTTP '+r.status);
-  const d=await r.json();
-  el.textContent=JSON.stringify(d,null,2);
- }catch(e){el.textContent='Verified federation telemetry unavailable: '+e.message;}
+ const [healthResult,dispatchResult,inventoryResult]=await Promise.allSettled([
+  readJson('generated/federation-health.json'),
+  readJson('generated/federation-dispatch.json'),
+  readJson('generated/federation-inventory.json')
+ ]);
+ if(healthResult.status==='fulfilled'){
+  const h=healthResult.value;
+  document.getElementById('health-state').textContent=h.state||'UNKNOWN';
+  document.getElementById('health-freshness').textContent=freshness(h.generated_at);
+  document.getElementById('health-detail').textContent=JSON.stringify(h,null,2);
+ }else{
+  document.getElementById('health-state').textContent='UNKNOWN';
+  document.getElementById('health-freshness').textContent='Verified central health unavailable';
+  document.getElementById('health-detail').textContent='No synchronized central health snapshot: '+healthResult.reason.message;
+ }
+ if(dispatchResult.status==='fulfilled'){
+  const d=dispatchResult.value;
+  const c=d.dispatch;
+  if(d.dispatch_record_verified===true && c && Number.isInteger(c.dispatched) && Number.isInteger(c.attempted)){
+   document.getElementById('dispatch-state').textContent=c.dispatched+' / '+c.attempted+' accepted';
+   document.getElementById('dispatch-note').textContent='Deferred '+(c.deferred??'UNKNOWN')+' · Failed '+(c.failed??'UNKNOWN')+' · Snapshot '+freshness(d.source_generated_at)+'. Accepted dispatch is not receiver receipt or task execution.';
+  }else{
+   document.getElementById('dispatch-state').textContent='UNKNOWN';
+   document.getElementById('dispatch-note').textContent=d.note||'Dispatch record not verified.';
+  }
+ }else{
+  document.getElementById('dispatch-state').textContent='UNKNOWN';
+  document.getElementById('dispatch-note').textContent='Separate dispatch artifact unavailable: '+dispatchResult.reason.message;
+ }
+ if(inventoryResult.status==='fulfilled'){
+  const d=inventoryResult.value;
+  document.getElementById('agent-count').textContent=(d.managed_agent_count??'UNKNOWN');
+  document.getElementById('agent-ready').textContent=(d.ready_agent_count??'UNKNOWN')+' / '+(d.managed_agent_count??'UNKNOWN');
+  document.getElementById('external-count').textContent=(d.external_source_count??'UNKNOWN');
+  document.getElementById('inventory-detail').textContent=JSON.stringify(d,null,2)+'\n\n'+freshness(d.generated_at);
+ }else{
+  document.getElementById('inventory-detail').textContent='Local agent inventory unavailable: '+inventoryResult.reason.message;
+ }
 }
 load();setInterval(load,30000);
 </script></main></body></html>

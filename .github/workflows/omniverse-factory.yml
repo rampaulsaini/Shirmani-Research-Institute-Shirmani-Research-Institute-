@@ -179,6 +179,11 @@ jobs:
         run: |
           test -s generated/agent-run/factory-status.json
           cp generated/agent-run/factory-status.json generated/factory-status.json
+
+      - name: Synchronize central federation health and dispatch evidence
+        env:
+          ORCHESTRATOR_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}
+        run: python3 scripts/sync-central-factory-status.py
       - name: Validate generated catalog
         run: |
           test -s generated/repository-intelligence.json
@@ -275,7 +280,16 @@ jobs:
           # validated main-based generated outputs. Refresh only this branch ref
           # so stale generated-artifact blobs do not remain in its ancestry.
           # The main branch is never force-pushed.
-          git push --force-with-lease origin "HEAD:$BRANCH"
+          # Refresh the expected remote tip before using an explicit lease.
+          # If another publisher updates the branch after this fetch, the push
+          # is rejected rather than overwriting that concurrent update.
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch origin "refs/heads/$BRANCH:refs/remotes/origin/$BRANCH"
+            EXPECTED_REMOTE_SHA="$(git rev-parse "refs/remotes/origin/$BRANCH")"
+            git push "--force-with-lease=refs/heads/$BRANCH:$EXPECTED_REMOTE_SHA" origin "HEAD:refs/heads/$BRANCH"
+          else
+            git push origin "HEAD:refs/heads/$BRANCH"
+          fi
           if gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
             if ! gh pr create --base main --head "$BRANCH" --title "chore(factory): publish product-first generated outputs" --body "Automated publication PR for product-first generated research outputs. Product creation precedes downstream verification. Protected source material is not rewritten; generated outputs remain subject to independent verification before any VERIFIED promotion."; then
               echo "Publication PR creation was deferred; generated outputs remain on $BRANCH."

@@ -9,7 +9,7 @@
 - Repository and `main` branch exist.
 - `index.html` is the main hub.
 - `index.html` links to `factory-dashboard.html`.
-- The dashboard requests `generated/factory-status.json`, `generated/agent-status.json`, and `generated/federation-status.json`.
+- The factory dashboard reads central health from `generated/federation-health.json`; the federation dashboard reads that health snapshot separately from `generated/federation-inventory.json`.
 - Agent and federation status files exist.
 - Factory status was missing, causing the dashboard JSON parser to receive a GitHub Pages HTML 404 response.
 - `FACTORY.md` defines the factory as a separate automation layer so the existing website remains protected.
