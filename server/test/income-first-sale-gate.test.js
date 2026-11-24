@@ -36,6 +36,7 @@ test("public showroom exposes one featured SRI-SVC-001 pilot and posts only to t
     "9622254967@ptyes",
     "sainirampaul60@gmail.com",
     "https://shirmani-social-api-node.onrender.com/api/enquiry",
+    "mobile: phone",
     "name=\"consent\"",
     "Open service desk"
   ]) assert.ok(html.includes(contract), "missing showroom sale-gate contract: " + contract);
