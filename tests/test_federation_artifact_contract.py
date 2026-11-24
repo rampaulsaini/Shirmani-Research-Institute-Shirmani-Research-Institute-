@@ -23,6 +23,7 @@ def test_federation_inventory_and_health_have_distinct_outputs():
 def test_dashboards_consume_the_matching_federation_artifacts():
     factory_dashboard = (ROOT / "factory-dashboard.html").read_text(encoding="utf-8")
     federation_dashboard = (ROOT / "federation-dashboard.html").read_text(encoding="utf-8")
+    factory_workflow = (ROOT / ".github" / "workflows" / "omniverse-factory.yml").read_text(encoding="utf-8")
 
     assert "generated/federation-health.json" in factory_dashboard
     assert "generated/federation-health.json" in federation_dashboard
@@ -32,3 +33,5 @@ def test_dashboards_consume_the_matching_federation_artifacts():
     assert "dispatchResult" in federation_dashboard
     assert "h.dispatch" not in federation_dashboard
     assert "Promise.all([" in factory_dashboard
+    assert "scripts/sync-central-factory-status.py" in factory_workflow
+    assert "ORCHESTRATOR_TOKEN: ${{ secrets.SHIRMANI_GITHUB_TOKEN }}" in factory_workflow
