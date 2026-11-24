@@ -11,6 +11,8 @@ def test_federation_inventory_and_health_have_distinct_outputs():
     assert 'HEALTH_TARGET = Path("generated/federation-health.json")' in health_writer
     assert '"generated"/"federation-status.json"' not in inventory_writer
     assert 'Path("generated/federation-status.json")' not in health_writer
+    assert '"central_health_source_verified": True' in health_writer
+    assert '"federation_verified": False' in health_writer
 
 
 def test_dashboards_consume_the_matching_federation_artifacts():
