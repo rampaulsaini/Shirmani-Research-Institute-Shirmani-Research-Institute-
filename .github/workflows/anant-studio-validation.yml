@@ -23,6 +23,6 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Validate Studio catalog and publishing gates
         run: python3 scripts/validate_anant_studio.py
