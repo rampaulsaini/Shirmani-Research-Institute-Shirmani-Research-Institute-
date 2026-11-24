@@ -7,6 +7,7 @@ import json
 import os
 import urllib.error
 import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
 
 CENTRAL = "rampaulsaini/Omniverse-Platform"
@@ -15,9 +16,41 @@ HEALTH_PATH = "data/federation/health.json"
 TARGET = Path("factory-status.json")
 HEALTH_TARGET = Path("generated/federation-health.json")
 VALID_HEALTH_STATES = {"OPERATIONAL", "DEGRADED", "OFFLINE", "UNKNOWN"}
+RESEARCH_REPOSITORY = (
+    "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-"
+)
+
+
+def write_unknown_health(note: str, error_type: str | None = None) -> None:
+    """Always leave a parseable, fail-closed health artifact for public dashboards."""
+    HEALTH_TARGET.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "schema_version": 1,
+        "repository": CENTRAL,
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "state": "UNKNOWN",
+        "research_institute_repository": RESEARCH_REPOSITORY,
+        "central_orchestrator": CENTRAL,
+        "federation_verified": False,
+        "live_cross_repository_counters": False,
+        "secrets_exposed": False,
+        "pii_exposed": False,
+        "note": note,
+    }
+    if error_type:
+        payload["error_type"] = error_type
+    HEALTH_TARGET.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
 
 def main() -> int:
+    # Write a safe default first. A later successful fetch replaces it with
+    # verified source data; every early return therefore leaves a valid artifact.
+    write_unknown_health(
+        "Central federation health has not yet been synchronized."
+    )
     token = os.environ.get("ORCHESTRATOR_TOKEN", "").strip()
     current = json.loads(TARGET.read_text(encoding="utf-8")) if TARGET.exists() else {}
 
@@ -31,6 +64,9 @@ def main() -> int:
         TARGET.write_text(
             json.dumps(current, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
+        )
+        write_unknown_health(
+            "Federation token is not configured; central health remains UNKNOWN."
         )
         return 0
 
@@ -48,6 +84,10 @@ def main() -> int:
         TARGET.write_text(
             json.dumps(current, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
+        )
+        write_unknown_health(
+            "Federation token is malformed; central health remains UNKNOWN.",
+            "MalformedCredential",
         )
         return 0
 
@@ -98,6 +138,10 @@ def main() -> int:
             json.dumps(current, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
+        write_unknown_health(
+            "Central factory status could not be verified; health remains UNKNOWN.",
+            type(exc).__name__,
+        )
         return 0
 
     required = {"schema_version", "repository", "generated_at", "state"}
@@ -108,9 +152,7 @@ def main() -> int:
 
     synced = {
         **central,
-        "research_institute_repository": (
-            "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-"
-        ),
+        "research_institute_repository": RESEARCH_REPOSITORY,
         "central_orchestrator": CENTRAL,
         "orchestrator_credential_configured": True,
         "federation_verified": True,
@@ -135,9 +177,7 @@ def main() -> int:
         if health.get("state") not in VALID_HEALTH_STATES:
             raise RuntimeError("central federation health state is invalid")
 
-        health["research_institute_repository"] = (
-            "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-"
-        )
+        health["research_institute_repository"] = RESEARCH_REPOSITORY
         health["central_orchestrator"] = CENTRAL
         health["federation_verified"] = True
         HEALTH_TARGET.parent.mkdir(parents=True, exist_ok=True)
@@ -152,30 +192,9 @@ def main() -> int:
         RuntimeError,
         json.JSONDecodeError,
     ) as exc:
-        HEALTH_TARGET.parent.mkdir(parents=True, exist_ok=True)
-        HEALTH_TARGET.write_text(
-            json.dumps(
-                {
-                    "schema_version": 1,
-                    "repository": CENTRAL,
-                    "state": "UNKNOWN",
-                    "research_institute_repository": (
-                        "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-"
-                    ),
-                    "central_orchestrator": CENTRAL,
-                    "federation_verified": False,
-                    "secrets_exposed": False,
-                    "pii_exposed": False,
-                    "note": (
-                        "Central federation health export could not be verified."
-                    ),
-                    "error_type": type(exc).__name__,
-                },
-                ensure_ascii=False,
-                indent=2,
-            )
-            + "\n",
-            encoding="utf-8",
+        write_unknown_health(
+            "Central federation health export could not be verified.",
+            type(exc).__name__,
         )
 
     return 0
