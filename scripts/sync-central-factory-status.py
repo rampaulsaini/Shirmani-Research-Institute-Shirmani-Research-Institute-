@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import base64
+import binascii
 import json
 import os
 import urllib.error
@@ -153,11 +154,18 @@ def main() -> int:
 
     try:
         central = fetch_json(SOURCE_PATH)
+        required = {"schema_version", "repository", "generated_at", "state"}
+        if not required.issubset(central):
+            raise RuntimeError("central status contract is incomplete")
+        if central["repository"] != CENTRAL:
+            raise RuntimeError("central status repository identity mismatch")
     except (
         urllib.error.HTTPError,
         urllib.error.URLError,
         TimeoutError,
         UnicodeEncodeError,
+        UnicodeDecodeError,
+        binascii.Error,
         json.JSONDecodeError,
         RuntimeError,
     ) as exc:
@@ -177,12 +185,6 @@ def main() -> int:
             type(exc).__name__,
         )
         return 0
-
-    required = {"schema_version", "repository", "generated_at", "state"}
-    if not required.issubset(central):
-        raise RuntimeError("central status contract is incomplete")
-    if central["repository"] != CENTRAL:
-        raise RuntimeError("central status repository identity mismatch")
 
     synced = {
         **central,
@@ -226,6 +228,8 @@ def main() -> int:
         urllib.error.URLError,
         TimeoutError,
         RuntimeError,
+        UnicodeDecodeError,
+        binascii.Error,
         json.JSONDecodeError,
     ) as exc:
         write_unknown_health(
@@ -265,6 +269,8 @@ def main() -> int:
         urllib.error.URLError,
         TimeoutError,
         RuntimeError,
+        UnicodeDecodeError,
+        binascii.Error,
         json.JSONDecodeError,
     ) as exc:
         write_unknown_dispatch(
