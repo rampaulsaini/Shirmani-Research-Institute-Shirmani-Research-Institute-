@@ -56,8 +56,10 @@ async function load(){
   document.getElementById('health-state').textContent=h.state||'UNKNOWN';
   document.getElementById('health-freshness').textContent=freshness(h.generated_at);
   document.getElementById('health-detail').textContent=JSON.stringify(h,null,2);
-  document.getElementById('dispatch-state').textContent='SEPARATE_ARTIFACT';
-  document.getElementById('dispatch-note').textContent='Dispatch is loaded independently from central health.';
+ }else{
+  document.getElementById('health-state').textContent='UNKNOWN';
+  document.getElementById('health-freshness').textContent='Verified central health unavailable';
+  document.getElementById('health-detail').textContent='No synchronized central health snapshot: '+healthResult.reason.message;
  }
  if(dispatchResult.status==='fulfilled'){
   const d=dispatchResult.value;
@@ -72,13 +74,6 @@ async function load(){
  }else{
   document.getElementById('dispatch-state').textContent='UNKNOWN';
   document.getElementById('dispatch-note').textContent='Separate dispatch artifact unavailable: '+dispatchResult.reason.message;
- }
- }else{
-  document.getElementById('health-state').textContent='UNKNOWN';
-  document.getElementById('health-freshness').textContent='Verified central health unavailable';
-  document.getElementById('health-detail').textContent='No synchronized central health snapshot: '+healthResult.reason.message;
-  document.getElementById('dispatch-state').textContent='NOT_SYNCHRONIZED';
-  document.getElementById('dispatch-note').textContent='No current dispatch evidence loaded.';
  }
  if(inventoryResult.status==='fulfilled'){
   const d=inventoryResult.value;
