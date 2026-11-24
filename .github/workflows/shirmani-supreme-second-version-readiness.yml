@@ -54,7 +54,7 @@ jobs:
             echo "- Autonomous voice/public identity claims: BLOCKED until authorized and tested"
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload contract artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: shirmani-supreme-second-version-contract
           path: |

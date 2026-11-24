@@ -35,7 +35,7 @@ jobs:
       - name: Run hardening test
         run: python3 tests/supreme_nlp_benchmark_controller.py
       - name: Upload controller telemetry
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: supreme-nlp-benchmark-controller-${{ github.run_id }}
           path: generated/supreme-nlp-benchmark-controller.json
