@@ -49,9 +49,11 @@ out={
     "missing_agent_count":missing,
     "external_source_count":len(external),
     "automation_mode":"event-and-schedule driven; not a continuously running external AI service",
+    "artifact_kind":"local-agent-structure-inventory",
+    "evidence_scope":"manifest, runner, and workflow file presence only; not runtime execution or independent verification",
     "managed_agents":managed,
     "external_sources":external
 }
 (ROOT/"generated").mkdir(exist_ok=True)
-(ROOT/"generated"/"federation-status.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
+(ROOT/"generated"/"federation-inventory.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps({"managed_agents":len(managed),"ready":ready,"partial":partial,"missing":missing,"external_sources":len(external)}))
