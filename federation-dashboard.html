@@ -31,7 +31,7 @@ footer{margin-top:30px;color:var(--muted);font-size:.9rem}
 <div class="card"><p class="muted">Health describes the central control-plane snapshot. It does not prove that a worker received or completed a task.</p><pre id="health-detail">Loading…</pre></div>
 <h2>Local agent inventory</h2>
 <div class="card"><p class="muted">The inventory checks whether manifest, runner and workflow files exist in the local source snapshot. READY here means structural presence only—not a running agent, successful task, scientific verification or customer delivery.</p><pre id="inventory-detail">Loading…</pre></div>
-<p><a href="generated/federation-health.json">Central health JSON</a> · <a href="generated/federation-inventory.json">Agent inventory JSON</a> · <a href="factory-dashboard.html">Research Factory</a> · <a href="index.html">Main Hub</a></p>
+<p><a href="generated/federation-health.json">Central health JSON</a> · <a href="generated/federation-dispatch.json">Dispatch JSON</a> · <a href="generated/federation-inventory.json">Agent inventory JSON</a> · <a href="factory-dashboard.html">Research Factory</a> · <a href="index.html">Main Hub</a></p>
 <footer>© 2026 Shirmani Research Institute · Missing or stale telemetry remains UNKNOWN; no status is inferred from configuration alone.</footer>
 <script>
 async function readJson(path){
@@ -46,8 +46,9 @@ function freshness(value){
  return ageDays<=7?'snapshot age: '+ageDays.toFixed(1)+' days':'STALE snapshot: '+ageDays.toFixed(1)+' days old';
 }
 async function load(){
- const [healthResult,inventoryResult]=await Promise.allSettled([
+ const [healthResult,dispatchResult,inventoryResult]=await Promise.allSettled([
   readJson('generated/federation-health.json'),
+  readJson('generated/federation-dispatch.json'),
   readJson('generated/federation-inventory.json')
  ]);
  if(healthResult.status==='fulfilled'){
@@ -55,13 +56,23 @@ async function load(){
   document.getElementById('health-state').textContent=h.state||'UNKNOWN';
   document.getElementById('health-freshness').textContent=freshness(h.generated_at);
   document.getElementById('health-detail').textContent=JSON.stringify(h,null,2);
-  if(h.dispatch&&Number.isInteger(h.dispatch.dispatched)&&Number.isInteger(h.dispatch.attempted)){
-   document.getElementById('dispatch-state').textContent=h.dispatch.dispatched+' / '+h.dispatch.attempted;
-   document.getElementById('dispatch-note').textContent='Dispatch attempts in this synchronized snapshot; not task completion.';
+  document.getElementById('dispatch-state').textContent='SEPARATE_ARTIFACT';
+  document.getElementById('dispatch-note').textContent='Dispatch is loaded independently from central health.';
+ }
+ if(dispatchResult.status==='fulfilled'){
+  const d=dispatchResult.value;
+  const c=d.dispatch;
+  if(d.dispatch_record_verified===true && c && Number.isInteger(c.dispatched) && Number.isInteger(c.attempted)){
+   document.getElementById('dispatch-state').textContent=c.dispatched+' / '+c.attempted+' accepted';
+   document.getElementById('dispatch-note').textContent='Deferred '+(c.deferred??'UNKNOWN')+' · Failed '+(c.failed??'UNKNOWN')+' · Snapshot '+freshness(d.source_generated_at)+'. Accepted dispatch is not receiver receipt or task execution.';
   }else{
-   document.getElementById('dispatch-state').textContent='NOT_INCLUDED';
-   document.getElementById('dispatch-note').textContent='This health contract contains no dispatch counters.';
+   document.getElementById('dispatch-state').textContent='UNKNOWN';
+   document.getElementById('dispatch-note').textContent=d.note||'Dispatch record not verified.';
   }
+ }else{
+  document.getElementById('dispatch-state').textContent='UNKNOWN';
+  document.getElementById('dispatch-note').textContent='Separate dispatch artifact unavailable: '+dispatchResult.reason.message;
+ }
  }else{
   document.getElementById('health-state').textContent='UNKNOWN';
   document.getElementById('health-freshness').textContent='Verified central health unavailable';
