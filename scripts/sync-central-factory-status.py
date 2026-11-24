@@ -249,8 +249,26 @@ def main() -> int:
             raise RuntimeError("central dispatch counters are incomplete")
         if any(type(counters[key]) is not int or counters[key] < 0 for key in required_counters):
             raise RuntimeError("central dispatch counters are invalid")
-        if not isinstance(dispatch_record.get("targets"), list):
+        targets = dispatch_record.get("targets")
+        if not isinstance(targets, list):
             raise RuntimeError("central dispatch targets are invalid")
+        allowed_statuses = {"dispatched", "deferred", "failed", "invalid"}
+        if any(
+            not isinstance(target, dict)
+            or not isinstance(target.get("repository"), str)
+            or target.get("status") not in allowed_statuses
+            for target in targets
+        ):
+            raise RuntimeError("central dispatch target record is invalid")
+        observed = {
+            "attempted": len(targets),
+            "dispatched": sum(target["status"] == "dispatched" for target in targets),
+            "deferred": sum(target["status"] == "deferred" for target in targets),
+            "failed": sum(target["status"] == "failed" for target in targets),
+            "invalid": sum(target["status"] == "invalid" for target in targets),
+        }
+        if any(counters[key] != observed[key] for key in required_counters):
+            raise RuntimeError("central dispatch counters do not match target records")
         dispatch_record["source_generated_at"] = dispatch_record["generated_at"]
         dispatch_record["generated_at"] = datetime.now(timezone.utc).isoformat()
         dispatch_record["repository"] = CENTRAL
