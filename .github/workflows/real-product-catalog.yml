@@ -22,7 +22,7 @@ jobs:
       - name: Materialize real product catalog
         run: python3 factory/product_catalog_materializer.py
       - name: Propose catalog artifacts through a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/real-product-catalog

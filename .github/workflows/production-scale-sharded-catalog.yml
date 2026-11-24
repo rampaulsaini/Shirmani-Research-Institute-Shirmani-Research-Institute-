@@ -60,7 +60,7 @@ jobs:
           (root/"generated/catalog-shard-manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(manifest,ensure_ascii=False))
       - name: Publish sharded catalogue through a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ github.token }}
           branch: automation/sharded-catalogue-publish

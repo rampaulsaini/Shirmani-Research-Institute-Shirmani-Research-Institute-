@@ -62,7 +62,7 @@ jobs:
           SHOWROOM_BASE: http://127.0.0.1:8765
         run: python3 factory/product_vip_screenshot_factory.py
       - name: Publish generated screenshots as a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/vip-product-screenshot-production

@@ -31,7 +31,7 @@ jobs:
       - name: Build 4K product visuals
         run: python3 factory/product_visual_materializer.py
       - name: Publish visual artifacts through PR
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "feat(showroom): materialize SHIRMANI 4K product visuals"
           title: "Automission: materialize SHIRMANI 4K product visuals"
