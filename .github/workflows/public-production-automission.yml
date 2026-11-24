@@ -327,7 +327,7 @@ jobs:
           PY
 
       - name: Upload generated production site
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           name: shirmani-pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: .
