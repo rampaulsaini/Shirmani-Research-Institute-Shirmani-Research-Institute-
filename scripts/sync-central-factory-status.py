@@ -155,7 +155,8 @@ def main() -> int:
         "research_institute_repository": RESEARCH_REPOSITORY,
         "central_orchestrator": CENTRAL,
         "orchestrator_credential_configured": True,
-        "federation_verified": True,
+        "central_health_source_verified": True,
+        "federation_verified": False,
         "live_counters": bool(
             central.get("live_cross_repository_counters", False)
         ),
