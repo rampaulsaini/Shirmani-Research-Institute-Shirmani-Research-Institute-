@@ -39,7 +39,7 @@ async function refresh(){
  if(d)snapshot.factory=d;if(c)snapshot.current=c;if(a)snapshot.agents=a;if(f)snapshot.federation=f;if(v)snapshot.verification=v;
  document.getElementById('state').textContent=JSON.stringify(snapshot,null,2);
  document.getElementById('federation-state').textContent=f?.state||'UNKNOWN';
- document.getElementById('federation-note').textContent=f?.federation_verified?'Central health snapshot synchronized; check timestamp for freshness':'No verified central federation-health snapshot available';
+ document.getElementById('federation-note').textContent=f?.central_health_source_verified?'Central health snapshot synchronized; check timestamp for freshness':'No verified central federation-health snapshot available';
  document.getElementById('federation-detail').textContent=f?JSON.stringify({state:f.state,generated_at:f.generated_at,federation_verified:f.federation_verified,live_cross_repository_counters:f.live_cross_repository_counters,secrets_exposed:f.secrets_exposed,pii_exposed:f.pii_exposed,note:f.note},null,2):'Federation health is unavailable; other dashboard sections remain independently readable.';
  document.getElementById('production-tasks').textContent=p?(p.total_queued_tasks||0).toLocaleString():'UNKNOWN';
  document.getElementById('production-note').textContent=p?(p.discovered_modules||0)+' modules · '+(p.last_cycle_tasks||0)+' tasks/cycle':'Production telemetry unavailable';
