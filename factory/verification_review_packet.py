@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """Build a deterministic, hash-bound human verification review packet.
 
-This tool prepares review work; it never fabricates evidence, reviewers, tests,
-or VERIFIED status. It reads the current verification queue and registry and
-emits a small review packet whose task identity is bound to the exact queue
-record hash.
+Queue exhaustion is a normal terminal condition, not a workflow failure.
+This tool never fabricates evidence, reviewers, tests, or VERIFIED status.
 """
 from __future__ import annotations
 
@@ -50,10 +48,39 @@ def main() -> None:
     queue = load_jsonl(GENERATED / "independent-verification-queue.jsonl")
     registry = load_jsonl(GENERATED / "independent-verification-registry.jsonl")
     registry_by_task = {str(r.get("task_id")): r for r in registry}
-
     selected = queue[args.offset : args.offset + args.batch_size]
+
+    packet_path = GENERATED / (
+        f"verification-review-packet-{args.offset + 1:06d}-"
+        f"{args.offset + args.batch_size:06d}.json"
+    )
+
     if not selected:
-        raise SystemExit("requested review packet is empty")
+        exhausted = {
+            "version": 1,
+            "status": "QUEUE_EXHAUSTED",
+            "queue_exhausted": True,
+            "queue_length": len(queue),
+            "requested_offset": args.offset,
+            "records": 0,
+            "packet_range": [len(queue), len(queue)],
+            "source": "generated/independent-verification-queue.jsonl",
+            "registry": "generated/independent-verification-registry.jsonl",
+            "verified_records": 0,
+            "verification_status": "NOT_PERFORMED",
+            "items": [],
+            "note": "No unpacketized queue records remain at this offset. This is not a verification result.",
+        }
+        packet_path.write_text(json.dumps(exhausted, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(json.dumps({
+            "packet": packet_path.relative_to(ROOT).as_posix(),
+            "records": 0,
+            "queue_length": len(queue),
+            "requested_offset": args.offset,
+            "status": "QUEUE_EXHAUSTED",
+            "verification_status": "NOT_PERFORMED",
+        }, ensure_ascii=False))
+        return
 
     packet = []
     for ordinal, task in enumerate(selected, start=args.offset + 1):
@@ -63,79 +90,49 @@ def main() -> None:
         registry_record = registry_by_task.get(task_id)
         if registry_record is None:
             raise SystemExit(f"no registry record for {task_id}")
-
-        packet.append(
-            {
-                "packet_ordinal": ordinal,
-                "task_id": task_id,
-                "task_hash": task_hash(task),
-                "claim_id": str(task.get("claim_id", "")),
-                "source_ids": list(task.get("source_ids") or []),
-                "verification_questions": list(task.get("verification_questions") or []),
-                "current_status": registry_record.get("status", "UNKNOWN"),
-                "current_verification_status": registry_record.get(
-                    "verification_status", "UNKNOWN"
-                ),
-                "review_template": {
-                    "exact_claim": None,
-                    "definitions": [],
-                    "evidence_references": [],
-                    "countercase_review": {
-                        "status": "NOT_REVIEWED",
-                        "references": [],
-                    },
-                    "reproduction_or_test": {
-                        "status": "NOT_RUN",
-                        "references": [],
-                    },
-                    "uncertainty": [],
-                    "reviewer": None,
-                    "reviewer_role": None,
-                    "reviewed_at": None,
-                    "reviewer_conclusion": None,
-                    "audit_notes": [],
-                },
-                "policy": (
-                    "Packet preparation is not verification. Do not populate "
-                    "review fields from inference or invention."
-                ),
-            }
-        )
-
-    packet_path = GENERATED / (
-        f"verification-review-packet-{args.offset + 1:06d}-"
-        f"{args.offset + len(selected):06d}.json"
-    )
-    packet_path.write_text(
-        json.dumps(
-            {
-                "version": 1,
-                "packet_range": [args.offset + 1, args.offset + len(selected)],
-                "records": len(packet),
-                "source": "generated/independent-verification-queue.jsonl",
-                "registry": "generated/independent-verification-registry.jsonl",
-                "status": "READY_FOR_HUMAN_REVIEW",
-                "verified_records": 0,
-                "items": packet,
+        packet.append({
+            "packet_ordinal": ordinal,
+            "task_id": task_id,
+            "task_hash": task_hash(task),
+            "claim_id": str(task.get("claim_id", "")),
+            "source_ids": list(task.get("source_ids") or []),
+            "verification_questions": list(task.get("verification_questions") or []),
+            "current_status": registry_record.get("status", "UNKNOWN"),
+            "current_verification_status": registry_record.get("verification_status", "UNKNOWN"),
+            "review_template": {
+                "exact_claim": None,
+                "definitions": [],
+                "evidence_references": [],
+                "countercase_review": {"status": "NOT_REVIEWED", "references": []},
+                "reproduction_or_test": {"status": "NOT_RUN", "references": []},
+                "uncertainty": [],
+                "reviewer": None,
+                "reviewer_role": None,
+                "reviewed_at": None,
+                "reviewer_conclusion": None,
+                "audit_notes": [],
             },
-            ensure_ascii=False,
-            indent=2,
-        )
-        + "\n",
-        encoding="utf-8",
-    )
-    print(
-        json.dumps(
-            {
-                "packet": packet_path.relative_to(ROOT).as_posix(),
-                "records": len(packet),
-                "range": [args.offset + 1, args.offset + len(selected)],
-                "status": "READY_FOR_HUMAN_REVIEW",
-                "verification_status": "NOT_PERFORMED",
-            },
-            ensure_ascii=False,
-        )
-    )
+            "policy": "Packet preparation is not verification. Do not populate review fields from inference or invention.",
+        })
+
+    packet_path.write_text(json.dumps({
+        "version": 1,
+        "packet_range": [args.offset + 1, args.offset + len(selected)],
+        "records": len(packet),
+        "source": "generated/independent-verification-queue.jsonl",
+        "registry": "generated/independent-verification-registry.jsonl",
+        "status": "READY_FOR_HUMAN_REVIEW",
+        "verified_records": 0,
+        "verification_status": "NOT_PERFORMED",
+        "items": packet,
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({
+        "packet": packet_path.relative_to(ROOT).as_posix(),
+        "records": len(packet),
+        "range": [args.offset + 1, args.offset + len(selected)],
+        "status": "READY_FOR_HUMAN_REVIEW",
+        "verification_status": "NOT_PERFORMED",
+    }, ensure_ascii=False))
 
 
 if __name__ == "__main__":
