@@ -1,0 +1,43 @@
+name: Federation Artifact Contract Tests
+
+on:
+  pull_request:
+    paths:
+      - "factory/federation.py"
+      - "scripts/sync-central-factory-status.py"
+      - "factory-dashboard.html"
+      - "federation-dashboard.html"
+      - ".github/workflows/omniverse-factory.yml"
+      - ".github/workflows/federation-artifact-contract-tests.yml"
+      - "tests/test_federation_artifact_contract.py"
+  push:
+    branches: [main]
+    paths:
+      - "factory/federation.py"
+      - "scripts/sync-central-factory-status.py"
+      - "factory-dashboard.html"
+      - "federation-dashboard.html"
+      - ".github/workflows/omniverse-factory.yml"
+      - ".github/workflows/federation-artifact-contract-tests.yml"
+      - "tests/test_federation_artifact_contract.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: federation-artifact-contract-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Compile federation synchronization script
+        run: python3 -m py_compile scripts/sync-central-factory-status.py
+      - name: Run federation artifact contract tests
+        run: python3 -m unittest discover -s tests -p "test_federation_artifact_contract.py" -v
