@@ -37,6 +37,31 @@ create table if not exists guest_service_payment_proofs (
   evidence_reference text not null
     check (evidence_reference ~ '^private://[A-Za-z0-9/_-]{1,960}$'),
   customer_consent boolean not null check (customer_consent = true),
+  customer_consent_reference text not null
+    check (customer_consent_reference ~ '^private://[A-Za-z0-9/_-]{1,960}
+  verification_status text not null default 'pending'
+    check (verification_status in ('pending','verified','rejected')),
+  verification_method text check (verification_method in ('owner_bank_statement')),
+  verified_by uuid references accounts(id) on delete set null,
+  verified_at timestamptz,
+  created_at timestamptz not null default now(),
+  check (
+    (verification_status = 'verified' and verification_method = 'owner_bank_statement' and verified_by is not null and verified_at is not null)
+    or verification_status <> 'verified'
+  )
+);
+create unique index if not exists guest_service_one_open_proof_per_order
+  on guest_service_payment_proofs(service_order_id)
+  where verification_status in ('pending','verified');
+create index if not exists guest_service_verified_income_idx
+  on guest_service_payment_proofs(verified_at desc)
+  where verification_status='verified';
+
+comment on table guest_service_orders is
+'Guest customer orders linked to consented enquiries; no synthetic account or marketplace listing is created.';
+comment on table guest_service_payment_proofs is
+'Private guest-service payment evidence. Verified means owner-attested recipient bank-credit match, not independent audit.';
+),
   verification_status text not null default 'pending'
     check (verification_status in ('pending','verified','rejected')),
   verification_method text check (verification_method in ('owner_bank_statement')),
