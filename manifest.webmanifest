@@ -1,0 +1,30 @@
+{
+  "id": "./supreme-clean-showroom.html",
+  "name": "Shirmani Research Institute",
+  "short_name": "SHIRMANI",
+  "description": "SHIRMANI Research Institute — public showroom and services.",
+  "lang": "hi",
+  "start_url": "./supreme-clean-showroom.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "any",
+  "background_color": "#07101a",
+  "theme_color": "#07101a",
+  "icons": [
+    {
+      "src": "./icons/sri-app.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "business",
+    "education",
+    "productivity"
+  ]
+}
