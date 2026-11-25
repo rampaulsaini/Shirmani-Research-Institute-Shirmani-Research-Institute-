@@ -963,6 +963,21 @@ app.get("/api/yatharth/verify/:accountId", dbRequired, verifyYatharthAccount);
 app.get("/verify/:accountId", dbRequired, verifyYatharthAccount);
 
 
+// Owner-only operational view for guest service orders; never exposed publicly.
+app.get("/api/owner/service-orders", dbRequired, auth, ownerOnly, async (req, res) => {
+  const requestedLimit = Number.parseInt(req.query.limit, 10);
+  const limit = Number.isInteger(requestedLimit) ? Math.min(100, Math.max(1, requestedLimit)) : 50;
+  try {
+    const { rows } = await pool.query(
+      "select o.id,o.enquiry_id,e.name,e.email,e.phone,e.service,e.language,e.topic,o.scope,o.amount_minor,o.currency,o.deadline,o.revision_limit,o.status,o.accepted_at,o.delivery_reference,o.delivered_at,o.customer_acceptance_reference,o.customer_accepted_at,o.created_at,o.updated_at,p.id as payment_proof_id,p.verification_status as payment_verification_status,p.verified_at as payment_verified_at from guest_service_orders o join client_enquiries e on e.id=o.enquiry_id left join guest_service_payment_proofs p on p.service_order_id=o.id order by o.created_at desc limit $1",
+      [limit]
+    );
+    return res.json({ items: rows, count: rows.length, access: "owner_only" });
+  } catch {
+    return res.status(503).json({ error: "GUEST_SERVICE_ORDER_INBOX_UNAVAILABLE" });
+  }
+});
+
 // Guest service-order lifecycle: links consented enquiries to the existing owner-only
 // payment/delivery controls without inventing a marketplace account for a guest.
 const privateEvidenceReference = value =>
