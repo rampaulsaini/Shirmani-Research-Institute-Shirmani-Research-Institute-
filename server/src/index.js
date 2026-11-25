@@ -734,8 +734,8 @@ app.get("/api/ready", async (_req, res) => {
 // verified income requires a consented, verified payment-proof row in INR.
 app.get("/api/status", async (_req, res) => {
   let database = "NOT_CONFIGURED";
-  const tables = { client_enquiries: "NOT_CHECKED", paid_orders: "NOT_CHECKED" };
-  const counters = { enquiries: null, paid_orders: null, income_inr_minor: null };
+  const tables = { client_enquiries: "NOT_CHECKED", paid_orders: "NOT_CHECKED", guest_service_orders: "NOT_CHECKED", guest_service_payment_proofs: "NOT_CHECKED" };
+  const counters = { enquiries: null, paid_orders: null, guest_service_orders: null, guest_paid_orders: null, income_inr_minor: null };
 
   if (pool) {
     try {
@@ -772,6 +772,34 @@ app.get("/api/status", async (_req, res) => {
       }
     } catch {
       tables.paid_orders = "ERROR";
+    }
+
+    try {
+      const result = await pool.query("select to_regclass('public.guest_service_orders') is not null as ready");
+      if (result.rows[0]?.ready) {
+        tables.guest_service_orders = "READY";
+        const orders = await pool.query("select count(*)::int as count from guest_service_orders");
+        counters.guest_service_orders = orders.rows[0].count;
+      } else {
+        tables.guest_service_orders = "MISSING";
+      }
+    } catch {
+      tables.guest_service_orders = "ERROR";
+    }
+
+    try {
+      const result = await pool.query("select to_regclass('public.guest_service_payment_proofs') is not null as ready");
+      if (result.rows[0]?.ready) {
+        tables.guest_service_payment_proofs = "READY";
+        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as income_inr_minor from guest_service_payment_proofs where verification_status='verified' and customer_consent=true and currency='INR'");
+        counters.guest_paid_orders = paid.rows[0].count;
+        const existingMinor = BigInt(counters.income_inr_minor || "0");
+        counters.income_inr_minor = String(existingMinor + BigInt(paid.rows[0].income_inr_minor));
+      } else {
+        tables.guest_service_payment_proofs = "MISSING";
+      }
+    } catch {
+      tables.guest_service_payment_proofs = "ERROR";
     }
   }
 
@@ -933,6 +961,168 @@ const verifyYatharthAccount = async (req, res) => {
 
 app.get("/api/yatharth/verify/:accountId", dbRequired, verifyYatharthAccount);
 app.get("/verify/:accountId", dbRequired, verifyYatharthAccount);
+
+
+// Guest service-order lifecycle: links consented enquiries to the existing owner-only
+// payment/delivery controls without inventing a marketplace account for a guest.
+const privateEvidenceReference = value =>
+  typeof value === "string" && /^private:\/\/[A-Za-z0-9/_-]{1,960}$/.test(value.trim());
+
+app.post("/api/owner/enquiries/:enquiryId/convert-to-service-order", dbRequired, auth, ownerOnly, async (req, res) => {
+  const body = req.body || {};
+  const scope = typeof body.scope === "string" ? body.scope.trim() : "";
+  const deadline = typeof body.deadline === "string" ? body.deadline.trim() : "";
+  const amountMinor = body.amount_minor;
+  const revisionLimit = body.revision_limit;
+  const acceptanceReference = typeof body.written_acceptance_reference === "string" ? body.written_acceptance_reference.trim() : "";
+  if (!scope || scope.length > 5000 || !deadline || deadline.length > 160 ||
+      !Number.isSafeInteger(amountMinor) || amountMinor <= 0 ||
+      !Number.isInteger(revisionLimit) || revisionLimit < 0 || revisionLimit > 10 ||
+      body.currency !== "INR" || !privateEvidenceReference(acceptanceReference)) {
+    return res.status(400).json({ error: "EXACT_SCOPE_PRICE_DEADLINE_REVISIONS_AND_PRIVATE_ACCEPTANCE_REQUIRED" });
+  }
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    const enquiry = await client.query(
+      "select id,status,consent_at from client_enquiries where id=$1 for update",
+      [req.params.enquiryId]
+    );
+    if (!enquiry.rows[0]) { await client.query("rollback"); return res.status(404).json({ error: "ENQUIRY_NOT_FOUND" }); }
+    if (!enquiry.rows[0].consent_at || ["declined","closed"].includes(enquiry.rows[0].status)) {
+      await client.query("rollback"); return res.status(409).json({ error: "ENQUIRY_NOT_ELIGIBLE_FOR_ORDER" });
+    }
+    const existing = await client.query(
+      "select id,status,amount_minor,currency,created_at from guest_service_orders where enquiry_id=$1",
+      [req.params.enquiryId]
+    );
+    if (existing.rows[0]) {
+      await client.query("commit");
+      return res.status(200).json({ ...existing.rows[0], duplicate: true, message: "An order already exists for this enquiry." });
+    }
+    const created = await client.query(
+      "insert into guest_service_orders(enquiry_id,scope,amount_minor,currency,deadline,revision_limit,written_acceptance_reference,created_by) values($1,$2,$3,'INR',$4,$5,$6,$7) returning id,enquiry_id,scope,amount_minor,currency,deadline,revision_limit,status,accepted_at,created_at",
+      [req.params.enquiryId, scope, amountMinor, deadline, revisionLimit, acceptanceReference, req.user.sub]
+    );
+    await client.query("update client_enquiries set status='accepted',updated_at=now() where id=$1", [req.params.enquiryId]);
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'guest_service_order_created','guest_service_order',$2,$3)",
+      [req.user.sub, created.rows[0].id, { enquiry_id: req.params.enquiryId, currency: "INR", written_acceptance_recorded: true }]
+    );
+    await client.query("commit");
+    return res.status(201).json({ ...created.rows[0], payment_status: "NOT_PAID" });
+  } catch (error) {
+    try { await client.query("rollback"); } catch {}
+    if (error?.code === "23505") return res.status(409).json({ error: "SERVICE_ORDER_ALREADY_EXISTS_OR_DUPLICATE" });
+    return res.status(503).json({ error: "GUEST_SERVICE_ORDER_CREATE_FAILED" });
+  } finally { client.release(); }
+});
+
+app.post("/api/owner/service-orders/:orderId/payment-proof", dbRequired, auth, ownerOnly, async (req, res) => {
+  const body = req.body || {};
+  const paymentReference = typeof body.payment_reference === "string" ? body.payment_reference.trim() : "";
+  const evidenceReference = typeof body.evidence_reference === "string" ? body.evidence_reference.trim() : "";
+  if (!paymentReference || paymentReference.length > 200 || !privateEvidenceReference(evidenceReference) || body.customer_consent !== true) {
+    return res.status(400).json({ error: "PAYMENT_REFERENCE_PRIVATE_EVIDENCE_AND_CUSTOMER_CONSENT_REQUIRED" });
+  }
+  try {
+    const order = await pool.query(
+      "select id,amount_minor,currency,status from guest_service_orders where id=$1",
+      [req.params.orderId]
+    );
+    if (!order.rows[0]) return res.status(404).json({ error: "SERVICE_ORDER_NOT_FOUND" });
+    if (order.rows[0].status !== "awaiting_payment") return res.status(409).json({ error: "SERVICE_ORDER_NOT_AWAITING_PAYMENT" });
+    const { rows } = await pool.query(
+      "insert into guest_service_payment_proofs(service_order_id,amount_minor,currency,payment_reference,evidence_reference,customer_consent) values($1,$2,$3,$4,$5,true) returning id,service_order_id,amount_minor,currency,verification_status,created_at",
+      [order.rows[0].id, order.rows[0].amount_minor, order.rows[0].currency, paymentReference, evidenceReference]
+    );
+    return res.status(201).json({ ...rows[0], income: "PENDING_UNVERIFIED", note: "Evidence recorded; not verified income." });
+  } catch (error) {
+    if (error?.code === "23505") return res.status(409).json({ error: "DUPLICATE_PAYMENT_REFERENCE_OR_OPEN_PROOF" });
+    return res.status(503).json({ error: "GUEST_PAYMENT_PROOF_SAVE_FAILED" });
+  }
+});
+
+app.post("/api/owner/service-payment-proofs/:proofId/verify", dbRequired, auth, ownerOnly, async (req, res) => {
+  if (req.body?.confirm_bank_match !== true) return res.status(400).json({ error: "BANK_MATCH_CONFIRMATION_REQUIRED" });
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    const proof = await client.query(
+      "select p.id,p.service_order_id,p.amount_minor,p.currency,p.verification_status,o.status as order_status,o.amount_minor as order_amount,o.currency as order_currency from guest_service_payment_proofs p join guest_service_orders o on o.id=p.service_order_id where p.id=$1 for update of p,o",
+      [req.params.proofId]
+    );
+    if (!proof.rows[0] || proof.rows[0].verification_status !== "pending") {
+      await client.query("rollback"); return res.status(404).json({ error: "PENDING_GUEST_PAYMENT_PROOF_NOT_FOUND" });
+    }
+    const p = proof.rows[0];
+    if (p.order_status !== "awaiting_payment" || String(p.amount_minor) !== String(p.order_amount) || p.currency.trim() !== p.order_currency.trim()) {
+      await client.query("rollback"); return res.status(409).json({ error: "PAYMENT_AMOUNT_CURRENCY_OR_ORDER_STATE_MISMATCH" });
+    }
+    await client.query(
+      "update guest_service_payment_proofs set verification_status='verified',verification_method='owner_bank_statement',verified_by=$1,verified_at=now() where id=$2",
+      [req.user.sub, p.id]
+    );
+    await client.query("update guest_service_orders set status='paid',updated_at=now() where id=$1", [p.service_order_id]);
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'guest_service_payment_verified','guest_service_order',$2,$3)",
+      [req.user.sub, p.service_order_id, { proof_id: p.id, verification_method: "owner_bank_statement" }]
+    );
+    await client.query("commit");
+    return res.json({ proof_id: p.id, service_order_id: p.service_order_id, status: "paid", verification_scope: "owner_attested_bank_match_not_independent_audit" });
+  } catch {
+    try { await client.query("rollback"); } catch {}
+    return res.status(503).json({ error: "GUEST_PAYMENT_VERIFICATION_FAILED" });
+  } finally { client.release(); }
+});
+
+app.post("/api/owner/service-orders/:orderId/deliver", dbRequired, auth, ownerOnly, async (req, res) => {
+  const reference = typeof req.body?.delivery_reference === "string" ? req.body.delivery_reference.trim() : "";
+  if (!privateEvidenceReference(reference)) return res.status(400).json({ error: "PRIVATE_DELIVERY_REFERENCE_REQUIRED" });
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    const { rows } = await client.query(
+      "update guest_service_orders set status='delivered',delivery_reference=$1,delivered_at=now(),updated_at=now() where id=$2 and status='paid' returning id,status,delivered_at",
+      [reference, req.params.orderId]
+    );
+    if (!rows[0]) { await client.query("rollback"); return res.status(409).json({ error: "SERVICE_ORDER_MUST_BE_PAID_BEFORE_DELIVERY" }); }
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'guest_service_order_delivered','guest_service_order',$2,$3)",
+      [req.user.sub, rows[0].id, { delivery_reference_private: true }]
+    );
+    await client.query("commit");
+    return res.json({ ...rows[0], customer_acceptance: "PENDING" });
+  } catch {
+    try { await client.query("rollback"); } catch {}
+    return res.status(503).json({ error: "GUEST_SERVICE_DELIVERY_FAILED" });
+  } finally { client.release(); }
+});
+
+app.post("/api/owner/service-orders/:orderId/customer-acceptance", dbRequired, auth, ownerOnly, async (req, res) => {
+  const reference = typeof req.body?.acceptance_reference === "string" ? req.body.acceptance_reference.trim() : "";
+  if (req.body?.customer_confirmed !== true || !privateEvidenceReference(reference)) {
+    return res.status(400).json({ error: "CUSTOMER_CONFIRMATION_AND_PRIVATE_REFERENCE_REQUIRED" });
+  }
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    const { rows } = await client.query(
+      "update guest_service_orders set status='completed',customer_acceptance_reference=$1,customer_accepted_at=now(),updated_at=now() where id=$2 and status='delivered' returning id,status,customer_accepted_at",
+      [reference, req.params.orderId]
+    );
+    if (!rows[0]) { await client.query("rollback"); return res.status(409).json({ error: "SERVICE_ORDER_MUST_BE_DELIVERED_BEFORE_ACCEPTANCE" }); }
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'guest_service_customer_acceptance_recorded','guest_service_order',$2,$3)",
+      [req.user.sub, rows[0].id, { customer_confirmed: true, acceptance_reference_private: true, recorded_by_owner: true }]
+    );
+    await client.query("commit");
+    return res.json({ ...rows[0], acceptance_scope: "owner_recorded_customer_confirmation_not_independent_audit" });
+  } catch {
+    try { await client.query("rollback"); } catch {}
+    return res.status(503).json({ error: "GUEST_CUSTOMER_ACCEPTANCE_FAILED" });
+  } finally { client.release(); }
+});
 
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
 app.listen(port, () => console.log(`shirmani-social-api listening on :${port}`));
