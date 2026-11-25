@@ -1,0 +1,16 @@
+{
+  "id": "./app.html",
+  "name": "Shirmani Research Institute",
+  "short_name": "Shirmani",
+  "description": "Shirmani Research Institute services, research and customer enquiries.",
+  "lang": "hi",
+  "start_url": "./app.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#07101a",
+  "theme_color": "#07101a",
+  "icons": [
+    {"src":"assets/app-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}
+  ]
+}
