@@ -30,6 +30,8 @@ test("guest payment proof copies the exact quote and cannot verify without owner
   assert.ok(source.includes("String(p.amount_minor) !== String(p.order_amount)"));
   assert.ok(migration.includes("payment_reference text not null unique"));
   assert.ok(migration.includes("customer_consent boolean not null check (customer_consent = true)"));
+  assert.ok(migration.includes("customer_consent_reference text not null"));
+  assert.ok(source.includes("customer_consent_reference"));
   assert.ok(migration.includes("private://"));
 });
 
