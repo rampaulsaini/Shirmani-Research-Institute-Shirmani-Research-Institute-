@@ -1037,8 +1037,9 @@ app.post("/api/owner/service-orders/:orderId/payment-proof", dbRequired, auth, o
   const body = req.body || {};
   const paymentReference = typeof body.payment_reference === "string" ? body.payment_reference.trim() : "";
   const evidenceReference = typeof body.evidence_reference === "string" ? body.evidence_reference.trim() : "";
-  if (!paymentReference || paymentReference.length > 200 || !privateEvidenceReference(evidenceReference) || body.customer_consent !== true) {
-    return res.status(400).json({ error: "PAYMENT_REFERENCE_PRIVATE_EVIDENCE_AND_CUSTOMER_CONSENT_REQUIRED" });
+  const consentReference = typeof body.customer_consent_reference === "string" ? body.customer_consent_reference.trim() : "";
+  if (!paymentReference || paymentReference.length > 200 || !privateEvidenceReference(evidenceReference) || !privateEvidenceReference(consentReference) || body.customer_consent !== true) {
+    return res.status(400).json({ error: "PAYMENT_REFERENCE_PRIVATE_EVIDENCE_AND_RECORDED_CUSTOMER_CONSENT_REQUIRED" });
   }
   try {
     const order = await pool.query(
@@ -1048,8 +1049,8 @@ app.post("/api/owner/service-orders/:orderId/payment-proof", dbRequired, auth, o
     if (!order.rows[0]) return res.status(404).json({ error: "SERVICE_ORDER_NOT_FOUND" });
     if (order.rows[0].status !== "awaiting_payment") return res.status(409).json({ error: "SERVICE_ORDER_NOT_AWAITING_PAYMENT" });
     const { rows } = await pool.query(
-      "insert into guest_service_payment_proofs(service_order_id,amount_minor,currency,payment_reference,evidence_reference,customer_consent) values($1,$2,$3,$4,$5,true) returning id,service_order_id,amount_minor,currency,verification_status,created_at",
-      [order.rows[0].id, order.rows[0].amount_minor, order.rows[0].currency, paymentReference, evidenceReference]
+      "insert into guest_service_payment_proofs(service_order_id,amount_minor,currency,payment_reference,evidence_reference,customer_consent,customer_consent_reference) values($1,$2,$3,$4,$5,true,$6) returning id,service_order_id,amount_minor,currency,verification_status,created_at",
+      [order.rows[0].id, order.rows[0].amount_minor, order.rows[0].currency, paymentReference, evidenceReference, consentReference]
     );
     return res.status(201).json({ ...rows[0], income: "PENDING_UNVERIFIED", note: "Evidence recorded; not verified income." });
   } catch (error) {
