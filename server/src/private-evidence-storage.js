@@ -79,17 +79,27 @@ export function createPrivateEvidenceStorage({
     },
 
     async createOwnerDownload({ evidence, requesterId, authorizeOwner, expiresInSeconds = 60 }) {
-      if (!evidence || typeof evidence.key !== "string" ||
-          typeof requesterId !== "string" ||
+      if (!evidence ||
+          typeof evidence.key !== "string" ||
+          !/^evidence\/[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(evidence.key) ||
+          evidence.status !== "verified" ||
+          typeof evidence.ownerId !== "string" || !evidence.ownerId.trim() ||
+          typeof evidence.orderId !== "string" || !evidence.orderId.trim() ||
+          typeof evidence.purpose !== "string" ||
+          typeof evidence.sha256 !== "string" || !/^[a-f0-9]{64}$/.test(evidence.sha256) ||
+          typeof requesterId !== "string" || !requesterId.trim() ||
           typeof authorizeOwner !== "function" ||
           !Number.isInteger(expiresInSeconds) ||
           expiresInSeconds < 1 || expiresInSeconds > 300) {
-        throw new TypeError("Valid evidence, requester, authorization and short expiry are required");
+        throw new TypeError("Valid verified evidence, requester, authorization and short expiry are required");
       }
       const allowed = await authorizeOwner({
         requesterId,
         ownerId: evidence.ownerId,
-        orderId: evidence.orderId
+        orderId: evidence.orderId,
+        evidenceKey: evidence.key,
+        purpose: evidence.purpose,
+        sha256: evidence.sha256
       });
       if (allowed !== true) {
         const error = new Error("Evidence access denied");
