@@ -13,6 +13,7 @@ function fakePrivateAdapter({ corruptHead = false } = {}) {
         contentType,
         byteSize: body.byteLength,
         sha256: corruptHead ? "0".repeat(64) : metadata.sha256,
+        metadata: { ...metadata },
         private: true
       });
     },
@@ -22,7 +23,8 @@ function fakePrivateAdapter({ corruptHead = false } = {}) {
       return {
         contentType: item.contentType,
         byteSize: item.byteSize,
-        sha256: item.sha256
+        sha256: item.sha256,
+        metadata: { ...item.metadata }
       };
     },
     async createSignedGetUrl({ key, expiresInSeconds }) {
@@ -104,6 +106,36 @@ test("requires owner authorization before issuing a short-lived HTTPS download U
   });
   assert.equal(grant.url.startsWith("https://"), true);
   assert.equal(grant.expiresInSeconds, 60);
+});
+
+test("refuses signed downloads when the stored object or its owner/order metadata does not match", async () => {
+  const adapter = fakePrivateAdapter();
+  const storage = createPrivateEvidenceStorage({ adapter });
+  const evidence = await storage.store({
+    ownerId: "owner-1",
+    orderId: "order-1",
+    purpose: "payment-proof",
+    contentType: "text/plain",
+    bytes: Buffer.from("proof")
+  });
+
+  await assert.rejects(storage.createOwnerDownload({
+    evidence: { ...evidence, key: "evidence/00000000-0000-4000-8000-000000000000" },
+    requesterId: "owner-1",
+    authorizeOwner: async () => true
+  }), /integrity verification/);
+
+  await assert.rejects(storage.createOwnerDownload({
+    evidence: { ...evidence, ownerId: "other-owner" },
+    requesterId: "owner-1",
+    authorizeOwner: async () => true
+  }), /integrity verification/);
+
+  await assert.rejects(storage.createOwnerDownload({
+    evidence: { ...evidence, sha256: "f".repeat(64) },
+    requesterId: "owner-1",
+    authorizeOwner: async () => true
+  }), /integrity verification/);
 });
 
 test("rejects malformed adapter configuration and excessive signed URL lifetime", async () => {
