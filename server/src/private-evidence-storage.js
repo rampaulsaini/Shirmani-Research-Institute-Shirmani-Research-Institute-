@@ -22,12 +22,14 @@ function requireIdentity(actorId, ownerId) {
 /**
  * Provider-neutral private evidence service.
  *
- * An adapter must implement put(key, bytes, metadata), get(key), and delete(key).
- * The adapter is responsible for private-at-rest storage and must never expose
- * public object URLs. This service deliberately returns no provider URL.
+ * The object adapter implements put(key, bytes, metadata), get(key), delete(key).
+ * The metadataStore implements get(key), put(record), delete(key), listByOwner(ownerId).
+ * Both adapters must be durable in production. The included memory adapters are tests only.
+ * Object storage must remain private and must never expose public object URLs.
  */
 export function createPrivateEvidenceStorage({
   adapter,
+  metadataStore,
   allowedMimeTypes = DEFAULT_MIME_TYPES,
   maxBytes = 10 * 1024 * 1024,
   grantTtlMs = 60_000,
@@ -37,13 +39,15 @@ export function createPrivateEvidenceStorage({
   if (!adapter || !["put", "get", "delete"].every(name => typeof adapter[name] === "function")) {
     throw new TypeError("PRIVATE_STORAGE_ADAPTER_REQUIRES_PUT_GET_DELETE");
   }
+  if (!metadataStore || !["get", "put", "delete", "listByOwner"].every(name => typeof metadataStore[name] === "function")) {
+    throw new TypeError("PRIVATE_METADATA_STORE_REQUIRES_GET_PUT_DELETE_LIST_BY_OWNER");
+  }
   if (!Number.isSafeInteger(maxBytes) || maxBytes < 1) throw new TypeError("INVALID_MAX_BYTES");
   if (!Number.isSafeInteger(grantTtlMs) || grantTtlMs < 1 || grantTtlMs > 7 * 24 * 60 * 60 * 1000) {
     throw new TypeError("INVALID_GRANT_TTL");
   }
 
   const mimeAllowlist = new Set(allowedMimeTypes);
-  const records = new Map();
   const grants = new Map();
 
   async function readVerifiedObject(record) {
@@ -65,7 +69,7 @@ export function createPrivateEvidenceStorage({
 
   async function removeRecord(key, record, eventType) {
     await adapter.delete(key);
-    records.delete(key);
+    await metadataStore.delete(key);
     for (const [token, grant] of grants) if (grant.key === key) grants.delete(token);
     await audit({ event_type: eventType, actor_id: record.ownerId, target_type: "private_evidence", target_id: key });
   }
@@ -82,12 +86,17 @@ export function createPrivateEvidenceStorage({
       const sha256 = createHash("sha256").update(body).digest("hex");
       const record = { key, ownerId, mimeType, byteSize: body.length, sha256, createdAt: now() };
       await adapter.put(key, body, { contentType: mimeType, private: true, sha256 });
-      records.set(key, record);
+      try {
+        await metadataStore.put(record);
+      } catch (error) {
+        await adapter.delete(key);
+        throw error;
+      }
       try {
         await audit({ event_type: "private_evidence.stored", actor_id: actorId, target_type: "private_evidence", target_id: key, metadata: { mime_type: mimeType, byte_size: body.length, sha256 } });
       } catch (error) {
         await adapter.delete(key);
-        records.delete(key);
+        await metadataStore.delete(key);
         throw error;
       }
       return Object.freeze({ ...record });
@@ -95,7 +104,7 @@ export function createPrivateEvidenceStorage({
 
     async read({ actorId, ownerId, key }) {
       requireIdentity(actorId, ownerId);
-      const record = records.get(key);
+      const record = await metadataStore.get(key);
       if (!record || record.ownerId !== ownerId) {
         const error = new Error("PRIVATE_EVIDENCE_NOT_FOUND");
         error.code = "PRIVATE_EVIDENCE_NOT_FOUND";
@@ -139,7 +148,7 @@ export function createPrivateEvidenceStorage({
         error.code = "READ_GRANT_EXPIRED";
         throw error;
       }
-      const record = records.get(grant.key);
+      const record = await metadataStore.get(grant.key);
       if (!record || record.ownerId !== grant.ownerId) {
         const error = new Error("PRIVATE_EVIDENCE_NOT_FOUND");
         error.code = "PRIVATE_EVIDENCE_NOT_FOUND";
@@ -167,7 +176,8 @@ export function createPrivateEvidenceStorage({
       if (!Number.isSafeInteger(retentionMs) || retentionMs < 1) throw new TypeError("INVALID_RETENTION_MS");
       const cutoff = now() - retentionMs;
       const deleted = [];
-      for (const [key, record] of records) {
+      for (const record of await metadataStore.listByOwner(ownerId)) {
+        const key = record.key;
         if (record.ownerId === ownerId && record.createdAt <= cutoff) {
           await removeRecord(key, record, "private_evidence.retention_deleted");
           deleted.push(key);
@@ -180,6 +190,28 @@ export function createPrivateEvidenceStorage({
 
 /**
  * Deterministic in-memory adapter for tests only. It is not durable storage.
+ */
+export function createMemoryPrivateMetadataStore() {
+  const records = new Map();
+  return Object.freeze({
+    async get(key) {
+      const record = records.get(key);
+      return record ? { ...record } : null;
+    },
+    async put(record) {
+      records.set(record.key, { ...record });
+    },
+    async delete(key) {
+      records.delete(key);
+    },
+    async listByOwner(ownerId) {
+      return [...records.values()].filter(record => record.ownerId === ownerId).map(record => ({ ...record }));
+    }
+  });
+}
+
+/**
+ * Deterministic in-memory object adapter for tests only. It is not durable storage.
  */
 export function createMemoryPrivateObjectAdapter() {
   const objects = new Map();
