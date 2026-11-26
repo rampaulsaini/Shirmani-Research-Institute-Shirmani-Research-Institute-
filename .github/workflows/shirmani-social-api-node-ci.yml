@@ -54,6 +54,8 @@ jobs:
         run: |
           psql -h 127.0.0.1 -U postgres -d shirmani_test -v ON_ERROR_STOP=1 \
             -f server/sql/schema.sql \
+            -f server/sql/migrations/003_private_income_proof.sql \
+            -f server/sql/migrations/004_delivery_acceptance_evidence.sql \
             -f server/sql/migrations/005_guest_service_order_lifecycle.sql \
             -f server/test/guest-service-order.integration.sql
       - name: Install server dependencies
