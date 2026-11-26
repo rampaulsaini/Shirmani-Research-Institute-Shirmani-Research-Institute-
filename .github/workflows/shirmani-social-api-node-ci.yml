@@ -20,9 +20,23 @@ concurrency:
 
 jobs:
   node-tests:
-    name: Node.js tests and syntax check
+    name: Node.js tests, syntax and PostgreSQL migration
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: shirmani_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d shirmani_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -30,6 +44,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+      - name: Apply baseline schema, guest lifecycle migration and database assertions
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql -h 127.0.0.1 -U postgres -d shirmani_test -v ON_ERROR_STOP=1 \
+            -f server/sql/schema.sql \
+            -f server/sql/migrations/005_guest_service_order_lifecycle.sql \
+            -f server/test/guest-service-order.integration.sql
       - name: Install server dependencies
         working-directory: server
         run: npm install --no-package-lock --ignore-scripts --no-audit --no-fund
