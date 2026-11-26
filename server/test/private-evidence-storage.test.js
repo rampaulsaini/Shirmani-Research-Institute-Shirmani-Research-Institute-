@@ -96,3 +96,32 @@ test("rolls back stored object if audit persistence fails", async () => {
   const storage = createPrivateEvidenceStorage({ adapter, audit: async () => { throw new Error("audit unavailable"); } });
   await assert.rejects(storage.store({ actorId: "owner-1", ownerId: "owner-1", bytes: Buffer.from("audit"), mimeType: "text/plain" }), /audit unavailable/);
 });
+
+test("rejects tampered object bytes instead of returning unverified evidence", async () => {
+  const backing = createMemoryPrivateObjectAdapter();
+  const adapter = {
+    put: (...args) => backing.put(...args),
+    get: async key => {
+      const bytes = await backing.get(key);
+      return bytes ? Buffer.from("tampered") : null;
+    },
+    delete: (...args) => backing.delete(...args)
+  };
+  const storage = createPrivateEvidenceStorage({ adapter });
+  const stored = await storage.store({ actorId: "owner-1", ownerId: "owner-1", bytes: Buffer.from("original"), mimeType: "text/plain" });
+  await assert.rejects(storage.read({ actorId: "owner-1", ownerId: "owner-1", key: stored.key }), { code: "PRIVATE_EVIDENCE_INTEGRITY_MISMATCH" });
+});
+
+test("does not leave a usable read grant when grant audit persistence fails", async () => {
+  const adapter = createMemoryPrivateObjectAdapter();
+  let failGrantAudit = false;
+  const storage = createPrivateEvidenceStorage({
+    adapter,
+    audit: async event => {
+      if (failGrantAudit && event.event_type === "private_evidence.read_grant_issued") throw new Error("audit unavailable");
+    }
+  });
+  const stored = await storage.store({ actorId: "owner-1", ownerId: "owner-1", bytes: Buffer.from("grant"), mimeType: "text/plain" });
+  failGrantAudit = true;
+  await assert.rejects(storage.issueReadGrant({ actorId: "owner-1", ownerId: "owner-1", key: stored.key }), /audit unavailable/);
+});
