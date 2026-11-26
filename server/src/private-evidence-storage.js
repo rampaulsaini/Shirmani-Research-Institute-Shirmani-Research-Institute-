@@ -86,6 +86,8 @@ export function createPrivateEvidenceStorage({
           typeof evidence.ownerId !== "string" || !evidence.ownerId.trim() ||
           typeof evidence.orderId !== "string" || !evidence.orderId.trim() ||
           typeof evidence.purpose !== "string" ||
+          !EVIDENCE_MIME_TYPES.includes(evidence.contentType) ||
+          !Number.isSafeInteger(evidence.byteSize) || evidence.byteSize < 1 || evidence.byteSize > maxBytes ||
           typeof evidence.sha256 !== "string" || !/^[a-f0-9]{64}$/.test(evidence.sha256) ||
           typeof requesterId !== "string" || !requesterId.trim() ||
           typeof authorizeOwner !== "function" ||
@@ -105,6 +107,16 @@ export function createPrivateEvidenceStorage({
         const error = new Error("Evidence access denied");
         error.code = "EVIDENCE_ACCESS_DENIED";
         throw error;
+      }
+      const stored = await adapter.headPrivateObject({ key: evidence.key });
+      if (!stored ||
+          stored.contentType !== evidence.contentType ||
+          stored.byteSize !== evidence.byteSize ||
+          stored.sha256 !== evidence.sha256 ||
+          stored.metadata?.ownerId !== evidence.ownerId ||
+          stored.metadata?.orderId !== evidence.orderId ||
+          stored.metadata?.purpose !== evidence.purpose) {
+        throw new Error("Stored evidence record failed authorization integrity verification");
       }
       const result = await adapter.createSignedGetUrl({
         key: evidence.key,
