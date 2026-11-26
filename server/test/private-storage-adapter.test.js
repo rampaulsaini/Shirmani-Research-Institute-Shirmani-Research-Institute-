@@ -52,7 +52,7 @@ test("private adapter stores bytes with SHA-256, owner metadata and create-only 
     key: "orders/order-1/evidence.pdf",
     body,
     mimeType: "application/pdf",
-    ownerId: "owner-1"
+    ownerId: "owner-1", actorId: "owner-1"
   });
 
   assert.equal(result.storage, "private");
@@ -63,7 +63,7 @@ test("private adapter stores bytes with SHA-256, owner metadata and create-only 
   assert.equal(provider.calls[0].ifAbsent, true);
   assert.deepEqual(await adapter.getObject({ key: result.key, actorId: "owner-1" }), body);
   await assert.rejects(
-    adapter.putObject({ key: result.key, body, mimeType: "application/pdf", ownerId: "owner-1" }),
+    adapter.putObject({ key: result.key, body, mimeType: "application/pdf", ownerId: "owner-1", actorId: "owner-1" }),
     /OBJECT_ALREADY_EXISTS/
   );
 });
@@ -77,17 +77,17 @@ test("invalid keys, MIME types, bodies and oversized objects fail before provide
 
   for (const key of ["../secret", "/absolute", "orders//item", "orders/./item", "orders\\\\item"]) {
     await assert.rejects(adapter.putObject({
-      key, body: Buffer.from("ok"), mimeType: "text/plain", ownerId: "owner-1"
+      key, body: Buffer.from("ok"), mimeType: "text/plain", ownerId: "owner-1", actorId: "owner-1"
     }), /INVALID_STORAGE_KEY/);
   }
   await assert.rejects(adapter.putObject({
-    key: "orders/item", body: Buffer.from("ok"), mimeType: "text/html", ownerId: "owner-1"
+    key: "orders/item", body: Buffer.from("ok"), mimeType: "text/html", ownerId: "owner-1", actorId: "owner-1"
   }), /UNSUPPORTED_MIME_TYPE/);
   await assert.rejects(adapter.putObject({
-    key: "orders/item", body: Buffer.from("123456789"), mimeType: "text/plain", ownerId: "owner-1"
+    key: "orders/item", body: Buffer.from("123456789"), mimeType: "text/plain", ownerId: "owner-1", actorId: "owner-1"
   }), /OBJECT_SIZE_OUT_OF_RANGE/);
   await assert.rejects(adapter.putObject({
-    key: "orders/item", body: "not bytes", mimeType: "text/plain", ownerId: "owner-1"
+    key: "orders/item", body: "not bytes", mimeType: "text/plain", ownerId: "owner-1", actorId: "owner-1"
   }), /INVALID_OBJECT_BODY/);
   assert.equal(provider.objects.size, 0);
   assert.equal(validBody.length, 8);
@@ -98,7 +98,7 @@ test("every private read, metadata lookup, delete and grant is authorization-gat
   const adapter = createPrivateStorageAdapter({ provider, authorize: allowed, now: fixedNow });
   await adapter.putObject({
     key: "orders/order-1/file.txt", body: Buffer.from("secret"),
-    mimeType: "text/plain", ownerId: "owner-1"
+    mimeType: "text/plain", ownerId: "owner-1", actorId: "owner-1"
   });
 
   for (const operation of [
@@ -121,7 +121,7 @@ test("read grants are HTTPS-only and cannot exceed the configured short TTL", as
   });
   await adapter.putObject({
     key: "orders/order-1/file.txt", body: Buffer.from("secret"),
-    mimeType: "text/plain", ownerId: "owner-1"
+    mimeType: "text/plain", ownerId: "owner-1", actorId: "owner-1"
   });
 
   const grant = await adapter.createReadGrant({
@@ -140,7 +140,7 @@ test("adapter rejects provider grants that are expired or longer-lived than requ
   const adapter = createPrivateStorageAdapter({ provider, authorize: allowed, now: fixedNow });
   await adapter.putObject({
     key: "orders/order-1/file.txt", body: Buffer.from("secret"),
-    mimeType: "text/plain", ownerId: "owner-1"
+    mimeType: "text/plain", ownerId: "owner-1", actorId: "owner-1"
   });
   await assert.rejects(adapter.createReadGrant({
     key: "orders/order-1/file.txt", actorId: "owner-1", expiresInSeconds: 60
