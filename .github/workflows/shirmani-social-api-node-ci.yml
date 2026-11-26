@@ -64,6 +64,8 @@ jobs:
         run: npm install --no-package-lock --ignore-scripts --no-audit --no-fund
       - name: Run server test suite
         working-directory: server
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/shirmani_test
         run: npm test
       - name: Check server entrypoint syntax
         working-directory: server
