@@ -6,6 +6,37 @@ from pathlib import Path
 
 PASS_STATE = "QC_PASS_READY_FOR_DISPATCH"
 
+PARTIAL_PASS_STATE = "QC_PARTIAL_PASS"
+PENDING_PRODUCTION_STATE = "QC_PENDING_PRODUCTION"
+REVIEW_REQUIRED_STATE = "QC_REVIEW_REQUIRED"
+
+
+def qc_release_state(
+    catalog_count: object,
+    produced_count: object,
+    passed_count: object,
+    failed_count: object,
+    has_errors: bool = False,
+) -> str:
+    """Never mistake partial coverage for full-catalog QC."""
+    counts = (catalog_count, produced_count, passed_count, failed_count)
+    if any(type(value) is not int or value < 0 for value in counts):
+        return REVIEW_REQUIRED_STATE
+    catalog_total, produced_total, passed_total, failed_total = counts
+    if (
+        has_errors
+        or failed_total > 0
+        or catalog_total <= 0
+        or produced_total > catalog_total
+        or passed_total > produced_total
+    ):
+        return REVIEW_REQUIRED_STATE
+    if produced_total == catalog_total and passed_total == catalog_total:
+        return PASS_STATE
+    if produced_total > 0 and passed_total == produced_total:
+        return PARTIAL_PASS_STATE
+    return PENDING_PRODUCTION_STATE
+
 
 def qc_passed(qc: object, catalog_count: int) -> bool:
     if (

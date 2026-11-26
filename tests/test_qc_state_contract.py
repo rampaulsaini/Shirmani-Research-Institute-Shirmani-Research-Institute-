@@ -88,6 +88,37 @@ class PublicQCStateContractTests(unittest.TestCase):
         self.assertEqual(live["sales_claimed"], 0)
         self.assertEqual(live["payment_claimed"], 0)
 
+    def test_release_state_requires_full_catalog_coverage(self):
+        from factory.qc_state_contract import (
+            PARTIAL_PASS_STATE,
+            PASS_STATE,
+            PENDING_PRODUCTION_STATE,
+            REVIEW_REQUIRED_STATE,
+            qc_release_state,
+        )
+
+        self.assertEqual(qc_release_state(2, 2, 2, 0), PASS_STATE)
+        self.assertEqual(qc_release_state(2, 1, 1, 0), PARTIAL_PASS_STATE)
+        self.assertEqual(qc_release_state(2, 0, 0, 0), PENDING_PRODUCTION_STATE)
+        self.assertEqual(qc_release_state(2, 1, 0, 1, True), REVIEW_REQUIRED_STATE)
+        self.assertEqual(qc_release_state(2, True, 1, 0), REVIEW_REQUIRED_STATE)
+        self.assertEqual(qc_release_state(2, 3, 3, 0), REVIEW_REQUIRED_STATE)
+
+    def test_partial_pass_is_not_a_full_catalog_release(self):
+        from factory.qc_state_contract import PARTIAL_PASS_STATE
+
+        self.write_qc(
+            produced_count=1,
+            qc_passed=1,
+            qc_failed=0,
+            release_state=PARTIAL_PASS_STATE,
+        )
+        self.assertFalse(sync_public_qc_state(self.root, 2))
+        live = self.read_json("live-production-state.json")
+        self.assertEqual(live["qc_state"], "READY_FOR_QC")
+        self.assertEqual(live["qc_produced_count"], 1)
+        self.assertEqual(live["qc_passed"], 1)
+
     def test_failed_qc_never_promotes_public_pass_count(self):
         self.write_qc(
             produced_count=1,
