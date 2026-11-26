@@ -62,7 +62,11 @@ export function createPrivateEvidenceStorage({
       if (!stored ||
           stored.contentType !== contentType ||
           stored.byteSize !== body.byteLength ||
-          stored.sha256 !== sha256) {
+          stored.sha256 !== sha256 ||
+          stored.metadata?.ownerId !== ownerId ||
+          stored.metadata?.orderId !== orderId ||
+          stored.metadata?.purpose !== purpose ||
+          stored.metadata?.sha256 !== sha256) {
         throw new Error("Stored evidence failed server-side integrity verification");
       }
 
@@ -123,8 +127,9 @@ export function createPrivateEvidenceStorage({
         key: evidence.key,
         expiresInSeconds
       });
-      if (!result || typeof result.url !== "string" || !result.url.startsWith("https://")) {
-        throw new Error("Storage adapter did not return a secure HTTPS URL");
+      if (!result || typeof result.url !== "string" || !result.url.startsWith("https://") ||
+          result.expiresInSeconds !== expiresInSeconds) {
+        throw new Error("Storage adapter did not return an HTTPS URL with the requested expiry");
       }
       return Object.freeze({
         url: result.url,
@@ -182,6 +187,9 @@ export function createPrivateEvidenceStorage({
         sha256: evidence.sha256
       });
       await adapter.deletePrivateObject({ key: evidence.key });
+      if (await adapter.headPrivateObject({ key: evidence.key })) {
+        throw new Error("Deleted evidence object remains available");
+      }
       await recordAudit({
         event: "private_evidence_deleted",
         ownerId: evidence.ownerId,
