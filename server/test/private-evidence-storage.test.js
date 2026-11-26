@@ -35,6 +35,10 @@ function fakePrivateAdapter({ corruptHead = false } = {}) {
         expiresInSeconds
       };
     }
+    ,
+    async deletePrivateObject({ key }) {
+      objects.delete(key);
+    }
   };
 }
 
@@ -159,4 +163,44 @@ test("rejects malformed adapter configuration and excessive signed URL lifetime"
     authorizeOwner: async () => true,
     expiresInSeconds: 301
   }), /short expiry/);
+});
+
+test("deletes evidence only after owner authorization and records audit events", async () => {
+  const adapter = fakePrivateAdapter();
+  const storage = createPrivateEvidenceStorage({ adapter });
+  const evidence = await storage.store({
+    ownerId: "owner-1",
+    orderId: "order-1",
+    purpose: "delivery-proof",
+    contentType: "text/plain",
+    bytes: Buffer.from("accepted delivery")
+  });
+  const events = [];
+  const recordAudit = async event => { events.push(event); };
+
+  await assert.rejects(storage.deleteOwnerEvidence({
+    evidence,
+    requesterId: "other-user",
+    authorizeOwner: async () => false,
+    recordAudit
+  }), error => error.code === "EVIDENCE_DELETE_DENIED");
+  assert.equal(adapter.objects.has(evidence.key), true);
+  assert.equal(events.length, 0);
+
+  const result = await storage.deleteOwnerEvidence({
+    evidence,
+    requesterId: "owner-1",
+    authorizeOwner: async context =>
+      context.requesterId === "owner-1" &&
+      context.ownerId === "owner-1" &&
+      context.orderId === "order-1" &&
+      context.evidenceKey === evidence.key,
+    recordAudit
+  });
+  assert.equal(result.deleted, true);
+  assert.equal(adapter.objects.has(evidence.key), false);
+  assert.deepEqual(events.map(event => event.event), [
+    "private_evidence_delete_authorized",
+    "private_evidence_deleted"
+  ]);
 });
