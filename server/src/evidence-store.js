@@ -57,7 +57,7 @@ export class EvidenceStore {
       checksumSha256: sha256(bytes)
     });
     const key = await this.adapter.put({ body: bytes, metadata });
-    if (typeof key !== "string" || !key.trim() || key.length > 512) {
+    if (typeof key !== "string" || !/^[A-Za-z0-9][A-Za-z0-9/_-]{0,511}$/.test(key) || key.split("/").some(part => part === "." || part === "..")) {
       throw new TypeError("Storage adapter did not return a valid opaque key");
     }
     return Object.freeze({ key, ...metadata });
@@ -90,7 +90,7 @@ export class EvidenceStore {
   }
 
   #assertKey(key) {
-    if (typeof key !== "string" || !key.trim() || key.length > 512) {
+    if (typeof key !== "string" || !/^[A-Za-z0-9][A-Za-z0-9/_-]{0,511}$/.test(key) || key.split("/").some(part => part === "." || part === "..")) {
       throw new TypeError("A valid opaque storage key is required");
     }
   }
