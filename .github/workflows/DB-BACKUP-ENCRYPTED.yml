@@ -1,0 +1,116 @@
+name: Manual Encrypted Render PostgreSQL Backup (Draft)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: render-postgres-encrypted-backup
+  cancel-in-progress: false
+
+jobs:
+  encrypted-backup:
+    # The workflow must be merged before it can be dispatched from main.
+    # Refuse runs from feature branches and pull requests.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Install PostgreSQL client and GnuPG
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postgresql-client gnupg
+          pg_dump --version
+          pg_restore --version
+          psql --version
+          gpg --version | head -n 1
+
+      - name: Create, encrypt, and verify backup bundle
+        shell: bash
+        env:
+          RENDER_DATABASE_URL: ${{ secrets.RENDER_DATABASE_URL }}
+          BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
+          PGSSLMODE: require
+          PGCONNECT_TIMEOUT: "20"
+        run: |
+          set -euo pipefail
+          umask 077
+          test -n "${RENDER_DATABASE_URL:-}" || { echo "RENDER_DATABASE_URL secret is missing"; exit 1; }
+          test -n "${BACKUP_PASSPHRASE:-}" || { echo "BACKUP_PASSPHRASE secret is missing"; exit 1; }
+          test "${#BACKUP_PASSPHRASE}" -ge 32 || { echo "BACKUP_PASSPHRASE must be at least 32 characters"; exit 1; }
+
+          work="$RUNNER_TEMP/sri-db-backup"
+          payload="$work/payload"
+          verify="$work/verify"
+          mkdir -p "$payload" "$verify"
+          trap 'rm -rf "$work"' EXIT
+
+          # Capture schema and data separately in PostgreSQL custom archive format.
+          pg_dump "$RENDER_DATABASE_URL" --format=custom --no-owner --no-privileges --file="$payload/render-full.dump"
+          pg_dump "$RENDER_DATABASE_URL" --format=custom --schema-only --no-owner --no-privileges --file="$payload/render-schema.dump"
+
+          # Record public table names and exact row counts (not just the number of tables).
+          psql "$RENDER_DATABASE_URL" -X -v ON_ERROR_STOP=1 -At -F $'\t' \
+            -c "SELECT schemaname || '.' || tablename FROM pg_tables WHERE schemaname = 'public' ORDER BY 1" \
+            > "$payload/public-tables.txt"
+
+          psql "$RENDER_DATABASE_URL" -X -v ON_ERROR_STOP=1 -At \
+            -c "SELECT format('SELECT %L, count(*) FROM %I.%I', schemaname || '.' || tablename, schemaname, tablename) FROM pg_tables WHERE schemaname = 'public' ORDER BY 1" \
+            > "$work/count-queries.sql"
+
+          : > "$payload/public-row-counts.tsv"
+          while IFS= read -r query; do
+            test -n "$query" || continue
+            psql "$RENDER_DATABASE_URL" -X -v ON_ERROR_STOP=1 -At -F $'\t' -c "$query" \
+              >> "$payload/public-row-counts.tsv"
+          done < "$work/count-queries.sql"
+
+          {
+            printf 'repository=%s\n' "$GITHUB_REPOSITORY"
+            printf 'source_ref=%s\n' "$GITHUB_REF"
+            printf 'source_commit=%s\n' "$GITHUB_SHA"
+            printf 'created_utc=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            printf 'postgres_client=%s\n' "$(pg_dump --version)"
+            printf 'backup_format=PostgreSQL custom archive\n'
+            printf 'public_tables=%s\n' "$(wc -l < "$payload/public-tables.txt" | tr -d ' ')"
+            printf 'row_count_method=exact COUNT(*) for each public base table\n'
+            printf 'restore_test=NOT_PERFORMED\n'
+            printf 'production_migration=NOT_PERFORMED\n'
+          } > "$payload/manifest.txt"
+
+          (cd "$payload" && sha256sum render-full.dump render-schema.dump public-tables.txt public-row-counts.tsv manifest.txt > SHA256SUMS)
+          pg_restore --list "$payload/render-full.dump" > /dev/null
+          pg_restore --list "$payload/render-schema.dump" > /dev/null
+
+          tar -czf "$work/backup-bundle.tar.gz" -C "$payload" .
+          # Pass the passphrase over stdin; never place it in the command arguments or logs.
+          printf '%s' "$BACKUP_PASSPHRASE" | gpg --batch --yes --pinentry-mode loopback \
+            --passphrase-fd 0 --symmetric --cipher-algo AES256 \
+            --output "$work/render-postgres-backup.tar.gz.gpg" "$work/backup-bundle.tar.gz"
+
+          # Verify that the encrypted file decrypts and all bundled checksums/archives validate.
+          printf '%s' "$BACKUP_PASSPHRASE" | gpg --batch --yes --pinentry-mode loopback \
+            --passphrase-fd 0 --decrypt --output "$work/decrypted.tar.gz" \
+            "$work/render-postgres-backup.tar.gz.gpg"
+          tar -xzf "$work/decrypted.tar.gz" -C "$verify"
+          (cd "$verify" && sha256sum -c SHA256SUMS)
+          pg_restore --list "$verify/render-full.dump" > /dev/null
+          pg_restore --list "$verify/render-schema.dump" > /dev/null
+          sha256sum "$work/render-postgres-backup.tar.gz.gpg" > "$work/render-postgres-backup.tar.gz.gpg.sha256"
+
+          mkdir -p "$GITHUB_WORKSPACE/backup-artifact"
+          cp "$work/render-postgres-backup.tar.gz.gpg" "$work/render-postgres-backup.tar.gz.gpg.sha256" "$GITHUB_WORKSPACE/backup-artifact/"
+          echo "Encrypted backup created; decrypt/checksum/archive-list verification passed."
+          echo "This job does NOT restore to Neon and does NOT migrate production."
+
+      - name: Upload encrypted backup only (temporary artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: sri-render-postgres-encrypted-${{ github.run_number }}
+          path: backup-artifact/*
+          if-no-files-found: error
+          retention-days: 7
