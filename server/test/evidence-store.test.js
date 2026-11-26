@@ -12,9 +12,15 @@ import {
 // configured as production evidence storage.
 class FakeMemoryEvidenceStore extends EvidenceStore {
   #objects = new Map();
+  #maxBytes;
+
+  constructor(maxBytes = DEFAULT_MAX_EVIDENCE_BYTES) {
+    super();
+    this.#maxBytes = maxBytes;
+  }
 
   async put(source, inputMetadata) {
-    const metadata = validateEvidenceMetadata(inputMetadata);
+    const metadata = validateEvidenceMetadata(inputMetadata, { maxBytes: this.#maxBytes });
     const chunks = [];
     let byteSize = 0;
     const hash = createHash("sha256");
@@ -104,9 +110,9 @@ test("test adapter stores opaque keys, checksum and exact byte metadata", async 
 });
 
 test("test adapter rejects oversize and empty evidence without persisting an object", async () => {
-  const store = new FakeMemoryEvidenceStore();
+  const store = new FakeMemoryEvidenceStore(4);
   await assert.rejects(
-    store.put(chunks("12345"), { ...metadata, maxBytes: 4 }),
+    store.put(chunks("12345"), metadata),
     /EVIDENCE_TOO_LARGE/
   );
   await assert.rejects(store.put(chunks(), metadata), /EVIDENCE_EMPTY/);
