@@ -85,4 +85,6 @@ test("evidence store requires a complete adapter and valid key", async () => {
   assert.throws(() => new EvidenceStore({ put() {} }), /head\(\)/);
   const store = new EvidenceStore(new MemoryEvidenceAdapter());
   await assert.rejects(store.head(""), /opaque storage key/);
+  await assert.rejects(store.head("../outside"), /opaque storage key/);
+  await assert.rejects(store.head("https://example.invalid/object"), /opaque storage key/);
 });
