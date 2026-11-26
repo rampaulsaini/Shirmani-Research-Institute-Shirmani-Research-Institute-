@@ -46,6 +46,23 @@ export function createPrivateEvidenceStorage({
   const records = new Map();
   const grants = new Map();
 
+  async function readVerifiedObject(record) {
+    const bytes = await adapter.get(record.key);
+    if (!bytes) {
+      const error = new Error("PRIVATE_EVIDENCE_OBJECT_MISSING");
+      error.code = "PRIVATE_EVIDENCE_OBJECT_MISSING";
+      throw error;
+    }
+    const body = Buffer.from(bytes);
+    const actualHash = createHash("sha256").update(body).digest("hex");
+    if (body.length !== record.byteSize || actualHash !== record.sha256) {
+      const error = new Error("PRIVATE_EVIDENCE_INTEGRITY_MISMATCH");
+      error.code = "PRIVATE_EVIDENCE_INTEGRITY_MISMATCH";
+      throw error;
+    }
+    return body;
+  }
+
   async function removeRecord(key, record, eventType) {
     await adapter.delete(key);
     records.delete(key);
@@ -84,13 +101,8 @@ export function createPrivateEvidenceStorage({
         error.code = "PRIVATE_EVIDENCE_NOT_FOUND";
         throw error;
       }
-      const bytes = await adapter.get(key);
-      if (!bytes) {
-        const error = new Error("PRIVATE_EVIDENCE_OBJECT_MISSING");
-        error.code = "PRIVATE_EVIDENCE_OBJECT_MISSING";
-        throw error;
-      }
-      return { metadata: Object.freeze({ ...record }), bytes: Buffer.from(bytes) };
+      const bytes = await readVerifiedObject(record);
+      return { metadata: Object.freeze({ ...record }), bytes };
     },
 
     async issueReadGrant({ actorId, ownerId, key }) {
@@ -104,7 +116,12 @@ export function createPrivateEvidenceStorage({
       const token = randomBytes(32).toString("base64url");
       const expiresAt = now() + grantTtlMs;
       grants.set(token, { key, ownerId, expiresAt });
-      await audit({ event_type: "private_evidence.read_grant_issued", actor_id: actorId, target_type: "private_evidence", target_id: key, metadata: { expires_at: new Date(expiresAt).toISOString(), single_use: true } });
+      try {
+        await audit({ event_type: "private_evidence.read_grant_issued", actor_id: actorId, target_type: "private_evidence", target_id: key, metadata: { expires_at: new Date(expiresAt).toISOString(), single_use: true } });
+      } catch (error) {
+        grants.delete(token);
+        throw error;
+      }
       return Object.freeze({ token, expiresAt });
     },
 
@@ -128,14 +145,9 @@ export function createPrivateEvidenceStorage({
         error.code = "PRIVATE_EVIDENCE_NOT_FOUND";
         throw error;
       }
-      const bytes = await adapter.get(grant.key);
-      if (!bytes) {
-        const error = new Error("PRIVATE_EVIDENCE_OBJECT_MISSING");
-        error.code = "PRIVATE_EVIDENCE_OBJECT_MISSING";
-        throw error;
-      }
+      const bytes = await readVerifiedObject(record);
       await audit({ event_type: "private_evidence.read", actor_id: grant.ownerId, target_type: "private_evidence", target_id: grant.key });
-      return { metadata: Object.freeze({ ...record }), bytes: Buffer.from(bytes) };
+      return { metadata: Object.freeze({ ...record }), bytes };
     },
 
     async delete({ actorId, ownerId, key }) {
