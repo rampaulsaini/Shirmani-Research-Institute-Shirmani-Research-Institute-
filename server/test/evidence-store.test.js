@@ -54,12 +54,12 @@ test("evidence store validates inputs and freezes copied metadata", async () => 
   const adapter = createMemoryAdapter();
   const store = createEvidenceStore(adapter);
 
-  await assert.rejects(
-    store.put(null, { contentType: "text/plain" }),
+  assert.throws(
+    () => store.put(null, { contentType: "text/plain" }),
     /EVIDENCE_STREAM_REQUIRED/
   );
-  await assert.rejects(
-    store.put(Readable.from("evidence"), null),
+  assert.throws(
+    () => store.put(Readable.from("evidence"), null),
     /EVIDENCE_METADATA_REQUIRED/
   );
   assert.throws(() => store.head(" "), /EVIDENCE_KEY_REQUIRED/);
