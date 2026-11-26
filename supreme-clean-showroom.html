@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="SHIRMANI Research Institute — first paid pilot, consent-based enquiry and searchable public product showroom.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icons/sri-app.svg" type="image/svg+xml">
+<meta name="theme-color" content="#07101a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SHIRMANI">
 <title>SHIRMANI Research Institute — Heart-View Showroom</title>
 <style>
 :root{color-scheme:dark;--bg:#07101a;--panel:#101d2b;--panel2:#14283a;--line:#30465c;--gold:#f2d17c;--mint:#8ce2ce;--cyan:#83dff0;--text:#f4f7fb;--muted:#b9c7d5;--ok:#91dfac}
@@ -19,7 +25,7 @@ a{color:var(--cyan)}a:focus-visible,button:focus-visible,input:focus-visible,sel
   <div class="top-actions"><span class="account" aria-label="Account feature not yet available">My Account · Coming later</span></div>
 </header>
 <nav class="nav" aria-label="Main navigation">
-  <a href="#first-pilot">First Pilot</a><a href="#live-rack">Live Product Rack</a><a href="universal-discovery.html">Universal Discovery</a><a href="#research">Research / शोध</a><a href="#trust">Trust & Payment</a><a href="factory-dashboard.html">Factory</a>
+  <a href="#first-pilot">First Pilot</a><a href="first-paid-pilot-offer.html">More Paid Services · ₹999–₹2,999</a><a href="#live-rack">Live Product Rack</a><a href="universal-discovery.html">Universal Discovery</a><a href="#research">Research / शोध</a><a href="#trust">Trust & Payment</a><a href="factory-dashboard.html">Factory</a>
 </nav>
 <main>
 <section class="hero">
@@ -127,6 +133,11 @@ $("previous").addEventListener("click",()=>{page=Math.max(1,page-1);render();});
 async function load(){try{const r=await fetch("showroom-products.json?ts="+Date.now(),{cache:"no-store"});if(!r.ok)throw Error("Catalogue HTTP "+r.status);const data=await r.json();products=Array.isArray(data.products)?data.products:[];render();}catch(error){$("catalogCount").textContent="Unavailable";$("rackStatus").textContent="Catalogue data unavailable: "+error.message;$("productGrid").innerHTML='<div class="card">Catalogue unavailable; no count assumed.</div>';}}
 load();
 })();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js", {scope:"./"}).catch(error => console.warn("SRI PWA service worker registration failed:", error)));
+}
 </script>
 </body>
 </html>
