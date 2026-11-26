@@ -80,7 +80,9 @@ export function createEvidenceServices({ storage = null, notifications = null } 
         contentType: object.contentType,
         byteSize: object.byteSize,
         sha256: object.sha256.toLowerCase(),
-        verified: true
+        metadataMatched: true,
+        integrityVerified: false,
+        verificationScope: "storage_head_metadata_match_only_not_independent_content_integrity"
       });
     },
 
