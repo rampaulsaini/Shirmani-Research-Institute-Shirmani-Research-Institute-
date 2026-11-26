@@ -35,7 +35,7 @@ function createMemoryAdapter() {
 
     async get(key) {
       const record = objects.get(key);
-      return record ? Readable.from(Buffer.from(record.body)) : null;
+      return record ? Readable.from([Buffer.from(record.body)]) : null;
     },
 
     async delete(key) {
@@ -89,7 +89,7 @@ test("memory adapter round-trips bytes, reports integrity metadata, and deletes"
   const original = Buffer.from("private evidence test payload");
   const expectedHash = createHash("sha256").update(original).digest("hex");
 
-  const saved = await store.put(Readable.from(original), {
+  const saved = await store.put(Readable.from([original]), {
     contentType: "text/plain",
     purpose: "contract-test"
   });
