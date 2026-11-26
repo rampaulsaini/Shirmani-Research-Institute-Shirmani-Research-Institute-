@@ -34,8 +34,7 @@ function fakePrivateAdapter({ corruptHead = false } = {}) {
         url: "https://private-test.invalid/object/short-lived",
         expiresInSeconds
       };
-    }
-    ,
+    },
     async deletePrivateObject({ key }) {
       objects.delete(key);
     }
