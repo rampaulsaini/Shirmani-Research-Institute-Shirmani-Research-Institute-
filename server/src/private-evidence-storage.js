@@ -116,7 +116,7 @@ export function createPrivateEvidenceStorage({
 
     async issueReadGrant({ actorId, ownerId, key }) {
       requireIdentity(actorId, ownerId);
-      const record = records.get(key);
+      const record = await metadataStore.get(key);
       if (!record || record.ownerId !== ownerId) {
         const error = new Error("PRIVATE_EVIDENCE_NOT_FOUND");
         error.code = "PRIVATE_EVIDENCE_NOT_FOUND";
@@ -161,7 +161,7 @@ export function createPrivateEvidenceStorage({
 
     async delete({ actorId, ownerId, key }) {
       requireIdentity(actorId, ownerId);
-      const record = records.get(key);
+      const record = await metadataStore.get(key);
       if (!record || record.ownerId !== ownerId) {
         const error = new Error("PRIVATE_EVIDENCE_NOT_FOUND");
         error.code = "PRIVATE_EVIDENCE_NOT_FOUND";
@@ -195,7 +195,7 @@ export function createMemoryPrivateMetadataStore() {
   const records = new Map();
   return Object.freeze({
     async get(key) {
-      const record = records.get(key);
+      const record = await metadataStore.get(key);
       return record ? { ...record } : null;
     },
     async put(record) {
