@@ -110,3 +110,18 @@ test("missing notification adapter fails closed; configured fake adapter receive
   assert.deepEqual(await configured.sendAcceptanceLink({ orderId, verifiedContact: "test@example.invalid", token: "x".repeat(40) }), { accepted: true });
   assert.equal(captured.token, "x".repeat(40));
 });
+
+test("finalization labels adapter metadata matching without claiming content integrity verification", async () => {
+  const storage = fakeStorage();
+  const service = createEvidenceServices({ storage });
+  const result = await service.finalizeUpload({
+    objectKey: "sri-evidence/00000000-0000-0000-0000-000000000000",
+    orderId,
+    purpose: "payment_proof",
+    sha256: hash
+  });
+  assert.equal(result.metadataMatched, true);
+  assert.equal(result.integrityVerified, false);
+  assert.equal(result.verificationScope, "storage_head_metadata_match_only_not_independent_content_integrity");
+  assert.equal(Object.hasOwn(result, "verified"), false);
+});
