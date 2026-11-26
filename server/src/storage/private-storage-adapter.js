@@ -75,7 +75,7 @@ export function createPrivateStorageAdapter({
 
   return Object.freeze({
     async putObject({ key, body, mimeType, ownerId } = {}) {
-      validateKey(key);
+      await assertAuthorized(ownerId, key, "write");
       validateMimeType(mimeType);
       if (typeof ownerId !== "string" || !ownerId.trim()) throw new TypeError("OWNER_ID_REQUIRED");
       const bytes = validateBody(body, maxObjectBytes);
