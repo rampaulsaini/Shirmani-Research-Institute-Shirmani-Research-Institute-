@@ -3,7 +3,12 @@ import { createHash } from "node:crypto";
 import test from "node:test";
 import { createPrivateEvidenceStorage } from "../src/private-evidence-storage.js";
 
-function fakePrivateAdapter({ corruptHead = false } = {}) {
+function fakePrivateAdapter({
+  corruptHead = false,
+  corruptMetadata = false,
+  ignoreDelete = false,
+  wrongExpiry = false
+} = {}) {
   const objects = new Map();
   return {
     objects,
@@ -13,7 +18,10 @@ function fakePrivateAdapter({ corruptHead = false } = {}) {
         contentType,
         byteSize: body.byteLength,
         sha256: corruptHead ? "0".repeat(64) : metadata.sha256,
-        metadata: { ...metadata },
+        metadata: {
+          ...metadata,
+          ...(corruptMetadata ? { ownerId: "other-owner" } : {})
+        },
         private: true
       });
     },
@@ -32,11 +40,11 @@ function fakePrivateAdapter({ corruptHead = false } = {}) {
       assert.ok(objects.get(key).private);
       return {
         url: "https://private-test.invalid/object/short-lived",
-        expiresInSeconds
+        expiresInSeconds: wrongExpiry ? expiresInSeconds + 3600 : expiresInSeconds
       };
     },
     async deletePrivateObject({ key }) {
-      objects.delete(key);
+      if (!ignoreDelete) objects.delete(key);
     }
   };
 }
@@ -79,6 +87,19 @@ test("fails closed when stored object metadata does not match the upload", async
   await assert.rejects(storage.store({
     ownerId: "owner-1", orderId: "order-1", purpose: "delivery-proof",
     contentType: "text/plain", bytes: Buffer.from("delivery")
+  }), /integrity verification/);
+});
+
+test("fails closed when persisted owner/order/purpose metadata is altered", async () => {
+  const storage = createPrivateEvidenceStorage({
+    adapter: fakePrivateAdapter({ corruptMetadata: true })
+  });
+  await assert.rejects(storage.store({
+    ownerId: "owner-1",
+    orderId: "order-1",
+    purpose: "payment-proof",
+    contentType: "text/plain",
+    bytes: Buffer.from("proof")
   }), /integrity verification/);
 });
 
@@ -162,6 +183,48 @@ test("rejects malformed adapter configuration and excessive signed URL lifetime"
     authorizeOwner: async () => true,
     expiresInSeconds: 301
   }), /short expiry/);
+});
+
+test("does not report deletion when the adapter leaves the object available", async () => {
+  const adapter = fakePrivateAdapter({ ignoreDelete: true });
+  const storage = createPrivateEvidenceStorage({ adapter });
+  const evidence = await storage.store({
+    ownerId: "owner-1",
+    orderId: "order-1",
+    purpose: "delivery-proof",
+    contentType: "text/plain",
+    bytes: Buffer.from("delivery")
+  });
+  const events = [];
+
+  await assert.rejects(storage.deleteOwnerEvidence({
+    evidence,
+    requesterId: "owner-1",
+    authorizeOwner: async () => true,
+    recordAudit: async event => { events.push(event); }
+  }), /remains available/);
+  assert.equal(adapter.objects.has(evidence.key), true);
+  assert.deepEqual(events.map(event => event.event), ["private_evidence_delete_authorized"]);
+});
+
+test("rejects a signed URL adapter that does not honor the requested expiry", async () => {
+  const storage = createPrivateEvidenceStorage({
+    adapter: fakePrivateAdapter({ wrongExpiry: true })
+  });
+  const evidence = await storage.store({
+    ownerId: "owner-1",
+    orderId: "order-1",
+    purpose: "payment-proof",
+    contentType: "text/plain",
+    bytes: Buffer.from("proof")
+  });
+
+  await assert.rejects(storage.createOwnerDownload({
+    evidence,
+    requesterId: "owner-1",
+    authorizeOwner: async () => true,
+    expiresInSeconds: 30
+  }), /requested expiry/);
 });
 
 test("deletes evidence only after owner authorization and records audit events", async () => {
