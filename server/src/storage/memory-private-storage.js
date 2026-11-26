@@ -57,7 +57,9 @@ export function createMemoryPrivateStorageAdapter({
   const sign = payload => createHmac("sha256", secret).update(payload).digest("base64url");
 
   function put({ ownerId, objectKey, body, mimeType, expectedSha256 }) {
-    const id = storageId(ownerId, objectKey);
+    const normalizedOwnerId = cleanId(ownerId, "ownerId");
+    const normalizedObjectKey = cleanId(objectKey, "objectKey");
+    const id = storageId(normalizedOwnerId, normalizedObjectKey);
     if (!Buffer.isBuffer(body) && !(body instanceof Uint8Array)) throw new TypeError("body must be bytes");
     const bytes = Buffer.from(body);
     if (bytes.length < 1 || bytes.length > maxBytes) throw new RangeError("OBJECT_SIZE_NOT_ALLOWED");
@@ -68,8 +70,8 @@ export function createMemoryPrivateStorageAdapter({
 
     const createdAt = new Date(clock()).toISOString();
     const metadata = Object.freeze({
-      owner_id: ownerId,
-      object_key: objectKey,
+      owner_id: normalizedOwnerId,
+      object_key: normalizedObjectKey,
       mime_type: mimeType,
       byte_size: bytes.length,
       sha256: digest,
@@ -77,7 +79,7 @@ export function createMemoryPrivateStorageAdapter({
       created_at: createdAt
     });
     objects.set(id, { metadata, body: Buffer.from(bytes) });
-    record(ownerId, "object.created", objectKey, { sha256: digest, byte_size: bytes.length });
+    record(normalizedOwnerId, "object.created", normalizedObjectKey, { sha256: digest, byte_size: bytes.length });
     return metadata;
   }
 
