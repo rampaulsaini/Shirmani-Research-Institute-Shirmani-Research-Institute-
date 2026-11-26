@@ -102,6 +102,7 @@ test("every private read, metadata lookup, delete and grant is authorization-gat
   });
 
   for (const operation of [
+    () => adapter.putObject({ key: "orders/order-1/forged.txt", body: Buffer.from("x"), mimeType: "text/plain", ownerId: "owner-1", actorId: "intruder" }),
     () => adapter.headObject({ key: "orders/order-1/file.txt", actorId: "intruder" }),
     () => adapter.getObject({ key: "orders/order-1/file.txt", actorId: "intruder" }),
     () => adapter.deleteObject({ key: "orders/order-1/file.txt", actorId: "intruder" }),
