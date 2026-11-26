@@ -195,7 +195,7 @@ export function createMemoryPrivateMetadataStore() {
   const records = new Map();
   return Object.freeze({
     async get(key) {
-      const record = await metadataStore.get(key);
+      const record = records.get(key);
       return record ? { ...record } : null;
     },
     async put(record) {
