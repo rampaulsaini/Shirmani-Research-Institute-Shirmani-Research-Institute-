@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  createMemoryPrivateMetadataStore,
   createMemoryPrivateObjectAdapter,
   createPrivateEvidenceStorage
 } from "../src/private-evidence-storage.js";
@@ -9,15 +10,17 @@ function setup(options = {}) {
   let time = 1_800_000_000_000;
   const events = [];
   const adapter = createMemoryPrivateObjectAdapter();
+  const metadataStore = createMemoryPrivateMetadataStore();
   const storage = createPrivateEvidenceStorage({
     adapter,
+    metadataStore,
     maxBytes: 8,
     grantTtlMs: 1_000,
     now: () => time,
     audit: async event => { events.push(event); },
     ...options
   });
-  return { adapter, storage, events, advance: ms => { time += ms; } };
+  return { adapter, metadataStore, storage, events, advance: ms => { time += ms; } };
 }
 
 test("stores private bytes with generated key, exact size and SHA-256", async () => {
@@ -93,7 +96,8 @@ test("retention deletion removes only the owner's records older than the cutoff"
 
 test("rolls back stored object if audit persistence fails", async () => {
   const adapter = createMemoryPrivateObjectAdapter();
-  const storage = createPrivateEvidenceStorage({ adapter, audit: async () => { throw new Error("audit unavailable"); } });
+  const metadataStore = createMemoryPrivateMetadataStore();
+  const storage = createPrivateEvidenceStorage({ adapter, metadataStore, audit: async () => { throw new Error("audit unavailable"); } });
   await assert.rejects(storage.store({ actorId: "owner-1", ownerId: "owner-1", bytes: Buffer.from("audit"), mimeType: "text/plain" }), /audit unavailable/);
 });
 
@@ -107,7 +111,8 @@ test("rejects tampered object bytes instead of returning unverified evidence", a
     },
     delete: (...args) => backing.delete(...args)
   };
-  const storage = createPrivateEvidenceStorage({ adapter });
+  const metadataStore = createMemoryPrivateMetadataStore();
+  const storage = createPrivateEvidenceStorage({ adapter, metadataStore });
   const stored = await storage.store({ actorId: "owner-1", ownerId: "owner-1", bytes: Buffer.from("original"), mimeType: "text/plain" });
   await assert.rejects(storage.read({ actorId: "owner-1", ownerId: "owner-1", key: stored.key }), { code: "PRIVATE_EVIDENCE_INTEGRITY_MISMATCH" });
 });
@@ -117,6 +122,7 @@ test("does not leave a usable read grant when grant audit persistence fails", as
   let failGrantAudit = false;
   const storage = createPrivateEvidenceStorage({
     adapter,
+    metadataStore,
     audit: async event => {
       if (failGrantAudit && event.event_type === "private_evidence.read_grant_issued") throw new Error("audit unavailable");
     }
@@ -124,4 +130,18 @@ test("does not leave a usable read grant when grant audit persistence fails", as
   const stored = await storage.store({ actorId: "owner-1", ownerId: "owner-1", bytes: Buffer.from("grant"), mimeType: "text/plain" });
   failGrantAudit = true;
   await assert.rejects(storage.issueReadGrant({ actorId: "owner-1", ownerId: "owner-1", key: stored.key }), /audit unavailable/);
+});
+
+test("reads evidence metadata after service recreation when metadata storage is durable", async () => {
+  const adapter = createMemoryPrivateObjectAdapter();
+  const metadataStore = createMemoryPrivateMetadataStore();
+  const firstProcess = createPrivateEvidenceStorage({ adapter, metadataStore });
+  const stored = await firstProcess.store({
+    actorId: "owner-1", ownerId: "owner-1",
+    bytes: Buffer.from("survives restart"), mimeType: "text/plain"
+  });
+
+  const secondProcess = createPrivateEvidenceStorage({ adapter, metadataStore });
+  const read = await secondProcess.read({ actorId: "owner-1", ownerId: "owner-1", key: stored.key });
+  assert.equal(read.bytes.toString(), "survives restart");
 });
