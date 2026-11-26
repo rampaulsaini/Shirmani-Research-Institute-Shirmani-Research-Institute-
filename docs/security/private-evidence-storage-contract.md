@@ -13,9 +13,9 @@
 
 `server/src/private-evidence-storage.js` exposes:
 
-- `store({ ownerId, orderId, purpose, contentType, bytes })`: accepts bytes only, enforces a MIME allowlist and size limit, generates an opaque key, calculates SHA-256, stores owner/order/purpose metadata, then checks the stored object's content type, byte size and digest.
-- `createOwnerDownload(...)`: requires an owner-authorization callback, rechecks stored metadata, and asks the injected provider adapter for a short-lived HTTPS download URL (1–300 seconds; default 60).
-- `deleteOwnerEvidence(...)`: requires owner authorization and an audit callback, rechecks stored metadata, records authorization/deletion audit events, then requests object deletion.
+- `store({ ownerId, orderId, purpose, contentType, bytes })`: accepts bytes only, enforces a MIME allowlist and size limit, generates an opaque key, calculates SHA-256, stores owner/order/purpose metadata, then checks the stored object's content type, byte size, digest and owner/order/purpose metadata.
+- `createOwnerDownload(...)`: requires an owner-authorization callback, rechecks stored metadata, and asks the injected provider adapter for a short-lived HTTPS download URL (1–300 seconds; default 60), and rejects adapters that do not report the requested expiry.
+- `deleteOwnerEvidence(...)`: requires owner authorization and an audit callback, rechecks stored metadata, records the authorization event, requests object deletion, verifies the object is absent, then records the deletion event.
 
 A future adapter must implement private put, metadata head, signed GET creation and delete. Provider credentials must remain server-side. The current fake adapter is test-only and cannot be used for production.
 
