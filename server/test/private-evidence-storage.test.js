@@ -119,6 +119,7 @@ test("rejects tampered object bytes instead of returning unverified evidence", a
 
 test("does not leave a usable read grant when grant audit persistence fails", async () => {
   const adapter = createMemoryPrivateObjectAdapter();
+  const metadataStore = createMemoryPrivateMetadataStore();
   let failGrantAudit = false;
   const storage = createPrivateEvidenceStorage({
     adapter,
