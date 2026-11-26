@@ -97,7 +97,10 @@ test("requires owner authorization before issuing a short-lived HTTPS download U
     authorizeOwner: async context =>
       context.requesterId === "owner-1" &&
       context.ownerId === "owner-1" &&
-      context.orderId === "order-1"
+      context.orderId === "order-1" &&
+      context.evidenceKey === evidence.key &&
+      context.purpose === "delivery-proof" &&
+      context.sha256 === evidence.sha256
   });
   assert.equal(grant.url.startsWith("https://"), true);
   assert.equal(grant.expiresInSeconds, 60);
@@ -106,8 +109,20 @@ test("requires owner authorization before issuing a short-lived HTTPS download U
 test("rejects malformed adapter configuration and excessive signed URL lifetime", async () => {
   assert.throws(() => createPrivateEvidenceStorage({ adapter: {} }), /adapter is required/);
   const storage = createPrivateEvidenceStorage({ adapter: fakePrivateAdapter() });
+  const evidence = await storage.store({
+    ownerId: "owner-1",
+    orderId: "order-1",
+    purpose: "payment-proof",
+    contentType: "text/plain",
+    bytes: Buffer.from("proof")
+  });
   await assert.rejects(storage.createOwnerDownload({
-    evidence: { key: "evidence/key", ownerId: "owner-1", orderId: "order-1" },
+    evidence: { ...evidence, key: "evidence/arbitrary-object" },
+    requesterId: "owner-1",
+    authorizeOwner: async () => true
+  }), /verified evidence/);
+  await assert.rejects(storage.createOwnerDownload({
+    evidence,
     requesterId: "owner-1",
     authorizeOwner: async () => true,
     expiresInSeconds: 301
