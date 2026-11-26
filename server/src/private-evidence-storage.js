@@ -135,7 +135,7 @@ export function createPrivateEvidenceStorage({
     async deleteOwnerEvidence({ evidence, requesterId, authorizeOwner, recordAudit }) {
       if (!evidence ||
           typeof evidence.key !== "string" ||
-          !/^evidence\\/[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(evidence.key) ||
+          !/^evidence\/[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(evidence.key) ||
           evidence.status !== "verified" ||
           typeof evidence.ownerId !== "string" || !evidence.ownerId.trim() ||
           typeof evidence.orderId !== "string" || !evidence.orderId.trim() ||
