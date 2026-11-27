@@ -764,11 +764,12 @@ app.get("/api/status", async (_req, res) => {
       const result = await pool.query("select to_regclass('public.paid_orders') is not null as ready");
       if (result.rows[0]?.ready) {
         tables.paid_orders = "READY";
-        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor) filter (where verification_method='owner_bank_statement'),0)::bigint as owner_attested_minor, coalesce(sum(amount_minor) filter (where verification_method='provider_verified'),0)::bigint as provider_verified_minor from paid_orders where verification_status='verified' and customer_consent=true and currency='INR'");
+        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as owner_attested_minor from paid_orders where verification_status='verified' and verification_method='owner_bank_statement' and customer_consent=true and currency='INR'");
         counters.paid_orders = paid.rows[0].count;
         counters.owner_attested_bank_match_inr_minor = String(paid.rows[0].owner_attested_minor);
-        counters.provider_verified_payment_inr_minor = String(paid.rows[0].provider_verified_minor);
-        counters.income_inr_minor = String(BigInt(paid.rows[0].owner_attested_minor) + BigInt(paid.rows[0].provider_verified_minor));
+        // Provider verification is unavailable until a server-side signed-webhook verifier exists.
+        counters.provider_verified_payment_inr_minor = null;
+        counters.income_inr_minor = String(paid.rows[0].owner_attested_minor);
       } else {
         tables.paid_orders = "MISSING";
       }
@@ -796,10 +797,9 @@ app.get("/api/status", async (_req, res) => {
         const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as owner_attested_minor from guest_service_payment_proofs where verification_status='verified' and verification_method='owner_bank_statement' and customer_consent=true and currency='INR'");
         counters.guest_paid_orders = paid.rows[0].count;
         const existingOwnerAttested = BigInt(counters.owner_attested_bank_match_inr_minor || "0");
-        const existingProviderVerified = BigInt(counters.provider_verified_payment_inr_minor || "0");
         counters.owner_attested_bank_match_inr_minor = String(existingOwnerAttested + BigInt(paid.rows[0].owner_attested_minor));
-        counters.provider_verified_payment_inr_minor = String(existingProviderVerified);
-        counters.income_inr_minor = String(BigInt(counters.owner_attested_bank_match_inr_minor) + existingProviderVerified);
+        counters.provider_verified_payment_inr_minor = null;
+        counters.income_inr_minor = counters.owner_attested_bank_match_inr_minor;
       } else {
         tables.guest_service_payment_proofs = "MISSING";
       }
@@ -820,8 +820,9 @@ app.get("/api/status", async (_req, res) => {
     income,
     income_assurance: {
       owner_attested_bank_match_inr_minor: counters.owner_attested_bank_match_inr_minor,
-      provider_verified_payment_inr_minor: counters.provider_verified_payment_inr_minor,
-      meaning: "Owner bank-statement matches are owner-attested, not independently audited. Provider-verified totals include only records marked provider_verified after server-side provider verification."
+      provider_verified_payment_inr_minor: null,
+      provider_verification_available: false,
+      meaning: "Owner bank-statement matches are owner-attested, not independently audited. Provider-side verification is not implemented, so no provider-verified total is reported."
     },
     generated_at: new Date().toISOString()
   });
@@ -849,10 +850,20 @@ app.get("/api/export-enquiries", dbRequired, auth, ownerOnly, async (_req, res) 
 
 app.get("/api/export-income", dbRequired, auth, ownerOnly, async (req, res) => {
   try {
-    const { rows } = await pool.query("select id,order_id,amount_minor,currency,payment_id,upi_ref,screenshot_url,customer_consent,verification_status,verification_method,verified_at,created_at from paid_orders where verification_status='verified' and customer_consent=true order by verified_at asc");
+    const { rows } = await pool.query("select id,order_id,amount_minor,currency,payment_id,upi_ref,screenshot_url,customer_consent,verification_status,verification_method,verified_at,created_at from paid_orders where verification_status='verified' and verification_method='owner_bank_statement' and customer_consent=true order by verified_at asc");
     const totalMinor = rows.reduce((sum, row) => sum + BigInt(row.amount_minor), 0n);
     const totalInr = (totalMinor / 100n).toString() + "." + (totalMinor % 100n).toString().padStart(2, "0");
-    const report = { status: rows.length ? "AVAILABLE" : "UNAVAILABLE", currency: "INR", verified_paid_orders: rows.length, total_minor_units: totalMinor.toString(), total_inr: totalInr, verification_basis: "owner_attested_bank_match_or_provider_verified", generated_at: new Date().toISOString(), records: rows };
+    const report = {
+      status: rows.length ? "AVAILABLE" : "UNAVAILABLE",
+      currency: "INR",
+      owner_attested_paid_orders: rows.length,
+      owner_attested_total_minor_units: totalMinor.toString(),
+      owner_attested_total_inr: totalInr,
+      verification_basis: "owner_attested_bank_statement_match_not_independently_audited",
+      provider_verification_available: false,
+      generated_at: new Date().toISOString(),
+      records: rows
+    };
     res.setHeader("Cache-Control", "private, no-store, max-age=0");
     if (req.query.format === "csv") return sendCsv(res, "income.csv", ["id","order_id","amount_minor","currency","payment_id","upi_ref","screenshot_url","customer_consent","verification_status","verification_method","verified_at","created_at"], rows);
     return res.status(200).json(report);
