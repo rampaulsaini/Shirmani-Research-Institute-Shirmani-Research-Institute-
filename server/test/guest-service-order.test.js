@@ -55,11 +55,19 @@ test("public status includes guest verified INR payments without customer PII", 
   assert.doesNotMatch(status, /select .*email|select .*phone|select .*name/i);
 });
 
-test("public income separates owner-attested bank matches from provider-verified payments", () => {
+test("public income reports only owner-attested bank matches until provider verification exists", () => {
   const source = read("../src/index.js");
-  assert.ok(source.includes("owner_attested_bank_match_inr_minor"));
-  assert.ok(source.includes("provider_verified_payment_inr_minor"));
-  assert.ok(source.includes("verification_method='owner_bank_statement'"));
-  assert.ok(source.includes("verification_method='provider_verified'"));
-  assert.ok(source.includes("Owner bank-statement matches are owner-attested, not independently audited."));
+  const status = source.slice(source.indexOf('app.get("/api/status"'), source.indexOf('const csvCell'));
+  const incomeExport = source.slice(source.indexOf('app.get("/api/export-income"'), source.indexOf('app.post("/api/owner/orders/:orderId/payment-proof"'));
+  assert.ok(status.includes("owner_attested_bank_match_inr_minor"));
+  assert.ok(status.includes("provider_verified_payment_inr_minor: null"));
+  assert.ok(status.includes("provider_verification_available: false"));
+  assert.ok(status.includes("verification_method='owner_bank_statement'"));
+  assert.doesNotMatch(status, /verification_method='provider_verified'/);
+  assert.ok(status.includes("Provider-side verification is not implemented"));
+  assert.ok(incomeExport.includes("verification_method='owner_bank_statement'"));
+  assert.ok(incomeExport.includes("owner_attested_total_minor_units"));
+  assert.ok(incomeExport.includes("owner_attested_bank_statement_match_not_independently_audited"));
+  assert.ok(incomeExport.includes("provider_verification_available: false"));
+  assert.doesNotMatch(incomeExport, /owner_attested_bank_match_or_provider_verified/);
 });
