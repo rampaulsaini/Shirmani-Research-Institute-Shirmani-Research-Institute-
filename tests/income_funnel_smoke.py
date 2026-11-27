@@ -172,7 +172,8 @@ def main() -> int:
         errors.append("Canonical offer must not advertise PayPal; Razorpay is the only approved provider")
     if any(urlsplit(link).scheme == "upi" for link in offer_urls):
         errors.append("Canonical offer must not expose manual/direct UPI links; use Razorpay Checkout only")
-    if "manual upi" in offer_lower and "no other gateway or manual upi" not in offer_lower:
+    manual_upi_instructions = ("pay via upi", "pay using upi", "send via upi", "upi app खोलें", "upi id:", "enter the upi id")
+    if any(instruction in offer_lower for instruction in manual_upi_instructions):
         errors.append("Canonical offer must not instruct customers to pay via manual UPI")
     if "does not" not in offer_lower or "process payments" not in offer_lower:
         errors.append("Canonical offer must disclose that the static page does not process payments")
