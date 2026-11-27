@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import parse_qs, urlsplit
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -158,13 +158,22 @@ def main() -> int:
         errors.append("Canonical offer must label payment as occurring only after written agreement")
     if "पहले लिखित सहमति" not in offer_source:
         errors.append("Canonical offer must explain written consent before payment")
-    upi_links = [link for link in offer_urls if urlsplit(link).scheme == "upi"]
-    if not upi_links:
-        errors.append("Canonical offer must expose the documented UPI payment-intent link")
-    elif any("am" in parse_qs(urlsplit(link).query) for link in upi_links):
-        errors.append("UPI payment intent must not prefill an amount before written agreement")
-    if "paypal" not in offer_lower or "transaction reference" not in offer_lower:
-        errors.append("Canonical offer must include PayPal guidance and transaction-reference follow-up")
+    razorpay_links = [
+        link for link in offer_urls
+        if urlsplit(link).scheme == "https"
+        and urlsplit(link).netloc == "rzp.io"
+        and urlsplit(link).path == "/rzp/UhC1i8c"
+    ]
+    if not razorpay_links:
+        errors.append("Canonical offer must use the existing approved Razorpay ₹999 payment link")
+    if "razorpay" not in offer_lower or "transaction reference" not in offer_lower:
+        errors.append("Canonical offer must include Razorpay guidance and transaction-reference follow-up")
+    if "paypal" in offer_lower:
+        errors.append("Canonical offer must not advertise PayPal; Razorpay is the only approved provider")
+    if any(urlsplit(link).scheme == "upi" for link in offer_urls):
+        errors.append("Canonical offer must not expose manual/direct UPI links; use Razorpay Checkout only")
+    if "manual upi" in offer_lower and "no other gateway or manual upi" not in offer_lower:
+        errors.append("Canonical offer must not instruct customers to pay via manual UPI")
     if "does not" not in offer_lower or "process payments" not in offer_lower:
         errors.append("Canonical offer must disclose that the static page does not process payments")
 
