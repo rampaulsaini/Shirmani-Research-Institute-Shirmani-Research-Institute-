@@ -31,7 +31,7 @@
 Official references checked:
 - Supabase plans and free quotas: https://supabase.com/pricing
 - Supabase region list (including Mumbai): https://supabase.com/docs/guides/platform/regions
-- Supabase free-project inactivity behavior: https://supabase.com/docs/guides/platform/going-into-prod#free-plan
+- Supabase free-project inactivity behavior: https://supabase.com/pricing
 - Cloudflare R2 pricing and free tier: https://developers.cloudflare.com/r2/pricing/
 - Cloudflare R2 data location; APAC location hints are best-effort, while listed jurisdictions are EU/US/FedRAMP: https://developers.cloudflare.com/r2/reference/data-location/
 - AWS S3 free usage and billing explanation: https://aws.amazon.com/s3/faqs/
