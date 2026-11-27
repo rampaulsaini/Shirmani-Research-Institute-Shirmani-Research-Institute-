@@ -1,0 +1,289 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rampaulsaini.github.io/Shirmani-Research-Institute-Shirmani-Research-Institute-/schema/yatharth-mudra-verification.schema.json",
+  "title": "Yatharth Mudra Honour Verification Record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_type",
+    "status",
+    "purpose",
+    "philosophy",
+    "assessment",
+    "reviewers",
+    "evidence_integrity",
+    "issuance",
+    "symbolic_honour",
+    "privacy",
+    "governance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "record_type": {
+      "const": "YATHARTH_MUDRA_HONOUR_VERIFICATION"
+    },
+    "status": {
+      "enum": [
+        "DRAFT_NOT_ISSUED",
+        "UNDER_REVIEW",
+        "APPROVED_PENDING_APPEAL",
+        "ISSUED",
+        "REVOKED"
+      ]
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "object"
+    },
+    "philosophy": {
+      "type": "object",
+      "required": [
+        "creator_defined_heart_view_percent",
+        "creator_defined_mind_intellect_view_percent",
+        "interpretation"
+      ],
+      "properties": {
+        "creator_defined_heart_view_percent": {
+          "const": 99.9999
+        },
+        "creator_defined_mind_intellect_view_percent": {
+          "const": 0.0001
+        },
+        "interpretation": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "assessment": {
+      "type": "object",
+      "required": [
+        "score_scale",
+        "weighted_levels",
+        "total_weight_percent",
+        "threshold_policy"
+      ],
+      "properties": {
+        "score_scale": {
+          "type": "string"
+        },
+        "weighted_levels": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "type": "object",
+            "required": [
+              "level",
+              "name",
+              "weight_percent",
+              "evidence_requirements",
+              "safety_boundary"
+            ],
+            "properties": {
+              "level": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 7
+              },
+              "weight_percent": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "evidence_requirements": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "safety_boundary": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "total_weight_percent": {
+          "const": 100
+        },
+        "threshold_policy": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "reviewers": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "reviewer_id",
+          "independence_declared",
+          "conflict_of_interest_declared",
+          "decision",
+          "reviewed_at",
+          "evidence_refs"
+        ],
+        "properties": {
+          "reviewer_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "independence_declared": {
+            "type": "boolean"
+          },
+          "conflict_of_interest_declared": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "decision": {
+            "enum": [
+              "PENDING",
+              "APPROVE",
+              "REQUEST_CHANGES",
+              "REJECT"
+            ]
+          },
+          "reviewed_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "evidence_integrity": {
+      "type": "object",
+      "required": [
+        "hash_algorithm",
+        "canonicalization",
+        "certificate_payload_hash",
+        "hash_created_at",
+        "hashing_implementation_status"
+      ],
+      "properties": {
+        "hash_algorithm": {
+          "const": "SHA-256"
+        },
+        "canonicalization": {
+          "const": "RFC 8785 JSON Canonicalization Scheme (JCS)"
+        },
+        "certificate_payload_hash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-fA-F0-9]{64}$"
+        },
+        "hash_created_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "hashing_implementation_status": {
+          "enum": [
+            "NOT_IMPLEMENTED",
+            "IMPLEMENTED_NOT_TESTED",
+            "TESTED"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "issuance": {
+      "type": "object",
+      "required": [
+        "eligible",
+        "issued",
+        "issuance_gates"
+      ],
+      "properties": {
+        "eligible": {
+          "type": "boolean"
+        },
+        "issued": {
+          "type": "boolean"
+        },
+        "issued_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "issuance_gates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "symbolic_honour": {
+      "type": "object",
+      "required": [
+        "amount_inr",
+        "legal_tender",
+        "redeemable",
+        "investment",
+        "guaranteed_value",
+        "public_sale",
+        "disclosure"
+      ],
+      "properties": {
+        "amount_inr": {
+          "const": 1000000000
+        },
+        "legal_tender": {
+          "const": false
+        },
+        "redeemable": {
+          "const": false
+        },
+        "investment": {
+          "const": false
+        },
+        "guaranteed_value": {
+          "const": false
+        },
+        "public_sale": {
+          "const": false
+        },
+        "disclosure": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "privacy": {
+      "type": "object"
+    },
+    "governance": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}
