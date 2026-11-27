@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Hindi-first original story production queue. Production readiness and external publication are separate states.",
+  "automation_mode": "CONTENT_PACKAGE_VALIDATION_ONLY",
+  "default_language": "hi",
+  "stories": [
+    {
+      "story_id": "HI-STORY-0001",
+      "path": "content/social-stories/HI-STORY-0001.json",
+      "status": "SCRIPT_READY"
+    }
+  ],
+  "publication_policy": "Never mark a story published from a workflow run, dispatch request, saved account URL, or generated asset alone."
+}
