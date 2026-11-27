@@ -54,3 +54,12 @@ test("public status includes guest verified INR payments without customer PII", 
   const status = source.slice(source.indexOf('app.get("/api/status"'), source.indexOf('const csvCell'));
   assert.doesNotMatch(status, /select .*email|select .*phone|select .*name/i);
 });
+
+test("public income separates owner-attested bank matches from provider-verified payments", () => {
+  const source = read("../src/index.js");
+  assert.ok(source.includes("owner_attested_bank_match_inr_minor"));
+  assert.ok(source.includes("provider_verified_payment_inr_minor"));
+  assert.ok(source.includes("verification_method='owner_bank_statement'"));
+  assert.ok(source.includes("verification_method='provider_verified'"));
+  assert.ok(source.includes("Owner bank-statement matches are owner-attested, not independently audited."));
+});
