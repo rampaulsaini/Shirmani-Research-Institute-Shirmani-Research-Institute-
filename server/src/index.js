@@ -1182,8 +1182,8 @@ const guestAcceptanceLimiter = rateLimit({ windowMs: 15 * 60_000, limit: 10, sta
 
 // Customer action is a POST so link-preview bots cannot consume the one-time token.
 // The token is a bearer credential: it is not identity proof or an independent audit.
-app.post("/api/service-order-acceptance/:token", dbRequired, guestAcceptanceLimiter, async (req, res) => {
-  const token = typeof req.params.token === "string" ? req.params.token : "";
+app.post("/api/service-order-acceptance", dbRequired, guestAcceptanceLimiter, async (req, res) => {
+  const token = typeof req.body?.token === "string" ? req.body.token : "";
   if (!/^[A-Za-z0-9_-]{40,60}$/.test(token) || req.body?.accepted !== true) {
     return res.status(400).json({ error: "VALID_TOKEN_AND_EXPLICIT_ACCEPTANCE_REQUIRED" });
   }
