@@ -234,7 +234,8 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
     assert.equal(Number(after.data.counters.guest_service_orders), beforeOrders + 1);
     assert.equal(BigInt(after.data.counters.income_inr_minor) - beforeIncome, 99900n);
     assert.equal(BigInt(after.data.income_assurance.owner_attested_bank_match_inr_minor) - beforeOwnerAttested, 99900n);
-    assert.equal(BigInt(after.data.income_assurance.provider_verified_payment_inr_minor), beforeProviderVerified);
+    assert.equal(after.data.income_assurance.provider_verified_payment_inr_minor, null,
+      "provider-verified totals remain unavailable until signed server-side verification exists");
     assert.match(after.data.income_assurance.meaning, /not independently audited/);
     assert.equal(JSON.stringify(after.data).includes(customerEmail), false,
       "public aggregate status must not expose customer contact data");
