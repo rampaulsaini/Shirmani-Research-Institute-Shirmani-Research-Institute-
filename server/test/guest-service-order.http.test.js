@@ -4,6 +4,7 @@ import { once } from "node:events";
 import net from "node:net";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 import pg from "pg";
 import jwt from "jsonwebtoken";
 
@@ -196,7 +197,14 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
         acceptance_reference: `private://integration/customer-acceptance-${suffix}`
       }
     });
-    assert.equal(prematureAcceptance.status, 409);
+    assert.equal(prematureAcceptance.status, 410,
+      "owner-recorded customer acceptance must be disabled");
+
+    const prematureInvitation = await jsonRequest(`/api/owner/service-orders/${orderId}/acceptance-invitations`, {
+      method: "POST", token: ownerToken, body: {}
+    });
+    assert.equal(prematureInvitation.status, 409,
+      "acceptance invitations cannot be issued before delivery");
 
     const delivered = await jsonRequest(`/api/owner/service-orders/${orderId}/deliver`, {
       method: "POST", token: ownerToken,
@@ -205,25 +213,56 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
     assert.equal(delivered.status, 200, JSON.stringify(delivered.data));
     assert.equal(delivered.data.status, "delivered");
 
-    const missingCustomerConfirmation = await jsonRequest(`/api/owner/service-orders/${orderId}/customer-acceptance`, {
-      method: "POST", token: ownerToken,
-      body: {
-        customer_confirmed: false,
-        acceptance_reference: `private://integration/customer-acceptance-${suffix}`
-      }
+    const issued = await jsonRequest(`/api/owner/service-orders/${orderId}/acceptance-invitations`, {
+      method: "POST", token: ownerToken, body: {}
+    });
+    assert.equal(issued.status, 201, JSON.stringify(issued.data));
+    assert.equal(issued.data.delivery_channel, "MANUAL_OUT_OF_BAND_REQUIRED");
+    assert.match(issued.data.token, /^[A-Za-z0-9_-]{40,60}$/);
+    assert.equal(JSON.stringify(issued.data).includes(createHash("sha256").update(issued.data.token).digest("hex")), false,
+      "API response must not expose the stored token hash");
+
+    const invalidToken = await jsonRequest("/api/service-order-acceptance/not-a-real-token", {
+      method: "POST", body: { accepted: true }
+    });
+    assert.equal(invalidToken.status, 400);
+
+    const missingCustomerConfirmation = await jsonRequest(`/api/service-order-acceptance/${issued.data.token}`, {
+      method: "POST", body: { accepted: false }
     });
     assert.equal(missingCustomerConfirmation.status, 400);
 
-    const accepted = await jsonRequest(`/api/owner/service-orders/${orderId}/customer-acceptance`, {
-      method: "POST", token: ownerToken,
-      body: {
-        customer_confirmed: true,
-        acceptance_reference: `private://integration/customer-acceptance-${suffix}`
-      }
+    const tokenHash = createHash("sha256").update(issued.data.token).digest("hex");
+    await pool.query(
+      "update guest_service_acceptance_tokens set expires_at=now()-interval '1 minute' where token_hash=$1",
+      [tokenHash]
+    );
+    const expired = await jsonRequest(`/api/service-order-acceptance/${issued.data.token}`, {
+      method: "POST", body: { accepted: true }
+    });
+    assert.equal(expired.status, 410, "expired tokens must not complete an order");
+
+    const renewed = await jsonRequest(`/api/owner/service-orders/${orderId}/acceptance-invitations`, {
+      method: "POST", token: ownerToken, body: {}
+    });
+    assert.equal(renewed.status, 201);
+    const revokedOldToken = await jsonRequest(`/api/service-order-acceptance/${issued.data.token}`, {
+      method: "POST", body: { accepted: true }
+    });
+    assert.equal(revokedOldToken.status, 404, "reissuing must revoke the previous token");
+
+    const accepted = await jsonRequest(`/api/service-order-acceptance/${renewed.data.token}`, {
+      method: "POST", body: { accepted: true }
     });
     assert.equal(accepted.status, 200, JSON.stringify(accepted.data));
     assert.equal(accepted.data.status, "completed");
-    assert.equal(accepted.data.acceptance_scope, "owner_recorded_customer_confirmation_not_independent_audit");
+    assert.equal(accepted.data.customer_acceptance_method, "single_use_token");
+    assert.equal(accepted.data.acceptance_scope, "single_use_bearer_token_possession_not_identity_verified");
+
+    const replayed = await jsonRequest(`/api/service-order-acceptance/${renewed.data.token}`, {
+      method: "POST", body: { accepted: true }
+    });
+    assert.equal(replayed.status, 409, "a consumed token must not be reusable");
 
     const inbox = await jsonRequest("/api/owner/service-orders", { token: ownerToken });
     assert.equal(inbox.status, 200);
