@@ -1,0 +1,203 @@
+import { createHash, randomUUID } from "node:crypto";
+
+export const EVIDENCE_MIME_TYPES = Object.freeze([
+  "image/jpeg",
+  "image/png",
+  "application/pdf",
+  "text/plain"
+]);
+
+export const DEFAULT_MAX_EVIDENCE_BYTES = 10 * 1024 * 1024;
+
+/**
+ * Provider-neutral private evidence service.
+ *
+ * The adapter is deliberately injected: this module does not provision a
+ * bucket, choose a region, or contact Cloudflare. A future R2 adapter must
+ * implement these methods with a private bucket and server-side credentials.
+ */
+export function createPrivateEvidenceStorage({
+  adapter,
+  maxBytes = DEFAULT_MAX_EVIDENCE_BYTES,
+  clock = () => new Date()
+} = {}) {
+  if (!adapter ||
+      typeof adapter.putPrivateObject !== "function" ||
+      typeof adapter.headPrivateObject !== "function" ||
+      typeof adapter.createSignedGetUrl !== "function" ||
+      typeof adapter.deletePrivateObject !== "function") {
+    throw new TypeError("A private-object storage adapter is required");
+  }
+  if (!Number.isSafeInteger(maxBytes) || maxBytes < 1) {
+    throw new TypeError("maxBytes must be a positive safe integer");
+  }
+
+  return Object.freeze({
+    async store({ ownerId, orderId, purpose, contentType, bytes }) {
+      if (typeof ownerId !== "string" || !ownerId.trim() ||
+          typeof orderId !== "string" || !orderId.trim() ||
+          typeof purpose !== "string" || !/^[a-z][a-z0-9_-]{1,39}$/.test(purpose)) {
+        throw new TypeError("Valid owner, order and evidence purpose are required");
+      }
+      if (!EVIDENCE_MIME_TYPES.includes(contentType)) {
+        throw new TypeError("Evidence content type is not allowed");
+      }
+      if (!(bytes instanceof Uint8Array) || bytes.byteLength < 1 || bytes.byteLength > maxBytes) {
+        throw new RangeError("Evidence size is outside the allowed range");
+      }
+
+      const body = Buffer.from(bytes);
+      const sha256 = createHash("sha256").update(body).digest("hex");
+      const key = `evidence/${randomUUID()}`;
+      const createdAt = clock().toISOString();
+
+      await adapter.putPrivateObject({
+        key,
+        body,
+        contentType,
+        metadata: { ownerId, orderId, purpose, sha256 }
+      });
+
+      const stored = await adapter.headPrivateObject({ key });
+      if (!stored ||
+          stored.contentType !== contentType ||
+          stored.byteSize !== body.byteLength ||
+          stored.sha256 !== sha256 ||
+          stored.metadata?.ownerId !== ownerId ||
+          stored.metadata?.orderId !== orderId ||
+          stored.metadata?.purpose !== purpose ||
+          stored.metadata?.sha256 !== sha256) {
+        throw new Error("Stored evidence failed server-side integrity verification");
+      }
+
+      return Object.freeze({
+        key,
+        ownerId,
+        orderId,
+        purpose,
+        contentType,
+        byteSize: body.byteLength,
+        sha256,
+        status: "verified",
+        createdAt
+      });
+    },
+
+    async createOwnerDownload({ evidence, requesterId, authorizeOwner, expiresInSeconds = 60 }) {
+      if (!evidence ||
+          typeof evidence.key !== "string" ||
+          !/^evidence\/[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(evidence.key) ||
+          evidence.status !== "verified" ||
+          typeof evidence.ownerId !== "string" || !evidence.ownerId.trim() ||
+          typeof evidence.orderId !== "string" || !evidence.orderId.trim() ||
+          typeof evidence.purpose !== "string" ||
+          !EVIDENCE_MIME_TYPES.includes(evidence.contentType) ||
+          !Number.isSafeInteger(evidence.byteSize) || evidence.byteSize < 1 || evidence.byteSize > maxBytes ||
+          typeof evidence.sha256 !== "string" || !/^[a-f0-9]{64}$/.test(evidence.sha256) ||
+          typeof requesterId !== "string" || !requesterId.trim() ||
+          typeof authorizeOwner !== "function" ||
+          !Number.isInteger(expiresInSeconds) ||
+          expiresInSeconds < 1 || expiresInSeconds > 300) {
+        throw new TypeError("Valid verified evidence, requester, authorization and short expiry are required");
+      }
+      const allowed = await authorizeOwner({
+        requesterId,
+        ownerId: evidence.ownerId,
+        orderId: evidence.orderId,
+        evidenceKey: evidence.key,
+        purpose: evidence.purpose,
+        sha256: evidence.sha256
+      });
+      if (allowed !== true) {
+        const error = new Error("Evidence access denied");
+        error.code = "EVIDENCE_ACCESS_DENIED";
+        throw error;
+      }
+      const stored = await adapter.headPrivateObject({ key: evidence.key });
+      if (!stored ||
+          stored.contentType !== evidence.contentType ||
+          stored.byteSize !== evidence.byteSize ||
+          stored.sha256 !== evidence.sha256 ||
+          stored.metadata?.ownerId !== evidence.ownerId ||
+          stored.metadata?.orderId !== evidence.orderId ||
+          stored.metadata?.purpose !== evidence.purpose) {
+        throw new Error("Stored evidence record failed authorization integrity verification");
+      }
+      const result = await adapter.createSignedGetUrl({
+        key: evidence.key,
+        expiresInSeconds
+      });
+      if (!result || typeof result.url !== "string" || !result.url.startsWith("https://") ||
+          result.expiresInSeconds !== expiresInSeconds) {
+        throw new Error("Storage adapter did not return an HTTPS URL with the requested expiry");
+      }
+      return Object.freeze({
+        url: result.url,
+        expiresInSeconds
+      });
+    },
+
+    async deleteOwnerEvidence({ evidence, requesterId, authorizeOwner, recordAudit }) {
+      if (!evidence ||
+          typeof evidence.key !== "string" ||
+          !/^evidence\/[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(evidence.key) ||
+          evidence.status !== "verified" ||
+          typeof evidence.ownerId !== "string" || !evidence.ownerId.trim() ||
+          typeof evidence.orderId !== "string" || !evidence.orderId.trim() ||
+          typeof evidence.purpose !== "string" ||
+          !EVIDENCE_MIME_TYPES.includes(evidence.contentType) ||
+          !Number.isSafeInteger(evidence.byteSize) || evidence.byteSize < 1 || evidence.byteSize > maxBytes ||
+          typeof evidence.sha256 !== "string" || !/^[a-f0-9]{64}$/.test(evidence.sha256) ||
+          typeof requesterId !== "string" || !requesterId.trim() ||
+          typeof authorizeOwner !== "function" ||
+          typeof recordAudit !== "function") {
+        throw new TypeError("Valid evidence, requester, authorization and audit recorder are required");
+      }
+
+      const allowed = await authorizeOwner({
+        requesterId,
+        ownerId: evidence.ownerId,
+        orderId: evidence.orderId,
+        evidenceKey: evidence.key,
+        purpose: evidence.purpose,
+        sha256: evidence.sha256
+      });
+      if (allowed !== true) {
+        const error = new Error("Evidence deletion denied");
+        error.code = "EVIDENCE_DELETE_DENIED";
+        throw error;
+      }
+
+      const stored = await adapter.headPrivateObject({ key: evidence.key });
+      if (!stored ||
+          stored.contentType !== evidence.contentType ||
+          stored.byteSize !== evidence.byteSize ||
+          stored.sha256 !== evidence.sha256 ||
+          stored.metadata?.ownerId !== evidence.ownerId ||
+          stored.metadata?.orderId !== evidence.orderId ||
+          stored.metadata?.purpose !== evidence.purpose) {
+        throw new Error("Stored evidence record failed deletion integrity verification");
+      }
+
+      await recordAudit({
+        event: "private_evidence_delete_authorized",
+        ownerId: evidence.ownerId,
+        orderId: evidence.orderId,
+        evidenceKey: evidence.key,
+        sha256: evidence.sha256
+      });
+      await adapter.deletePrivateObject({ key: evidence.key });
+      if (await adapter.headPrivateObject({ key: evidence.key })) {
+        throw new Error("Deleted evidence object remains available");
+      }
+      await recordAudit({
+        event: "private_evidence_deleted",
+        ownerId: evidence.ownerId,
+        orderId: evidence.orderId,
+        evidenceKey: evidence.key,
+        sha256: evidence.sha256
+      });
+      return Object.freeze({ deleted: true, key: evidence.key });
+    }
+  });
+}
