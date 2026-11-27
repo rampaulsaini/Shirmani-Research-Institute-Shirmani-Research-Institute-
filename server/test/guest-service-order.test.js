@@ -50,7 +50,7 @@ test("public status includes guest verified INR payments without customer PII", 
   const source = read("../src/index.js");
   assert.ok(source.includes("guest_service_payment_proofs"));
   assert.ok(source.includes("guest_paid_orders"));
-  assert.ok(source.includes("verification_status='verified' and customer_consent=true and currency='INR'"));
+  assert.ok(source.includes("verification_status='verified' and verification_method='owner_bank_statement' and customer_consent=true and currency='INR'"));
   const status = source.slice(source.indexOf('app.get("/api/status"'), source.indexOf('const csvCell'));
   assert.doesNotMatch(status, /select .*email|select .*phone|select .*name/i);
 });
