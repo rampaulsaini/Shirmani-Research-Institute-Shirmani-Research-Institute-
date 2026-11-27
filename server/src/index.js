@@ -1191,14 +1191,30 @@ app.post("/api/service-order-acceptance", dbRequired, guestAcceptanceLimiter, as
   const client = await pool.connect();
   try {
     await client.query("begin");
-    const found = await client.query(
-      "select t.id,t.service_order_id,t.expires_at,t.consumed_at,t.revoked_at,o.status as order_status from guest_service_acceptance_tokens t join guest_service_orders o on o.id=t.service_order_id where t.token_hash=$1 for update of t,o",
+    // Use the same lock order as invitation issuance: order first, token second.
+    // This avoids an order/token lock inversion when issuance and acceptance race.
+    const tokenOwner = await client.query(
+      "select service_order_id from guest_service_acceptance_tokens where token_hash=$1",
       [tokenHash]
+    );
+    if (!tokenOwner.rows[0]) {
+      await client.query("rollback"); return res.status(404).json({ error: "ACCEPTANCE_TOKEN_NOT_FOUND" });
+    }
+    const lockedOrder = await client.query(
+      "select id,status from guest_service_orders where id=$1 for update",
+      [tokenOwner.rows[0].service_order_id]
+    );
+    if (!lockedOrder.rows[0]) {
+      await client.query("rollback"); return res.status(404).json({ error: "ACCEPTANCE_TOKEN_NOT_FOUND" });
+    }
+    const found = await client.query(
+      "select id,service_order_id,expires_at,consumed_at,revoked_at from guest_service_acceptance_tokens where token_hash=$1 and service_order_id=$2 for update",
+      [tokenHash, lockedOrder.rows[0].id]
     );
     if (!found.rows[0] || found.rows[0].revoked_at) {
       await client.query("rollback"); return res.status(404).json({ error: "ACCEPTANCE_TOKEN_NOT_FOUND" });
     }
-    const invitation = found.rows[0];
+    const invitation = { ...found.rows[0], order_status: lockedOrder.rows[0].status };
     if (invitation.consumed_at) {
       await client.query("rollback"); return res.status(409).json({ error: "ACCEPTANCE_TOKEN_ALREADY_USED" });
     }
