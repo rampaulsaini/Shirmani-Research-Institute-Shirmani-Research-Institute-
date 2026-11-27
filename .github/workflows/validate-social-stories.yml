@@ -1,0 +1,49 @@
+name: Validate Social Stories Manifest
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "content/stories/**"
+      - "config/social-content-manifest.json"
+      - "docs/SOCIAL-STORIES-AUTOMISSION.md"
+      - ".github/workflows/validate-social-stories.yml"
+  push:
+    paths:
+      - "content/stories/**"
+      - "config/social-content-manifest.json"
+      - "docs/SOCIAL-STORIES-AUTOMISSION.md"
+      - ".github/workflows/validate-social-stories.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate story manifest and source files
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const manifest = JSON.parse(fs.readFileSync('config/social-content-manifest.json', 'utf8'));
+          if (manifest.schema_version !== '1.0') throw new Error('Unsupported schema_version');
+          if (manifest.default_language !== 'hi') throw new Error('First production language must be hi');
+          if (manifest.publishing_enabled !== false) throw new Error('Publishing must remain disabled in MVP');
+          if (!Array.isArray(manifest.stories) || manifest.stories.length < 1) throw new Error('No stories registered');
+          for (const story of manifest.stories) {
+            if (!story.story_id || !story.title || story.language !== 'hi') throw new Error('Story metadata incomplete');
+            if (!fs.existsSync(path.resolve(story.source_path))) throw new Error('Missing story source: ' + story.source_path);
+            if (story.distribution.publishing_status !== 'NOT_PUBLISHED') throw new Error('Initial publication status must be NOT_PUBLISHED');
+            if (story.distribution.platform_post_urls.length !== 0) throw new Error('No post URL may be prefilled');
+            if (story.distribution.platform_receipts.length !== 0) throw new Error('No platform receipt may be prefilled');
+          }
+          console.log('Validated stories:', manifest.stories.length);
+          console.log('Publishing mode: PREPARE_ONLY (no external publishing)');
+          NODE
