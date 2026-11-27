@@ -851,12 +851,36 @@ app.get("/api/export-enquiries", dbRequired, auth, ownerOnly, async (_req, res) 
 
 app.get("/api/export-income", dbRequired, auth, ownerOnly, async (req, res) => {
   try {
-    const { rows } = await pool.query("select id,order_id,amount_minor,currency,payment_id,upi_ref,screenshot_url,customer_consent,verification_status,verification_method,verified_at,created_at from paid_orders where verification_status='verified' and verification_method='owner_bank_statement' and customer_consent=true order by verified_at asc");
+    // Keep the owner export reconciled with /api/status by including both legacy
+    // marketplace payments and guest-service payment proofs in one normalized ledger.
+    const { rows } = await pool.query(`
+      select id::text as id, 'paid_orders'::text as source,
+        order_id::text as order_id, null::text as service_order_id,
+        amount_minor::text as amount_minor, currency::text as currency,
+        payment_id, upi_ref, null::text as payment_reference,
+        screenshot_url, null::text as evidence_reference,
+        customer_consent, verification_status, verification_method, verified_at, created_at
+      from paid_orders
+      where verification_status='verified' and verification_method='owner_bank_statement'
+        and customer_consent=true and currency='INR'
+      union all
+      select id::text as id, 'guest_service_payment_proofs'::text as source,
+        null::text as order_id, service_order_id::text as service_order_id,
+        amount_minor::text as amount_minor, currency::text as currency,
+        null::text as payment_id, null::text as upi_ref, payment_reference,
+        null::text as screenshot_url, evidence_reference,
+        customer_consent, verification_status, verification_method, verified_at, created_at
+      from guest_service_payment_proofs
+      where verification_status='verified' and verification_method='owner_bank_statement'
+        and customer_consent=true and currency='INR'
+      order by verified_at asc
+    `);
     const totalMinor = rows.reduce((sum, row) => sum + BigInt(row.amount_minor), 0n);
     const totalInr = (totalMinor / 100n).toString() + "." + (totalMinor % 100n).toString().padStart(2, "0");
     const report = {
       status: rows.length ? "AVAILABLE" : "UNAVAILABLE",
       currency: "INR",
+      owner_attested_payment_records: rows.length,
       owner_attested_paid_orders: rows.length,
       owner_attested_total_minor_units: totalMinor.toString(),
       owner_attested_total_inr: totalInr,
@@ -866,7 +890,7 @@ app.get("/api/export-income", dbRequired, auth, ownerOnly, async (req, res) => {
       records: rows
     };
     res.setHeader("Cache-Control", "private, no-store, max-age=0");
-    if (req.query.format === "csv") return sendCsv(res, "income.csv", ["id","order_id","amount_minor","currency","payment_id","upi_ref","screenshot_url","customer_consent","verification_status","verification_method","verified_at","created_at"], rows);
+    if (req.query.format === "csv") return sendCsv(res, "income.csv", ["source","id","order_id","service_order_id","amount_minor","currency","payment_id","upi_ref","payment_reference","screenshot_url","evidence_reference","customer_consent","verification_status","verification_method","verified_at","created_at"], rows);
     return res.status(200).json(report);
   } catch { return res.status(503).json({ status: "UNAVAILABLE", error: "INCOME_EXPORT_UNAVAILABLE", records: [] }); }
 });
