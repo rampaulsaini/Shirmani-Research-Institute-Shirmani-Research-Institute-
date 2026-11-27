@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "owner_label": "Shirmani Research Institute",
+  "updated_at": "2026-11-02",
+  "records": [
+    {
+      "platform": "LinkedIn",
+      "kind": "profile",
+      "url": "https://www.linkedin.com/in/rampaul-saini-12120592",
+      "status": "user_supplied_not_independently_verified",
+      "automation": "not_connected"
+    },
+    {
+      "platform": "Hipi",
+      "kind": "profile",
+      "url": "https://www.hipi.co.in/@rampaulsaini",
+      "status": "user_supplied_not_independently_verified",
+      "automation": "not_connected"
+    },
+    {
+      "platform": "Explurger",
+      "kind": "shared_profile_or_app_link",
+      "url": "https://app.explurger.com/dl/4CANVNw28Gymh46x6",
+      "status": "user_supplied_not_independently_verified",
+      "automation": "not_connected"
+    },
+    {
+      "platform": "Pinterest",
+      "kind": "pin",
+      "url": "https://pin.it/69LggZr",
+      "status": "user_supplied_content_link_not_account_verification",
+      "automation": "not_connected"
+    },
+    {
+      "platform": "X",
+      "kind": "post",
+      "url": "https://twitter.com/rampaulsaini/status/308238386760663041",
+      "status": "user_supplied_content_link_not_account_verification",
+      "automation": "not_connected"
+    },
+    {
+      "platform": "Make",
+      "kind": "connections_management_page",
+      "url": "https://eu1.make.com/3453962/connections",
+      "status": "user_supplied_private_dashboard_link_connection_state_not_inspected",
+      "automation": "connection_inventory_pending_user_visible_confirmation"
+    }
+  ],
+  "verification_policy": {
+    "user_supplied_url_is_not_proof_of_account_ownership_or_active_connection": true,
+    "mark_connection_active_only_after_successful_authorized_connection_test": true,
+    "never_store_access_tokens_passwords_webhook_secrets_or_private_customer_data": true,
+    "public_posts_require_customer_or_account_owner_approval": true
+  }
+}
