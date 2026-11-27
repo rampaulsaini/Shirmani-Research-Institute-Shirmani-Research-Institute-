@@ -735,7 +735,7 @@ app.get("/api/ready", async (_req, res) => {
 app.get("/api/status", async (_req, res) => {
   let database = "NOT_CONFIGURED";
   const tables = { client_enquiries: "NOT_CHECKED", paid_orders: "NOT_CHECKED", guest_service_orders: "NOT_CHECKED", guest_service_payment_proofs: "NOT_CHECKED" };
-  const counters = { enquiries: null, paid_orders: null, guest_service_orders: null, guest_paid_orders: null, income_inr_minor: null };
+  const counters = { enquiries: null, paid_orders: null, guest_service_orders: null, guest_paid_orders: null, owner_attested_bank_match_inr_minor: null, provider_verified_payment_inr_minor: null, income_inr_minor: null };
 
   if (pool) {
     try {
@@ -764,9 +764,11 @@ app.get("/api/status", async (_req, res) => {
       const result = await pool.query("select to_regclass('public.paid_orders') is not null as ready");
       if (result.rows[0]?.ready) {
         tables.paid_orders = "READY";
-        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as income_inr_minor from paid_orders where verification_status='verified' and customer_consent=true and currency='INR'");
+        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor) filter (where verification_method='owner_bank_statement'),0)::bigint as owner_attested_minor, coalesce(sum(amount_minor) filter (where verification_method='provider_verified'),0)::bigint as provider_verified_minor from paid_orders where verification_status='verified' and customer_consent=true and currency='INR'");
         counters.paid_orders = paid.rows[0].count;
-        counters.income_inr_minor = String(paid.rows[0].income_inr_minor);
+        counters.owner_attested_bank_match_inr_minor = String(paid.rows[0].owner_attested_minor);
+        counters.provider_verified_payment_inr_minor = String(paid.rows[0].provider_verified_minor);
+        counters.income_inr_minor = String(BigInt(paid.rows[0].owner_attested_minor) + BigInt(paid.rows[0].provider_verified_minor));
       } else {
         tables.paid_orders = "MISSING";
       }
@@ -791,10 +793,13 @@ app.get("/api/status", async (_req, res) => {
       const result = await pool.query("select to_regclass('public.guest_service_payment_proofs') is not null as ready");
       if (result.rows[0]?.ready) {
         tables.guest_service_payment_proofs = "READY";
-        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as income_inr_minor from guest_service_payment_proofs where verification_status='verified' and customer_consent=true and currency='INR'");
+        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as owner_attested_minor from guest_service_payment_proofs where verification_status='verified' and verification_method='owner_bank_statement' and customer_consent=true and currency='INR'");
         counters.guest_paid_orders = paid.rows[0].count;
-        const existingMinor = BigInt(counters.income_inr_minor || "0");
-        counters.income_inr_minor = String(existingMinor + BigInt(paid.rows[0].income_inr_minor));
+        const existingOwnerAttested = BigInt(counters.owner_attested_bank_match_inr_minor || "0");
+        const existingProviderVerified = BigInt(counters.provider_verified_payment_inr_minor || "0");
+        counters.owner_attested_bank_match_inr_minor = String(existingOwnerAttested + BigInt(paid.rows[0].owner_attested_minor));
+        counters.provider_verified_payment_inr_minor = String(existingProviderVerified);
+        counters.income_inr_minor = String(BigInt(counters.owner_attested_bank_match_inr_minor) + existingProviderVerified);
       } else {
         tables.guest_service_payment_proofs = "MISSING";
       }
@@ -813,6 +818,11 @@ app.get("/api/status", async (_req, res) => {
     counters,
     payment: "PENDING_UNLESS_VERIFIED_CONSENTED_PAYMENT_PROOF_EXISTS",
     income,
+    income_assurance: {
+      owner_attested_bank_match_inr_minor: counters.owner_attested_bank_match_inr_minor,
+      provider_verified_payment_inr_minor: counters.provider_verified_payment_inr_minor,
+      meaning: "Owner bank-statement matches are owner-attested, not independently audited. Provider-verified totals include only records marked provider_verified after server-side provider verification."
+    },
     generated_at: new Date().toISOString()
   });
 });
