@@ -1,3 +1,4 @@
+import { assertEvidenceStorageAdapter } from "../src/evidence-storage/contract.js";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import test from "node:test";
@@ -99,4 +100,21 @@ test("test evidence storage deletes objects and cleans up its disposable root", 
     storage.get({ key: saved.key, ownerId: "owner-test", orderId: "order-test" }),
     /EVIDENCE_STORAGE_CLOSED/
   );
+});
+
+test("evidence adapter contract rejects incomplete implementations", async () => {
+  assert.throws(
+    () => assertEvidenceStorageAdapter({ put() {}, get() {}, delete() {} }),
+    /EVIDENCE_STORAGE_ADAPTER_INVALID/
+  );
+});
+
+test("disposable evidence fixture conforms to the shared adapter contract", async t => {
+  const adapter = createTestEvidenceStorage();
+  const storage = await adapter;
+  t.after(() => storage.close());
+  assert.equal(typeof storage.put, "function");
+  assert.equal(typeof storage.get, "function");
+  assert.equal(typeof storage.delete, "function");
+  assert.equal(typeof storage.close, "function");
 });
