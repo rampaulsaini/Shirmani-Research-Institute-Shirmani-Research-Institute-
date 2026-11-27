@@ -68,5 +68,5 @@ test("legacy public enquiry adapter is consent-gated and never creates a payment
   assert.ok(source.includes('payment: "PENDING"'));
   assert.ok(source.includes('income: "₹0"'));
   assert.ok(source.includes('app.get("/api/status"'));
-  assert.ok(source.includes("from paid_orders where verification_status='verified' and customer_consent=true"));
+  assert.ok(source.includes("from paid_orders where verification_status='verified' and verification_method='owner_bank_statement' and customer_consent=true"));
 });
