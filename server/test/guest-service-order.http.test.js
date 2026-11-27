@@ -257,18 +257,23 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
     });
     assert.equal(revokedOldToken.status, 404, "reissuing must revoke the previous token");
 
-    const accepted = await jsonRequest("/api/service-order-acceptance", {
-      method: "POST", body: { token: renewed.data.token, accepted: true }
-    });
-    assert.equal(accepted.status, 200, JSON.stringify(accepted.data));
+    const concurrentAcceptances = await Promise.all([
+      jsonRequest("/api/service-order-acceptance", {
+        method: "POST", body: { token: renewed.data.token, accepted: true }
+      }),
+      jsonRequest("/api/service-order-acceptance", {
+        method: "POST", body: { token: renewed.data.token, accepted: true }
+      })
+    ]);
+    const accepted = concurrentAcceptances.find(result => result.status === 200);
+    const replayed = concurrentAcceptances.find(result => result.status === 409);
+    assert.ok(accepted, JSON.stringify(concurrentAcceptances));
+    assert.ok(replayed, "a concurrent replay must be rejected: " + JSON.stringify(concurrentAcceptances));
     assert.equal(accepted.data.status, "completed");
     assert.equal(accepted.data.customer_acceptance_method, "single_use_token");
     assert.equal(accepted.data.acceptance_scope, "single_use_bearer_token_possession_not_identity_verified");
-
-    const replayed = await jsonRequest("/api/service-order-acceptance", {
-      method: "POST", body: { token: renewed.data.token, accepted: true }
-    });
-    assert.equal(replayed.status, 409, "a consumed token must not be reusable");
+    assert.equal(concurrentAcceptances.filter(result => result.status === 200).length, 1,
+      "exactly one concurrent customer acceptance may succeed");
 
     const inbox = await jsonRequest("/api/owner/service-orders", { token: ownerToken });
     assert.equal(inbox.status, 200);
