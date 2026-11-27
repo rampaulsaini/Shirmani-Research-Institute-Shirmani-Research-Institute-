@@ -52,6 +52,9 @@ def main() -> int:
     try:
         index_source, index = load("index.html")
         offer_source, offer = load("first-paid-pilot-offer.html")
+        current_showroom_source, _ = load("supreme-clean-showroom.html")
+        canonical_services_source, _ = load("services-writing-research.html")
+        legacy_offer_source, _ = load("writing-research-service-offer.html")
         sales_desk_source, sales_desk = load("showroom/global-product-sales-desk.html")
         enquiry_source, enquiry = load("writing-research-enquiry.html")
         showroom_source, showroom = load("showroom-public-interface.html")
@@ -76,6 +79,31 @@ def main() -> int:
     for phrase in ("₹999", "500 words", "scope", "payment terms", "not an order", "sale"):
         if phrase.casefold() not in offer_text.casefold() and phrase.casefold() not in offer_source.casefold():
             errors.append(f"Sales desk is missing clear offer/truth-boundary text: {phrase}")
+
+    # The same SRI-SVC-001 pilot must carry one exact scope, revision and start condition
+    # wherever a customer can reach the current sales/enquiry offer.
+    pilot_pages = {
+        "supreme-clean-showroom.html": current_showroom_source,
+        "first-paid-pilot-offer.html": offer_source,
+        "writing-research-enquiry.html": enquiry_source,
+        "services-writing-research.html": canonical_services_source,
+    }
+    for page, source in pilot_pages.items():
+        lower = source.casefold()
+        for marker in (
+            "₹999",
+            "500",
+            "one consolidated revision",
+            "2 working days after written scope approval and confirmed payment",
+        ):
+            if marker.casefold() not in lower:
+                errors.append(f"{page} is missing the current SRI-SVC-001 pilot term: {marker}")
+
+    legacy_lower = legacy_offer_source.casefold()
+    if "₹499" in legacy_lower or "₹1,499" in legacy_lower:
+        errors.append("Legacy offer page still displays superseded pilot pricing")
+    if "sri-svc-001" not in legacy_lower or "₹999" not in legacy_lower:
+        errors.append("Legacy offer page must direct visitors to the current ₹999 SRI-SVC-001 pilot")
 
     # Keep a single canonical offer section so mobile visitors do not see duplicate prices/CTAs.
     if "<h2>Service menu</h2>" in sales_desk_source:
