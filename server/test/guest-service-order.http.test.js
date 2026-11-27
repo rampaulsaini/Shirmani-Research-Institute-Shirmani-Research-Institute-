@@ -101,6 +101,8 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
     const before = await jsonRequest("/api/status");
     assert.equal(before.status, 200);
     const beforeIncome = BigInt(before.data.counters.income_inr_minor || "0");
+    const beforeOwnerAttested = BigInt(before.data.income_assurance.owner_attested_bank_match_inr_minor || "0");
+    const beforeProviderVerified = BigInt(before.data.income_assurance.provider_verified_payment_inr_minor || "0");
     const beforeOrders = Number(before.data.counters.guest_service_orders || 0);
 
     assert.equal((await jsonRequest("/api/owner/service-orders")).status, 401,
@@ -231,6 +233,9 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
     assert.equal(after.status, 200);
     assert.equal(Number(after.data.counters.guest_service_orders), beforeOrders + 1);
     assert.equal(BigInt(after.data.counters.income_inr_minor) - beforeIncome, 99900n);
+    assert.equal(BigInt(after.data.income_assurance.owner_attested_bank_match_inr_minor) - beforeOwnerAttested, 99900n);
+    assert.equal(BigInt(after.data.income_assurance.provider_verified_payment_inr_minor), beforeProviderVerified);
+    assert.match(after.data.income_assurance.meaning, /not independently audited/);
     assert.equal(JSON.stringify(after.data).includes(customerEmail), false,
       "public aggregate status must not expose customer contact data");
     assert.equal(JSON.stringify(after.data).includes("Integration Customer"), false,
