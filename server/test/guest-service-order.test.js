@@ -35,15 +35,26 @@ test("guest payment proof copies the exact quote and cannot verify without owner
   assert.ok(migration.includes("private://"));
 });
 
-test("guest delivery and acceptance are sequential and require private evidence", () => {
+test("guest delivery precedes single-use bearer-token customer acceptance", () => {
   const source = read("../src/index.js");
   const migration = read("../sql/migrations/005_guest_service_order_lifecycle.sql");
+  const tokenMigration = read("../sql/migrations/006_guest_customer_acceptance_tokens.sql");
   assert.ok(source.includes('app.post("/api/owner/service-orders/:orderId/deliver"'));
+  assert.ok(source.includes('app.post("/api/owner/service-orders/:orderId/acceptance-invitations"'));
+  assert.ok(source.includes('app.post("/api/service-order-acceptance"'));
   assert.ok(source.includes('app.post("/api/owner/service-orders/:orderId/customer-acceptance"'));
+  assert.ok(source.includes("OWNER_RECORDED_CUSTOMER_ACCEPTANCE_DISABLED"));
   assert.ok(source.includes("SERVICE_ORDER_MUST_BE_PAID_BEFORE_DELIVERY"));
-  assert.ok(source.includes("SERVICE_ORDER_MUST_BE_DELIVERED_BEFORE_ACCEPTANCE"));
+  assert.ok(source.includes("SERVICE_ORDER_MUST_BE_DELIVERED_BEFORE_ACCEPTANCE_INVITATION"));
+  assert.ok(source.includes("single_use_token"));
+  assert.ok(source.includes("ACCEPTANCE_TOKEN_ALREADY_USED"));
+  assert.ok(source.includes("ACCEPTANCE_TOKEN_EXPIRED"));
+  assert.ok(source.includes("now()+interval '72 hours'"));
   assert.ok(migration.includes("delivery_reference"));
   assert.ok(migration.includes("customer_acceptance_reference"));
+  assert.ok(tokenMigration.includes("guest_service_acceptance_tokens"));
+  assert.ok(tokenMigration.includes("guest_service_one_active_acceptance_token"));
+  assert.ok(tokenMigration.includes("single_use_token"));
 });
 
 test("public status includes guest verified INR payments without customer PII", () => {
