@@ -200,7 +200,7 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
     assert.equal(prematureAcceptance.status, 410,
       "owner-recorded customer acceptance must be disabled");
 
-    assert.equal((await jsonRequest(`/api/owner/service-orders/${orderId}/acceptance-invitations`)).status, 401,
+    assert.equal((await jsonRequest(`/api/owner/service-orders/${orderId}/acceptance-invitations`, { method: "POST", body: {} })).status, 401,
       "acceptance invitation issuance must require authentication");
     assert.equal((await jsonRequest(`/api/owner/service-orders/${orderId}/acceptance-invitations`, {
       token: ordinaryToken, method: "POST", body: {}
