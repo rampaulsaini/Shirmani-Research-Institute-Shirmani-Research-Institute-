@@ -53,4 +53,31 @@ begin
   end;
 end
 $$;
+
+-- Acceptance token schema: hashes only, one active invitation per order.
+insert into guest_service_acceptance_tokens(service_order_id,token_hash,expires_at,issued_by)
+select o.id,encode(digest('migration-test-acceptance-token','sha256'),'hex'),now()+interval '1 hour',a.id
+from guest_service_orders o cross join accounts a
+where a.email='migration-test@example.invalid';
+
+do $
+declare order_id uuid; owner_id uuid;
+begin
+  select id into order_id from guest_service_orders limit 1;
+  select id into owner_id from accounts where email='migration-test@example.invalid';
+  begin
+    insert into guest_service_acceptance_tokens(service_order_id,token_hash,expires_at,issued_by)
+    values(order_id,encode(digest('second-active-token','sha256'),'hex'),now()+interval '1 hour',owner_id);
+    raise exception 'Expected one-active-token-per-order index to reject duplicate';
+  exception when unique_violation then null;
+  end;
+  begin
+    insert into guest_service_acceptance_tokens(service_order_id,token_hash,expires_at,issued_by)
+    values(order_id,'not-a-sha256-hash',now()+interval '1 hour',owner_id);
+    raise exception 'Expected invalid token hash to be rejected';
+  exception when check_violation then null;
+  end;
+end
+$;
+
 select 'guest service-order migration integration: PASS' as result;
