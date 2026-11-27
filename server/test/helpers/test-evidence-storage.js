@@ -1,3 +1,4 @@
+import { assertEvidenceStorageAdapter } from "../../src/evidence-storage/contract.js";
 import { createHash, randomUUID } from "node:crypto";
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -26,7 +27,7 @@ export async function createTestEvidenceStorage() {
     }
   };
 
-  return {
+  return assertEvidenceStorageAdapter({
     async put({ bytes, contentType, ownerId, orderId }) {
       assertOpen();
       if (!ownerId || !orderId) throw new Error("EVIDENCE_OWNER_AND_ORDER_REQUIRED");
@@ -67,5 +68,5 @@ export async function createTestEvidenceStorage() {
       records.clear();
       await rm(root, { recursive: true, force: true });
     }
-  };
+  });
 }
