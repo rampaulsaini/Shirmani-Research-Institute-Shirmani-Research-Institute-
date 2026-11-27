@@ -222,13 +222,13 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
     assert.equal(JSON.stringify(issued.data).includes(createHash("sha256").update(issued.data.token).digest("hex")), false,
       "API response must not expose the stored token hash");
 
-    const invalidToken = await jsonRequest("/api/service-order-acceptance/not-a-real-token", {
-      method: "POST", body: { accepted: true }
+    const invalidToken = await jsonRequest("/api/service-order-acceptance", {
+      method: "POST", body: { token: "not-a-real-token", accepted: true }
     });
     assert.equal(invalidToken.status, 400);
 
-    const missingCustomerConfirmation = await jsonRequest(`/api/service-order-acceptance/${issued.data.token}`, {
-      method: "POST", body: { accepted: false }
+    const missingCustomerConfirmation = await jsonRequest("/api/service-order-acceptance", {
+      method: "POST", body: { token: issued.data.token, accepted: false }
     });
     assert.equal(missingCustomerConfirmation.status, 400);
 
@@ -237,8 +237,8 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
       "update guest_service_acceptance_tokens set expires_at=now()-interval '1 minute' where token_hash=$1",
       [tokenHash]
     );
-    const expired = await jsonRequest(`/api/service-order-acceptance/${issued.data.token}`, {
-      method: "POST", body: { accepted: true }
+    const expired = await jsonRequest("/api/service-order-acceptance", {
+      method: "POST", body: { token: issued.data.token, accepted: true }
     });
     assert.equal(expired.status, 410, "expired tokens must not complete an order");
 
@@ -246,21 +246,21 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
       method: "POST", token: ownerToken, body: {}
     });
     assert.equal(renewed.status, 201);
-    const revokedOldToken = await jsonRequest(`/api/service-order-acceptance/${issued.data.token}`, {
-      method: "POST", body: { accepted: true }
+    const revokedOldToken = await jsonRequest("/api/service-order-acceptance", {
+      method: "POST", body: { token: issued.data.token, accepted: true }
     });
     assert.equal(revokedOldToken.status, 404, "reissuing must revoke the previous token");
 
-    const accepted = await jsonRequest(`/api/service-order-acceptance/${renewed.data.token}`, {
-      method: "POST", body: { accepted: true }
+    const accepted = await jsonRequest("/api/service-order-acceptance", {
+      method: "POST", body: { token: renewed.data.token, accepted: true }
     });
     assert.equal(accepted.status, 200, JSON.stringify(accepted.data));
     assert.equal(accepted.data.status, "completed");
     assert.equal(accepted.data.customer_acceptance_method, "single_use_token");
     assert.equal(accepted.data.acceptance_scope, "single_use_bearer_token_possession_not_identity_verified");
 
-    const replayed = await jsonRequest(`/api/service-order-acceptance/${renewed.data.token}`, {
-      method: "POST", body: { accepted: true }
+    const replayed = await jsonRequest("/api/service-order-acceptance", {
+      method: "POST", body: { token: renewed.data.token, accepted: true }
     });
     assert.equal(replayed.status, 409, "a consumed token must not be reusable");
 
