@@ -287,6 +287,34 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
     assert.equal(after.data.income_assurance.provider_verified_payment_inr_minor, null,
       "provider-verified totals remain unavailable until signed server-side verification exists");
     assert.match(after.data.income_assurance.meaning, /not independently audited/);
+
+    assert.equal((await jsonRequest("/api/export-income")).status, 401,
+      "income export must reject unauthenticated requests");
+    assert.equal((await jsonRequest("/api/export-income", { token: ordinaryToken })).status, 403,
+      "income export must remain owner-only");
+    const incomeExport = await jsonRequest("/api/export-income", { token: ownerToken });
+    assert.equal(incomeExport.status, 200, JSON.stringify(incomeExport.data));
+    assert.equal(BigInt(incomeExport.data.owner_attested_total_minor_units),
+      BigInt(after.data.counters.income_inr_minor),
+      "owner export total must reconcile with the public aggregate");
+    assert.equal(Number(incomeExport.data.owner_attested_payment_records),
+      Number(after.data.counters.paid_orders || 0) + Number(after.data.counters.guest_paid_orders || 0),
+      "owner export must include both legacy and guest-service proof counts");
+    assert.ok(incomeExport.data.records.some(row =>
+      row.source === "guest_service_payment_proofs" && row.service_order_id === orderId &&
+      BigInt(row.amount_minor) === 99900n
+    ), "owner export must include the verified guest-service payment with its source");
+    assert.match(incomeExport.data.verification_basis, /not_independently_audited/);
+
+    const csvExport = await fetch(`${baseUrl}/api/export-income?format=csv`, {
+      headers: { authorization: `Bearer ${ownerToken}` }
+    });
+    assert.equal(csvExport.status, 200);
+    const csvText = await csvExport.text();
+    assert.match(csvText.split("\\r\\n")[0], /source/);
+    assert.match(csvText, /guest_service_payment_proofs/);
+    assert.equal(csvText.includes(customerEmail), false,
+      "income export must not include customer contact details");
     assert.equal(JSON.stringify(after.data).includes(customerEmail), false,
       "public aggregate status must not expose customer contact data");
     assert.equal(JSON.stringify(after.data).includes("Integration Customer"), false,
