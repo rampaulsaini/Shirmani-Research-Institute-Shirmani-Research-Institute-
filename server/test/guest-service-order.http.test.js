@@ -311,7 +311,7 @@ test("guest service order completes the owner-only HTTP lifecycle against Postgr
     });
     assert.equal(csvExport.status, 200);
     const csvText = await csvExport.text();
-    assert.match(csvText.split("\\r\\n")[0], /source/);
+    assert.match(csvText.split(/\r?\n/)[0], /source/);
     assert.match(csvText, /guest_service_payment_proofs/);
     assert.equal(csvText.includes(customerEmail), false,
       "income export must not include customer contact details");
