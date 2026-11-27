@@ -1,4 +1,5 @@
 import "dotenv/config";
+import { createHash, randomBytes } from "node:crypto";
 import express from "express";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
@@ -1136,29 +1137,104 @@ app.post("/api/owner/service-orders/:orderId/deliver", dbRequired, auth, ownerOn
   } finally { client.release(); }
 });
 
-app.post("/api/owner/service-orders/:orderId/customer-acceptance", dbRequired, auth, ownerOnly, async (req, res) => {
-  const reference = typeof req.body?.acceptance_reference === "string" ? req.body.acceptance_reference.trim() : "";
-  if (req.body?.customer_confirmed !== true || !privateEvidenceReference(reference)) {
-    return res.status(400).json({ error: "CUSTOMER_CONFIRMATION_AND_PRIVATE_REFERENCE_REQUIRED" });
-  }
+// Owner creates a one-time bearer token after delivery. The raw token is returned once
+// for manual out-of-band sharing; no email/SMS provider is configured by this change.
+app.post("/api/owner/service-orders/:orderId/acceptance-invitations", dbRequired, auth, ownerOnly, async (req, res) => {
+  const token = randomBytes(32).toString("base64url");
+  const tokenHash = createHash("sha256").update(token).digest("hex");
   const client = await pool.connect();
   try {
     await client.query("begin");
-    const { rows } = await client.query(
-      "update guest_service_orders set status='completed',customer_acceptance_reference=$1,customer_accepted_at=now(),updated_at=now() where id=$2 and status='delivered' returning id,status,customer_accepted_at",
-      [reference, req.params.orderId]
+    const order = await client.query(
+      "select id,status from guest_service_orders where id=$1 for update",
+      [req.params.orderId]
     );
-    if (!rows[0]) { await client.query("rollback"); return res.status(409).json({ error: "SERVICE_ORDER_MUST_BE_DELIVERED_BEFORE_ACCEPTANCE" }); }
+    if (!order.rows[0]) { await client.query("rollback"); return res.status(404).json({ error: "SERVICE_ORDER_NOT_FOUND" }); }
+    if (order.rows[0].status !== "delivered") {
+      await client.query("rollback"); return res.status(409).json({ error: "SERVICE_ORDER_MUST_BE_DELIVERED_BEFORE_ACCEPTANCE_INVITATION" });
+    }
     await client.query(
-      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'guest_service_customer_acceptance_recorded','guest_service_order',$2,$3)",
-      [req.user.sub, rows[0].id, { customer_confirmed: true, acceptance_reference_private: true, recorded_by_owner: true }]
+      "update guest_service_acceptance_tokens set revoked_at=now() where service_order_id=$1 and consumed_at is null and revoked_at is null",
+      [req.params.orderId]
+    );
+    const issued = await client.query(
+      "insert into guest_service_acceptance_tokens(service_order_id,token_hash,expires_at,issued_by) values($1,$2,now()+interval '72 hours',$3) returning id,expires_at",
+      [req.params.orderId, tokenHash, req.user.sub]
+    );
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'guest_service_acceptance_token_issued','guest_service_order',$2,$3)",
+      [req.user.sub, req.params.orderId, { token_id: issued.rows[0].id, expires_at: issued.rows[0].expires_at, raw_token_returned_once: true, delivery_channel: "manual_out_of_band" }]
     );
     await client.query("commit");
-    return res.json({ ...rows[0], acceptance_scope: "owner_recorded_customer_confirmation_not_independent_audit" });
+    return res.status(201).json({
+      token,
+      expires_at: issued.rows[0].expires_at,
+      delivery_channel: "MANUAL_OUT_OF_BAND_REQUIRED",
+      note: "Share this token privately with the customer. It is shown once; possession confirms the token action, not the recipient's legal identity."
+    });
+  } catch {
+    try { await client.query("rollback"); } catch {}
+    return res.status(503).json({ error: "GUEST_ACCEPTANCE_INVITATION_FAILED" });
+  } finally { client.release(); }
+});
+
+const guestAcceptanceLimiter = rateLimit({ windowMs: 15 * 60_000, limit: 10, standardHeaders: true, legacyHeaders: false });
+
+// Customer action is a POST so link-preview bots cannot consume the one-time token.
+// The token is a bearer credential: it is not identity proof or an independent audit.
+app.post("/api/service-order-acceptance/:token", dbRequired, guestAcceptanceLimiter, async (req, res) => {
+  const token = typeof req.params.token === "string" ? req.params.token : "";
+  if (!/^[A-Za-z0-9_-]{40,60}$/.test(token) || req.body?.accepted !== true) {
+    return res.status(400).json({ error: "VALID_TOKEN_AND_EXPLICIT_ACCEPTANCE_REQUIRED" });
+  }
+  const tokenHash = createHash("sha256").update(token).digest("hex");
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    const found = await client.query(
+      "select t.id,t.service_order_id,t.expires_at,t.consumed_at,t.revoked_at,o.status as order_status from guest_service_acceptance_tokens t join guest_service_orders o on o.id=t.service_order_id where t.token_hash=$1 for update of t,o",
+      [tokenHash]
+    );
+    if (!found.rows[0] || found.rows[0].revoked_at) {
+      await client.query("rollback"); return res.status(404).json({ error: "ACCEPTANCE_TOKEN_NOT_FOUND" });
+    }
+    const invitation = found.rows[0];
+    if (invitation.consumed_at) {
+      await client.query("rollback"); return res.status(409).json({ error: "ACCEPTANCE_TOKEN_ALREADY_USED" });
+    }
+    if (new Date(invitation.expires_at).getTime() <= Date.now()) {
+      await client.query("rollback"); return res.status(410).json({ error: "ACCEPTANCE_TOKEN_EXPIRED" });
+    }
+    if (invitation.order_status !== "delivered") {
+      await client.query("rollback"); return res.status(409).json({ error: "SERVICE_ORDER_NOT_AWAITING_CUSTOMER_ACCEPTANCE" });
+    }
+    await client.query(
+      "update guest_service_acceptance_tokens set consumed_at=now() where id=$1 and consumed_at is null and revoked_at is null",
+      [invitation.id]
+    );
+    const accepted = await client.query(
+      "update guest_service_orders set status='completed',customer_accepted_at=now(),customer_acceptance_method='single_use_token',updated_at=now() where id=$1 and status='delivered' returning id,status,customer_accepted_at,customer_acceptance_method",
+      [invitation.service_order_id]
+    );
+    if (!accepted.rows[0]) {
+      await client.query("rollback"); return res.status(409).json({ error: "SERVICE_ORDER_NOT_AWAITING_CUSTOMER_ACCEPTANCE" });
+    }
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values(null,'guest_service_customer_acceptance_recorded','guest_service_order',$1,$2)",
+      [invitation.service_order_id, { acceptance_method: "single_use_token", token_id: invitation.id, identity_verification: "not_performed" }]
+    );
+    await client.query("commit");
+    return res.json({ ...accepted.rows[0], acceptance_scope: "single_use_bearer_token_possession_not_identity_verified" });
   } catch {
     try { await client.query("rollback"); } catch {}
     return res.status(503).json({ error: "GUEST_CUSTOMER_ACCEPTANCE_FAILED" });
   } finally { client.release(); }
+});
+
+// Retain the old owner route as an explicit fail-closed response; an owner cannot
+// mark a guest order completed by asserting customer confirmation.
+app.post("/api/owner/service-orders/:orderId/customer-acceptance", dbRequired, auth, ownerOnly, (_req, res) => {
+  return res.status(410).json({ error: "OWNER_RECORDED_CUSTOMER_ACCEPTANCE_DISABLED", required_flow: "single_use_customer_acceptance_token" });
 });
 
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
