@@ -29,6 +29,20 @@ A provider-neutral adapter shape contract now exists at `server/src/evidence-sto
 - [ ] Production provider adapter intentionally not selected or implemented.
 - [ ] Production routes remain disconnected; real evidence upload remains disabled.
 
+
+## Phase B — customer acceptance token (test-gated; not identity verification)
+
+A delivered guest service order can now receive a single-use acceptance bearer token through the owner-only endpoint `POST /api/owner/service-orders/:orderId/acceptance-invitations`. The raw token is returned once to the owner; only its SHA-256 hash is stored. Tokens expire after 72 hours, issuing a replacement revokes the previous active token, and a successful customer POST consumes the token. The customer action is `POST /api/service-order-acceptance/:token` with `{"accepted":true}`; it is deliberately a POST so link-preview bots do not consume invitations.
+
+**Important boundary:** no email/SMS/customer messaging provider is configured. The owner must manually share the token through a private out-of-band channel. The token proves possession of a bearer secret, not the recipient's legal identity, account identity, or independent confirmation. Do not describe this as customer identity authentication. The old owner-only route that accepted `customer_confirmed: true` is fail-closed with HTTP 410. The new method records `single_use_token` and does not fabricate a `private://` evidence-file locator.
+
+- [x] Hash-only token storage; raw token returned once to the owner.
+- [x] 72-hour expiry, one active token per order, replacement revocation, one-time consumption.
+- [x] Public acceptance endpoint requires explicit POST confirmation and is rate-limited.
+- [x] Tests cover pre-delivery issuance rejection, malformed token, missing confirmation, expiry, replacement revocation, replay, and completion.
+- [ ] Automated customer delivery channel not configured.
+- [ ] Recipient identity verification and independent audit not implemented.
+
 ## Release gate
 
-Until the controls above are implemented and independently reviewed, production evidence upload and customer evidence collection must remain disabled. The existing guest-order lifecycle tests validate state transitions and locator syntax; the new test-only fixture validates isolated temporary storage behavior only. Neither validates a production object-storage provider, customer-authenticated acceptance, or independent payment verification.
+Until the controls above are implemented and independently reviewed, production evidence upload and customer evidence collection must remain disabled. The separate acceptance-token flow may record a one-time customer action, but must not be represented as identity-verified acceptance. The existing guest-order lifecycle tests validate state transitions and locator syntax; the new test-only fixture validates isolated temporary storage behavior only. Neither validates a production object-storage provider, recipient identity, or independent payment verification. The token flow validates single-use bearer-token possession only; it is not customer identity authentication.
