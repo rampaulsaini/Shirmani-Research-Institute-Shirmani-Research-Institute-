@@ -60,7 +60,7 @@ select o.id,encode(digest('migration-test-acceptance-token','sha256'),'hex'),now
 from guest_service_orders o cross join accounts a
 where a.email='migration-test@example.invalid';
 
-do $
+do $acceptance_test$
 declare order_id uuid; owner_id uuid;
 begin
   select id into order_id from guest_service_orders limit 1;
@@ -78,6 +78,6 @@ begin
   exception when check_violation then null;
   end;
 end
-$;
+$acceptance_test$;
 
 select 'guest service-order migration integration: PASS' as result;
