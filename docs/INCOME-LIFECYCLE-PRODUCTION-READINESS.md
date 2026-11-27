@@ -21,6 +21,23 @@
 - Do not use an ephemeral Render filesystem as durable evidence storage. Do not store sensitive evidence in a public Git repository, GitHub Pages, or public static assets.
 - Keep production evidence upload disabled until a private bucket, credentials, retention policy, and access tests are configured. Do not select or provision a paid storage plan without approval.
 
+### Provider preselection check — 27 Nov 2026 (research only; no account or bucket created)
+| Candidate | Published free allowance / region facts | Assessment |
+|---|---|---|
+| Supabase Storage | Free plan lists 1 GB file storage; free projects may pause after one week of inactivity. Supabase lists Mumbai (`ap-south-1`) as a selectable specific region. | Best examined option if choosing a named India region matters, but the pause behavior and small quota make it unsuitable to assume as an always-on production evidence vault without a tested availability/backup plan. |
+| Cloudflare R2 Standard | 10 GB-month storage, 1 million Class A and 10 million Class B operations monthly, and no egress fee within the published free tier. APAC is a location hint, explicitly best-effort; it is not an India residency guarantee. | Strong low-cost technical candidate if APAC placement is acceptable. Do not describe it as India-hosted or India-resident. |
+| Amazon S3 | AWS documents a new-customer free usage allowance including 5 GB Standard storage and request/transfer allowances for one year; usage is chargeable outside the applicable allowance. | Can offer a specifically selected AWS region such as Mumbai, but it is not a permanent zero-cost option. Billing safeguards and a budget/approval would be required. |
+
+Official references checked:
+- Supabase plans and free quotas: https://supabase.com/pricing
+- Supabase region list (including Mumbai): https://supabase.com/docs/guides/platform/regions
+- Supabase free-project inactivity behavior: https://supabase.com/docs/guides/platform/going-into-prod#free-plan
+- Cloudflare R2 pricing and free tier: https://developers.cloudflare.com/r2/pricing/
+- Cloudflare R2 data location; APAC location hints are best-effort, while listed jurisdictions are EU/US/FedRAMP: https://developers.cloudflare.com/r2/reference/data-location/
+- AWS S3 free usage and billing explanation: https://aws.amazon.com/s3/faqs/
+
+**Decision:** No provider is selected or authorized. The trade-off must be decided explicitly: (a) named Mumbai region with Supabase's inactivity/quota constraints, (b) R2 APAC best-effort placement without an India residency guarantee, or (c) a region-specific AWS bucket with potential charges after the introductory allowance. Do not create resources, enter credentials, or accept real customer evidence until this choice and its data-residency implications are approved.
+
 ## 2. Customer-authenticated consent and acceptance
 
 ### Required behavior
