@@ -1,0 +1,172 @@
+{
+  "audit_id": "SRI-PLATFORM-COMPLETION-2026-11-27",
+  "as_of": "2026-11-27",
+  "source_branch": "main",
+  "source_commit": "7b76bf2f639fa5a395820faa1043de9fb8a3ab09",
+  "purpose": "Conservative, evidence-based readiness score for a safely automated platform with human oversight for consequential decisions. Not a claim of code completion or autonomous production operation.",
+  "scoring_method": {
+    "total_points": 100,
+    "method": "Weighted capability rubric. Each dimension receives a 0-100 evidence score; weighted contribution = score * weight / 100.",
+    "levels": {
+      "0": "No verified implementation or evidence",
+      "25": "Prototype or draft implementation; not production-integrated",
+      "50": "Implemented and tested in CI, but not production-integrated",
+      "75": "Production-integrated with repeatable operational evidence",
+      "100": "End-to-end operation repeatedly evidenced, monitored, recoverable, and independently reviewable"
+    },
+    "caveat": "Scores between rubric levels are allowed only where a measured coverage ratio exists. Overall index is provisional and must be recalculated when source evidence changes."
+  },
+  "dimensions": [
+    {
+      "id": "public_customer_experience",
+      "name": "Public/customer experience",
+      "weight": 5,
+      "score": 25,
+      "status": "partial",
+      "basis": "Static public site and browser-local enquiry/service tools exist; README states login/signup, server telemetry, live integrations and sales are not connected."
+    },
+    {
+      "id": "catalog_production",
+      "name": "Catalog/product production",
+      "weight": 5,
+      "score": 94.32,
+      "status": "partial",
+      "basis": "Main production snapshot reports 5,000 catalog identities against 5,000 target; 4,716 produced/QC-passed. 4,716/5,000 = 94.32%."
+    },
+    {
+      "id": "qc_release",
+      "name": "QC and release gate",
+      "weight": 5,
+      "score": 94.32,
+      "status": "partial",
+      "basis": "4,716 of 5,000 catalog items covered by QC; 4,716 passed and 0 failed among produced items. Dispatch release remains 0; 100% pass rate applies only to produced subset."
+    },
+    {
+      "id": "order_lifecycle",
+      "name": "Order lifecycle",
+      "weight": 15,
+      "score": 25,
+      "status": "draft_ci_tested",
+      "basis": "PR #3796 is Draft/unmerged. Current head 9158bfd8e5b1f9ceb2f83b3d530de7697f80a624 has 15 associated PR workflow runs reported successful; this is not production integration."
+    },
+    {
+      "id": "payment",
+      "name": "Payment and reconciliation",
+      "weight": 20,
+      "score": 25,
+      "status": "partial_fail_closed",
+      "basis": "Fail-closed payment webhook baseline exists, but no provider-backed live payment or claimed payment is evidenced. Manual bank-statement match remains owner-attested, not independent/provider verification."
+    },
+    {
+      "id": "delivery_acceptance",
+      "name": "Delivery and customer acceptance",
+      "weight": 15,
+      "score": 25,
+      "status": "draft_owner_recorded",
+      "basis": "Lifecycle code/test path exists in Draft PR #3796; acceptance is owner-recorded, not customer-authenticated. No production dispatch or delivery is evidenced."
+    },
+    {
+      "id": "private_evidence",
+      "name": "Private evidence and customer authentication",
+      "weight": 10,
+      "score": 0,
+      "status": "not_production_ready",
+      "basis": "Multiple overlapping Draft PRs propose provider-neutral storage contracts; no real private storage provider, credentials, upload route, or production wiring is evidenced."
+    },
+    {
+      "id": "ai_research_media",
+      "name": "Connected AI, research and media",
+      "weight": 5,
+      "score": 10,
+      "status": "prototype",
+      "basis": "README identifies browser-local drafting/research/media tools and explicitly says connected AI, independent fact-checking, live avatar/voice/video and publishing integrations are not connected."
+    },
+    {
+      "id": "automation_monitoring",
+      "name": "Automation and monitoring",
+      "weight": 10,
+      "score": 25,
+      "status": "partial",
+      "basis": "Many workflows and automation checks exist and current PR #3796 workflows report success; generated federation health is UNKNOWN and some agent-run status files are stale. Workflow success is not proof of live autonomous operations."
+    },
+    {
+      "id": "independent_verification",
+      "name": "Independent verification",
+      "weight": 5,
+      "score": 0,
+      "status": "not_verified",
+      "basis": "Latest main verification snapshot: 0 verified of 100,200 records; human review is required before promotion."
+    },
+    {
+      "id": "backup_recovery",
+      "name": "Backup and recovery",
+      "weight": 5,
+      "score": 10,
+      "status": "pending",
+      "basis": "Encrypted Render PostgreSQL backup work is Draft (#3790); no verified production backup-and-restore drill is evidenced."
+    }
+  ],
+  "weighted_score": 26.68,
+  "operational_outcomes": {
+    "catalog_target": 5000,
+    "catalog_qc_passed": 4716,
+    "catalog_qc_coverage_percent": 94.32,
+    "qc_pass_percent_of_produced": 100,
+    "dispatch_released": 0,
+    "sales_claimed": 0,
+    "payment_claimed": 0,
+    "independent_verification_records": 0,
+    "independent_verification_queue": 100200,
+    "review_packets_prepared": 66950,
+    "review_packets_prepared_percent": 66.82,
+    "note": "The 26.68/100 weighted engineering-readiness index is not a revenue, customer adoption, scientific validity, or end-to-end autonomy percentage. The evidenced production transaction outcome (paid customer order through dispatch/delivery) remains 0."
+  },
+  "critical_open_gaps": [
+    "No evidenced paid customer order through payment, dispatch, delivery and customer-confirmed acceptance.",
+    "No production private evidence storage or authenticated guest consent/acceptance.",
+    "No provider-verified payment integration; owner attestation must remain separately labelled.",
+    "Independent verification remains 0/100,200.",
+    "No verified production backup/restore drill.",
+    "Connected AI/research/media services remain prototypes or unverified integrations.",
+    "Federation health snapshot is UNKNOWN and not live cross-repository health evidence."
+  ],
+  "anti_duplication": {
+    "open_prs_checked": 29,
+    "existing_related_prs": [
+      3796,
+      3800,
+      3802,
+      3803,
+      3804,
+      3805,
+      3808,
+      3809,
+      3810,
+      3811,
+      3812,
+      3813,
+      3815,
+      3816,
+      3818
+    ],
+    "decision": "No new implementation for evidence storage or guest-order lifecycle is duplicated here. This audit is a read-only scorecard. Related Draft PRs require consolidation/review before further implementation."
+  },
+  "safety": {
+    "no_production_changes": true,
+    "no_database_migrations": true,
+    "no_deployment": true,
+    "no_payment_activation": true,
+    "no_customer_data_added": true,
+    "human_oversight_required_for": "payment disputes/refunds, customer consent and acceptance, independent verification, production release, security and recovery approvals"
+  },
+  "sources": [
+    "generated/live-production-state.json (main; generated 2026-11-26T14:23:16Z)",
+    "generated/product-qc-gate.json (main; generated 2026-11-26T14:23:16Z)",
+    "generated/independent-verification-status.json (main; generated 2026-11-18T19:57:09Z)",
+    "README.md (main)",
+    "PROJECT-CONTINUITY.md (main)",
+    "PR #3796 current head and associated workflow runs (checked 2026-11-27)",
+    "PR #3810 production-readiness remediation plan (Draft design proposal)",
+    "Open PR inventory (first 30 recent open PRs; 29 returned)"
+  ]
+}
