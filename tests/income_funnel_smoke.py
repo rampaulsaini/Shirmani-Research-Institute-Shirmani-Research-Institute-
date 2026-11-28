@@ -176,6 +176,8 @@ def main() -> int:
         errors.append("Canonical offer must not expose the legacy PayPal payment route")
     if "transaction reference" not in offer_lower:
         errors.append("Canonical offer must explain transaction-reference follow-up")
+    if "https://rzp.io/rzp/UhC1i8c" in offer_source or "https://rzp.io/rzp/UhC1i8c" in showroom_source:
+        errors.append("Public offer/showroom must not expose the Razorpay checkout before explicit client proceed confirmation")
     if "does not" not in offer_lower or "process payments" not in offer_lower:
         errors.append("Canonical offer must disclose that the static page does not process payments")
 
