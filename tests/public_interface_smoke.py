@@ -203,9 +203,9 @@ def main() -> int:
         "₹2,999",
         "showroom/first-client-pilot-desk.html",
         "income-action-center.html",
-        "wa.me/918082935186",
         "mailto:sainirampaul60@gmail.com",
-        "वे अपने-आप संदेश नहीं भेजते",
+        "ईमेल लिंक केवल आपके लिए संदेश का ड्राफ्ट खोलता है",
+        "WhatsApp संपर्क फिलहाल प्रकाशित नहीं है",
         "ग्राहक की स्वीकृति",
     ):
         if required.casefold() not in public_v3_source.casefold():
@@ -283,7 +283,7 @@ def main() -> int:
             '$("qc").textContent=qcPassed',
             'first-paid-pilot-offer.html',
             'writing-research-enquiry.html',
-            'wa.me/918082935186',
+            'mailto:sainirampaul60@gmail.com',
             'PRODUCED ≠ SOLD',
             'QC PASS ≠ PAYMENT',
         ):
@@ -292,6 +292,8 @@ def main() -> int:
                     "showroom-public-interface.html is missing production/income contract: "
                     + required
                 )
+        if "wa.me/" in showroom_source.casefold():
+            errors.append("showroom-public-interface.html exposes an unverified WhatsApp contact")
 
     # Check every local target and every fragment on HTML pages, not only the
     # two pages that are the main focus of this smoke suite.

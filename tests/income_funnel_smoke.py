@@ -72,6 +72,15 @@ def main() -> int:
         if route not in [urlsplit(link).path for link in index.links]:
             errors.append(f"index.html is missing canonical route: {route}")
 
+    # SVC-001 is writing/editing only; research summaries have separate SKUs.
+    showroom_text = " ".join(showroom.text)
+    if "FEATURED SERVICE · SRI-SVC-001" not in showroom_text or "Hindi OR English Writing &amp; Editing" not in showroom_source:
+        errors.append("Public first-pilot heading must identify SVC-001 as writing/editing only")
+    if 'service: "SRI-SVC-001 Hindi OR English Writing & Editing"' not in showroom_source:
+        errors.append("First-pilot enquiry payload must use the canonical SVC-001 writing/editing identity")
+    if "SRI-SVC-001 — Hindi / English Writing & Research" in showroom_source or "SRI-SVC-001 Hindi/English Writing & Research" in showroom_source:
+        errors.append("First-pilot page must not describe SVC-001 as a research service")
+
     offer_text = " ".join(offer.text)
     for phrase in ("₹999", "500 words", "scope", "payment terms", "not an order", "sale"):
         if phrase.casefold() not in offer_text.casefold() and phrase.casefold() not in offer_source.casefold():
@@ -93,11 +102,9 @@ def main() -> int:
     offer_urls = offer.links
     if not any(urlsplit(link).scheme == "mailto" for link in offer_urls):
         errors.append("Sales desk has no email enquiry action")
-    if not any("wa.me/" in link for link in offer_urls):
-        errors.append("Sales desk has no WhatsApp enquiry action")
     if not any(phrase in offer_source.casefold() for phrase in ("no order is placed", "no order is claimed", "does not create an order")):
         errors.append("Canonical offer must disclose that it does not create/claim an order")
-    if not any(phrase in offer_source.casefold() for phrase in ("no message is sent automatically", "does not send email/whatsapp", "do not automatically send")):
+    if not any(phrase in offer_source.casefold() for phrase in ("no message is sent automatically", "does not send email/whatsapp", "does not send emails or messages", "do not automatically send")):
         errors.append("Canonical offer must disclose that contact drafts are not automatically sent")
 
     # Outreach must use the same prices as the canonical first-client offer.
@@ -158,22 +165,30 @@ def main() -> int:
         errors.append("Canonical offer must label payment as occurring only after written agreement")
     if "पहले लिखित सहमति" not in offer_source:
         errors.append("Canonical offer must explain written consent before payment")
-    upi_links = [link for link in offer_urls if urlsplit(link).scheme == "upi"]
-    if not upi_links:
-        errors.append("Canonical offer must expose the documented UPI payment-intent link")
-    elif any("am" in parse_qs(urlsplit(link).query) for link in upi_links):
-        errors.append("UPI payment intent must not prefill an amount before written agreement")
-    if "paypal" not in offer_lower or "transaction reference" not in offer_lower:
-        errors.append("Canonical offer must include PayPal guidance and transaction-reference follow-up")
+    payment_links = [link for link in offer_urls if "rzp.io/rzp/" in link]
+    if payment_links or "https://rzp.io/rzp/UhC1i8c" in offer_source:
+        errors.append("Canonical public offer must not expose a payment checkout before written scope agreement and explicit proceed confirmation")
+    if "निजी रूप से दिए जाएँगे" not in offer_source:
+        errors.append("Canonical offer must explain that payment instructions are shared privately only after written agreement")
+    if any(urlsplit(link).scheme == "upi" for link in offer_urls):
+        errors.append("Canonical offer must not expose the legacy manual UPI payment route")
+    if "paypal" in offer_lower:
+        errors.append("Canonical offer must not expose the legacy PayPal payment route")
+    if "transaction reference" not in offer_lower:
+        errors.append("Canonical offer must explain transaction-reference follow-up")
+    if "https://rzp.io/rzp/UhC1i8c" in offer_source or "https://rzp.io/rzp/UhC1i8c" in showroom_source:
+        errors.append("Public offer/showroom must not expose the Razorpay checkout before explicit client proceed confirmation")
     if "does not" not in offer_lower or "process payments" not in offer_lower:
         errors.append("Canonical offer must disclose that the static page does not process payments")
 
     enquiry_text = " ".join(enquiry.text)
-    for phrase in ("₹999", "₹1,999", "₹2,999", "WhatsApp", "लिखित", "भुगतान"):
+    for phrase in ("₹999", "₹1,999", "₹2,999", "लिखित", "भुगतान"):
         if phrase.casefold() not in enquiry_text.casefold() and phrase.casefold() not in enquiry_source.casefold():
             errors.append(f"Enquiry page is missing service/pricing/process text: {phrase}")
-    if "mailto:" not in enquiry_source or "wa.me/" not in enquiry_source:
-        errors.append("Enquiry page must provide email and WhatsApp draft actions")
+    if "mailto:" not in enquiry_source:
+        errors.append("Enquiry page must provide an email draft action")
+    if any("wa.me/918082935186" in source for source in (enquiry_source, offer_source, showroom_source, sales_desk_source)):
+        errors.append("Core public sales pages must not publish an unverified institute WhatsApp number")
     if "अपने-आप कोई संदेश नहीं भेजता" not in enquiry_source and "अपने आप कोई संदेश नहीं भेजता" not in enquiry_source:
         errors.append("Enquiry page must state that messages are not sent automatically")
 
@@ -190,7 +205,7 @@ def main() -> int:
         return 1
 
     print("INCOME FUNNEL SMOKE CHECK: PASS")
-    print("Canonical entry, public showroom, priced starter offer, email/WhatsApp enquiry routes, CSV tracker backup, and no-false-sale disclosures are present.")
+    print("Canonical entry, public showroom, priced starter offer, email enquiry routes, CSV tracker backup, and no-false-sale disclosures are present.")
     print("This source-level gate does not verify live message delivery, customer acceptance, dispatch, payment, or deployed Pages output.")
     return 0
 
