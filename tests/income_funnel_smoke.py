@@ -91,6 +91,15 @@ def main() -> int:
             errors.append("Canonical first-client offer must expose exactly three priced starter offers")
     if sales_desk_source.count("data-offer=") != 3:
         errors.append("Legacy sales desk must retain exactly three canonical priced offer actions")
+    for selector_value in (
+        "Hindi OR English Writing / Editing · SRI-SVC-001",
+        "Research Summary · SRI-SVC-002",
+        "Detailed Research Report · SRI-SVC-003",
+    ):
+        if f'<option>{selector_value}</option>' not in sales_desk_source or f'data-service="{selector_value}"' not in sales_desk_source:
+            errors.append(f"Sales desk offer button and enquiry selector are not aligned: {selector_value}")
+    if "<option>Hindi and English</option>" in sales_desk_source:
+        errors.append("Sales desk must not offer a bilingual selection inside single-language pilot packages")
 
     offer_urls = offer.links
     if not any(urlsplit(link).scheme == "mailto" for link in offer_urls):
@@ -121,6 +130,8 @@ def main() -> int:
             errors.append(f"{sku} detail page is missing its agreed source limit")
         if "mailto:" not in source or "wa.me/" not in source:
             errors.append(f"{sku} detail page is missing enquiry routes")
+        if not any("\\n" in parse_qs(urlsplit(link).query).get("body", [""])[0] for link in (svc002.links if sku == "SRI-SVC-002" else svc003.links) if urlsplit(link).scheme == "mailto"):
+            errors.append(f"{sku} email enquiry must preserve readable line breaks")
         if "rzp.io" in source or "upi://" in source or "paypal" in source.casefold():
             errors.append(f"{sku} must not show a payment route before its own checkout is configured")
         if "स्वतंत्र वैज्ञानिक" not in source:
