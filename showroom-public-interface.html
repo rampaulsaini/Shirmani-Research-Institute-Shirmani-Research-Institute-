@@ -165,7 +165,7 @@
     if (!email && !phone) { status.textContent = "कृपया ईमेल या फोन में से कम-से-कम एक दें।"; return; }
     const payload = {
       name: String(data.get("name") || "").trim(),
-      email, phone,
+      email, phone, mobile: phone,
       service: "SRI-SVC-001 Hindi/English Writing & Research",
       language: String(data.get("language") || "To be agreed"),
       topic: String(data.get("topic") || "").trim(),
