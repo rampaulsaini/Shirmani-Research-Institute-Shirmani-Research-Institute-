@@ -18,7 +18,7 @@
 <form id="enquiryForm">
 <div class="grid">
 <label>सेवा / Service<select name="service" required><option value="">सेवा चुनें</option><option>Editing / Proofreading — proposed from ₹999</option><option>Article / Website Copy — proposed from ₹2,999</option><option>Source-based Research Brief — proposed from ₹1,999</option><option>Other / custom scope — quote required</option></select></label>
-<label>भाषा / Language<select name="language" required><option value="">भाषा चुनें</option><option>Hindi</option><option>English</option><option>Hindi + English</option></select></label>
+<label>भाषा / Language<select name="language" required><option value="">भाषा चुनें</option><option>Hindi</option><option>English</option></select></label>
 <label>विषय / Topic<input name="topic" required maxlength="180" placeholder="किस विषय पर काम चाहिए?"></label>
 <label>उद्देश्य / Goal<input name="goal" required maxlength="240" placeholder="यह काम किस उपयोग के लिए है?"></label>
 <label>शब्द-सीमा / Word count<input name="words" inputmode="numeric" placeholder="जैसे 700"></label>
@@ -41,7 +41,7 @@
 <label>सेवा / Package<select id="quoteService"><option value="edit">Editing / Proofreading — proposed from ₹999</option><option value="article">Article / Website Copy — proposed from ₹2,999</option><option value="research">Source-based Research Brief — proposed from ₹1,999</option><option value="custom">Custom scope — price to be confirmed</option></select></label>
 <label>ग्राहक / Client or organisation<input id="quoteClient" maxlength="160" placeholder="ग्राहक / संस्था का नाम"></label>
 <label>विषय / Topic<input id="quoteTopic" maxlength="220" placeholder="काम का विषय"></label>
-<label>भाषा / Language<select id="quoteLanguage"><option>Hindi</option><option>English</option><option>Hindi + English</option></select></label>
+<label>भाषा / Language<select id="quoteLanguage"><option>Hindi</option><option>English</option></select></label>
 <label>प्रस्तावित delivery date<input id="quoteDeadline" type="date"></label>
 <label>अंतिम शुल्क (₹) — custom/confirmed quote<input id="quoteAmount" inputmode="decimal" placeholder="Custom या बदली हुई कीमत; पुष्टि जरूरी"></label>
 </div>
@@ -51,7 +51,7 @@
 <button class="btn" type="button" id="generateQuote">Proposal draft बनाएँ</button><button class="btn alt" type="button" id="copyQuote">Proposal कॉपी करें</button><button class="btn alt" type="button" id="emailQuote">Email draft खोलें</button>
 <label for="quoteOutput">तैयार प्रस्ताव / Proposal draft</label><textarea id="quoteOutput" rows="15" readonly placeholder="ऊपर विवरण भरें और Proposal draft बनाएँ दबाएँ।"></textarea><p class="small muted" id="quoteStatus" aria-live="polite">Draft इसी browser page में तैयार होगा; कोई email अपने-आप नहीं भेजा जाएगा।</p>
 </section>
-<section class="card"><h2>भरोसा और सीमाएँ</h2><ul><li>काम शुरू होने से पहले scope, price, deadline और revision लिखित रूप में तय करें।</li><li>किसी payment को received नहीं कहा जाएगा जब तक transaction evidence न हो; recipient और amount अपने payment app में verify करें।</li><li>मनगढ़ंत citations या परिणाम नहीं; uncertainty और source limitations स्पष्ट होंगी।</li><li>Proofreading, research guidance और source organization उपलब्ध हैं; academic cheating या किसी के behalf पर जमा करने योग्य graded work नहीं।</li></ul><p class="small muted">Repository में Paytm/UPI और PayPal routes सूचीबद्ध हैं; किसी specific order के लिए recipient और agreed amount की पुष्टि आवश्यक है।</p></section>
+<section class="card"><h2>भरोसा और सीमाएँ</h2><ul><li>काम शुरू होने से पहले scope, price, deadline और revision लिखित रूप में तय करें।</li><li>किसी payment को received नहीं कहा जाएगा जब तक transaction evidence न हो; recipient और amount अपने payment app में verify करें।</li><li>मनगढ़ंत citations या परिणाम नहीं; uncertainty और source limitations स्पष्ट होंगी।</li><li>Proofreading, research guidance और source organization उपलब्ध हैं; academic cheating या किसी के behalf पर जमा करने योग्य graded work नहीं।</li></ul><p class="small muted">किसी भी काम के लिए पहले scope, final price, deadline और payment terms लिखित रूप में तय होंगे। SRI-SVC-001 (₹999) के लिए लिखित सहमति के बाद ही Razorpay checkout साझा किया जाएगा; अन्य सेवाओं के payment terms अलग से लिखित रूप में तय होंगे।</p></section>
 <footer>꙰ Shirmani Research Institute · Writing & Research Services · प्रस्तावित दरें; बिक्री/आय का दावा नहीं</footer></main>
 <script>
 (function(){
