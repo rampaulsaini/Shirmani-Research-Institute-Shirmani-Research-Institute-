@@ -110,6 +110,11 @@ def main() -> int:
     if "<option>Hindi + English</option>" in enquiry_source:
         errors.append("Writing/research enquiry form must not offer a bilingual selection in single-language pilots")
 
+    # Superseded website/blog copy pricing must not conflict with the canonical SVC-003 report offer.
+    for stale_label in ("Article / Website Copy", "Website / Blog Content", "Website / Blog Draft"):
+        if stale_label.casefold() in enquiry_source.casefold():
+            errors.append(f"Writing/research enquiry page still contains superseded offer: {stale_label}")
+
     offer_urls = offer.links
     if not any(urlsplit(link).scheme == "mailto" for link in offer_urls):
         errors.append("Sales desk has no email enquiry action")
