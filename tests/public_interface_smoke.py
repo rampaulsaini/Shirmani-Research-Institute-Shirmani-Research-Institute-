@@ -153,15 +153,7 @@ def main() -> int:
             'api.github.com/repos/', '/actions/runs?branch=main',
             'generated/live-production-state.json', 'NOT CONNECTED',
             'स्वतंत्र QC', 'शून्य नहीं माना गया',
-        for required in (
-            'id="cycles24h"', 'id="success24h"', 'id="failed24h"',
-            'id="activeRuns"', 'id="productionFreshness"',
-            'api.github.com/repos/', '/actions/runs?branch=main',
-            'generated/live-production-state.json', 'NOT CONNECTED',
-            'स्वतंत्र QC', 'शून्य नहीं माना गया',
-
-        if 'wa.me/' in showroom_source.casefold():
-            errors.append('showroom-public-interface.html exposes an unverified WhatsApp contact')        ):
+        ):
             if required.casefold() not in source.casefold():
                 errors.append(f"public-interface-v3.html is missing telemetry/truth-boundary requirement: {required}")
         if "setInterval(" in source:
