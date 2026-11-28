@@ -152,6 +152,10 @@ def main() -> int:
     if "Hindi OR English Writing & Editing — proposed ₹999 pilot" not in outreach_source:
         errors.append("Outreach SRI-SVC-001 price must match the canonical ₹999 offer")
 
+    # Public outreach workbench is email/copy-only until an institute-controlled WhatsApp channel is verified.
+    if "wa.me/" in outreach_source or "waDraft" in outreach_source or "WhatsApp draft" in outreach_source:
+        errors.append("Outreach workbench must not expose an unverified WhatsApp contact or draft action")
+
     # New research packages must have standalone detail pages and no premature checkout.
     for source, page_text, sku, price, marker in (
         (svc002_source, " ".join(svc002.text), "SRI-SVC-002", "₹1,999", "अधिकतम 3 सहमत"),
