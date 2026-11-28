@@ -74,7 +74,7 @@ def main() -> int:
 
     # SVC-001 is writing/editing only; research summaries have separate SKUs.
     showroom_text = " ".join(showroom.text)
-    if "SRI-SVC-001 — Hindi OR English Writing & Editing" not in showroom_text:
+    if "FEATURED SERVICE · SRI-SVC-001" not in showroom_text or "Hindi OR English Writing &amp; Editing" not in showroom_source:
         errors.append("Public first-pilot heading must identify SVC-001 as writing/editing only")
     if 'service: "SRI-SVC-001 Hindi OR English Writing & Editing"' not in showroom_source:
         errors.append("First-pilot enquiry payload must use the canonical SVC-001 writing/editing identity")
