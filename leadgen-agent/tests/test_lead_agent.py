@@ -22,8 +22,8 @@ class LeadAgentTests(unittest.TestCase):
             "buyer_evidence_url":"https://acme.example/tools",
             "buyer_evidence_type":"self_declared",
             "evidence_checked_at":datetime.now(timezone.utc).isoformat(),
-            "data_permission_basis":"Official public business contact route; use limited to relevant one-to-one enquiry",
-            "contact_permission_status":"permitted_business_contact",
+            "data_permission_basis":"Recorded, purpose-specific consent for a relevant one-to-one product comparison",
+            "contact_permission_status":"consented",
             "sri_product_match":"SRI CRM Starter", "sri_product_category":"CRM software",
             "sri_product_match_url":"https://sri.example/catalog/crm-starter",
             "permission_evidence_url":"https://acme.example/contact", "permission_checked_at":datetime.now(timezone.utc).isoformat(),
@@ -65,6 +65,7 @@ class LeadAgentTests(unittest.TestCase):
     def test_missing_permission_or_invalid_evidence_type_is_blocked(self):
         for changes in (
             {"contact_permission_status":"unknown"},
+            {"contact_permission_status":"permitted_business_contact"},
             {"data_permission_basis":""},
             {"permission_evidence_url":""},
             {"permission_checked_at":"2025-01-01T00:00:00+00:00"},
