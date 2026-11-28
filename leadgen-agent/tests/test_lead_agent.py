@@ -23,7 +23,9 @@ class LeadAgentTests(unittest.TestCase):
             "buyer_evidence_type":"self_declared",
             "evidence_checked_at":datetime.now(timezone.utc).isoformat(),
             "data_permission_basis":"Official public business contact route; use limited to relevant one-to-one enquiry",
-            "contact_permission_status":"permitted_business_contact", "opt_out":0,
+            "contact_permission_status":"permitted_business_contact",
+            "sri_product_match":"SRI CRM Starter", "sri_product_match_url":"https://sri.example/catalog/crm-starter",
+            "opt_out":0,
         }
         row.update(overrides)
         return row
@@ -104,6 +106,7 @@ class LeadAgentTests(unittest.TestCase):
         with agent.connect() as db:
             names={r["name"] for r in db.execute("PRAGMA table_info(leads)")}
             self.assertIn("current_product",names)
+            self.assertIn("sri_product_match",names)
             self.assertEqual(db.execute("SELECT business_name FROM leads").fetchone()[0],"Legacy")
         agent.DB_PATH=original
 
