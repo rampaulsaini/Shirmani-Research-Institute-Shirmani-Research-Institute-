@@ -48,6 +48,7 @@ def init_db():
           buyer_evidence_type TEXT DEFAULT '', evidence_checked_at TEXT DEFAULT '',
           data_permission_basis TEXT DEFAULT '', contact_permission_status TEXT DEFAULT '',
           sri_product_match TEXT DEFAULT '', sri_product_match_url TEXT DEFAULT '',
+          permission_evidence_url TEXT DEFAULT '', permission_checked_at TEXT DEFAULT '',
           score INTEGER NOT NULL DEFAULT 0,
           score_reasons TEXT DEFAULT '[]', status TEXT NOT NULL DEFAULT 'NEW',
           opt_out INTEGER NOT NULL DEFAULT 0,
@@ -78,7 +79,8 @@ def init_db():
           "buyer_evidence": "TEXT DEFAULT ''", "buyer_evidence_url": "TEXT DEFAULT ''",
           "buyer_evidence_type": "TEXT DEFAULT ''", "evidence_checked_at": "TEXT DEFAULT ''",
           "data_permission_basis": "TEXT DEFAULT ''", "contact_permission_status": "TEXT DEFAULT ''",
-          "sri_product_match": "TEXT DEFAULT ''", "sri_product_match_url": "TEXT DEFAULT ''"
+          "sri_product_match": "TEXT DEFAULT ''", "sri_product_match_url": "TEXT DEFAULT ''",
+          "permission_evidence_url": "TEXT DEFAULT ''", "permission_checked_at": "TEXT DEFAULT ''"
         }
         for name, declaration in additions.items():
             if name not in existing:
@@ -112,7 +114,7 @@ def import_csv(path):
                 duplicates += 1
                 # Enrich blanks only; never overwrite an existing verified contact silently.
                 updates = {}
-                for key in ("website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status","sri_product_match","sri_product_match_url"):
+                for key in ("website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status","sri_product_match","sri_product_match_url","permission_evidence_url","permission_checked_at"):
                     if not clean(duplicate[key]) and row.get(key): updates[key] = row[key]
                 if updates:
                     assignments = ", ".join(f"{k}=?" for k in updates)
@@ -121,9 +123,9 @@ def import_csv(path):
                     updated += 1
                 continue
             db.execute("""INSERT INTO leads
-              (business_name,website,niche,country,contact_name,email,phone,source_url,need_evidence,contact_basis,current_product,product_category,buyer_evidence,buyer_evidence_url,buyer_evidence_type,evidence_checked_at,data_permission_basis,contact_permission_status,sri_product_match,sri_product_match_url,created_at,updated_at)
-              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-              tuple(row.get(k,"") for k in ("business_name","website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status","sri_product_match","sri_product_match_url")) + (now(),now()))
+              (business_name,website,niche,country,contact_name,email,phone,source_url,need_evidence,contact_basis,current_product,product_category,buyer_evidence,buyer_evidence_url,buyer_evidence_type,evidence_checked_at,data_permission_basis,contact_permission_status,sri_product_match,sri_product_match_url,permission_evidence_url,permission_checked_at,created_at,updated_at)
+              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+              tuple(row.get(k,"") for k in ("business_name","website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status","sri_product_match","sri_product_match_url","permission_evidence_url","permission_checked_at")) + (now(),now()))
             inserted += 1
     return {"inserted":inserted,"duplicates":duplicates,"enriched":updated}
 
@@ -140,6 +142,8 @@ def buyer_gate(row):
         "contact_permission_status": "contact permission status",
         "sri_product_match": "existing SRI product match",
         "sri_product_match_url": "SRI catalogue/product evidence URL",
+        "permission_evidence_url": "contact/data permission evidence URL",
+        "permission_checked_at": "permission review date",
     }
     def value(key):
         return row[key] if key in row.keys() else ""
@@ -150,6 +154,8 @@ def buyer_gate(row):
         return False, ["buyer evidence URL is invalid"]
     if not norm_domain(value("sri_product_match_url")):
         return False, ["SRI product match URL is invalid"]
+    if not norm_domain(value("permission_evidence_url")):
+        return False, ["permission evidence URL is invalid"]
     evidence_type = clean(value("buyer_evidence_type")).lower()
     if evidence_type not in {"self_declared", "verified_purchase", "partner_authorized", "licensed_dataset"}:
         return False, ["evidence type is not an accepted proof class"]
@@ -158,11 +164,16 @@ def buyer_gate(row):
         return False, ["contact permission is not explicitly valid"]
     try:
         checked = datetime.fromisoformat(clean(value("evidence_checked_at")).replace("Z", "+00:00"))
+        permission_checked = datetime.fromisoformat(clean(value("permission_checked_at")).replace("Z", "+00:00"))
         if checked.tzinfo is None:
             checked = checked.replace(tzinfo=timezone.utc)
-        age = datetime.now(timezone.utc) - checked.astimezone(timezone.utc)
-        if age < timedelta(days=-1) or age > timedelta(days=180):
-            return False, ["buyer evidence is future-dated or stale (over 180 days)"]
+        if permission_checked.tzinfo is None:
+            permission_checked = permission_checked.replace(tzinfo=timezone.utc)
+        current = datetime.now(timezone.utc)
+        for label, reviewed in (("buyer evidence", checked), ("permission evidence", permission_checked)):
+            age = current - reviewed.astimezone(timezone.utc)
+            if age < timedelta(days=-1) or age > timedelta(days=180):
+                return False, [label + " is future-dated or stale (over 180 days)"]
     except (TypeError, ValueError):
         return False, ["evidence review date must be ISO-8601"]
     return True, ["required buyer, SRI product-match, and permission fields present; human validation still required"]
