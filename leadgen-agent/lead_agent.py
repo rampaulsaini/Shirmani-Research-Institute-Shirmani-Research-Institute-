@@ -137,19 +137,21 @@ def buyer_gate(row):
         "data_permission_basis": "data-use permission/licence basis",
         "contact_permission_status": "contact permission status",
     }
-    missing = [label for key, label in required.items() if not clean(row[key])]
+    def value(key):
+        return row[key] if key in row.keys() else ""
+    missing = [label for key, label in required.items() if not clean(value(key))]
     if missing:
         return False, ["missing: " + ", ".join(missing)]
-    if not norm_domain(row["buyer_evidence_url"]):
+    if not norm_domain(value("buyer_evidence_url")):
         return False, ["buyer evidence URL is invalid"]
-    evidence_type = clean(row["buyer_evidence_type"]).lower()
+    evidence_type = clean(value("buyer_evidence_type")).lower()
     if evidence_type not in {"self_declared", "verified_purchase", "partner_authorized", "licensed_dataset"}:
         return False, ["evidence type is not an accepted proof class"]
-    permission = clean(row["contact_permission_status"]).lower()
+    permission = clean(value("contact_permission_status")).lower()
     if permission not in {"consented", "permitted_business_contact", "existing_relationship"}:
         return False, ["contact permission is not explicitly valid"]
     try:
-        checked = datetime.fromisoformat(clean(row["evidence_checked_at"]).replace("Z", "+00:00"))
+        checked = datetime.fromisoformat(clean(value("evidence_checked_at")).replace("Z", "+00:00"))
         if checked.tzinfo is None:
             checked = checked.replace(tzinfo=timezone.utc)
         age = datetime.now(timezone.utc) - checked.astimezone(timezone.utc)
