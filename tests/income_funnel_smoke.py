@@ -107,7 +107,7 @@ def main() -> int:
         errors.append("Outreach SRI-SVC-002 price must match the canonical ₹1,999 offer")
     if "Detailed Research Report — proposed ₹2,999 pilot" not in outreach_source:
         errors.append("Outreach SRI-SVC-003 price must match the canonical ₹2,999 offer")
-    if "Hindi/English Writing & Editing — proposed ₹999 pilot" not in outreach_source:
+    if "Hindi OR English Writing & Editing — proposed ₹999 pilot" not in outreach_source:
         errors.append("Outreach SRI-SVC-001 price must match the canonical ₹999 offer")
 
     # New research packages must have standalone detail pages and no premature checkout.
