@@ -178,13 +178,13 @@ def main() -> int:
         errors.append("Canonical offer must disclose that the static page does not process payments")
 
     enquiry_text = " ".join(enquiry.text)
-    for phrase in ("₹999", "₹1,999", "₹2,999", "WhatsApp", "लिखित", "भुगतान"):
+    for phrase in ("₹999", "₹1,999", "₹2,999", "लिखित", "भुगतान"):
         if phrase.casefold() not in enquiry_text.casefold() and phrase.casefold() not in enquiry_source.casefold():
             errors.append(f"Enquiry page is missing service/pricing/process text: {phrase}")
     if "mailto:" not in enquiry_source:
         errors.append("Enquiry page must provide an email draft action")
-    if "wa.me/918082935186" in enquiry_source or "wa.me/918082935186" in offer_source:
-        errors.append("Public sales pages must not publish an unverified institute WhatsApp number")
+    if any("wa.me/918082935186" in source for source in (enquiry_source, offer_source, showroom_source, sales_desk_source)):
+        errors.append("Core public sales pages must not publish an unverified institute WhatsApp number")
     if "अपने-आप कोई संदेश नहीं भेजता" not in enquiry_source and "अपने आप कोई संदेश नहीं भेजता" not in enquiry_source:
         errors.append("Enquiry page must state that messages are not sent automatically")
 
