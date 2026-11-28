@@ -48,7 +48,7 @@ class LeadAgentTests(unittest.TestCase):
         score,reasons=agent.score_lead(self.buyer())
         self.assertGreater(score,0)
         self.assertLessEqual(score,100)
-        self.assertIn("existing digital buyer evidence and permission gates passed",reasons)
+        self.assertIn("required buyer, SRI product-match, and permission fields present; human validation still required",reasons)
     def test_generic_business_without_buyer_evidence_is_blocked(self):
         row=self.buyer(current_product="",product_category="",buyer_evidence="",buyer_evidence_url="",
                        buyer_evidence_type="",evidence_checked_at="")
@@ -63,6 +63,9 @@ class LeadAgentTests(unittest.TestCase):
         ):
             score,_=agent.score_lead(self.buyer(**changes))
             self.assertEqual(score,0)
+    def test_missing_sri_catalogue_match_is_blocked(self):
+        score,_=agent.score_lead(self.buyer(sri_product_match="",sri_product_match_url=""))
+        self.assertEqual(score,0)
     def test_stale_buyer_evidence_is_blocked(self):
         score,_=agent.score_lead(self.buyer(evidence_checked_at="2025-01-01T00:00:00+00:00"))
         self.assertEqual(score,0)
