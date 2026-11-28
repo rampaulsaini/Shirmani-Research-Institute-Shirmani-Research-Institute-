@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "records": 100200,
-  "queued": 100200,
+  "records": 10,
+  "queued": 10,
   "reviewed": 0,
   "verified": 0,
   "preserved_existing_reviews": 0,

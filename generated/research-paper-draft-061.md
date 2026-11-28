@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-🤝 Funding / Support यह support production, product packaging, public showroom improvement, digital assets, infrastructure और ongoing work को आगे बढ़ाने में सहायता कर सकता है।
+इसके प्रमुख सूत्र हैं: > **खुद का साक्षात्कार।** > **खुद के स्थायी स्वरूप से रूबरू होना।** > **खुद के स्थायी परिचय से परिचित होना।** > **संपूर्ण संतुष्टि की निरंतरता को पहचानना।** इसका दावा यह है कि आत्म-समझ का द्वार किसी विशेष व्यक्ति, संस्था या मध्यस्थ पर अनिवार्य निर्भरता के बिना भी खोजा जा सकता है।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:funding.html
+rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:YATHARTH-SIDDHANT-YATHARTH-YUG.md

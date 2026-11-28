@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Commercial sale तभी खुलेगी जब वास्तविक product package, access route, approved price और dispatch route उपलब्ध हों।
+{ "schema_version": 1, "repo": "rampaulsaini/omniverse-dashboard", "role": "monitoring-dashboard", "description": "Monitoring worker: inventory dashboard assets and emit a health/readiness manifest.", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Commercial sale तभी खुलेगी जब वास्तविक pro
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:production-catalog.html
+rampaulsaini/omniverse-dashboard:factory-agent.json

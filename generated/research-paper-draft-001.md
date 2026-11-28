@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-꙰ Supreme Production Showroom — Yatharth ꙰ शिरोमणि रामपॉल सैनी · YATHARTH SUPREME DIGITAL PRODUCTION SHOWROOM Public Payment: Paytm / UPI 9622254967@ptyes · PayPal sainirampaul60@gmail.com 📲 Paytm / UPI 💙 PayPal 💰 Funding & Progress अंतिम सार्वजनिक स्तर: product को देखना, समझना, चलाना, मूल्य/offer देखना, QC/QR पहचान देखना, order करना और वास्तविक उपयोग के बाद review देना।
+{ "schema_version": 1, "repo": "rampaulsaini/Omniver", "role": "omniverse-core", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:production-catalog.html
+rampaulsaini/Omniver:factory-agent.json

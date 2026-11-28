@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-02 · FACTORY AI/ML/NLP-assisted production, packaging और runnable product modes.
+{"hub":"Nishpaksh-Samaj-Omniverse-Truth","yatharth":"यथार्थ = निष्पक्ष समझ + हृदय की प्रत्यक्षता","sales":"0 to 1","upi":"9622254967@ptyes","repos":24,"status":"unified"}
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:production-roadmap.html
+rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:federation.json

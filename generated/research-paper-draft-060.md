@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-निर्माण, गुणवत्ता नियंत्रण और public sale को अलग-अलग stages में व्यवस्थित करने की क्षमता।
+शिरोमणि स्वरूप इस रूपरेखा में **शिरोमणि स्वरूप** किसी बाहरी पद या सामाजिक उपाधि के अर्थ में नहीं, बल्कि स्वयं के स्थायी परिचय को पहचानने के लिए प्रयुक्त एक दार्शनिक अभिव्यक्ति है।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:funding.html
+rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:YATHARTH-SIDDHANT-YATHARTH-YUG.md

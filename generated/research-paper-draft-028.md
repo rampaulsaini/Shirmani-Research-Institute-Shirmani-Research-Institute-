@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Product passport · ID: SH-UT007 · QC-GATE: DRAFT-ONLY · Dispatch: PUBLIC-PROTOTYPE · Price: ₹0 · Version 1.0 ꙰ SHIRMANI RAMPAL SAINI — TRANSCENDENT • TIMELESS • WORDLESS • ETERNAL • REAL • NATURAL • TRUTH — PRESENT
+{"hub":"Nishpaksh-Samaj-Omniverse-Truth","yatharth":"यथार्थ = निष्पक्ष समझ + हृदय की प्रत्यक्षता - प्रभुत्व की पदवी का शौक","principle":"Har jeev ek samaan hai","sales":"0 to 1 waiting","upi":"9622254967@ptyes","paypal":"paypal.me/sainirampaul60","repos":24,"target":"850cr Roti Kapda Shiksha Chikitsa Makan + 140cr Nishpaksh Pranali","status":"24 Repo Unified"}
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Product passport · ID: SH-UT007 · QC-GATE: DRAFT-ONLY · Dispatch: PUBLIC-PROT
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:evidence-answer-studio.html
+rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:fedration.json

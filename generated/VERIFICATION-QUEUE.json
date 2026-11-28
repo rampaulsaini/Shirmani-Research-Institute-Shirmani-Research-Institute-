@@ -1,7 +1,9 @@
 {
-  "version": 1,
-  "records": 100200,
-  "queued": 100200,
+  "version": 2,
+  "records": 10,
+  "queued": 10,
+  "reviewed": 0,
+  "verified": 0,
   "publication_gate": "CHECK",
-  "verification_policy": "No task may be auto-promoted to verified by this factory."
+  "verification_policy": "Queue creation is not independent verification; only human-reviewed evidence may be promoted."
 }

@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Claim (12–20s):** Enter a sample factual claim.
+वायु, जल, मिट्टी, वनस्पति, जीव-जगत और मानव जीवन परस्पर जुड़े हुए हैं।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Claim (12–20s):** Enter a sample factual claim.
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:SH-UT007-demo-script.md
+rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:YATHARTH-SIDDHANT-YATHARTH-YUG.md

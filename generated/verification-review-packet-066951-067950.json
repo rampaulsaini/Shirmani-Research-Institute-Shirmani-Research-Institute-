@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "status": "QUEUE_EXHAUSTED",
+  "queue_exhausted": true,
+  "queue_length": 10,
+  "requested_offset": 66950,
+  "records": 0,
+  "packet_range": [
+    10,
+    10
+  ],
+  "source": "generated/independent-verification-queue.jsonl",
+  "registry": "generated/independent-verification-registry.jsonl",
+  "verified_records": 0,
+  "verification_status": "NOT_PERFORMED",
+  "items": [],
+  "note": "No unpacketized queue records remain at this offset. This is not a verification result."
+}

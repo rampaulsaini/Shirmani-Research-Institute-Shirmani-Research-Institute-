@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "repository": "rampaulsaini/Omniverse-Platform",
-  "generated_at": "2026-11-24T13:41:00+05:30",
+  "generated_at": "2026-11-28T14:08:05.218055+00:00",
   "state": "UNKNOWN",
   "research_institute_repository": "rampaulsaini/Shirmani-Research-Institute-Shirmani-Research-Institute-",
   "central_orchestrator": "rampaulsaini/Omniverse-Platform",
@@ -9,5 +9,6 @@
   "live_cross_repository_counters": false,
   "secrets_exposed": false,
   "pii_exposed": false,
-  "note": "Bootstrap fallback only. Central federation health has not been synchronized; do not treat this record as live health evidence."
+  "note": "Central factory status could not be verified; health remains UNKNOWN.",
+  "error_type": "HTTPError"
 }
