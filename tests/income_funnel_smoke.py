@@ -57,6 +57,7 @@ def main() -> int:
         sales_desk_source, sales_desk = load("showroom/global-product-sales-desk.html")
         enquiry_source, enquiry = load("writing-research-enquiry.html")
         showroom_source, showroom = load("showroom-public-interface.html")
+        clean_showroom_source, _ = load("supreme-clean-showroom.html")
         income_source, _ = load("income-action-center.html")
         outreach_source, outreach = load("global-client-outreach-workbench.html")
         pipeline_source, _ = load("income-client-pipeline.html")
@@ -126,6 +127,10 @@ def main() -> int:
         errors.append("Public showroom SVC-001 payment route must match the canonical Razorpay checkout")
     if "9622254967@ptyes" in showroom_source or "paypal" in showroom_source.casefold() or "upi://" in showroom_source:
         errors.append("Public showroom must not retain superseded manual UPI/PayPal payment instructions")
+    if "SRI-SVC-001 — Hindi OR English Writing & Editing" not in clean_showroom_source:
+        errors.append("Supreme clean showroom must use the canonical SVC-001 service identity")
+    if 'service:"SRI-SVC-001 Hindi OR English Writing & Editing"' not in clean_showroom_source:
+        errors.append("Supreme clean showroom enquiry payload must use the canonical SVC-001 service identity")
 
     offer_urls = offer.links
     if not any(urlsplit(link).scheme == "mailto" for link in offer_urls):
