@@ -130,7 +130,7 @@ def main() -> int:
             errors.append(f"{sku} detail page is missing its agreed source limit")
         if "mailto:" not in source or "wa.me/" not in source:
             errors.append(f"{sku} detail page is missing enquiry routes")
-        if not any("\\n" in parse_qs(urlsplit(link).query).get("body", [""])[0] for link in (svc002.links if sku == "SRI-SVC-002" else svc003.links) if urlsplit(link).scheme == "mailto"):
+        if not any("\n" in parse_qs(urlsplit(link).query).get("body", [""])[0] for link in (svc002.links if sku == "SRI-SVC-002" else svc003.links) if urlsplit(link).scheme == "mailto"):
             errors.append(f"{sku} email enquiry must preserve readable line breaks")
         if "rzp.io" in source or "upi://" in source or "paypal" in source.casefold():
             errors.append(f"{sku} must not show a payment route before its own checkout is configured")
