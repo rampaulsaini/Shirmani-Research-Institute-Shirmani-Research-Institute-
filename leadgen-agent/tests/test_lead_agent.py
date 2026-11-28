@@ -82,7 +82,9 @@ class LeadAgentTests(unittest.TestCase):
             {"buyer_evidence_type":"partner_authorized"},
             {"buyer_evidence_type":"licensed_dataset"},
             {"buyer_evidence_observed_at":"2025-01-01T00:00:00+00:00"},
+            {"permission_channel":"phone"},
             {"permission_channel":"sms"},
+            {"permission_recipient":"other@acme.example"},
             {"permission_purpose":""},
             {"permission_scope":""},
             {"permission_recipient":""},
@@ -103,6 +105,14 @@ class LeadAgentTests(unittest.TestCase):
     def test_verified_active_use_is_an_accepted_buyer_evidence_class(self):
         score,_=agent.score_lead(self.buyer(buyer_evidence_type="verified_active_use"))
         self.assertGreater(score,0)
+
+    def test_email_draft_requires_matching_email_specific_permission(self):
+        for changes in (
+            {"permission_channel":"phone"},
+            {"permission_recipient":"other@acme.example"},
+        ):
+            score,_=agent.score_lead(self.buyer(**changes))
+            self.assertEqual(score,0)
 
     def test_permission_must_be_scoped_and_unexpired(self):
         for changes in (
