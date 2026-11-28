@@ -300,6 +300,8 @@ def main() -> int:
                     "showroom-public-interface.html is missing production/income contract: "
                     + required
                 )
+        if "wa.me/" in showroom_source.casefold():
+            errors.append("showroom-public-interface.html exposes an unverified WhatsApp contact")
 
     # Check every local target and every fragment on HTML pages, not only the
     # two pages that are the main focus of this smoke suite.
