@@ -104,7 +104,7 @@ def main() -> int:
         errors.append("Sales desk has no email enquiry action")
     if not any(phrase in offer_source.casefold() for phrase in ("no order is placed", "no order is claimed", "does not create an order")):
         errors.append("Canonical offer must disclose that it does not create/claim an order")
-    if not any(phrase in offer_source.casefold() for phrase in ("no message is sent automatically", "does not send email/whatsapp", "do not automatically send")):
+    if not any(phrase in offer_source.casefold() for phrase in ("no message is sent automatically", "does not send email/whatsapp", "does not send emails or messages", "do not automatically send")):
         errors.append("Canonical offer must disclose that contact drafts are not automatically sent")
 
     # Outreach must use the same prices as the canonical first-client offer.
@@ -201,7 +201,7 @@ def main() -> int:
         return 1
 
     print("INCOME FUNNEL SMOKE CHECK: PASS")
-    print("Canonical entry, public showroom, priced starter offer, email/WhatsApp enquiry routes, CSV tracker backup, and no-false-sale disclosures are present.")
+    print("Canonical entry, public showroom, priced starter offer, email enquiry routes, CSV tracker backup, and no-false-sale disclosures are present.")
     print("This source-level gate does not verify live message delivery, customer acceptance, dispatch, payment, or deployed Pages output.")
     return 0
 
