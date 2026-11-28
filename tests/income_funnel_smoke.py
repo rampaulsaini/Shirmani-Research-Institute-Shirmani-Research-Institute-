@@ -165,9 +165,11 @@ def main() -> int:
         errors.append("Canonical offer must label payment as occurring only after written agreement")
     if "पहले लिखित सहमति" not in offer_source:
         errors.append("Canonical offer must explain written consent before payment")
-    payment_links = [link for link in offer_urls if link == "https://rzp.io/rzp/UhC1i8c"]
-    if not payment_links:
-        errors.append("Canonical offer must expose the existing Razorpay SRI-SVC-001 checkout")
+    payment_links = [link for link in offer_urls if "rzp.io/rzp/" in link]
+    if payment_links or "https://rzp.io/rzp/UhC1i8c" in offer_source:
+        errors.append("Canonical public offer must not expose a payment checkout before written scope agreement and explicit proceed confirmation")
+    if "निजी रूप से दिए जाएँगे" not in offer_source:
+        errors.append("Canonical offer must explain that payment instructions are shared privately only after written agreement")
     if any(urlsplit(link).scheme == "upi" for link in offer_urls):
         errors.append("Canonical offer must not expose the legacy manual UPI payment route")
     if "paypal" in offer_lower:
