@@ -139,8 +139,6 @@ def main() -> int:
     offer_urls = offer.links
     if not any(urlsplit(link).scheme == "mailto" for link in offer_urls):
         errors.append("Sales desk has no email enquiry action")
-    if not any("wa.me/" in link for link in offer_urls):
-        errors.append("Sales desk has no WhatsApp enquiry action")
     if not any(phrase in offer_source.casefold() for phrase in ("no order is placed", "no order is claimed", "does not create an order")):
         errors.append("Canonical offer must disclose that it does not create/claim an order")
     if not any(phrase in offer_source.casefold() for phrase in ("no message is sent automatically", "does not send email/whatsapp", "do not automatically send")):
@@ -163,8 +161,10 @@ def main() -> int:
             errors.append(f"{sku} detail page is missing its identifier or price")
         if marker not in source.casefold():
             errors.append(f"{sku} detail page is missing its agreed source limit")
-        if "mailto:" not in source or "wa.me/" not in source:
-            errors.append(f"{sku} detail page is missing enquiry routes")
+        if "mailto:" not in source:
+            errors.append(f"{sku} detail page is missing its email enquiry route")
+        if "wa.me/" in source or "whatsapp" in source.casefold():
+            errors.append(f"{sku} must not expose an unverified WhatsApp contact")
         if not any("\n" in parse_qs(urlsplit(link).query).get("body", [""])[0] for link in (svc002.links if sku == "SRI-SVC-002" else svc003.links) if urlsplit(link).scheme == "mailto"):
             errors.append(f"{sku} email enquiry must preserve readable line breaks")
         if "rzp.io" in source or "upi://" in source or "paypal" in source.casefold():
@@ -234,11 +234,13 @@ def main() -> int:
         errors.append("Canonical offer must disclose that the static page does not process payments")
 
     enquiry_text = " ".join(enquiry.text)
-    for phrase in ("₹999", "₹1,999", "₹2,999", "WhatsApp", "लिखित", "भुगतान"):
+    for phrase in ("₹999", "₹1,999", "₹2,999", "ईमेल", "लिखित", "भुगतान"):
         if phrase.casefold() not in enquiry_text.casefold() and phrase.casefold() not in enquiry_source.casefold():
             errors.append(f"Enquiry page is missing service/pricing/process text: {phrase}")
-    if "mailto:" not in enquiry_source or "wa.me/" not in enquiry_source:
-        errors.append("Enquiry page must provide email and WhatsApp draft actions")
+    if "mailto:" not in enquiry_source:
+        errors.append("Enquiry page must provide an email draft action")
+    if "wa.me/" in enquiry_source or "whatsappDraft" in enquiry_source:
+        errors.append("Enquiry page must not expose an unverified WhatsApp contact")
     if "अपने-आप कोई संदेश नहीं भेजता" not in enquiry_source and "अपने आप कोई संदेश नहीं भेजता" not in enquiry_source:
         errors.append("Enquiry page must state that messages are not sent automatically")
 
@@ -255,7 +257,7 @@ def main() -> int:
         return 1
 
     print("INCOME FUNNEL SMOKE CHECK: PASS")
-    print("Canonical entry, public showroom, priced starter offer, email/WhatsApp enquiry routes, CSV tracker backup, and no-false-sale disclosures are present.")
+    print("Canonical entry, public showroom, priced starter offer, verified email enquiry routes, CSV tracker backup, and no-false-sale disclosures are present.")
     print("This source-level gate does not verify live message delivery, customer acceptance, dispatch, payment, or deployed Pages output.")
     return 0
 
