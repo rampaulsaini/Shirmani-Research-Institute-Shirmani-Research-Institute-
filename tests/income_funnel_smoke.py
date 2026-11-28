@@ -102,8 +102,6 @@ def main() -> int:
     offer_urls = offer.links
     if not any(urlsplit(link).scheme == "mailto" for link in offer_urls):
         errors.append("Sales desk has no email enquiry action")
-    if not any("wa.me/" in link for link in offer_urls):
-        errors.append("Sales desk has no WhatsApp enquiry action")
     if not any(phrase in offer_source.casefold() for phrase in ("no order is placed", "no order is claimed", "does not create an order")):
         errors.append("Canonical offer must disclose that it does not create/claim an order")
     if not any(phrase in offer_source.casefold() for phrase in ("no message is sent automatically", "does not send email/whatsapp", "do not automatically send")):
@@ -183,8 +181,10 @@ def main() -> int:
     for phrase in ("₹999", "₹1,999", "₹2,999", "WhatsApp", "लिखित", "भुगतान"):
         if phrase.casefold() not in enquiry_text.casefold() and phrase.casefold() not in enquiry_source.casefold():
             errors.append(f"Enquiry page is missing service/pricing/process text: {phrase}")
-    if "mailto:" not in enquiry_source or "wa.me/" not in enquiry_source:
-        errors.append("Enquiry page must provide email and WhatsApp draft actions")
+    if "mailto:" not in enquiry_source:
+        errors.append("Enquiry page must provide an email draft action")
+    if "wa.me/918082935186" in enquiry_source or "wa.me/918082935186" in offer_source:
+        errors.append("Public sales pages must not publish an unverified institute WhatsApp number")
     if "अपने-आप कोई संदेश नहीं भेजता" not in enquiry_source and "अपने आप कोई संदेश नहीं भेजता" not in enquiry_source:
         errors.append("Enquiry page must state that messages are not sent automatically")
 
