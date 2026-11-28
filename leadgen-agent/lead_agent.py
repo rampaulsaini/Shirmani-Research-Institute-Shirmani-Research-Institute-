@@ -21,8 +21,14 @@ def norm_domain(url):
     raw = clean(url)
     if not raw: return ""
     try:
-        host = urlparse(raw if "://" in raw else "https://" + raw).hostname or ""
-        return host.lower().removeprefix("www.")
+        parsed = urlparse(raw if "://" in raw else "https://" + raw)
+        if parsed.scheme.lower() not in {"http", "https"}:
+            return ""
+        if not parsed.hostname or parsed.username is not None or parsed.password is not None:
+            return ""
+        # Accessing .port also validates malformed port values.
+        _ = parsed.port
+        return parsed.hostname.lower().removeprefix("www.")
     except ValueError:
         return ""
 
@@ -179,7 +185,7 @@ def buyer_gate(row):
     if clean(value("total_cost_comparison_result")).lower() != "lower":
         return False, ["comparative total-cost result is not documented as lower"]
     evidence_type = clean(value("buyer_evidence_type")).lower()
-    if evidence_type not in {"verified_purchase", "verified_active_use", "partner_authorized", "licensed_dataset"}:
+    if evidence_type not in {"verified_purchase", "verified_active_use"}:
         return False, ["evidence type is not an accepted proof class"]
     permission = clean(value("contact_permission_status")).lower()
     if permission not in {"consented", "documented_permission"}:
