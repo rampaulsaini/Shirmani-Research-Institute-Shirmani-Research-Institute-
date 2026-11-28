@@ -203,8 +203,13 @@ def buyer_gate(row):
     permission = clean(value("contact_permission_status")).lower()
     if permission not in {"consented", "documented_permission"}:
         return False, ["contact permission is not explicitly valid"]
-    if clean(value("permission_channel")).lower() not in {"email", "phone", "linkedin", "other"}:
-        return False, ["permission channel is not an accepted explicit channel"]
+    permission_channel = clean(value("permission_channel")).lower()
+    if permission_channel != "email":
+        return False, ["this agent only drafts email; email-specific permission is required"]
+    permitted_recipient = clean(value("permission_recipient")).casefold()
+    actual_email = clean(value("email")).casefold()
+    if not actual_email or permitted_recipient != actual_email:
+        return False, ["permission recipient does not match the email contact route"]
     if clean(value("permission_revoked_at")):
         return False, ["contact permission has been revoked"]
     try:
