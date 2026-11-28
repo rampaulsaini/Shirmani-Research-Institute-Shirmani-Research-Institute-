@@ -107,18 +107,40 @@ def init_db():
     return str(DB_PATH)
 
 def find_duplicate(db, row):
-    email = clean(row.get("email")).lower()
+    email = clean(row.get("email")).casefold()
     phone = re.sub(r"\D", "", clean(row.get("phone")))
     domain = norm_domain(row.get("website"))
     name = clean(row.get("business_name")).casefold()
     candidates = db.execute("SELECT * FROM leads").fetchall()
+    first_match = None
     for lead in candidates:
-        if email and email == clean(lead["email"]).lower(): return lead
+        email_match = email and email == clean(lead["email"]).casefold()
         existing_phone = re.sub(r"\D", "", clean(lead["phone"]))
-        if phone and phone == existing_phone: return lead
-        if domain and domain == norm_domain(lead["website"]): return lead
-        if name and name == clean(lead["business_name"]).casefold(): return lead
-    return None
+        phone_match = phone and phone == existing_phone
+        domain_match = domain and domain == norm_domain(lead["website"])
+        name_match = name and name == clean(lead["business_name"]).casefold()
+        if email_match or phone_match or domain_match or name_match:
+            # Prefer a suppressed record so a duplicate import cannot bypass opt-out.
+            if lead["opt_out"]:
+                return lead
+            if first_match is None:
+                first_match = lead
+    return first_match
+
+
+def identity_is_suppressed(db, row):
+    """Suppress matching email/phone identities if any record has opted out."""
+    email = clean(row["email"] if "email" in row.keys() else "").casefold()
+    phone = re.sub(r"\D", "", clean(row["phone"] if "phone" in row.keys() else ""))
+    if not email and not phone:
+        return False
+    for lead in db.execute("SELECT email, phone FROM leads WHERE opt_out=1").fetchall():
+        if email and email == clean(lead["email"]).casefold():
+            return True
+        existing_phone = re.sub(r"\D", "", clean(lead["phone"]))
+        if phone and phone == existing_phone:
+            return True
+    return False
 
 def import_csv(path):
     init_db()
@@ -126,6 +148,7 @@ def import_csv(path):
     with open(path, newline="", encoding="utf-8-sig") as f, connect() as db:
         for raw in csv.DictReader(f):
             row = {k: clean(v) for k, v in raw.items() if k}
+            row["opt_out"] = "1" if clean(row.get("opt_out")).lower() in {"1", "true", "yes", "y", "on"} else "0"
             business = row.get("business_name", "")
             if not business: continue
             duplicate = find_duplicate(db, row)
@@ -135,6 +158,8 @@ def import_csv(path):
                 updates = {}
                 for key in ("website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","buyer_evidence_observed_at","evidence_checked_at","data_permission_basis","contact_permission_status","permission_channel","permission_purpose","permission_scope","permission_recipient","permission_granted_at","permission_expires_at","permission_revoked_at","sri_product_match","sri_product_category","sri_product_match_url","permission_evidence_url","permission_checked_at","comparison_evidence_url","comparison_checked_at","quality_comparison_result","total_cost_comparison_result","comparison_summary","added_value"):
                     if not clean(duplicate[key]) and row.get(key): updates[key] = row[key]
+                if row.get("opt_out") == "1" and not duplicate["opt_out"]:
+                    db.execute("UPDATE leads SET opt_out=1, updated_at=? WHERE id=?", (now(), duplicate["id"]))
                 if updates:
                     assignments = ", ".join(f"{k}=?" for k in updates)
                     db.execute(f"UPDATE leads SET {assignments}, updated_at=? WHERE id=?",
@@ -142,9 +167,9 @@ def import_csv(path):
                     updated += 1
                 continue
             db.execute("""INSERT INTO leads
-              (business_name,website,niche,country,contact_name,email,phone,source_url,need_evidence,contact_basis,current_product,product_category,buyer_evidence,buyer_evidence_url,buyer_evidence_type,buyer_evidence_observed_at,evidence_checked_at,data_permission_basis,contact_permission_status,permission_channel,permission_purpose,permission_scope,permission_recipient,permission_granted_at,permission_expires_at,permission_revoked_at,sri_product_match,sri_product_category,sri_product_match_url,permission_evidence_url,permission_checked_at,comparison_evidence_url,comparison_checked_at,quality_comparison_result,total_cost_comparison_result,comparison_summary,added_value,created_at,updated_at)
-              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-              tuple(row.get(k,"") for k in ("business_name","website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","buyer_evidence_observed_at","evidence_checked_at","data_permission_basis","contact_permission_status","permission_channel","permission_purpose","permission_scope","permission_recipient","permission_granted_at","permission_expires_at","permission_revoked_at","sri_product_match","sri_product_category","sri_product_match_url","permission_evidence_url","permission_checked_at","comparison_evidence_url","comparison_checked_at","quality_comparison_result","total_cost_comparison_result","comparison_summary","added_value")) + (now(),now()))
+              (business_name,website,niche,country,contact_name,email,phone,source_url,need_evidence,contact_basis,current_product,product_category,buyer_evidence,buyer_evidence_url,buyer_evidence_type,buyer_evidence_observed_at,evidence_checked_at,data_permission_basis,contact_permission_status,permission_channel,permission_purpose,permission_scope,permission_recipient,permission_granted_at,permission_expires_at,permission_revoked_at,sri_product_match,sri_product_category,sri_product_match_url,permission_evidence_url,permission_checked_at,comparison_evidence_url,comparison_checked_at,quality_comparison_result,total_cost_comparison_result,comparison_summary,added_value,opt_out,created_at,updated_at)
+              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+              tuple(row.get(k,"") for k in ("business_name","website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","buyer_evidence_observed_at","evidence_checked_at","data_permission_basis","contact_permission_status","permission_channel","permission_purpose","permission_scope","permission_recipient","permission_granted_at","permission_expires_at","permission_revoked_at","sri_product_match","sri_product_category","sri_product_match_url","permission_evidence_url","permission_checked_at","comparison_evidence_url","comparison_checked_at","quality_comparison_result","total_cost_comparison_result","comparison_summary","added_value")) + (int(row["opt_out"]),now(),now()))
             inserted += 1
     return {"inserted":inserted,"duplicates":duplicates,"enriched":updated}
 
@@ -271,6 +296,8 @@ def score_all():
         rows=db.execute("SELECT * FROM leads").fetchall()
         for row in rows:
             score,reasons=score_lead(row)
+            if identity_is_suppressed(db, row):
+                score, reasons = 0, ["opt-out: matching email/phone identity suppressed"]
             db.execute("UPDATE leads SET score=?,score_reasons=?,updated_at=? WHERE id=?",
                        (score,json.dumps(reasons),now(),row["id"]))
     return len(rows)
@@ -289,7 +316,8 @@ def draft_message(lead_id):
     with connect() as db:
         lead=db.execute("SELECT * FROM leads WHERE id=?",(lead_id,)).fetchone()
         if not lead: raise ValueError("Lead not found")
-        if lead["opt_out"]: raise ValueError("Lead is opted out; drafting suppressed")
+        if lead["opt_out"] or identity_is_suppressed(db, lead):
+            raise ValueError("Lead or matching email/phone identity is opted out; drafting suppressed")
         qualified, reasons = buyer_gate(lead)
         if not qualified: raise ValueError("NOT_QUALIFIED: " + "; ".join(reasons))
         context={k:lead[k] for k in ("business_name","niche","country","website","need_evidence","contact_name","current_product","product_category","buyer_evidence","sri_product_match","comparison_summary","added_value")}
