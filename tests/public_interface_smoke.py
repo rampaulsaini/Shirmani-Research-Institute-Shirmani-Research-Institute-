@@ -203,9 +203,9 @@ def main() -> int:
         "₹2,999",
         "showroom/first-client-pilot-desk.html",
         "income-action-center.html",
-        "wa.me/918082935186",
         "mailto:sainirampaul60@gmail.com",
-        "वे अपने-आप संदेश नहीं भेजते",
+        "ईमेल लिंक केवल आपके लिए संदेश का ड्राफ्ट खोलता है",
+        "WhatsApp संपर्क फिलहाल प्रकाशित नहीं है",
         "ग्राहक की स्वीकृति",
     ):
         if required.casefold() not in public_v3_source.casefold():
