@@ -72,6 +72,14 @@ def main() -> int:
         if route not in [urlsplit(link).path for link in index.links]:
             errors.append(f"index.html is missing canonical route: {route}")
 
+    # SVC-001 is writing/editing only; research summaries have separate SKUs.
+    if "SRI-SVC-001 — Hindi OR English Writing & Editing" not in showroom_source:
+        errors.append("Public first-pilot heading must identify SVC-001 as writing/editing only")
+    if 'service:"SRI-SVC-001 Hindi OR English Writing & Editing"' not in showroom_source:
+        errors.append("First-pilot enquiry payload must use the canonical SVC-001 writing/editing identity")
+    if "SRI-SVC-001 — Hindi / English Writing & Research" in showroom_source or "SRI-SVC-001 Hindi/English Writing & Research" in showroom_source:
+        errors.append("First-pilot page must not describe SVC-001 as a research service")
+
     offer_text = " ".join(offer.text)
     for phrase in ("₹999", "500 words", "scope", "payment terms", "not an order", "sale"):
         if phrase.casefold() not in offer_text.casefold() and phrase.casefold() not in offer_source.casefold():
