@@ -37,9 +37,9 @@ a{color:var(--cyan)}a:focus-visible,button:focus-visible,input:focus-visible,sel
 
 <section class="panel pilot" id="first-pilot">
   <div class="tag">FIRST PILOT · CUSTOMER ENQUIRY</div>
-  <h2>SRI-SVC-001 — Hindi / English Writing & Research</h2>
+  <h2>SRI-SVC-001 — Hindi / English Writing & Editing</h2>
   <div class="price">₹999 Pilot</div>
-  <p>एक सीमित शुरुआती सेवा: ग्राहक द्वारा दिए गए brief पर अधिकतम 500 शब्दों की Hindi या English writing polish / research-writing सहायता। वास्तविक research scope और source requirements enquiry देखने के बाद लिखित रूप में तय होंगे।</p>
+  <p>एक सीमित शुरुआती सेवा: ग्राहक के brief पर अधिकतम 500 शब्दों का Hindi या English writing / editing कार्य। एक ऑर्डर में केवल एक भाषा होगी। Research summaries इस पायलट में शामिल नहीं हैं; वे अलग सेवा हैं।</p>
   <div class="specs">
     <div class="spec"><b>Scope</b>अधिकतम 500 शब्द</div>
     <div class="spec"><b>Deadline</b>2 working days प्रस्तावित</div>
@@ -55,7 +55,7 @@ a{color:var(--cyan)}a:focus-visible,button:focus-visible,input:focus-visible,sel
           <div><label for="name">नाम</label><input id="name" name="name" autocomplete="name" maxlength="120" required></div>
           <div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254"></div>
           <div><label for="phone">Phone (optional)</label><input id="phone" name="phone" autocomplete="tel" maxlength="40"></div>
-          <div><label for="language">भाषा</label><select id="language" name="language"><option>Hindi</option><option>English</option><option>Hindi + English</option></select></div>
+          <div><label for="language">भाषा</label><select id="language" name="language"><option>Hindi</option><option>English</option></select></div>
         </div>
         <label for="topic">काम / विषय का विवरण</label><textarea id="topic" name="topic" maxlength="180" required placeholder="अधिकतम 180 अक्षरों में काम / विषय लिखें।"></textarea>
         <div class="formgrid"><div><label for="deadline">पसंदीदा समय-सीमा</label><input id="deadline" name="deadline" maxlength="120" placeholder="2 working days प्रस्तावित"></div><div><label for="notes">अतिरिक्त जानकारी (optional)</label><input id="notes" name="notes" maxlength="1000"></div></div>
@@ -67,10 +67,10 @@ a{color:var(--cyan)}a:focus-visible,button:focus-visible,input:focus-visible,sel
     </div>
     <div class="card" id="trust">
       <h3>Payment — केवल लिखित सहमति के बाद</h3>
-      <p>UPI ID</p><p class="payment">9622254967@ptyes</p>
-      <p>PayPal recipient</p><p class="payment">sainirampaul60@gmail.com</p>
-      <p class="small">भुगतान से पहले अपने UPI / PayPal App में recipient का नाम, ID और राशि स्वयं verify करें। पहले लिखित proposal स्वीकार करें। OTP, UPI PIN, password या bank login कभी साझा न करें।</p>
-      <p class="small">भुगतान का screenshot अकेले पर्याप्त प्रमाण नहीं है। वास्तविक bank credit का authorized account holder द्वारा transaction reference से मिलान होने के बाद ही payment VERIFIED माना जाएगा।</p>
+      <p>SRI-SVC-001 · agreed pilot price</p><p class="price">₹999</p>
+      <p class="small">पहले deliverable, एक भाषा (Hindi OR English), word limit, deadline, revision और payment terms लिखित रूप में स्वीकार करें। उसके बाद ही Razorpay checkout खोलें।</p>
+      <a class="btn primary" href="https://rzp.io/rzp/UhC1i8c" target="_blank" rel="noopener noreferrer">Pay ₹999 via Razorpay</a>
+      <p class="small">भुगतान screenshot अकेले पर्याप्त प्रमाण नहीं है। वास्तविक bank credit का authorized account holder द्वारा transaction reference से मिलान होने के बाद ही payment VERIFIED माना जाएगा। OTP, UPI PIN, password या bank login कभी साझा न करें।</p>
       <a class="btn secondary" href="docs/payment-proof-format.md">Payment proof rules पढ़ें</a>
     </div>
   </div>
@@ -114,7 +114,7 @@ $("enquiryForm").addEventListener("submit",async e=>{
  const email=$("email").value.trim(),phone=$("phone").value.trim();
  if(!email&&!phone){$("enquiryStatus").textContent="कृपया email या phone में से कम-से-कम एक दें।";return;}
  if(!$("consent").checked){$("enquiryStatus").textContent="Enquiry भेजने से पहले consent आवश्यक है।";return;}
- const payload={name:$("name").value.trim(),email,phone,service:"SRI-SVC-001 Hindi/English Writing & Research",language:$("language").value,topic:$("topic").value.trim(),goal:"₹999 proposed first pilot; final scope and quote require written agreement.",word_count:"Up to 500 words",deadline:$("deadline").value.trim()||"2 working days proposed; confirm in writing",budget:"INR 999 proposed; not an accepted quote",notes:$("notes").value.trim(),website:$("website").value,consent:true};
+ const payload={name:$("name").value.trim(),email,phone,service:"SRI-SVC-001 Hindi/English Writing & Editing",language:$("language").value,topic:$("topic").value.trim(),goal:"₹999 proposed writing/editing pilot in one language only; research summaries are separate. Final scope and quote require written agreement.",word_count:"Up to 500 words",deadline:$("deadline").value.trim()||"2 working days proposed; confirm in writing",budget:"INR 999 proposed; not an accepted quote",notes:$("notes").value.trim(),website:$("website").value,consent:true};
  const button=$("submitEnquiry");button.disabled=true;$("enquiryStatus").textContent="Enquiry सुरक्षित रूप से भेजी जा रही है…";
  try{const response=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});const result=await response.json().catch(()=>({}));if(!response.ok)throw new Error(result.error||"API request failed ("+response.status+")");$("enquiryStatus").textContent="Enquiry दर्ज हुई। Reference: "+result.id+" · अभी कोई order या payment नहीं बना है।";$("enquiryForm").reset();}
  catch(error){$("enquiryStatus").textContent="Enquiry दर्ज नहीं हुई: "+error.message+" · अभी भुगतान न करें।";}
