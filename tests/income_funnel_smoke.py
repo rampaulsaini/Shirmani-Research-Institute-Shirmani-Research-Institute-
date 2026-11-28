@@ -127,6 +127,10 @@ def main() -> int:
         errors.append("Public showroom SVC-001 payment route must match the canonical Razorpay checkout")
     if "9622254967@ptyes" in showroom_source or "paypal" in showroom_source.casefold() or "upi://" in showroom_source:
         errors.append("Public showroom must not retain superseded manual UPI/PayPal payment instructions")
+    if 'service: "SRI-SVC-001 Hindi OR English Writing & Editing"' not in showroom_source:
+        errors.append("Public showroom enquiry payload must use the canonical SVC-001 writing/editing identity")
+    if "Hindi/English Writing & Research" in showroom_source:
+        errors.append("Public showroom must not label the SVC-001 enquiry as bilingual research")
     if "SRI-SVC-001 — Hindi OR English Writing & Editing" not in clean_showroom_source:
         errors.append("Supreme clean showroom must use the canonical SVC-001 service identity")
     if 'service:"SRI-SVC-001 Hindi OR English Writing & Editing"' not in clean_showroom_source:
