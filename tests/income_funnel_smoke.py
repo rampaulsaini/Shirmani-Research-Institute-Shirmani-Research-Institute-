@@ -131,6 +131,8 @@ def main() -> int:
         errors.append("Public showroom enquiry payload must use the canonical SVC-001 writing/editing identity")
     if "Hindi/English Writing & Research" in showroom_source:
         errors.append("Public showroom must not label the SVC-001 enquiry as bilingual research")
+    if "<option>Hindi + English</option>" in showroom_source:
+        errors.append("Public showroom SVC-001 enquiry must enforce one language per order")
     if "SRI-SVC-001 — Hindi OR English Writing & Editing" not in clean_showroom_source:
         errors.append("Supreme clean showroom must use the canonical SVC-001 service identity")
     if 'service:"SRI-SVC-001 Hindi OR English Writing & Editing"' not in clean_showroom_source:
