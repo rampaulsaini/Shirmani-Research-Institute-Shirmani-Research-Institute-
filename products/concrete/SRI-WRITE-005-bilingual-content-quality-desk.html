@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A browser-local Hindi and English content review desk for word counts, structure, clarity checks and client-ready review notes.">
+<title>SRI-WRITE-005 · Bilingual Content Quality Desk</title>
+<style>
+:root{color-scheme:dark;--bg:#08111e;--panel:#101e30;--line:#29425a;--gold:#e7c46a;--cyan:#76e4f5;--ink:#f3f6fb;--muted:#aebed0;--green:#8de0b0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#17304b 0,transparent 42%),var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1180px;margin:auto;padding:22px}.hero{border:1px solid #8b7542;border-radius:22px;padding:26px;background:linear-gradient(135deg,#17283a,#0b1523 65%,#1b2430);box-shadow:0 18px 55px #0005}
+.identity{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.mark{width:62px;height:62px;border:2px solid var(--gold);border-radius:18px;display:grid;place-items:center;color:var(--gold);font-weight:900;font-size:25px;letter-spacing:-2px}.eyebrow{color:var(--cyan);font-size:.78rem;letter-spacing:.16em;font-weight:800}.identity h1{font-size:clamp(1.6rem,4vw,2.5rem);line-height:1.12;margin:.25rem 0}.slogan{color:var(--gold);font-weight:750}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-top:16px}.panel{grid-column:span 6;background:#0f1b2a;border:1px solid var(--line);border-radius:17px;padding:19px;min-width:0}.wide{grid-column:1/-1}.panel h2{margin:.1rem 0 1rem;font-size:1.16rem;color:var(--cyan)}label{display:block;color:var(--muted);font-size:.88rem;margin:12px 0 5px}input,select,textarea{width:100%;background:#081321;color:var(--ink);border:1px solid #3a5269;border-radius:10px;padding:11px 12px;font:inherit}textarea{min-height:220px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#091523}.num{display:block;font-size:1.65rem;font-weight:850;color:var(--gold);line-height:1.25}.small{font-size:.82rem;color:var(--muted)}button,.button{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--gold);color:#101722;border:0;border-radius:10px;padding:11px 15px;font-weight:800;cursor:pointer;text-decoration:none;margin:6px 5px 0 0}button.secondary,.button.secondary{background:#15283b;color:var(--ink);border:1px solid #3c5b73}.checks{display:grid;grid-template-columns:1fr 1fr;gap:9px}.checks label{display:flex;gap:8px;align-items:flex-start;margin:5px 0}.checks input{width:auto;margin-top:6px}.result{border-left:3px solid var(--green);padding:10px 13px;background:#0a1920;border-radius:0 10px 10px 0;margin-top:12px}.qr{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.qr img{width:116px;height:116px;background:white;padding:6px;border-radius:8px}.foot{margin:20px 0;color:var(--muted);font-size:.85rem}.badge{display:inline-block;border:1px solid #51677c;color:#d8e5f0;border-radius:999px;padding:3px 9px;font-size:.75rem;margin:3px}@media(max-width:760px){.panel{grid-column:1/-1}main{padding:12px}.hero{padding:19px}.row{grid-template-columns:1fr}.checks{grid-template-columns:1fr}.stats{gap:6px}.num{font-size:1.35rem}}
+</style>
+</head>
+<body><main>
+<header class="hero">
+<div class="identity"><div class="mark" aria-label="Nishpaksh understanding mark">निष्</div><div><div class="eyebrow">SHIRMANI RESEARCH INSTITUTE · CONCRETE PRODUCT</div><h1>Bilingual Content Quality Desk</h1><div class="slogan">सरल • सहज • निर्मल • पारदर्शी</div></div></div>
+<p>Review Hindi or English writing before delivery. Inspect counts, title/keyword coverage, a practical quality checklist, and produce a client-ready review note — without uploading your draft.</p>
+<div><span class="badge">SRI-WRITE-005</span><span class="badge">Version 1.0 · Prototype</span><span class="badge">Browser-local processing</span></div>
+</header>
+<div class="grid">
+<section class="panel"><h2>01 · Content workspace</h2>
+<div class="row"><div><label for="lang">Content language</label><select id="lang"><option>Hindi</option><option>English</option><option>Mixed Hindi-English</option></select></div><div><label for="kind">Content type</label><select id="kind"><option>Research summary</option><option>Website / blog</option><option>Article / essay</option><option>Product description</option><option>Professional email</option><option>Educational material</option></select></div></div>
+<label for="title">Working title</label><input id="title" placeholder="Add a clear, specific title">
+<label for="keywords">Required terms (comma-separated)</label><input id="keywords" placeholder="e.g. research, sources, limitations">
+<label for="draft">Paste or write your draft</label><textarea id="draft" placeholder="Paste your content here. It stays in this browser tab; this prototype does not upload it."></textarea>
+<button id="analyse">Review content</button><button class="secondary" id="clear">Clear workspace</button>
+</section>
+<section class="panel"><h2>02 · Live review metrics</h2>
+<div class="stats"><div class="stat"><span class="num" id="words">0</span><span class="small">Words</span></div><div class="stat"><span class="num" id="chars">0</span><span class="small">Characters</span></div><div class="stat"><span class="num" id="sentences">0</span><span class="small">Sentence marks</span></div></div>
+<div id="review" class="result" aria-live="polite">Add a draft and select “Review content” to generate a practical review note. Counts update as you type.</div>
+<h3>Keyword coverage</h3><div id="keywordResult" class="small">Add required terms to inspect whether they appear in the draft.</div>
+<h3>Editorial checklist</h3><div class="checks">
+<label><input type="checkbox" data-check="purpose"> Purpose and audience are clear</label>
+<label><input type="checkbox" data-check="sources"> Claims and sources are distinguished</label>
+<label><input type="checkbox" data-check="limits"> Limitations / uncertainty are stated</label>
+<label><input type="checkbox" data-check="structure"> Headings and order are logical</label>
+<label><input type="checkbox" data-check="language"> Language and spelling reviewed</label>
+<label><input type="checkbox" data-check="privacy"> Privacy and permissions checked</label>
+</div><p class="small">Checklist items are self-attested by the user; the tool does not independently validate them.</p>
+</section>
+<section class="panel wide"><h2>03 · Export client review note</h2><p class="small">Creates a local review summary from the fields and checklist above. It is not an independent fact-check, plagiarism check, AI writing detector, or guarantee of quality.</p><div id="passport" class="result">Product: SRI-WRITE-005 · Status: Prototype · QC: functional browser-local checks only · Dispatch: NO · Price: quote after scope confirmation.</div>
+<button id="download">Download review note (.txt)</button><button id="copy" class="secondary">Copy review note</button><button id="print" class="secondary">Print / Save PDF</button>
+</section>
+<section class="panel wide"><h2>04 · Product identity & passport</h2><div class="qr"><img id="qr" alt="QR code linking to this product page"><div><strong>SRI-WRITE-005 — Bilingual Content Quality Desk</strong><p class="small">Short description: review draft structure, counts, keyword coverage and editorial readiness in your browser.</p><p class="small">Long description / product passport: this page includes usage, limitations and release status. Scan the QR to open the product page when deployed on the public site.</p><p><a href="../showroom.html">Return to the main showroom</a></p></div></div>
+</section>
+</div>
+<footer class="foot">SHIRMANI RESEARCH INSTITUTE · Impartial Understanding · Transparent product state<br>QC state: Prototype checks only · Dispatch: NO · Checkout/payment: not connected · Live AI: not connected · MP4 demo and captured VIP screenshot: not yet attached. Do not treat this page as a sale or independent verification.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const draft=$('draft'), title=$('title'), keywords=$('keywords');
+function tokens(s){return (s.match(/[\p{L}\p{N}]+(?:['’.-][\p{L}\p{N}]+)*/gu)||[])}
+function counts(){const s=draft.value; $('words').textContent=tokens(s).length.toLocaleString();$('chars').textContent=s.length.toLocaleString();$('sentences').textContent=(s.match(/[.!?।॥]+/g)||[]).length.toLocaleString()}
+function note(){const s=draft.value, ws=tokens(s), terms=keywords.value.split(',').map(x=>x.trim()).filter(Boolean);const missing=terms.filter(t=>!s.toLocaleLowerCase().includes(t.toLocaleLowerCase()));const checks=[...document.querySelectorAll('[data-check]')];const done=checks.filter(c=>c.checked).length;
+return 'SHIRMANI RESEARCH INSTITUTE — CONTENT REVIEW NOTE\nProduct: SRI-WRITE-005 Bilingual Content Quality Desk\nTitle: '+(title.value.trim()||'(not provided)')+'\nLanguage: '+$('lang').value+'\nContent type: '+$('kind').value+'\nWord count (approx.): '+ws.length+'\nCharacter count: '+s.length+'\nSentence punctuation marks: '+(s.match(/[.!?।॥]+/g)||[]).length+'\nRequired terms: '+(terms.join(', ')||'(none supplied)')+'\nTerms not found: '+(missing.join(', ')|| (terms.length?'None':'(not checked)'))+'\nEditorial checklist: '+done+'/'+checks.length+' self-attested items complete\n'+checks.map(c=>(c.checked?'[x] ':'[ ] ')+c.parentElement.textContent.trim()).join('\n')+'\n\nDraft text:\n'+s+'\n\nLIMITATIONS: Counts and term matching are mechanical hints, not editorial judgment. No independent fact-check, plagiarism check, AI detection, source retrieval, or quality guarantee was performed. Checklist is user self-attestation. QC: prototype-only. Dispatch: NO. Price: quote after scope confirmation.';
+}
+function analyse(){counts();const s=draft.value.trim(),ws=tokens(s),terms=keywords.value.split(',').map(x=>x.trim()).filter(Boolean);$('review').textContent=!s?'No draft entered yet.':(ws.length<100?'Short draft: confirm whether the requested scope requires more detail. ':'Draft captured: '+ws.length+' words. Review evidence, audience fit, structure, and factual claims before delivery. ')+(title.value.trim()?'Title supplied.':'Add a working title.');const missing=terms.filter(t=>!s.toLocaleLowerCase().includes(t.toLocaleLowerCase()));$('keywordResult').textContent=!terms.length?'No required terms supplied.':missing.length?'Not found: '+missing.join(', '):'All '+terms.length+' required term(s) appear at least once. Appearance does not mean correct usage.';$('passport').textContent='Product SRI-WRITE-005 · '+ws.length+' words · '+s.length+' characters · Checklist '+[...document.querySelectorAll('[data-check]')].filter(c=>c.checked).length+'/6 self-attested · QC: prototype checks only · Dispatch: NO.'}
+draft.addEventListener('input',counts);$('analyse').addEventListener('click',analyse);keywords.addEventListener('input',()=>{if(draft.value)analyse()});
+$('clear').addEventListener('click',()=>{draft.value='';title.value='';keywords.value='';document.querySelectorAll('[data-check]').forEach(c=>c.checked=false);analyse();$('review').textContent='Workspace cleared.'});
+$('download').addEventListener('click',()=>{const b=new Blob([note()],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='SRI-WRITE-005-content-review.txt';a.click();URL.revokeObjectURL(a.href)});
+$('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(note());$('copy').textContent='Copied';}catch(e){$('copy').textContent='Copy unavailable — use Download';}});
+$('print').addEventListener('click',()=>window.print());
+try{$('qr').src='https://api.qrserver.com/v1/create-qr-code/?size=160x160&data='+encodeURIComponent(location.href.split('#')[0]);}catch(e){}
+analyse();
+</script></body></html>
